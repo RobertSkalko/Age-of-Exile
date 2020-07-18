@@ -8,8 +8,8 @@ import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.SimpleGearLo
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.generators.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -27,6 +27,11 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     }
 
     public static final String ID = Ref.MODID + ":currency/orb_of_transmutation";
+
+    @Override
+    public int getWeight() {
+        return 3000;
+    }
 
     public OrbOfTransmutationItem() {
 
@@ -87,10 +92,10 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModItems.ORB_OF_TRANSMUTATION.get())
+        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_TRANSMUTATION)
             .input('t', Items.REDSTONE)
             .input('v', Items.COAL)
-            .input('o', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

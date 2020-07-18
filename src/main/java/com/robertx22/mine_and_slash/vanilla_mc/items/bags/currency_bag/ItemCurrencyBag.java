@@ -12,8 +12,6 @@ public class ItemCurrencyBag extends BaseBagItem {
 
     public static final String ID = Ref.MODID + ":currency_bag";
 
-    @ObjectHolder(ID)
-    public static final Item ITEM = null;
 
     public ItemCurrencyBag() {
         super(ID);

@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
@@ -73,7 +72,7 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
-        return new ItemStack(ModItems.MAGIC_ESSENCE.get());
+        return new ItemStack(ModRegistry.ITEMS.MAGIC_ESSENCE.get());
     }
 
     @Override

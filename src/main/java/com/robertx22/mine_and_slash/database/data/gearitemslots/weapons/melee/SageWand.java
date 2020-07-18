@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -48,7 +47,7 @@ public class SageWand extends BaseWeapon {
 
     @Override
     public Item getItem() {
-        return ModItems.SAGE_WAND.get();
+        return ModRegistry.ITEMS.SAGE_WAND.get();
     }
 
     @Override

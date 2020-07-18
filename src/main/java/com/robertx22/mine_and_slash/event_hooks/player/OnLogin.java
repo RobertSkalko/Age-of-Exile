@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -75,7 +74,7 @@ public class OnLogin {
             return;
         }
 
-        player.inventory.insertStack(new ItemStack(ModItems.NEWBIE_GEAR_BAG.get()));
+        player.inventory.insertStack(new ItemStack(ModRegistry.ITEMS.NEWBIE_GEAR_BAG.get()));
 
     }
 

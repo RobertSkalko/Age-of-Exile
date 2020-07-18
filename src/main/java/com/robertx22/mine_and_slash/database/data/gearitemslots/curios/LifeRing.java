@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -42,7 +41,7 @@ public class LifeRing extends BaseCurio {
 
     @Override
     public Item getItem() {
-        return ModItems.LIFE_RING.get();
+        return ModRegistry.ITEMS.LIFE_RING.get();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
@@ -21,7 +20,7 @@ public class AbilityData {
     }
 
     public void removeSkillGem(PlayerEntity player) {
-        ItemStack stack = new ItemStack(ModItems.SKILL_GEM.get());
+        ItemStack stack = new ItemStack(ModRegistry.ITEMS.SKILL_GEM.get());
 
         if (player.inventory.insertStack(stack)) {
             skill_gem = new SkillGemData();

@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -41,7 +41,7 @@ public class TowerShield extends BaseOffHand {
 
     @Override
     public Item getItem() {
-        return ModItems.TOWER_SHIELD.get();
+        return ModRegistry.MISC_ITEMS.TOWER_SHIELD;
     }
 
     @Override

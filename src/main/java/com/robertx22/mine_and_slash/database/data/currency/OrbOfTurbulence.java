@@ -7,12 +7,12 @@ import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequi
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -48,6 +48,11 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
+    public int getWeight() {
+        return 200;
+    }
+
+    @Override
     public List<BaseLocRequirement> requirements() {
         return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_NOT_UNIQUE, GearEnumLocReq.AFFIXES);
     }
@@ -74,11 +79,11 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModItems.ORB_OF_TURBULENCE.get())
+        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_TURBULENCE)
             .input('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .input('t', ModItems.ORB_OF_TRANSMUTATION.get())
+            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_TRANSMUTATION)
             .input('v', Items.GLISTERING_MELON_SLICE)
-            .input('o', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ooo")

@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
@@ -16,9 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
-
-
-
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -71,8 +67,8 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
         if (rarity == 0) {
             return shaped(ITEMS.get(rarity))
                 .input('#', Items.IRON_INGOT)
-                .input('t', ModItems.ORB_OF_TRANSMUTATION.get())
-                .input('c', ModItems.MAGIC_ESSENCE.get())
+                .input('t', ModRegistry.ITEMS.ORB_OF_TRANSMUTATION.get())
+                .input('c', ModRegistry.ITEMS.MAGIC_ESSENCE.get())
                 .pattern("#c#")
                 .pattern("ctc")
                 .pattern("#c#")
@@ -82,7 +78,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .input('#', SimpleMatItem.INFUSED_IRON)
                 .input('t', ITEMS.get(rarity - 1))
-                .input('c', ModItems.MAGIC_ESSENCE.get())
+                .input('c', ModRegistry.ITEMS.MAGIC_ESSENCE.get())
                 .pattern("#c#")
                 .pattern("ctc")
                 .pattern("#c#")
@@ -92,7 +88,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .input('#', SimpleMatItem.GOLDEN_ORB)
                 .input('t', ITEMS.get(rarity - 1))
-                .input('c', ModItems.RARE_MAGIC_ESSENCE.get())
+                .input('c', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
                 .pattern("#c#")
                 .pattern("ctc")
                 .pattern("#c#")
@@ -102,7 +98,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .input('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
                 .input('t', ITEMS.get(rarity - 1))
-                .input('c', ModItems.RARE_MAGIC_ESSENCE.get())
+                .input('c', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
                 .pattern("#c#")
                 .pattern("ctc")
                 .pattern("#c#")
@@ -112,7 +108,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .input('#', SimpleMatItem.MYTHIC_ESSENCE)
                 .input('t', ITEMS.get(rarity - 1))
-                .input('c', ModItems.STONE_OF_HOPE.get())
+                .input('c', ModRegistry.ITEMS.STONE_OF_HOPE.get())
                 .pattern("#c#")
                 .pattern("ctc")
                 .pattern("#c#")
@@ -125,7 +121,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
-                               TooltipContext flagIn) {
+                              TooltipContext flagIn) {
 
         tooltip.add(CLOC.tooltip("capacitor"));
 

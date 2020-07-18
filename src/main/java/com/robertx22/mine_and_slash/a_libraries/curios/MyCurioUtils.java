@@ -2,55 +2,42 @@ package com.robertx22.mine_and_slash.a_libraries.curios;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import top.theillusivec4.curios.api.CuriosAPI;
-import top.theillusivec4.curios.api.capability.ICurioItemHandler;
-import top.theillusivec4.curios.api.inventory.CurioStackHandler;
+
+import top.theillusivec4.curios.api.CuriosApi;
+
+import top.theillusivec4.curios.api.type.component.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MyCurioUtils {
 
     public static List<ItemStack> getAllSlots(PlayerEntity player) {
 
+
         List<ItemStack> list = new ArrayList<>();
 
-        ICurioItemHandler handler = CuriosAPI.getCuriosHandler(player).orElse(null);
-
+        return null; // TODO
+/*
+        ICuriosItemHandler handler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
         if (handler != null) {
+            Map<String, ICurioStacksHandler> curioMap = handler.getCurios();
+            for (ICurioStacksHandler stacksHandler : curioMap.values()) {
+                IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                for (int i = 0; i < stackHandler.size(); i++) {
+                    list.add(stackHandler.getStack(i));
+                }}}
 
-            for (CurioStackHandler value : handler.getCurioMap().values()) {
-
-                for (int i = 0; i < value.getSlots(); i++) {
-
-                    ItemStack stack = value.getStackInSlot(i);
-
-                    if (stack.isEmpty() == false) {
-                        list.add(stack);
-                    }
-                }
-
-            }
-
-        }
 
         return list;
 
+
+ */
     }
 
-    // defaults to first slot
-    public static ItemStack getSlot(PlayerEntity player, CurioSlots slot) {
-
-        ICurioItemHandler handler = CuriosAPI.getCuriosHandler(player).orElse(null);
-
-        if (handler != null) {
-
-            return handler.getStackInSlot(slot.name, 0);
-
-        }
-
-        return ItemStack.EMPTY;
-
-    }
 
 }

@@ -1,51 +1,40 @@
 package com.robertx22.mine_and_slash.a_libraries.curios;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.interfaces.ICuriosType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Direction;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import top.theillusivec4.curios.api.capability.CuriosCapability;
-import top.theillusivec4.curios.api.capability.ICurio;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import nerdhub.cardinal.components.api.event.ItemComponentCallbackV2;
+import net.minecraft.item.Item;
+
+import net.minecraft.util.registry.Registry;
+import top.theillusivec4.curios.api.CuriosComponent;
+
+import top.theillusivec4.curios.api.type.component.ICurio;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
-
-
-@Mod.EventBusSubscriber
 public class AddCurioCapability {
 
-    @SubscribeEvent
-    public static void attachCapabilities(AttachCapabilitiesEvent<ItemStack> evt) {
 
-        if (evt.getObject().getItem() instanceof ICuriosType) {
+    public static void addComponents() {
 
-            ICuriosType type = (ICuriosType) evt.getObject().getItem();
+        List<Item> items = Registry.ITEM.stream().filter(x-> x instanceof  ICuriosType).collect(Collectors.toList());
 
-            ICurio curio = new ICurio() {
+        items.forEach(x-> {
+            ICuriosType type = (ICuriosType)x;
 
-                @Override
-                public boolean canRightClickEquip() {
-                    return type.rightClickEquip();
-                }
-            };
+            ItemComponentCallbackV2.event(x).register(
+                ((item, itemStack, componentContainer) -> componentContainer
+                    .put(CuriosComponent.ITEM, new ICurio() {
 
-            evt.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
-                private final LazyOptional<ICurio> curioOpt = LazyOptional.of(() -> curio);
+                    })));
 
-                @Nonnull
-                @Override
-                public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap,
-                                                         Direction side) {
+        });
+        // idk if this is needed
 
-                    return CuriosCapability.ITEM.orEmpty(cap, curioOpt);
 
-                }
-            });
-        }
+
     }
 
 }

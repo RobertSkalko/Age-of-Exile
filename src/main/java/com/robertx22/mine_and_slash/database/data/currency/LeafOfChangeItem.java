@@ -6,11 +6,11 @@ import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -22,6 +22,11 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
     @Override
     public String GUID() {
         return "currency/reroll_primary_stats_numbers";
+    }
+
+    @Override
+    public int getWeight() {
+        return 1000;
     }
 
     private static final String name = Ref.MODID + ":currency/reroll_primary_stats_numbers";
@@ -71,11 +76,11 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModItems.LEAF_OF_CHANGE.get())
+        return shaped(ModRegistry.MISC_ITEMS.LEAF_OF_CHANGE)
             .input('#', SimpleMatItem.GOLDEN_ORB)
-            .input('t', ModItems.ORB_OF_BLESSING.get())
+            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_BLESSING)
             .input('v', Items.GOLD_INGOT)
-            .input('o', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("#t#")
             .pattern("tvt")
             .pattern("oto")

@@ -5,7 +5,8 @@ import com.robertx22.mine_and_slash.a_libraries.curios.interfaces.ICuriosType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.DirUtils;
 import net.minecraft.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,13 +23,11 @@ public class GenerateCurioDataJsons {
 
         HashMap<String, List<String>> map = new HashMap();
 
-        List<Item> items = new ArrayList();
 
-        items.addAll(ForgeRegistries.ITEMS.getValues());
+        for (Item item : Registry.ITEM) {
 
-        for (Item item : items) {
-            if (item.getRegistryName()
-                    .getNamespace()
+
+            if (Registry.ITEM.getId(item).getNamespace()
                     .equals(Ref.MODID) && item instanceof ICuriosType) {
 
                 ICuriosType type = (ICuriosType) item;
@@ -40,7 +39,7 @@ public class GenerateCurioDataJsons {
                     list.addAll(map.get(slot));
                 }
 
-                list.add("\"" + item.getRegistryName().toString() + "\"");
+                list.add("\"" + Registry.ITEM.getId(item).toString() + "\"");
 
                 map.put(slot, list);
 

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
+import net.minecraft.util.registry.Registry;
 
 public class RareMagicEssence extends Item implements IAutoLocName, IWeighted, IAutoModel {
 
@@ -21,7 +22,7 @@ public class RareMagicEssence extends Item implements IAutoLocName, IWeighted, I
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString();
     }
 

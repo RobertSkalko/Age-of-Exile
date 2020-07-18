@@ -6,15 +6,15 @@ import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.generators.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -39,6 +39,11 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
         super(ID);
 
+    }
+
+    @Override
+    public int getWeight() {
+        return 75;
     }
 
     @Override
@@ -95,11 +100,11 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModItems.STONE_OF_HOPE.get())
+        return shaped(ModRegistry.MISC_ITEMS.STONE_OF_HOPE)
             .input('#', SimpleMatItem.MYTHIC_ESSENCE)
-            .input('t', ModItems.ORB_OF_TRANSMUTATION.get())
+            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_TRANSMUTATION)
             .input('v', Items.DIAMOND)
-            .input('o', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("#o#")
             .pattern("#t#")
             .pattern("vvv")

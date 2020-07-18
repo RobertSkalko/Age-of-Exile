@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -41,7 +40,7 @@ public class Buckler extends BaseOffHand {
 
     @Override
     public Item getItem() {
-        return ModItems.BUCKLER.get();
+        return ModRegistry.ITEMS.BUCKLER.get();
     }
 
     @Override

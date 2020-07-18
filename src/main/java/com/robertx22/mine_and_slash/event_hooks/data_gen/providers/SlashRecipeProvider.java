@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.event_hooks.data_gen.providers;
 
 import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import net.minecraft.advancement.criterion.EnchantedItemCriterion;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.server.RecipesProvider;
@@ -24,7 +23,7 @@ public class SlashRecipeProvider extends RecipesProvider {
     protected void generate(Consumer<RecipeJsonProvider> c) {
 
         shaped(SimpleMatItem.INFUSED_IRON)
-            .input('#', ModItems.MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.ITEMS.MAGIC_ESSENCE.get())
             .input('i', Items.IRON_INGOT)
             .pattern(" # ")
             .pattern("#i#")
@@ -33,7 +32,7 @@ public class SlashRecipeProvider extends RecipesProvider {
             .offerTo(c);
 
         shaped(SimpleMatItem.GOLDEN_ORB)
-            .input('#', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
             .input('i', Items.GOLD_INGOT)
             .pattern(" # ")
             .pattern("#i#")
@@ -42,7 +41,7 @@ public class SlashRecipeProvider extends RecipesProvider {
             .offerTo(c);
 
         shaped(SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .input('#', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
             .input('i', Items.DIAMOND)
             .pattern(" # ")
             .pattern("#i#")
@@ -51,7 +50,7 @@ public class SlashRecipeProvider extends RecipesProvider {
             .offerTo(c);
 
         shaped(SimpleMatItem.MYTHIC_ESSENCE)
-            .input('#', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
             .input('b', Items.BOWL)
             .pattern("###")
             .pattern("###")

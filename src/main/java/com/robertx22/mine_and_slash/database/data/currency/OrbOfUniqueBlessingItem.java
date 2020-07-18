@@ -6,12 +6,12 @@ import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
+import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -36,6 +36,11 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
         super(name);
 
+    }
+
+    @Override
+    public int getWeight() {
+        return 100;
     }
 
     @Override
@@ -77,11 +82,11 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModItems.ORB_OF_UNIQUE_BLESSING.get())
+        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_UNIQUE_BLESSING)
             .input('#', SimpleMatItem.GOLDEN_ORB)
-            .input('t', ModItems.ORB_OF_BLESSING.get())
+            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_BLESSING)
             .input('v', Items.GOLD_INGOT)
-            .input('o', ModItems.RARE_MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("o#o")
             .pattern("oto")
             .pattern("v#v")

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.mmorpg.registers.common;
+package com.robertx22.mine_and_slash.mmorpg.registers.common.items;
 
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.BeastBloodChest;

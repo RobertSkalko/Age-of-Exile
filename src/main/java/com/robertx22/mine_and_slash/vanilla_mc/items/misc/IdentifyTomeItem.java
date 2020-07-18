@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -26,9 +25,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-
-
 
 import java.util.List;
 
@@ -100,10 +96,10 @@ public class IdentifyTomeItem extends Item implements IShapedRecipe {
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModItems.IDENTIFY_TOME.get(), 8)
+        return shaped(ModRegistry.ITEMS.IDENTIFY_TOME.get(), 8)
             .input('b', Items.BOOK)
             .input('v', Items.COAL)
-            .input('o', ModItems.MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.ITEMS.MAGIC_ESSENCE.get())
             .pattern("oo")
             .pattern("bv")
             .criterion("player_level", trigger());

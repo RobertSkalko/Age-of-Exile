@@ -1,15 +1,16 @@
 package com.robertx22.mine_and_slash.data_generation.compatible_items;
 
+import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.data_generation.BaseDataPackManager;
 import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.providers.SlashDataProvider;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +37,11 @@ public class CompatibleItemDataPackManager extends BaseDataPackManager<Compatibl
             ) {
                 Item item = slot.getItem();
 
-                if (item == Items.AIR || item.getRegistryName() == null) {
+                if (item == Items.AIR || Registry.ITEM.getId(item) == null) {
                     continue;
                 }
 
-                if (item.getRegistryName()
+                if (Registry.ITEM.getId(item)
                     .getNamespace()
                     .equals(Ref.MODID)) {
 
@@ -49,7 +50,7 @@ public class CompatibleItemDataPackManager extends BaseDataPackManager<Compatibl
                     c.item_type = slot.GUID();
                     c.add_to_loot_drops = false;
 
-                    String id = item.getRegistryName()
+                    String id = Registry.ITEM.getId(item)
                         .toString();
 
                     c.guid = id;

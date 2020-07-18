@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.con
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -34,6 +33,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,12 +85,12 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public Item getItem() {
 
         if (getPlayStyle().isINT()) {
-            return ModItems.INT_SKILL_GEM.get();
+            return ModRegistry.ITEMS.INT_SKILL_GEM.get();
         }
         if (getPlayStyle().isDEX()) {
-            return ModItems.DEX_SKILL_GEM.get();
+            return ModRegistry.ITEMS.DEX_SKILL_GEM.get();
         }
-        return ModItems.STR_SKILL_GEM.get();
+        return ModRegistry.ITEMS.STR_SKILL_GEM.get();
 
     }
 

@@ -1,20 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.a_libraries.curios.AddCurioCapability;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
-import com.robertx22.mine_and_slash.data_generation.DimConfigsDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.EntityConfigsDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.base_gear_types.BaseGearTypeDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
-import com.robertx22.mine_and_slash.data_generation.rarities.SkillGemRarityManager;
-import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
-import com.robertx22.mine_and_slash.database.registrators.CurrencyItems;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
-import com.robertx22.mine_and_slash.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
@@ -22,29 +10,17 @@ import com.robertx22.mine_and_slash.mmorpg.registers.client.ClientSetup;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CapabilityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
-import com.robertx22.mine_and_slash.auto_comp.DeterminePowerLevels;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.OnGatherData;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.testing.tests.CheckWeaponDpsBalanceTest;
-import com.robertx22.mine_and_slash.uncommon.testing.tests.CountUniqueGearTypes;
-import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
-import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 import java.util.logging.Logger;
-
-
 
 public class MMORPG implements ModInitializer {
 
@@ -55,18 +31,18 @@ public class MMORPG implements ModInitializer {
         return false;
     }
 
-
     @Override
     public void onInitialize() {
 
-        System.out.println("Starting " +Ref.MOD_NAME);
+        System.out.println("Starting " + Ref.MOD_NAME);
+
+        ModRegistry.init();
 
         SlashRegistry.initRegistries();
         RegisterEvents.register();
         ConfigRegister.registerForgeConfigs(); // MUST BE IN MAIN CLASS
         SlashRegistry.registerAllItems(); // after config registerAll
         SlashRegistry.checkGuidValidity();
-
 
         PotionRegister.register();
 
@@ -77,6 +53,7 @@ public class MMORPG implements ModInitializer {
 
         ConfigRegister.registerCustomConfigs();
 
+        AddCurioCapability.addComponents();
 
     }
 
@@ -119,7 +96,6 @@ public class MMORPG implements ModInitializer {
         .networkProtocolVersion(() -> PROTOCOL_VERSION)
         .simpleChannel();
 
-
     public static void logError(String s) {
         try {
             throw new Exception(s);
@@ -128,22 +104,17 @@ public class MMORPG implements ModInitializer {
         }
     }
 
-
     private void interModEnqueue(final InterModEnqueueEvent event) {
         System.out.println(Ref.MODID + ":InterModEnqueueEvent");
         RegisterCurioSlots.register(event);
 
     }
 
-
-
     public void clientSetup(final FMLClientSetupEvent event) {
         ClientSetup.setup(event);
     }
 
     public static MinecraftServer server = null;
-
-
 
     public static <MSG> void sendToTracking(MSG msg, Entity entity) {
 
@@ -191,6 +162,5 @@ public class MMORPG implements ModInitializer {
     public void onloadComplete(FMLLoadCompleteEvent evt) {
 
     }
-
 
 }

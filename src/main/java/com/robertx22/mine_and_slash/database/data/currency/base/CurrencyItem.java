@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.database.data.currency.base;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
+import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;
-import com.robertx22.mine_and_slash.vanilla_mc.items.ItemDefault;
-import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
@@ -22,6 +20,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.items.ItemDefault;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -29,10 +28,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
-
-
 
 import java.util.List;
 
@@ -77,8 +74,15 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
     @Override
     public String locDescLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString() + ".desc";
+    }
+
+    public abstract int getWeight();
+
+    @Override
+    public int Weight() {
+        return getWeight();
     }
 
     @Override
@@ -88,14 +92,14 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString();
     }
 
     @Environment(EnvType.CLIENT)
     @Override
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
-                               TooltipContext flagIn) {
+                              TooltipContext flagIn) {
 
         if (this instanceof IAutoLocDesc) {
             IAutoLocDesc auto = (IAutoLocDesc) this;
@@ -131,24 +135,6 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     @Override
     public Rarity getRarity() {
         return Rarities.Mobs.get(getRarityRank());
-    }
-
-    @Override
-    public int Weight() {
-
-        if (getRarityRank() == 0) {
-            return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.COMMON_WEIGHT.get();
-        } else if (getRarityRank() == 1) {
-            return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.UNCOMMON_WEIGHT.get();
-        } else if (getRarityRank() == 2) {
-            return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.RARE_WEIGHT.get();
-        } else if (getRarityRank() == 3) {
-            return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.EPIC_WEIGHT.get();
-        } else if (getRarityRank() == 4) {
-            return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.LEGENDARY_WEIGHT.get();
-        }
-
-        return 0;
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BasePants;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -43,7 +42,7 @@ public class IronLegguards extends BasePants {
 
     @Override
     public Item getItem() {
-        return ModItems.PLATE_PANTS.get();
+        return ModRegistry.ITEMS.PLATE_PANTS.get();
     }
 
     @Override
