@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,8 +17,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-
 import org.lwjgl.opengl.GL11;
 
 @Environment(EnvType.CLIENT)
@@ -39,9 +37,12 @@ public class DamageParticle extends Particle {
                           double parMotionX, double parMotionY, double parMotionZ) {
         super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 
-        gravityStrength = ClientContainer.INSTANCE.dmgParticleConfig.GRAVITY.get().floatValue();
-        scale = ClientContainer.INSTANCE.dmgParticleConfig.START_SIZE.get().floatValue();
-        this.maxAge = ClientContainer.INSTANCE.dmgParticleConfig.LIFESPAN.get().intValue();
+        gravityStrength = ClientConfigs.INSTANCE.dmgParticleConfig.GRAVITY.get()
+            .floatValue();
+        scale = ClientConfigs.INSTANCE.dmgParticleConfig.START_SIZE.get()
+            .floatValue();
+        this.maxAge = ClientConfigs.INSTANCE.dmgParticleConfig.LIFESPAN.get()
+            .intValue();
         this.text = element.format + element.icon + Formatting.GRAY + str;
         this.element = element;
     }
@@ -49,7 +50,8 @@ public class DamageParticle extends Particle {
     public void setupPosition(Camera info) {
         MinecraftClient mc = MinecraftClient.getInstance();
 
-        float speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get().floatValue();
+        float speed = ClientConfigs.INSTANCE.dmgParticleConfig.SPEED.get()
+            .floatValue();
 
         PlayerEntity p = mc.player;
 
@@ -84,8 +86,11 @@ public class DamageParticle extends Particle {
             GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
 
             GL11.glScaled(-1.0, -1.0, 1.0);
-            GL11.glScaled(this.getBoundingBox().getXLength() * 0.04D, this.getBoundingBox().getYLength() * 0.04D,
-                          this.getBoundingBox().getZLength() * 0.04D
+            GL11.glScaled(this.getBoundingBox()
+                    .getXLength() * 0.04D, this.getBoundingBox()
+                    .getYLength() * 0.04D,
+                this.getBoundingBox()
+                    .getZLength() * 0.04D
             );
             GL11.glScaled(1.0, 1.0, 1.0);
 
@@ -116,10 +121,11 @@ public class DamageParticle extends Particle {
 
     @Override
     public void tick() {
-        if (ClientContainer.INSTANCE.dmgParticleConfig.GROWS.get()) {
+        if (ClientConfigs.INSTANCE.dmgParticleConfig.GROWS.get()) {
             if (this.grow) {
                 this.scale *= 1.05F;
-                if (this.scale > ClientContainer.INSTANCE.dmgParticleConfig.MAX_SIZE.get().floatValue()) {
+                if (this.scale > ClientConfigs.INSTANCE.dmgParticleConfig.MAX_SIZE.get()
+                    .floatValue()) {
                     this.grow = false;
                 }
             } else {
@@ -141,7 +147,7 @@ public class DamageParticle extends Particle {
 
         this.move(this.velocityX, this.velocityY, this.velocityZ);
 
-        double speed = ClientContainer.INSTANCE.dmgParticleConfig.SPEED.get();
+        double speed = ClientConfigs.INSTANCE.dmgParticleConfig.SPEED.get();
 
         this.velocityY -= speed;
         this.velocityX += speed * world.random.nextDouble();

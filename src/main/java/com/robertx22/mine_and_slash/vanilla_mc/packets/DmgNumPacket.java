@@ -1,13 +1,18 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
+import com.robertx22.mine_and_slash.a_libraries.dmg_number_particle.OnDisplayDamage;
+import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.Packet;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
 
-import java.io.IOException;
-
-public class DmgNumPacket implements Packet<MyClientPacketsListener> {
+public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
     public String element;
     public String string;
@@ -35,19 +40,24 @@ public class DmgNumPacket implements Packet<MyClientPacketsListener> {
     }
 
     @Override
-    public void read(PacketByteBuf tag) throws IOException {
-        element = tag.readString();
-        tag.readDouble();
-        tag.readDouble();
-        tag.readDouble();
-        tag.readFloat();
-        tag.readBoolean();
-        tag.readString();
-        tag.readFloat();
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "dmgnum");
     }
 
     @Override
-    public void write(PacketByteBuf tag) throws IOException {
+    public void loadFromData(PacketByteBuf tag) {
+        element = tag.readString();
+        x = tag.readDouble();
+        y = tag.readDouble();
+        z = tag.readDouble();
+        height = tag.readFloat();
+        isExp = tag.readBoolean();
+        string = tag.readString();
+        number = tag.readFloat();
+    }
+
+    @Override
+    public void saveToData(PacketByteBuf tag) {
         tag.writeString(element);
         tag.writeDouble(x);
         tag.writeDouble(y);
@@ -59,8 +69,18 @@ public class DmgNumPacket implements Packet<MyClientPacketsListener> {
     }
 
     @Override
-    public void apply(MyClientPacketsListener listener) {
-        listener.onDamageNumPacket(this);
+    public void onReceived(PacketContext ctx, DmgNumPacket data) {
+        if (isExp && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG.get()) {
+            ClientOnly.getPlayer()
+                .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + number + " EXP"));
+
+        } else if (isExp == false && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG.get()) {
+            OnDisplayDamage.displayParticle(element, string, x, y, z, height);
+        }
     }
 
+    @Override
+    public MyPacket<DmgNumPacket> newInstance() {
+        return new DmgNumPacket();
+    }
 }

@@ -9,9 +9,9 @@ public abstract class MyPacket<T> implements PacketConsumer {
 
     public abstract Identifier getIdentifier();
 
-    public abstract T fromData(PacketByteBuf buf);
+    public abstract void loadFromData(PacketByteBuf tag);
 
-    public abstract PacketByteBuf toData(T t);
+    public abstract void saveToData(PacketByteBuf tag);
 
     public abstract void onReceived(PacketContext ctx, T data);
 
@@ -23,8 +23,9 @@ public abstract class MyPacket<T> implements PacketConsumer {
         ctx.getTaskQueue()
             .execute(() -> {
                 try {
-                    T data = newInstance().fromData(buf);
-                    this.onReceived(ctx, data);
+                    MyPacket<T> data = newInstance();
+                    data.loadFromData(buf);
+                    this.onReceived(ctx, (T) data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

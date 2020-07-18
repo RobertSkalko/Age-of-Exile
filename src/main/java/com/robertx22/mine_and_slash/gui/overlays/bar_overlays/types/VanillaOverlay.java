@@ -2,8 +2,7 @@ package com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.config.forge.ClientContainer;
-import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types.VanillaOverlay.Side;
+import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.minecraft.client.MinecraftClient;
@@ -46,7 +45,7 @@ public class VanillaOverlay extends InGameHud {
                 return;
             }
 
-            if (!ClientContainer.INSTANCE.PLAYER_GUI_TYPE.get()
+            if (!ClientConfigs.INSTANCE.PLAYER_GUI_TYPE.get()
                 .equals(PlayerGUIs.Vanilla)) {
                 return;
             }
@@ -84,8 +83,8 @@ public class VanillaOverlay extends InGameHud {
                 y -= SPACING_Y;
             }
 
-            int leftY = ClientContainer.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
-            int rightY = ClientContainer.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
+            int leftY = ClientConfigs.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
+            int rightY = ClientConfigs.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
 
             renderElement(ticks, Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
 

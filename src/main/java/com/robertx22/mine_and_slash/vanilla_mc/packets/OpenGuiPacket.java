@@ -28,7 +28,7 @@ public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
     }
 
     @Override
-    public OpenGuiPacket fromData(PacketByteBuf buf) {
+    public OpenGuiPacket loadFromData(PacketByteBuf buf) {
         OpenGuiPacket newpkt = new OpenGuiPacket();
         newpkt.type = GuiType.valueOf(buf.readString(20));
         return newpkt;

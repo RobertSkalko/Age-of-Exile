@@ -7,15 +7,15 @@ import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class ClientContainer {
+public class ClientConfigs {
 
     public static final String NAME = "CLIENT";
     public static final ForgeConfigSpec spec;
-    public static final ClientContainer INSTANCE;
+    public static final ClientConfigs INSTANCE;
 
     static {
-        final Pair<ClientContainer, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(
-            ClientContainer::new);
+        final Pair<ClientConfigs, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(
+            ClientConfigs::new);
         spec = specPair.getRight();
         INSTANCE = specPair.getLeft();
 
@@ -34,7 +34,7 @@ public class ClientContainer {
 
     public EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
 
-    ClientContainer(ForgeConfigSpec.Builder builder) {
+    ClientConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings")
             .push(NAME);
 

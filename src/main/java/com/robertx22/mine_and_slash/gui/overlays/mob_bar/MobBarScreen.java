@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.gui.overlays.mob_bar;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -43,7 +43,7 @@ public class MobBarScreen extends DrawableHelper {
                 return;
             }
 
-            if (!ClientContainer.INSTANCE.RENDER_SIMPLE_MOB_BAR.get()) {
+            if (!ClientConfigs.INSTANCE.RENDER_SIMPLE_MOB_BAR.get()) {
                 return;
             }
 

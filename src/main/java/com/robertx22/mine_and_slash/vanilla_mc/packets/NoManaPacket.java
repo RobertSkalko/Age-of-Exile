@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
-import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvents;
@@ -37,7 +37,7 @@ public class NoManaPacket {
             .enqueueWork(() -> {
                 try {
 
-                    if (ClientContainer.INSTANCE.SHOW_LOW_ENERGY_MANA_WARNING.get()) {
+                    if (ClientConfigs.INSTANCE.SHOW_LOW_ENERGY_MANA_WARNING.get()) {
 
                         PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
                         player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
