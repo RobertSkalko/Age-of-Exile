@@ -12,6 +12,8 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
@@ -138,6 +140,12 @@ public class MMORPG implements ModInitializer {
         if (msg == null || world == null) {
             return;
         }
+        PlayerStream.watching(world, pos)
+            .forEach(x -> {
+                Network.send(x, msg);
+            });
+
+        ClientSidePacketRegistry.INSTANCE.register();
 
         PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(
             pos.getX(), pos.getY(), pos.getZ(), 50, world.getDimension()

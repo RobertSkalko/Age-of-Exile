@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.Containers;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.items.CurrencyItemRegistrator;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.items.MiscItemsRegistrator;
@@ -13,6 +14,7 @@ public class ModRegistry {
     public static CurrencyItemRegistrator CURRENCIES;
     public static ModBlocks BLOCKS;
     public static Containers CONTAINERS;
+    public static ModSounds SOUNDS;
 
     public static void init() {
 
@@ -21,6 +23,7 @@ public class ModRegistry {
         CURRENCIES = new CurrencyItemRegistrator();
         BLOCKS = new ModBlocks();
         CONTAINERS = new Containers();
+        SOUNDS = new ModSounds();
 
     }
 }

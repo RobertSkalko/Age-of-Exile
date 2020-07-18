@@ -5,14 +5,13 @@ import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.fabricmc.fabric.api.network.PacketConsumer;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class DmgNumPacket {
+public class DmgNumPacket implements PacketConsumer {
 
     public String element;
     public String string;
@@ -27,32 +26,16 @@ public class DmgNumPacket {
 
     }
 
-    public DmgNumPacket(LivingEntity entity, Elements ele, String str, float number) {
-        this.element = ele.toString();
-        this.string = str;
-        this.x = entity.x;
-        this.y = entity.y;
-        this.z = entity.z;
-        this.height = entity.getHeight();
-        this.number = number;
-
-    }
-
-    public static DmgNumPacket decode(PacketByteBuf buf) {
-
-        DmgNumPacket newpkt = new DmgNumPacket();
-
-        newpkt.element = buf.readString(10);
-        newpkt.x = buf.readDouble();
-        newpkt.y = buf.readDouble();
-        newpkt.z = buf.readDouble();
-        newpkt.height = buf.readFloat();
-        newpkt.isExp = buf.readBoolean();
-        newpkt.string = buf.readString(30);
-        newpkt.number = buf.readFloat();
-
-        return newpkt;
-
+    public static DmgNumPacket of(LivingEntity entity, Elements ele, String str, float number) {
+        DmgNumPacket pkt = new DmgNumPacket();
+        pkt.element = ele.toString();
+        pkt.string = str;
+        pkt.x = entity.getX();
+        pkt.y = entity.getY();
+        pkt.z = entity.getZ();
+        pkt.height = entity.getHeight();
+        pkt.number = number;
+        return pkt;
     }
 
     public static void encode(DmgNumPacket packet, PacketByteBuf tag) {
@@ -65,29 +48,34 @@ public class DmgNumPacket {
         tag.writeBoolean(packet.isExp);
         tag.writeString(packet.string);
         tag.writeFloat(packet.number);
-
     }
 
-    public static void handle(final DmgNumPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void accept(PacketContext ctx, PacketByteBuf buf) {
 
-        ctx.get()
-            .enqueueWork(() -> {
+        String element = buf.readString(10);
+        double x = buf.readDouble();
+        double y = buf.readDouble();
+        double z = buf.readDouble();
+        float height = buf.readFloat();
+        boolean isExp = buf.readBoolean();
+        String string = buf.readString(30);
+        float number = buf.readFloat();
+
+        ctx.getTaskQueue()
+            .execute(() -> {
                 try {
-                    if (pkt.isExp && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG.get()) {
+                    if (isExp && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG.get()) {
                         ClientOnly.getPlayer()
-                            .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + pkt.number + " EXP"));
+                            .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + number + " EXP"));
 
-                    } else if (pkt.isExp == false && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG.get()) {
-                        OnDisplayDamage.displayParticle(pkt);
+                    } else if (isExp == false && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG.get()) {
+                        OnDisplayDamage.displayParticle(element, string, x, y, z, height);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
 
-        ctx.get()
-            .setPacketHandled(true);
-
     }
-
 }

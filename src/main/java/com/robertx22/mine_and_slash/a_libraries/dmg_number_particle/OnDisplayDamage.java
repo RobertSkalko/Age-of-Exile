@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.vanilla_mc.packets.DmgNumPacket;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
@@ -10,7 +9,7 @@ public class OnDisplayDamage {
 
     private static MinecraftClient mc = MinecraftClient.getInstance();
 
-    public static void displayParticle(DmgNumPacket data) {
+    public static void displayParticle(String element, String string, double x, double y, double z, float height) {
 
         mc = MinecraftClient.getInstance();
 
@@ -19,7 +18,7 @@ public class OnDisplayDamage {
         double motionY = 0.5f;
         double motionZ = world.random.nextGaussian() * 0.01;
         Particle damageIndicator = new DamageParticle(
-            Elements.valueOf(data.element), data.string, world, data.x, data.y + data.height, data.z, motionX,
+            Elements.valueOf(element), string, world, x, y + height, z, motionX,
             motionY, motionZ
         );
 
