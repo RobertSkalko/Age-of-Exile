@@ -8,16 +8,16 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PetrifyEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PetrifyEffect;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
@@ -109,7 +109,7 @@ public class GorgonsGazeSpell extends BaseSpell {
 
         World world = caster.world;
 
-        SoundUtils.playSound(caster, ModSounds.STONE_CRACK.get(), 1, 1);
+        SoundUtils.playSound(caster, ModRegistry.SOUNDS.STONE_CRACK, 1, 1);
 
         EntityFinder.start(caster, LivingEntity.class, caster.getPosVector())
             .radius(3)

@@ -9,18 +9,19 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import java.util.ArrayList;
-import java.util.List;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThornBushSpell extends BaseSpell {
 
@@ -41,7 +42,7 @@ public class ThornBushSpell extends BaseSpell {
             public Elements element() {
                 return Elements.Nature;
             }
-        }.spawnBlock(ModBlocks.THORN_BUSH)
+        }.spawnBlock(ModRegistry.BLOCKS.THORN_BUSH)
             .summonsEntity((world) -> new SeedEntity(world))
             .setSwingArmOnCast());
 

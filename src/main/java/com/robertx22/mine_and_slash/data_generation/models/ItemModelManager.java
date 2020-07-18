@@ -8,22 +8,16 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
 import net.minecraft.data.DataCache;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DataProvider;
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 
-import java.io.IOException;
-import java.nio.file.Path;
+public class ItemModelManager {
 
-public class ItemModelManager implements DataProvider {
-
+    // TODO REMAKE THIS
     public ItemModelManager(DataGenerator generator) {
-        super(generator);
+        super();
     }
 
-    @Override
     protected void registerModels() {
 
         Registry.ITEM.forEach(x -> {
@@ -64,53 +58,30 @@ public class ItemModelManager implements DataProvider {
     }
 
     public String modid(Item item) {
-        return item
-            .asItem()
-            .getRegistryName()
+        return Registry.ITEM.getId(item
+            .asItem())
             .getNamespace();
     }
 
     public String name(Item item) {
-        return item
-            .asItem()
-            .getRegistryName()
+        return Registry.ITEM.getId(item
+            .asItem())
             .getPath();
     }
 
-    public ItemModelBuilder generated(Item item) {
-        return generated(item, itemTexture(item));
+    public void generated(Item item) {
+
     }
 
-    public ItemModelBuilder generated(Item item, Identifier... layers) {
-        ItemModelBuilder ret = withExistingParent(name(item), "item/generated");
-        for (int i = 0; i < layers.length; i++) {
-            ret = ret.texture("layer" + i, layers[i]);
-        }
-        return ret;
+    public void handheld(Item item) {
+
     }
 
-    public Identifier itemTexture(Item item) {
-        return modLoc("items/" + name(item));
-    }
-
-    public Identifier overlay(Item item) {
-        return modLoc("items/" + name(item) + "_overlay");
-    }
-
-    public ItemModelBuilder handheld(Item item) {
-        return handheld(item, itemTexture(item));
-    }
-
-    public ItemModelBuilder handheld(Item item, Identifier texture) {
-        return withExistingParent(name(item), "item/handheld").texture("layer0", texture);
-    }
-
-    // TEMP WORKAROUND UNTIL FORGE FIXES SHIT
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting()
         .create();
 
-    @Override
     protected void generateAll(DataCache cache) {
+        /*
         for (ItemModelBuilder model : generatedModels.values()) {
             Path target = getPath(model);
             try {
@@ -119,8 +90,11 @@ public class ItemModelManager implements DataProvider {
                 throw new RuntimeException(e);
             }
         }
+
+         */
     }
 
+    /*
     private Path getPath(ItemModelBuilder model) {
         Identifier loc = model.getLocation();
         return generator.getOutput()
@@ -137,4 +111,6 @@ public class ItemModelManager implements DataProvider {
         return "mmorpg item models";
     }
 
+
+     */
 }

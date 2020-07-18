@@ -8,16 +8,16 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MagmaFlowerSpell extends BaseSpell {
 
@@ -32,14 +32,14 @@ public class MagmaFlowerSpell extends BaseSpell {
 
                 @Override
                 public SoundEvent sound() {
-                    return ModSounds.FIREBALL.get();
+                    return ModRegistry.SOUNDS.FIREBALL;
                 }
 
                 @Override
                 public Elements element() {
                     return Elements.Fire;
                 }
-            }.spawnBlock(ModBlocks.MAGMA_FLOWER)
+            }.spawnBlock(ModRegistry.BLOCKS.MAGMA_FLOWER)
                 .summonsEntity((world) -> new SeedEntity(world))
                 .setSwingArmOnCast());
     }

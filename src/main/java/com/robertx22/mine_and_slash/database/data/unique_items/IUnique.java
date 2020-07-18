@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.database.data.unique_items;
 
 import com.google.gson.JsonObject;
+import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.SerializableUniqueGear;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -17,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 import java.util.Locale;
@@ -118,12 +118,12 @@ public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocD
     }
 
     default Item getUniqueItem() {
-        return ForgeRegistries.ITEMS.getValue(getResourceLocForItem());
+        return Registry.ITEM.get(getResourceLocForItem());
     }
 
     @Override
     default String locDescLangFileGUID() {
-        return "item." + getUniqueItem().getRegistryName()
+        return "item." + Registry.ITEM.getId(getUniqueItem())
             .toString()
             + ".desc";
     }
@@ -135,7 +135,7 @@ public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocD
 
     @Override
     default String locNameLangFileGUID() {
-        return "item." + getUniqueItem().getRegistryName()
+        return "item." + Registry.ITEM.getId(getUniqueItem())
             .toString();
     }
 

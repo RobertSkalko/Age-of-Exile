@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
@@ -19,7 +20,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
 
@@ -31,11 +31,6 @@ public class FireBombEntity extends EntityBaseProjectile {
 
     public FireBombEntity(World worldIn) {
         super(ModRegistry.ENTITIES.FIRE_BOMB, worldIn);
-
-    }
-
-    public FireBombEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(ModRegistry.ENTITIES.FIRE_BOMB, world);
 
     }
 

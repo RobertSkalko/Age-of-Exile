@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.base.Rarities;
-import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.data.rarities.MobRarity;
@@ -34,11 +33,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.registries.ForgeRegistries;
-
-
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -78,7 +74,6 @@ public class Unit {
         }
     }
 
-    @Nonnull
     public HashMap<String, StatData> getStats() {
 
         if (stats.stats == null) {
@@ -88,7 +83,6 @@ public class Unit {
         return stats.stats;
     }
 
-    @Nonnull
     public StatData getCreateStat(Stat stat) {
         return getCreateStat(stat.GUID());
     }
@@ -105,7 +99,6 @@ public class Unit {
         return peekAtStat(stat.GUID());
     }
 
-    @Nonnull
     public StatData peekAtStat(String guid) {
 
         if (stats.stats == null) {
@@ -146,7 +139,6 @@ public class Unit {
             .GUID();
     }
 
-    @Nonnull
     public StatData getCreateStat(String guid) {
 
         if (stats.stats == null) {
@@ -282,7 +274,7 @@ public class Unit {
 
     public int randomRarity(LivingEntity entity, UnitData data) {
 
-        double y = entity.y;
+        double y = entity.getY();
 
         List<MobRarity> rarities = Rarities.Mobs.getAllRarities();
 
@@ -296,8 +288,6 @@ public class Unit {
                 }
             }
         }
-
-        DimensionConfig config = SlashRegistry.getDimensionConfig(entity.world);
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 
@@ -370,7 +360,7 @@ public class Unit {
 
         List<GearItemData> gears = new ArrayList<>();
 
-        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData));
+        new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData);
 
         ClearStats();
 
@@ -395,8 +385,6 @@ public class Unit {
 
         CommonStatUtils.CalcTraitsAndCoreStats(
             data); // has to be at end for the conditionals like if crit higher than x
-
-        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnStatCalculation(entity, data));
 
         CalcStats(data);
 
@@ -510,10 +498,10 @@ public class Unit {
     public static List<EntityType> getIgnoredEntities() {
 
         if (IGNORED_ENTITIES == null) {
-            IGNORED_ENTITIES = ModConfig.INSTANCE.Server.IGNORED_ENTITIES.get()
+            IGNORED_ENTITIES = ModConfig.INSTANCE.Server.IGNORED_ENTITIES
                 .stream()
-                .filter(x -> ForgeRegistries.ENTITIES.containsKey(new Identifier(x)))
-                .map(x -> ForgeRegistries.ENTITIES.getValue(new Identifier(x)))
+                .filter(x -> Registry.ENTITY_TYPE.containsId(new Identifier(x)))
+                .map(x -> Registry.ENTITY_TYPE.get(new Identifier(x)))
                 .collect(Collectors.toList());
         }
 

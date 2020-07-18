@@ -4,22 +4,19 @@ import com.robertx22.mine_and_slash.database.data.spells.blocks.base.BaseSpellBl
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell.AllowedAsRightClickOn;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellPredicate;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cast_types.SpellCastType;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell.AllowedAsRightClickOn;
-
 public abstract class ImmutableSpellConfigs {
 
-    private RegistryObject<? extends BaseSpellBlock> block;
+    private BaseSpellBlock block;
     private BasePotionEffect effect;
     private boolean goesOnCooldownIfCanceled;
     private Function<World, Entity> newEntitySummoner;
@@ -43,10 +40,10 @@ public abstract class ImmutableSpellConfigs {
     public abstract Elements element();
 
     public final BaseSpellBlock spellBlockToSpawn() {
-        return block.get();
+        return block;
     }
 
-    public <T extends BaseSpellBlock> ImmutableSpellConfigs spawnBlock(RegistryObject<T> block) {
+    public <T extends BaseSpellBlock> ImmutableSpellConfigs spawnBlock(T block) {
         this.block = block;
         return this;
     }
