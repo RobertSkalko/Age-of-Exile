@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -42,7 +43,7 @@ public class HunterHood extends BaseChest {
 
     @Override
     public Item getItem() {
-        return ModRegistry.MISC_ITEMS.HUNTER_HOOD.get();
+        return ModRegistry.GEAR_ITEMS.HUNTER_HOOD;
     }
 
     @Override

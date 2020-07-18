@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -42,7 +43,7 @@ public class IronGreaves extends BaseBoots {
 
     @Override
     public Item getItem() {
-        return ModRegistry.MISC_ITEMS.PLATE_BOOTS.get();
+        return ModRegistry.GEAR_ITEMS.PLATE_BOOTS;
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTileContainer;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.AnyModifySlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.ModifySlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.OutputSlot;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -35,7 +34,7 @@ public class ContainerGearModify extends BaseTileContainer {
     public ContainerGearModify(int i, PlayerInventory invPlayer, Inventory inventory,
                                BlockPos pos) {
 
-        super(MODIFY_SLOTS_COUNT, ModContainers.GEAR_MODIFY.get(), i);
+        super(MODIFY_SLOTS_COUNT, null, i);
 
         this.tile = inventory;
 

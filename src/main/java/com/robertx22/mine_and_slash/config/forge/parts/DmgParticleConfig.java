@@ -5,8 +5,10 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class DmgParticleConfig {
 
-    public ForgeConfigSpec.BooleanValue ENABLE_CHAT_EXP_MSG;
-    public ForgeConfigSpec.BooleanValue ENABLE_FLOATING_DMG;
+    public ForgeConfigSpec .
+    boolean ENABLE_CHAT_EXP_MSG;
+    public ForgeConfigSpec .
+    boolean ENABLE_FLOATING_DMG;
 
     public ConfigValue<Double> GRAVITY;
     public ConfigValue<Double> START_SIZE;

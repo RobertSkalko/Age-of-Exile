@@ -3,7 +3,7 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Age of Exile",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
@@ -13,23 +13,27 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "All rights reserved",
+  "icon": "assets/mmorpg/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       "net.fabricmc.example.ExampleMod"
-    ]
+    ],
+	"client": [
+	{
+	 "value": "tutorial.path.to.ExampleModClient"
+	}
   },
   "mixins": [
-    "modid.mixins.json"
+    "mmorpg.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "1.15.x"
   },
   "suggests": {
     "flamingo": "*"

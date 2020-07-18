@@ -5,10 +5,13 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class AutoCompatibleItemConfig {
 
-    public ForgeConfigSpec.BooleanValue ENABLE_AUTOMATIC_COMPATIBLE_ITEMS;
+    public ForgeConfigSpec .
+    boolean ENABLE_AUTOMATIC_COMPATIBLE_ITEMS;
 
-    public ForgeConfigSpec.IntValue MAX_SINGLE_STAT_VALUE;
-    public ForgeConfigSpec.IntValue MAX_TOTAL_STATS;
+    public ForgeConfigSpec .
+    int MAX_SINGLE_STAT_VALUE;
+    public ForgeConfigSpec .
+    int MAX_TOTAL_STATS;
 
     public AutoConfigItemType HORRIBLE;
     public AutoConfigItemType TRASH;

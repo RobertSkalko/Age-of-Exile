@@ -2,28 +2,26 @@ package com.robertx22.mine_and_slash.vanilla_mc.blocks.bases;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-
-import net.minecraftforge.fml.network.NetworkHooks;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseInventoryBlock extends NonFullBlock {
+public abstract class BaseInventoryBlock extends NonFullBlock implements BlockEntityProvider {
 
     protected BaseInventoryBlock(Settings prop) {
         super(prop);
@@ -75,14 +73,16 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
     }
 
     @Override
-    public boolean hasBlockEntity( ) {
+    public boolean hasBlockEntity() {
         return true;
     }
+
+    public abstract Identifier getContainerId();
 
     @Override
     @Deprecated
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                                             Hand hand, BlockHitResult ray) {
+                              Hand hand, BlockHitResult ray) {
         if (world.isClient) {
             return ActionResult.CONSUME;
         }
@@ -91,9 +91,8 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
         if (tile instanceof BaseTile) {
 
-            NetworkHooks.openGui((ServerPlayerEntity) player, (NameableContainerFactory) tile, extraData -> {
-                extraData.writeBlockPos(tile.getPos());
-            });
+            ContainerProviderRegistry.INSTANCE.openContainer(getContainerId(), player, buf -> buf.writeBlockPos(pos));
+
             return ActionResult.SUCCESS;
         }
 

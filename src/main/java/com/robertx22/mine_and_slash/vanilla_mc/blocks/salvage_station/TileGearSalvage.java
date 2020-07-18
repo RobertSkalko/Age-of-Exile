@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -122,7 +122,7 @@ public class TileGearSalvage extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearSalvage() {
-        super(BlockEntities.GEAR_SALVAGE.get());
+        super(ModRegistry.BLOCK_ENTITIES.GEAR_SALVAGE);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
     }
@@ -282,7 +282,6 @@ public class TileGearSalvage extends BaseTile {
         return CLOC.blank("block.mmorpg.salvage_station");
     }
 
-    @Nullable
     @Override
     public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
         return new ContainerGearSalvage(num, inventory, this, this.getPos());

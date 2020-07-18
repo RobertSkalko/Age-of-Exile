@@ -3,9 +3,11 @@ package com.robertx22.mine_and_slash.config.forge;
 import com.robertx22.mine_and_slash.config.forge.parts.DmgParticleConfig;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.*;
 import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
 import org.apache.commons.lang3.tuple.Pair;
+
+boolean;
 
 public class ClientConfigs {
 
@@ -23,14 +25,17 @@ public class ClientConfigs {
 
     public DmgParticleConfig dmgParticleConfig;
 
-    public BooleanValue RENDER_ITEM_NAMES_ON_GROUND;
-    public BooleanValue RENDER_MOB_HEALTH_GUI;
-    public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
-    public BooleanValue RENDER_SIMPLE_MOB_BAR;
-    public ForgeConfigSpec.IntValue REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES;
+    public boolean RENDER_ITEM_NAMES_ON_GROUND;
+    public boolean RENDER_MOB_HEALTH_GUI;
+    public boolean SHOW_LOW_ENERGY_MANA_WARNING;
+    public boolean RENDER_SIMPLE_MOB_BAR;
+    public ForgeConfigSpec .
+    int REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES;
 
-    public ForgeConfigSpec.IntValue LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
-    public ForgeConfigSpec.IntValue RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
+    public ForgeConfigSpec .
+    int LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
+    public ForgeConfigSpec .
+    int RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
 
     public EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
 

@@ -5,19 +5,21 @@ import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import net.minecraftforge.common.ForgeConfigSpec.*;
+
+double;
 
 public class AutoConfigItemType {
 
-    public IntValue MAX_LEVEL;
+    public int MAX_LEVEL;
 
-    public DoubleValue POWER_REQ;
+    public double POWER_REQ;
 
-    public IntValue MIN_RARITY;
-    public IntValue MAX_RARITY;
+    public int MIN_RARITY;
+    public int MAX_RARITY;
 
-    public ForgeConfigSpec.BooleanValue CAN_BE_SALVAGED;
+    public ForgeConfigSpec .
+    boolean CAN_BE_SALVAGED;
 
     public AutoConfigItemType(float req, ForgeConfigSpec.Builder builder, String type, int maxlvl, int minrar, int maxrar) {
         builder.push(type);

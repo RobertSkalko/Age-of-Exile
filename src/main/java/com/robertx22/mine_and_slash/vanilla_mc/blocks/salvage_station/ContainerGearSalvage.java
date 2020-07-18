@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTileContainer;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.CapacitorSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.OutputSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.SalvageSlot;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -46,7 +45,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
     public ContainerGearSalvage(int num, PlayerInventory invPlayer, Inventory inventory,
                                 BlockPos pos) {
-        super(SALVAGE_SLOTS_COUNT, ModContainers.GEAR_SALVAGE.get(), num);
+        super(SALVAGE_SLOTS_COUNT, null, num);
 
         this.pos = pos;
         this.tile = inventory;

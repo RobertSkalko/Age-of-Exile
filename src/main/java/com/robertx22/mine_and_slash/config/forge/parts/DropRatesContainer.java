@@ -1,16 +1,16 @@
 package com.robertx22.mine_and_slash.config.forge.parts;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+import net.minecraftforge.common.ForgeConfigSpec.*;double;
 
 public class DropRatesContainer {
 
-    public DoubleValue GEAR_DROPRATE;
-    public DoubleValue SKILL_GEM_DROPRATE;
-    public DoubleValue JEWEL_DROPRATE;
-    public DoubleValue UNIQUE_DROPRATE;
-    public DoubleValue CURRENCY_DROPRATE;
-    public DoubleValue COMPATIBLE_ITEMS_DROPRATE;
+    public double GEAR_DROPRATE;
+    public double SKILL_GEM_DROPRATE;
+    public double JEWEL_DROPRATE;
+    public double UNIQUE_DROPRATE;
+    public double CURRENCY_DROPRATE;
+    public double COMPATIBLE_ITEMS_DROPRATE;
 
     public DropRatesContainer(ForgeConfigSpec.Builder builder) {
         builder.push("DROPRATES");

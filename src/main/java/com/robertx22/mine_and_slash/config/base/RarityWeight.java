@@ -4,11 +4,16 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class RarityWeight {
 
-    public ForgeConfigSpec.IntValue COMMON_WEIGHT;
-    public ForgeConfigSpec.IntValue UNCOMMON_WEIGHT;
-    public ForgeConfigSpec.IntValue RARE_WEIGHT;
-    public ForgeConfigSpec.IntValue EPIC_WEIGHT;
-    public ForgeConfigSpec.IntValue LEGENDARY_WEIGHT;
+    public ForgeConfigSpec .
+    int COMMON_WEIGHT;
+    public ForgeConfigSpec .
+    int UNCOMMON_WEIGHT;
+    public ForgeConfigSpec .
+    int RARE_WEIGHT;
+    public ForgeConfigSpec .
+    int EPIC_WEIGHT;
+    public ForgeConfigSpec .
+    int LEGENDARY_WEIGHT;
 
     public static class DefaultConfig {
 

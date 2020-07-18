@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.TileGui;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.TileGui;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -13,8 +13,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
-
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -46,7 +44,9 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
     protected void drawBackground(float partialTicks, int x, int y) {
 
         // Bind the image texture
-        MinecraftClient.getInstance().getTextureManager().bindTexture(texture);
+        MinecraftClient.getInstance()
+            .getTextureManager()
+            .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(x, y, 0, 0, containerWidth, containerHeight);
@@ -66,7 +66,7 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
         final int LABEL_YPOS = 5;
 
         font.draw(CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
-                .getRGB());
+            .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
 
@@ -80,7 +80,7 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
 
-            renderTooltip(hoveringText, mouseX - x, mouseY - y, font);
+            // renderTooltip(hoveringText, mouseX - x, mouseY - y, font); todo
         }
     }
 

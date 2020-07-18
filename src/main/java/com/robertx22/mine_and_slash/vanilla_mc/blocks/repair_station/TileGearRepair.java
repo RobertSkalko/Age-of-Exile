@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.repair_station;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTile;
@@ -132,7 +132,7 @@ public class TileGearRepair extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearRepair() {
-        super(BlockEntities.GEAR_REPAIR.get());
+        super(ModRegistry.BLOCK_ENTITIES.GEAR_REPAIR);
 
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
@@ -217,16 +217,7 @@ public class TileGearRepair extends BaseTile {
                         itemStacks[fuelSlotNumber].decrement(1); // decreaseStackSize()
                         ++burningCount;
                         inventoryChanged = true;
-                        // If the stack size now equals 0 set the slot contents to the items container
-                        // item. This is for fuel
-                        // items such as lava buckets so that the bucket is not consumed. If the item
-                        // dose not have
-                        // a container item getContainerItem returns null which sets the slot contents
-                        // to null
-                        if (itemStacks[fuelSlotNumber].getCount() == 0) { // getStackSize()
-                            itemStacks[fuelSlotNumber] = itemStacks[fuelSlotNumber].getItem()
-                                .getContainerItem(itemStacks[fuelSlotNumber]);
-                        }
+
                     }
                 }
             }
@@ -271,7 +262,7 @@ public class TileGearRepair extends BaseTile {
         for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-                fuelNeeded = (int) (itemStacks[inputSlot].getDamage() * ModConfig.INSTANCE.Server.REPAIR_FUEL_NEEDED_MULTI.get());
+                fuelNeeded = (int) (itemStacks[inputSlot].getDamage() * ModConfig.INSTANCE.Server.REPAIR_FUEL_NEEDED_MULTI);
 
                 fuelNeeded *= fuelMulti;
 
@@ -343,7 +334,6 @@ public class TileGearRepair extends BaseTile {
 
     }
 
-    @Nullable
     @Override
     public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
         return new ContainerGearRepair(num, inventory, this, this.getPos());

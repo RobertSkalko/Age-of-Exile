@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.data.spells.blocks.thorn_bush;
 
 import com.robertx22.mine_and_slash.database.data.spells.blocks.base.BaseSpellBlock;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.world.BlockView;
 
@@ -15,7 +14,7 @@ public class ThornBushBlock extends BaseSpellBlock {
     }
 
     @Override
-    public BlockEntity createTileEntity(BlockState state, BlockView world) {
+    public BlockEntity createBlockEntity(BlockView world) {
         return new ThornBushTileEntity();
     }
 }

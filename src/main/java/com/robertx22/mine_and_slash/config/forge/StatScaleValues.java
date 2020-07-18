@@ -4,10 +4,14 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class StatScaleValues {
 
-    public ForgeConfigSpec.DoubleValue FIRST_VALUE;
-    public ForgeConfigSpec.DoubleValue SECOND_VALUE;
-    public ForgeConfigSpec.DoubleValue THIRD_VALUE;
-    public ForgeConfigSpec.DoubleValue FOURTH_VALUE;
+    public ForgeConfigSpec .
+    double FIRST_VALUE;
+    public ForgeConfigSpec .
+    double SECOND_VALUE;
+    public ForgeConfigSpec .
+    double THIRD_VALUE;
+    public ForgeConfigSpec .
+    double FOURTH_VALUE;
 
     StatScaleValues(ForgeConfigSpec.Builder builder, String name, Double first, Double second, Double third,
                     Double fourth) {

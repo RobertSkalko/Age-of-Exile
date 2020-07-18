@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.data.spells.blocks.holy_flower;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.spells.blocks.base.BaseSpellTileEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
@@ -20,7 +20,7 @@ import java.util.List;
 public class HolyFlowerTileEntity extends BaseSpellTileEntity {
 
     public HolyFlowerTileEntity() {
-        super(BlockEntities.HOLY_FLOWER.get());
+        super(ModRegistry.BLOCK_ENTITIES.HOLY_FLOWER);
     }
 
     @Override

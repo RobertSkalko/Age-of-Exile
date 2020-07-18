@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -47,7 +48,7 @@ public class HunterBow extends BaseWeapon {
 
     @Override
     public Item getItem() {
-        return ModRegistry.MISC_ITEMS.BOW.get();
+        return ModRegistry.GEAR_ITEMS.BOW;
     }
 
     @Override

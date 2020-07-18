@@ -4,7 +4,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class LinearScalingConfig {
 
-    public ForgeConfigSpec.DoubleValue PERCENT_ADDED_PER_LEVEL;
+    public ForgeConfigSpec .
+    double PERCENT_ADDED_PER_LEVEL;
 
     LinearScalingConfig(ForgeConfigSpec.Builder builder, String name, Double first) {
         builder.push(name);

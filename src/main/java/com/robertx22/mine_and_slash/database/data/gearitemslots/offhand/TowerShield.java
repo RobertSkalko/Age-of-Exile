@@ -41,7 +41,7 @@ public class TowerShield extends BaseOffHand {
 
     @Override
     public Item getItem() {
-        return ModRegistry.MISC_ITEMS.TOWER_SHIELD;
+        return ModRegistry.GEAR_ITEMS.TOWER_SHIELD;
     }
 
     @Override

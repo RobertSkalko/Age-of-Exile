@@ -9,12 +9,9 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.network.ClientConnection;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-
 
 import java.util.Arrays;
 
@@ -325,37 +322,5 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
         ticks = nbtTagCompound.getInt("ticks");
         this.fuel = nbtTagCompound.getInt("fuel");
     }
-
-    @Override
-    @Nullable
-    public BlockEntityUpdateS2CPacket toUpdatePacket() {
-        CompoundTag updateTagDescribingTileEntityState = toInitialChunkDataTag();
-        final int METADATA = 0;
-        return new BlockEntityUpdateS2CPacket(this.pos, METADATA, updateTagDescribingTileEntityState);
-    }
-
-    @Override
-    public void onDataPacket(ClientConnection net, BlockEntityUpdateS2CPacket pkt) {
-        CompoundTag updateTagDescribingTileEntityState = pkt.getCompoundTag();
-        handleUpdateTag(updateTagDescribingTileEntityState);
-    }
-
-    @Override
-    public CompoundTag toInitialChunkDataTag() {
-        CompoundTag nbtTagCompound = new CompoundTag();
-        toTag(nbtTagCompound);
-        return nbtTagCompound;
-    }
-
-    /*
-     * Populates this TileEntity with information from the tag, used by vanilla to
-     * transmit from server to client Warning - although our onDataPacket() uses
-     * this method, vanilla also calls it directly, so don't remove it.
-     */
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        this.fromTag(tag);
-    }
-    // ------------------------
 
 }
