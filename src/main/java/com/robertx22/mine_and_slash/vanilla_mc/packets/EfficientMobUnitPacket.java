@@ -1,17 +1,16 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class EfficientMobUnitPacket {
+public class EfficientMobUnitPacket extends MyPacket<EfficientMobUnitPacket> {
 
     public int id;
     public CompoundTag nbt;
@@ -26,47 +25,38 @@ public class EfficientMobUnitPacket {
 
     }
 
-    public static EfficientMobUnitPacket decode(PacketByteBuf buf) {
-
-        EfficientMobUnitPacket newpkt = new EfficientMobUnitPacket();
-
-        newpkt.id = buf.readInt();
-        newpkt.nbt = buf.readCompoundTag();
-
-        return newpkt;
-
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "effmob");
     }
 
-    public static void encode(EfficientMobUnitPacket packet, PacketByteBuf tag) {
-
-        tag.writeInt(packet.id);
-        tag.writeCompoundTag(packet.nbt);
-
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        id = tag.readInt();
+        nbt = tag.readCompoundTag();
     }
 
-    public static void handle(final EfficientMobUnitPacket pkt, Supplier<NetworkEvent.Context> ctx) {
-
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
-
-                    Entity entity = MMORPG.proxy.getPlayerEntityFromContext(ctx).world.getEntityById(pkt.id);
-
-                    if (entity instanceof LivingEntity) {
-
-                        LivingEntity en = (LivingEntity) entity;
-
-                        Load.Unit(en)
-                            .setClientNBT(pkt.nbt);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        tag.writeInt(id);
+        tag.writeCompoundTag(nbt);
     }
 
+    @Override
+    public void onReceived(PacketContext ctx) {
+        Entity entity = ctx.getPlayer().world.getEntityById(id);
+
+        if (entity instanceof LivingEntity) {
+
+            LivingEntity en = (LivingEntity) entity;
+
+            Load.Unit(en)
+                .setClientNBT(nbt);
+        }
+    }
+
+    @Override
+    public MyPacket<EfficientMobUnitPacket> newInstance() {
+        return new EfficientMobUnitPacket();
+    }
 }

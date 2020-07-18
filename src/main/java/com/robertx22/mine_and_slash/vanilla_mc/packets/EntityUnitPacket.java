@@ -1,17 +1,16 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class EntityUnitPacket {
+public class EntityUnitPacket extends MyPacket<EntityUnitPacket> {
 
     public int id;
     public CompoundTag nbt;
@@ -31,49 +30,40 @@ public class EntityUnitPacket {
         this.nbt = data.saveToNBT();
     }
 
-    public static EntityUnitPacket decode(PacketByteBuf buf) {
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "enpack");
+    }
 
-        EntityUnitPacket newpkt = new EntityUnitPacket();
-
-        newpkt.id = buf.readInt();
-        newpkt.nbt = buf.readCompoundTag();
-
-        return newpkt;
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        id = tag.readInt();
+        nbt = tag.readCompoundTag();
 
     }
 
-    public static void encode(EntityUnitPacket packet, PacketByteBuf tag) {
-
-        tag.writeInt(packet.id);
-        tag.writeCompoundTag(packet.nbt);
-
-        //System.out.println("old uses " + tag.writerIndex());
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        tag.writeInt(id);
+        tag.writeCompoundTag(nbt);
 
     }
 
-    public static void handle(final EntityUnitPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void onReceived(PacketContext ctx) {
+        Entity entity = ctx.getPlayer().world.getEntityById(id);
 
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
+        if (entity instanceof LivingEntity) {
 
-                    Entity entity = MMORPG.proxy.getPlayerEntityFromContext(ctx).world.getEntityById(pkt.id);
+            LivingEntity en = (LivingEntity) entity;
 
-                    if (entity instanceof LivingEntity) {
-
-                        LivingEntity en = (LivingEntity) entity;
-
-                        Load.Unit(en)
-                            .loadFromNBT(pkt.nbt);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+            Load.Unit(en)
+                .loadFromNBT(nbt);
+        }
     }
 
+    @Override
+    public MyPacket<EntityUnitPacket> newInstance() {
+        return new EntityUnitPacket();
+    }
 }

@@ -13,7 +13,7 @@ public abstract class MyPacket<T> implements PacketConsumer {
 
     public abstract void saveToData(PacketByteBuf tag);
 
-    public abstract void onReceived(PacketContext ctx, T data);
+    public abstract void onReceived(PacketContext ctx);
 
     public abstract MyPacket<T> newInstance();
 
@@ -25,7 +25,7 @@ public abstract class MyPacket<T> implements PacketConsumer {
                 try {
                     MyPacket<T> data = newInstance();
                     data.loadFromData(buf);
-                    this.onReceived(ctx, (T) data);
+                    this.onReceived(ctx);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

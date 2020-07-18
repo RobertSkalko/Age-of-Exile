@@ -18,7 +18,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -89,15 +88,6 @@ public class MMORPG implements ModInitializer {
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
-    private static final String PROTOCOL_VERSION = Integer.toString(1);
-
-    public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(
-        new Identifier(Ref.MODID, "main_channel"))
-        .clientAcceptedVersions(PROTOCOL_VERSION::equals)
-        .serverAcceptedVersions(PROTOCOL_VERSION::equals)
-        .networkProtocolVersion(() -> PROTOCOL_VERSION)
-        .simpleChannel();
-
     public static void logError(String s) {
         try {
             throw new Exception(s);
@@ -106,10 +96,9 @@ public class MMORPG implements ModInitializer {
         }
     }
 
-    private void interModEnqueue(final InterModEnqueueEvent event) {
+    private void interModEnqueue() {
         System.out.println(Ref.MODID + ":InterModEnqueueEvent");
-        RegisterCurioSlots.register(event);
-
+        RegisterCurioSlots.register();
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {

@@ -23,7 +23,7 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
     public boolean isExp;
     public float number;
 
-    private DmgNumPacket() {
+    public DmgNumPacket() {
 
     }
 
@@ -69,7 +69,7 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
     }
 
     @Override
-    public void onReceived(PacketContext ctx, DmgNumPacket data) {
+    public void onReceived(PacketContext ctx) {
         if (isExp && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG.get()) {
             ClientOnly.getPlayer()
                 .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + number + " EXP"));
