@@ -1,13 +1,8 @@
 package com.robertx22.mine_and_slash.config.forge.parts;
 
-import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.*;
-
-double;
 
 public class AutoConfigItemType {
 
@@ -18,34 +13,30 @@ public class AutoConfigItemType {
     public int MIN_RARITY;
     public int MAX_RARITY;
 
-    public ForgeConfigSpec .
-    boolean CAN_BE_SALVAGED;
+    public boolean CAN_BE_SALVAGED;
 
-    public AutoConfigItemType(float req, ForgeConfigSpec.Builder builder, String type, int maxlvl, int minrar, int maxrar) {
-        builder.push(type);
+    public AutoConfigItemType(float req, int maxlvl, int minrar, int maxrar) {
 
-        MAX_LEVEL = builder.defineInRange("MAX_LEVEL", maxlvl, 0, Integer.MAX_VALUE);
+        MAX_LEVEL = maxlvl;
 
-        POWER_REQ = builder.defineInRange("POWER_REQ", req, 0F, 1F);
+        POWER_REQ = req;
 
-        MIN_RARITY = builder.defineInRange("MIN_RARITY", minrar, 0, Rarities.Gears.highestNonUnique()
-            .Rank());
-        MAX_RARITY = builder.defineInRange("MAX_RARITY", maxrar, 0, Rarities.Gears.highestNonUnique()
-            .Rank());
+        MIN_RARITY = minrar;
 
-        CAN_BE_SALVAGED = builder.define("CAN_BE_SALVAGED", false);
+        MAX_RARITY = maxrar;
 
-        builder.pop();
+        CAN_BE_SALVAGED = false;
+
     }
 
     public CompatibleItem getAutoCompatibleItem(Item item, BaseGearType slot) {
 
         CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
 
-        comp.max_rarity = MAX_RARITY.get();
-        comp.min_rarity = MIN_RARITY.get();
+        comp.max_rarity = MAX_RARITY;
+        comp.min_rarity = MIN_RARITY;
 
-        comp.can_be_salvaged = CAN_BE_SALVAGED.get();
+        comp.can_be_salvaged = CAN_BE_SALVAGED;
 
         return comp;
 

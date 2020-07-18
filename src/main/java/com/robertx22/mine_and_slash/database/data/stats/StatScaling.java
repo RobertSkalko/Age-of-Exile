@@ -12,8 +12,8 @@ public enum StatScaling {
     SCALING {
         @Override
         public float scale(float val, int lvl) {
-            return val + (val * ModConfig.INSTANCE.statScalings.LINEAR_SCALING.PERCENT_ADDED_PER_LEVEL.get()
-                .floatValue() * lvl);
+            return (float) (val + (val * ModConfig.INSTANCE.statScalings.LINEAR_SCALING.PERCENT_ADDED_PER_LEVEL
+                * lvl));
         }
     },
     LINEAR {
@@ -25,8 +25,8 @@ public enum StatScaling {
     SLOW_SCALING {
         @Override
         public float scale(float val, int lvl) {
-            return val + (val * ModConfig.INSTANCE.statScalings.SLOW_LINEAR_SCALING.PERCENT_ADDED_PER_LEVEL.get()
-                .floatValue() * lvl);
+            return (float) (val + (val * ModConfig.INSTANCE.statScalings.SLOW_LINEAR_SCALING.PERCENT_ADDED_PER_LEVEL
+                * lvl));
         }
     };
 
