@@ -2,34 +2,31 @@ package com.robertx22.mine_and_slash.data_generation.models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import net.minecraft.data.DataCache;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class ItemModelManager extends ItemModelProvider {
+public class ItemModelManager implements DataProvider {
 
-    public ItemModelManager(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Ref.MODID, existingFileHelper);
+    public ItemModelManager(DataGenerator generator) {
+        super(generator);
     }
 
     @Override
     protected void registerModels() {
 
-        ForgeRegistries.ITEMS.forEach(x -> {
+        Registry.ITEM.forEach(x -> {
             if (x instanceof IAutoModel) {
                 IAutoModel auto = (IAutoModel) x;
                 auto.generateModel(this);
@@ -64,11 +61,6 @@ public class ItemModelManager extends ItemModelProvider {
 
             });
 
-    }
-
-    @Override
-    public String getName() {
-        return "Mine and Slash Item Models";
     }
 
     public String modid(Item item) {
@@ -134,5 +126,15 @@ public class ItemModelManager extends ItemModelProvider {
         return generator.getOutput()
             .resolve("assets/" + loc.getNamespace() + "/models/item/" + loc.getPath() + ".json");
     }
-    // TEMP WORKAROUND UNTIL FORGE FIXES SHIT
+
+    @Override
+    public void run(DataCache dataCache) throws IOException {
+
+    }
+
+    @Override
+    public String getName() {
+        return "mmorpg item models";
+    }
+
 }

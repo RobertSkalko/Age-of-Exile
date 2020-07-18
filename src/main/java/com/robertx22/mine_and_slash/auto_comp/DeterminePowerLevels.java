@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.auto_comp;
 
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.testing.Watch;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
 
 import java.util.*;
 
@@ -24,9 +24,9 @@ public class DeterminePowerLevels {
             MAP.put(x, new ArrayList<>());
         });
 
-        ForgeRegistries.ITEMS.getValues()
+        Registry.ITEM
             .stream()
-            .filter(x -> x.getRegistryName() != null && !Ref.MODID.equals(x.getRegistryName()
+            .filter(x -> Registry.ITEM.getId(x) != null && !Ref.MODID.equals(Registry.ITEM.getId(x)
                 .getNamespace()))
             .forEach(item -> {
                 try {

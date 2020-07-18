@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.data_generation.unique_gears;
 
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class SerializableUniqueGear implements IUnique {
 
     @Override
     public Item getUniqueItem() {
-        return ForgeRegistries.ITEMS.getValue(itemID);
+        return Registry.ITEM.get(itemID);
     }
 
     @Override

@@ -25,7 +25,8 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
-import top.theillusivec4.curios.api.CuriosAPI;
+import net.minecraft.util.registry.Registry;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.HashMap;
 import java.util.List;
@@ -291,16 +292,16 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
                 bool = item instanceof CrossbowItem;
             } else if (slot.getTags()
                 .contains(SlotTag.Ring)) {
-                bool = CuriosAPI.getCurioTags(item)
+                bool = CuriosApi.getCuriosHelper()
+                    .getCurioTags(item)
                     .stream()
-                    .anyMatch(x -> x.toString()
-                        .contains("ring"));
+                    .anyMatch(x -> x.contains("ring"));
             } else if (slot.getTags()
                 .contains(SlotTag.Necklace)) {
-                bool = CuriosAPI.getCurioTags(item)
+                bool = CuriosApi.getCuriosHelper()
+                    .getCurioTags(item)
                     .stream()
-                    .anyMatch(x -> x.toString()
-                        .contains("necklace"));
+                    .anyMatch(x -> x.contains("necklace"));
             }
 
             CACHED.get(slot.GUID())
@@ -358,7 +359,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         json.add("tags", tagArray);
         json.add("stat_req", getStatRequirements().toJson());
-        json.addProperty("item_id", getItem().getRegistryName()
+        json.addProperty("item_id", Registry.ITEM.getId(getItem())
             .toString());
 
         return json;

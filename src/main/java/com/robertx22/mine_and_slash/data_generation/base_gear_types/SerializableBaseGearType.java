@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class SerializableBaseGearType extends BaseGearType {
 
     @Override
     public Item getItem() {
-        return ForgeRegistries.ITEMS.getValue(new Identifier(item_id));
+        return Registry.ITEM.get(new Identifier(item_id));
     }
 
     @Override

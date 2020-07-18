@@ -11,7 +11,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
@@ -37,12 +36,12 @@ public class DamageParticle extends Particle {
                           double parMotionX, double parMotionY, double parMotionZ) {
         super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 
-        gravityStrength = ClientConfigs.INSTANCE.dmgParticleConfig.GRAVITY.get()
-            .floatValue();
-        scale = ClientConfigs.INSTANCE.dmgParticleConfig.START_SIZE.get()
-            .floatValue();
-        this.maxAge = ClientConfigs.INSTANCE.dmgParticleConfig.LIFESPAN.get()
-            .intValue();
+        gravityStrength = (float) ClientConfigs.INSTANCE.dmgParticleConfig.GRAVITY;
+
+        scale = (float) ClientConfigs.INSTANCE.dmgParticleConfig.START_SIZE;
+
+        this.maxAge = (int) ClientConfigs.INSTANCE.dmgParticleConfig.LIFESPAN;
+
         this.text = element.format + element.icon + Formatting.GRAY + str;
         this.element = element;
     }
@@ -50,14 +49,11 @@ public class DamageParticle extends Particle {
     public void setupPosition(Camera info) {
         MinecraftClient mc = MinecraftClient.getInstance();
 
-        float speed = ClientConfigs.INSTANCE.dmgParticleConfig.SPEED.get()
-            .floatValue();
+        float speed = (float) ClientConfigs.INSTANCE.dmgParticleConfig.SPEED;
 
         PlayerEntity p = mc.player;
 
         Vec3d view = info.getPos();
-
-        Vector3d distance = new Vector3d(x - p.x, y - p.y, z - p.z);
 
         locX = ((float) (this.prevPosX + (this.x - this.prevPosX) * x - view.getX())) * speed;
         locY = ((float) (this.prevPosY + (this.y - this.prevPosY) * y - view.getY())) * speed;
@@ -121,11 +117,10 @@ public class DamageParticle extends Particle {
 
     @Override
     public void tick() {
-        if (ClientConfigs.INSTANCE.dmgParticleConfig.GROWS.get()) {
+        if (ClientConfigs.INSTANCE.dmgParticleConfig.GROWS) {
             if (this.grow) {
                 this.scale *= 1.05F;
-                if (this.scale > ClientConfigs.INSTANCE.dmgParticleConfig.MAX_SIZE.get()
-                    .floatValue()) {
+                if (this.scale > ClientConfigs.INSTANCE.dmgParticleConfig.MAX_SIZE) {
                     this.grow = false;
                 }
             } else {
@@ -147,7 +142,7 @@ public class DamageParticle extends Particle {
 
         this.move(this.velocityX, this.velocityY, this.velocityZ);
 
-        double speed = ClientConfigs.INSTANCE.dmgParticleConfig.SPEED.get();
+        double speed = ClientConfigs.INSTANCE.dmgParticleConfig.SPEED;
 
         this.velocityY -= speed;
         this.velocityX += speed * world.random.nextDouble();

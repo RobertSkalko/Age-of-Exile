@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTile;
@@ -108,7 +108,7 @@ public class TileGearModify extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 80; // vanilla value is 200 = 10 seconds
 
     public TileGearModify() {
-        super(BlockEntities.GEAR_MODIFY.get());
+        super(ModRegistry.BLOCK_ENTITIES.GEAR_MODIFY);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
 
@@ -222,7 +222,6 @@ public class TileGearModify extends BaseTile {
         }
     }
 
-    @Nullable
     @Override
     public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
         return new ContainerGearModify(num, inventory, this, this.getPos());
