@@ -12,15 +12,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
-
-
 
 public abstract class BaseTridentEntity extends TridentEntity implements ISpellEntity {
 
@@ -40,7 +35,6 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
         EntitySpellDataSaving.Save(nbt, syncedSpellData);
     }
 
-    @Nullable
     public LivingEntity getCaster() {
         return getSpellData().getCaster(world);
     }
@@ -48,11 +42,6 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
-    }
-
-    @Override
-    public Packet<?> createSpawnPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     public boolean isValidTarget(Entity target) {
@@ -80,19 +69,6 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
     }
 
     @Override
-    public void writeSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = new CompoundTag();
-        writeCustomDataToTag(nbt);
-        buf.writeCompoundTag(nbt);
-    }
-
-    @Override
-    public void readSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = buf.readCompoundTag();
-        this.readCustomDataFromTag(nbt);
-    }
-
-    @Override
     public void tick() {
 
         if (this.inGroundTime > 50) {
@@ -102,7 +78,7 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
         if (world.isClient) {
             if (this.age > 2) {
                 for (int i = 0; i < 10; i++) {
-                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(x, y, z, 0.1F);
+                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getX(), getY(), getZ(), 0.1F);
                     ParticleUtils.spawn(ParticleRegister.THUNDER, world, p);
                 }
             }

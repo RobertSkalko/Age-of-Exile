@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.proxies.OpenGuiWrapper;
+import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
 
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.network.NetworkEvent;
+public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
 
-import java.util.function.Supplier;
-
-public class OpenGuiPacket {
+    public static OpenGuiPacket EMPTY = new OpenGuiPacket();
 
     public enum GuiType {
         TALENTS,
@@ -27,40 +27,28 @@ public class OpenGuiPacket {
         this.type = type;
     }
 
-    public static OpenGuiPacket decode(PacketByteBuf buf) {
+    @Override
+    public OpenGuiPacket fromData(PacketByteBuf buf) {
         OpenGuiPacket newpkt = new OpenGuiPacket();
         newpkt.type = GuiType.valueOf(buf.readString(20));
         return newpkt;
-
     }
 
-    public static void encode(OpenGuiPacket packet, PacketByteBuf tag) {
-
-        tag.writeString(packet.type.name(), 20);
-
+    @Override
+    public void toData(OpenGuiPacket openGuiPacket, PacketByteBuf buf) {
+        buf.writeString(openGuiPacket.type.name(), 20);
     }
 
-    public static void handle(final OpenGuiPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void onReceived(PacketContext ctx, OpenGuiPacket data) {
+        if (data.type == GuiType.MAIN_HUB) {
+            OpenGuiWrapper.openMainHub();
+        }
+    }
 
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
-
-                    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-
-                        if (pkt.type == GuiType.MAIN_HUB) {
-                            OpenGuiWrapper.openMainHub();
-                        }
-                    });
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
-
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "opengui");
     }
 
 }

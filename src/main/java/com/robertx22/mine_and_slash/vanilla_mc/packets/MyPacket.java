@@ -7,13 +7,15 @@ import net.minecraft.util.PacketByteBuf;
 
 public abstract class MyPacket<T> implements PacketConsumer {
 
+    public abstract Identifier getIdentifier();
+
     public abstract T fromData(PacketByteBuf buf);
 
     public abstract PacketByteBuf toData(T t);
 
     public abstract void onReceived(PacketContext ctx, T data);
 
-    public abstract Identifier getIdentifier();
+    public abstract MyPacket<T> newInstance();
 
     @Override
     public void accept(PacketContext ctx, PacketByteBuf buf) {
@@ -21,7 +23,7 @@ public abstract class MyPacket<T> implements PacketConsumer {
         ctx.getTaskQueue()
             .execute(() -> {
                 try {
-                    T data = fromData(buf);
+                    T data = newInstance().fromData(buf);
                     this.onReceived(ctx, data);
                 } catch (Exception e) {
                     e.printStackTrace();
