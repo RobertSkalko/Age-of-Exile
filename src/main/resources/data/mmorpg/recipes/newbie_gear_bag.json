@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CAC",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:iron_ingot"
+    }, 
+	"A": {
+      "item": "minecraft:wheat_seeds"
+    }, 
+	"B": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "result": {
+    "item": "mmorpg:newbie_gear_bag"
+  }
+}

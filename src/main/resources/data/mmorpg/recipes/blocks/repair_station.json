@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BAB",
+    "CCC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:furnace"
+    }, 
+	"A": {
+      "item": "minecraft:coal",
+	  "data": 0
+    },	
+	"B": {
+      "item": "minecraft:iron_ingot"
+    }
+	
+  },
+  "result": {
+    "item": "mmorpg:repair_station"
+  }
+}

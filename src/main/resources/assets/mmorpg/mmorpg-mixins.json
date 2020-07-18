@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.robertx22.mine_and_slash.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mmorpg.refmap.json",
+  "mixins": [
+    "LivingEntityMixin",
+	"ChestMixin",
+	"ArrowShootMixin",
+	"HeartsRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

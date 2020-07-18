@@ -1,0 +1,46 @@
+# gradle
+
+.gradle/
+build/
+out/
+classes/
+
+# eclipse
+
+*.launch
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# fabric
+
+run/
+
+# other
+key.properties
+cursetoken
+eclipse
+run
+ignore/
+src/generated/
+src/main/resources/assets/mmorpg/textures/items/paid_assets
+src/main/resources/assets/mmorpg/textures/items/PAID_ASSETS
+src/main/resources/assets/mmorpg/textures/items/paidassets
+src/main/resources/assets/mmorpg/textures/items/PAIDASSETS
+src/main/resources/assets/mmorpg/textures/items
+src/main/resources/assets/mmorpg/textures/
+src/main/resources/assets/mmorpg/textures
+src/main/resources/assets/mmorpg/lang/en_us.json
+src/generated

@@ -1,0 +1,6 @@
+{
+    "parent": "mmorpg:item/crossbows/crossbow",
+    "textures": {
+        "layer0": "mmorpg:items/crossbows/crossbow_arrow"
+    }
+}

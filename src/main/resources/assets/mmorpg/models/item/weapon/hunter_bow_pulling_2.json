@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "mmorpg:items/weapon/hunter_bow_pulling_2"
+    }
+}

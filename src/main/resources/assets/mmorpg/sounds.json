@@ -1,0 +1,23 @@
+{
+    "freeze": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:freeze", "stream": true}]
+    },
+    "dash": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:dash", "stream": true}]
+    },
+    "fireball": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:fireball", "stream": true}]
+    },
+    "stone_crack": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:stone_crack", "stream": true}]
+    },
+    "splash": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:splash", "stream": true}]
+    }
+
+}

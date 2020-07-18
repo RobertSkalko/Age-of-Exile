@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CAC",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:iron_ingot"
+    }, 
+	"A": {
+      "item": "minecraft:chest"
+    }, 
+	"B": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency_bag"
+  }
+}

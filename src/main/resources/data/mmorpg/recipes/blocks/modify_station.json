@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BAB",
+    "CCC"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:furnace"
+    }, 
+	"A": {
+      "item": "minecraft:crafting_table"
+    } , 
+	"B": {
+      "item": "minecraft:diamond"
+    } 
+  },
+  "result": {
+    "item": "mmorpg:modify_station"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CAC",
+    "BBB"
+  ],
+  "key": {  
+	"C": {
+      "item": "minecraft:diamond_block"
+    }, 
+	"B": {
+      "item": "minecraft:gold_block"
+    }, 
+	"A": {
+      "item": "mmorpg:currency/stone_of_hope"
+    }
+  },
+  "result": {
+    "item": "mmorpg:increase_rarity_nearest_entity"
+  }
+}
