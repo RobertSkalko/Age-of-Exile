@@ -12,7 +12,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class FireballEntity extends BaseElementalBoltEntity {
 
@@ -24,10 +23,6 @@ public class FireballEntity extends BaseElementalBoltEntity {
 
         super(EntityRegister.FIREBOLT, worldIn);
 
-    }
-
-    public FireballEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.FIREBOLT, world);
     }
 
     @Override

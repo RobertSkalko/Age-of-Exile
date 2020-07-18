@@ -13,7 +13,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class ArrowStormEntity extends BaseCloudEntity {
 
@@ -23,10 +22,6 @@ public class ArrowStormEntity extends BaseCloudEntity {
 
     public ArrowStormEntity(EntityType type, World world) {
         super(type, world);
-    }
-
-    public ArrowStormEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.ARROW_STORM, world);
     }
 
     @Override
@@ -62,7 +57,7 @@ public class ArrowStormEntity extends BaseCloudEntity {
                     float yRandom = (float) RandomUtils.RandomRange(1, 100) / 40F;
                     float height = 4;
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                        x, y + height + yRandom, z, radius());
+                        getX(), getY() + height + yRandom, getZ(), radius());
 
                     RangerArrowEntity en = SpellUtils.getSpellEntity(getSpellData().configs, new RangerArrowEntity(world), getSpellData().getSpell(), caster);
                     SpellUtils.setupProjectileForCasting(en, caster, 1.5F);

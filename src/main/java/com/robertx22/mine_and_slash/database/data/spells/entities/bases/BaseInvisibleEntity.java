@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.mmorpg.EntityPacket;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import net.minecraft.entity.Entity;
@@ -8,13 +9,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Packet;
-import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
-import org.jline.utils.Log;
-
-
 
 public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsItem, ISpellEntity {
 
@@ -28,14 +24,16 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
         this.setInvulnerable(true);
     }
 
+    @Override
+    public Packet<?> createSpawnPacket() {
+        return EntityPacket.createPacket(this);
+    }
+
     public abstract void onTick();
 
     @Override
     public void tick() {
         if (this.spellData == null || this.spellData.getCaster(world) == null) {
-            Log.info(
-                "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm " +
-                    "just logging to see how often it happens.");
             this.remove();
         } else {
             try {
@@ -67,7 +65,6 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
         EntitySpellDataSaving.Save(nbt, spellData);
     }
 
-    @Nullable
     public LivingEntity getCaster() {
         return getSpellData().getCaster(world);
     }
@@ -75,11 +72,6 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
     @Override
     protected void initDataTracker() {
 
-    }
-
-    @Override
-    public Packet<?> createSpawnPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -100,19 +92,6 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
     @Override
     public void setSpellData(EntitySpellData data) {
         this.spellData = data;
-    }
-
-    @Override
-    public void writeSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = new CompoundTag();
-        writeCustomDataToTag(nbt);
-        buf.writeCompoundTag(nbt);
-    }
-
-    @Override
-    public void readSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = buf.readCompoundTag();
-        this.readCustomDataFromTag(nbt);
     }
 
 }

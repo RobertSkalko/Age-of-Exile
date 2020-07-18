@@ -3,12 +3,12 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.AffixData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -33,7 +33,6 @@ public class JewelData implements ITooltip, ICommonDataItem {
     public void BuildTooltip(TooltipContext ctx) {
 
         TooltipInfo info = new TooltipInfo(ctx.data);
-        GearItemData gear = Gear.Load(ctx.stack);
 
         ctx.tooltip.add(TooltipUtils.level(affix.level));
 
@@ -72,7 +71,7 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
-        return new ItemStack(ModRegistry.ITEMS.MAGIC_ESSENCE.get());
+        return new ItemStack(ModRegistry.MISC_ITEMS.MAGIC_ESSENCE);
     }
 
     @Override

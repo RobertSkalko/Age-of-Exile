@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.mmorpg.EntityPacket;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
@@ -8,28 +9,19 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ProjectileUtil;
+import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.Projectile;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-
-import net.minecraftforge.fml.network.NetworkHooks;
-import org.jline.utils.Log;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +45,11 @@ public abstract class EntityBaseProjectile extends ProjectileEntity implements P
     private boolean doGroundProc;
 
     public Entity ignoreEntity;
+
+    @Override
+    public Packet<?> createSpawnPacket() {
+        return EntityPacket.createPacket(this);
+    }
 
     public abstract double radius();
 
@@ -207,9 +204,6 @@ public abstract class EntityBaseProjectile extends ProjectileEntity implements P
     public final void tick() {
 
         if (this.spellData == null || this.spellData.getCaster(world) == null) {
-            Log.info(
-                "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm "
-                    + "just logging to see how often it happens.");
             this.remove();
         } else {
             try {
@@ -260,14 +254,14 @@ public abstract class EntityBaseProjectile extends ProjectileEntity implements P
             BlockState blockstate = this.world.getBlockState(blockraytraceresult.getBlockPos());
 
             Vec3d vec3d = blockraytraceresult.getPos()
-                .subtract(this.x, this.y, this.z);
+                .subtract(this.getX(), this.getY(), this.getZ());
             this.setVelocity(vec3d);
             Vec3d vec3d1 = vec3d.normalize()
                 .multiply((double) 0.05F);
-            this.x -= vec3d1.x;
-            this.y -= vec3d1.y;
-            this.z -= vec3d1.z;
+
             this.inGround = true;
+
+            this.setPos(vec3d1.x, vec3d1.y, vec3d1.z);
 
             this.onImpact(blockraytraceresult);
 
@@ -324,7 +318,7 @@ public abstract class EntityBaseProjectile extends ProjectileEntity implements P
 
     protected void setPos(LivingEntity caster) {
         Vec3d look = caster.getRotationVector();
-        updatePosition(caster.x - look.x, caster.y - look.y + 1.3, caster.z - look.z);
+        updatePosition(caster.getX() - look.x, caster.getY() - look.y + 1.3, caster.getZ() - look.z);
     }
 
     ////////////////////////////////////////////////////////
@@ -338,15 +332,6 @@ public abstract class EntityBaseProjectile extends ProjectileEntity implements P
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
-    }
-
-    @Override
-    public Packet<?> createSpawnPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    public boolean isValidTarget(Entity target) {
-        return true;
     }
 
     @Override
@@ -367,19 +352,6 @@ public abstract class EntityBaseProjectile extends ProjectileEntity implements P
     @Override
     public void setSpellData(EntitySpellData data) {
         this.spellData = data;
-    }
-
-    @Override
-    public void writeSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = new CompoundTag();
-        writeCustomDataToTag(nbt);
-        buf.writeCompoundTag(nbt);
-    }
-
-    @Override
-    public void readSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = buf.readCompoundTag();
-        this.readCustomDataFromTag(nbt);
     }
 
 }

@@ -1,10 +1,5 @@
 package com.robertx22.mine_and_slash.database.data;
 
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
-
 import java.util.Locale;
 
 public interface IGUID {
@@ -59,10 +54,6 @@ public interface IGUID {
         }
         return s;
 
-    }
-
-    default Item getFromForgeRegistry() {
-        return ForgeRegistries.ITEMS.getValue(new Identifier(Ref.MODID, GUID()));
     }
 
     default boolean isGuidFormattedCorrectly() {

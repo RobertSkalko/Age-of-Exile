@@ -12,7 +12,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class PoisonBallEntity extends BaseElementalBoltEntity {
 
@@ -24,10 +23,6 @@ public class PoisonBallEntity extends BaseElementalBoltEntity {
 
         super(EntityRegister.POISON_BALL, worldIn);
 
-    }
-
-    public PoisonBallEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.POISON_BALL, world);
     }
 
     @Override

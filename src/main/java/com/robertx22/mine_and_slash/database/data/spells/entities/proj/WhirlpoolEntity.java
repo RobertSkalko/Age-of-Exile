@@ -22,7 +22,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
 
@@ -34,11 +33,6 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
     public WhirlpoolEntity(World worldIn) {
         super(EntityRegister.WHIRPOOL, worldIn);
-
-    }
-
-    public WhirlpoolEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.WHIRPOOL, world);
 
     }
 

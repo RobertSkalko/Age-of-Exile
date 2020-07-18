@@ -13,7 +13,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class FrostballEntity extends BaseElementalBoltEntity {
 
@@ -24,11 +23,6 @@ public class FrostballEntity extends BaseElementalBoltEntity {
     public FrostballEntity(World worldIn) {
 
         super(EntityRegister.FROSTBOLT, worldIn);
-
-    }
-
-    public FrostballEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.FROSTBOLT, world);
 
     }
 

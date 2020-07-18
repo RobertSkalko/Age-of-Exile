@@ -5,8 +5,8 @@ import info.loenwind.autosave.exceptions.NoHandlerFoundException;
 import info.loenwind.autosave.handlers.IHandler;
 import info.loenwind.autosave.handlers.java.util.HandleMap;
 import info.loenwind.autosave.util.*;
-
 import net.minecraft.nbt.CompoundTag;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.EnumMap;
@@ -20,7 +20,10 @@ import java.util.Set;
  *
  * @author tterrag
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({
+    "rawtypes",
+    "unchecked"
+})
 public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, Enum>> {
 
     private final Class<T> keyClass;
@@ -48,7 +51,7 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
 
         if (keys.length * valspace > 64) {
             throw new IllegalArgumentException(
-                    "Enums " + keyClass + " and " + valClass + " cannot be used, as they have too many combinations.");
+                "Enums " + keyClass + " and " + valClass + " cannot be used, as they have too many combinations.");
         }
     }
 
@@ -72,7 +75,7 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
             @NonnullType Class[] paramClasses = new Class[types.length];
             for (int i = 0; i < types.length; i++) {
                 paramClasses[i] = TypeUtil.toClass(
-                        NullHelper.notnullJ(types[i], "ParameterizedType#getActualTypeArguments[i]"));
+                    NullHelper.notnullJ(types[i], "ParameterizedType#getActualTypeArguments[i]"));
             }
             if (paramClasses.length == 2 && paramClasses[0].isEnum() && paramClasses[1].isEnum()) {
                 // Make sure we can store this, otherwise it will fall back to EnumMap handler
@@ -94,25 +97,29 @@ public class HandleEnum2EnumMap<T extends Enum<T>> extends HandleMap<EnumMap<T, 
     @Override
     public boolean store(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type, String name,
                          EnumMap<T, Enum> object) throws IllegalArgumentException, IllegalAccessException,
-            InstantiationException, NoHandlerFoundException {
+        InstantiationException, NoHandlerFoundException {
         long value = 0;
         for (T key : keys) {
             // 0 is null, all ordinal values are shifted up by 1
             long subvalue = 0;
             if (object.containsKey(key)) {
-                subvalue = object.get(key).ordinal() + 1;
+                subvalue = object.get(key)
+                    .ordinal() + 1;
             }
             value = value | (subvalue << (key.ordinal() * valspace));
         }
-        nbt.putIntArray(name, new int[]{valspace, BitUtil.getLongMSB(value), BitUtil.getLongLSB(value)});
+        nbt.putIntArray(name, new int[]{
+            valspace,
+            BitUtil.getLongMSB(value),
+            BitUtil.getLongLSB(value)
+        });
         return true;
     }
 
     @Override
-    public @Nullable
-    EnumMap read(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type, String name,
-                 EnumMap<T, Enum> object) throws IllegalArgumentException, IllegalAccessException,
-            InstantiationException, NoHandlerFoundException {
+    public EnumMap read(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type, String name,
+                        EnumMap<T, Enum> object) throws IllegalArgumentException, IllegalAccessException,
+        InstantiationException, NoHandlerFoundException {
         if (nbt.contains(name)) {
             if (object == null) {
                 object = createMap();

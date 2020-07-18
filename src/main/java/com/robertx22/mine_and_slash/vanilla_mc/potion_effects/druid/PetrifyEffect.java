@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.Bas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.nature.GorgonsGazeSpell;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -26,7 +25,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +35,6 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
 
     private PetrifyEffect() {
         super(StatusEffectType.HARMFUL, 4393423);
-        this.setRegistryName(new Identifier(Ref.MODID, GUID()));
 
         this.addAttributeModifier(EntityAttributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160892",
             (double) -0.95F, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
@@ -62,7 +59,6 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         return p;
     }
 
-    @Nullable
     @Override
     public BaseSpell getSpell() {
         return GorgonsGazeSpell.getInstance();

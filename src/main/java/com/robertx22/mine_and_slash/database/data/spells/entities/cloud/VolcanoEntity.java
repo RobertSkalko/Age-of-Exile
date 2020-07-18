@@ -9,12 +9,13 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.network.Packet;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
 
@@ -26,10 +27,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
     public VolcanoEntity(EntityType type, World world) {
         super(type, world);
-    }
-
-    public VolcanoEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.VOLCANO, world);
     }
 
     @Override
@@ -75,7 +72,7 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                         float yRandom = (float) RandomUtils.RandomRange(1, 100) / 80F;
 
                         Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                            x, y + +yRandom, z, radius);
+                            getX(), getY() + +yRandom, getZ(), radius);
 
                         for (int n = 0; n < 3; n++) {
                             ParticleUtils.spawn(ParticleTypes.LAVA, world, p.x, p.y, p.z, 0, 0.5f, 0);
@@ -98,4 +95,8 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
     }
 
+    @Override
+    public Packet<?> createSpawnPacket() {
+        return new EntitySpawnS2CPacket(this);
+    }
 }

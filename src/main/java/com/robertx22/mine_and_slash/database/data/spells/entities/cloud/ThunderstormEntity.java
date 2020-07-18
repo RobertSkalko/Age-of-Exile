@@ -9,7 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class ThunderstormEntity extends BaseCloudEntity {
 
@@ -19,10 +18,6 @@ public class ThunderstormEntity extends BaseCloudEntity {
 
     public ThunderstormEntity(EntityType type, World world) {
         super(type, world);
-    }
-
-    public ThunderstormEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.THUNDERSTORM, world);
     }
 
     @Override

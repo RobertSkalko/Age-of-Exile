@@ -3,18 +3,16 @@ package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.nature.NatureBalmSpell;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,6 @@ public class RegenerateEffect extends BasePotionEffect {
 
     private RegenerateEffect() {
         super(StatusEffectType.BENEFICIAL, 4393423);
-        this.setRegistryName(new Identifier(Ref.MODID, GUID()));
 
         this.tickActions.add(new OnTickAction(ctx -> {
             if (ctx.entity.world.isClient) {
@@ -68,7 +65,6 @@ public class RegenerateEffect extends BasePotionEffect {
         return p;
     }
 
-    @Nullable
     @Override
     public BaseSpell getSpell() {
         return NatureBalmSpell.getInstance();

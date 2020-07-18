@@ -6,8 +6,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.world.World;
 
-
-
 // i copy pasted this cus original bubble particle expires when not in water.
 public class MyBubbleParticle extends SpriteBillboardParticle {
 
@@ -50,8 +48,8 @@ public class MyBubbleParticle extends SpriteBillboardParticle {
             this.spriteSet = sprite;
         }
 
-        public Particle makeParticle(DefaultParticleType type, World world, double x, double y, double z, double xm,
-                                     double ym, double zm) {
+        public Particle createParticle(DefaultParticleType type, World world, double x, double y, double z, double xm,
+                                       double ym, double zm) {
             MyBubbleParticle bubbleparticle = new MyBubbleParticle(world, x, y, z, xm, ym, zm);
             bubbleparticle.setSprite(this.spriteSet);
             return bubbleparticle;

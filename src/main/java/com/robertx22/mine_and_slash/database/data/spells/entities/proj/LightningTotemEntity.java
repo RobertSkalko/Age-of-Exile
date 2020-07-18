@@ -18,7 +18,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
 
@@ -30,11 +29,6 @@ public class LightningTotemEntity extends EntityBaseProjectile {
 
     public LightningTotemEntity(World worldIn) {
         super(EntityRegister.LIGHTNING_TOTEM, worldIn);
-
-    }
-
-    public LightningTotemEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.LIGHTNING_TOTEM, world);
 
     }
 

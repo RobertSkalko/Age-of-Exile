@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mixins;
 
-import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.util.math.MathHelper;
@@ -17,10 +16,10 @@ public abstract class ArrowShootMixin {
         ProjectileEntity arrow = (ProjectileEntity) (Object) this;
 
         float multi = MathHelper.clamp(velocity / 3, 0, 1); // by default it's multiplied by 3 so i need to divide it
-
-        arrow
-            .getPersistentData()
-            .putFloat(DamageEffect.ARROW_DMG_MULTI_TAG, multi);
+// TODO TODO TODO
+        //  arrow
+        //   .getPersistentData()
+        //     .putFloat(DamageEffect.ARROW_DMG_MULTI_TAG, multi);
 
     }
 

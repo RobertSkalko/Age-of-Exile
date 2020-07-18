@@ -17,9 +17,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-
-import net.minecraftforge.fml.network.FMLPlayMessages;
-
 public class ThrowFlameEntity extends BaseElementalBoltEntity {
 
     public ThrowFlameEntity(EntityType<? extends ThrowFlameEntity> type, World world) {
@@ -28,10 +25,6 @@ public class ThrowFlameEntity extends BaseElementalBoltEntity {
 
     public ThrowFlameEntity(World worldIn) {
         super(EntityRegister.THROW_FLAMES, worldIn);
-    }
-
-    public ThrowFlameEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.THROW_FLAMES, world);
     }
 
     @Override

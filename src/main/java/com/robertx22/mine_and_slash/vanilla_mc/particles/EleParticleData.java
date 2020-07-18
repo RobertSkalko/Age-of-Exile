@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.util.PacketByteBuf;
+import net.minecraft.util.registry.Registry;
 
 public class EleParticleData extends ParticleType<EleParticleData> implements ParticleEffect {
 
@@ -24,7 +25,8 @@ public class EleParticleData extends ParticleType<EleParticleData> implements Pa
     @Override
     public void write(PacketByteBuf buf) {
         buf.writeString(element.name());
-        buf.writeString(type.getRegistryName().toString());
+        buf.writeString(Registry.PARTICLE_TYPE.getId(type)
+            .toString());
     }
 
     @Override

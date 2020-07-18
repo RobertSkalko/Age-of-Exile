@@ -14,7 +14,7 @@ public class RangerArrowRenderer extends ProjectileEntityRenderer<RangerArrowEnt
     }
 
     @Override
-    public Identifier getEntityTexture(RangerArrowEntity en) {
+    public Identifier getTexture(RangerArrowEntity en) {
         return RES_ARROW;
     }
 

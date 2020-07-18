@@ -5,12 +5,12 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.Bas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.hunting.ImbueSpell;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ranger.ImbueEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,7 +22,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class RangerArrowEntity extends EntityBaseProjectile {
 
@@ -32,10 +31,6 @@ public class RangerArrowEntity extends EntityBaseProjectile {
 
     public RangerArrowEntity(World worldIn) {
         super(EntityRegister.RANGER_ARROW, worldIn);
-    }
-
-    public RangerArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.RANGER_ARROW, world);
     }
 
     @Override

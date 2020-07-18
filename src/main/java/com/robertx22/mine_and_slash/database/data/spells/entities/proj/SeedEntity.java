@@ -14,7 +14,6 @@ import net.minecraft.item.Items;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +26,6 @@ public class SeedEntity extends EntityBaseProjectile {
 
     public SeedEntity(World worldIn) {
         super(EntityRegister.SEED, worldIn);
-
-    }
-
-    public SeedEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.SEED, world);
 
     }
 
@@ -53,7 +47,7 @@ public class SeedEntity extends EntityBaseProjectile {
         }
 
         if (!world.getBlockState(pos)
-            .isAir(world, pos)) {
+            .isAir()) {
             return false; // only replace air
         }
         return true;

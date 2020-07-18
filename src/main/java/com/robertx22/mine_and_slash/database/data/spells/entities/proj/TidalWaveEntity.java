@@ -18,9 +18,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-
-import net.minecraftforge.fml.network.FMLPlayMessages;
-
 public class TidalWaveEntity extends BaseElementalBoltEntity {
 
     public TidalWaveEntity(EntityType<? extends TidalWaveEntity> type, World world) {
@@ -37,10 +34,6 @@ public class TidalWaveEntity extends BaseElementalBoltEntity {
     public void initSpellEntity() {
         this.setNoGravity(false);
         this.setDeathTime(40);
-    }
-
-    public TidalWaveEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.TIDAL_WAVE, world);
     }
 
     @Environment(EnvType.CLIENT)

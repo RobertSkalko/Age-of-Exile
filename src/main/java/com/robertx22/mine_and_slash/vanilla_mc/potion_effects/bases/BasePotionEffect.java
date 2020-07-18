@@ -1,12 +1,11 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
+import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
@@ -17,6 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -31,9 +31,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-
-
-
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +98,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.STATUS_EFFECT.getId(this)
             .toString();
     }
 
@@ -276,7 +274,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     // AreaEffect or thrown potion bottle
     @Override
     public void applyInstantEffect(Entity applier, Entity caster, LivingEntity target, int amplifier,
-                             double health) {
+                                   double health) {
 
         if (target.world.isClient && isServerSideOnly())
             return;
@@ -286,7 +284,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     @Override
     public void onApplied(LivingEntity target, AbstractEntityAttributeContainer attributes,
-                                                 int amplifier) {
+                          int amplifier) {
 
         if (!target.world.isClient || !isServerSideOnly()) {
 
@@ -300,7 +298,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     @Override
     public void onRemoved(LivingEntity target, AbstractEntityAttributeContainer attributes,
-                                                    int amplifier) {
+                          int amplifier) {
         // called at end
         super.onRemoved(target, attributes, amplifier);
 

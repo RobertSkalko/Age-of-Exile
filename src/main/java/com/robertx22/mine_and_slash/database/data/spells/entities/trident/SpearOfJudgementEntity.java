@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.JudgementEf
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 public class SpearOfJudgementEntity extends BaseTridentEntity {
 
@@ -16,10 +15,6 @@ public class SpearOfJudgementEntity extends BaseTridentEntity {
 
     public SpearOfJudgementEntity(EntityType type, World world) {
         super(type, world);
-    }
-
-    public SpearOfJudgementEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.HOLY_SPEAR, world);
     }
 
     @Override

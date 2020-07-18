@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.Bas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -17,12 +16,11 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEf
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
-
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,6 @@ public class PoisonEffect extends BasePotionEffect implements IApplyStatPotion {
 
     private PoisonEffect() {
         super(StatusEffectType.HARMFUL, 4393423);
-        this.setRegistryName(new Identifier(Ref.MODID, GUID()));
 
         this.tickActions.add(new OnTickAction(ctx -> {
             int num = getCalc(ctx.caster).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
@@ -91,7 +88,6 @@ public class PoisonEffect extends BasePotionEffect implements IApplyStatPotion {
         return p;
     }
 
-    @Nullable
     @Override
     public BaseSpell getSpell() {
         return null;

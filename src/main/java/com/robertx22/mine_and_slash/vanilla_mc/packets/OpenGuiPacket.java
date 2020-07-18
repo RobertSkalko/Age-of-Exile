@@ -28,22 +28,25 @@ public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
     }
 
     @Override
-    public OpenGuiPacket loadFromData(PacketByteBuf buf) {
-        OpenGuiPacket newpkt = new OpenGuiPacket();
-        newpkt.type = GuiType.valueOf(buf.readString(20));
-        return newpkt;
+    public void loadFromData(PacketByteBuf buf) {
+        type = GuiType.valueOf(buf.readString(20));
     }
 
     @Override
-    public void toData(OpenGuiPacket openGuiPacket, PacketByteBuf buf) {
-        buf.writeString(openGuiPacket.type.name(), 20);
+    public void saveToData(PacketByteBuf buf) {
+        buf.writeString(type.name(), 20);
     }
 
     @Override
-    public void onReceived(PacketContext ctx, OpenGuiPacket data) {
-        if (data.type == GuiType.MAIN_HUB) {
+    public void onReceived(PacketContext ctx) {
+        if (type == GuiType.MAIN_HUB) {
             OpenGuiWrapper.openMainHub();
         }
+    }
+
+    @Override
+    public MyPacket<OpenGuiPacket> newInstance() {
+        return new OpenGuiPacket();
     }
 
     @Override

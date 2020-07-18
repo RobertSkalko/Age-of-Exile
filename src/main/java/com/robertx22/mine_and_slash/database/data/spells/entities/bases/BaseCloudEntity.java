@@ -66,7 +66,7 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
                     float height = 4;
 
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                        x, y + height + yRandom, z, RADIUS);
+                        getX(), getY() + height + yRandom, getZ(), RADIUS);
 
                     if (spawnCloudParticles()) {
                         for (int a = 1; a < 2; a++) {

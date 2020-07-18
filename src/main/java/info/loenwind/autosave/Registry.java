@@ -15,12 +15,10 @@ import info.loenwind.autosave.handlers.util.DelegatingHandler;
 import info.loenwind.autosave.util.BitUtil;
 import info.loenwind.autosave.util.NullableType;
 import info.loenwind.autosave.util.TypeUtil;
-import org.apache.commons.lang3.ArrayUtils;
-
-
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +41,7 @@ public class Registry {
      * You can registerForgeConfigs new handlers here if you want other mods to be able to store your objects. Otherwise please use your own registry.
      */
 
-    public static final @Nonnull
+    public static final
     Registry GLOBAL_REGISTRY = new Registry(true);
 
     static {
@@ -194,7 +192,7 @@ public class Registry {
     }
 
     private final List<IHandler> handlers = new ArrayList<IHandler>();
-    @Nullable
+
     private final Registry parent;
 
     /**

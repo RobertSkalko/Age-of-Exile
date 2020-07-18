@@ -7,16 +7,15 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.con
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.divine.SpearOfJudgementSpell;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.*;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.*;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
@@ -24,7 +23,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +33,6 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
 
     private JudgementEffect() {
         super(StatusEffectType.HARMFUL, 4393423);
-        this.setRegistryName(new Identifier(Ref.MODID, GUID()));
 
         this.tickActions.add(new OnTickAction(ctx -> {
             ParticleUtils.spawnParticles(ParticleTypes.FALLING_HONEY, ctx.entity, 15);
@@ -75,7 +72,6 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
         return p;
     }
 
-    @Nullable
     @Override
     public BaseSpell getSpell() {
         return SpearOfJudgementSpell.getInstance();

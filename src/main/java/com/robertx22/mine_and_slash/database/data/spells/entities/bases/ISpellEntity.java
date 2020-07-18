@@ -10,9 +10,8 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
-import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
-public interface ISpellEntity extends IEntityAdditionalSpawnData {
+public interface ISpellEntity {
 
     default void initSpellEntity() {
     }

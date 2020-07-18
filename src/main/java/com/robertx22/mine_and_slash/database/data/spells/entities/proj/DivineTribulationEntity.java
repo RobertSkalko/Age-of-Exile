@@ -17,7 +17,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.List;
 
@@ -29,11 +28,6 @@ public class DivineTribulationEntity extends EntityBaseProjectile {
 
     public DivineTribulationEntity(World worldIn) {
         super(EntityRegister.DIVINE_TRIBULATION, worldIn);
-
-    }
-
-    public DivineTribulationEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.DIVINE_TRIBULATION, world);
 
     }
 
