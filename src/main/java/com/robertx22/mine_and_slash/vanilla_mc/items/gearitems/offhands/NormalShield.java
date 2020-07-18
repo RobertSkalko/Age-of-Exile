@@ -5,14 +5,10 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.Identifier;
-
-import net.minecraftforge.fml.DistExecutor;
-
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
@@ -34,10 +30,6 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
 
         Settings p = ItemUtils.getDefaultGearProperties();
 
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            p.setISTER(ShieldRenderer::new);
-        });
-
         return p;
     }
 
@@ -57,18 +49,13 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
 
     @Override
     public String locNameLangFileGUID() {
-        return getFormatedForLangFile(this.getRegistryName()
+        return getFormatedForLangFile(Registry.ITEM.getId(this)
             .toString());
     }
 
     @Override
     public String GUID() {
         return "";
-    }
-
-    @Override
-    public boolean isShield(ItemStack stack, LivingEntity entity) {
-        return true;
     }
 
 }

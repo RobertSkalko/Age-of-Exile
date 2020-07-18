@@ -45,7 +45,7 @@ public class OccultNecklace extends BaseCurio {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.MANA_REG_NECKLACE.get();
+        return ModRegistry.MISC_ITEMS.MANA_REG_NECKLACE.get();
     }
 
     @Override

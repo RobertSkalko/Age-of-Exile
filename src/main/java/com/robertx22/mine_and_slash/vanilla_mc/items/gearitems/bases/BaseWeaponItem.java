@@ -2,22 +2,19 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
-import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.ToolItem;
-import java.util.Arrays;
-import java.util.List;
+import net.minecraft.util.registry.Registry;
+
 import java.util.Set;
 
 public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, IGearItem, MyForgeItem {
@@ -35,18 +32,6 @@ public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, I
 
     public float attackSpeed = -2.4F;
 
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment) {
-        return enchantment.type.isAcceptableItem(Items.DIAMOND_SWORD) && isNotInEnchantBlackList(enchantment);
-    }
-
-    public static List<Enchantment> blacklist = Arrays.asList(
-        Enchantments.SMITE, Enchantments.SHARPNESS, Enchantments.BANE_OF_ARTHROPODS, Enchantments.SWEEPING);
-
-    public static boolean isNotInEnchantBlackList(Enchantment ench) {
-        return blacklist.contains(ench) == false;
-    }
-
     public int rarity = 0;
 
     @Override
@@ -56,7 +41,7 @@ public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, I
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString();
     }
 

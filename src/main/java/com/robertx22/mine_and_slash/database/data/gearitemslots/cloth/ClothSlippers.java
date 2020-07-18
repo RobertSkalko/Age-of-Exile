@@ -42,7 +42,7 @@ public class ClothSlippers extends BaseBoots {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.CLOTH_SLIPPERS.get();
+        return ModRegistry.MISC_ITEMS.CLOTH_SLIPPERS.get();
     }
 
     @Override

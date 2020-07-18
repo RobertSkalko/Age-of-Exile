@@ -80,11 +80,11 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.ITEMS.ORB_OF_BLESSING.get())
+        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_BLESSING.get())
             .input('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .input('t', ModRegistry.ITEMS.ORB_OF_TURBULENCE.get())
+            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_TURBULENCE.get())
             .input('v', Items.COAL)
-            .input('o', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get())
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ovo")

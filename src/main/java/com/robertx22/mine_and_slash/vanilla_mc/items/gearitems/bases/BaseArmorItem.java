@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases;
 
-import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.armor_materials.*;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.armor_materials.*;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.util.registry.Registry;
 
 public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem {
 
@@ -20,7 +21,7 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString();
     }
 

@@ -42,7 +42,7 @@ public class SilkPants extends BaseBoots {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.SILK_PANTS.get();
+        return ModRegistry.MISC_ITEMS.SILK_PANTS.get();
     }
 
     @Override

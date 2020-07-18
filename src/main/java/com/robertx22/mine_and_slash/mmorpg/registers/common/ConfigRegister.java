@@ -5,12 +5,6 @@ import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.exiled_lib.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial;
-import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
-import com.robertx22.mine_and_slash.config.forge.CommonConfig;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig.Type;
 
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +62,7 @@ public class ConfigRegister {
 
     // MUST BE CALLED IN MAIN CLASS
     public static void registerForgeConfigs() {
-
+/*
         ModLoadingContext ctx = ModLoadingContext.get();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
@@ -77,6 +71,8 @@ public class ConfigRegister {
 
         ctx.registerConfig(Type.SERVER, ModConfig.spec, "MineAndSlash-Server.toml");
         ctx.registerConfig(Type.COMMON, CommonConfig.spec, "MineAndSlash-Common.toml");
+
+ */
     }
 
 }

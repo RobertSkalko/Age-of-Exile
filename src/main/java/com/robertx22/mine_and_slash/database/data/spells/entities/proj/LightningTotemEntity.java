@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
@@ -28,7 +27,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
     }
 
     public LightningTotemEntity(World worldIn) {
-        super(EntityRegister.LIGHTNING_TOTEM, worldIn);
+        super(ModRegistry.ENTITIES.LIGHTNING_TOTEM, worldIn);
 
     }
 

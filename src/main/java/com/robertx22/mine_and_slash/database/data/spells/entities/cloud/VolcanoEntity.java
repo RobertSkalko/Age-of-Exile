@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.cloud;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.BaseInvisibleEntity;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.*;
@@ -22,7 +22,7 @@ import java.util.List;
 public class VolcanoEntity extends BaseInvisibleEntity {
 
     public VolcanoEntity(World world) {
-        super(EntityRegister.VOLCANO, world);
+        super(ModRegistry.ENTITIES.VOLCANO, world);
     }
 
     public VolcanoEntity(EntityType type, World world) {

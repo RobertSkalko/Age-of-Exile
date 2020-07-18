@@ -23,7 +23,7 @@ public class SlashRecipeProvider extends RecipesProvider {
     protected void generate(Consumer<RecipeJsonProvider> c) {
 
         shaped(SimpleMatItem.INFUSED_IRON)
-            .input('#', ModRegistry.ITEMS.MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE.get())
             .input('i', Items.IRON_INGOT)
             .pattern(" # ")
             .pattern("#i#")
@@ -32,7 +32,7 @@ public class SlashRecipeProvider extends RecipesProvider {
             .offerTo(c);
 
         shaped(SimpleMatItem.GOLDEN_ORB)
-            .input('#', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get())
             .input('i', Items.GOLD_INGOT)
             .pattern(" # ")
             .pattern("#i#")
@@ -41,7 +41,7 @@ public class SlashRecipeProvider extends RecipesProvider {
             .offerTo(c);
 
         shaped(SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .input('#', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get())
             .input('i', Items.DIAMOND)
             .pattern(" # ")
             .pattern("#i#")
@@ -50,7 +50,7 @@ public class SlashRecipeProvider extends RecipesProvider {
             .offerTo(c);
 
         shaped(SimpleMatItem.MYTHIC_ESSENCE)
-            .input('#', ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get())
+            .input('#', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get())
             .input('b', Items.BOWL)
             .pattern("###")
             .pattern("###")

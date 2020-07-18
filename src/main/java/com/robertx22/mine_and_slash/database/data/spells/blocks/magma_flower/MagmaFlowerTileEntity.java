@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.data.spells.blocks.magma_flower;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.spells.blocks.base.BaseSpellTileEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -21,7 +21,7 @@ import java.util.List;
 public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
 
     public MagmaFlowerTileEntity() {
-        super(ModTileEntities.MAGMA_FLOWER.get());
+        super(BlockEntities.MAGMA_FLOWER.get());
     }
 
     @Override

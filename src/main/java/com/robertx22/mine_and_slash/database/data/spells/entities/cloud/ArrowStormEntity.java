@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.data.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.BaseCloudEntity;
 import com.robertx22.mine_and_slash.database.data.spells.entities.proj.RangerArrowEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class ArrowStormEntity extends BaseCloudEntity {
 
     public ArrowStormEntity(World world) {
-        super(EntityRegister.ARROW_STORM, world);
+        super(ModRegistry.ENTITIES.ARROW_STORM, world);
     }
 
     public ArrowStormEntity(EntityType type, World world) {

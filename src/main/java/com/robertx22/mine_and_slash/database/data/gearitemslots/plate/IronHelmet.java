@@ -42,7 +42,7 @@ public class IronHelmet extends BaseHelmet {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.PLATE_HELMET.get();
+        return ModRegistry.MISC_ITEMS.PLATE_HELMET.get();
     }
 
     @Override

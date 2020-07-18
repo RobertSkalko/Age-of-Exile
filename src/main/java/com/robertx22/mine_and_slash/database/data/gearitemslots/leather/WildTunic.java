@@ -42,7 +42,7 @@ public class WildTunic extends BaseChest {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.WILD_TUNIC.get();
+        return ModRegistry.MISC_ITEMS.WILD_TUNIC.get();
     }
 
     @Override

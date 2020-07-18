@@ -41,7 +41,7 @@ public class OccultRing extends BaseCurio {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.MANA_RING.get();
+        return ModRegistry.MISC_ITEMS.MANA_RING.get();
     }
 
     @Override

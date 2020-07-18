@@ -42,7 +42,7 @@ public class IronLegguards extends BasePants {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.PLATE_PANTS.get();
+        return ModRegistry.MISC_ITEMS.PLATE_PANTS.get();
     }
 
     @Override

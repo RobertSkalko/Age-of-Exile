@@ -47,7 +47,7 @@ public class PrimitiveAxe extends BaseWeapon {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.PRIMITIVE_AXE.get();
+        return ModRegistry.MISC_ITEMS.PRIMITIVE_AXE.get();
     }
 
     @Override

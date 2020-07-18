@@ -47,7 +47,7 @@ public class Crossbow extends BaseWeapon {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.CROSSBOW.get();
+        return ModRegistry.MISC_ITEMS.CROSSBOW.get();
     }
 
     @Override

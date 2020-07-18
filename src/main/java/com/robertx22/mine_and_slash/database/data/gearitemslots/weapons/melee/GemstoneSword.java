@@ -49,7 +49,7 @@ public class GemstoneSword extends BaseWeapon {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.GEMSTONE_SWORD.get();
+        return ModRegistry.MISC_ITEMS.GEMSTONE_SWORD.get();
     }
 
     @Override

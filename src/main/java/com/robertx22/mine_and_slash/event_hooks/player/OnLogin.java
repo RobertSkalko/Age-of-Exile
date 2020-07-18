@@ -74,7 +74,7 @@ public class OnLogin {
             return;
         }
 
-        player.inventory.insertStack(new ItemStack(ModRegistry.ITEMS.NEWBIE_GEAR_BAG.get()));
+        player.inventory.insertStack(new ItemStack(ModRegistry.MISC_ITEMS.NEWBIE_GEAR_BAG.get()));
 
     }
 

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.single_target_bolt;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.BaseElementalBoltEntity;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
@@ -22,7 +22,7 @@ public class FrostballEntity extends BaseElementalBoltEntity {
 
     public FrostballEntity(World worldIn) {
 
-        super(EntityRegister.FROSTBOLT, worldIn);
+        super(ModRegistry.ENTITIES.FROSTBOLT, worldIn);
 
     }
 

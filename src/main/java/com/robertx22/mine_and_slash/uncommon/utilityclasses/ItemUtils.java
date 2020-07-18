@@ -15,7 +15,7 @@ public class ItemUtils {
     }
 
     public static Item randomMagicEssence() {
-        List<IWeighted> list = Arrays.asList((IWeighted) ModRegistry.ITEMS.MAGIC_ESSENCE.get(), (IWeighted) ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get());
+        List<IWeighted> list = Arrays.asList((IWeighted) ModRegistry.MISC_ITEMS.MAGIC_ESSENCE.get(), (IWeighted) ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get());
         return (Item) RandomUtils.weightedRandom(list);
 
     }

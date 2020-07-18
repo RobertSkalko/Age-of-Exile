@@ -47,7 +47,7 @@ public class HunterBow extends BaseWeapon {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.BOW.get();
+        return ModRegistry.MISC_ITEMS.BOW.get();
     }
 
     @Override

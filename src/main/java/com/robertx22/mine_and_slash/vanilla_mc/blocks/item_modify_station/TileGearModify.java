@@ -1,11 +1,10 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTile;
-import com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station.TileGearModify.ResultItem;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.container.Container;
@@ -17,7 +16,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-
 
 public class TileGearModify extends BaseTile {
 
@@ -110,7 +108,7 @@ public class TileGearModify extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 80; // vanilla value is 200 = 10 seconds
 
     public TileGearModify() {
-        super(ModTileEntities.GEAR_MODIFY.get());
+        super(BlockEntities.GEAR_MODIFY.get());
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
 

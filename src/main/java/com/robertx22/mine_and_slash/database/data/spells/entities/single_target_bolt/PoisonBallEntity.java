@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.single_target_bolt;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.BaseElementalBoltEntity;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -21,7 +20,7 @@ public class PoisonBallEntity extends BaseElementalBoltEntity {
 
     public PoisonBallEntity(World worldIn) {
 
-        super(EntityRegister.POISON_BALL, worldIn);
+        super(ModRegistry.ENTITIES.POISON_BALL, worldIn);
 
     }
 

@@ -32,7 +32,7 @@ public class JewelLootGen extends BaseLootGen<GearBlueprint> {
         JewelData jewel = new JewelData();
         jewel.randomize(info.level);
 
-        ItemStack stack = new ItemStack(RandomUtils.randomFromList(ModRegistry.ITEMS.ALL_JEWELS)
+        ItemStack stack = new ItemStack(RandomUtils.randomFromList(ModRegistry.MISC_ITEMS.ALL_JEWELS)
             .get());
 
         jewel.saveToStack(stack);

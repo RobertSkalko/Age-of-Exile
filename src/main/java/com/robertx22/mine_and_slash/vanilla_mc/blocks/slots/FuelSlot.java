@@ -28,8 +28,8 @@ public class FuelSlot extends Slot {
                 put(Items.EMERALD, 200);
                 put(Items.REDSTONE, 3);
 
-                put(ModRegistry.ITEMS.MAGIC_ESSENCE.get(), 50);
-                put(ModRegistry.ITEMS.RARE_MAGIC_ESSENCE.get(), 500);
+                put(ModRegistry.MISC_ITEMS.MAGIC_ESSENCE.get(), 50);
+                put(ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get(), 500);
 
             }
         }

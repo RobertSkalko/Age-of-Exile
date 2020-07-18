@@ -20,7 +20,7 @@ public class AbilityData {
     }
 
     public void removeSkillGem(PlayerEntity player) {
-        ItemStack stack = new ItemStack(ModRegistry.ITEMS.SKILL_GEM.get());
+        ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.SKILL_GEM.get());
 
         if (player.inventory.insertStack(stack)) {
             skill_gem = new SkillGemData();

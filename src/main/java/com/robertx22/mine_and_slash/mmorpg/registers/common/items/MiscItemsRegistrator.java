@@ -17,8 +17,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public Item CURRENCY_BAG = item(new ItemCurrencyBag(), ItemCurrencyBag.ID);
 
-    // todo register all gears like this.
-
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
     public Item SKILL_GEM = item(new Item(new Item.Settings().maxCount(1)
         .maxDamage(0)), "skill_gem");

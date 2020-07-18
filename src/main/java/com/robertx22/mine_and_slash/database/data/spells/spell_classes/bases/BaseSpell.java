@@ -85,12 +85,12 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public Item getItem() {
 
         if (getPlayStyle().isINT()) {
-            return ModRegistry.ITEMS.INT_SKILL_GEM.get();
+            return ModRegistry.MISC_ITEMS.INT_SKILL_GEM.get();
         }
         if (getPlayStyle().isDEX()) {
-            return ModRegistry.ITEMS.DEX_SKILL_GEM.get();
+            return ModRegistry.MISC_ITEMS.DEX_SKILL_GEM.get();
         }
-        return ModRegistry.ITEMS.STR_SKILL_GEM.get();
+        return ModRegistry.MISC_ITEMS.STR_SKILL_GEM.get();
 
     }
 

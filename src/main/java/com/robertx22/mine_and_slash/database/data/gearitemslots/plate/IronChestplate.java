@@ -42,7 +42,7 @@ public class IronChestplate extends BaseChest {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.PLATE_CHEST.get();
+        return ModRegistry.MISC_ITEMS.PLATE_CHEST.get();
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.data.spells.blocks.thorn_bush;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.spells.blocks.base.BaseSpellTileEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -20,7 +20,7 @@ import java.util.List;
 public class ThornBushTileEntity extends BaseSpellTileEntity {
 
     public ThornBushTileEntity() {
-        super(ModTileEntities.THORN_BUSH.get());
+        super(BlockEntities.THORN_BUSH.get());
     }
 
     @Override

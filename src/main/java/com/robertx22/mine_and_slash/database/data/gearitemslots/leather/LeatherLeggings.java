@@ -42,7 +42,7 @@ public class LeatherLeggings extends BaseChest {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.LEATHER_LEGGINGS.get();
+        return ModRegistry.MISC_ITEMS.LEATHER_LEGGINGS.get();
     }
 
     @Override

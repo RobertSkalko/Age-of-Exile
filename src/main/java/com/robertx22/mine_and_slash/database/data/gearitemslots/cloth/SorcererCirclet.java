@@ -43,7 +43,7 @@ public class SorcererCirclet extends BaseBoots {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.SORCERER_CIRCLET.get();
+        return ModRegistry.MISC_ITEMS.SORCERER_CIRCLET.get();
     }
 
     @Override

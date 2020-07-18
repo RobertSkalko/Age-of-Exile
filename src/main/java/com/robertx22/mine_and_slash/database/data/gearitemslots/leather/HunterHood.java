@@ -42,7 +42,7 @@ public class HunterHood extends BaseChest {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.HUNTER_HOOD.get();
+        return ModRegistry.MISC_ITEMS.HUNTER_HOOD.get();
     }
 
     @Override

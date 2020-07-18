@@ -40,7 +40,7 @@ public class Buckler extends BaseOffHand {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.BUCKLER.get();
+        return ModRegistry.MISC_ITEMS.BUCKLER.get();
     }
 
     @Override

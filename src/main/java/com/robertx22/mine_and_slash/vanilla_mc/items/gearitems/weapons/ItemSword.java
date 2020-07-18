@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons;
 
 import com.robertx22.mine_and_slash.database.base.Rarities;
-import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseArmorItem;
-import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseArmorItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,6 +14,7 @@ import net.minecraft.block.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
@@ -35,7 +36,7 @@ public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString();
     }
 

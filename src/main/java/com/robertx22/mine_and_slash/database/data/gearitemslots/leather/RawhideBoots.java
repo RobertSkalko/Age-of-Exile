@@ -42,7 +42,7 @@ public class RawhideBoots extends BaseChest {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.RAWHIDE_BOOTS.get();
+        return ModRegistry.MISC_ITEMS.RAWHIDE_BOOTS.get();
     }
 
     @Override

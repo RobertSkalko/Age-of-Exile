@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockEntities;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -19,7 +19,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-
 
 public class TileGearSalvage extends BaseTile {
 
@@ -123,7 +122,7 @@ public class TileGearSalvage extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearSalvage() {
-        super(ModTileEntities.GEAR_SALVAGE.get());
+        super(BlockEntities.GEAR_SALVAGE.get());
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
     }

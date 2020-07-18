@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.BaseElementalBoltEntity;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -24,7 +23,7 @@ public class ThrowFlameEntity extends BaseElementalBoltEntity {
     }
 
     public ThrowFlameEntity(World worldIn) {
-        super(EntityRegister.THROW_FLAMES, worldIn);
+        super(ModRegistry.ENTITIES.THROW_FLAMES, worldIn);
     }
 
     @Override

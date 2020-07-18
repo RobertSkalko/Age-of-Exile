@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
@@ -31,12 +30,12 @@ public class FireBombEntity extends EntityBaseProjectile {
     }
 
     public FireBombEntity(World worldIn) {
-        super(EntityRegister.FIRE_BOMB, worldIn);
+        super(ModRegistry.ENTITIES.FIRE_BOMB, worldIn);
 
     }
 
     public FireBombEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.FIRE_BOMB, world);
+        super(ModRegistry.ENTITIES.FIRE_BOMB, world);
 
     }
 

@@ -42,7 +42,7 @@ public class IronGreaves extends BaseBoots {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.PLATE_BOOTS.get();
+        return ModRegistry.MISC_ITEMS.PLATE_BOOTS.get();
     }
 
     @Override

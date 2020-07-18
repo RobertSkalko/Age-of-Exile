@@ -42,7 +42,7 @@ public class OccultistRobes extends BaseBoots {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.OCCULTIST_ROBES.get();
+        return ModRegistry.MISC_ITEMS.OCCULTIST_ROBES.get();
     }
 
     @Override

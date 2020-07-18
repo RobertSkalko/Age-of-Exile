@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons;
 
 import com.robertx22.mine_and_slash.database.base.Rarities;
-import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseArmorItem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseArmorItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
@@ -37,7 +38,7 @@ public class ItemBow extends BowItem implements IAutoLocName, IGearItem {
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString();
     }
 

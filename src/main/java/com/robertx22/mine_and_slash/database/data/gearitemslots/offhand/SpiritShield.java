@@ -41,7 +41,7 @@ public class SpiritShield extends BaseOffHand {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.SPIRIT_SHIELD.get();
+        return ModRegistry.MISC_ITEMS.SPIRIT_SHIELD.get();
     }
 
     @Override

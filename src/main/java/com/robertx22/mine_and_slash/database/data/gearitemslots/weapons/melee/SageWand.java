@@ -47,7 +47,7 @@ public class SageWand extends BaseWeapon {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.SAGE_WAND.get();
+        return ModRegistry.MISC_ITEMS.SAGE_WAND.get();
     }
 
     @Override

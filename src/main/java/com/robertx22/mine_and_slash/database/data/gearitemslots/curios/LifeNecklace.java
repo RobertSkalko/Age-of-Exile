@@ -45,7 +45,7 @@ public class LifeNecklace extends BaseCurio {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.HEALTH_NECKLACE.get();
+        return ModRegistry.MISC_ITEMS.HEALTH_NECKLACE.get();
     }
 
     @Override

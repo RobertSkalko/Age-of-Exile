@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.IGUID;
 import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
@@ -13,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.UseAction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLocName, IGUID {
@@ -49,9 +51,9 @@ public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLoc
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.ITEMS.RESET_STATS_POTION.get())
+        return shaped(ModRegistry.MISC_ITEMS.RESET_STATS_POTION)
             .input('#', SimpleMatItem.INFUSED_IRON)
-            .input('t', ModRegistry.ITEMS.MAGIC_ESSENCE.get())
+            .input('t', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
             .input('v', Items.GOLD_INGOT)
             .input('b', Items.GLASS_BOTTLE)
             .input('c', Items.COAL)
@@ -68,7 +70,7 @@ public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLoc
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName()
+        return Registry.ITEM.getId(this)
             .toString();
     }
 

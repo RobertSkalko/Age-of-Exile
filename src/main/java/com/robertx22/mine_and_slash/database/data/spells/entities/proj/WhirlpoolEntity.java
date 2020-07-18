@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -32,7 +31,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
     }
 
     public WhirlpoolEntity(World worldIn) {
-        super(EntityRegister.WHIRPOOL, worldIn);
+        super(ModRegistry.ENTITIES.WHIRPOOL, worldIn);
 
     }
 

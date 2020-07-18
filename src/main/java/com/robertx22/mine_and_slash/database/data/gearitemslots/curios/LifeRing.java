@@ -41,7 +41,7 @@ public class LifeRing extends BaseCurio {
 
     @Override
     public Item getItem() {
-        return ModRegistry.ITEMS.LIFE_RING.get();
+        return ModRegistry.MISC_ITEMS.LIFE_RING.get();
     }
 
     @Override

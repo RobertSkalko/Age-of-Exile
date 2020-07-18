@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
@@ -25,7 +24,7 @@ public class SeedEntity extends EntityBaseProjectile {
     }
 
     public SeedEntity(World worldIn) {
-        super(EntityRegister.SEED, worldIn);
+        super(ModRegistry.ENTITIES.SEED, worldIn);
 
     }
 
