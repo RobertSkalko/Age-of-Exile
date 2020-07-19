@@ -1,26 +1,26 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.bags;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.screen.ingame.ContainerScreen;
-import net.minecraft.container.Container;
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
-public abstract class BaseBagGui<T extends Container> extends ContainerScreen<T> {
+public abstract class BaseBagGui<T extends ScreenHandler> extends HandledScreen<T> {
 
     public BaseBagGui(PlayerInventory inv, T inventorySlotsIn) {
         super(inventorySlotsIn, inv, new LiteralText(""));
 
-        this.containerWidth = BaseBagGui.bagXSize;
-        this.containerHeight = BaseBagGui.bagYSize;
+        this.backgroundWidth = BaseBagGui.bagXSize;
+        this.backgroundHeight = BaseBagGui.bagYSize;
     }
 
     public BaseBagGui(PlayerInventory inv, T inventorySlotsIn, int sizex, int sizey) {
         super(inventorySlotsIn, inv, new LiteralText(""));
 
-        this.containerWidth = sizex;
-        this.containerHeight = sizey;
+        this.backgroundWidth = sizex;
+        this.backgroundHeight = sizey;
     }
 
     public static final int bagXSize = 176;
@@ -50,10 +50,10 @@ public abstract class BaseBagGui<T extends Container> extends ContainerScreen<T>
                                                    int mouseY) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(texture());
-        int i = (this.width - this.containerWidth) / 2;
-        int j = (this.height - this.containerHeight) / 2;
-        this.blit(i, j, 0, 0, this.containerWidth, rows() * 18 + 17);
-        this.blit(i, j + rows() * 18 + 17, 0, 126, this.containerWidth, 96);
+        int i = (this.width - this.backgroundWidth) / 2;
+        int j = (this.height - this.backgroundHeight) / 2;
+        this.blit(i, j, 0, 0, this.backgroundWidth, rows() * 18 + 17);
+        this.blit(i, j + rows() * 18 + 17, 0, 126, this.backgroundWidth, 96);
     }
 
 }

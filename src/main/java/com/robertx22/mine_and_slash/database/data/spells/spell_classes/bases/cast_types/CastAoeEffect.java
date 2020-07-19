@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.ca
 import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
 import net.minecraft.entity.LivingEntity;
 
 public class CastAoeEffect extends SpellCastType {
@@ -20,7 +20,7 @@ public class CastAoeEffect extends SpellCastType {
                 .get(SC.RADIUS)
                 .get(ctx.spellsCap, ctx.spell);
 
-            EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPosVector())
+            EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos())
                 .radius(RADIUS)
                 .searchFor(EntityFinder.SearchFor.ALL)
                 .build()

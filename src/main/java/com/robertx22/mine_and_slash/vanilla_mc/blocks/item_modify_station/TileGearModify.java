@@ -5,13 +5,14 @@ import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTile;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station.TileGearModify.ResultItem;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
-import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.math.MathHelper;
@@ -223,7 +224,7 @@ public class TileGearModify extends BaseTile {
     }
 
     @Override
-    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+    public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
         return new ContainerGearModify(num, inventory, this, this.getPos());
     }
 

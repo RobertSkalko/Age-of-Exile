@@ -111,7 +111,7 @@ public class GorgonsGazeSpell extends BaseSpell {
 
         SoundUtils.playSound(caster, ModRegistry.SOUNDS.STONE_CRACK, 1, 1);
 
-        EntityFinder.start(caster, LivingEntity.class, caster.getPosVector())
+        EntityFinder.start(caster, LivingEntity.class, caster.getPos())
             .radius(3)
             .distance(15)
             .finder(EntityFinder.Finder.IN_FRONT)

@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.Bas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
 
@@ -53,7 +53,7 @@ public class ProjectileCastOptions {
                 } else if (i > projectilesAmount / 2) {
                     addYaw += apart / projectilesAmount;
                 }
-                ProjectileEntity en = (ProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
+                PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
                 SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch,
                     caster.yaw + addYaw
                 );
@@ -62,7 +62,7 @@ public class ProjectileCastOptions {
                 playSound(en);
             }
         } else {
-            ProjectileEntity en = (ProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
+            PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
             SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch, caster.yaw
             );
             caster.world.spawnEntity(en);

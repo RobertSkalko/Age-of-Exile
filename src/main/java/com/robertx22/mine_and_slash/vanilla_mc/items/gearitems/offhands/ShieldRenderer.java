@@ -37,7 +37,7 @@ public class ShieldRenderer extends BuiltinModelItemRenderer implements Callable
             SpriteIdentifier material = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEX, shield.resource);
 
             VertexConsumer builder = material.getSprite()
-                .getTextureSpecificVertexConsumer(ItemRenderer.getArmorVertexConsumer(renderType, modelShield.getLayer(material.getAtlasId()), false, stack.hasEnchantmentGlint()));
+                .getTextureSpecificVertexConsumer(ItemRenderer.getArmorVertexConsumer(renderType, modelShield.getLayer(material.getAtlasId()), false, stack.hasGlint()));
 
             modelShield.method_23775()
                 .render(mat, builder, light, overlayLight, 1.0F, 1.0F, 1.0F, 1.0F);

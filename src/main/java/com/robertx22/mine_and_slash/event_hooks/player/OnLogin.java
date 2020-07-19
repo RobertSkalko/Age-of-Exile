@@ -45,8 +45,8 @@ public class OnLogin implements ServerEntityEvents.Load {
             SlashRegistry.restoreFromBackupifEmpty();
 
             if (MMORPG.RUN_DEV_TOOLS) {
-                player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
-                    .setStyle(new Style().setColor(Styles.RED)));
+                player.sendSystemMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
+                    .setStyle(new Style().withColor(Styles.RED)));
             }
 
             if (Load.hasUnit(player)) {
@@ -59,7 +59,7 @@ public class OnLogin implements ServerEntityEvents.Load {
                 data.syncToClient(player);
 
             } else {
-                player.sendMessage(
+                player.sendSystemMessage(
                     new LiteralText("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
             }
 

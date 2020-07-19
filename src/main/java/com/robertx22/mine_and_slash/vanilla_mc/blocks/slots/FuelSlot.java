@@ -1,12 +1,11 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.slots;
 
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
-import net.minecraft.container.Slot;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-
+import net.minecraft.screen.slot.Slot;
 import java.util.HashMap;
 
 public class FuelSlot extends Slot {

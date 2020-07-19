@@ -31,6 +31,7 @@ import net.minecraft.item.Item;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -293,7 +294,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     @Override
-    public final List<MutableText> GetTooltipString(TooltipInfo info) {
+    public final List<Text> GetTooltipString(TooltipInfo info) {
 
         SpellCastContext ctx = new SpellCastContext(info.player, 0, this);
 

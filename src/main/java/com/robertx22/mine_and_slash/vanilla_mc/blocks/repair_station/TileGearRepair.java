@@ -9,12 +9,12 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
-import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -32,7 +32,7 @@ public class TileGearRepair extends BaseTile {
     }
 
     @Override
-    public boolean canInsertInvStack(int index, ItemStack itemStackIn, Direction direction) {
+    public boolean canInsert(int index, ItemStack itemStackIn, Direction direction) {
 
         if (this.isAutomatable() && containsSlot(index, this.inputSlots())) {
             // don't insert shit
@@ -292,7 +292,7 @@ public class TileGearRepair extends BaseTile {
 
                             && ItemStack.areTagsEqual(outputStack, result)) {
                             int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
-                            if (combinedSize <= getInvMaxStackAmount() && combinedSize <= itemStacks[outputSlot].getMaxCount()) {
+                            if (combinedSize <= getMaxCountPerStack() && combinedSize <= itemStacks[outputSlot].getMaxCount()) {
                                 firstSuitableInputSlot = inputSlot;
                                 firstOuputSlot = outputSlot;
                                 break;
@@ -335,7 +335,7 @@ public class TileGearRepair extends BaseTile {
     }
 
     @Override
-    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+    public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
         return new ContainerGearRepair(num, inventory, this, this.getPos());
     }
 }

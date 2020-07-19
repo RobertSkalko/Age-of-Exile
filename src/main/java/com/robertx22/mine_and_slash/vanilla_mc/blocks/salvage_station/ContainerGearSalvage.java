@@ -4,12 +4,12 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTileContainer;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.CapacitorSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.OutputSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.SalvageSlot;
-import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.BasicInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearSalvage extends BaseTileContainer {
@@ -40,7 +40,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
     public ContainerGearSalvage(int i, PlayerInventory playerInventory,
                                 PacketByteBuf buf) {
-        this(i, playerInventory, new BasicInventory(TileGearSalvage.TOTAL_SLOTS_COUNT), buf.readBlockPos());
+        this(i, playerInventory, new SimpleInventory(TileGearSalvage.TOTAL_SLOTS_COUNT), buf.readBlockPos());
     }
 
     public ContainerGearSalvage(int num, PlayerInventory invPlayer, Inventory inventory,
@@ -100,6 +100,6 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return tile.canPlayerUseInv(player);
+        return tile.canPlayerUse(player);
     }
 }

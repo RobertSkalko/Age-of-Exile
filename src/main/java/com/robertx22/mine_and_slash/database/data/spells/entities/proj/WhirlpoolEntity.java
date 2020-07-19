@@ -85,7 +85,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
                     });
                 } else {
-                    Vec3d p = this.getPosVector();
+                    Vec3d p = this.getPos();
 
                     world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F,
                         1F,
@@ -112,7 +112,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                     }
                 }
 
-                Vec3d p = this.getPosVector();
+                Vec3d p = this.getPos();
 
                 world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT, SoundCategory.BLOCKS,
                     0.2F, 0.9F, false

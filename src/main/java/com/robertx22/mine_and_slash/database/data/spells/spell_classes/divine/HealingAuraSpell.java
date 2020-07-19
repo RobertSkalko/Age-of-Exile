@@ -21,6 +21,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class HealingAuraSpell extends BaseSpell {
             .get(SC.RADIUS)
             .get(ctx.spellsCap, this);
 
-        List<LivingEntity> list = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPosVector())
+        List<LivingEntity> list = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos())
             .finder(EntityFinder.Finder.RADIUS)
             .radius(RADIUS)
             .searchFor(EntityFinder.SearchFor.ALLIES)
@@ -71,7 +72,7 @@ public class HealingAuraSpell extends BaseSpell {
 
             ParticleEnum.sendToClients(
                 en.getBlockPos(), en.world,
-                new ParticlePacketData(en.getPosVector(), ParticleEnum.AOE).radius(RADIUS)
+                new ParticlePacketData(en.getPos(), ParticleEnum.AOE).radius(RADIUS)
                     .motion(new Vec3d(0, 0, 0))
                     .type(ParticleTypes.FALLING_HONEY)
                     .amount((int) (45)));

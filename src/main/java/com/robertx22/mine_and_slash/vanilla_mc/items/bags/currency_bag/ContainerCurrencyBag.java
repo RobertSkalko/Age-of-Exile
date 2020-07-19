@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.items.bags.BaseContainer;
 import com.robertx22.mine_and_slash.vanilla_mc.items.bags.BaseInventory;
 import com.robertx22.mine_and_slash.vanilla_mc.items.bags.BaseSlot;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.BasicInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 
 public class ContainerCurrencyBag extends BaseContainer {
@@ -22,7 +22,7 @@ public class ContainerCurrencyBag extends BaseContainer {
     }
 
     @Override
-    public BaseSlot slot(BasicInventory inv, int index, int x, int y) {
+    public BaseSlot slot(SimpleInventory inv, int index, int x, int y) {
         return new CurrencySlot(inv, index, x, y);
     }
 

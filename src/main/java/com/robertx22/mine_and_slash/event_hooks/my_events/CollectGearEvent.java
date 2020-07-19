@@ -69,7 +69,7 @@ public class CollectGearEvent {
                 .family()
                 .equals(BaseGearType.SlotFamily.Weapon)) {
                 event.entity
-                    .sendMessage(new LiteralText("You can't wear a weapon in offhand."));
+                    .sendSystemMessage(new LiteralText("You can't wear a weapon in offhand."));
             }
 
         }

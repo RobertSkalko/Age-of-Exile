@@ -48,7 +48,7 @@ public class ItemIncreaseRarityNearestEntity extends Item {
                             return new TypedActionResult<ItemStack>(ActionResult.PASS, player
                                 .getStackInHand(hand));
                         } else {
-                            player.sendMessage(Chats.No_targets_found.locName());
+                            player.sendSystemMessage(Chats.No_targets_found.locName());
                         }
                     }
 

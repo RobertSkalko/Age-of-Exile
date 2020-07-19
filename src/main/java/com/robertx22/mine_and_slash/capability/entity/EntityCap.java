@@ -31,6 +31,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -39,6 +40,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -316,7 +318,7 @@ public class EntityCap {
                 if (entity == null && self != null) {
                     float msDamage = this.getUnit()
                         .magicShieldData()
-                        .getAverageValue() * (dmg / self.getMaximumHealth());
+                        .getAverageValue() * (dmg / self.getMaxHealth());
                     ResourcesData.Context ms = new ResourcesData.Context(this, self,
                         ResourcesData.Type.MAGIC_SHIELD,
                         msDamage,
@@ -441,17 +443,18 @@ public class EntityCap {
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
                 MutableText rarityprefix = rarity.locName();
 
-                MutableText name = entity.getDisplayName();
+                Text name = entity.getDisplayName();
 
                 MobAffix prefix = getUnit().getPrefix();
                 MobAffix suffix = getUnit().getSuffix();
 
-                MutableText finalName = prefix == null ? name : prefix.locName()
+                Text finalName = prefix == null ? name : prefix.locName()
                     .append(" ")
                     .append(name);
 
                 if (suffix != null) {
-                    finalName.append(" ")
+                    new SText("").append(finalName)
+                        .append(" ")
                         .append(suffix.locName());
                 }
 
@@ -759,9 +762,10 @@ public class EntityCap {
         public boolean LevelUp(PlayerEntity player) {
 
             if (!CheckIfCanLevelUp()) {
-                player.sendMessage(Chats.Not_enough_experience.locName());
+
+                player.sendMessage(Chats.Not_enough_experience.locName(), false);
             } else if (!CheckLevelCap()) {
-                player.sendMessage(Chats.Can_not_go_over_maximum_level.locName());
+                player.sendMessage(Chats.Can_not_go_over_maximum_level.locName(), false);
             }
 
             if (CheckIfCanLevelUp() && CheckLevelCap()) {
@@ -771,7 +775,7 @@ public class EntityCap {
                 player.sendMessage(
                     new LiteralText(Formatting.YELLOW + "" + Formatting.BOLD).append(
                         Chats.You_have_leveled_up.locName())
-                        .append("!"));
+                        .append("!"), false);
 
                 return true;
             }

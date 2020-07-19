@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag;
 
 import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import com.robertx22.mine_and_slash.vanilla_mc.items.bags.BaseBagItem;
-import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 
 public class ItemCurrencyBag extends BaseBagItem {
 
@@ -19,7 +19,7 @@ public class ItemCurrencyBag extends BaseBagItem {
     }
 
     @Override
-    public NameableContainerFactory getNamedContainer(ItemStack stack) {
+    public NamedScreenHandlerFactory getNamedContainer(ItemStack stack) {
         return new NamedContainerCurrencyBag(stack);
     }
 

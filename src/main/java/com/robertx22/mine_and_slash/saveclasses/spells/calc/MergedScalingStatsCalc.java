@@ -7,10 +7,11 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import net.minecraft.text.MutableText;
 
 @Storable
 public class MergedScalingStatsCalc extends BaseStatCalc {
@@ -58,7 +59,7 @@ public class MergedScalingStatsCalc extends BaseStatCalc {
     }
 
     @Override
-    public List<MutableText> GetTooltipString(TooltipInfo info) {
+    public List<Text> GetTooltipString(TooltipInfo info) {
         return getTooltipFor(multi, getCalculatedValue(info.unitdata), name, Elements.Elemental);
     }
 }

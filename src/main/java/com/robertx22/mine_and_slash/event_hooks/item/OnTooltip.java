@@ -87,8 +87,8 @@ public class OnTooltip implements ItemTooltipCallback {
 
                 TextRenderer font = MinecraftClient.getInstance().textRenderer;
 
-                int max = font.getStringWidth(strings.stream()
-                    .max(Comparator.comparingInt(x -> font.getStringWidth(x)))
+                int max = font.getWidth(strings.stream()
+                    .max(Comparator.comparingInt(x -> font.getWidth(x)))
                     .get());
 
                 tooltip.clear();
@@ -97,7 +97,7 @@ public class OnTooltip implements ItemTooltipCallback {
 
                     String str = x;
 
-                    while (font.getStringWidth(str) <= max) {
+                    while (font.getWidth(str) <= max) {
                         str = " " + str + " ";
                     }
 

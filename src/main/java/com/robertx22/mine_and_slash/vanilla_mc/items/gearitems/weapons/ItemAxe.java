@@ -35,7 +35,7 @@ public class ItemAxe extends BaseWeaponItem {
         return blockIn.getBlock() == Blocks.COBWEB;
     }
 
-    public float getMiningSpeed(ItemStack stack, BlockState state) {
+    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
         Block block = state.getBlock();
 
         if (block == Blocks.COBWEB) {

@@ -16,6 +16,6 @@ public class HolyTridentRenderer extends TridentEntityRenderer {
 
     @Override
     public Identifier getTexture(TridentEntity en) {
-        return SKIN;
+        return TEXTURE;
     }
 }

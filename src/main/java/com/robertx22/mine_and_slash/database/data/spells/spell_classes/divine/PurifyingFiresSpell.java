@@ -25,6 +25,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class PurifyingFiresSpell extends BaseSpell {
 
         if (ctx.caster instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) ctx.caster;
-            player.method_7263();
+            player.spawnSweepAttackParticles();
         }
 
         ctx.caster.world.playSound((PlayerEntity) null, ctx.caster.getX(), ctx.caster.getY(), ctx.caster.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -71,7 +72,7 @@ public class PurifyingFiresSpell extends BaseSpell {
         Vec3d look = ctx.caster.getRotationVector()
             .multiply(3);
 
-        List<LivingEntity> list = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPosVector()
+        List<LivingEntity> list = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos()
             .add(look)
             .add(0, ctx.caster.getHeight() / 2, 0))
             .finder(EntityFinder.Finder.RADIUS)
@@ -95,7 +96,7 @@ public class PurifyingFiresSpell extends BaseSpell {
 
             ParticleEnum.sendToClients(
                 en.getBlockPos(), en.world,
-                new ParticlePacketData(en.getPosVector(), ParticleEnum.AOE).radius(1)
+                new ParticlePacketData(en.getPos(), ParticleEnum.AOE).radius(1)
                     .motion(new Vec3d(0, 0, 0))
                     .type(ParticleTypes.FLAME)
                     .amount((int) (45)));

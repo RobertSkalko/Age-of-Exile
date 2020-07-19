@@ -5,8 +5,9 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.awt.*;
@@ -15,13 +16,13 @@ import java.util.List;
 
 public class GuiUtils {
 
-    public static void renderScaledText(int x, int y, double scale, String text, Formatting format) {
+    public static void renderScaledText(MatrixStack matrix, int x, int y, double scale, String text, Formatting format) {
 
         double antiScale = 1 / scale;
 
         RenderSystem.scaled(scale, scale, scale);
 
-        double textWidthMinus = MinecraftClient.getInstance().textRenderer.getStringWidth(text) / 2 * scale;
+        double textWidthMinus = MinecraftClient.getInstance().textRenderer.getWidth(text) / 2 * scale;
         double textHeightMinus = MinecraftClient.getInstance().textRenderer.fontHeight * scale / 2;
 
         float xp = (float) (x - textWidthMinus);
@@ -30,36 +31,32 @@ public class GuiUtils {
         float xf = (float) (xp * antiScale);
         float yf = (float) (yp * antiScale);
 
-        MinecraftClient.getInstance().textRenderer.drawWithShadow(text, xf, yf, format.getColorValue());
+        MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, text, xf, yf, format.getColorValue());
         RenderSystem.scaled(antiScale, antiScale, antiScale);
 
     }
 
-    public static void renderTooltip(List<MutableText> tooltip, int mouseX, int mouseY) {
+    public static void renderTooltip(MatrixStack matrix, List<Text> tooltip, int mouseX, int mouseY) {
 
         Screen screen = MinecraftClient.getInstance().currentScreen;
 
         if (screen != null) {
 
             TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
-            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY
+            screen.renderTooltip(matrix, tooltip, mouseX, mouseY
             );
         }
 
     }
 
-    public static void renderTooltip(ItemStack stack, int mouseX, int mouseY) {
+    public static void renderTooltip(MatrixStack matrix, ItemStack stack, int mouseX, int mouseY) {
 
         Screen screen = MinecraftClient.getInstance().currentScreen;
 
-        List<MutableText> tooltip = stack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.Default.NORMAL);
+        List<Text> tooltip = stack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.Default.NORMAL);
 
         if (screen != null) {
-
-            TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
-            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY
-
-            );
+            screen.renderTooltip(matrix, tooltip, mouseX, mouseY);
         }
 
     }

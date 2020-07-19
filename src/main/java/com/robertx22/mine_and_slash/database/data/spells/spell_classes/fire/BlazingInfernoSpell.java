@@ -110,7 +110,7 @@ public class BlazingInfernoSpell extends BaseSpell {
 
             int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, this);
 
-            List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPosVector())
+            List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPos())
                 .radius(radius)
                 .build();
 

@@ -4,11 +4,11 @@ import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.RequestTilePacket;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ingame.ContainerScreen;
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.MutableText;
 
-public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile> extends ContainerScreen<T> {
+public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile> extends HandledScreen<T> {
 
     public Tile tile;
     MinecraftClient mc;

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoConfigItemType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
@@ -23,7 +24,7 @@ public class PowerLevel {
         try {
             this.item = item;
 
-            Multimap<String, EntityAttributeModifier> stats = item.getModifiers(slot.getVanillaSlotType());
+            Multimap<EntityAttribute, EntityAttributeModifier> stats = item.getAttributeModifiers(slot.getVanillaSlotType());
 
             this.statAmount = stats.size();
 
@@ -32,7 +33,7 @@ public class PowerLevel {
 
             this.totalStatNumbers = stats.values()
                 .stream()
-                .mapToInt(x -> (int) MathHelper.clamp(x.getAmount(), -MAX_SINGLE_STAT_VALUE, MAX_SINGLE_STAT_VALUE))
+                .mapToInt(x -> (int) MathHelper.clamp(x.getValue(), -MAX_SINGLE_STAT_VALUE, MAX_SINGLE_STAT_VALUE))
                 .sum();
 
             totalStatNumbers = MathHelper.clamp(totalStatNumbers, -MAX_TOTAL_STATS, MAX_TOTAL_STATS);

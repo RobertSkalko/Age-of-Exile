@@ -28,8 +28,8 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
                           MutableText comp) {
         super(cont, invPlayer, new LiteralText("Salvage"), TileGearSalvage.class);
 
-        containerWidth = 176;
-        containerHeight = 207;
+        backgroundWidth = 176;
+        backgroundHeight = 207;
     }
 
     // some [x,y] coordinates of graphical elements
@@ -49,7 +49,7 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
             .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(this.x, this.y, 0, 0, containerWidth, containerHeight);
+        blit(this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
 
         // get cook progress as a double between 0 and 1
         double cookProgress = tile.fractionOfCookTimeComplete();

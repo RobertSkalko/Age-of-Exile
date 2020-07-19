@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base.Ba
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.gui.screens.stat_alloc.StatAllocationScreen.IncreaseStatButton;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -112,7 +113,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
 
         MinecraftClient.getInstance().textRenderer.drawWithShadow(str,
             guiLeft + sizeX / 2 + 50 - MinecraftClient.getInstance().textRenderer
-                .getStringWidth(str), guiTop + 15,
+                .getWidth(str), guiTop + 15,
             Formatting.GREEN.getColorValue()
         );
 
@@ -216,7 +217,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
                     .getCreateStat(stat)
                     .getAverageValue() + format + ")";
 
-                font.drawWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str),
+                font.drawWithShadow(str, this.x - button_sizeX - 5 - font.getWidth(str),
                     this.y - button_sizeY / 2 + font.fontHeight, format.getColorValue()
                 );
             } catch (Exception e) {

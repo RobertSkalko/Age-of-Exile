@@ -52,7 +52,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
             if (endata.needsToBeGivenStats()) {
                 Unit unit = Mob(entity, endata, nearestPlayer);
                 endata.mobStatsAreSet();
-                entity.heal(entity.getMaximumHealth());
+                entity.heal(entity.getMaxHealth());
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);

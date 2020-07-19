@@ -4,12 +4,12 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTileContainer;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.AnyModifySlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.ModifySlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.OutputSlot;
-import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.BasicInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearModify extends BaseTileContainer {
@@ -26,7 +26,7 @@ public class ContainerGearModify extends BaseTileContainer {
 
     public ContainerGearModify(int i, PlayerInventory playerInventory,
                                PacketByteBuf packetBuffer) {
-        this(i, playerInventory, new BasicInventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
+        this(i, playerInventory, new SimpleInventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
             .readBlockPos());
 
     }
@@ -83,7 +83,7 @@ public class ContainerGearModify extends BaseTileContainer {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return tile.canPlayerUseInv(player);
+        return tile.canPlayerUse(player);
     }
 
 }

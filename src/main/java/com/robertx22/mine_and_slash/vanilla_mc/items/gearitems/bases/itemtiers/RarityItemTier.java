@@ -21,8 +21,8 @@ public class RarityItemTier implements ToolMaterial {
     }
 
     @Override
-    public float getMiningSpeed() {
-        return net.minecraft.item.ToolMaterials.IRON.getMiningSpeed() + net.minecraft.item.ToolMaterials.WOOD.getMiningSpeed() * rar
+    public float getMiningSpeedMultiplier() {
+        return net.minecraft.item.ToolMaterials.IRON.getMiningSpeedMultiplier() + net.minecraft.item.ToolMaterials.WOOD.getMiningSpeedMultiplier() * rar
             .itemTierPower();
     }
 

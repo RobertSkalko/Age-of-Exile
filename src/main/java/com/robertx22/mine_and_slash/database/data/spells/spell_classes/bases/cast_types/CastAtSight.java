@@ -19,7 +19,7 @@ public class CastAtSight extends SpellCastType {
         Vec3d pos = ray.getPos();
 
         if (ctx.caster instanceof PlayerEntity == false) {
-            pos = ctx.caster.getPosVector();
+            pos = ctx.caster.getPos();
         }
 
         Entity en = SpellUtils.getSpellEntity(ctx.configForSummonedEntities, ctx.spell.getImmutableConfigs()

@@ -1,21 +1,21 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.bases;
 
-import net.minecraft.container.Container;
-import net.minecraft.container.ContainerType;
-import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
 
 
-public abstract class BaseTileContainer extends Container {
+public abstract class BaseTileContainer extends ScreenHandler {
 
     public int size = 0;
 
     public BlockPos pos;
 
-    protected BaseTileContainer(int size, ContainerType<?> type, int id) {
+    protected BaseTileContainer(int size, ScreenHandlerType<?> type, int id) {
         super(type, id);
         this.size = size;
     }

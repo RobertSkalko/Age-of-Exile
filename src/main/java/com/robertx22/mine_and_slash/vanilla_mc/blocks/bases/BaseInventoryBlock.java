@@ -6,11 +6,11 @@ import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -30,8 +30,8 @@ public abstract class BaseInventoryBlock extends NonFullBlock implements BlockEn
     }
 
     @Override
-    public NameableContainerFactory createContainerFactory(BlockState state, World world, BlockPos pos) {
-        return (NameableContainerFactory) world.getBlockEntity(pos);
+    public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+        return (NamedScreenHandlerFactory) world.getBlockEntity(pos);
     }
 
     @Override

@@ -10,7 +10,9 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,13 +26,13 @@ public class TooltipUtils {
         return new LiteralText(format + "").append(comp);
     }
 
-    public static void addEmpty(List<MutableText> tooltip) {
+    public static void addEmpty(List<Text> tooltip) {
         tooltip.add(CLOC.blank(""));
     }
 
-    public static List<String> compsToStrings(List<MutableText> list) {
+    public static List<String> compsToStrings(List<Text> list) {
         return list.stream()
-            .map(MutableText::asFormattedString)
+            .map(x -> x.asString())
             .collect(Collectors.toList());
     }
 
@@ -104,13 +106,13 @@ public class TooltipUtils {
 
     }
 
-    public static List<MutableText> removeDoubleBlankLines(List<MutableText> list) {
+    public static List<Text> removeDoubleBlankLines(List<Text> list) {
         return removeDoubleBlankLines(list, 5000);
     }
 
-    public static List<MutableText> removeDoubleBlankLines(List<MutableText> list, int minLinesCutAllBlanks) {
+    public static List<Text> removeDoubleBlankLines(List<Text> list, int minLinesCutAllBlanks) {
 
-        List<MutableText> newt = new ArrayList();
+        List<Text> newt = new ArrayList();
 
         boolean lastIsEmpty = false;
 
@@ -119,7 +121,7 @@ public class TooltipUtils {
         for (int i = 0; i < list.size(); i++) {
 
             if (list.get(i)
-                .asFormattedString()
+                .asString()
                 .length() > 2) {
                 lastIsEmpty = false;
                 newt.add(list.get(i));

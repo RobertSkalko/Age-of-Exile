@@ -36,7 +36,7 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
                        VertexConsumerProvider p_225623_5_, int p_225623_6_) {
         p_225623_4_.push();
         p_225623_4_.scale(this.scale, this.scale, this.scale);
-        p_225623_4_.multiply(this.renderManager.getRotation());
+        p_225623_4_.multiply(this.dispatcher.getRotation());
         p_225623_4_.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
         this.itemRenderer.renderItem(((IMyRenderAsItem) p_225623_1_).getItem(),
             ModelTransformation.Mode.GROUND, p_225623_6_,

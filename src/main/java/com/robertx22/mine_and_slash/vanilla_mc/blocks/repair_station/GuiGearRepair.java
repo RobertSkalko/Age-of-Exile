@@ -29,8 +29,8 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         super(cont, invPlayer, new LiteralText("Modify"), TileGearRepair.class);
 
         // Set the width and height of the gui
-        containerWidth = 176;
-        containerHeight = 207;
+        backgroundWidth = 176;
+        backgroundHeight = 207;
 
     }
 
@@ -59,7 +59,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
             .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(this.x, this.y, 0, 0, containerWidth, containerHeight);
+        blit(this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
 
         // get cook progress as a double between 0 and 1
         // draw the cook progress bar

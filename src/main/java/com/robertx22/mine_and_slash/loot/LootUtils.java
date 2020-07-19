@@ -52,7 +52,7 @@ public class LootUtils {
         float after_rarity = first * Rarities.Mobs.get(mob.getRarity())
             .LootMultiplier();
 
-        float hp = entity.getMaximumHealth() - mob.getUnit()
+        float hp = entity.getMaxHealth() - mob.getUnit()
             .peekAtStat(Health.getInstance())
             .getAverageValue();
 

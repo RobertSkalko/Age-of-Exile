@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.screens.main_hub.MainHubScreen.Button;
 import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen;
 import com.robertx22.mine_and_slash.gui.screens.stat_alloc.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
@@ -17,8 +16,10 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,11 +74,11 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
     }
 
     @Override
-    public void render(int x, int y, float ticks) {
+    public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        drawBackground(ticks, x, y);
+        drawBackground(matrix);
 
-        super.render(x, y, ticks);
+        super.render(matrix, x, y, ticks);
 
         renderTitle();
         renderLevelExp();
@@ -103,12 +104,12 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         GuiUtils.renderScaledText(xp, yp, scale, str, Formatting.GREEN);
     }
 
-    protected void drawBackground(float partialTicks, int x, int y) {
+    protected void drawBackground(MatrixStack matrix) {
         MinecraftClient.getInstance()
             .getTextureManager()
             .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
+        drawTexture(matrix, guiLeft, guiTop, this.getZOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
 
     }
 
@@ -150,8 +151,8 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         }
 
         @Override
-        public void renderButton(int x, int y, float ticks) {
-            super.renderButton(x, y, ticks);
+        public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
+            super.renderButton(matrix, x, y, ticks);
 
             RenderUtils.render16Icon(screen.iconLocation(), this.x + 9, this.y + 7);
 
@@ -162,7 +163,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
             String str = screen.screenName()
                 .translate();
 
-            MinecraftClient.getInstance().textRenderer.drawWithShadow(
+            MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix,
                 str, this.x + 30, this.y + 10, Formatting.GREEN.getColorValue());
         }
 

@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealthRe
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.RegeneratePercentStat;
+import com.robertx22.mine_and_slash.event_hooks.ontick.OnServerTick.PlayerTickData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -76,14 +77,14 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                             .getFoodLevel() >= 18;
 
                         if (canHeal) {
-                            if (player.getHealth() < player.getMaximumHealth()) {
+                            if (player.getHealth() < player.getMaxHealth()) {
                                 restored = true;
                             }
 
                             float healthrestored = unit.peekAtStat(HealthRegen.GUID)
                                 .getAverageValue();
                             healthrestored += unit.peekAtStat(RegeneratePercentStat.HEALTH)
-                                .getAverageValue() * player.getMaximumHealth() / 100F;
+                                .getAverageValue() * player.getMaxHealth() / 100F;
                             ResourcesData.Context hp = new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH,
                                 healthrestored,
                                 ResourcesData.Use.RESTORE
@@ -114,7 +115,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                             if (restored) {
 
-                                float percentHealed = healthrestored / player.getMaximumHealth();
+                                float percentHealed = healthrestored / player.getMaxHealth();
 
                                 float exhaustion = (float) ModConfig.INSTANCE.Server.REGEN_HUNGER_COST * percentHealed;
 

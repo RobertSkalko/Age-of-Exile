@@ -124,7 +124,7 @@ public class ThunderDashSpell extends BaseSpell {
 
         int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, this);
 
-        List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPosVector())
+        List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPos())
             .radius(2)
             .distance(10)
             .finder(EntityFinder.Finder.IN_FRONT)

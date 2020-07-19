@@ -2,20 +2,22 @@ package com.robertx22.mine_and_slash.database.data.requirements;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
 
 public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
@@ -123,7 +125,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     }
 
     @Override
-    public List<MutableText> GetTooltipString(TooltipInfo info) {
+    public List<Text> GetTooltipString(TooltipInfo info) {
 
         List<MutableText> list = new ArrayList<>();
 

@@ -3,19 +3,19 @@ package com.robertx22.mine_and_slash.vanilla_mc.blocks.bases;
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.ItemCapacitor;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 
-public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInventory, Tickable, NameableContainerFactory {
+public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInventory, Tickable, NamedScreenHandlerFactory {
 
     public BaseTile(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
@@ -85,7 +85,7 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
     }
 
     @Override
-    public int[] getInvAvailableSlots(Direction side) {
+    public int[] getAvailableSlots(Direction side) {
         return slots();
     }
 
@@ -116,7 +116,7 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
     }
 
     @Override
-    public boolean canInsertInvStack(int index, ItemStack itemStackIn, Direction direction) {
+    public boolean canInsert(int index, ItemStack itemStackIn, Direction direction) {
 
         if (this.isAutomatable() && containsSlot(index, this.inputSlots())) {
             // don't insert shit
@@ -126,7 +126,7 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
     }
 
     @Override
-    public boolean canExtractInvStack(int index, ItemStack stack, Direction direction) {
+    public boolean canExtract(int index, ItemStack stack, Direction direction) {
 
         if (this.isAutomatable()) {
             // don't extract stuff that's being processed
@@ -142,7 +142,7 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
 
     // Gets the stack in the given slot
     @Override
-    public ItemStack getInvStack(int i) {
+    public ItemStack getStack(int i) {
 
         return itemStacks[i];
     }
@@ -156,19 +156,19 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
      * @return a new itemstack containing the units removed from the slot
      */
     @Override
-    public ItemStack takeInvStack(int slotIndex, int count) {
-        ItemStack itemStackInSlot = getInvStack(slotIndex);
+    public ItemStack removeStack(int slotIndex, int count) {
+        ItemStack itemStackInSlot = getStack(slotIndex);
         if (itemStackInSlot.isEmpty())
             return ItemStack.EMPTY; // isEmpty(), EMPTY_ITEM
 
         ItemStack itemStackRemoved;
         if (itemStackInSlot.getCount() <= count) { // getStackSize
             itemStackRemoved = itemStackInSlot;
-            setInvStack(slotIndex, ItemStack.EMPTY); // EMPTY_ITEM
+            setStack(slotIndex, ItemStack.EMPTY); // EMPTY_ITEM
         } else {
             itemStackRemoved = itemStackInSlot.split(count);
             if (itemStackInSlot.getCount() == 0) { // getStackSize
-                setInvStack(slotIndex, ItemStack.EMPTY); // EMPTY_ITEM
+                setStack(slotIndex, ItemStack.EMPTY); // EMPTY_ITEM
             }
         }
         markDirty();
@@ -177,13 +177,13 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
 
     // Gets the number of slots in the inventory
     @Override
-    public int getInvSize() {
+    public int size() {
         return itemStacks.length;
     }
 
     // returns true if all of the slots in the inventory are empty
     @Override
-    public boolean isInvEmpty() {
+    public boolean isEmpty() {
         for (ItemStack itemstack : itemStacks) {
             if (!itemstack.isEmpty()) { // isEmpty()
                 return false;
@@ -195,10 +195,10 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
 
     // overwrites the stack in the given slotIndex with the given stack
     @Override
-    public void setInvStack(int slotIndex, ItemStack itemstack) {
+    public void setStack(int slotIndex, ItemStack itemstack) {
         itemStacks[slotIndex] = itemstack;
-        if (!itemstack.isEmpty() && itemstack.getCount() > getInvMaxStackAmount()) { // isEmpty(); getStackSize()
-            itemstack.setCount(getInvMaxStackAmount()); // setStackSize()
+        if (!itemstack.isEmpty() && itemstack.getCount() > getMaxCountPerStack()) { // isEmpty(); getStackSize()
+            itemstack.setCount(getMaxCountPerStack()); // setStackSize()
         }
         markDirty();
     }
@@ -210,11 +210,11 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
     }
 
     @Override
-    public void onInvOpen(PlayerEntity player) {
+    public void onOpen(PlayerEntity player) {
     }
 
     @Override
-    public void onInvClose(PlayerEntity player) {
+    public void onClose(PlayerEntity player) {
     }
 
     // -----------------------------------------------------------------------------------------------------------
@@ -224,7 +224,7 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
     // Unused unless your container specifically uses it.
     // Return true if the given stack is allowed to go in the given slot
     @Override
-    public boolean isValidInvStack(int slotIndex, ItemStack itemstack) {
+    public boolean isValid(int slotIndex, ItemStack itemstack) {
         return true;
     }
 
@@ -237,21 +237,21 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
      * @return
      */
     @Override
-    public ItemStack removeInvStack(int slotIndex) {
+    public ItemStack removeStack(int slotIndex) {
 
-        ItemStack itemStack = getInvStack(slotIndex);
+        ItemStack itemStack = getStack(slotIndex);
         if (!itemStack.isEmpty())
-            setInvStack(slotIndex, ItemStack.EMPTY); // isEmpty(); EMPTY_ITEM
+            setStack(slotIndex, ItemStack.EMPTY); // isEmpty(); EMPTY_ITEM
         return itemStack;
     }
 
     @Override
-    public int getInvMaxStackAmount() {
+    public int getMaxCountPerStack() {
         return 64;
     }
 
     @Override
-    public boolean canPlayerUseInv(PlayerEntity player) {
+    public boolean canPlayerUse(PlayerEntity player) {
         if (this.world.getBlockEntity(this.pos) != this)
             return false;
         final double X_CENTRE_OFFSET = 0.5;

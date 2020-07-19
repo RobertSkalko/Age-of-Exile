@@ -13,7 +13,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.network.packet.s2c.play.EntitySpawnGlobalS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
@@ -44,8 +44,8 @@ public class SpellUtils {
                 .getType(), new EntitySpawnGlobalS2CPacket(entityIn));
     }
 
-    public static void setupProjectileForCasting(ProjectileEntity projectile, LivingEntity caster, float speed) {
-        Vec3d pos = caster.getPosVector();
+    public static void setupProjectileForCasting(PersistentProjectileEntity projectile, LivingEntity caster, float speed) {
+        Vec3d pos = caster.getPos();
 
         ((Entity) projectile).updatePosition(pos.x, caster.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
 
@@ -53,7 +53,7 @@ public class SpellUtils {
 
     }
 
-    public static void castTripleProjectileInCone(EntityCalcSpellConfigs config, float apart, BaseSpell spell, Function<World, ProjectileEntity> projectile, LivingEntity caster, float speed) {
+    public static void castTripleProjectileInCone(EntityCalcSpellConfigs config, float apart, BaseSpell spell, Function<World, PersistentProjectileEntity> projectile, LivingEntity caster, float speed) {
         World world = caster.world;
 
         for (int i = 0; i < 3; i++) {
@@ -68,7 +68,7 @@ public class SpellUtils {
             }
             f *= 10;
 
-            ProjectileEntity en = (ProjectileEntity) SpellUtils.getSpellEntity(config, projectile.apply(world), spell, caster);
+            PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(config, projectile.apply(world), spell, caster);
             SpellUtils.setupProjectileForCasting(en, caster, speed, caster.pitch,
                 caster.yaw + f
             );
@@ -78,9 +78,9 @@ public class SpellUtils {
 
     }
 
-    public static void setupProjectileForCasting(ProjectileEntity projectile, LivingEntity caster, float speed,
+    public static void setupProjectileForCasting(PersistentProjectileEntity projectile, LivingEntity caster, float speed,
                                                  float pitch, float yaw) {
-        Vec3d pos = caster.getPosVector();
+        Vec3d pos = caster.getPos();
 
         ((Entity) projectile).updatePosition(pos.x, caster.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
 

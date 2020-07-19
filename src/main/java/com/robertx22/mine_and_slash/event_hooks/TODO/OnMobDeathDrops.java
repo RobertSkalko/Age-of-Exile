@@ -88,7 +88,7 @@ public class OnMobDeathDrops {
         exp *= Rarities.Mobs.get(mobData.getRarity())
             .expMulti();
 
-        exp = (int) (exp * (1F + victim.getMaximumHealth() / 10F));
+        exp = (int) (exp * (1F + victim.getMaxHealth() / 10F));
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 

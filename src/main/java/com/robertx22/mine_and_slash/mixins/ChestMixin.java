@@ -42,7 +42,7 @@ public abstract class ChestMixin {
             List<Integer> list1 = mygetEmptySlotsRandomized(chest, chest.getWorld().random);
 
             for (int i = 0; i < items.size(); i++) {
-                chest.setInvStack(list1.get(i), items.get(list1.get(i)));
+                chest.setStack(list1.get(i), items.get(list1.get(i)));
             }
 
         } else {
@@ -55,8 +55,8 @@ public abstract class ChestMixin {
     private List<Integer> mygetEmptySlotsRandomized(Inventory inventory, Random rand) {
         List<Integer> list = Lists.newArrayList();
 
-        for (int i = 0; i < inventory.getInvSize(); ++i) {
-            if (inventory.getInvStack(i)
+        for (int i = 0; i < inventory.size(); ++i) {
+            if (inventory.getStack(i)
                 .isEmpty()) {
                 list.add(i);
             }

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.blocks.base;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -18,7 +17,7 @@ public abstract class BaseSpellBlock extends Block implements BlockEntityProvide
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView reader, BlockPos pos, EntityContext ctx) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView reader, BlockPos pos, ShapeContext ctx) {
         return SHAPE;
     }
 

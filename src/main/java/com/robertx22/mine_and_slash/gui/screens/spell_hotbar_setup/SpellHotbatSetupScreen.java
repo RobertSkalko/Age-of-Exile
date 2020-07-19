@@ -20,8 +20,9 @@ import com.robertx22.mine_and_slash.vanilla_mc.items.misc.SkillGemItem;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.HotbarSetupPacket;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -106,45 +107,45 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     }
 
     @Override
-    public void render(int x, int y, float ticks) {
+    public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        drawBackground(ticks, x, y);
+        drawBackground(matrix);
 
-        drawText();
+        drawText(matrix);
 
-        super.render(x, y, ticks);
+        super.render(matrix, x, y, ticks);
 
-        this.buttons.forEach(b -> b.renderToolTip(x, y));
+        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 
-    private void drawText() {
+    private void drawText(MatrixStack matrix) {
 
         double scale = 1.25;
 
         String str = "First Hotbar";
         int xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
         int yp = 130 + guiTop;
-        GuiUtils.renderScaledText(xp, yp, scale, str, Formatting.GREEN);
+        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.GREEN);
 
         str = "Second Hotbar";
         xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
         yp = 180 + guiTop;
-        GuiUtils.renderScaledText(xp, yp, scale, str, Formatting.GREEN);
+        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.GREEN);
 
         str = "Skill Gems in Inventory";
         xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
         yp = 12 + guiTop;
-        GuiUtils.renderScaledText(xp, yp, scale, str, Formatting.YELLOW);
+        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
 
     }
 
-    protected void drawBackground(float partialTicks, int x, int y) {
+    protected void drawBackground(MatrixStack matrix) {
         MinecraftClient.getInstance()
             .getTextureManager()
             .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 256);
+        drawTexture(matrix, guiLeft, guiTop, this.getZOffset(), 0.0F, 0.0F, this.x, this.y, 256, 256);
 
     }
 
@@ -183,15 +184,15 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         }
 
         @Override
-        public void renderToolTip(int mouseX, int mouseY) {
+        public void renderToolTip(MatrixStack matrix, int mouseX, int mouseY) {
             if (this.getSpell() != null) {
                 if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
                     TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
 
-                    List<MutableText> tooltip = new ArrayList<>();
+                    List<Text> tooltip = new ArrayList<>();
                     tooltip.add(getSpell().getLocName());
                     tooltip.addAll(getSpell().GetTooltipString(info));
-                    GuiUtils.renderTooltip(tooltip, mouseX, mouseY);
+                    GuiUtils.renderTooltip(matrix, tooltip, mouseX, mouseY);
                 }
             }
         }
@@ -216,7 +217,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         }
 
         @Override
-        public void renderButton(int x, int y, float ticks) {
+        public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
 
             MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -230,7 +231,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
             RenderSystem.disableDepthTest();
 
-            blit(this.x, this.y, 0, 0, this.width, this.height);
+            drawTexture(matrix, this.x, this.y, 0, 0, this.width, this.height);
 
             RenderSystem.enableDepthTest();
 
@@ -273,20 +274,20 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         }
 
         @Override
-        public void renderToolTip(int mouseX, int mouseY) {
+        public void renderToolTip(MatrixStack matrix, int mouseX, int mouseY) {
             if (skillgem != null) {
                 if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
                     TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
 
                     TooltipContext ctx = new TooltipContext(stack, new ArrayList<>(), Load.Unit(MinecraftClient.getInstance().player));
                     skillgem.BuildTooltip(ctx);
-                    GuiUtils.renderTooltip(ctx.tooltip, mouseX, mouseY);
+                    GuiUtils.renderTooltip(matrix, ctx.tooltip, mouseX, mouseY);
                 }
             }
         }
 
         @Override
-        public void renderButton(int x, int y, float ticks) {
+        public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             //super.renderButton(x, y, ticks);
 
             if (skillgem != null && skillgem.getSpell()

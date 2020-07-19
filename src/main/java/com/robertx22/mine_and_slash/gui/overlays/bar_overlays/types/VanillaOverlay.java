@@ -5,9 +5,10 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tag.FluidTags;
@@ -15,7 +16,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 
-public class VanillaOverlay extends InGameHud implements ClientTickEvents.EndTick {
+public class VanillaOverlay extends InGameHud implements HudRenderCallback {
 
     public VanillaOverlay() {
         super(MinecraftClient.getInstance());
@@ -24,7 +25,10 @@ public class VanillaOverlay extends InGameHud implements ClientTickEvents.EndTic
     int ticks = 0;
 
     @Override
-    public void onEndTick(MinecraftClient minecraftClient) {
+    public void onHudRender(MatrixStack matrix, float v) {
+
+        MinecraftClient minecraftClient = MinecraftClient.getInstance();
+
         if (minecraftClient.player == null) {
             return;
         }
@@ -70,17 +74,17 @@ public class VanillaOverlay extends InGameHud implements ClientTickEvents.EndTic
             int leftY = ClientConfigs.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
             int rightY = ClientConfigs.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
 
-            renderElement(ticks, Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
+            renderElement(matrix, ticks, Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
 
             x = width / 2 + 81;
             y = height - 39 - SPACING_Y;
 
             int air = en.getAir();
-            if (en.isInFluid(FluidTags.WATER) || air < 300) {
+            if (en.isSubmergedIn(FluidTags.WATER) || air < 300) {
                 y -= SPACING_Y;
             }
 
-            renderElement(ticks, Type.MANA, x, y + rightY, mc, en, data);
+            renderElement(matrix, ticks, Type.MANA, x, y + rightY, mc, en, data);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,7 +163,7 @@ public class VanillaOverlay extends InGameHud implements ClientTickEvents.EndTic
     HashMap<Type, Integer> lastValues = new HashMap<>();
     HashMap<Type, Integer> changedTicksLeft = new HashMap<>();
 
-    public void renderElement(int ticks, Type type, int x, int y, MinecraftClient mc, LivingEntity en, UnitData data) {
+    public void renderElement(MatrixStack matrix, int ticks, Type type, int x, int y, MinecraftClient mc, LivingEntity en, UnitData data) {
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -201,13 +205,13 @@ public class VanillaOverlay extends InGameHud implements ClientTickEvents.EndTic
                     .nextInt(3) - 1;
             }
 
-            blit(x, y + randomY, 16, type.yPosTexture(data), 9, 9); // empty background
+            drawTexture(matrix, x, y + randomY, 16, type.yPosTexture(data), 9, 9); // empty background
 
             if (current > 0) {
                 if (current >= tenth) { // fullbar
-                    blit(x, y + randomY, 0, type.yPosTexture(data), 9, 9);
+                    drawTexture(matrix, x, y + randomY, 0, type.yPosTexture(data), 9, 9);
                 } else { // half
-                    blit(x + halfSpacing, y + randomY, 10, type.yPosTexture(data), 5, 9);
+                    drawTexture(matrix, x + halfSpacing, y + randomY, 10, type.yPosTexture(data), 5, 9);
                 }
             }
             if (type.getSide()

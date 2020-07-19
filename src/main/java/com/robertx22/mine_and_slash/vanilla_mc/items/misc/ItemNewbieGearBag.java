@@ -13,14 +13,11 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-
-
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +72,8 @@ public class ItemNewbieGearBag extends BaseItem {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World worldIn, List<MutableText> tooltip,
-                               TooltipContext flagIn) {
+    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
+                              TooltipContext flagIn) {
 
         tooltip.add(CLOC.tooltip("newbie_gear_bag"));
 

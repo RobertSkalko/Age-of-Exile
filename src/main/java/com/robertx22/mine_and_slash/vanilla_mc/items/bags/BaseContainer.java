@@ -1,29 +1,29 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.bags;
 
-import net.minecraft.container.Container;
-import net.minecraft.container.ContainerType;
-import net.minecraft.container.Slot;
-import net.minecraft.container.SlotActionType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.BasicInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
 
 
 
 
-public abstract class BaseContainer extends Container {
+public abstract class BaseContainer extends ScreenHandler {
 
     public BaseInventory inventory;
 
-    public abstract BaseSlot slot(BasicInventory inv, int index, int x, int y);
+    public abstract BaseSlot slot(SimpleInventory inv, int index, int x, int y);
 
     public static int size = 9 * 2;
     public static int numRows = 2;
 
     public int bagHash;
 
-    public BaseContainer( ContainerType<?> type, int id,
+    public BaseContainer( ScreenHandlerType<?> type, int id,
                          PlayerInventory playerInv, BaseInventory basebag) {
         super(type, id);
 

@@ -98,11 +98,11 @@ public class MobStatUtils {
         EntityAttributeModifier hpmod = en.getAttributeInstance(EntityAttributes.MAX_HEALTH)
             .getModifier(Unit.hpID);
         if (hpmod != null) {
-            hpaddedalready = (float) hpmod.getAmount();
+            hpaddedalready = (float) hpmod.getValue();
         }
 
         unit.getCreateStat(Health.getInstance())
-            .addFlat((en.getMaximumHealth() - hpaddedalready) * rar.HealthMultiplier(), lvl);
+            .addFlat((en.getMaxHealth() - hpaddedalready) * rar.HealthMultiplier(), lvl);
 
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()

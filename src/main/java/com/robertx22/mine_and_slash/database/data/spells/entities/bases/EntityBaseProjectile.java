@@ -13,7 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.entity.projectile.thrown.ThrownEntity;
 import net.minecraft.item.ItemStack;
@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EntityBaseProjectile extends ProjectileEntity implements ThrownEntity, IMyRenderAsItem,
+public abstract class EntityBaseProjectile extends PersistentProjectileEntity implements ThrownEntity, IMyRenderAsItem,
     ISpellEntity {
 
     EntitySpellData spellData;
@@ -117,7 +117,7 @@ public abstract class EntityBaseProjectile extends ProjectileEntity implements T
     }
 
     public EntityBaseProjectile(EntityType<? extends Entity> type, World worldIn) {
-        super((EntityType<? extends ProjectileEntity>) type, worldIn);
+        super((EntityType<? extends PersistentProjectileEntity>) type, worldIn);
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;

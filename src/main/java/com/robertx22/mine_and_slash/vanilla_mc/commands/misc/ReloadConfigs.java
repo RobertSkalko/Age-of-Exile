@@ -28,7 +28,7 @@ public class ReloadConfigs {
             ConfigRegister.registerCustomConfigs();
 
             if (source.getEntity() instanceof ServerPlayerEntity) {
-                ((ServerPlayerEntity) source.getEntity()).sendMessage(new LiteralText("Configs reloaded"));
+                ((ServerPlayerEntity) source.getEntity()).sendSystemMessage(new LiteralText("Configs reloaded"));
             }
 
         } catch (Exception e) {

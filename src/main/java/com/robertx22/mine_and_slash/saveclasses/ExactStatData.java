@@ -16,9 +16,10 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.Text;
+
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.text.MutableText;
 
 @Storable
 public class ExactStatData implements ISerializable<ExactStatData>, IApplyableStats, ITooltipList {
@@ -155,7 +156,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     }
 
     @Override
-    public List<MutableText> GetTooltipString(TooltipInfo info) {
+    public List<Text> GetTooltipString(TooltipInfo info) {
 
         if (first_val == 0) {
             // return new ArrayList<>();

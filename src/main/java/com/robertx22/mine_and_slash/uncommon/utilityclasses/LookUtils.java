@@ -19,7 +19,7 @@ public class LookUtils {
         double distance = finalDistance;
         HitResult pos = raycast(e, finalDistance);
 
-        Vec3d positionVector = e.getPosVector();
+        Vec3d positionVector = e.getPos();
         if (e instanceof PlayerEntity)
             positionVector = positionVector.add(0, e.getStandingEyeHeight(), 0);
 

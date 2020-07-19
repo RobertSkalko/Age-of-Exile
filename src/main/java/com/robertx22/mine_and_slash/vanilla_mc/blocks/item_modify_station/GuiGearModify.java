@@ -28,8 +28,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer, MutableText comp) {
         super(cont, invPlayer, comp, TileGearModify.class);
 
-        containerWidth = 256;
-        containerHeight = 207;
+        backgroundWidth = 256;
+        backgroundHeight = 207;
 
     }
 
@@ -51,7 +51,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        blit(this.x, this.y, 0, 0, containerWidth, containerHeight);
+        blit(this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
 
         // draw the cook progress bar
         blit(
@@ -79,12 +79,12 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                         String reqtext = CLOC.translate(Words.RequirementsNotMet.locName()) + ": ";
 
                         font.draw(
-                            reqtext, this.containerWidth / 2 - font.getStringWidth(reqtext) / 2, y, Color.red.getRGB());
+                            reqtext, this.backgroundWidth / 2 - font.getWidth(reqtext) / 2, y, Color.red.getRGB());
                         y += font.fontHeight + 1;
                         add = false;
                     }
 
-                    font.draw(txt, this.containerWidth / 2 - font.getStringWidth(txt) / 2, y, Color.red.getRGB());
+                    font.draw(txt, this.backgroundWidth / 2 - font.getWidth(txt) / 2, y, Color.red.getRGB());
                     y += font.fontHeight;
                 }
             }

@@ -17,18 +17,15 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AbstractEntityAttributeContainer;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -116,9 +113,9 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     }
 
     @Override
-    public final List<MutableText> GetTooltipString(TooltipInfo info) {
+    public final List<Text> GetTooltipString(TooltipInfo info) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText(Formatting.LIGHT_PURPLE + "" + Formatting.BOLD).append(
             locName()));
@@ -147,8 +144,8 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
         return new Identifier(Ref.MODID, "textures/mob_effect/" + GUID() + ".png");
     }
 
-    private List<MutableText> getMaxStacksTooltip() {
-        List<MutableText> list = new ArrayList<>();
+    private List<Text> getMaxStacksTooltip() {
+        List<Text> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
         list.add(new LiteralText(
@@ -158,8 +155,8 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     }
 
-    private List<MutableText> getDurationTooltip(TooltipInfo info) {
-        List<MutableText> list = new ArrayList<>();
+    private List<Text> getDurationTooltip(TooltipInfo info) {
+        List<Text> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
         list.add(new LiteralText(
@@ -283,7 +280,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     }
 
     @Override
-    public void onApplied(LivingEntity target, AbstractEntityAttributeContainer attributes,
+    public void onApplied(LivingEntity target, AttributeContainer attributes,
                           int amplifier) {
 
         if (!target.world.isClient || !isServerSideOnly()) {
@@ -297,7 +294,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     }
 
     @Override
-    public void onRemoved(LivingEntity target, AbstractEntityAttributeContainer attributes,
+    public void onRemoved(LivingEntity target, AttributeContainer attributes,
                           int amplifier) {
         // called at end
         super.onRemoved(target, attributes, amplifier);
@@ -321,16 +318,6 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     protected boolean isAmbient() {
         return false;
-    }
-
-    @Environment(EnvType.CLIENT)
-    public void renderHUDEffect(StatusEffectInstance effect, DrawableHelper gui, int x, int y, float z, float alpha) {
-        if (getIconTexture() != null) {
-            MinecraftClient.getInstance()
-                .getTextureManager()
-                .bindTexture(getIconTexture());
-            DrawableHelper.blit(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
-        }
     }
 
 }
