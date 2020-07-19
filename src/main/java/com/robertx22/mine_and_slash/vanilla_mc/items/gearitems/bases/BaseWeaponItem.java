@@ -17,7 +17,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.Set;
 
-public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, IGearItem, MyForgeItem {
+public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, IGearItem {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
 

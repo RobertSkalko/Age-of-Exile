@@ -3,18 +3,15 @@ package com.robertx22.mine_and_slash.event_hooks.entity;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import nerdhub.cardinal.components.api.event.TrackingStartCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class OnTrackEntity {
+public class OnTrackEntity implements TrackingStartCallback {
 
-    @SubscribeEvent
-    public static void onEntityTrack(PlayerEvent.StartTracking event) {
-
-        Entity entity = event.getTarget();
+    @Override
+    public void onPlayerStartTracking(ServerPlayerEntity serverPlayerEntity, Entity entity) {
 
         try {
             if (entity instanceof LivingEntity) {
@@ -23,11 +20,11 @@ public class OnTrackEntity {
                     return;
                 }
 
-                if (entity.isPartOf(event.getPlayer()) == false) {
+                if (entity.isPartOf(serverPlayerEntity) == false) {
 
                     MMORPG.sendToClient(
                         Unit.getUpdatePacketFor((LivingEntity) entity, Load.Unit(entity)),
-                        (ServerPlayerEntity) event.getPlayer()
+                        serverPlayerEntity
                     );
 
                 }
@@ -35,6 +32,5 @@ public class OnTrackEntity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

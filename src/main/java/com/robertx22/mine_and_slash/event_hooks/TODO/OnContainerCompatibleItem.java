@@ -1,22 +1,8 @@
-package com.robertx22.mine_and_slash.event_hooks.item;
-
-import com.robertx22.exiled_lib.registry.FilterListWrap;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.auto_comp.PowerLevel;
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.player.PlayerContainerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+package com.robertx22.mine_and_slash.event_hooks.TODO;
 
 public class OnContainerCompatibleItem {
 
+    /*
     @SubscribeEvent
     public static void onContainerCompatibleItem(PlayerContainerEvent event) {
 
@@ -96,4 +82,6 @@ public class OnContainerCompatibleItem {
         }
 
     }
+TODO
+     */
 }

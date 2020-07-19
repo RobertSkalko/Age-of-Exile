@@ -1,15 +1,14 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ServerOnly;
+import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class RequestTilePacket {
+public class RequestTilePacket extends MyPacket<RequestTilePacket> {
 
     public BlockPos pos;
 
@@ -21,57 +20,35 @@ public class RequestTilePacket {
         this.pos = pos;
     }
 
-    public static RequestTilePacket decode(PacketByteBuf buf) {
+    @Override
 
-        RequestTilePacket newpkt = new RequestTilePacket();
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "reqtiledata");
+    }
 
-        newpkt.pos = buf.readBlockPos();
-
-        return newpkt;
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        pos = tag.readBlockPos();
 
     }
 
-    public static void encode(RequestTilePacket packet, PacketByteBuf tag) {
-
-        tag.writeBlockPos(packet.pos);
-
-    }
-
-    public static void handle(final RequestTilePacket pkt, Supplier<NetworkEvent.Context> ctx) {
-
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
-
-                    ServerPlayerEntity player = ctx.get()
-                        .getSender();
-
-                    if (player != null) {
-                        sendUpdate(pkt.pos, player);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        tag.writeBlockPos(pos);
 
     }
 
-    private static void sendUpdate(BlockPos pos, ServerPlayerEntity player) {
+    @Override
+    public void onReceived(PacketContext ctx) {
+        PlayerEntity player = ctx.getPlayer();
 
-        BlockEntity tile = player.world.getBlockEntity(pos);
-
-        if (tile != null) {
-
-            BlockEntityUpdateS2CPacket supdatetileentitypacket = tile.toUpdatePacket();
-            if (supdatetileentitypacket != null) {
-                player.networkHandler.sendPacket(supdatetileentitypacket);
-            }
+        if (player != null) {
+            ServerOnly.sendUpdate(pos, player);
         }
-
     }
 
+    @Override
+    public MyPacket<RequestTilePacket> newInstance() {
+        return new RequestTilePacket();
+    }
 }

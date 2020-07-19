@@ -9,9 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-
-
 
 public class Load {
 
@@ -22,7 +19,6 @@ public class Load {
         }
         return false;
     }
-
 
     public static PlayerSpellCap.ISpellsCap spells(LivingEntity provider) {
 

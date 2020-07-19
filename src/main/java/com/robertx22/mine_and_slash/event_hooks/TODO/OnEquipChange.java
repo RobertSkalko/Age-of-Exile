@@ -1,14 +1,8 @@
-package com.robertx22.mine_and_slash.event_hooks.entity;
-
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+package com.robertx22.mine_and_slash.event_hooks.TODO;
 
 public class OnEquipChange {
 
+    /* TODO
     // on change, notify my capability so i know stats need to be recalculated
     @SubscribeEvent
     public static void onEquipChange(LivingEquipmentChangeEvent event) {
@@ -27,5 +21,7 @@ public class OnEquipChange {
         }
 
     }
+
+     */
 
 }

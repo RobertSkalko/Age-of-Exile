@@ -1,27 +1,28 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets.spells;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
+import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class HotbarSetupPacket {
+public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
 
     public int number;
     public SpellCastingData.Hotbar hotbar;
     public int invSlot = 0;
 
-    private HotbarSetupPacket() {
+    public HotbarSetupPacket() {
 
     }
 
@@ -31,67 +32,62 @@ public class HotbarSetupPacket {
         this.invSlot = invSlot;
     }
 
-    public static HotbarSetupPacket decode(PacketByteBuf buf) {
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "hotbarsetup");
+    }
 
-        HotbarSetupPacket newpkt = new HotbarSetupPacket();
-
-        newpkt.number = buf.readInt();
-        newpkt.hotbar = SpellCastingData.Hotbar.valueOf(buf.readString(30));
-        newpkt.invSlot = buf.readInt();
-
-        return newpkt;
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        number = tag.readInt();
+        hotbar = SpellCastingData.Hotbar.valueOf(tag.readString(30));
+        invSlot = tag.readInt();
 
     }
 
-    public static void encode(HotbarSetupPacket packet, PacketByteBuf tag) {
+    @Override
+    public void saveToData(PacketByteBuf tag) {
 
-        tag.writeInt(packet.number);
-        tag.writeString(packet.hotbar.name());
-        tag.writeInt(packet.invSlot);
+        tag.writeInt(number);
+        tag.writeString(hotbar.name());
+        tag.writeInt(invSlot);
 
     }
 
-    public static void handle(final HotbarSetupPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void onReceived(PacketContext ctx) {
 
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
+        PlayerEntity player = ctx.getPlayer();
 
-                    ServerPlayerEntity player = ctx.get()
-                        .getSender();
+        SpellCastingData data = Load.spells(player)
+            .getCastingData();
 
-                    SpellCastingData data = Load.spells(player)
-                        .getCastingData();
+        if (invSlot < 0) {
+            SkillGemData skillgem = data.getMap(hotbar)
+                .get(number);
+            if (skillgem != null) {
+                PlayerUtils.giveItem(skillgem.toItemStack(), player);
+                data.getMap(hotbar)
+                    .remove(number);
+            }
+        } else {
+            ItemStack stack = player.inventory.main.get(invSlot);
 
-                    if (pkt.invSlot < 0) {
-                        SkillGemData skillgem = data.getMap(pkt.hotbar)
-                            .get(pkt.number);
-                        if (skillgem != null) {
-                            PlayerUtils.giveItem(skillgem.toItemStack(), player);
-                            data.getMap(pkt.hotbar)
-                                .remove(pkt.number);
-                        }
-                    } else {
-                        ItemStack stack = player.inventory.main.get(pkt.invSlot);
+            SkillGemData skillgem = SkillGem.Load(stack);
 
-                        SkillGemData skillgem = SkillGem.Load(stack);
+            if (skillgem != null) {
 
-                        if (skillgem != null) {
+                stack.decrement(1);
 
-                            stack.decrement(1);
+                data.setHotbar(number, hotbar, skillgem);
 
-                            data.setHotbar(pkt.number, pkt.hotbar, skillgem);
-
-                            MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+                Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
+            }
+        }
     }
 
+    @Override
+    public MyPacket<HotbarSetupPacket> newInstance() {
+        return new HotbarSetupPacket();
+    }
 }

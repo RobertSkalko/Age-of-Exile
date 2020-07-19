@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyD
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.LivingHurtEvent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -16,7 +17,6 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -180,7 +180,7 @@ public class LivingHurtUtils {
      * @param event
      */
     public static void modifyDamage(LivingHurtEvent event) {
-        if (event.getEntity().world.isClient) {
+        if (event.getEntityLiving().world.isClient) {
             return;
         }
         if (event.getSource() == null) {
@@ -198,7 +198,7 @@ public class LivingHurtUtils {
         // sword more damage
 
         if (isEnviromentalDmg(event.getSource())) {
-            if (event.getEntity() instanceof PlayerEntity == false) {
+            if (event.getEntityLiving() instanceof PlayerEntity == false) {
                 return;
             }
         } else {

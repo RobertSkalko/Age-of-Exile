@@ -9,21 +9,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CollectGearEvent {
-
-    @SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void collectStacks(MineAndSlashEvents.CollectGearStacksEvent event) {
-
-        getEquipsExcludingWeapon(event.getEntityLiving()).forEach(x -> event.add(x));
-        addHeldItems(event);
-
-    }
 
     public static List<ItemStack> getEquipsExcludingWeapon(LivingEntity entity) {
 
@@ -52,7 +42,7 @@ public class CollectGearEvent {
         }
 
         if (!hasWep) {
-            ItemStack weapon = event.getEntityLiving()
+            ItemStack weapon = event.entity
                 .getMainHandStack();
             if (event.isStackValidGear(weapon)) {
                 GearItemData wep = Gear.Load(weapon);
@@ -66,7 +56,7 @@ public class CollectGearEvent {
             }
         }
 
-        ItemStack offhand = event.getEntityLiving()
+        ItemStack offhand = event.entity
             .getOffHandStack();
         if (event.isStackValidGear(offhand)) {
 
@@ -78,7 +68,7 @@ public class CollectGearEvent {
             } else if (off != null && off.GetBaseGearType()
                 .family()
                 .equals(BaseGearType.SlotFamily.Weapon)) {
-                event.getEntityLiving()
+                event.entity
                     .sendMessage(new LiteralText("You can't wear a weapon in offhand."));
             }
 

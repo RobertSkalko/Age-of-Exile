@@ -39,7 +39,7 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
 
     @Override
     public MyPacket<OnLoginClientPacket> newInstance() {
-        return null;
+        return new OnLoginClientPacket();
     }
 
     public enum When {
@@ -52,4 +52,7 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
         this.when = when;
     }
 
+    public OnLoginClientPacket() {
+
+    }
 }

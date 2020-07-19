@@ -19,7 +19,7 @@ public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
 
     GuiType type;
 
-    private OpenGuiPacket() {
+    public OpenGuiPacket() {
 
     }
 

@@ -1,15 +1,14 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class SyncCapabilityToClient {
+public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
     public SyncCapabilityToClient() {
 
@@ -18,49 +17,45 @@ public class SyncCapabilityToClient {
     private CompoundTag nbt;
     private PlayerCaps type;
 
-    public SyncCapabilityToClient(ServerPlayerEntity p, PlayerCaps type) {
+    public SyncCapabilityToClient(PlayerEntity p, PlayerCaps type) {
         this.nbt = type.getCap(p)
             .saveToNBT();
         this.type = type;
     }
 
-    public static SyncCapabilityToClient decode(PacketByteBuf buf) {
-
-        SyncCapabilityToClient newpkt = new SyncCapabilityToClient();
-        newpkt.nbt = buf.readCompoundTag();
-        newpkt.type = buf.readEnumConstant(PlayerCaps.class);
-        return newpkt;
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "synccaptoc");
     }
 
-    public static void encode(SyncCapabilityToClient packet, PacketByteBuf tag) {
-
-        tag.writeCompoundTag(packet.nbt);
-        tag.writeEnumConstant(packet.type);
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        nbt = tag.readCompoundTag();
+        type = tag.readEnumConstant(PlayerCaps.class);
 
     }
 
-    public static void handle(final SyncCapabilityToClient pkt, Supplier<NetworkEvent.Context> ctx) {
-
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
-                    final PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
-
-                    if (player != null) {
-                        pkt.type.getCap(player)
-                            .loadFromNBT(pkt.nbt);
-
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        tag.writeCompoundTag(nbt);
+        tag.writeEnumConstant(type);
 
     }
 
+    @Override
+    public void onReceived(PacketContext ctx) {
+        final PlayerEntity player = ctx.getPlayer();
+
+        if (player != null) {
+            type.getCap(player)
+                .loadFromNBT(nbt);
+
+        }
+    }
+
+    @Override
+    public MyPacket<SyncCapabilityToClient> newInstance() {
+        return new SyncCapabilityToClient();
+    }
 }
 

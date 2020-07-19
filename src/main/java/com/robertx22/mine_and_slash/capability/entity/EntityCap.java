@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.capability.entity;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.capability.bases.BaseProvider;
-import com.robertx22.mine_and_slash.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.capability.bases.INeededForClient;
 import com.robertx22.mine_and_slash.config.forge.CommonConfig;
@@ -36,7 +34,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
@@ -45,22 +42,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.Random;
 import java.util.UUID;
 
-@EventBusSubscriber
 public class EntityCap {
 
     public static final Identifier RESOURCE = new Identifier(Ref.MODID, "entitydata");
-
-    @CapabilityInject(UnitData.class)
-    public static final Capability<UnitData> Data = null;
 
     private static final String RARITY = "rarity";
     private static final String LEVEL = "level";
@@ -183,36 +171,6 @@ public class EntityCap {
 
         int getExpRequiredForLevelUp();
 
-    }
-
-    @EventBusSubscriber
-    public static class EventHandler {
-
-        @SubscribeEvent
-        public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
-
-            if (event.getObject() instanceof ArmorStandEntity) {
-                return;
-            }
-
-            if (event.getObject() instanceof LivingEntity) {
-                event.addCapability(RESOURCE, new Provider());
-            }
-        }
-
-    }
-
-    public static class Provider extends BaseProvider<UnitData> {
-
-        @Override
-        public UnitData defaultImpl() {
-            return new DefaultImpl();
-        }
-
-        @Override
-        public Capability<UnitData> dataInstance() {
-            return Data;
-        }
     }
 
     public static class DefaultImpl implements UnitData {
@@ -401,7 +359,7 @@ public class EntityCap {
         @Override
         public void onDeath(LivingEntity en) {
 
-            int expLoss = (int) (exp * ModConfig.INSTANCE.Server.EXP_LOSS_ON_DEATH.get());
+            int expLoss = (int) (exp * ModConfig.INSTANCE.Server.EXP_LOSS_ON_DEATH);
 
             if (expLoss > 0) {
                 this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
@@ -591,7 +549,7 @@ public class EntityCap {
                 // check if newbie
                 if (isNewbie()) {
                     setNewbieStatus(false);
-                    if (CommonConfig.INSTANCE.GET_STARTER_ITEMS.get()) {
+                    if (CommonConfig.INSTANCE.GET_STARTER_ITEMS) {
                         OnLogin.GiveStarterItems(player);
                     }
                 }
@@ -794,7 +752,7 @@ public class EntityCap {
 
         @Override
         public boolean CheckLevelCap() {
-            return getLevel() + 1 <= ModConfig.INSTANCE.Server.MAX_LEVEL.get();
+            return getLevel() + 1 <= ModConfig.INSTANCE.Server.MAX_LEVEL;
         }
 
         @Override
@@ -830,7 +788,7 @@ public class EntityCap {
         @Override
         public void setLevel(int lvl, LivingEntity entity) {
 
-            level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAX_LEVEL.get());
+            level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAX_LEVEL);
 
             this.equipsChanged = true;
             this.shouldSync = true;
@@ -846,10 +804,6 @@ public class EntityCap {
         public void setExp(int exp) {
             this.exp = exp;
         }
-
-    }
-
-    public static class Storage extends BaseStorage<UnitData> {
 
     }
 

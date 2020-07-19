@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.event_hooks.item;
 
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
@@ -10,59 +9,48 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-
-
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OnTooltip {
+public class OnTooltip implements ItemTooltipCallback {
 
-    @Environment(EnvType.CLIENT)
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onItemTooltip(ItemTooltipEvent event) {
+    @Override
+    public void getTooltip(ItemStack stack, net.minecraft.client.item.TooltipContext tooltipContext, List<Text> tooltip) {
 
-        buildDataTootltip(event);
-        buildCurrencyEffectTooltip(event);
+        if (stack
+            .getItem() instanceof ICurrencyItemEffect) {
+            ICurrencyItemEffect currency = (ICurrencyItemEffect) stack
+                .getItem();
+            currency.addToTooltip(tooltip);
+            return;
+        }
 
-        ItemStack stack = event.getItemStack();
-
-    }
-
-    private static void buildDataTootltip(ItemTooltipEvent event) {
+        PlayerEntity player = MinecraftClient.getInstance().player;
 
         try {
             if (Screen.hasControlDown()) {
-                GearItemData gear = Gear.Load(event.getItemStack());
+                GearItemData gear = Gear.Load(stack);
                 if (gear != null) {
                     return;
                 }
             }
 
-            if (event.getPlayer() == null || event.getPlayer().world == null || !event.getPlayer().world.isClient) {
+            if (player == null || player.world == null) {
                 return;
             }
 
-            ItemStack stack;
-
-            stack = event.getItemStack();
-
-            UnitData unitdata = Load.Unit(event.getPlayer());
+            UnitData unitdata = Load.Unit(player);
 
             if (unitdata == null) {
                 return;
@@ -74,7 +62,7 @@ public class OnTooltip {
                 return;
             }
 
-            TooltipContext ctx = new TooltipContext(stack, event.getToolTip(), unitdata);
+            TooltipContext ctx = new TooltipContext(stack, tooltip, unitdata);
 
             if (!stack.hasTag()) {
                 return;
@@ -84,43 +72,28 @@ public class OnTooltip {
 
             if (data != null) {
                 data.BuildTooltip(ctx);
-            } else {
-                if (stack.getItem()
-                    .getRegistryName() != null) {
-                    if (SlashRegistry.CompatibleItems()
-                        .isRegistered(stack.getItem()
-                            .getRegistryName()
-                            .toString())) {
-
-                        event.getToolTip()
-                            .add(new LiteralText(Styles.RED + "Compatible Mine and Slash Item"));
-
-                    }
-                }
             }
 
             Text broken = TooltipUtils.itemBrokenText(stack, data);
             if (broken != null) {
-                event.getToolTip()
-                    .add(broken);
+                tooltip.add(broken);
             }
 
             if (data instanceof GearItemData) {
-                List<String> list = event.getToolTip()
+                List<String> strings = tooltip
                     .stream()
                     .map(x -> CLOC.translate(x))
                     .collect(Collectors.toList());
 
                 TextRenderer font = MinecraftClient.getInstance().textRenderer;
 
-                int max = font.getStringWidth(list.stream()
+                int max = font.getStringWidth(strings.stream()
                     .max(Comparator.comparingInt(x -> font.getStringWidth(x)))
                     .get());
 
-                event.getToolTip()
-                    .clear();
+                tooltip.clear();
 
-                list.forEach(x -> {
+                strings.forEach(x -> {
 
                     String str = x;
 
@@ -128,7 +101,7 @@ public class OnTooltip {
                         str = " " + str + " ";
                     }
 
-                    event.getToolTip()
+                    tooltip
                         .add(new SText(str));
 
                 });
@@ -137,17 +110,6 @@ public class OnTooltip {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
-
-    }
-
-    private static void buildCurrencyEffectTooltip(ItemTooltipEvent event) {
-
-        if (event.getItemStack()
-            .getItem() instanceof ICurrencyItemEffect) {
-            ICurrencyItemEffect currency = (ICurrencyItemEffect) event.getItemStack()
-                .getItem();
-            currency.addToTooltip(event.getToolTip());
         }
 
     }

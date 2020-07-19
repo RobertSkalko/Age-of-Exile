@@ -1,8 +1,7 @@
-package com.robertx22.mine_and_slash.event_hooks.entity;
+package com.robertx22.mine_and_slash.event_hooks.TODO;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.capability.world.AntiMobFarmCap;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.loot.LootUtils;
@@ -19,19 +18,16 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.List;
 
 public class OnMobDeathDrops {
 
-    @SubscribeEvent
-    public static void mobOnDeathDrop(LivingDeathEvent event) {
+    public static void mobOnDeathDrop() {
 
         try {
 
-            LivingEntity mobKilled = event.getEntityLiving();
+            LivingEntity mobKilled = null;
 
             if (mobKilled.world.isClient) {
                 return;
@@ -55,8 +51,8 @@ public class OnMobDeathDrops {
                         float exp_multi = (float) config.exp_multi;
 
                         if (loot_multi > 0) {
-                            player.world.getCapability(AntiMobFarmCap.Data)
-                                .ifPresent(x -> x.onValidMobDeathByPlayer(mobKilled));
+                            Load.antiMobFarm(player.world)
+                                .onValidMobDeathByPlayer(mobKilled);
                         }
 
                         if (loot_multi > 0) {

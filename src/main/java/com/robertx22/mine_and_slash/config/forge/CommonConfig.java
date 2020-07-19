@@ -5,7 +5,7 @@ public class CommonConfig {
     public static final String NAME = "COMMON";
     public static final CommonConfig INSTANCE = new CommonConfig();
 
-    boolean GET_STARTER_ITEMS = true;
-    boolean ENABLE_ANTI_MOB_FARM = true;
+    public boolean GET_STARTER_ITEMS = true;
+    public boolean ENABLE_ANTI_MOB_FARM = true;
 
 }

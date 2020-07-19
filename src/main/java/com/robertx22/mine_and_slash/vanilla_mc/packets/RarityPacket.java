@@ -5,25 +5,26 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.robertx22.mine_and_slash.database.data.rarities.RarityTypeEnum;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class RarityPacket {
+public class RarityPacket extends MyPacket<RarityPacket> {
 
     static final JsonParser PARSER = new JsonParser();
 
     RarityTypeEnum type;
     ListStringData data;
 
-    private RarityPacket() {
+    public RarityPacket() {
 
     }
 
@@ -45,74 +46,69 @@ public class RarityPacket {
 
     }
 
-    public static RarityPacket decode(PacketByteBuf buf) {
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "rar");
+    }
+
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
 
         try {
-            RarityPacket newpkt = new RarityPacket();
-            newpkt.type = RarityTypeEnum.valueOf(buf.readString(30));
+            type = RarityTypeEnum.valueOf(tag.readString(30));
 
-            CompoundTag nbt = buf.readCompoundTag();
+            CompoundTag nbt = tag.readCompoundTag();
 
-            newpkt.data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
-            return newpkt;
+            data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
+
         } catch (Exception e) {
             System.out.println("Failed reading Mine and Slash packet to bufferer.");
             e.printStackTrace();
         }
-        return new RarityPacket();
-
     }
 
-    public static void encode(RarityPacket packet, PacketByteBuf tag) {
+    @Override
+    public void saveToData(PacketByteBuf tag) {
         try {
-            tag.writeString(packet.type.name(), 30);
+            tag.writeString(type.name(), 30);
             CompoundTag nbt = new CompoundTag();
 
-            LoadSave.Save(packet.data, nbt, "data");
+            LoadSave.Save(data, nbt, "data");
 
             tag.writeCompoundTag(nbt);
         } catch (Exception e) {
-            System.out.println("Failed saving " + packet.type.name() + " Mine and Slash packet to bufferer.");
+            System.out.println("Failed saving " + type.name() + " Mine and Slash packet to bufferer.");
             e.printStackTrace();
         }
     }
 
-    public static void handle(final RarityPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void onReceived(PacketContext ctx) {
+        if (data.getList()
+            .isEmpty()) {
+            throw new RuntimeException("Rarity list sent from server is empty!");
+        }
 
-        ctx.get()
-            .enqueueWork(() -> {
+        List<Rarity> list = data.getList()
+            .stream()
+            .map(x -> {
                 try {
-
-                    if (pkt.data.getList()
-                        .isEmpty()) {
-                        throw new RuntimeException("Rarity list sent from server is empty!");
-                    }
-
-                    List<Rarity> list = pkt.data.getList()
-                        .stream()
-                        .map(x -> {
-                            try {
-                                JsonObject json = (JsonObject) PARSER.parse(x);
-                                return (Rarity) pkt.type.serializer.fromJson(json);
-                            } catch (JsonSyntaxException e) {
-                                System.out.println("Failed to parse Mine and Slash rarity Json!!!");
-                                e.printStackTrace();
-                            }
-                            return null;
-                        })
-                        .collect(Collectors.toList());
-
-                    pkt.type.container.updateFromDatapack(list);
-
-                } catch (Exception e) {
-
+                    JsonObject json = (JsonObject) PARSER.parse(x);
+                    return (Rarity) type.serializer.fromJson(json);
+                } catch (JsonSyntaxException e) {
+                    System.out.println("Failed to parse Mine and Slash rarity Json!!!");
                     e.printStackTrace();
                 }
-            });
+                return null;
+            })
+            .collect(Collectors.toList());
 
-        ctx.get()
-            .setPacketHandled(true);
+        type.container.updateFromDatapack(list);
 
     }
 
+    @Override
+    public MyPacket<RarityPacket> newInstance() {
+        return new RarityPacket();
+    }
 }

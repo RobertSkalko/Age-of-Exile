@@ -70,11 +70,11 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
     @Override
     public void onReceived(PacketContext ctx) {
-        if (isExp && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG.get()) {
+        if (isExp && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG) {
             ClientOnly.getPlayer()
                 .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + number + " EXP"));
 
-        } else if (isExp == false && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG.get()) {
+        } else if (isExp == false && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG) {
             OnDisplayDamage.displayParticle(element, string, x, y, z, height);
         }
     }

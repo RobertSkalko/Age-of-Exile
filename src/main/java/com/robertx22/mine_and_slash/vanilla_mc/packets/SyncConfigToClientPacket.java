@@ -1,15 +1,15 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ListStringSaving;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class SyncConfigToClientPacket {
+public class SyncConfigToClientPacket extends MyPacket<SyncConfigToClientPacket> {
 
     public ListStringData configData;
     public ConfigRegister.Config configType;
@@ -24,51 +24,36 @@ public class SyncConfigToClientPacket {
 
     }
 
-    public static SyncConfigToClientPacket decode(PacketByteBuf buf) {
-
-        try {
-            SyncConfigToClientPacket newpkt = new SyncConfigToClientPacket();
-            newpkt.configData = ListStringSaving.Load(buf.readCompoundTag());
-            newpkt.configType = ConfigRegister.Config.valueOf(buf.readString());
-            return newpkt;
-        } catch (IllegalArgumentException e) {
-            System.out.println("Failed to decode " + buf.toString());
-            e.printStackTrace();
-
-        }
-        return null;
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "syncconfig");
     }
 
-    public static void encode(SyncConfigToClientPacket packet, PacketByteBuf buf) {
-
-        try {
-            CompoundTag nbt = new CompoundTag();
-            ListStringSaving.Save(nbt, packet.configData);
-
-            buf.writeCompoundTag(nbt);
-            buf.writeString(packet.configType.name());
-        } catch (Exception e) {
-            System.out.println("Failed to encode " + packet.configType.name());
-            e.printStackTrace();
-        }
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        configData = ListStringSaving.Load(tag.readCompoundTag());
+        configType = ConfigRegister.Config.valueOf(tag.readString());
 
     }
 
-    public static void handle(final SyncConfigToClientPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        CompoundTag nbt = new CompoundTag();
+        ListStringSaving.Save(nbt, configData);
 
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
-                    ConfigRegister.CONFIGS.get(pkt.configType)
-                        .loadFromJsons(pkt.configData.getList());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+        tag.writeCompoundTag(nbt);
+        tag.writeString(configType.name());
 
     }
 
+    @Override
+    public void onReceived(PacketContext ctx) {
+        ConfigRegister.CONFIGS.get(configType)
+            .loadFromJsons(configData.getList());
+    }
+
+    @Override
+    public MyPacket<SyncConfigToClientPacket> newInstance() {
+        return new SyncConfigToClientPacket();
+    }
 }

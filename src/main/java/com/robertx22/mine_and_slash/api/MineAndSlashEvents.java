@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.api;
 
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
+import com.robertx22.mine_and_slash.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
@@ -17,13 +18,18 @@ public class MineAndSlashEvents {
 
         public List<GearItemData> gears;
 
-        LivingEntity entity;
+        public LivingEntity entity;
         public DamageEventData data;
 
         public CollectGearStacksEvent(LivingEntity entity, List<GearItemData> gears, DamageEventData data) {
             this.entity = entity;
             this.gears = gears;
             this.data = data;
+
+            CollectGearEvent.getEquipsExcludingWeapon(entity)
+                .forEach(x -> add(x));
+            CollectGearEvent.addHeldItems(this);
+
         }
 
         public void add(GearItemData data) {

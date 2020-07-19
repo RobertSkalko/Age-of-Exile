@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
-import com.robertx22.mine_and_slash.mmorpg.registers.client.ClientSetup;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CapabilityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
@@ -99,10 +98,6 @@ public class MMORPG implements ModInitializer {
     private void interModEnqueue() {
         System.out.println(Ref.MODID + ":InterModEnqueueEvent");
         RegisterCurioSlots.register();
-    }
-
-    public void clientSetup(final FMLClientSetupEvent event) {
-        ClientSetup.setup(event);
     }
 
     public static MinecraftServer server = null;

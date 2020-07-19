@@ -6,25 +6,26 @@ import com.google.gson.JsonSyntaxException;
 import com.robertx22.exiled_lib.registry.*;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.Cached;
+import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class RegistryPacket {
+public class RegistryPacket extends MyPacket<RegistryPacket> {
 
     static final JsonParser PARSER = new JsonParser();
 
     SlashRegistryType type;
     ListStringData data;
 
-    private RegistryPacket() {
+    public RegistryPacket() {
 
     }
 
@@ -53,81 +54,75 @@ public class RegistryPacket {
 
     }
 
-    public static RegistryPacket decode(PacketByteBuf buf) {
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "reg");
+    }
 
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
         try {
-            RegistryPacket newpkt = new RegistryPacket();
-            newpkt.type = SlashRegistryType.valueOf(buf.readString(30));
+            type = SlashRegistryType.valueOf(tag.readString(30));
 
-            CompoundTag nbt = buf.readCompoundTag();
+            CompoundTag nbt = tag.readCompoundTag();
 
-            newpkt.data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
-            return newpkt;
+            data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
+
         } catch (Exception e) {
             System.out.println("Failed reading Mine and Slash packet to bufferer.");
             e.printStackTrace();
         }
-        return new RegistryPacket();
 
     }
 
-    public static void encode(RegistryPacket packet, PacketByteBuf tag) {
+    @Override
+    public void saveToData(PacketByteBuf tag) {
         try {
-            tag.writeString(packet.type.name(), 30);
+            tag.writeString(type.name(), 30);
             CompoundTag nbt = new CompoundTag();
 
-            LoadSave.Save(packet.data, nbt, "data");
+            LoadSave.Save(data, nbt, "data");
 
             tag.writeCompoundTag(nbt);
         } catch (Exception e) {
-            System.out.println("Failed saving " + packet.type.name() + " Mine and Slash packet to bufferer.");
+            System.out.println("Failed saving " + type.name() + " Mine and Slash packet to bufferer.");
             e.printStackTrace();
         }
     }
 
-    public static void handle(final RegistryPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void onReceived(PacketContext ctx) {
+        Cached.reset();
 
-        ctx.get()
-            .enqueueWork(() -> {
+        if (data.getList()
+            .isEmpty()) {
+            throw new RuntimeException("Registry list sent from server is empty!");
+        }
+
+        data.getList()
+            .stream()
+            .map(x -> {
                 try {
-
-                    Cached.reset();
-
-                    if (pkt.data.getList()
-                        .isEmpty()) {
-                        throw new RuntimeException("Registry list sent from server is empty!");
-                    }
-
-                    pkt.data.getList()
-                        .stream()
-                        .map(x -> {
-                            try {
-                                JsonObject json = (JsonObject) PARSER.parse(x);
-                                return pkt.type.getSerializer()
-                                    .fromJson(json);
-                            } catch (JsonSyntaxException e) {
-                                System.out.println("Failed to parse Mine and Slash registry Json!!!");
-                                e.printStackTrace();
-                            }
-                            return null;
-
-                        })
-                        .collect(Collectors.toList())
-                        .forEach(x -> {
-                            if (x instanceof ISlashRegistryEntry) {
-                                SlashRegistryPackets.add((ISerializedRegistryEntry) x);
-                            }
-                        });
-
-                } catch (Exception e) {
-
+                    JsonObject json = (JsonObject) PARSER.parse(x);
+                    return type.getSerializer()
+                        .fromJson(json);
+                } catch (JsonSyntaxException e) {
+                    System.out.println("Failed to parse Mine and Slash registry Json!!!");
                     e.printStackTrace();
                 }
+                return null;
+
+            })
+            .collect(Collectors.toList())
+            .forEach(x -> {
+                if (x instanceof ISlashRegistryEntry) {
+                    SlashRegistryPackets.add((ISerializedRegistryEntry) x);
+                }
             });
-
-        ctx.get()
-            .setPacketHandled(true);
-
     }
 
+    @Override
+    public MyPacket<RegistryPacket> newInstance() {
+        return new RegistryPacket();
+    }
 }

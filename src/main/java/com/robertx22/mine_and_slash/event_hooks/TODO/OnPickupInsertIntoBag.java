@@ -1,20 +1,8 @@
-package com.robertx22.mine_and_slash.event_hooks.item;
-
-import com.robertx22.mine_and_slash.vanilla_mc.items.bags.BaseBagItem;
-import com.robertx22.mine_and_slash.vanilla_mc.items.bags.BaseInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.ItemPickupAnimationS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.wrapper.InvWrapper;
+package com.robertx22.mine_and_slash.event_hooks.TODO;
 
 public class OnPickupInsertIntoBag {
 
+    /*
     public static boolean preventAutoActions(ItemStack stack) {
         if (stack.hasCustomName() || stack.hasEnchantments()) {
             return true; // don't pickup into bag if it has custom name or encahnted, it means its part of current gear and not a new drop
@@ -102,5 +90,7 @@ public class OnPickupInsertIntoBag {
 
         return stack;
     }
+
+     */ TODO
 
 }

@@ -1,15 +1,10 @@
 package com.robertx22.mine_and_slash.event_hooks.data_gen.providers;
 
-import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
-import net.minecraft.advancement.criterion.EnchantedItemCriterion;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.server.RecipesProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -19,9 +14,9 @@ public class SlashRecipeProvider extends RecipesProvider {
         super(gen);
     }
 
-    @Override
+    //@Override TODO
     protected void generate(Consumer<RecipeJsonProvider> c) {
-
+/*
         shaped(SimpleMatItem.INFUSED_IRON)
             .input('#', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE.get())
             .input('i', Items.IRON_INGOT)
@@ -65,6 +60,8 @@ public class SlashRecipeProvider extends RecipesProvider {
                     .offerTo(c);
             }
         });
+
+ */
 
     }
 

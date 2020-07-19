@@ -1,11 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.options.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraftforge.client.settings.KeyConflictContext;
-import net.minecraftforge.client.settings.KeyModifier;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.HashMap;
@@ -24,8 +21,7 @@ public class KeybindsRegister {
     static KeyBinding SPELL_5 = hotbar(5, GLFW.GLFW_KEY_5);
 
     public static KeyBinding hotbar(int num, int keycode) {
-        return new KeyBinding("Spell Hotbar key " + num, KeyConflictContext.IN_GAME, KeyModifier.SHIFT,
-            InputUtil.Type.KEYSYM, keycode, HOTBAR_NAME
+        return new KeyBinding("Spell Hotbar key " + num, keycode, HOTBAR_NAME
         );
 
     }
@@ -50,11 +46,11 @@ public class KeybindsRegister {
 
     public static void register() {
 
-        ClientRegistry.registerKeyBinding(hubScreen);
-        ClientRegistry.registerKeyBinding(swapHotbar);
+        KeyBindingHelper.registerKeyBinding(hubScreen);
+        KeyBindingHelper.registerKeyBinding(swapHotbar);
 
         for (KeyBinding entry : HOTBAR.keySet()) {
-            ClientRegistry.registerKeyBinding(entry);
+            KeyBindingHelper.registerKeyBinding(entry);
         }
 
     }

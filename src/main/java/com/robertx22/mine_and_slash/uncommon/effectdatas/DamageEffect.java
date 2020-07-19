@@ -24,11 +24,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvents;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -134,7 +131,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         dmg = modifyByAttackSpeedIfMelee(dmg);
 
-        dmg = modifyIfArrowDamage(dmg);
+        //dmg = modifyIfArrowDamage(dmg);
 
         return dmg * percentMulti;
     }
@@ -168,7 +165,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return dmg;
 
     }
-
+/* TODO
     private float modifyIfArrowDamage(float dmg) {
         if (event != null && event.getSource() != null) {
             if (event.getSource()
@@ -193,6 +190,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return dmg;
 
     }
+
+ */
 
     public float getVisibleDamage() {
         float dmg = this.number * damageMultiplier;

@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import net.minecraft.server.network.ServerPlayerEntity;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
+import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class RequestSyncCapToClient {
+public class RequestSyncCapToClient extends MyPacket<RequestSyncCapToClient> {
 
     public RequestSyncCapToClient() {
 
@@ -19,40 +19,30 @@ public class RequestSyncCapToClient {
         this.type = type;
     }
 
-    public static RequestSyncCapToClient decode(PacketByteBuf buf) {
-
-        RequestSyncCapToClient newpkt = new RequestSyncCapToClient();
-        newpkt.type = buf.readEnumConstant(PlayerCaps.class);
-        return newpkt;
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "reqdata");
     }
 
-    public static void encode(RequestSyncCapToClient packet, PacketByteBuf tag) {
-
-        tag.writeEnumConstant(packet.type);
-
-    }
-
-    public static void handle(final RequestSyncCapToClient pkt, Supplier<NetworkEvent.Context> ctx) {
-
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
-
-                    final ServerPlayerEntity player = ctx.get()
-                        .getSender();
-
-                    if (player != null) {
-                        MMORPG.sendToClient(new SyncCapabilityToClient(player, pkt.type), player);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        type = tag.readEnumConstant(PlayerCaps.class);
 
     }
 
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        tag.writeEnumConstant(type);
+
+    }
+
+    @Override
+    public void onReceived(PacketContext ctx) {
+        Packets.sendToClient(ctx.getPlayer(), new SyncCapabilityToClient(ctx.getPlayer(), type));
+    }
+
+    @Override
+    public MyPacket<RequestSyncCapToClient> newInstance() {
+        return new RequestSyncCapToClient();
+    }
 }

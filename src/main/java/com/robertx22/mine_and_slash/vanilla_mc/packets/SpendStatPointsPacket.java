@@ -3,13 +3,12 @@ package com.robertx22.mine_and_slash.vanilla_mc.packets;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class SpendStatPointsPacket {
+public class SpendStatPointsPacket extends MyPacket<SpendStatPointsPacket> {
 
     public String stat;
 
@@ -22,43 +21,35 @@ public class SpendStatPointsPacket {
 
     }
 
-    public static SpendStatPointsPacket decode(PacketByteBuf buf) {
+    @Override
+    public Identifier getIdentifier() {
+        return null;
+    }
 
-        SpendStatPointsPacket newpkt = new SpendStatPointsPacket();
-
-        newpkt.stat = buf.readString(30);
-
-        return newpkt;
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        stat = tag.readString(30);
 
     }
 
-    public static void encode(SpendStatPointsPacket packet, PacketByteBuf tag) {
-
-        tag.writeString(packet.stat, 30);
-
-    }
-
-    public static void handle(final SpendStatPointsPacket pkt, Supplier<NetworkEvent.Context> ctx) {
-
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
-                    ServerPlayerEntity player = ctx.get()
-                        .getSender();
-                    if (player != null) {
-                        Load.statPoints(player)
-                            .addPoint(player, SlashRegistry.Stats()
-                                .get(pkt.stat), Load.Unit(player));
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        tag.writeString(stat, 30);
 
     }
 
+    @Override
+    public void onReceived(PacketContext ctx) {
+        PlayerEntity player = ctx.getPlayer();
+        if (player != null) {
+            Load.statPoints(player)
+                .addPoint(player, SlashRegistry.Stats()
+                    .get(stat), Load.Unit(player));
+        }
+    }
+
+    @Override
+    public MyPacket<SpendStatPointsPacket> newInstance() {
+        return new SpendStatPointsPacket();
+    }
 }

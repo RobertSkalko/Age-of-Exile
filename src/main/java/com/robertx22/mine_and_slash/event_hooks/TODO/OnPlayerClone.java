@@ -1,15 +1,9 @@
-package com.robertx22.mine_and_slash.event_hooks.player;
-
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+package com.robertx22.mine_and_slash.event_hooks.TODO;
 
 public class OnPlayerClone {
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+
+   /* TODO
     public static void onPlayerClone(PlayerEvent.Clone event) {
 
         PlayerEntity original = event.getOriginal();
@@ -39,5 +33,7 @@ public class OnPlayerClone {
             e.printStackTrace();
         }
     }
+
+    */
 
 }

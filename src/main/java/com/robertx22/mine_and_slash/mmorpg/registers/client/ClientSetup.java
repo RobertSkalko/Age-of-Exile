@@ -10,11 +10,10 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientSetup {
 
-    public static void setup(final FMLClientSetupEvent event) {
+    public static void setup() {
 
         RenderLayers.setRenderLayer(ModBlocks.GEAR_MODIFY.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(ModBlocks.GEAR_SALVAGE.get(), RenderLayer.getCutout());//cutout
@@ -24,10 +23,9 @@ public class ClientSetup {
         RenderLayers.setRenderLayer(ModBlocks.THORN_BUSH.get(), RenderLayer.getCutout());
         RenderLayers.setRenderLayer(ModBlocks.HOLY_FLOWER.get(), RenderLayer.getCutout());
 
-        CurioClientSetup.setup(event);
+        CurioClientSetup.setup();
 
         MinecraftForge.EVENT_BUS.register(new VanillaOverlay(MinecraftClient.getInstance()));
-
         MinecraftForge.EVENT_BUS.register(new MobBarScreen(MinecraftClient.getInstance()));
         MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
         MinecraftForge.EVENT_BUS.register(new SpellHotbarOverlay());

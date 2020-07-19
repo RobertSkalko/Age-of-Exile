@@ -3,15 +3,16 @@ package com.robertx22.mine_and_slash.vanilla_mc.packets.spells;
 import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.server.network.ServerPlayerEntity;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
+import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
-public class CastSpellPacket {
+public class CastSpellPacket extends MyPacket<CastSpellPacket> {
 
     public Integer hotbarNumber;
     public SpellCastingData.Hotbar hotbar;
@@ -26,59 +27,51 @@ public class CastSpellPacket {
 
     }
 
-    public static CastSpellPacket decode(PacketByteBuf buf) {
+    @Override
+    public Identifier getIdentifier() {
+        return new Identifier(Ref.MODID, "castspell");
+    }
 
-        CastSpellPacket newpkt = new CastSpellPacket();
-
-        newpkt.hotbarNumber = buf.readInt();
-        newpkt.hotbar = SpellCastingData.Hotbar.valueOf(buf.readString(30));
-
-        return newpkt;
+    @Override
+    public void loadFromData(PacketByteBuf tag) {
+        hotbarNumber = tag.readInt();
+        hotbar = SpellCastingData.Hotbar.valueOf(tag.readString(30));
 
     }
 
-    public static void encode(CastSpellPacket packet, PacketByteBuf tag) {
-
-        tag.writeInt(packet.hotbarNumber);
-        tag.writeString(packet.hotbar.name());
+    @Override
+    public void saveToData(PacketByteBuf tag) {
+        tag.writeInt(hotbarNumber);
+        tag.writeString(hotbar.name());
 
     }
 
-    public static void handle(final CastSpellPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+    @Override
+    public void onReceived(PacketContext ctx) {
+        PlayerEntity player = ctx.getPlayer();
 
-        ctx.get()
-            .enqueueWork(() -> {
-                try {
+        PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                    ServerPlayerEntity player = ctx.get()
-                        .getSender();
+        if (spells.getCastingData()
+            .canCast(hotbarNumber, hotbar, player)) {
+            spells.getCastingData()
+                .setToCast(hotbarNumber, hotbar, player, 0);
 
-                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+            BaseSpell spell = spells.getCastingData()
+                .getSpellBeingCast();
+            if (spell != null) {
 
-                    if (spells.getCastingData()
-                        .canCast(pkt.hotbarNumber, pkt.hotbar, player)) {
-                        spells.getCastingData()
-                            .setToCast(pkt.hotbarNumber, pkt.hotbar, player, 0);
+                SpellCastContext c = new SpellCastContext(player, 0, spell);
 
-                        BaseSpell spell = spells.getCastingData()
-                            .getSpellBeingCast();
-                        if (spell != null) {
+                spell.spendResources(c);
+            }
 
-                            SpellCastContext c = new SpellCastContext(player, 0, spell);
-
-                            spell.spendResources(c);
-                        }
-
-                        spells.syncToClient(player);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-        ctx.get()
-            .setPacketHandled(true);
+            spells.syncToClient(player);
+        }
     }
 
+    @Override
+    public MyPacket<CastSpellPacket> newInstance() {
+        return new CastSpellPacket();
+    }
 }

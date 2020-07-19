@@ -4,32 +4,34 @@ import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.OnLoginClientPacket;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class OnLogin {
+public class OnLogin implements ServerEntityEvents.Load {
 
-    @SubscribeEvent
-    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
+    @Override
+    public void onLoad(Entity entity, ServerWorld serverWorld) {
 
-        if (event.getPlayer().world.isClient) {
+        if (!(entity instanceof ServerPlayerEntity)) {
             return;
         }
 
-        try {
+        ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
-            ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+        try {
 
             MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.BEFORE), player);
             ConfigRegister.CONFIGS.values()
@@ -60,12 +62,12 @@ public class OnLogin {
                     new LiteralText("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
             }
 
-        } catch (Exception e) {
+        } catch (
+            Exception e) {
             e.printStackTrace();
         }
 
         SlashRegistry.restoreFromBackupifEmpty();
-
     }
 
     public static void GiveStarterItems(PlayerEntity player) {
@@ -74,7 +76,7 @@ public class OnLogin {
             return;
         }
 
-        player.inventory.insertStack(new ItemStack(ModRegistry.MISC_ITEMS.NEWBIE_GEAR_BAG.get()));
+        player.inventory.insertStack(new ItemStack(ModRegistry.MISC_ITEMS.NEWBIE_GEAR_BAG));
 
     }
 

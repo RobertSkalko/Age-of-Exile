@@ -2,24 +2,22 @@ package com.robertx22.mine_and_slash.event_hooks.ontick;
 
 import com.robertx22.mine_and_slash.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.mine_and_slash.event_hooks.ontick.OnServerTick.PlayerTickData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class OnServerTick {
+public class OnServerTick implements ServerTickEvents.EndTick {
 
     static final int TicksToUpdatePlayer = 18;
     static final int TicksToRegen = 20; // was 100, todo balance
@@ -29,14 +27,13 @@ public class OnServerTick {
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
-    @SubscribeEvent
-    public static void onTickLogicVoid(TickEvent.PlayerTickEvent event) {
+    @Override
+    public void onEndTick(MinecraftServer server) {
 
-        if (event.side.equals(LogicalSide.SERVER) && event.phase == TickEvent.Phase.END) {
+        for (ServerPlayerEntity player : server.getPlayerManager()
+            .getPlayerList()) {
 
             try {
-
-                ServerPlayerEntity player = (ServerPlayerEntity) event.player;
 
                 PlayerTickData data = PlayerTickDatas.get(player.getUuid());
 
@@ -50,96 +47,90 @@ public class OnServerTick {
                     data.regenTicks = 0;
                     if (player.isAlive()) {
 
-                        player.getCapability(EntityCap.Data)
-                            .ifPresent(x -> {
-                                x.forceRecalculateStats(player);
-                                // has to do
-                                // this cus curios doesnt call
-                                // equipsChanged event - actually
-                                // there's one, but i fear  bugs
+                        EntityCap.UnitData unitdata = Load.Unit(player);
 
-                                Unit unit = x.getUnit();
+                        unitdata.forceRecalculateStats(player);
+                        // has to do
+                        // this cus curios doesnt call
+                        // equipsChanged event - actually
+                        // there's one, but i fear  bugs
 
-                                float manarestored = unit.peekAtStat(ManaRegen.GUID)
-                                    .getAverageValue();
-                                manarestored += unit.peekAtStat(RegeneratePercentStat.MANA)
-                                    .getAverageValue() * unit.manaData()
-                                    .getAverageValue() / 100F;
+                        Unit unit = unitdata.getUnit();
 
-                                ResourcesData.Context mana = new ResourcesData.Context(x, player, ResourcesData.Type.MANA,
-                                    manarestored,
-                                    ResourcesData.Use.RESTORE
-                                );
-                                x.getResources()
-                                    .modify(mana);
+                        float manarestored = unit.peekAtStat(ManaRegen.GUID)
+                            .getAverageValue();
+                        manarestored += unit.peekAtStat(RegeneratePercentStat.MANA)
+                            .getAverageValue() * unit.manaData()
+                            .getAverageValue() / 100F;
 
-                                boolean restored = false;
+                        ResourcesData.Context mana = new ResourcesData.Context(unitdata, player, ResourcesData.Type.MANA,
+                            manarestored,
+                            ResourcesData.Use.RESTORE
+                        );
+                        unitdata.getResources()
+                            .modify(mana);
 
-                                boolean canHeal = player.getHungerManager()
-                                    .getFoodLevel() >= 18;
+                        boolean restored = false;
 
-                                if (canHeal) {
-                                    if (player.getHealth() < player.getMaximumHealth()) {
-                                        restored = true;
-                                    }
+                        boolean canHeal = player.getHungerManager()
+                            .getFoodLevel() >= 18;
 
-                                    float healthrestored = unit.peekAtStat(HealthRegen.GUID)
-                                        .getAverageValue();
-                                    healthrestored += unit.peekAtStat(RegeneratePercentStat.HEALTH)
-                                        .getAverageValue() * player.getMaximumHealth() / 100F;
-                                    ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
-                                        healthrestored,
-                                        ResourcesData.Use.RESTORE
-                                    );
+                        if (canHeal) {
+                            if (player.getHealth() < player.getMaximumHealth()) {
+                                restored = true;
+                            }
 
-                                    x.getResources()
-                                        .modify(hp);
+                            float healthrestored = unit.peekAtStat(HealthRegen.GUID)
+                                .getAverageValue();
+                            healthrestored += unit.peekAtStat(RegeneratePercentStat.HEALTH)
+                                .getAverageValue() * player.getMaximumHealth() / 100F;
+                            ResourcesData.Context hp = new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH,
+                                healthrestored,
+                                ResourcesData.Use.RESTORE
+                            );
 
-                                    if (x.getResources()
-                                        .getMagicShield() < x.getUnit()
-                                        .magicShieldData()
-                                        .getAverageValue()) {
-                                        restored = true;
-                                    }
+                            unitdata.getResources()
+                                .modify(hp);
 
-                                    float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID)
-                                        .getAverageValue();
-                                    magicshieldrestored += unit.peekAtStat(RegeneratePercentStat.MAGIC_SHIELD)
-                                        .getAverageValue() * unit.magicShieldData()
-                                        .getAverageValue() / 100F;
-                                    ResourcesData.Context ms = new ResourcesData.Context(x, player,
-                                        ResourcesData.Type.MAGIC_SHIELD,
-                                        magicshieldrestored,
-                                        ResourcesData.Use.RESTORE
-                                    );
-                                    x.getResources()
-                                        .modify(ms);
+                            if (unitdata.getResources()
+                                .getMagicShield() < unitdata.getUnit()
+                                .magicShieldData()
+                                .getAverageValue()) {
+                                restored = true;
+                            }
 
-                                    if (restored) {
+                            float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID)
+                                .getAverageValue();
+                            magicshieldrestored += unit.peekAtStat(RegeneratePercentStat.MAGIC_SHIELD)
+                                .getAverageValue() * unit.magicShieldData()
+                                .getAverageValue() / 100F;
+                            ResourcesData.Context ms = new ResourcesData.Context(unitdata, player,
+                                ResourcesData.Type.MAGIC_SHIELD,
+                                magicshieldrestored,
+                                ResourcesData.Use.RESTORE
+                            );
+                            unitdata.getResources()
+                                .modify(ms);
 
-                                        float percentHealed = healthrestored / player.getMaximumHealth();
+                            if (restored) {
 
-                                        float exhaustion = ModConfig.INSTANCE.Server.REGEN_HUNGER_COST.get()
-                                            .floatValue() * percentHealed;
+                                float percentHealed = healthrestored / player.getMaximumHealth();
 
-                                        player.getHungerManager()
-                                            .addExhaustion(exhaustion);
+                                float exhaustion = (float) ModConfig.INSTANCE.Server.REGEN_HUNGER_COST * percentHealed;
 
-                                    }
-                                }
+                                player.getHungerManager()
+                                    .addExhaustion(exhaustion);
 
-                            });
+                            }
+                        }
+
                     }
                 }
 
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
-
-                    if (player.getServer()
-                        .isSinglePlayer()) {
-                        // SlashRegistry.restoreFromBackupifEmpty();
-                    }
                 }
+
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {
                     data.ticksToProcessChunks = 0;
 
@@ -148,11 +139,10 @@ public class OnServerTick {
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
                     data.ticksToSpellCooldowns = 0;
 
-                    player.getCapability(PlayerSpellCap.Data)
-                        .ifPresent(x -> {
-                            x.getCastingData()
-                                .onTimePass(player, x, TicksToSpellCooldowns);
-                        });
+                    Load.spells(player)
+                        .getCastingData()
+                        .onTimePass(player, Load.spells(player), TicksToSpellCooldowns);
+
                 }
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
@@ -169,7 +159,6 @@ public class OnServerTick {
             }
 
         }
-
     }
 
     static class PlayerTickData {

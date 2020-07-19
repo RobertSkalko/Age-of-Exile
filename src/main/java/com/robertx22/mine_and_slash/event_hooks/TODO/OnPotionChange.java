@@ -1,19 +1,8 @@
-package com.robertx22.mine_and_slash.event_hooks.entity;
-
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.database.data.stats.types.defense.ImmuneToEffectStat;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IOneOfATypePotion;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraftforge.event.entity.living.PotionEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.List;
-import java.util.stream.Collectors;
+package com.robertx22.mine_and_slash.event_hooks.TODO;
 
 public class OnPotionChange {
 
+    /* TODO
     //PotionAddedEvent is called BEFORE adding the potion
     @SubscribeEvent
     public static void onAdded(PotionEvent.PotionAddedEvent event) {
@@ -92,5 +81,7 @@ public class OnPotionChange {
         }
 
     }
+
+     */
 
 }
