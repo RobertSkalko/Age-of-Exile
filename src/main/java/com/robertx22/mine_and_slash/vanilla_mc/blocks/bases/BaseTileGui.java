@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.packets.RequestTilePacket;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 
 public abstract class BaseTileGui<Tile extends BlockEntity> extends Screen {
@@ -55,7 +56,7 @@ public abstract class BaseTileGui<Tile extends BlockEntity> extends Screen {
     int ticks;
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks) {
+    public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks) {
 
         ticks++;
 
@@ -65,8 +66,8 @@ public abstract class BaseTileGui<Tile extends BlockEntity> extends Screen {
             }
         }
 
-        this.renderBackground();
-        super.render(mouseX, mouseY, partialTicks);
+        this.renderBackground(matrix);
+        super.render(matrix, mouseX, mouseY, partialTicks);
 
     }
 

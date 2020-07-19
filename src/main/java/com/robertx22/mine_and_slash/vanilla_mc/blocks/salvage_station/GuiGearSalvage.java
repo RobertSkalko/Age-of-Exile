@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.TileGui;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -41,7 +42,7 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
     final int COOK_BAR_HEIGHT = 17;
 
     @Override
-    protected void drawBackground(float partialTicks, int x, int y) {
+    protected void drawBackground(MatrixStack matrix, float partialTicks, int x, int y) {
 
         // Bind the image texture
         MinecraftClient.getInstance()
@@ -49,23 +50,23 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
             .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
+        drawTexture(matrix, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
 
         // get cook progress as a double between 0 and 1
         double cookProgress = tile.fractionOfCookTimeComplete();
         // draw the cook progress bar
-        blit(x + COOK_BAR_XPOS, y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        drawTexture(matrix, x + COOK_BAR_XPOS, y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
     }
 
     @Override
-    protected void drawForeground(int mouseX, int mouseY) {
-        super.drawForeground(mouseX, mouseY);
+    protected void drawForeground(MatrixStack matrix, int mouseX, int mouseY) {
+        super.drawForeground(matrix, mouseX, mouseY);
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
 
-        font.draw(CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
+        font.draw(matrix, CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
             .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();

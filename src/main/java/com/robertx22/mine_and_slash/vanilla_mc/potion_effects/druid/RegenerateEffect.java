@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class RegenerateEffect extends BasePotionEffect {
             }
             return ctx;
         }, info -> {
-            List<MutableText> list = new ArrayList<>();
+            List<Text> list = new ArrayList<>();
             list.add(new LiteralText("Heals user."));
             list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), getAbilityThatDeterminesLevel()));
             return list;

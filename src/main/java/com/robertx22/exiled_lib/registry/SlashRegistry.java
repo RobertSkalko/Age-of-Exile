@@ -54,7 +54,7 @@ public class SlashRegistry {
     }
 
     public static DimensionConfig getDimensionConfig(WorldAccess world) {
-        String id = MapManager.getResourceLocation(world.getDimension())
+        String id = MapManager.getResourceLocation(world.getWorld())
             .toString();
         return DimensionConfigs().get(id);
     }

@@ -14,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -82,7 +81,7 @@ public class TidalWaveSpell extends BaseSpell {
     @Override
     public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Throw waves in a cone, damaging enemies: "));
 

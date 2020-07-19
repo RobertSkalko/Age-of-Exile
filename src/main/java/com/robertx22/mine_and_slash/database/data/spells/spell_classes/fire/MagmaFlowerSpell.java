@@ -14,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class MagmaFlowerSpell extends BaseSpell {
     @Override
     public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new SText("Summons a flower that attacks enemies nearby."));
 

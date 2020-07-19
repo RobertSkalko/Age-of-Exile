@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.TileGui;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
@@ -42,7 +43,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     final int COOK_BAR_HEIGHT = 17;
 
     @Override
-    protected void drawBackground(float partialTicks, int x, int y) {
+    protected void drawBackground(MatrixStack matrix, float partialTicks, int x, int y) {
 
         // Bind the image texture
         MinecraftClient.getInstance()
@@ -51,10 +52,10 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        blit(this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
+        drawTexture(matrix, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
 
         // draw the cook progress bar
-        blit(
+        drawTexture(matrix,
             x + 85, y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V,
             (int) (this.tile.fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT
         );
@@ -62,8 +63,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     }
 
     @Override
-    protected void drawForeground(int mouseX, int mouseY) {
-        super.drawForeground(mouseX, mouseY);
+    protected void drawForeground(MatrixStack matrix, int mouseX, int mouseY) {
+        super.drawForeground(matrix, mouseX, mouseY);
 
         LocReqContext context = tile.getLocReqContext();
         if (context.effect != null && context.hasStack()) {
@@ -78,13 +79,13 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                     if (add) {
                         String reqtext = CLOC.translate(Words.RequirementsNotMet.locName()) + ": ";
 
-                        font.draw(
+                        font.draw(matrix,
                             reqtext, this.backgroundWidth / 2 - font.getWidth(reqtext) / 2, y, Color.red.getRGB());
                         y += font.fontHeight + 1;
                         add = false;
                     }
 
-                    font.draw(txt, this.backgroundWidth / 2 - font.getWidth(txt) / 2, y, Color.red.getRGB());
+                    font.draw(matrix, txt, this.backgroundWidth / 2 - font.getWidth(txt) / 2, y, Color.red.getRGB());
                     y += font.fontHeight;
                 }
             }
@@ -93,7 +94,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
-        font.draw(CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+        font.draw(matrix, CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
 

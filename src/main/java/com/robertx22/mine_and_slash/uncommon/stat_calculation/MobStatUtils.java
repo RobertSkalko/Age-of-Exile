@@ -95,7 +95,7 @@ public class MobStatUtils {
         int lvl = unitdata.getLevel();
 
         float hpaddedalready = 0;
-        EntityAttributeModifier hpmod = en.getAttributeInstance(EntityAttributes.MAX_HEALTH)
+        EntityAttributeModifier hpmod = en.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)
             .getModifier(Unit.hpID);
         if (hpmod != null) {
             hpaddedalready = (float) hpmod.getValue();

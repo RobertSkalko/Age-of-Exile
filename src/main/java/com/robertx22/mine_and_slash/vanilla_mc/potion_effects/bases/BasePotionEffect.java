@@ -108,7 +108,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     //public abstract List<ITextComponent> getEffectTooltip(TooltipInfo info);
 
-    public List<MutableText> getEffectTooltip(TooltipInfo info) {
+    public List<Text> getEffectTooltip(TooltipInfo info) {
         return new ArrayList<>();
     }
 

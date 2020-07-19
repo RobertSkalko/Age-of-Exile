@@ -21,7 +21,9 @@ public abstract class NonFullBlock extends Block {
         super(properties.nonOpaque());
 
         this.setDefaultState(
-                this.stateManager.getDefaultState().with(direction, Direction.NORTH).with(light, Boolean.valueOf(true)));
+            this.stateManager.getDefaultState()
+                .with(direction, Direction.NORTH)
+                .with(light, Boolean.valueOf(true)));
 
     }
 
@@ -30,13 +32,10 @@ public abstract class NonFullBlock extends Block {
     }
 
     @Override
-    public int getLuminance(BlockState state) {
-        return super.getLuminance(state);
-    }
-
-    @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return this.getDefaultState().with(direction, context.getPlayerFacing().getOpposite());
+        return this.getDefaultState()
+            .with(direction, context.getPlayerFacing()
+                .getOpposite());
     }
 
     @Override

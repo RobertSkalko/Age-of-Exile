@@ -39,7 +39,7 @@ public abstract class LivingEntityMixin {
 
                 LivingHurtUtils.damageArmorItems(en);
 
-                float afterArmor = DamageUtil.getDamageLeft(damage, (float) en.getArmor(), (float) en.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS)
+                float afterArmor = DamageUtil.getDamageLeft(damage, (float) en.getArmor(), (float) en.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)
                     .getValue());
 
                 float diff = damage - afterArmor;

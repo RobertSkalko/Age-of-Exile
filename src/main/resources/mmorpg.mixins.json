@@ -6,6 +6,7 @@
   "mixins": [
     "LivingEntityMixin",
 	"ChestMixin",
+	"MinecraftServerMixin",
 	"ArrowShootMixin"
   ],
   "injectors": {

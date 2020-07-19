@@ -1,18 +1,19 @@
 package com.robertx22.mine_and_slash.database.data.stats.tooltips;
 
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
 
 public class BaseLocalStatTooltip implements IStatTooltipType {
 
     @Override
-    public List<MutableText> getTooltipList(TooltipStatInfo info) {
+    public List<Text> getTooltipList(TooltipStatInfo info) {
 
-        List<MutableText> list = new ArrayList<MutableText>();
+        List<Text> list = new ArrayList<Text>();
 
         list.add(new LiteralText(Formatting.GRAY + info.stat.getStatNameRegex()
             .translate(info.type, info.firstValue, info.secondValue, info.stat)));

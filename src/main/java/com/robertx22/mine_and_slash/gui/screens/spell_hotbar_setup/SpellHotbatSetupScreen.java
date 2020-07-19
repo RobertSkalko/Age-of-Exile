@@ -238,7 +238,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             BaseSpell spell = getSpell();
 
             if (spell != null) {
-                RenderUtils.render16Icon(spell.getIconLoc(), this.x + 2, this.y + 2);
+                RenderUtils.render16Icon(matrix, spell.getIconLoc(), this.x + 2, this.y + 2);
             }
         }
 
@@ -292,7 +292,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
             if (skillgem != null && skillgem.getSpell()
                 .getIconLoc() != null) {
-                RenderUtils.render16Icon(skillgem.getSpell()
+                RenderUtils.render16Icon(matrix, skillgem.getSpell()
                     .getIconLoc(), this.x, this.y);
             }
         }

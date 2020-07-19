@@ -7,7 +7,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
-import net.minecraft.util.math.Vec3d;
 
 public class NoMobAroundCondition extends LootCrateCondition {
 
@@ -19,11 +18,11 @@ public class NoMobAroundCondition extends LootCrateCondition {
 
     @Override
     public boolean canOpenCrate(PlayerEntity player, BlockEntity box) {
-        return EntityFinder.start(player, LivingEntity.class, new Vec3d(box.getPos()))
-                .radius(radius)
-                .addPredicate(x -> EntityTypeUtils.isMob(x))
-                .build()
-                .size() < 1;
+        return EntityFinder.start(player, LivingEntity.class, box.getPos())
+            .radius(radius)
+            .addPredicate(x -> EntityTypeUtils.isMob(x))
+            .build()
+            .size() < 1;
     }
 
     @Override

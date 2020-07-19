@@ -25,7 +25,7 @@ public class ItemIncreaseRarityNearestEntity extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player,
-                                                    Hand hand) {
+                                            Hand hand) {
 
         if (!world.isClient) {
             try {
@@ -48,7 +48,7 @@ public class ItemIncreaseRarityNearestEntity extends Item {
                             return new TypedActionResult<ItemStack>(ActionResult.PASS, player
                                 .getStackInHand(hand));
                         } else {
-                            player.sendSystemMessage(Chats.No_targets_found.locName());
+                            player.sendMessage(Chats.No_targets_found.locName(), false);
                         }
                     }
 

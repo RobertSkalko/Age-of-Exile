@@ -347,7 +347,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
                 Identifier res = stat.getIconLocation();
 
-                RenderUtils.render16Icon(res, getIconX(), getIconY());
+                RenderUtils.render16Icon(matrix, res, getIconX(), getIconY());
 
                 StatOverviewScreen.this.drawStringWithShadow(matrix, font, str, this.x, this.y, Formatting.GOLD.getColorValue());
             }

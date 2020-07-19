@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.data_generation.rarities.SkillGemRarityManag
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.database.registrators.CurrencyItems;
+import com.robertx22.mine_and_slash.mixins.MinecraftServerMixin;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.error_checks.base.ErrorChecks;
@@ -35,8 +36,10 @@ public class LifeCycleEvents {
 
             MMORPG.server = server;
 
-            ReloadableResourceManager manager = server
-                .getDataManager();
+            MinecraftServerMixin ms = (MinecraftServerMixin) server;
+
+            ReloadableResourceManager manager = (ReloadableResourceManager) ms.getResourceManager()
+                .getResourceManager();
 
             manager.registerListener(new BaseGearTypeDatapackManager());
             manager.registerListener(new TierDatapackManager());

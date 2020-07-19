@@ -17,7 +17,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic.Shive
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -85,7 +84,7 @@ public class WhirlpoolSpell extends BaseSpell {
     @Override
     public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Summons a whirpool that slows and damages enemies: "));
 

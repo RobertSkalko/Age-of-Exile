@@ -76,7 +76,7 @@ public class LootInfo {
 
         info.world = world;
         info.pos = pos;
-        info.level = LevelUtils.determineLevel(world, pos, PlayerUtils.nearestPlayer((ServerWorld) world, new Vec3d(pos)));
+        info.level = LevelUtils.determineLevel(world, pos, PlayerUtils.nearestPlayer((ServerWorld) world, new Vec3d(pos.getX(), pos.getY(), pos.getZ())));
 
         info.setupAllFields();
 

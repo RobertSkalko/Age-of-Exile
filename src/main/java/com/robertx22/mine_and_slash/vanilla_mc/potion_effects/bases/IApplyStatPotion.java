@@ -7,13 +7,14 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
 
 public interface IApplyStatPotion {
 
@@ -34,9 +35,9 @@ public interface IApplyStatPotion {
 
     List<PotionStat> getPotionStats();
 
-    default List<MutableText> getStatTooltip(TooltipInfo info, BasePotionEffect effect) {
+    default List<Text> getStatTooltip(TooltipInfo info, BasePotionEffect effect) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         ExtraPotionData minStacks = new ExtraPotionData();
 

@@ -154,10 +154,10 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
 
-            RenderUtils.render16Icon(screen.iconLocation(), this.x + 9, this.y + 7);
+            RenderUtils.render16Icon(matrix, screen.iconLocation(), this.x + 9, this.y + 7);
 
             if (shouldAlert) {
-                RenderUtils.render16Icon(EXLAMATION_MARK_TEX, this.x + 5, this.y + 7);
+                RenderUtils.render16Icon(matrix, EXLAMATION_MARK_TEX, this.x + 5, this.y + 7);
             }
 
             String str = screen.screenName()

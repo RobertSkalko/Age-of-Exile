@@ -5,6 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -179,7 +180,10 @@ public class EntityFinder {
     public static <T extends LivingEntity> Setup<T> start(LivingEntity caster, Class<T> entityType, Vec3d pos) {
         Setup<T> setup = new Setup<T>(caster, entityType, pos);
         return setup;
+    }
 
+    public static <T extends LivingEntity> Setup<T> start(LivingEntity caster, Class<T> entityType, BlockPos p) {
+        return start(caster, entityType, new Vec3d(p.getX(), p.getY(), p.getZ()));
     }
 
     public static class Setup<T extends LivingEntity> {

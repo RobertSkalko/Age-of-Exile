@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -21,6 +22,8 @@ public class LevelUtils {
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
 
+        ServerWorld sw = (ServerWorld) world;
+
         DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(world);
 
         int lvl = 0;
@@ -30,10 +33,10 @@ public class LevelUtils {
                 lvl = Load.Unit(nearestPlayer)
                     .getLevel();
             } else {
-                lvl = determineLevelPerDistanceFromSpawn(world, pos, dimConfig);
+                lvl = determineLevelPerDistanceFromSpawn(sw, pos, dimConfig);
             }
         } else {
-            lvl = determineLevelPerDistanceFromSpawn(world, pos, dimConfig);
+            lvl = determineLevelPerDistanceFromSpawn(sw, pos, dimConfig);
         }
 
         lvl = MathHelper.clamp(dimConfig.min_lvl + lvl, dimConfig.min_lvl, dimConfig.max_lvl);
@@ -41,7 +44,7 @@ public class LevelUtils {
         return lvl;
     }
 
-    public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos, DimensionConfig config) {
+    public static int determineLevelPerDistanceFromSpawn(ServerWorld world, BlockPos pos, DimensionConfig config) {
 
         BlockPos spawnPos = world.getSpawnPos();
 
@@ -56,7 +59,7 @@ public class LevelUtils {
 
     }
 
-    public static BlockPos getAreaPosOfLevel(World world, int level, DimensionConfig config) {
+    public static BlockPos getAreaPosOfLevel(ServerWorld world, int level, DimensionConfig config) {
 
         if (level == 1) {
             return world.getSpawnPos();
@@ -71,7 +74,7 @@ public class LevelUtils {
 
     }
 
-    public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos) {
+    public static int determineLevelPerDistanceFromSpawn(ServerWorld world, BlockPos pos) {
         return determineLevelPerDistanceFromSpawn(world, pos, SlashRegistry.getDimensionConfig(world));
 
     }

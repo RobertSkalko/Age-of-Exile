@@ -19,7 +19,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionS
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class PoisonEffect extends BasePotionEffect implements IApplyStatPotion {
             SoundUtils.playSound(ctx.entity, SoundEvents.BLOCK_GRASS_BREAK, 1, 1);
             return ctx;
         }, info -> {
-            List<MutableText> list = new ArrayList<>();
+            List<Text> list = new ArrayList<>();
             list.add(new LiteralText("Does damage:"));
             list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), this));
 

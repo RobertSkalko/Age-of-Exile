@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartToo
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class MergedStats implements IGearPartTooltip {
     @Override
     public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
-        List<MutableText> tooltip = new ArrayList<>();
+        List<Text> tooltip = new ArrayList<>();
 
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;

@@ -69,16 +69,6 @@ public abstract class BaseInventoryBlock extends NonFullBlock implements BlockEn
         return true;
     }
 
-    @Override
-    public boolean isSimpleFullBlock(BlockState state, BlockView worldIn, BlockPos pos) {
-        return false;
-    }
-
-    @Override
-    public boolean hasBlockEntity() {
-        return true;
-    }
-
     public abstract Identifier getContainerId();
 
     @Override

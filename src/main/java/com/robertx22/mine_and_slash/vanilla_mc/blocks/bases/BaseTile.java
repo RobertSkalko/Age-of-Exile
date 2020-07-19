@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.bases;
 
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.ItemCapacitor;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -302,8 +303,8 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
 
     // This is where you load the dataInstance that you saved in write
     @Override
-    public void fromTag(CompoundTag nbtTagCompound) {
-        super.fromTag(nbtTagCompound); // The super call is required to save and load the tiles location
+    public void fromTag(BlockState state, CompoundTag nbtTagCompound) {
+        super.fromTag(state, nbtTagCompound); // The super call is required to save and load the tiles location
         final byte NBT_TYPE_COMPOUND = 10; // See NBTBase.createNewByType() for a listing
         ListTag dataForAllSlots = nbtTagCompound.getList("Items", NBT_TYPE_COMPOUND);
 

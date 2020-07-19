@@ -1,12 +1,9 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.offhands;
 
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.ShieldEntityModel;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,9 +20,10 @@ public class ShieldRenderer extends BuiltinModelItemRenderer implements Callable
     }
 
     @Override
-    public void render(ItemStack stack, MatrixStack mat, VertexConsumerProvider renderType, int light, int overlayLight) {
+    public void render(ItemStack stack, ModelTransformation.Mode mode, MatrixStack mat, VertexConsumerProvider renderType, int i, int j) {
         Item item = stack.getItem();
 
+        /*
         if (item instanceof NormalShield) {
 
             NormalShield shield = (NormalShield) item;
@@ -47,8 +45,12 @@ public class ShieldRenderer extends BuiltinModelItemRenderer implements Callable
 
             mat.pop();
 
+
+
         }
 
+
+         */
     }
 
     @Override

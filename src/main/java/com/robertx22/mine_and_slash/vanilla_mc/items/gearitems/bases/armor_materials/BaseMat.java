@@ -22,4 +22,8 @@ public abstract class BaseMat implements ArmorMaterial {
         return Ingredient.ofItems(Items.STRUCTURE_BLOCK); // as in, nothing besides creative items should repair it
     }
 
+    @Override
+    public float getKnockbackResistance() {
+        return 0;
+    }
 }

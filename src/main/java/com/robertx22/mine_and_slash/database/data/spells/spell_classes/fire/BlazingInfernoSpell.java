@@ -23,7 +23,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketD
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -86,7 +85,7 @@ public class BlazingInfernoSpell extends BaseSpell {
     @Override
     public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new SText("Do damage to enemies around you."));
 
