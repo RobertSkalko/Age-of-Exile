@@ -10,8 +10,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import net.minecraft.item.ItemStack;
 
-
-
 public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable, ITooltip, IRarity {
 
     DataItemType getDataType();
@@ -23,7 +21,6 @@ public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable,
 
     void saveToStack(ItemStack stack);
 
-    @Nullable
     static ICommonDataItem load(ItemStack stack) {
 
         GearItemData gear = Gear.Load(stack);

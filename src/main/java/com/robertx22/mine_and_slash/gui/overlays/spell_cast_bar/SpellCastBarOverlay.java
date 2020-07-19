@@ -1,18 +1,9 @@
 package com.robertx22.mine_and_slash.gui.overlays.spell_cast_bar;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.entity.boss.BossBar;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class SpellCastBarOverlay extends DrawableHelper {
-
+/*
     private static final Identifier GUI_BARS_TEXTURES = new Identifier("textures/gui/bars.png");
 
     static int WIDTH = 182;
@@ -64,4 +55,6 @@ public class SpellCastBarOverlay extends DrawableHelper {
 
     }
 
+
+ */
 }

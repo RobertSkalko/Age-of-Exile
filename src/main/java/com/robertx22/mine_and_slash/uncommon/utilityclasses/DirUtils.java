@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,7 +8,10 @@ import java.nio.file.Paths;
 public class DirUtils {
 
     public static String modDir() {
-        return FMLPaths.GAMEDIR.get().toString().replace("run", "src");
+        return FabricLoader.getInstance()
+            .getGameDirectory()
+            .toString()
+            .replace("run", "src");
     }
 
     public static String langFolderDir() {

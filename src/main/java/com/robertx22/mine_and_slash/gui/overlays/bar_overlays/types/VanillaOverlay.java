@@ -5,48 +5,30 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-import net.minecraftforge.client.gui.ForgeIngameGui;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
 
-public class VanillaOverlay extends InGameHud {
+public class VanillaOverlay extends InGameHud implements ClientTickEvents.EndTick {
 
-    public VanillaOverlay(MinecraftClient mc) {
-        super(mc);
+    public VanillaOverlay() {
+        super(MinecraftClient.getInstance());
     }
 
     int ticks = 0;
 
-    public static int fix(int old, int scaledHeight) {
-        int leftHeight = ForgeIngameGui.left_height;
-        int rightHeight = ForgeIngameGui.right_height;
-        int offsetHeight = Math.max(leftHeight, rightHeight);
-        if (offsetHeight > 59) {
-            return scaledHeight - offsetHeight;
-        }
-        return old;
-    }
-
-    @SubscribeEvent
-    public void render(RenderGameOverlayEvent event) {
+    @Override
+    public void onEndTick(MinecraftClient minecraftClient) {
 
         try {
 
-            if (event.isCancelable() || event.getType() != ElementType.ALL) {
-                return;
-            }
-
-            if (!ClientConfigs.INSTANCE.PLAYER_GUI_TYPE.get()
-                .equals(PlayerGUIs.Vanilla)) {
+            if (!ClientConfigs.INSTANCE.PLAYER_GUI_TYPE.equals(PlayerGUIs.Vanilla)) {
                 return;
             }
 
@@ -71,9 +53,9 @@ public class VanillaOverlay extends InGameHud {
 
             int SPACING_Y = 10;
 
-            int width = event.getWindow()
+            int width = mc.getWindow()
                 .getScaledWidth();
-            int height = event.getWindow()
+            int height = mc.getWindow()
                 .getScaledHeight();
 
             int x = width / 2 - 91;
@@ -83,8 +65,8 @@ public class VanillaOverlay extends InGameHud {
                 y -= SPACING_Y;
             }
 
-            int leftY = ClientConfigs.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
-            int rightY = ClientConfigs.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
+            int leftY = ClientConfigs.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
+            int rightY = ClientConfigs.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
 
             renderElement(ticks, Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
 
@@ -213,7 +195,8 @@ public class VanillaOverlay extends InGameHud {
             int randomY = 0;
 
             if (changedTicksRem > 0) {
-                randomY = random.nextInt(3) - 1;
+                randomY = mc.player.getRandom()
+                    .nextInt(3) - 1;
             }
 
             blit(x, y + randomY, 16, type.yPosTexture(data), 9, 9); // empty background

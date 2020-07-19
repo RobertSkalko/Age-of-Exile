@@ -1,15 +1,15 @@
 package com.robertx22.mine_and_slash.uncommon.develeper;
 
-import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
 import net.minecraft.block.Block;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +23,7 @@ public class CreateLangFileUtils {
         int pos = string.lastIndexOf(toReplace);
         if (pos > -1) {
             return string.substring(0, pos) + replacement + string.substring(pos + toReplace
-                    .length(), string.length());
+                .length(), string.length());
         } else {
             return string;
         }
@@ -34,7 +34,8 @@ public class CreateLangFileUtils {
     }
 
     public static boolean matches(Identifier loc) {
-        if (loc == null || loc.getNamespace().equals(Ref.MODID) == false) {
+        if (loc == null || loc.getNamespace()
+            .equals(Ref.MODID) == false) {
             return false;
         }
         return true;
@@ -44,18 +45,18 @@ public class CreateLangFileUtils {
 
         List<T> list = new ArrayList<>();
 
-        for (Item item : ForgeRegistries.ITEMS) {
-            if (matches(item.getRegistryName()) && theclass.isAssignableFrom(item.getClass())) {
+        for (Item item : Registry.ITEM) {
+            if (matches(Registry.ITEM.getId(item)) && theclass.isAssignableFrom(item.getClass())) {
                 list.add((T) item);
             }
         }
-        for (Block item : ForgeRegistries.BLOCKS) {
-            if (matches(item.getRegistryName()) && theclass.isAssignableFrom(item.getClass())) {
+        for (Block item : Registry.BLOCK) {
+            if (matches(Registry.BLOCK.getId(item)) && theclass.isAssignableFrom(item.getClass())) {
                 list.add((T) item);
             }
         }
-        for (StatusEffect item : ForgeRegistries.POTIONS) {
-            if (matches(item.getRegistryName()) && theclass.isAssignableFrom(item.getClass())) {
+        for (StatusEffect item : Registry.STATUS_EFFECT) {
+            if (matches(Registry.STATUS_EFFECT.getId(item)) && theclass.isAssignableFrom(item.getClass())) {
                 list.add((T) item);
             }
         }

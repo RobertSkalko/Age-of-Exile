@@ -1,16 +1,17 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class SerializationUtils {
-    public static final String CONFIG_PATH = FMLPaths.CONFIGDIR.get()
-            .toAbsolutePath()
-            .toString() + "/" + Ref.MOD_NAME + "/";
+    public static final String CONFIG_PATH = FabricLoader.getInstance()
+        .getConfigDir()
+        .toAbsolutePath()
+        .toString() + "/" + Ref.MOD_NAME + "/";
 
     public static void makeIfDoesNotExist(String path, String filename, String text) {
         if (!new File(path + "/" + filename).exists()) {

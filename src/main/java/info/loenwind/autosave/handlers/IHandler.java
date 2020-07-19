@@ -4,8 +4,8 @@ import info.loenwind.autosave.Registry;
 import info.loenwind.autosave.exceptions.NoHandlerFoundException;
 import info.loenwind.autosave.util.NBTAction;
 import info.loenwind.autosave.util.TypeUtil;
-
 import net.minecraft.nbt.CompoundTag;
+
 import java.lang.reflect.Type;
 import java.util.Set;
 
@@ -31,8 +31,7 @@ public interface IHandler<T> {
      * @param type A type that wants to be handled
      * @return An {@link IHandler} to handle the given type, if possible. <code>null</code otherwise.
      */
-    default @Nullable
-    IHandler<? extends T> getHandler(Registry registry, Type type) {
+    default IHandler<? extends T> getHandler(Registry registry, Type type) {
         return TypeUtil.isAssignable(getRootType(), type) ? this : null;
     }
 
@@ -99,7 +98,7 @@ public interface IHandler<T> {
      * @throws InstantiationException
      * @throws NoHandlerFoundException
      */
-    @Nullable
+
     T read(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type,
            String name,
            T object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException;

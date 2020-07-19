@@ -1,24 +1,10 @@
 package com.robertx22.mine_and_slash.gui.overlays.mob_bar;
 
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.LookUtils;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class MobBarScreen extends DrawableHelper {
 
+    /*
     private MinecraftClient mc;
 
     Identifier TEX = new Identifier(Ref.MODID, "textures/gui/mob_bar/mob_bar.png");
@@ -99,5 +85,7 @@ public class MobBarScreen extends DrawableHelper {
             ex.printStackTrace();
         }
     }
+
+     */
 
 }

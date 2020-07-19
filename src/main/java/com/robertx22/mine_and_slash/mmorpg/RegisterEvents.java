@@ -8,6 +8,7 @@ public class RegisterEvents {
     public static void register() {
 
         AttackEntityCallback.EVENT.register(new StopCastingIfInteract());
+
     }
 
 }

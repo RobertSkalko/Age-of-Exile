@@ -5,24 +5,21 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-
 import net.minecraft.text.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class TooltipStatInfo implements ITooltipList {
 
-    @Nonnull
     public Stat stat;
 
     public float firstValue;
     public float secondValue;
 
-    @Nonnull
     public ModType type;
 
-    @Nonnull
     public TooltipInfo tooltipInfo;
 
     public TooltipStatInfo(ExactStatData data, TooltipInfo info) {

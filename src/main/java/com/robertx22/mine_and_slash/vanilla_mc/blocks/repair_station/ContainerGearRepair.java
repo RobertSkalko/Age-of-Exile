@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.CapacitorSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.OutputSlot;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.RepairSlot;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -49,7 +48,7 @@ public class ContainerGearRepair extends BaseTileContainer {
 
     public ContainerGearRepair(int num, PlayerInventory invPlayer, Inventory inv,
                                BlockPos pos) {
-        super(FURNACE_SLOTS_COUNT, ModContainers.GEAR_REPAIR.get(), num);
+        super(FURNACE_SLOTS_COUNT, null, num);
 
         this.pos = pos;
         this.tile = inv;

@@ -8,7 +8,7 @@ import net.minecraft.particle.ParticleType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
 
 @Storable
 public class ParticlePacketData {
@@ -54,7 +54,7 @@ public class ParticlePacketData {
     public String particleID;
 
     public ParticleEffect getParticleType() {
-        return (ParticleEffect) ForgeRegistries.PARTICLE_TYPES.getValue(new Identifier(particleID));
+        return (ParticleEffect) Registry.PARTICLE_TYPE.get(new Identifier(particleID));
     }
 
     public ParticlePacketData motion(Vec3d v) {
@@ -65,7 +65,7 @@ public class ParticlePacketData {
     }
 
     public ParticlePacketData type(ParticleType type) {
-        this.particleID = type.getRegistryName()
+        this.particleID = Registry.PARTICLE_TYPE.getId(type)
             .toString();
         return this;
     }

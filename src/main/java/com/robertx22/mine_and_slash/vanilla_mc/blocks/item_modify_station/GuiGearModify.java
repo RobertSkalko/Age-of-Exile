@@ -108,7 +108,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
 
-            renderTooltip(hoveringText, mouseX - x, mouseY - y, font);
+            // TODO renderTooltip(hoveringText, mouseX - x, mouseY - y, font);
         }
     }
 

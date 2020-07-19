@@ -1,15 +1,15 @@
 package com.robertx22.mine_and_slash.loot.generators;
 
+import com.robertx22.exiled_lib.registry.FilterListWrap;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.exiled_lib.registry.FilterListWrap;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.registry.Registry;
 
 public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
@@ -19,8 +19,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get()
-            .floatValue();
+        return (float) ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE;
     }
 
     @Override
@@ -30,7 +29,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public boolean condition() {
-        return ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() && info.mobData != null;
+        return ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS && info.mobData != null;
     }
 
     @Override
@@ -51,8 +50,8 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
                 if (config != null) {
                     Identifier res = new Identifier(config.item_id);
 
-                    if (ForgeRegistries.ITEMS.containsKey(res)) {
-                        ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
+                    if (Registry.ITEM.containsId(res)) {
+                        ItemStack stack = new ItemStack(Registry.ITEM.get(res));
                         return config.createStack(info.level, stack);
                     }
                 }
