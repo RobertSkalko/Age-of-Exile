@@ -8,12 +8,14 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-public class SpellHotbarOverlay extends DrawableHelper {
+public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallback {
 
     public static SpellCastingData.Hotbar CURRENT_HOTBAR = SpellCastingData.Hotbar.FIRST;
 
@@ -33,7 +35,8 @@ public class SpellHotbarOverlay extends DrawableHelper {
 
     PlayerSpellCap.ISpellsCap data;
 
-    public void onRenderPlayerOverlay() {
+    @Override
+    public void onHudRender(MatrixStack matrix, float v) {
 
         if (mc.player.isSpectator()) {
             return;
@@ -47,14 +50,14 @@ public class SpellHotbarOverlay extends DrawableHelper {
 
         RenderSystem.enableBlend(); // enables transparency
 
-        renderHotbar(x, y);
-        renderSpellsOnHotbar(x, y);
+        renderHotbar(matrix, x, y);
+        renderSpellsOnHotbar(matrix, x, y);
 
         RenderSystem.disableBlend(); // enables transparency
 
     }
 
-    private void renderSpellsOnHotbar(int x, int y) {
+    private void renderSpellsOnHotbar(MatrixStack matrix, int x, int y) {
 
         x += 3;
         y += 3;
@@ -73,7 +76,7 @@ public class SpellHotbarOverlay extends DrawableHelper {
 
                 mc.getTextureManager()
                     .bindTexture(spell.getIconLoc());
-                this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
+                this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
 
                 SpellData spelldata = data.getCastingData()
                     .getDataBySpell(spell);
@@ -87,7 +90,7 @@ public class SpellHotbarOverlay extends DrawableHelper {
 
                         mc.getTextureManager()
                             .bindTexture(COOLDOWN_TEX);
-                        this.blit(xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+                        this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
 
                     }
                 }
@@ -101,7 +104,7 @@ public class SpellHotbarOverlay extends DrawableHelper {
                             RenderSystem.enableBlend(); // enables transparency
                             mc.getTextureManager()
                                 .bindTexture(SPELL_READY_TEXT);
-                            this.blit(x - 2, y - 2, 0, 0, 20, 20, 20, 20);
+                            this.drawTexture(matrix, x - 2, y - 2, 0, 0, 20, 20, 20, 20);
                             RenderSystem.disableBlend(); // enables transparency
 
                         }
@@ -112,13 +115,13 @@ public class SpellHotbarOverlay extends DrawableHelper {
         }
     }
 
-    private void renderHotbar(int x, int y) {
+    private void renderHotbar(MatrixStack matrix, int x, int y) {
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager()
             .bindTexture(HOTBAR_TEX);
 
-        this.blit(x, y, 0, 0, WIDTH, HEIGHT);
+        this.drawTexture(matrix, x, y, 0, 0, WIDTH, HEIGHT);
 
     }
 

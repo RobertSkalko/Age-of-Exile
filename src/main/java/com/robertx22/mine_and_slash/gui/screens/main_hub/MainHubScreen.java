@@ -80,28 +80,28 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         super.render(matrix, x, y, ticks);
 
-        renderTitle();
-        renderLevelExp();
+        renderTitle(matrix);
+        renderLevelExp(matrix);
 
     }
 
-    private void renderTitle() {
+    private void renderTitle(MatrixStack matrix) {
         double scale = 1.8F;
         String str = "Main Hub";
         int xp = (int) (guiLeft + (MainHubScreen.x / 2));
         int yp = (int) (guiTop + 20);
-        GuiUtils.renderScaledText(xp, yp, scale, str, Formatting.YELLOW);
+        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
     }
 
     EntityCap.UnitData data;
 
-    private void renderLevelExp() {
+    private void renderLevelExp(MatrixStack matrix) {
 
         double scale = 1.5;
         String str = "Level: " + data.getLevel() + ", Exp: " + data.getExp() + "/" + data.getExpRequiredForLevelUp();
         int xp = (int) (guiLeft + (MainHubScreen.x / 2));
         int yp = (int) (guiTop + 200);
-        GuiUtils.renderScaledText(xp, yp, scale, str, Formatting.GREEN);
+        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.GREEN);
     }
 
     protected void drawBackground(MatrixStack matrix) {

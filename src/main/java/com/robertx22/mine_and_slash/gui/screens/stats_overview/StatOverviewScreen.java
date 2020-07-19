@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.data.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen.StatButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -15,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -23,8 +21,9 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -38,6 +37,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
     Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
     HashMap<String, List<Stat>> statmap = new HashMap<>();
+    MinecraftClient mc = MinecraftClient.getInstance();
 
     public StatOverviewScreen() {
         super(new LiteralText("Stats Screen"));
@@ -67,47 +67,47 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/stats_screen.png");
 
     @Override
-    public void render(int x, int y, float ticks) {
+    public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        minecraft.getTextureManager()
+        mc.getTextureManager()
             .bindTexture(texture);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.blit(minecraft.getWindow()
+        drawTexture(matrix, mc.getWindow()
                 .getScaledWidth() / 2 - this.sizeX / 2,
-            minecraft.getWindow()
+            mc.getWindow()
                 .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
         );
 
-        renderStats();
+        renderStats(matrix);
 
-        super.render(x, y, ticks);
+        super.render(matrix, x, y, ticks);
 
-        buttons.forEach(b -> b.renderToolTip(x, y));
+        buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 
     private int getGUIStartX() {
 
-        return (int) (minecraft.getWindow()
+        return (int) (mc.getWindow()
             .getScaledWidth() / 2 - this.sizeX / 2);
     }
 
     private int getGUIStartY() {
 
-        return (int) (minecraft.getWindow()
+        return (int) (mc.getWindow()
             .getScaledHeight() / 2 - this.sizeY / 2);
     }
 
     private int getTextStartX() {
 
-        return (int) (minecraft.getWindow()
+        return (int) (mc.getWindow()
             .getScaledWidth() / 2 - this.sizeX / 2 + 35);
     }
 
     private int getTextStartY() {
 
-        return (int) (minecraft.getWindow()
+        return (int) (mc.getWindow()
             .getScaledHeight() / 2 - this.sizeY / 2 + 40);
     }
 
@@ -159,13 +159,13 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
     }
 
-    private int drawTitleAndIncreaseSpacing(int x, int y, String str) {
-        this.drawString(minecraft.textRenderer, str, x, y, Formatting.GREEN.getColorValue());
+    private int drawTitleAndIncreaseSpacing(MatrixStack matrix, int x, int y, String str) {
+        this.drawStringWithShadow(matrix, mc.textRenderer, str, x, y, Formatting.GREEN.getColorValue());
         return this.getHeightSpacing();
 
     }
 
-    private int renderStats() {
+    private int renderStats(MatrixStack matrix) {
 
         List<Stat> list = getList();
 
@@ -174,7 +174,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
         int added = 0;
 
-        added += this.drawTitleAndIncreaseSpacing(x - 22, y + added, this.statgroup.word.translate() + ": ");
+        added += this.drawTitleAndIncreaseSpacing(matrix, x - 22, y + added, this.statgroup.word.translate() + ": ");
         added += this.getHeightSpacing() / 3;
 
         y += added;
@@ -190,7 +190,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         this.buttons.addAll(newlist);
         //
 
-        EntityCap.UnitData data = Load.Unit(minecraft.player);
+        EntityCap.UnitData data = Load.Unit(mc.player);
 
         for (int i = currentElement; i < list.size(); i++) {
             if (i > -1) { // or scrolling crashes
@@ -225,7 +225,8 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
     public boolean mouseScrolled(double num1, double num2, double num3) {
 
         this.currentElement -= num3;
-        this.currentElement = MathHelper.clamp(currentElement, 0, renderStats());
+
+        this.currentElement = MathHelper.clamp(currentElement, 0, renderStats(new MatrixStack()));
 
         return false;
     }
@@ -308,18 +309,18 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         }
 
         @Override
-        public void renderToolTip(int x, int y) {
+        public void renderToolTip(MatrixStack matrix, int x, int y) {
             if (isInside(x, y)) {
 
-                List<MutableText> tooltip = new ArrayList<>();
+                List<Text> tooltip = new ArrayList<>();
 
                 tooltip.add(Styles.GREENCOMP()
                     .append(stat.locName()));
 
                 tooltip.addAll(stat.getCutDescTooltip());
 
-                StatOverviewScreen.this.renderTooltip(
-                    TooltipUtils.compsToStrings(tooltip), x, y);
+                GuiUtils.renderTooltip(matrix,
+                    tooltip, x, y);
 
             }
         }
@@ -337,7 +338,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         }
 
         @Override
-        public void renderButton(int x, int y, float f) {
+        public void renderButton(MatrixStack matrix, int x, int y, float f) {
             // super.renderButton(x, y, f);
 
             if (!(stat instanceof UnknownStat)) {
@@ -348,7 +349,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
                 RenderUtils.render16Icon(res, getIconX(), getIconY());
 
-                StatOverviewScreen.this.drawString(font, str, this.x, this.y, Formatting.GOLD.getColorValue());
+                StatOverviewScreen.this.drawStringWithShadow(matrix, font, str, this.x, this.y, Formatting.GOLD.getColorValue());
             }
         }
 

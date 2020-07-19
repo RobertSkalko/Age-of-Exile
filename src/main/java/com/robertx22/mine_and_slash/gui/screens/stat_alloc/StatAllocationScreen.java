@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base.Ba
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.screens.stat_alloc.StatAllocationScreen.IncreaseStatButton;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -19,14 +18,14 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.text.MutableText;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -45,6 +44,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
     public StatAllocationScreen() {
         super(sizeX, sizeY);
     }
+
+    MinecraftClient mc = MinecraftClient.getInstance();
 
     PlayerStatsCap.IPlayerStatPointsData data;
     EntityCap.UnitData unitdata;
@@ -104,31 +105,31 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
     }
 
     @Override
-    public void render(int x, int y, float ticks) {
+    public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        drawGuiBackgroundLayer(ticks, x, y);
-        super.render(x, y, ticks);
+        drawGuiBackgroundLayer(matrix, ticks, x, y);
+        super.render(matrix, x, y, ticks);
 
-        String str = "Stat Points Remaining: " + data.getAvailablePoints(Load.Unit(minecraft.player));
+        String str = "Stat Points Remaining: " + data.getAvailablePoints(Load.Unit(mc.player));
 
-        MinecraftClient.getInstance().textRenderer.drawWithShadow(str,
+        MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, str,
             guiLeft + sizeX / 2 + 50 - MinecraftClient.getInstance().textRenderer
                 .getWidth(str), guiTop + 15,
             Formatting.GREEN.getColorValue()
         );
 
-        buttons.forEach(b -> b.renderToolTip(x, y));
+        buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 
-    protected void drawGuiBackgroundLayer(float partialTicks, int x, int y) {
+    protected void drawGuiBackgroundLayer(MatrixStack matrix, float partialTicks, int x, int y) {
 
-        minecraft.getTextureManager()
+        mc.getTextureManager()
             .bindTexture(TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.blit(minecraft.getWindow()
+        drawTexture(matrix, mc.getWindow()
                 .getScaledWidth() / 2 - this.sizeX / 2,
-            minecraft.getWindow()
+            mc.getWindow()
                 .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
         );
 
@@ -181,10 +182,10 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
         }
 
         @Override
-        public void renderToolTip(int x, int y) {
+        public void renderToolTip(MatrixStack matrix, int x, int y) {
             if (isInside(x, y)) {
 
-                List<MutableText> tooltip = new ArrayList<>();
+                List<Text> tooltip = new ArrayList<>();
 
                 tooltip.add(Styles.BLUECOMP()
                     .append(stat.locName()));
@@ -194,8 +195,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
                     tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit()
                         .getCreateStat(stat)));
                 }
-
-                StatAllocationScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y);
+                GuiUtils.renderTooltip(matrix, tooltip, x, y);
 
             }
         }
@@ -205,9 +205,9 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
         }
 
         @Override
-        public void renderButton(int x, int y, float f) {
+        public void renderButton(MatrixStack matrix, int x, int y, float f) {
             try {
-                super.renderButton(x, y, f);
+                super.renderButton(matrix, x, y, f);
 
                 Formatting format = Formatting.YELLOW;
 
@@ -217,7 +217,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
                     .getCreateStat(stat)
                     .getAverageValue() + format + ")";
 
-                font.drawWithShadow(str, this.x - button_sizeX - 5 - font.getWidth(str),
+                font.drawWithShadow(matrix, str, this.x - button_sizeX - 5 - font.getWidth(str),
                     this.y - button_sizeY / 2 + font.fontHeight, format.getColorValue()
                 );
             } catch (Exception e) {
