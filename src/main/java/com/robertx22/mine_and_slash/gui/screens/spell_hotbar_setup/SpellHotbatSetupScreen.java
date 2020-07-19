@@ -5,9 +5,7 @@ import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen.AvailableSpellButton;
-import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen.HotbarButton;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -203,14 +201,13 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             super.onPress();
 
             if (this.getSpell() != null) {
-                MMORPG.sendToServer(new HotbarSetupPacket(-1, number, hotbar));
+                Packets.sendToServer(new HotbarSetupPacket(-1, number, hotbar));
             } else {
                 SpellHotbatSetupScreen.barBeingPicked = this;
             }
 
         }
 
-        @Nullable
         public BaseSpell getSpell() {
             return Load.spells(MinecraftClient.getInstance().player)
                 .getCastingData()
@@ -266,7 +263,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                     HotbarButton bar = SpellHotbatSetupScreen.barBeingPicked;
 
                     if (bar.hotbar != null) {
-                        MMORPG.sendToServer(new HotbarSetupPacket(invslot, bar.number, bar.hotbar));
+                        Packets.sendToServer(new HotbarSetupPacket(invslot, bar.number, bar.hotbar));
                     }
                 }
 

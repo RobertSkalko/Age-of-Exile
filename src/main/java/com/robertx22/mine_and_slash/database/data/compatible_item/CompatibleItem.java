@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 
 public class CompatibleItem implements ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
 
@@ -41,7 +42,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         CompatibleItem comp = new CompatibleItem();
         comp.item_type = slot.GUID();
-        comp.item_id = item.getRegistryName()
+        comp.item_id = Registry.ITEM.getId(item)
             .toString();
         comp.guid = slot.GUID() + ":" + comp.item_id;
         comp.add_to_loot_drops = false;

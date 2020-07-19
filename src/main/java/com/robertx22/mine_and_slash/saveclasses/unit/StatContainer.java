@@ -7,8 +7,8 @@ import info.loenwind.autosave.exceptions.NoHandlerFoundException;
 import info.loenwind.autosave.handlers.IHandler;
 import info.loenwind.autosave.util.NBTAction;
 import info.loenwind.autosave.util.NullHelper;
-
 import net.minecraft.nbt.CompoundTag;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +41,6 @@ public class StatContainer implements IHandler<StatContainer> {
         return true;
     }
 
-    @Nullable
     @Override
     public StatContainer read(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type, String name, StatContainer object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
         if (nbt.contains(name)) {

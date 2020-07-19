@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -76,9 +75,9 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.MISC_ITEMS.LEAF_OF_CHANGE)
-            .input('#', SimpleMatItem.GOLDEN_ORB)
-            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_BLESSING)
+        return shaped(ModRegistry.CURRENCIES.LEAF_OF_CHANGE)
+            .input('#', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
+            .input('t', ModRegistry.CURRENCIES.ORB_OF_BLESSING)
             .input('v', Items.GOLD_INGOT)
             .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("#t#")

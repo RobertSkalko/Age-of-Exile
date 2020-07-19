@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.commands.entity.SetEntityRarity;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.entity.SetLevel;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.giveitems.GiveExactUnique;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.giveitems.GiveGear;
-import com.robertx22.mine_and_slash.vanilla_mc.commands.misc.GenDefaultCompItemsOfMod;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.misc.ReloadConfigs;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.open_gui.OpenHub;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.reset.ResetSpellCooldowns;
@@ -40,8 +39,6 @@ public class CommandRegister {
 
         ReloadConfigs.register(dispatcher);
         OpenHub.register(dispatcher);
-
-        GenDefaultCompItemsOfMod.register(dispatcher);
 
     }
 }

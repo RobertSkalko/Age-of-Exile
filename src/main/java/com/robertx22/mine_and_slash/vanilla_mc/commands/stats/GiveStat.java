@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
-
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -45,7 +44,7 @@ public class GiveStat {
                                                     .getFloat(ctx, "value"))))))))))));
     }
 
-    private static int run(@Nullable Entity en, String statGUID, String statType,
+    private static int run(Entity en, String statGUID, String statType,
                            String GUID, float value) {
 
         try {

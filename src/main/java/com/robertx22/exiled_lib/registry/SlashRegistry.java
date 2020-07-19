@@ -21,12 +21,13 @@ import com.robertx22.mine_and_slash.database.data.tiers.impl.TierOne;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.registrators.*;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.MapManager;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.RegistryPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IWorld;
 
 import java.util.ArrayList;
@@ -61,11 +62,9 @@ public class SlashRegistry {
 
     public static EntityConfig getEntityConfig(LivingEntity entity, EntityCap.UnitData data) {
 
-        String monster_id = entity.getType()
-            .getRegistryName()
+        String monster_id = Registry.ENTITY_TYPE.getId(entity.getType())
             .toString();
-        String mod_id = entity.getType()
-            .getRegistryName()
+        String mod_id = Registry.ENTITY_TYPE.getId(entity.getType())
             .getNamespace();
 
         EntityConfig config = null;
@@ -182,10 +181,10 @@ public class SlashRegistry {
                             throw new Exception("Registry empty: " + x.getType()
                                 .name());
                         } else if (list.size() < 100) {
-                            MMORPG.sendToClient(new RegistryPacket(x.getType(), list), player);
+                            Packets.sendToClient(player, new RegistryPacket(x.getType(), list));
                         } else {
                             for (List<ISerializedRegistryEntry> part : Lists.partition(list, 100)) {
-                                MMORPG.sendToClient(new RegistryPacket(x.getType(), part), player);
+                                Packets.sendToClient(player, new RegistryPacket(x.getType(), part));
                             }
 
                         }

@@ -9,7 +9,8 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -85,12 +86,12 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public Item getItem() {
 
         if (getPlayStyle().isINT()) {
-            return ModRegistry.MISC_ITEMS.INT_SKILL_GEM.get();
+            return ModRegistry.MISC_ITEMS.INT_SKILL_GEM;
         }
         if (getPlayStyle().isDEX()) {
-            return ModRegistry.MISC_ITEMS.DEX_SKILL_GEM.get();
+            return ModRegistry.MISC_ITEMS.DEX_SKILL_GEM;
         }
-        return ModRegistry.MISC_ITEMS.STR_SKILL_GEM.get();
+        return ModRegistry.MISC_ITEMS.STR_SKILL_GEM;
 
     }
 
@@ -281,7 +282,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
                     return true;
                 } else {
                     if (caster instanceof ServerPlayerEntity) {
-                        MMORPG.sendToClient(new NoManaPacket(), (ServerPlayerEntity) caster);
+                        Packets.sendToClient((PlayerEntity) caster, new NoManaPacket());
                     }
 
                 }

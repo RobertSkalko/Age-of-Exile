@@ -7,7 +7,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.Tickable;
 
 public abstract class BaseSpellTileEntity extends BlockEntity implements ISpellEntity, Tickable {
@@ -71,16 +70,4 @@ public abstract class BaseSpellTileEntity extends BlockEntity implements ISpellE
         this.data = data;
     }
 
-    @Override
-    public void writeSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = new CompoundTag();
-        toTag(nbt);
-        buf.writeCompoundTag(nbt);
-    }
-
-    @Override
-    public void readSpawnData(PacketByteBuf buf) {
-        CompoundTag nbt = buf.readCompoundTag();
-        this.fromTag(nbt);
-    }
 }

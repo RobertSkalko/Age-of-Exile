@@ -9,8 +9,8 @@ import info.loenwind.autosave.handlers.IHandler;
 import info.loenwind.autosave.util.NBTAction;
 import info.loenwind.autosave.util.NullHelper;
 import info.loenwind.autosave.util.TypeUtil;
-
 import net.minecraft.nbt.CompoundTag;
+
 import java.lang.reflect.Type;
 import java.util.Set;
 
@@ -37,8 +37,7 @@ public class HandleStorable<T extends Object> implements IHandler<T> {
     }
 
     @Override
-    public @Nullable
-    IHandler<T> getHandler(Registry registry, Type type) {
+    public IHandler<T> getHandler(Registry registry, Type type) {
         Class<?> clazz = TypeUtil.toClass(type);
         Storable annotation = clazz.getAnnotation(Storable.class);
         return annotation != null && annotation.handler() == this.getClass() ? this : null;
@@ -55,10 +54,9 @@ public class HandleStorable<T extends Object> implements IHandler<T> {
     }
 
     @Override
-    public @Nullable
-    T read(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type,
-           String name,
-           T object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
+    public T read(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type,
+                  String name,
+                  T object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
         if (nbt.contains(name)) {
             if (object == null) {
                 object = StorableEngine.instantiate(registry, type);

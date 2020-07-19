@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.auto_comp;
 
 import com.google.common.collect.Multimap;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoConfigItemType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
@@ -27,8 +27,8 @@ public class PowerLevel {
 
             this.statAmount = stats.size();
 
-            int MAX_SINGLE_STAT_VALUE = ModConfig.INSTANCE.autoCompatibleItems.MAX_SINGLE_STAT_VALUE.get();
-            int MAX_TOTAL_STATS = ModConfig.INSTANCE.autoCompatibleItems.MAX_TOTAL_STATS.get();
+            int MAX_SINGLE_STAT_VALUE = ModConfig.INSTANCE.autoCompatibleItems.MAX_SINGLE_STAT_VALUE;
+            int MAX_TOTAL_STATS = ModConfig.INSTANCE.autoCompatibleItems.MAX_TOTAL_STATS;
 
             this.totalStatNumbers = stats.values()
                 .stream()
@@ -109,13 +109,13 @@ public class PowerLevel {
 
         Types type = null;
 
-        if (val > config.BEST.POWER_REQ.get()) {
+        if (val > config.BEST.POWER_REQ) {
             type = Types.BEST;
         }
-        if (val > config.NORMAL.POWER_REQ.get()) {
+        if (val > config.NORMAL.POWER_REQ) {
             type = Types.NORMAL;
         }
-        if (val > config.TRASH.POWER_REQ.get()) {
+        if (val > config.TRASH.POWER_REQ) {
             type = Types.TRASH;
         }
 

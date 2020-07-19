@@ -23,6 +23,7 @@ import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.EfficientMobUnitPacket;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityType;
@@ -513,7 +514,7 @@ public class Unit {
         return getIgnoredEntities().contains(en.getType()) == false;
     }
 
-    public static Object getUpdatePacketFor(LivingEntity en, UnitData data) {
+    public static MyPacket getUpdatePacketFor(LivingEntity en, UnitData data) {
         return new EfficientMobUnitPacket(en, data); // todo maybe players will need extra data later on? maybe
     }
 

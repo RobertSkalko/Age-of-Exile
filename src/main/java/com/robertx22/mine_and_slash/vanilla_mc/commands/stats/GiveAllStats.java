@@ -30,7 +30,7 @@ public class GiveAllStats {
                                     ctx -> run(EntityArgumentType.getPlayer(ctx, "target")))))))));
     }
 
-    private static int run(@Nullable Entity en) {
+    private static int run(Entity en) {
 
         try {
 

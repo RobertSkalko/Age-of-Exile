@@ -7,13 +7,13 @@ import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequi
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -25,6 +25,11 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     @Override
     public String GUID() {
         return "currency/number_reroll";
+    }
+
+    @Override
+    public int getWeight() {
+        return 500;
     }
 
     private static final String name = Ref.MODID + ":currency/number_reroll";
@@ -80,11 +85,11 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_BLESSING.get())
-            .input('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_TURBULENCE.get())
+        return shaped(ModRegistry.CURRENCIES.ORB_OF_BLESSING)
+            .input('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
+            .input('t', ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
             .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get())
+            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ovo")

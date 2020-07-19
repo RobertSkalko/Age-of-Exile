@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.data.rarities.mobs;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.data.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.data.rarities.base.BaseCommon;
 
@@ -55,7 +54,7 @@ public class CommonMob extends BaseCommon implements MobRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.MOBS.COMMON_WEIGHT.get();
+        return 1000;
     }
 
     private static class SingletonHolder {

@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
-
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -29,7 +28,7 @@ public class RemoveStat {
                                         .getString(ctx, "GUID")))))))));
     }
 
-    private static int run(@Nullable Entity en, String GUID) {
+    private static int run(Entity en, String GUID) {
 
         try {
 

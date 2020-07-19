@@ -16,9 +16,8 @@ import info.loenwind.autosave.util.Log;
 import info.loenwind.autosave.util.NBTAction;
 import info.loenwind.autosave.util.NullHelper;
 import info.loenwind.autosave.util.TypeUtil;
-
-
 import net.minecraft.nbt.CompoundTag;
+
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -36,7 +35,10 @@ import java.util.*;
  * <p>
  * Note 2: There are public entrances to this class in {@link Writer} and {@link Reader}.
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({
+    "rawtypes",
+    "unchecked"
+})
 public class StorableEngine {
 
     private static final ThreadLocal<StorableEngine> INSTANCE = new ThreadLocal<StorableEngine>() {
@@ -49,7 +51,6 @@ public class StorableEngine {
     @FunctionalInterface
     private interface ObjectFactory {
 
-        @Nullable
         Object get() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException;
 
     }
@@ -68,7 +69,7 @@ public class StorableEngine {
         }
 
         public void apply(
-                Object inst) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+            Object inst) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
             callback.invoke(isStatic ? null : inst);
         }
 
@@ -78,25 +79,25 @@ public class StorableEngine {
         }
     }
 
-    public static final @Nonnull
+    public static final
     String NULL_POSTFIX = "-";
-    public static final @Nonnull
+    public static final
     String EMPTY_POSTFIX = "+";
-    public static final @Nonnull
+    public static final
     String SUPERCLASS_KEY = "__superclass";
-    private final @Nonnull
+    private final
     Map<Class<?>, List<Field>> fieldCache = new HashMap<>();
-    private final @Nonnull
+    private final
     Map<Field, Set<NBTAction>> phaseCache = new HashMap<>();
-    private final @Nonnull
+    private final
     Map<Field, List<IHandler>> fieldHandlerCache = new HashMap<>();
-    private final @Nonnull
+    private final
     Map<Class<?>, Class<?>> superclassCache = new HashMap<>();
-    private final @Nonnull
+    private final
     Map<Class<?>, List<IHandler>> superclassHandlerCache = new HashMap<>();
-    private final @Nonnull
+    private final
     Map<Class<?>, ObjectFactory> factoryCache = new HashMap<>();
-    private final @Nonnull
+    private final
     Map<Class<?>, List<AfterReadCallback>> callbackCache = new HashMap<>();
 
     private StorableEngine() {
@@ -104,12 +105,14 @@ public class StorableEngine {
 
     public static <T> void read(Registry registry, Set<NBTAction> phase, CompoundTag tag,
                                 T object) throws IllegalAccessException, InstantiationException, NoHandlerFoundException {
-        INSTANCE.get().read_impl(registry, phase, tag, object);
+        INSTANCE.get()
+            .read_impl(registry, phase, tag, object);
     }
 
     public static <T> void store(Registry registry, Set<NBTAction> phase, CompoundTag tag,
                                  T object) throws IllegalAccessException, InstantiationException, NoHandlerFoundException {
-        INSTANCE.get().store_impl(registry, phase, tag, object);
+        INSTANCE.get()
+            .store_impl(registry, phase, tag, object);
     }
 
     public <T> void read_impl(Registry registry, Set<NBTAction> phase, CompoundTag tag,
@@ -136,7 +139,7 @@ public class StorableEngine {
                     }
                 } else {
                     Log.livetraceNBT("Field ", fieldName, " is set to null. NULL_POSTFIX=", tag
-                            .contains(fieldName + NULL_POSTFIX));
+                        .contains(fieldName + NULL_POSTFIX));
                     field.set(object, null);
                 }
             } else {
@@ -208,10 +211,9 @@ public class StorableEngine {
         Log.livetraceNBT("Saved NBT data for object ", object, " of class ", clazz);
     }
 
-    public static @Nullable
-    <T> T getSingleField(Registry registry, Set<NBTAction> phase, CompoundTag tag,
-                         String fieldName, Type type,
-                         T object) throws InstantiationException, IllegalAccessException, IllegalArgumentException, NoHandlerFoundException {
+    public static <T> T getSingleField(Registry registry, Set<NBTAction> phase, CompoundTag tag,
+                                       String fieldName, Type type,
+                                       T object) throws InstantiationException, IllegalAccessException, IllegalArgumentException, NoHandlerFoundException {
         if (!tag.contains(fieldName + NULL_POSTFIX)) {
             for (IHandler<T> handler : registry.findHandlers(type)) {
                 T result = handler.read(registry, phase, tag, type, fieldName, object);
@@ -255,7 +257,7 @@ public class StorableEngine {
                     Class<? extends IHandler> handlerClass = annotation.handler();
                     if (handlerClass != NullHandler.class) {
                         IHandler handler = handlerClass.newInstance()
-                                .getHandler(registry, fieldType);
+                            .getHandler(registry, fieldType);
                         if (handler != null) {
                             handlerList.add(handler);
                         } else {
@@ -320,8 +322,8 @@ public class StorableEngine {
                     superclassCache.put(clazz, superclazz);
                     if (!superclassCache.containsKey(superclazz)) {
                         superclassHandlerCache.put(superclazz, (List<IHandler>) Arrays.asList(annotation
-                                .handler()
-                                .newInstance()));
+                            .handler()
+                            .newInstance()));
                     }
                 }
             } else {
@@ -368,7 +370,8 @@ public class StorableEngine {
 
     public static <T> T instantiate(Registry registry,
                                     Type type) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
-        return (T) INSTANCE.get().instantiate_impl(registry, type);
+        return (T) INSTANCE.get()
+            .instantiate_impl(registry, type);
     }
 
 }

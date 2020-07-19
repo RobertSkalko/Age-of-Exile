@@ -238,7 +238,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     private void tryLogAddition(C c) {
-        if (logAdditionsToRegistry && ModConfig.INSTANCE.Server.LOG_REGISTRY_ENTRIES.get()) {
+        if (logAdditionsToRegistry && ModConfig.INSTANCE.Server.LOG_REGISTRY_ENTRIES) {
             System.out.println(
                 "[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
         }

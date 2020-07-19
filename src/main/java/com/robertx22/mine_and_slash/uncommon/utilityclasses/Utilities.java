@@ -12,7 +12,6 @@ import java.util.UUID;
 
 public final class Utilities {
 
-    @Nullable
     public static LivingEntity getLivingEntityByUUID(World world, UUID id) {
 
         Entity en = getEntityByUUID(world, id);
@@ -25,7 +24,6 @@ public final class Utilities {
 
     }
 
-    @Nullable
     public static Entity getEntityByUUID(World world, UUID id) {
 
         if (id == null)
@@ -40,7 +38,9 @@ public final class Utilities {
     }
 
     public static Vec3d getEndOfLook(LivingEntity entity, double distance) {
-        return entity.getCameraPosVec(0.5F).add(entity.getRotationVector().multiply(distance));
+        return entity.getCameraPosVec(0.5F)
+            .add(entity.getRotationVector()
+                .multiply(distance));
     }
 
     public static void spawnParticlesForTesting(Box aabb, World world) {
@@ -52,7 +52,7 @@ public final class Utilities {
 
                         for (int i = 0; i < 1; i++) {
                             ((ServerWorld) world).spawnParticles(
-                                    ParticleTypes.HAPPY_VILLAGER, x, y, z, 0, 0.0D, 0.0D, 0.0D, 0F);
+                                ParticleTypes.HAPPY_VILLAGER, x, y, z, 0, 0.0D, 0.0D, 0.0D, 0F);
                         }
                     }
                 }

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.data.rarities.mobs;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.data.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.data.rarities.base.BaseLegendary;
 
@@ -55,7 +54,7 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.MOBS.LEGENDARY_WEIGHT.get();
+        return 25;
     }
 
     private static class SingletonHolder {

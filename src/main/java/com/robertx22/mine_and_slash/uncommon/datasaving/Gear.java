@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 
-
 public class Gear {
 
     private static final String LOC = "GEAR_ITEM_DATA";
@@ -30,7 +29,6 @@ public class Gear {
 
     }
 
-    @Nullable
     public static GearItemData loadOnlyValidWeaponData(ItemStack weapon) {
         if (MineAndSlashEvents.CollectGearStacksEvent.isStackValidGear(weapon)) {
             GearItemData wep = Gear.Load(weapon);

@@ -29,7 +29,7 @@ public class AntiMobFarmData {
         if (WorldUtils.isMapWorldClass(en.world)) {
             return 1;
         }
-        if (CommonConfig.INSTANCE.ENABLE_ANTI_MOB_FARM.get() == false) {
+        if (CommonConfig.INSTANCE.ENABLE_ANTI_MOB_FARM == false) {
             return 1;
         }
 

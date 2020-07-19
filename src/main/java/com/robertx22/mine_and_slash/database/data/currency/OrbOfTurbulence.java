@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -79,9 +78,9 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_TURBULENCE)
-            .input('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_TRANSMUTATION)
+        return shaped(ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
+            .input('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
+            .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('v', Items.GLISTERING_MELON_SLICE)
             .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
             .pattern("v#v")

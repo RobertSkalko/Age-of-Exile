@@ -9,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
-
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -26,7 +25,7 @@ public class ClearStats {
                                 .executes(ctx -> run(EntityArgumentType.getPlayer(ctx, "target"))))))));
     }
 
-    private static int run(@Nullable Entity en) {
+    private static int run(Entity en) {
 
         try {
 

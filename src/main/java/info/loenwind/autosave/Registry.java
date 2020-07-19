@@ -3,8 +3,6 @@ package info.loenwind.autosave;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.exceptions.NoHandlerFoundException;
 import info.loenwind.autosave.handlers.IHandler;
-import info.loenwind.autosave.handlers.forge.HandleFluidStack;
-import info.loenwind.autosave.handlers.forge.HandleRegistryEntry;
 import info.loenwind.autosave.handlers.internal.HandleStorable;
 import info.loenwind.autosave.handlers.java.*;
 import info.loenwind.autosave.handlers.java.util.HandleSimpleCollection;
@@ -177,15 +175,10 @@ public class Registry {
         }
 
         // Minecraft basic types
-        GLOBAL_REGISTRY.register(new HandleRegistryEntry());
         GLOBAL_REGISTRY.register(new HandleItemStack());
         GLOBAL_REGISTRY.register(new HandleBlockPos());
         GLOBAL_REGISTRY.register(new HandleBlockState());
         GLOBAL_REGISTRY.register(new DelegatingHandler<>(Identifier.class, new HandleString(), Identifier::toString, Identifier::new));
-
-        // Forge basic types
-        GLOBAL_REGISTRY.register(new HandleFluidStack());
-        //    GLOBAL_REGISTRY.registerForgeConfigs(new HandleFluid());
 
         // Annotated objects
         GLOBAL_REGISTRY.register(new HandleStorable<Object>());

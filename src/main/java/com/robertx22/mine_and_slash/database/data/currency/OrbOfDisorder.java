@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -75,9 +74,9 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_DISORDER)
-            .input('#', SimpleMatItem.INFUSED_IRON)
-            .input('t', ModRegistry.MISC_ITEMS.ORB_OF_TRANSMUTATION)
+        return shaped(ModRegistry.CURRENCIES.ORB_OF_DISORDER)
+            .input('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
+            .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('v', Items.GOLD_NUGGET)
             .input('o', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
             .pattern("o#o")

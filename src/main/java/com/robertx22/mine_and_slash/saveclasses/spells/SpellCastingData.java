@@ -13,7 +13,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -341,7 +340,6 @@ public class SpellCastingData {
 
     }
 
-    @Nullable
     public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {
         String id = getMap(hotbar).getOrDefault(key, new SkillGemData()).spell_id;
 

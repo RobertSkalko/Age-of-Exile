@@ -3,17 +3,18 @@ package com.robertx22.mine_and_slash.config.base;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.SyncConfigToClientPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 public interface ISerializedConfig<T extends ISlashRegistryInit> {
 
@@ -65,7 +66,7 @@ public interface ISerializedConfig<T extends ISlashRegistryInit> {
 
             SyncConfigToClientPacket pkt = new SyncConfigToClientPacket(new ListStringData(configs), getConfigType());
 
-            MMORPG.sendToClient(pkt, player);
+            Packets.sendToClient(player, pkt);
         }
     }
 

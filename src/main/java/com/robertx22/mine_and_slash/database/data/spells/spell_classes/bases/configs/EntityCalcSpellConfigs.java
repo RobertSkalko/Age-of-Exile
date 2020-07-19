@@ -8,13 +8,11 @@ import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
-
 import java.util.HashMap;
 
 @Storable
 public class EntityCalcSpellConfigs {
 
-    @Nullable
     @Store
     public SpellCalcData calc = null;
 

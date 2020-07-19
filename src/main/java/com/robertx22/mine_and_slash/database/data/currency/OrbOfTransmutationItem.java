@@ -92,7 +92,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.MISC_ITEMS.ORB_OF_TRANSMUTATION)
+        return shaped(ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('t', Items.REDSTONE)
             .input('v', Items.COAL)
             .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
