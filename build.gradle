@@ -48,6 +48,14 @@ processResources {
 	}
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs += project.file("src/generated/resources")
+        }
+    }
+}
+
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
 }

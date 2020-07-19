@@ -1,4 +1,4 @@
 {
   "replace": "false",
-  "values": ["mmorpg:jewelry/life_ring","mmorpg:jewelry/occult_ring","mmorpg:uniques/jewelry/greed_persist"]
+  "values": ["mmorpg:jewelry/occult_ring","mmorpg:jewelry/life_ring","mmorpg:uniques/jewelry/greed_persist"]
 }

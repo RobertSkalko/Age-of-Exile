@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.init;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.a_libraries.curios.AddCurioCapability;
+import com.robertx22.mine_and_slash.mmorpg.LifeCycleEvents;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.RegisterEvents;
@@ -34,5 +35,7 @@ public class CommonInit implements ModInitializer {
         ConfigRegister.registerCustomConfigs();
 
         AddCurioCapability.addComponents();
+
+        LifeCycleEvents.register();
     }
 }

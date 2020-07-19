@@ -176,7 +176,7 @@ public class EntityCap {
     public static class DefaultImpl implements UnitData {
 
         // sync these for mobs
-        Unit unit = null;
+        Unit unit = new Unit();
         int rarity = 0;
         int level = 1;
         int exp = 0;

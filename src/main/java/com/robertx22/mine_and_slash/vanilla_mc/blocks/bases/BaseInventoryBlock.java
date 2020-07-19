@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
@@ -29,6 +30,11 @@ public abstract class BaseInventoryBlock extends NonFullBlock implements BlockEn
     }
 
     @Override
+    public NameableContainerFactory createContainerFactory(BlockState state, World world, BlockPos pos) {
+        return (NameableContainerFactory) createBlockEntity(null);
+    }
+
+    @Override
     @Deprecated
     public List<ItemStack> getDroppedStacks(BlockState blockstate, LootContext.Builder context) {
 
@@ -46,10 +52,6 @@ public abstract class BaseInventoryBlock extends NonFullBlock implements BlockEn
                     items.add(stack);
                 }
             }
-
-            //inv.itemStacks = new ItemStack[inv.itemStacks.length];// destroy the stacks
-            //Arrays.fill(inv.itemStacks, ItemStack.EMPTY); tterag says use the container canInteractWith method instead
-            // unsure if i should use both to be extra sure
 
         }
 

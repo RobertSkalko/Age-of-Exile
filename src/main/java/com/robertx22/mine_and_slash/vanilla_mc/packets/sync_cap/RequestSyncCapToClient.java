@@ -27,7 +27,6 @@ public class RequestSyncCapToClient extends MyPacket<RequestSyncCapToClient> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         type = tag.readEnumConstant(PlayerCaps.class);
-
     }
 
     @Override

@@ -15,8 +15,17 @@ public class Containers {
     public Identifier CURRENCY_BAG = of("currency_bag");
 
     <T extends Container> Identifier of(String id) {
+        return new Identifier(Ref.MODID, id);
+    }
 
-        Identifier ide = new Identifier(Ref.MODID, id);
+    public Containers() {
+        register(GEAR_MODIFY);
+        register(GEAR_REPAIR);
+        register(GEAR_SALVAGE);
+        register(CURRENCY_BAG);
+    }
+
+    void register(Identifier ide) {
 
         ContainerProviderRegistry.INSTANCE.
             registerFactory(ide, (syncId, identifier, player, buf) -> {
@@ -27,7 +36,5 @@ public class Containers {
                     .createMenu(syncId, player.inventory, player);
             });
 
-        return ide;
     }
-
 }

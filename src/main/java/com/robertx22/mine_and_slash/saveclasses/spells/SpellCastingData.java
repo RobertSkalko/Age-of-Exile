@@ -84,42 +84,43 @@ public class SpellCastingData {
 
         try {
 
-            BaseSpell spell = SlashRegistry.Spells()
-                .get(spellBeingCast);
+            if (spellBeingCast != null && spellBeingCast.length() > 0) {
+                BaseSpell spell = SlashRegistry.Spells()
+                    .get(spellBeingCast);
 
-            SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
+                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
 
-            if (!player.world.isClient) {
-                if (spell != null && spells != null && SlashRegistry.Spells()
-                    .isRegistered(spell)) {
+                if (!player.world.isClient) {
+                    if (spell != null && spells != null && SlashRegistry.Spells()
+                        .isRegistered(spell)) {
 
-                    spell.onCastingTick(ctx);
-                    addCastingMoveDebuff(player);
-                } else {
-                    removeCastingMoveDebuff(player);
+                        spell.onCastingTick(ctx);
+                        addCastingMoveDebuff(player);
+                    } else {
+                        removeCastingMoveDebuff(player);
+                    }
+                }
+
+                tryCast(player, spells, ctx);
+
+                castingTicksLeft--;
+                castingTicksDone++;
+
+                if (!player.world.isClient) {
+
+                    if (spell == null || !SlashRegistry.Spells()
+                        .isRegistered(spell)) {
+                        removeCastingMoveDebuff(player);
+                    }
+                }
+
+                spellDatas.values()
+                    .forEach(x -> x.tickCooldown(ticks));
+
+                if (castingTicksLeft < 0) {
+                    this.spellBeingCast = "";
                 }
             }
-
-            tryCast(player, spells, ctx);
-
-            castingTicksLeft--;
-            castingTicksDone++;
-
-            if (!player.world.isClient) {
-
-                if (spell == null || !SlashRegistry.Spells()
-                    .isRegistered(spell)) {
-                    removeCastingMoveDebuff(player);
-                }
-            }
-
-            spellDatas.values()
-                .forEach(x -> x.tickCooldown(ticks));
-
-            if (castingTicksLeft < 0) {
-                this.spellBeingCast = "";
-            }
-
         } catch (Exception e) {
 
         }

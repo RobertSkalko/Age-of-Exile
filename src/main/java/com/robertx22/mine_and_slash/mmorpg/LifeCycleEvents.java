@@ -28,15 +28,14 @@ public class LifeCycleEvents {
 
     static boolean regDefault = true;
 
-    public static void register(){
+    public static void register() {
 
-
-        ServerLifecycleEvents.SERVER_STARTING.register(server-> {
+        ServerLifecycleEvents.SERVER_STARTING.register(server -> {
             new CurrencyItems().registerAll();
 
             MMORPG.server = server;
 
-            ReloadableResourceManager manager =server
+            ReloadableResourceManager manager = server
                 .getDataManager();
 
             manager.registerListener(new BaseGearTypeDatapackManager());
@@ -52,7 +51,7 @@ public class LifeCycleEvents {
 
         });
 
-        ServerLifecycleEvents.SERVER_STARTED.register(server-> {
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 
             DeterminePowerLevels.setupHashMaps();
 
@@ -69,9 +68,9 @@ public class LifeCycleEvents {
                 .get(GameRules.NATURAL_REGENERATION)
                 .get();
 
-           server                .getGameRules()
+            server.getGameRules()
                 .get(GameRules.NATURAL_REGENERATION)
-                .set(false,server);
+                .set(false, server);
 
             if (MMORPG.RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
                 TestManager.RunAllTests();
@@ -81,12 +80,9 @@ public class LifeCycleEvents {
                 CheckWeaponDpsBalanceTest.run();
             }
 
-
         });
 
-
-
-        ServerLifecycleEvents.SERVER_STOPPED.register(server-> {
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
             server.getGameRules()
                 .get(GameRules.NATURAL_REGENERATION)
                 .set(regDefault, server);
