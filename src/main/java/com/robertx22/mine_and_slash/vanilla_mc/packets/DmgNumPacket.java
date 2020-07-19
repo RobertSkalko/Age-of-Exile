@@ -8,9 +8,9 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.PacketByteBuf;
 
 public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 

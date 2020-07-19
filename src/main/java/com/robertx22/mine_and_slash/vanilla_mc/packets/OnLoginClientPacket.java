@@ -5,8 +5,8 @@ import com.robertx22.exiled_lib.registry.SlashRegistryPackets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.PacketByteBuf;
 
 public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
 

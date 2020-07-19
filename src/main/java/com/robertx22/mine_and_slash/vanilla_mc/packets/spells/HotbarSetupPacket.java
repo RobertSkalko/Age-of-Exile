@@ -13,8 +13,8 @@ import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.SyncCapabilityTo
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.PacketByteBuf;
 
 public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
 

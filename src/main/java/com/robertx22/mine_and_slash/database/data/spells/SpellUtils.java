@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,20 +18,22 @@ import net.minecraft.network.packet.s2c.play.EntitySpawnGlobalS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
 import java.util.function.Function;
 
 public class SpellUtils {
 
     public static void summonLightningStrike(Entity entity) {
 
-        LightningEntity lightningboltentity = new LightningEntity(entity.world,
-            (double) entity.getX() + 0.5D,
+        LightningEntity lightningboltentity = new LightningEntity(EntityType.LIGHTNING_BOLT, entity.world);  //boolean true means it's only an effect!'
+
+        lightningboltentity.setPos((double) entity.getX() + 0.5D,
             (double) entity.getY(),
-            (double) entity.getZ() + 0.5D, true
-        );  //boolean true means it's only an effect!'
+            (double) entity.getZ() + 0.5D);
+
+        lightningboltentity.method_29498(true);
 
         addLightningBolt(((ServerWorld) entity.world), lightningboltentity);
-        //((ServerWorld) entity.world).addLightningBolt(lightningboltentity);
 
     }
 

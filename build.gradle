@@ -34,9 +34,8 @@ dependencies {
 	
 	//APIs
 	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cardinal_version}"	
-	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
-	
-	//modImplementation "top.theillusivec4.curios:curios-fabric:${curios_version}"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"	
+	modImplementation "top.theillusivec4.curios:curios-fabric:${curios_version}"
 	
 }
 

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.vanilla_mc.particles;
 
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
-import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.registry.Registry;
 
 public class EleParticleData extends ParticleType<EleParticleData> implements ParticleEffect {
