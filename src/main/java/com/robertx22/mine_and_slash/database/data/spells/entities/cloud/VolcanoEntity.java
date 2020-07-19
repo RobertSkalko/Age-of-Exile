@@ -52,7 +52,7 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                 if (!this.world.isClient) {
 
                     List<LivingEntity> entities = EntityFinder.start(
-                        getCaster(), LivingEntity.class, getPosVector())
+                        getCaster(), LivingEntity.class, getPos())
                         .radius(radius)
                         .build();
 

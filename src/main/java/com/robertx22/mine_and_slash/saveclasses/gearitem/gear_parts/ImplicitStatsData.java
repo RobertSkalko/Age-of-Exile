@@ -9,11 +9,11 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import net.minecraft.text.MutableText;
 
 @Storable
 public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsContainer {
@@ -38,9 +38,9 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
     }
 
     @Override
-    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         List<ExactStatData> stats = GetAllStats(gear);
 

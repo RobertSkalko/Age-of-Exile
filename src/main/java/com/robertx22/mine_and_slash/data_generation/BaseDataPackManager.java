@@ -2,12 +2,13 @@ package com.robertx22.mine_and_slash.data_generation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.providers.SlashDataProvider;
 import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.exiled_lib.registry.SlashRegistryContainer;
 import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.event_hooks.data_gen.providers.SlashDataProvider;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.Cached;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resource.JsonDataLoader;
@@ -38,7 +39,7 @@ public abstract class BaseDataPackManager<T extends ISlashRegistryEntry> extends
     public abstract SlashDataProvider getDataPackCreator(DataGenerator gen);
 
     @Override
-    protected void apply(Map<Identifier, JsonObject> mapToLoad, ResourceManager manager, Profiler profilerIn) {
+    protected void apply(Map<Identifier, JsonElement> mapToLoad, ResourceManager manager, Profiler profilerIn) {
 
         Cached.reset();
 
@@ -48,7 +49,7 @@ public abstract class BaseDataPackManager<T extends ISlashRegistryEntry> extends
 
         mapToLoad.forEach((loc, json) -> {
             try {
-                T object = serializer.apply(json);
+                T object = serializer.apply(json.getAsJsonObject());
                 object.registerToSlashRegistry();
             } catch (Exception exception) {
                 LOGGER.error("Couldn't parse " + id + " {}", loc, exception);

@@ -8,15 +8,11 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.con
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Storable
@@ -95,9 +91,9 @@ public class SpellCastingData {
                         .isRegistered(spell)) {
 
                         spell.onCastingTick(ctx);
-                        addCastingMoveDebuff(player);
+
                     } else {
-                        removeCastingMoveDebuff(player);
+
                     }
                 }
 
@@ -105,14 +101,6 @@ public class SpellCastingData {
 
                 castingTicksLeft--;
                 castingTicksDone++;
-
-                if (!player.world.isClient) {
-
-                    if (spell == null || !SlashRegistry.Spells()
-                        .isRegistered(spell)) {
-                        removeCastingMoveDebuff(player);
-                    }
-                }
 
                 spellDatas.values()
                     .forEach(x -> x.tickCooldown(ticks));
@@ -125,26 +113,6 @@ public class SpellCastingData {
 
         }
 
-    }
-
-    public static EntityAttributeModifier CASTING_SPEED_DEBUFF = new EntityAttributeModifier(UUID.fromString("d6d3dc82-9787-4722-9a33-924b94490e2a"), EntityAttributes.MOVEMENT_SPEED.getId(), -0.25F, EntityAttributeModifier.Operation.MULTIPLY_BASE);
-
-    public void addCastingMoveDebuff(PlayerEntity player) {
-        EntityAttributeInstance atri = player.getAttributes()
-            .get(EntityAttributes.MOVEMENT_SPEED);
-
-        if (!atri.hasModifier(CASTING_SPEED_DEBUFF)) {
-            atri.addModifier(CASTING_SPEED_DEBUFF);
-        }
-    }
-
-    public void removeCastingMoveDebuff(PlayerEntity player) {
-        EntityAttributeInstance atri = player.getAttributes()
-            .get(EntityAttributes.MOVEMENT_SPEED);
-
-        if (atri.hasModifier(CASTING_SPEED_DEBUFF)) {
-            atri.removeModifier(CASTING_SPEED_DEBUFF);
-        }
     }
 
     public List<String> getSpellsOnCooldown() {

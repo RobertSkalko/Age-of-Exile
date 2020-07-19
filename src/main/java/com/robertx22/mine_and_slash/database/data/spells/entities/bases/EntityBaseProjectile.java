@@ -15,7 +15,6 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.entity.projectile.thrown.ThrownEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Packet;
@@ -30,7 +29,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EntityBaseProjectile extends PersistentProjectileEntity implements ThrownEntity, IMyRenderAsItem,
+public abstract class EntityBaseProjectile extends PersistentProjectileEntity implements IMyRenderAsItem,
     ISpellEntity {
 
     EntitySpellData spellData;
@@ -146,7 +145,7 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
             }
         }
 
-        List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosVector())
+        List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPos())
             .radius(radius)
             .build();
 
@@ -246,7 +245,7 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     }
 
     @Override
-    protected void onHit(HitResult raytraceResultIn) {
+    protected void onCollision(HitResult raytraceResultIn) {
 
         HitResult.Type raytraceresult$type = raytraceResultIn.getType();
         if (raytraceresult$type == HitResult.Type.ENTITY) {

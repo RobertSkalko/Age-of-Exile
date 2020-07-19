@@ -11,6 +11,8 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
@@ -34,7 +36,7 @@ public class DamageParticle extends Particle {
 
     public DamageParticle(Elements element, String str, World world, double parX, double parY, double parZ,
                           double parMotionX, double parMotionY, double parMotionZ) {
-        super(world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
+        super((ClientWorld) world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 
         gravityStrength = (float) ClientConfigs.INSTANCE.dmgParticleConfig.GRAVITY;
 
@@ -99,7 +101,8 @@ public class DamageParticle extends Particle {
             RenderSystem.depthMask(false);
             RenderSystem.disableDepthTest();
 
-            fontRenderer.drawWithShadow(this.text, 0, 0, element.format.getColorValue());
+            // idk todo
+            fontRenderer.drawWithShadow(new MatrixStack(), this.text, 0, 0, element.format.getColorValue());
 
             RenderSystem.enableDepthTest();
             RenderSystem.depthMask(false);

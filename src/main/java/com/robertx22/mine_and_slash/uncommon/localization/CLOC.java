@@ -4,13 +4,14 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 
 public class CLOC {
 
-    public static String translate(MutableText s) {
-        return I18n.translate(s.asFormattedString()
+    public static String translate(Text s) {
+        return I18n.translate(s.asString()
             .replaceAll("%", "PERCENT"))
             .replaceAll("PERCENT", "%");
     }

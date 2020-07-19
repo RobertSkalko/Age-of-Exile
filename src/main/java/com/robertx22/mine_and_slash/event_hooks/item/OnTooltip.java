@@ -18,6 +18,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.Comparator;
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 public class OnTooltip implements ItemTooltipCallback {
 
     @Override
-    public void getTooltip(ItemStack stack, net.minecraft.client.item.TooltipContext tooltipContext, List<MutableText> tooltip) {
+    public void getTooltip(ItemStack stack, net.minecraft.client.item.TooltipContext tooltipContext, List<Text> tooltip) {
 
         if (stack
             .getItem() instanceof ICurrencyItemEffect) {

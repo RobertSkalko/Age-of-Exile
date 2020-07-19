@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.mine_and_slash.database.data.affixes.Affix;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.data.affixes.Affix;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -9,12 +9,12 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import net.minecraft.text.MutableText;
 
 @Storable
 public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer {
@@ -58,11 +58,11 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     }
 
     @Override
-    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         Affix affix = BaseAffix();
 
-        List<MutableText> list = new ArrayList<MutableText>();
+        List<Text> list = new ArrayList<Text>();
 
         GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
 

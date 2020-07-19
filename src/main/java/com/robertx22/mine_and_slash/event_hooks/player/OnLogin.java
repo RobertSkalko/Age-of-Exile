@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.OnLoginClientPacket;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
@@ -19,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Style;
 
 public class OnLogin implements ServerEntityEvents.Load {
 
@@ -45,8 +43,7 @@ public class OnLogin implements ServerEntityEvents.Load {
             SlashRegistry.restoreFromBackupifEmpty();
 
             if (MMORPG.RUN_DEV_TOOLS) {
-                player.sendSystemMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
-                    .setStyle(new Style().withColor(Styles.RED)));
+                player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);
             }
 
             if (Load.hasUnit(player)) {
@@ -59,8 +56,8 @@ public class OnLogin implements ServerEntityEvents.Load {
                 data.syncToClient(player);
 
             } else {
-                player.sendSystemMessage(
-                    new LiteralText("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
+                player.sendMessage(
+                    new LiteralText("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"), false);
             }
 
         } catch (

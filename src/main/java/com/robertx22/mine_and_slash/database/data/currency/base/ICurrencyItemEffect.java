@@ -7,8 +7,9 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+
 import java.util.List;
 
 public interface ICurrencyItemEffect {
@@ -28,7 +29,7 @@ public interface ICurrencyItemEffect {
         return true;
     }
 
-    public default void addToTooltip(List<MutableText> tooltip) {
+    public default void addToTooltip(List<Text> tooltip) {
 
         if (Screen.hasShiftDown()) {
             tooltip.add(TooltipUtils.color(Formatting.RED, Words.Requirements.locName()

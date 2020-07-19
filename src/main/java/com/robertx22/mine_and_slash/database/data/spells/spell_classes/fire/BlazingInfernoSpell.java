@@ -24,6 +24,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class BlazingInfernoSpell extends BaseSpell {
     }
 
     @Override
-    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<MutableText> list = new ArrayList<>();
 

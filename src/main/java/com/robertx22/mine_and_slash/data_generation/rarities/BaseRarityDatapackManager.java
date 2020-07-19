@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.data_generation.rarities;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.data.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.providers.RarityProvider;
@@ -37,7 +38,7 @@ public abstract class BaseRarityDatapackManager<T extends Rarity> extends JsonDa
     public abstract RarityProvider getProvider(DataGenerator gen);
 
     @Override
-    protected void apply(Map<Identifier, JsonObject> mapToLoad, ResourceManager manager, Profiler profilerIn) {
+    protected void apply(Map<Identifier, JsonElement> mapToLoad, ResourceManager manager, Profiler profilerIn) {
 
         System.out.println("Starting to register rarity datapacks on the server from datapacks");
 
@@ -45,7 +46,7 @@ public abstract class BaseRarityDatapackManager<T extends Rarity> extends JsonDa
 
         mapToLoad.forEach((loc, json) -> {
             try {
-                T object = serializer.apply(json);
+                T object = serializer.apply(json.getAsJsonObject());
                 list.add(object);
             } catch (Exception exception) {
                 LOGGER.error("Couldn't parse " + id + " {}", loc, exception);

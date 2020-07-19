@@ -12,11 +12,13 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.con
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArrowStormSpell extends BaseSpell {
 
@@ -76,7 +78,7 @@ public class ArrowStormSpell extends BaseSpell {
     }
 
     @Override
-    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<MutableText> list = new ArrayList<>();
 

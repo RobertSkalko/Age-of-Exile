@@ -47,7 +47,7 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
                         .amount((int) (15 * RADIUS)));
 
                 List<LivingEntity> entities = EntityFinder.start(
-                    caster, LivingEntity.class, new Vec3d(getPos()).add(0.5F, 0, 0.5F))
+                    caster, LivingEntity.class, new Vec3d(getPos().getX(), getPos().getY(), getPos().getZ()).add(0.5F, 0, 0.5F))
                     .radius(RADIUS)
                     .build();
 

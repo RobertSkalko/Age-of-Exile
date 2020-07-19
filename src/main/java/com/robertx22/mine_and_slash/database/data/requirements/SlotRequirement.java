@@ -127,7 +127,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new SText(Formatting.GREEN + "Allowed on: "));
 

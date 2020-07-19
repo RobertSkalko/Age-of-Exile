@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.spells.blocks.base;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -18,8 +19,8 @@ public abstract class BaseSpellTileEntity extends BlockEntity implements ISpellE
     }
 
     @Override
-    public void fromTag(CompoundTag nbt) {
-        super.fromTag(nbt);
+    public void fromTag(BlockState state, CompoundTag nbt) {
+        super.fromTag(state, nbt);
         this.data = EntitySpellDataSaving.Load(nbt);
     }
 

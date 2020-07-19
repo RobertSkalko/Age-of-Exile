@@ -57,7 +57,7 @@ public class RangerArrowEntity extends EntityBaseProjectile {
         if (imbued && world.isClient) {
             if (this.age > 1) {
                 for (int i = 0; i < 1; i++) {
-                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPosVector(), 0.15F);
+                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPos(), 0.15F);
                     ParticleUtils.spawn(ParticleTypes.WITCH, world, p);
                 }
             }

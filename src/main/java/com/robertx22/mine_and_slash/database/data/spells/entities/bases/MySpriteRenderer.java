@@ -28,10 +28,6 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
         this(p_i50957_1_, p_i50957_2_, 1.0F, false);
     }
 
-    protected int getBlockLight(T p_225624_1_, float p_225624_2_) {
-        return this.field_229126_f_ ? 15 : super.getBlockLight(p_225624_1_, p_225624_2_);
-    }
-
     public void render(T p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_,
                        VertexConsumerProvider p_225623_5_, int p_225623_6_) {
         p_225623_4_.push();

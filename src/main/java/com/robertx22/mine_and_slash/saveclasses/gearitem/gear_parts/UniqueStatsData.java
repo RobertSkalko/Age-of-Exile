@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -14,10 +14,12 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Storable
 public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsContainer {
@@ -61,11 +63,11 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     }
 
     @Override
-    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         info.minmax = getMinMax(gear);
 
-        List<MutableText> list = new ArrayList<MutableText>();
+        List<Text> list = new ArrayList<Text>();
 
         list.add(new SText(""));
         //list.add(getHeader());

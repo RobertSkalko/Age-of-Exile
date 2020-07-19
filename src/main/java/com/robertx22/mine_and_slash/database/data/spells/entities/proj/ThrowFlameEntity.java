@@ -57,7 +57,7 @@ public class ThrowFlameEntity extends BaseElementalBoltEntity {
         if (world.isClient) {
             if (this.age > 1) {
                 for (int i = 0; i < 2; i++) {
-                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPosVector(), 0.1F);
+                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPos(), 0.1F);
                     ParticleUtils.spawn(ParticleTypes.FLAME, world, p);
                 }
             }

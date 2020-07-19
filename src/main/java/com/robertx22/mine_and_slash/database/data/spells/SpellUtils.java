@@ -14,7 +14,7 @@ import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.network.packet.s2c.play.EntitySpawnGlobalS2CPacket;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -40,8 +40,8 @@ public class SpellUtils {
     public static void addLightningBolt(ServerWorld world, LightningEntity entityIn) {
         world.getServer()
             .getPlayerManager()
-            .sendToAround((PlayerEntity) null, entityIn.getX(), entityIn.getY(), entityIn.getZ(), 50, world.getDimension()
-                .getType(), new EntitySpawnGlobalS2CPacket(entityIn));
+            .sendToAround((PlayerEntity) null, entityIn.getX(), entityIn.getY(), entityIn.getZ(), 50, world.getRegistryKey()
+                , new EntitySpawnS2CPacket(entityIn));
     }
 
     public static void setupProjectileForCasting(PersistentProjectileEntity projectile, LivingEntity caster, float speed) {

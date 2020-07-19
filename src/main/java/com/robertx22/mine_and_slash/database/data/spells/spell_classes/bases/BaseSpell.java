@@ -216,7 +216,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         return this.immutableConfigs.element();
     }
 
-    public abstract List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx);
+    public abstract List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx);
 
     public abstract Words getName();
 
@@ -298,9 +298,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         SpellCastContext ctx = new SpellCastContext(info.player, 0, this);
 
-        UnitData data = info.unitdata;
-
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
 

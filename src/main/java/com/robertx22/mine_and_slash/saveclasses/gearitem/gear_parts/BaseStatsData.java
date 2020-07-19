@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -16,12 +16,14 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
 
 @Storable
 public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartTooltip {
@@ -58,11 +60,11 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     static Formatting TEXT_COLOR = Formatting.GRAY;
 
     @Override
-    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         List<ExactStatData> all = GetAllStats(gear);
 
-        List<MutableText> list = new ArrayList<MutableText>();
+        List<Text> list = new ArrayList<>();
         list.add(new LiteralText(" "));
 
         MutableText physdmg = null;

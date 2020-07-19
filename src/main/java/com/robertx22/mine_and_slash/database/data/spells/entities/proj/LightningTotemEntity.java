@@ -55,7 +55,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
         if (this.age % tickRate == 0) {
             if (!world.isClient) {
 
-                List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPosVector())
+                List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPos())
                     .radius(radius())
                     .build();
 
@@ -80,7 +80,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
         if (this.inGround && world.isClient) {
 
             for (int i = 0; i < 80; i++) {
-                Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPosVector(), (float) radius());
+                Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPos(), (float) radius());
                 ParticleUtils.spawn(ModRegistry.PARTICLES.THUNDER, world, p);
 
             }

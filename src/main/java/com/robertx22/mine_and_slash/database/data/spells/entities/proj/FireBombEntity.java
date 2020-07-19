@@ -64,7 +64,7 @@ public class FireBombEntity extends EntityBaseProjectile {
                     return;
                 }
 
-                List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPosVector())
+                List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPos())
                     .radius(RADIUS)
                     .build();
 
@@ -92,7 +92,7 @@ public class FireBombEntity extends EntityBaseProjectile {
             if (age % 2 == 0) {
                 for (int i = 0; i < 20; i++) {
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                        getPosVector().add(0, 0.2F, 0), RADIUS);
+                        getPos().add(0, 0.2F, 0), RADIUS);
                     ParticleUtils.spawn(ParticleTypes.SMOKE, world, p);
 
                 }

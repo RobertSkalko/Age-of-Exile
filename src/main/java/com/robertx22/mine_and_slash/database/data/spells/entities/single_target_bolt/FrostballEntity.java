@@ -48,7 +48,7 @@ public class FrostballEntity extends BaseElementalBoltEntity {
         if (world.isClient) {
             if (this.age > 1) {
                 for (int i = 0; i < 2; i++) {
-                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPosVector(), 0.2F);
+                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPos(), 0.2F);
                     ParticleUtils.spawn(ParticleTypes.ITEM_SNOWBALL, world, p);
                 }
             }

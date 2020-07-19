@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.data.stats;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
+import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.IGUID;
 import com.robertx22.mine_and_slash.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -19,10 +19,9 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-
-
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -200,7 +199,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     }
 
     @Environment(EnvType.CLIENT)
-    public List<MutableText> getTooltipList(TooltipStatInfo info) {
+    public List<Text> getTooltipList(TooltipStatInfo info) {
         return info.tooltipInfo.statTooltipType.impl.getTooltipList(info);
     }
 

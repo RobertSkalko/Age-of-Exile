@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,7 @@ public class HeartOfIceSpell extends BaseSpell {
     }
 
     @Override
-    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<MutableText> list = new ArrayList<>();
 

@@ -18,9 +18,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +89,7 @@ public class RecoilShotSpell extends BaseSpell {
         double x = (double) -MathHelper.sin(caster.yaw * distance);
         double z = (double) (MathHelper.cos(caster.yaw * distance));
 
-        caster.takeKnockback(caster, 1.8f, x, z);
+        caster.takeKnockback(1.8f, x, z);
 
         if (caster instanceof ServerPlayerEntity) {
             ((ServerPlayerEntity) caster).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(caster));
@@ -102,9 +103,9 @@ public class RecoilShotSpell extends BaseSpell {
     }
 
     @Override
-    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Shoots an arrow and dash back: "));
 

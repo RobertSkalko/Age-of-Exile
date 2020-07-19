@@ -4,17 +4,19 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Storable;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Storable
 public abstract class BaseStatCalc implements ITooltipList {
 
-    public List<MutableText> getTooltipFor(float multi, float value, MutableText statname, Elements el) {
-        List<MutableText> list = new ArrayList<>();
+    public List<Text> getTooltipFor(float multi, float value, MutableText statname, Elements el) {
+        List<Text> list = new ArrayList<>();
         String eleStr = "";
 
         if (el != null) {

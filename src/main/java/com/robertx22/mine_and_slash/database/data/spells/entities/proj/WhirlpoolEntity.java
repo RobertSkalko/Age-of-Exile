@@ -68,7 +68,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                         return;
                     }
 
-                    List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPosVector())
+                    List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPos())
                         .radius(RADIUS)
                         .build();
 
@@ -106,7 +106,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
                     for (int i = 0; i < 40; i++) {
                         Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                            getPosVector().add(0, yUp, 0), rad);
+                            getPos().add(0, yUp, 0), rad);
                         ParticleUtils.spawn(ModRegistry.PARTICLES.BUBBLE, world, p);
 
                     }

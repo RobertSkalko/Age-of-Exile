@@ -20,6 +20,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public class HealingAuraSpell extends BaseSpell {
     }
 
     @Override
-    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<MutableText> list = new ArrayList<>();
 

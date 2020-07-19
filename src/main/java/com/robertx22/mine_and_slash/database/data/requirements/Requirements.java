@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializablePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class Requirements implements ISerializablePart<Requirements>, ITooltipLi
 
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
         this.requirements.forEach(x -> {
             list.add(new SText(""));
             list.addAll(x.GetTooltipString(info));

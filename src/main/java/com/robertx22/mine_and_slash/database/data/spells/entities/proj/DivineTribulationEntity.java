@@ -75,7 +75,7 @@ public class DivineTribulationEntity extends EntityBaseProjectile {
         if (world.isClient) {
             if (age % 2 == 0) {
                 ParticleEnum.sendToClients(
-                    this, new ParticlePacketData(getPosVector(), ParticleEnum.AOE).amount(5)
+                    this, new ParticlePacketData(getPos(), ParticleEnum.AOE).amount(5)
                         .type(ParticleTypes.CLOUD)
                         .motion(new Vec3d(0, 0, 0)));
             }
@@ -90,7 +90,7 @@ public class DivineTribulationEntity extends EntityBaseProjectile {
                         return;
                     }
 
-                    List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPosVector())
+                    List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPos())
                         .radius(radius())
                         .height(4)
                         .build();

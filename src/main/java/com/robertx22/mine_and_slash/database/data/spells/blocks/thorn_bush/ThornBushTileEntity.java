@@ -50,7 +50,7 @@ public class ThornBushTileEntity extends BaseSpellTileEntity {
                         .amount(25));
 
                 List<LivingEntity> entities = EntityFinder.start(
-                    caster, LivingEntity.class, new Vec3d(pos).add(0.5F, 0, 0.5F))
+                    caster, LivingEntity.class, new Vec3d(getPos().getX(), getPos().getY(), getPos().getZ()).add(0.5F, 0, 0.5F))
                     .radius(RADIUS)
                     .height(2)
                     .build();

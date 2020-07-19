@@ -13,11 +13,12 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
 
 @Storable
 public class SpellCalcData {
@@ -105,14 +106,14 @@ public class SpellCalcData {
         return val;
     }
 
-    public List<MutableText> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
         return this.GetTooltipString(info, ctx.spellsCap, ctx.ability);
 
     }
 
-    public List<MutableText> GetTooltipString(TooltipInfo info, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
+    public List<Text> GetTooltipString(TooltipInfo info, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         if (!empty) {
             getAllScalingValues().forEach(x -> list.addAll(x.GetTooltipString(info)));

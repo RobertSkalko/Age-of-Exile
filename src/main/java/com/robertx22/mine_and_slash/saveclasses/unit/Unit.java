@@ -17,7 +17,6 @@ import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
@@ -35,7 +34,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -279,17 +277,6 @@ public class Unit {
 
         List<MobRarity> rarities = Rarities.Mobs.getAllRarities();
 
-        if (entity.world.random.nextBoolean()) {
-            if (entity.dimension.equals(DimensionType.OVERWORLD)) {
-                if (y < 50) {
-                    rarities.removeIf(x -> x.Rank() == IRarity.Common);
-                }
-                if (y < 30) {
-                    rarities.removeIf(x -> x.Rank() == IRarity.Magical);
-                }
-            }
-        }
-
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 
         EntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, Load.Unit(entity));
@@ -480,17 +467,17 @@ public class Unit {
 
         EntityAttributeModifier mod = new EntityAttributeModifier(
             hpID,
-            EntityAttributes.MAX_HEALTH.getId(),
+            EntityAttributes.GENERIC_MAX_HEALTH.getTranslationKey(),
             hp,
             EntityAttributeModifier.Operation.ADDITION
         );
 
-        EntityAttributeInstance atri = en.getAttributeInstance(EntityAttributes.MAX_HEALTH);
+        EntityAttributeInstance atri = en.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 
         if (atri.hasModifier(mod)) {
             atri.removeModifier(mod);
         }
-        atri.addModifier(mod);
+        atri.addPersistentModifier(mod);
 
     }
 

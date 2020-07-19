@@ -7,10 +7,11 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.con
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 
 public abstract class BaseDivineBuffSpell extends BaseSpell {
 
@@ -37,9 +38,9 @@ public abstract class BaseDivineBuffSpell extends BaseSpell {
     }
 
     @Override
-    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Applies buff to all allies nearby: "));
 

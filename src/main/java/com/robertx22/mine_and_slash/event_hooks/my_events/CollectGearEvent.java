@@ -68,8 +68,11 @@ public class CollectGearEvent {
             } else if (off != null && off.GetBaseGearType()
                 .family()
                 .equals(BaseGearType.SlotFamily.Weapon)) {
-                event.entity
-                    .sendSystemMessage(new LiteralText("You can't wear a weapon in offhand."));
+
+                if (event.entity instanceof PlayerEntity) {
+                    PlayerEntity p = (PlayerEntity) event.entity;
+                    p.sendMessage(new LiteralText("You can't wear a weapon in offhand."), false);
+                }
             }
 
         }

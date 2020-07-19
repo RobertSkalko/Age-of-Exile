@@ -46,7 +46,7 @@ public class HolyFlowerTileEntity extends BaseSpellTileEntity {
                         .amount((int) (30 * RADIUS)));
 
                 List<LivingEntity> entities = EntityFinder.start(
-                    caster, LivingEntity.class, new Vec3d(getPos()).add(0.5F, 0, 0.5F))
+                    caster, LivingEntity.class, new Vec3d(getPos().getX(), getPos().getY(), getPos().getZ()).add(0.5F, 0, 0.5F))
                     .radius(RADIUS)
                     .searchFor(EntityFinder.SearchFor.ALLIES)
                     .build();

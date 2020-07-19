@@ -23,7 +23,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -84,9 +84,9 @@ public class ThunderDashSpell extends BaseSpell {
     }
 
     @Override
-    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<MutableText> list = new ArrayList<>();
+        List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Dash in your current direction,"));
         list.add(new LiteralText("damages all enemies in the path."));
@@ -106,7 +106,7 @@ public class ThunderDashSpell extends BaseSpell {
 
         float distance = 0.017453292f;
         caster.setVelocity(new Vec3d(0, 0, 0));
-        caster.takeKnockback(caster, 3.5f, (double) MathHelper.sin(caster.yaw * distance),
+        caster.takeKnockback(3.5f, (double) MathHelper.sin(caster.yaw * distance),
             (double) (-MathHelper.cos(caster.yaw * distance))
         );
         if (caster instanceof ServerPlayerEntity) {

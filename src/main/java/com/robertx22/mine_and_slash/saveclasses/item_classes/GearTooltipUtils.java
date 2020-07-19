@@ -19,6 +19,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ import java.util.List;
 
 public class GearTooltipUtils {
 
-    public static void BuildTooltip(GearItemData gear, ItemStack stack, List<MutableText> tooltip, UnitData data) {
+    public static void BuildTooltip(GearItemData gear, ItemStack stack, List<Text> tooltip, UnitData data) {
 
-        List<MutableText> tip = tooltip;
+        List<Text> tip = tooltip;
 
         TooltipInfo info = new TooltipInfo(data, gear.getRarity()
             .StatPercents());
@@ -182,7 +183,7 @@ public class GearTooltipUtils {
                     .append(CLOC.tooltip("press_shift_more_info")));
         }
 
-        List<MutableText> tool = TooltipUtils.removeDoubleBlankLines(tip,
+        List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
             ClientConfigs.INSTANCE.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
 
         tip.clear();
