@@ -3,18 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.auto_comp.DeterminePowerLevels;
-import com.robertx22.mine_and_slash.data_generation.DimConfigsDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.EntityConfigsDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.base_gear_types.BaseGearTypeDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
-import com.robertx22.mine_and_slash.data_generation.rarities.SkillGemRarityManager;
-import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.database.registrators.CurrencyItems;
-import com.robertx22.mine_and_slash.mixins.MinecraftServerMixin;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.error_checks.base.ErrorChecks;
@@ -22,7 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import com.robertx22.mine_and_slash.uncommon.testing.tests.CheckWeaponDpsBalanceTest;
 import com.robertx22.mine_and_slash.uncommon.testing.tests.CountUniqueGearTypes;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.world.GameRules;
 
 public class LifeCycleEvents {
@@ -35,22 +23,6 @@ public class LifeCycleEvents {
             new CurrencyItems().registerAll();
 
             MMORPG.server = server;
-
-            MinecraftServerMixin ms = (MinecraftServerMixin) server;
-
-            ReloadableResourceManager manager = (ReloadableResourceManager) ms.getResourceManager()
-                .getResourceManager();
-
-            manager.registerListener(new BaseGearTypeDatapackManager());
-            manager.registerListener(new TierDatapackManager());
-            manager.registerListener(new AffixDataPackManager());
-            manager.registerListener(new MobAffixDataPackManager());
-            manager.registerListener(new UniqueGearDatapackManager());
-            manager.registerListener(new CompatibleItemDataPackManager());
-            manager.registerListener(new GearRarityManager());
-            manager.registerListener(new SkillGemRarityManager());
-            manager.registerListener(new DimConfigsDatapackManager());
-            manager.registerListener(new EntityConfigsDatapackManager());
 
         });
 

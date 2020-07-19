@@ -1,17 +1,47 @@
-package com.robertx22.mine_and_slash.event_hooks.item;
+package com.robertx22.mine_and_slash.mixins;
 
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import com.robertx22.mine_and_slash.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class OnTooltip implements ItemTooltipCallback {
+@Mixin(value = ItemStack.class, priority = Integer.MAX_VALUE)
+public abstract class ItemStackMixin {
+    public ItemStackMixin() {
+    }
 
-    @Override
-    public void getTooltip(ItemStack stack, net.minecraft.client.item.TooltipContext tooltipContext, List<Text> tooltip) {
+    @Inject(
+        method = {"getTooltip"},
+        at = {@At("RETURN")}
+    )
+    private void getTooltip(PlayerEntity entity, TooltipContext tooltipContext, CallbackInfoReturnable<List<Text>> list) {
 
-        /*
+        ItemStack stack = (ItemStack) (Object) this;
+
+        List<Text> tooltip = list.getReturnValue();
+
         if (stack
             .getItem() instanceof ICurrencyItemEffect) {
             ICurrencyItemEffect currency = (ICurrencyItemEffect) stack
@@ -34,7 +64,7 @@ public class OnTooltip implements ItemTooltipCallback {
                 return;
             }
 
-            UnitData unitdata = Load.Unit(player);
+            EntityCap.UnitData unitdata = Load.Unit(player);
 
             if (unitdata == null) {
                 return;
@@ -46,7 +76,7 @@ public class OnTooltip implements ItemTooltipCallback {
                 return;
             }
 
-            TooltipContext ctx = new TooltipContext(stack, tooltip, unitdata);
+            com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext ctx = new com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext(stack, tooltip, unitdata);
 
             if (!stack.hasTag()) {
                 return;
@@ -95,7 +125,7 @@ public class OnTooltip implements ItemTooltipCallback {
         } catch (Exception e) {
             e.printStackTrace();
         }
-*/
+
     }
 
 }

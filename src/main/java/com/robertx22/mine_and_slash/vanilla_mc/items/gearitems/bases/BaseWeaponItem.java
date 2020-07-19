@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -61,7 +62,7 @@ public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, I
 
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
-        Multimap<EntityAttribute, EntityAttributeModifier> map = super.getAttributeModifiers(slot);
+        Multimap<EntityAttribute, EntityAttributeModifier> map = HashMultimap.create();
         if (slot == EquipmentSlot.MAINHAND) {
             map.put(
                 EntityAttributes.GENERIC_ATTACK_DAMAGE,

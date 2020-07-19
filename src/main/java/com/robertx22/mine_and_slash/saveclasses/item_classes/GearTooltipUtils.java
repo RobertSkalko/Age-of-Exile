@@ -143,7 +143,8 @@ public class GearTooltipUtils {
 
             int i = 0;
             for (String desc : lores) {
-                MutableText comp = new SText(gear.getRarity()
+
+                MutableText comp = new LiteralText(gear.getRarity()
                     .textFormatting() + "");
 
                 if (i == 0) {

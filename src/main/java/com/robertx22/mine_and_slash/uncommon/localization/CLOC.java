@@ -11,9 +11,11 @@ import net.minecraft.util.Formatting;
 public class CLOC {
 
     public static String translate(Text s) {
-        return I18n.translate(s.asString()
+
+        return I18n.translate(s.getString()
             .replaceAll("%", "PERCENT"))
             .replaceAll("PERCENT", "%");
+
     }
 
     private static MutableText base(String s) {

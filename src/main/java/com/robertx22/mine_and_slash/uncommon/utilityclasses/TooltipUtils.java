@@ -121,7 +121,7 @@ public class TooltipUtils {
         for (int i = 0; i < list.size(); i++) {
 
             if (list.get(i)
-                .asString()
+                .getString()
                 .length() > 2) {
                 lastIsEmpty = false;
                 newt.add(list.get(i));
