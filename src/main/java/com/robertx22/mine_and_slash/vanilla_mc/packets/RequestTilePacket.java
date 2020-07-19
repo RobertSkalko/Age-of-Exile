@@ -21,7 +21,6 @@ public class RequestTilePacket extends MyPacket<RequestTilePacket> {
     }
 
     @Override
-
     public Identifier getIdentifier() {
         return new Identifier(Ref.MODID, "reqtiledata");
     }

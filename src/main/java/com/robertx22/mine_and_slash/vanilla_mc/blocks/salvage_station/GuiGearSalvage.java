@@ -49,7 +49,7 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
             .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(x, y, 0, 0, containerWidth, containerHeight);
+        blit(this.x, this.y, 0, 0, containerWidth, containerHeight);
 
         // get cook progress as a double between 0 and 1
         double cookProgress = tile.fractionOfCookTimeComplete();

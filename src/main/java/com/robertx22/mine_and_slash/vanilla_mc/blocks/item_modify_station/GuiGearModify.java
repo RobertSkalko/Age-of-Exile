@@ -51,7 +51,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        blit(x, y, 0, 0, containerWidth, containerHeight);
+        blit(this.x, this.y, 0, 0, containerWidth, containerHeight);
 
         // draw the cook progress bar
         blit(

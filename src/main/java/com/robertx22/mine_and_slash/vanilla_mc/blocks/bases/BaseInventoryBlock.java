@@ -31,7 +31,7 @@ public abstract class BaseInventoryBlock extends NonFullBlock implements BlockEn
 
     @Override
     public NameableContainerFactory createContainerFactory(BlockState state, World world, BlockPos pos) {
-        return (NameableContainerFactory) createBlockEntity(null);
+        return (NameableContainerFactory) world.getBlockEntity(pos);
     }
 
     @Override
