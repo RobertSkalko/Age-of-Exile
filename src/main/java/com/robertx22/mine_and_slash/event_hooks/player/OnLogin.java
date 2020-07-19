@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -33,13 +34,13 @@ public class OnLogin implements ServerEntityEvents.Load {
 
         try {
 
-            MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.BEFORE), player);
+            Packets.sendToClient(player, new OnLoginClientPacket(OnLoginClientPacket.When.BEFORE));
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
             Rarities.sendAllPacketsToClientOnLogin(player);
             SlashRegistry.sendAllPacketsToClientOnLogin(player);
 
-            MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.AFTER), player);
+            Packets.sendToClient(player, new OnLoginClientPacket(OnLoginClientPacket.When.AFTER));
 
             SlashRegistry.restoreFromBackupifEmpty();
 

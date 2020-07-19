@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.mixins;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.LivingHurtUtils;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import net.minecraft.entity.DamageUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -45,8 +45,7 @@ public abstract class LivingEntityMixin {
                 float diff = damage - afterArmor;
 
                 if (diff > 0) {
-                    float effectiveness = ModConfig.INSTANCE.Server.VANILLA_ARMOR_EFFECTIVENESS.get()
-                        .floatValue();
+                    float effectiveness = (float) ModConfig.INSTANCE.Server.VANILLA_ARMOR_EFFECTIVENESS;
 
                     damage -= diff * effectiveness;
                 }

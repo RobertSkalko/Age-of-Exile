@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.trident;
 
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
 

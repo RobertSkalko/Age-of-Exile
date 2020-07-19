@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -52,7 +51,7 @@ public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLoc
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(ModRegistry.MISC_ITEMS.RESET_STATS_POTION)
-            .input('#', SimpleMatItem.INFUSED_IRON)
+            .input('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
             .input('t', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
             .input('v', Items.GOLD_INGOT)
             .input('b', Items.GLASS_BOTTLE)

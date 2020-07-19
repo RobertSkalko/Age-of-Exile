@@ -25,8 +25,7 @@ public class ImmuneToEffectStat extends Stat {
     }
 
     public void onPotionAdded(StatusEffect effect, LivingEntity en) {
-        if (effect.getRegistryName()
-            .equals(this.effect.getRegistryName())) {
+        if (effect == this.effect) {
             if (en.hasStatusEffect(effect)) {
                 en.removeStatusEffect(effect);
             }

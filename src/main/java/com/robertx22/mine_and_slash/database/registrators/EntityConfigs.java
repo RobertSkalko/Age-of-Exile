@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
-import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.registry.Registry;
 
 import java.util.Locale;
 
@@ -23,7 +24,7 @@ public class EntityConfigs implements ISlashRegistryInit {
         new EntityConfig(EntityTypeUtils.EntityType.PLAYER.name()
             .toLowerCase(Locale.ROOT), 0).addToSerializables();
 
-        new EntityConfig(EntityType.PIG.getRegistryName()
+        new EntityConfig(Registry.ENTITY_TYPE.getId(EntityType.PIG)
             .toString(), 0).addToSerializables();
 
         new EntityConfig("lycanite_mobs", 1.2F).addToSerializables();

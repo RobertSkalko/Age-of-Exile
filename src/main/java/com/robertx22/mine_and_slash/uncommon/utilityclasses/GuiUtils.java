@@ -8,6 +8,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,7 @@ public class GuiUtils {
         if (screen != null) {
 
             TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
-            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY,
-                MinecraftClient.getInstance().textRenderer
+            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY
             );
         }
 
@@ -57,8 +57,8 @@ public class GuiUtils {
         if (screen != null) {
 
             TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
-            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY,
-                MinecraftClient.getInstance().textRenderer
+            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY
+
             );
         }
 

@@ -11,8 +11,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base.Ba
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.screens.stat_alloc.StatAllocationScreen.IncreaseStatButton;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -23,16 +22,17 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StatAllocationScreen extends BaseScreen implements INamedScreen, IAlertScreen {
 
@@ -60,7 +60,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
     public boolean mouseReleased(double x, double y, int ticks) {
 
         buttons.forEach(b -> {
-            if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getHeight()),
+            if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getWidth()),
                 new Point((int) x, (int) y)
             )) {
                 b.onClick(x, y);
@@ -80,7 +80,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
     protected void init() {
         super.init();
 
-        MMORPG.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
+        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
 
         data = Load.statPoints(MinecraftClient.getInstance().player);
         unitdata = Load.Unit(MinecraftClient.getInstance().player);
@@ -125,8 +125,10 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
         minecraft.getTextureManager()
             .bindTexture(TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.blit(minecraft.window.getScaledWidth() / 2 - this.sizeX / 2,
-            minecraft.window.getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
+        this.blit(minecraft.getWindow()
+                .getScaledWidth() / 2 - this.sizeX / 2,
+            minecraft.getWindow()
+                .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
         );
 
     }
@@ -172,8 +174,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
         public void onPress() {
             super.onPress();
 
-            MMORPG.sendToServer(new SpendStatPointsPacket(this.stat));
-            MMORPG.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
+            Packets.sendToServer(new SpendStatPointsPacket(this.stat));
+            Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
 
         }
 
@@ -192,8 +194,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
                         .getCreateStat(stat)));
                 }
 
-                StatAllocationScreen.this.renderTooltip(
-                    TooltipUtils.compsToStrings(tooltip), x, y, MinecraftClient.getInstance().textRenderer);
+                StatAllocationScreen.this.renderTooltip(TooltipUtils.compsToStrings(tooltip), x, y);
 
             }
         }

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
@@ -113,7 +113,7 @@ public class OnMobDeathDrops {
                 DmgNumPacket packet = new DmgNumPacket(
                     victim, Elements.Nature, "+" + NumberUtils.format(exp) + " Exp!", exp);
                 packet.isExp = true;
-                MMORPG.sendToClient(packet, (ServerPlayerEntity) killer);
+                Packets.sendToClient(killer, packet);
 
                 for (PlayerEntity x : list) {
                     Load.Unit(x)

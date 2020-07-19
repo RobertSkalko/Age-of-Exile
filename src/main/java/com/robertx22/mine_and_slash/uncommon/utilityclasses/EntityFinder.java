@@ -142,10 +142,10 @@ public class EntityFinder {
 
                 double horizontal = setup.horizontal;
                 double vertical = setup.vertical;
-
-                double x = entity.x;
-                double y = entity.y;
-                double z = entity.z;
+                ;
+                double x = entity.getX();
+                double y = entity.getY();
+                double z = entity.getZ();
 
                 Vec3d l = Utilities.getEndOfLook(entity, distance);
 

@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -73,7 +72,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
         }
         if (rarity == 1) {
             return shaped(ITEMS.get(rarity))
-                .input('#', SimpleMatItem.INFUSED_IRON)
+                .input('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
                 .input('t', ITEMS.get(rarity - 1))
                 .input('c', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
                 .pattern("#c#")
@@ -83,7 +82,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
         }
         if (rarity == 2) {
             return shaped(ITEMS.get(rarity))
-                .input('#', SimpleMatItem.GOLDEN_ORB)
+                .input('#', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
                 .input('t', ITEMS.get(rarity - 1))
                 .input('c', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
                 .pattern("#c#")
@@ -93,7 +92,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
         }
         if (rarity == 3) {
             return shaped(ITEMS.get(rarity))
-                .input('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
+                .input('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
                 .input('t', ITEMS.get(rarity - 1))
                 .input('c', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
                 .pattern("#c#")
@@ -103,7 +102,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
         }
         if (rarity == 4) {
             return shaped(ITEMS.get(rarity))
-                .input('#', SimpleMatItem.MYTHIC_ESSENCE)
+                .input('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
                 .input('t', ITEMS.get(rarity - 1))
                 .input('c', ModRegistry.CURRENCIES.STONE_OF_HOPE)
                 .pattern("#c#")

@@ -15,8 +15,7 @@ public class SkillGemLootGen extends BaseLootGen<SkillGemBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.SKILL_GEM_DROPRATE.get()
-            .floatValue();
+        return (float) ModConfig.INSTANCE.DropRates.SKILL_GEM_DROPRATE;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import info.loenwind.autosave.annotations.Storable;
@@ -20,7 +21,7 @@ public class AbilityData {
     }
 
     public void removeSkillGem(PlayerEntity player) {
-        ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.SKILL_GEM.get());
+        ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.SKILL_GEM);
 
         if (player.inventory.insertStack(stack)) {
             skill_gem = new SkillGemData();

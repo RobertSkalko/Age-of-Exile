@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.data.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;

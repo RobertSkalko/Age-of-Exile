@@ -65,7 +65,8 @@ public class EntityUtils {
         }
 
         try {
-            CompoundTag nbt = en.serializeNBT();
+            CompoundTag nbt = new CompoundTag();
+            en.toTag(nbt);
 
             ItemStack stack = ItemStack.EMPTY;
 

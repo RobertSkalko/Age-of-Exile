@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.event_hooks.entity;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import nerdhub.cardinal.components.api.event.TrackingStartCallback;
@@ -22,9 +22,8 @@ public class OnTrackEntity implements TrackingStartCallback {
 
                 if (entity.isPartOf(serverPlayerEntity) == false) {
 
-                    MMORPG.sendToClient(
-                        Unit.getUpdatePacketFor((LivingEntity) entity, Load.Unit(entity)),
-                        serverPlayerEntity
+                    Packets.sendToClient(serverPlayerEntity,
+                        Unit.getUpdatePacketFor((LivingEntity) entity, Load.Unit(entity))
                     );
 
                 }

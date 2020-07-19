@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModParticles;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
@@ -82,7 +81,7 @@ public class LightningTotemEntity extends EntityBaseProjectile {
 
             for (int i = 0; i < 80; i++) {
                 Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPosVector(), (float) radius());
-                ParticleUtils.spawn(ModParticles.THUNDER, world, p);
+                ParticleUtils.spawn(ModRegistry.PARTICLES.THUNDER, world, p);
 
             }
 

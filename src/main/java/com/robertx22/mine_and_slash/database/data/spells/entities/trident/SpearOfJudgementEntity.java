@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.trident;
 
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.JudgementEffect;
 import net.minecraft.entity.EntityType;

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
 
@@ -15,7 +16,7 @@ public class ItemUtils {
     }
 
     public static Item randomMagicEssence() {
-        List<IWeighted> list = Arrays.asList((IWeighted) ModRegistry.MISC_ITEMS.MAGIC_ESSENCE.get(), (IWeighted) ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE.get());
+        List<IWeighted> list = Arrays.asList((IWeighted) ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, (IWeighted) ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE);
         return (Item) RandomUtils.weightedRandom(list);
 
     }

@@ -1,10 +1,20 @@
 package com.robertx22.mine_and_slash.gui.overlays.spell_hotbar;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.event_hooks.ontick.OnClientTick;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
 public class SpellHotbarOverlay extends DrawableHelper {
 
-    /*
     public static SpellCastingData.Hotbar CURRENT_HOTBAR = SpellCastingData.Hotbar.FIRST;
 
     private static final Identifier HOTBAR_TEX = new Identifier(Ref.MODID,
@@ -23,12 +33,7 @@ public class SpellHotbarOverlay extends DrawableHelper {
 
     PlayerSpellCap.ISpellsCap data;
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
-    public void onRenderPlayerOverlay(RenderGameOverlayEvent event) {
-
-        if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
-            return;
-        }
+    public void onRenderPlayerOverlay() {
 
         if (mc.player.isSpectator()) {
             return;
@@ -37,7 +42,8 @@ public class SpellHotbarOverlay extends DrawableHelper {
         data = Load.spells(mc.player);
 
         int x = 0;
-        int y = (int) (mc.window.getScaledHeight() / 2 - HEIGHT / 2);
+        int y = (int) (mc.getWindow()
+            .getScaledHeight() / 2 - HEIGHT / 2);
 
         RenderSystem.enableBlend(); // enables transparency
 
@@ -116,5 +122,4 @@ public class SpellHotbarOverlay extends DrawableHelper {
 
     }
 
-     */
 }

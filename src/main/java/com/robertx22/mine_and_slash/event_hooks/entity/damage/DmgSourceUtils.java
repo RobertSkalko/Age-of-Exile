@@ -10,19 +10,19 @@ public class DmgSourceUtils {
 
     public static boolean isMyDmgSource(DamageSource source) {
         return source instanceof MyDamageSource || source.getName()
-                .equals(DamageEffect.dmgSourceName) || source.name.contains(MARKER);
+            .equals(DamageEffect.dmgSourceName) || source.name.contains(MARKER);
     }
 
     public static void markSourceAsMine(DamageSource source) {
         if (!(source instanceof MyDamageSource)) {
             if (!source.name.contains(MARKER)) {
-                source.name = source.name + MARKER;
+                //  TODO source.name = source.name + MARKER;
             }
         }
     }
 
     public static void removeSourceMarker(DamageSource source) {
-        source.name = source.name.replaceAll(MARKER, "");
+        // TODO source.name = source.name.replaceAll(MARKER, "");
 
     }
 

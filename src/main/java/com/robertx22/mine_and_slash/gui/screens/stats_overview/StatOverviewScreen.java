@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.data.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen.StatButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -28,8 +27,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-
-
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,8 +72,10 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
             .bindTexture(texture);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.blit(minecraft.window.getScaledWidth() / 2 - this.sizeX / 2,
-            minecraft.window.getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
+        this.blit(minecraft.getWindow()
+                .getScaledWidth() / 2 - this.sizeX / 2,
+            minecraft.getWindow()
+                .getScaledHeight() / 2 - this.sizeY / 2, 0, 0, sizeX, sizeY
         );
 
         renderStats();
@@ -89,22 +88,26 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
     private int getGUIStartX() {
 
-        return (int) (minecraft.window.getScaledWidth() / 2 - this.sizeX / 2);
+        return (int) (minecraft.getWindow()
+            .getScaledWidth() / 2 - this.sizeX / 2);
     }
 
     private int getGUIStartY() {
 
-        return (int) (minecraft.window.getScaledHeight() / 2 - this.sizeY / 2);
+        return (int) (minecraft.getWindow()
+            .getScaledHeight() / 2 - this.sizeY / 2);
     }
 
     private int getTextStartX() {
 
-        return (int) (minecraft.window.getScaledWidth() / 2 - this.sizeX / 2 + 35);
+        return (int) (minecraft.getWindow()
+            .getScaledWidth() / 2 - this.sizeX / 2 + 35);
     }
 
     private int getTextStartY() {
 
-        return (int) (minecraft.window.getScaledHeight() / 2 - this.sizeY / 2 + 40);
+        return (int) (minecraft.getWindow()
+            .getScaledHeight() / 2 - this.sizeY / 2 + 40);
     }
 
     public String getStatString(Stat stat, EntityCap.UnitData data) {
@@ -315,7 +318,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
                 tooltip.addAll(stat.getCutDescTooltip());
 
                 StatOverviewScreen.this.renderTooltip(
-                    TooltipUtils.compsToStrings(tooltip), x, y, MinecraftClient.getInstance().textRenderer);
+                    TooltipUtils.compsToStrings(tooltip), x, y);
 
             }
         }

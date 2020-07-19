@@ -183,9 +183,8 @@ public class GearTooltipUtils {
         }
 
         List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
-            ClientConfigs.INSTANCE.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES
-                .get()
-        );
+            ClientConfigs.INSTANCE.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
+
         tip.clear();
         tip.addAll(tool);
 

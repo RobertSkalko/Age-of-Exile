@@ -24,23 +24,24 @@ public class LookUtils {
             positionVector = positionVector.add(0, e.getStandingEyeHeight(), 0);
 
         if (pos != null)
-            distance = pos.getPos().distanceTo(positionVector);
+            distance = pos.getPos()
+                .distanceTo(positionVector);
 
         Vec3d lookVector = e.getRotationVector();
         Vec3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance);
 
         Entity lookedEntity = null;
         List<Entity> entitiesInBoundingBox = e.getEntityWorld()
-                .getEntities(e, e.getBoundingBox()
-                        .expand(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
-                        .stretch(1F, 1F, 1F));
+            .getEntities(e, e.getBoundingBox()
+                .expand(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
+                .stretch(1F, 1F, 1F));
         double minDistance = distance;
 
         for (Entity entity : entitiesInBoundingBox) {
             if (entity.collides()) {
                 float collisionBorderSize = entity.getTargetingMargin();
                 Box hitbox = entity.getBoundingBox()
-                        .stretch(collisionBorderSize, collisionBorderSize, collisionBorderSize);
+                    .stretch(collisionBorderSize, collisionBorderSize, collisionBorderSize);
                 Optional<Vec3d> interceptPosition = hitbox.rayTrace(positionVector, reachVector);
                 Vec3d interceptVec = interceptPosition.orElse(null);
 
@@ -67,7 +68,7 @@ public class LookUtils {
     }
 
     public static HitResult raycast(Entity e, double len) {
-        Vec3d vec = new Vec3d(e.x, e.y, e.z);
+        Vec3d vec = new Vec3d(e.getX(), e.getY(), e.getZ());
         if (e instanceof PlayerEntity)
             vec = vec.add(new Vec3d(0, e.getStandingEyeHeight(), 0));
 
@@ -79,8 +80,9 @@ public class LookUtils {
     }
 
     public static HitResult raycast(World world, Vec3d origin, Vec3d ray, Entity e,
-                                         double len) {
-        Vec3d end = origin.add(ray.normalize().multiply(len));
+                                    double len) {
+        Vec3d end = origin.add(ray.normalize()
+            .multiply(len));
         HitResult pos = world.rayTrace(new RayTraceContext(origin, end, RayTraceContext.ShapeType.OUTLINE, RayTraceContext.FluidHandling.NONE, e));
         return pos;
     }

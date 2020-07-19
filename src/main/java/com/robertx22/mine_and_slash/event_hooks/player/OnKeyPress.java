@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.event_hooks.player;
 
 import com.robertx22.mine_and_slash.gui.overlays.spell_hotbar.SpellHotbarOverlay;
 import com.robertx22.mine_and_slash.gui.screens.main_hub.MainHubScreen;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.CastSpellPacket;
@@ -30,7 +30,7 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
 
                 if (entry.getValue()
                     .isPressed()) {
-                    MMORPG.sendToServer(new CastSpellPacket(entry.getKey(),
+                    Packets.sendToServer(new CastSpellPacket(entry.getKey(),
                         SpellHotbarOverlay.CURRENT_HOTBAR
                     ));
                 }

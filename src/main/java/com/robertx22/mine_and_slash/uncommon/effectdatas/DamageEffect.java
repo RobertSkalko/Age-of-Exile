@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DmgSourceUtils;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
@@ -322,7 +322,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                                 String str = NumberUtils.formatDamageNumber(this, x.getValue()
                                     .intValue());
                                 DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str, x.getValue());
-                                MMORPG.sendToClient(packet, player);
+                                Packets.sendToClient(player, packet);
                             }
                         });
 
