@@ -7,17 +7,18 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModParticles;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HeartOfIceSpell extends BaseSpell {
 
@@ -91,7 +92,7 @@ public class HeartOfIceSpell extends BaseSpell {
     public void castExtra(SpellCastContext ctx) {
         try {
             //SoundUtils.playSound(ctx.caster, ModSounds.FREEZE.get(), 1, 1);
-            ParticleUtils.spawnParticles(ParticleRegister.BUBBLE, ctx.caster, 25);
+            ParticleUtils.spawnParticles(ModParticles.BUBBLE, ctx.caster, 25);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -24,6 +24,6 @@ public class ModBlocks {
     <T extends Block> T of(String id, T c) {
         Registry.register(Registry.BLOCK, new Identifier(Ref.MODID, id), c);
         return c;
-
     }
+
 }

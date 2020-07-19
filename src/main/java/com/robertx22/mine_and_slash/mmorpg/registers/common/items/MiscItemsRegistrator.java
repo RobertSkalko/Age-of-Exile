@@ -1,9 +1,13 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common.items;
 
+import com.robertx22.mine_and_slash.database.base.CreativeTabs;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.*;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -39,6 +43,17 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item MYTHIC_ESSENCE = item(new SimpleMatItem(), "mat/mythic_essence");
 
     public ResetStatPointsItem RESET_STATS_POTION = item(new ResetStatPointsItem());
+
+    public Item GEAR_MODIFY = station(ModRegistry.BLOCKS.GEAR_MODIFY);
+    public Item GEAR_REPAIR = station(ModRegistry.BLOCKS.GEAR_REPAIR);
+    public Item GEAR_SALVAGE = station(ModRegistry.BLOCKS.GEAR_SALVAGE);
+
+    static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
+
+    <T extends Block> Item station(T block) {
+        return item(new BlockItem(block, stationProp), Registry.BLOCK.getId(block)
+            .getPath());
+    }
 
     JewelItem jewel(JewelItem c, String id) {
 

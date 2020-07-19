@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.trident;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModParticles;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -79,7 +79,7 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
             if (this.age > 2) {
                 for (int i = 0; i < 10; i++) {
                     Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getX(), getY(), getZ(), 0.1F);
-                    ParticleUtils.spawn(ParticleRegister.THUNDER, world, p);
+                    ParticleUtils.spawn(ModParticles.THUNDER, world, p);
                 }
             }
         }

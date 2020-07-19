@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModParticles;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
@@ -107,7 +107,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                     for (int i = 0; i < 40; i++) {
                         Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
                             getPosVector().add(0, yUp, 0), rad);
-                        ParticleUtils.spawn(ParticleRegister.BUBBLE, world, p);
+                        ParticleUtils.spawn(ModParticles.BUBBLE, world, p);
 
                     }
                 }

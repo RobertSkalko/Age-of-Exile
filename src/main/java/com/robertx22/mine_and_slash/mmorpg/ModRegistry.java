@@ -15,17 +15,19 @@ public class ModRegistry {
     public static ModSounds SOUNDS;
     public static EntityRegister ENTITIES;
     public static BlockEntities BLOCK_ENTITIES;
+    public static ModParticles PARTICLES;
 
     public static void init() {
 
+        BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks
         MISC_ITEMS = new MiscItemsRegistrator();
         GEAR_ITEMS = new BaseGearTypeItemRegister();
         CURRENCIES = new CurrencyItemRegistrator();
-        BLOCKS = new ModBlocks();
         CONTAINERS = new Containers();
         SOUNDS = new ModSounds();
         ENTITIES = new EntityRegister();
         BLOCK_ENTITIES = new BlockEntities();
+        PARTICLES = new ModParticles();
 
     }
 }

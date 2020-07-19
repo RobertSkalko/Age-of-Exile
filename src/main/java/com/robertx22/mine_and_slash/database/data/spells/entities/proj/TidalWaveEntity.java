@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModParticles;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -60,7 +60,7 @@ public class TidalWaveEntity extends BaseElementalBoltEntity {
             if (this.age > 2) {
                 for (int i = 0; i < 10; i++) {
                     Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPosVector(), 0.1F);
-                    ParticleUtils.spawn(ParticleRegister.BUBBLE, world, p);
+                    ParticleUtils.spawn(ModParticles.BUBBLE, world, p);
                 }
                 if (age % 5 == 0) {
                     ParticleUtils.spawn(ParticleTypes.DRIPPING_WATER, world, getPos());

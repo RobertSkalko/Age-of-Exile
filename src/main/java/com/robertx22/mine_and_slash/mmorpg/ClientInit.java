@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ClientSetup;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.client.ParticleFactoryRegister;
 import net.fabricmc.api.ClientModInitializer;
 
 public class ClientInit implements ClientModInitializer {
@@ -13,6 +14,8 @@ public class ClientInit implements ClientModInitializer {
 
         KeybindsRegister.register();
         RegisterClientEvents.register();
+
+        ParticleFactoryRegister.register();
 
     }
 }

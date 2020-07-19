@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.localization;
 
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -10,8 +10,9 @@ import net.minecraft.util.Formatting;
 public class CLOC {
 
     public static String translate(Text s) {
-        return MMORPG.proxy.translate(s);
-        //  .replaceAll("Format error:", "");
+        return I18n.translate(s.asFormattedString()
+            .replaceAll("%", "PERCENT"))
+            .replaceAll("PERCENT", "%");
     }
 
     private static Text base(String s) {

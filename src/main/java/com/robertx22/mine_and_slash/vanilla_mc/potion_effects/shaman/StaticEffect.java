@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.Bas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModParticles;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -27,7 +27,7 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
         super(StatusEffectType.HARMFUL, 4393423);
 
         this.tickActions.add(new OnTickAction(ctx -> {
-            ParticleUtils.spawnParticles(ParticleRegister.THUNDER, ctx.entity, 50);
+            ParticleUtils.spawnParticles(ModParticles.THUNDER, ctx.entity, 50);
             return ctx;
         }, null));
     }

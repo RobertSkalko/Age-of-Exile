@@ -2,21 +2,15 @@ package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.a_libraries.curios.AddCurioCapability;
-import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
-import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
-import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
-import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CapabilityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -85,8 +79,6 @@ public class MMORPG implements ModInitializer {
         }
     }
 
-    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-
     public static void logError(String s) {
         try {
             throw new Exception(s);
@@ -95,63 +87,21 @@ public class MMORPG implements ModInitializer {
         }
     }
 
-    private void interModEnqueue() {
-        System.out.println(Ref.MODID + ":InterModEnqueueEvent");
-        RegisterCurioSlots.register();
-    }
-
     public static MinecraftServer server = null;
 
-    public static <MSG> void sendToTracking(MSG msg, Entity entity) {
-
-        if (msg == null || entity == null) {
-            return;
-        }
-        if (entity.world.isClient) {
-            return;
-        }
-
-        Network.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), msg);
-
-        if (entity instanceof PlayerEntity) {
-            sendToClient(msg, (ServerPlayerEntity) entity);
-        }
-
+    public static void sendToTracking(MyPacket msg, Entity entity) {
+        sendToTracking(msg, entity.getBlockPos(), entity.world);
     }
 
-    public static <MSG> void sendToTracking(MSG msg, BlockPos pos, World world) {
+    public static void sendToTracking(MyPacket msg, BlockPos pos, World world) {
 
         if (msg == null || world == null) {
             return;
         }
         PlayerStream.watching(world, pos)
             .forEach(x -> {
-                Network.send(x, msg);
+                Packets.sendToClient(x, msg);
             });
-
-        ClientSidePacketRegistry.INSTANCE.register();
-
-        PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(
-            pos.getX(), pos.getY(), pos.getZ(), 50, world.getDimension()
-            .getType());
-
-        Network.send(PacketDistributor.NEAR.with(() -> point), msg);
-
-    }
-
-    public static <MSG> void sendToClient(MSG msg, ServerPlayerEntity player) {
-
-        if (player != null && msg != null) {
-            Network.sendTo(msg, player.networkHandler.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
-        }
-    }
-
-    public static <MSG> void sendToServer(MSG msg) {
-
-        Network.sendToServer(msg);
-    }
-
-    public void onloadComplete(FMLLoadCompleteEvent evt) {
 
     }
 

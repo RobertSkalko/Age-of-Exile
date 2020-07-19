@@ -30,7 +30,6 @@ public class ClientSetup {
         MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
         MinecraftForge.EVENT_BUS.register(new SpellHotbarOverlay());
 
-        KeybindsRegister.register();
         ContainerGuiRegisters.reg();
         RenderRegister.regRenders();
     }

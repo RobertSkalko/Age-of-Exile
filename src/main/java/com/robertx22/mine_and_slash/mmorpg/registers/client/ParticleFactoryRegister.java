@@ -1,29 +1,19 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.vanilla_mc.particles.DripEleParticle;
 import com.robertx22.mine_and_slash.vanilla_mc.particles.MyBubbleParticle;
-import net.minecraft.client.MinecraftClient;
+import net.fabricmc.fabric.impl.client.particle.ParticleFactoryRegistryImpl;
 import net.minecraft.client.particle.BubbleColumnUpParticle;
-import net.minecraft.client.particle.ParticleManager;
 
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-
-@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ParticleFactoryRegister {
 
-    @SubscribeEvent
-    public static void onParticleFactoryRegisterEvent(ParticleFactoryRegisterEvent event) {
+    public static void register() {
 
-        ParticleManager man = MinecraftClient.getInstance().particleManager;
-
-        man.registerFactory(ParticleRegister.DRIP, DripEleParticle.DrippingElementalFactory::new);
-        man.registerFactory(ParticleRegister.THUNDER, BubbleColumnUpParticle.Factory::new);
-        man.registerFactory(ParticleRegister.BUBBLE, MyBubbleParticle.Factory::new);
+        ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.DRIP, DripEleParticle.DrippingElementalFactory::new);
+        ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.BUBBLE, BubbleColumnUpParticle.Factory::new);
+        ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.THUNDER, MyBubbleParticle.Factory::new);
 
         MMORPG.devToolsLog("Registered Particles");
     }

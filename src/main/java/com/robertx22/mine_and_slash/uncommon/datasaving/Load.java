@@ -12,31 +12,23 @@ import net.minecraft.world.World;
 
 public class Load {
 
-    public static boolean hasUnit(Entity provider) { // tterag said this is correct
-        if (provider != null) {
-            return provider.getCapability(EntityCap.Data)
-                .isPresent();
-        }
-        return false;
+    // TODO REIMPLEMENT TODO
+
+    public static boolean hasUnit(Entity provider) {
+        return true;
     }
 
     public static PlayerSpellCap.ISpellsCap spells(LivingEntity provider) {
 
-        if (provider instanceof PlayerEntity) {
-            return provider.getCapability(PlayerSpellCap.Data)
-                .orElse(new PlayerSpellCap.DefaultImpl());
-        } else {
-            return new PlayerSpellCap.DefaultImpl();
+        return new PlayerSpellCap.DefaultImpl();
 
-        }
     }
 
     public static UnitData Unit(Entity entity) {
 
         if (entity != null) {
 
-            return entity.getCapability(EntityCap.Data)
-                .orElse(new EntityCap.DefaultImpl());
+            return new EntityCap.DefaultImpl();
 
         }
         return null;
@@ -46,8 +38,7 @@ public class Load {
 
         if (provider != null) {
 
-            return provider.getCapability(PlayerStatsCap.Data)
-                .orElse(new PlayerStatsCap.DefaultImpl());
+            return new PlayerStatsCap.DefaultImpl();
 
         }
         return null;
@@ -56,8 +47,7 @@ public class Load {
     public static AntiMobFarmCap.IAntiMobFarmData antiMobFarm(World provider) {
 
         if (provider != null) {
-            return provider.getCapability(AntiMobFarmCap.Data)
-                .orElse(new AntiMobFarmCap.DefaultImpl());
+            return new AntiMobFarmCap.DefaultImpl();
         }
         return null;
     }
