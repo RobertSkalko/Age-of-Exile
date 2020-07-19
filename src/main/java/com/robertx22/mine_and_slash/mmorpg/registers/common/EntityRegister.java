@@ -11,8 +11,10 @@ import com.robertx22.mine_and_slash.database.data.spells.entities.single_target_
 import com.robertx22.mine_and_slash.database.data.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.mine_and_slash.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCategory;
+import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.Identifier;
@@ -20,7 +22,6 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 public class EntityRegister {
 
@@ -58,9 +59,8 @@ public class EntityRegister {
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id, boolean itemRender) {
 
-        EntityType<T> type = EntityType.Builder.<T>create(factory, EntityCategory.MISC)
-            .setDimensions(0.5F, 0.5F)
-            .build(Ref.MODID + ":" + id.toLowerCase(Locale.ROOT));
+        EntityType<T> type = FabricEntityTypeBuilder.<T>create(EntityCategory.MISC, factory).dimensions(new EntityDimensions(0.5F, 0.5F, true))
+            .build();
 
         Registry.register(Registry.ENTITY_TYPE, new Identifier(Ref.MODID, id), type);
 

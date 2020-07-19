@@ -17,6 +17,9 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
     @Override
     public void onEndTick(MinecraftClient mc) {
 
+        if (mc.player == null) {
+            return;
+        }
         if (KeybindsRegister.hubScreen.isPressed()) {
             mc.openScreen(new MainHubScreen());
 

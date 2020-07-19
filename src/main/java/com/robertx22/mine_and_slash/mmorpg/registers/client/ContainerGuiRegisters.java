@@ -11,18 +11,16 @@ import com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag.Container
 import com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag.GuiCurrencyBag;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 
 public class ContainerGuiRegisters {
 
     public static void reg() {
-        PlayerInventory p = MinecraftClient.getInstance().player.inventory;
 
-        ScreenProviderRegistry.INSTANCE.<ContainerGearModify>registerFactory(ModRegistry.CONTAINERS.GEAR_MODIFY, x -> new GuiGearModify(x, p, new LiteralText("")));
-        ScreenProviderRegistry.INSTANCE.<ContainerGearRepair>registerFactory(ModRegistry.CONTAINERS.GEAR_REPAIR, x -> new GuiGearRepair(x, p, new LiteralText("")));
-        ScreenProviderRegistry.INSTANCE.<ContainerGearSalvage>registerFactory(ModRegistry.CONTAINERS.GEAR_MODIFY, x -> new GuiGearSalvage(x, p, new LiteralText("")));
-        ScreenProviderRegistry.INSTANCE.<ContainerCurrencyBag>registerFactory(ModRegistry.CONTAINERS.GEAR_MODIFY, x -> new GuiCurrencyBag(x, p, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<ContainerGearModify>registerFactory(ModRegistry.CONTAINERS.GEAR_MODIFY, x -> new GuiGearModify(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<ContainerGearRepair>registerFactory(ModRegistry.CONTAINERS.GEAR_REPAIR, x -> new GuiGearRepair(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<ContainerGearSalvage>registerFactory(ModRegistry.CONTAINERS.GEAR_SALVAGE, x -> new GuiGearSalvage(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<ContainerCurrencyBag>registerFactory(ModRegistry.CONTAINERS.CURRENCY_BAG, x -> new GuiCurrencyBag(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
 
     }
 

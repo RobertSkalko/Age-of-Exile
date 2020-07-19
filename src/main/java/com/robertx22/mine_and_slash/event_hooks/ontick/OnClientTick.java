@@ -20,6 +20,10 @@ public class OnClientTick implements ClientTickEvents.EndTick {
 
         PlayerEntity player = MinecraftClient.getInstance().player;
 
+        if (player == null) {
+            return;
+        }
+
         if (player.isPartOf(player)) {
 
             if (player != null) {

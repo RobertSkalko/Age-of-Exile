@@ -19,12 +19,14 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.robertx22.mine_and_slash.mmorpg.init.CommonInit"
     ],
-	"client": [
-	{
-	 "value": "tutorial.path.to.ExampleModClient"
-	}
+	"client": [	
+	  "com.robertx22.mine_and_slash.mmorpg.init.ClientInit"
+	],		
+	"server": [	
+	  "com.robertx22.mine_and_slash.mmorpg.init.ServerInit"
+	]
   },
   "mixins": [
     "mmorpg.mixins.json"

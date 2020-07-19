@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.mmorpg;
+package com.robertx22.mine_and_slash.mmorpg.init;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
 

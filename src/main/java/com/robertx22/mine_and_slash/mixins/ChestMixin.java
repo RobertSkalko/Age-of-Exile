@@ -9,7 +9,7 @@ import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTable;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,7 +24,7 @@ import java.util.Random;
 public abstract class ChestMixin {
 
     @Accessor(value = "lootTableId")
-    public abstract LootTable getlootTableId();
+    public abstract Identifier getlootTableId();
 
     @Inject(method = "checkLootInteraction(Lnet/minecraft/entity/player/PlayerEntity;)V", at = @At("HEAD"))
     public void onLootGen(PlayerEntity player, CallbackInfo ci) {

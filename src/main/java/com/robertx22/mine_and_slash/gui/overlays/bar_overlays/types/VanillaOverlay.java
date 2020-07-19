@@ -25,7 +25,9 @@ public class VanillaOverlay extends InGameHud implements ClientTickEvents.EndTic
 
     @Override
     public void onEndTick(MinecraftClient minecraftClient) {
-
+        if (minecraftClient.player == null) {
+            return;
+        }
         try {
 
             if (!ClientConfigs.INSTANCE.PLAYER_GUI_TYPE.equals(PlayerGUIs.Vanilla)) {

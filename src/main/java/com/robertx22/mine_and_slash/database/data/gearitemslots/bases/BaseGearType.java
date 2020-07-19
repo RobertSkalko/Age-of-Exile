@@ -26,7 +26,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
-import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.HashMap;
 import java.util.List;
@@ -290,18 +289,6 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
             } else if (slot.getTags()
                 .contains(SlotTag.Crossbow)) {
                 bool = item instanceof CrossbowItem;
-            } else if (slot.getTags()
-                .contains(SlotTag.Ring)) {
-                bool = CuriosApi.getCuriosHelper()
-                    .getCurioTags(item)
-                    .stream()
-                    .anyMatch(x -> x.contains("ring"));
-            } else if (slot.getTags()
-                .contains(SlotTag.Necklace)) {
-                bool = CuriosApi.getCuriosHelper()
-                    .getCurioTags(item)
-                    .stream()
-                    .anyMatch(x -> x.contains("necklace"));
             }
 
             CACHED.get(slot.GUID())
