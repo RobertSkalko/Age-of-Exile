@@ -6,7 +6,8 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import java.util.Comparator;
 import java.util.function.Predicate;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 public class SimpleGearLocReq extends BaseLocRequirement {
 
@@ -37,16 +38,16 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final BaseLocRequirement HAS_UNIQUE_STATS = new SimpleGearLocReq(
         x -> x.uniqueStats != null, Words.hasUniqueStats.locName());
 
-    private SimpleGearLocReq(Predicate<GearItemData> pred, Text text) {
+    private SimpleGearLocReq(Predicate<GearItemData> pred, MutableText text) {
         this.text = text;
         this.gearsThatCanDoThis = pred;
     }
 
     Predicate<GearItemData> gearsThatCanDoThis;
-    Text text;
+    MutableText text;
 
     @Override
-    public Text getText() {
+    public MutableText getText() {
 
         return text;
     }

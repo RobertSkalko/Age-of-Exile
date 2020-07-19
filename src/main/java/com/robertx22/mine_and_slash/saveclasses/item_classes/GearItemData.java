@@ -29,11 +29,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
-
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -250,17 +249,17 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .get(gear_type);
     }
 
-    public Text getOnGroundDisplayName() {
+    public MutableText getOnGroundDisplayName() {
         return new SText(getRarity().textFormatting() + "").append(GetBaseGearType().locName());
     }
 
-    public Text GetDisplayName(ItemStack stack) {
+    public MutableText GetDisplayName(ItemStack stack) {
 
         Formatting format = this.getRarity()
             .textFormatting();
 
         if (!isIdentified()) {
-            Text text = new SText(format + "")
+            MutableText text = new SText(format + "")
                 .append(Words.Unidentified.locName())
                 .append(" ")
                 .append(getRarity().locName())
@@ -270,7 +269,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             return text;
         }
 
-        Text text = new LiteralText(format + "[");
+        MutableText text = new LiteralText(format + "[");
 
         if (useAffixedName()) {
 

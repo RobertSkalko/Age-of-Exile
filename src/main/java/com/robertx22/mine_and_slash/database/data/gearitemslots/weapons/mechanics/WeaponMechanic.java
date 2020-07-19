@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public abstract class WeaponMechanic implements IGUID {
 
@@ -25,7 +25,7 @@ public abstract class WeaponMechanic implements IGUID {
         return ALL.getOrDefault(id, new NormalWeaponMechanic());
     }
 
-    public List<Text> tooltipDesc() {
+    public List<MutableText> tooltipDesc() {
         return Arrays.asList();
     }
 

@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
@@ -55,8 +55,8 @@ public class ImbueEffect extends BasePotionEffect {
     }
 
     @Override
-    public List<Text> getEffectTooltip(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+    public List<MutableText> getEffectTooltip(TooltipInfo info) {
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new SText(Formatting.GREEN + "Adds damage to Ranger spells."));
 

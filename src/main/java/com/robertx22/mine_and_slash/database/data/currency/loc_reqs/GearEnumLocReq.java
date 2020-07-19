@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 public class GearEnumLocReq extends BaseLocRequirement {
 
@@ -21,9 +22,9 @@ public class GearEnumLocReq extends BaseLocRequirement {
     Predicate<GearItemEnum> gearsThatCanDoThis;
 
     @Override
-    public Text getText() {
+    public MutableText getText() {
 
-        Text comp = Words.AllowedOn.locName()
+        MutableText comp = Words.AllowedOn.locName()
             .append(": ");
 
         List<GearItemEnum> enums = Arrays.stream(GearItemEnum.values())

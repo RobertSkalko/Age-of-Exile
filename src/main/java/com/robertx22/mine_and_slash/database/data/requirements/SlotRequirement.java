@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 public class SlotRequirement extends BaseRequirement<SlotRequirement> {
@@ -123,15 +123,15 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<MutableText> GetTooltipString(TooltipInfo info) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new SText(Formatting.GREEN + "Allowed on: "));
 
         List<BaseGearType> copy = new ArrayList<>(this.slots);
 
-        Text comp = new SText(Formatting.RED + "");
+        MutableText comp = new SText(Formatting.RED + "");
 
         List<BaseGearType> armors = SlashRegistry.GearTypes()
             .getFiltered(x -> x.family()

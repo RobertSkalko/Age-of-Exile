@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.localization;
 
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 public class Styles {
@@ -16,39 +16,39 @@ public class Styles {
     public static Formatting LIGHT_PURPLE = Formatting.LIGHT_PURPLE;
     public static Formatting AQUA = Formatting.AQUA;
 
-    public static Text BLUECOMP() {
+    public static MutableText BLUECOMP() {
         return new LiteralText(BLUE + "");
     }
 
-    public static Text GOLDCOMP() {
+    public static MutableText GOLDCOMP() {
         return new LiteralText(GOLD + "");
     }
 
-    public static Text GREENCOMP() {
+    public static MutableText GREENCOMP() {
         return new LiteralText(GREEN + "");
     }
 
-    public static Text YELLOWCOMP() {
+    public static MutableText YELLOWCOMP() {
         return new LiteralText(YELLOW + "");
     }
 
-    public static Text REDCOMP() {
+    public static MutableText REDCOMP() {
         return new LiteralText(RED + "");
     }
 
-    public static Text DARK_GREENCOMP() {
+    public static MutableText DARK_GREENCOMP() {
         return new LiteralText(DARK_GREEN + "");
     }
 
-    public static Text GRAYCOMP() {
+    public static MutableText GRAYCOMP() {
         return new LiteralText(GRAY + "");
     }
 
-    public static Text LIGHT_PURPLECOMP() {
+    public static MutableText LIGHT_PURPLECOMP() {
         return new LiteralText(LIGHT_PURPLE + "");
     }
 
-    public static Text AQUACOMP() {
+    public static MutableText AQUACOMP() {
         return new LiteralText(AQUA + "");
     }
 

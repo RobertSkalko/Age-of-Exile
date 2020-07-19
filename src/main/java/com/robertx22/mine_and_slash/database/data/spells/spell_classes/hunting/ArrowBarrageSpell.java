@@ -17,7 +17,7 @@ import java.util.List;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public class ArrowBarrageSpell extends BaseSpell {
 
@@ -78,9 +78,9 @@ public class ArrowBarrageSpell extends BaseSpell {
     }
 
     @Override
-    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText("Shoots out many arrows while casting: "));
         list.add(new LiteralText("Requires Bow/Crossbow to use: "));

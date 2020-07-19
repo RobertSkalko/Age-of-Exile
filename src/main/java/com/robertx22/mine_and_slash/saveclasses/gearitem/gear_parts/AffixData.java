@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 @Storable
 public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer {
@@ -57,11 +58,11 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         Affix affix = BaseAffix();
 
-        List<Text> list = new ArrayList<Text>();
+        List<MutableText> list = new ArrayList<MutableText>();
 
         GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
 

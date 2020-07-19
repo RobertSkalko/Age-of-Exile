@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.interfaces;
 
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public interface IAutoLocDesc extends IBaseAutoLoc {
 
@@ -21,7 +21,7 @@ public interface IAutoLocDesc extends IBaseAutoLoc {
         return true;
     }
 
-    public default Text locDesc() {
+    public default MutableText locDesc() {
         return CLOC.blank(getFormatedForLangFile(locDescLangFileGUID()));
     }
 

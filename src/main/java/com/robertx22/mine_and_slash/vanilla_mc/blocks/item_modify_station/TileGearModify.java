@@ -13,7 +13,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -228,7 +228,7 @@ public class TileGearModify extends BaseTile {
     }
 
     @Override
-    public Text getDisplayName() {
+    public MutableText getDisplayName() {
         return CLOC.blank("block.mmorpg.modify_station");
     }
 }

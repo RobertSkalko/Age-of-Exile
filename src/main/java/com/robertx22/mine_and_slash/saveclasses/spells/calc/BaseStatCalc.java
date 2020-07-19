@@ -7,14 +7,14 @@ import info.loenwind.autosave.annotations.Storable;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 @Storable
 public abstract class BaseStatCalc implements ITooltipList {
 
-    public List<Text> getTooltipFor(float multi, float value, Text statname, Elements el) {
-        List<Text> list = new ArrayList<>();
+    public List<MutableText> getTooltipFor(float multi, float value, MutableText statname, Elements el) {
+        List<MutableText> list = new ArrayList<>();
         String eleStr = "";
 
         if (el != null) {

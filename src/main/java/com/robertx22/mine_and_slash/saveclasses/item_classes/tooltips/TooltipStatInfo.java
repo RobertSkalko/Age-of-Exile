@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class TooltipStatInfo implements ITooltipList {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<MutableText> GetTooltipString(TooltipInfo info) {
         return stat.getTooltipList(this);
     }
 

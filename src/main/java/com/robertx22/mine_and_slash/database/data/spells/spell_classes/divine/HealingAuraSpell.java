@@ -19,7 +19,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,9 +110,9 @@ public class HealingAuraSpell extends BaseSpell {
     }
 
     @Override
-    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText("Heal everyone around you: "));
 

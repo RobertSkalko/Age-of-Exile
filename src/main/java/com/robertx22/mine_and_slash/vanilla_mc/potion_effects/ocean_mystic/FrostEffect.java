@@ -16,7 +16,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +76,8 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public List<Text> getEffectTooltip(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+    public List<MutableText> getEffectTooltip(TooltipInfo info) {
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText("Slows"));
 

@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import java.util.List;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public class EmptySpell extends BaseSpell {
 
@@ -54,7 +54,7 @@ public class EmptySpell extends BaseSpell {
     }
 
     @Override
-    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
         return null;
     }
 

@@ -18,7 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -76,14 +76,14 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return getIconFormat() + getIcon();
     }
 
-    public List<Text> getCutDescTooltip() {
-        List<Text> list = new ArrayList<>();
+    public List<MutableText> getCutDescTooltip() {
+        List<MutableText> list = new ArrayList<>();
 
-        List<Text> cut = TooltipUtils.cutIfTooLong(locDesc());
+        List<MutableText> cut = TooltipUtils.cutIfTooLong(locDesc());
 
         for (int i = 0; i < cut.size(); i++) {
 
-            Text comp = Styles.BLUECOMP();
+            MutableText comp = Styles.BLUECOMP();
             if (i == 0) {
                 comp.append(" [");
             }
@@ -200,7 +200,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     }
 
     @Environment(EnvType.CLIENT)
-    public List<Text> getTooltipList(TooltipStatInfo info) {
+    public List<MutableText> getTooltipList(TooltipStatInfo info) {
         return info.tooltipInfo.statTooltipType.impl.getTooltipList(info);
     }
 

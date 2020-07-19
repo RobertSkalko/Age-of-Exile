@@ -17,7 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ember_mage.BurnEffect;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,9 +80,9 @@ public class VolcanoSpell extends BaseSpell {
     }
 
     @Override
-    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText("Summons an erupting volcano: "));
 

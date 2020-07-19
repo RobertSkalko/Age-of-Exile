@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 public interface IApplyStatPotion {
@@ -34,9 +34,9 @@ public interface IApplyStatPotion {
 
     List<PotionStat> getPotionStats();
 
-    default List<Text> getStatTooltip(TooltipInfo info, BasePotionEffect effect) {
+    default List<MutableText> getStatTooltip(TooltipInfo info, BasePotionEffect effect) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         ExtraPotionData minStacks = new ExtraPotionData();
 

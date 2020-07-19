@@ -8,7 +8,8 @@ import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import java.util.List;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 @Storable
 public class ScalingStatCalc extends BaseStatCalc {
@@ -52,7 +53,7 @@ public class ScalingStatCalc extends BaseStatCalc {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<MutableText> GetTooltipString(TooltipInfo info) {
         return getTooltipFor(multi, getCalculatedValue(info.unitdata), getStat().locName(), getStat().getElement());
     }
 }

@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -114,9 +114,9 @@ public class PreCalcSpellConfigs {
         new SpellStatsCalcEffect(ctx, this, ctx.caster, ctx.caster).Activate();
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         if (Screen.hasShiftDown()) {
             map.entrySet()

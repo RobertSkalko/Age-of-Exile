@@ -1,18 +1,19 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
 import java.util.List;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 public interface ITooltipList {
 
-    public default List<Text> GetTooltipStringWithNoExtraSpellInfo(TooltipInfo info) {
+    public default List<MutableText> GetTooltipStringWithNoExtraSpellInfo(TooltipInfo info) {
         info.showAbilityExtraInfo = false;
-        List<Text> list = GetTooltipString(info);
+        List<MutableText> list = GetTooltipString(info);
         info.showAbilityExtraInfo = true;
         return list;
     }
 
-    public abstract List<Text> GetTooltipString(TooltipInfo info);
+    public abstract List<MutableText> GetTooltipString(TooltipInfo info);
 }
 
 

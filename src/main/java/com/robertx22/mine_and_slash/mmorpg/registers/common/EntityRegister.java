@@ -13,9 +13,9 @@ import com.robertx22.mine_and_slash.database.data.spells.entities.trident.Thunde
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -59,7 +59,7 @@ public class EntityRegister {
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id, boolean itemRender) {
 
-        EntityType<T> type = FabricEntityTypeBuilder.<T>create(EntityCategory.MISC, factory).dimensions(new EntityDimensions(0.5F, 0.5F, true))
+        EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MISC, factory).dimensions(new EntityDimensions(0.5F, 0.5F, true))
             .build();
 
         Registry.register(Registry.ENTITY_TYPE, new Identifier(Ref.MODID, id), type);

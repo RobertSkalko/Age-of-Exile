@@ -24,7 +24,7 @@ import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,9 +80,9 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     }
 
     @Override
-    public List<Text> getEffectTooltip(TooltipInfo info) {
+    public List<MutableText> getEffectTooltip(TooltipInfo info) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
         list.add(new LiteralText("Petrifies Enemy."));
         list.add(new LiteralText("If Attacked, does extra damage, but stops effect."));
         list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), this));

@@ -28,7 +28,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEf
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,9 +53,8 @@ public class SlashRegistry {
         }
     }
 
-    public static DimensionConfig getDimensionConfig(IWorld world) {
-        String id = MapManager.getResourceLocation(world.getDimension()
-            .getType())
+    public static DimensionConfig getDimensionConfig(WorldAccess world) {
+        String id = MapManager.getResourceLocation(world.getDimension())
             .toString();
         return DimensionConfigs().get(id);
     }

@@ -18,7 +18,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 @Storable
 public class ExactStatData implements ISerializable<ExactStatData>, IApplyableStats, ITooltipList {
@@ -155,7 +155,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<MutableText> GetTooltipString(TooltipInfo info) {
 
         if (first_val == 0) {
             // return new ArrayList<>();

@@ -25,7 +25,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.RequestSyncCapTo
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -183,7 +183,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
         public void renderToolTip(int x, int y) {
             if (isInside(x, y)) {
 
-                List<Text> tooltip = new ArrayList<>();
+                List<MutableText> tooltip = new ArrayList<>();
 
                 tooltip.add(Styles.BLUECOMP()
                     .append(stat.locName()));

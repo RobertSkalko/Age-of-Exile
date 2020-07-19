@@ -23,7 +23,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -310,7 +310,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         public void renderToolTip(int x, int y) {
             if (isInside(x, y)) {
 
-                List<Text> tooltip = new ArrayList<>();
+                List<MutableText> tooltip = new ArrayList<>();
 
                 tooltip.add(Styles.GREENCOMP()
                     .append(stat.locName()));

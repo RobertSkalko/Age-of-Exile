@@ -20,7 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -91,7 +91,7 @@ public class IdentifyTomeItem extends Item implements IShapedRecipe {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext flagIn) {
+    public void appendTooltip(ItemStack stack, World worldIn, List<MutableText> tooltip, TooltipContext flagIn) {
         tooltip.add(Words.RightClickToIdentifyFirst.locName());
     }
 

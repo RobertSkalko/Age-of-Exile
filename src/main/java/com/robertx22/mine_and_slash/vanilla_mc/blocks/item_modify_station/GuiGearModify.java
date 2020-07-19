@@ -12,7 +12,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
@@ -25,7 +25,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     // This is the resource location for the background image
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/modify_station.png");
 
-    public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer, Text comp) {
+    public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer, MutableText comp) {
         super(cont, invPlayer, comp, TileGearModify.class);
 
         containerWidth = 256;

@@ -21,7 +21,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.HotbarSetupPacket;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -188,7 +188,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                 if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
                     TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
 
-                    List<Text> tooltip = new ArrayList<>();
+                    List<MutableText> tooltip = new ArrayList<>();
                     tooltip.add(getSpell().getLocName());
                     tooltip.addAll(getSpell().GetTooltipString(info));
                     GuiUtils.renderTooltip(tooltip, mouseX, mouseY);

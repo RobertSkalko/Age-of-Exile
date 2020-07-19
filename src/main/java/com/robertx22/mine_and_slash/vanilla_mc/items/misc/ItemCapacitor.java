@@ -12,7 +12,7 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
@@ -116,7 +116,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
+    public void appendTooltip(ItemStack stack, World worldIn, List<MutableText> tooltip,
                               TooltipContext flagIn) {
 
         tooltip.add(CLOC.tooltip("capacitor"));

@@ -6,14 +6,14 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile> extends ContainerScreen<T> {
 
     public Tile tile;
     MinecraftClient mc;
 
-    public TileGui(T cont, PlayerInventory inv, Text text, Class<Tile> token) {
+    public TileGui(T cont, PlayerInventory inv, MutableText text, Class<Tile> token) {
         super(cont, inv, text);
 
         this.mc = MinecraftClient.getInstance();

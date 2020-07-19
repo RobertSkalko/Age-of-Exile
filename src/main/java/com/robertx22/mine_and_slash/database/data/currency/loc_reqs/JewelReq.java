@@ -4,11 +4,11 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.JewelData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public class JewelReq extends BaseLocRequirement {
     @Override
-    public Text getText() {
+    public MutableText getText() {
         return new SText("Gear can't accept more than 1 affix.");
     }
 

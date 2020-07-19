@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -55,7 +55,7 @@ public interface IAbility extends IGUID, ITooltipList {
         return ability;
     }
 
-    Text getLocName();
+    MutableText getLocName();
 
     PreCalcSpellConfigs getPreCalcConfig();
 
@@ -65,7 +65,7 @@ public interface IAbility extends IGUID, ITooltipList {
 
     public BaseSpell getSpell();
 
-    public default void finishTooltip(List<Text> list, SpellCastContext ctx, TooltipInfo info) {
+    public default void finishTooltip(List<MutableText> list, SpellCastContext ctx, TooltipInfo info) {
         try {
             TooltipUtils.addEmpty(list);
 

@@ -4,15 +4,12 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ProjectileUtil;
 import net.minecraft.entity.ai.pathing.Path;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
 import java.lang.reflect.Field;
@@ -132,29 +129,6 @@ public class EntityUtils {
         }
 
         return ItemStack.EMPTY;
-    }
-
-    public static LivingEntity getEntityCasterIsLookingAt(LivingEntity caster) {
-        float d0 = 200;
-
-        Vec3d vec3d = caster.getCameraPosVec(1);
-        Vec3d vec3d1 = caster.getRotationVec(1.0F);
-        Vec3d vec3d2 = vec3d.add(vec3d1.x * d0, vec3d1.y * d0, vec3d1.z * d0);
-
-        Box axisalignedbb = caster.getBoundingBox()
-            .stretch(vec3d1.multiply(d0))
-            .expand(1, 1, 1);
-
-        EntityHitResult ray = ProjectileUtil.getEntityCollision(caster.world, caster, vec3d, vec3d2, axisalignedbb, (en) -> {
-            return !en.isSpectator() && en.collides();
-        }, 200);
-
-        if (ray != null && ray.getEntity() instanceof LivingEntity) {
-            return (LivingEntity) ray.getEntity();
-        }
-
-        return null;
-
     }
 
     public static void setLoc(LivingEntity entity, Vec3d p, float yaw, float pitch) {

@@ -28,7 +28,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -51,7 +51,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     }
 
     @Override
-    public Text getLocName() {
+    public MutableText getLocName() {
         return this.locName();
     }
 
@@ -105,20 +105,20 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     public abstract String GUID();
 
     @Override
-    public Text locName() {
+    public MutableText locName() {
         return CLOC.blank("effect." + Ref.MODID + "." + GUID());
     }
 
     //public abstract List<ITextComponent> getEffectTooltip(TooltipInfo info);
 
-    public List<Text> getEffectTooltip(TooltipInfo info) {
+    public List<MutableText> getEffectTooltip(TooltipInfo info) {
         return new ArrayList<>();
     }
 
     @Override
-    public final List<Text> GetTooltipString(TooltipInfo info) {
+    public final List<MutableText> GetTooltipString(TooltipInfo info) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText(Formatting.LIGHT_PURPLE + "" + Formatting.BOLD).append(
             locName()));
@@ -147,8 +147,8 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
         return new Identifier(Ref.MODID, "textures/mob_effect/" + GUID() + ".png");
     }
 
-    private List<Text> getMaxStacksTooltip() {
-        List<Text> list = new ArrayList<>();
+    private List<MutableText> getMaxStacksTooltip() {
+        List<MutableText> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
         list.add(new LiteralText(
@@ -158,8 +158,8 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     }
 
-    private List<Text> getDurationTooltip(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+    private List<MutableText> getDurationTooltip(TooltipInfo info) {
+        List<MutableText> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
         list.add(new LiteralText(

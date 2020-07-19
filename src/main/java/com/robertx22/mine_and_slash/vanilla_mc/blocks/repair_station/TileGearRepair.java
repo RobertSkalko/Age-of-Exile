@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 
@@ -329,7 +329,7 @@ public class TileGearRepair extends BaseTile {
     }
 
     @Override
-    public Text getDisplayName() {
+    public MutableText getDisplayName() {
         return CLOC.blank("block.mmorpg.repair_station");
 
     }

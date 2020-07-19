@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.interfaces;
 
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public interface IAutoLocName extends IBaseAutoLoc {
 
@@ -29,7 +29,7 @@ public interface IAutoLocName extends IBaseAutoLoc {
 
     public String locNameForLangFile();
 
-    public default Text locName() {
+    public default MutableText locName() {
         return CLOC.blank(getFormatedForLangFile(locNameLangFileGUID()));
     }
 

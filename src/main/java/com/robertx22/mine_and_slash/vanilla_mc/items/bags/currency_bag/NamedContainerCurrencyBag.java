@@ -7,8 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-
+import net.minecraft.text.MutableText;
 
 public class NamedContainerCurrencyBag implements NameableContainerFactory {
 
@@ -25,7 +24,7 @@ public class NamedContainerCurrencyBag implements NameableContainerFactory {
     }
 
     @Override
-    public Text getDisplayName() {
+    public MutableText getDisplayName() {
         return new LiteralText("Currency Bag");
     }
 

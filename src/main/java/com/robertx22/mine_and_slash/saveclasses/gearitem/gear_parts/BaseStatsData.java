@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 @Storable
@@ -58,16 +58,16 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     static Formatting TEXT_COLOR = Formatting.GRAY;
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         List<ExactStatData> all = GetAllStats(gear);
 
-        List<Text> list = new ArrayList<Text>();
+        List<MutableText> list = new ArrayList<MutableText>();
         list.add(new LiteralText(" "));
 
-        Text physdmg = null;
-        Text eledmg = null;
-        Text critchance = null;
+        MutableText physdmg = null;
+        MutableText eledmg = null;
+        MutableText critchance = null;
 
         float totalDmg = 0;
 
@@ -104,7 +104,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
                     color = Formatting.YELLOW;
                 }
 
-                Text comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + color + NumberUtils.format(exactStatData.getFirstValue()) + perc);
+                MutableText comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + color + NumberUtils.format(exactStatData.getFirstValue()) + perc);
 
                 if (stat instanceof CriticalHit) {
                     critchance = comp;

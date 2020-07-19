@@ -26,7 +26,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -98,7 +98,7 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
     @Environment(EnvType.CLIENT)
     @Override
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
+    public void appendTooltip(ItemStack stack, World worldIn, List<MutableText> tooltip,
                               TooltipContext flagIn) {
 
         if (this instanceof IAutoLocDesc) {

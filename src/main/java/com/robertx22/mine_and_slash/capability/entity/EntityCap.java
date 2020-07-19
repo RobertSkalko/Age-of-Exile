@@ -38,7 +38,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -111,7 +111,7 @@ public class EntityCap {
 
         void setUUID(UUID id);
 
-        Text getName(LivingEntity entity);
+        MutableText getName(LivingEntity entity);
 
         void tryRecalculateStats(LivingEntity entity);
 
@@ -431,7 +431,7 @@ public class EntityCap {
         }
 
         @Override
-        public Text getName(LivingEntity entity) {
+        public MutableText getName(LivingEntity entity) {
 
             if (entity instanceof PlayerEntity) {
                 return new LiteralText("")
@@ -439,14 +439,14 @@ public class EntityCap {
 
             } else {
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
-                Text rarityprefix = rarity.locName();
+                MutableText rarityprefix = rarity.locName();
 
-                Text name = entity.getDisplayName();
+                MutableText name = entity.getDisplayName();
 
                 MobAffix prefix = getUnit().getPrefix();
                 MobAffix suffix = getUnit().getSuffix();
 
-                Text finalName = prefix == null ? name : prefix.locName()
+                MutableText finalName = prefix == null ? name : prefix.locName()
                     .append(" ")
                     .append(name);
 
@@ -455,14 +455,14 @@ public class EntityCap {
                         .append(suffix.locName());
                 }
 
-                Text lvlcomp = Styles.YELLOWCOMP()
+                MutableText lvlcomp = Styles.YELLOWCOMP()
                     .append(new LiteralText("[" + getLevel() + "] "));
 
-                Text part = new LiteralText(rarity.textFormatting() + "").append(
+                MutableText part = new LiteralText(rarity.textFormatting() + "").append(
                     rarityprefix.append(" ")
                         .append(finalName));
 
-                Text tx = lvlcomp.append(part);
+                MutableText tx = lvlcomp.append(part);
 
                 return tx;
 

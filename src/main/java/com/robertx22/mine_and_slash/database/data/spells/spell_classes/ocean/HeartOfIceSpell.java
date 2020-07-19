@@ -14,7 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,9 +70,9 @@ public class HeartOfIceSpell extends BaseSpell {
     }
 
     @Override
-    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText("Restores health to caster:"));
 

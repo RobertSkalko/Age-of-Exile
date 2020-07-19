@@ -6,7 +6,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 import java.awt.*;
@@ -35,7 +35,7 @@ public class GuiUtils {
 
     }
 
-    public static void renderTooltip(List<Text> tooltip, int mouseX, int mouseY) {
+    public static void renderTooltip(List<MutableText> tooltip, int mouseX, int mouseY) {
 
         Screen screen = MinecraftClient.getInstance().currentScreen;
 
@@ -52,7 +52,7 @@ public class GuiUtils {
 
         Screen screen = MinecraftClient.getInstance().currentScreen;
 
-        List<Text> tooltip = stack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.Default.NORMAL);
+        List<MutableText> tooltip = stack.getTooltip(MinecraftClient.getInstance().player, TooltipContext.Default.NORMAL);
 
         if (screen != null) {
 

@@ -20,7 +20,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
 
             return ctx;
         }, info -> {
-            List<Text> list = new ArrayList<>();
+            List<MutableText> list = new ArrayList<>();
             list.add(new LiteralText("Does damage:"));
             list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), this));
             return list;

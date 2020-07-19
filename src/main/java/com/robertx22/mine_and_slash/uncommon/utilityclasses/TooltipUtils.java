@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,27 +20,27 @@ public class TooltipUtils {
     public static String CHECKMARK = Formatting.GREEN + "\u2714";
     public static String X = Formatting.RED + "\u2716";
 
-    public static Text color(Formatting format, Text comp) {
+    public static MutableText color(Formatting format, MutableText comp) {
         return new LiteralText(format + "").append(comp);
     }
 
-    public static void addEmpty(List<Text> tooltip) {
+    public static void addEmpty(List<MutableText> tooltip) {
         tooltip.add(CLOC.blank(""));
     }
 
-    public static List<String> compsToStrings(List<Text> list) {
+    public static List<String> compsToStrings(List<MutableText> list) {
         return list.stream()
-            .map(Text::asFormattedString)
+            .map(MutableText::asFormattedString)
             .collect(Collectors.toList());
     }
 
-    public static Text level(int lvl) {
+    public static MutableText level(int lvl) {
         return new LiteralText(Formatting.YELLOW + "").append(Words.Level.locName())
             .append((": " + lvl));
 
     }
 
-    public static List<Text> cutIfTooLong(Text comp) {
+    public static List<MutableText> cutIfTooLong(MutableText comp) {
         List<String> stringList = cutIfTooLong(CLOC.translate(comp));
         return stringList.stream()
             .map(x -> new SText(x))
@@ -74,12 +74,12 @@ public class TooltipUtils {
         return list;
     }
 
-    public static Text itemBrokenText(ItemStack stack, ICommonDataItem data) {
+    public static MutableText itemBrokenText(ItemStack stack, ICommonDataItem data) {
 
         if (data != null) {
 
             if (RepairUtils.isItemBroken(stack)) {
-                Text comp = new LiteralText(X + " ").append(Words.Broken.locName());
+                MutableText comp = new LiteralText(X + " ").append(Words.Broken.locName());
                 return comp;
             }
 
@@ -88,9 +88,9 @@ public class TooltipUtils {
         return null;
     }
 
-    public static Text requirement(Text text, int stat, int req) {
+    public static MutableText requirement(MutableText text, int stat, int req) {
 
-        Text comp;
+        MutableText comp;
 
         if (stat >= req) {
             comp = new LiteralText(CHECKMARK);
@@ -104,13 +104,13 @@ public class TooltipUtils {
 
     }
 
-    public static List<Text> removeDoubleBlankLines(List<Text> list) {
+    public static List<MutableText> removeDoubleBlankLines(List<MutableText> list) {
         return removeDoubleBlankLines(list, 5000);
     }
 
-    public static List<Text> removeDoubleBlankLines(List<Text> list, int minLinesCutAllBlanks) {
+    public static List<MutableText> removeDoubleBlankLines(List<MutableText> list, int minLinesCutAllBlanks) {
 
-        List<Text> newt = new ArrayList();
+        List<MutableText> newt = new ArrayList();
 
         boolean lastIsEmpty = false;
 
@@ -143,18 +143,18 @@ public class TooltipUtils {
         return newt;
     }
 
-    public static Text rarity(Rarity rarity) {
+    public static MutableText rarity(Rarity rarity) {
         return (new LiteralText(rarity.textFormatting() + "")
             .append(rarity.locName()
                 .append(" ")
                 .append(Words.Item.locName())));
     }
 
-    public static Text rarityShort(Rarity rarity) {
+    public static MutableText rarityShort(Rarity rarity) {
         return (new LiteralText(rarity.textFormatting() + "").append(rarity.locName()));
     }
 
-    public static Text tier(int tier) {
+    public static MutableText tier(int tier) {
 
         return Styles.YELLOWCOMP()
             .append(Words.Tier.locName())
@@ -162,7 +162,7 @@ public class TooltipUtils {
 
     }
 
-    public static Text uniqueTier(int tier) {
+    public static MutableText uniqueTier(int tier) {
         return Styles.YELLOWCOMP()
             .append(Words.Tier.locName())
             .append(" " + tier + " ")
@@ -171,7 +171,7 @@ public class TooltipUtils {
 
     }
 
-    public static void abilityLevel(List<Text> list, int current, int max) {
+    public static void abilityLevel(List<MutableText> list, int current, int max) {
         list.add(
             new SText(Formatting.YELLOW + "").append("Ability ")
                 .append(Words.Level.locName())

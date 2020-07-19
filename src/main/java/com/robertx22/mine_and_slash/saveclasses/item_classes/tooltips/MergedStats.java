@@ -8,7 +8,8 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 public class MergedStats implements IGearPartTooltip {
 
@@ -28,9 +29,9 @@ public class MergedStats implements IGearPartTooltip {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
-        List<Text> tooltip = new ArrayList<>();
+        List<MutableText> tooltip = new ArrayList<>();
 
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;

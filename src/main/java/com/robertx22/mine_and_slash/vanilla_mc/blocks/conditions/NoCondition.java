@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.blocks.conditions;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public class NoCondition extends LootCrateCondition {
 
@@ -13,7 +13,7 @@ public class NoCondition extends LootCrateCondition {
     }
 
     @Override
-    public Text tellCondition() {
+    public MutableText tellCondition() {
         return new LiteralText("");
     }
 }

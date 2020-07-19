@@ -17,7 +17,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 import java.util.Comparator;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class OnTooltip implements ItemTooltipCallback {
 
     @Override
-    public void getTooltip(ItemStack stack, net.minecraft.client.item.TooltipContext tooltipContext, List<Text> tooltip) {
+    public void getTooltip(ItemStack stack, net.minecraft.client.item.TooltipContext tooltipContext, List<MutableText> tooltip) {
 
         if (stack
             .getItem() instanceof ICurrencyItemEffect) {
@@ -74,7 +74,7 @@ public class OnTooltip implements ItemTooltipCallback {
                 data.BuildTooltip(ctx);
             }
 
-            Text broken = TooltipUtils.itemBrokenText(stack, data);
+            MutableText broken = TooltipUtils.itemBrokenText(stack, data);
             if (broken != null) {
                 tooltip.add(broken);
             }

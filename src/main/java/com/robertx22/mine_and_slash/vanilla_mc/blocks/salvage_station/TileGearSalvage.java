@@ -16,7 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -278,7 +278,7 @@ public class TileGearSalvage extends BaseTile {
     }
 
     @Override
-    public Text getDisplayName() {
+    public MutableText getDisplayName() {
         return CLOC.blank("block.mmorpg.salvage_station");
     }
 

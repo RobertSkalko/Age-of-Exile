@@ -21,7 +21,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -83,9 +83,9 @@ public class GorgonsGazeSpell extends BaseSpell {
     }
 
     @Override
-    public List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx) {
+    public List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText("Turn all enemies before you into stone: "));
         list.add(new LiteralText("Applies debuff: "));

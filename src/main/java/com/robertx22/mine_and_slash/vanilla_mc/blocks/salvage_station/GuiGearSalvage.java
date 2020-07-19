@@ -11,7 +11,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
@@ -25,7 +25,7 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/salvage_station.png");
 
     public GuiGearSalvage(ContainerGearSalvage cont, PlayerInventory invPlayer,
-                          Text comp) {
+                          MutableText comp) {
         super(cont, invPlayer, new LiteralText("Salvage"), TileGearSalvage.class);
 
         containerWidth = 176;

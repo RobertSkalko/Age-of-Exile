@@ -12,7 +12,8 @@ import info.loenwind.autosave.annotations.Store;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 @Storable
 public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsContainer {
@@ -37,9 +38,9 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         List<ExactStatData> stats = GetAllStats(gear);
 

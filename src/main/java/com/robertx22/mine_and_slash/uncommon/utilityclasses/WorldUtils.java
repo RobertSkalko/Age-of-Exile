@@ -5,8 +5,8 @@ import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 import java.util.Arrays;
 
@@ -29,7 +29,7 @@ public class WorldUtils {
         return false;
     }
 
-    public static BlockPos getSurfaceCenterOfChunk(IWorld world, BlockPos pos) {
+    public static BlockPos getSurfaceCenterOfChunk(WorldAccess world, BlockPos pos) {
 
         int x = world.getChunk(pos)
             .getPos().x + 8;
@@ -66,7 +66,7 @@ public class WorldUtils {
 
     }
 
-    public static boolean surfaceIsWater(IWorld world, BlockPos pos) {
+    public static boolean surfaceIsWater(WorldAccess world, BlockPos pos) {
 
         BlockPos surface = getSurface(world, pos);
 
@@ -81,7 +81,7 @@ public class WorldUtils {
 
     }
 
-    public static BlockPos getSurface(IWorld world, BlockPos pos) {
+    public static BlockPos getSurface(WorldAccess world, BlockPos pos) {
 
         pos = new BlockPos(pos.getX(), world.getSeaLevel(), pos.getZ());
 
@@ -106,7 +106,7 @@ public class WorldUtils {
 
     }
 
-    public static boolean isMapWorld(IWorld world) {
+    public static boolean isMapWorld(WorldAccess world) {
 
         if (world == null) {
             return false;
@@ -119,7 +119,7 @@ public class WorldUtils {
         }
     }
 
-    public static boolean isMapWorldClass(IWorld world) {
+    public static boolean isMapWorldClass(WorldAccess world) {
 
         return SlashRegistry.getDimensionConfig(world).mob_tier > 0;
     }

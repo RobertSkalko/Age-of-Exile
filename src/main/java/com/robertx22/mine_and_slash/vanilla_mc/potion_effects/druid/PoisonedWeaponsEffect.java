@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEf
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
 import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,8 +61,8 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
     }
 
     @Override
-    public List<Text> getEffectTooltip(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+    public List<MutableText> getEffectTooltip(TooltipInfo info) {
+        List<MutableText> list = new ArrayList<>();
 
         return list;
 

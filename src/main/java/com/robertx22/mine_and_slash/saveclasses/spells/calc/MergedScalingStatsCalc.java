@@ -9,7 +9,8 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 @Storable
 public class MergedScalingStatsCalc extends BaseStatCalc {
@@ -20,14 +21,14 @@ public class MergedScalingStatsCalc extends BaseStatCalc {
     @Store
     public float multi;
 
-    Text name;
+    MutableText name;
 
     @Factory
     private MergedScalingStatsCalc() {
 
     }
 
-    public MergedScalingStatsCalc(List<Stat> stats, float multi, Text name) {
+    public MergedScalingStatsCalc(List<Stat> stats, float multi, MutableText name) {
         super();
         this.statIDs = stats.stream()
             .map(x -> x.GUID())
@@ -57,7 +58,7 @@ public class MergedScalingStatsCalc extends BaseStatCalc {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<MutableText> GetTooltipString(TooltipInfo info) {
         return getTooltipFor(multi, getCalculatedValue(info.unitdata), name, Elements.Elemental);
     }
 }

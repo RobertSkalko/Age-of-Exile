@@ -11,7 +11,8 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
@@ -44,11 +45,11 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         return data.getAverageValue() * 100;
     }
 
-    public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
+    public List<MutableText> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
 
         TooltipInfo info = new TooltipInfo(unitdata, null);
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
         list.add(Styles.GREENCOMP()
             .append("Stats that benefit: "));
         getMods(data, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));

@@ -17,7 +17,7 @@ import info.loenwind.autosave.annotations.Store;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 @Storable
 public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsContainer {
@@ -54,18 +54,18 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
     }
 
-    public Text getHeader() {
+    public MutableText getHeader() {
         return new LiteralText(Styles.YELLOW + "").append(Words.Unique_Stats
             .locName()
             .append(":"));
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         info.minmax = getMinMax(gear);
 
-        List<Text> list = new ArrayList<Text>();
+        List<MutableText> list = new ArrayList<MutableText>();
 
         list.add(new SText(""));
         //list.add(getHeader());

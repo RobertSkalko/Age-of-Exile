@@ -4,15 +4,15 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipSta
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 public class NormalStatTooltip implements IStatTooltipType {
 
     @Override
-    public List<Text> getTooltipList(TooltipStatInfo info) {
+    public List<MutableText> getTooltipList(TooltipStatInfo info) {
 
-        List<Text> list = new ArrayList<Text>();
+        List<MutableText> list = new ArrayList<MutableText>();
 
         list.add(new LiteralText(Formatting.BLUE + info.stat.getStatNameRegex()
             .translate(info.type, info.firstValue, info.secondValue, info.stat)));

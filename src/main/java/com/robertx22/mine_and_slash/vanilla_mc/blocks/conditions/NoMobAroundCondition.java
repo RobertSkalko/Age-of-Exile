@@ -6,7 +6,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
 
 public class NoMobAroundCondition extends LootCrateCondition {
@@ -27,7 +27,7 @@ public class NoMobAroundCondition extends LootCrateCondition {
     }
 
     @Override
-    public Text tellCondition() {
+    public MutableText tellCondition() {
         return new LiteralText("You cannot open this crate while mobs are around.");
     }
 }

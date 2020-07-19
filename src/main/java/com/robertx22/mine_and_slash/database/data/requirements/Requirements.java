@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.text.Text;
+
+import net.minecraft.text.MutableText;
 
 public class Requirements implements ISerializablePart<Requirements>, ITooltipList {
 
@@ -78,8 +79,8 @@ public class Requirements implements ISerializablePart<Requirements>, ITooltipLi
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+    public List<MutableText> GetTooltipString(TooltipInfo info) {
+        List<MutableText> list = new ArrayList<>();
         this.requirements.forEach(x -> {
             list.add(new SText(""));
             list.addAll(x.GetTooltipString(info));

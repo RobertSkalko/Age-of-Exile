@@ -30,7 +30,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -96,7 +96,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     @Override
-    public Text getLocName() {
+    public MutableText getLocName() {
         return this.getName()
             .locName();
     }
@@ -215,7 +215,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         return this.immutableConfigs.element();
     }
 
-    public abstract List<Text> GetDescription(TooltipInfo info, SpellCastContext ctx);
+    public abstract List<MutableText> GetDescription(TooltipInfo info, SpellCastContext ctx);
 
     public abstract Words getName();
 
@@ -293,13 +293,13 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     @Override
-    public final List<Text> GetTooltipString(TooltipInfo info) {
+    public final List<MutableText> GetTooltipString(TooltipInfo info) {
 
         SpellCastContext ctx = new SpellCastContext(info.player, 0, this);
 
         UnitData data = info.unitdata;
 
-        List<Text> list = new ArrayList<>();
+        List<MutableText> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
 

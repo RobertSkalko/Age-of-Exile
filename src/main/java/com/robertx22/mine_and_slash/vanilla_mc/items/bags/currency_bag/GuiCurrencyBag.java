@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag;
 import com.robertx22.mine_and_slash.vanilla_mc.items.bags.BaseBagGui;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
 
 public class GuiCurrencyBag extends BaseBagGui<ContainerCurrencyBag> {
@@ -11,7 +11,7 @@ public class GuiCurrencyBag extends BaseBagGui<ContainerCurrencyBag> {
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/loot_bag.png");
 
     public GuiCurrencyBag(ContainerCurrencyBag bag, PlayerInventory inv,
-                          Text comp) {
+                          MutableText comp) {
         super(inv, bag);
 
     }

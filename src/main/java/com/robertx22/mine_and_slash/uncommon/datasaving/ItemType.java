@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 
 public enum ItemType {
 
@@ -26,9 +26,9 @@ public enum ItemType {
     private ItemFilterGroup filter;
     public Words word;
 
-    public static Text getTooltipString(ItemType types) {
+    public static MutableText getTooltipString(ItemType types) {
 
-        Text comp = Styles.LIGHT_PURPLECOMP()
+        MutableText comp = Styles.LIGHT_PURPLECOMP()
             .append(Words.UsableOn.locName())
             .append(": ")
             .append(types.word.locName());

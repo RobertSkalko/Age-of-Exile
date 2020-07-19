@@ -12,8 +12,7 @@ import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -41,7 +40,7 @@ public abstract class BaseBagItem extends Item {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
+    public void appendTooltip(ItemStack stack, World worldIn, List<MutableText> tooltip,
                                TooltipContext flagIn) {
 
         tooltip.add(TooltipUtils.color(Formatting.GREEN, Words.PicksUpItemsAuto.locName()));
