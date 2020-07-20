@@ -3,16 +3,19 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.bases;
 import com.robertx22.mine_and_slash.mmorpg.EntityPacket;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
+import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.sun.istack.internal.Nullable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
@@ -37,7 +40,7 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     private int xTile;
     private int yTile;
     private int zTile;
-    private Block inTile;
+
     protected boolean inGround;
     public int throwableShake;
 
@@ -46,6 +49,9 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     private int deathTime = 80;
     private int airProcTime;
     private boolean doGroundProc;
+
+    private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
+    ;
 
     public Entity ignoreEntity;
 
@@ -79,20 +85,8 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
         return this.doGroundProc;
     }
 
-    public int getTicksInAir() {
-        return this.ticksInAir;
-    }
-
     public int getTicksInGround() {
         return this.ticksInGround;
-    }
-
-    public void setTicksInAir(int newVal) {
-        this.ticksInAir = newVal;
-    }
-
-    public void setTicksInGround(int newVal) {
-        this.ticksInGround = newVal;
     }
 
     public int getAirProcTime() {
@@ -206,11 +200,14 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     @Override
     public final void tick() {
 
-        if (world != null && !world.isClient) {
+        if (!world.isClient) {
             if (this.spellData == null || this.spellData.getCaster(world) == null) {
                 this.remove();
                 return;
             }
+        }
+        if (world.isClient && getSpellData() == null) {
+            return;
         }
 
         try {
@@ -333,6 +330,8 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
 
     @Override
     protected void initDataTracker() {
+        this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
+
         super.initDataTracker();
     }
 
@@ -348,12 +347,23 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
 
     @Override
     public EntitySpellData getSpellData() {
+        if (world.isClient) {
+            if (spellData == null) {
+                CompoundTag nbt = dataTracker.get(SPELL_DATA);
+                if (nbt != null) {
+                    this.spellData = LoadSave.Load(EntitySpellData.class, new EntitySpellData(), nbt, "spell");
+                }
+            }
+        }
         return spellData;
     }
 
     @Override
     public void setSpellData(EntitySpellData data) {
         this.spellData = data;
+        CompoundTag nbt = new CompoundTag();
+        LoadSave.Save(spellData, nbt, "spell");
+        dataTracker.set(SPELL_DATA, nbt);
     }
 
 }
