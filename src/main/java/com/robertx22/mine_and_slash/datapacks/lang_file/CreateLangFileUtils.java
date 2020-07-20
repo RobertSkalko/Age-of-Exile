@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.develeper;
+package com.robertx22.mine_and_slash.datapacks.lang_file;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
