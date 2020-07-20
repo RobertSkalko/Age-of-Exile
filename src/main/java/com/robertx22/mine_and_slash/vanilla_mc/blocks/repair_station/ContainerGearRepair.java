@@ -75,7 +75,7 @@ public class ContainerGearRepair extends BaseTileContainer {
             }
         }
 
-        final int FUEL_SLOTS_XPOS = 80; // 53; // TODO
+        final int FUEL_SLOTS_XPOS = 80; // 53;
         final int FUEL_SLOTS_YPOS = 96;
         // Add the tile fuel slots
         for (int x = 0; x < FUEL_SLOTS_COUNT; x++) {

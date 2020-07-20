@@ -7,8 +7,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.repair_station.ContainerGe
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.repair_station.GuiGearRepair;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station.GuiGearSalvage;
-import com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag.ContainerCurrencyBag;
-import com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag.GuiCurrencyBag;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
@@ -20,7 +18,6 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<ContainerGearModify>registerFactory(ModRegistry.CONTAINERS.GEAR_MODIFY, x -> new GuiGearModify(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<ContainerGearRepair>registerFactory(ModRegistry.CONTAINERS.GEAR_REPAIR, x -> new GuiGearRepair(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<ContainerGearSalvage>registerFactory(ModRegistry.CONTAINERS.GEAR_SALVAGE, x -> new GuiGearSalvage(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
-        ScreenProviderRegistry.INSTANCE.<ContainerCurrencyBag>registerFactory(ModRegistry.CONTAINERS.CURRENCY_BAG, x -> new GuiCurrencyBag(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
 
     }
 

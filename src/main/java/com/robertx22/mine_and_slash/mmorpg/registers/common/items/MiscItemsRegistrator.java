@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -18,8 +17,6 @@ import java.util.List;
 public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public List<JewelItem> ALL_JEWELS = new ArrayList<>();
-
-    public Item CURRENCY_BAG = item(new ItemCurrencyBag(), ItemCurrencyBag.ID);
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
     public Item SKILL_GEM = item(new Item(new Item.Settings().maxCount(1)

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.event_hooks.TODO;
+package com.robertx22.mine_and_slash.event_hooks.utils;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;

@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.uncommon.effectdatas;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
-import com.robertx22.mine_and_slash.event_hooks.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -289,8 +288,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             if (event != null) {
                 event.setAmount(dmg);
-                DmgSourceUtils.markSourceAsMine(event.getSource());
-
             } else {
                 int hurtResistantTime = target.timeUntilRegen;
                 target.timeUntilRegen = 0;
