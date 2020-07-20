@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.datapacks.models;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.DirUtils;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -36,19 +37,26 @@ public class ModelHelper {
 
         Path path = DirUtils.generatedResourcesDir();
 
-        String reg = "assets/" + Registry.ITEM.getId(item)
-            .toString()
-            .replace(":", "/") + ".json";
+        String reg = "assets/" + Ref.MODID + "/models/item/" + Registry.ITEM.getId(item)
+            .getPath()
+            + ".json";
         path = path.resolve(reg);
 
+        int index = path.toString()
+            .lastIndexOf("\\");
+
         String withoutname = path.toString()
-            .replace(".json", "");
+            .substring(0, index + 1);
+
+        String name = path.toString()
+            .substring(index + 1);
 
         try {
             new File(withoutname).mkdirs();
-            new File(path.toString()).createNewFile();
+            File file = new File(path.toString());
+            file.createNewFile();
             FileWriter fileWriter;
-            fileWriter = new FileWriter("");
+            fileWriter = new FileWriter(file);
             fileWriter.write(filecontent);
             fileWriter.close();
         } catch (IOException e) {

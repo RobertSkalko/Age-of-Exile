@@ -34,10 +34,12 @@ public class ItemModelManager {
                 }
             });
         SlashRegistry.GearTypes()
-            .getList()
+            .getSerializable()
             .forEach(x -> {
 
-                if (x != HunterBow.INSTANCE && x != Crossbow.INSTANCE && !x.isShield()) {
+                if (!x.getTags()
+                    .contains(BaseGearType.SlotTag.Bow) && !x.getTags()
+                    .contains(BaseGearType.SlotTag.Crossbow) && !x.isShield()) {
                     if (x.family()
                         .equals(BaseGearType.SlotFamily.Weapon)) {
                         handheld(x.getItem());
