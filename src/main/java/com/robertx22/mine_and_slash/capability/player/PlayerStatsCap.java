@@ -37,10 +37,9 @@ public class PlayerStatsCap {
         PlayerStatPointsData data = new PlayerStatPointsData();
 
         @Override
-        public CompoundTag saveToNBT() {
-            CompoundTag nbt = new CompoundTag();
+        public void toTag(CompoundTag nbt) {
             LoadSave.Save(data, nbt, LOC);
-            return nbt;
+
         }
 
         @Override
@@ -49,7 +48,7 @@ public class PlayerStatsCap {
         }
 
         @Override
-        public void loadFromNBT(CompoundTag nbt) {
+        public void fromTag(CompoundTag nbt) {
             this.data = LoadSave.Load(PlayerStatPointsData.class, new PlayerStatPointsData(), nbt, LOC);
         }
 

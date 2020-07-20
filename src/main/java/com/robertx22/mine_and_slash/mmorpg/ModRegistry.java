@@ -18,6 +18,7 @@ public class ModRegistry {
     public static EntityRegister ENTITIES;
     public static BlockEntities BLOCK_ENTITIES;
     public static ModParticles PARTICLES;
+    public static ComponentRegisters COMPONENTS;
 
     public static void init() {
 
@@ -31,6 +32,7 @@ public class ModRegistry {
         ENTITIES = new EntityRegister();
         BLOCK_ENTITIES = new BlockEntities();
         PARTICLES = new ModParticles();
+        COMPONENTS = new ComponentRegisters();
 
     }
 }

@@ -29,20 +29,16 @@ public class AntiMobFarmCap {
         AntiMobFarmData data = new AntiMobFarmData();
 
         @Override
-        public CompoundTag saveToNBT() {
-
-            CompoundTag nbt = new CompoundTag();
+        public void toTag(CompoundTag nbt) {
 
             if (data != null) {
                 LoadSave.Save(data, nbt, DATA_LOC);
             }
 
-            return nbt;
-
         }
 
         @Override
-        public void loadFromNBT(CompoundTag nbt) {
+        public void fromTag(CompoundTag nbt) {
 
             data = LoadSave.Load(AntiMobFarmData.class, new AntiMobFarmData(), nbt, DATA_LOC);
 

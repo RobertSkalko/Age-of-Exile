@@ -239,8 +239,7 @@ public class EntityCap {
         }
 
         @Override
-        public CompoundTag saveToNBT() {
-            CompoundTag nbt = getClientNBT();
+        public void toTag(CompoundTag nbt) {
 
             nbt.putInt(EXP, exp);
             nbt.putInt(TIER, tier);
@@ -263,12 +262,10 @@ public class EntityCap {
                 LoadSave.Save(dmgStats, nbt, DMG_STATS);
             }
 
-            return nbt;
-
         }
 
         @Override
-        public void loadFromNBT(CompoundTag nbt) {
+        public void fromTag(CompoundTag nbt) {
 
             setClientNBT(nbt);
 

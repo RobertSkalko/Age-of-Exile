@@ -1,10 +1,7 @@
 package com.robertx22.mine_and_slash.capability.bases;
 
-import net.minecraft.nbt.CompoundTag;
+import nerdhub.cardinal.components.api.component.Component;
 
-public interface ICommonCap {
-    CompoundTag saveToNBT();
-
-    void loadFromNBT(CompoundTag value);
+public interface ICommonCap extends Component {
 
 }

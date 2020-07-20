@@ -22,12 +22,12 @@ public class EntityUnitPacket extends MyPacket<EntityUnitPacket> {
     public EntityUnitPacket(Entity entity) {
         this.id = entity.getEntityId();
         this.nbt = Load.Unit(entity)
-            .saveToNBT();
+            .toTag();
     }
 
     public EntityUnitPacket(Entity entity, UnitData data) {
         this.id = entity.getEntityId();
-        this.nbt = data.saveToNBT();
+        this.nbt = data.toTag();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class EntityUnitPacket extends MyPacket<EntityUnitPacket> {
             LivingEntity en = (LivingEntity) entity;
 
             Load.Unit(en)
-                .loadFromNBT(nbt);
+                .fromTag(nbt);
         }
     }
 

@@ -34,8 +34,7 @@ public class PlayerSpellCap {
         SpellCastingData spellCastingData = new SpellCastingData();
 
         @Override
-        public CompoundTag saveToNBT() {
-            CompoundTag nbt = new CompoundTag();
+        public void toTag(CompoundTag nbt) {
 
             try {
                 LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
@@ -43,7 +42,6 @@ public class PlayerSpellCap {
                 e.printStackTrace();
             }
 
-            return nbt;
         }
 
         @Override
@@ -52,7 +50,7 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public void loadFromNBT(CompoundTag nbt) {
+        public void fromTag(CompoundTag nbt) {
 
             this.spellCastingData = LoadSave.Load(
                 SpellCastingData.class, new SpellCastingData(), nbt, PLAYER_SPELL_DATA);

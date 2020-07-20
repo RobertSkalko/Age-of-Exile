@@ -19,7 +19,7 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
     public SyncCapabilityToClient(PlayerEntity p, PlayerCaps type) {
         this.nbt = type.getCap(p)
-            .saveToNBT();
+            .toTag();
         this.type = type;
     }
 
@@ -48,7 +48,7 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
         if (player != null) {
             type.getCap(player)
-                .loadFromNBT(nbt);
+                .fromTag(nbt);
 
         }
     }
