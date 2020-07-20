@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealthRe
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.mine_and_slash.event_hooks.ontick.OnServerTick.PlayerTickData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -50,7 +49,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
 
-                        unitdata.forceRecalculateStats(player);
+                        unitdata.tryRecalculateStats(player);
                         // has to do
                         // this cus curios doesnt call
                         // equipsChanged event - actually

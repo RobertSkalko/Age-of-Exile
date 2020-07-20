@@ -6,11 +6,12 @@ import com.robertx22.mine_and_slash.mmorpg.LifeCycleEvents;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.event_registers.Common;
-import com.robertx22.mine_and_slash.mmorpg.event_registers.Server;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
 import net.fabricmc.api.ModInitializer;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotTypeInfo;
 
 public class CommonInit implements ModInitializer {
     @Override
@@ -37,6 +38,10 @@ public class CommonInit implements ModInitializer {
 
         LifeCycleEvents.register();
 
-        Server.register();
+        CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, new SlotTypeInfo.Builder("ring").size(2)
+            .build());
+        CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, new SlotTypeInfo.Builder("necklace").size(1)
+            .build());
+
     }
 }

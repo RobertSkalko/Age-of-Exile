@@ -161,8 +161,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
                                   Stat stat, int xPos, int yPos) {
             super(xPos, yPos, button_sizeX, button_sizeY, 0, 0, button_sizeY, BUTTON_TEX, (button) -> {
 
-                // MMORPG.sendToServer(new SpendStatPointPacket(statData.stat));
-                //MMORPG.sendToServer(new RequestSyncCapToClient(CapTypes.STAT_POINTS));
+                Packets.sendToServer(new SpendStatPointsPacket(stat));
+                Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
 
             });
 
@@ -172,6 +172,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
 
         }
 
+        /*
         @Override
         public void onPress() {
             super.onPress();
@@ -180,6 +181,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
             Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
 
         }
+
+         */
 
         @Override
         public void renderToolTip(MatrixStack matrix, int x, int y) {
