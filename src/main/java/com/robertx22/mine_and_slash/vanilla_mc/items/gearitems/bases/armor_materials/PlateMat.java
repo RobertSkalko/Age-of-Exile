@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.armor_materials;
 
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.entity.EquipmentSlot;
 
 public class PlateMat extends BaseMat {
@@ -29,7 +28,7 @@ public class PlateMat extends BaseMat {
 
     @Override
     public String getName() {
-        return Ref.MODID + ":" + "plate";
+        return "plate";
     }
 
     @Override

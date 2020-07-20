@@ -1,13 +1,11 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.mine_and_slash.database.registrators.Stats;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import net.minecraft.entity.LivingEntity;
@@ -21,15 +19,13 @@ public class CommonStatUtils {
         }
     }
 
-    public static void addPotionStats(LivingEntity entity, UnitData data) {
-
-        PlayerSpellCap.ISpellsCap cap = Load.spells(entity);
+    public static void addPotionStats(LivingEntity entity) {
 
         for (StatusEffectInstance instance : entity.getStatusEffects()) {
             if (instance.getEffectType() instanceof IApplyStatPotion) {
                 IApplyStatPotion stat = (IApplyStatPotion) instance.getEffectType();
                 try {
-                    stat.applyStats(data, cap, instance);
+                    stat.applyStats(entity.world, instance, entity);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

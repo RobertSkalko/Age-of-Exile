@@ -7,10 +7,12 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +20,13 @@ import java.util.stream.Collectors;
 
 public interface IApplyStatPotion {
 
-    default void applyStats(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap cap, StatusEffectInstance instance) {
+    default void applyStats(World world, StatusEffectInstance instance, LivingEntity target) {
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
+        LivingEntity caster = extraData.getCaster(world);
+
         if (extraData != null) {
-            getStatsAffected((BasePotionEffect) instance.getEffectType(), data, cap, extraData).forEach(x -> x.applyStats(data));
+            getStatsAffected((BasePotionEffect) instance.getEffectType(), Load.Unit(caster), Load.spells(caster), extraData).forEach(x -> x.applyStats(Load.Unit(target)));
         }
 
     }

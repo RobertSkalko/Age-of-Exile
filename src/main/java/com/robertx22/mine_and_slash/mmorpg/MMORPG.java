@@ -57,19 +57,26 @@ public class MMORPG {
     public static MinecraftServer server = null;
 
     public static void sendToTracking(MyPacket msg, Entity entity) {
-        sendToTracking(msg, entity.getBlockPos(), entity.world);
+        if (entity.world.isClient) {
+
+        } else {
+            sendToTracking(msg, entity.getBlockPos(), entity.world);
+        }
     }
 
     public static void sendToTracking(MyPacket msg, BlockPos pos, World world) {
+        if (world.isClient) {
 
-        if (msg == null || world == null) {
-            return;
+        } else {
+
+            if (msg == null || world == null) {
+                return;
+            }
+            PlayerStream.watching(world, pos)
+                .forEach(x -> {
+                    Packets.sendToClient(x, msg);
+                });
         }
-        PlayerStream.watching(world, pos)
-            .forEach(x -> {
-                Packets.sendToClient(x, msg);
-            });
-
     }
 
 }

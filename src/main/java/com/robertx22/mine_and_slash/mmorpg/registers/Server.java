@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.mmorpg;
+package com.robertx22.mine_and_slash.mmorpg.registers;
 
 import com.robertx22.mine_and_slash.event_hooks.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.event_hooks.entity.OnTrackEntity;
@@ -9,7 +9,7 @@ import nerdhub.cardinal.components.api.event.TrackingStartCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 
-public class ServerEventsRegister {
+public class Server {
 
     public static void register() {
 

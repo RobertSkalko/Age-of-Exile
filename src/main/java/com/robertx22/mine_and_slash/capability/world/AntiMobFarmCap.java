@@ -29,11 +29,13 @@ public class AntiMobFarmCap {
         AntiMobFarmData data = new AntiMobFarmData();
 
         @Override
-        public void toTag(CompoundTag nbt) {
+        public CompoundTag toTag(CompoundTag nbt) {
 
             if (data != null) {
                 LoadSave.Save(data, nbt, DATA_LOC);
             }
+
+            return nbt;
 
         }
 

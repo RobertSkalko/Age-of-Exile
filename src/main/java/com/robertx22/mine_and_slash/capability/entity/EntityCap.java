@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.capability.entity;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.capability.bases.INeededForClient;
 import com.robertx22.mine_and_slash.config.forge.CommonConfig;
@@ -173,9 +174,15 @@ public class EntityCap {
 
         int getExpRequiredForLevelUp();
 
+        EntityGears getCurrentGears();
+
     }
 
     public static class DefaultImpl implements UnitData {
+
+        //dont save this
+        EntityGears gears = new EntityGears();
+        // dont
 
         // sync these for mobs
         Unit unit = new Unit();
@@ -239,7 +246,7 @@ public class EntityCap {
         }
 
         @Override
-        public void toTag(CompoundTag nbt) {
+        public CompoundTag toTag(CompoundTag nbt) {
 
             nbt.putInt(EXP, exp);
             nbt.putInt(TIER, tier);
@@ -261,6 +268,7 @@ public class EntityCap {
             if (dmgStats != null) {
                 LoadSave.Save(dmgStats, nbt, DMG_STATS);
             }
+            return nbt;
 
         }
 
@@ -698,6 +706,11 @@ public class EntityCap {
         @Override
         public int getExpRequiredForLevelUp() {
             return LevelUtils.getExpRequiredForLevel(this.getLevel() + 1);
+        }
+
+        @Override
+        public EntityGears getCurrentGears() {
+            return gears;
         }
 
         @Override

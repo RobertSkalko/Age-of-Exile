@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.a_libraries.curios.AddCurioCapability;
 import com.robertx22.mine_and_slash.mmorpg.LifeCycleEvents;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.RegisterEvents;
+import com.robertx22.mine_and_slash.mmorpg.registers.Common;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CapabilityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
@@ -20,7 +20,7 @@ public class CommonInit implements ModInitializer {
         ModRegistry.init();
 
         SlashRegistry.initRegistries();
-        RegisterEvents.register();
+        Common.register();
         ConfigRegister.registerForgeConfigs(); // MUST BE IN MAIN CLASS
         SlashRegistry.registerAllItems(); // after config registerAll
         SlashRegistry.checkGuidValidity();

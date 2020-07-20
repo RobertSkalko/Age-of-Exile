@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.mmorpg;
+package com.robertx22.mine_and_slash.mmorpg.registers;
 
 import com.robertx22.mine_and_slash.event_hooks.item.OnTooltip;
 import com.robertx22.mine_and_slash.event_hooks.ontick.OnClientTick;
@@ -11,7 +11,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 
-public class RegisterClientEvents {
+public class Client {
 
     public static void register() {
 

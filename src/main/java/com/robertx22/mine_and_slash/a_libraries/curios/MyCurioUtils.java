@@ -12,7 +12,9 @@ public class MyCurioUtils {
 
         List<ItemStack> list = new ArrayList<>();
 
-        return null; // TODO
+        return list;
+
+        // TODO
 /*
         ICuriosItemHandler handler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
         if (handler != null) {

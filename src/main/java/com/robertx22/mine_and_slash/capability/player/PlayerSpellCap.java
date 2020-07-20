@@ -34,13 +34,15 @@ public class PlayerSpellCap {
         SpellCastingData spellCastingData = new SpellCastingData();
 
         @Override
-        public void toTag(CompoundTag nbt) {
+        public CompoundTag toTag(CompoundTag nbt) {
 
             try {
                 LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            return nbt;
 
         }
 

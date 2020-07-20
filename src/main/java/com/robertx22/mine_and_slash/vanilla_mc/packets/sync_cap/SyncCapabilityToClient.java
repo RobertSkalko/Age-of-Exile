@@ -19,7 +19,7 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
     public SyncCapabilityToClient(PlayerEntity p, PlayerCaps type) {
         this.nbt = type.getCap(p)
-            .toTag();
+            .toTag(new CompoundTag());
         this.type = type;
     }
 

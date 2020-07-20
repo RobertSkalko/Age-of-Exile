@@ -22,12 +22,12 @@ public class EntityUnitPacket extends MyPacket<EntityUnitPacket> {
     public EntityUnitPacket(Entity entity) {
         this.id = entity.getEntityId();
         this.nbt = Load.Unit(entity)
-            .toTag();
+            .toTag(new CompoundTag());
     }
 
     public EntityUnitPacket(Entity entity, UnitData data) {
         this.id = entity.getEntityId();
-        this.nbt = data.toTag();
+        this.nbt = data.toTag(new CompoundTag());
     }
 
     @Override

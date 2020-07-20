@@ -338,6 +338,10 @@ public class Unit {
 
     public void recalculateStats(LivingEntity entity, UnitData data, DamageEventData dmgData) {
 
+        if (entity.world.isClient) {
+            return;
+        }
+
         data.setEquipsChanged(false);
 
         if (data.getUnit() == null) {
@@ -352,9 +356,7 @@ public class Unit {
 
         ClearStats();
 
-        MobRarity rar = Rarities.Mobs.get(data.getRarity());
-
-        CommonStatUtils.addPotionStats(entity, data);
+        CommonStatUtils.addPotionStats(entity);
         CommonStatUtils.addExactCustomStats(data);
 
         if (entity instanceof PlayerEntity) {

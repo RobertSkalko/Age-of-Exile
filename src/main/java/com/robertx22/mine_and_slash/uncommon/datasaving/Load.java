@@ -17,7 +17,11 @@ public class Load {
     }
 
     public static PlayerSpellCap.ISpellsCap spells(LivingEntity provider) {
-        return ModRegistry.COMPONENTS.PLAYER_SPELLS.get(provider);
+        if (provider instanceof PlayerEntity) {
+            return ModRegistry.COMPONENTS.PLAYER_SPELLS.get(provider);
+        } else {
+            return new PlayerSpellCap.DefaultImpl();
+        }
     }
 
     public static UnitData Unit(Entity entity) {
