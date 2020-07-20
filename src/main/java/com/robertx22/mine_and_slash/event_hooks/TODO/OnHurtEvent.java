@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.event_hooks.TODO;
 
+import com.robertx22.mine_and_slash.event_hooks.entity.damage.LivingHurtUtils;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.LivingHurtEvent;
+
 public class OnHurtEvent {
 
-    /*
+    public static float onHurtEvent(LivingHurtEvent event) {
 
-    public static void onHurtEvent(LivingHurtEvent event) {
-
-        if (event.getEntity().world.isClient) {
-            return;
+        if (event.getEntityLiving().world.isClient) {
+            return event.getAmount();
         }
 
         try {
@@ -24,8 +25,8 @@ public class OnHurtEvent {
             e.printStackTrace();
         }
 
+        return event.getAmount();
+
     }
 
-
-     */
 }

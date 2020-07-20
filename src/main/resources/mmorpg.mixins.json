@@ -9,6 +9,7 @@
 	"MinecraftServerMixin",
 	"ServerResourceManagerMixin",
 	"ItemStackMixin",
+	"EntityMixin",
 	"ArrowShootMixin"
   ],
   "injectors": {

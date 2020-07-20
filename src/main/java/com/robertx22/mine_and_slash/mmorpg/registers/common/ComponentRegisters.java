@@ -43,6 +43,8 @@ public class ComponentRegisters {
 
     public ComponentRegisters() {
         EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
+        EntityComponents.setRespawnCopyStrategy(PLAYER_SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
+        EntityComponents.setRespawnCopyStrategy(PLAYER_STAT_POINTS, RespawnCopyStrategy.ALWAYS_COPY);
     }
 
 }

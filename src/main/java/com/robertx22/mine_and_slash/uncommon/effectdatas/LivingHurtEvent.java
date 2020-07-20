@@ -6,10 +6,15 @@ import net.minecraft.entity.damage.DamageSource;
 public class LivingHurtEvent {
 
     boolean canceled = false;
-    LivingEntity sourceEntity;
     LivingEntity targetEntity;
     DamageSource dmgSource;
     float amount;
+
+    public LivingHurtEvent(LivingEntity targetEntity, DamageSource dmgSource, float amount) {
+        this.targetEntity = targetEntity;
+        this.dmgSource = dmgSource;
+        this.amount = amount;
+    }
 
     public DamageSource getSource() {
         return dmgSource;

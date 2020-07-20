@@ -15,7 +15,7 @@ public class MMORPG {
     public static boolean RUN_DEV_TOOLS = true;
 
     public static boolean RUN_MIXIN_LOGS() {
-        return false;
+        return true;
     }
 
     public static void mixinLog(String str) {
