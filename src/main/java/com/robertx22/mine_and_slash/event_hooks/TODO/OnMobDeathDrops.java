@@ -23,11 +23,9 @@ import java.util.List;
 
 public class OnMobDeathDrops {
 
-    public static void mobOnDeathDrop() {
+    public static void mobOnDeathDrop(LivingEntity mobKilled) {
 
         try {
-
-            LivingEntity mobKilled = null;
 
             if (mobKilled.world.isClient) {
                 return;
