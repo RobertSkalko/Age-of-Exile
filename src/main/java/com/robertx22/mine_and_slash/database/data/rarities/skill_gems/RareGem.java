@@ -32,6 +32,6 @@ public class RareGem implements SkillGemRarity {
 
     @Override
     public String locNameForLangFile() {
-        return "Rar";
+        return "Rare";
     }
 }

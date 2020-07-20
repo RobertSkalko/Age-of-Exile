@@ -39,12 +39,8 @@ public abstract class BaseDatapackGenerator<T extends IGUID & ISerializable<T>> 
     }
 
     protected Path movePath(Path target) {
-
         String movedpath = target.toString();
-
         movedpath = movedpath.replace("run", "src/generated/resources");
-
         return Paths.get(movedpath);
-
     }
 }

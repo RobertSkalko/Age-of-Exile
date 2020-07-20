@@ -1,24 +1,17 @@
 package com.robertx22.mine_and_slash.datapacks.models;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
-import net.minecraft.data.DataCache;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
 public class ItemModelManager {
 
-    // TODO REMAKE THIS
-    public ItemModelManager(DataGenerator generator) {
-        super();
-    }
+    public static ItemModelManager INSTANCE = new ItemModelManager();
 
-    protected void registerModels() {
+    public void generateModels() {
 
         Registry.ITEM.forEach(x -> {
             if (x instanceof IAutoModel) {
@@ -57,60 +50,12 @@ public class ItemModelManager {
 
     }
 
-    public String modid(Item item) {
-        return Registry.ITEM.getId(item
-            .asItem())
-            .getNamespace();
-    }
-
-    public String name(Item item) {
-        return Registry.ITEM.getId(item
-            .asItem())
-            .getPath();
-    }
-
     public void generated(Item item) {
-
+        new ModelHelper(item, ModelHelper.Type.GENERATED).generate();
     }
 
     public void handheld(Item item) {
-
+        new ModelHelper(item, ModelHelper.Type.HANDHELD).generate();
     }
 
-    private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting()
-        .create();
-
-    protected void generateAll(DataCache cache) {
-        /*
-        for (ItemModelBuilder model : generatedModels.values()) {
-            Path target = getPath(model);
-            try {
-                DataProvider.writeToPath(GSON, cache, model.toJson(), target);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-         */
-    }
-
-    /*
-    private Path getPath(ItemModelBuilder model) {
-        Identifier loc = model.getLocation();
-        return generator.getOutput()
-            .resolve("assets/" + loc.getNamespace() + "/models/item/" + loc.getPath() + ".json");
-    }
-
-    @Override
-    public void run(DataCache dataCache) throws IOException {
-
-    }
-
-    @Override
-    public String getName() {
-        return "mmorpg item models";
-    }
-
-
-     */
 }

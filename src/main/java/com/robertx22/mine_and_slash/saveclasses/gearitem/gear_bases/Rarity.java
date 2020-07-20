@@ -27,6 +27,7 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
         json.addProperty("loc_name_internal", locNameForLangFile());
 
         json.addProperty("text_formatting", textFormatting().name());
+        json.addProperty("id", GUID());
 
         return json;
     }
@@ -42,6 +43,8 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
             .getAsString();
         obj.rank = json.get("rank")
             .getAsInt();
+        obj.guid = json.get("id")
+            .getAsString();
         obj.textFormatting = Formatting.valueOf(json.get("text_formatting")
             .getAsString());
 

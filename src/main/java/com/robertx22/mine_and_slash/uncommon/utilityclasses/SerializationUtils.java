@@ -26,12 +26,6 @@ public class SerializationUtils {
 
     public static void makeFileAndDirAndWrite(String path, String filename, String text, boolean overwrite) {
 
-        /*
-        if (path.contains(CONFIG_PATH) == false) {
-            path = CONFIG_PATH + path;
-        }
-                 */
-
         String combined = path + "/" + filename;
 
         try {

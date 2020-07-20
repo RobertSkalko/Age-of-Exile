@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 
 public interface SkillGemRarity extends Rarity {
 
-    public MinMax statPercents();
+    MinMax statPercents();
 
     @Override
     default JsonObject toJson() {

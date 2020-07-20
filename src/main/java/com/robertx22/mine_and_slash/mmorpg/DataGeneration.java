@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.datapacks.curio_tags.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.datapacks.lang_file.CreateLangFile;
 import com.robertx22.mine_and_slash.datapacks.loaders.*;
+import com.robertx22.mine_and_slash.datapacks.models.ItemModelManager;
 import net.minecraft.resource.ReloadableResourceManager;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class DataGeneration {
 
         CreateLangFile.create();
         GenerateCurioDataJsons.generate();
+        ItemModelManager.INSTANCE.generateModels();
 
     }
 

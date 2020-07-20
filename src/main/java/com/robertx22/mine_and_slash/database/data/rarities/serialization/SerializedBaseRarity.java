@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.rarities.serialization;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import java.util.Locale;
 import net.minecraft.util.Formatting;
 
 public class SerializedBaseRarity implements Rarity {
@@ -13,6 +12,7 @@ public class SerializedBaseRarity implements Rarity {
         this.textFormatting = o.textFormatting;
         this.locNameID = o.locNameID;
         this.locName = o.locName;
+        this.guid = o.guid;
     }
 
     public SerializedBaseRarity() {
@@ -24,6 +24,7 @@ public class SerializedBaseRarity implements Rarity {
     public Formatting textFormatting;
     public String locNameID;
     public String locName;
+    public String guid;
 
     @Override
     public String locNameLangFileGUID() {
@@ -32,7 +33,7 @@ public class SerializedBaseRarity implements Rarity {
 
     @Override
     public String GUID() {
-        return locNameForLangFile().toLowerCase(Locale.ROOT);
+        return guid;
     }
 
     @Override

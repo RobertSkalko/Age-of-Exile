@@ -3,9 +3,22 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DirUtils {
+
+    public static Path generatedResourcesDir() {
+
+        String path = FabricLoader.getInstance()
+            .getGameDir()
+            .toString();
+
+        String movedpath = path.toString();
+        movedpath = movedpath.replace("run", "src/generated/resources");
+        return Paths.get(movedpath);
+
+    }
 
     public static String modDir() {
         return FabricLoader.getInstance()
