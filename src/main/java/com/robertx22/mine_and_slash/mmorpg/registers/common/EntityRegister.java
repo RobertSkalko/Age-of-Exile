@@ -47,7 +47,6 @@ public class EntityRegister {
     public EntityType<RangerArrowEntity> RANGER_ARROW = projectile(RangerArrowEntity::new, "ranger_arrow");
     public EntityType<ArrowStormEntity> ARROW_STORM = projectile(ArrowStormEntity::new, "arrow_storm");
 
-    public EntityType<DivineTribulationEntity> DIVINE_TRIBULATION = projectile(DivineTribulationEntity::new, "divine_tribulation");
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
