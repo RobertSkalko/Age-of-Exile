@@ -34,6 +34,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
+import nerdhub.cardinal.components.api.util.sync.EntitySyncedComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -68,7 +69,7 @@ public class EntityCap {
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
 
-    public interface UnitData extends ICommonPlayerCap, INeededForClient {
+    public interface UnitData extends ICommonPlayerCap, INeededForClient, EntitySyncedComponent {
 
         void setCooledAttackStrength(float f);
 
@@ -180,6 +181,8 @@ public class EntityCap {
 
     public static class DefaultImpl implements UnitData {
 
+        LivingEntity entity;
+
         //dont save this
         EntityGears gears = new EntityGears();
         // dont
@@ -206,10 +209,12 @@ public class EntityCap {
         ResourcesData resources = new ResourcesData();
         CustomExactStatsData customExactStats = new CustomExactStatsData();
 
-        @Override
-        public CompoundTag getClientNBT() {
+        public DefaultImpl(LivingEntity entity) {
+            this.entity = entity;
+        }
 
-            CompoundTag nbt = new CompoundTag();
+        @Override
+        public void addClientNBT(CompoundTag nbt) {
 
             nbt.putInt(LEVEL, level);
             nbt.putInt(RARITY, rarity);
@@ -221,12 +226,10 @@ public class EntityCap {
                 UnitNbt.Save(nbt, unit);
             }
 
-            return nbt;
-
         }
 
         @Override
-        public void setClientNBT(CompoundTag nbt) {
+        public void loadFromClientNBT(CompoundTag nbt) {
 
             this.rarity = nbt.getInt(RARITY);
             this.level = nbt.getInt(LEVEL);
@@ -247,6 +250,8 @@ public class EntityCap {
 
         @Override
         public CompoundTag toTag(CompoundTag nbt) {
+
+            addClientNBT(nbt);
 
             nbt.putInt(EXP, exp);
             nbt.putInt(TIER, tier);
@@ -275,7 +280,7 @@ public class EntityCap {
         @Override
         public void fromTag(CompoundTag nbt) {
 
-            setClientNBT(nbt);
+            loadFromClientNBT(nbt);
 
             this.exp = nbt.getInt(EXP);
             this.tier = nbt.getInt(TIER);
@@ -819,6 +824,10 @@ public class EntityCap {
             this.exp = exp;
         }
 
+        @Override
+        public Entity getEntity() {
+            return entity;
+        }
     }
 
 }

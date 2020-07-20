@@ -51,8 +51,9 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
             if (endata.needsToBeGivenStats()) {
                 Unit unit = Mob(entity, endata, nearestPlayer);
+                endata.setUnit(unit, entity);
                 endata.mobStatsAreSet();
-                entity.heal(entity.getMaxHealth());
+                endata.forceRecalculateStats(entity);
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);
@@ -62,6 +63,8 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
                     .initStats(); // give new stats to mob on spawn
                 endata.forceRecalculateStats(entity);
             }
+
+            entity.heal(Integer.MAX_VALUE);
 
         }
 

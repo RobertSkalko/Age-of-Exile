@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseArmorItem;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -19,7 +20,7 @@ public class ItemBow extends BowItem implements IAutoLocName, IGearItem {
         super(ItemUtils.getDefaultGearProperties()
             .maxCount(1)
             .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
-                .getDurability()));
+                .getDurability(EquipmentSlot.MAINHAND)));
         this.rarity = rar;
     }
 

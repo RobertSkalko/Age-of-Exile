@@ -21,7 +21,9 @@ public class EfficientMobUnitPacket extends MyPacket<EfficientMobUnitPacket> {
 
     public EfficientMobUnitPacket(Entity entity, EntityCap.UnitData data) {
         this.id = entity.getEntityId();
-        this.nbt = data.getClientNBT();
+        CompoundTag nbt = new CompoundTag();
+        data.addClientNBT(nbt);
+        this.nbt = nbt;
 
     }
 
@@ -51,7 +53,7 @@ public class EfficientMobUnitPacket extends MyPacket<EfficientMobUnitPacket> {
             LivingEntity en = (LivingEntity) entity;
 
             Load.Unit(en)
-                .setClientNBT(nbt);
+                .loadFromClientNBT(nbt);
         }
     }
 

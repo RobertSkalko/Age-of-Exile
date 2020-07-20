@@ -9,6 +9,8 @@ import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
 import nerdhub.cardinal.components.api.event.WorldComponentCallback;
+import nerdhub.cardinal.components.api.util.EntityComponents;
+import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
@@ -19,7 +21,7 @@ public class ComponentRegisters {
         ComponentRegistry.INSTANCE.registerIfAbsent(
             new Identifier(Ref.MODID, "unit_data"),
             EntityCap.UnitData.class)
-            .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityCap.DefaultImpl());
+            .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityCap.DefaultImpl(x));
 
     public ComponentType<PlayerSpellCap.ISpellsCap> PLAYER_SPELLS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
@@ -38,5 +40,9 @@ public class ComponentRegisters {
             new Identifier(Ref.MODID, "anti_mob_farm"),
             AntiMobFarmCap.IAntiMobFarmData.class)
             .attach(WorldComponentCallback.EVENT, x -> new AntiMobFarmCap.DefaultImpl());
+
+    public ComponentRegisters() {
+        EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
+    }
 
 }

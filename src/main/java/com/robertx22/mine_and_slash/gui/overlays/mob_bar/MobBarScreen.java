@@ -60,8 +60,7 @@ public class MobBarScreen extends DrawableHelper implements HudRenderCallback {
                 EntityCap.UnitData data = Load.Unit(en);
 
                 if (data != null && data.getUnit() != null) {
-                    int currentHp = (int) data.getUnit()
-                        .getCurrentEffectiveHealth(en, data);
+                    int currentHp = (int) en.getHealth();
                     int maxHP = (int) en.getMaxHealth();
                     int percent = Math.round((float) currentHp / (float) maxHP * 100);
 

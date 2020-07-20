@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShi
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
@@ -22,6 +23,7 @@ import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.EfficientMobUnitPacket;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -391,6 +393,10 @@ public class Unit {
                 return;
             }
             MMORPG.sendToTracking(getUpdatePacketFor(entity, data), entity);
+        }
+
+        if (entity instanceof PlayerEntity) {
+            Packets.sendToClient((PlayerEntity) entity, new EntityUnitPacket(entity));
         }
 
     }

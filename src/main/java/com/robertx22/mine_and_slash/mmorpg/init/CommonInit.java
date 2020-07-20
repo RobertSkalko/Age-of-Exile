@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.a_libraries.curios.AddCurioCapability;
 import com.robertx22.mine_and_slash.mmorpg.LifeCycleEvents;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.Common;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.CapabilityRegister;
+import com.robertx22.mine_and_slash.mmorpg.event_registers.Common;
+import com.robertx22.mine_and_slash.mmorpg.event_registers.Server;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
@@ -29,7 +29,6 @@ public class CommonInit implements ModInitializer {
 
         //this was in common
         PacketRegister.register();
-        CapabilityRegister.register();
         //common
 
         ConfigRegister.registerCustomConfigs();
@@ -37,5 +36,7 @@ public class CommonInit implements ModInitializer {
         AddCurioCapability.addComponents();
 
         LifeCycleEvents.register();
+
+        Server.register();
     }
 }

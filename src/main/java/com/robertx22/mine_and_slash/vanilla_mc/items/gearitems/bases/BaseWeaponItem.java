@@ -28,7 +28,7 @@ public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, I
         super(
             new RarityItemTier(rar), ItemUtils.getDefaultGearProperties()
                 .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
-                    .getDurability()));
+                    .getDurability(EquipmentSlot.MAINHAND)));
         this.rarity = rar;
     }
 

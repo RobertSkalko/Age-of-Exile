@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -25,7 +26,7 @@ public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
         super(
             new RarityItemTier(rar), 5 + (rar + 1), -2.4F, (ItemUtils.getDefaultGearProperties()
                 .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
-                    .getDurability())));
+                    .getDurability(EquipmentSlot.MAINHAND))));
         this.rarity = rar;
     }
 

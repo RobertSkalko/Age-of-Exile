@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.mmorpg.registers;
+package com.robertx22.mine_and_slash.mmorpg.event_registers;
 
 import com.robertx22.mine_and_slash.event_hooks.item.OnTooltip;
 import com.robertx22.mine_and_slash.event_hooks.ontick.OnClientTick;

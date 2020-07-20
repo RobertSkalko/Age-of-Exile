@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.armor_materials;
 
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.entity.EquipmentSlot;
 
 public class LeatherMat extends BaseMat {
@@ -29,7 +28,7 @@ public class LeatherMat extends BaseMat {
 
     @Override
     public String getName() {
-        return Ref.MODID + ":" + "leather";
+        return "myleather";
     }
 
     @Override

@@ -1,11 +1,15 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.armor_materials;
 
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.entity.EquipmentSlot;
 
 public class UniqueMat extends BaseMat {
 
-    static int[] damageReductions = new int[]{3, 6, 8, 3};
+    static int[] damageReductions = new int[]{
+        3,
+        6,
+        8,
+        3
+    };
 
     @Override
     public int getDurability(EquipmentSlot slotIn) {
@@ -24,7 +28,7 @@ public class UniqueMat extends BaseMat {
 
     @Override
     public String getName() {
-        return Ref.MODID + ":" + "unique";
+        return "unique";
     }
 
     @Override
