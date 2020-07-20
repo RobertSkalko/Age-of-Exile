@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.rarities.gears.CommonGear;
 import com.robertx22.mine_and_slash.database.data.rarities.mobs.CommonMob;
 import com.robertx22.mine_and_slash.database.data.rarities.skill_gems.CommonGem;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 
 public enum RarityTypeEnum {
 

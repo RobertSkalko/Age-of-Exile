@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;

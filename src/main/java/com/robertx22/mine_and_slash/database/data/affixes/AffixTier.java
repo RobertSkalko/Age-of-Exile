@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.data.affixes;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.JsonUtils;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.List;

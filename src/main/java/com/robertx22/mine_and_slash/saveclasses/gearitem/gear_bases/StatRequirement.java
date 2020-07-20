@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 
 public class StatRequirement implements ISerializable<StatRequirement> {

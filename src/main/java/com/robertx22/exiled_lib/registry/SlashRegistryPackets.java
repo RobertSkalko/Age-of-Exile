@@ -1,6 +1,6 @@
 package com.robertx22.exiled_lib.registry;
 
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 
 import java.util.ArrayList;
 import java.util.HashMap;

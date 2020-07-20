@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.data.requirements;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.GearRequestedFor;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializablePart;
+import com.robertx22.mine_and_slash.datapacks.JsonUtils;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializablePart;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;

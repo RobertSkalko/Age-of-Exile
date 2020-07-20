@@ -2,12 +2,12 @@ package com.robertx22.mine_and_slash.database.data.unique_items;
 
 import com.google.gson.JsonObject;
 import com.robertx22.exiled_lib.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.data_generation.JsonUtils;
-import com.robertx22.mine_and_slash.data_generation.unique_gears.SerializableUniqueGear;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.datapacks.JsonUtils;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.datapacks.seriazables.SerializableUniqueGear;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;

@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.data.rarities.serialization.SerializedBaseRarity;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.util.Formatting;

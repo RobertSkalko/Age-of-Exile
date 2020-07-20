@@ -4,6 +4,7 @@ import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.auto_comp.DeterminePowerLevels;
 import com.robertx22.mine_and_slash.database.registrators.CurrencyItems;
+import com.robertx22.mine_and_slash.datapacks.loaders.BaseGearTypeDatapackLoader;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.error_checks.base.ErrorChecks;
@@ -21,6 +22,11 @@ public class LifeCycleEvents {
 
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {
             new CurrencyItems().registerAll();
+
+            new BaseGearTypeDatapackLoader().getDataPackGenerator()
+                .run();
+
+            GenerateData.generateAll();
 
             MMORPG.server = server;
 

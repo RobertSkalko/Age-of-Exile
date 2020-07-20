@@ -2,13 +2,13 @@ package com.robertx22.exiled_lib.registry;
 
 import com.robertx22.exiled_lib.registry.empty_entries.EmptyAffix;
 import com.robertx22.exiled_lib.registry.empty_entries.EmptyUniqueGear;
-import com.robertx22.mine_and_slash.data_generation.base_gear_types.SerializableBaseGearType;
 import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.data.tiers.base.Tier;
 import com.robertx22.mine_and_slash.database.registrators.MobAffixes;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.seriazables.SerializableBaseGearType;
 
 public enum SlashRegistryType {
 

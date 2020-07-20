@@ -20,7 +20,7 @@ import com.robertx22.mine_and_slash.database.data.tiers.base.Tier;
 import com.robertx22.mine_and_slash.database.data.tiers.impl.TierOne;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.registrators.*;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.MapManager;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.RegistryPacket;

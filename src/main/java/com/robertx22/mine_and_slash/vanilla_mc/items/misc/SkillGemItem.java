@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 
-import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
-import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
+import com.robertx22.mine_and_slash.datapacks.models.IAutoModel;
+import com.robertx22.mine_and_slash.datapacks.models.ItemModelManager;
 import net.minecraft.item.Item;
 
 public class SkillGemItem extends Item implements IAutoModel {

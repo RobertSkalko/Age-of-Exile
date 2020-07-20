@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.data.tiers.base;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
-import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializedRegistryEntry;
 import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 
 public class Tier implements ISerializedRegistryEntry<Tier>, ISerializable<Tier> {
 

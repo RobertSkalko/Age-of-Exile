@@ -1,15 +1,6 @@
 package com.robertx22.mine_and_slash.mixins;
 
-import com.robertx22.mine_and_slash.data_generation.DimConfigsDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.EntityConfigsDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.base_gear_types.BaseGearTypeDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
-import com.robertx22.mine_and_slash.data_generation.rarities.SkillGemRarityManager;
-import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
+import com.robertx22.mine_and_slash.datapacks.loaders.*;
 import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.command.CommandManager;
@@ -27,15 +18,15 @@ public abstract class ServerResourceManagerMixin {
         ServerResourceManager m = (ServerResourceManager) (Object) this;
         ReloadableResourceManager manager = (ReloadableResourceManager) m.getResourceManager();
 
-        manager.registerListener(new BaseGearTypeDatapackManager());
-        manager.registerListener(new TierDatapackManager());
-        manager.registerListener(new AffixDataPackManager());
-        manager.registerListener(new MobAffixDataPackManager());
-        manager.registerListener(new UniqueGearDatapackManager());
-        manager.registerListener(new CompatibleItemDataPackManager());
-        manager.registerListener(new GearRarityManager());
-        manager.registerListener(new SkillGemRarityManager());
-        manager.registerListener(new DimConfigsDatapackManager());
-        manager.registerListener(new EntityConfigsDatapackManager());
+        manager.registerListener(new BaseGearTypeDatapackLoader());
+        manager.registerListener(new TierDatapackLoader());
+        manager.registerListener(new AffixDataPackLoader());
+        manager.registerListener(new MobAffixDataPackLoader());
+        manager.registerListener(new UniqueGearDatapackLoader());
+        manager.registerListener(new CompatibleItemDataPackLoader());
+        manager.registerListener(new GearRarityLoader());
+        manager.registerListener(new SkillGemRarityLoader());
+        manager.registerListener(new DimConfigsDatapackLoader());
+        manager.registerListener(new EntityConfigsDatapackLoader());
     }
 }
