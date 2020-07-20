@@ -3,14 +3,26 @@ package com.robertx22.mine_and_slash.data_generation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.stream.JsonWriter;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializablePart;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class JsonUtils {
+
+    public static StringWriter stringWriter;
+    public static JsonWriter jsonWriter;
+
+    static {
+        stringWriter = new StringWriter();
+        jsonWriter = new JsonWriter(stringWriter);
+        jsonWriter.setIndent("");
+        jsonWriter.setLenient(true);
+    }
 
     public static void addStats(List<StatModifier> mods, JsonObject json, String id) {
         JsonArray array = new JsonArray();

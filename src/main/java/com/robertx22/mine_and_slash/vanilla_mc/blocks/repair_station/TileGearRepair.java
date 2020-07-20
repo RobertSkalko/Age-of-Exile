@@ -322,7 +322,7 @@ public class TileGearRepair extends BaseTile {
             itemStacks[firstOuputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
         }
 
-        fuel -= fuelNeeded * fuelMulti; // TODO
+        fuel -= fuelNeeded * fuelMulti;
 
         markDirty();
         return true;

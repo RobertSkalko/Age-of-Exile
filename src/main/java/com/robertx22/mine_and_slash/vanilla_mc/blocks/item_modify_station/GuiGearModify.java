@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContex
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.TileGui;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,8 +17,6 @@ import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> {
@@ -97,21 +94,6 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
         final int LABEL_YPOS = 5;
         font.draw(matrix, CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
 
-        List<String> hoveringText = new ArrayList<String>();
-
-        // If the mouse is over the progress bar add the progress bar hovering text
-        if (GuiUtils.isInRect(
-            x + COOK_BAR_XPOS, y + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
-            hoveringText.add(Words.Progress.translate() + ": ");
-            int cookPercentage = (int) (this.tile.fractionOfCookTimeComplete() * 100);
-            hoveringText.add(cookPercentage + "%");
-        }
-
-        // If hoveringText is not empty draw the hovering text
-        if (!hoveringText.isEmpty()) {
-
-            // TODO renderTooltip(hoveringText, mouseX - x, mouseY - y, font);
-        }
     }
 
 }

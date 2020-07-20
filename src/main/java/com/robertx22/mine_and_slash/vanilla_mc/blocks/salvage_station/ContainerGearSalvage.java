@@ -88,7 +88,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
             addSlot(new OutputSlot(inventory, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
 
-        final int CAPACITOR_SLOTS_XPOS = 80; // 53; // TODO
+        final int CAPACITOR_SLOTS_XPOS = 80; // 53;
         final int CAPACITOR_SLOTS_YPOS = 24;
         // Add the tile capacitor slot
         for (int x = 0; x < 1; x++) {

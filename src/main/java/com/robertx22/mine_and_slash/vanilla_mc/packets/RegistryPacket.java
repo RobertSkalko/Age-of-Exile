@@ -38,17 +38,20 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
         }
 
         // TODO CACHE THIS
-        List<String> list = (List<String>) items
+        List<String> list = items
             .stream()
-            .map(x -> ((ISerializable) x).toJson()
-                .toString())
+            .map(x -> ((ISerializable) x).toJsonNoSpaces())
             .collect(Collectors.toList());
 
         if (list.isEmpty()) {
             throw new RuntimeException(type.name() + " Registry is empty on the server when trying to send registry packet!");
         }
 
-        this.data = new ListStringData(list);
+        this.data = new ListStringData(items
+            .stream()
+            .map(x -> ((ISerializable) x).toJson()
+                .toString())
+            .collect(Collectors.toList()));
 
         this.type = type;
 

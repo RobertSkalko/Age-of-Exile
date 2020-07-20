@@ -1,13 +1,17 @@
 package com.robertx22.mine_and_slash.event_hooks.data_gen;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.data.IGUID;
+import com.google.gson.internal.Streams;
 import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.data_generation.JsonUtils;
+import com.robertx22.mine_and_slash.database.data.IGUID;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
+
+import java.io.IOException;
 
 public interface ISerializable<T> {
     JsonObject toJson();
@@ -95,4 +99,17 @@ public interface ISerializable<T> {
 
         return json;
     }
+
+    default String toJsonNoSpaces() { // todo , unsure if this is much or any better. it removes 2 new object calls and thats it
+        try {
+
+            Streams.write(toJson(), JsonUtils.jsonWriter);
+            return JsonUtils.stringWriter.toString();
+
+        } catch (IOException e) {
+            throw new AssertionError(e);
+        }
+
+    }
+
 }

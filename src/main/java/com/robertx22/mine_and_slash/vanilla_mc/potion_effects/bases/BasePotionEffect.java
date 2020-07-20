@@ -67,7 +67,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
             return getSpell().getElement();
         }
 
-        return Elements.Physical; // todo
+        return Elements.Physical;
     }
 
     @Override

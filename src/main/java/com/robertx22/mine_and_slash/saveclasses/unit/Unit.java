@@ -510,7 +510,7 @@ public class Unit {
     }
 
     public static MyPacket getUpdatePacketFor(LivingEntity en, UnitData data) {
-        return new EfficientMobUnitPacket(en, data); // todo maybe players will need extra data later on? maybe
+        return new EfficientMobUnitPacket(en, data);
     }
 
     private Unit Clone() {

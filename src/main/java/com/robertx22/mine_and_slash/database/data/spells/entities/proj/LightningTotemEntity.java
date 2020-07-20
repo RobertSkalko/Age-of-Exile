@@ -72,7 +72,6 @@ public class LightningTotemEntity extends EntityBaseProjectile {
             } else {
 
                 SoundUtils.playSound(this, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1, 1);
-                // TODO why isnt this being cast?
 
             }
         }
