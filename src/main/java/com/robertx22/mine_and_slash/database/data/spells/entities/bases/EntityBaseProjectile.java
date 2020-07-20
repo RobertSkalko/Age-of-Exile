@@ -206,27 +206,30 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     @Override
     public final void tick() {
 
-        if (this.spellData == null || this.spellData.getCaster(world) == null) {
-            this.remove();
-        } else {
-            try {
-
-                super.tick();
-                onTick();
-
-                if (this.inGround) {
-                    ticksInGround++;
-                } else {
-                    ticksInAir++;
-                }
-
-                if (this.age >= this.getDeathTime()) {
-                    onExpireProc(this.getCaster());
-                    this.remove();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (world != null && !world.isClient) {
+            if (this.spellData == null || this.spellData.getCaster(world) == null) {
+                this.remove();
+                return;
             }
+        }
+
+        try {
+
+            super.tick();
+            onTick();
+
+            if (this.inGround) {
+                ticksInGround++;
+            } else {
+                ticksInAir++;
+            }
+
+            if (this.age >= this.getDeathTime()) {
+                onExpireProc(this.getCaster());
+                this.remove();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -259,12 +262,8 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
             Vec3d vec3d = blockraytraceresult.getPos()
                 .subtract(this.getX(), this.getY(), this.getZ());
             this.setVelocity(vec3d);
-            Vec3d vec3d1 = vec3d.normalize()
-                .multiply((double) 0.05F);
 
             this.inGround = true;
-
-            this.setPos(vec3d1.x, vec3d1.y, vec3d1.z);
 
             this.onImpact(blockraytraceresult);
 

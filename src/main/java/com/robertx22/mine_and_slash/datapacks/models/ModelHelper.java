@@ -67,7 +67,8 @@ public class ModelHelper {
 
     private String getTextureString() {
         return Registry.ITEM.getId(item)
-            .toString();
+            .toString()
+            .replace(Ref.MODID + ":", Ref.MODID + ":items/");
     }
 
     private String getBaseJsonString() {

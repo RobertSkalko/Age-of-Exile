@@ -102,13 +102,14 @@ public class SpellCastingData {
                 castingTicksLeft--;
                 castingTicksDone++;
 
-                spellDatas.values()
-                    .forEach(x -> x.tickCooldown(ticks));
-
                 if (castingTicksLeft < 0) {
                     this.spellBeingCast = "";
                 }
             }
+
+            spellDatas.values()
+                .forEach(x -> x.tickCooldown(ticks));
+
         } catch (Exception e) {
 
         }

@@ -18,6 +18,7 @@ public class PacketRegister {
         Packets.registerClientToServerPacket(new RequestSyncCapToClient());
         Packets.registerClientToServerPacket(new SpendStatPointsPacket());
         Packets.registerClientToServerPacket(new HotbarSetupPacket());
+        Packets.registerClientToServerPacket(new CastSpellPacket());
 
         Packets.registerServerToClient(new DmgNumPacket());
         Packets.registerServerToClient(new EfficientMobUnitPacket());
@@ -29,7 +30,6 @@ public class PacketRegister {
         Packets.registerServerToClient(new RegistryPacket());
         Packets.registerServerToClient(new SyncConfigToClientPacket());
         Packets.registerServerToClient(new ParticlePacket());
-        Packets.registerServerToClient(new CastSpellPacket());
         Packets.registerServerToClient(new SyncCapabilityToClient());
 
         ClientSidePacketRegistry.INSTANCE.register(EntityPacket.ID, (ctx, buf) -> {

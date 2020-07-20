@@ -110,25 +110,6 @@ public class SpellUtils {
 
     }
 
-    /*
-    public static <T extends TameableEntity> T spawnSummon(T spellEntity,
-
-                                                           BaseSpell spell,
-
-                                                           LivingEntity caster) {
-
-        T en = SpellUtils.getSpellEntity(spellEntity, spell, caster);
-        if (caster instanceof PlayerEntity) {
-            en.setTamedBy((PlayerEntity) caster);
-        }
-        caster.world.addEntity(en);
-
-        return en;
-
-    }
-
-
-     */
     public static void heal(BaseSpell spell, LivingEntity en, float amount) {
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(Load.Unit(en), en, ResourcesData.Type.HEALTH,
