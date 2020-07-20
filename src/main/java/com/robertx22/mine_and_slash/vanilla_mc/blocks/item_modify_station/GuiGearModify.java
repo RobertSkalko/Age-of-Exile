@@ -13,6 +13,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
 
@@ -27,7 +28,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/modify_station.png");
 
     public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer, MutableText comp) {
-        super(cont, invPlayer, comp, TileGearModify.class);
+        super(cont, invPlayer, new LiteralText(""), TileGearModify.class);
 
         backgroundWidth = 256;
         backgroundHeight = 207;

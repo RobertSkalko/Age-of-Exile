@@ -33,6 +33,11 @@ public abstract class TileGui<T extends BaseTileContainer, Tile extends BaseTile
     }
 
     @Override
+    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+        // dont draw "inventory" text lol
+    }
+
+    @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks) {
 
         if (tile != null) {

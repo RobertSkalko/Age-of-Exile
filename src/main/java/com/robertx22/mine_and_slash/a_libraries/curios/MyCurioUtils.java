@@ -44,23 +44,6 @@ public class MyCurioUtils {
         }
 
         return list;
-
-        // TODO
-/*
-        ICuriosItemHandler handler = CuriosApi.getCuriosHelper().getCuriosHandler(player).orElse(null);
-        if (handler != null) {
-            Map<String, ICurioStacksHandler> curioMap = handler.getCurios();
-            for (ICurioStacksHandler stacksHandler : curioMap.values()) {
-                IDynamicStackHandler stackHandler = stacksHandler.getStacks();
-                for (int i = 0; i < stackHandler.size(); i++) {
-                    list.add(stackHandler.getStack(i));
-                }}}
-
-
-        return list;
-
-
- */
     }
 
 }
