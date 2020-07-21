@@ -73,7 +73,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     @Override
     public float valueNeededToReachMaximumPercentAtLevelOne() {
-        return 8;
+        return 175;
     }
 
     private static class SingletonHolder {

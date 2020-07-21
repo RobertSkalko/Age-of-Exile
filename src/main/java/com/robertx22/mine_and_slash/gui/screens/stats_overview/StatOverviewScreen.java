@@ -135,9 +135,9 @@ public class StatOverviewScreen extends BaseScreen implements INamedScreen {
             IUsableStat usable = (IUsableStat) stat;
 
             String value = NumberUtils.format(
-                usable.getUsableValue(data.getLevel(), (int) data.getUnit()
+                usable.getUsableValue((int) data.getUnit()
                     .getCreateStat(stat)
-                    .getAverageValue()) * 100);
+                    .getAverageValue(), data.getLevel()) * 100);
 
             str += " (" + value + "%)";
 
