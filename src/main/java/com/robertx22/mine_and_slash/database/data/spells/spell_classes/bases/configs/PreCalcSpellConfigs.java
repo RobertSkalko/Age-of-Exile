@@ -118,8 +118,6 @@ public class PreCalcSpellConfigs {
     public List<MutableText> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
 
         List<MutableText> list = new ArrayList<>();
-        SkillGemData data = ctx.spellsCap.getCastingData()
-            .getSkillGem(ctx.spell.GUID());
 
         if (Screen.hasShiftDown()) {
             map.entrySet()
@@ -127,7 +125,7 @@ public class PreCalcSpellConfigs {
                     if (x.getKey()
                         .shouldAddToTooltip()) {
                         String val = NumberUtils.formatForTooltip(x.getValue()
-                            .get(data));
+                            .get(ctx.skillGem));
                         list.add(new SText(Formatting.GRAY + "").append(x.getKey().word.locName())
                             .append(": " + Formatting.GREEN + val));
 
