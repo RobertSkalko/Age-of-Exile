@@ -10,6 +10,7 @@
 	"MinecraftServerMixin",
 	"ServerResourceManagerMixin",
 	"ItemStackMixin",
+	"InGameHudMixin",
 	"EntityMixin",
 	"ArrowShootMixin"
   ],
