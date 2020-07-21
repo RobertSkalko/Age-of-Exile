@@ -11,13 +11,15 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.JewelData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class JewelItem extends Item implements IAutoModel, ICurrencyItemEffect {
+public class JewelItem extends Item implements IAutoModel, ICurrencyItemEffect, IAutoLocName {
 
     public JewelItem() {
         super(new Item.Settings().maxCount(1)
@@ -49,4 +51,24 @@ public class JewelItem extends Item implements IAutoModel, ICurrencyItemEffect {
         return Arrays.asList(GearReq.INSTANCE, new JewelReq());
     }
 
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Misc;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Registry.ITEM.getId(this)
+            .toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Jewel";
+    }
+
+    @Override
+    public String GUID() {
+        return "";
+    }
 }

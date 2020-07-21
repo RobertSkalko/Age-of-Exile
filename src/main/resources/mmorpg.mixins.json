@@ -8,11 +8,13 @@
 	"PlayerEntityMixin",
 	"ChestMixin",
 	"MinecraftServerMixin",
-	"ServerResourceManagerMixin",
-	"ItemStackMixin",
-	"InGameHudMixin",
+	"ServerResourceManagerMixin",	
 	"EntityMixin",
 	"ArrowShootMixin"
+  ],
+  "client": [
+	"ItemStackMixin",
+	"InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
