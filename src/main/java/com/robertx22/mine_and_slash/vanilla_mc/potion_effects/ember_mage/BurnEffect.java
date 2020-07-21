@@ -1,10 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ember_mage;
 
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -16,6 +13,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEf
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -34,7 +32,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         super(StatusEffectType.HARMFUL, 4393423);
 
         this.tickActions.add(new OnTickAction(ctx -> {
-            int num = getCalc(ctx.caster).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
+            int num = getCalc(ctx.caster).getCalculatedValue(ctx.caster);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
                 EffectData.EffectTypes.SPELL, WeaponTypes.None
@@ -55,7 +53,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         }, info -> {
             List<Text> list = new ArrayList<>();
             list.add(new LiteralText("Does damage:"));
-            list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), getAbilityThatDeterminesLevel()));
+            list.addAll(getCalc(info.player).GetTooltipString(info));
             return list;
         }));
 
@@ -85,17 +83,18 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.BASE_VALUE, 4, 5);
-        p.set(SC.DURATION_TICKS, 6 * 60, 10 * 60);
-        p.set(SC.TICK_RATE, 30, 20);
-        return p;
+    public SpellCalcData getCalc(LivingEntity caster) {
+        return SpellCalcData.base(4);
     }
 
     @Override
-    public BaseSpell getSpell() {
-        return null;
+    public int getDurationInSeconds(LivingEntity en) {
+        return 10;
+    }
+
+    @Override
+    public int getTickRate(LivingEntity en) {
+        return 25;
     }
 
 }

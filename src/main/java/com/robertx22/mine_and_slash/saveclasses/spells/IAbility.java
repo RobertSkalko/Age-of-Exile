@@ -30,8 +30,6 @@ public interface IAbility extends IGUID {
 
         list.addAll(SlashRegistry.Spells()
             .getList());
-        list.addAll(SlashRegistry.PotionEffects()
-            .getList());
 
         return list;
 
@@ -45,10 +43,6 @@ public interface IAbility extends IGUID {
         if (SlashRegistry.Spells()
             .isRegistered(id)) {
             ability = SlashRegistry.Spells()
-                .get(id);
-        } else if (SlashRegistry.PotionEffects()
-            .isRegistered(id)) {
-            ability = SlashRegistry.PotionEffects()
                 .get(id);
         }
 

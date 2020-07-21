@@ -8,11 +8,13 @@ import com.robertx22.mine_and_slash.database.data.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -94,6 +96,11 @@ public class SpellCalcData {
         return (int) baseScaling.scale(baseValue, spells.getEffectiveAbilityLevel(data, ability));
     }
 
+    public int getCalculatedBaseValue(LivingEntity entity) {
+        return (int) baseScaling.scale(baseValue, Load.Unit(entity)
+            .getLevel());
+    }
+
     private int getCalculatedScalingValue(EntityCap.UnitData data) {
         return getAllScalingValues().stream()
             .mapToInt(x -> x.getCalculatedValue(data))
@@ -103,6 +110,12 @@ public class SpellCalcData {
     public int getCalculatedValue(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
         int val = getCalculatedScalingValue(data);
         val += getCalculatedBaseValue(spells, ability, data);
+        return val;
+    }
+
+    public int getCalculatedValue(LivingEntity entity) {
+        int val = getCalculatedScalingValue(Load.Unit(entity));
+        val += getCalculatedBaseValue(entity);
         return val;
     }
 
@@ -126,4 +139,21 @@ public class SpellCalcData {
 
         return list;
     }
+
+    public List<Text> GetTooltipString(TooltipInfo info) {
+
+        List<Text> list = new ArrayList<>();
+
+        if (!empty) {
+            getAllScalingValues().forEach(x -> list.addAll(x.GetTooltipString(info)));
+
+            if (baseValue > 0) {
+                list.add(new LiteralText(
+                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(info.player)));
+            }
+        }
+
+        return list;
+    }
+
 }

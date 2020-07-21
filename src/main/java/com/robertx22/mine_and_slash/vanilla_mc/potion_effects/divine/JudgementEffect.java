@@ -1,15 +1,14 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine;
 
 import com.robertx22.mine_and_slash.database.data.spells.SpellUtils;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.divine.SpearOfJudgementSpell;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -65,19 +64,6 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
     }
 
     @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.DURATION_TICKS, 80, 100);
-        p.set(SC.TICK_RATE, 20, 20);
-        return p;
-    }
-
-    @Override
-    public BaseSpell getSpell() {
-        return SpearOfJudgementSpell.getInstance();
-    }
-
-    @Override
     public List<Text> getEffectTooltip(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
 
@@ -102,10 +88,10 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
 
             SoundUtils.playSound(target, SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 1, 1);
 
-            int num = getCalc(source).getCalculatedValue(Load.Unit(caster), Load.spells(caster), getSpell());
+            int num = getCalc(source).getCalculatedValue(caster);
 
-            SpellDamageEffect dmg = new SpellDamageEffect(caster, target, num, Load.Unit(caster), Load.Unit(target),
-                getSpell()
+            DamageEffect dmg = new DamageEffect(null, caster, target, num, Load.Unit(caster), Load.Unit(target),
+                EffectData.EffectTypes.SPELL, WeaponTypes.None
             );
             dmg.element = Elements.Thunder;
             dmg.Activate();
@@ -113,5 +99,20 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
             target.removeStatusEffect(this);
 
         }
+    }
+
+    @Override
+    public SpellCalcData getCalc(LivingEntity caster) {
+        return SpellCalcData.base(0);
+    }
+
+    @Override
+    public int getDurationInSeconds(LivingEntity en) {
+        return 5;
+    }
+
+    @Override
+    public int getTickRate(LivingEntity en) {
+        return 20;
     }
 }

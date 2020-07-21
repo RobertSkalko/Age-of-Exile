@@ -1,10 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ranger;
 
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealPower;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -15,6 +12,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEf
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectType;
@@ -36,7 +34,7 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
         );
 
         this.tickActions.add(new OnTickAction(ctx -> {
-            int num = getCalc(ctx.caster).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
+            int num = getCalc(ctx.caster).getCalculatedValue(ctx.caster);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
                 EffectData.EffectTypes.SPELL, WeaponTypes.None
@@ -55,7 +53,7 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
         }, info -> {
             List<Text> list = new ArrayList<>();
             list.add(new LiteralText("Does damage:"));
-            list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), this));
+            list.addAll(getCalc(info.player).GetTooltipString(info));
             return list;
         }));
 
@@ -88,17 +86,18 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.BASE_VALUE, 1, 3);
-        p.set(SC.TICK_RATE, 30, 20);
-        p.set(SC.DURATION_TICKS, 15 * 60, 25 * 60);
-        return p;
+    public SpellCalcData getCalc(LivingEntity caster) {
+        return SpellCalcData.base(2);
     }
 
     @Override
-    public BaseSpell getSpell() {
-        return null;
+    public int getDurationInSeconds(LivingEntity en) {
+        return 15;
+    }
+
+    @Override
+    public int getTickRate(LivingEntity en) {
+        return 30;
     }
 
     private static class SingletonHolder {

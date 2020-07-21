@@ -6,9 +6,11 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.BraveryEffe
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.JudgementEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.TrickeryEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.WizardryEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.*;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PetrifyEffect;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonedWeaponsEffect;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.ThornArmorEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ember_mage.BurnEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic.ColdEssenceEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic.FrostEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ranger.HunterInstinctEffect;
@@ -19,10 +21,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.shaman.ThunderEsse
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-
-
 public class PotionRegister {
-
 
     public static void register() {
 
@@ -34,7 +33,6 @@ public class PotionRegister {
         reg(PoisonEffect.INSTANCE);
         reg(PetrifyEffect.INSTANCE);
         reg(ShiverEffect.INSTANCE);
-        reg(ColdEssenceEffect.INSTANCE);
         reg(JudgementEffect.INSTANCE);
         reg(ThornArmorEffect.INSTANCE);
         reg(StaticEffect.INSTANCE);
@@ -47,8 +45,8 @@ public class PotionRegister {
 
     }
 
-    static void reg(BasePotionEffect effect){
-        Registry.register(Registry.STATUS_EFFECT,new Identifier(Ref.MODID, effect.GUID()),effect);
+    static void reg(BasePotionEffect effect) {
+        Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, effect.GUID()), effect);
 
     }
 

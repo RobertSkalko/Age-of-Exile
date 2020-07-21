@@ -1,16 +1,15 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.PotionStat;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.Text;
@@ -57,16 +56,18 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.DURATION_TICKS, 100, 200);
-        p.set(SC.TICK_RATE, 20, 20);
-        return p;
+    public SpellCalcData getCalc(LivingEntity caster) {
+        return SpellCalcData.base(0);
     }
 
     @Override
-    public BaseSpell getSpell() {
-        return null;
+    public int getDurationInSeconds(LivingEntity en) {
+        return 20;
+    }
+
+    @Override
+    public int getTickRate(LivingEntity en) {
+        return 20;
     }
 
     @Override

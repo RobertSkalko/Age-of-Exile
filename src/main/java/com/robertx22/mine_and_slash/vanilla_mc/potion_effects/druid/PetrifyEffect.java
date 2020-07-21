@@ -1,11 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid;
 
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.nature.GorgonsGazeSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -53,18 +49,6 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     }
 
     @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.BASE_VALUE, 1, 5);
-        return p;
-    }
-
-    @Override
-    public BaseSpell getSpell() {
-        return GorgonsGazeSpell.getInstance();
-    }
-
-    @Override
     public String GUID() {
         return "petrify";
     }
@@ -85,7 +69,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         List<Text> list = new ArrayList<>();
         list.add(new LiteralText("Petrifies Enemy."));
         list.add(new LiteralText("If Attacked, does extra damage, but stops effect."));
-        list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), this));
+        list.addAll(getCalc(info.player).GetTooltipString(info));
 
         return list;
     }
@@ -93,7 +77,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     @Override
     public void onBasicAttacked(StatusEffectInstance instance, LivingEntity source, LivingEntity target) {
 
-        int num = getCalc(source).getCalculatedValue(Load.Unit(source), Load.spells(source), this);
+        int num = getCalc(source).getCalculatedValue(source);
 
         DamageEffect dmg = new DamageEffect(null, source, target, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
         dmg.element = Elements.Nature;
@@ -108,5 +92,20 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
 
         target.removeStatusEffect(this);
 
+    }
+
+    @Override
+    public SpellCalcData getCalc(LivingEntity caster) {
+        return SpellCalcData.base(3);
+    }
+
+    @Override
+    public int getDurationInSeconds(LivingEntity en) {
+        return 10;
+    }
+
+    @Override
+    public int getTickRate(LivingEntity en) {
+        return 20;
     }
 }

@@ -174,12 +174,17 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         int number;
         SpellCastingData.Hotbar hotbar;
 
+        SkillGemData skillgem;
+
         public HotbarButton(int number, SpellCastingData.Hotbar hotbar, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new Identifier(""), (button) -> {
             });
 
             this.hotbar = hotbar;
             this.number = number;
+            this.skillgem = Load.spells(MinecraftClient.getInstance().player)
+                .getCastingData()
+                .getSkillGemByKeybind(number, hotbar);
 
         }
 
@@ -191,7 +196,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
                     List<Text> tooltip = new ArrayList<>();
                     tooltip.add(getSpell().getLocName());
-                    tooltip.addAll(getSpell().GetTooltipString(info));
+                    tooltip.addAll(getSpell().GetTooltipString(info, skillgem));
                     GuiUtils.renderTooltip(matrix, tooltip, mouseX, mouseY);
                 }
             }

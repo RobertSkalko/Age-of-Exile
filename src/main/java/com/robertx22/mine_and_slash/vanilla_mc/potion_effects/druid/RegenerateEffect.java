@@ -1,13 +1,12 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid;
 
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.nature.NatureBalmSpell;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.OnTickAction;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.LiteralText;
@@ -29,7 +28,7 @@ public class RegenerateEffect extends BasePotionEffect {
             } else {
 
                 int num = getCalc(ctx.caster)
-                    .getCalculatedValue(ctx.casterData, ctx.spellsCap, getAbilityThatDeterminesLevel());
+                    .getCalculatedValue(ctx.caster);
 
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
                     ctx.entityData, ResourcesData.Type.HEALTH, num,
@@ -43,7 +42,7 @@ public class RegenerateEffect extends BasePotionEffect {
         }, info -> {
             List<Text> list = new ArrayList<>();
             list.add(new LiteralText("Heals user."));
-            list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), getAbilityThatDeterminesLevel()));
+            list.addAll(getCalc(info.player).GetTooltipString(info));
             return list;
         }));
 
@@ -60,14 +59,18 @@ public class RegenerateEffect extends BasePotionEffect {
     }
 
     @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        return p;
+    public SpellCalcData getCalc(LivingEntity caster) {
+        return SpellCalcData.base(3);
     }
 
     @Override
-    public BaseSpell getSpell() {
-        return NatureBalmSpell.getInstance();
+    public int getDurationInSeconds(LivingEntity en) {
+        return 60;
+    }
+
+    @Override
+    public int getTickRate(LivingEntity en) {
+        return 10000;
     }
 
 }

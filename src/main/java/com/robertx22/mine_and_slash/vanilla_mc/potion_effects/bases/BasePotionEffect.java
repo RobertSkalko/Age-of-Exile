@@ -2,15 +2,10 @@ package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases;
 
 import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
 import com.robertx22.exiled_lib.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -33,39 +28,11 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasePotionEffect extends StatusEffect implements ISlashRegistryEntry<BasePotionEffect>, IAutoLocName, ITooltipList, IAbility {
+public abstract class BasePotionEffect extends StatusEffect implements ISlashRegistryEntry<BasePotionEffect>, IAutoLocName, ITooltipList {
 
-    public PreCalcSpellConfigs getConfig(LivingEntity caster) {
-        return getCtx(caster).getConfigFor(getAbilityThatDeterminesLevel());
-    }
-
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return getConfig(caster).getCalc(Load.spells(caster), getAbilityThatDeterminesLevel());
-    }
-
-    public SpellCastContext getCtx(LivingEntity caster) {
-        return new SpellCastContext(caster, 0, getAbilityThatDeterminesLevel());
-    }
-
-    @Override
-    public MutableText getLocName() {
-        return this.locName();
-    }
-
-    @Override
-    public Identifier getIconLoc() {
-        return getIconTexture();
-    }
-
-    @Override
-    public Type getAbilityType() {
-        return Type.EFFECT;
-    }
+    public abstract SpellCalcData getCalc(LivingEntity caster);
 
     public Elements getElement() {
-        if (getSpell() != null) {
-            return getSpell().getElement();
-        }
 
         return Elements.Physical;
     }
@@ -73,13 +40,6 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.EFFECT;
-    }
-
-    public IAbility getAbilityThatDeterminesLevel() {
-        if (getSpell() != null) {
-            return getSpell();
-        }
-        return this;
     }
 
     protected List<OnTickAction> tickActions = new ArrayList<>();
@@ -106,8 +66,6 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
         return CLOC.blank("effect." + Ref.MODID + "." + GUID());
     }
 
-    //public abstract List<ITextComponent> getEffectTooltip(TooltipInfo info);
-
     public List<Text> getEffectTooltip(TooltipInfo info) {
         return new ArrayList<>();
     }
@@ -132,10 +90,6 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
         list.addAll(getMaxStacksTooltip());
         list.addAll(getDurationTooltip(info));
-
-        if (info.showAbilityExtraInfo) {
-            finishTooltip(list, new SpellCastContext(info.player, 0, this), info);
-        }
 
         return list;
     }
@@ -166,27 +120,13 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
     }
 
-    public final int getDurationInSeconds(LivingEntity en) {
-        return getDurationInTicks(en) / 20;
+    public abstract int getDurationInSeconds(LivingEntity en);
+
+    public int getDurationInTicks(LivingEntity en) {
+        return getDurationInSeconds(en) * 20;
     }
 
-    public final int getDurationInTicks(LivingEntity en) {
-        IAbility ability = this.getAbilityThatDeterminesLevel();
-
-        return (int) new SpellCastContext(en, 0, ability).getConfigFor(ability)
-            .get(SC.DURATION_TICKS)
-            .getMax();
-
-    }
-
-    public int getTickRate(LivingEntity en) {
-        IAbility ability = this.getAbilityThatDeterminesLevel();
-
-        return (int) new SpellCastContext(en, 0, ability).getConfigFor(ability)
-            .get(SC.TICK_RATE)
-            .getMax();
-
-    }
+    public abstract int getTickRate(LivingEntity en);
 
     @Override
     public void applyUpdateEffect(LivingEntity en, int amplifier) {

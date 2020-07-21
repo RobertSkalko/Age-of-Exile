@@ -25,7 +25,6 @@ public abstract class BaseDivineBuffSpell extends BaseSpell {
         c.set(SC.MANA_COST, 25, 40);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
         c.set(SC.COOLDOWN_SECONDS, 360, 300);
-        c.set(SC.DURATION_TICKS, 30 * 20, 60 * 20);
         c.set(SC.RADIUS, 3, 4);
 
         c.setMaxLevel(12);
