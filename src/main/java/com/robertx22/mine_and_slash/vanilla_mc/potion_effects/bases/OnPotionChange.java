@@ -1,18 +1,23 @@
-package com.robertx22.mine_and_slash.event_hooks.TODO;
+package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases;
+
+import com.robertx22.mine_and_slash.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.database.data.stats.types.defense.ImmuneToEffectStat;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OnPotionChange {
 
-    /* TODO
-    //PotionAddedEvent is called BEFORE adding the potion
-    @SubscribeEvent
-    public static void onAdded(PotionEvent.PotionAddedEvent event) {
+    public static void onAdded(LivingEntity entity, StatusEffect effect) {
 
-        if (event.getEntityLiving().world.isClient) {
+        if (entity.world.isClient) {
             return;
         }
 
         try {
-            LivingEntity entity = event.getEntityLiving();
 
             Load.Unit(entity)
                 .getUnit()
@@ -22,16 +27,13 @@ public class OnPotionChange {
                     if (x.GetStat() instanceof ImmuneToEffectStat) {
                         ImmuneToEffectStat imm = (ImmuneToEffectStat) x.GetStat();
                         if (x.getAverageValue() > 0) {
-                            imm.onPotionAdded(event.getPotionEffect()
-                                .getEffectType(), entity);
+                            imm.onPotionAdded(effect, entity);
                         }
                     }
                 });
 
-            if (event.getPotionEffect()
-                .getEffectType() instanceof IOneOfATypePotion) {
-                IOneOfATypePotion one = (IOneOfATypePotion) event.getPotionEffect()
-                    .getEffectType();
+            if (effect instanceof IOneOfATypePotion) {
+                IOneOfATypePotion one = (IOneOfATypePotion) effect;
 
                 List<StatusEffect> sames = entity.getStatusEffects()
                     .stream()
@@ -39,7 +41,8 @@ public class OnPotionChange {
                         if (x.getEffectType() instanceof IOneOfATypePotion) {
                             IOneOfATypePotion ot = (IOneOfATypePotion) x.getEffectType();
 
-                            if (x.equals(event.getPotionEffect())) {
+                            if (x.getEffectType()
+                                .equals(effect)) {
                                 return false;
                             }
 
@@ -67,21 +70,5 @@ public class OnPotionChange {
         }
 
     }
-
-    //PotionExpiryEvent is called BEFORE removing the potion
-    @SubscribeEvent
-    public static void onExpired(PotionEvent.PotionExpiryEvent event) {
-
-        LivingEntity entity = event.getEntityLiving();
-
-        if (entity != null && !entity.world.isClient) {
-            EntityCap.UnitData data = Load.Unit(entity);
-            data.setEquipsChanged(true);
-            //data.tryRecalculateStats(entity);
-        }
-
-    }
-
-     */
 
 }

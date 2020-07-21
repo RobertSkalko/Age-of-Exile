@@ -225,14 +225,17 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     public void onApplied(LivingEntity target, AttributeContainer attributes,
                           int amplifier) {
 
+        EntityCap.UnitData unitdata = Load.Unit(target);
+        unitdata.setEquipsChanged(true);
+
         if (!target.world.isClient || !isServerSideOnly()) {
 
-            onPotionAdd(target);
-
         }
-
         // Called on application
         super.onApplied(target, attributes, amplifier);
+
+        OnPotionChange.onAdded(target, this);
+
     }
 
     @Override
@@ -242,14 +245,12 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
         EntityCap.UnitData unitdata = Load.Unit(target);
         unitdata.getStatusEffectsData()
             .set(this, null);
+        unitdata.setEquipsChanged(true);
 
         // called at end
         super.onRemoved(target, attributes, amplifier);
 
         this.onPotionRemove(target);
-    }
-
-    public void onPotionAdd(LivingEntity target) {
     }
 
     public void onPotionRemove(LivingEntity target) {

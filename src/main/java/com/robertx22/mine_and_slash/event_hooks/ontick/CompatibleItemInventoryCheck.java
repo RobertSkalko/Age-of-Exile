@@ -18,7 +18,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
-public class OnContainerCompatibleItem {
+public class CompatibleItemInventoryCheck {
 
     // fast cached check cus this is called a lot
     static boolean isComp(Item item) {
@@ -35,7 +35,7 @@ public class OnContainerCompatibleItem {
         return Cached.IS_COMP_ITEM_MAP.get(item);
     }
 
-    public static void onContainerCompatibleItem(PlayerEntity player) {
+    public static void checkAndGenerate(PlayerEntity player) {
 
         try {
 

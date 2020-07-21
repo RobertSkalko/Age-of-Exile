@@ -23,7 +23,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     static final int TicksToRegen = 20; // was 100, todo balance
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
-    static final int TicksToProcessChunks = 50;
+    static final int TicksToCompatibleItems = 40;
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
@@ -131,9 +131,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data.ticksToPassMinute = 0;
                 }
 
-                if (data.ticksToProcessChunks > TicksToProcessChunks) {
-                    OnContainerCompatibleItem.onContainerCompatibleItem(player);
-                    data.ticksToProcessChunks = 0;
+                if (data.ticksToCompItems > TicksToCompatibleItems) {
+                    CompatibleItemInventoryCheck.checkAndGenerate(player);
+                    data.ticksToCompItems = 0;
 
                 }
 
@@ -167,13 +167,13 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         public int playerSyncTick = 0;
         public int ticksToPassMinute = 0;
         public int ticksToSpellCooldowns = 0;
-        public int ticksToProcessChunks = 0;
+        public int ticksToCompItems = 0;
 
         public void increment() {
             regenTicks++;
             playerSyncTick++;
             ticksToPassMinute++;
-            ticksToProcessChunks++;
+            ticksToCompItems++;
             ticksToSpellCooldowns++;
         }
 
