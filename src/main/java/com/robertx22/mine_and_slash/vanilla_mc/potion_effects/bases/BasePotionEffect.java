@@ -2,10 +2,12 @@ package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases;
 
 import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
 import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -150,7 +152,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
                             return;
                         }
 
-                        ExtraPotionData data = PotionDataSaving.getData(instance);
+                        ExtraPotionData data = PotionDataSaving.getData(en, instance);
 
                         if (data == null) {
                             //Log.error("Extra potion data is null. Deleting potion");
@@ -236,6 +238,11 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
     @Override
     public void onRemoved(LivingEntity target, AttributeContainer attributes,
                           int amplifier) {
+
+        EntityCap.UnitData unitdata = Load.Unit(target);
+        unitdata.getStatusEffectsData()
+            .set(this, null);
+
         // called at end
         super.onRemoved(target, attributes, amplifier);
 

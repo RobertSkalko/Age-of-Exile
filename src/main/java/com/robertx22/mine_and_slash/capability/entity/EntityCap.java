@@ -34,6 +34,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.EntityStatusEffectsData;
 import nerdhub.cardinal.components.api.util.sync.EntitySyncedComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -70,6 +71,8 @@ public class EntityCap {
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient, EntitySyncedComponent {
+
+        EntityStatusEffectsData getStatusEffectsData();
 
         void setCooledAttackStrength(float f);
 
@@ -182,6 +185,7 @@ public class EntityCap {
     public static class DefaultImpl implements UnitData {
 
         LivingEntity entity;
+        EntityStatusEffectsData statusEffectsData;
 
         //dont save this
         EntityGears gears = new EntityGears();
@@ -351,6 +355,11 @@ public class EntityCap {
         @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
 
+        }
+
+        @Override
+        public EntityStatusEffectsData getStatusEffectsData() {
+            return this.statusEffectsData;
         }
 
         @Override

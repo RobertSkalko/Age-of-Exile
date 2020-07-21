@@ -30,7 +30,7 @@ public class PotionEffectUtils {
         ExtraPotionData extraData;
 
         if (instance != null) {
-            extraData = PotionDataSaving.getData(instance);
+            extraData = PotionDataSaving.getData(target, instance);
         } else {
             extraData = new ExtraPotionData();
         }
@@ -52,7 +52,7 @@ public class PotionEffectUtils {
                 .toString();
             extraData.setInitialDurationTicks(duration);
 
-            PotionDataSaving.saveData(newInstance, extraData);
+            PotionDataSaving.saveData(target, newInstance, extraData);
 
         } else {
 
@@ -65,7 +65,7 @@ public class PotionEffectUtils {
             extraData.setInitialDurationTicks(duration);
             extraData.addStacks(1, effect);
 
-            PotionDataSaving.saveData(newInstance, extraData);
+            PotionDataSaving.saveData(target, newInstance, extraData);
 
             target.removeStatusEffect(effect); // HAVE TO REMOVE OR IT WONT ACTUALLY ADD CORRECTLY
 
@@ -89,14 +89,14 @@ public class PotionEffectUtils {
         StatusEffectInstance instance = target.getStatusEffect(effect);
 
         if (instance != null) {
-            ExtraPotionData extraData = PotionDataSaving.getData(instance);
+            ExtraPotionData extraData = PotionDataSaving.getData(target, instance);
 
             extraData.decreaseStacks(num, effect);
 
             if (extraData.getStacks() <= 0) {
                 target.removeStatusEffect(effect);
             } else {
-                PotionDataSaving.saveData(instance, extraData);
+                PotionDataSaving.saveData(target, instance, extraData);
             }
             return true;
         }
@@ -108,7 +108,7 @@ public class PotionEffectUtils {
         StatusEffectInstance instance = en.getStatusEffect(effect);
 
         if (instance != null) {
-            ExtraPotionData extraData = PotionDataSaving.getData(instance);
+            ExtraPotionData extraData = PotionDataSaving.getData(en, instance);
 
             if (extraData != null) {
                 return extraData.getStacks();
