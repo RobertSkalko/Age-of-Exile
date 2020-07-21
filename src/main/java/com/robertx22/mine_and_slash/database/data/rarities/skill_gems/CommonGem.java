@@ -7,7 +7,7 @@ import net.minecraft.util.Formatting;
 public class CommonGem implements SkillGemRarity {
     @Override
     public MinMax statPercents() {
-        return new MinMax(0, 20);
+        return new MinMax(20, 75);
     }
 
     @Override

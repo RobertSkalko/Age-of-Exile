@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.level_based_numbers;
 
-import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import net.minecraft.util.math.MathHelper;
 
 public class LevelBased {
@@ -32,11 +31,17 @@ public class LevelBased {
         return min == ERROR || max == ERROR; // unsure how to use this
     }
 
-    public float get(PlayerSpellCap.ISpellsCap cap, IAbility ability) {
-        return get(1, ability);
+    public float get(SkillGemData data) {
+        return get(data.stat_percents);
     }
 
-    public float get(int abilityLevel, IAbility ability) {
+    public float getMax() {
+        return maxLevel;
+    }
+
+    public float get(float statPercent) {
+
+        float multi = statPercent / 100F;
 
         if (isEmpty()) {
             return ERROR;
@@ -53,8 +58,6 @@ public class LevelBased {
         if (levelOne == maxLevel) {
             return maxLevel;
         }
-
-        float multi = 1; // todo
 
         float val = levelOne + ((maxLevel - levelOne) * multi);
 

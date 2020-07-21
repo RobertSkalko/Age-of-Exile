@@ -57,13 +57,13 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         int timesToCast = (int) ctx.getConfigFor(this)
             .get(SC.TIMES_TO_CAST)
-            .get(ctx.spellsCap, this);
+            .get(ctx.skillGem);
 
         if (timesToCast > 1) {
 
             int castTimeTicks = (int) ctx.getConfigFor(this)
                 .get(SC.CAST_TIME_TICKS)
-                .get(ctx.spellsCap, this);
+                .get(ctx.skillGem);
 
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
@@ -170,11 +170,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public int getCooldownInTicks(SpellCastContext ctx) {
         int ticks = (int) ctx.getConfigFor(this)
             .get(SC.COOLDOWN_TICKS)
-            .get(ctx.spellsCap, this);
+            .get(ctx.skillGem);
 
         int seconds = (int) ctx.getConfigFor(this)
             .get(SC.COOLDOWN_SECONDS)
-            .get(ctx.spellsCap, this);
+            .get(ctx.skillGem);
 
         return (int) ((seconds * 20F) + ticks);
     }
@@ -194,13 +194,13 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         return (int) Mana.getInstance()
             .scale(ctx.getConfigFor(this)
                 .get(SC.MANA_COST)
-                .get(ctx.spellsCap, this), ctx.spellsCap.getEffectiveAbilityLevel(ctx.data, this));
+                .get(ctx.skillGem), ctx.spellsCap.getEffectiveAbilityLevel(ctx.data, this));
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {
         return (int) ctx.getConfigFor(this)
             .get(SC.CAST_TIME_TICKS)
-            .get(ctx.spellsCap, this);
+            .get(ctx.skillGem);
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {

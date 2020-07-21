@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
@@ -22,6 +23,7 @@ public class SpellCastContext {
     public final IAbility ability;
     public boolean isLastCastTick;
     public boolean castedThisTick = false;
+    public SkillGemData skillGem;
 
     public EntityCalcSpellConfigs configForSummonedEntities;
 
@@ -57,13 +59,16 @@ public class SpellCastContext {
             this.spellsCap = new PlayerSpellCap.DefaultImpl();
         }
 
+        this.skillGem = spellsCap.getCastingData()
+            .getSkillGem(ability.GUID());
+
         this.configForSummonedEntities = new EntityCalcSpellConfigs(data, spellsCap, ability);
 
         this.spell = ability.getSpell();
 
         if (spell != null) {
             int castTicks = (int) getConfigFor(spell).get(SC.CAST_TIME_TICKS)
-                .get(spellsCap, spell);
+                .get(skillGem);
             this.isLastCastTick = castTicks == ticksInUse;
         }
     }

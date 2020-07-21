@@ -101,7 +101,7 @@ public class BlazingInfernoSpell extends BaseSpell {
 
             float radius = ctx.getConfigFor(this)
                 .get(SC.RADIUS)
-                .get(ctx.spellsCap, this);
+                .get(ctx.skillGem);
 
             ParticlePacketData pdata = new ParticlePacketData(caster.getBlockPos()
                 .up(1), ParticleEnum.BLAZING_INFERNO);

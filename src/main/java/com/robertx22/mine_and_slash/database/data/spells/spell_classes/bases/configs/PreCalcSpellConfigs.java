@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
@@ -12,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,14 +41,17 @@ public class PreCalcSpellConfigs {
     public int maxSpellLevel = 12;
 
     public SpellCalcData getCalc(PlayerSpellCap.ISpellsCap cap, IAbility ability) {
+        SkillGemData data = cap.getCastingData()
+            .getSkillGem(ability.GUID());
+
         if (has(SC.ATTACK_SCALE_VALUE)) {
             return SpellCalcData.scaleWithAttack(
-                get(SC.ATTACK_SCALE_VALUE).get(cap, ability),
-                get(SC.BASE_VALUE).get(cap, ability)
+                get(SC.ATTACK_SCALE_VALUE).get(data),
+                get(SC.BASE_VALUE).get(data)
             );
         } else {
             return SpellCalcData.base(
-                get(SC.BASE_VALUE).get(cap, ability)
+                get(SC.BASE_VALUE).get(data)
             );
         }
     }
@@ -117,6 +122,8 @@ public class PreCalcSpellConfigs {
     public List<MutableText> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
 
         List<MutableText> list = new ArrayList<>();
+        SkillGemData data = ctx.spellsCap.getCastingData()
+            .getSkillGem(ctx.spell.GUID());
 
         if (Screen.hasShiftDown()) {
             map.entrySet()
@@ -124,7 +131,7 @@ public class PreCalcSpellConfigs {
                     if (x.getKey()
                         .shouldAddToTooltip()) {
                         String val = NumberUtils.formatForTooltip(x.getValue()
-                            .get(ctx.spellsCap, ctx.ability));
+                            .get(data));
                         list.add(new SText(Formatting.GRAY + "").append(x.getKey().word.locName())
                             .append(": " + Formatting.GREEN + val));
 

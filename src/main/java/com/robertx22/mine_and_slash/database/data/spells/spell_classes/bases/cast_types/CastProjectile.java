@@ -16,11 +16,11 @@ public class CastProjectile extends SpellCastType {
 
         builder.projectilesAmount = (int) ctx.getConfigFor(ctx.spell)
             .get(SC.PROJECTILE_COUNT)
-            .get(ctx.spellsCap, ctx.spell);
+            .get(ctx.skillGem);
 
         builder.shootSpeed = ctx.getConfigFor(ctx.spell)
             .get(SC.SHOOT_SPEED)
-            .get(ctx.spellsCap, ctx.spell);
+            .get(ctx.skillGem);
 
         builder.apart = 75;
         builder.cast();

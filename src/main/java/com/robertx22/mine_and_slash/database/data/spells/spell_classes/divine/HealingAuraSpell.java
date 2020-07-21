@@ -54,7 +54,7 @@ public class HealingAuraSpell extends BaseSpell {
 
         float RADIUS = ctx.getConfigFor(this)
             .get(SC.RADIUS)
-            .get(ctx.spellsCap, this);
+            .get(ctx.skillGem);
 
         List<LivingEntity> list = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos())
             .finder(EntityFinder.Finder.RADIUS)

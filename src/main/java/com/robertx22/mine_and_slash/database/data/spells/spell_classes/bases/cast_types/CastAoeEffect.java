@@ -18,7 +18,7 @@ public class CastAoeEffect extends SpellCastType {
 
             float RADIUS = ctx.getConfigFor(ctx.spell)
                 .get(SC.RADIUS)
-                .get(ctx.spellsCap, ctx.spell);
+                .get(ctx.skillGem);
 
             EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos())
                 .radius(RADIUS)

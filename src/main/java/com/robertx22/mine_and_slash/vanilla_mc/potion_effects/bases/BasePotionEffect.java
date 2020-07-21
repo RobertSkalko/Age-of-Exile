@@ -175,7 +175,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
         return (int) new SpellCastContext(en, 0, ability).getConfigFor(ability)
             .get(SC.DURATION_TICKS)
-            .get(Load.spells(en), ability);
+            .getMax();
 
     }
 
@@ -184,7 +184,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
 
         return (int) new SpellCastContext(en, 0, ability).getConfigFor(ability)
             .get(SC.TICK_RATE)
-            .get(Load.spells(en), ability);
+            .getMax();
 
     }
 

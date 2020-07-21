@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.co
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import info.loenwind.autosave.annotations.Factory;
@@ -39,19 +40,21 @@ public class EntityCalcSpellConfigs {
     }
 
     public EntityCalcSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
-        int lvl = 1;
+
+        SkillGemData skillgem = spellsCap.getCastingData()
+            .getSkillGem(ability.GUID());
 
         PreCalcSpellConfigs pre = ability.getPreCalcConfig();
 
         if (pre.has(SC.BASE_VALUE)) {
             if (pre.has(SC.ATTACK_SCALE_VALUE)) {
                 this.calc = SpellCalcData.scaleWithAttack(pre.get(SC.ATTACK_SCALE_VALUE)
-                    .get(spellsCap, ability), pre.get(SC.BASE_VALUE)
-                    .get(spellsCap, ability));
+                    .get(skillgem), pre.get(SC.BASE_VALUE)
+                    .get(skillgem));
 
             } else {
                 this.calc = SpellCalcData.base(pre.get(SC.BASE_VALUE)
-                    .get(spellsCap, ability));
+                    .get(skillgem));
 
             }
         }
@@ -60,7 +63,7 @@ public class EntityCalcSpellConfigs {
             .entrySet()
             .forEach(x -> {
                 this.map.put(x.getKey(), x.getValue()
-                    .get(spellsCap, ability));
+                    .get(skillgem));
             });
 
     }

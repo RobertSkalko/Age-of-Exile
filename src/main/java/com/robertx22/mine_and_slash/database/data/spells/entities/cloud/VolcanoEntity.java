@@ -9,8 +9,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.Packet;
-import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -32,9 +30,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
     @Override
     public void initSpellEntity() {
 
-    }
-
-    public void summonParticle(Vec3d p) {
     }
 
     @Override
@@ -94,8 +89,4 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
     }
 
-    @Override
-    public Packet<?> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this);
-    }
 }

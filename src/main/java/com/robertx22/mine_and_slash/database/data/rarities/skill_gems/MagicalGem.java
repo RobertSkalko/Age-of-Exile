@@ -7,7 +7,7 @@ import net.minecraft.util.Formatting;
 public class MagicalGem implements SkillGemRarity {
     @Override
     public MinMax statPercents() {
-        return new MinMax(10, 30);
+        return new MinMax(25, 90);
     }
 
     @Override
