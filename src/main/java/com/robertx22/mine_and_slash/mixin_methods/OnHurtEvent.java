@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.event_hooks.utils;
+package com.robertx22.mine_and_slash.mixin_methods;
 
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.LivingHurtUtils;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.LivingHurtEvent;

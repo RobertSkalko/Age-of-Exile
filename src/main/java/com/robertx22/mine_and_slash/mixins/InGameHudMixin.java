@@ -32,26 +32,4 @@ public abstract class InGameHudMixin {
         ci.setReturnValue(10);
     }
 
-
-    /*
-    @ModifyVariable(method = "renderStatusBars", at = @At(value = "INVOKE"), name = "f")
-    public float on$getMaxHealthGeneric(float f) {
-        return 20;
-    }
-
-     */
-
-
-    /*
-
-    @Inject(method = "getHeartCount", at = @At("RETURN"), cancellable = true)
-    public void on$limitHeartCount(LivingEntity entity, CallbackInfoReturnable<Integer> cir) {
-        int hp = cir.getReturnValue();
-        hp = Math.min(hp, 10);
-        System.out.println(hp);
-        cir.setReturnValue(hp);
-    }
-
-     */
-
 }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mixins;
 
-import com.robertx22.mine_and_slash.event_hooks.utils.OnMobDeathDrops;
+import com.robertx22.mine_and_slash.mixin_methods.OnMobDeathDrops;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
