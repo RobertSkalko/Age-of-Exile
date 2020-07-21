@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.config.forge;
 
 import com.robertx22.mine_and_slash.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.DropRatesContainer;
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
@@ -25,5 +26,10 @@ public class ModConfig implements ConfigData {
     public StatScaleConfigs statScalings = new StatScaleConfigs();
 
     public static final ModConfig INSTANCE = new ModConfig();
+
+    public static ModConfig get() {
+        return AutoConfig.getConfigHolder(ModConfig.class)
+            .getConfig();
+    }
 
 }
