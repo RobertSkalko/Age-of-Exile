@@ -132,6 +132,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 }
 
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {
+                    OnContainerCompatibleItem.onContainerCompatibleItem(player);
                     data.ticksToProcessChunks = 0;
 
                 }

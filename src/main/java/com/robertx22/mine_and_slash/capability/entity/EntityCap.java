@@ -74,10 +74,6 @@ public class EntityCap {
 
         EntityStatusEffectsData getStatusEffectsData();
 
-        void setCooledAttackStrength(float f);
-
-        float getCooledAttackStrength();
-
         void modifyResource(ResourcesData.Context ctx);
 
         void onDeath(LivingEntity en);
@@ -185,7 +181,7 @@ public class EntityCap {
     public static class DefaultImpl implements UnitData {
 
         LivingEntity entity;
-        EntityStatusEffectsData statusEffectsData;
+        EntityStatusEffectsData statusEffectsData = new EntityStatusEffectsData();
 
         //dont save this
         EntityGears gears = new EntityGears();
@@ -199,8 +195,6 @@ public class EntityCap {
 
         EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
         // sync these for mobs
-
-        float cooledAtkStr = 0;
 
         boolean setMobStats = false;
         String uuid = "";
@@ -360,16 +354,6 @@ public class EntityCap {
         @Override
         public EntityStatusEffectsData getStatusEffectsData() {
             return this.statusEffectsData;
-        }
-
-        @Override
-        public void setCooledAttackStrength(float f) {
-            this.cooledAtkStr = f;
-        }
-
-        @Override
-        public float getCooledAttackStrength() {
-            return this.cooledAtkStr;
         }
 
         @Override

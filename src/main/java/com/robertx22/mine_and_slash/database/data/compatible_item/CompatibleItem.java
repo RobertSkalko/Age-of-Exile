@@ -30,7 +30,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int min_level = 1;
     public int max_level = Integer.MAX_VALUE;
 
-    public boolean only_add_stats_if_loot_drop = false;
     public boolean add_to_loot_drops = true;
     public int loot_drop_weight = 1000;
     public boolean can_be_salvaged = false;
@@ -65,7 +64,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         json.add("rarity", rarity);
 
         JsonObject Misc = new JsonObject();
-        Misc.addProperty("only_add_stats_if_loot_drop", only_add_stats_if_loot_drop);
         Misc.addProperty("add_to_loot_drops", add_to_loot_drops);
         Misc.addProperty("loot_drop_weight", loot_drop_weight);
         Misc.addProperty("can_be_salvaged", can_be_salvaged);
@@ -101,8 +99,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             .getAsInt();
 
         JsonObject misc = json.getAsJsonObject("misc");
-        obj.only_add_stats_if_loot_drop = misc.get("only_add_stats_if_loot_drop")
-            .getAsBoolean();
         obj.add_to_loot_drops = misc.get("add_to_loot_drops")
             .getAsBoolean();
         obj.loot_drop_weight = misc.get("loot_drop_weight")

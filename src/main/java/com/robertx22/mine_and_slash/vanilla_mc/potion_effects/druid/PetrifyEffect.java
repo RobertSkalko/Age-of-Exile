@@ -96,7 +96,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
 
     @Override
     public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(3);
+        return SpellCalcData.base(8);
     }
 
     @Override

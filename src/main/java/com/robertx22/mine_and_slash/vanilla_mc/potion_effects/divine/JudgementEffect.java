@@ -76,7 +76,7 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
     @Override
     public void onBasicAttacked(StatusEffectInstance instance, LivingEntity source, LivingEntity target) {
 
-        ExtraPotionData data = PotionDataSaving.getData(instance);
+        ExtraPotionData data = PotionDataSaving.getData(target, instance);
 
         LivingEntity caster = data.getCaster(source.world);
 

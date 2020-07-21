@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public interface IApplyStatPotion {
 
     default void applyStats(World world, StatusEffectInstance instance, LivingEntity target) {
-        ExtraPotionData extraData = PotionDataSaving.getData(instance);
+        ExtraPotionData extraData = PotionDataSaving.getData(target, instance);
 
         LivingEntity caster = extraData.getCaster(world);
 
