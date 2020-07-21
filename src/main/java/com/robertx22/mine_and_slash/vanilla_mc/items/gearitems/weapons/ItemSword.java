@@ -12,15 +12,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.registry.Registry;
 
-import java.util.HashMap;
-
 public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
-    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemSword(int rar) {
         super(

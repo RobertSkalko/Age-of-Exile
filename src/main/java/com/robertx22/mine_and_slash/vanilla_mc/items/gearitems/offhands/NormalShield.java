@@ -5,16 +5,11 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
-import net.minecraft.item.Item;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.HashMap;
-
 public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem {
-
-    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public Identifier resource = new Identifier("");
 

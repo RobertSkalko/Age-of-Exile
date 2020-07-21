@@ -8,13 +8,9 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseArmorItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.BowItem;
-import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
-import java.util.HashMap;
-
 public class ItemBow extends BowItem implements IAutoLocName, IGearItem {
-    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemBow(int rar) {
         super(ItemUtils.getDefaultGearProperties()

@@ -1,19 +1,15 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons;
 
 import com.robertx22.mine_and_slash.database.base.Rarities;
-import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseWeaponItem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseWeaponItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.HashMap;
-
 public class ItemAxe extends BaseWeaponItem {
-    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
     public ItemAxe(int rar) {
         super(rar);
