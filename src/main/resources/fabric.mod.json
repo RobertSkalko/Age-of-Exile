@@ -30,7 +30,11 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.1"
+    "minecraft": "1.16.1",
+	"curios": ">=1.0.2",
+	"cardinal-components-base": ">=2.4.2",
+	"cardinal-components-entity": ">=2.4.2",
+	"cardinal-components-world": ">=2.4.2"
   },
   "suggests": {
     "flamingo": "*"
