@@ -67,7 +67,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                 if (world.isClient) {
 
                     for (int i = 1; i < 12; i++) {
-                        double speed = (random.nextBoolean() ? 1 : -1) * 0.1 + 0.05 * random.nextDouble();
 
                         float yRandom = (float) RandomUtils.RandomRange(1, 100) / 80F;
 

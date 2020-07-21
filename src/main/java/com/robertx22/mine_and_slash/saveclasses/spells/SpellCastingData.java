@@ -111,7 +111,7 @@ public class SpellCastingData {
                 .forEach(x -> x.tickCooldown(ticks));
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
     }

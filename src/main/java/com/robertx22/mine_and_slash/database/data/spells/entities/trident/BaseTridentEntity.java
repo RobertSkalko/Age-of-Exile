@@ -1,17 +1,23 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.trident;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
+import com.robertx22.mine_and_slash.mmorpg.EntityPacket;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
+import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
@@ -19,7 +25,7 @@ import net.minecraft.world.World;
 
 public abstract class BaseTridentEntity extends TridentEntity implements ISpellEntity {
 
-    EntitySpellData syncedSpellData;
+    EntitySpellData spellData;
 
     public BaseTridentEntity(EntityType<? extends TridentEntity> type, World world) {
         super(type, world);
@@ -27,12 +33,12 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
 
     @Override
     public void readCustomDataFromTag(CompoundTag nbt) {
-        this.syncedSpellData = EntitySpellDataSaving.Load(nbt);
+        this.spellData = EntitySpellDataSaving.Load(nbt);
     }
 
     @Override
     public void writeCustomDataToTag(CompoundTag nbt) {
-        EntitySpellDataSaving.Save(nbt, syncedSpellData);
+        EntitySpellDataSaving.Save(nbt, spellData);
     }
 
     public LivingEntity getCaster() {
@@ -40,12 +46,8 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-    }
-
-    public boolean isValidTarget(Entity target) {
-        return true;
+    public Packet<?> createSpawnPacket() {
+        return EntityPacket.createPacket(this);
     }
 
     @Override
@@ -59,16 +61,6 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
     }
 
     @Override
-    public EntitySpellData getSpellData() {
-        return syncedSpellData;
-    }
-
-    @Override
-    public void setSpellData(EntitySpellData data) {
-        this.syncedSpellData = data;
-    }
-
-    @Override
     public void tick() {
 
         if (this.inGroundTime > 50) {
@@ -77,7 +69,7 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
 
         if (world.isClient) {
             if (this.age > 2) {
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 5; i++) {
                     Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getX(), getY(), getZ(), 0.1F);
                     ParticleUtils.spawn(ModRegistry.PARTICLES.THUNDER, world, p);
                 }
@@ -120,4 +112,35 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
             }
         }
     }
+
+    // DATA TRACKER STUFF
+    private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(BaseTridentEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
+
+    @Override
+    protected void initDataTracker() {
+        this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
+        super.initDataTracker();
+    }
+
+    @Override
+    public EntitySpellData getSpellData() {
+        if (world.isClient) {
+            if (spellData == null) {
+                CompoundTag nbt = dataTracker.get(SPELL_DATA);
+                if (nbt != null) {
+                    this.spellData = LoadSave.Load(EntitySpellData.class, new EntitySpellData(), nbt, "spell");
+                }
+            }
+        }
+        return spellData;
+    }
+
+    @Override
+    public void setSpellData(EntitySpellData data) {
+        this.spellData = data;
+        CompoundTag nbt = new CompoundTag();
+        LoadSave.Save(spellData, nbt, "spell");
+        dataTracker.set(SPELL_DATA, nbt);
+    }
+    // DATA TRACKER STUFF
 }

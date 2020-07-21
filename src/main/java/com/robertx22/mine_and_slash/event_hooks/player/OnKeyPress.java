@@ -14,25 +14,35 @@ import java.util.Map;
 
 public class OnKeyPress implements ClientTickEvents.EndTick {
 
+    int cooldown = 0;
+
     @Override
     public void onEndTick(MinecraftClient mc) {
+
+        if (cooldown > 0) {
+            cooldown--;
+            return;
+        }
 
         if (mc.player == null) {
             return;
         }
         if (KeybindsRegister.hubScreen.isPressed()) {
             mc.openScreen(new MainHubScreen());
+            cooldown = 10;
 
         } else if (KeybindsRegister.swapHotbar.isPressed()) {
             SpellHotbarOverlay.CURRENT_HOTBAR =
                 SpellHotbarOverlay.CURRENT_HOTBAR == SpellCastingData.Hotbar.FIRST ?
                     SpellCastingData.Hotbar.SECOND : SpellCastingData.Hotbar.FIRST;
+            cooldown = 20;
         } else {
 
             for (Map.Entry<Integer, KeyBinding> entry : KeybindsRegister.HOTBAR_BY_NUMBER.entrySet()) {
 
                 if (entry.getValue()
                     .isPressed()) {
+                    cooldown = 5;
                     Packets.sendToServer(new CastSpellPacket(entry.getKey(),
                         SpellHotbarOverlay.CURRENT_HOTBAR
                     ));

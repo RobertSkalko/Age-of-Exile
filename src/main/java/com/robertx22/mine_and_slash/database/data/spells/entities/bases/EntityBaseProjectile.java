@@ -45,13 +45,11 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     public int throwableShake;
 
     private int ticksInGround;
-    private int ticksInAir;
     private int deathTime = 80;
     private int airProcTime;
     private boolean doGroundProc;
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
-    ;
 
     public Entity ignoreEntity;
 
@@ -217,8 +215,6 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
 
             if (this.inGround) {
                 ticksInGround++;
-            } else {
-                ticksInAir++;
             }
 
             if (this.age >= this.getDeathTime()) {
