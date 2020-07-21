@@ -2,33 +2,56 @@ package com.robertx22.mine_and_slash.mixins;
 
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(InGameHud.class)
-public class InGameHudMixin {
+public abstract class InGameHudMixin {
 
-    // TODO
+    @Redirect(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getHealth()F"))
+    public float on$getHealth(PlayerEntity entity) {
+        return Math.min(entity.getHealth(), 20);
+    }
 
-    @Redirect(method = "renderStatusBars",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getMaxHealth()F")
-    )
-    public final float on$getMaxHealth(LivingEntity entity) {
-        return 20;
+    @Redirect(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))
+    public double on$getHealthGeneric(PlayerEntity entity, EntityAttribute attribute) {
+        if (attribute == EntityAttributes.GENERIC_MAX_HEALTH) {
+            return Math.min(entity.getHealth(), 20);
+        }
+        return entity.getAttributeBaseValue(attribute);
+    }
+
+    @Inject(method = "getHeartCount", at = @At(value = "TAIL"))
+    public void on$getMaxHealth(LivingEntity entity, CallbackInfoReturnable<Integer> ci) {
+        ci.setReturnValue(10);
     }
 
 
     /*
-    WorldRenderer
-    @Inject(method = "getHeartCount", at = @At("RETURN"), cancellable = true)
-
-    public void on$limitHeartCount(LivingEntity entity, CallbackInfoReturnable<Integer> cir) {
-        int hp = cir.getReturnValueI(); // I don't remember what this method is actually called...
-        hp = Math.min(hp, 10);
-        cir.setReturnValue(hp);        // ^
+    @ModifyVariable(method = "renderStatusBars", at = @At(value = "INVOKE"), name = "f")
+    public float on$getMaxHealthGeneric(float f) {
+        return 20;
     }
 
+     */
+
+
+    /*
+
+    @Inject(method = "getHeartCount", at = @At("RETURN"), cancellable = true)
+    public void on$limitHeartCount(LivingEntity entity, CallbackInfoReturnable<Integer> cir) {
+        int hp = cir.getReturnValue();
+        hp = Math.min(hp, 10);
+        System.out.println(hp);
+        cir.setReturnValue(hp);
+    }
 
      */
+
 }

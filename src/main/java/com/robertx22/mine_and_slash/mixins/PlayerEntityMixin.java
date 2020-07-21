@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
-
     @Inject(method = "onKilledOther(Lnet/minecraft/entity/LivingEntity;)V", at = @At("HEAD"))
     public void on$ondeath(LivingEntity other, CallbackInfo ci) {
         OnMobDeathDrops.mobOnDeathDrop(other);

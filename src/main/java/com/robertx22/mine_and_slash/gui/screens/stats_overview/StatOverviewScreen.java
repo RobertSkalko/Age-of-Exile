@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.UnknownStat;
+import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -18,11 +19,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -32,7 +31,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
-public class StatOverviewScreen extends Screen implements INamedScreen {
+public class StatOverviewScreen extends BaseScreen implements INamedScreen {
+
+    static int sizeY = 220;
+    static int sizeX = 215;
 
     Stat.StatGroup statgroup = Stat.StatGroup.Main;
     int currentElement = 0;
@@ -40,8 +42,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
     MinecraftClient mc = MinecraftClient.getInstance();
 
     public StatOverviewScreen() {
-        super(new LiteralText("Stats Screen"));
-
+        super(sizeX, sizeY);
     }
 
     EntityCap.UnitData data = Load.Unit(MinecraftClient.getInstance().player);
@@ -60,9 +61,6 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
     public void init() {
         genStatList();
     }
-
-    int sizeY = 220;
-    int sizeX = 215;
 
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/stats_screen.png");
 
