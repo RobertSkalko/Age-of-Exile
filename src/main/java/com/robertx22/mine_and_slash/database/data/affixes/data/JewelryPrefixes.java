@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.data.affixes.ElementalAffixBuilder;
@@ -9,7 +10,6 @@ import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDa
 import com.robertx22.mine_and_slash.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShieldRegen;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -25,11 +25,11 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .add(Elements.Water, "Freezing")
             .add(Elements.Thunder, "Shocking")
             .add(Elements.Nature, "Dripping")
-            .tier(1, x -> Arrays.asList(new StatModifier(2, 3, 2, 3, new WeaponDamage(x), ModType.FLAT)))
-            .tier(2, x -> Arrays.asList(new StatModifier(1, 3, 2, 3, new WeaponDamage(x), ModType.FLAT)))
-            .tier(3, x -> Arrays.asList(new StatModifier(1, 1, 2, 2, new WeaponDamage(x), ModType.FLAT)))
+            .tier(1, x -> Arrays.asList(new StatModifier(1, 2, 1, 2, new WeaponDamage(x), ModType.FLAT)))
+            .tier(2, x -> Arrays.asList(new StatModifier(0.75F, 1, 0.75F, 1, new WeaponDamage(x), ModType.FLAT)))
+            .tier(3, x -> Arrays.asList(new StatModifier(0.5F, 0.75F, 0.5F, 0.75F, new WeaponDamage(x), ModType.FLAT)))
             .Req(SlotRequirement.of(BaseGearType.SlotFamily.Jewelry))
-            .Weight(200)
+            .Weight(100)
             .Prefix()
             .Build();
 
