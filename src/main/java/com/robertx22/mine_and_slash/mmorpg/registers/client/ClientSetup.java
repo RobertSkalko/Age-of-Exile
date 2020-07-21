@@ -1,28 +1,20 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.RenderLayer;
+
 public class ClientSetup {
 
     public static void setup() {
 
-            /*
-            RenderLayers.setRenderLayer(ModBlocks.GEAR_MODIFY.get(), RenderLayer.getCutout());
-            RenderLayers.setRenderLayer(ModBlocks.GEAR_SALVAGE.get(), RenderLayer.getCutout());//cutout
-            RenderLayers.setRenderLayer(ModBlocks.GEAR_REPAIR.get(), RenderLayer.getCutout());//cutout
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_SALVAGE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_MODIFY, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_REPAIR, RenderLayer.getCutout());
 
-            RenderLayers.setRenderLayer(ModBlocks.MAGMA_FLOWER.get(), RenderLayer.getCutout());
-            RenderLayers.setRenderLayer(ModBlocks.THORN_BUSH.get(), RenderLayer.getCutout());
-            RenderLayers.setRenderLayer(ModBlocks.HOLY_FLOWER.get(), RenderLayer.getCutout());
-
-             */
-
-            /*
-            MinecraftForge.EVENT_BUS.register(new VanillaOverlay(MinecraftClient.getInstance()));
-            MinecraftForge.EVENT_BUS.register(new MobBarScreen(MinecraftClient.getInstance()));
-            MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
-            MinecraftForge.EVENT_BUS.register(new SpellHotbarOverlay());
-             */
-
-        // TODO
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.MAGMA_FLOWER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.THORN_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.HOLY_FLOWER, RenderLayer.getCutout());
 
         ContainerGuiRegisters.reg();
         RenderRegister.regRenders();
