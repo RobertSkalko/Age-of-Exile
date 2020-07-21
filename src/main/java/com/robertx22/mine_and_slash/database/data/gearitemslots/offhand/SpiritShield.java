@@ -5,10 +5,10 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShield;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +42,7 @@ public class SpiritShield extends BaseOffHand {
 
     @Override
     public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.SPIRIT_SHIELD;
+        return Items.SHIELD;
     }
 
     @Override
