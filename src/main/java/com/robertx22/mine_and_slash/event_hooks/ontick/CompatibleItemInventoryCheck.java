@@ -30,7 +30,17 @@ public class CompatibleItemInventoryCheck {
             List<CompatibleItem> list = SlashRegistry.CompatibleItems()
                 .getFilterWrapped(x -> x.item_id.equals(reg)).list;
 
-            Cached.IS_COMP_ITEM_MAP.put(item, !list.isEmpty());
+            boolean isCompatible = !list.isEmpty();
+
+            if (!isCompatible) {
+                if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
+                    FilterListWrap<BaseGearType> wrapped = SlashRegistry.GearTypes()
+                        .getFilterWrapped(x -> BaseGearType.isGearOfThisType(x, item));
+                    isCompatible = !wrapped.list.isEmpty();
+                }
+            }
+
+            Cached.IS_COMP_ITEM_MAP.put(item, isCompatible);
         }
         return Cached.IS_COMP_ITEM_MAP.get(item);
     }
