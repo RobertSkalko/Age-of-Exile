@@ -49,6 +49,8 @@ public class SpellCastContext {
         this.caster = caster;
         this.ticksInUse = ticksInUse;
 
+        this.skillGem = skillgem;
+
         this.ability = skillgem.getSpell();
 
         this.data = Load.Unit(caster);
@@ -59,9 +61,7 @@ public class SpellCastContext {
             this.spellsCap = new PlayerSpellCap.DefaultImpl();
         }
 
-        this.skillGem = skillgem;
-
-        this.configForSummonedEntities = new EntityCalcSpellConfigs(data, spellsCap, ability);
+        this.configForSummonedEntities = new EntityCalcSpellConfigs(skillgem);
 
         this.spell = ability.getSpell();
 

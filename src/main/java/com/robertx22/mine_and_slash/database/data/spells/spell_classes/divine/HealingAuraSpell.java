@@ -65,7 +65,7 @@ public class HealingAuraSpell extends BaseSpell {
         for (LivingEntity en : list) {
 
             int num = ctx.getConfigFor(this)
-                .getCalc(ctx.spellsCap, this)
+                .getCalc(ctx.skillGem)
                 .getCalculatedValue(ctx.data, ctx.spellsCap, this);
 
             SpellUtils.heal(this, en, num);

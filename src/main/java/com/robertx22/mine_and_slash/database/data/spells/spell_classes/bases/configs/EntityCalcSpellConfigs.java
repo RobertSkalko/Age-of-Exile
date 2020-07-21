@@ -1,9 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs;
 
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
@@ -39,12 +36,10 @@ public class EntityCalcSpellConfigs {
         return map.get(sc);
     }
 
-    public EntityCalcSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
+    public EntityCalcSpellConfigs(SkillGemData skillgem) {
 
-        SkillGemData skillgem = spellsCap.getCastingData()
-            .getSkillGem(ability.GUID());
-
-        PreCalcSpellConfigs pre = ability.getPreCalcConfig();
+        PreCalcSpellConfigs pre = skillgem.getSpell()
+            .getPreCalcConfig();
 
         if (pre.has(SC.BASE_VALUE)) {
             if (pre.has(SC.ATTACK_SCALE_VALUE)) {

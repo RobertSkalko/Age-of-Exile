@@ -209,7 +209,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
     public final SpellCalcData getCalculation(SpellCastContext ctx) {
         return ctx.getConfigFor(this)
-            .getCalc(ctx.spellsCap, this);
+            .getCalc(ctx.skillGem);
     }
 
     public final Elements getElement() {

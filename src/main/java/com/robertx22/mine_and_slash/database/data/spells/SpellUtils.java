@@ -123,7 +123,7 @@ public class SpellUtils {
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
                 ctx.getConfigFor(ctx.ability)
-                    .getCalc(ctx.spellsCap, ctx.ability)
+                    .getCalc(ctx.skillGem)
                     .getCalculatedValue(ctx.data, ctx.spellsCap, ctx.ability), ResourcesData.Use.RESTORE,
                 ctx.spell
             ));

@@ -85,7 +85,7 @@ public class PurifyingFiresSpell extends BaseSpell {
         for (LivingEntity en : list) {
 
             int num = ctx.getConfigFor(this)
-                .getCalc(ctx.spellsCap, this)
+                .getCalc(ctx.skillGem)
                 .getCalculatedValue(ctx.data, ctx.spellsCap, this);
 
             SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, en, num, ctx.data, Load.Unit(en),

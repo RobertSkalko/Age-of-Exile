@@ -1,11 +1,9 @@
 package com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs;
 
-import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
@@ -40,18 +38,16 @@ public class PreCalcSpellConfigs {
 
     public int maxSpellLevel = 12;
 
-    public SpellCalcData getCalc(PlayerSpellCap.ISpellsCap cap, IAbility ability) {
-        SkillGemData data = cap.getCastingData()
-            .getSkillGem(ability.GUID());
+    public SpellCalcData getCalc(SkillGemData skillgem) {
 
         if (has(SC.ATTACK_SCALE_VALUE)) {
             return SpellCalcData.scaleWithAttack(
-                get(SC.ATTACK_SCALE_VALUE).get(data),
-                get(SC.BASE_VALUE).get(data)
+                get(SC.ATTACK_SCALE_VALUE).get(skillgem),
+                get(SC.BASE_VALUE).get(skillgem)
             );
         } else {
             return SpellCalcData.base(
-                get(SC.BASE_VALUE).get(data)
+                get(SC.BASE_VALUE).get(skillgem)
             );
         }
     }
