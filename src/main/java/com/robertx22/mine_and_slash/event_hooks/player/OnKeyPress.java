@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class OnKeyPress implements ClientTickEvents.EndTick {
 
-    int cooldown = 0;
+    public static int cooldown = 0;
 
     @Override
     public void onEndTick(MinecraftClient mc) {
@@ -28,7 +28,9 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
             return;
         }
         if (KeybindsRegister.hubScreen.isPressed()) {
+
             mc.openScreen(new MainHubScreen());
+
             cooldown = 10;
 
         } else if (KeybindsRegister.swapHotbar.isPressed()) {
