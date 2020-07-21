@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
-  "version": "${version}",
+  "id": "mmorpg",
+  "version": "${mod_version}",
 
   "name": "Age of Exile",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Diablo in Minecraft!",
   "authors": [
-    "Me!"
+    "mcrobertx22!"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -18,15 +18,10 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "com.robertx22.mine_and_slash.mmorpg.init.CommonInit"
-    ],
-	"client": [	
-	  "com.robertx22.mine_and_slash.mmorpg.init.ClientInit"
-	],		
-	"server": [	
-	  "com.robertx22.mine_and_slash.mmorpg.init.ServerInit"
-	]
+    "main": ["com.robertx22.mine_and_slash.mmorpg.init.CommonInit"],
+	"client": ["com.robertx22.mine_and_slash.mmorpg.init.ClientInit"],		
+	"server": ["com.robertx22.mine_and_slash.mmorpg.init.ServerInit"],
+	"modmenu": ["com.robertx22.mine_and_slash.mmorpg.mod_menu.ModMenuIntegration"]
   },
   "mixins": [
     "mmorpg.mixins.json"
@@ -35,7 +30,7 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "1.16.1"
   },
   "suggests": {
     "flamingo": "*"

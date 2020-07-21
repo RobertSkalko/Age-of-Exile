@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.init;
 
 import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.LifeCycleEvents;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -8,6 +9,8 @@ import com.robertx22.mine_and_slash.mmorpg.event_registers.Common;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeInfo;
@@ -40,5 +43,6 @@ public class CommonInit implements ModInitializer {
         CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, new SlotTypeInfo.Builder("necklace").size(1)
             .build());
 
+        AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
     }
 }

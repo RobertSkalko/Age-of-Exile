@@ -2,12 +2,13 @@ package com.robertx22.mine_and_slash.config.forge;
 
 import com.robertx22.mine_and_slash.config.forge.parts.DmgParticleConfig;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
+import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 
 public class ClientConfigs {
 
-    public static final String NAME = "CLIENT";
     public static final ClientConfigs INSTANCE = new ClientConfigs();
 
+    @ConfigEntry.Gui.CollapsibleObject
     public DmgParticleConfig dmgParticleConfig = new DmgParticleConfig();
 
     public boolean RENDER_MOB_HEALTH_GUI = true;
