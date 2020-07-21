@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
-import com.sun.istack.internal.Nullable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -117,7 +116,6 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
 
     }
 
-    @Nullable
     public LivingEntity getEntityHit(HitResult result, double radius) {
 
         EntityHitResult enres = null;
@@ -228,7 +226,6 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     }
 
     @Override
-    @Nullable
     protected EntityHitResult getEntityCollision(Vec3d pos, Vec3d posPlusMotion) {
 
         return ProjectileUtil.getEntityCollision(
@@ -318,7 +315,6 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
 
     ////////////////////////////////////////////////////////
 
-    @Nullable
     public LivingEntity getCaster() {
         return this.getSpellData()
             .getCaster(world);

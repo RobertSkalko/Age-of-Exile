@@ -43,7 +43,7 @@ public class ItemNewbieGearBag extends BaseItem {
 
                 list.forEach(x -> {
                     GearItemData data = getBlueprint(x).createData();
-
+                    data.level = 1;
                     data.isSalvagable = false;
                     ItemStack weaponStack = GearCreationUtils.CreateStack(data);
                     playerIn.dropItem(weaponStack, false, true);

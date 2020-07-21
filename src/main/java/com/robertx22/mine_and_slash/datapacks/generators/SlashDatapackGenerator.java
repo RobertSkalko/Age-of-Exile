@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.data.DataCache;
 import net.minecraft.data.DataProvider;
-import org.spongepowered.asm.mixin.Overwrite;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,7 +16,7 @@ public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends 
         super(list, category);
     }
 
-    @Overwrite
+    @Override
     public void run() {
         generateAll(cache);
     }

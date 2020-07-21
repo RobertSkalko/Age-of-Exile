@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.IGUID;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.data.DataProvider;
-import org.spongepowered.asm.mixin.Overwrite;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,7 +15,7 @@ public class RarityGenerator<T extends IGUID & ISerializable<T>> extends BaseDat
         super(list, category);
     }
 
-    @Overwrite
+    @Override
     public void run() {
         generateAll();
     }

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "mmorpg",
-  "version": "${mod_version}",
+  "version": "1.0.0",
 
   "name": "Age of Exile",
   "description": "Diablo in Minecraft!",
   "authors": [
-    "mcrobertx22!"
+    "mcrobertx22"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
