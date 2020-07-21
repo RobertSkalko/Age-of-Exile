@@ -18,7 +18,7 @@ public class JewelLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return (float) (ModConfig.INSTANCE.DropRates.JEWEL_DROPRATE);
+        return (float) (ModConfig.get().DropRates.JEWEL_DROPRATE);
     }
 
     @Override

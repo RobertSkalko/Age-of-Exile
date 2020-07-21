@@ -140,7 +140,7 @@ public abstract class LivingEntityMixin {
                 float diff = damage - afterArmor;
 
                 if (diff > 0) {
-                    float effectiveness = (float) ModConfig.INSTANCE.Server.VANILLA_ARMOR_EFFECTIVENESS;
+                    float effectiveness = (float) ModConfig.get().Server.VANILLA_ARMOR_EFFECTIVENESS;
 
                     damage -= diff * effectiveness;
                 }

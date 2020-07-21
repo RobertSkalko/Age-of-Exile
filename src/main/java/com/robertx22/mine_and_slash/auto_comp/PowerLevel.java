@@ -28,8 +28,8 @@ public class PowerLevel {
 
             this.statAmount = stats.size();
 
-            int MAX_SINGLE_STAT_VALUE = ModConfig.INSTANCE.autoCompatibleItems.MAX_SINGLE_STAT_VALUE;
-            int MAX_TOTAL_STATS = ModConfig.INSTANCE.autoCompatibleItems.MAX_TOTAL_STATS;
+            int MAX_SINGLE_STAT_VALUE = ModConfig.get().autoCompatibleItems.MAX_SINGLE_STAT_VALUE;
+            int MAX_TOTAL_STATS = ModConfig.get().autoCompatibleItems.MAX_TOTAL_STATS;
 
             this.totalStatNumbers = stats.values()
                 .stream()
@@ -70,23 +70,23 @@ public class PowerLevel {
         HORRIBLE() {
             @Override
             public AutoConfigItemType getConfig() {
-                return ModConfig.INSTANCE.autoCompatibleItems.HORRIBLE;
+                return ModConfig.get().autoCompatibleItems.HORRIBLE;
             }
         },
         TRASH() {
             @Override
             public AutoConfigItemType getConfig() {
-                return ModConfig.INSTANCE.autoCompatibleItems.TRASH;
+                return ModConfig.get().autoCompatibleItems.TRASH;
             }
         }, NORMAL() {
             @Override
             public AutoConfigItemType getConfig() {
-                return ModConfig.INSTANCE.autoCompatibleItems.NORMAL;
+                return ModConfig.get().autoCompatibleItems.NORMAL;
             }
         }, BEST() {
             @Override
             public AutoConfigItemType getConfig() {
-                return ModConfig.INSTANCE.autoCompatibleItems.BEST;
+                return ModConfig.get().autoCompatibleItems.BEST;
             }
         };
 
@@ -106,7 +106,7 @@ public class PowerLevel {
 
         float val = getFloatValueOf(item);
 
-        AutoCompatibleItemConfig config = ModConfig.INSTANCE.autoCompatibleItems;
+        AutoCompatibleItemConfig config = ModConfig.get().autoCompatibleItems;
 
         Types type = null;
 

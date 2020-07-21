@@ -25,7 +25,19 @@ public class Load {
     }
 
     public static UnitData Unit(Entity entity) {
-        return ModRegistry.COMPONENTS.UNIT_DATA.get(entity);
+
+        UnitData data = null;
+        try {
+            data = ModRegistry.COMPONENTS.UNIT_DATA.get(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (data == null) {
+            System.out.println("Unit data is null? " + entity.getEntityName());
+        }
+
+        return data;
     }
 
     public static PlayerStatsCap.IPlayerStatPointsData statPoints(PlayerEntity provider) {

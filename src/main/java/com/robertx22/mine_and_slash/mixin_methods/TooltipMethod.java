@@ -29,12 +29,8 @@ public class TooltipMethod {
 
         List<Text> tooltip = list.getReturnValue();
 
-        if (stack
-            .getItem() instanceof ICurrencyItemEffect) {
-            ICurrencyItemEffect currency = (ICurrencyItemEffect) stack
-                .getItem();
-            currency.addToTooltip(tooltip);
-        }
+        boolean addCurrencyTooltip = stack
+            .getItem() instanceof ICurrencyItemEffect;
 
         PlayerEntity player = MinecraftClient.getInstance().player;
 
@@ -64,48 +60,53 @@ public class TooltipMethod {
 
             com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext ctx = new com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext(stack, tooltip, unitdata);
 
-            if (!stack.hasTag()) {
-                return;
+            if (stack.hasTag()) {
+
+                ICommonDataItem data = ICommonDataItem.load(stack);
+
+                if (data != null) {
+                    data.BuildTooltip(ctx);
+                }
+
+                MutableText broken = TooltipUtils.itemBrokenText(stack, data);
+                if (broken != null) {
+                    tooltip.add(broken);
+                }
+
+                if (data instanceof GearItemData) {
+                    List<String> strings = tooltip
+                        .stream()
+                        .map(x -> CLOC.translate(x))
+                        .collect(Collectors.toList());
+
+                    TextRenderer font = MinecraftClient.getInstance().textRenderer;
+
+                    int max = font.getWidth(strings.stream()
+                        .max(Comparator.comparingInt(x -> font.getWidth(x)))
+                        .get());
+
+                    tooltip.clear();
+
+                    strings.forEach(x -> {
+
+                        String str = x;
+
+                        while (font.getWidth(str) <= max) {
+                            str = " " + str + " ";
+                        }
+
+                        tooltip
+                            .add(new SText(str));
+
+                    });
+
+                }
             }
 
-            ICommonDataItem data = ICommonDataItem.load(stack);
-
-            if (data != null) {
-                data.BuildTooltip(ctx);
-            }
-
-            MutableText broken = TooltipUtils.itemBrokenText(stack, data);
-            if (broken != null) {
-                tooltip.add(broken);
-            }
-
-            if (data instanceof GearItemData) {
-                List<String> strings = tooltip
-                    .stream()
-                    .map(x -> CLOC.translate(x))
-                    .collect(Collectors.toList());
-
-                TextRenderer font = MinecraftClient.getInstance().textRenderer;
-
-                int max = font.getWidth(strings.stream()
-                    .max(Comparator.comparingInt(x -> font.getWidth(x)))
-                    .get());
-
-                tooltip.clear();
-
-                strings.forEach(x -> {
-
-                    String str = x;
-
-                    while (font.getWidth(str) <= max) {
-                        str = " " + str + " ";
-                    }
-
-                    tooltip
-                        .add(new SText(str));
-
-                });
-
+            if (addCurrencyTooltip) {
+                ICurrencyItemEffect currency = (ICurrencyItemEffect) stack
+                    .getItem();
+                currency.addToTooltip(tooltip);
             }
 
         } catch (Exception e) {

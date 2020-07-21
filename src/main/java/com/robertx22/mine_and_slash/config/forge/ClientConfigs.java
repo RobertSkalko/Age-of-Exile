@@ -6,8 +6,6 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 
 public class ClientConfigs {
 
-    public static final ClientConfigs INSTANCE = new ClientConfigs();
-
     @ConfigEntry.Gui.CollapsibleObject
     public DmgParticleConfig dmgParticleConfig = new DmgParticleConfig();
 

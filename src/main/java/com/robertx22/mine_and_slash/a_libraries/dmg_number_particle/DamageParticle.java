@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.a_libraries.dmg_number_particle;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -38,11 +38,11 @@ public class DamageParticle extends Particle {
                           double parMotionX, double parMotionY, double parMotionZ) {
         super((ClientWorld) world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
 
-        gravityStrength = (float) ClientConfigs.INSTANCE.dmgParticleConfig.GRAVITY;
+        gravityStrength = (float) ModConfig.get().client.dmgParticleConfig.GRAVITY;
 
-        scale = (float) ClientConfigs.INSTANCE.dmgParticleConfig.START_SIZE;
+        scale = (float) ModConfig.get().client.dmgParticleConfig.START_SIZE;
 
-        this.maxAge = (int) ClientConfigs.INSTANCE.dmgParticleConfig.LIFESPAN;
+        this.maxAge = (int) ModConfig.get().client.dmgParticleConfig.LIFESPAN;
 
         this.text = element.format + element.icon + Formatting.GRAY + str;
         this.element = element;
@@ -51,7 +51,7 @@ public class DamageParticle extends Particle {
     public void setupPosition(Camera info) {
         MinecraftClient mc = MinecraftClient.getInstance();
 
-        float speed = (float) ClientConfigs.INSTANCE.dmgParticleConfig.SPEED;
+        float speed = (float) ModConfig.get().client.dmgParticleConfig.SPEED;
 
         PlayerEntity p = mc.player;
 
@@ -120,10 +120,10 @@ public class DamageParticle extends Particle {
 
     @Override
     public void tick() {
-        if (ClientConfigs.INSTANCE.dmgParticleConfig.GROWS) {
+        if (ModConfig.get().client.dmgParticleConfig.GROWS) {
             if (this.grow) {
                 this.scale *= 1.05F;
-                if (this.scale > ClientConfigs.INSTANCE.dmgParticleConfig.MAX_SIZE) {
+                if (this.scale > ModConfig.get().client.dmgParticleConfig.MAX_SIZE) {
                     this.grow = false;
                 }
             } else {
@@ -145,7 +145,7 @@ public class DamageParticle extends Particle {
 
         this.move(this.velocityX, this.velocityY, this.velocityZ);
 
-        double speed = ClientConfigs.INSTANCE.dmgParticleConfig.SPEED;
+        double speed = ModConfig.get().client.dmgParticleConfig.SPEED;
 
         this.velocityY -= speed;
         this.velocityX += speed * world.random.nextDouble();

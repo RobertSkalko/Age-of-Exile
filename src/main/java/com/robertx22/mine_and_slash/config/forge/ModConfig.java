@@ -11,7 +11,7 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.CollapsibleObject
-    ClientConfigs client = new ClientConfigs();
+    public ClientConfigs client = new ClientConfigs();
 
     @ConfigEntry.Gui.CollapsibleObject
     public ServerContainer Server = new ServerContainer();
@@ -24,8 +24,6 @@ public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.CollapsibleObject
     public StatScaleConfigs statScalings = new StatScaleConfigs();
-
-    public static final ModConfig INSTANCE = new ModConfig();
 
     public static ModConfig get() {
         return AutoConfig.getConfigHolder(ModConfig.class)

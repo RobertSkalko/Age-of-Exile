@@ -229,8 +229,6 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             }
 
         } else {
-            //String id = IGUID.getformattedString(c.GUID());
-
             tryLogAddition(c);
             map.put(c.GUID(), c);
         }
@@ -238,7 +236,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     private void tryLogAddition(C c) {
-        if (logAdditionsToRegistry && ModConfig.INSTANCE.Server.LOG_REGISTRY_ENTRIES) {
+        if (logAdditionsToRegistry && ModConfig.get().Server.LOG_REGISTRY_ENTRIES) {
             System.out.println(
                 "[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
         }

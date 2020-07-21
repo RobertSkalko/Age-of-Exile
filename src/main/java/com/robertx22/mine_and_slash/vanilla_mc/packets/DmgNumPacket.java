@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
 import com.robertx22.mine_and_slash.a_libraries.dmg_number_particle.OnDisplayDamage;
-import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
@@ -70,11 +70,11 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
     @Override
     public void onReceived(PacketContext ctx) {
-        if (isExp && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG) {
+        if (isExp && ModConfig.get().client.dmgParticleConfig.ENABLE_CHAT_EXP_MSG) {
             ClientOnly.getPlayer()
                 .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + number + " EXP"), false);
 
-        } else if (isExp == false && ClientConfigs.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG) {
+        } else if (isExp == false && ModConfig.get().client.dmgParticleConfig.ENABLE_FLOATING_DMG) {
             OnDisplayDamage.displayParticle(element, string, x, y, z, height);
         }
     }

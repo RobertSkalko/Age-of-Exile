@@ -364,7 +364,7 @@ public class EntityCap {
         @Override
         public void onDeath(LivingEntity en) {
 
-            int expLoss = (int) (exp * ModConfig.INSTANCE.Server.EXP_LOSS_ON_DEATH);
+            int expLoss = (int) (exp * ModConfig.get().Server.EXP_LOSS_ON_DEATH);
 
             if (expLoss > 0) {
                 this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
@@ -763,7 +763,7 @@ public class EntityCap {
 
         @Override
         public boolean CheckLevelCap() {
-            return getLevel() + 1 <= ModConfig.INSTANCE.Server.MAX_LEVEL;
+            return getLevel() + 1 <= ModConfig.get().Server.MAX_LEVEL;
         }
 
         @Override
@@ -800,7 +800,7 @@ public class EntityCap {
         @Override
         public void setLevel(int lvl, LivingEntity entity) {
 
-            level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAX_LEVEL);
+            level = MathHelper.clamp(lvl, 1, ModConfig.get().Server.MAX_LEVEL);
 
             this.equipsChanged = true;
             this.shouldSync = true;

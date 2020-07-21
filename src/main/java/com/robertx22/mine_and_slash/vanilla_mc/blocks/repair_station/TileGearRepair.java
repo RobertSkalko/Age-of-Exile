@@ -262,7 +262,7 @@ public class TileGearRepair extends BaseTile {
         for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-                fuelNeeded = (int) (itemStacks[inputSlot].getDamage() * ModConfig.INSTANCE.Server.REPAIR_FUEL_NEEDED_MULTI);
+                fuelNeeded = (int) (itemStacks[inputSlot].getDamage() * ModConfig.get().Server.REPAIR_FUEL_NEEDED_MULTI);
 
                 fuelNeeded *= fuelMulti;
 

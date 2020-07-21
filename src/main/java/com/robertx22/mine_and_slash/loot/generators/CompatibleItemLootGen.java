@@ -19,7 +19,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return (float) ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE;
+        return (float) ModConfig.get().DropRates.COMPATIBLE_ITEMS_DROPRATE;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public boolean condition() {
-        return ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS && info.mobData != null;
+        return ModConfig.get().Server.USE_COMPATIBILITY_ITEMS && info.mobData != null;
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.config.forge.ClientConfigs;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -34,7 +34,7 @@ public class VanillaOverlay extends InGameHud implements HudRenderCallback {
         }
         try {
 
-            if (!ClientConfigs.INSTANCE.PLAYER_GUI_TYPE.equals(PlayerGUIs.Vanilla)) {
+            if (!ModConfig.get().client.PLAYER_GUI_TYPE.equals(PlayerGUIs.Vanilla)) {
                 return;
             }
 
@@ -71,8 +71,8 @@ public class VanillaOverlay extends InGameHud implements HudRenderCallback {
                 y -= SPACING_Y;
             }
 
-            int leftY = ClientConfigs.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
-            int rightY = ClientConfigs.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
+            int leftY = ModConfig.get().client.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
+            int rightY = ModConfig.get().client.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
 
             renderElement(matrix, ticks, Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
 

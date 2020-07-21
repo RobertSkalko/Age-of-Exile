@@ -494,7 +494,7 @@ public class Unit {
     public static List<EntityType> getIgnoredEntities() {
 
         if (IGNORED_ENTITIES == null) {
-            IGNORED_ENTITIES = ModConfig.INSTANCE.Server.IGNORED_ENTITIES
+            IGNORED_ENTITIES = ModConfig.get().Server.IGNORED_ENTITIES
                 .stream()
                 .filter(x -> Registry.ENTITY_TYPE.containsId(new Identifier(x)))
                 .map(x -> Registry.ENTITY_TYPE.get(new Identifier(x)))

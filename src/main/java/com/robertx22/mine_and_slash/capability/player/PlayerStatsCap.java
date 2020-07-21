@@ -62,7 +62,7 @@ public class PlayerStatsCap {
         }
 
         public int getPointsForLevel(int lvl) {
-            return (int) (lvl * ModConfig.INSTANCE.Server.STAT_POINTS_PER_LVL);
+            return (int) (lvl * ModConfig.get().Server.STAT_POINTS_PER_LVL);
         }
 
         @Override

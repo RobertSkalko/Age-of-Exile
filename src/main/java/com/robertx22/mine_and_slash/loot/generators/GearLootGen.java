@@ -15,7 +15,7 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return (float) ModConfig.INSTANCE.DropRates.GEAR_DROPRATE;
+        return (float) ModConfig.get().DropRates.GEAR_DROPRATE;
     }
 
     @Override

@@ -12,7 +12,7 @@ public enum GearItemEnum implements IWeighted {
     NORMAL() {
         @Override
         public int Weight() {
-            return (int) (ModConfig.INSTANCE.DropRates.GEAR_DROPRATE
+            return (int) (ModConfig.get().DropRates.GEAR_DROPRATE
                 * 100); // cus some config values are < 1 like 0.1F
         }
 
@@ -35,7 +35,7 @@ public enum GearItemEnum implements IWeighted {
     UNIQUE() {
         @Override
         public int Weight() {
-            return (int) (ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE
+            return (int) (ModConfig.get().DropRates.UNIQUE_DROPRATE
                 * 100); // cus some config values are < 1 like 0.1F
         }
 

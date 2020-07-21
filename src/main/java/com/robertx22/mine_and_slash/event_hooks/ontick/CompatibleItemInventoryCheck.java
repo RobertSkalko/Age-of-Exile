@@ -39,7 +39,7 @@ public class CompatibleItemInventoryCheck {
 
         try {
 
-            if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS == false) {
+            if (ModConfig.get().Server.USE_COMPATIBILITY_ITEMS == false) {
                 return;
             }
             if (player.world.isClient) {
@@ -73,7 +73,7 @@ public class CompatibleItemInventoryCheck {
                         config = matchingItems.random();
                     } else {
 
-                        if (ModConfig.INSTANCE.autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
+                        if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
 
                             final ItemStack finalStack = stack;
 
