@@ -17,13 +17,10 @@ public abstract class ItemStackMixin {
     public ItemStackMixin() {
     }
 
-    @Inject(
-        method = {"getTooltip"},
-        at = {@At("RETURN")}
-    )
+    // copied from TooltipCallback fabric event
+    @Inject(method = {"getTooltip"}, at = {@At("RETURN")})
     private void getTooltip(PlayerEntity entity, TooltipContext tooltipContext, CallbackInfoReturnable<List<Text>> list) {
         ItemStack stack = (ItemStack) (Object) this;
         TooltipMethod.getTooltip(stack, entity, tooltipContext, list);
     }
-
 }

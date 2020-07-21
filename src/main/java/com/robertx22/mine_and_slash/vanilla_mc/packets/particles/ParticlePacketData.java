@@ -5,6 +5,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -53,8 +54,14 @@ public class ParticlePacketData {
     @Store
     public String particleID;
 
-    public ParticleEffect getParticleType() {
-        return (ParticleEffect) Registry.PARTICLE_TYPE.get(new Identifier(particleID));
+    public <T extends ParticleEffect> ParticleEffect getParticleType() {
+        ParticleType<T> particleType = (ParticleType<T>) Registry.PARTICLE_TYPE.get(new Identifier(particleID));
+
+        if (particleType instanceof ParticleEffect) {
+            return (ParticleEffect) particleType;
+        } else
+
+            return ParticleTypes.CRIT;
     }
 
     public ParticlePacketData motion(Vec3d v) {
