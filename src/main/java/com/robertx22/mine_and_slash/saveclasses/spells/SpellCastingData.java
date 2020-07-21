@@ -32,7 +32,7 @@ public class SpellCastingData {
 
     public void cancelCast(PlayerEntity player) {
         try {
-            SpellCastContext ctx = new SpellCastContext(player, 0, getSpellBeingCast());
+            SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(getSpellBeingCast().GUID()));
 
             BaseSpell spell = getSpellBeingCast();
             if (spell != null && spell.goesOnCooldownIfCastCanceled()) {
@@ -84,7 +84,7 @@ public class SpellCastingData {
                 BaseSpell spell = SlashRegistry.Spells()
                     .get(spellBeingCast);
 
-                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
+                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, getSkillGem(spellBeingCast));
 
                 if (!player.world.isClient) {
                     if (spell != null && spells != null && SlashRegistry.Spells()
@@ -129,7 +129,7 @@ public class SpellCastingData {
     public void setToCast(int key, Hotbar hotbar, PlayerEntity player, int ticks) {
         BaseSpell spell = getSpellByKeybind(key, hotbar);
 
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGemByKeybind(key, hotbar));
 
         this.spellBeingCast = spell.GUID();
 
@@ -140,7 +140,7 @@ public class SpellCastingData {
     }
 
     public void setToCast(BaseSpell spell, PlayerEntity player) {
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
 
         this.spellBeingCast = spell.GUID();
         this.castingTicksLeft = spell.useTimeTicks(ctx);
@@ -214,7 +214,7 @@ public class SpellCastingData {
             return false;
         }
 
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
 
         return spell.canCast(ctx);
 
@@ -237,7 +237,7 @@ public class SpellCastingData {
         if (data.cooldownIsReady() == false) {
             return false;
         }
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
 
         return spell.canCast(ctx);
 
@@ -246,7 +246,7 @@ public class SpellCastingData {
     private void onSpellCast(BaseSpell spell, PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
         SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
 
         if (spell.shouldActivateCooldown(player, spells)) {
             int cd = spell.getCooldownInTicks(ctx);
@@ -308,6 +308,10 @@ public class SpellCastingData {
 
         return spellDatas.get(id);
 
+    }
+
+    public SkillGemData getSkillGemByKeybind(int key, Hotbar hotbar) {
+        return getMap(hotbar).getOrDefault(key, new SkillGemData());
     }
 
     public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {

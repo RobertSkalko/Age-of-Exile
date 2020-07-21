@@ -1,11 +1,7 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.hunting.ImbueSpell;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -68,19 +64,10 @@ public class RangerArrowEntity extends EntityBaseProjectile {
 
         try {
 
-            LivingEntity caster = getCaster();
-
-            BaseSpell spell = getSpellData().getSpell();
-
             SpellDamageEffect dmg = this.getSetupSpellDamage(entity);
 
             if (imbued) {
-
-                float add = (float) (ImbueSpell.getInstance()
-                    .getCalculation(new SpellCastContext(caster, 0, ImbueSpell.getInstance()))
-                    .getCalculatedValue(Load.Unit(caster), Load.spells(caster), ImbueSpell.getInstance()));
-
-                dmg.number += add;
+                dmg.number *= 1.5F;
             }
 
             dmg.Activate();

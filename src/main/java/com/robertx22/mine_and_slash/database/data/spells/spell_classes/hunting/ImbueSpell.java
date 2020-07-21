@@ -52,8 +52,6 @@ public class ImbueSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 10, 25);
-        c.set(SC.BASE_VALUE, 2, 12);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.2F);
         c.set(SC.CAST_TIME_TICKS, 25, 10);
         c.set(SC.COOLDOWN_SECONDS, 45, 25);
         c.set(SC.DURATION_TICKS, 20 * 30, 20 * 45);

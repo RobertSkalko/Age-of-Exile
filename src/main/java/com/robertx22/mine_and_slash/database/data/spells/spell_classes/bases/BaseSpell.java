@@ -12,9 +12,9 @@ import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
@@ -39,7 +39,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITooltipList, IAbility {
+public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbility {
 
     public List<EffectChance> onDamageEffects = new ArrayList<>();
 
@@ -293,10 +293,9 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     }
 
-    @Override
-    public final List<Text> GetTooltipString(TooltipInfo info) {
+    public final List<Text> GetTooltipString(TooltipInfo info, SkillGemData skillgem) {
 
-        SpellCastContext ctx = new SpellCastContext(info.player, 0, this);
+        SpellCastContext ctx = new SpellCastContext(info.player, 0, skillgem);
 
         List<Text> list = new ArrayList<>();
 

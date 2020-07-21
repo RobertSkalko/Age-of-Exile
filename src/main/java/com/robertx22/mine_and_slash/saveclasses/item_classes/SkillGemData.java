@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.rarities.SkillGemRarity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
@@ -34,6 +34,10 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
     @Store
     public int stat_percents = 0;
 
+    public SkillGemData() {
+
+    }
+
     @Override
     public DataItemType getDataType() {
         return DataItemType.SKILL_GEM;
@@ -58,7 +62,7 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
         ctx.tooltip
             .add(spell.getLocName());
 
-        ctx.tooltip.addAll(spell.GetTooltipString(new TooltipInfo(ClientOnly.getPlayer())));
+        ctx.tooltip.addAll(spell.GetTooltipString(new TooltipInfo(ClientOnly.getPlayer()), this));
 
         ctx.tooltip.add(TooltipUtils.rarity(getRarity()));
         ctx.tooltip.add(new SText(Formatting.YELLOW + "Level: " + level));

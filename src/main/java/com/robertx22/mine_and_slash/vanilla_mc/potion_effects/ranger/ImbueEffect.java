@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ranger;
 
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.hunting.ImbueSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -44,8 +43,6 @@ public class ImbueEffect extends BasePotionEffect {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.BASE_VALUE, 1, 3);
-        p.set(SC.ATTACK_SCALE_VALUE, 0.05F, 0.2F);
         return p;
     }
 
@@ -58,7 +55,7 @@ public class ImbueEffect extends BasePotionEffect {
     public List<Text> getEffectTooltip(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
 
-        list.add(new SText(Formatting.GREEN + "Adds damage to Ranger spells."));
+        list.add(new SText(Formatting.GREEN + "Increases ranger spells damage by 50%"));
 
         list.addAll(getCalc(info.player)
             .GetTooltipString(info, Load.spells(info.player), this));

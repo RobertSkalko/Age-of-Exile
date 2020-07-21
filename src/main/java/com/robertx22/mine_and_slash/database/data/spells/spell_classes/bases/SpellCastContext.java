@@ -45,11 +45,11 @@ public class SpellCastContext {
         return cacheMap.get(ability.GUID());
     }
 
-    public SpellCastContext(LivingEntity caster, int ticksInUse, IAbility ability) {
+    public SpellCastContext(LivingEntity caster, int ticksInUse, SkillGemData skillgem) {
         this.caster = caster;
         this.ticksInUse = ticksInUse;
 
-        this.ability = ability;
+        this.ability = skillgem.getSpell();
 
         this.data = Load.Unit(caster);
 
@@ -59,8 +59,7 @@ public class SpellCastContext {
             this.spellsCap = new PlayerSpellCap.DefaultImpl();
         }
 
-        this.skillGem = spellsCap.getCastingData()
-            .getSkillGem(ability.GUID());
+        this.skillGem = skillgem;
 
         this.configForSummonedEntities = new EntityCalcSpellConfigs(data, spellsCap, ability);
 
