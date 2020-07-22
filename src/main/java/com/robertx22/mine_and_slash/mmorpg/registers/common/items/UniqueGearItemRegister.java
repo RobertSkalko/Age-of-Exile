@@ -8,8 +8,11 @@ import com.robertx22.mine_and_slash.database.data.unique_items.bases.*;
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.necklace.BirthingMiracleNecklace;
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.necklace.SkullOfSpiritsNecklace;
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.ring.GreedsPersistenceRing;
+import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.ring.LoopOfInfinityRing;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.axe.ObsidianMightAxe;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.WaterElementalSword;
+import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.EyeOfZegrathWand;
+import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.WillOfFloraWand;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -17,17 +20,20 @@ import net.minecraft.util.registry.Registry;
 
 public class UniqueGearItemRegister {
 
-    public static Item WATER_ELEMENTAL_SWORD = of(new BaseUniqueSword(), new WaterElementalSword());
-    public static Item BIRTHING_MIRACLE_NECKLACE = of(new BaseUniqueNecklace(), new BirthingMiracleNecklace());
-    public static Item SKULL_OF_SPIRITS_NECKLACE = of(new BaseUniqueNecklace(), new SkullOfSpiritsNecklace());
-    public static Item GREEDS_PERSISTENCE_RING = of(new BaseUniqueRing(), new GreedsPersistenceRing());
-    public static Item INNER_CONFLUX_ROBE = of(new BaseUniqueChest(), new InnerConfluxRobe());
-    public static Item BEST_BLOOD_CHEST = of(new BaseUniqueChest(), new BeastBloodChest());
+    public Item WATER_ELEMENTAL_SWORD = of(new BaseUniqueSword(), new WaterElementalSword());
+    public Item BIRTHING_MIRACLE_NECKLACE = of(new BaseUniqueNecklace(), new BirthingMiracleNecklace());
+    public Item SKULL_OF_SPIRITS_NECKLACE = of(new BaseUniqueNecklace(), new SkullOfSpiritsNecklace());
+    public Item GREEDS_PERSISTENCE_RING = of(new BaseUniqueRing(), new GreedsPersistenceRing());
+    public Item INNER_CONFLUX_ROBE = of(new BaseUniqueChest(), new InnerConfluxRobe());
+    public Item BEST_BLOOD_CHEST = of(new BaseUniqueChest(), new BeastBloodChest());
+    public Item LOOP_OF_INFINITY = of(new BaseUniqueRing(), new LoopOfInfinityRing());
+    public Item WILL_OF_FLORA = of(new BaseUniqueWand(), new WillOfFloraWand());
+    public Item EYE_OF_ZEGRATH = of(new BaseUniqueWand(), new EyeOfZegrathWand());
 
-    public static Item JESTER_HAT = of(new BaseUniqueHelmet(), new JesterHat());
-    public static Item OBSIDIAN_MIGHT_AXE = of(new BaseUniqueAxe(), new ObsidianMightAxe());
+    public Item JESTER_HAT = of(new BaseUniqueHelmet(), new JesterHat());
+    public Item OBSIDIAN_MIGHT_AXE = of(new BaseUniqueAxe(), new ObsidianMightAxe());
 
-    static Item of(Item c, IUnique uniq) {
+    Item of(Item c, IUnique uniq) {
         return Registry.register(Registry.ITEM, new Identifier(Ref.MODID, uniq.getGeneratedResourceID()), c);
     }
 }

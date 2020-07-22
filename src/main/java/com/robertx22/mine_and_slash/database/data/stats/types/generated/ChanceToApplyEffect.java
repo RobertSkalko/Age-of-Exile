@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.data.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.effects.offense.ChanceToApplyEffectEffect;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic.FrostEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.shaman.StaticEffect;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
 public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
@@ -22,6 +22,7 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
     private ChanceToApplyEffect(BasePotionEffect effect) {
         this.effect = effect;
+        this.add$To$toTooltip = false;
     }
 
     @Override

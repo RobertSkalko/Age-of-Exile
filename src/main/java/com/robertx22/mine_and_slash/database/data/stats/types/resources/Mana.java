@@ -63,7 +63,7 @@ public class Mana extends FillableStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Mana";
+        return "Maximum Mana";
     }
 
     private static class SingletonHolder {
