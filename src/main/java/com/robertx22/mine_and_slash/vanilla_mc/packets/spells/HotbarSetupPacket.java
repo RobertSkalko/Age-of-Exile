@@ -19,16 +19,14 @@ import net.minecraft.util.Identifier;
 public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
 
     public int number;
-    public SpellCastingData.Hotbar hotbar;
     public int invSlot = 0;
 
     public HotbarSetupPacket() {
 
     }
 
-    public HotbarSetupPacket(int invSlot, int num, SpellCastingData.Hotbar bar) {
+    public HotbarSetupPacket(int invSlot, int num) {
         this.number = num;
-        this.hotbar = bar;
         this.invSlot = invSlot;
     }
 
@@ -40,7 +38,6 @@ public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         number = tag.readInt();
-        hotbar = SpellCastingData.Hotbar.valueOf(tag.readString(30));
         invSlot = tag.readInt();
 
     }
@@ -49,7 +46,6 @@ public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
     public void saveToData(PacketByteBuf tag) {
 
         tag.writeInt(number);
-        tag.writeString(hotbar.name());
         tag.writeInt(invSlot);
 
     }
@@ -63,11 +59,11 @@ public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
             .getCastingData();
 
         if (invSlot < 0) {
-            SkillGemData skillgem = data.getMap(hotbar)
+            SkillGemData skillgem = data.getHotbar()
                 .get(number);
             if (skillgem != null) {
                 PlayerUtils.giveItem(skillgem.toItemStack(), player);
-                data.getMap(hotbar)
+                data.getHotbar()
                     .remove(number);
             }
         } else {
@@ -79,7 +75,7 @@ public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
 
                 stack.decrement(1);
 
-                data.setHotbar(number, hotbar, skillgem);
+                data.setHotbar(number, skillgem);
 
                 Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
             }

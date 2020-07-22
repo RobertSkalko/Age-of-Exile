@@ -9,7 +9,8 @@
 	"MinecraftServerMixin",
 	"ServerResourceManagerMixin",	
 	"EntityMixin",
-	"ArrowShootMixin"
+	"ArrowShootMixin",
+	"ItemMixin"
   ],
   "client": [
 	"ItemStackMixin",

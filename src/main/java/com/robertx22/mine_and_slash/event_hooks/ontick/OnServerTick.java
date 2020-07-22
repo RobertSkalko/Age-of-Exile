@@ -20,7 +20,7 @@ import java.util.UUID;
 public class OnServerTick implements ServerTickEvents.EndTick {
 
     static final int TicksToUpdatePlayer = 18;
-    static final int TicksToRegen = 40; // was 100, todo balance
+    static final int TicksToRegen = 60; // was 100, todo balance
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
     static final int TicksToCompatibleItems = 40;
@@ -73,7 +73,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                         boolean restored = false;
 
                         boolean canHeal = player.getHungerManager()
-                            .getFoodLevel() >= 18;
+                            .getFoodLevel() >= 16;
 
                         if (canHeal) {
                             if (player.getHealth() < player.getMaxHealth()) {

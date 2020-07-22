@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.event_hooks.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
+import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -17,19 +17,17 @@ import net.minecraft.util.math.MathHelper;
 
 public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallback {
 
-    public static SpellCastingData.Hotbar CURRENT_HOTBAR = SpellCastingData.Hotbar.FIRST;
-
     private static final Identifier HOTBAR_TEX = new Identifier(Ref.MODID,
-        "textures/gui/spells/hotbar.png"
+        "textures/gui/spells/hotbar_horizontal.png"
     );
     private static final Identifier COOLDOWN_TEX = new Identifier(Ref.MODID,
         "textures/gui/spells/cooldown.png"
     );
-    private static final Identifier SPELL_READY_TEXT = new Identifier(Ref.MODID,
+    private static final Identifier SPELL_READY_TEX = new Identifier(Ref.MODID,
         "textures/gui/spells/spell_ready.png"
     );
-    static int WIDTH = 22;
-    static int HEIGHT = 102;
+    static int WIDTH = 182;
+    static int HEIGHT = 22;
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -39,25 +37,73 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     public void onHudRender(MatrixStack matrix, float v) {
 
         if (mc.options.debugEnabled) {
-            return; // dont display when F3 screen
+            // return; // dont display when F3 screen
         }
 
         if (mc.player.isSpectator()) {
             return;
         }
-
         data = Load.spells(mc.player);
-
-        int x = 0;
-        int y = (int) (mc.getWindow()
-            .getScaledHeight() / 2 - HEIGHT / 2);
 
         RenderSystem.enableBlend(); // enables transparency
 
-        renderHotbar(matrix, x, y);
-        renderSpellsOnHotbar(matrix, x, y);
+        if (KeybindsRegister.CHOOSE_SPELL_KEY.isPressed()) {
+            int x = mc.getWindow()
+                .getScaledWidth() / 2 - WIDTH / 2;
+            int y = (int) (mc.getWindow()
+                .getScaledHeight() - HEIGHT);
+
+            renderHotbar(matrix, x, y);
+            renderSpellsOnHotbar(matrix, x, y);
+
+        }
+
+        renderCurrentSpell(matrix);
 
         RenderSystem.disableBlend(); // enables transparency
+
+    }
+
+    private void renderCurrentSpell(MatrixStack matrix) {
+
+        int x = mc.getWindow()
+            .getScaledWidth() / 2 + 98;
+        int y = mc.getWindow()
+            .getScaledHeight() - HEIGHT + 2;
+
+        double scale = 0.6F;
+        RenderSystem.scaled(scale, scale, scale);
+
+        int xs = (int) (x * 1 / scale);
+        int ys = (int) (y * 1 / scale);
+
+        mc.getTextureManager()
+            .bindTexture(SPELL_READY_TEX);
+        this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
+
+        BaseSpell spell = Load.spells(this.mc.player)
+            .getCurrentRightClickSpell();
+
+        if (spell != null) {
+            mc.getTextureManager()
+                .bindTexture(spell.getIconLoc());
+            this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
+
+            SpellData spelldata = Load.spells(mc.player)
+                .getCastingData()
+                .getDataBySpell(spell);
+
+            if (spelldata != null) {
+                float percent = (float) spelldata.getRemainingCooldown() / (float) spelldata.getTotalCooldown();
+                percent = MathHelper.clamp(percent, 0, 1F);
+                mc.getTextureManager()
+                    .bindTexture(COOLDOWN_TEX);
+                this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+            }
+
+        }
+
+        RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
     }
 
@@ -66,8 +112,8 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         x += 3;
         y += 3;
 
-        for (int i = 0; i < 5; i++) {
-            BaseSpell spell = data.getSpellByKeybind(i, CURRENT_HOTBAR);
+        for (int i = 0; i < 9; i++) {
+            BaseSpell spell = data.getSpellByNumber(i);
 
             if (spell != null) {
                 double scale = 0.5D;
@@ -89,9 +135,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     if (spelldata.cooldownIsReady() == false) {
 
                         float percent = (float) spelldata.getRemainingCooldown() / (float) spelldata.getTotalCooldown();
-
                         percent = MathHelper.clamp(percent, 0, 1F);
-
                         mc.getTextureManager()
                             .bindTexture(COOLDOWN_TEX);
                         this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
@@ -107,7 +151,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
                             RenderSystem.enableBlend(); // enables transparency
                             mc.getTextureManager()
-                                .bindTexture(SPELL_READY_TEXT);
+                                .bindTexture(SPELL_READY_TEX);
                             this.drawTexture(matrix, x - 2, y - 2, 0, 0, 20, 20, 20, 20);
                             RenderSystem.disableBlend(); // enables transparency
 
@@ -115,7 +159,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     }
                 }
             }
-            y += 20;
+            x += 20;
         }
     }
 

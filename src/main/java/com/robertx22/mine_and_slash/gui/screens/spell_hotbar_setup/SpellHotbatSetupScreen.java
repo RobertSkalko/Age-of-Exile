@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -28,7 +27,6 @@ import net.minecraft.util.Identifier;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
@@ -83,24 +81,18 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         count = 0;
         /////////////////
 
-        x = guiLeft + 55;
-        y = guiTop + 90;
+        y = guiTop + 140;
 
-        for (SpellCastingData.Hotbar bar : Arrays.asList(
-            SpellCastingData.Hotbar.FIRST, SpellCastingData.Hotbar.SECOND)) {
+        y += 50;
+        x = guiLeft + 15;
 
-            y += 50;
-            x = guiLeft + 55;
+        for (int i = 0; i < 9; i++) {
 
-            for (int i = 0; i < 5; i++) {
+            HotbarButton but = new HotbarButton(i, x, y);
 
-                HotbarButton but = new HotbarButton(i, bar, x, y);
+            this.addButton(but);
 
-                this.addButton(but);
-
-                x += HotbarButton.xSize;
-
-            }
+            x += HotbarButton.xSize;
 
         }
 
@@ -123,19 +115,21 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         double scale = 1.25;
 
-        String str = "First Hotbar";
+        String str = "Spell Hotbar";
         int xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        int yp = 130 + guiTop;
-        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.GREEN);
-
-        str = "Second Hotbar";
-        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        yp = 180 + guiTop;
+        int yp = 180 + guiTop;
         GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.GREEN);
 
         str = "Skill Gems in Inventory";
         xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
         yp = 12 + guiTop;
+        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
+
+        scale = 1;
+
+        str = "Cast by right clicking a staff.";
+        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
+        yp = 100 + guiTop;
         GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
 
     }
@@ -172,19 +166,17 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             Ref.MODID, "textures/gui/hotbar_setup/picked_bar.png");
 
         int number;
-        SpellCastingData.Hotbar hotbar;
 
         SkillGemData skillgem;
 
-        public HotbarButton(int number, SpellCastingData.Hotbar hotbar, int xPos, int yPos) {
+        public HotbarButton(int number, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new Identifier(""), (button) -> {
             });
 
-            this.hotbar = hotbar;
             this.number = number;
             this.skillgem = Load.spells(MinecraftClient.getInstance().player)
                 .getCastingData()
-                .getSkillGemByKeybind(number, hotbar);
+                .getSkillGemByNumber(number);
 
         }
 
@@ -207,7 +199,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             super.onPress();
 
             if (this.getSpell() != null) {
-                Packets.sendToServer(new HotbarSetupPacket(-1, number, hotbar));
+                Packets.sendToServer(new HotbarSetupPacket(-1, number));
             } else {
                 SpellHotbatSetupScreen.barBeingPicked = this;
             }
@@ -217,7 +209,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         public BaseSpell getSpell() {
             return Load.spells(MinecraftClient.getInstance().player)
                 .getCastingData()
-                .getSpellByKeybind(number, hotbar);
+                .getSpellByNumber(number);
 
         }
 
@@ -268,9 +260,8 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
                     HotbarButton bar = SpellHotbatSetupScreen.barBeingPicked;
 
-                    if (bar.hotbar != null) {
-                        Packets.sendToServer(new HotbarSetupPacket(invslot, bar.number, bar.hotbar));
-                    }
+                    Packets.sendToServer(new HotbarSetupPacket(invslot, bar.number));
+
                 }
 
             });

@@ -15,14 +15,13 @@ public class PlayerSpellCap {
 
     public static final Identifier RESOURCE = new Identifier(Ref.MODID, "spells");
 
-    private static final String SPELL_PERK_DATA = "spell_perk_data";
     private static final String PLAYER_SPELL_DATA = "player_spells_data";
 
     public abstract static class ISpellsCap implements ICommonPlayerCap {
 
         public abstract BaseSpell getCurrentRightClickSpell();
 
-        public abstract BaseSpell getSpellByKeybind(int key, SpellCastingData.Hotbar bar);
+        public abstract BaseSpell getSpellByNumber(int key);
 
         public abstract SpellCastingData getCastingData();
 
@@ -64,12 +63,12 @@ public class PlayerSpellCap {
 
         @Override
         public BaseSpell getCurrentRightClickSpell() {
-            return null; // TODO
+            return this.spellCastingData.getSelectedSpell(); // TODO
         }
 
         @Override
-        public BaseSpell getSpellByKeybind(int key, SpellCastingData.Hotbar hotbar) {
-            return this.spellCastingData.getSpellByKeybind(key, hotbar);
+        public BaseSpell getSpellByNumber(int key) {
+            return this.spellCastingData.getSpellByNumber(key);
         }
 
         @Override

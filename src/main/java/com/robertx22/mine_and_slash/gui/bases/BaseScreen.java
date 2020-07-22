@@ -22,7 +22,7 @@ public class BaseScreen extends Screen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (KeybindsRegister.hubScreen.matchesKey(keyCode, scanCode)) {
+        if (KeybindsRegister.HUB_SCREEN_KEY.matchesKey(keyCode, scanCode)) {
             MinecraftClient.getInstance()
                 .openScreen(null);
             OnKeyPress.cooldown = 5;

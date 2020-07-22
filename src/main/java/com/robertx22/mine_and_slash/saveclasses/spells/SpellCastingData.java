@@ -27,8 +27,16 @@ public class SpellCastingData {
     @Store
     public int lastSpellCastTimeInTicks = 0;
 
+    public static Integer selectedSpell = 1; // this is just used on client, so client tells server which spell to cast
+
     @Store
     public String spellBeingCast = "";
+
+    @Store
+    private HashMap<Integer, SkillGemData> hotbar = new HashMap<>();
+
+    @Store
+    private HashMap<String, SpellData> spellDatas = new HashMap<>();
 
     public void cancelCast(PlayerEntity player) {
         try {
@@ -53,23 +61,12 @@ public class SpellCastingData {
     }
 
     public void clear() {
-        getMap(SpellCastingData.Hotbar.FIRST).clear();
-        getMap(SpellCastingData.Hotbar.SECOND).clear();
+        hotbar.clear();
     }
 
-    public enum Hotbar {
-        FIRST,
-        SECOND
+    public BaseSpell getSelectedSpell() {
+        return getSpellByNumber(selectedSpell);
     }
-
-    @Store
-    private HashMap<Integer, SkillGemData> firstHotbar = new HashMap<>();
-
-    @Store
-    private HashMap<Integer, SkillGemData> secondHotbar = new HashMap<>();
-
-    @Store
-    private HashMap<String, SpellData> spellDatas = new HashMap<>();
 
     public boolean isCasting() {
         return castingTicksLeft > 0 && SlashRegistry.Spells()
@@ -126,19 +123,6 @@ public class SpellCastingData {
 
     }
 
-    public void setToCast(int key, Hotbar hotbar, PlayerEntity player, int ticks) {
-        BaseSpell spell = getSpellByKeybind(key, hotbar);
-
-        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGemByKeybind(key, hotbar));
-
-        this.spellBeingCast = spell.GUID();
-
-        this.castingTicksLeft = spell.useTimeTicks(ctx);
-        this.lastSpellCastTimeInTicks = spell.useTimeTicks(ctx);
-        this.castingTicksDone = 0;
-
-    }
-
     public void setToCast(BaseSpell spell, PlayerEntity player) {
         SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
 
@@ -177,7 +161,7 @@ public class SpellCastingData {
 
     }
 
-    public void setHotbar(int number, Hotbar hotbar, SkillGemData data) {
+    public void setHotbar(int number, SkillGemData data) {
 
         if (data != null) {
             if (!SlashRegistry.Spells()
@@ -190,7 +174,7 @@ public class SpellCastingData {
             }
         }
 
-        getMap(hotbar).put(number, data);
+        getHotbar().put(number, data);
     }
 
     public BaseSpell getSpellBeingCast() {
@@ -207,28 +191,7 @@ public class SpellCastingData {
         if (spell == null) {
             return false;
         }
-
-        SpellData data = getDataBySpell(spell);
-
-        if (data.cooldownIsReady() == false) {
-            return false;
-        }
-
-        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
-
-        return spell.canCast(ctx);
-
-    }
-
-    public boolean canCast(int key, Hotbar hotbar, PlayerEntity player) {
-
-        if (isCasting()) {
-            return false;
-        }
-
-        BaseSpell spell = getSpellByKeybind(key, hotbar);
-
-        if (spell == null) {
+        if (getSkillGem(spell.GUID()) == null) {
             return false;
         }
 
@@ -237,6 +200,7 @@ public class SpellCastingData {
         if (data.cooldownIsReady() == false) {
             return false;
         }
+
         SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
 
         return spell.canCast(ctx);
@@ -257,21 +221,13 @@ public class SpellCastingData {
 
     }
 
-    public HashMap<Integer, SkillGemData> getMap(Hotbar hotbar) {
-        if (hotbar == Hotbar.FIRST) {
-            return this.firstHotbar;
-        } else {
-            return this.secondHotbar;
-        }
+    public HashMap<Integer, SkillGemData> getHotbar() {
+        return this.hotbar;
     }
 
     public SkillGemData getSkillGem(String id) {
 
-        Optional<SkillGemData> opt1 = getMap(Hotbar.FIRST).values()
-            .stream()
-            .filter(x -> x.spell_id.equals(id))
-            .findFirst();
-        Optional<SkillGemData> opt2 = getMap(Hotbar.SECOND).values()
+        Optional<SkillGemData> opt1 = getHotbar().values()
             .stream()
             .filter(x -> x.spell_id.equals(id))
             .findFirst();
@@ -279,9 +235,7 @@ public class SpellCastingData {
         if (opt1.isPresent()) {
             return opt1.get();
         }
-        if (opt2.isPresent()) {
-            return opt2.get();
-        }
+
         return null;
 
     }
@@ -298,24 +252,13 @@ public class SpellCastingData {
 
     }
 
-    public SpellData getDataByKeybind(int key, Hotbar hotbar) {
-
-        String id = getMap(hotbar).get(key).spell_id;
-
-        if (spellDatas.containsKey(id) == false) {
-            spellDatas.put(id, new SpellData());
-        }
-
-        return spellDatas.get(id);
-
+    public SkillGemData getSkillGemByNumber(int key) {
+        return getHotbar().getOrDefault(key, new SkillGemData());
     }
 
-    public SkillGemData getSkillGemByKeybind(int key, Hotbar hotbar) {
-        return getMap(hotbar).getOrDefault(key, new SkillGemData());
-    }
+    public BaseSpell getSpellByNumber(int key) {
 
-    public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {
-        String id = getMap(hotbar).getOrDefault(key, new SkillGemData()).spell_id;
+        String id = getHotbar().getOrDefault(key, new SkillGemData()).spell_id;
 
         if (id != null) {
             if (SlashRegistry.Spells()
