@@ -25,6 +25,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.EfficientMobUnitPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.EntityStatusEffectsData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityType;
@@ -44,6 +45,9 @@ import java.util.stream.Collectors;
 // and mob status effects.
 @Storable
 public class Unit {
+
+    @Store
+    public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
 
     @Store
     private StatContainer stats = new StatContainer();

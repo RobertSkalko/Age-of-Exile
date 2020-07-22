@@ -181,7 +181,6 @@ public class EntityCap {
     public static class DefaultImpl implements UnitData {
 
         LivingEntity entity;
-        EntityStatusEffectsData statusEffectsData = new EntityStatusEffectsData();
 
         //dont save this
         EntityGears gears = new EntityGears();
@@ -353,7 +352,7 @@ public class EntityCap {
 
         @Override
         public EntityStatusEffectsData getStatusEffectsData() {
-            return this.statusEffectsData;
+            return this.getUnit().statusEffects;
         }
 
         @Override
