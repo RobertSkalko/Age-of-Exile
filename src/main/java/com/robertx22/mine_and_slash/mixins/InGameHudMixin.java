@@ -22,7 +22,7 @@ public abstract class InGameHudMixin {
     @Redirect(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))
     public double on$getHealthGeneric(PlayerEntity entity, EntityAttribute attribute) {
         if (attribute == EntityAttributes.GENERIC_MAX_HEALTH) {
-            return Math.min(entity.getHealth(), 20);
+            return 20;
         }
         return entity.getAttributeBaseValue(attribute);
     }
