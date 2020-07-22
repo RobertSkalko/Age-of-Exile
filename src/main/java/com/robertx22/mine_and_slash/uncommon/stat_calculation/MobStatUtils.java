@@ -101,8 +101,10 @@ public class MobStatUtils {
             hpaddedalready = (float) hpmod.getValue();
         }
 
-        float hpwithoutmodifier = en.getMaxHealth() - hpaddedalready;
-        hpwithoutmodifier -= 10; // newbie help
+        float multi = lvl < 10 ? 0.8F : 1; // newbie help
+
+        float hpwithoutmodifier = (en.getMaxHealth() * multi) - hpaddedalready;
+
         if (hpwithoutmodifier < 0) {
             hpwithoutmodifier = 0;
         }

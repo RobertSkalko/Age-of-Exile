@@ -34,7 +34,6 @@ import java.util.stream.Collectors;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable, ICrittable {
-    public static String ARROW_DMG_MULTI_TAG = Ref.MODID + ":dmg_multi";
 
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg, UnitData sourceData,
                         UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
@@ -46,19 +45,19 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     public DamageEffect(DamageEventData data, int dmg, EffectTypes effectType, WeaponTypes weptype) {
         super(data.source, data.target, data.sourceData, data.targetData);
-
+        this.event = data.event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
-        this.event = data.event;
+
     }
 
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg,
                         EffectTypes effectType, WeaponTypes weptype) {
         super(source, target, Load.Unit(source), Load.Unit(target));
-
+        this.event = event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
-        this.event = event;
+
     }
 
     LivingHurtEvent event;
@@ -67,24 +66,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     public boolean isElemental() {
         return this.element != null && this.element != Elements.Physical;
-    }
-
-    public Elements getHighestBonusElementalDamageElement() {
-
-        int highest = 0;
-        Elements ele = null;
-        for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
-            if (entry.getValue() > highest) {
-                ele = entry.getKey();
-                highest = entry.getValue();
-            }
-        }
-        return ele;
-
-    }
-
-    public void addBonusEleDmgDivideByMulti(Elements element, float dmg) {
-        addBonusEleDmg(element, dmg / damageMultiplier);
     }
 
     public void addBonusEleDmg(Elements element, float dmg) {
@@ -410,7 +391,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEffect bonus = new DamageEffect(null, source, target, entry.getValue(), this.sourceData,
+                DamageEffect bonus = new DamageEffect(event, source, target, entry.getValue(), this.sourceData,
                     this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType
                 );
                 bonus.element = entry.getKey();
