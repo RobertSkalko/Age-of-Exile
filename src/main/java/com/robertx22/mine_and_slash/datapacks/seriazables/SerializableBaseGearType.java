@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.datapacks.seriazables;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -18,6 +19,7 @@ public class SerializableBaseGearType extends BaseGearType {
     public List<SlotTag> tags;
     public String item_id;
     public StatRequirement stat_req;
+    public WeaponTypes weapon_type;
     public String identifier;
     public String lang_name_id;
     public int weight;
@@ -25,6 +27,11 @@ public class SerializableBaseGearType extends BaseGearType {
     @Override
     public String locNameLangFileGUID() {
         return lang_name_id;
+    }
+
+    @Override
+    public WeaponTypes weaponType() {
+        return weapon_type;
     }
 
     @Override

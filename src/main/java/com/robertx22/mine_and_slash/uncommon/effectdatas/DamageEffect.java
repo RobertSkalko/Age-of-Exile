@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.effectdatas;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
+import com.robertx22.mine_and_slash.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -38,10 +39,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg, UnitData sourceData,
                         UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
         super(source, target, sourceData, targetData);
-
+        this.event = event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
-        this.event = event;
     }
 
     public DamageEffect(DamageEventData data, int dmg, EffectTypes effectType, WeaponTypes weptype) {
@@ -130,7 +130,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         dmg = modifyByAttackSpeedIfMelee(dmg);
 
-        //dmg = modifyIfArrowDamage(dmg);
+        dmg = modifyIfArrowDamage(dmg);
 
         return dmg * percentMulti;
     }
@@ -164,22 +164,16 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return dmg;
 
     }
-/* TODO
+
     private float modifyIfArrowDamage(float dmg) {
         if (event != null && event.getSource() != null) {
             if (event.getSource()
-                .getSource() instanceof ProjectileEntity) {
+                .getSource() instanceof ProjectileEntityDuck) {
 
-                CompoundTag arrownbt = event.getSource()
-                    .getSource()
-                    .getPersistentData();
+                ProjectileEntityDuck duck = (ProjectileEntityDuck) event.getSource()
+                    .getSource();
 
-                if (!arrownbt.contains(ARROW_DMG_MULTI_TAG)) {
-                    System.out.println("Arrow didn't save charge tag? Means the mixin broke.");
-                }
-
-                float arrowmulti = arrownbt
-                    .getFloat(ARROW_DMG_MULTI_TAG);
+                float arrowmulti = duck.my$getDmgMulti();
 
                 dmg *= arrowmulti;
                 // multiply dmg by saved charge value
@@ -189,8 +183,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return dmg;
 
     }
-
- */
 
     public float getVisibleDamage() {
         float dmg = this.number * damageMultiplier;

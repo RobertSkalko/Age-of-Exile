@@ -5,11 +5,10 @@ import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDa
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import java.util.Arrays;
+
 import java.util.HashMap;
-import java.util.List;
-import net.minecraft.text.MutableText;
 
 public abstract class WeaponMechanic implements IGUID {
 
@@ -25,22 +24,16 @@ public abstract class WeaponMechanic implements IGUID {
         return ALL.getOrDefault(id, new NormalWeaponMechanic());
     }
 
-    public List<MutableText> tooltipDesc() {
-        return Arrays.asList();
-    }
-
-    protected void doSpecialAttack(DamageEventData data) {
-        doNormalAttack(data);
-    }
-
     protected void doNormalAttack(DamageEventData data) {
+
+        WeaponTypes weptype = data.weaponData.GetBaseGearType()
+            .weaponType();
 
         int num = (int) data.sourceData.getUnit()
             .getCreateStat(new WeaponDamage(Elements.Physical))
             .getRandomRangeValue();
         DamageEffect dmg = new DamageEffect(
-            data.event, data.source, data.target, num, data.sourceData, data.targetData, EffectTypes.BASIC_ATTACK, data.weaponData.GetBaseGearType()
-            .weaponType());
+            data.event, data.source, data.target, num, data.sourceData, data.targetData, EffectTypes.BASIC_ATTACK, weptype);
 
         dmg.setMultiplier(data.multiplier);
 

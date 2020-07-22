@@ -101,12 +101,18 @@ public class MobStatUtils {
             hpaddedalready = (float) hpmod.getValue();
         }
 
+        float hpwithoutmodifier = en.getMaxHealth() - hpaddedalready;
+        hpwithoutmodifier -= 10; // newbie help
+        if (hpwithoutmodifier < 0) {
+            hpwithoutmodifier = 0;
+        }
+
         unit.getCreateStat(Health.getInstance())
-            .addFlat((en.getMaxHealth() - hpaddedalready) * rar.HealthMultiplier(), lvl);
+            .addFlat(hpwithoutmodifier * rar.HealthMultiplier(), lvl);
 
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()
-                .valueNeededToReachMaximumPercentAtLevelOne() * rar.StatMultiplier(), lvl);
+                .valueNeededToReachMaximumPercentAtLevelOne() / 4 * rar.StatMultiplier(), lvl);
         unit.getCreateStat(CriticalHit.GUID)
             .addFlat(5 * rar.DamageMultiplier(), lvl);
         unit.getCreateStat(CriticalDamage.GUID)

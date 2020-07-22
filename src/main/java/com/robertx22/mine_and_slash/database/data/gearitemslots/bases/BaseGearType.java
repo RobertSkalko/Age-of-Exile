@@ -348,6 +348,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         json.add("stat_req", getStatRequirements().toJson());
         json.addProperty("item_id", Registry.ITEM.getId(getItem())
             .toString());
+        json.addProperty("weapon_type", weaponType().toString());
 
         return json;
     }
@@ -366,6 +367,13 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");
         o.item_id = json.get("item_id")
             .getAsString();
+
+        try {
+            o.weapon_type = WeaponTypes.valueOf(json.get("weapon_type")
+                .getAsString());
+        } catch (Exception e) {
+            o.weapon_type = WeaponTypes.None;
+        }
 
         o.tags = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("tags"))
             .stream()

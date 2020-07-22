@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,10 +16,10 @@ import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 
-public class VanillaOverlay extends InGameHud implements HudRenderCallback {
+public class VanillaOverlay extends DrawableHelper implements HudRenderCallback {
 
     public VanillaOverlay() {
-        super(MinecraftClient.getInstance());
+        super();
     }
 
     int ticks = 0;

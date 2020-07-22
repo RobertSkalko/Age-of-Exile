@@ -1,29 +1,30 @@
 package com.robertx22.mine_and_slash.mixins;
 
+import com.robertx22.mine_and_slash.mixin_ducks.ProjectileEntityDuck;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ProjectileEntity.class)
-public abstract class ArrowShootMixin {
-/*
+public class ArrowShootMixin implements ProjectileEntityDuck {
+
+    public float dmg$multi = 0;
+
     @Inject(method = "setProperties(Lnet/minecraft/entity/Entity;FFFFF)V", at = @At("HEAD"))
     public void myOnShoot(Entity user, float pitch, float yaw, float roll, float modifierZ, float modifierXYZ, CallbackInfo ci) {
         ProjectileEntity arrow = (ProjectileEntity) (Object) this;
-
-        float multi = MathHelper.clamp(modifierXYZ / 3, 0, 1); // by default it's multiplied by 3 so i need to divide it
-
-        arrow.
-
-
-
-// TODO TODO TODO
-        //  arrow
-        //   .getPersistentData()
-        //     .putFloat(DamageEffect.ARROW_DMG_MULTI_TAG, multi);
-
+        System.out.println(modifierZ);
+        dmg$multi = MathHelper.clamp(modifierZ / 3F, 0, 1); // by default it's multiplied by 3 so i need to divide it
     }
-    */
 
+    @Override
+    public float my$getDmgMulti() {
+        return dmg$multi;
+    }
 }
 
 

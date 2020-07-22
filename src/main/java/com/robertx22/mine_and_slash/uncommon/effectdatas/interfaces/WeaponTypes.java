@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum WeaponTypes {
-    None(false, "none", true),
+    None(false, "none", false),
     Axe(true, "axe", true),
     Hammer(true, "hammer", true),
     Trident(true, "trident", false),
@@ -14,8 +14,8 @@ public enum WeaponTypes {
     CrossBow(true, "crossbow", false),
     Wand(true, "wand", true);
 
-    WeaponTypes(boolean bool, String id, boolean melee) {
-        this.isSingleType = bool;
+    WeaponTypes(boolean isSingleType, String id, boolean melee) {
+        this.isSingleType = isSingleType;
         this.id = id;
         this.isMelee = melee;
     }
