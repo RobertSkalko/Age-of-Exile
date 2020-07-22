@@ -35,7 +35,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.EntityStatusEffectsData;
-import nerdhub.cardinal.components.api.util.sync.EntitySyncedComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -70,7 +69,7 @@ public class EntityCap {
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
 
-    public interface UnitData extends ICommonPlayerCap, INeededForClient, EntitySyncedComponent {
+    public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
         EntityStatusEffectsData getStatusEffectsData();
 
@@ -816,10 +815,13 @@ public class EntityCap {
             this.exp = exp;
         }
 
+        /*
         @Override
         public Entity getEntity() {
             return entity;
         }
+
+         */
     }
 
 }

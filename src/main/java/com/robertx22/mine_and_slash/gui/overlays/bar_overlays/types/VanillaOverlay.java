@@ -22,14 +22,14 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
         super();
     }
 
+    MinecraftClient mc = MinecraftClient.getInstance();
+
     int ticks = 0;
 
     @Override
     public void onHudRender(MatrixStack matrix, float v) {
 
-        MinecraftClient minecraftClient = MinecraftClient.getInstance();
-
-        if (minecraftClient.player == null) {
+        if (mc.player == null) {
             return;
         }
         try {
@@ -38,7 +38,6 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
                 return;
             }
 
-            MinecraftClient mc = MinecraftClient.getInstance();
             PlayerEntity en = mc.player;
             UnitData data = Load.Unit(en);
 

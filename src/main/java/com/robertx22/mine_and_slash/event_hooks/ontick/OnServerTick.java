@@ -20,7 +20,7 @@ import java.util.UUID;
 public class OnServerTick implements ServerTickEvents.EndTick {
 
     static final int TicksToUpdatePlayer = 18;
-    static final int TicksToRegen = 20; // was 100, todo balance
+    static final int TicksToRegen = 40; // was 100, todo balance
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
     static final int TicksToCompatibleItems = 40;

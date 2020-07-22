@@ -286,7 +286,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                     info.dmgmap.entrySet()
                         .forEach(x -> {
-                            if (x.getValue() > 0) {
+                            if (x.getValue()
+                                .intValue() > 0) {
                                 ServerPlayerEntity player = (ServerPlayerEntity) source;
 
                                 String str = NumberUtils.formatDamageNumber(this, x.getValue()
