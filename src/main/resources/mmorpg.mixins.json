@@ -13,7 +13,8 @@
   ],
   "client": [
 	"ItemStackMixin",
-	"InGameHudMixin"
+	"InGameHudMixin",
+	"KeyboardMixin"
   ],
   "injectors": {
     "defaultRequire": 1

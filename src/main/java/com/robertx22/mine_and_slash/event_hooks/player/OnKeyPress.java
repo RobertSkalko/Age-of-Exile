@@ -17,6 +17,7 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
     public static int cooldown = 0;
 
     @Override
+
     public void onEndTick(MinecraftClient mc) {
 
         if (cooldown > 0) {

@@ -46,12 +46,12 @@ public class RegeneratePercentStat extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Restore % of your total per second.";
+        return "Restore % of your total per regen tick.";
     }
 
     @Override
     public String locNameForLangFile() {
-        return statRestored.locNameForLangFile() + " Per Second";
+        return statRestored.locNameForLangFile() + " Per Regen";
     }
 
     @Override
