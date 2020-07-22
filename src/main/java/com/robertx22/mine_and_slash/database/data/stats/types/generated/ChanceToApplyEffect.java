@@ -23,6 +23,8 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
     private ChanceToApplyEffect(BasePotionEffect effect) {
         this.effect = effect;
         this.add$To$toTooltip = false;
+        this.add$plusminus$toTooltip = false;
+        this.minimumValue = 0;
     }
 
     @Override

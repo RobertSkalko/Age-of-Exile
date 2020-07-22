@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common.items;
 
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.BeastBloodChest;
+import com.robertx22.mine_and_slash.database.data.unique_items.armor.ExecutionerLeatherChest;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.InnerConfluxRobe;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.JesterHat;
 import com.robertx22.mine_and_slash.database.data.unique_items.bases.*;
@@ -10,6 +11,7 @@ import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.necklace.
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.ring.GreedsPersistenceRing;
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.ring.LoopOfInfinityRing;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.axe.ObsidianMightAxe;
+import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.IncarnationOfThunderSword;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.WaterElementalSword;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.EyeOfZegrathWand;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.WillOfFloraWand;
@@ -29,6 +31,8 @@ public class UniqueGearItemRegister {
     public Item LOOP_OF_INFINITY = of(new BaseUniqueRing(), new LoopOfInfinityRing());
     public Item WILL_OF_FLORA = of(new BaseUniqueWand(), new WillOfFloraWand());
     public Item EYE_OF_ZEGRATH = of(new BaseUniqueWand(), new EyeOfZegrathWand());
+    public Item EXE_PRIDE = of(new BaseUniqueChest(), new ExecutionerLeatherChest());
+    public Item INCA_THUNDER = of(new BaseUniqueSword(), new IncarnationOfThunderSword());
 
     public Item JESTER_HAT = of(new BaseUniqueHelmet(), new JesterHat());
     public Item OBSIDIAN_MIGHT_AXE = of(new BaseUniqueAxe(), new ObsidianMightAxe());

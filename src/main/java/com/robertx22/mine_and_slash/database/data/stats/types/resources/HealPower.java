@@ -10,6 +10,7 @@ public class HealPower extends Stat implements IStatEffects {
     public static String GUID = "increase_healing";
 
     private HealPower() {
+        this.add$To$toTooltip = false;
     }
 
     public static HealPower getInstance() {
@@ -48,7 +49,7 @@ public class HealPower extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "All Healing";
+        return "Increased Healing";
     }
 
     private static class SingletonHolder {

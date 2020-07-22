@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.registrators;
 
 import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.BeastBloodChest;
+import com.robertx22.mine_and_slash.database.data.unique_items.armor.ExecutionerLeatherChest;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.InnerConfluxRobe;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.JesterHat;
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.necklace.BirthingMiracleNecklace;
@@ -9,6 +10,7 @@ import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.necklace.
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.ring.GreedsPersistenceRing;
 import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.ring.LoopOfInfinityRing;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.axe.ObsidianMightAxe;
+import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.IncarnationOfThunderSword;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.WaterElementalSword;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.EyeOfZegrathWand;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.WillOfFloraWand;
@@ -29,6 +31,8 @@ public class UniqueGears implements ISlashRegistryInit {
         new LoopOfInfinityRing().addToSerializables();
         new WillOfFloraWand().addToSerializables();
         new EyeOfZegrathWand().addToSerializables();
+        new ExecutionerLeatherChest().addToSerializables();
+        new IncarnationOfThunderSword().addToSerializables();
 
     }
 }

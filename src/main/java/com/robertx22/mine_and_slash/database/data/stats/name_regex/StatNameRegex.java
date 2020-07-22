@@ -35,6 +35,13 @@ public abstract class StatNameRegex {
 
         String plusminus = v1 > 0 ? "+" : "";
 
+        if (!stat.add$plusminus$toTooltip) {
+            plusminus = "";
+            // delete the minuses
+            v1s = v1s.replace("-", "");
+            v2s = v2s.replace("-", "");
+        }
+
         if (stat.UsesSecondValue()) {
             plusminus = "";
         }

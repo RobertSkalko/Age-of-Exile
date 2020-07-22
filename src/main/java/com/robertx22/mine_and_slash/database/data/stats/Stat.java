@@ -35,6 +35,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public boolean isInt = false;
 
     public boolean add$To$toTooltip = true;
+    public boolean add$plusminus$toTooltip = true;
 
     @Override
     public boolean isRegistryEntryValid() {

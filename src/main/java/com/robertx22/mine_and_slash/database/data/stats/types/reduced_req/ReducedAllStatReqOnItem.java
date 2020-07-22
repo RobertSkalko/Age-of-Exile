@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 public class ReducedAllStatReqOnItem extends Stat {
 
     public ReducedAllStatReqOnItem() {
-
+        this.add$plusminus$toTooltip = false;
     }
 
     @Override
