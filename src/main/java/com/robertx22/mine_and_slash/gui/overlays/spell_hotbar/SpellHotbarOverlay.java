@@ -4,8 +4,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.event_hooks.ontick.OnClientTick;
+import com.robertx22.mine_and_slash.mixin_methods.OnKeyMethod;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -47,7 +48,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
         RenderSystem.enableBlend(); // enables transparency
 
-        if (KeybindsRegister.CHOOSE_SPELL_KEY.isPressed()) {
+        if (OnKeyMethod.isSelectingSpells()) {
             int x = mc.getWindow()
                 .getScaledWidth() / 2 - WIDTH / 2;
             int y = (int) (mc.getWindow()
@@ -115,7 +116,16 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         for (int i = 0; i < 9; i++) {
             BaseSpell spell = data.getSpellByNumber(i);
 
+            boolean selected = i == SpellCastingData.selectedSpell;
+
             if (spell != null) {
+
+                if (selected) {
+                    mc.getTextureManager()
+                        .bindTexture(SPELL_READY_TEX);
+                    this.drawTexture(matrix, x - 2, y - 2, 0, 0, 20, 20, 20, 20);
+                }
+
                 double scale = 0.5D;
                 RenderSystem.scaled(scale, scale, scale);
 

@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.Bas
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,12 +16,15 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
 
     public String spellid = "";
 
-    public CastSpellPacket() {
-        BaseSpell cspell = Load.spells(ClientOnly.getPlayer())
+    public CastSpellPacket(PlayerEntity player) {
+        BaseSpell cspell = Load.spells(player)
             .getCurrentRightClickSpell();
         if (cspell != null) {
             this.spellid = cspell.GUID();
         }
+    }
+
+    public CastSpellPacket() {
     }
 
     @Override
@@ -32,7 +34,7 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        tag.readString(30);
+        this.spellid = tag.readString(30);
 
     }
 

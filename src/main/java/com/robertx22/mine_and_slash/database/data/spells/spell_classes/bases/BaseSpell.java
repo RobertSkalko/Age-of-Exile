@@ -274,11 +274,14 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
                 if (data.getResources()
                     .hasEnough(rctx)) {
 
+                    /*
                     if (immutableConfigs.castRequirements()
                         .stream()
                         .anyMatch(x -> !x.predicate.test(player))) {
                         return false;
                     }
+
+                     */
 
                     return true;
                 } else {
@@ -311,8 +314,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         TooltipUtils.addEmpty(list);
 
-        this.immutableConfigs.castRequirements()
-            .forEach(x -> list.add(x.text));
+        // this.immutableConfigs.castRequirements()
+        //   .forEach(x -> list.add(x.text));
 
         TooltipUtils.addEmpty(list);
         this.onDamageEffects.forEach(x -> {

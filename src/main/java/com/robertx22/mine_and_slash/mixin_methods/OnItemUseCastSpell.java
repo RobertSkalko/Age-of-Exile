@@ -12,7 +12,7 @@ public class OnItemUseCastSpell {
     public static void use(World world, LivingEntity player, ItemStack stack) {
         if (player instanceof PlayerEntity) {
             if (world.isClient) {
-                Packets.sendToServer(new CastSpellPacket());
+                Packets.sendToServer(new CastSpellPacket((PlayerEntity) player));
             }
         }
     }

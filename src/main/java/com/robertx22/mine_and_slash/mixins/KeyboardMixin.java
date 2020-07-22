@@ -13,6 +13,5 @@ public class KeyboardMixin {
     @Inject(method = "onKey", at = @At(value = "HEAD"), cancellable = true)
     private void onKeyPriority(long window, int key, int scancode, int i, int j, CallbackInfo ci) {
         OnKeyMethod.onKey(window, key, scancode, ci);
-
     }
 }
