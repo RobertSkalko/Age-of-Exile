@@ -22,7 +22,7 @@ public class SpiritShield extends BaseOffHand {
 
     @Override
     public List<StatModifier> baseStats() {
-        return Arrays.asList(new StatModifier(5, 15, MagicShield.getInstance(), ModType.FLAT));
+        return Arrays.asList(new StatModifier(2, 5, MagicShield.getInstance(), ModType.FLAT));
     }
 
     @Override

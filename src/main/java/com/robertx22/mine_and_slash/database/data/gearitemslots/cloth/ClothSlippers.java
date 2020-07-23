@@ -22,7 +22,7 @@ public class ClothSlippers extends BaseBoots {
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(1, 4, MagicShield.getInstance(), ModType.FLAT)
+            new StatModifier(1, 3, MagicShield.getInstance(), ModType.FLAT)
         );
     }
 

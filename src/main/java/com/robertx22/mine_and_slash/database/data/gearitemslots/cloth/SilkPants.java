@@ -22,7 +22,7 @@ public class SilkPants extends BaseBoots {
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(4, 12, MagicShield.getInstance(), ModType.FLAT)
+            new StatModifier(3, 7, MagicShield.getInstance(), ModType.FLAT)
         );
     }
 
