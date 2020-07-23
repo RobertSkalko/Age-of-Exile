@@ -16,7 +16,7 @@ public class GearRarityLoader extends BaseRarityDatapackLoader<GearRarity> {
 
     @Override
     public RarityGenerator getDatapackGenerator() {
-        return new RarityGenerator(Rarities.Gears.getAllRarities(), ID);
+        return new RarityGenerator(Rarities.Gears.getSeriazables(), ID);
     }
 
 }

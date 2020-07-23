@@ -19,7 +19,7 @@ public class MagicalGear extends BaseMagical implements GearRarity {
 
     @Override
     public float statReqMulti() {
-        return 0.4F;
+        return 0.75F;
     }
 
     @Override

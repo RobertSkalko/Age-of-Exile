@@ -25,7 +25,7 @@ public class ObsidianMightAxe implements IUnique {
             new StatModifier(15, 50, CriticalHit.getInstance(), ModType.LOCAL_INCREASE),
             new StatModifier(1, 3, PlusResourceOnKill.HEALTH, ModType.FLAT),
             new StatModifier(15, 30, BonusDmgToStatusAffected.BURN, ModType.FLAT),
-            new StatModifier(0.5F, 1, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+            new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
         );
     }
 

@@ -24,7 +24,7 @@ public class BeastBloodChest implements IUnique {
             new StatModifier(1, 1, RegeneratePercentStat.HEALTH, ModType.FLAT),
             new StatModifier(1, 1, ImmuneToEffectStat.HUNGER, ModType.FLAT),
             new StatModifier(-15, -5, IncreasedItemQuantity.getInstance(), ModType.FLAT),
-            new StatModifier(0.5F, 1, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+            new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
         );
     }
 

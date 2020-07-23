@@ -22,7 +22,7 @@ public class WaterElementalSword implements IUnique {
             new StatModifier(1, 3, 4, 12, new WeaponDamage(Elements.Water), ModType.FLAT),
             new StatModifier(15, 30, new WeaponDamage(Elements.Water), ModType.LOCAL_INCREASE),
             new StatModifier(15, 30, BonusDmgToStatusAffected.FROST, ModType.FLAT),
-            new StatModifier(0.5F, 1, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+            new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
         );
     }
 

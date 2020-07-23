@@ -24,7 +24,7 @@ public class JesterHat implements IUnique {
             new StatModifier(-15, 15, CriticalDamage.getInstance(), ModType.FLAT),
             new StatModifier(-15, 15, MagicFind.getInstance(), ModType.FLAT),
             new StatModifier(-15, 15, IncreasedItemQuantity.getInstance(), ModType.FLAT),
-            new StatModifier(0.5F, 1, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+            new StatModifier(0.2F, 0.6F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
         );
     }
 

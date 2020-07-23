@@ -19,7 +19,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public float statReqMulti() {
-        return 0.2F;
+        return 0.5F;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class SkillGemRarityLoader extends BaseRarityDatapackLoader<SkillGemRarit
 
     @Override
     public RarityGenerator getDatapackGenerator() {
-        return new RarityGenerator(Rarities.SkillGems.getAllRarities(), ID);
+        return new RarityGenerator(Rarities.SkillGems.getSeriazables(), ID);
     }
 
 }

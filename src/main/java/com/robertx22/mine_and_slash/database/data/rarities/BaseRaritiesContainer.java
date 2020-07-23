@@ -16,7 +16,11 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
     public T maxRarity;
     public T maxNonUniqueRarity;
 
+    boolean didInit = false;
+
     HashMap<Integer, T> map = new HashMap<>();
+
+    List<T> seriazables = new ArrayList<>();
 
     public BaseRaritiesContainer() {
 
@@ -49,6 +53,15 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
             .max((Comparator.comparingInt(Rarity::Rank)))
             .get();
 
+        if (!didInit) {
+            didInit = true;
+            seriazables = this.getAllRarities();
+        }
+
+    }
+
+    public List<T> getSeriazables() {
+        return this.seriazables;
     }
 
     public T getHigherRarity(T rar) {

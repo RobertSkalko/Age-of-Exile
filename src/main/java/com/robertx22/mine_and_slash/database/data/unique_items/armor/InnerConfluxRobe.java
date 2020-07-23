@@ -24,7 +24,7 @@ public class InnerConfluxRobe implements IUnique {
             new StatModifier(1, 2, RegeneratePercentStat.MANA, ModType.FLAT),
             new StatModifier(1, 2, RegeneratePercentStat.MAGIC_SHIELD, ModType.FLAT),
             new StatModifier(-8, -3, Health.getInstance(), ModType.FLAT),
-            new StatModifier(0.5F, 1, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+            new StatModifier(0.4F, 0.6F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
         );
     }
 

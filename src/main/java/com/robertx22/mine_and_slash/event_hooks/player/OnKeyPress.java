@@ -28,14 +28,5 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
 
         }
 
-
-
-        /*else if (KeybindsRegister.swapHotbar.isPressed()) {
-            Packets.sendToServer(new CastSpellPacket());
-            cooldown = 5;
-        }
-
-
-         */
     }
 }

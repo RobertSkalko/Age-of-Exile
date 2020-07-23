@@ -19,7 +19,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public float statReqMulti() {
-        return 0.8F;
+        return 1;
     }
 
     @Override
