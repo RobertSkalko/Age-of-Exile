@@ -28,8 +28,8 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "fabric": "*",
+    "fabricloader": ">=0.9.0",
+    "fabric": ">=0.15.0",
     "minecraft": "1.16.1",
 	"curios": ">=1.0.2",
 	"cardinal-components-base": ">=2.4.2",
