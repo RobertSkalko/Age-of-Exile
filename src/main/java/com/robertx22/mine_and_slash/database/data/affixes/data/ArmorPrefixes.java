@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 public class ArmorPrefixes implements ISlashRegistryInit {
@@ -47,10 +47,10 @@ public class ArmorPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("virile")
             .Named("Virile")
-            .tier(1, new StatModifier(8, 12, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(6, 8, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(4, 6, Health.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(2, 4, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(4, 6, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(3, 4, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(BaseGearType.SlotFamily.Armor)
                 .plus(x -> x.isShield())
                 .plus(x -> x.family()

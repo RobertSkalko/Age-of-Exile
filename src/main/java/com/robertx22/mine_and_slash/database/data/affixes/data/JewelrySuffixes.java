@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.data.affixes.ElementalAffixBuilder;
@@ -10,7 +11,6 @@ import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Dexteri
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalDamageBonus;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -38,9 +38,9 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_philosopher")
             .Named("Of the Philosopher")
-            .tier(1, new StatModifier(1, 2, Intelligence.INSTANCE, ModType.FLAT))
-            .tier(2, new StatModifier(1, 2, Intelligence.INSTANCE, ModType.FLAT))
-            .tier(3, new StatModifier(0.5F, 1, Intelligence.INSTANCE, ModType.FLAT))
+            .tier(1, new StatModifier(0.2F, 0.3F, Intelligence.INSTANCE, ModType.FLAT))
+            .tier(2, new StatModifier(0.15F, 0.2F, Intelligence.INSTANCE, ModType.FLAT))
+            .tier(3, new StatModifier(0.1F, 0.15F, Intelligence.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
                 .isJewelry() || x.getStatRequirements().int_req > 0))
             .Suffix()
@@ -48,9 +48,9 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_titan")
             .Named("Of the Titan")
-            .tier(1, new StatModifier(1, 2, Strength.INSTANCE, ModType.FLAT))
-            .tier(2, new StatModifier(1, 2, Strength.INSTANCE, ModType.FLAT))
-            .tier(3, new StatModifier(0.5F, 1, Strength.INSTANCE, ModType.FLAT))
+            .tier(1, new StatModifier(0.2F, 0.3F, Strength.INSTANCE, ModType.FLAT))
+            .tier(2, new StatModifier(0.15F, 0.2F, Strength.INSTANCE, ModType.FLAT))
+            .tier(3, new StatModifier(0.1F, 0.15F, Strength.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
                 .isJewelry() || x.getStatRequirements().str_req > 0))
             .Suffix()
@@ -58,9 +58,9 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_wind")
             .Named("Of the Wind")
-            .tier(1, new StatModifier(1, 2, Dexterity.INSTANCE, ModType.FLAT))
-            .tier(2, new StatModifier(1, 2, Dexterity.INSTANCE, ModType.FLAT))
-            .tier(3, new StatModifier(0.5F, 5, Dexterity.INSTANCE, ModType.FLAT))
+            .tier(1, new StatModifier(0.2F, 0.3F, Dexterity.INSTANCE, ModType.FLAT))
+            .tier(2, new StatModifier(0.15F, 0.2F, Dexterity.INSTANCE, ModType.FLAT))
+            .tier(3, new StatModifier(0.1F, 0.15F, Dexterity.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
                 .isJewelry() || x.getStatRequirements().dex_req > 0))
             .Suffix()
@@ -68,11 +68,11 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_sky")
             .Named("Of the Sky")
-            .tier(1, new StatModifier(1, 1.5F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(0.5F, 1, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.3F, 0.5F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(0.15F, 0.25F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.1F, 0.15F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.05F, 0.1F, AllAttributes.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(BaseGearType.SlotFamily.Jewelry))
-            .Weight(100)
+            .Weight(50)
             .Suffix()
             .Build();
 
