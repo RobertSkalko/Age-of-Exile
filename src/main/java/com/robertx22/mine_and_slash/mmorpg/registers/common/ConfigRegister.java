@@ -60,19 +60,4 @@ public class ConfigRegister {
 
     }
 
-    // MUST BE CALLED IN MAIN CLASS
-    public static void registerForgeConfigs() {
-/*
-        ModLoadingContext ctx = ModLoadingContext.get();
-
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            ctx.registerConfig(Type.CLIENT, ClientConfigs.spec, "MineAndSlash-Client.toml");
-        });
-
-        ctx.registerConfig(Type.SERVER, ModConfig.spec, "MineAndSlash-Server.toml");
-        ctx.registerConfig(Type.COMMON, CommonConfig.spec, "MineAndSlash-Common.toml");
-
- */
-    }
-
 }

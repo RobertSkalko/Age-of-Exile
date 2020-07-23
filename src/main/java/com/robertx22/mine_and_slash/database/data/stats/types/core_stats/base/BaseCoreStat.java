@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.StatScaling;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -12,7 +13,6 @@ import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
@@ -58,11 +58,16 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     public List<ExactStatData> getMods(StatData data, int lvl) {
-        return this.statsThatBenefit()
-            .stream()
-            .map(x -> x.ToExactStat((int) getPercent(data), lvl)
-            )
-            .collect(Collectors.toList());
+        int perc = (int) getPercent(data);
+
+        List<ExactStatData> list = new ArrayList<>();
+        for (StatModifier x : this.statsThatBenefit()) {
+            ExactStatData exactStatData = x.ToExactStat(100, lvl);
+            exactStatData.percentIncrease = perc;
+            exactStatData.increaseByAddedPercent();
+            list.add(exactStatData);
+        }
+        return list;
 
     }
 

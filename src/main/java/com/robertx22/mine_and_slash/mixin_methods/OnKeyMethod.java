@@ -29,9 +29,10 @@ public class OnKeyMethod {
                 for (int i = 0; i < bar.length; i++) {
                     if (bar[i].matchesKey(key, scancode)) {
                         SpellCastingData.selectedSpell = i;
+                        ci.cancel();
+                        return;
                     }
                 }
-
                 ci.cancel();
             }
 

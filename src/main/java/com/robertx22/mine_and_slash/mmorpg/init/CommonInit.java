@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.mmorpg.event_registers.Common;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.items.UniqueGearItemRegister;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -23,10 +24,12 @@ public class CommonInit implements ModInitializer {
         ModRegistry.init();
 
         SlashRegistry.initRegistries();
-        Common.register();
-        ConfigRegister.registerForgeConfigs(); // MUST BE IN MAIN CLASS
         SlashRegistry.registerAllItems(); // after config registerAll
         SlashRegistry.checkGuidValidity();
+
+        UniqueGearItemRegister.registerAll();
+
+        Common.register();
 
         PotionRegister.register();
 

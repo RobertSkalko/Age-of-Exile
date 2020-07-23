@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.robertx22.exiled_lib.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
+import com.robertx22.mine_and_slash.database.data.unique_items.bases.*;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
@@ -16,11 +17,14 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IBaseGearType
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 import java.util.Locale;
+
+import static com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType.SlotTag;
 
 public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<IUnique>, ISerializable<IUnique> {
@@ -137,6 +141,48 @@ public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocD
     default String locNameLangFileGUID() {
         return "item." + Registry.ITEM.getId(getUniqueItem())
             .toString();
+    }
+
+    public static Item getBaseItemForRegistration(IUnique uniq) {
+
+        List<SlotTag> tags = uniq.getBaseGearType()
+            .getTags();
+
+        if (tags.contains(SlotTag.Sword)) {
+            return new BaseUniqueSword();
+        }
+        if (tags.contains(SlotTag.Axe)) {
+            return new BaseUniqueAxe();
+        }
+        if (tags.contains(SlotTag.Wand)) {
+            return new BaseUniqueWand();
+        }
+        if (tags.contains(SlotTag.Boots)) {
+            return new BaseUniqueBoots();
+        }
+        if (tags.contains(SlotTag.Chest)) {
+            return new BaseUniqueChest();
+        }
+        if (tags.contains(SlotTag.Pants)) {
+            return new BaseUniquePantsItem();
+        }
+        if (tags.contains(SlotTag.Helmet)) {
+            return new BaseUniqueHelmet();
+        }
+        if (tags.contains(SlotTag.Crossbow)) {
+            return Items.CROSSBOW;
+        }
+        if (tags.contains(SlotTag.Bow)) {
+            return new BaseUniqueBow();
+        }
+        if (tags.contains(SlotTag.Necklace)) {
+            return new BaseUniqueNecklace();
+        }
+        if (tags.contains(SlotTag.Ring)) {
+            return new BaseUniqueRing();
+        }
+
+        return null;
     }
 
 }

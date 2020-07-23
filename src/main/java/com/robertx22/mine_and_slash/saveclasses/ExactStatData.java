@@ -34,7 +34,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     public static ExactStatData fromStatModifier(StatModifier mod, int percent, int lvl) {
         ExactStatData data = new ExactStatData();
 
-        data.first_val = (mod.firstMin + (mod.firstMax - mod.firstMin) * percent / 100);
+        data.first_val = (mod.firstMin + (mod.firstMax - mod.firstMin) * percent / 100F);
 
         if (mod.usesNumberRanges()) {
             data.second_val = (mod.secondMin + (mod.secondMax - mod.secondMin) * percent / 100);
