@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.loot;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.loot.generators.*;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -26,19 +27,14 @@ public class MasterLootGen {
         while (items.size() < info.minItems) {
 
             tries++;
-            if (tries > 30) {
+            if (tries > 40) {
                 System.out.println("Tried to generate loot many times but failed! " + info.toString());
                 break;
             }
-
             List<ItemStack> extra = populateOnce(info);
-
-            int missing = info.minItems - items.size();
-
-            for (int i = 0; i < extra.size() && i < missing; i++) {
-                items.add(extra.get(i));
+            if (!extra.isEmpty()) {
+                items.add(RandomUtils.randomFromList(extra));
             }
-
         }
 
         while (items.size() > info.maxItems) {
@@ -62,7 +58,7 @@ public class MasterLootGen {
         items.addAll(new JewelLootGen(info).tryGenerate());
 
         return items.stream()
-            .filter(x -> x.isEmpty() == false)
+            .filter(x -> x != null && !x.isEmpty())
             .collect(Collectors.toList());
     }
 

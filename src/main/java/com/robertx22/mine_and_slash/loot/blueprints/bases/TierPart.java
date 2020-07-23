@@ -21,7 +21,11 @@ public class TierPart extends BlueprintPart<Integer> {
     @Override
     protected Integer generateIfNull() {
         if (isRandom) {
-            int finalTier = RandomUtils.RandomRange(number - variance, number + variance);
+
+            int finalTier = RandomUtils.RandomRange(
+                MathHelper.clamp(number - variance, minTier, maxTier),
+                MathHelper.clamp(number + variance, minTier, maxTier)
+            );
 
             return MathHelper.clamp(finalTier, minTier, maxTier);
 
