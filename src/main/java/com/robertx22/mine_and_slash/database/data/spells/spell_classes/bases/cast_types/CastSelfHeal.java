@@ -10,6 +10,7 @@ public class CastSelfHeal extends SpellCastType {
     public boolean cast(SpellCastContext ctx) {
 
         SpellUtils.healCaster(ctx);
+        SpellUtils.healCasterMagicShield(ctx);
 
         if (ctx.spell.getImmutableConfigs()
             .sound() != null) {

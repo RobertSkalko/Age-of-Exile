@@ -51,7 +51,7 @@ public class HeartOfIceSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 15, 25);
-        c.set(SC.BASE_VALUE, 25, 25);
+        c.set(SC.BASE_VALUE, 8, 15);
         c.set(SC.CAST_TIME_TICKS, 30, 15);
         c.set(SC.COOLDOWN_SECONDS, 60, 30);
 
@@ -74,7 +74,7 @@ public class HeartOfIceSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Restores health to caster:"));
+        list.add(new LiteralText("Restores health and magic shield to caster:"));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

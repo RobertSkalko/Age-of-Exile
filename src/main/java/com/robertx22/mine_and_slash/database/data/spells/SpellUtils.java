@@ -130,4 +130,15 @@ public class SpellUtils {
         heal.Activate();
     }
 
+    public static void healCasterMagicShield(SpellCastContext ctx) {
+        SpellHealEffect heal = new SpellHealEffect(
+            new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.MAGIC_SHIELD,
+                ctx.getConfigFor(ctx.ability)
+                    .getCalc(ctx.skillGem)
+                    .getCalculatedValue(ctx.data, ctx.spellsCap, ctx.ability), ResourcesData.Use.RESTORE,
+                ctx.spell
+            ));
+        heal.Activate();
+    }
+
 }
