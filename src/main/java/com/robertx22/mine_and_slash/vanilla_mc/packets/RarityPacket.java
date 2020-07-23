@@ -62,7 +62,7 @@ public class RarityPacket extends MyPacket<RarityPacket> {
             data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
 
         } catch (Exception e) {
-            System.out.println("Failed reading Mine and Slash packet to bufferer.");
+            System.out.println("Failed reading Age of Exile packet to bufferer.");
             e.printStackTrace();
         }
     }
@@ -77,7 +77,7 @@ public class RarityPacket extends MyPacket<RarityPacket> {
 
             tag.writeCompoundTag(nbt);
         } catch (Exception e) {
-            System.out.println("Failed saving " + type.name() + " Mine and Slash packet to bufferer.");
+            System.out.println("Failed saving " + type.name() + " Age of Exile packet to bufferer.");
             e.printStackTrace();
         }
     }
@@ -96,7 +96,7 @@ public class RarityPacket extends MyPacket<RarityPacket> {
                     JsonObject json = (JsonObject) PARSER.parse(x);
                     return (Rarity) type.serializer.fromJson(json);
                 } catch (JsonSyntaxException e) {
-                    System.out.println("Failed to parse Mine and Slash rarity Json!!!");
+                    System.out.println("Failed to parse Age of Exile rarity Json!");
                     e.printStackTrace();
                 }
                 return null;

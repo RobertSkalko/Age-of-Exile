@@ -1,0 +1,51 @@
+1.0
+
+Big compatibility changes:
+
+* Damage is no longer overrided except for item's with stats and my spells. This means other mod's gear and spells should ALL be compatible now!
+* There's no magical mine and slash hp anymore, instead your normal hearts are increased.
+* Stats scale much slower with levels, and if you want to nerf or buff how strong my mod is, just increase or decrease stat scaling or maximum level. Both work.
+* Vanilla armor is overrided for entity damage, but there's a config for effectiveness now.
+
+As a result, the mod should be a lot more modpack friendly while still easily allowing itself to be the main point of a modpack by just tweaking one or two config options.
+
+
+Big changes that required the rework:
+
+* Spells are now Skill Gems.
+* Talent tree is gone. 
+* Gear now has local and global stats, local stats are weapon damage, armor etc. 
+Think Path of exile 50 base armor + adds 20 to armor + 80% increased armor and the item totals it up.
+* Gear rarities trimmed, now Common, Magical, Rare and Unique. Common complaint was that "Legendary" gear was sometimes too weak for the name.
+New system doesn't have that issue, the rarity describes how rare it is now, not power level.
+* spells are now only casted by staffs (compatible item's don't work for now)
+* spell hotbar is gone, choose spell by pressing R and 1-9 and then right click to use it.
+
+Added features:
+* generated chests everywhere now have random loot in them
+* added many new stats like attack speed, magic find, bonus damage to burning enemies etc.
+
+To rework the mod, I needed an almost clean slate, and to trim a lot of content that I feel wasn't very successful (for the amount of effort it requires).
+Other things were removed because I wanted to remove them, but I couldn't because I'd ruin existing worlds (*cough* master bag)
+
+* removed all auto pickup bags
+* removed auto salvage bags
+* removed charms and bracelets
+* removed map dimensions
+* removed runes and runewords
+* removed sets 
+* removed instability
+
+Some of these will probably come back, after a rework. Others are gone for good.
+
+Changed features:
+* dimension configs are now datapacks
+* entity configs are now datapacks
+* damage increases are now totalled up before being applied. (this resulted in some insane damage multiplication)
+* attack speed should work properly now
+* bows now dont do full damage anymore on short charges
+* changed hp regen to reduce saturation by % of total hp regenerated. This means more hp won't cost more saturation to regen.
+* made unique gear datapacks more powerful
+* gears now break on 0 durability
+* runes deleted, jewels used instead. Magic items can have sockets.
+* gui changed to more vanilla like. Capped hearts display to one row.

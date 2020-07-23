@@ -13,6 +13,11 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
     }
 
     @Override
+    public int minMobLevel() {
+        return 20;
+    }
+
+    @Override
     public float StatMultiplier() {
         return 4F;
     }

@@ -18,6 +18,11 @@ public class UncommonMob extends BaseMagical implements MobRarity {
     }
 
     @Override
+    public int minMobLevel() {
+        return 5;
+    }
+
+    @Override
     public float DamageMultiplier() {
         return 1.3F;
     }

@@ -81,6 +81,8 @@ public class OnMobDeathDrops {
             exp++;
         }
 
+        exp *= SlashRegistry.getEntityConfig(victim, mobData).exp_multi;
+
         exp *= multi;
 
         exp *= Rarities.Mobs.get(mobData.getRarity())

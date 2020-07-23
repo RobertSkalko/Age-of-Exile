@@ -72,7 +72,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
             data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
 
         } catch (Exception e) {
-            System.out.println("Failed reading Mine and Slash packet to bufferer.");
+            System.out.println("Failed reading Age of Exile packet to bufferer.");
             e.printStackTrace();
         }
 
@@ -88,7 +88,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
 
             tag.writeCompoundTag(nbt);
         } catch (Exception e) {
-            System.out.println("Failed saving " + type.name() + " Mine and Slash packet to bufferer.");
+            System.out.println("Failed saving " + type.name() + " Age of Exile packet to bufferer.");
             e.printStackTrace();
         }
     }
@@ -110,7 +110,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
                     return type.getSerializer()
                         .fromJson(json);
                 } catch (JsonSyntaxException e) {
-                    System.out.println("Failed to parse Mine and Slash registry Json!!!");
+                    System.out.println("Failed to parse Age of Exile registry Json!!!");
                     e.printStackTrace();
                 }
                 return null;

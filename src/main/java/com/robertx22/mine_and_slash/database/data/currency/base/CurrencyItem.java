@@ -101,18 +101,13 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
                               TooltipContext flagIn) {
 
-        if (this instanceof IAutoLocDesc) {
-            IAutoLocDesc auto = (IAutoLocDesc) this;
-            tooltip.add(Styles.YELLOWCOMP()
-                .append(auto.locDesc()));
-        }
+        tooltip.add(Styles.YELLOWCOMP()
+            .append(this.locDesc()));
+
+        String test = this.locDescLangFileGUID();
 
         tooltip.add(ItemType.getTooltipString(this.itemTypesUsableOn));
 
-        TooltipUtils.addEmpty(tooltip);
-
-        tooltip.add(TooltipUtils.tier(this.getTier()));
-        tooltip.add(TooltipUtils.rarity(getRarity()));
         TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(Styles.BLUECOMP()

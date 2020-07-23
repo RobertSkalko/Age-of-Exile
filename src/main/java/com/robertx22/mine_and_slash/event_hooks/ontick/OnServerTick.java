@@ -113,6 +113,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 .modify(ms);
 
                             if (restored) {
+                                unitdata.syncToClient(player);
 
                                 float percentHealed = healthrestored / player.getMaxHealth();
 

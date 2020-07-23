@@ -22,7 +22,7 @@ public interface IAutoLocDesc extends IBaseAutoLoc {
     }
 
     public default MutableText locDesc() {
-        return CLOC.blank(getFormatedForLangFile(locDescLangFileGUID()));
+        return CLOC.blank(formattedLocDescLangFileGUID());
     }
 
     public default String formattedLocDescLangFileGUID() {

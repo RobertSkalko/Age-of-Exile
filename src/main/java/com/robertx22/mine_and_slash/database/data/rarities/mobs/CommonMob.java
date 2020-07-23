@@ -18,6 +18,11 @@ public class CommonMob extends BaseCommon implements MobRarity {
     }
 
     @Override
+    public int minMobLevel() {
+        return 0;
+    }
+
+    @Override
     public float DamageMultiplier() {
         return 1F;
     }

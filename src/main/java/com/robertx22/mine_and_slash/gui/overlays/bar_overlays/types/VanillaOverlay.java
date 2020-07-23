@@ -188,7 +188,7 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
         if (max < 1) {
             return;
         }
-        int tenth = max / 10;
+        float tenth = max / 10F;
 
         int X_SPACING = 8;
 

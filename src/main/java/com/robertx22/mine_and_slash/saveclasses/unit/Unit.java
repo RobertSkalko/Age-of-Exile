@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.data.rarities.MobRarity;
+import com.robertx22.mine_and_slash.database.data.rarities.mobs.CommonMob;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
@@ -281,7 +282,14 @@ public class Unit {
 
         double y = entity.getY();
 
-        List<MobRarity> rarities = Rarities.Mobs.getAllRarities();
+        List<MobRarity> rarities = Rarities.Mobs.getAllRarities()
+            .stream()
+            .filter(x -> data.getLevel() >= x.minMobLevel() || data.getLevel() >= ModConfig.get().Server.MAX_LEVEL)
+            .collect(Collectors.toList());
+
+        if (rarities.isEmpty()) {
+            rarities.add(CommonMob.getInstance());
+        }
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 

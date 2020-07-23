@@ -72,7 +72,7 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
     public void onReceived(PacketContext ctx) {
         if (isExp && ModConfig.get().client.dmgParticleConfig.ENABLE_CHAT_EXP_MSG) {
             ClientOnly.getPlayer()
-                .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + number + " EXP"), false);
+                .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + (int) number + " EXP"), false);
 
         } else if (isExp == false && ModConfig.get().client.dmgParticleConfig.ENABLE_FLOATING_DMG) {
             OnDisplayDamage.displayParticle(element, string, x, y, z, height);

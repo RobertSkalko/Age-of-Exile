@@ -13,6 +13,11 @@ public class RareMob extends BaseRare implements MobRarity {
     }
 
     @Override
+    public int minMobLevel() {
+        return 10;
+    }
+
+    @Override
     public float StatMultiplier() {
         return 2;
     }

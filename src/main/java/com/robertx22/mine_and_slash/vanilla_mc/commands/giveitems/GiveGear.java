@@ -4,10 +4,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.mine_and_slash.vanilla_mc.commands.CommandRefs;
-import com.robertx22.mine_and_slash.vanilla_mc.commands.suggestions.GearTypeSuggestions;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.vanilla_mc.commands.CommandRefs;
+import com.robertx22.mine_and_slash.vanilla_mc.commands.suggestions.GearTypeSuggestions;
 import net.minecraft.command.arguments.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
@@ -93,6 +93,7 @@ public class GiveGear {
 
             GearBlueprint blueprint = new GearBlueprint(lvl);
             blueprint.unidentifiedPart.set(false);
+            blueprint.level.set(lvl);
 
             if (Rarities.Gears.has(rarity)) {
                 blueprint.rarity.setSpecificRarity(rarity);

@@ -57,7 +57,7 @@ public abstract class BaseRarityDatapackLoader<T extends Rarity> extends JsonDat
 
         if (container.getAllRarities()
             .isEmpty()) {
-            throw new RuntimeException("Mine and Slash rarities are EMPTY after datapack loading!");
+            throw new RuntimeException("Age of Exile rarities are EMPTY after datapack loading!");
         } else {
             System.out.println("Rarity loading succeeded.");
         }

@@ -19,6 +19,7 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     public EntityConfig(String id, float loot) {
         this.identifier = id;
         this.loot_multi = loot;
+        this.exp_multi = loot;
     }
 
     public static EntityConfig EMPTY = new EntityConfig();
