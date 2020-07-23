@@ -159,7 +159,7 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
         LEFT, RIGHT;
     }
 
-    HashMap<Type, Integer> lastValues = new HashMap<>();
+    HashMap<Type, Float> lastValues = new HashMap<>();
     HashMap<Type, Integer> changedTicksLeft = new HashMap<>();
 
     public void renderElement(MatrixStack matrix, int ticks, Type type, int x, int y, MinecraftClient mc, LivingEntity en, UnitData data) {
@@ -168,10 +168,10 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
 
         RenderSystem.enableBlend();
 
-        int current = (int) type.getCurrent(en, data);
-        int max = (int) type.getMax(en, data);
+        float current = (int) type.getCurrent(en, data);
+        float max = (int) type.getMax(en, data);
 
-        boolean changed = lastValues.getOrDefault(type, 0) != current;
+        boolean changed = lastValues.getOrDefault(type, 0F) != current;
 
         int changedTicksRem = changedTicksLeft.getOrDefault(type, 0);
         if (changed) {
@@ -183,12 +183,12 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
 
         lastValues.put(type, current);
 
-        boolean needsRegen = current < max;
-
         if (max < 1) {
             return;
         }
         float tenth = max / 10F;
+
+        boolean ismax = current == max;
 
         int X_SPACING = 8;
 
@@ -207,7 +207,7 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
             drawTexture(matrix, x, y + randomY, 16, type.yPosTexture(data), 9, 9); // empty background
 
             if (current > 0) {
-                if (current >= tenth) { // fullbar
+                if (ismax || current >= tenth) { // fullbar
                     drawTexture(matrix, x, y + randomY, 0, type.yPosTexture(data), 9, 9);
                 } else { // half
                     drawTexture(matrix, x + halfSpacing, y + randomY, 10, type.yPosTexture(data), 5, 9);
