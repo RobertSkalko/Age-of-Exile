@@ -18,6 +18,7 @@ import net.minecraft.util.Identifier;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
 public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> {
@@ -64,7 +65,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
 
         // get cook progress as a double between 0 and 1
         // draw the cook progress bar
-        drawTexture(matrix, x + COOK_BAR_XPOS, y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (tile
+        drawTexture(matrix, this.x + COOK_BAR_XPOS, this.y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (tile
             .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
         // draw the fuel remaining bar for each fuel slot flame
@@ -72,7 +73,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
             //double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
 
             int yOffset = (int) ((1 - (float) tile.fuel / tile.MaximumFuel) * FLAME_HEIGHT);
-            drawTexture(matrix, x + FLAME_XPOS + FLAME_X_SPACING * i, y + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
+            drawTexture(matrix, this.x + FLAME_XPOS + FLAME_X_SPACING * i, this.y + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
         }
 
         // renderHoveredToolTip(x, y);
@@ -108,7 +109,9 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
 
-            // TODO renderTooltip(hoveringText, mouseX - x, mouseY - y, font);
+            renderTooltip(matrix, hoveringText.stream()
+                .map(x -> new LiteralText(x))
+                .collect(Collectors.toList()), mouseX - x, mouseY - y);
         }
 
     }

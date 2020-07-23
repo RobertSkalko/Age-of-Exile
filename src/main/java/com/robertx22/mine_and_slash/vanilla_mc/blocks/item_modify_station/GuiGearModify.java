@@ -54,7 +54,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
 
         // draw the cook progress bar
         drawTexture(matrix,
-            x + 85, y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V,
+            this.x + 85, this.y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V,
             (int) (this.tile.fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT
         );
 

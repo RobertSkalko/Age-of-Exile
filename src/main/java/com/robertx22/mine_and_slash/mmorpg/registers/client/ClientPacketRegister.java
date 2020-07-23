@@ -22,6 +22,7 @@ public class ClientPacketRegister {
         Packets.registerServerToClient(new SyncConfigToClientPacket());
         Packets.registerServerToClient(new ParticlePacket());
         Packets.registerServerToClient(new SyncCapabilityToClient());
+        Packets.registerServerToClient(new TileUpdatePacket());
 
         ClientSidePacketRegistry.INSTANCE.register(EntityPacket.ID, (ctx, buf) -> {
             EntityPacket.onPacket(ctx, buf);

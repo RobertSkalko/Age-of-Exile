@@ -106,7 +106,7 @@ public class TileGearRepair extends BaseTile {
                     dmg = 0;
                 }
 
-                stack.setDamage(dmg);
+                copy.setDamage(dmg);
 
                 return copy;
             }

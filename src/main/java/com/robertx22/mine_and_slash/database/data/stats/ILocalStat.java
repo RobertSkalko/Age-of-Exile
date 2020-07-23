@@ -8,7 +8,7 @@ public interface ILocalStat extends IGUID {
     public default boolean IsNativeToGearType(BaseGearType slot) {
         return slot.baseStats()
             .stream()
-            .anyMatch(x -> x.stat == this.GUID());
+            .anyMatch(x -> x.stat.equals(this.GUID()));
     }
 
 }

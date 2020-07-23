@@ -55,7 +55,7 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
         // get cook progress as a double between 0 and 1
         double cookProgress = tile.fractionOfCookTimeComplete();
         // draw the cook progress bar
-        drawTexture(matrix, x + COOK_BAR_XPOS, y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+        drawTexture(matrix, this.x + COOK_BAR_XPOS, this.y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
     }
 

@@ -1,40 +1,44 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
-import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-public class RequestTilePacket extends MyPacket<RequestTilePacket> {
+public class TileUpdatePacket extends MyPacket<TileUpdatePacket> {
 
     public BlockPos pos;
+    public CompoundTag nbt;
 
-    public RequestTilePacket() {
+    public TileUpdatePacket() {
 
     }
 
-    public RequestTilePacket(BlockPos pos) {
-        this.pos = pos;
+    public TileUpdatePacket(BlockEntity be) {
+        this.pos = be.getPos();
+        this.nbt = be.toTag(new CompoundTag());
     }
 
     @Override
     public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "reqtiledata");
+        return new Identifier(Ref.MODID, "givetiledata");
     }
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
         pos = tag.readBlockPos();
+        nbt = tag.readCompoundTag();
 
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
         tag.writeBlockPos(pos);
+        tag.writeCompoundTag(nbt);
 
     }
 
@@ -42,11 +46,11 @@ public class RequestTilePacket extends MyPacket<RequestTilePacket> {
     public void onReceived(PacketContext ctx) {
         PlayerEntity player = ctx.getPlayer();
         BlockEntity tile = player.world.getBlockEntity(pos);
-        Packets.sendToClient(player, new TileUpdatePacket(tile));
+        tile.fromTag(player.world.getBlockState(pos), nbt);
     }
 
     @Override
-    public MyPacket<RequestTilePacket> newInstance() {
-        return new RequestTilePacket();
+    public MyPacket<TileUpdatePacket> newInstance() {
+        return new TileUpdatePacket();
     }
 }

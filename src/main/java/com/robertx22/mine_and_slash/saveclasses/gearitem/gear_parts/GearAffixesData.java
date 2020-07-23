@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -51,6 +52,8 @@ public class GearAffixesData {
     }
 
     public void randomize(GearItemData gear) {
+
+        GearRarity test = gear.getRarity();
 
         for (int i = 0; i < gear.getRarity()
             .maximumOfOneAffixType(); i++) {

@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.ElementalAffixBuilder;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -27,7 +27,7 @@ public class NonWeaponSuffixes implements ISlashRegistryInit {
             .tier(4, x -> Arrays.asList(new StatModifier(6, 12, new ElementalResist(x), ModType.FLAT)))
             .tier(5, x -> Arrays.asList(new StatModifier(3, 6, new ElementalResist(x), ModType.FLAT)))
             .Req(SlotRequirement.everythingBesides(BaseGearType.SlotFamily.Weapon))
-            .Weight(1500)
+            .Weight(2000)
             .Suffix()
             .Build();
     }
