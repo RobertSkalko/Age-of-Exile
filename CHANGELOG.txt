@@ -1,3 +1,10 @@
+v.1.0.1
+* buffed gear drops
+* buffed repair station
+* nerf socket chance
+* made mob lvls go faster per distance
+* gear durability shouldnt go down this fast anymore
+
 1.0
 
 Big compatibility changes:

@@ -83,6 +83,9 @@ public class OnMobDeathDrops {
 
         exp *= SlashRegistry.getEntityConfig(victim, mobData).exp_multi;
 
+        exp *= Load.antiMobFarm(victim.world)
+            .getDropMultiForMob(victim);
+
         exp *= multi;
 
         exp *= Rarities.Mobs.get(mobData.getRarity())

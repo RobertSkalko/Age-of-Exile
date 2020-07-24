@@ -4,7 +4,6 @@ import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.capability.bases.INeededForClient;
-import com.robertx22.mine_and_slash.config.forge.CommonConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
@@ -555,7 +554,7 @@ public class EntityCap {
                 // check if newbie
                 if (isNewbie()) {
                     setNewbieStatus(false);
-                    if (CommonConfig.INSTANCE.GET_STARTER_ITEMS) {
+                    if (ModConfig.get().Server.GET_STARTER_ITEMS) {
                         OnLogin.GiveStarterItems(player);
                     }
                 }

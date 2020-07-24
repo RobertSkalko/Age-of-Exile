@@ -19,8 +19,6 @@ public class OnHurtEvent {
             LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
             // order matters here
 
-            LivingHurtUtils.damageCurioItems(event.getEntityLiving());
-
         } catch (Exception e) {
             e.printStackTrace();
         }

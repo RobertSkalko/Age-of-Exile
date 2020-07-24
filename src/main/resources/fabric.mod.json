@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mmorpg",
-  "version": "1.0.0",
+  "version": "1.0.1",
 
   "name": "Age of Exile",
   "description": "Diablo in Minecraft!",
@@ -9,8 +9,8 @@
     "mcrobertx22"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/age-of-exile",
+    "sources": "https://github.com/RobertSkalko/Age-of-Exile"
   },
 
   "license": "All rights reserved",

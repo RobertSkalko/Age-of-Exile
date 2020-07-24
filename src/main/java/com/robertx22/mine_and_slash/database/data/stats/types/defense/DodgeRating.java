@@ -68,12 +68,12 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     @Override
     public float getMaxMulti() {
-        return 0.9F;
+        return 0.8F;
     }
 
     @Override
     public float valueNeededToReachMaximumPercentAtLevelOne() {
-        return 175;
+        return 200;
     }
 
     private static class SingletonHolder {

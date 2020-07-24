@@ -7,6 +7,8 @@ public class ServerContainer {
 
     public boolean USE_COMPATIBILITY_ITEMS = false;
     public boolean LOG_REGISTRY_ENTRIES = false;
+    public boolean GET_STARTER_ITEMS = true;
+    public boolean ENABLE_ANTI_MOB_FARM = true;
 
     public double REPAIR_FUEL_NEEDED_MULTI = 1;
     public double REGEN_HUNGER_COST = 20;

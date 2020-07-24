@@ -188,7 +188,6 @@ public class LivingHurtUtils {
         }
 
         if (DmgSourceUtils.isMyDmgSource(event.getSource())) {
-            LivingHurtUtils.damageArmorItems(event.getEntityLiving());
             return;
         }
 

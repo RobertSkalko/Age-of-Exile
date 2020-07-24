@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.Slot;
+
 import java.util.HashMap;
 
 public class FuelSlot extends Slot {
@@ -21,16 +22,14 @@ public class FuelSlot extends Slot {
     public static HashMap<Item, Integer> FUEL_VALUES = new HashMap<Item, Integer>() {
         {
             {
-
-                put(Items.DIAMOND, 300);
-                put(Items.GOLD_INGOT, 80);
-                put(Items.IRON_INGOT, 20);
+                put(Items.DIAMOND, 500);
+                put(Items.GOLD_INGOT, 100);
+                put(Items.IRON_INGOT, 30);
                 put(Items.EMERALD, 200);
-                put(Items.REDSTONE, 3);
+                put(Items.REDSTONE, 4);
 
-                put(ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 50);
+                put(ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 100);
                 put(ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE, 500);
-
             }
         }
     };

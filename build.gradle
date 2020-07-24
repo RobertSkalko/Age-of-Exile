@@ -24,11 +24,6 @@ repositories {
 }
 
 
-//minecraft{
-//   refmapName = "mixins.mmorpg.refmap.json"
-//}
-
-
 dependencies {
 
 	//Base

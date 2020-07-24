@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.data.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 public class EvasionPrefixes implements ISlashRegistryInit {
@@ -27,9 +27,9 @@ public class EvasionPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("fawns")
             .Named("Fawn's")
-            .tier(1, new StatModifier(4, 6, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(3, 5, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(3, 4, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(2, 3, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(12, 15, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(8, 12, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(3, 8, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.hasBaseStat(DodgeRating.getInstance()))
             .Prefix()
             .Build();

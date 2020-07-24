@@ -70,7 +70,7 @@ public class MagicalGear extends BaseMagical implements GearRarity {
 
     @Override
     public float socketChance() {
-        return 20;
+        return 15;
     }
 
     @Override

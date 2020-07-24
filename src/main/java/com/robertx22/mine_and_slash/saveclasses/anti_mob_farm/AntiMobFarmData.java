@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.anti_mob_farm;
 
-import com.robertx22.mine_and_slash.config.forge.CommonConfig;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -29,7 +29,7 @@ public class AntiMobFarmData {
         if (WorldUtils.isMapWorldClass(en.world)) {
             return 1;
         }
-        if (CommonConfig.INSTANCE.ENABLE_ANTI_MOB_FARM == false) {
+        if (!ModConfig.get().Server.ENABLE_ANTI_MOB_FARM) {
             return 1;
         }
 

@@ -22,8 +22,6 @@ public class ArmorRedMethod {
             if (!source.bypassesArmor()) {
                 MMORPG.mixinLog("Returning dmg value before it's affected by armor calculation.");
 
-                LivingHurtUtils.damageArmorItems(en);
-
                 float afterArmor = DamageUtil.getDamageLeft(damage, (float) en.getArmor(), (float) en.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)
                     .getValue());
 
@@ -33,6 +31,11 @@ public class ArmorRedMethod {
                     float effectiveness = (float) ModConfig.get().Server.VANILLA_ARMOR_EFFECTIVENESS;
 
                     damage -= diff * effectiveness;
+                }
+
+                if (damage > 0) {
+                    LivingHurtUtils.damageArmorItems(en);
+                    LivingHurtUtils.damageCurioItems(en);
                 }
 
                 ci.setReturnValue(damage);
