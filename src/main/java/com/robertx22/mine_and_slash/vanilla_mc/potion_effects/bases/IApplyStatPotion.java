@@ -25,7 +25,7 @@ public interface IApplyStatPotion {
 
         LivingEntity caster = extraData.getCaster(world);
 
-        if (extraData != null) {
+        if (caster != null && extraData != null) {
             getStatsAffected((BasePotionEffect) instance.getEffectType(), Load.Unit(caster), Load.spells(caster), extraData).forEach(x -> x.applyStats(Load.Unit(target)));
         }
 

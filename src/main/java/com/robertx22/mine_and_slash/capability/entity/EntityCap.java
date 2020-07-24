@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.data.rarities.MobRarity;
+import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.tiers.base.Tier;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.event_hooks.player.OnLogin;
@@ -28,6 +29,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
@@ -675,6 +677,8 @@ public class EntityCap {
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
             num *= SlashRegistry.getEntityConfig(data.source, data.sourceData).dmg_multi;
+
+            num = new WeaponDamage(Elements.Physical).scale(num, getLevel());
 
             DamageEffect dmg = new DamageEffect(
                 data, (int) num, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None
