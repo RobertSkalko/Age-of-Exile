@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.loot;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SlimeEntity;
@@ -47,22 +47,18 @@ public class LootUtils {
 
     public static float applyLootMultipliers(float chance, UnitData mob, LivingEntity entity) {
 
-        float first = chance;
-
-        float after_rarity = first * Rarities.Mobs.get(mob.getRarity())
+        chance *= Rarities.Mobs.get(mob.getRarity())
             .LootMultiplier();
 
-        float hp = entity.getMaxHealth() - mob.getUnit()
-            .peekAtStat(Health.getInstance())
-            .getAverageValue();
+        float hp = EntityUtils.getVanillaMaxHealth(entity);
 
-        float after_mob_health = after_rarity * (1 + hp / 20);
+        chance *= (1 + hp / 20);
 
         if (entity instanceof SlimeEntity) {
-            after_mob_health /= 15;
+            chance /= 15;
         }
 
-        return after_mob_health;
+        return chance;
     }
 
     public static int WhileRoll(float chance) {

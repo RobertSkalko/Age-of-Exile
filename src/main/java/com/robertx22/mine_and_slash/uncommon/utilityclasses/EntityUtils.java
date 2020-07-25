@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.pathing.Path;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -16,16 +17,20 @@ import java.lang.reflect.Field;
 
 public class EntityUtils {
 
-    public static boolean isTryingButCantGetToPlayer(MobEntity mob) {
-        if (mob.getTarget() != null) {
-            Path path = mob.getNavigation()
-                .findPathTo(mob.getTarget(), 0);
-            if (path == null || !path.isFinished()) {
-                return true;
+    public static float getVanillaMaxHealth(LivingEntity entity) {
+        float hpaddedalready = 0;
+
+        try {
+            EntityAttributeModifier hpmod = entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)
+                .getModifier(Unit.hpID);
+
+            if (hpmod != null) {
+                hpaddedalready = (float) hpmod.getValue();
             }
+        } catch (Exception e) {
         }
 
-        return false;
+        return entity.getMaxHealth() - hpaddedalready;
     }
 
     public static ItemStack getWeaponStackFromThrownEntity(Entity en) {

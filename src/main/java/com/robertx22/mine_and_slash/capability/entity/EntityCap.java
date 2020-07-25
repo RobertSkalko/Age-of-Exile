@@ -36,7 +36,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.EntityStatusEffectsData;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -92,7 +91,7 @@ public class EntityCap {
 
         void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
 
-        Entity getHighestDamageEntity(Entity entity);
+        LivingEntity getHighestDamageEntity(LivingEntity entity);
 
         boolean isNewbie();
 
@@ -320,6 +319,7 @@ public class EntityCap {
         @Override
         public void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self) {
             try {
+
                 this.dmgStats.onDamage(entity, dmg);
 
                 if (entity == null && self != null) {
@@ -341,8 +341,8 @@ public class EntityCap {
         }
 
         @Override
-        public Entity getHighestDamageEntity(Entity entity) {
-            return dmgStats.getHighestDamageEntity((ServerWorld) entity.world);
+        public LivingEntity getHighestDamageEntity(LivingEntity entity) {
+            return dmgStats.getHighestDamageEntity((ServerWorld) entity.world, entity);
         }
 
         @Override

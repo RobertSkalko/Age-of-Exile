@@ -5,7 +5,9 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -17,25 +19,24 @@ public class EntityDmgStatsData {
     @Store
     private HashMap<String, Float> map = new HashMap<>();
 
-    @Store
-    private float enviroDmg = 0;
-
     public void onDamage(LivingEntity entity, float dmg) {
 
         if (entity == null) {
-            enviroDmg += dmg;
             return;
         } else {
-            String id = entity.getUuid().toString();
-            map.put(id, dmg + map.getOrDefault(id, 0F));
+            if (entity instanceof PlayerEntity) {
+                String id = entity.getUuid()
+                    .toString();
+                map.put(id, dmg + map.getOrDefault(id, 0F));
+            }
         }
     }
 
-    public LivingEntity getHighestDamageEntity(ServerWorld world) {
+    public LivingEntity getHighestDamageEntity(ServerWorld world, LivingEntity victim) {
 
         Optional<Map.Entry<String, Float>> opt = map.entrySet()
-                .stream()
-                .max((one, two) -> one.getValue() >= two.getValue() ? 1 : -1);
+            .stream()
+            .max((one, two) -> one.getValue() >= two.getValue() ? 1 : -1);
 
         if (opt.isPresent()) {
 
@@ -44,7 +45,13 @@ public class EntityDmgStatsData {
             String id = entry.getKey();
             Float val = entry.getValue();
 
-            if (enviroDmg > val) {
+            float totalPlayerDmg = 0;
+
+            for (Float x : map.values()) {
+                totalPlayerDmg += x;
+            }
+
+            if (totalPlayerDmg < victim.getMaxHealth() / 2F) {
                 return null; // means enviroment did more damage than the highest entity dmg dealer
             }
 

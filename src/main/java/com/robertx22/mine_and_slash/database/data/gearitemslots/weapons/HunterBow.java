@@ -63,7 +63,7 @@ public class HunterBow extends BaseWeapon {
 
     @Override
     public int Weight() {
-        return 1000;
+        return 750;
     }
 
     @Override

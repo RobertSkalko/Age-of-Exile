@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mixins;
 import com.robertx22.mine_and_slash.mixin_methods.ArmorRedMethod;
 import com.robertx22.mine_and_slash.mixin_methods.GearChangeMethod;
 import com.robertx22.mine_and_slash.mixin_methods.OnDamageMethod;
+import com.robertx22.mine_and_slash.mixin_methods.OnMobDeathDrops;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +19,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
   */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
+
+    @Inject(method = "onKilledBy", at = @At("HEAD"))
+    public void on$ondeath(LivingEntity adversary, CallbackInfo ci) {
+        LivingEntity victim = (LivingEntity) (Object) this;
+        OnMobDeathDrops.mobOnDeathDrop(victim);
+    }
 
     @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
     public float onmy$damage(float amount, DamageSource source) {

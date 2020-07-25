@@ -14,7 +14,7 @@ public abstract class BaseCurio extends BaseGearType {
 
     @Override
     public int Weight() {
-        return 750;
+        return 500;
     }
 
 }

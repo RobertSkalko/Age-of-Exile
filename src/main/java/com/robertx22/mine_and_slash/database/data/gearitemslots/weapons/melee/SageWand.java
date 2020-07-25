@@ -63,7 +63,7 @@ public class SageWand extends BaseWeapon {
 
     @Override
     public int Weight() {
-        return 1000;
+        return 1500;
     }
 
     @Override

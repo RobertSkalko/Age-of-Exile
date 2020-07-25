@@ -1,3 +1,9 @@
+v.1.0.3
+* tweaked gear drop types, jewelry rarer, staffs more common
+* made elemental mobs a bit weaker.
+* buffed elemental resist affixes a bit
+* fix loot not being dropped if player doesnt do the finishing hit
+
 v.1.0.2
 * fix horse gui crash
 * added chinese translation

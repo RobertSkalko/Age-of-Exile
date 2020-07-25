@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.DmgNumPacket;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,7 +35,7 @@ public class OnMobDeathDrops {
 
                     UnitData mobKilledData = Load.Unit(mobKilled);
 
-                    Entity killerEntity = mobKilledData.getHighestDamageEntity(mobKilled);
+                    LivingEntity killerEntity = mobKilledData.getHighestDamageEntity(mobKilled);
 
                     if (killerEntity instanceof ServerPlayerEntity) {
 

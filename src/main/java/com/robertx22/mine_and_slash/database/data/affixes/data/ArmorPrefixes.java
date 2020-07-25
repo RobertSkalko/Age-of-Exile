@@ -28,9 +28,9 @@ public class ArmorPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("scaled")
             .Named("Scaled")
-            .tier(1, new StatModifier(4, 6, Armor.getInstance(), ModType.FLAT), new StatModifier(3, 5, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(3, 4, Armor.getInstance(), ModType.FLAT), new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(2, 3, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(14, 20, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 3, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(8, 14, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.hasBaseStat(Armor.getInstance()))
             .Prefix()
             .Build();
@@ -47,10 +47,10 @@ public class ArmorPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("virile")
             .Named("Virile")
-            .tier(1, new StatModifier(4, 6, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(3, 4, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(3, 4, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(BaseGearType.SlotFamily.Armor)
                 .plus(x -> x.isShield())
                 .plus(x -> x.family()
