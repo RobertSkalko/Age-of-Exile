@@ -37,7 +37,7 @@ public abstract class InGameHudMixin {
         return entity.getAttributeBaseValue(attribute);
     }
 
-    @Inject(method = "getHeartCount", at = @At(value = "TAIL"))
+    @Inject(method = "getHeartCount", at = @At(value = "TAIL"), cancellable = true)
     public void on$getMaxHealth(LivingEntity entity, CallbackInfoReturnable<Integer> ci) {
         ci.setReturnValue(10);
     }

@@ -1,4 +1,10 @@
+v.1.0.2
+* fix horse gui crash
+
 v.1.0.1
+
+Added required dependences, sorry about that!
+
 * buffed gear drops
 * buffed repair station
 * nerf socket chance
