@@ -1,5 +1,6 @@
 v.1.0.2
 * fix horse gui crash
+* added chinese translation
 
 v.1.0.1
 
