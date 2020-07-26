@@ -36,7 +36,7 @@ public class AffixBuilder {
     }
 
     public AffixBuilder Weight(int weight) {
-        weight = weight;
+        this.weight = weight;
         return this;
     }
 
