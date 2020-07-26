@@ -17,6 +17,7 @@ Want to balance it with other mods? Tweak to balance it!
 * fix affixes all being same weight (chance to spawn)
 * made ele mobs transform their dmg to elemental, instead of adding extra ele dmg. This should reduce 1 shots by a lot!
 * magic shield shouldn't be lost if dmg is blocked now
+* made stations a bit cheaper
 
 v.1.0.2
 * fix horse gui crash
