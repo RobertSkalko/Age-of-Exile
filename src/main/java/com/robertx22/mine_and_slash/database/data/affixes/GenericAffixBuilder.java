@@ -43,7 +43,7 @@ public class GenericAffixBuilder<T> {
     }
 
     public GenericAffixBuilder<T> Weight(int weight) {
-        weight = weight;
+        this.weight = weight;
         return this;
     }
 
