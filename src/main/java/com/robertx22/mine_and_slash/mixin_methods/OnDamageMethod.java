@@ -14,6 +14,7 @@ public class OnDamageMethod {
         if (entity.world.isClient) {
             return modified;
         }
+
         MMORPG.mixinLog("before dmg hook: " + modified);
         modified = OnHurtEvent.onHurtEvent(new LivingHurtEvent(entity, source, modified));
         MMORPG.mixinLog("after dmg hook: " + modified);

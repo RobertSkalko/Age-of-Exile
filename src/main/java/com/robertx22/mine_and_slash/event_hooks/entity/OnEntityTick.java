@@ -1,5 +1,6 @@
-package com.robertx22.mine_and_slash.mixin_methods;
+package com.robertx22.mine_and_slash.event_hooks.entity;
 
+import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -8,7 +9,15 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
-public class GearChangeMethod {
+public class OnEntityTick extends ExileEvents.OnEntityTick {
+
+    @Override
+    public void onTick(LivingEntity entity) {
+        if (entity.world.isClient) {
+            return;
+        }
+        checkGearChanged(entity);
+    }
 
     public static void checkGearChanged(LivingEntity entity) {
 
@@ -73,5 +82,4 @@ public class GearChangeMethod {
         }
 
     }
-
 }

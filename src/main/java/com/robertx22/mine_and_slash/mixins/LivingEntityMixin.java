@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.mixins;
 
+import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.mixin_methods.ArmorRedMethod;
-import com.robertx22.mine_and_slash.mixin_methods.GearChangeMethod;
 import com.robertx22.mine_and_slash.mixin_methods.OnDamageMethod;
 import com.robertx22.mine_and_slash.mixin_methods.OnMobDeathDrops;
 import net.minecraft.entity.LivingEntity;
@@ -38,10 +38,7 @@ public abstract class LivingEntityMixin {
     @Inject(method = "tick()V", at = @At("HEAD"))
     public void on$tick(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
-        if (entity.world.isClient) {
-            return;
-        }
-        GearChangeMethod.checkGearChanged(entity);
+        ExileEvents.LIVING_ENTITY_TICK.callEvents(x -> x.onTick(entity));
     }
 
     @Inject(

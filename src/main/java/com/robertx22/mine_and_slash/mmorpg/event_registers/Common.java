@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg.event_registers;
 
+import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.a_libraries.curios.OnCurioChangeEvent;
+import com.robertx22.mine_and_slash.event_hooks.entity.OnEntityTick;
 import com.robertx22.mine_and_slash.event_hooks.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.event_hooks.entity.OnTrackEntity;
 import com.robertx22.mine_and_slash.event_hooks.ontick.OnServerTick;
@@ -25,6 +27,8 @@ public class Common {
         ServerEntityEvents.ENTITY_LOAD.register(new OnLogin());
         ServerTickEvents.END_SERVER_TICK.register(new OnServerTick());
         ServerTickEvents.END_WORLD_TICK.register(new WorldTickMinute());
+
+        ExileEvents.LIVING_ENTITY_TICK.register(new OnEntityTick());
 
     }
 
