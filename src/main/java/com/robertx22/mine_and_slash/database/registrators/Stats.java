@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.base.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.UnknownStat;
@@ -13,6 +14,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.elementals.all_dam
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.*;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.MagicFind;
+import com.robertx22.mine_and_slash.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
@@ -23,7 +25,6 @@ import com.robertx22.mine_and_slash.database.data.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.data.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.mine_and_slash.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.mine_and_slash.database.data.stats.types.spell_calc.ReducedManaCost;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -43,6 +44,10 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+                    add(ChangeDmgElementStat.PHYS_TO_POISON);
+                    add(ChangeDmgElementStat.PHYS_TO_FIRE);
+                    add(ChangeDmgElementStat.PHYS_TO_FROST);
+                    add(ChangeDmgElementStat.PHYS_TO_THUNDER);
 
                     add(ImmuneToEffectStat.POISON);
                     add(ImmuneToEffectStat.HUNGER);

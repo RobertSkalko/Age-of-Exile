@@ -10,6 +10,7 @@ Trying out a different damage system. Basically:
 * buffed elemental resist affixes a bit
 * fix loot not being dropped if player doesnt do the finishing hit
 * fix affixes all being same weight (chance to spawn)
+* made ele mobs transform their dmg to elemental, instead of adding extra ele dmg. This should reduce 1 shots by a lot!
 
 v.1.0.2
 * fix horse gui crash

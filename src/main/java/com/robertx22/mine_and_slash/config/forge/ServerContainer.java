@@ -14,7 +14,6 @@ public class ServerContainer {
     public double REGEN_HUNGER_COST = 20;
     public double EXP_LOSS_ON_DEATH = 0.05F;
     public double STAT_POINTS_PER_LVL = 1;
-    public double VANILLA_ARMOR_EFFECTIVENESS = 0;
 
     public List<String> IGNORED_ENTITIES = Arrays.asList("minecraft:bat");
 

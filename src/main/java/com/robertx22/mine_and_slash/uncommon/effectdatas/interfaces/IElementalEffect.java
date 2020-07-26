@@ -4,6 +4,8 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public interface IElementalEffect extends IEffect {
 
-	public abstract Elements GetElement();
+    public abstract Elements GetElement();
+
+    void setElement(Elements ele);
 
 }

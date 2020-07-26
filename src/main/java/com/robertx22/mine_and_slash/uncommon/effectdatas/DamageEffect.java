@@ -432,6 +432,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     @Override
+    public void setElement(Elements ele) {
+        this.element = ele;
+    }
+
+    @Override
     public void SetArmorPenetration(int val) {
         this.armorPene = val;
 

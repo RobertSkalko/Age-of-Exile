@@ -42,45 +42,4 @@ public abstract class LivingEntityMixin {
         return ExileEvents.DAMAGE_AFTER_CALC.callEvents(x -> x.onDamage(entity, amount, source, data), data).damage;
     }
 
-    /*
-    @ModifyVariable(method = "damage", at = @At("LOAD"), name = "amount")
-    public float onmy$damageInvoke(float amount, DamageSource source) {
-        if (source instanceof MyDamageSource) {
-            MyDamageSource my = (MyDamageSource) source;
-            if (my.realDamage != amount) {
-                System.out.println("Exile dmg was tried to be modified to " + amount + " but i reset it back to " + my.realDamage);
-            }
-            return my.realDamage;
-        }
-
-        return amount;
-    }
-
-    @ModifyVariable(method = "applyDamage", at = @At("LOAD"), name = "amount")
-    public float onmy$applyDamageInvoke(float amount, DamageSource source) {
-        if (source instanceof MyDamageSource) {
-            MyDamageSource my = (MyDamageSource) source;
-            if (my.realDamage != amount) {
-                System.out.println("Exile dmg was tried to be modified to " + amount + " but i reset it back to " + my.realDamage);
-            }
-            return my.realDamage;
-        }
-
-        return amount;
-    }
-
-     */
-
-    /*
-    @Inject(
-        method = "applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    public void onArmorReduction(DamageSource source, float damage, CallbackInfoReturnable<Float> ci) {
-        LivingEntity en = (LivingEntity) (Object) this;
-        ArmorRedMethod.onArmorReduction(source, damage, ci, en);
-    }
-
-     */
 }
