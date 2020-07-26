@@ -26,6 +26,7 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.event = event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
+        calcBlock();
     }
 
     public DamageEffect(DamageEventData data, int dmg, EffectTypes effectType, WeaponTypes weptype) {
@@ -48,7 +50,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.event = data.event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
-
+        calcBlock();
     }
 
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg,
@@ -57,7 +59,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.event = event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
-
+        calcBlock();
     }
 
     LivingHurtEvent event;
@@ -77,13 +79,30 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
+    private void calcBlock() {
+        // blocking check
+        if (target.isBlocking() && event != null) {
+            Vec3d vec3d = event.getSource()
+                .getPosition();
+            if (vec3d != null) {
+                Vec3d vec3d2 = target.getRotationVec(1.0F);
+                Vec3d vec3d3 = vec3d.reverseSubtract(target.getPos())
+                    .normalize();
+                vec3d3 = new Vec3d(vec3d3.x, 0.0D, vec3d3.z);
+                if (vec3d3.dotProduct(vec3d2) < 0.0D) {
+                    this.isBlocked = true;
+                }
+            }
+        }
+    }
+
     public float percentIncrease = 0;
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
     public Elements element = Elements.Physical;
     public int armorPene;
     public int elementalPene;
-
+    public boolean isBlocked = false;
     public float damageMultiplier = 1;
 
     public float healthHealed;
@@ -206,6 +225,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     protected void activate() {
 
         if (target.getHealth() <= 0F || !target.isAlive()) {
+            return;
+        }
+
+        if (isBlocked) {
             return;
         }
 

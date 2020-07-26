@@ -5,12 +5,18 @@ Trying out a different damage system. Basically:
 - This leads to all armor and weapons being compatible, just less and less useful as Age of Exile stats grow over levels.
 - I'm still unsure if players who attack with Age of Exile weapons should do both vanilla and exile damage.
 
+With this, my mod should no longer be a compatibility nightmare and requiring itself to be the center of a modpack. 
+Just tweak max level and stat scalings and you can make Age of Exile gear either mandatory, optional or even weak!
+
+Want Age of Exile gear to be the sole way of gear progression? Up those stat scalings!
+Want to balance it with other mods? Tweak to balance it!
+
 * tweaked gear drop types, jewelry rarer, staffs more common
-* made elemental mobs a bit weaker.
 * buffed elemental resist affixes a bit
 * fix loot not being dropped if player doesnt do the finishing hit
 * fix affixes all being same weight (chance to spawn)
 * made ele mobs transform their dmg to elemental, instead of adding extra ele dmg. This should reduce 1 shots by a lot!
+* magic shield shouldn't be lost if dmg is blocked now
 
 v.1.0.2
 * fix horse gui crash

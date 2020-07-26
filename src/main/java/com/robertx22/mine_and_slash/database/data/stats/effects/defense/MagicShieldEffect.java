@@ -44,7 +44,7 @@ public class MagicShieldEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.targetData.getResources()
+        return !effect.isBlocked && effect.targetData.getResources()
             .getMagicShield() > 0;
     }
 
