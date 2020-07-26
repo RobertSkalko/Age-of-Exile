@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.event_hooks.entity;
+package com.robertx22.mine_and_slash.event_hooks.my_events;
 
 import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;

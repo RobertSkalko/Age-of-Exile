@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.mixins;
 import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.mixin_methods.ArmorRedMethod;
 import com.robertx22.mine_and_slash.mixin_methods.OnDamageMethod;
-import com.robertx22.mine_and_slash.mixin_methods.OnMobDeathDrops;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +22,7 @@ public abstract class LivingEntityMixin {
     @Inject(method = "onKilledBy", at = @At("HEAD"))
     public void on$ondeath(LivingEntity adversary, CallbackInfo ci) {
         LivingEntity victim = (LivingEntity) (Object) this;
-        OnMobDeathDrops.mobOnDeathDrop(victim);
+        ExileEvents.MOB_DEATH.callEvents(x -> x.onDeath(victim), null);
     }
 
     @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
@@ -38,7 +37,7 @@ public abstract class LivingEntityMixin {
     @Inject(method = "tick()V", at = @At("HEAD"))
     public void on$tick(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
-        ExileEvents.LIVING_ENTITY_TICK.callEvents(x -> x.onTick(entity));
+        ExileEvents.LIVING_ENTITY_TICK.callEvents(x -> x.onTick(entity), null);
     }
 
     @Inject(

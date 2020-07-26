@@ -1,5 +1,6 @@
-package com.robertx22.mine_and_slash.mixin_methods;
+package com.robertx22.mine_and_slash.event_hooks.my_events;
 
+import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.base.Rarities;
@@ -20,10 +21,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.List;
 
-public class OnMobDeathDrops {
+public class OnMobDeathDrops extends ExileEvents.OnMobDeath {
 
-    public static void mobOnDeathDrop(LivingEntity mobKilled) {
-
+    @Override
+    public void onDeath(LivingEntity mobKilled) {
         try {
 
             if (mobKilled.world.isClient) {
@@ -94,6 +95,8 @@ public class OnMobDeathDrops {
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 
+        exp = ExileEvents.MOB_EXP_DROP.callEvents(x -> x.onExp(victim), new ExileEvents.ExpData(exp)).exp;
+
         try {
             exp *= Load.antiMobFarm(victim.world)
                 .getDropMultiForMob(victim);
@@ -125,4 +128,5 @@ public class OnMobDeathDrops {
 
         }
     }
+
 }

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LootTable.class)
 public abstract class ChestMixin {
 
-    @Inject(method = "supplyInventory(Lnet/minecraft/inventory/Inventory;Lnet/minecraft/loot/context/LootContext;)V", at = @At(value = "TAIL"))
+    @Inject(method = "supplyInventory", at = @At(value = "TAIL"))
     public void onLootGen(Inventory inventory, LootContext context, CallbackInfo ci) {
         GenChestLootMethod.onLootGen(inventory, context, ci);
     }
