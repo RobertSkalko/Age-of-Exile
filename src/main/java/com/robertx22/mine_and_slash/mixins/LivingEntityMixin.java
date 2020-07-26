@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.mixins;
 
 import com.robertx22.exiled_lib.events.base.ExileEvents;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -43,7 +42,8 @@ public abstract class LivingEntityMixin {
         return ExileEvents.DAMAGE_AFTER_CALC.callEvents(x -> x.onDamage(entity, amount, source, data), data).damage;
     }
 
-    @ModifyVariable(method = "damage", at = @At("INVOKE"), argsOnly = true)
+    /*
+    @ModifyVariable(method = "damage", at = @At("LOAD"), name = "amount")
     public float onmy$damageInvoke(float amount, DamageSource source) {
         if (source instanceof MyDamageSource) {
             MyDamageSource my = (MyDamageSource) source;
@@ -55,6 +55,21 @@ public abstract class LivingEntityMixin {
 
         return amount;
     }
+
+    @ModifyVariable(method = "applyDamage", at = @At("LOAD"), name = "amount")
+    public float onmy$applyDamageInvoke(float amount, DamageSource source) {
+        if (source instanceof MyDamageSource) {
+            MyDamageSource my = (MyDamageSource) source;
+            if (my.realDamage != amount) {
+                System.out.println("Exile dmg was tried to be modified to " + amount + " but i reset it back to " + my.realDamage);
+            }
+            return my.realDamage;
+        }
+
+        return amount;
+    }
+
+     */
 
     /*
     @Inject(

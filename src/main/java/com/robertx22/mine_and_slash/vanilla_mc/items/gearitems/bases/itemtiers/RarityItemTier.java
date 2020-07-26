@@ -6,8 +6,8 @@ import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
+import static net.minecraft.item.ToolMaterials.DIAMOND;
 import static net.minecraft.item.ToolMaterials.IRON;
-import static net.minecraft.item.ToolMaterials.WOOD;
 
 public class RarityItemTier implements ToolMaterial {
 
@@ -19,14 +19,12 @@ public class RarityItemTier implements ToolMaterial {
 
     @Override
     public int getDurability() {
-        return (int) (IRON.getDurability() + (WOOD.getDurability() * rar
-            .itemTierPower()));
+        return DIAMOND.getDurability();
     }
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return IRON.getMiningSpeedMultiplier() + WOOD.getMiningSpeedMultiplier() * rar
-            .itemTierPower();
+        return IRON.getMiningSpeedMultiplier();
     }
 
     @Override
@@ -36,13 +34,12 @@ public class RarityItemTier implements ToolMaterial {
 
     @Override
     public int getMiningLevel() {
-        return (int) (IRON.getMiningLevel() + 1 * rar.itemTierPower());
+        return IRON.getMiningLevel();
     }
 
     @Override
     public int getEnchantability() {
-        return (int) (IRON.getEnchantability() + (WOOD.getEnchantability() * rar
-            .itemTierPower()));
+        return IRON.getEnchantability();
     }
 
     @Override

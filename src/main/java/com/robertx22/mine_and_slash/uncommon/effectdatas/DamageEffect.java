@@ -260,11 +260,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.sourceData.onAttackEntity(source, target);
 
+            this.targetData.onDamagedBy(source, dmg, target);
+
             if (event == null || !(event.getSource() instanceof MyDamageSource)) {
-                int hurtResistantTime = target.timeUntilRegen;
-                target.timeUntilRegen = 0;
+                //int hurtResistantTime = target.timeUntilRegen;
+                //target.timeUntilRegen = 0;
                 target.damage(dmgsource, dmg);
-                target.timeUntilRegen = hurtResistantTime;
+                //target.timeUntilRegen = hurtResistantTime;
             }
 
             Heal(healthHealed);

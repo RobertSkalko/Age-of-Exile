@@ -16,6 +16,7 @@ public class MyDamageSource extends EntityDamageSource {
     public MyDamageSource(DamageSource s, Entity source, Elements element, float dmg) {
         super(DamageEffect.dmgSourceName, source);
         this.element = element;
+        this.setBypassesArmor();
         realDamage = dmg;
         this.source = s;
     }

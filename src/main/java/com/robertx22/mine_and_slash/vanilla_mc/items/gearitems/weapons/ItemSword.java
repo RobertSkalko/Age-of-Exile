@@ -30,6 +30,11 @@ public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
     }
 
     @Override
+    public float getAttackDamage() {
+        return 6;
+    }
+
+    @Override
     public String locNameLangFileGUID() {
         return Registry.ITEM.getId(this)
             .toString();

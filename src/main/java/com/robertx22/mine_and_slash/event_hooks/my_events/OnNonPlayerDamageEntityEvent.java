@@ -8,7 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class OnDamageEvent extends ExileEvents.OnDamageEntity {
+public class OnNonPlayerDamageEntityEvent extends ExileEvents.OnDamageEntity {
 
     @Override
     public void onDamage(LivingEntity entity, float damage, DamageSource source, ExileEvents.DamageData data) {
@@ -16,16 +16,11 @@ public class OnDamageEvent extends ExileEvents.OnDamageEntity {
         if (entity.world.isClient) {
             return;
         }
-
-        if (entity instanceof PlayerEntity) {
-            System.out.println("Now have " + entity.getHealth() + " out of " + entity.getMaxHealth());
-        }
-
         if (source instanceof MyDamageSource) {
             return;
         }
-
-        OnHurtEvent.onHurtEvent(new LivingHurtEvent(entity, source, damage));
-
+        if (!(source.getAttacker() instanceof PlayerEntity)) {
+            OnHurtEvent.onHurtEvent(new LivingHurtEvent(entity, source, damage));
+        }
     }
 }

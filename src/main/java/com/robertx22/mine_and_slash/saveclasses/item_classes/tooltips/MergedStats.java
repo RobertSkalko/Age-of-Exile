@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips;
 
+import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -23,9 +23,19 @@ public class MergedStats implements IGearPartTooltip {
 
         this.list = TooltipStatInfo.mergeDuplicates(infolist);
 
-        this.list.sort(Comparator.comparingInt(x -> -(int) (x.firstValue + x.secondValue)));
-        this.list.sort(Comparator.comparing(x -> !x.type
-            .equals(ModType.FLAT) && x.stat.IsPercent()));
+        // local stats first, then others, and lastly ele resists
+        this.list.sort(Comparator.comparing(x -> {
+
+            if (x.stat.isLocal()) {
+                return 0;
+            }
+            if (x.stat instanceof ElementalResist) {
+                return 2;
+            }
+
+            return 1;
+        }));
+
     }
 
     @Override
