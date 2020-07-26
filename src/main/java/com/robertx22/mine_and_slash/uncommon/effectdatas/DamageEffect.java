@@ -250,7 +250,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             sourcevar = null; // by making source entity null, knockback isnt applied..
         }
 
-        MyDamageSource dmgsource = new MyDamageSource(ds, dmgSourceName, sourcevar, element, (int) number);
+        MyDamageSource dmgsource = new MyDamageSource(ds, sourcevar, element, dmg);
 
         if (isDodged) {
             cancelDamage();
@@ -260,9 +260,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.sourceData.onAttackEntity(source, target);
 
-            if (event != null) {
-                event.setAmount(dmg);
-            } else {
+            if (event == null || !(event.getSource() instanceof MyDamageSource)) {
                 int hurtResistantTime = target.timeUntilRegen;
                 target.timeUntilRegen = 0;
                 target.damage(dmgsource, dmg);

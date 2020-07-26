@@ -64,7 +64,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(10, 15, new ReducedAllStatReqOnItem(), ModType.FLAT))
             .Req(SlotRequirement.of(x -> x.getStatRequirements()
                 .hasAny()))
-            .Weight(300)
+            .Weight(200)
             .Suffix()
             .Build();
 

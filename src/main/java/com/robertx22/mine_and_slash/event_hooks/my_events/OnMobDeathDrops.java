@@ -95,7 +95,8 @@ public class OnMobDeathDrops extends ExileEvents.OnMobDeath {
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 
-        exp = ExileEvents.MOB_EXP_DROP.callEvents(x -> x.onExp(victim), new ExileEvents.ExpData(exp)).exp;
+        ExileEvents.ExpData data = new ExileEvents.ExpData(exp);
+        exp = ExileEvents.MOB_EXP_DROP.callEvents(x -> x.onExp(victim), data).exp;
 
         try {
             exp *= Load.antiMobFarm(victim.world)

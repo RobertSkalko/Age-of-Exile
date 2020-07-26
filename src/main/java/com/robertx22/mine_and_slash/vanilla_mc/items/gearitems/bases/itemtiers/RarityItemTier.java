@@ -6,6 +6,9 @@ import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
+import static net.minecraft.item.ToolMaterials.IRON;
+import static net.minecraft.item.ToolMaterials.WOOD;
+
 public class RarityItemTier implements ToolMaterial {
 
     public RarityItemTier(int rar) {
@@ -16,30 +19,29 @@ public class RarityItemTier implements ToolMaterial {
 
     @Override
     public int getDurability() {
-        return (int) (net.minecraft.item.ToolMaterials.IRON.getDurability() + (net.minecraft.item.ToolMaterials.WOOD.getDurability() * rar
+        return (int) (IRON.getDurability() + (WOOD.getDurability() * rar
             .itemTierPower()));
     }
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return net.minecraft.item.ToolMaterials.IRON.getMiningSpeedMultiplier() + net.minecraft.item.ToolMaterials.WOOD.getMiningSpeedMultiplier() * rar
+        return IRON.getMiningSpeedMultiplier() + WOOD.getMiningSpeedMultiplier() * rar
             .itemTierPower();
     }
 
     @Override
     public float getAttackDamage() {
-        return net.minecraft.item.ToolMaterials.IRON.getAttackDamage() + net.minecraft.item.ToolMaterials.WOOD.getAttackDamage() * rar
-            .itemTierPower();
+        return IRON.getAttackDamage();
     }
 
     @Override
     public int getMiningLevel() {
-        return (int) (net.minecraft.item.ToolMaterials.IRON.getMiningLevel() + 1 * rar.itemTierPower());
+        return (int) (IRON.getMiningLevel() + 1 * rar.itemTierPower());
     }
 
     @Override
     public int getEnchantability() {
-        return (int) (net.minecraft.item.ToolMaterials.IRON.getEnchantability() + (net.minecraft.item.ToolMaterials.IRON.getEnchantability() * rar
+        return (int) (IRON.getEnchantability() + (WOOD.getEnchantability() * rar
             .itemTierPower()));
     }
 

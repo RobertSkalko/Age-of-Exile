@@ -10,9 +10,7 @@ public class StatScaleConfigs {
     public LinearScalingConfig SLOW_LINEAR_SCALING;
 
     public StatScaleConfigs() {
-
-        LINEAR_SCALING = new LinearScalingConfig(0.05D);
+        LINEAR_SCALING = new LinearScalingConfig(0.075D);
         SLOW_LINEAR_SCALING = new LinearScalingConfig(0.02D);
-
     }
 }

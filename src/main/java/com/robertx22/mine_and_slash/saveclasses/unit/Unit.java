@@ -396,9 +396,7 @@ public class Unit {
 
         DirtyCheck aftercalc = getDirtyCheck();
 
-        if (old.hp != aftercalc.hp) {
-            addToVanillaHealth(entity);
-        }
+        addToVanillaHealth(entity);
 
         if (old.isDirty(aftercalc)) {
             if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {

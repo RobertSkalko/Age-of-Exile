@@ -4,6 +4,7 @@ import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.a_libraries.curios.OnCurioChangeEvent;
 import com.robertx22.mine_and_slash.event_hooks.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.event_hooks.entity.OnTrackEntity;
+import com.robertx22.mine_and_slash.event_hooks.my_events.OnDamageEvent;
 import com.robertx22.mine_and_slash.event_hooks.my_events.OnEntityTick;
 import com.robertx22.mine_and_slash.event_hooks.my_events.OnMobDeathDrops;
 import com.robertx22.mine_and_slash.event_hooks.ontick.OnServerTick;
@@ -31,6 +32,7 @@ public class Common {
 
         ExileEvents.LIVING_ENTITY_TICK.register(new OnEntityTick());
         ExileEvents.MOB_DEATH.register(new OnMobDeathDrops());
+        ExileEvents.DAMAGE_BEFORE_CALC.register(new OnDamageEvent());
 
     }
 

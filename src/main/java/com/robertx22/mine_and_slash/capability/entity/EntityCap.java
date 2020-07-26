@@ -671,7 +671,7 @@ public class EntityCap {
         public void mobBasicAttack(DamageEventData data) {
             MobRarity rar = Rarities.Mobs.get(data.sourceData.getRarity());
 
-            float vanilla = data.getEventDamage();
+            float vanilla = data.getEventDamage() / 2F;
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 

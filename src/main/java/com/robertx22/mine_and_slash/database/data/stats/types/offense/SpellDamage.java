@@ -16,7 +16,7 @@ public class SpellDamage extends Stat implements IStatEffects {
 
     @Override
     public StatScaling getScaling() {
-        return StatScaling.SCALING;
+        return StatScaling.SLOW_SCALING;
     }
 
     public static String GUID = "spell_damage";
