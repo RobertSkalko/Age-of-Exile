@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine;
 
-import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
@@ -47,7 +46,6 @@ public class TrickeryEffect extends BasePotionEffect implements IApplyStatPotion
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
         list.add(new PotionStat(10, CriticalHit.getInstance()));
-        list.add(new PotionStat(15, Dexterity.INSTANCE));
         return list;
     }
 

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine;
 
-import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -49,7 +48,6 @@ public class BraveryEffect extends BasePotionEffect implements IApplyStatPotion,
         List<PotionStat> list = new ArrayList<>();
         list.add(new PotionStat(20, Armor.getInstance()));
         list.add(new PotionStat(5, HealthRegen.getInstance()));
-        list.add(new PotionStat(10, Strength.INSTANCE));
         return list;
     }
 

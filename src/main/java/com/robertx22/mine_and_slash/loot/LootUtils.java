@@ -52,7 +52,7 @@ public class LootUtils {
 
         float hp = EntityUtils.getVanillaMaxHealth(entity);
 
-        chance *= (1 + hp / 20);
+        chance *= (1 + hp / 20F);
 
         if (entity instanceof SlimeEntity) {
             chance /= 15;

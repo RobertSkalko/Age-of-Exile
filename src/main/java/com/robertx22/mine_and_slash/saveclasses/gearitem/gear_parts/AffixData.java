@@ -122,8 +122,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public void RerollFully(GearItemData gear) {
 
         Affix affix = SlashRegistry.Affixes()
-            .getFilterWrapped(x -> x.type == getAffixType() && !gear.affixes.containsAffix(x))
-            .allThatMeetRequirement(gear)
+            .getFilterWrapped(x -> x.type == getAffixType() && gear.canGetAffix(x))
             .random();
 
         this.create(gear, affix);

@@ -100,12 +100,16 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public boolean canInsertJewel(JewelData jewel) {
-
         if (jewel.affix.level > this.level) {
             return false;
         }
 
-        if (!canGetAffix(jewel.affix.getAffix())) {
+        if (affixes.containsAffix(jewel.affix.getAffix())) {
+            return false;
+        }
+
+        if (!jewel.affix.getAffix()
+            .meetsRequirements(new GearRequestedFor(this))) {
             return false;
         }
 
@@ -120,13 +124,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             return false;
         }
 
-        if (!affix.meetsRequirements(new GearRequestedFor(this))) {
-            return false;
-        }
+        return affix.meetsRequirements(new GearRequestedFor(this));
 
-        return affixes.getAllAffixesAndSockets()
-            .stream()
-            .anyMatch(x -> x.isSocketAndEmpty() && x.affixType == affix.type);
     }
 
     @Store

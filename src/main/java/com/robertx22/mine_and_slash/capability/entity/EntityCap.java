@@ -671,7 +671,7 @@ public class EntityCap {
         public void mobBasicAttack(DamageEventData data) {
             MobRarity rar = Rarities.Mobs.get(data.sourceData.getRarity());
 
-            float vanilla = data.getEventDamage() / 2F;
+            float vanilla = data.getEventDamage() * (float) ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG;
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
@@ -723,6 +723,7 @@ public class EntityCap {
 
         private void setMobLvlNormally(LivingEntity entity, PlayerEntity nearestPlayer) {
             EntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, this);
+
             int lvl = LevelUtils.determineLevel(entity.world, entity.getBlockPos(),
                 nearestPlayer
             );

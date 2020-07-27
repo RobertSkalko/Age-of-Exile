@@ -29,12 +29,7 @@ public class PlayerUtils {
             .stream()
             .min(Comparator.comparingDouble(x -> x.squaredDistanceTo(pos)));
 
-        if (player.isPresent()) {
-            return player.get();
-        }
-
-        return null;
-
+        return player.orElse(null);
     }
 
 }

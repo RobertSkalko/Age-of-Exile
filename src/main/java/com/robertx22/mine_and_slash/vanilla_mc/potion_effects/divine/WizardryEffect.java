@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine;
 
-import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -51,7 +50,6 @@ public class WizardryEffect extends BasePotionEffect implements IApplyStatPotion
         List<PotionStat> list = new ArrayList<>();
         list.add(new PotionStat(15, new ElementalSpellDamage(Elements.Elemental)));
         list.add(new PotionStat(5, ManaRegen.getInstance()));
-        list.add(new PotionStat(10, Intelligence.INSTANCE));
         return list;
     }
 

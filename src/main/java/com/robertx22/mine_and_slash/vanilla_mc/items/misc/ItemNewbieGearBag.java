@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.GemstoneSword;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.SageWand;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.generators.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -29,8 +29,6 @@ public class ItemNewbieGearBag extends BaseItem {
 
     }
 
-    public static int ITEMS_AMOUNT = 6;
-
     @Override
     public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
@@ -39,7 +37,7 @@ public class ItemNewbieGearBag extends BaseItem {
 
                 List<BaseGearType> list = new ArrayList<>();
 
-                list.add(GemstoneSword.INSTANCE);
+                list.add(SageWand.INSTANCE);
 
                 list.forEach(x -> {
                     GearItemData data = getBlueprint(x).createData();
