@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.trident;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
-import com.robertx22.mine_and_slash.mmorpg.EntityPacket;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
@@ -9,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.EntityPacket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

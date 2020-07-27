@@ -11,6 +11,7 @@ Just tweak max level and stat scalings and you can make Age of Exile gear either
 Want Age of Exile gear to be the sole way of gear progression? Up those stat scalings!
 Want to balance it with other mods? Tweak to balance it!
 
+* should fix server crashing on spell casting
 * tweaked gear drop types, jewelry rarer, staffs more common
 * buffed elemental resist affixes a bit
 * fix loot not being dropped if player doesnt do the finishing hit

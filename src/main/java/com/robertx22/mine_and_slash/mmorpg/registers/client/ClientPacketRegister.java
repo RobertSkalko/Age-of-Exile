@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
-import com.robertx22.mine_and_slash.mmorpg.EntityPacket;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.*;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacket;
@@ -25,7 +24,7 @@ public class ClientPacketRegister {
         Packets.registerServerToClient(new TileUpdatePacket());
 
         ClientSidePacketRegistry.INSTANCE.register(EntityPacket.ID, (ctx, buf) -> {
-            EntityPacket.onPacket(ctx, buf);
+            EntityPacketOnClient.onPacket(ctx, buf);
         });
     }
 }
