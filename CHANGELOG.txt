@@ -2,6 +2,9 @@ v.1.0.4
 * added new gear type, Holy scepter.
 * added a new unique scepter
 * fixed leveling being too easy because exp was multiplied by total mob health instead of total vanilla hp before the added health
+* fixed hp rendering so it's accurate (it didnt show lost hp for a while)
+* skill gems now salvagable (dont throw them away now xD)
+* should fix spell tooltips having wrong levels
 
 v.1.0.3
 

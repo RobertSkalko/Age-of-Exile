@@ -59,7 +59,7 @@ public class ArrowStormEntity extends BaseCloudEntity {
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
                         getX(), getY() + height + yRandom, getZ(), radius());
 
-                    RangerArrowEntity en = SpellUtils.getSpellEntity(getSpellData().configs, new RangerArrowEntity(world), getSpellData().getSpell(), caster);
+                    RangerArrowEntity en = SpellUtils.getSpellEntity(getSpellData().configs, new RangerArrowEntity(world), getSpellData().skillgem, caster);
                     SpellUtils.setupProjectileForCasting(en, caster, 1.5F);
                     en.setVelocity(new Vec3d(0, -1, 0));
                     en.refreshPositionAndAngles(p.x, p.y, p.z, 0, 0);

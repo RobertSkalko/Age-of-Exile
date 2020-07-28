@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEn
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -17,9 +18,6 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-
-import java.util.function.Function;
 
 public class SpellUtils {
 
@@ -53,6 +51,7 @@ public class SpellUtils {
 
     }
 
+    /*
     public static void castTripleProjectileInCone(EntityCalcSpellConfigs config, float apart, BaseSpell spell, Function<World, PersistentProjectileEntity> projectile, LivingEntity caster, float speed) {
         World world = caster.world;
 
@@ -78,6 +77,8 @@ public class SpellUtils {
 
     }
 
+     */
+
     public static void setupProjectileForCasting(PersistentProjectileEntity projectile, LivingEntity caster, float speed,
                                                  float pitch, float yaw) {
         Vec3d pos = caster.getPos();
@@ -90,7 +91,7 @@ public class SpellUtils {
 
     public static <T extends Entity> T getSpellEntity(EntityCalcSpellConfigs config, T spellEntity,
 
-                                                      BaseSpell spell,
+                                                      SkillGemData skillgem,
 
                                                       LivingEntity caster
 
@@ -100,7 +101,7 @@ public class SpellUtils {
 
         int lifeInTicks = se.getDefaultLifeInTicks();
 
-        EntitySpellData syncData = new EntitySpellData(spell, caster, config);
+        EntitySpellData syncData = new EntitySpellData(skillgem, caster, config);
 
         se.setSpellData(syncData);
 
@@ -124,21 +125,20 @@ public class SpellUtils {
             new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
                 ctx.getConfigFor(ctx.ability)
                     .getCalc(ctx.skillGem)
-                    .getCalculatedValue(ctx.data, ctx.spellsCap, ctx.ability), ResourcesData.Use.RESTORE,
+                    .getCalculatedValue(ctx.data, ctx.skillGem), ResourcesData.Use.RESTORE,
                 ctx.spell
             ));
         heal.Activate();
     }
 
     public static void healCasterMagicShield(SpellCastContext ctx) {
-        SpellHealEffect heal = new SpellHealEffect(
-            new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.MAGIC_SHIELD,
+        ctx.data
+            .modifyResource(new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.MAGIC_SHIELD,
                 ctx.getConfigFor(ctx.ability)
                     .getCalc(ctx.skillGem)
-                    .getCalculatedValue(ctx.data, ctx.spellsCap, ctx.ability), ResourcesData.Use.RESTORE,
+                    .getCalculatedValue(ctx.data, ctx.skillGem), ResourcesData.Use.RESTORE,
                 ctx.spell
             ));
-        heal.Activate();
     }
 
 }

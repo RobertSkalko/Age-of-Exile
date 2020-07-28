@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.con
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -108,7 +107,7 @@ public class BlazingInfernoSpell extends BaseSpell {
             pdata.radius = radius;
             ParticleEnum.BLAZING_INFERNO.sendToClients(caster, pdata);
 
-            int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, this);
+            int num = getCalculation(ctx).getCalculatedValue(ctx.data, ctx.skillGem);
 
             List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPos())
                 .radius(radius)

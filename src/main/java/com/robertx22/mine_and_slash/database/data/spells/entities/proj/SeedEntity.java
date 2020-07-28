@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.database.data.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.data.spells.entities.bases.ISpellEntity;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
@@ -75,9 +75,10 @@ public class SeedEntity extends EntityBaseProjectile {
 
                     if (canPlace(pos)) {
 
-                        BaseSpell spell = getSpellData().getSpell();
+                        SkillGemData skillgem = getSpellData().skillgem;
 
-                        caster.world.setBlockState(pos, spell.getImmutableConfigs()
+                        caster.world.setBlockState(pos, skillgem.getSpell()
+                            .getImmutableConfigs()
                             .spellBlockToSpawn()
                             .getDefaultState());
 
@@ -85,7 +86,7 @@ public class SeedEntity extends EntityBaseProjectile {
 
                         if (tile instanceof ISpellEntity) {
                             ISpellEntity se = (ISpellEntity) tile;
-                            se.setSpellData(new EntitySpellData(spell, caster, getSpellData().configs));
+                            se.setSpellData(new EntitySpellData(skillgem, caster, getSpellData().configs));
                             se.initSpellEntity();
                         }
 

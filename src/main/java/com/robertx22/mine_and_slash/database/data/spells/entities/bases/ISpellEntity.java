@@ -86,7 +86,7 @@ public interface ISpellEntity {
 
         EntityCap.UnitData casterData = Load.Unit(caster);
 
-        int num = getSpellData().configs.calc.getCalculatedValue(casterData, Load.spells(caster), spell);
+        int num = getSpellData().configs.calc.getCalculatedValue(casterData, data.skillgem);
 
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(caster, target, ResourcesData.Type.HEALTH, num, ResourcesData.Use.RESTORE,
@@ -112,7 +112,7 @@ public interface ISpellEntity {
         EntityCap.UnitData casterData = Load.Unit(caster);
 
         int num = data.configs.calc
-            .getCalculatedValue(casterData, Load.spells(caster), spell);
+            .getCalculatedValue(casterData, data.skillgem);
 
         SpellDamageEffect dmg = new SpellDamageEffect(caster, target, num, casterData, Load.Unit(target),
             data.getSpell()

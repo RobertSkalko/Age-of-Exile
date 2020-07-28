@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import info.loenwind.autosave.annotations.Storable;
@@ -37,6 +38,9 @@ public class EntitySpellData {
     public EntityCalcSpellConfigs configs;
 
     @Store
+    public SkillGemData skillgem;
+
+    @Store
     private String spellGUID = "";
 
     private BaseSpell spell;
@@ -52,11 +56,10 @@ public class EntitySpellData {
         return lifeInTicks - ticksExisted;
     }
 
-    public EntitySpellData(BaseSpell spell, LivingEntity caster, EntityCalcSpellConfigs config) {
-        if (spell != null) {
-            this.spellGUID = spell.GUID();
-        }
-
+    public EntitySpellData(SkillGemData skillgem, LivingEntity caster, EntityCalcSpellConfigs config) {
+        this.skillgem = skillgem;
+        this.spellGUID = skillgem.getSpell()
+            .GUID();
         this.casterID = caster.getUuid()
             .toString();
 

@@ -26,7 +26,8 @@ public abstract class InGameHudMixin {
 
     @Redirect(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getHealth()F"))
     public float on$getHealth(PlayerEntity entity) {
-        return Math.min(entity.getHealth(), 20);
+        float multi = entity.getHealth() / entity.getMaxHealth();
+        return 20F * multi;
     }
 
     @Redirect(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))

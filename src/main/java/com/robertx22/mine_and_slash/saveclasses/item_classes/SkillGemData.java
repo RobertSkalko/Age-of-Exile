@@ -10,10 +10,12 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Formatting;
 
@@ -70,7 +72,9 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
 
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
-        return ItemStack.EMPTY;
+        Item item = ItemUtils.randomMagicEssence();
+        ItemStack stack = new ItemStack(item);
+        return stack;
     }
 
     @Override

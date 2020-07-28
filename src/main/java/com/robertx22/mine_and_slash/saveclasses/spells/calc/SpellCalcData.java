@@ -1,13 +1,12 @@
 package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
@@ -92,13 +91,8 @@ public class SpellCalcData {
     @Store
     public float baseValue = 0;
 
-    public int getCalculatedBaseValue(PlayerSpellCap.ISpellsCap spells, IAbility ability, EntityCap.UnitData data) {
-        return (int) baseScaling.scale(baseValue, spells.getEffectiveAbilityLevel(data, ability));
-    }
-
-    public int getCalculatedBaseValue(LivingEntity entity) {
-        return (int) baseScaling.scale(baseValue, Load.Unit(entity)
-            .getLevel());
+    public int getCalculatedBaseValue(int lvl) {
+        return (int) baseScaling.scale(baseValue, lvl);
     }
 
     private int getCalculatedScalingValue(EntityCap.UnitData data) {
@@ -107,24 +101,20 @@ public class SpellCalcData {
             .sum();
     }
 
-    public int getCalculatedValue(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
+    public int getCalculatedValue(EntityCap.UnitData data, SkillGemData skillgem) {
         int val = getCalculatedScalingValue(data);
-        val += getCalculatedBaseValue(spells, ability, data);
+        val += getCalculatedBaseValue(skillgem.level);
         return val;
     }
 
-    public int getCalculatedValue(LivingEntity entity) {
-        int val = getCalculatedScalingValue(Load.Unit(entity));
-        val += getCalculatedBaseValue(entity);
+    public int getCalculatedValue(LivingEntity caster) {
+        int val = getCalculatedScalingValue(Load.Unit(caster));
+        val += getCalculatedBaseValue(Load.Unit(caster)
+            .getLevel());
         return val;
     }
 
     public List<Text> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
-        return this.GetTooltipString(info, ctx.spellsCap, ctx.ability);
-
-    }
-
-    public List<Text> GetTooltipString(TooltipInfo info, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
 
         List<Text> list = new ArrayList<>();
 
@@ -133,7 +123,7 @@ public class SpellCalcData {
 
             if (baseValue > 0) {
                 list.add(new LiteralText(
-                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(spells, ability, info.unitdata)));
+                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(ctx.skillGem.level)));
             }
         }
 
@@ -149,7 +139,7 @@ public class SpellCalcData {
 
             if (baseValue > 0) {
                 list.add(new LiteralText(
-                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(info.player)));
+                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(info.unitdata.getLevel())));
             }
         }
 

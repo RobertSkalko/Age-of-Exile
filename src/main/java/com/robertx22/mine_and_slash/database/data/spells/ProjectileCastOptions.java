@@ -27,6 +27,7 @@ public class ProjectileCastOptions {
             .newEntitySummoner();
         this.caster = ctx.caster;
         this.ctx = ctx;
+
     }
 
     private void playSound(Entity en) {
@@ -53,7 +54,7 @@ public class ProjectileCastOptions {
                 } else if (i > projectilesAmount / 2) {
                     addYaw += apart / projectilesAmount;
                 }
-                PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
+                PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), ctx.skillGem, caster);
                 SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch,
                     caster.yaw + addYaw
                 );
@@ -62,7 +63,7 @@ public class ProjectileCastOptions {
                 playSound(en);
             }
         } else {
-            PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
+            PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), ctx.skillGem, caster);
             SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch, caster.yaw
             );
             caster.world.spawnEntity(en);
