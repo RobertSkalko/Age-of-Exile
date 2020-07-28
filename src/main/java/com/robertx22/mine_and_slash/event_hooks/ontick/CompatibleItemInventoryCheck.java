@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.event_hooks.ontick;
 
-import com.robertx22.exiled_lib.registry.FilterListWrap;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.FilterListWrap;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.auto_comp.PowerLevel;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;

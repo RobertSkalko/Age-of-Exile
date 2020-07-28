@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.auto_comp.DeterminePowerLevels;
 import com.robertx22.mine_and_slash.database.registrators.CurrencyItems;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;

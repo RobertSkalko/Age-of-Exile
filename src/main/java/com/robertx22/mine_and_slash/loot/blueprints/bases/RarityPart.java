@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.data.rarities.BaseRaritiesContainer
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.MagicFind;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.datapacks.lang_file;
 
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;

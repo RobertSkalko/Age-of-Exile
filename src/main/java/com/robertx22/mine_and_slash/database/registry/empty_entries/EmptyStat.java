@@ -1,7 +1,7 @@
-package com.robertx22.exiled_lib.registry.empty_entries;
+package com.robertx22.mine_and_slash.database.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class EmptyStat extends Stat {

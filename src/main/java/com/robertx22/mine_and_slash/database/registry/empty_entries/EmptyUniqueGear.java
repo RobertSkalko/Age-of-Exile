@@ -1,4 +1,4 @@
-package com.robertx22.exiled_lib.registry.empty_entries;
+package com.robertx22.mine_and_slash.database.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;

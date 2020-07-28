@@ -1,4 +1,4 @@
-package com.robertx22.exiled_lib.registry;
+package com.robertx22.mine_and_slash.database.registry;
 
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.IGUID;

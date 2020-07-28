@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.packets;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.robertx22.exiled_lib.registry.*;
+import com.robertx22.mine_and_slash.database.registry.*;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

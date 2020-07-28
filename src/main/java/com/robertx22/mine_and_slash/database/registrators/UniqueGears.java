@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.BeastBloodChest;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.ExecutionerLeatherChest;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.InnerConfluxRobe;

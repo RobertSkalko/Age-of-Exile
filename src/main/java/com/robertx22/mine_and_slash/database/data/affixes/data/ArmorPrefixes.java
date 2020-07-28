@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;

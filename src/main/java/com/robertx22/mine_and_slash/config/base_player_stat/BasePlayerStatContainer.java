@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.base_player_stat;
 
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalDamage;

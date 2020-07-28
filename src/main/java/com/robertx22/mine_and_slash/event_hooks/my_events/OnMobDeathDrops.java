@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.event_hooks.my_events;
 
-import com.robertx22.exiled_lib.events.base.EventConsumer;
-import com.robertx22.exiled_lib.events.base.ExileEvents;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.exile_lib.events.base.EventConsumer;
+import com.robertx22.exile_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.Packets;

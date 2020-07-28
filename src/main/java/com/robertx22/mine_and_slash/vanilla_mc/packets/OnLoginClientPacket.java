@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets;
 
-import com.robertx22.exiled_lib.registry.SlashRegistry;
-import com.robertx22.exiled_lib.registry.SlashRegistryPackets;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryPackets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import net.fabricmc.fabric.api.network.PacketContext;

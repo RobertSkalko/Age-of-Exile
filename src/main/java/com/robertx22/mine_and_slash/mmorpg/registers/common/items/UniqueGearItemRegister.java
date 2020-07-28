@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common.items;
 
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;

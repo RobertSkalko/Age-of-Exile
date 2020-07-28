@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.event_hooks.my_events;
 
-import com.robertx22.exiled_lib.events.base.EventConsumer;
-import com.robertx22.exiled_lib.events.base.ExileEvents;
+import com.robertx22.exile_lib.events.base.EventConsumer;
+import com.robertx22.exile_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.mixin_methods.OnHurtEvent;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.LivingHurtEvent;

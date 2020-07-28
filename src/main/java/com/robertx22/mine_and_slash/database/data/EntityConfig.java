@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.data;
 
 import com.google.gson.JsonObject;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;

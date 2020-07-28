@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.auto_comp;
 
 import com.google.common.collect.Multimap;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoConfigItemType;

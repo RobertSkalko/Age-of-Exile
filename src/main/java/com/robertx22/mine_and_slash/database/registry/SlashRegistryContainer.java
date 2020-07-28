@@ -1,4 +1,4 @@
-package com.robertx22.exiled_lib.registry;
+package com.robertx22.mine_and_slash.database.registry;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;

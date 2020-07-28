@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.config.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;

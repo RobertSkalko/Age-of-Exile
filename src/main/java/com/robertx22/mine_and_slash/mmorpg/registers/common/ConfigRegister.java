@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
-import com.robertx22.exiled_lib.registry.SlashRegistryContainer;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial;
 

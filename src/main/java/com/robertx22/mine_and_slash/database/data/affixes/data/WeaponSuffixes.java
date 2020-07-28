@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalDa
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Lifesteal;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 public class WeaponSuffixes implements ISlashRegistryInit {

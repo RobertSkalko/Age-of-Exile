@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.datapacks.bases;
 
 import com.google.gson.JsonObject;
 import com.google.gson.internal.Streams;
-import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.database.data.IGUID;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;

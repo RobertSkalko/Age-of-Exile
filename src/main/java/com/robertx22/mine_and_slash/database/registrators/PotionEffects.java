@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.JudgementEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.*;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ember_mage.BurnEffect;

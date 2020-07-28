@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
 import com.robertx22.mine_and_slash.database.data.tiers.impl.*;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 
 public class Tiers implements ISlashRegistryInit {
 

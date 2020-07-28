@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;

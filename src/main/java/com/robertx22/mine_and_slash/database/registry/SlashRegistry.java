@@ -1,10 +1,10 @@
-package com.robertx22.exiled_lib.registry;
+package com.robertx22.mine_and_slash.database.registry;
 
 import com.google.common.collect.Lists;
-import com.robertx22.exiled_lib.registry.empty_entries.EmptyAffix;
-import com.robertx22.exiled_lib.registry.empty_entries.EmptyBaseGearType;
-import com.robertx22.exiled_lib.registry.empty_entries.EmptySpell;
-import com.robertx22.exiled_lib.registry.empty_entries.EmptyStat;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyBaseGearType;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptySpell;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyStat;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.capability.entity;
 
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.capability.bases.INeededForClient;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mixins;
 
-import com.robertx22.exiled_lib.events.base.ExileEvents;
+import com.robertx22.exile_lib.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.event_hooks.my_events;
 
-import com.robertx22.exiled_lib.events.base.EventConsumer;
-import com.robertx22.exiled_lib.events.base.ExileEvents;
+import com.robertx22.exile_lib.events.base.EventConsumer;
+import com.robertx22.exile_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

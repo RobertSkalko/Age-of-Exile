@@ -1,4 +1,4 @@
-package com.robertx22.exiled_lib.events.base;
+package com.robertx22.exile_lib.events.base;
 
 import java.util.ArrayList;
 import java.util.List;

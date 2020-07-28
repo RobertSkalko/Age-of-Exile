@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases;
 
-import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;

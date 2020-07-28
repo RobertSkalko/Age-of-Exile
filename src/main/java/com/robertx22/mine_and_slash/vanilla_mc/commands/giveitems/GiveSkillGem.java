@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.commands.giveitems;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.CommandRefs;
 import com.robertx22.mine_and_slash.vanilla_mc.commands.suggestions.RegistrySuggestions;

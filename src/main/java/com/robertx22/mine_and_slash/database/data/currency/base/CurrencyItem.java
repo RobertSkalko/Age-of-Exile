@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.data.currency.base;
 
-import com.robertx22.exiled_lib.registry.ISlashRegistryEntry;
-import com.robertx22.exiled_lib.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;

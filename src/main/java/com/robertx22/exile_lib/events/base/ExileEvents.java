@@ -1,4 +1,4 @@
-package com.robertx22.exiled_lib.events.base;
+package com.robertx22.exile_lib.events.base;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.data.requirements.bases.GearRequest
 import com.robertx22.mine_and_slash.database.registrators.Prefixes;
 import com.robertx22.mine_and_slash.database.registrators.Suffixes;
 import com.robertx22.mine_and_slash.uncommon.error_checks.base.IErrorCheck;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 
 public class AllGearsHavePossibleAffixCheck implements IErrorCheck {
 

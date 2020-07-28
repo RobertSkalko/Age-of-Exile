@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.commands.suggestions;
 
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.exiled_lib.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
