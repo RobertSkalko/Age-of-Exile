@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.database.data.unique_items.jewelry.ring.Loop
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.axe.ObsidianMightAxe;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.IncarnationOfThunderSword;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.WaterElementalSword;
+import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.DivineMightScepter;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.EyeOfZegrathWand;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.WillOfFloraWand;
 
@@ -33,6 +34,7 @@ public class UniqueGears implements ISlashRegistryInit {
         new EyeOfZegrathWand().addToSerializables();
         new ExecutionerLeatherChest().addToSerializables();
         new IncarnationOfThunderSword().addToSerializables();
+        new DivineMightScepter().addToSerializables();
 
     }
 }

@@ -189,7 +189,7 @@ public class StatData {
     }
 
     public boolean isMoreThanZero() {
-        return v1 > 0 || v2 > 0;
+        return Flat > 0;
     }
 
     public void add(ExactStatData modData, EntityCap.UnitData data) {
@@ -238,6 +238,8 @@ public class StatData {
         Flat2 = 0;
         Percent = 0;
         Multi = 0;
+        v1 = 0;
+        v2 = 0;
     }
 
     public String formattedValue() {

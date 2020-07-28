@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.ClothSlippers;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.OccultistRobes;
@@ -23,9 +24,9 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronLeggua
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.GemstoneSword;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.HolyScepter;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.PrimitiveAxe;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.SageWand;
-import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(PrimitiveAxe.INSTANCE);
                     add(Crossbow.INSTANCE);
                     add(GemstoneSword.INSTANCE);
+                    add(HolyScepter.INSTANCE);
 
                 }
 

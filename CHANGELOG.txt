@@ -1,5 +1,6 @@
 v.1.0.4
-
+* added new gear type, Holy scepter.
+* added a new unique scepter
 
 v.1.0.3
 

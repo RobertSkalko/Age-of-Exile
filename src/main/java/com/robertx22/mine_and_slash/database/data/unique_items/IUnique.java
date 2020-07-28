@@ -76,8 +76,7 @@ public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocD
 
     @Override
     public default int Weight() {
-        return this.getRarity()
-            .Weight();
+        return 1000;
     }
 
     List<StatModifier> uniqueStats();

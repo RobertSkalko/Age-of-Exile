@@ -22,6 +22,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronLeggua
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.GemstoneSword;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.HolyScepter;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.PrimitiveAxe;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.SageWand;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
@@ -67,6 +68,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     public Item GEMSTONE_SWORD = of(new ItemSword(0), GemstoneSword.INSTANCE);
     public Item PRIMITIVE_AXE = of(new ItemAxe(0), PrimitiveAxe.INSTANCE);
     public Item SAGE_WAND = of(new ItemWand(0), SageWand.INSTANCE);
+    public Item HOLY_SCEPTER = of(new ItemWand(0), HolyScepter.INSTANCE);
     public Item BOW = of(new ItemBow(0), HunterBow.INSTANCE);
     public Item CROSSBOW = of(new CrossbowItem(ItemUtils.getDefaultGearProperties()), Crossbow.INSTANCE);
     public Item TOWER_SHIELD = of(new NormalShield(TowerShield.INSTANCE), TowerShield.INSTANCE);

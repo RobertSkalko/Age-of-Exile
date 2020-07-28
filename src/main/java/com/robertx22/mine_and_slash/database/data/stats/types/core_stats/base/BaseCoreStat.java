@@ -36,11 +36,6 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         return null;
     }
 
-    @Override
-    public float amountToReach100Percent() {
-        return 10;
-    }
-
     public float getPercent(StatData data) {
         return data.getAverageValue() * 100;
     }

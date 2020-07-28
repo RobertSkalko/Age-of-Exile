@@ -13,6 +13,4 @@ public interface ICoreStat extends IGUID {
 
     List<StatModifier> statsThatBenefit();
 
-    float amountToReach100Percent();
-
 }

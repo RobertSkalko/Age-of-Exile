@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.generated.*;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.MagicFind;
 import com.robertx22.mine_and_slash.database.data.stats.types.misc.ChangeDmgElementStat;
+import com.robertx22.mine_and_slash.database.data.stats.types.misc.HealToSpellDmgStat;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
@@ -44,6 +45,8 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+                    add(HealToSpellDmgStat.getInstance());
+
                     add(ChangeDmgElementStat.PHYS_TO_POISON);
                     add(ChangeDmgElementStat.PHYS_TO_FIRE);
                     add(ChangeDmgElementStat.PHYS_TO_FROST);
