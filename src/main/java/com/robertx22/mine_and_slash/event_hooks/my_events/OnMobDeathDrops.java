@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.event_hooks.my_events;
 
+import com.robertx22.exiled_lib.events.base.EventConsumer;
 import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
@@ -21,10 +22,12 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.List;
 
-public class OnMobDeathDrops extends ExileEvents.OnMobDeath {
+public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
     @Override
-    public void onDeath(LivingEntity mobKilled) {
+    public void accept(ExileEvents.OnMobDeath onMobDeath) {
+        LivingEntity mobKilled = onMobDeath.mob;
+
         try {
 
             if (mobKilled.world.isClient) {
@@ -75,7 +78,7 @@ public class OnMobDeathDrops extends ExileEvents.OnMobDeath {
 
     private static void GiveExp(LivingEntity victim, PlayerEntity killer, UnitData killerData, UnitData mobData, float multi) {
 
-        float exp = LevelUtils.getExpDropForLevel(mobData.getLevel());
+        float exp = LevelUtils.getExpDropForLevel(victim, mobData.getLevel());
 
         if (exp < 1) {
             exp++;
@@ -91,12 +94,9 @@ public class OnMobDeathDrops extends ExileEvents.OnMobDeath {
         exp *= Rarities.Mobs.get(mobData.getRarity())
             .expMulti();
 
-        exp = (int) (exp * (1F + victim.getMaxHealth() / 10F));
-
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 
-        ExileEvents.ExpData data = new ExileEvents.ExpData(exp);
-        exp = ExileEvents.MOB_EXP_DROP.callEvents(x -> x.onExp(victim), data).exp;
+        exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;
 
         try {
             exp *= Load.antiMobFarm(victim.world)

@@ -5,53 +5,49 @@ import net.minecraft.entity.damage.DamageSource;
 
 public class ExileEvents {
 
-    public static ExileEventCaller<OnEntityTick, NothingData> LIVING_ENTITY_TICK = new ExileEventCaller<>();
-    public static ExileEventCaller<OnMobExpDrop, ExpData> MOB_EXP_DROP = new ExileEventCaller<>();
-    public static ExileEventCaller<OnMobDeath, NothingData> MOB_DEATH = new ExileEventCaller<>();
+    public static ExileEventCaller<OnEntityTick> LIVING_ENTITY_TICK = new ExileEventCaller<>();
+    public static ExileEventCaller<OnMobExpDrop> MOB_EXP_DROP = new ExileEventCaller<>();
+    public static ExileEventCaller<OnMobDeath> MOB_DEATH = new ExileEventCaller<>();
 
-    public static ExileEventCaller<OnDamageEntity, DamageData> DAMAGE_BEFORE_CALC = new ExileEventCaller<>();
-    public static ExileEventCaller<OnDamageEntity, DamageData> DAMAGE_AFTER_CALC = new ExileEventCaller<>();
+    public static ExileEventCaller<OnDamageEntity> DAMAGE_BEFORE_CALC = new ExileEventCaller<>();
+    public static ExileEventCaller<OnDamageEntity> DAMAGE_AFTER_CALC = new ExileEventCaller<>();
 
-    public static abstract class OnEntityTick extends ExileEvent {
+    public static class OnEntityTick extends ExileEvent {
+        public LivingEntity entity;
 
-        public abstract void onTick(LivingEntity entity);
+        public OnEntityTick(LivingEntity entity) {
+            this.entity = entity;
+        }
     }
 
-    public static abstract class OnMobExpDrop extends ExileEvent {
-
-        public abstract void onExp(LivingEntity mobKilled);
-    }
-
-    public static abstract class OnMobDeath extends ExileEvent {
-
-        public abstract void onDeath(LivingEntity mob);
-    }
-
-    public static abstract class OnDamageEntity extends ExileEvent {
-
-        public abstract void onDamage(LivingEntity mob, float damage, DamageSource source, DamageData data);
-    }
-
-    public static class ExpData {
-
+    public static class OnMobExpDrop extends ExileEvent {
+        public LivingEntity mobKilled;
         public float exp;
 
-        public ExpData(float exp) {
+        public OnMobExpDrop(LivingEntity mobKilled, float exp) {
+            this.mobKilled = mobKilled;
             this.exp = exp;
         }
     }
 
-    public static class DamageData {
+    public static class OnMobDeath extends ExileEvent {
+        public LivingEntity mob;
 
-        public float damage;
-
-        public DamageData(float damage) {
-            this.damage = damage;
+        public OnMobDeath(LivingEntity mob) {
+            this.mob = mob;
         }
     }
 
-    public static class NothingData {
+    public static class OnDamageEntity extends ExileEvent {
+        public DamageSource source;
+        public float damage;
+        public LivingEntity mob;
 
+        public OnDamageEntity(DamageSource source, float damage, LivingEntity mob) {
+            this.source = source;
+            this.damage = damage;
+            this.mob = mob;
+        }
     }
 
 }

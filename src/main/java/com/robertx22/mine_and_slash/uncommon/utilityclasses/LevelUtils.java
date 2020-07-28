@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -12,12 +13,13 @@ import net.minecraft.world.World;
 public class LevelUtils {
 
     public static int getExpRequiredForLevel(int level) {
-        return level * level * 20;
+        return level * level * 10;
     }
 
     // dirty hack, let's see how useful you are.
-    public static float getExpDropForLevel(int level) {
-        return getExpRequiredForLevel((int) MathHelper.clamp(level * 0.8F, 1, Integer.MAX_VALUE)) / 50F;
+    public static float getExpDropForLevel(LivingEntity entity, int level) {
+        float hp = EntityUtils.getVanillaMaxHealth(entity);
+        return (float) (hp + (hp * 0.075 * level));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {

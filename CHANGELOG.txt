@@ -1,6 +1,7 @@
 v.1.0.4
 * added new gear type, Holy scepter.
 * added a new unique scepter
+* fixed leveling being too easy because exp was multiplied by total mob health instead of total vanilla hp before the added health
 
 v.1.0.3
 

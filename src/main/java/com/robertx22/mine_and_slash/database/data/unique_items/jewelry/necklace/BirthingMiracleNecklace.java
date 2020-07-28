@@ -19,7 +19,7 @@ public class BirthingMiracleNecklace implements IUnique {
     public List<StatModifier> uniqueStats() {
         return Arrays.asList(
             new StatModifier(3, 8, Health.getInstance(), ModType.FLAT),
-            new StatModifier(0.5F, 1, AllAttributes.getInstance(), ModType.FLAT),
+            new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT),
             new StatModifier(2, 5, PlusResourceOnKill.HEALTH, ModType.FLAT),
             new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
         );

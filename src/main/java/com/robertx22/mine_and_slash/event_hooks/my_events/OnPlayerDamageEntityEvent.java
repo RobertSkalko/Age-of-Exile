@@ -1,26 +1,26 @@
 package com.robertx22.mine_and_slash.event_hooks.my_events;
 
+import com.robertx22.exiled_lib.events.base.EventConsumer;
 import com.robertx22.exiled_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.mixin_methods.OnHurtEvent;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.LivingHurtEvent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class OnPlayerDamageEntityEvent extends ExileEvents.OnDamageEntity {
+public class OnPlayerDamageEntityEvent extends EventConsumer<ExileEvents.OnDamageEntity> {
 
     @Override
-    public void onDamage(LivingEntity entity, float damage, DamageSource source, ExileEvents.DamageData data) {
+    public void accept(ExileEvents.OnDamageEntity event) {
 
-        if (entity.world.isClient) {
+        if (event.mob.world.isClient) {
             return;
         }
-        if (source instanceof MyDamageSource) {
+        if (event.source instanceof MyDamageSource) {
             return;
         }
-        if (source.getAttacker() instanceof PlayerEntity) {
-            OnHurtEvent.onHurtEvent(new LivingHurtEvent(entity, source, damage));
+        if (event.source.getAttacker() instanceof PlayerEntity) {
+            OnHurtEvent.onHurtEvent(new LivingHurtEvent(event.mob, event.source, event.damage));
         }
     }
+
 }

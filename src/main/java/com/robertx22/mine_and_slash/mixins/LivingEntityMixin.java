@@ -15,27 +15,25 @@ public abstract class LivingEntityMixin {
     @Inject(method = "onKilledBy", at = @At("HEAD"))
     public void hookOnDeath(LivingEntity adversary, CallbackInfo ci) {
         LivingEntity victim = (LivingEntity) (Object) this;
-        ExileEvents.MOB_DEATH.callEvents(x -> x.onDeath(victim), null);
+        ExileEvents.MOB_DEATH.callEvents(new ExileEvents.OnMobDeath(victim));
     }
 
     @Inject(method = "tick()V", at = @At("HEAD"))
     public void hookOnTick(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
-        ExileEvents.LIVING_ENTITY_TICK.callEvents(x -> x.onTick(entity), null);
+        ExileEvents.LIVING_ENTITY_TICK.callEvents(new ExileEvents.OnEntityTick(entity));
     }
 
     @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
     public float hookOnDamage(float amount, DamageSource source) {
         LivingEntity entity = (LivingEntity) (Object) this;
-        ExileEvents.DamageData data = new ExileEvents.DamageData(amount);
-        return ExileEvents.DAMAGE_BEFORE_CALC.callEvents(x -> x.onDamage(entity, amount, source, data), data).damage;
+        return ExileEvents.DAMAGE_BEFORE_CALC.callEvents(new ExileEvents.OnDamageEntity(source, amount, entity)).damage;
     }
 
     @ModifyVariable(method = "damage", at = @At("TAIL"), argsOnly = true)
     public float hookAfterDamage(float amount, DamageSource source) {
         LivingEntity entity = (LivingEntity) (Object) this;
-        ExileEvents.DamageData data = new ExileEvents.DamageData(amount);
-        return ExileEvents.DAMAGE_AFTER_CALC.callEvents(x -> x.onDamage(entity, amount, source, data), data).damage;
+        return ExileEvents.DAMAGE_AFTER_CALC.callEvents(new ExileEvents.OnDamageEntity(source, amount, entity)).damage;
     }
 
 }
