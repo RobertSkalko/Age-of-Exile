@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.bases;
 
+import com.robertx22.exile_lib.utils.LoadSave;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
-import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.EntityPacket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

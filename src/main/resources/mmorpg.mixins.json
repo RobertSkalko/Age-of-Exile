@@ -3,14 +3,11 @@
   "package": "com.robertx22.mine_and_slash.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LivingEntityMixin",
-	"PlayerEntityMixin",
+    "LivingEntityMixin",	
 	"ChestMixin",
 	"MinecraftServerMixin",
-	"ServerResourceManagerMixin",	
-	"EntityMixin",
-	"ArrowShootMixin",
-	"ItemMixin"
+	"ServerResourceManagerMixin",		
+	"ArrowShootMixin"	
   ],
   "client": [
 	"ItemStackMixin",

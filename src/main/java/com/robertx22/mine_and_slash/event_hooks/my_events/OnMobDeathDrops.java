@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.event_hooks.my_events;
 
+import com.robertx22.exile_lib.components.EntityInfoComponent;
 import com.robertx22.exile_lib.events.base.EventConsumer;
 import com.robertx22.exile_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
@@ -19,6 +20,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.List;
 
@@ -39,7 +41,9 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
                     UnitData mobKilledData = Load.Unit(mobKilled);
 
-                    LivingEntity killerEntity = mobKilledData.getHighestDamageEntity(mobKilled);
+                    LivingEntity killerEntity = EntityInfoComponent.get(mobKilled)
+                        .getDamageStats()
+                        .getHighestDamager((ServerWorld) mobKilled.world);
 
                     if (killerEntity instanceof ServerPlayerEntity) {
 
@@ -50,11 +54,6 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
                         float loot_multi = (float) config.loot_multi;
                         float exp_multi = (float) config.exp_multi;
-
-                        if (loot_multi > 0) {
-                            Load.antiMobFarm(player.world)
-                                .onValidMobDeathByPlayer(mobKilled);
-                        }
 
                         if (loot_multi > 0) {
                             MasterLootGen.genAndDrop(mobKilledData, playerData, mobKilled, player);
@@ -86,9 +85,6 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
         exp *= SlashRegistry.getEntityConfig(victim, mobData).exp_multi;
 
-        exp *= Load.antiMobFarm(victim.world)
-            .getDropMultiForMob(victim);
-
         exp *= multi;
 
         exp *= Rarities.Mobs.get(mobData.getRarity())
@@ -97,13 +93,6 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 
         exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;
-
-        try {
-            exp *= Load.antiMobFarm(victim.world)
-                .getDropMultiForMob(victim);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         if (victim instanceof SlimeEntity) {
             exp /= 10;

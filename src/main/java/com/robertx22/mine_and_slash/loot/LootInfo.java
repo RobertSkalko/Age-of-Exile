@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.exile_lib.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.generators.BaseLootGen;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
@@ -141,12 +142,6 @@ public class LootInfo {
         }
 
         if (world != null) {
-
-            if (victim != null) {
-                chance *= Load.antiMobFarm(world)
-                    .getDropMultiForMob(victim);
-            }
-
             chance *= SlashRegistry.getDimensionConfig(world).all_drop_multi;
 
         }
@@ -159,6 +154,8 @@ public class LootInfo {
             }
 
         }
+
+        chance *= ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
 
         amount = LootUtils.WhileRoll(chance);
     }

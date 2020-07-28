@@ -44,7 +44,6 @@ public final class Utilities {
     }
 
     public static void spawnParticlesForTesting(Box aabb, World world) {
-
         if (!world.isClient) {
             for (double x = aabb.minX; x < aabb.maxX; x += 0.3F) {
                 for (double y = aabb.minY; y < aabb.maxY; y += 1F) {
@@ -58,11 +57,6 @@ public final class Utilities {
                 }
             }
         }
-
-    }
-
-    public static double getPlayerEyesPos(LivingEntity player) {
-        return player.getBoundingBox().minY + player.getStandingEyeHeight();
     }
 
 }

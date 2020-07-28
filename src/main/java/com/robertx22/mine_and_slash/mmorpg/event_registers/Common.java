@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.event_hooks.my_events.OnPlayerDamageEntityEv
 import com.robertx22.mine_and_slash.event_hooks.ontick.OnServerTick;
 import com.robertx22.mine_and_slash.event_hooks.player.OnLogin;
 import com.robertx22.mine_and_slash.event_hooks.player.StopCastingIfInteract;
-import com.robertx22.mine_and_slash.event_hooks.world.WorldTickMinute;
 import nerdhub.cardinal.components.api.event.TrackingStartCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -29,7 +28,6 @@ public class Common {
         ServerEntityEvents.ENTITY_LOAD.register(new OnMobSpawn());
         ServerEntityEvents.ENTITY_LOAD.register(new OnLogin());
         ServerTickEvents.END_SERVER_TICK.register(new OnServerTick());
-        ServerTickEvents.END_WORLD_TICK.register(new WorldTickMinute());
 
         ExileEvents.LIVING_ENTITY_TICK.register(new OnEntityTick());
         ExileEvents.MOB_DEATH.register(new OnMobDeathDrops());

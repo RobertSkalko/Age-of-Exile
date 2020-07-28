@@ -37,10 +37,11 @@ dependencies {
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cardinal_version}"
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-world:${cardinal_version}"
-    modImplementation "top.theillusivec4.curios:curios-fabric:${curios_version}"
     modApi "me.shedaniel.cloth:config-2:${config_api_version}"
     modApi "me.sargunvohra.mcmods:autoconfig1u:${auto_config_version}"
     modApi "io.github.prospector:modmenu:${mod_menu_version}"
+	
+	modImplementation "top.theillusivec4.curios:curios-fabric:${curios_version}" 
 
     compile files("Library-Of-Exile-1.16.1-1.0.0-dev.jar")
 }

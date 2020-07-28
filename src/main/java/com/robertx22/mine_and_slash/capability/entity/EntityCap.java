@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.capability.entity;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.exile_lib.utils.LoadSave;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.capability.bases.INeededForClient;
@@ -12,19 +12,18 @@ import com.robertx22.mine_and_slash.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.data.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.tiers.base.Tier;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.event_hooks.player.OnLogin;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.CustomExactStatsData;
-import com.robertx22.mine_and_slash.saveclasses.EntityDmgStatsData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.CustomExactStats;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.UnitNbt;
-import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -39,7 +38,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.EntityStatus
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -61,7 +59,6 @@ public class EntityCap {
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
-    private static final String DMG_STATS = "dmg_stats";
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
     private static final String TIER = "TIER";
     private static final String PREVENT_LOOT = "PREVENT_LOOT";
@@ -70,6 +67,8 @@ public class EntityCap {
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
+
+        void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
 
         EntityStatusEffectsData getStatusEffectsData();
 
@@ -88,10 +87,6 @@ public class EntityCap {
         GearItemData setupWeaponData(LivingEntity entity);
 
         void setEquipsChanged(boolean bool);
-
-        void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
-
-        LivingEntity getHighestDamageEntity(LivingEntity entity);
 
         boolean isNewbie();
 
@@ -201,7 +196,6 @@ public class EntityCap {
         int tier = 0;
         boolean shouldSync = false;
 
-        EntityDmgStatsData dmgStats = new EntityDmgStatsData();
         ResourcesData resources = new ResourcesData();
         CustomExactStatsData customExactStats = new CustomExactStatsData();
 
@@ -266,9 +260,6 @@ public class EntityCap {
                 LoadSave.Save(resources, nbt, RESOURCES_LOC);
             }
 
-            if (dmgStats != null) {
-                LoadSave.Save(dmgStats, nbt, DMG_STATS);
-            }
             return nbt;
 
         }
@@ -295,15 +286,6 @@ public class EntityCap {
                 e.printStackTrace();
             }
 
-            try {
-                this.dmgStats = LoadSave.Load(EntityDmgStatsData.class, new EntityDmgStatsData(), nbt, DMG_STATS);
-                if (dmgStats == null) {
-                    dmgStats = new EntityDmgStatsData();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
             this.customExactStats = CustomExactStats.Load(nbt);
             if (this.customExactStats == null) {
                 this.customExactStats = new CustomExactStatsData();
@@ -319,8 +301,6 @@ public class EntityCap {
         @Override
         public void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self) {
             try {
-
-                this.dmgStats.onDamage(entity, dmg);
 
                 if (entity == null && self != null) {
                     float msDamage = this.getUnit()
@@ -338,11 +318,6 @@ public class EntityCap {
                 e.printStackTrace();
             }
 
-        }
-
-        @Override
-        public LivingEntity getHighestDamageEntity(LivingEntity entity) {
-            return dmgStats.getHighestDamageEntity((ServerWorld) entity.world, entity);
         }
 
         @Override
