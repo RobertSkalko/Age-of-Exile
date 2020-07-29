@@ -104,6 +104,8 @@ curseforge {
             requiredDependency 'curios-fabric'
             requiredDependency 'cardinal-components'
             requiredDependency 'auto-config-updated-api'
+			
+			optionalDependency 'balance-of-exile'
         }
         mainArtifact(remapJar)
 

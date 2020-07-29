@@ -8,7 +8,6 @@ And also to house some widely used utilities.
 
 A separate mod has been created to house my controversial balance changes: Balance of Exile.
 This currently contains the enviromental damage check and anti mob farm system. 
-In the future, anything I feel the general userbase won't like will go here.
 
 This is my first time making a library, so I expect some bugs.
 

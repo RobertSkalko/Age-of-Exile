@@ -157,6 +157,12 @@ public class LootInfo {
 
         chance *= ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
 
+        if (minItems > 0) {
+            if (chance <= 0) {
+                chance = 2;
+            }
+        }
+
         amount = LootUtils.WhileRoll(chance);
     }
 

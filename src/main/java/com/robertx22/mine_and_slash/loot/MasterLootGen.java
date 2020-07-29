@@ -27,7 +27,7 @@ public class MasterLootGen {
         while (items.size() < info.minItems) {
 
             tries++;
-            if (tries > 40) {
+            if (tries > 20) {
                 System.out.println("Tried to generate loot many times but failed! " + info.toString());
                 break;
             }
