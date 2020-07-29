@@ -62,7 +62,7 @@ public class ThornBushSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 20, 40);
-        c.set(SC.PROJECTILE_COUNT, 1, 3);
+        c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.SHOOT_SPEED, 0.4F, 0.6F);
         c.set(SC.BASE_VALUE, 3, 12);
         c.set(SC.CAST_TIME_TICKS, 0, 0);

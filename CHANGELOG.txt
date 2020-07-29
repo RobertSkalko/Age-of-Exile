@@ -1,10 +1,24 @@
 v.1.0.4
+
+Mod now requires library: Library of Exile
+
+Goal of the library is to try to allow some of the features I make to be playable without Age of Exile.
+For example, if I wanted to make a dimension, I could make it as a separate mod and then use my library to add Age of Exile support.
+And also to house some widely used utilities.
+
+A separate mod has been created to house my controversial balance changes: Balance of Exile.
+This currently contains the enviromental damage check and anti mob farm system. 
+In the future, anything I feel the general userbase won't like will go here.
+
+This is my first time making a library, so I expect some bugs.
+
 * added new gear type, Holy scepter.
 * added a new unique scepter
 * fixed leveling being too easy because exp was multiplied by total mob health instead of total vanilla hp before the added health
 * fixed hp rendering so it's accurate (it didnt show lost hp for a while)
 * skill gems now salvagable (dont throw them away now xD)
 * should fix spell tooltips having wrong levels
+* added config for scale mob lvl to player so you don't need to use datapacks for this common complaint
 
 v.1.0.3
 

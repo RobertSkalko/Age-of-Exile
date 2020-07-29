@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.data.DimensionConfig;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +31,7 @@ public class LevelUtils {
 
         int lvl = 0;
 
-        if (dimConfig.scale_to_nearest_player) {
+        if (ModConfig.get().Server.ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER || dimConfig.scale_to_nearest_player) {
             if (nearestPlayer != null) {
                 lvl = Load.Unit(nearestPlayer)
                     .getLevel();
