@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
@@ -8,6 +7,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.*;
@@ -73,21 +73,17 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public void insertJewel(JewelData jewel) {
 
-        AffixData touse = null;
+        AffixData touse = new AffixData(jewel.affix.affixType);
 
         if (jewel.affix.affixType == Affix.Type.prefix) {
-            for (int i = 0; i < affixes.prefix_sockets.size(); i++) {
-                AffixData socket = affixes.prefix_sockets.get(i);
-                if (socket.isSocketAndEmpty()) {
-                    touse = socket;
-                }
+            if (affixes.canGetMorePrefixSockets(this)) {
+                affixes.prefixes.add(touse);
+                affixes.emptySockets--;
             }
         } else {
-            for (int i = 0; i < affixes.suffix_sockets.size(); i++) {
-                AffixData socket = affixes.suffix_sockets.get(i);
-                if (socket.isSocketAndEmpty()) {
-                    touse = socket;
-                }
+            if (affixes.canGetMoreSuffixSockets(this)) {
+                affixes.suffixes.add(touse);
+                affixes.emptySockets--;
             }
         }
 
@@ -96,6 +92,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             touse.baseAffix = jewel.affix.baseAffix;
             touse.percent = jewel.affix.percent;
             touse.tier = jewel.affix.tier;
+            touse.is_socket = true;
         }
     }
 
@@ -113,9 +110,17 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             return false;
         }
 
-        return affixes.getAllAffixesAndSockets()
-            .stream()
-            .anyMatch(x -> x.isSocketAndEmpty() && x.affixType == jewel.affix.affixType);
+        if (jewel.affix.affixType == Affix.Type.prefix) {
+            if (!affixes.canGetMorePrefixSockets(this)) {
+                return false;
+            }
+        } else {
+            if (!affixes.canGetMoreSuffixSockets(this)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean canGetAffix(Affix affix) {

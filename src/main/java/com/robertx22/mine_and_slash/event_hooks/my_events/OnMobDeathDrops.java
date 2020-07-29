@@ -45,6 +45,17 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                         .getDamageStats()
                         .getHighestDamager((ServerWorld) mobKilled.world);
 
+                    if (killerEntity == null) {
+                        try {
+                            if (mobKilled.getRecentDamageSource()
+                                .getAttacker() instanceof PlayerEntity) {
+                                killerEntity = (LivingEntity) mobKilled.getRecentDamageSource()
+                                    .getAttacker();
+                            }
+                        } catch (Exception e) {
+                        }
+                    }
+
                     if (killerEntity instanceof ServerPlayerEntity) {
 
                         ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;

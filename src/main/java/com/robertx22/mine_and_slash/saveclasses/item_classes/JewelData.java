@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -12,12 +12,15 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.AffixData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 
 @Storable
 public class JewelData implements ITooltip, ICommonDataItem {
@@ -37,6 +40,10 @@ public class JewelData implements ITooltip, ICommonDataItem {
         ctx.tooltip.add(TooltipUtils.level(affix.level));
 
         ctx.tooltip.add(new SText(""));
+
+        MutableText txt = affix.affixType == Affix.Type.prefix ? Words.Prefix.locName() : Words.Suffix.locName();
+        ctx.tooltip.add(txt.append(new LiteralText(": ").append(affix.getAffix()
+            .locName())));
 
         ctx.tooltip
             .addAll(this.affix.GetTooltipString(info, null));

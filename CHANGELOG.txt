@@ -18,6 +18,7 @@ This is my first time making a library, so I expect some bugs.
 * skill gems now salvagable (dont throw them away now xD)
 * should fix spell tooltips having wrong levels
 * added config for scale mob lvl to player so you don't need to use datapacks for this common complaint
+* reworked gear sockets to be less confusing
 
 v.1.0.3
 

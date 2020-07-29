@@ -19,9 +19,17 @@ public class GearAffixesData {
     public List<AffixData> prefixes = new ArrayList<>();
 
     @Store
-    public List<AffixData> prefix_sockets = new ArrayList<>();
-    @Store
-    public List<AffixData> suffix_sockets = new ArrayList<>();
+    public int emptySockets = 0;
+
+    public boolean canGetMorePrefixSockets(GearItemData gear) {
+        return emptySockets > 0 && prefixes.size() < gear.getRarity()
+            .maxSockets() / 2;
+    }
+
+    public boolean canGetMoreSuffixSockets(GearItemData gear) {
+        return emptySockets > 0 && suffixes.size() < gear.getRarity()
+            .maxSockets() / 2;
+    }
 
     public int getSocketedJewelsCount() {
         return (int) getAllAffixesAndSockets().stream()
@@ -44,16 +52,12 @@ public class GearAffixesData {
     }
 
     public int getNumberOfEmptySockets() {
-        return (int) (prefix_sockets.stream()
-            .filter(x -> x.isSocketAndEmpty())
-            .count() + suffix_sockets.stream()
-            .filter(x -> x.isSocketAndEmpty())
-            .count());
+        return emptySockets;
     }
 
     public void randomize(GearItemData gear) {
 
-        GearRarity test = gear.getRarity();
+        GearRarity rarity = gear.getRarity();
 
         for (int i = 0; i < gear.getRarity()
             .maximumOfOneAffixType(); i++) {
@@ -91,19 +95,10 @@ public class GearAffixesData {
             affixesToGen--;
         }
 
-        for (int i = 0; i < gear.getRarity()
-            .maxSockets() / 2; i++) {
-            if (RandomUtils.roll(gear.getRarity()
-                .socketChance())) {
-                AffixData socket = new AffixData(Affix.Type.prefix);
-                socket.is_socket = true;
-                this.prefix_sockets.add(socket);
-            }
-            if (RandomUtils.roll(gear.getRarity()
-                .socketChance())) {
-                AffixData socket = new AffixData(Affix.Type.suffix);
-                socket.is_socket = true;
-                this.suffix_sockets.add(socket);
+        emptySockets = 0;
+        for (int i = 0; i < rarity.maxSockets(); i++) {
+            if (RandomUtils.roll(rarity.socketChance())) {
+                emptySockets++;
             }
         }
 
@@ -122,8 +117,6 @@ public class GearAffixesData {
 
         list.addAll(prefixes);
         list.addAll(suffixes);
-        list.addAll(prefix_sockets);
-        list.addAll(suffix_sockets);
 
         return list;
     }
@@ -134,7 +127,7 @@ public class GearAffixesData {
 
     public boolean containsAffix(String id) {
         return getAllAffixesAndSockets().stream()
-            .anyMatch(x -> x.baseAffix == id);
+            .anyMatch(x -> x.baseAffix.equals(id));
     }
 
     public int getNumberOfAffixes() {
