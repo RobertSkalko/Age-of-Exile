@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.event_registers;
 
-import com.robertx22.exile_lib.events.base.ExileEvents;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.a_libraries.curios.OnCurioChangeEvent;
 import com.robertx22.mine_and_slash.event_hooks.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.event_hooks.entity.OnTrackEntity;

@@ -98,8 +98,9 @@ curseforge {
         addGameVersion("Fabric")
         addGameVersion("Java 8")
 
-        relations {
+        relations {				
             requiredDependency 'fabric-api'
+            requiredDependency 'library-of-exile'
             requiredDependency 'curios-fabric'
             requiredDependency 'cardinal-components'
             requiredDependency 'auto-config-updated-api'

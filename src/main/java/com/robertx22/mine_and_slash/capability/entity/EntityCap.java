@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.capability.entity;
 
-import com.robertx22.exile_lib.utils.LoadSave;
+import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.capability.bases.INeededForClient;

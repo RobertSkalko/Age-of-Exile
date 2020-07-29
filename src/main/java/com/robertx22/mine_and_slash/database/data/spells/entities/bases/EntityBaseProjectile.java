@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.bases;
 
-import com.robertx22.exile_lib.utils.LoadSave;
+import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;

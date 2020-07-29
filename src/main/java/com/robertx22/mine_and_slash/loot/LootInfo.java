@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.exile_lib.events.base.ExileEvents;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistry;

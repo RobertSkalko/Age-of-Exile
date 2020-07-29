@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.vanilla_mc.packets.particles;
 
-import com.robertx22.exile_lib.utils.LoadSave;
+import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
