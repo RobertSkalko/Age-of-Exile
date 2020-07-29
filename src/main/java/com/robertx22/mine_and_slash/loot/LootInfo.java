@@ -135,9 +135,11 @@ public class LootInfo {
 
         if (this.playerData != null) {
 
-            chance *= this.playerData.getUnit()
+            float iqmulti = playerData.getUnit()
                 .peekAtStat(IncreasedItemQuantity.getInstance())
                 .getMultiplier();
+
+            chance *= iqmulti;
 
         }
 
@@ -155,7 +157,7 @@ public class LootInfo {
 
         }
 
-        chance *= ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
+        chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
 
         if (minItems > 0) {
             if (chance <= 0) {
