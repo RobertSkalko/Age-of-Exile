@@ -39,7 +39,7 @@ public class ThunderspearSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Thunder;
                 }
-            }.rightClickFor(AllowedAsRightClickOn.MAGE_WEAPON)
+            }
                 .summonsEntity(world -> new ThunderspearEntity(world)));
     }
 

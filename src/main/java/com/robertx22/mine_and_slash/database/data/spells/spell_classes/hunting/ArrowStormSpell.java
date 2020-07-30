@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.spells.entities.cloud.ArrowStormEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -41,7 +40,7 @@ public class ArrowStormSpell extends BaseSpell {
                 }
 
             }.summonsEntity(world -> new ArrowStormEntity(world))
-                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
+                .castingWeapon(CastingWeapon.RANGED));
     }
 
     @Override

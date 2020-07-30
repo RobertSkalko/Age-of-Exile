@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.spells.entities.proj.RangerArrowEntity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -47,7 +46,7 @@ public class RecoilShotSpell extends BaseSpell {
                 }
             }.cooldownIfCanceled(true)
                 .summonsEntity(w -> new RangerArrowEntity(w))
-                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
+                .castingWeapon(CastingWeapon.RANGED));
     }
 
     @Override

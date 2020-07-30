@@ -3,7 +3,9 @@ package com.robertx22.mine_and_slash.mixins;
 import com.robertx22.mine_and_slash.mixin_methods.TooltipMethod;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.CastSpellPacket;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -31,13 +33,22 @@ public abstract class ItemStackMixin {
         TooltipMethod.getTooltip(stack, entity, tooltipContext, list);
     }
 
-    @Inject(method = "use", at = @At("HEAD"))
+    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void onItemUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> ci) {
         ItemStack stack = (ItemStack) (Object) this;
         if (world.isClient) {
-            if (stack.getUseAction() == UseAction.NONE) {
-                if (Gear.has(stack)) {
+            if (Gear.has(stack)) {
+                if (stack.getUseAction() == UseAction.NONE) {
                     Packets.sendToServer(new CastSpellPacket(user));
+                } else {
+                    if (Screen.hasShiftDown()) {
+                        if (Load.spells(user)
+                            .getCurrentRightClickSpell()
+                            .getImmutableConfigs().castingWeapon.predicate.predicate.test(user)) {
+                            Packets.sendToServer(new CastSpellPacket(user));
+                            ci.setReturnValue(TypedActionResult.success(stack));
+                        }
+                    }
                 }
             }
         }

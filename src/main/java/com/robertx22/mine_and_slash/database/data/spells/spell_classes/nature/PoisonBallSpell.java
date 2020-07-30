@@ -39,7 +39,7 @@ public class PoisonBallSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Nature;
                 }
-            }.rightClickFor(AllowedAsRightClickOn.MAGE_WEAPON)
+            }
                 .summonsEntity(world -> new PoisonBallEntity(world)));
     }
 

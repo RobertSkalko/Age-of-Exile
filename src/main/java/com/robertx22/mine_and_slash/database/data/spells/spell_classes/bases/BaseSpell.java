@@ -120,15 +120,16 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
         return true;
     }
 
-    public enum AllowedAsRightClickOn {
+    public enum CastingWeapon {
         MAGE_WEAPON(SpellPredicates.REQUIRE_MAGE_WEAPON),
-        MELEE_WEAPON(SpellPredicates.REQUIRE_MAGE_WEAPON),
+        MELEE_WEAPON(SpellPredicates.REQUIRE_MELEE),
         RANGED(SpellPredicates.REQUIRE_SHOOTABLE);
 
-        SpellPredicate predicate;
+        public SpellPredicate predicate;
 
-        AllowedAsRightClickOn(SpellPredicate predicate) {
+        CastingWeapon(SpellPredicate predicate) {
             this.predicate = predicate;
+
         }
     }
 
@@ -262,9 +263,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
                 if (data.getResources()
                     .hasEnough(rctx)) {
 
-                    if (immutableConfigs.castRequirements()
-                        .stream()
-                        .anyMatch(x -> !x.predicate.test(caster))) {
+                    if (!immutableConfigs.castingWeapon.predicate.predicate.test(caster)) {
                         return false;
                     }
 
@@ -305,8 +304,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         TooltipUtils.addEmpty(list);
 
-        this.immutableConfigs.castRequirements()
-            .forEach(x -> list.add(x.text));
+        list.add(immutableConfigs.castingWeapon.predicate.text);
 
         TooltipUtils.addEmpty(list);
         this.onDamageEffects.forEach(x -> {

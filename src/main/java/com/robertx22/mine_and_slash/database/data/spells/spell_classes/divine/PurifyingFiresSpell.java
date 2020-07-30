@@ -50,8 +50,8 @@ public class PurifyingFiresSpell extends BaseSpell {
                     return Elements.Fire;
                 }
             }.cooldownIfCanceled(true)
-                .rightClickFor(AllowedAsRightClickOn.MELEE_WEAPON)
-                .setSwingArmOnCast());
+                .setSwingArmOnCast()
+                .castingWeapon(CastingWeapon.MELEE_WEAPON));
     }
 
     @Override

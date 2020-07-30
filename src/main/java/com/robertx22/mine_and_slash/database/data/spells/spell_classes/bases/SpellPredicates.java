@@ -36,8 +36,8 @@ public class SpellPredicates {
         }
     };
 
-    public static SpellPredicate REQUIRE_SHOOTABLE = new SpellPredicate(SHOOTABLE_PRED, new SText(Formatting.GREEN + "Requires Ranged Weapon to use: "));
-    public static SpellPredicate REQUIRE_MAGE_WEAPON = new SpellPredicate(MAGE_PRED, new SText(Formatting.GREEN + "Requires Mage Weapon to use: "));
-    public static SpellPredicate REQUIRE_MELEE = new SpellPredicate(MELEE_PRED, new SText(Formatting.GOLD + "Requires Melee weapon to use: "));
+    public static SpellPredicate REQUIRE_SHOOTABLE = new SpellPredicate(SHOOTABLE_PRED, new SText(Formatting.GREEN + "Requires Ranged Weapon to use."));
+    public static SpellPredicate REQUIRE_MAGE_WEAPON = new SpellPredicate(MAGE_PRED, new SText(Formatting.GREEN + "Requires Mage Weapon to use."));
+    public static SpellPredicate REQUIRE_MELEE = new SpellPredicate(MELEE_PRED, new SText(Formatting.GOLD + "Requires Melee weapon to use."));
 }
 

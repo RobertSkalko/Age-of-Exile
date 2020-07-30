@@ -39,7 +39,7 @@ public class FrostballSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Water;
                 }
-            }.rightClickFor(AllowedAsRightClickOn.MAGE_WEAPON)
+            }
                 .summonsEntity(world -> new FrostballEntity(world)));
     }
 

@@ -40,7 +40,7 @@ public class FireballSpell extends BaseSpell {
                     return Elements.Fire;
                 }
             }.summonsEntity(world -> new FireballEntity(world))
-                .rightClickFor(AllowedAsRightClickOn.MAGE_WEAPON));
+        );
     }
 
     @Override
