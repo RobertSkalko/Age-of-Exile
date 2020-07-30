@@ -60,27 +60,31 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
     @Override
     public void BuildTooltip(TooltipContext ctx) {
 
-        TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
+        try {
+            TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
 
-        BaseSpell spell = SlashRegistry.Spells()
-            .get(spell_id);
+            BaseSpell spell = SlashRegistry.Spells()
+                .get(spell_id);
 
-        ctx.tooltip
-            .add(new LiteralText(spell.getElement().format + spell.getElement().icon + " ").append(spell.getLocName()));
+            ctx.tooltip
+                .add(new LiteralText(spell.getElement().format + spell.getElement().icon + " ").append(spell.getLocName()));
 
-        ctx.tooltip.addAll(spell.GetTooltipString(info, this));
+            ctx.tooltip.addAll(spell.GetTooltipString(info, this));
 
-        ctx.tooltip.add(getRarity().locName()
-            .append(" Level " + level + " item")
-            .formatted(getRarity().textFormatting()));
+            ctx.tooltip.add(getRarity().locName()
+                .append(" Level " + level + " item")
+                .formatted(getRarity().textFormatting()));
 
-        if (!Screen.hasShiftDown()) {
-            ctx.tooltip.add(new LiteralText(Formatting.BLUE + "")
-                .append(Words.AltDescShiftDetails.locName()
-                    .formatted(Formatting.BLUE)));
+            if (!Screen.hasShiftDown()) {
+                ctx.tooltip.add(new LiteralText(Formatting.BLUE + "")
+                    .append(Words.AltDescShiftDetails.locName()
+                        .formatted(Formatting.BLUE)));
+            }
+
+            TooltipUtils.removeDoubleBlankLines(ctx.tooltip);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        TooltipUtils.removeDoubleBlankLines(ctx.tooltip);
 
     }
 

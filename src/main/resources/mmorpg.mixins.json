@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "LivingEntityMixin",
-	"ChestMixin",
-	"MinecraftServerMixin",
+	"ChestMixin",	
 	"ServerResourceManagerMixin",
 	"ArrowShootMixin",
 	"RecipesProviderMixin"

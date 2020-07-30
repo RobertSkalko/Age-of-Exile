@@ -5,8 +5,6 @@ import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
-import com.robertx22.mine_and_slash.uncommon.testing.tests.CheckWeaponDpsBalanceTest;
-import com.robertx22.mine_and_slash.uncommon.testing.tests.CountUniqueGearTypes;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.world.GameRules;
 
@@ -44,9 +42,7 @@ public class LifeCycleEvents {
                 .set(false, server);
 
             if (MMORPG.RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
-                TestManager.RunAllTests();
-                CountUniqueGearTypes.count();
-                CheckWeaponDpsBalanceTest.run();
+                TestManager.RunAllTests(server.getOverworld());
             }
 
         });

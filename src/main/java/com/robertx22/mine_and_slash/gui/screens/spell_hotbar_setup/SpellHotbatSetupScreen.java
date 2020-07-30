@@ -102,13 +102,17 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        drawBackground(matrix);
+        try {
+            drawBackground(matrix);
 
-        drawText(matrix);
+            drawText(matrix);
 
-        super.render(matrix, x, y, ticks);
+            super.render(matrix, x, y, ticks);
 
-        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+            this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -185,8 +189,6 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         public void renderToolTip(MatrixStack matrix, int mouseX, int mouseY) {
             if (this.getSpell() != null) {
                 if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
-                    TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
-
                     List<Text> tooltip = new ArrayList<>();
 
                     TooltipContext ctx = new TooltipContext(null, tooltip, Load.Unit(ClientOnly.getPlayer()));

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Npc;
+import net.minecraft.entity.mob.Angerable;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,7 +42,18 @@ public class EntityTypeUtils {
     }
 
     public static boolean isMob(Entity en) {
-        return en instanceof Monster;
+        if (en instanceof Monster) {
+            return true;
+        }
+        if (en instanceof Angerable) {
+            return true;
+        }
+        if (!en.getType()
+            .getSpawnGroup()
+            .isPeaceful()) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isAnimal(Entity en) {

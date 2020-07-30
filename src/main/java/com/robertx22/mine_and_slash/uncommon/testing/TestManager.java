@@ -1,13 +1,18 @@
 package com.robertx22.mine_and_slash.uncommon.testing;
 
+import com.robertx22.mine_and_slash.uncommon.testing.tests.CheckWeaponDpsBalanceTest;
+import com.robertx22.mine_and_slash.uncommon.testing.tests.CountUniqueGearTypes;
+import com.robertx22.mine_and_slash.uncommon.testing.tests.MobTypesTest;
+import net.minecraft.server.world.ServerWorld;
+
 public class TestManager {
 
-    private static boolean RunTests = false;
+    public static void RunAllTests(ServerWorld world) {
 
-    public static void RunAllTests() {
-
-        if (RunTests) {
-
+        if (true) {
+            CountUniqueGearTypes.count();
+            CheckWeaponDpsBalanceTest.run();
+            MobTypesTest.run(world);
         }
 
     }
