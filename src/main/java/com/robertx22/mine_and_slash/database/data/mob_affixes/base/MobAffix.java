@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.data.mob_affixes.base;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
@@ -22,6 +22,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
     String locName;
     Affix.Type type;
     int weight = 1000;
+    public String icon = "";
 
     public MobAffix(String id, String locName, Affix.Type type) {
         this.id = id;
@@ -31,6 +32,11 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
 
     public MobAffix setMods(StatModifier... mods) {
         this.stats = Arrays.asList(mods);
+        return this;
+    }
+
+    public MobAffix icon(String icon) {
+        this.icon = icon;
         return this;
     }
 
@@ -53,6 +59,8 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
 
         json.addProperty("type", type.name());
 
+        json.addProperty("icon", icon);
+
         if (stats != null) {
             JsonUtils.addStats(stats, json, "stats");
         }
@@ -71,6 +79,8 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
 
         try {
             affix.stats = JsonUtils.getStats(json, "stats");
+            affix.icon = json.get("icon")
+                .getAsString();
         } catch (Exception e) {
             e.printStackTrace();
         }

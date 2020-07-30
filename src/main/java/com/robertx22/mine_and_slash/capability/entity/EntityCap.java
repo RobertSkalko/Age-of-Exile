@@ -29,7 +29,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
@@ -40,7 +39,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -417,17 +415,43 @@ public class EntityCap {
                     .append(entity.getDisplayName());
 
             } else {
+                String picon = "";
+                if (this.getUnit()
+                    .getPrefix() != null) {
+                    picon = this.getUnit()
+                        .getPrefix().icon;
+                }
+                String sicon = "";
+                if (this.getUnit()
+                    .getSuffix() != null) {
+                    sicon = this.getUnit()
+                        .getSuffix().icon;
+                }
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
-                MutableText rarityprefix = rarity.locName();
 
-                Text name = entity.getDisplayName();
+                Formatting rarformat = rarity.textFormatting();
+                Formatting format = Formatting.YELLOW;
+
+                String iconss = picon + sicon;
+
+                MutableText icons = new LiteralText(rarformat + "[").append(new LiteralText(iconss))
+                    .append(new LiteralText(rarformat + "]"));
+
+                if (iconss.length() == 0) {
+                    icons = new LiteralText("");
+                }
+
+                MutableText name = new LiteralText("").append(entity.getDisplayName());
 
                 MobAffix prefix = getUnit().getPrefix();
                 MobAffix suffix = getUnit().getSuffix();
 
-                Text finalName = prefix == null ? name : prefix.locName()
+                MutableText finalName = prefix == null ? name : prefix.locName()
                     .append(" ")
                     .append(name);
+
+                finalName.append(" ")
+                    .append(icons);
 
                 if (suffix != null) {
                     new SText("").append(finalName)
@@ -435,12 +459,11 @@ public class EntityCap {
                         .append(suffix.locName());
                 }
 
-                MutableText lvlcomp = Styles.YELLOWCOMP()
-                    .append(new LiteralText("[" + getLevel() + "] "));
+                MutableText lvlcomp =
+                    new LiteralText(format + "[" + getLevel() + "] ");
 
-                MutableText part = new LiteralText(rarity.textFormatting() + "").append(
-                    rarityprefix.append(" ")
-                        .append(finalName));
+                MutableText part = new LiteralText(rarformat + "")
+                    .append(finalName);
 
                 MutableText tx = lvlcomp.append(part);
 
