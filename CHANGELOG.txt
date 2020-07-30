@@ -22,6 +22,7 @@ This is my first time making a library, so I expect some bugs.
 * added orb of infinity
 * player dmg should now be disabled if pvp is disabled 
 * made spell tooltips shorter
+* optimized mob type detection
 
 v.1.0.3
 
