@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.SkillGemItem;
@@ -187,8 +188,11 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                     TooltipInfo info = new TooltipInfo(MinecraftClient.getInstance().player);
 
                     List<Text> tooltip = new ArrayList<>();
-                    tooltip.add(getSpell().getLocName());
-                    tooltip.addAll(getSpell().GetTooltipString(info, skillgem));
+
+                    TooltipContext ctx = new TooltipContext(null, tooltip, Load.Unit(ClientOnly.getPlayer()));
+
+                    skillgem.BuildTooltip(ctx);
+
                     GuiUtils.renderTooltip(matrix, tooltip, mouseX, mouseY);
                 }
             }

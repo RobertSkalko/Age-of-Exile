@@ -68,7 +68,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
 
         List<Text> list = new ArrayList<>();
         list.add(new LiteralText("Petrifies Enemy."));
-        list.add(new LiteralText("If Attacked, does extra damage, but stops effect."));
+        list.add(new LiteralText("If Attacked, does damage, but stops effect."));
         list.addAll(getCalc(info.player).GetTooltipString(info));
 
         return list;

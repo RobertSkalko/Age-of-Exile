@@ -22,7 +22,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,8 +103,6 @@ public class GorgonsGazeSpell extends BaseSpell {
     public void castExtra(SpellCastContext ctx) {
 
         LivingEntity caster = ctx.caster;
-
-        World world = caster.world;
 
         SoundUtils.playSound(caster, ModRegistry.SOUNDS.STONE_CRACK, 1, 1);
 

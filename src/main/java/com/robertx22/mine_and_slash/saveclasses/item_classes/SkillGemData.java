@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.rarities.SkillGemRarity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -61,7 +60,6 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
     @Override
     public void BuildTooltip(TooltipContext ctx) {
 
-        SpellCastContext sctx = new SpellCastContext(ClientOnly.getPlayer(), 0, this);
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
 
         BaseSpell spell = SlashRegistry.Spells()
@@ -72,12 +70,14 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
 
         ctx.tooltip.addAll(spell.GetTooltipString(info, this));
 
-        ctx.tooltip.add(new LiteralText(getRarity().textFormatting() + "").append(getRarity().locName())
-            .append(" Level " + level + " item"));
+        ctx.tooltip.add(getRarity().locName()
+            .append(" Level " + level + " item")
+            .formatted(getRarity().textFormatting()));
 
         if (!Screen.hasShiftDown()) {
             ctx.tooltip.add(new LiteralText(Formatting.BLUE + "")
-                .append(Words.AltDescShiftDetails.locName()));
+                .append(Words.AltDescShiftDetails.locName()
+                    .formatted(Formatting.BLUE)));
         }
 
         TooltipUtils.removeDoubleBlankLines(ctx.tooltip);

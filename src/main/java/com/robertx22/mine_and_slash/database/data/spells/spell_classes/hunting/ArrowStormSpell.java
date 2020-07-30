@@ -81,7 +81,8 @@ public class ArrowStormSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Summons an arrow storm, dealing damage: "));
+        list.add(new LiteralText("Summon an arrow storm. "));
+        list.add(new LiteralText("Damaging enemies inside: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
