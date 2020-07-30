@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.data.affixes;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.base.IhasRequirements;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.IGUID;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.requirements.Requirements;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -26,7 +26,25 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
     public enum Type {
         prefix,
         suffix,
-        implicit
+        implicit;
+
+        public boolean isPrefix() {
+            return this == prefix;
+        }
+
+        public boolean isSuffix() {
+            return this == suffix;
+        }
+
+        public Type getOpposite() {
+            if (this.isPrefix()) {
+                return suffix;
+            }
+            if (this.isSuffix()) {
+                return prefix;
+            }
+            return null;
+        }
     }
 
     String guid;

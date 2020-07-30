@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.init;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.LifeCycleEvents;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

@@ -1,10 +1,6 @@
 package com.robertx22.mine_and_slash.database.registry;
 
 import com.google.common.collect.Lists;
-import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyAffix;
-import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyBaseGearType;
-import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptySpell;
-import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyStat;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
@@ -20,6 +16,10 @@ import com.robertx22.mine_and_slash.database.data.tiers.base.Tier;
 import com.robertx22.mine_and_slash.database.data.tiers.impl.TierOne;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.registrators.*;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyBaseGearType;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptySpell;
+import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyStat;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.MapManager;
@@ -253,6 +253,8 @@ public class SlashRegistry {
         new MobAffixes().registerAll();
         new DimConfigs().registerAll();
         new EntityConfigs().registerAll();
+
+        new CurrencyItems().registerAll();
 
     }
 

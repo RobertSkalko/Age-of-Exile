@@ -1,19 +1,19 @@
 package com.robertx22.mine_and_slash.database.data.currency;
 
+import com.robertx22.mine_and_slash.database.data.affixes.Affix;
 import com.robertx22.mine_and_slash.database.data.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
-import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.BaseStatsData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.AffixData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -21,28 +21,17 @@ import net.minecraft.item.Items;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IShapedRecipe {
+public class OrbOfInfinityItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
+
     @Override
     public String GUID() {
-        return "currency/number_reroll";
+        return "currency/orb_of_infinity";
     }
 
-    @Override
-    public int getWeight() {
-        return 500;
-    }
+    private static final String name = Ref.MODID + ":currency/orb_of_infinity";
 
-    private static final String name = Ref.MODID + ":currency/number_reroll";
-
-    @Override
-    public List<String> oldNames() {
-        return Arrays.asList(Ref.MODID + ":number_reroll");
-    }
-
-    public OrbOfBlessingItem() {
-
+    public OrbOfInfinityItem() {
         super(name);
-
     }
 
     @Override
@@ -50,10 +39,19 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.GetAllRerollable()
-            .stream()
-            .filter(x -> !(x instanceof BaseStatsData))
-            .forEach(x -> x.RerollFully(gear));
+        List<Affix.Type> types = Arrays.asList(Affix.Type.prefix, Affix.Type.suffix);
+
+        Affix.Type type = RandomUtils.randomFromList(types);
+
+        if (!gear.affixes.canGetMore(type, gear)) {
+            type = type.getOpposite();
+        }
+
+        if (gear.affixes.canGetMore(type, gear)) {
+            AffixData affix = new AffixData(type);
+            affix.RerollFully(gear);
+            gear.affixes.add(affix);
+        }
 
         Gear.Save(stack, gear);
 
@@ -61,40 +59,45 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
+    public int getWeight() {
+        return 40;
+    }
+
+    @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.REROLL_NUMBERS, SimpleGearLocReq.IS_NOT_UNIQUE);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_NOT_UNIQUE, SimpleGearLocReq.CAN_GET_MORE_AFFIXES);
     }
 
     @Override
     public int getTier() {
-        return 0;
+        return 5;
     }
 
     @Override
     public int getRarityRank() {
-        return IRarity.Rare;
+        return IRarity.Legendary;
     }
 
     @Override
     public String locNameForLangFile() {
-        return nameColor + "Orb Of Blessing";
+        return nameColor + "Orb of Infinity";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls explicit numbers on a gear";
+        return "Adds another affix.";
     }
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.ORB_OF_BLESSING)
-            .input('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
-            .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
+        return shaped(ModRegistry.CURRENCIES.ORB_OF_INFINITY)
+            .input('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
+            .input('t', ModRegistry.CURRENCIES.ORB_OF_DISORDER)
+            .input('v', Items.DIAMOND)
+            .input('o', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
             .pattern("v#v")
             .pattern("vtv")
-            .pattern("ovo")
+            .pattern("ooo")
             .criterion("player_level", trigger());
     }
 

@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.auto_comp.DeterminePowerLevels;
-import com.robertx22.mine_and_slash.database.registrators.CurrencyItems;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
@@ -18,10 +17,7 @@ public class LifeCycleEvents {
     public static void register() {
 
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {
-            new CurrencyItems().registerAll();
-
             DataGeneration.generateAll();
-
             MMORPG.server = server;
 
         });

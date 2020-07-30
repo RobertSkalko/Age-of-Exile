@@ -20,6 +20,7 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
     public CurrencyItem LEAF_OF_CHANGE = of(new LeafOfChangeItem());
     public CurrencyItem ORB_OF_BLESSING = of(new OrbOfBlessingItem());
     public CurrencyItem ORB_OF_UNIQUE_BLESSING = of(new OrbOfUniqueBlessingItem());
+    public CurrencyItem ORB_OF_INFINITY = of(new OrbOfInfinityItem());
 
     CurrencyItem of(CurrencyItem c) {
         Registry.register(Registry.ITEM, new Identifier(Ref.MODID, c.GUID()), c);

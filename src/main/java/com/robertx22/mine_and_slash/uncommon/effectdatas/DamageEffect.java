@@ -236,6 +236,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (TeamUtils.areOnSameTeam((ServerPlayerEntity) source, (ServerPlayerEntity) target)) {
                 return;
             }
+            PlayerEntity sp = (PlayerEntity) this.source;
+            if (!sp.shouldDamagePlayer((PlayerEntity) target)) {
+                return;
+            }
         } else {
             if (this instanceof SpellDamageEffect) {
                 if (target instanceof TameableEntity) {

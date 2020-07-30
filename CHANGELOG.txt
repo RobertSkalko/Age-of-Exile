@@ -19,6 +19,8 @@ This is my first time making a library, so I expect some bugs.
 * should fix spell tooltips having wrong levels
 * added config for scale mob lvl to player so you don't need to use datapacks for this common complaint
 * reworked gear sockets to be less confusing
+* added orb of infinity
+* player dmg should now be disabled if pvp is disabled 
 
 v.1.0.3
 

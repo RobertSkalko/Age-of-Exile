@@ -276,6 +276,8 @@ public enum Words implements IAutoLocName {
 
     NoSuffix("Doesn't have suffix"),
 
+    CantGetMoreAffixes("Can't get more affixes."),
+
     NoPrefix("Doesn't have prefix"),
 
     TierLessThanMax("Tier less than maximum"),

@@ -39,8 +39,35 @@ public class GearAffixesData {
     }
 
     public int getMaxAffixesPerType(GearItemData gear) {
-        return gear.getRarity()
+        int affixes = gear.getRarity()
             .maximumOfOneAffixType();
+
+        return affixes;
+    }
+
+    public void add(AffixData affix) {
+        if (affix.affixType.isSuffix()) {
+            suffixes.add(affix);
+        } else {
+            prefixes.add(affix);
+        }
+    }
+
+    public boolean canGetMore(Affix.Type type, GearItemData gear) {
+
+        int current;
+        if (type == Affix.Type.prefix) {
+            current = (int) prefixes.stream()
+                .filter(x -> !x.is_socket)
+                .count();
+        } else {
+            current = (int) suffixes.stream()
+                .filter(x -> !x.is_socket)
+                .count();
+        }
+
+        return current < getMaxAffixesPerType(gear);
+
     }
 
     public int getNumberOfPrefixes() {

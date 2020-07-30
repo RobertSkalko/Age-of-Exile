@@ -1,20 +1,25 @@
 package com.robertx22.mine_and_slash.database.data.currency.loc_reqs;
 
 import com.robertx22.mine_and_slash.database.base.Rarities;
+import com.robertx22.mine_and_slash.database.data.affixes.Affix;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import net.minecraft.text.MutableText;
+
 import java.util.Comparator;
 import java.util.function.Predicate;
-
-import net.minecraft.text.MutableText;
 
 public class SimpleGearLocReq extends BaseLocRequirement {
 
     public static final SimpleGearLocReq NO_PREFIX = new SimpleGearLocReq(
         x -> x.affixes.prefixes.size() == 0, Words.NoPrefix.locName());
     public static final SimpleGearLocReq NO_SUFFIX = new SimpleGearLocReq(
-        x -> x.affixes.suffixes.size() == 0l, Words.NoSuffix.locName());
+        x -> x.affixes.suffixes.size() == 0, Words.NoSuffix.locName());
+
+    public static final SimpleGearLocReq CAN_GET_MORE_AFFIXES = new SimpleGearLocReq(
+        x -> x.affixes.canGetMore(Affix.Type.prefix, x) || x.affixes.canGetMore(Affix.Type.suffix, x), Words.CantGetMoreAffixes.locName());
+
     public static final SimpleGearLocReq IS_COMMON = new SimpleGearLocReq(
         x -> x.rarity == IRarity.Common, Words.IsCommon.locName());
     public static final SimpleGearLocReq IS_NOT_HIGHEST_RARITY = new SimpleGearLocReq(
