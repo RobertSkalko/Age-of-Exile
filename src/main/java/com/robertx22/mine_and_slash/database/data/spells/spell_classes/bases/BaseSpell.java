@@ -116,36 +116,25 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
         return getPreCalcConfig().maxSpellLevel;
     }
 
-    public final int getMaxSpellLevelBuffed() {
-        return getMaxSpellLevelNormal() + 5;
-    }
-
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
         return true;
     }
 
     public enum AllowedAsRightClickOn {
-        MAGE_WEAPON, MELEE_WEAPON, NONE
+        MAGE_WEAPON(SpellPredicates.REQUIRE_MAGE_WEAPON),
+        MELEE_WEAPON(SpellPredicates.REQUIRE_MAGE_WEAPON),
+        RANGED(SpellPredicates.REQUIRE_SHOOTABLE);
+
+        SpellPredicate predicate;
+
+        AllowedAsRightClickOn(SpellPredicate predicate) {
+            this.predicate = predicate;
+        }
     }
 
     @Override
     public Type getAbilityType() {
         return Type.SPELL;
-    }
-
-    public boolean isAllowedAsRightClickFor(BaseGearType slot) {
-        switch (immutableConfigs.allowedAsRightClickOn()) {
-            case NONE: {
-                return false;
-            }
-            case MELEE_WEAPON: {
-                return slot.isMeleeWeapon();
-            }
-            case MAGE_WEAPON: {
-                return slot.isMageWeapon();
-            }
-        }
-        return false;
     }
 
     @Override
@@ -273,14 +262,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
                 if (data.getResources()
                     .hasEnough(rctx)) {
 
-                    /*
                     if (immutableConfigs.castRequirements()
                         .stream()
-                        .anyMatch(x -> !x.predicate.test(player))) {
+                        .anyMatch(x -> !x.predicate.test(caster))) {
                         return false;
                     }
-
-                     */
 
                     return true;
                 } else {
@@ -319,8 +305,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         TooltipUtils.addEmpty(list);
 
-        // this.immutableConfigs.castRequirements()
-        //   .forEach(x -> list.add(x.text));
+        this.immutableConfigs.castRequirements()
+            .forEach(x -> list.add(x.text));
 
         TooltipUtils.addEmpty(list);
         this.onDamageEffects.forEach(x -> {

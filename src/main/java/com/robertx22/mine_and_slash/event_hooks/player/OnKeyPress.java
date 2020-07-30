@@ -21,6 +21,7 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
         if (mc.player == null) {
             return;
         }
+
         if (KeybindsRegister.HUB_SCREEN_KEY.isPressed()) {
             mc.openScreen(new MainHubScreen());
             cooldown = 10;

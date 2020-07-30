@@ -21,7 +21,7 @@ public abstract class ImmutableSpellConfigs {
     private boolean goesOnCooldownIfCanceled;
     private Function<World, Entity> newEntitySummoner;
     private List<SpellPredicate> castRequirements = new ArrayList<>();
-    private AllowedAsRightClickOn allowedAsRightClickOn = AllowedAsRightClickOn.NONE;
+    public AllowedAsRightClickOn allowedAsRightClickOn = AllowedAsRightClickOn.MAGE_WEAPON;
     private boolean swingArmOnCast = false;
 
     public boolean getSwingsArmOnCast() {
@@ -75,21 +75,4 @@ public abstract class ImmutableSpellConfigs {
         return this;
     }
 
-    public final List<SpellPredicate> castRequirements() {
-        return castRequirements;
-    }
-
-    public ImmutableSpellConfigs addCastRequirement(SpellPredicate castRequirements) {
-        this.castRequirements.add(castRequirements);
-        return this;
-    }
-
-    public final AllowedAsRightClickOn allowedAsRightClickOn() {
-        return this.allowedAsRightClickOn;
-    }
-
-    public ImmutableSpellConfigs rightClickFor(AllowedAsRightClickOn allowedAsRightClickOn) {
-        this.allowedAsRightClickOn = allowedAsRightClickOn;
-        return this;
-    }
 }

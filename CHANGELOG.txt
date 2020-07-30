@@ -1,3 +1,7 @@
+v1.0.5
+
+* switched to vanilla bows, there were arrow render problems (i think vanilla hardcoded them..)
+
 v.1.0.4
 
 Mod now requires library: Library of Exile

@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons;
 
-import com.robertx22.mine_and_slash.database.base.Rarities;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
@@ -17,15 +15,11 @@ public class ItemBow extends BowItem implements IAutoLocName, IGearItem {
             .maxCount(1)
             .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
                 .getDurability(EquipmentSlot.MAINHAND)));
-        this.rarity = rar;
     }
-
-    public int rarity = 0;
 
     @Override
     public String locNameForLangFile() {
-        Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatting() + "Bow";
+        return "Bow";
     }
 
     @Override
