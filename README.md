@@ -1,6 +1,7 @@
 Age of Exile
 
 [![Discord chat](https://img.shields.io/discord/736508692182073355?color=blue&label=Discord)](https://discord.gg/34qaNje)
+[![CurseForge downloads](http://cf.way2muchnoise.eu/full_397698_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/age-of-exile)
 
 Age of Exile is a mod inspired by Diablo and Path of Exile, and aims to provide a new gear progression system that's more fun and interesting than the vanilla enchantments system.
 
