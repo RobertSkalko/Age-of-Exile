@@ -1,3 +1,7 @@
+Age of Exile
+
+<img alt="Discord" src="https://img.shields.io/discord/736508692182073355?color=blue&label=Discord">
+
 Age of Exile is a mod inspired by Diablo and Path of Exile, and aims to provide a new gear progression system that's more fun and interesting than the vanilla enchantments system.
 
  
