@@ -6,7 +6,7 @@ Age of Exile is a mod inspired by Diablo and Path of Exile, and aims to provide 
 
  
 
-This is a Fabric port of a reworked Mine and Slash, but the rework made it much more compatible with other mods.
+This is a Fabric port of a reworked Mine and Slash, but the rework made it compatible with other mods.
 
  
 
@@ -26,7 +26,5 @@ Current features:
 
 Big compatibility changes from Mine and Slash:
 
-* Damage is no longer overrided except for item's with stats. This means other mod's gear and spells should ALL be compatible now!
+* Damage is no longer overrided. This means other mod's gear and spells should ALL be compatible now!
 * There's no magical mine and slash hp anymore, instead your normal hearts are increased.
-* Stats scale much slower with levels, and if you want to nerf or buff how strong my mod is, just increase or decrease stat scaling or maximum level. Both work.
-* Vanilla armor is overrided for entity damage, but there's a config for effectiveness now.
