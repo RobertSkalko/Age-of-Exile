@@ -35,7 +35,6 @@ public class OnKeyMethod {
                 }
                 ci.cancel();
             }
-
         }
 
     }

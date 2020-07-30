@@ -130,11 +130,16 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         yp = 12 + guiTop;
         GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
 
-        scale = 1;
+        scale = 0.8F;
 
-        str = "Cast by right clicking with a staff.";
+        str = "Right click with the correct weapon type to cast.";
         xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
         yp = 100 + guiTop;
+        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
+
+        str = "If weapon has a use action, do [Shift] + [RMB].";
+        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
+        yp = 120 + guiTop;
         GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
 
     }

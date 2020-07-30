@@ -118,13 +118,13 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
             boolean selected = i == SpellCastingData.selectedSpell;
 
-            if (spell != null) {
+            if (selected) {
+                mc.getTextureManager()
+                    .bindTexture(SPELL_READY_TEX);
+                this.drawTexture(matrix, x - 2, y - 2, 0, 0, 20, 20, 20, 20);
+            }
 
-                if (selected) {
-                    mc.getTextureManager()
-                        .bindTexture(SPELL_READY_TEX);
-                    this.drawTexture(matrix, x - 2, y - 2, 0, 0, 20, 20, 20, 20);
-                }
+            if (spell != null) {
 
                 double scale = 0.5D;
                 RenderSystem.scaled(scale, scale, scale);

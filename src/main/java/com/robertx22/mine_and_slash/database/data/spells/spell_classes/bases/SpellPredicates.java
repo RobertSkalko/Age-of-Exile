@@ -21,7 +21,8 @@ public class SpellPredicates {
         try {
             GearItemData data = Gear.Load(x.getMainHandStack());
             return data != null && data.GetBaseGearType()
-                .isMeleeWeapon();
+                .isMeleeWeapon() && !data.GetBaseGearType()
+                .isMageWeapon();
         } catch (Exception e) {
             return false;
         }

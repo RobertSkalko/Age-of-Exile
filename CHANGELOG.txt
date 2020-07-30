@@ -1,6 +1,8 @@
 v1.0.5
 
 * switched to vanilla bows, there were arrow render problems (i think vanilla hardcoded them..)
+* spells now correctly require bows or melee (for arrow spells and melee spells) currently only 1 melee spell
+* compatible items should not be able to cast spells
 
 v.1.0.4
 
