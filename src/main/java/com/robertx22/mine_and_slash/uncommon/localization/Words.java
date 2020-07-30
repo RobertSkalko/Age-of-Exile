@@ -6,6 +6,9 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+
+    AltDescShiftDetails("[Shift]: Desc, [Alt]: Details"),
+
     Miracle("Miracle"),
     Oblivion("Oblivion"),
     Beast("Beast"),

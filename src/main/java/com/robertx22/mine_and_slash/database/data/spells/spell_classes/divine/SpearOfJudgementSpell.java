@@ -83,8 +83,10 @@ public class SpearOfJudgementSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Throw out a spear that deals damage and"));
-        list.add(new LiteralText("applies Judgement: "));
+        list.add(new LiteralText("Throw out a spear that deals damage:"));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
+
+        list.add(new LiteralText("Also applies Judgement: "));
 
         list.addAll(JudgementEffect.INSTANCE.GetTooltipStringWithNoExtraSpellInfo(info));
 

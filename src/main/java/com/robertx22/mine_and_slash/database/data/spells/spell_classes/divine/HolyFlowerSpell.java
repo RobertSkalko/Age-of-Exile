@@ -81,7 +81,8 @@ public class HolyFlowerSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new SText("Summons a flower that heals allies nearby."));
+        list.add(new SText("Summons a flower."));
+        list.add(new SText("Heals nearby allies."));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

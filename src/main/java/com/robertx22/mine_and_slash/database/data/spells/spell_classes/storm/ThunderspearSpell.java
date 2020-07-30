@@ -79,7 +79,7 @@ public class ThunderspearSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(SpellTooltips.singleTargetProjectile());
+        list.addAll(SpellTooltips.singleTargetProjectile());
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

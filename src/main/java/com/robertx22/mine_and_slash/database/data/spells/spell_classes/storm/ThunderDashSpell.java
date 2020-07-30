@@ -89,7 +89,7 @@ public class ThunderDashSpell extends BaseSpell {
         List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Dash in your current direction,"));
-        list.add(new LiteralText("damages all enemies in the path."));
+        list.add(new LiteralText("Damage all enemies in your path."));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

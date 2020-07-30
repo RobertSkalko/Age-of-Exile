@@ -1,19 +1,14 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.IGUID;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -61,21 +56,15 @@ public interface IAbility extends IGUID {
 
     public default void finishTooltip(List<Text> list, SpellCastContext ctx, TooltipInfo info) {
         try {
+            /* No, it's not accurate right now
             TooltipUtils.addEmpty(list);
 
-            list.add(new SText(getElement().format + "Element: " + getElement().name()));
+            list.add(new SText(Formatting.LIGHT_PURPLE + "" + Formatting.BOLD).append("Ability Stats:"));
+            list.addAll(ctx.getConfigFor(this)
+                .GetTooltipString(info, ctx));
 
-            list.add(new SText(""));
+             */
 
-            if (!Screen.hasShiftDown()) {
-                list.add(new SText(Formatting.BLUE + "").append(Words.Press_Shift_For_More_Info.locName()));
-            } else {
-                list.add(new SText(Formatting.LIGHT_PURPLE + "" + Formatting.BOLD).append("Ability Stats:"));
-                list.addAll(ctx.getConfigFor(this)
-                    .GetTooltipString(info, ctx));
-            }
-
-            TooltipUtils.removeDoubleBlankLines(list);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -21,6 +21,7 @@ This is my first time making a library, so I expect some bugs.
 * reworked gear sockets to be less confusing
 * added orb of infinity
 * player dmg should now be disabled if pvp is disabled 
+* made spell tooltips shorter
 
 v.1.0.3
 

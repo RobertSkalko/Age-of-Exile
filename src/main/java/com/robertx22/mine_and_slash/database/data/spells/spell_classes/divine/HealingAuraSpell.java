@@ -115,7 +115,8 @@ public class HealingAuraSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Restore health and magic shield to everyone around you: "));
+        list.add(new LiteralText("Restore health and magic shield,"));
+        list.add(new LiteralText("to everyone around you:"));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

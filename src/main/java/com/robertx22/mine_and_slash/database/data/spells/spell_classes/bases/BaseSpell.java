@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.base.Rarities;
@@ -9,6 +7,8 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -25,6 +25,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.NoManaPacket;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -261,8 +262,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
             return true;
         }
 
-        PlayerEntity player = (PlayerEntity) caster;
-
         if (!caster.world.isClient) {
 
             UnitData data = Load.Unit(caster);
@@ -304,13 +303,19 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         TooltipUtils.addEmpty(list);
 
-        list.addAll(GetDescription(info, ctx));
+        if (Screen.hasShiftDown()) {
+            list.addAll(GetDescription(info, ctx));
+        }
 
         TooltipUtils.addEmpty(list);
 
-        list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-        list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + getCooldownInSeconds(ctx) + "s"));
-        list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s"));
+        MutableText mana = new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx));
+        MutableText cd = new LiteralText(Formatting.YELLOW + "Cooldown: " + getCooldownInSeconds(ctx) + "s");
+        MutableText casttime = new LiteralText(Formatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s");
+
+        list.add(mana);
+        list.add(cd);
+        list.add(casttime);
 
         TooltipUtils.addEmpty(list);
 
@@ -323,8 +328,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
         });
 
         TooltipUtils.addEmpty(list);
-
-        finishTooltip(list, ctx, info);
 
         return list;
 

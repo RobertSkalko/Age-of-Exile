@@ -1,22 +1,25 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.rarities.SkillGemRarity;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 
 @Storable
@@ -58,16 +61,27 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
     @Override
     public void BuildTooltip(TooltipContext ctx) {
 
+        SpellCastContext sctx = new SpellCastContext(ClientOnly.getPlayer(), 0, this);
+        TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
+
         BaseSpell spell = SlashRegistry.Spells()
             .get(spell_id);
 
         ctx.tooltip
-            .add(spell.getLocName());
+            .add(new LiteralText(spell.getElement().format + spell.getElement().icon + " ").append(spell.getLocName()));
 
-        ctx.tooltip.addAll(spell.GetTooltipString(new TooltipInfo(ClientOnly.getPlayer()), this));
+        ctx.tooltip.addAll(spell.GetTooltipString(info, this));
 
-        ctx.tooltip.add(TooltipUtils.rarity(getRarity()));
-        ctx.tooltip.add(new SText(Formatting.YELLOW + "Level: " + level));
+        ctx.tooltip.add(new LiteralText(getRarity().textFormatting() + "").append(getRarity().locName())
+            .append(" Level " + level + " item"));
+
+        if (!Screen.hasShiftDown()) {
+            ctx.tooltip.add(new LiteralText(Formatting.BLUE + "")
+                .append(Words.AltDescShiftDetails.locName()));
+        }
+
+        TooltipUtils.removeDoubleBlankLines(ctx.tooltip);
+
     }
 
     @Override

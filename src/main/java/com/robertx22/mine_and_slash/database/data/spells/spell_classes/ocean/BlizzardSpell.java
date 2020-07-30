@@ -84,7 +84,8 @@ public class BlizzardSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Summon a blizzard that damages enemies inside: "));
+        list.add(new LiteralText("Summon a blizzard."));
+        list.add(new LiteralText("Damages all enemies inside."));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

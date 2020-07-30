@@ -89,8 +89,6 @@ public class GorgonsGazeSpell extends BaseSpell {
 
         list.add(new LiteralText("Turn all enemies before you into stone: "));
         list.add(new LiteralText("Applies debuff: "));
-        list.add(new LiteralText(""));
-
         list.addAll(PetrifyEffect.INSTANCE.GetTooltipStringWithNoExtraSpellInfo(info));
 
         return list;

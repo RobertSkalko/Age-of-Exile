@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
@@ -119,19 +118,18 @@ public class PreCalcSpellConfigs {
 
         List<MutableText> list = new ArrayList<>();
 
-        if (Screen.hasShiftDown()) {
-            map.entrySet()
-                .forEach(x -> {
-                    if (x.getKey()
-                        .shouldAddToTooltip()) {
-                        String val = NumberUtils.formatForTooltip(x.getValue()
-                            .get(ctx.skillGem));
-                        list.add(new SText(Formatting.GRAY + "").append(x.getKey().word.locName())
-                            .append(": " + Formatting.GREEN + val));
+        map.entrySet()
+            .forEach(x -> {
+                if (x.getKey()
+                    .shouldAddToTooltip()) {
+                    String val = NumberUtils.formatForTooltip(x.getValue()
+                        .get(ctx.skillGem));
+                    list.add(new SText(Formatting.GRAY + "").append(x.getKey().word.locName())
+                        .append(": " + Formatting.GREEN + val));
 
-                    }
-                });
-        }
+                }
+            });
+
         return list;
 
     }

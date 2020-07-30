@@ -74,7 +74,6 @@ public class PoisonedWeaponsSpell extends BaseSpell {
         List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Applies buff: "));
-
         list.addAll(PoisonedWeaponsEffect.getInstance()
             .GetTooltipStringWithNoExtraSpellInfo(info));
 

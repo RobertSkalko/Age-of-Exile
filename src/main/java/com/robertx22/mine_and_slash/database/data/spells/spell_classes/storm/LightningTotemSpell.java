@@ -82,7 +82,8 @@ public class LightningTotemSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Summons a totem that damages enemies: "));
+        list.add(new LiteralText("Summons a totem."));
+        list.add(new LiteralText("That damages enemies: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

@@ -84,7 +84,8 @@ public class VolcanoSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Summons an erupting volcano: "));
+        list.add(new LiteralText("Summons an erupting volcano."));
+        list.add(new LiteralText("Damaging enemies inside:"));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

@@ -79,7 +79,8 @@ public class ThunderstormSpell extends BaseSpell {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Summons a cloud of lightning, damaging all enemies inside"));
+        list.add(new LiteralText("Summons a cloud of lightning."));
+        list.add(new LiteralText("Damaging all enemies inside:"));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

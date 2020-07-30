@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Formatting;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,11 +34,9 @@ public enum Elements implements IColor {
         this.format = format;
         this.projectileItem = item;
         this.guidName = guidname;
-        this.singularDisasterName = singularDisasterName;
         this.icon = icon;
     }
 
-    public String singularDisasterName;
     public String dmgName;
     public String guidName;
     public int i = 0;
