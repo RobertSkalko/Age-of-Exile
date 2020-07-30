@@ -1,4 +1,6 @@
-Age of Exile
+![Project icon](https://i.ibb.co/m6kgPw1/125icon.png)
+
+# Age of Exile 
 
 [![Discord chat](https://img.shields.io/discord/736508692182073355?color=blue&label=Discord)](https://discord.gg/34qaNje)
 ![GitHub issues](https://img.shields.io/github/issues/RobertSkalko/Age-of-Exile)
