@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.datapacks.curio_tags.GenerateCurioDataJsons;
+import com.robertx22.mine_and_slash.datapacks.generators.RecipeGenerator;
 import com.robertx22.mine_and_slash.datapacks.lang_file.CreateLangFile;
 import com.robertx22.mine_and_slash.datapacks.loaders.*;
 import com.robertx22.mine_and_slash.datapacks.models.ItemModelManager;
@@ -36,6 +37,8 @@ public class DataGeneration {
             .run());
         rars.forEach(x -> x.getDatapackGenerator()
             .run());
+
+        new RecipeGenerator().run();
 
         CreateLangFile.create();
         GenerateCurioDataJsons.generate();

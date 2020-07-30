@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public enum Words implements IAutoLocName {
 
-    AltDescShiftDetails("[Shift]: Desc, [Alt]: Details"),
+    AltDescShiftDetails("[Shift]: Details"),
 
     Miracle("Miracle"),
     Oblivion("Oblivion"),
