@@ -37,31 +37,35 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     @Override
     public void onHudRender(MatrixStack matrix, float v) {
 
-        if (mc.options.debugEnabled) {
-            // return; // dont display when F3 screen
+        try {
+            if (mc.options.debugEnabled) {
+                // return; // dont display when F3 screen
+            }
+
+            if (mc.player.isSpectator()) {
+                return;
+            }
+            data = Load.spells(mc.player);
+
+            RenderSystem.enableBlend(); // enables transparency
+
+            if (OnKeyMethod.isSelectingSpells()) {
+                int x = mc.getWindow()
+                    .getScaledWidth() / 2 - WIDTH / 2;
+                int y = (int) (mc.getWindow()
+                    .getScaledHeight() - HEIGHT);
+
+                renderHotbar(matrix, x, y);
+                renderSpellsOnHotbar(matrix, x, y);
+
+            }
+
+            renderCurrentSpell(matrix);
+
+            RenderSystem.disableBlend(); // enables transparency
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        if (mc.player.isSpectator()) {
-            return;
-        }
-        data = Load.spells(mc.player);
-
-        RenderSystem.enableBlend(); // enables transparency
-
-        if (OnKeyMethod.isSelectingSpells()) {
-            int x = mc.getWindow()
-                .getScaledWidth() / 2 - WIDTH / 2;
-            int y = (int) (mc.getWindow()
-                .getScaledHeight() - HEIGHT);
-
-            renderHotbar(matrix, x, y);
-            renderSpellsOnHotbar(matrix, x, y);
-
-        }
-
-        renderCurrentSpell(matrix);
-
-        RenderSystem.disableBlend(); // enables transparency
 
     }
 

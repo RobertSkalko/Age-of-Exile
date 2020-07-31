@@ -8,8 +8,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.RepairSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
@@ -41,10 +39,6 @@ public class ContainerGearRepair extends BaseTileContainer {
     private static final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private static final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
     Inventory tile;
-
-    public ContainerGearRepair(int i, PlayerInventory playerInventory, PacketByteBuf buf) {
-        this(i, playerInventory, new SimpleInventory(TileGearRepair.TOTAL_SLOTS_COUNT), buf.readBlockPos());
-    }
 
     public ContainerGearRepair(int num, PlayerInventory invPlayer, Inventory inv,
                                BlockPos pos) {

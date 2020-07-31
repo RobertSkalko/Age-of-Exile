@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.event_hooks.player;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.base.Rarities;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.OnLoginClientPacket;
+import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -59,6 +60,8 @@ public class OnLogin implements ServerEntityEvents.Load {
                 player.sendMessage(
                     new LiteralText("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"), false);
             }
+
+            ContainerProviderRegistry.INSTANCE.openContainer(ModRegistry.CONTAINERS.HOTBAR_SETUP, player, buf -> buf.writeInt(5));
 
         } catch (
             Exception e) {

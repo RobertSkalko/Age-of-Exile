@@ -8,4 +8,13 @@ public interface INamedScreen {
     Identifier iconLocation();
 
     Words screenName();
+
+    public default boolean isContainer() {
+        return false;
+    }
+
+    default void openContainer() {
+// TODO NEEDS PACKETS
+    }
+
 }

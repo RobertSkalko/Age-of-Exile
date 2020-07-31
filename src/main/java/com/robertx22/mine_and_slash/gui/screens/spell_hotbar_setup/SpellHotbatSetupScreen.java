@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -11,91 +10,52 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipConte
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
-import com.robertx22.mine_and_slash.vanilla_mc.items.misc.SkillGemItem;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.HotbarSetupPacket;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
+public class SpellHotbatSetupScreen extends HandledScreen<HotbarSetupContainer> implements INamedScreen {
 
     static Identifier BACKGROUND_TEXTURE = new Identifier(
         Ref.MODID, "textures/gui/hotbar_setup/window.png");
     public MinecraftClient mc;
 
-    static int x = 212;
-    static int y = 222;
+    static int sizeX = 176;
+    static int sizeY = 166;
 
     PlayerSpellCap.ISpellsCap spells;
 
-    public SpellHotbatSetupScreen() {
-        super(x, y);
+    public int guiLeft = 0;
+    public int guiTop = 0;
+
+    public SpellHotbatSetupScreen(HotbarSetupContainer container, PlayerEntity player) {
+        super(container, player.inventory, new LiteralText(""));
         this.mc = MinecraftClient.getInstance();
         this.spells = Load.spells(mc.player);
+
     }
 
     @Override
     protected void init() {
         super.init();
 
-        int x = guiLeft + 7;
-        int y = guiTop + 40;
-
-        int count = 0;
-
-        for (int i = 0; i < mc.player.inventory.main.size(); i++) {
-
-            ItemStack stack = mc.player.inventory.main.get(i);
-
-            if (stack.getItem() instanceof SkillGemItem) {
-
-                if (stack == null) {
-                    continue;
-                }
-
-                if (count >= 11) {
-                    y += AvailableSpellButton.ySize + 2;
-                    x = guiLeft + 7;
-                    count = 0;
-                }
-                if (count >= 1) {
-                    x += AvailableSpellButton.xSize + 2;
-                }
-                count++;
-                addButton(new AvailableSpellButton(i, stack, SkillGem.Load(stack), x, y));
-            }
-
-        }
-        count = 0;
-        /////////////////
-
-        y = guiTop + 140;
-
-        y += 50;
-        x = guiLeft + 15;
-
-        for (int i = 0; i < 9; i++) {
-
-            HotbarButton but = new HotbarButton(i, x, y);
-
-            this.addButton(but);
-
-            x += HotbarButton.xSize;
-
-        }
+        this.guiLeft = (this.width - this.sizeX) / 2;
+        this.guiTop = (this.height - this.sizeY) / 2;
 
     }
 
@@ -103,9 +63,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         try {
-            drawBackground(matrix);
-
-            drawText(matrix);
+            drawBackground(matrix, 0, x, y);
 
             super.render(matrix, x, y, ticks);
 
@@ -116,40 +74,13 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
     }
 
-    private void drawText(MatrixStack matrix) {
-
-        double scale = 1.25;
-
-        String str = "Spell Hotbar";
-        int xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        int yp = 180 + guiTop;
-        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.GREEN);
-
-        str = "Skill Gems in Inventory";
-        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        yp = 12 + guiTop;
-        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
-
-        scale = 0.8F;
-
-        str = "Right click with the correct weapon type to cast.";
-        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        yp = 100 + guiTop;
-        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
-
-        str = "If weapon has a use action, do [Shift] + [RMB].";
-        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        yp = 120 + guiTop;
-        GuiUtils.renderScaledText(matrix, xp, yp, scale, str, Formatting.YELLOW);
-
-    }
-
-    protected void drawBackground(MatrixStack matrix) {
+    @Override
+    protected void drawBackground(MatrixStack matrix, float delta, int mouseX, int mouseY) {
         MinecraftClient.getInstance()
             .getTextureManager()
             .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, guiLeft, guiTop, this.getZOffset(), 0.0F, 0.0F, this.x, this.y, 256, 256);
+        drawTexture(matrix, guiLeft, guiTop, this.getZOffset(), 0.0F, 0.0F, sizeX, sizeY, 256, 256);
 
     }
 

@@ -20,11 +20,11 @@ public class OnScrollHotbar {
 
             SpellCastingData.selectedSpell -= (int) scrollAmount;
 
-            if (SpellCastingData.selectedSpell > 9) {
+            if (SpellCastingData.selectedSpell > 8) {
                 SpellCastingData.selectedSpell = 0;
             }
             if (SpellCastingData.selectedSpell < 0) {
-                SpellCastingData.selectedSpell = 9;
+                SpellCastingData.selectedSpell = 8;
             }
 
             ci.cancel();

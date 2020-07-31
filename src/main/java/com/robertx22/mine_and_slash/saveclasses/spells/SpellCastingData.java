@@ -1,14 +1,17 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Storable
-public class SpellCastingData {
+public class SpellCastingData implements Inventory {
 
     @Store
     public int castingTicksLeft = 0;
@@ -33,7 +36,7 @@ public class SpellCastingData {
     public String spellBeingCast = "";
 
     @Store
-    private HashMap<Integer, SkillGemData> hotbar = new HashMap<>();
+    private HashMap<Integer, ItemStack> hotbar = new HashMap<>();
 
     @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
@@ -222,6 +225,17 @@ public class SpellCastingData {
     }
 
     public HashMap<Integer, SkillGemData> getHotbar() {
+        HashMap<Integer, SkillGemData> datamap = new HashMap<>();
+        hotbar.forEach((key, value) -> {
+            SkillGemData gem = SkillGem.Load(value);
+            if (gem != null) {
+                datamap.put(key, gem);
+            }
+        });
+        return datamap;
+    }
+
+    public HashMap<Integer, ItemStack> getStacks() {
         return this.hotbar;
     }
 
@@ -258,7 +272,12 @@ public class SpellCastingData {
 
     public BaseSpell getSpellByNumber(int key) {
 
-        String id = getHotbar().getOrDefault(key, new SkillGemData()).spell_id;
+        String id = "";
+        try {
+            id = getHotbar().getOrDefault(key, new SkillGemData()).spell_id;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (id != null) {
             if (SlashRegistry.Spells()
@@ -271,4 +290,43 @@ public class SpellCastingData {
         return null;
     }
 
+    @Override
+    public int size() {
+        return 9;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return hotbar.isEmpty();
+    }
+
+    @Override
+    public ItemStack getStack(int slot) {
+        return hotbar.getOrDefault(slot, ItemStack.EMPTY);
+    }
+
+    @Override
+    public ItemStack removeStack(int slot, int amount) {
+        return hotbar.put(slot, ItemStack.EMPTY);
+    }
+
+    @Override
+    public ItemStack removeStack(int slot) {
+        return hotbar.put(slot, ItemStack.EMPTY);
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        hotbar.put(slot, stack);
+    }
+
+    @Override
+    public void markDirty() {
+
+    }
+
+    @Override
+    public boolean canPlayerUse(PlayerEntity player) {
+        return true;
+    }
 }

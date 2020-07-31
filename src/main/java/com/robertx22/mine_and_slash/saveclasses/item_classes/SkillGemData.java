@@ -66,6 +66,10 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
             BaseSpell spell = SlashRegistry.Spells()
                 .get(spell_id);
 
+            if (spell == null) {
+                return;
+            }
+
             ctx.tooltip
                 .add(new LiteralText(spell.getElement().format + spell.getElement().icon + " ").append(spell.getLocName()));
 
