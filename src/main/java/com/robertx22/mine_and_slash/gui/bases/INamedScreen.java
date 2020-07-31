@@ -9,12 +9,4 @@ public interface INamedScreen {
 
     Words screenName();
 
-    public default boolean isContainer() {
-        return false;
-    }
-
-    default void openContainer() {
-// TODO NEEDS PACKETS
-    }
-
 }

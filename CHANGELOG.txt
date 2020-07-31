@@ -1,5 +1,8 @@
 v1.0.5
 
+TAKE OUT THE SPELLS IN YOUR HOTBAR BEFORE YOU INSTALL THIS UPDATE!
+
+* spell hotbar setup is now an inventory, and should be much more intuitive.
 * you can now switch spells with middle mouse scrolling! (when pressing R)
 * switched to vanilla bows, there were arrow render problems (i think vanilla hardcoded them..)
 * spells now correctly require bows or melee (for arrow spells and melee spells) currently only 1 melee spell

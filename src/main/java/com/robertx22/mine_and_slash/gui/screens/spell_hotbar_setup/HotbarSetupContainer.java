@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup;
 
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,24 +22,36 @@ public class HotbarSetupContainer extends ScreenHandler {
             .getInventory();
         this.rows = 1;
         inventory.onOpen(player);
-        int i = (this.rows - 4) * 18;
 
         int n;
         int m;
         for (n = 0; n < this.rows; ++n) {
             for (m = 0; m < 9; ++m) {
-                this.addSlot(new Slot(inventory, m + n * 9, 8 + m * 18, 18 + n * 18));
+                this.addSlot(new SpellSlot(inventory, m + n * 9, 8 + m * 18, 54));
             }
         }
 
         for (n = 0; n < 3; ++n) {
             for (m = 0; m < 9; ++m) {
-                this.addSlot(new Slot(player.inventory, m + n * 9 + 9, 8 + m * 18, 103 + n * 18 + i));
+                this.addSlot(new Slot(player.inventory, m + n * 9 + 9, 8 + m * 18, 84 + n * 18));
             }
         }
 
         for (n = 0; n < 9; ++n) {
-            this.addSlot(new Slot(player.inventory, n, 8 + n * 18, 161 + i));
+            this.addSlot(new Slot(player.inventory, n, 8 + n * 18, 142));
+        }
+
+    }
+
+    static class SpellSlot extends Slot {
+
+        public SpellSlot(Inventory inventory, int index, int x, int y) {
+            super(inventory, index, x, y);
+        }
+
+        @Override
+        public boolean canInsert(ItemStack stack) {
+            return SkillGem.Load(stack) != null;
         }
 
     }

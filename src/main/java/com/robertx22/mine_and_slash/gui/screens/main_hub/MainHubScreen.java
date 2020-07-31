@@ -4,7 +4,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
+import com.robertx22.mine_and_slash.gui.bases.IContainerNamedScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.HotbarNamedScreen;
 import com.robertx22.mine_and_slash.gui.screens.stat_alloc.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -45,7 +47,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         List<INamedScreen> screens = new ArrayList<>();
 
-        //screens.add(new SpellHotbatSetupScreen());
+        screens.add(new HotbarNamedScreen());
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
 
@@ -135,9 +137,13 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         public Button(INamedScreen screen, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, buttonLoc, (button) -> {
-                MinecraftClient.getInstance()
-                    .openScreen((Screen) screen);
-
+                if (screen instanceof IContainerNamedScreen) {
+                    IContainerNamedScreen con = (IContainerNamedScreen) screen;
+                    con.openContainer();
+                } else {
+                    MinecraftClient.getInstance()
+                        .openScreen((Screen) screen);
+                }
             });
 
             this.screen = screen;
