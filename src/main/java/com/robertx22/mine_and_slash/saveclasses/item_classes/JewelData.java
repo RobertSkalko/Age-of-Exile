@@ -54,7 +54,7 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
         this.affix = new AffixData(RandomUtils.roll(50) ? Affix.Type.prefix : Affix.Type.suffix);
 
-        this.affix.level = level;
+        this.affix.level = RandomUtils.RandomRange(level - 5, level + 2);
 
         this.affix.baseAffix = SlashRegistry.Affixes()
             .getFilterWrapped(x -> x.type == affix.affixType)

@@ -2,10 +2,8 @@ package com.robertx22.mine_and_slash.capability.player;
 
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.nbt.CompoundTag;
@@ -24,8 +22,6 @@ public class PlayerSpellCap {
         public abstract BaseSpell getSpellByNumber(int key);
 
         public abstract SpellCastingData getCastingData();
-
-        public abstract int getEffectiveAbilityLevel(EntityCap.UnitData data, IAbility ability);
 
     }
 
@@ -74,19 +70,6 @@ public class PlayerSpellCap {
         @Override
         public SpellCastingData getCastingData() {
             return this.spellCastingData;
-        }
-
-        @Override
-        public int getEffectiveAbilityLevel(EntityCap.UnitData data, IAbility ability) {
-            if (ability.getAbilityType() == IAbility.Type.SPELL) {
-                try {
-                    return this.getCastingData()
-                        .getSkillGem(ability.GUID()).level;
-                } catch (Exception e) {
-                    return 1;
-                }
-            }
-            return data.getLevel(); // if its an effect or synergy, use player level.
         }
 
     }

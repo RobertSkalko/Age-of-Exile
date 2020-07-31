@@ -29,7 +29,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     @Override
     public String locDescForLangFile() {
-        return "Chance to ignore all damage";
+        return "Chance to ignore physical damage";
     }
 
     @Override

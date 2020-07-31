@@ -185,7 +185,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
         return (int) Mana.getInstance()
             .scale(ctx.getConfigFor(this)
                 .get(SC.MANA_COST)
-                .get(ctx.skillGem), ctx.spellsCap.getEffectiveAbilityLevel(ctx.data, this));
+                .get(ctx.skillGem), ctx.skillGem.level);
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {

@@ -95,7 +95,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
         return shaped(ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('t', Items.REDSTONE)
             .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
+            .input('o', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

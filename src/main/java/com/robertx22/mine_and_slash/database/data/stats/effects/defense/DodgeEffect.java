@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.data.stats.effects.base.BaseDamageE
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 public class DodgeEffect extends BaseDamageEffect {
@@ -38,8 +37,7 @@ public class DodgeEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return !effect.getEffectType()
-            .equals(EffectTypes.SPELL);
+        return effect.element.isPhysical();
     }
 
 }

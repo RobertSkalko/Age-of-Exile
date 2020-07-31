@@ -1,8 +1,14 @@
 v1.0.5
 
+* you can now switch spells with middle mouse scrolling! (when pressing R)
 * switched to vanilla bows, there were arrow render problems (i think vanilla hardcoded them..)
 * spells now correctly require bows or melee (for arrow spells and melee spells) currently only 1 melee spell
-* compatible items should not be able to cast spells
+* compatible items should now be able to cast spells
+* jewels now more likely to drop as a lower level, to allow easier socketing
+* dodge now no longer works on elemental damage. It's now in line with armor.
+* orb of transmutation now easier to craft
+* fixed spell mana tooltips being wrong
+
 
 v.1.0.4
 

@@ -44,6 +44,10 @@ public enum Elements implements IColor {
 
     public Formatting format;
 
+    public boolean isPhysical() {
+        return this == Physical;
+    }
+
     private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Nature, Thunder);
     private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Nature, Thunder, Elemental);
     private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Nature, Thunder);
