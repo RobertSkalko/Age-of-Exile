@@ -26,8 +26,17 @@ public class EntityStatusEffectsData {
     }
 
     public void set(StatusEffect effect, ExtraPotionData data) {
-        map.put(Registry.STATUS_EFFECT.getId(effect)
-            .toString(), data);
+        String id = Registry.STATUS_EFFECT.getId(effect)
+            .toString();
+
+        if (data == null) {
+            if (map.containsKey(id)) {
+                map.remove(id);
+            }
+            return;
+        }
+
+        map.put(id, data);
     }
 
 }

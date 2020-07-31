@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.con
 import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,8 +36,28 @@ public class SpellCastingData implements Inventory {
     @Store
     public String spellBeingCast = "";
 
+    // todo delete this after a few uptdates
     @Store
-    private HashMap<Integer, ItemStack> hotbar = new HashMap<>();
+    private HashMap<Integer, SkillGemData> hotbar = new HashMap<>();
+
+    public void dumpLEGACYGemMap(PlayerEntity player) {
+        try {
+            hotbar.entrySet()
+                .forEach(x -> {
+                    if (x.getValue() != null) {
+                        PlayerUtils.giveItem(x.getValue()
+                            .toItemStack(), player);
+                    }
+                });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hotbar.clear();
+    }
+    // todo delete this after a few uptdates
+
+    @Store
+    private HashMap<Integer, ItemStack> bar = new HashMap<>();
 
     @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
@@ -64,7 +85,7 @@ public class SpellCastingData implements Inventory {
     }
 
     public void clear() {
-        hotbar.clear();
+        bar.clear();
     }
 
     public BaseSpell getSelectedSpell() {
@@ -226,7 +247,7 @@ public class SpellCastingData implements Inventory {
 
     public HashMap<Integer, SkillGemData> getHotbar() {
         HashMap<Integer, SkillGemData> datamap = new HashMap<>();
-        hotbar.forEach((key, value) -> {
+        bar.forEach((key, value) -> {
             SkillGemData gem = SkillGem.Load(value);
             if (gem != null) {
                 datamap.put(key, gem);
@@ -236,7 +257,7 @@ public class SpellCastingData implements Inventory {
     }
 
     public HashMap<Integer, ItemStack> getStacks() {
-        return this.hotbar;
+        return this.bar;
     }
 
     public SkillGemData getSkillGem(String id) {
@@ -297,27 +318,27 @@ public class SpellCastingData implements Inventory {
 
     @Override
     public boolean isEmpty() {
-        return hotbar.isEmpty();
+        return bar.isEmpty();
     }
 
     @Override
     public ItemStack getStack(int slot) {
-        return hotbar.getOrDefault(slot, ItemStack.EMPTY);
+        return bar.getOrDefault(slot, ItemStack.EMPTY);
     }
 
     @Override
     public ItemStack removeStack(int slot, int amount) {
-        return hotbar.put(slot, ItemStack.EMPTY);
+        return bar.put(slot, ItemStack.EMPTY);
     }
 
     @Override
     public ItemStack removeStack(int slot) {
-        return hotbar.put(slot, ItemStack.EMPTY);
+        return bar.put(slot, ItemStack.EMPTY);
     }
 
     @Override
     public void setStack(int slot, ItemStack stack) {
-        hotbar.put(slot, stack);
+        bar.put(slot, stack);
     }
 
     @Override

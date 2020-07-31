@@ -52,8 +52,6 @@ public class PotionEffectUtils {
                 .toString();
             extraData.setInitialDurationTicks(duration);
 
-            PotionDataSaving.saveData(target, newInstance, extraData);
-
         } else {
 
             if (instance.getDuration() > duration) {
@@ -65,14 +63,12 @@ public class PotionEffectUtils {
             extraData.setInitialDurationTicks(duration);
             extraData.addStacks(1, effect);
 
-            PotionDataSaving.saveData(target, newInstance, extraData);
-
             target.removeStatusEffect(effect); // HAVE TO REMOVE OR IT WONT ACTUALLY ADD CORRECTLY
 
         }
-        target.addStatusEffect(newInstance);
 
-        //target.sendMessage(new SText("You have " + getStacks(target, effect) + " " + effect.GUID() + " stacks "));
+        PotionDataSaving.saveData(target, newInstance, extraData);
+        target.addStatusEffect(newInstance);
 
     }
 

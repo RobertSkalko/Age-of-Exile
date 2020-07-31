@@ -1,6 +1,6 @@
 v1.0.5
 
-TAKE OUT THE SPELLS IN YOUR HOTBAR BEFORE YOU INSTALL THIS UPDATE!
+Backup world before update! I added some code to retrieve the spells from hotbar but it might not work.
 
 * spell hotbar setup is now an inventory, and should be much more intuitive.
 * you can now switch spells with middle mouse scrolling! (when pressing R)
@@ -11,7 +11,7 @@ TAKE OUT THE SPELLS IN YOUR HOTBAR BEFORE YOU INSTALL THIS UPDATE!
 * dodge now no longer works on elemental damage. It's now in line with armor.
 * orb of transmutation now easier to craft
 * fixed spell mana tooltips being wrong
-
+* fix judgement effect not doing damage
 
 v.1.0.4
 

@@ -32,7 +32,7 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
 
     @Override
     public String locNameForLangFile() {
-        return "Poisoned Weapons";
+        return "Poison Weapon";
     }
 
     @Override

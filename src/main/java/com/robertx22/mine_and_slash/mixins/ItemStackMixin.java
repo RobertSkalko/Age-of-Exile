@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mixins;
 
 import com.robertx22.mine_and_slash.mixin_methods.TooltipMethod;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.CastSpellPacket;
@@ -38,15 +39,20 @@ public abstract class ItemStackMixin {
         ItemStack stack = (ItemStack) (Object) this;
         if (world.isClient) {
             if (Gear.has(stack)) {
-                if (stack.getUseAction() == UseAction.NONE) {
-                    Packets.sendToServer(new CastSpellPacket(user));
-                } else {
-                    if (Screen.hasShiftDown()) {
-                        if (Load.spells(user)
-                            .getCurrentRightClickSpell()
-                            .getImmutableConfigs().castingWeapon.predicate.predicate.test(user)) {
+
+                SkillGemData gem = Load.spells(user)
+                    .getCurrentSkillGem();
+                if (gem != null && gem.getSpell() != null) {
+                    if (gem.getSpell()
+                        .getImmutableConfigs().castingWeapon.predicate.predicate.test(user)) {
+
+                        if (stack.getUseAction() == UseAction.NONE) {
                             Packets.sendToServer(new CastSpellPacket(user));
-                            ci.setReturnValue(TypedActionResult.success(stack));
+                        } else {
+                            if (Screen.hasShiftDown()) {
+                                Packets.sendToServer(new CastSpellPacket(user));
+                                ci.setReturnValue(TypedActionResult.success(stack));
+                            }
                         }
                     }
                 }

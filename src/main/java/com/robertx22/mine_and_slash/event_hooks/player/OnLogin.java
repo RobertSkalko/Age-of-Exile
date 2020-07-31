@@ -30,6 +30,10 @@ public class OnLogin implements ServerEntityEvents.Load {
 
         ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
+        Load.spells(player)
+            .getCastingData()
+            .dumpLEGACYGemMap(player); // remove after a few updates
+
         try {
 
             Packets.sendToClient(player, new OnLoginClientPacket(OnLoginClientPacket.When.BEFORE));

@@ -103,12 +103,12 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
 
     @Override
     public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(0);
+        return SpellCalcData.base(10);
     }
 
     @Override
     public int getDurationInSeconds(LivingEntity en) {
-        return 5;
+        return 10;
     }
 
     @Override

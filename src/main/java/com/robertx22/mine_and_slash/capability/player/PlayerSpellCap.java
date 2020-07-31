@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.capability.player;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.inventory.Inventory;
@@ -19,6 +20,8 @@ public class PlayerSpellCap {
         public abstract BaseSpell getSpellByNumber(int key);
 
         public abstract SpellCastingData getCastingData();
+
+        public abstract SkillGemData getCurrentSkillGem();
 
         public abstract Inventory getInventory();
     }
@@ -68,6 +71,16 @@ public class PlayerSpellCap {
         @Override
         public SpellCastingData getCastingData() {
             return this.spellCastingData;
+        }
+
+        // client only
+        @Override
+        public SkillGemData getCurrentSkillGem() {
+
+            return
+                getCastingData()
+                    .getSkillGemByNumber(SpellCastingData.selectedSpell);
+
         }
 
         @Override

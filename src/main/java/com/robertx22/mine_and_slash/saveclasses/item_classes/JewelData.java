@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
@@ -21,6 +22,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.util.math.MathHelper;
 
 @Storable
 public class JewelData implements ITooltip, ICommonDataItem {
@@ -54,7 +56,7 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
         this.affix = new AffixData(RandomUtils.roll(50) ? Affix.Type.prefix : Affix.Type.suffix);
 
-        this.affix.level = RandomUtils.RandomRange(level - 5, level + 2);
+        this.affix.level = MathHelper.clamp(RandomUtils.RandomRange(level - 5, level + 2), 1, ModConfig.get().Server.MAX_LEVEL);
 
         this.affix.baseAffix = SlashRegistry.Affixes()
             .getFilterWrapped(x -> x.type == affix.affixType)
