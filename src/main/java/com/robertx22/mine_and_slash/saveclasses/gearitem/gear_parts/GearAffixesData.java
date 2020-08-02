@@ -22,13 +22,50 @@ public class GearAffixesData {
     public int emptySockets = 0;
 
     public boolean canGetMorePrefixSockets(GearItemData gear) {
-        return emptySockets > 0 && prefixes.size() < gear.getRarity()
+
+        if (emptySockets <= 0) {
+            return false;
+
+        }
+        int max = gear.getRarity()
             .maxSockets() / 2;
+
+        if (gear.getRarity()
+            .maxSockets() == 1) {
+            if (max == 0) {
+                max = 1;
+            }
+        }
+
+        int current = (int) prefixes.stream()
+            .filter(x -> x.is_socket)
+            .count();
+
+        return max > current;
+
     }
 
     public boolean canGetMoreSuffixSockets(GearItemData gear) {
-        return emptySockets > 0 && suffixes.size() < gear.getRarity()
+        if (emptySockets <= 0) {
+            return false;
+
+        }
+        int max = gear.getRarity()
             .maxSockets() / 2;
+
+        if (gear.getRarity()
+            .maxSockets() == 1) {
+            if (max == 0) {
+                max = 1;
+            }
+        }
+
+        int current = (int) suffixes.stream()
+            .filter(x -> x.is_socket)
+            .count();
+
+        return max > current;
+
     }
 
     public int getSocketedJewelsCount() {

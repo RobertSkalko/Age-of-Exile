@@ -101,16 +101,19 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             return false;
         }
 
-        if (affixes.containsAffix(jewel.affix.getAffix())) {
+        if (!canGetAffix(jewel.affix.getAffix())) {
             return false;
         }
 
-        if (!jewel.affix.getAffix()
-            .meetsRequirements(new GearRequestedFor(this))) {
+        if (!canGetMoreSocketsOfType(jewel.affix.affixType)) {
             return false;
         }
 
-        if (jewel.affix.affixType == Affix.Type.prefix) {
+        return true;
+    }
+
+    public boolean canGetMoreSocketsOfType(Affix.Type type) {
+        if (type == Affix.Type.prefix) {
             if (!affixes.canGetMorePrefixSockets(this)) {
                 return false;
             }
@@ -119,7 +122,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                 return false;
             }
         }
-
         return true;
     }
 

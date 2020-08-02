@@ -63,11 +63,20 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
         try {
             TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
 
+            if (!SlashRegistry.Spells()
+                .isRegistered(spell_id)) {
+                return;
+            }
+
             BaseSpell spell = SlashRegistry.Spells()
                 .get(spell_id);
 
             if (spell == null) {
                 return;
+            }
+
+            if (spell.getElement() == null) {
+                System.out.println(spell.GUID());
             }
 
             ctx.tooltip

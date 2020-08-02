@@ -1,5 +1,7 @@
-package com.robertx22.mine_and_slash.database.data.currency.loc_reqs;
+package com.robertx22.mine_and_slash.database.data.currency.loc_reqs.jewels;
 
+import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.JewelData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
@@ -9,7 +11,7 @@ import net.minecraft.text.MutableText;
 public class JewelReq extends BaseLocRequirement {
     @Override
     public MutableText getText() {
-        return new SText("Gear can't accept more than 1 affix.");
+        return new SText("All requirements must be met.");
     }
 
     @Override

@@ -3,8 +3,10 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
-import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.JewelReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
+import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.jewels.ItemCanHaveAffixJewelReq;
+import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.jewels.NeedsEmptySocket;
+import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.jewels.SocketLvlTooBig;
 import com.robertx22.mine_and_slash.datapacks.models.IAutoModel;
 import com.robertx22.mine_and_slash.datapacks.models.ItemModelManager;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -48,7 +50,7 @@ public class JewelItem extends Item implements IAutoModel, ICurrencyItemEffect, 
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, new JewelReq());
+        return Arrays.asList(GearReq.INSTANCE, new SocketLvlTooBig(), new NeedsEmptySocket(), new ItemCanHaveAffixJewelReq());
     }
 
     @Override
