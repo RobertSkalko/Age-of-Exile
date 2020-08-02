@@ -5,6 +5,9 @@ It will explain what the block is used for. Should help newbies a lot.
 * made jewel socketing more informative
 * if pvp is disabled magic shield should no longer bypass pvp checks
 * changed buff spells to require any weapon, instead of mage weapons
+* reduced level penalty a bit
+* upped default gear drops a bit
+* decreased default stat scalings
 
 v1.0.5
 

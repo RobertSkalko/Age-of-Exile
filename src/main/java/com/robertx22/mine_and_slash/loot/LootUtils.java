@@ -20,7 +20,7 @@ public class LootUtils {
         if (diff < 5) {
             return chance;
         } else {
-            chance = chance * (1F - diff * 0.05F);
+            chance = chance * (1F - diff * 0.03F);
         }
 
         if (chance < 0) {

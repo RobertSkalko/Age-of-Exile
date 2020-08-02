@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.config.forge.parts;
 
 public class DropRatesContainer {
 
-    public double GEAR_DROPRATE = 6;
+    public double GEAR_DROPRATE = 7;
     public double SKILL_GEM_DROPRATE = 2;
     public double JEWEL_DROPRATE = 1.5F;
     public double UNIQUE_DROPRATE = 0.25;

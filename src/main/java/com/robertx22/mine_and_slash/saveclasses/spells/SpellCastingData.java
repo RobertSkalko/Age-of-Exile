@@ -31,7 +31,7 @@ public class SpellCastingData implements Inventory {
     @Store
     public int lastSpellCastTimeInTicks = 0;
 
-    public static Integer selectedSpell = 1; // this is just used on client, so client tells server which spell to cast
+    public static Integer selectedSpell = 0; // this is just used on client, so client tells server which spell to cast
 
     @Store
     public String spellBeingCast = "";
