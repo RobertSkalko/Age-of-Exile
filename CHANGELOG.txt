@@ -1,5 +1,7 @@
 v.1.0.6
 * made jewel socketing more informative
+* if pvp is disabled magic shield should no longer bypass pvp checks
+* changed buff spells to require any weapon, instead of mage weapons
 
 v1.0.5
 

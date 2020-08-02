@@ -123,6 +123,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     public enum CastingWeapon {
         MAGE_WEAPON(SpellPredicates.REQUIRE_MAGE_WEAPON),
         MELEE_WEAPON(SpellPredicates.REQUIRE_MELEE),
+        ANY_WEAPON(SpellPredicates.ANY_WEAPON),
         RANGED(SpellPredicates.REQUIRE_SHOOTABLE);
 
         public SpellPredicate predicate;

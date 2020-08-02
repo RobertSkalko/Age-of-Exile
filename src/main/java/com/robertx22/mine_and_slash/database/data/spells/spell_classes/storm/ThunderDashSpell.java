@@ -51,7 +51,7 @@ public class ThunderDashSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Thunder;
                 }
-            }
+            }.castingWeapon(CastingWeapon.ANY_WEAPON)
         );
     }
 

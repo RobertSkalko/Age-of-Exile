@@ -185,20 +185,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     }
 
-    public float getVisibleDamage() {
-        float dmg = this.number * damageMultiplier;
-        return dmg;
-    }
-
-    public float getEventDmg() {
-        if (event != null) {
-            return event.getAmount();
-        } else {
-            return 0;
-        }
-
-    }
-
     boolean removeKnockback = false;
 
     public void removeKnockback() {
@@ -221,6 +207,32 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return;
     }
 
+    public boolean ifPlayersShouldNotDamageEachOther() {
+        if (areBothPlayers()) {
+            if (TeamUtils.areOnSameTeam((ServerPlayerEntity) source, (ServerPlayerEntity) target)) {
+                return true;
+            }
+            PlayerEntity sp = (PlayerEntity) this.source;
+            if (!sp.shouldDamagePlayer((PlayerEntity) target)) {
+                return true;
+            }
+        } else {
+            if (this instanceof SpellDamageEffect) {
+                if (target instanceof TameableEntity) {
+                    if (source instanceof PlayerEntity) {
+                        TameableEntity tame = (TameableEntity) target;
+                        if (tame.isOwner(source)) {
+                            cancelDamage();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     @Override
     protected void activate() {
 
@@ -232,26 +244,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return;
         }
 
-        if (areBothPlayers()) {
-            if (TeamUtils.areOnSameTeam((ServerPlayerEntity) source, (ServerPlayerEntity) target)) {
-                return;
-            }
-            PlayerEntity sp = (PlayerEntity) this.source;
-            if (!sp.shouldDamagePlayer((PlayerEntity) target)) {
-                return;
-            }
-        } else {
-            if (this instanceof SpellDamageEffect) {
-                if (target instanceof TameableEntity) {
-                    if (source instanceof PlayerEntity) {
-                        TameableEntity tame = (TameableEntity) target;
-                        if (tame.isOwner(source)) {
-                            cancelDamage();
-                            return;
-                        }
-                    }
-                }
-            }
+        if (ifPlayersShouldNotDamageEachOther()) {
+            return;
         }
 
         if (!this.isDmgAllowed()) {
