@@ -1,4 +1,7 @@
 v.1.0.6
+
+* added help button on EVERY gui or station that needs it! 
+It will explain what the block is used for. Should help newbies a lot.
 * made jewel socketing more informative
 * if pvp is disabled magic shield should no longer bypass pvp checks
 * changed buff spells to require any weapon, instead of mage weapons

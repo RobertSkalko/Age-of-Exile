@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base.Ba
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.gui.buttons.HelpButton;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -18,6 +19,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.items.misc.ResetStatPointsItem;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
@@ -25,6 +27,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -102,6 +105,20 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
             this.buttons.add(new IncreaseStatButton(unitdata, data, single, guiLeft + sizeX / 2 + 50, guiTop + 40 + y));
             y += button_sizeY + 3;
         }
+
+        List<Text> list = new ArrayList<>();
+
+        list.add(new LiteralText("Allocate stats here"));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("These stats determine your playstyle."));
+        list.add(new LiteralText("To wear gear that gives Armor, you need strength,"));
+        list.add(new LiteralText("Magic shield > Intelligence, Dodge > Dexterity etc."));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("To reset stats, you need to craft:"));
+        list.add(new LiteralText(new ResetStatPointsItem().locNameForLangFile()));
+
+        this.addButton(new HelpButton(list, guiLeft + sizeX - 30, guiTop + 10));
+
     }
 
     @Override

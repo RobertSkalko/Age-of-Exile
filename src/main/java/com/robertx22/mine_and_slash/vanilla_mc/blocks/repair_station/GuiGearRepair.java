@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.repair_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.mine_and_slash.gui.buttons.HelpButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.TileGui;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.slots.FuelSlot;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -13,10 +15,12 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +37,28 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         // Set the width and height of the gui
         backgroundWidth = 176;
         backgroundHeight = 207;
+
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+
+        List<Text> list = new ArrayList<>();
+
+        list.add(new LiteralText("Repair gear that has Age of Exile stats here."));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("Many things can be used as fuel:"));
+
+        FuelSlot.FUEL_VALUES.entrySet()
+            .stream()
+            .sorted(Comparator.comparingInt(x -> x.getValue()))
+            .forEach(x -> {
+                list.add(new LiteralText(CLOC.translate(x.getKey()
+                    .getName()) + ": " + x.getValue()));
+            });
+
+        this.addButton(new HelpButton(list, this.x + this.backgroundWidth, this.y));
 
     }
 
@@ -76,7 +102,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
             drawTexture(matrix, this.x + FLAME_XPOS + FLAME_X_SPACING * i, this.y + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
         }
 
-        // renderHoveredToolTip(x, y);
+        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 

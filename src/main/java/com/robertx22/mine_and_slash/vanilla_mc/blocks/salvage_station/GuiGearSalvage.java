@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.mine_and_slash.gui.buttons.HelpButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -13,6 +14,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
@@ -42,6 +44,26 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
     final int COOK_BAR_HEIGHT = 17;
 
     @Override
+    protected void init() {
+        super.init();
+
+        List<Text> list = new ArrayList<>();
+
+        list.add(new LiteralText("Here you can salvage Age of Exile items:"));
+        list.add(new LiteralText("* Gear with Exile stats"));
+        list.add(new LiteralText("* jewels"));
+        list.add(new LiteralText("* currencies"));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("In return you get valuable materials,"));
+        list.add(new LiteralText("usually used to repair gear."));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("Sometimes, currencies can drop too."));
+
+        this.addButton(new HelpButton(list, this.x + this.backgroundWidth, this.y));
+
+    }
+
+    @Override
     protected void drawBackground(MatrixStack matrix, float partialTicks, int x, int y) {
 
         // Bind the image texture
@@ -56,6 +78,8 @@ public class GuiGearSalvage extends TileGui<ContainerGearSalvage, TileGearSalvag
         double cookProgress = tile.fractionOfCookTimeComplete();
         // draw the cook progress bar
         drawTexture(matrix, this.x + COOK_BAR_XPOS, this.y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+
+        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 

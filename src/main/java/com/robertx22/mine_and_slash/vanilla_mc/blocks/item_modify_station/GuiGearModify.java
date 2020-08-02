@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;
+import com.robertx22.mine_and_slash.gui.buttons.HelpButton;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -14,9 +15,12 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> {
@@ -41,6 +45,21 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     final int COOK_BAR_HEIGHT = 17;
 
     @Override
+    protected void init() {
+        super.init();
+
+        List<Text> list = new ArrayList<>();
+
+        list.add(new LiteralText("Here you can modify items, socket jewels etc."));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("Put the gear on one side, and the currency-"));
+        list.add(new LiteralText("or jewel at the other."));
+
+        this.addButton(new HelpButton(list, this.x + this.backgroundWidth, this.y));
+
+    }
+
+    @Override
     protected void drawBackground(MatrixStack matrix, float partialTicks, int x, int y) {
 
         // Bind the image texture
@@ -57,6 +76,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
             this.x + 85, this.y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V,
             (int) (this.tile.fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT
         );
+
+        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 
