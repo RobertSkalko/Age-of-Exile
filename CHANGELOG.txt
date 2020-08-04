@@ -1,3 +1,10 @@
+v.1.0.7
+
+- Changed affix datapacks to require tags instead of specific base gears.
+This should make it much easier to add new base gears now!
+- int now gives mana regen too
+
+
 v.1.0.6
 
 * added help button on EVERY gui or station that needs it! 

@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.data.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.BaseRequirement;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AffixBuilder {
 
@@ -14,7 +15,7 @@ public class AffixBuilder {
 
     int weight = 1000;
     Requirements requirements;
-    public List<AffixTag> tags = new ArrayList<>();
+    public List<String> tags = new ArrayList<>();
     public Affix.Type type;
 
     private AffixBuilder(String id) {
@@ -41,7 +42,10 @@ public class AffixBuilder {
     }
 
     public AffixBuilder Tags(AffixTag... tags) {
-        this.tags = Arrays.asList(tags);
+        this.tags = Arrays.asList(tags)
+            .stream()
+            .map(x -> x.name())
+            .collect(Collectors.toList());
         return this;
     }
 

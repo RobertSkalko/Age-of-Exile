@@ -51,7 +51,7 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
     String langName;
     int weight = 1000;
     Requirements requirements;
-    public List<AffixTag> tags = new ArrayList<>();
+    public List<String> tags = new ArrayList<>();
     public Type type;
 
     public HashMap<Integer, AffixTier> tierMap = new HashMap<>();

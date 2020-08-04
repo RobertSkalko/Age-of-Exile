@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.data.requirements.bases.BaseRequire
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class GenericAffixBuilder<T> {
 
@@ -13,7 +14,7 @@ public class GenericAffixBuilder<T> {
 
     int weight = 1000;
     Requirements requirements;
-    List<AffixTag> tags = new ArrayList<>();
+    List<String> tags = new ArrayList<>();
     Affix.Type type;
 
     Function<T, String> guid;
@@ -48,7 +49,10 @@ public class GenericAffixBuilder<T> {
     }
 
     public GenericAffixBuilder<T> Tags(AffixTag... tags) {
-        this.tags = Arrays.asList(tags);
+        this.tags = Arrays.asList(tags)
+            .stream()
+            .map(x -> x.name())
+            .collect(Collectors.toList());
         return this;
     }
 
