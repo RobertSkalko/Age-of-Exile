@@ -37,8 +37,8 @@ public class OccultistRobes extends BaseBoots {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Cloth, SlotTag.Chest);
+    public TagList getTags() {
+        return new TagList(SlotTag.Cloth, SlotTag.Chest);
     }
 
     @Override

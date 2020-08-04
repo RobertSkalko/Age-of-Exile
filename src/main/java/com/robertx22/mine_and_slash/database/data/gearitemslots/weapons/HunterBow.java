@@ -42,8 +42,8 @@ public class HunterBow extends BaseWeapon {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Bow, SlotTag.RangedWeapon);
+    public TagList getTags() {
+        return new TagList(SlotTag.Bow, SlotTag.RangedWeapon);
     }
 
     @Override

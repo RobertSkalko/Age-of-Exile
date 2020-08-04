@@ -25,7 +25,7 @@ public class EmptyBaseGearType extends BaseGearType {
     }
 
     @Override
-    public List<SlotTag> getTags() {
+    public TagList getTags() {
         return null;
     }
 

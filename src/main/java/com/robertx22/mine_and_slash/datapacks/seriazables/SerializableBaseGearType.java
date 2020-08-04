@@ -45,7 +45,7 @@ public class SerializableBaseGearType extends BaseGearType {
     }
 
     @Override
-    public List<SlotTag> getTags() {
+    public TagList getTags() {
         return tags;
     }
 

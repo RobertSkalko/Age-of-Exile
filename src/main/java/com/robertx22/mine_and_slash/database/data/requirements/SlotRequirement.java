@@ -2,11 +2,11 @@ package com.robertx22.mine_and_slash.database.data.requirements;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
@@ -75,7 +75,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.baseStats()
                 .stream()
-                .anyMatch(s -> s.stat == stat.GUID())));
+                .anyMatch(s -> s.stat.equals(stat.GUID()))));
 
     }
 

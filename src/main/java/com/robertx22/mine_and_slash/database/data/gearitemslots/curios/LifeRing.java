@@ -51,8 +51,8 @@ public class LifeRing extends BaseCurio {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Ring);
+    public TagList getTags() {
+        return new TagList(SlotTag.Ring);
     }
 
     @Override

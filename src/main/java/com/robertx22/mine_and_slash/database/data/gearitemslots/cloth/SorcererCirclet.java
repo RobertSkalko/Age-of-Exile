@@ -38,8 +38,8 @@ public class SorcererCirclet extends BaseBoots {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Cloth, SlotTag.Helmet);
+    public TagList getTags() {
+        return new TagList(SlotTag.Cloth, SlotTag.Helmet);
     }
 
     @Override

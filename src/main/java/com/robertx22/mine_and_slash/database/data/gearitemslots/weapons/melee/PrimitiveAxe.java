@@ -42,8 +42,8 @@ public class PrimitiveAxe extends BaseWeapon {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Axe, SlotTag.MeleeWeapon);
+    public TagList getTags() {
+        return new TagList(SlotTag.Axe, SlotTag.MeleeWeapon);
     }
 
     @Override

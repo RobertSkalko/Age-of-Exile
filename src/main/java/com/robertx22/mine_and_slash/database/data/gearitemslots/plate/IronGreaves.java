@@ -37,8 +37,8 @@ public class IronGreaves extends BaseBoots {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Plate, SlotTag.Boots);
+    public TagList getTags() {
+        return new TagList(SlotTag.Plate, SlotTag.Boots);
     }
 
     @Override

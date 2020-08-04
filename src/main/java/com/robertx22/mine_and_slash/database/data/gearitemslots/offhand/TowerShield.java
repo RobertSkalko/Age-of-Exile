@@ -35,8 +35,8 @@ public class TowerShield extends BaseOffHand {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Shield, SlotTag.Plate);
+    public TagList getTags() {
+        return new TagList(SlotTag.Shield, SlotTag.Plate);
     }
 
     @Override

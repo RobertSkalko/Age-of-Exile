@@ -42,8 +42,8 @@ public class SageWand extends BaseWeapon {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.MageWeapon, SlotTag.Wand, SlotTag.MeleeWeapon);
+    public TagList getTags() {
+        return new TagList(SlotTag.MageWeapon, SlotTag.Wand, SlotTag.MeleeWeapon);
     }
 
     @Override

@@ -37,8 +37,8 @@ public class ClothSlippers extends BaseBoots {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Cloth, SlotTag.Boots);
+    public TagList getTags() {
+        return new TagList(SlotTag.Cloth, SlotTag.Boots);
     }
 
     @Override

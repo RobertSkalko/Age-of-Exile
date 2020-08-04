@@ -37,8 +37,8 @@ public class IronChestplate extends BaseChest {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Plate, SlotTag.Chest);
+    public TagList getTags() {
+        return new TagList(SlotTag.Plate, SlotTag.Chest);
     }
 
     @Override

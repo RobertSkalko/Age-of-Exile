@@ -44,8 +44,8 @@ public class GemstoneSword extends BaseWeapon {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Sword, SlotTag.MeleeWeapon);
+    public TagList getTags() {
+        return new TagList(SlotTag.Sword, SlotTag.MeleeWeapon);
     }
 
     @Override

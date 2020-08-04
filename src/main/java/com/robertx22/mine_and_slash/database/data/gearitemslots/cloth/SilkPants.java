@@ -37,8 +37,8 @@ public class SilkPants extends BaseBoots {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Cloth, SlotTag.Pants);
+    public TagList getTags() {
+        return new TagList(SlotTag.Cloth, SlotTag.Pants);
     }
 
     @Override

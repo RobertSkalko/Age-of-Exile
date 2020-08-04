@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.bases;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.AttackSpeed;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
@@ -29,7 +29,6 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryEntry<BaseGearType>, ISerializable<BaseGearType> {
@@ -44,7 +43,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         return WeaponTypes.None;
     }
 
-    public abstract List<SlotTag> getTags();
+    public abstract TagList getTags();
 
     public abstract Item getItem();
 
@@ -212,16 +211,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     }
 
     public final SlotFamily family() {
-        Optional<SlotTag> opt = getTags().stream()
-            .filter(x -> x.family != SlotFamily.NONE)
-            .findFirst();
-
-        if (!opt.isPresent()) {
-            System.out.println(GUID() + " doesn't have a slot family tag.");
-            return null;
-        } else {
-            return opt.get().family;
-        }
+        return getTags().getFamily();
     }
 
     public final WeaponMechanic getWeaponMechanic() {

@@ -37,8 +37,8 @@ public class RawhideBoots extends BaseChest {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Leather, SlotTag.Boots);
+    public TagList getTags() {
+        return new TagList(SlotTag.Leather, SlotTag.Boots);
     }
 
     @Override

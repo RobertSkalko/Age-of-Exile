@@ -37,8 +37,8 @@ public class IronHelmet extends BaseHelmet {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Plate, SlotTag.Helmet);
+    public TagList getTags() {
+        return new TagList(SlotTag.Plate, SlotTag.Helmet);
     }
 
     @Override

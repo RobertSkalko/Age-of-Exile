@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.offhand;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
@@ -35,8 +36,8 @@ public class Buckler extends BaseOffHand {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Shield, SlotTag.Leather);
+    public TagList getTags() {
+        return new TagList(SlotTag.Shield, SlotTag.Leather);
     }
 
     @Override

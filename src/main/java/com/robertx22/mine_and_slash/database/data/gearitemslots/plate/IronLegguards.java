@@ -37,8 +37,8 @@ public class IronLegguards extends BasePants {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Plate, SlotTag.Pants);
+    public TagList getTags() {
+        return new TagList(SlotTag.Plate, SlotTag.Pants);
     }
 
     @Override

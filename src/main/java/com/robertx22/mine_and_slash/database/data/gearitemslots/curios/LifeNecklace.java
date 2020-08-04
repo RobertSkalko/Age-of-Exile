@@ -40,8 +40,8 @@ public class LifeNecklace extends BaseCurio {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Necklace);
+    public TagList getTags() {
+        return new TagList(SlotTag.Necklace);
     }
 
     @Override

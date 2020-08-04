@@ -37,8 +37,8 @@ public class WildTunic extends BaseChest {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Chest, SlotTag.Leather);
+    public TagList getTags() {
+        return new TagList(SlotTag.Chest, SlotTag.Leather);
     }
 
     @Override
