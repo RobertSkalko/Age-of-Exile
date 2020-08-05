@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
-import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
-import com.robertx22.mine_and_slash.database.data.requirements.SlotRequirement;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType.SlotTag;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 public class EvasionPrefixes implements ISlashRegistryInit {
@@ -19,9 +19,7 @@ public class EvasionPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(20, 30, DodgeRating.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(10, 20, DodgeRating.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.hasBaseStat(DodgeRating.getInstance())
-                .plus(x -> x.family()
-                    .isJewelry()))
+            .includesTags(SlotTag.dodge_stat, SlotTag.jewelry_family)
             .Prefix()
             .Build();
 
@@ -30,7 +28,7 @@ public class EvasionPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(12, 15, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(8, 12, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(3, 8, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.hasBaseStat(DodgeRating.getInstance()))
+            .includesTags(SlotTag.dodge_stat)
             .Prefix()
             .Build();
 
@@ -40,7 +38,7 @@ public class EvasionPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(20F, 25F, DodgeRating.getInstance(), ModType.LOCAL_INCREASE))
             .tier(3, new StatModifier(10, 20F, DodgeRating.getInstance(), ModType.LOCAL_INCREASE))
             .tier(4, new StatModifier(5, 10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE))
-            .Req(SlotRequirement.hasBaseStat(DodgeRating.getInstance()))
+            .includesTags(SlotTag.dodge_stat)
             .Prefix()
             .Build();
 

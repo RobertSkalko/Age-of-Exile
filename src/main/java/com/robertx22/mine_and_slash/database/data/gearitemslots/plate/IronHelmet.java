@@ -39,7 +39,7 @@ public class IronHelmet extends BaseHelmet {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.plate, SlotTag.helmet, SlotTag.armor, SlotTag.strength);
+        return new TagList(SlotTag.plate, SlotTag.helmet, SlotTag.armor_stat, SlotTag.strength);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class IronLegguards extends BasePants {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.plate, SlotTag.pants, SlotTag.armor, SlotTag.strength);
+        return new TagList(SlotTag.plate, SlotTag.pants, SlotTag.armor_stat, SlotTag.strength);
     }
 
     @Override

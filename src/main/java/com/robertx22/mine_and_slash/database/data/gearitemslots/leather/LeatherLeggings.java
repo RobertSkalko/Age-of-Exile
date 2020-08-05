@@ -39,7 +39,7 @@ public class LeatherLeggings extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.leather, SlotTag.pants, SlotTag.dodge, SlotTag.dexterity);
+        return new TagList(SlotTag.leather, SlotTag.pants, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
     @Override

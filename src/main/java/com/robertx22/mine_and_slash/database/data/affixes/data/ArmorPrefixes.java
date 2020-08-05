@@ -2,13 +2,11 @@ package com.robertx22.mine_and_slash.database.data.affixes.data;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
-import com.robertx22.mine_and_slash.database.data.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
-import static com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType.SlotFamily;
 import static com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType.SlotTag;
 
 public class ArmorPrefixes implements ISlashRegistryInit {
@@ -22,7 +20,7 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(20, 30, Armor.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(5, 10, Armor.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.armor, SlotTag.jewelry_family)
+            .includesTags(SlotTag.armor_stat, SlotTag.jewelry_family)
             .Prefix()
             .Build();
 
@@ -31,7 +29,7 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(14, 20, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 3, Health.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(8, 14, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(5, 8, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.hasBaseStat(Armor.getInstance()))
+            .includesTags(SlotTag.armor_stat)
             .Prefix()
             .Build();
 
@@ -41,7 +39,7 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(20F, 25F, Armor.getInstance(), ModType.LOCAL_INCREASE))
             .tier(3, new StatModifier(10, 20F, Armor.getInstance(), ModType.LOCAL_INCREASE))
             .tier(4, new StatModifier(5, 10, Armor.getInstance(), ModType.LOCAL_INCREASE))
-            .Req(SlotRequirement.hasBaseStat(Armor.getInstance()))
+            .includesTags(SlotTag.armor_stat)
             .Prefix()
             .Build();
 
@@ -51,10 +49,7 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.of(SlotFamily.Armor)
-                .plus(x -> x.isShield())
-                .plus(x -> x.family()
-                    .isJewelry()))
+            .includesTags(SlotTag.armor_family, SlotTag.shield, SlotTag.jewelry_family)
             .Prefix()
             .Build();
 

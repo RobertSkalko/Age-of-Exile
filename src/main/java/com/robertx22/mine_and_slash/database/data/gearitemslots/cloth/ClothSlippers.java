@@ -39,7 +39,7 @@ public class ClothSlippers extends BaseBoots {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.cloth, SlotTag.boots, SlotTag.magic_shield, SlotTag.intelligence);
+        return new TagList(SlotTag.cloth, SlotTag.boots, SlotTag.magic_shield_stat, SlotTag.intelligence);
     }
 
     @Override

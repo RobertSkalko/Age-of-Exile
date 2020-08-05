@@ -1,15 +1,14 @@
 package com.robertx22.mine_and_slash.database.data.affixes.data;
 
-import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.data.affixes.ElementalAffixBuilder;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.requirements.SlotRequirement;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType.SlotTag;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShieldRegen;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -28,7 +27,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(1, x -> Arrays.asList(new StatModifier(1, 2, 1, 2, new WeaponDamage(x), ModType.FLAT)))
             .tier(2, x -> Arrays.asList(new StatModifier(0.75F, 1, 0.75F, 1, new WeaponDamage(x), ModType.FLAT)))
             .tier(3, x -> Arrays.asList(new StatModifier(0.5F, 0.75F, 0.5F, 0.75F, new WeaponDamage(x), ModType.FLAT)))
-            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Jewelry))
+            .includesTags(SlotTag.jewelry_family)
             .Weight(100)
             .Prefix()
             .Build();
@@ -38,9 +37,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(1, 2, HealthRegen.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(0.5F, 1, HealthRegen.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(0.3F, 0.5F, HealthRegen.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.of(x -> x.family()
-                .isJewelry() || x.getTags()
-                .contains(BaseGearType.SlotTag.plate)))
+            .includesTags(SlotTag.jewelry_family, SlotTag.plate)
             .Weight(200)
             .Suffix()
             .Build();
@@ -50,9 +47,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(1, 2, MagicShieldRegen.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(0.5F, 1, MagicShieldRegen.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(0.3F, 0.5F, MagicShieldRegen.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.of(x -> x.family()
-                .isJewelry() || x.getTags()
-                .contains(BaseGearType.SlotTag.cloth)))
+            .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
             .Weight(200)
             .Suffix()
             .Build();
@@ -62,8 +57,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(20, 30, new ReducedAllStatReqOnItem(), ModType.FLAT))
             .tier(2, new StatModifier(15, 20, new ReducedAllStatReqOnItem(), ModType.FLAT))
             .tier(3, new StatModifier(10, 15, new ReducedAllStatReqOnItem(), ModType.FLAT))
-            .Req(SlotRequirement.of(x -> x.getStatRequirements()
-                .hasAny()))
+            .includesTags(SlotTag.intelligence, SlotTag.dexterity, SlotTag.strength)
             .Weight(200)
             .Suffix()
             .Build();
