@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.cloth;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
@@ -38,7 +39,7 @@ public class OccultistRobes extends BaseBoots {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.Cloth, SlotTag.Chest);
+        return new TagList(SlotTag.cloth, SlotTag.chest, SlotTag.magic_shield, SlotTag.intelligence);
     }
 
     @Override

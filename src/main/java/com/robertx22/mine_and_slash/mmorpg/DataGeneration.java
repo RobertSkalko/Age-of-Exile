@@ -20,10 +20,10 @@ public class DataGeneration {
 
         List<BaseDataPackLoader> list = new ArrayList<>();
 
-        list.add(new BaseGearTypeDatapackLoader());
+        //list.add(new BaseGearTypeDatapackLoader());
         list.add(new MobAffixDataPackLoader());
         list.add(new TierDatapackLoader());
-        list.add(new AffixDataPackLoader());
+        //list.add(new AffixDataPackLoader());
         list.add(new UniqueGearDatapackLoader());
         list.add(new CompatibleItemDataPackLoader());
         list.add(new DimConfigsDatapackLoader());

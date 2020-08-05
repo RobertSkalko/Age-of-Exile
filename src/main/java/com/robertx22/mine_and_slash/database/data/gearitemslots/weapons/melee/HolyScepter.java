@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealPower;
@@ -43,7 +44,7 @@ public class HolyScepter extends BaseWeapon {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.MageWeapon, SlotTag.Wand, SlotTag.MeleeWeapon);
+        return new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.melee_weapon, SlotTag.intelligence);
     }
 
     @Override

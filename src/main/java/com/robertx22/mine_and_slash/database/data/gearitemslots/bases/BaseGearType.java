@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.bases;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.base.Rarities;
@@ -29,7 +28,6 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryEntry<BaseGearType>, ISerializable<BaseGearType> {
 
@@ -51,19 +49,19 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public final EquipmentSlot getVanillaSlotType() {
 
-        if (getTags().contains(SlotTag.Shield)) {
+        if (getTags().contains(SlotTag.shield)) {
             return EquipmentSlot.OFFHAND;
         }
-        if (getTags().contains(SlotTag.Boots)) {
+        if (getTags().contains(SlotTag.boots)) {
             return EquipmentSlot.FEET;
         }
-        if (getTags().contains(SlotTag.Chest)) {
+        if (getTags().contains(SlotTag.chest)) {
             return EquipmentSlot.CHEST;
         }
-        if (getTags().contains(SlotTag.Pants)) {
+        if (getTags().contains(SlotTag.pants)) {
             return EquipmentSlot.LEGS;
         }
-        if (getTags().contains(SlotTag.Helmet)) {
+        if (getTags().contains(SlotTag.helmet)) {
             return EquipmentSlot.HEAD;
         }
         if (isWeapon()) {
@@ -149,34 +147,47 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public final boolean isMeleeWeapon() {
         return this.getTags()
-            .contains(SlotTag.MeleeWeapon);
+            .contains(SlotTag.melee_weapon);
     }
 
     public boolean isShield() {
-        return getTags().contains(SlotTag.Shield);
+        return getTags().contains(SlotTag.shield);
     }
 
     public enum SlotTag {
-        Sword(SlotFamily.Weapon),
-        Axe(SlotFamily.Weapon),
-        Bow(SlotFamily.Weapon),
-        Wand(SlotFamily.Weapon),
-        Crossbow(SlotFamily.Weapon),
+        sword(SlotFamily.Weapon),
+        axe(SlotFamily.Weapon),
+        bow(SlotFamily.Weapon),
+        wand(SlotFamily.Weapon),
+        crossbow(SlotFamily.Weapon),
 
-        Boots(SlotFamily.Armor),
-        Helmet(SlotFamily.Armor),
-        Pants(SlotFamily.Armor),
-        Chest(SlotFamily.Armor),
+        boots(SlotFamily.Armor),
+        helmet(SlotFamily.Armor),
+        pants(SlotFamily.Armor),
+        chest(SlotFamily.Armor),
 
-        Necklace(SlotFamily.Jewelry),
-        Ring(SlotFamily.Jewelry),
-        Shield(SlotFamily.OffHand),
+        necklace(SlotFamily.Jewelry),
+        ring(SlotFamily.Jewelry),
+        shield(SlotFamily.OffHand),
 
-        Cloth(SlotFamily.NONE),
-        Plate(SlotFamily.NONE),
-        Leather(SlotFamily.NONE),
+        cloth(SlotFamily.NONE),
+        plate(SlotFamily.NONE),
+        leather(SlotFamily.NONE),
 
-        MageWeapon(SlotFamily.NONE), MeleeWeapon(SlotFamily.NONE), RangedWeapon(SlotFamily.NONE);
+        mage_weapon(SlotFamily.NONE), melee_weapon(SlotFamily.NONE), ranged_weapon(SlotFamily.NONE),
+
+        magic_shield(SlotFamily.NONE),
+        armor(SlotFamily.NONE),
+        dodge(SlotFamily.NONE),
+
+        weapon_family(SlotFamily.NONE),
+        armor_family(SlotFamily.NONE),
+        jewelry_family(SlotFamily.NONE),
+        offhand_family(SlotFamily.NONE),
+
+        intelligence(SlotFamily.NONE),
+        dexterity(SlotFamily.NONE),
+        strength(SlotFamily.NONE);
 
         public SlotFamily family = SlotFamily.NONE;
 
@@ -265,19 +276,19 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
                     }
                 }
             } else if (slot.getTags()
-                .contains(SlotTag.Sword)) {
+                .contains(SlotTag.sword)) {
                 bool = item instanceof SwordItem;
             } else if (slot.getTags()
-                .contains(SlotTag.Bow)) {
+                .contains(SlotTag.bow)) {
                 bool = item instanceof BowItem;
             } else if (slot.getTags()
-                .contains(SlotTag.Axe)) {
+                .contains(SlotTag.axe)) {
                 bool = item instanceof AxeItem;
             } else if (slot.getTags()
-                .contains(SlotTag.Shield)) {
+                .contains(SlotTag.shield)) {
                 bool = item instanceof ShieldItem;
             } else if (slot.getTags()
-                .contains(SlotTag.Crossbow)) {
+                .contains(SlotTag.crossbow)) {
                 bool = item instanceof CrossbowItem;
             }
 
@@ -320,7 +331,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     }
 
     public final boolean isMageWeapon() {
-        return getTags().contains(SlotTag.MageWeapon);
+        return getTags().contains(SlotTag.mage_weapon);
     }
 
     @Override
@@ -330,11 +341,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         JsonUtils.addStats(implicitStats(), json, "implicit_stats");
         JsonUtils.addStats(baseStats(), json, "base_stats");
 
-        JsonArray tagArray = JsonUtils.stringListToJsonArray(getTags().stream()
-            .map(x -> x.name())
-            .collect(Collectors.toList()));
-
-        json.add("tags", tagArray);
+        json.add("tag_list", getTags().toJson());
         json.add("stat_req", getStatRequirements().toJson());
         json.addProperty("item_id", Registry.ITEM.getId(getItem())
             .toString());
@@ -365,10 +372,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
             o.weapon_type = WeaponTypes.None;
         }
 
-        o.tags = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("tags"))
-            .stream()
-            .map(x -> SlotTag.valueOf(x))
-            .collect(Collectors.toList());
+        o.tags = new TagList().fromJson(json.getAsJsonObject("tag_list"));
 
         return o;
     }

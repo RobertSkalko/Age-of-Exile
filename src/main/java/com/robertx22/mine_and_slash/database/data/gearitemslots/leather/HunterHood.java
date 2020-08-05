@@ -39,7 +39,7 @@ public class HunterHood extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.Leather, SlotTag.Helmet);
+        return new TagList(SlotTag.leather, SlotTag.helmet, SlotTag.dodge, SlotTag.dexterity);
     }
 
     @Override

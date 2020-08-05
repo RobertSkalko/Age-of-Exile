@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
@@ -38,7 +39,7 @@ public class LeatherLeggings extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.Leather, SlotTag.Pants);
+        return new TagList(SlotTag.leather, SlotTag.pants, SlotTag.dodge, SlotTag.dexterity);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(0.3F, 0.5F, HealthRegen.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(x -> x.family()
                 .isJewelry() || x.getTags()
-                .contains(BaseGearType.SlotTag.Plate)))
+                .contains(BaseGearType.SlotTag.plate)))
             .Weight(200)
             .Suffix()
             .Build();
@@ -52,7 +52,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(0.3F, 0.5F, MagicShieldRegen.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(x -> x.family()
                 .isJewelry() || x.getTags()
-                .contains(BaseGearType.SlotTag.Cloth)))
+                .contains(BaseGearType.SlotTag.cloth)))
             .Weight(200)
             .Suffix()
             .Build();

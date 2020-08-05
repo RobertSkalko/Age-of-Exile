@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.database.data.affixes;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.requirements.Requirements;
-import com.robertx22.mine_and_slash.database.data.requirements.bases.BaseRequirement;
+import com.robertx22.mine_and_slash.database.data.requirements.TagRequirement;
 
 import java.util.*;
 import java.util.function.Function;
@@ -13,9 +14,12 @@ public class GenericAffixBuilder<T> {
     List<T> elements = new ArrayList<>();
 
     int weight = 1000;
-    Requirements requirements;
     List<String> tags = new ArrayList<>();
     Affix.Type type;
+
+    Requirements requirements = new Requirements();
+
+    TagRequirement tagRequirement = new TagRequirement();
 
     Function<T, String> guid;
     HashMap<Integer, Function<T, List<StatModifier>>> modsPerTier = new HashMap<>();
@@ -38,8 +42,17 @@ public class GenericAffixBuilder<T> {
         return this;
     }
 
-    public GenericAffixBuilder<T> Req(BaseRequirement... reqs) {
-        requirements = new Requirements(reqs);
+    public GenericAffixBuilder<T> includesTags(BaseGearType.SlotTag... tags) {
+        this.tagRequirement.included.addAll(Arrays.stream(tags)
+            .map(x -> x.name())
+            .collect(Collectors.toList()));
+        return this;
+    }
+
+    public GenericAffixBuilder<T> excludesTags(BaseGearType.SlotTag... tags) {
+        this.tagRequirement.excluded.addAll(Arrays.stream(tags)
+            .map(x -> x.name())
+            .collect(Collectors.toList()));
         return this;
     }
 
@@ -77,6 +90,7 @@ public class GenericAffixBuilder<T> {
 
             Affix affix = new Affix();
             affix.guid = guid.apply(element);
+            affix.requirements.requirements.add(tagRequirement);
 
             for (Map.Entry<Integer, Function<T, List<StatModifier>>> entry : this.modsPerTier.entrySet()) {
 

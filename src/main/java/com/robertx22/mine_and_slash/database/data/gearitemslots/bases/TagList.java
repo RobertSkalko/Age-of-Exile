@@ -1,5 +1,9 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.bases;
 
+import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.datapacks.JsonUtils;
+import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType.SlotTag;
 
-public class TagList {
+public class TagList implements ISerializable<TagList> {
 
     public List<String> tags;
 
@@ -51,4 +55,19 @@ public class TagList {
         }
     }
 
+    @Override
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.add("tags", JsonUtils.stringListToJsonArray(this.tags));
+
+        return json;
+    }
+
+    @Override
+    public TagList fromJson(JsonObject json) {
+        TagList list = new TagList();
+        list.tags = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("tags"));
+        return list;
+
+    }
 }

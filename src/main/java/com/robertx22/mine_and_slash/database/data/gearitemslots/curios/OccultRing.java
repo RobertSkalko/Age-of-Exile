@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.curios;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -52,7 +53,7 @@ public class OccultRing extends BaseCurio {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.Ring);
+        return new TagList(SlotTag.ring);
     }
 
     @Override

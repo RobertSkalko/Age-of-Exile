@@ -38,8 +38,8 @@ public class ItemModelManager {
             .forEach(x -> {
 
                 if (!x.getTags()
-                    .contains(BaseGearType.SlotTag.Bow) && !x.getTags()
-                    .contains(BaseGearType.SlotTag.Crossbow) && !x.isShield()) {
+                    .contains(BaseGearType.SlotTag.bow) && !x.getTags()
+                    .contains(BaseGearType.SlotTag.crossbow) && !x.isShield()) {
                     if (x.family()
                         .equals(BaseGearType.SlotFamily.Weapon)) {
                         handheld(x.getItem());

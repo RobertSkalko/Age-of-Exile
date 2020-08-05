@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.offhand;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -37,7 +38,7 @@ public class SpiritShield extends BaseOffHand {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.Shield, SlotTag.Cloth);
+        return new TagList(SlotTag.shield, SlotTag.cloth, SlotTag.magic_shield, SlotTag.intelligence);
     }
 
     @Override

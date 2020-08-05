@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.database.data.affixes;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.requirements.Requirements;
-import com.robertx22.mine_and_slash.database.data.requirements.bases.BaseRequirement;
+import com.robertx22.mine_and_slash.database.data.requirements.TagRequirement;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,9 +15,11 @@ public class AffixBuilder {
     String langName;
 
     int weight = 1000;
-    Requirements requirements;
     public List<String> tags = new ArrayList<>();
     public Affix.Type type;
+    Requirements requirements = new Requirements();
+
+    TagRequirement tagRequirement = new TagRequirement();
 
     private AffixBuilder(String id) {
         this.guid = id;
@@ -31,8 +34,17 @@ public class AffixBuilder {
         return this;
     }
 
-    public AffixBuilder Req(BaseRequirement... reqs) {
-        requirements = new Requirements(reqs);
+    public AffixBuilder includesTags(BaseGearType.SlotTag... tags) {
+        this.tagRequirement.included.addAll(Arrays.stream(tags)
+            .map(x -> x.name())
+            .collect(Collectors.toList()));
+        return this;
+    }
+
+    public AffixBuilder excludesTags(BaseGearType.SlotTag... tags) {
+        this.tagRequirement.excluded.addAll(Arrays.stream(tags)
+            .map(x -> x.name())
+            .collect(Collectors.toList()));
         return this;
     }
 
@@ -82,6 +94,8 @@ public class AffixBuilder {
 
         Affix affix = new Affix();
         affix.guid = guid;
+
+        affix.requirements.requirements.add(tagRequirement);
 
         for (Map.Entry<Integer, List<StatModifier>> entry : this.modsPerTier.entrySet()) {
 

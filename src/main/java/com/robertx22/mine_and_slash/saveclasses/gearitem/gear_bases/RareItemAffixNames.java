@@ -97,31 +97,31 @@ public class RareItemAffixNames {
             return weapons;
         }
         if (slot.getTags()
-            .contains(BaseGearType.SlotTag.Boots)) {
+            .contains(BaseGearType.SlotTag.boots)) {
             return boots;
         }
         if (slot.getTags()
-            .contains(BaseGearType.SlotTag.Chest)) {
+            .contains(BaseGearType.SlotTag.chest)) {
             return chest;
         }
         if (slot.getTags()
-            .contains(BaseGearType.SlotTag.Helmet)) {
+            .contains(BaseGearType.SlotTag.helmet)) {
             return helmet;
         }
         if (slot.getTags()
-            .contains(BaseGearType.SlotTag.Ring)) {
+            .contains(BaseGearType.SlotTag.ring)) {
             return ring;
         }
         if (slot.getTags()
-            .contains(BaseGearType.SlotTag.Necklace)) {
+            .contains(BaseGearType.SlotTag.necklace)) {
             return necklace;
         }
         if (slot.getTags()
-            .contains(BaseGearType.SlotTag.Shield)) {
+            .contains(BaseGearType.SlotTag.shield)) {
             return shield;
         }
         if (slot.getTags()
-            .contains(BaseGearType.SlotTag.Pants)) {
+            .contains(BaseGearType.SlotTag.pants)) {
             return pants;
         }
 

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -43,7 +44,7 @@ public class Crossbow extends BaseWeapon {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.Crossbow, SlotTag.RangedWeapon);
+        return new TagList(SlotTag.crossbow, SlotTag.ranged_weapon, SlotTag.dexterity);
     }
 
     @Override

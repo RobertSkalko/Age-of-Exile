@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.datapacks.seriazables;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ public class SerializableBaseGearType extends BaseGearType {
 
     public List<StatModifier> implicit_stats;
     public List<StatModifier> base_stats;
-    public List<SlotTag> tags;
+    public TagList tags;
     public String item_id;
     public StatRequirement stat_req;
     public WeaponTypes weapon_type;

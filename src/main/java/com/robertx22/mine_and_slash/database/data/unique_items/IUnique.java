@@ -1,10 +1,11 @@
 package com.robertx22.mine_and_slash.database.data.unique_items;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.unique_items.bases.*;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
@@ -144,40 +145,40 @@ public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocD
 
     public static Item getBaseItemForRegistration(IUnique uniq) {
 
-        List<SlotTag> tags = uniq.getBaseGearType()
+        TagList tags = uniq.getBaseGearType()
             .getTags();
 
-        if (tags.contains(SlotTag.Sword)) {
+        if (tags.contains(SlotTag.sword)) {
             return new BaseUniqueSword();
         }
-        if (tags.contains(SlotTag.Axe)) {
+        if (tags.contains(SlotTag.axe)) {
             return new BaseUniqueAxe();
         }
-        if (tags.contains(SlotTag.Wand)) {
+        if (tags.contains(SlotTag.wand)) {
             return new BaseUniqueWand();
         }
-        if (tags.contains(SlotTag.Boots)) {
+        if (tags.contains(SlotTag.boots)) {
             return new BaseUniqueBoots();
         }
-        if (tags.contains(SlotTag.Chest)) {
+        if (tags.contains(SlotTag.chest)) {
             return new BaseUniqueChest();
         }
-        if (tags.contains(SlotTag.Pants)) {
+        if (tags.contains(SlotTag.pants)) {
             return new BaseUniquePantsItem();
         }
-        if (tags.contains(SlotTag.Helmet)) {
+        if (tags.contains(SlotTag.helmet)) {
             return new BaseUniqueHelmet();
         }
-        if (tags.contains(SlotTag.Crossbow)) {
+        if (tags.contains(SlotTag.crossbow)) {
             return Items.CROSSBOW;
         }
-        if (tags.contains(SlotTag.Bow)) {
+        if (tags.contains(SlotTag.bow)) {
             return new BaseUniqueBow();
         }
-        if (tags.contains(SlotTag.Necklace)) {
+        if (tags.contains(SlotTag.necklace)) {
             return new BaseUniqueNecklace();
         }
-        if (tags.contains(SlotTag.Ring)) {
+        if (tags.contains(SlotTag.ring)) {
             return new BaseUniqueRing();
         }
 

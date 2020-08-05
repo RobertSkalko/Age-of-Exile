@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.plate;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
@@ -38,7 +39,7 @@ public class IronGreaves extends BaseBoots {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.Plate, SlotTag.Boots);
+        return new TagList(SlotTag.plate, SlotTag.boots, SlotTag.armor, SlotTag.strength);
     }
 
     @Override
