@@ -46,7 +46,7 @@ public class GemstoneSword extends BaseWeapon {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.sword, SlotTag.melee_weapon, SlotTag.strength, SlotTag.dexterity);
+        return new TagList(SlotTag.warrior_casting_weapon, SlotTag.sword, SlotTag.melee_weapon, SlotTag.weapon_family, SlotTag.strength, SlotTag.dexterity);
     }
 
     @Override

@@ -44,7 +44,7 @@ public class HunterBow extends BaseWeapon {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.bow, SlotTag.ranged_weapon, SlotTag.dexterity);
+        return new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity);
     }
 
     @Override

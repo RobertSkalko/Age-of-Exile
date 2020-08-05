@@ -39,7 +39,7 @@ public class IronChestplate extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.plate, SlotTag.chest, SlotTag.armor_stat, SlotTag.strength);
+        return new TagList(SlotTag.plate, SlotTag.chest, SlotTag.armor_family, SlotTag.armor_stat, SlotTag.strength);
     }
 
     @Override

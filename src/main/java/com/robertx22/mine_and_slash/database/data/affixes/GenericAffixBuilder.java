@@ -90,7 +90,7 @@ public class GenericAffixBuilder<T> {
 
             Affix affix = new Affix();
             affix.guid = guid.apply(element);
-            affix.requirements.requirements.add(tagRequirement);
+            affix.requirements = new Requirements(this.tagRequirement);
 
             for (Map.Entry<Integer, Function<T, List<StatModifier>>> entry : this.modsPerTier.entrySet()) {
 
@@ -105,7 +105,6 @@ public class GenericAffixBuilder<T> {
             affix.weight = weight;
             affix.langName = nameMap.get(element);
             affix.tags = tags;
-            affix.requirements = requirements;
 
             affix.addToSerializables();
         }

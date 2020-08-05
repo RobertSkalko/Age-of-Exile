@@ -38,7 +38,7 @@ public class SpiritShield extends BaseOffHand {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.shield, SlotTag.cloth, SlotTag.magic_shield_stat, SlotTag.intelligence);
+        return new TagList(SlotTag.shield, SlotTag.cloth, SlotTag.offhand_family, SlotTag.magic_shield_stat, SlotTag.intelligence);
     }
 
     @Override

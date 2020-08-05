@@ -39,7 +39,7 @@ public class WildTunic extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.chest, SlotTag.leather, SlotTag.dodge_stat, SlotTag.dexterity);
+        return new TagList(SlotTag.chest, SlotTag.leather, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
     @Override

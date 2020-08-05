@@ -37,7 +37,7 @@ public class Buckler extends BaseOffHand {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.shield, SlotTag.leather, SlotTag.dodge_stat, SlotTag.dexterity);
+        return new TagList(SlotTag.shield, SlotTag.leather, SlotTag.offhand_family, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
     @Override

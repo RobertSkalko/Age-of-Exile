@@ -2,6 +2,9 @@ v.1.0.7
 
 - Changed affix datapacks to require tags instead of specific base gears.
 This should make it much easier to add new base gears now!
+Before you had to change all the affixes a sword uses for example, to include your custom sword type. 
+But now as long as you have the "sword" tag, it should work.
+- casting weapon requirements are now also gotten through gear type tags, which means you can modify which weapons can cast which spells now!
 - int now gives mana regen too
 
 

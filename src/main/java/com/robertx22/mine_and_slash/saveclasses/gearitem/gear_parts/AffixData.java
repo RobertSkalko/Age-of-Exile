@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.affixes.Affix;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -121,9 +121,14 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     @Override
     public void RerollFully(GearItemData gear) {
 
-        Affix affix = SlashRegistry.Affixes()
-            .getFilterWrapped(x -> x.type == getAffixType() && gear.canGetAffix(x))
-            .random();
+        Affix affix = null;
+        try {
+            affix = SlashRegistry.Affixes()
+                .getFilterWrapped(x -> x.type == getAffixType() && gear.canGetAffix(x))
+                .random();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         this.create(gear, affix);
 

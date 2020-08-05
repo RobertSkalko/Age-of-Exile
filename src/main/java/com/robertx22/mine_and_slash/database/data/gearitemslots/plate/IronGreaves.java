@@ -39,7 +39,7 @@ public class IronGreaves extends BaseBoots {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.plate, SlotTag.boots, SlotTag.armor_stat, SlotTag.strength);
+        return new TagList(SlotTag.plate, SlotTag.boots, SlotTag.armor_family, SlotTag.armor_stat, SlotTag.strength);
     }
 
     @Override

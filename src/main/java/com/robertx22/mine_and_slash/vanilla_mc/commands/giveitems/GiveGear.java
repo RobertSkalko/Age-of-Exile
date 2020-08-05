@@ -103,6 +103,7 @@ public class GiveGear {
             }
 
             player.giveItemStack(blueprint.createStack());
+
         }
 
         return 0;

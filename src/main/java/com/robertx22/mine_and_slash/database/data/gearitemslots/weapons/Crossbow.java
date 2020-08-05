@@ -44,7 +44,7 @@ public class Crossbow extends BaseWeapon {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.crossbow, SlotTag.ranged_weapon, SlotTag.dexterity);
+        return new TagList(SlotTag.ranger_casting_weapon, SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity);
     }
 
     @Override

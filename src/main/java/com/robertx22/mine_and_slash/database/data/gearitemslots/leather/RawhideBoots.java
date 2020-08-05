@@ -39,7 +39,7 @@ public class RawhideBoots extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.leather, SlotTag.boots, SlotTag.dodge_stat, SlotTag.dexterity);
+        return new TagList(SlotTag.leather, SlotTag.boots, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
     @Override

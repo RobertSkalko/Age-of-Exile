@@ -42,7 +42,7 @@ public class OccultNecklace extends BaseCurio {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.necklace);
+        return new TagList(SlotTag.necklace, SlotTag.jewelry_family);
     }
 
     @Override

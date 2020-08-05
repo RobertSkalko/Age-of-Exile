@@ -180,6 +180,10 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         armor_stat(SlotFamily.NONE),
         dodge_stat(SlotFamily.NONE),
 
+        mage_casting_weapon(SlotFamily.Weapon),
+        warrior_casting_weapon(SlotFamily.Weapon),
+        ranger_casting_weapon(SlotFamily.Weapon),
+
         weapon_family(SlotFamily.NONE),
         armor_family(SlotFamily.NONE),
         jewelry_family(SlotFamily.NONE),

@@ -53,7 +53,7 @@ public class OccultRing extends BaseCurio {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.ring);
+        return new TagList(SlotTag.ring, SlotTag.jewelry_family);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class TagRequirement extends BaseRequirement<TagRequirement> {
         if (included.stream()
             .anyMatch(x -> list.contains(x))) {
             if (excluded.stream()
-                .allMatch(y -> !list.contains(y))) {
+                .noneMatch(y -> list.contains(y))) {
                 return true;
             }
         }

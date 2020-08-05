@@ -95,7 +95,7 @@ public class AffixBuilder {
         Affix affix = new Affix();
         affix.guid = guid;
 
-        affix.requirements.requirements.add(tagRequirement);
+        affix.requirements = new Requirements(this.tagRequirement);
 
         for (Map.Entry<Integer, List<StatModifier>> entry : this.modsPerTier.entrySet()) {
 
@@ -109,7 +109,6 @@ public class AffixBuilder {
         affix.weight = weight;
         affix.langName = langName;
         affix.tags = tags;
-        affix.requirements = requirements;
 
         affix.addToSerializables();
 
