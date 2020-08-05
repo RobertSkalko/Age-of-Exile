@@ -6,10 +6,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.BraveryEffe
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.JudgementEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.TrickeryEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.divine.WizardryEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PetrifyEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonedWeaponsEffect;
-import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.ThornArmorEffect;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.*;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic.FrostEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.ocean_mystic.ShiverEffect;
@@ -30,6 +27,7 @@ public class PotionRegister {
         reg(TrickeryEffect.INSTANCE);
 
         reg(FrostEffect.INSTANCE);
+        reg(RegenerateEffect.INSTANCE);
         reg(PoisonEffect.INSTANCE);
         reg(PetrifyEffect.INSTANCE);
         reg(ShiverEffect.INSTANCE);

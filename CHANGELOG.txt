@@ -1,3 +1,6 @@
+v.1.0.8
+- fix nature balm
+
 v.1.0.7
 
 - Changed affix datapacks to require tags instead of specific base gears.

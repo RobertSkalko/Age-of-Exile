@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases;
 
+import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -149,7 +149,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
                         if (instance == null) {
                             //Log.error("potion instance is null, Deleting potion");
                             delete = true;
-                            return;
+                            continue;
                         }
 
                         ExtraPotionData data = PotionDataSaving.getData(en, instance);
@@ -157,7 +157,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
                         if (data == null) {
                             //Log.error("Extra potion data is null. Deleting potion");
                             delete = true;
-                            return;
+                            continue;
                         }
 
                         LivingEntity caster = data.getCaster(en.world);
@@ -165,7 +165,7 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
                         if (caster == null) {
                             //Log.error("Potion can't find caster. Deleting potion");
                             delete = true;
-                            return;
+                            continue;
                         }
 
                         x.onTick(new PotionContext(en, data, caster));

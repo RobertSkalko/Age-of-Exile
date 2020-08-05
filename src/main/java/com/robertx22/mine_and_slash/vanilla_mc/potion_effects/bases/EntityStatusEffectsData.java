@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.data.ExtraPo
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
@@ -15,24 +14,35 @@ public class EntityStatusEffectsData {
     HashMap<String, ExtraPotionData> map = new HashMap<>();
 
     public boolean has(StatusEffect effect) {
-        return map.containsKey(Registry.STATUS_EFFECT.getId(effect)
-            .toString()) && map.get(Registry.STATUS_EFFECT.getId(effect)
-            .toString()) != null;
+
+        if (effect instanceof BasePotionEffect) {
+            String id = ((BasePotionEffect) effect).GUID();
+
+            return map.containsKey(id) && map.get(id) != null;
+        }
+        return false;
     }
 
     public ExtraPotionData get(StatusEffect effect) {
-        return map.get(Registry.STATUS_EFFECT.getId(effect)
-            .toString());
+
+        if (effect instanceof BasePotionEffect) {
+            BasePotionEffect p = (BasePotionEffect) effect;
+
+            return map.get(p.GUID());
+        }
+        return null;
     }
 
-    public void set(StatusEffect effect, ExtraPotionData data) {
-        String id = Registry.STATUS_EFFECT.getId(effect)
-            .toString();
+    public void set(BasePotionEffect effect, ExtraPotionData data) {
+
+        if (effect == null) {
+            return;
+        }
+
+        String id = effect.GUID();
 
         if (data == null) {
-            if (map.containsKey(id)) {
-                map.remove(id);
-            }
+            map.remove(id);
             return;
         }
 

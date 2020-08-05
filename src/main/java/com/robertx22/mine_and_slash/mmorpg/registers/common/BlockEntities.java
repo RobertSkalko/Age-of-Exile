@@ -24,10 +24,8 @@ public class BlockEntities {
     public BlockEntityType<TileGearModify> THORN_BUSH = of(ModRegistry.BLOCKS.THORN_BUSH, ThornBushTileEntity::new);
 
     private <T extends BlockEntity> BlockEntityType<T> of(Block block, Supplier<BlockEntity> en) {
-
         BlockEntityType<T> type = (BlockEntityType<T>) BlockEntityType.Builder.create(en, block)
-            .build(null); // todo unsure if this cast works
-
+            .build(null);
         return Registry.register(Registry.BLOCK_ENTITY_TYPE, Registry.BLOCK.getId(block)
             .toString(), type);
 

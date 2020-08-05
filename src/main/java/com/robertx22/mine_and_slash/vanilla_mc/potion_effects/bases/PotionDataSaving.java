@@ -27,7 +27,7 @@ public class PotionDataSaving {
     public static void saveData(LivingEntity entity, StatusEffectInstance instance, ExtraPotionData data) {
         EntityCap.UnitData unitdata = Load.Unit(entity);
         unitdata.getStatusEffectsData()
-            .set(instance.getEffectType(), data);
+            .set((BasePotionEffect) instance.getEffectType(), data);
     }
 
 }
