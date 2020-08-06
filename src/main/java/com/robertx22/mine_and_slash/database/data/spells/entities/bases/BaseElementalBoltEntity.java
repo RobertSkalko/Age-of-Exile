@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.data.spells.entities.bases;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -11,8 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
-
-
 
 public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
 

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
@@ -13,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IOnBasicAttackPotion;

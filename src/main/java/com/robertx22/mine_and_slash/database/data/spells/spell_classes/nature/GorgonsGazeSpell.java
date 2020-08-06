@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.spell_classes.nature;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.EffectChance;
@@ -14,7 +15,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid.PoisonEffect;

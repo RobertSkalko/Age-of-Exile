@@ -1,11 +1,10 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTile;
-import com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station.TileGearModify.ResultItem;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.player.PlayerEntity;

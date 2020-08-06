@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;

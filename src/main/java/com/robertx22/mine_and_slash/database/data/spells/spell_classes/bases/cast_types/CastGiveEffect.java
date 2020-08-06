@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.cast_types;
 
 import com.google.common.base.Preconditions;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 
 public class CastGiveEffect extends SpellCastType {
     @Override

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.uncommon.utilityclasses;
+package com.robertx22.library_of_exile.utils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.sound.SoundCategory;

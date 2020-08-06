@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.vanilla_mc.potion_effects.druid;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.BasePotionEffect;

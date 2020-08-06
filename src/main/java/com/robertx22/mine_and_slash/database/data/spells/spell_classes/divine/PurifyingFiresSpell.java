@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.data.spells.spell_classes.divine;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
@@ -13,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.LivingEntity;

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.capability.entity;
 
 import com.robertx22.library_of_exile.utils.LoadSave;
+import com.robertx22.library_of_exile.utils.OnScreenMessageUtils;
 import com.robertx22.mine_and_slash.capability.bases.EntityGears;
 import com.robertx22.mine_and_slash.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.capability.bases.INeededForClient;
@@ -770,7 +771,6 @@ public class EntityCap {
         public boolean LevelUp(PlayerEntity player) {
 
             if (!CheckIfCanLevelUp()) {
-
                 player.sendMessage(Chats.Not_enough_experience.locName(), false);
             } else if (!CheckLevelCap()) {
                 player.sendMessage(Chats.Can_not_go_over_maximum_level.locName(), false);
@@ -780,10 +780,8 @@ public class EntityCap {
 
                 this.setLevel(level + 1, player);
                 setExp(getRemainingExp());
-                player.sendMessage(
-                    new LiteralText(Formatting.YELLOW + "" + Formatting.BOLD).append(
-                        Chats.You_have_leveled_up.locName())
-                        .append("!"), false);
+
+                OnScreenMessageUtils.sendLevelUpMessage(player, new LiteralText("Player"), level - 1, level);
 
                 return true;
             }

@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
 import net.fabricmc.api.EnvType;
