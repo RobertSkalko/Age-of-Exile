@@ -43,7 +43,7 @@ dependencies {
 	
 	modImplementation "top.theillusivec4.curios:curios-fabric:${curios_version}" 
 
-    compile files("Library-Of-Exile-1.16.1-1.0.0-dev.jar")
+    compile files("Library-Of-Exile-1.16.1-1.0.1-dev.jar")
 }
 
 processResources {

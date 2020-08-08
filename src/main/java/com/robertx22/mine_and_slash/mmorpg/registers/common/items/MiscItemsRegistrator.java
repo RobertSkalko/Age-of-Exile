@@ -19,8 +19,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public List<JewelItem> ALL_JEWELS = new ArrayList<>();
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
-    public Item SKILL_GEM = item(new Item(new Item.Settings().maxCount(1)
-        .maxDamage(0)), "skill_gem");
 
     public MagicEssenceItem MAGIC_ESSENCE = item(new MagicEssenceItem());
     public RareMagicEssence RARE_MAGIC_ESSENCE = item(new RareMagicEssence());
@@ -31,6 +29,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item INT_SKILL_GEM = item(new SkillGemItem(), "skill_gems/int");
     public Item DEX_SKILL_GEM = item(new SkillGemItem(), "skill_gems/dex");
     public Item STR_SKILL_GEM = item(new SkillGemItem(), "skill_gems/str");
+
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");
     public Item INCRESE_MOB_RARITY = item(new ItemIncreaseRarityNearestEntity(), "increase_rarity_nearest_entity");
 

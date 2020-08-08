@@ -65,12 +65,12 @@ public class RegenerateEffect extends BasePotionEffect {
 
     @Override
     public int getDurationInSeconds(LivingEntity en) {
-        return 20;
+        return 15;
     }
 
     @Override
     public int getTickRate(LivingEntity en) {
-        return 10000;
+        return 20;
     }
 
 }

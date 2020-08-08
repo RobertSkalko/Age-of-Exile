@@ -1,6 +1,8 @@
 v.1.0.8
 - fix nature balm
 - level ups now show on screen title messages.
+- fixed some texture errors
+* fix attack speed
 
 v.1.0.7
 

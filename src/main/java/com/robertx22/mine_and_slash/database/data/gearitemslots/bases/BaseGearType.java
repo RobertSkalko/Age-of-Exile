@@ -107,6 +107,13 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         for (ExactStatData x : stats) {
             if (x.getStat() instanceof AttackSpeed) {
+                if (x.getType() == ModType.FLAT) {
+                    speed *= 1F + x.getAverageValue() / 100F;
+                }
+            }
+        }
+        for (ExactStatData x : stats) {
+            if (x.getStat() instanceof AttackSpeed) {
                 if (x.getType() == ModType.LOCAL_INCREASE) {
                     speed *= 1F + x.getAverageValue() / 100F;
                 }
