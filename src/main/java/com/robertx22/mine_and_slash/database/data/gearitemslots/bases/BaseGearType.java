@@ -396,6 +396,33 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     }
 
+    public Item getMaterial() {
+
+        // TODO JUST FOR TESTING
+
+        float max = getLevelRange().getEndPercent();
+
+        if (max >= 1F) {
+            return Items.NETHER_STAR;
+        }
+        if (max >= 0.8F) {
+            return Items.EMERALD;
+        }
+
+        if (max >= 0.6F) {
+            return Items.DIAMOND;
+        }
+        if (max >= 0.4F) {
+            return Items.GOLD_INGOT;
+        }
+        if (max >= 0.2F) {
+            return Items.IRON_INGOT;
+        }
+
+        return Items.COAL;
+
+    }
+
     public String[] getRecipePattern() {
 
         TagList tags = getTags();

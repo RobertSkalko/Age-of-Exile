@@ -74,7 +74,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.ORB_OF_DISORDER)
+        return ShapedRecipeJsonFactory.create(ModRegistry.CURRENCIES.ORB_OF_DISORDER, 1)
             .input('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('v', Items.GOLD_NUGGET)
@@ -83,6 +83,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
             .pattern("oto")
             .pattern("vvv")
             .criterion("player_level", trigger());
+
     }
 
 }

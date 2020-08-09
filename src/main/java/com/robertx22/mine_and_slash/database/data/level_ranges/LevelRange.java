@@ -24,6 +24,10 @@ public class LevelRange implements ISerializable<LevelRange> {
         return (int) (end * ModConfig.get().Server.MAX_LEVEL);
     }
 
+    public float getEndPercent() {
+        return end;
+    }
+
     public boolean isLevelInRange(int lvl) {
         return lvl >= getMinLevel() && lvl <= getMaxLevel();
     }

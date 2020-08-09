@@ -3,12 +3,17 @@ package com.robertx22.mine_and_slash.datapacks.generators;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.database.data.currency.base.IShapedRecipe;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import joptsimple.internal.Strings;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.advancement.criterion.EnchantedItemCriterion;
 import net.minecraft.data.DataCache;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
 import java.io.IOException;
@@ -82,6 +87,39 @@ public class RecipeGenerator {
 
             }
         }
+
+        SlashRegistry.GearTypes()
+            .getSerializable()
+            .forEach(x -> {
+
+                if (Registry.ITEM.getId(x.getItem())
+                    .getNamespace()
+                    .equals(Ref.MODID)) {
+
+                    ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(x.getItem(), 1);
+
+                    String all = Strings.join(x.getRecipePattern(), "");
+
+                    if (all.contains("M")) {
+                        fac.input('M', x.getMaterial());
+                    }
+                    if (all.contains("S")) {
+                        fac.input('S', Items.STICK);
+                    }
+                    if (all.contains("B")) {
+                        fac.input('B', Items.STRING);
+                    }
+
+                    for (String pat : x.getRecipePattern()) {
+                        fac.pattern(pat);
+                    }
+
+                    fac.criterion("player_level", EnchantedItemCriterion.Conditions.any());
+
+                    fac.offerTo(consumer);
+                }
+            });
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
+import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.item.Item;
@@ -10,7 +11,7 @@ import java.util.List;
 public class ItemUtils {
     public static Item.Settings getDefaultGearProperties() {
 
-        Item.Settings prop = new Item.Settings();
+        Item.Settings prop = new Item.Settings().group(CreativeTabs.MyModTab);
 
         return prop;
     }
