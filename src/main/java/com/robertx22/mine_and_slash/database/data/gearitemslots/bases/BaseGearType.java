@@ -398,28 +398,59 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public Item getMaterial() {
 
-        // TODO JUST FOR TESTING
-
+        TagList tags = getTags();
         float max = getLevelRange().getEndPercent();
 
         if (max >= 1F) {
-            return Items.NETHER_STAR;
+            if (tags.contains(SlotTag.cloth)) {
+                return ModRegistry.GEAR_MATERIALS.CLOTH_4;
+            }
+            if (tags.contains(SlotTag.leather)) {
+                return ModRegistry.GEAR_MATERIALS.LEATHER_4;
+            } else {
+                return ModRegistry.GEAR_MATERIALS.ORE_4;
+            }
         }
         if (max >= 0.8F) {
-            return Items.EMERALD;
+            if (tags.contains(SlotTag.cloth)) {
+                return ModRegistry.GEAR_MATERIALS.CLOTH_3;
+            }
+            if (tags.contains(SlotTag.leather)) {
+                return ModRegistry.GEAR_MATERIALS.LEATHER_3;
+            } else {
+                return ModRegistry.GEAR_MATERIALS.ORE_3;
+            }
         }
 
         if (max >= 0.6F) {
-            return Items.DIAMOND;
+            if (tags.contains(SlotTag.cloth)) {
+                return ModRegistry.GEAR_MATERIALS.CLOTH_2;
+            }
+            if (tags.contains(SlotTag.leather)) {
+                return ModRegistry.GEAR_MATERIALS.LEATHER_2;
+            } else {
+                return ModRegistry.GEAR_MATERIALS.ORE_2;
+            }
         }
         if (max >= 0.4F) {
-            return Items.GOLD_INGOT;
-        }
-        if (max >= 0.2F) {
-            return Items.IRON_INGOT;
+            if (tags.contains(SlotTag.cloth)) {
+                return ModRegistry.GEAR_MATERIALS.CLOTH_1;
+            }
+            if (tags.contains(SlotTag.leather)) {
+                return ModRegistry.GEAR_MATERIALS.LEATHER_1;
+            } else {
+                return ModRegistry.GEAR_MATERIALS.ORE_1;
+            }
         }
 
-        return Items.COAL;
+        if (tags.contains(SlotTag.cloth)) {
+            return ModRegistry.GEAR_MATERIALS.CLOTH_0;
+        }
+        if (tags.contains(SlotTag.leather)) {
+            return ModRegistry.GEAR_MATERIALS.LEATHER_0;
+        } else {
+            return ModRegistry.GEAR_MATERIALS.ORE_0;
+        }
 
     }
 
