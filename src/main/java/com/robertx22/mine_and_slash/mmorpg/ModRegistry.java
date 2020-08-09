@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.*;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.items.CurrencyItemRegistrator;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.items.GearMaterialRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.items.MiscItemsRegistrator;
 
 public class ModRegistry {
@@ -17,6 +18,7 @@ public class ModRegistry {
     public static BlockEntities BLOCK_ENTITIES;
     public static ModParticles PARTICLES;
     public static ComponentRegisters COMPONENTS;
+    public static GearMaterialRegister GEAR_MATERIALS;
 
     public static void init() {
 
@@ -29,6 +31,7 @@ public class ModRegistry {
         BLOCK_ENTITIES = new BlockEntities();
         PARTICLES = new ModParticles();
         COMPONENTS = new ComponentRegisters();
+        GEAR_MATERIALS = new GearMaterialRegister();
 
     }
 

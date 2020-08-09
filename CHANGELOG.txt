@@ -1,4 +1,11 @@
-v.1.0.8
+v.1.1.0
+
+Compatibility update:
+
+- compatible items are now always enabled
+- You can now pick gear from creative tab, and it will get stats.
+- compatible item datapacks no longer specify level, as level is now dictated by gear type
+
 
 Update your library of exile.
 
