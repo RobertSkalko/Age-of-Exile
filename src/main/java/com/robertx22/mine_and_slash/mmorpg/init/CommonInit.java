@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.mmorpg.event_registers.Common;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PotionRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.items.UniqueGearItemRegister;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
@@ -26,6 +27,8 @@ public class CommonInit implements ModInitializer {
         SlashRegistry.initRegistries();
         SlashRegistry.registerAllItems(); // after config registerAll
         SlashRegistry.checkGuidValidity();
+
+        ModRegistry.GEAR_ITEMS = new BaseGearTypeItemRegister();
 
         UniqueGearItemRegister.registerAll();
 

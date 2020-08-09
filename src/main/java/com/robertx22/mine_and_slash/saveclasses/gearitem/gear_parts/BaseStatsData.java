@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -190,15 +190,16 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
                     == ModType.LOCAL_INCREASE)
             .forEach(s -> {
 
-                ExactStatData flatLocal = local.stream()
+                Optional<ExactStatData> opt = local.stream()
                     .filter(x -> x.getStat()
                         .GUID()
                         .equals(s.getStat()
                             .GUID()))
-                    .findFirst()
-                    .get();
+                    .findFirst();
 
-                flatLocal.percentIncrease += s.getFirstValue();
+                if (opt.isPresent()) {
+                    opt.get().percentIncrease += s.getFirstValue();
+                }
 
             });
 

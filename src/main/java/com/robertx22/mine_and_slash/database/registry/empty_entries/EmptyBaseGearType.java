@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.registrators.LevelRanges;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class EmptyBaseGearType extends BaseGearType {
@@ -21,17 +22,17 @@ public class EmptyBaseGearType extends BaseGearType {
 
     @Override
     public List<StatModifier> implicitStats() {
-        return null;
+        return Arrays.asList();
     }
 
     @Override
     public List<StatModifier> baseStats() {
-        return null;
+        return Arrays.asList();
     }
 
     @Override
     public TagList getTags() {
-        return null;
+        return new TagList(SlotTag.sword);
     }
 
 }

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.registrators;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseAxe;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaOnHit;
@@ -39,6 +40,17 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
     public static BaseGearType END_SWORD = new BaseSword("royal_sword", LevelRanges.ENDGAME, "Royal Sword") {
     };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_AXE = new BaseAxe("woodcutter_axe", LevelRanges.STARTER, "Woodcutter Axe") {
+    };
+    public static BaseGearType LOW_AXE = new BaseAxe("primitive_axe", LevelRanges.LOW, "Primitive Axe") {
+    };
+    public static BaseGearType MID_AXE = new BaseAxe("brutal_axe", LevelRanges.MIDDLE, "Brutal Axe") {
+    };
+    public static BaseGearType HIGH_AXE = new BaseAxe("soldier_axe", LevelRanges.HIGH, "Soldier Axe") {
+    };
+    public static BaseGearType END_AXE = new BaseAxe("gladiator_axe", LevelRanges.ENDGAME, "Gladiator Axe") {
+    };
 
     @Override
     public void registerAll() {
@@ -57,6 +69,12 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(MID_SWORD);
                     add(HIGH_SWORD);
                     add(END_SWORD);
+
+                    add(NEWBIE_AXE);
+                    add(LOW_AXE);
+                    add(MID_AXE);
+                    add(HIGH_AXE);
+                    add(END_AXE);
 
                 }
 

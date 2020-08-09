@@ -22,7 +22,6 @@ public class ModRegistry {
 
         BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks
         MISC_ITEMS = new MiscItemsRegistrator();
-        GEAR_ITEMS = new BaseGearTypeItemRegister();
         CURRENCIES = new CurrencyItemRegistrator();
         CONTAINERS = new Containers();
         SOUNDS = new ModSounds();
@@ -32,5 +31,6 @@ public class ModRegistry {
         COMPONENTS = new ComponentRegisters();
 
     }
+
 }
 

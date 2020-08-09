@@ -57,7 +57,9 @@ public class MineAndSlashEvents {
                 return RepairUtils.isItemBroken(stack) == false;
             }
 
-            return true;
+            GearItemData gear = Gear.Load(stack);
+
+            return gear != null && gear.isValidItem();
 
         }
 

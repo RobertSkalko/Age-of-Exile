@@ -11,8 +11,14 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
 
     public BaseGearTypeItemRegister() {
         SlashRegistry.GearTypes()
-            .getList()
-            .forEach(x -> this.itemMap.put(x.GUID(), x.getItemForRegistration()));
+            .getSerializable()
+            .forEach(x -> {
+                try {
+                    this.itemMap.put(x.GUID(), of(x.getItemForRegistration(), x));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
     }
 
 }

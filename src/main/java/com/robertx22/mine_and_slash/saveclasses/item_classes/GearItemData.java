@@ -49,6 +49,12 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return true;
     }
 
+    public boolean isValidItem() {
+
+        return SlashRegistry.GearTypes()
+            .isRegistered(gear_type);
+    }
+
     public FinalizedGearStatReq getStatRequirements() {
         FinalizedGearStatReq req = GetBaseGearType().getStatRequirements()
             .getFinalized(this);

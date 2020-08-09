@@ -31,6 +31,10 @@ public class GearTooltipUtils {
 
         List<Text> tip = tooltip;
 
+        if (gear.GetBaseGearType() == null) {
+            return;
+        }
+
         TooltipInfo info = new TooltipInfo(data, gear.getRarity()
             .StatPercents());
 

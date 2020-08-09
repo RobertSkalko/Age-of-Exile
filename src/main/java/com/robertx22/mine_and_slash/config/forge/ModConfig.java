@@ -7,7 +7,7 @@ import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 
-@Config(name = "axe_of_exile")
+@Config(name = "age_of_exile")
 public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.CollapsibleObject

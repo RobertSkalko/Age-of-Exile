@@ -24,9 +24,11 @@ public abstract class BaseItemRegistrator {
 
     Item of(Item c, BaseGearType slot) {
 
-        Registry.register(Registry.ITEM, new Identifier(Ref.MODID, slot.family()
+        Identifier id = new Identifier(Ref.MODID, slot.family()
             .name()
-            .toLowerCase(Locale.ROOT) + "/" + slot.GUID()), c);
+            .toLowerCase(Locale.ROOT) + "/" + slot.GUID());
+
+        Registry.register(Registry.ITEM, id, c);
 
         return c;
 
