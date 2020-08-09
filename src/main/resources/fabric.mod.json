@@ -32,7 +32,7 @@
     "fabric": ">=0.15.0",
     "minecraft": "1.16.1",
 	"curios": ">=1.0.2",
-	"library_of_exile": ">=1.0.1",	
+	"library_of_exile": ">=1.0.2",	
 	"cloth-config2": "*",
 	"autoconfig1u": "*",
 	"cardinal-components-base": ">=2.4.2",

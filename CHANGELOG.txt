@@ -1,8 +1,12 @@
 v.1.0.8
+
+Update your library of exile.
+
 - fix nature balm
 - level ups now show on screen title messages.
 - fixed some texture errors
 * fix attack speed
+* Jar in Jared some deps in my library
 
 v.1.0.7
 
