@@ -29,7 +29,7 @@ public class GearBlueprint extends ItemBlueprint {
     }
 
     public GearBlueprint(int lvl, int tier) {
-        super(tier);
+        super(lvl, tier);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 

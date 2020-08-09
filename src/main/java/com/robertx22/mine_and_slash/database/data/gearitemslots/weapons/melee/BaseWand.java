@@ -1,26 +1,21 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class SageWand extends BaseWeapon {
-    public static BaseGearType INSTANCE = new SageWand();
-
-    private SageWand() {
+public abstract class BaseWand extends BaseWeapon {
+    public BaseWand() {
         this.attacksPerSecond = Constants.WAND_ATK_SPEED;
     }
 
@@ -48,16 +43,6 @@ public class SageWand extends BaseWeapon {
     }
 
     @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.SAGE_WAND;
-    }
-
-    @Override
-    public String GUID() {
-        return "sage_wand";
-    }
-
-    @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Wand;
     }
@@ -67,8 +52,4 @@ public class SageWand extends BaseWeapon {
         return 2000;
     }
 
-    @Override
-    public String locNameForLangFile() {
-        return "Sage Wand";
-    }
 }

@@ -18,23 +18,10 @@ public class DataGeneration {
             return;
         }
 
-        List<BaseDataPackLoader> list = new ArrayList<>();
-
-        //list.add(new BaseGearTypeDatapackLoader());
-        list.add(new MobAffixDataPackLoader());
-        list.add(new TierDatapackLoader());
-        //list.add(new AffixDataPackLoader());
-        list.add(new UniqueGearDatapackLoader());
-        list.add(new CompatibleItemDataPackLoader());
-        list.add(new DimConfigsDatapackLoader());
-        list.add(new EntityConfigsDatapackLoader());
-
         List<BaseRarityDatapackLoader> rars = new ArrayList<>();
         rars.add(new GearRarityLoader());
         rars.add(new SkillGemRarityLoader());
 
-        list.forEach(x -> x.getDataPackGenerator()
-            .run());
         rars.forEach(x -> x.getDatapackGenerator()
             .run());
 
@@ -47,6 +34,7 @@ public class DataGeneration {
     }
 
     public static void registerLoaders(ReloadableResourceManager manager) {
+        manager.registerListener(new LevelRangeDatapackLoader());
         manager.registerListener(new BaseGearTypeDatapackLoader());
         manager.registerListener(new TierDatapackLoader());
         manager.registerListener(new AffixDataPackLoader());

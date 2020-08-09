@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
-import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.ClothSlippers;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.OccultistRobes;
@@ -23,18 +22,68 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronHelmet
 import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronLegguards;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.GemstoneSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.HolyScepter;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.PrimitiveAxe;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.SageWand;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
+import net.minecraft.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseGearTypes implements ISlashRegistryInit {
 
+    public static BaseGearType NEWBIE_WAND = new BaseWand() {
+        @Override
+        public Item getItem() {
+            return ModRegistry.GEAR_ITEMS.NEWBIE_WAND;
+        }
+
+        @Override
+        public LevelRange getLevelRange() {
+            return LevelRanges.STARTER;
+        }
+
+        @Override
+        public String locNameForLangFile() {
+            return "Wooden Stick Wand";
+        }
+
+        @Override
+        public String GUID() {
+            return "wood_stick_wand";
+        }
+    };
+    public static BaseGearType LOW_WAND = new BaseWand() {
+        @Override
+        public Item getItem() {
+            return ModRegistry.GEAR_ITEMS.LOW_WAND;
+        }
+
+        @Override
+        public LevelRange getLevelRange() {
+            return LevelRanges.LOW;
+        }
+
+        @Override
+        public String locNameForLangFile() {
+            return "Ancient Wand";
+        }
+
+        @Override
+        public String GUID() {
+            return "ancient_wand";
+        }
+    };
+
     @Override
     public void registerAll() {
+
+        NEWBIE_WAND.addToSerializables();
+
         List<BaseGearType> All = new ArrayList<BaseGearType>() {
             {
                 {
@@ -63,7 +112,6 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(OccultNecklace.INSTANCE);
 
                     add(HunterBow.INSTANCE);
-                    add(SageWand.INSTANCE);
                     add(PrimitiveAxe.INSTANCE);
                     add(Crossbow.INSTANCE);
                     add(GemstoneSword.INSTANCE);

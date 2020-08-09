@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
-import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.BeastBloodChest;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.ExecutionerLeatherChest;
 import com.robertx22.mine_and_slash.database.data.unique_items.armor.InnerConfluxRobe;
@@ -15,6 +14,7 @@ import com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword.Wat
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.DivineMightScepter;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.EyeOfZegrathWand;
 import com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand.WillOfFloraWand;
+import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
 
 public class UniqueGears implements ISlashRegistryInit {
 

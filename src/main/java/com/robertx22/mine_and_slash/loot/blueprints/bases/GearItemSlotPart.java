@@ -12,11 +12,15 @@ public class GearItemSlotPart extends BlueprintPart<BaseGearType> {
 
     @Override
     protected BaseGearType generateIfNull() {
-        return SlashRegistry.GearTypes().random();
+        return SlashRegistry.GearTypes()
+            .getFilterWrapped(x -> x.getLevelRange()
+                .isLevelInRange(blueprint.level.get()))
+            .random();
     }
 
     public void set(String id) {
-        super.set(SlashRegistry.GearTypes().get(id));
+        super.set(SlashRegistry.GearTypes()
+            .get(id));
     }
 
 }

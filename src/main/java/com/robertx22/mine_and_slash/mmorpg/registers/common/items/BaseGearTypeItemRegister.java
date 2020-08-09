@@ -24,7 +24,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBo
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.GemstoneSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.HolyScepter;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.PrimitiveAxe;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.SageWand;
+import com.robertx22.mine_and_slash.database.registrators.BaseGearTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.cloth.ClothBootsItem;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.cloth.ClothChestItem;
@@ -67,7 +67,10 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
 
     public Item GEMSTONE_SWORD = of(new ItemSword(0), GemstoneSword.INSTANCE);
     public Item PRIMITIVE_AXE = of(new ItemAxe(0), PrimitiveAxe.INSTANCE);
-    public Item SAGE_WAND = of(new ItemWand(0), SageWand.INSTANCE);
+
+    public Item NEWBIE_WAND = of(new ItemWand(0), BaseGearTypes.NEWBIE_WAND);
+    public Item LOW_WAND = of(new ItemWand(0), BaseGearTypes.LOW_WAND);
+
     public Item HOLY_SCEPTER = of(new ItemWand(0), HolyScepter.INSTANCE);
     public Item BOW = of(new ItemBow(0), HunterBow.INSTANCE);
     public Item CROSSBOW = of(new CrossbowItem(ItemUtils.getDefaultGearProperties()), Crossbow.INSTANCE);

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.mechanics.WeaponMechanic;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
@@ -44,6 +45,8 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     public abstract TagList getTags();
 
     public abstract Item getItem();
+
+    public abstract LevelRange getLevelRange();
 
     public abstract StatRequirement getStatRequirements();
 

@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.generators.SlashDatapackGenerator;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.Cached;
 import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ResourceManager;
@@ -36,6 +37,17 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
     }
 
     public abstract SlashDatapackGenerator getDataPackGenerator();
+
+    @Override
+    protected Map<Identifier, JsonElement> prepare(ResourceManager resourceManager, Profiler profiler) {
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            this.getDataPackGenerator()
+                .run(); // first generate, then load. so no errors in dev enviroment
+        }
+        return super.prepare(resourceManager, profiler);
+
+    }
 
     @Override
     protected void apply(Map<Identifier, JsonElement> mapToLoad, ResourceManager manager, Profiler profilerIn) {
