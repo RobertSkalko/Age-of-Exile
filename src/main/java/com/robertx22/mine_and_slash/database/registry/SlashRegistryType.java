@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.registry;
 import com.robertx22.mine_and_slash.database.data.DimensionConfig;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
 import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
-import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.tiers.base.Tier;
 import com.robertx22.mine_and_slash.database.registrators.MobAffixes;
 import com.robertx22.mine_and_slash.database.registry.empty_entries.EmptyAffix;
@@ -14,12 +13,6 @@ import com.robertx22.mine_and_slash.datapacks.seriazables.SerializableBaseGearTy
 public enum SlashRegistryType {
 
     NONE("none"),
-    LEVEl_RANGE("level_range") {
-        @Override
-        public ISerializable getSerializer() {
-            return LevelRange.SERIALIZER;
-        }
-    },
     EFFECT("effect"),
     STAT("stat"),
     SPELL_SYNERGY("synergy"),

@@ -2,12 +2,12 @@ package com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.registrators.BaseGearTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -43,6 +43,6 @@ public class WaterElementalSword implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return BaseSword.INSTANCE;
+        return BaseGearTypes.HIGH_SWORD;
     }
 }

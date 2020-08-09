@@ -1,9 +1,7 @@
 package com.robertx22.mine_and_slash.datapacks.models;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
@@ -23,7 +21,9 @@ public class ItemModelManager {
         SlashRegistry.UniqueGears()
             .getSerializable()
             .forEach(x -> {
-                if (x.getBaseGearType() != HunterBow.INSTANCE && x.getBaseGearType() != Crossbow.INSTANCE) {
+                if (!x.getBaseGearType()
+                    .getTags()
+                    .contains(BaseGearType.SlotTag.ranged_weapon)) {
                     if (x.getBaseGearType()
                         .family()
                         .equals(BaseGearType.SlotFamily.Weapon)) {

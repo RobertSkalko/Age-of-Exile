@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
+import com.robertx22.mine_and_slash.database.registrators.BaseGearTypes;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.generators.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -37,7 +37,7 @@ public class ItemNewbieGearBag extends BaseItem {
 
                 List<BaseGearType> list = new ArrayList<>();
 
-                list.add(BaseWand.INSTANCE);
+                list.add(BaseGearTypes.NEWBIE_WAND);
 
                 list.forEach(x -> {
                     GearItemData data = getBlueprint(x).createData();

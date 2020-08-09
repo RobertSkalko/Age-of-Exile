@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem
 import com.robertx22.mine_and_slash.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.data.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.data.stats.Stat;
@@ -121,10 +120,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<Tier> Tiers() {
         return getRegistry(SlashRegistryType.TIER);
-    }
-
-    public static SlashRegistryContainer<LevelRange> LevelRanges() {
-        return getRegistry(SlashRegistryType.LEVEl_RANGE);
     }
 
     public static SlashRegistryContainer<BaseGearType> GearTypes() {
@@ -240,7 +235,6 @@ public class SlashRegistry {
 
     private static void registerFromAllInits() {
 
-        new LevelRanges().registerAll();
         new Tiers().registerAll();
 
         new Spells().registerAll(); // some stats are based on spells, so spells go first
@@ -272,7 +266,6 @@ public class SlashRegistry {
         SERVER = new HashMap<>();
 
         // data pack ones
-        addRegistry(new SlashRegistryContainer<LevelRange>(SlashRegistryType.LEVEl_RANGE, LevelRange.SERIALIZER).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseGearType>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).isDatapack());
         addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
         addRegistry(new SlashRegistryContainer<Affix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());

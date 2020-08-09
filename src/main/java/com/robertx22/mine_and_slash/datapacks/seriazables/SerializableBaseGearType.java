@@ -25,7 +25,7 @@ public class SerializableBaseGearType extends BaseGearType {
     public int weight;
 
     public SerializableBaseGearType() {
-        super("", null, null, "");
+        super("", null, "");
     }
 
     @Override

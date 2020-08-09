@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.registrators;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaOnHit;
 import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
@@ -27,6 +28,17 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
     public static BaseGearType END_WAND = new BaseWand("ancenstor_wand", LevelRanges.ENDGAME, "Ancient Wand") {
     };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_SWORD = new BaseSword("stick_sword", LevelRanges.STARTER, "Stick Sword") {
+    };
+    public static BaseGearType LOW_SWORD = new BaseSword("chipped_sword", LevelRanges.LOW, "Chipped Sword") {
+    };
+    public static BaseGearType MID_SWORD = new BaseSword("gemstone_sword", LevelRanges.MIDDLE, "Gemstone Sword") {
+    };
+    public static BaseGearType HIGH_SWORD = new BaseSword("clear_sword", LevelRanges.HIGH, "Clear Sword") {
+    };
+    public static BaseGearType END_SWORD = new BaseSword("royal_sword", LevelRanges.ENDGAME, "Royal Sword") {
+    };
 
     @Override
     public void registerAll() {
@@ -39,6 +51,12 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(MID_WAND);
                     add(HIGH_WAND);
                     add(END_WAND);
+
+                    add(NEWBIE_SWORD);
+                    add(LOW_SWORD);
+                    add(MID_SWORD);
+                    add(HIGH_SWORD);
+                    add(END_SWORD);
 
                 }
 
