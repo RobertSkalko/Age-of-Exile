@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.data.unique_items.weapons.sword;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.GemstoneSword;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalDamage;
@@ -43,7 +43,7 @@ public class IncarnationOfThunderSword implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return GemstoneSword.INSTANCE;
+        return BaseSword.INSTANCE;
     }
 }
 

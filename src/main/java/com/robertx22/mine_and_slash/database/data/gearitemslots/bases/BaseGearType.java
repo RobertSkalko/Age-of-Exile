@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.datapacks.seriazables.SerializableBaseGearType;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -23,6 +24,23 @@ import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.cloth.ClothBootsItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.cloth.ClothChestItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.cloth.ClothHelmetItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.cloth.ClothPantsItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.leather.LeatherBootsItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.leather.LeatherChestItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.leather.LeatherHelmetItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.leather.LeatherPantsItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.plate.PlateBootsItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.plate.PlateChestItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.plate.PlateHelmetItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.armor.plate.PlatePantsItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.baubles.ItemNecklace;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.baubles.ItemRing;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons.ItemAxe;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons.ItemSword;
+import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons.ItemWand;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
@@ -34,6 +52,16 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public float attacksPerSecond = 1;
 
+    public BaseGearType(String guid, LevelRange levelRange, String locname) {
+        this.guid = guid;
+        this.levelRange = levelRange;
+        this.locname = locname;
+    }
+
+    private BaseGearType() {
+
+    }
+
     public abstract List<StatModifier> implicitStats();
 
     public abstract List<StatModifier> baseStats();
@@ -44,11 +72,29 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public abstract TagList getTags();
 
-    public abstract Item getItem();
-
-    public abstract LevelRange getLevelRange();
-
     public abstract StatRequirement getStatRequirements();
+
+    protected String guid;
+    protected LevelRange levelRange;
+    protected String locname;
+
+    @Override
+    public final String GUID() {
+        return guid;
+    }
+
+    @Override
+    public final String locNameForLangFile() {
+        return locname;
+    }
+
+    public Item getItem() {
+        return ModRegistry.GEAR_ITEMS.itemMap.get(GUID());
+    }
+
+    public LevelRange getLevelRange() {
+        return levelRange;
+    }
 
     public final EquipmentSlot getVanillaSlotType() {
 
@@ -319,6 +365,76 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     }
 
+    public final Item getItemForRegistration() {
+
+        TagList tags = getTags();
+
+        if (tags.contains(SlotTag.sword)) {
+            return new ItemSword(0);
+        }
+        if (tags.contains(SlotTag.axe)) {
+            return new ItemAxe(0);
+        }
+        if (tags.contains(SlotTag.wand)) {
+            return new ItemWand(0);
+        }
+        if (tags.contains(SlotTag.bow)) {
+            return Items.BOW;
+        }
+        if (tags.contains(SlotTag.crossbow)) {
+            return Items.CROSSBOW;
+        }
+
+        if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.magic_shield_stat)) {
+            return new ClothChestItem(0);
+        }
+        if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.magic_shield_stat)) {
+            return new ClothBootsItem(0);
+        }
+        if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.magic_shield_stat)) {
+            return new ClothPantsItem(0);
+        }
+        if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.magic_shield_stat)) {
+            return new ClothHelmetItem(0);
+        }
+
+        if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.armor_stat)) {
+            return new PlateChestItem(0);
+        }
+        if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.armor_stat)) {
+            return new PlateBootsItem(0);
+        }
+        if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.armor_stat)) {
+            return new PlatePantsItem(0);
+        }
+        if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.armor_stat)) {
+            return new PlateHelmetItem(0);
+        }
+
+        if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.dodge_stat)) {
+            return new LeatherChestItem(0);
+        }
+        if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.dodge_stat)) {
+            return new LeatherBootsItem(0);
+        }
+        if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.dodge_stat)) {
+            return new LeatherPantsItem(0);
+        }
+        if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.dodge_stat)) {
+            return new LeatherHelmetItem(0);
+        }
+
+        if (tags.contains(SlotTag.necklace)) {
+            return new ItemNecklace(0);
+        }
+        if (tags.contains(SlotTag.ring)) {
+            return new ItemRing(0);
+        }
+
+        return null;
+
+    }
+
     @Override
     public int getRarityRank() {
         return 0;
@@ -355,6 +471,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         JsonUtils.addStats(implicitStats(), json, "implicit_stats");
         JsonUtils.addStats(baseStats(), json, "base_stats");
 
+        json.add("level_range", getLevelRange().toJson());
         json.add("tag_list", getTags().toJson());
         json.add("stat_req", getStatRequirements().toJson());
         json.addProperty("item_id", Registry.ITEM.getId(getItem())
@@ -369,10 +486,10 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         SerializableBaseGearType o = new SerializableBaseGearType();
 
-        o.identifier = this.getGUIDFromJson(json);
+        o.guid = this.getGUIDFromJson(json);
         o.weight = this.getWeightFromJson(json);
         o.lang_name_id = this.getLangNameStringFromJson(json);
-
+        o.levelRange = LevelRange.SERIALIZER.fromJson(json.getAsJsonObject("level_range"));
         o.stat_req = StatRequirement.EMPTY.fromJson(json.getAsJsonObject("stat_req"));
         o.base_stats = JsonUtils.getStats(json, "base_stats");
         o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");

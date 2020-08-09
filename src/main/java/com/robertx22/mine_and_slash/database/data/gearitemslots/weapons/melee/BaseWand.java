@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.SpellDamage;
@@ -15,7 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseWand extends BaseWeapon {
-    public BaseWand() {
+
+    public BaseWand(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
         this.attacksPerSecond = Constants.WAND_ATK_SPEED;
     }
 

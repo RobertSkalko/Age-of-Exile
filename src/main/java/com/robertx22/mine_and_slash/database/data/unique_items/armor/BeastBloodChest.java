@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.data.unique_items.armor;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronChestplate;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.BasePlateChest;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.ImmuneToEffectStat;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.IncreasedItemQuantity;
@@ -45,6 +45,6 @@ public class BeastBloodChest implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return IronChestplate.INSTANCE;
+        return BasePlateChest.INSTANCE;
     }
 }

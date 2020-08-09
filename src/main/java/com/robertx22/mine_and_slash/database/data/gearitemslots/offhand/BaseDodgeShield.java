@@ -1,23 +1,20 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Buckler extends BaseOffHand {
-    public static BaseGearType INSTANCE = new Buckler();
+public class BaseDodgeShield extends BaseOffHand {
 
-    private Buckler() {
-
+    public BaseDodgeShield(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
@@ -40,18 +37,4 @@ public class Buckler extends BaseOffHand {
         return new TagList(SlotTag.shield, SlotTag.leather, SlotTag.offhand_family, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
-    @Override
-    public Item getItem() {
-        return Items.SHIELD;
-    }
-
-    @Override
-    public String GUID() {
-        return "buckler";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Buckler";
-    }
 }

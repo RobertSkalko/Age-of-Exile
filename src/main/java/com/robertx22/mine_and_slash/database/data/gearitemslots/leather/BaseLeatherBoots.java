@@ -1,29 +1,26 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseArmor;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseChest;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class LeatherLeggings extends BaseChest {
-    public static BaseGearType INSTANCE = new LeatherLeggings();
+public class BaseLeatherBoots extends BaseArmor {
 
-    private LeatherLeggings() {
-
+    public BaseLeatherBoots(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(45, 80, DodgeRating.getInstance(), ModType.FLAT)
+            new StatModifier(15, 40, DodgeRating.getInstance(), ModType.FLAT)
         );
     }
 
@@ -39,22 +36,7 @@ public class LeatherLeggings extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.leather, SlotTag.pants, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
-    }
-
-    @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.LEATHER_LEGGINGS;
-    }
-
-    @Override
-    public String GUID() {
-        return "leather_leggings";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Leather Leggings";
+        return new TagList(SlotTag.leather, SlotTag.boots, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
 }

@@ -1,25 +1,22 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class PrimitiveAxe extends BaseWeapon {
-    public static BaseGearType INSTANCE = new PrimitiveAxe();
-
-    private PrimitiveAxe() {
+public class BaseAxe extends BaseWeapon {
+    public BaseAxe(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
         this.attacksPerSecond = Constants.AXE_ATK_SPEED;
     }
 
@@ -48,28 +45,13 @@ public class PrimitiveAxe extends BaseWeapon {
     }
 
     @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.PRIMITIVE_AXE;
-    }
-
-    @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Axe;
     }
 
     @Override
-    public String GUID() {
-        return "primitive_axe";
-    }
-
-    @Override
     public int Weight() {
         return 1000;
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Primitive Axe";
     }
 
 }

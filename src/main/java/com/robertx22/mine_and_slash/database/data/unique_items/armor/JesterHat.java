@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.data.unique_items.armor;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.SorcererCirclet;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.BaseClothHelmet;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.mine_and_slash.database.data.stats.types.loot.MagicFind;
@@ -45,6 +45,6 @@ public class JesterHat implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return SorcererCirclet.INSTANCE;
+        return BaseClothHelmet.INSTANCE;
     }
 }

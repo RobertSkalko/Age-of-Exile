@@ -1,121 +1,44 @@
 package com.robertx22.mine_and_slash.database.registrators;
 
+import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.ClothSlippers;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.OccultistRobes;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.SilkPants;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.SorcererCirclet;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeNecklace;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeRing;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.OccultNecklace;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.OccultRing;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.HunterHood;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.LeatherLeggings;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.RawhideBoots;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.WildTunic;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.Buckler;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.SpiritShield;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.TowerShield;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronChestplate;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronGreaves;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronHelmet;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.IronLegguards;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.GemstoneSword;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.HolyScepter;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.PrimitiveAxe;
-import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
+import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaOnHit;
 import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
-import net.minecraft.item.Item;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BaseGearTypes implements ISlashRegistryInit {
 
-    public static BaseGearType NEWBIE_WAND = new BaseWand() {
+    public static BaseGearType NEWBIE_WAND = new BaseWand("wood_stick_wand", LevelRanges.STARTER, "Wooden Stick Wand") {
+    };
+    public static BaseGearType LOW_WAND = new BaseWand("ancient_wand", LevelRanges.LOW, "Ancient Wand") {
+    };
+    public static BaseGearType MID_WAND = new BaseWand("sage_wand", LevelRanges.MIDDLE, "Sage Wand") {
+    };
+    public static BaseGearType HIGH_WAND = new BaseWand("energizing_wand", LevelRanges.HIGH, "Energizing Wand") {
         @Override
-        public Item getItem() {
-            return ModRegistry.GEAR_ITEMS.NEWBIE_WAND;
-        }
-
-        @Override
-        public LevelRange getLevelRange() {
-            return LevelRanges.STARTER;
-        }
-
-        @Override
-        public String locNameForLangFile() {
-            return "Wooden Stick Wand";
-        }
-
-        @Override
-        public String GUID() {
-            return "wood_stick_wand";
+        public List<StatModifier> implicitStats() {
+            return Arrays.asList(new StatModifier(0.5F, 1.5F, ManaOnHit.getInstance(), ModType.FLAT));
         }
     };
-    public static BaseGearType LOW_WAND = new BaseWand() {
-        @Override
-        public Item getItem() {
-            return ModRegistry.GEAR_ITEMS.LOW_WAND;
-        }
-
-        @Override
-        public LevelRange getLevelRange() {
-            return LevelRanges.LOW;
-        }
-
-        @Override
-        public String locNameForLangFile() {
-            return "Ancient Wand";
-        }
-
-        @Override
-        public String GUID() {
-            return "ancient_wand";
-        }
+    public static BaseGearType END_WAND = new BaseWand("ancenstor_wand", LevelRanges.ENDGAME, "Ancient Wand") {
     };
 
     @Override
     public void registerAll() {
 
-        NEWBIE_WAND.addToSerializables();
-
         List<BaseGearType> All = new ArrayList<BaseGearType>() {
             {
                 {
-                    add(IronGreaves.INSTANCE);
-                    add(IronLegguards.INSTANCE);
-                    add(IronHelmet.INSTANCE);
-                    add(IronChestplate.INSTANCE);
-
-                    add(RawhideBoots.INSTANCE);
-                    add(LeatherLeggings.INSTANCE);
-                    add(HunterHood.INSTANCE);
-                    add(WildTunic.INSTANCE);
-
-                    add(ClothSlippers.INSTANCE);
-                    add(OccultistRobes.INSTANCE);
-                    add(SorcererCirclet.INSTANCE);
-                    add(SilkPants.INSTANCE);
-
-                    add(TowerShield.INSTANCE);
-                    add(SpiritShield.INSTANCE);
-                    add(Buckler.INSTANCE);
-
-                    add(OccultRing.INSTANCE);
-                    add(LifeRing.INSTANCE);
-                    add(LifeNecklace.INSTANCE);
-                    add(OccultNecklace.INSTANCE);
-
-                    add(HunterBow.INSTANCE);
-                    add(PrimitiveAxe.INSTANCE);
-                    add(Crossbow.INSTANCE);
-                    add(GemstoneSword.INSTANCE);
-                    add(HolyScepter.INSTANCE);
+                    add(NEWBIE_WAND);
+                    add(LOW_WAND);
+                    add(MID_WAND);
+                    add(HIGH_WAND);
+                    add(END_WAND);
 
                 }
 

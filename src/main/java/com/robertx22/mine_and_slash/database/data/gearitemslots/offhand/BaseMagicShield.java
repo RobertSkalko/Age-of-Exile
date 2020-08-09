@@ -1,24 +1,21 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class SpiritShield extends BaseOffHand {
-    public static BaseGearType INSTANCE = new SpiritShield();
+public class BaseMagicShield extends BaseOffHand {
 
-    private SpiritShield() {
-
+    public BaseMagicShield(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
@@ -41,18 +38,4 @@ public class SpiritShield extends BaseOffHand {
         return new TagList(SlotTag.shield, SlotTag.cloth, SlotTag.offhand_family, SlotTag.magic_shield_stat, SlotTag.intelligence);
     }
 
-    @Override
-    public Item getItem() {
-        return Items.SHIELD;
-    }
-
-    @Override
-    public String GUID() {
-        return "spirit_shield";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Spirit Shield";
-    }
 }

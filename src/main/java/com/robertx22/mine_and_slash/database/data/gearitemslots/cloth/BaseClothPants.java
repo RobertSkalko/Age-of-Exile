@@ -1,29 +1,26 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.cloth;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseArmor;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseBoots;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShield;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class OccultistRobes extends BaseBoots {
-    public static BaseGearType INSTANCE = new OccultistRobes();
+public class BaseClothPants extends BaseArmor {
 
-    private OccultistRobes() {
-
+    public BaseClothPants(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(4, 10, MagicShield.getInstance(), ModType.FLAT)
+            new StatModifier(3, 7, MagicShield.getInstance(), ModType.FLAT)
         );
     }
 
@@ -39,22 +36,8 @@ public class OccultistRobes extends BaseBoots {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.cloth, SlotTag.chest, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence);
+        return new TagList(SlotTag.cloth, SlotTag.pants, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence);
     }
 
-    @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.OCCULTIST_ROBES;
-    }
-
-    @Override
-    public String GUID() {
-        return "occultist_robes";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Occultist Robes";
-    }
 }
 

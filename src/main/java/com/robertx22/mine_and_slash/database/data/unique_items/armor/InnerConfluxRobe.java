@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.data.unique_items.armor;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.OccultistRobes;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.BaseClothChest;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
@@ -45,6 +45,6 @@ public class InnerConfluxRobe implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return OccultistRobes.INSTANCE;
+        return BaseClothChest.INSTANCE;
     }
 }

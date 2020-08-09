@@ -1,26 +1,24 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Lifesteal;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class GemstoneSword extends BaseWeapon {
-    public static BaseGearType INSTANCE = new GemstoneSword();
+public class BaseSword extends BaseWeapon {
 
-    private GemstoneSword() {
+    public BaseSword(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
         this.attacksPerSecond = Constants.SWORD_ATK_SPEED;
     }
 
@@ -50,23 +48,8 @@ public class GemstoneSword extends BaseWeapon {
     }
 
     @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.GEMSTONE_SWORD;
-    }
-
-    @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Sword;
-    }
-
-    @Override
-    public String GUID() {
-        return "gemstone_sword";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Gemstone Sword";
     }
 
     @Override

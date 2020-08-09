@@ -1,15 +1,11 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.bases;
 
-import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 
 public abstract class BaseCurio extends BaseGearType {
 
-    public final int maximumRareAffixes(GearRarity rarity) {
-        if (rarity.maxAffixes() > 2) {
-            return rarity.maxAffixes() - 2;
-        } else {
-            return rarity.maxAffixes();
-        }
+    public BaseCurio(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override

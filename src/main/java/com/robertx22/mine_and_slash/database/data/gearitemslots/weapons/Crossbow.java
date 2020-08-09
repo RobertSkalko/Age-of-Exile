@@ -1,25 +1,22 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Crossbow extends BaseWeapon {
-    public static BaseGearType INSTANCE = new Crossbow();
-
-    private Crossbow() {
+    public Crossbow(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
 
     }
 
@@ -48,28 +45,13 @@ public class Crossbow extends BaseWeapon {
     }
 
     @Override
-    public Item getItem() {
-        return Items.CROSSBOW;
-    }
-
-    @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.CrossBow;
     }
 
     @Override
-    public String GUID() {
-        return "crossbow";
-    }
-
-    @Override
     public int Weight() {
         return 750;
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Crossbow";
     }
 
 }

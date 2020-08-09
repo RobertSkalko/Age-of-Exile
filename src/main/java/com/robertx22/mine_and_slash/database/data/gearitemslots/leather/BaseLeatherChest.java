@@ -1,29 +1,26 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseArmor;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseChest;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class RawhideBoots extends BaseChest {
-    public static BaseGearType INSTANCE = new RawhideBoots();
+public class BaseLeatherChest extends BaseArmor {
 
-    private RawhideBoots() {
-
+    public BaseLeatherChest(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(15, 40, DodgeRating.getInstance(), ModType.FLAT)
+            new StatModifier(45, 80, DodgeRating.getInstance(), ModType.FLAT)
         );
     }
 
@@ -39,22 +36,7 @@ public class RawhideBoots extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.leather, SlotTag.boots, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
-    }
-
-    @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.RAWHIDE_BOOTS;
-    }
-
-    @Override
-    public String GUID() {
-        return "rawhide_boots";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Rawhide Boots";
+        return new TagList(SlotTag.chest, SlotTag.leather, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
 }

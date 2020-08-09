@@ -2,10 +2,10 @@ package com.robertx22.mine_and_slash.database.data.unique_items.weapons.wand;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.registrators.BaseGearTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -41,6 +41,6 @@ public class EyeOfZegrathWand implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return BaseWand.INSTANCE;
+        return BaseGearTypes.MID_WAND;
     }
 }

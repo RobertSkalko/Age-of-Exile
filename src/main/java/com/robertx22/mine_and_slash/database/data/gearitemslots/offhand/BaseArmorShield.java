@@ -1,23 +1,20 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class TowerShield extends BaseOffHand {
-    public static BaseGearType INSTANCE = new TowerShield();
+public class BaseArmorShield extends BaseOffHand {
 
-    private TowerShield() {
-
+    public BaseArmorShield(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
@@ -40,18 +37,4 @@ public class TowerShield extends BaseOffHand {
         return new TagList(SlotTag.shield, SlotTag.plate, SlotTag.offhand_family, SlotTag.armor_stat, SlotTag.strength);
     }
 
-    @Override
-    public Item getItem() {
-        return Items.SHIELD;
-    }
-
-    @Override
-    public String GUID() {
-        return "tower_shield";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Tower Shield";
-    }
 }

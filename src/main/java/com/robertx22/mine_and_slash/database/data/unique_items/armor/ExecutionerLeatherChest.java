@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.data.unique_items.armor;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.WildTunic;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherChest;
 import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
@@ -42,6 +42,6 @@ public class ExecutionerLeatherChest implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return WildTunic.INSTANCE;
+        return BaseLeatherChest.INSTANCE;
     }
 }

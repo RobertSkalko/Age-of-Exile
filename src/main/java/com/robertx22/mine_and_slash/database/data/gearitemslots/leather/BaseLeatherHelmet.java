@@ -1,23 +1,20 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseArmor;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseChest;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class HunterHood extends BaseChest {
-    public static BaseGearType INSTANCE = new HunterHood();
+public class BaseLeatherHelmet extends BaseArmor {
 
-    private HunterHood() {
-
+    public BaseLeatherHelmet(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
@@ -40,21 +37,6 @@ public class HunterHood extends BaseChest {
     @Override
     public TagList getTags() {
         return new TagList(SlotTag.leather, SlotTag.helmet, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
-    }
-
-    @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.HUNTER_HOOD;
-    }
-
-    @Override
-    public String GUID() {
-        return "hunter_hood";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Hunter Hood";
     }
 
 }

@@ -1,23 +1,20 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseArmor;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.armor.BaseChest;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class WildTunic extends BaseChest {
-    public static BaseGearType INSTANCE = new WildTunic();
+public class BaseLeatherPants extends BaseArmor {
 
-    private WildTunic() {
-
+    public BaseLeatherPants(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
@@ -39,22 +36,7 @@ public class WildTunic extends BaseChest {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.chest, SlotTag.leather, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
-    }
-
-    @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.WILD_TUNIC;
-    }
-
-    @Override
-    public String GUID() {
-        return "wild_tunic";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Wild Tunic";
+        return new TagList(SlotTag.leather, SlotTag.pants, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity);
     }
 
 }

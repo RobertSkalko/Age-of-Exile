@@ -1,26 +1,23 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class HunterBow extends BaseWeapon {
-    public static BaseGearType INSTANCE = new HunterBow();
 
-    private HunterBow() {
-
+    public HunterBow(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
     }
 
     @Override
@@ -28,7 +25,6 @@ public class HunterBow extends BaseWeapon {
         return Arrays.asList(
             new StatModifier(1, 3, 2, 8, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(5, 18, CriticalHit.getInstance(), ModType.FLAT)
-
         );
     }
 
@@ -48,28 +44,13 @@ public class HunterBow extends BaseWeapon {
     }
 
     @Override
-    public Item getItem() {
-        return Items.BOW;
-    }
-
-    @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Bow;
     }
 
     @Override
-    public String GUID() {
-        return "hunter_bow";
-    }
-
-    @Override
     public int Weight() {
         return 750;
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Hunter Bow";
     }
 
 }

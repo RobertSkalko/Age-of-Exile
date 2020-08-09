@@ -1,26 +1,26 @@
 package com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
+import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.HealPower;
-import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
-import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class HolyScepter extends BaseWeapon {
-    public static BaseGearType INSTANCE = new HolyScepter();
+public class BaseScepter extends BaseWeapon {
 
-    private HolyScepter() {
+    // todo this will just be a wand variation?
+
+    public BaseScepter(String guid, LevelRange levelRange, String locname) {
+        super(guid, levelRange, locname);
         this.attacksPerSecond = Constants.WAND_ATK_SPEED;
     }
 
@@ -48,16 +48,6 @@ public class HolyScepter extends BaseWeapon {
     }
 
     @Override
-    public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.HOLY_SCEPTER;
-    }
-
-    @Override
-    public String GUID() {
-        return "holy_scepter";
-    }
-
-    @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Wand;
     }
@@ -67,8 +57,4 @@ public class HolyScepter extends BaseWeapon {
         return 750;
     }
 
-    @Override
-    public String locNameForLangFile() {
-        return "Holy Scepter";
-    }
 }
