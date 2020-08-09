@@ -25,7 +25,7 @@ public abstract class BaseWand extends BaseWeapon {
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(1, 3, 3, 5, new WeaponDamage(Elements.Physical), ModType.FLAT),
+            new StatModifier(2, 3, 3, 6, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(3, 10, CriticalHit.getInstance(), ModType.FLAT)
         );
     }

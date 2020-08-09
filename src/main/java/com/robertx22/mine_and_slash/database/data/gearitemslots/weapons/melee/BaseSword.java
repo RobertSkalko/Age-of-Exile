@@ -25,7 +25,7 @@ public class BaseSword extends BaseWeapon {
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(1, 3, 2, 4, new WeaponDamage(Elements.Physical), ModType.FLAT),
+            new StatModifier(2, 3, 2, 4, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(2, 6, CriticalHit.getInstance(), ModType.FLAT)
 
         );

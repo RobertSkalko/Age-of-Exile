@@ -14,7 +14,7 @@ public class GearItemSlotPart extends BlueprintPart<BaseGearType> {
     protected BaseGearType generateIfNull() {
         return SlashRegistry.GearTypes()
             .getFilterWrapped(x -> x.getLevelRange()
-                .isLevelInRange(blueprint.level.get()))
+                .isLevelInRange(blueprint.level.number))
             .random();
     }
 

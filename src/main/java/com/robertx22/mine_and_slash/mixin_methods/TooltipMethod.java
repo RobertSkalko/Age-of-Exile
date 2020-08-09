@@ -1,7 +1,10 @@
 package com.robertx22.mine_and_slash.mixin_methods;
 
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.event_hooks.ontick.CompatibleItemInventoryCheck;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -16,8 +19,10 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Comparator;
@@ -66,6 +71,45 @@ public class TooltipMethod {
 
                 if (data != null) {
                     data.BuildTooltip(ctx);
+                } else {
+                    if (CompatibleItemInventoryCheck.isComp(stack.getItem())) {
+
+                        String reg = Registry.ITEM.getId(stack.getItem())
+                            .toString();
+
+                        List<CompatibleItem> matchingItems = SlashRegistry.CompatibleItems()
+                            .getFilterWrapped(x -> x.item_id.equals(reg)).list;
+
+                        if (!matchingItems.isEmpty()) {
+
+                            CompatibleItem min = matchingItems.stream()
+                                .min(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
+                                    .get(s.item_type)
+                                    .getLevelRange()
+                                    .getMinLevel()))
+                                .get();
+                            CompatibleItem max = matchingItems.stream()
+                                .max(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
+                                    .get(s.item_type)
+                                    .getLevelRange()
+                                    .getMaxLevel()))
+                                .get();
+
+                            int mini = SlashRegistry.GearTypes()
+                                .get(min.item_type)
+                                .getLevelRange()
+                                .getMinLevel();
+
+                            int maxi = SlashRegistry.GearTypes()
+                                .get(max.item_type)
+                                .getLevelRange()
+                                .getMaxLevel();
+
+                            tooltip.add(new LiteralText("Level: " + mini + " - " + maxi));
+
+                        }
+
+                    }
                 }
 
                 MutableText broken = TooltipUtils.itemBrokenText(stack, data);

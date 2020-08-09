@@ -23,7 +23,7 @@ public class BaseAxe extends BaseWeapon {
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(2, 3, 3, 8, new WeaponDamage(Elements.Physical), ModType.FLAT),
+            new StatModifier(2, 3, 4, 9, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(4, 15, CriticalHit.getInstance(), ModType.FLAT)
 
         );
