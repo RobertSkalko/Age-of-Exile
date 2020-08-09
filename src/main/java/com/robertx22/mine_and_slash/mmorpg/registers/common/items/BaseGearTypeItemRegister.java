@@ -14,7 +14,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
             .getSerializable()
             .forEach(x -> {
                 try {
-                    this.itemMap.put(x.GUID(), of(x.getItemForRegistration(), x));
+                    this.itemMap.put(x.GUID(), gearType(x.getItemForRegistration(), x));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

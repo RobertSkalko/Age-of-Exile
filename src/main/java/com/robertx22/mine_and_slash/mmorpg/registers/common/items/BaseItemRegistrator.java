@@ -22,11 +22,15 @@ public abstract class BaseItemRegistrator {
         return c;
     }
 
-    Item of(Item c, BaseGearType slot) {
+    Item gearType(Item c, BaseGearType slot) {
+
+        String type = slot.getSlotType()
+            .name()
+            .toLowerCase(Locale.ROOT);
 
         Identifier id = new Identifier(Ref.MODID, slot.family()
             .name()
-            .toLowerCase(Locale.ROOT) + "/" + slot.GUID());
+            .toLowerCase(Locale.ROOT) + "/" + type + "/" + slot.GUID());
 
         Registry.register(Registry.ITEM, id, c);
 

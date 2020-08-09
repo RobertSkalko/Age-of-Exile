@@ -27,7 +27,7 @@ public class BaseGearTypes implements ISlashRegistryInit {
             return Arrays.asList(new StatModifier(0.5F, 1.5F, ManaOnHit.getInstance(), ModType.FLAT));
         }
     };
-    public static BaseGearType END_WAND = new BaseWand("ancenstor_wand", LevelRanges.ENDGAME, "Ancient Wand") {
+    public static BaseGearType END_WAND = new BaseWand("ancestor_wand", LevelRanges.ENDGAME, "Ancient Wand") {
     };
     //////////////////////////////////////
     public static BaseGearType NEWBIE_SWORD = new BaseSword("stick_sword", LevelRanges.STARTER, "Stick Sword") {

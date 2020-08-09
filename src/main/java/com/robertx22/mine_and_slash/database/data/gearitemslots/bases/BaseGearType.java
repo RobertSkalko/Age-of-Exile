@@ -45,6 +45,8 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -363,6 +365,122 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         return false;
 
+    }
+
+    public static List<SlotTag> SLOT_TYPE_TAGS = Arrays.asList(
+        SlotTag.sword, SlotTag.axe, SlotTag.wand,
+        SlotTag.boots, SlotTag.chest, SlotTag.pants, SlotTag.helmet,
+        SlotTag.bow, SlotTag.crossbow,
+        SlotTag.ring, SlotTag.necklace
+    );
+
+    public SlotTag getSlotType() {
+
+        List<SlotTag> list = new ArrayList<>();
+
+        SLOT_TYPE_TAGS.stream()
+            .forEach(x -> {
+                if (getTags().contains(x)) {
+                    list.add(x);
+                }
+            });
+
+        if (list.isEmpty()) {
+            System.out.println("Item has no slot type tag?!!");
+        }
+        if (list.size() > 1) {
+            System.out.println("Item has more than 1 slot type tag?!");
+        }
+
+        return list.get(0);
+
+    }
+
+    public String[] getRecipePattern() {
+
+        TagList tags = getTags();
+
+        if (tags.contains(SlotTag.sword)) {
+            return new String[]{
+                " M ",
+                " M ",
+                " S "
+            };
+        }
+        if (tags.contains(SlotTag.axe)) {
+            return new String[]{
+                "MM ",
+                " S ",
+                " S "
+            };
+        }
+        if (tags.contains(SlotTag.wand)) {
+            return new String[]{
+                "  M",
+                " M ",
+                "S  "
+            };
+        }
+        if (tags.contains(SlotTag.bow)) {
+            return new String[]{
+                " MB",
+                "M B",
+                " MB"
+            };
+        }
+        if (tags.contains(SlotTag.crossbow)) {
+            return new String[]{
+                "MSM",
+                "S S",
+                " S "
+            };
+        }
+
+        if (tags.contains(SlotTag.chest)) {
+            return new String[]{
+                "M M ",
+                "MMM",
+                "MMM"
+            };
+        }
+        if (tags.contains(SlotTag.boots)) {
+            return new String[]{
+                "  ",
+                "M M",
+                "M M"
+            };
+        }
+        if (tags.contains(SlotTag.pants)) {
+            return new String[]{
+                "MMM",
+                "M M",
+                "M M"
+            };
+        }
+        if (tags.contains(SlotTag.helmet)) {
+            return new String[]{
+                "MMM",
+                "M M",
+                "  "
+            };
+        }
+
+        if (tags.contains(SlotTag.necklace)) {
+            return new String[]{
+                "MSM",
+                "M M",
+                "MMM"
+            };
+        }
+        if (tags.contains(SlotTag.ring)) {
+            return new String[]{
+                "MMM",
+                "M M",
+                "MMM"
+            };
+        }
+
+        return null;
     }
 
     public final Item getItemForRegistration() {
