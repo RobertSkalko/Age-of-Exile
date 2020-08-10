@@ -52,7 +52,7 @@ public class SpellHotbatSetupScreen extends HandledScreen<HotbarSetupContainer> 
         list.add(new LiteralText("Each spell requires different weapon to cast."));
         list.add(new LiteralText("Mage weapon means a staff, wand or scepter."));
 
-        list.add(new LiteralText("To Choose a spell, press R, then select it."));
+        list.add(new LiteralText("To Choose a spell, press [R], then select it."));
         list.add(new LiteralText("To cast it, right click with the correct weapon."));
         list.add(new LiteralText("If the weapon is like a bow, do [Shift] + [RMB]"));
 

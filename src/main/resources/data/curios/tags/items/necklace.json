@@ -1,4 +1,4 @@
 {
   "replace": "false",
-  "values": ["mmorpg:jewelry/life_necklace","mmorpg:jewelry/occult_necklace","mmorpg:uniques/jewelry/birth_miracle","mmorpg:uniques/jewelry/skull_of_spirits"]
+  "values": ["mmorpg:jewelry/necklace/lifeblood_amulet","mmorpg:jewelry/necklace/life_give_amulet"]
 }

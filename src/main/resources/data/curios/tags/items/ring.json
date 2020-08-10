@@ -1,4 +1,4 @@
 {
   "replace": "false",
-  "values": ["mmorpg:jewelry/occult_ring","mmorpg:jewelry/life_ring","mmorpg:uniques/jewelry/greed_persist","mmorpg:uniques/jewelry/loop_of_infinity"]
+  "values": ["mmorpg:jewelry/ring/cold_res_ring_low","mmorpg:jewelry/ring/poison_res_ring_low","mmorpg:jewelry/ring/thunder_res_ring_low","mmorpg:jewelry/ring/fire_res_ring_end","mmorpg:jewelry/ring/thunder_res_ring_end","mmorpg:jewelry/ring/poison_res_ring_end","mmorpg:jewelry/ring/cold_res_ring_end","mmorpg:jewelry/ring/fire_res_ring_low"]
 }

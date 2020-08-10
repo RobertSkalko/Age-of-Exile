@@ -85,6 +85,14 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
         Item resultItem = ModRegistry.GEAR_MATERIALS.MAP.get(type)
             .get(tier);
 
+        Item smallResource = Items.GOLD_NUGGET;
+
+        if (type == GearMaterialRegister.TYPE.CLOTH) {
+            smallResource = Items.STRING;
+        } else if (type == GearMaterialRegister.TYPE.LEATHER) {
+            smallResource = Items.STRING;
+        }
+
         if (tier == 0) {
             ShapedRecipeJsonFactory fac = shaped(resultItem);
 
@@ -97,9 +105,10 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
             }
 
             return fac.input('e', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
+                .input('s', smallResource)
                 .pattern(" e ")
-                .pattern("eve")
-                .pattern(" e ")
+                .pattern("svs")
+                .pattern(" s ")
                 .criterion("player_level", trigger());
         }
 
@@ -113,10 +122,11 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
             return shaped(resultItem)
                 .input('v', ModRegistry.GEAR_MATERIALS.MAP.get(type)
                     .get(tier - 1))
+                .input('s', smallResource)
                 .input('e', essence)
                 .pattern(" e ")
-                .pattern("eve")
-                .pattern(" e ")
+                .pattern("svs")
+                .pattern(" s ")
                 .criterion("player_level", trigger());
         }
 
