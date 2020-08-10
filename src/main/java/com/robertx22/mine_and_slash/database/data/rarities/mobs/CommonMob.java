@@ -28,8 +28,8 @@ public class CommonMob extends BaseCommon implements MobRarity {
     }
 
     @Override
-    public float HealthMultiplier() {
-        return 0.9F;
+    public float ExtraHealthMulti() {
+        return 0;
     }
 
     @Override

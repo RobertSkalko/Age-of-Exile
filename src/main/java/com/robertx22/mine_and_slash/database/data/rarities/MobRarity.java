@@ -9,7 +9,7 @@ public interface MobRarity extends Rarity {
 
     public float DamageMultiplier();
 
-    public float HealthMultiplier();
+    public float ExtraHealthMulti();
 
     public float StatMultiplier();
 

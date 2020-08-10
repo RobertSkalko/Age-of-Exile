@@ -28,8 +28,8 @@ public class EpicMob extends BaseEpic implements MobRarity {
     }
 
     @Override
-    public float HealthMultiplier() {
-        return 4;
+    public float ExtraHealthMulti() {
+        return 1;
     }
 
     @Override

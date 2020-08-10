@@ -9,6 +9,8 @@ Compatibility update:
 
 Update your library of exile.
 
+- lvl 1 common mobs should now have same health as vanilla minecraft.
+- mobs will have less hp on average
 - fix nature balm
 - level ups now show on screen title messages.
 - fixed some texture errors

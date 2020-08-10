@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.database.base.Rarities;
 import com.robertx22.mine_and_slash.database.data.EntityConfig;
@@ -14,11 +13,11 @@ import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDa
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.world.World;
 
 import java.util.stream.Collectors;
@@ -94,23 +93,14 @@ public class MobStatUtils {
 
         int lvl = unitdata.getLevel();
 
-        float hpaddedalready = 0;
-        EntityAttributeModifier hpmod = en.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)
-            .getModifier(Unit.hpID);
-        if (hpmod != null) {
-            hpaddedalready = (float) hpmod.getValue();
-        }
+        float hpToAdd = EntityUtils.getVanillaMaxHealth(en) * rar.ExtraHealthMulti();
 
-        float multi = lvl < 10 ? 0.8F : 1; // newbie help
-
-        float hpwithoutmodifier = (en.getMaxHealth() * multi) - hpaddedalready;
-
-        if (hpwithoutmodifier < 0) {
-            hpwithoutmodifier = 0;
+        if (hpToAdd < 0) {
+            hpToAdd = 0;
         }
 
         unit.getCreateStat(Health.getInstance())
-            .addFlat(hpwithoutmodifier * rar.HealthMultiplier(), lvl);
+            .addFlat(hpToAdd, lvl);
 
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()

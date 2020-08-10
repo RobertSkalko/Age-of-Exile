@@ -28,8 +28,8 @@ public class UncommonMob extends BaseMagical implements MobRarity {
     }
 
     @Override
-    public float HealthMultiplier() {
-        return 1.35F;
+    public float ExtraHealthMulti() {
+        return 0.5F;
     }
 
     @Override

@@ -28,8 +28,8 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
     }
 
     @Override
-    public float HealthMultiplier() {
-        return 6F;
+    public float ExtraHealthMulti() {
+        return 3;
     }
 
     @Override

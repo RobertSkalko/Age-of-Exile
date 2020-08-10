@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.saveclasses.unit;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
@@ -14,6 +13,7 @@ import com.robertx22.mine_and_slash.database.data.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Packets;
@@ -293,7 +293,7 @@ public class Unit {
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 
-        EntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, Load.Unit(entity));
+        EntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, data);
 
         return MathHelper.clamp(finalRarity.Rank(), entityConfig.min_rarity, entityConfig.max_rarity);
 
