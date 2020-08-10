@@ -1,9 +1,10 @@
 package com.robertx22.mine_and_slash.datapacks.loaders;
 
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.generators.CompatibleItemGenerator;
 import com.robertx22.mine_and_slash.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -58,6 +59,36 @@ public class CompatibleItemDataPackLoader extends BaseDataPackLoader<CompatibleI
                     items.add(c);
                 }
             }
+            for (IUnique slot : SlashRegistry.UniqueGears()
+                .getList()
+            ) {
+                Item item = slot.getUniqueItem();
+
+                if (item == Items.AIR || Registry.ITEM.getId(item) == null) {
+                    continue;
+                }
+
+                if (Registry.ITEM.getId(item)
+                    .getNamespace()
+                    .equals(Ref.MODID)) {
+
+                    CompatibleItem c = new CompatibleItem();
+                    c.can_be_salvaged = true;
+                    c.item_type = slot.GUID();
+                    c.add_to_loot_drops = false;
+                    c.chance_to_become_unique = 100;
+                    c.unique_id = slot.GUID();
+
+                    String id = Registry.ITEM.getId(item)
+                        .toString();
+
+                    c.guid = id;
+                    c.item_id = id;
+
+                    items.add(c);
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

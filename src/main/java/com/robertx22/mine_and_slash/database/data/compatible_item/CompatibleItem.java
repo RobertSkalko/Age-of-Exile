@@ -7,9 +7,9 @@ import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -30,7 +30,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int loot_drop_weight = 1000;
     public boolean can_be_salvaged = false;
 
-    public float chance_to_become_unique = 0.01F;
+    public float chance_to_become_unique = 1;
     public String unique_id = "";
 
     public static CompatibleItem getDefaultAuto(Item item, BaseGearType slot) {
@@ -99,7 +99,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         JsonObject unique = json.getAsJsonObject("unique");
         obj.chance_to_become_unique = unique.get("chance_to_become_unique")
-            .getAsInt();
+            .getAsFloat();
         obj.unique_id = unique.get("unique_id")
             .getAsString();
 
@@ -137,23 +137,18 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         blueprint.rarity.minRarity = this.min_rarity;
         blueprint.rarity.maxRarity = this.max_rarity;
 
-        if (RandomUtils.roll(chance_to_become_unique)) {
-            if (blueprint.gearItemSlot.get()
-                .hasUniqueItemVersions()) {
-                blueprint.isUniquePart.set(true);
-                if (SlashRegistry.UniqueGears()
-                    .isRegistered(this.unique_id)) {
-                    blueprint.uniquePart.set(SlashRegistry.UniqueGears()
-                        .get(unique_id));
-                }
-            }
-        } else {
-            blueprint.isUniquePart.set(false);
-        }
+        blueprint.isUniquePart.chance = chance_to_become_unique;
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
-        gear.is_not_my_mod = true;
+        gear.is_not_my_mod = !Registry.ITEM.getId(stack.getItem())
+            .getNamespace()
+            .equals(Ref.MODID);
+
+        if (!gear.is_not_my_mod) {
+            // todo setting different itemstack doesn't work, idk how else to set the item inside
+            // stack = new ItemStack(gear.getItem(), 1, Optional.of(stack.getTag()));
+        }
 
         Gear.Save(stack, gear);
 
