@@ -16,13 +16,16 @@ import net.minecraft.util.registry.Registry;
 
 public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
 
-    public ItemSword(int rar) {
+    public ItemSword(String locname) {
         super(
-            new RarityItemTier(rar), 6, -2.4F, (ItemUtils.getDefaultGearProperties()
-                .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
+            new RarityItemTier(0), 6, -2.4F, (ItemUtils.getDefaultGearProperties()
+                .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, false)
                     .getDurability(EquipmentSlot.MAINHAND))));
+        this.locname = locname;
 
     }
+
+    String locname;
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -47,8 +50,7 @@ public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
 
     @Override
     public String locNameForLangFile() {
-
-        return "Sword";
+        return locname;
     }
 
     public int rarity = 0;

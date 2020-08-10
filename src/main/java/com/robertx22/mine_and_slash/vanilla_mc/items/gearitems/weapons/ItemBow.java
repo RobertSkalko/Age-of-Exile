@@ -10,12 +10,15 @@ import net.minecraft.util.registry.Registry;
 
 public class ItemBow extends BowItem implements IAutoLocName, IGearItem {
 
-    public ItemBow(int rar) {
+    public ItemBow(String locname) {
         super(ItemUtils.getDefaultGearProperties()
             .maxCount(1)
-            .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
+            .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, false)
                 .getDurability(EquipmentSlot.MAINHAND)));
+        this.locname = locname;
     }
+
+    String locname;
 
     @Override
     public String locNameForLangFile() {

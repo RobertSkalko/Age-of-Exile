@@ -149,13 +149,13 @@ public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocD
             .getTags();
 
         if (tags.contains(SlotTag.sword)) {
-            return new BaseUniqueSword();
+            return new BaseUniqueSword(uniq.locNameForLangFile());
         }
         if (tags.contains(SlotTag.axe)) {
-            return new BaseUniqueAxe();
+            return new BaseUniqueAxe(uniq.locNameForLangFile());
         }
         if (tags.contains(SlotTag.wand)) {
-            return new BaseUniqueWand();
+            return new BaseUniqueWand(uniq.locNameForLangFile());
         }
         if (tags.contains(SlotTag.boots)) {
             return new BaseUniqueBoots();

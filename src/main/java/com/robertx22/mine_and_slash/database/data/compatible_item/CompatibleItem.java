@@ -30,7 +30,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int loot_drop_weight = 1000;
     public boolean can_be_salvaged = false;
 
-    public float chance_to_become_unique = 1;
+    public float chance_to_become_unique = 0.5F;
     public String unique_id = "";
 
     public static CompatibleItem getDefaultAuto(Item item, BaseGearType slot) {

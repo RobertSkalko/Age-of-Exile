@@ -17,18 +17,23 @@ import net.minecraft.util.registry.Registry;
 
 public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, IGearItem {
 
-    public BaseWeaponItem(int rar) {
+    public BaseWeaponItem(String locname) {
 
         super(
-            new RarityItemTier(rar), ItemUtils.getDefaultGearProperties()
-                .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, rar)
+            new RarityItemTier(0), ItemUtils.getDefaultGearProperties()
+                .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, false)
                     .getDurability(EquipmentSlot.MAINHAND)));
-        this.rarity = rar;
+        this.locname = locname;
+
     }
 
+    String locname;
     public float attackSpeed = -2.4F;
 
-    public int rarity = 0;
+    @Override
+    public final String locNameForLangFile() {
+        return locname;
+    }
 
     @Override
     public AutoLocGroup locNameGroup() {

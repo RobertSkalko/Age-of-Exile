@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases;
 
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.armor_materials.*;
 import net.minecraft.entity.EquipmentSlot;
@@ -17,12 +16,17 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
         PLATE
     }
 
-    public int rarity = 0;
+    String locname;
 
     @Override
     public String locNameLangFileGUID() {
         return Registry.ITEM.getId(this)
             .toString();
+    }
+
+    @Override
+    public final String locNameForLangFile() {
+        return locname;
     }
 
     @Override
@@ -35,15 +39,15 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
         return AutoLocGroup.Gear_Items;
     }
 
-    public BaseArmorItem(Type type, int rarity, EquipmentSlot slot) {
+    public BaseArmorItem(Type type, String locname, EquipmentSlot slot, boolean isunique) {
 
-        super(GetMat(type, rarity), slot, ItemUtils.getDefaultGearProperties());
-        this.rarity = rarity;
+        super(GetMat(type, isunique), slot, ItemUtils.getDefaultGearProperties());
+        this.locname = locname;
     }
 
-    public static BaseMat GetMat(Type type, int rarity) {
+    public static BaseMat GetMat(Type type, boolean isunique) {
 
-        if (rarity == IRarity.Unique) {
+        if (isunique) {
             return new UniqueMat();
         }
 

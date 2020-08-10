@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons;
 
-import com.robertx22.mine_and_slash.database.base.Rarities;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.bases.BaseWeaponItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,17 +9,9 @@ import net.minecraft.item.ItemStack;
 
 public class ItemAxe extends BaseWeaponItem {
 
-    public ItemAxe(int rar) {
-        super(rar);
-
+    public ItemAxe(String locname) {
+        super(locname);
         this.attackSpeed = -3F;
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatting() + "Axe";
-
     }
 
     /**

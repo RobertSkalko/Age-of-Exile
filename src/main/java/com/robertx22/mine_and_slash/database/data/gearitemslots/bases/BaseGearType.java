@@ -546,13 +546,13 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         TagList tags = getTags();
 
         if (tags.contains(SlotTag.sword)) {
-            return new ItemSword(0);
+            return new ItemSword(locNameForLangFile());
         }
         if (tags.contains(SlotTag.axe)) {
-            return new ItemAxe(0);
+            return new ItemAxe(locNameForLangFile());
         }
         if (tags.contains(SlotTag.wand)) {
-            return new ItemWand(0);
+            return new ItemWand(locNameForLangFile());
         }
         if (tags.contains(SlotTag.bow)) {
             return Items.BOW;
@@ -562,49 +562,49 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         }
 
         if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothChestItem(0);
+            return new ClothChestItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothBootsItem(0);
+            return new ClothBootsItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothPantsItem(0);
+            return new ClothPantsItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothHelmetItem(0);
+            return new ClothHelmetItem(locNameForLangFile(), false);
         }
 
         if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.armor_stat)) {
-            return new PlateChestItem(0);
+            return new PlateChestItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.armor_stat)) {
-            return new PlateBootsItem(0);
+            return new PlateBootsItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.armor_stat)) {
-            return new PlatePantsItem(0);
+            return new PlatePantsItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.armor_stat)) {
-            return new PlateHelmetItem(0);
+            return new PlateHelmetItem(locNameForLangFile(), false);
         }
 
         if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherChestItem(0);
+            return new LeatherChestItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherBootsItem(0);
+            return new LeatherBootsItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherPantsItem(0);
+            return new LeatherPantsItem(locNameForLangFile(), false);
         }
         if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherHelmetItem(0);
+            return new LeatherHelmetItem(locNameForLangFile(), false);
         }
 
         if (tags.contains(SlotTag.necklace)) {
-            return new ItemNecklace(0);
+            return new ItemNecklace(locNameForLangFile());
         }
         if (tags.contains(SlotTag.ring)) {
-            return new ItemRing(0);
+            return new ItemRing(locNameForLangFile());
         }
 
         return null;
