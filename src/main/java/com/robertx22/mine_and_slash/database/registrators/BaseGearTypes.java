@@ -5,6 +5,9 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearTy
 import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeRing;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherBoots;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherChest;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherHelmet;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherPants;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseAxe;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
@@ -124,6 +127,40 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
     public static BaseGearType END_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots4", LevelRanges.ENDGAME, "Shiny Boots") {
     };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_LEATHER_PANTS = new BaseLeatherPants("leather_pants0", LevelRanges.STARTER, "Old Pants") {
+    };
+    public static BaseGearType LOW_LEATHER_PANTS = new BaseLeatherPants("leather_pants1", LevelRanges.LOW, "Leather Shorts") {
+    };
+    public static BaseGearType MID_LEATHER_PANTS = new BaseLeatherPants("leather_pants2", LevelRanges.MIDDLE, "Leather Pants") {
+    };
+    public static BaseGearType HIGH_LEATHER_PANTS = new BaseLeatherPants("leather_pants3", LevelRanges.HIGH, "Gilded Leather Pants") {
+    };
+    public static BaseGearType END_LEATHER_PANTS = new BaseLeatherPants("leather_pants4", LevelRanges.ENDGAME, "Full Leather Pants") {
+    };
+
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_LEATHER_CHEST = new BaseLeatherChest("leather_chest0", LevelRanges.STARTER, "Old Vest") {
+    };
+    public static BaseGearType LOW_LEATHER_CHEST = new BaseLeatherChest("leather_chest1", LevelRanges.LOW, "Leather Vest") {
+    };
+    public static BaseGearType MID_LEATHER_CHEST = new BaseLeatherChest("leather_chest2", LevelRanges.MIDDLE, "Iron Leather Vest") {
+    };
+    public static BaseGearType HIGH_LEATHER_CHEST = new BaseLeatherChest("leather_chest3", LevelRanges.HIGH, "Sturdy Leather Vest") {
+    };
+    public static BaseGearType END_LEATHER_CHEST = new BaseLeatherChest("leather_chest4", LevelRanges.ENDGAME, "Full Leather Vest") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Helmet") {
+    };
+    public static BaseGearType LOW_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Horned Helmet") {
+    };
+    public static BaseGearType MID_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Scout Helmet") {
+    };
+    public static BaseGearType HIGH_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Protective Helmet") {
+    };
+    public static BaseGearType END_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Helmet") {
+    };
 
     @Override
     public void registerAll() {
@@ -154,6 +191,24 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(MID_LEATHER_BOOTS);
                     add(HIGH_LEATHER_BOOTS);
                     add(END_LEATHER_BOOTS);
+
+                    add(NEWBIE_LEATHER_CHEST);
+                    add(LOW_LEATHER_CHEST);
+                    add(MID_LEATHER_CHEST);
+                    add(HIGH_LEATHER_CHEST);
+                    add(END_LEATHER_CHEST);
+
+                    add(NEWBIE_LEATHER_PANTS);
+                    add(LOW_LEATHER_PANTS);
+                    add(MID_LEATHER_PANTS);
+                    add(HIGH_LEATHER_PANTS);
+                    add(END_LEATHER_PANTS);
+
+                    add(NEWBIE_LEATHER_HELMET);
+                    add(LOW_LEATHER_HELMET);
+                    add(MID_LEATHER_HELMET);
+                    add(HIGH_LEATHER_HELMET);
+                    add(END_LEATHER_HELMET);
 
                     add(START_TO_LOW_HP_NECKLACE);
                     add(MID_TO_END_HP_NECKLACE);

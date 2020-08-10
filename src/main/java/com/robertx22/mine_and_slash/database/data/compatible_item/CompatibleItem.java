@@ -10,9 +10,11 @@ import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 
 public class CompatibleItem implements ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
@@ -133,7 +135,18 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public ItemStack createStack(int lvl, ItemStack stack) {
 
         GearBlueprint blueprint = new GearBlueprint(lvl);
+
         blueprint.gearItemSlot.set(this.item_type);
+
+        int min = blueprint.gearItemSlot.get()
+            .getLevelRange()
+            .getMinLevel();
+
+        int max = blueprint.gearItemSlot.get()
+            .getLevelRange()
+            .getMaxLevel();
+
+        blueprint.level.set(MathHelper.clamp(RandomUtils.RandomRange(min, max), 1, lvl));
         blueprint.rarity.minRarity = this.min_rarity;
         blueprint.rarity.maxRarity = this.max_rarity;
 
