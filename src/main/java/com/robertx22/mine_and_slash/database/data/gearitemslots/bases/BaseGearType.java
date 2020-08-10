@@ -544,6 +544,10 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         TagList tags = getTags();
 
+        if (tags.contains(SlotTag.shield)) {
+            return Items.SHIELD;
+        }
+
         if (tags.contains(SlotTag.sword)) {
             return new ItemSword(locNameForLangFile());
         }

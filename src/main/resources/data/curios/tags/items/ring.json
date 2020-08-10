@@ -1,4 +1,4 @@
 {
   "replace": "false",
-  "values": ["mmorpg:jewelry/ring/cold_res_ring_low","mmorpg:jewelry/ring/poison_res_ring_low","mmorpg:jewelry/ring/thunder_res_ring_low","mmorpg:jewelry/ring/fire_res_ring_end","mmorpg:jewelry/ring/thunder_res_ring_end","mmorpg:jewelry/ring/poison_res_ring_end","mmorpg:jewelry/ring/cold_res_ring_end","mmorpg:jewelry/ring/fire_res_ring_low"]
+  "values": ["mmorpg:jewelry/ring/fire_res_ring_end","mmorpg:jewelry/ring/thunder_res_ring_end","mmorpg:jewelry/ring/cold_res_ring_end","mmorpg:jewelry/ring/fire_res_ring_low","mmorpg:jewelry/ring/cold_res_ring_low","mmorpg:jewelry/ring/poison_res_ring_low","mmorpg:jewelry/ring/thunder_res_ring_low","mmorpg:jewelry/ring/poison_res_ring_end"]
 }

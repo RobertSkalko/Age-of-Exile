@@ -8,6 +8,9 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeat
 import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherChest;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherHelmet;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherPants;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.BaseArmorShield;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.BaseDodgeShield;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.BaseMagicShield;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseAxe;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
@@ -53,6 +56,40 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType HIGH_AXE = new BaseAxe("soldier_axe", LevelRanges.HIGH, "Soldier Axe") {
     };
     public static BaseGearType END_AXE = new BaseAxe("gladiator_axe", LevelRanges.ENDGAME, "Gladiator Axe") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_ARMOR_SHIELD = new BaseArmorShield("tower_shield0", LevelRanges.STARTER, "Old Tower Shield") {
+    };
+    public static BaseGearType LOW_ARMOR_SHIELD = new BaseArmorShield("tower_shield1", LevelRanges.LOW, "Rusty Tower Shield") {
+    };
+    public static BaseGearType MID_ARMOR_SHIELD = new BaseArmorShield("tower_shield2", LevelRanges.MIDDLE, "Sturdy Tower Shield") {
+    };
+    public static BaseGearType HIGH_ARMOR_SHIELD = new BaseArmorShield("tower_shield3", LevelRanges.HIGH, "Soldier Tower Shield") {
+    };
+    public static BaseGearType END_ARMOR_SHIELD = new BaseArmorShield("tower_shield4", LevelRanges.ENDGAME, "Gladiator Tower Shield") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_MAGIC_SHIELD = new BaseMagicShield("spirit_shield0", LevelRanges.STARTER, "Old Spirit Shield") {
+    };
+    public static BaseGearType LOW_MAGIC_SHIELD = new BaseMagicShield("spirit_shield1", LevelRanges.LOW, "Rusty Spirit Shield") {
+    };
+    public static BaseGearType MID_MAGIC_SHIELD = new BaseMagicShield("spirit_shield2", LevelRanges.MIDDLE, "Sturdy Spirit Shield") {
+    };
+    public static BaseGearType HIGH_MAGIC_SHIELD = new BaseMagicShield("spirit_shield3", LevelRanges.HIGH, "Ancient Spirit Shield") {
+    };
+    public static BaseGearType END_MAGIC_SHIELD = new BaseMagicShield("spirit_shield4", LevelRanges.ENDGAME, "Ancestral Spirit Shield") {
+    };
+
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_DODGE_SHIELD = new BaseDodgeShield("buckler_shield0", LevelRanges.STARTER, "Old Buckler") {
+    };
+    public static BaseGearType LOW_DODGE_SHIELD = new BaseDodgeShield("buckler_shield1", LevelRanges.LOW, "Rusty Buckler") {
+    };
+    public static BaseGearType MID_DODGE_SHIELD = new BaseDodgeShield("buckler_shield2", LevelRanges.MIDDLE, "Sturdy Buckler") {
+    };
+    public static BaseGearType HIGH_DODGE_SHIELD = new BaseDodgeShield("buckler_shield3", LevelRanges.HIGH, "Ancient Buckler") {
+    };
+    public static BaseGearType END_DODGE_SHIELD = new BaseDodgeShield("buckler_shield4", LevelRanges.ENDGAME, "Royal Buckler") {
     };
 
     static int minResist = 7;
@@ -151,15 +188,15 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType END_LEATHER_CHEST = new BaseLeatherChest("leather_chest4", LevelRanges.ENDGAME, "Full Leather Vest") {
     };
     //////////////////////////////////////
-    public static BaseGearType NEWBIE_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Helmet") {
+    public static BaseGearType NEWBIE_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Helmet") {
     };
-    public static BaseGearType LOW_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Horned Helmet") {
+    public static BaseGearType LOW_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Horned Helmet") {
     };
-    public static BaseGearType MID_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Scout Helmet") {
+    public static BaseGearType MID_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Scout Helmet") {
     };
-    public static BaseGearType HIGH_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Protective Helmet") {
+    public static BaseGearType HIGH_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Protective Helmet") {
     };
-    public static BaseGearType END_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Helmet") {
+    public static BaseGearType END_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Helmet") {
     };
 
     @Override
@@ -204,11 +241,23 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(HIGH_LEATHER_PANTS);
                     add(END_LEATHER_PANTS);
 
-                    add(NEWBIE_LEATHER_HELMET);
-                    add(LOW_LEATHER_HELMET);
-                    add(MID_LEATHER_HELMET);
-                    add(HIGH_LEATHER_HELMET);
-                    add(END_LEATHER_HELMET);
+                    add(NEWBIE_TOWER_SHIELD);
+                    add(LOW_TOWER_SHIELD);
+                    add(MID_TOWER_SHIELD);
+                    add(HIGH_TOWER_SHIELD);
+                    add(END_TOWER_SHIELD);
+
+                    add(NEWBIE_MAGIC_SHIELD);
+                    add(LOW_MAGIC_SHIELD);
+                    add(MID_MAGIC_SHIELD);
+                    add(HIGH_MAGIC_SHIELD);
+                    add(END_MAGIC_SHIELD);
+
+                    add(NEWBIE_DODGE_SHIELD);
+                    add(LOW_DODGE_SHIELD);
+                    add(MID_DODGE_SHIELD);
+                    add(HIGH_DODGE_SHIELD);
+                    add(END_DODGE_SHIELD);
 
                     add(START_TO_LOW_HP_NECKLACE);
                     add(MID_TO_END_HP_NECKLACE);

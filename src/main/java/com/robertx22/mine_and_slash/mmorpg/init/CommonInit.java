@@ -18,6 +18,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeInfo;
 
 public class CommonInit implements ModInitializer {
+
     @Override
     public void onInitialize() {
         System.out.println("Starting " + Ref.MOD_NAME);

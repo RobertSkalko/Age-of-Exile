@@ -24,6 +24,13 @@ public abstract class BaseItemRegistrator {
 
     Item gearType(Item c, BaseGearType slot) {
 
+        if (slot.getTags()
+            .contains(BaseGearType.SlotTag.shield) || slot.getTags()
+            .contains(BaseGearType.SlotTag.bow)) {
+            // TODO , this is for shields and other items i'm temporarily using vanilla items for.
+            return c;
+        }
+
         String type = slot.getSlotType()
             .name()
             .toLowerCase(Locale.ROOT);

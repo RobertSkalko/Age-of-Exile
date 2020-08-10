@@ -146,7 +146,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             .getLevelRange()
             .getMaxLevel();
 
-        blueprint.level.set(MathHelper.clamp(RandomUtils.RandomRange(min, max), 1, lvl));
+        blueprint.level.set(MathHelper.clamp(RandomUtils.RandomRange(min, lvl), min, max));
         blueprint.rarity.minRarity = this.min_rarity;
         blueprint.rarity.maxRarity = this.max_rarity;
 
