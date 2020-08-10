@@ -158,28 +158,28 @@ public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocD
             return new BaseUniqueWand(uniq.locNameForLangFile());
         }
         if (tags.contains(SlotTag.boots)) {
-            return new BaseUniqueBoots();
+            return new BaseUniqueBoots(uniq.locNameForLangFile(), true);
         }
         if (tags.contains(SlotTag.chest)) {
-            return new BaseUniqueChest();
+            return new BaseUniqueChest(uniq.locNameForLangFile(), true);
         }
         if (tags.contains(SlotTag.pants)) {
-            return new BaseUniquePantsItem();
+            return new BaseUniquePantsItem(uniq.locNameForLangFile(), true);
         }
         if (tags.contains(SlotTag.helmet)) {
-            return new BaseUniqueHelmet();
+            return new BaseUniqueHelmet(uniq.locNameForLangFile(), true);
         }
         if (tags.contains(SlotTag.crossbow)) {
             return Items.CROSSBOW;
         }
         if (tags.contains(SlotTag.bow)) {
-            return new BaseUniqueBow();
+            return new BaseUniqueBow(uniq.locNameForLangFile());
         }
         if (tags.contains(SlotTag.necklace)) {
-            return new BaseUniqueNecklace();
+            return new BaseUniqueNecklace(uniq.locNameForLangFile());
         }
         if (tags.contains(SlotTag.ring)) {
-            return new BaseUniqueRing();
+            return new BaseUniqueRing(uniq.locNameForLangFile());
         }
 
         return null;
