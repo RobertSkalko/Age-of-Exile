@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeRing;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherBoots;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseAxe;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
@@ -112,6 +113,18 @@ public class BaseGearTypes implements ISlashRegistryInit {
         }
     };
 
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots0", LevelRanges.STARTER, "Old Boots") {
+    };
+    public static BaseGearType LOW_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots1", LevelRanges.LOW, "Simple Boots") {
+    };
+    public static BaseGearType MID_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots2", LevelRanges.MIDDLE, "Full Boots") {
+    };
+    public static BaseGearType HIGH_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots3", LevelRanges.HIGH, "Expensive Boots") {
+    };
+    public static BaseGearType END_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots4", LevelRanges.ENDGAME, "Shiny Boots") {
+    };
+
     @Override
     public void registerAll() {
 
@@ -135,6 +148,12 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(MID_AXE);
                     add(HIGH_AXE);
                     add(END_AXE);
+
+                    add(NEWBIE_LEATHER_BOOTS);
+                    add(LOW_LEATHER_BOOTS);
+                    add(MID_LEATHER_BOOTS);
+                    add(HIGH_LEATHER_BOOTS);
+                    add(END_LEATHER_BOOTS);
 
                     add(START_TO_LOW_HP_NECKLACE);
                     add(MID_TO_END_HP_NECKLACE);

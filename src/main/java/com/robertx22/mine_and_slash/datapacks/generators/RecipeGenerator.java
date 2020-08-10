@@ -111,7 +111,11 @@ public class RecipeGenerator {
                     }
 
                     for (String pat : x.getRecipePattern()) {
-                        fac.pattern(pat);
+                        try {
+                            fac.pattern(pat);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     fac.criterion("player_level", EnchantedItemCriterion.Conditions.any());

@@ -28,9 +28,24 @@ public abstract class BaseItemRegistrator {
             .name()
             .toLowerCase(Locale.ROOT);
 
+        String armortype = "";
+
+        if (slot.getTags()
+            .contains(BaseGearType.SlotTag.leather)) {
+            armortype = "leather/";
+        }
+        if (slot.getTags()
+            .contains(BaseGearType.SlotTag.plate)) {
+            armortype = "plate/";
+        }
+        if (slot.getTags()
+            .contains(BaseGearType.SlotTag.cloth)) {
+            armortype = "cloth/";
+        }
+
         Identifier id = new Identifier(Ref.MODID, slot.family()
             .name()
-            .toLowerCase(Locale.ROOT) + "/" + type + "/" + slot.GUID());
+            .toLowerCase(Locale.ROOT) + "/" + armortype + type + "/" + slot.GUID());
 
         Registry.register(Registry.ITEM, id, c);
 

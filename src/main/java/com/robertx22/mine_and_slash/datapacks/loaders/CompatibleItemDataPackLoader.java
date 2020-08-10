@@ -59,10 +59,10 @@ public class CompatibleItemDataPackLoader extends BaseDataPackLoader<CompatibleI
                     items.add(c);
                 }
             }
-            for (IUnique slot : SlashRegistry.UniqueGears()
+            for (IUnique uniq : SlashRegistry.UniqueGears()
                 .getList()
             ) {
-                Item item = slot.getUniqueItem();
+                Item item = uniq.getUniqueItem();
 
                 if (item == Items.AIR || Registry.ITEM.getId(item) == null) {
                     continue;
@@ -74,10 +74,11 @@ public class CompatibleItemDataPackLoader extends BaseDataPackLoader<CompatibleI
 
                     CompatibleItem c = new CompatibleItem();
                     c.can_be_salvaged = true;
-                    c.item_type = slot.GUID();
+                    c.item_type = uniq.getBaseGearType()
+                        .GUID();
                     c.add_to_loot_drops = false;
                     c.chance_to_become_unique = 100;
-                    c.unique_id = slot.GUID();
+                    c.unique_id = uniq.GUID();
 
                     String id = Registry.ITEM.getId(item)
                         .toString();

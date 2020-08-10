@@ -496,14 +496,13 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         if (tags.contains(SlotTag.chest)) {
             return new String[]{
-                "M M ",
+                "M M",
                 "MMM",
                 "MMM"
             };
         }
         if (tags.contains(SlotTag.boots)) {
             return new String[]{
-                "  ",
                 "M M",
                 "M M"
             };
