@@ -109,6 +109,9 @@ public class RecipeGenerator {
 
                     String all = Strings.join(pattern, "");
 
+                    if (x.getEssenceItem() != null) {
+                        fac.input('E', x.getEssenceItem());
+                    }
                     if (all.contains("M")) {
                         fac.input('M', x.getMaterial());
                     }
