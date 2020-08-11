@@ -104,9 +104,11 @@ public class CompatibleItemInventoryCheck {
 
         try {
 
+            /*
             if (ModConfig.get().Server.USE_COMPATIBILITY_ITEMS == false) {
                 return;
             }
+             */
             if (player.world.isClient) {
                 return;
             }

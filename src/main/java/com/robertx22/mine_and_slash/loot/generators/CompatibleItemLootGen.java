@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.loot.generators;
 
-import com.robertx22.mine_and_slash.database.registry.FilterListWrap;
-import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
+import com.robertx22.mine_and_slash.database.registry.FilterListWrap;
+import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
@@ -29,7 +29,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public boolean condition() {
-        return ModConfig.get().Server.USE_COMPATIBILITY_ITEMS && info.mobData != null;
+        return /*ModConfig.get().Server.USE_COMPATIBILITY_ITEMS && */ info.mobData != null;
     }
 
     @Override

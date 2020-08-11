@@ -7,6 +7,6 @@ public class DropRatesContainer {
     public double JEWEL_DROPRATE = 1.5F;
     public double UNIQUE_DROPRATE = 0.25;
     public double CURRENCY_DROPRATE = 1;
-    public double COMPATIBLE_ITEMS_DROPRATE = 2;
+    public double COMPATIBLE_ITEMS_DROPRATE = 0;
 
 }

@@ -1,11 +1,39 @@
 v.1.1.0
 
+Crafting Update!
+
+Warning: This update deletes all existing gear items! Unfortunately required because of the gear rework.
+A clean start is recommended.
+
+Now for the good news:
+
+All gears now have level ranges, so Old Boots would be lvl 0-10, but Royal boots lvl 40-50.
+Each level range has its own material. You can now craft nearly all the gear of any level!
+(exception are bows, crossbows and shields, sorry still waiting for fabric api to get those to work)
+
+All gears are crafted with special ores, except cloth and leather armor, which use cloth and leather materials.
+
+Some gears are special, and need a certain Essence to craft. Like to craft a Frost resistance ring, you need Essence of Water alongside the ores.
+
+For a Healing Scepter, you need to fill the crafting grid with Essence of Life, etc.
+
+Crafted items have a small chance to become unique too.
+The only thing crafting items like this assures you is their level range and the gear type. 
+So you can craft a lvl 10-20 Sword. But you can't be sure what rarity, affixes etc it will have.
+Level is capped to player level, so if you craft a piece of gear, it will never go above your level to make sure you can use it. -
+(Note, this is within the gear's level range, so Player lvl 25, you craft a lvl 40-50 sword, you'll get a lvl 40 sword.)
+
+All recipes use a very predictable system, so if you can figure out how to craft 1 wand, you'll know how to craft them all.
+The only confusion might be rings and necklaces. They only have 2 level ranges, 0-20 and 20-50. So only 2 crafting recipes.
+
+The material needed for the item is based on highest level the item can have.
+
 Compatibility update:
 
 - compatible items are now always enabled
 - You can now pick gear from creative tab, and it will get stats.
 - compatible item datapacks no longer specify level, as level is now dictated by gear type
-
+- compat items now get stats instantly when crafted
 
 Update your library of exile.
 
@@ -17,154 +45,3 @@ Update your library of exile.
 - fix attack speed
 - Jar in Jared some deps in my library
 - fix typo in mod name of config
-
-v.1.0.7
-
-- Changed affix datapacks to require tags instead of specific base gears.
-This should make it much easier to add new base gears now!
-Before you had to change all the affixes a sword uses for example, to include your custom sword type. 
-But now as long as you have the "sword" tag, it should work.
-- casting weapon requirements are now also gotten through gear type tags, which means you can modify which weapons can cast which spells now!
-- int now gives mana regen too
-- updated chinese lang
-
-
-v.1.0.6
-
-* added help button on EVERY gui or station that needs it! 
-It will explain what the block is used for. Should help newbies a lot.
-* made jewel socketing more informative
-* if pvp is disabled magic shield should no longer bypass pvp checks
-* changed buff spells to require any weapon, instead of mage weapons
-* reduced level penalty a bit
-* upped default gear drops a bit
-* decreased default stat scalings
-
-v1.0.5
-
-Backup world before update! I added some code to retrieve the spells from hotbar but it might not work.
-
-* spell hotbar setup is now an inventory, and should be much more intuitive.
-* you can now switch spells with middle mouse scrolling! (when pressing R)
-* switched to vanilla bows, there were arrow render problems (i think vanilla hardcoded them..)
-* spells now correctly require bows or melee (for arrow spells and melee spells) currently only 1 melee spell
-* compatible items should now be able to cast spells
-* jewels now more likely to drop as a lower level, to allow easier socketing
-* dodge now no longer works on elemental damage. It's now in line with armor.
-* orb of transmutation now easier to craft
-* fixed spell mana tooltips being wrong
-* fix judgement effect not doing damage
-
-v.1.0.4
-
-Mod now requires library: Library of Exile
-
-Goal of the library is to try to allow some of the features I make to be playable without Age of Exile.
-For example, if I wanted to make a dimension, I could make it as a separate mod and then use my library to add Age of Exile support.
-And also to house some widely used utilities.
-
-A separate mod has been created to house my controversial balance changes: Balance of Exile.
-This currently contains the enviromental damage check and anti mob farm system. 
-
-This is my first time making a library, so I expect some bugs.
-
-* added new gear type, Holy scepter.
-* added a new unique scepter
-* fixed leveling being too easy because exp was multiplied by total mob health instead of total vanilla hp before the added health
-* fixed hp rendering so it's accurate (it didnt show lost hp for a while)
-* skill gems now salvagable (dont throw them away now xD)
-* should fix spell tooltips having wrong levels
-* added config for scale mob lvl to player so you don't need to use datapacks for this common complaint
-* reworked gear sockets to be less confusing
-* added orb of infinity
-* player dmg should now be disabled if pvp is disabled 
-* made spell tooltips shorter
-* optimized mob type detection
-
-v.1.0.3
-
-Trying out a different damage system. Basically:
-- I don't change vanilla damage at all, I just add my damage too.
-- This leads to all armor and weapons being compatible, just less and less useful as Age of Exile stats grow over levels.
-- I'm still unsure if players who attack with Age of Exile weapons should do both vanilla and exile damage.
-
-With this, my mod should no longer be a compatibility nightmare and requiring itself to be the center of a modpack. 
-Just tweak max level and stat scalings and you can make Age of Exile gear either mandatory, optional or even weak!
-
-Want Age of Exile gear to be the sole way of gear progression? Up those stat scalings!
-Want to balance it with other mods? Tweak to balance it!
-
-* should fix server crashing on spell casting
-* tweaked gear drop types, jewelry rarer, staffs more common
-* buffed elemental resist affixes a bit
-* fix loot not being dropped if player doesnt do the finishing hit
-* fix affixes all being same weight (chance to spawn)
-* made ele mobs transform their dmg to elemental, instead of adding extra ele dmg. This should reduce 1 shots by a lot!
-* magic shield shouldn't be lost if dmg is blocked now
-* made stations a bit cheaper
-
-v.1.0.2
-* fix horse gui crash
-* added chinese translation
-
-v.1.0.1
-
-Added required dependences, sorry about that!
-
-* buffed gear drops
-* buffed repair station
-* nerf socket chance
-* made mob lvls go faster per distance
-* gear durability shouldnt go down this fast anymore
-
-1.0
-
-Big compatibility changes:
-
-* Damage is no longer overrided except for item's with stats and my spells. This means other mod's gear and spells should ALL be compatible now!
-* There's no magical mine and slash hp anymore, instead your normal hearts are increased.
-* Stats scale much slower with levels, and if you want to nerf or buff how strong my mod is, just increase or decrease stat scaling or maximum level. Both work.
-* Vanilla armor is overrided for entity damage, but there's a config for effectiveness now.
-
-As a result, the mod should be a lot more modpack friendly while still easily allowing itself to be the main point of a modpack by just tweaking one or two config options.
-
-
-Big changes that required the rework:
-
-* Spells are now Skill Gems.
-* Talent tree is gone. 
-* Gear now has local and global stats, local stats are weapon damage, armor etc. 
-Think Path of exile 50 base armor + adds 20 to armor + 80% increased armor and the item totals it up.
-* Gear rarities trimmed, now Common, Magical, Rare and Unique. Common complaint was that "Legendary" gear was sometimes too weak for the name.
-New system doesn't have that issue, the rarity describes how rare it is now, not power level.
-* spells are now only casted by staffs (compatible item's don't work for now)
-* spell hotbar is gone, choose spell by pressing R and 1-9 and then right click to use it.
-
-Added features:
-* generated chests everywhere now have random loot in them
-* added many new stats like attack speed, magic find, bonus damage to burning enemies etc.
-
-To rework the mod, I needed an almost clean slate, and to trim a lot of content that I feel wasn't very successful (for the amount of effort it requires).
-Other things were removed because I wanted to remove them, but I couldn't because I'd ruin existing worlds (*cough* master bag)
-
-* removed all auto pickup bags
-* removed auto salvage bags
-* removed charms and bracelets
-* removed map dimensions
-* removed runes and runewords
-* removed sets 
-* removed instability
-
-Some of these will probably come back, after a rework. Others are gone for good.
-
-Changed features:
-* dimension configs are now datapacks
-* entity configs are now datapacks
-* damage increases are now totalled up before being applied. (this resulted in some insane damage multiplication)
-* attack speed should work properly now
-* bows now dont do full damage anymore on short charges
-* changed hp regen to reduce saturation by % of total hp regenerated. This means more hp won't cost more saturation to regen.
-* made unique gear datapacks more powerful
-* gears now break on 0 durability
-* runes deleted, jewels used instead. Magic items can have sockets.
-* gui changed to more vanilla like. Capped hearts display to one row.
