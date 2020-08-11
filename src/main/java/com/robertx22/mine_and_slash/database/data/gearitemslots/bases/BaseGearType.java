@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.mechanic
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.data.stats.types.offense.AttackSpeed;
+import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
@@ -175,10 +176,19 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     }
 
     public final boolean hasUniqueItemVersions() {
-        return !SlashRegistry.UniqueGears()
-            .getFilterWrapped(x -> x.getBaseGearType()
-                .GUID()
-                .equals(GUID())).list.isEmpty();
+
+        String id = GUID();
+
+        List<IUnique> list = SlashRegistry.UniqueGears()
+            .getFilterWrapped(x -> {
+                String otherid = x.getBaseGearType()
+                    .GUID();
+
+                return otherid.equals(id);
+            }).list;
+
+        return !list.isEmpty();
+
     }
 
     public enum PlayStyle {
@@ -544,8 +554,12 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         TagList tags = getTags();
 
+        // TODO TODO TODO REPLACE WHEN FABRIC API GETS SUPPORT FOR BOWS AND SHIELDS ETC
         if (tags.contains(SlotTag.shield)) {
             return Items.SHIELD;
+        }
+        if (tags.contains(SlotTag.bow)) {
+            return Items.BOW;
         }
 
         if (tags.contains(SlotTag.sword)) {

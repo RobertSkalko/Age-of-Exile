@@ -14,9 +14,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import java.util.Arrays;
 import java.util.List;
 
-public class HunterBow extends BaseWeapon {
+public class BaseBow extends BaseWeapon {
 
-    public HunterBow(String guid, LevelRange levelRange, String locname) {
+    public BaseBow(String guid, LevelRange levelRange, String locname) {
         super(guid, levelRange, locname);
     }
 

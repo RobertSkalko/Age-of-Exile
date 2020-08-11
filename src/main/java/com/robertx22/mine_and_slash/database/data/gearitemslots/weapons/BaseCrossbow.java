@@ -14,8 +14,8 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import java.util.Arrays;
 import java.util.List;
 
-public class Crossbow extends BaseWeapon {
-    public Crossbow(String guid, LevelRange levelRange, String locname) {
+public class BaseCrossbow extends BaseWeapon {
+    public BaseCrossbow(String guid, LevelRange levelRange, String locname) {
         super(guid, levelRange, locname);
 
     }
