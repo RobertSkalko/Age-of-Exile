@@ -15,6 +15,10 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeat
 import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.BaseArmorShield;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.BaseDodgeShield;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.offhand.BaseMagicShield;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.BasePlateBoots;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.BasePlateChest;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.BasePlateHelmet;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.BasePlatePants;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseAxe;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
@@ -29,37 +33,37 @@ import java.util.List;
 
 public class BaseGearTypes implements ISlashRegistryInit {
 
-    public static BaseGearType NEWBIE_WAND = new BaseWand("wood_stick_wand", LevelRanges.STARTER, "Wooden Stick Wand") {
+    public static BaseGearType NEWBIE_WAND = new BaseWand("wand0", LevelRanges.STARTER, "Wooden Stick Wand") {
     };
-    public static BaseGearType LOW_WAND = new BaseWand("ancient_wand", LevelRanges.LOW, "Ancient Wand") {
+    public static BaseGearType LOW_WAND = new BaseWand("wand1", LevelRanges.LOW, "Ancient Wand") {
     };
-    public static BaseGearType MID_WAND = new BaseWand("sage_wand", LevelRanges.MIDDLE, "Sage Wand") {
+    public static BaseGearType MID_WAND = new BaseWand("wand2", LevelRanges.MIDDLE, "Sage Wand") {
     };
-    public static BaseGearType HIGH_WAND = new BaseWand("crystal_wand", LevelRanges.HIGH, "Crystal Wand") {
+    public static BaseGearType HIGH_WAND = new BaseWand("wand3", LevelRanges.HIGH, "Crystal Wand") {
     };
-    public static BaseGearType END_WAND = new BaseWand("ancestor_wand", LevelRanges.ENDGAME, "Ancient Wand") {
-    };
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_SWORD = new BaseSword("stick_sword", LevelRanges.STARTER, "Stick Sword") {
-    };
-    public static BaseGearType LOW_SWORD = new BaseSword("chipped_sword", LevelRanges.LOW, "Chipped Sword") {
-    };
-    public static BaseGearType MID_SWORD = new BaseSword("gemstone_sword", LevelRanges.MIDDLE, "Gemstone Sword") {
-    };
-    public static BaseGearType HIGH_SWORD = new BaseSword("clear_sword", LevelRanges.HIGH, "Clear Sword") {
-    };
-    public static BaseGearType END_SWORD = new BaseSword("royal_sword", LevelRanges.ENDGAME, "Royal Sword") {
+    public static BaseGearType END_WAND = new BaseWand("wand4", LevelRanges.ENDGAME, "Ancient Wand") {
     };
     //////////////////////////////////////
-    public static BaseGearType NEWBIE_AXE = new BaseAxe("woodcutter_axe", LevelRanges.STARTER, "Woodcutter Axe") {
+    public static BaseGearType NEWBIE_SWORD = new BaseSword("sword0", LevelRanges.STARTER, "Stick Sword") {
     };
-    public static BaseGearType LOW_AXE = new BaseAxe("primitive_axe", LevelRanges.LOW, "Primitive Axe") {
+    public static BaseGearType LOW_SWORD = new BaseSword("sword1", LevelRanges.LOW, "Short Sword") {
     };
-    public static BaseGearType MID_AXE = new BaseAxe("brutal_axe", LevelRanges.MIDDLE, "Brutal Axe") {
+    public static BaseGearType MID_SWORD = new BaseSword("sword2", LevelRanges.MIDDLE, "Gemstone Sword") {
     };
-    public static BaseGearType HIGH_AXE = new BaseAxe("soldier_axe", LevelRanges.HIGH, "Soldier Axe") {
+    public static BaseGearType HIGH_SWORD = new BaseSword("sword3", LevelRanges.HIGH, "Clear Sword") {
     };
-    public static BaseGearType END_AXE = new BaseAxe("gladiator_axe", LevelRanges.ENDGAME, "Gladiator Axe") {
+    public static BaseGearType END_SWORD = new BaseSword("sword4", LevelRanges.ENDGAME, "Royal Sword") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_AXE = new BaseAxe("axe0", LevelRanges.STARTER, "Woodcutter Axe") {
+    };
+    public static BaseGearType LOW_AXE = new BaseAxe("axe1", LevelRanges.LOW, "Primitive Axe") {
+    };
+    public static BaseGearType MID_AXE = new BaseAxe("axe2", LevelRanges.MIDDLE, "Brutal Axe") {
+    };
+    public static BaseGearType HIGH_AXE = new BaseAxe("axe3", LevelRanges.HIGH, "Soldier Axe") {
+    };
+    public static BaseGearType END_AXE = new BaseAxe("axe4", LevelRanges.ENDGAME, "Gladiator Axe") {
     };
     //////////////////////////////////////
     public static BaseGearType NEWBIE_ARMOR_SHIELD = new BaseArmorShield("tower_shield0", LevelRanges.STARTER, "Old Tower Shield") {
@@ -249,6 +253,52 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType END_CLOTH_HELMET = new BaseClothHelmet("cloth_helmet4", LevelRanges.ENDGAME, "Arcana Hat") {
     };
 
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_PLATE_BOOTS = new BasePlateBoots("plate_boots0", LevelRanges.STARTER, "Old Shoes") {
+    };
+    public static BaseGearType LOW_PLATE_BOOTS = new BasePlateBoots("plate_boots1", LevelRanges.LOW, "Simple Shoes") {
+    };
+    public static BaseGearType MID_PLATE_BOOTS = new BasePlateBoots("plate_boots2", LevelRanges.MIDDLE, "Full Shoes") {
+    };
+    public static BaseGearType HIGH_PLATE_BOOTS = new BasePlateBoots("plate_boots3", LevelRanges.HIGH, "Expensive Shoes") {
+    };
+    public static BaseGearType END_PLATE_BOOTS = new BasePlateBoots("plate_boots4", LevelRanges.ENDGAME, "Arcana Shoes") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_PLATE_PANTS = new BasePlatePants("plate_pants0", LevelRanges.STARTER, "Old Greaves") {
+    };
+    public static BaseGearType LOW_PLATE_PANTS = new BasePlatePants("plate_pants1", LevelRanges.LOW, "Plate Greaves") {
+    };
+    public static BaseGearType MID_PLATE_PANTS = new BasePlatePants("plate_pants2", LevelRanges.MIDDLE, "Full Plate Greaves") {
+    };
+    public static BaseGearType HIGH_PLATE_PANTS = new BasePlatePants("plate_pants3", LevelRanges.HIGH, "Soldier Greaves") {
+    };
+    public static BaseGearType END_PLATE_PANTS = new BasePlatePants("plate_pants4", LevelRanges.ENDGAME, "Gladiator Greaves") {
+    };
+
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_PLATE_CHEST = new BasePlateChest("plate_chest0", LevelRanges.STARTER, "Old Chestplate") {
+    };
+    public static BaseGearType LOW_PLATE_CHEST = new BasePlateChest("plate_chest1", LevelRanges.LOW, "Peasant Chestplate") {
+    };
+    public static BaseGearType MID_PLATE_CHEST = new BasePlateChest("plate_chest2", LevelRanges.MIDDLE, "Full Plate Chestplate") {
+    };
+    public static BaseGearType HIGH_PLATE_CHEST = new BasePlateChest("plate_chest3", LevelRanges.HIGH, "Soldier Chestplate") {
+    };
+    public static BaseGearType END_PLATE_CHEST = new BasePlateChest("plate_chest4", LevelRanges.ENDGAME, "Gladiator Chestplate") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_PLATE_HELMET = new BasePlateHelmet("plate_helmet0", LevelRanges.STARTER, "Old Helmet") {
+    };
+    public static BaseGearType LOW_PLATE_HELMET = new BasePlateHelmet("plate_helmet1", LevelRanges.LOW, "Horned Helmet") {
+    };
+    public static BaseGearType MID_PLATE_HELMET = new BasePlateHelmet("plate_helmet2", LevelRanges.MIDDLE, "Soldier Helmet") {
+    };
+    public static BaseGearType HIGH_PLATE_HELMET = new BasePlateHelmet("plate_helmet3", LevelRanges.HIGH, "Gladiator Burgonet") {
+    };
+    public static BaseGearType END_PLATE_HELMET = new BasePlateHelmet("plate_helmet4", LevelRanges.ENDGAME, "Royal Burgonet") {
+    };
+
     @Override
     public void registerAll() {
 
@@ -320,6 +370,30 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(MID_CLOTH_HELMET);
                     add(HIGH_CLOTH_HELMET);
                     add(END_CLOTH_HELMET);
+
+                    add(NEWBIE_PLATE_BOOTS);
+                    add(LOW_PLATE_BOOTS);
+                    add(MID_PLATE_BOOTS);
+                    add(HIGH_PLATE_BOOTS);
+                    add(END_PLATE_BOOTS);
+
+                    add(NEWBIE_PLATE_CHEST);
+                    add(LOW_PLATE_CHEST);
+                    add(MID_PLATE_CHEST);
+                    add(HIGH_PLATE_CHEST);
+                    add(END_PLATE_CHEST);
+
+                    add(NEWBIE_PLATE_PANTS);
+                    add(LOW_PLATE_PANTS);
+                    add(MID_PLATE_PANTS);
+                    add(HIGH_PLATE_PANTS);
+                    add(END_PLATE_PANTS);
+
+                    add(NEWBIE_PLATE_HELMET);
+                    add(LOW_PLATE_HELMET);
+                    add(MID_PLATE_HELMET);
+                    add(HIGH_PLATE_HELMET);
+                    add(END_PLATE_HELMET);
 
                     add(NEWBIE_ARMOR_SHIELD);
                     add(LOW_ARMOR_SHIELD);

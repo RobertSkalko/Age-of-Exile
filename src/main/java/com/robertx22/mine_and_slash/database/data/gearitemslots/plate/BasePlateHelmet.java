@@ -11,16 +11,16 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import java.util.Arrays;
 import java.util.List;
 
-public class IronLegguards extends BaseArmor {
+public class BasePlateHelmet extends BaseArmor {
 
-    public IronLegguards(String guid, LevelRange levelRange, String locname) {
+    public BasePlateHelmet(String guid, LevelRange levelRange, String locname) {
         super(guid, levelRange, locname);
     }
 
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(20, 60, Armor.getInstance(), ModType.FLAT)
+            new StatModifier(15, 35, Armor.getInstance(), ModType.FLAT)
         );
     }
 
@@ -36,7 +36,7 @@ public class IronLegguards extends BaseArmor {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.plate, SlotTag.pants, SlotTag.armor_family, SlotTag.armor_stat, SlotTag.strength);
+        return new TagList(SlotTag.plate, SlotTag.helmet, SlotTag.armor_family, SlotTag.armor_stat, SlotTag.strength);
     }
 
 }
