@@ -37,7 +37,7 @@ import java.util.List;
 
 public class BaseGearTypes implements ISlashRegistryInit {
 
-    public static BaseGearType NEWBIE_WAND = new BaseWand("wand0", LevelRanges.STARTER, "Wooden Stick Wand") {
+    public static BaseGearType NEWBIE_WAND = new BaseWand("wand0", LevelRanges.STARTER, "Rotten Wand") {
     };
     public static BaseGearType LOW_WAND = new BaseWand("wand1", LevelRanges.LOW, "Ancient Wand") {
     };
@@ -45,10 +45,10 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
     public static BaseGearType HIGH_WAND = new BaseWand("wand3", LevelRanges.HIGH, "Crystal Wand") {
     };
-    public static BaseGearType END_WAND = new BaseWand("wand4", LevelRanges.ENDGAME, "Ancient Wand") {
+    public static BaseGearType END_WAND = new BaseWand("wand4", LevelRanges.ENDGAME, "Ancestral Wand") {
     };
 
-    public static BaseGearType NEWBIE_SCEPTER = new BaseScepter("scepter0", LevelRanges.STARTER, "Wooden Stick Scepter") {
+    public static BaseGearType NEWBIE_SCEPTER = new BaseScepter("scepter0", LevelRanges.STARTER, "Rotten Scepter") {
     };
     public static BaseGearType LOW_SCEPTER = new BaseScepter("scepter1", LevelRanges.LOW, "Ancient Scepter") {
     };
@@ -56,7 +56,7 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
     public static BaseGearType HIGH_SCEPTER = new BaseScepter("scepter3", LevelRanges.HIGH, "Crystal Scepter") {
     };
-    public static BaseGearType END_SCEPTER = new BaseScepter("scepter4", LevelRanges.ENDGAME, "Ancient Scepter") {
+    public static BaseGearType END_SCEPTER = new BaseScepter("scepter4", LevelRanges.ENDGAME, "Ancestral Scepter") {
     };
 
     //////////////////////////////////////
