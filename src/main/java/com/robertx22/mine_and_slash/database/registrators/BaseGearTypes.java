@@ -2,6 +2,10 @@ package com.robertx22.mine_and_slash.database.registrators;
 
 import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.BaseClothBoots;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.BaseClothChest;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.BaseClothHelmet;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.cloth.BaseClothPants;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.curios.LifeRing;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.leather.BaseLeatherBoots;
@@ -188,15 +192,61 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType END_LEATHER_CHEST = new BaseLeatherChest("leather_chest4", LevelRanges.ENDGAME, "Full Leather Vest") {
     };
     //////////////////////////////////////
-    public static BaseGearType NEWBIE_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Helmet") {
+    public static BaseGearType NEWBIE_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Hat") {
     };
-    public static BaseGearType LOW_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Horned Helmet") {
+    public static BaseGearType LOW_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Leather Hat") {
     };
-    public static BaseGearType MID_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Scout Helmet") {
+    public static BaseGearType MID_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Iron Leather Hat") {
     };
-    public static BaseGearType HIGH_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Protective Helmet") {
+    public static BaseGearType HIGH_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Sturdy Leather Hat") {
     };
-    public static BaseGearType END_TOWER_SHIELD = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Helmet") {
+    public static BaseGearType END_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Hat") {
+    };
+
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_CLOTH_BOOTS = new BaseClothBoots("cloth_boots0", LevelRanges.STARTER, "Old Shoes") {
+    };
+    public static BaseGearType LOW_CLOTH_BOOTS = new BaseClothBoots("cloth_boots1", LevelRanges.LOW, "Simple Shoes") {
+    };
+    public static BaseGearType MID_CLOTH_BOOTS = new BaseClothBoots("cloth_boots2", LevelRanges.MIDDLE, "Full Shoes") {
+    };
+    public static BaseGearType HIGH_CLOTH_BOOTS = new BaseClothBoots("cloth_boots3", LevelRanges.HIGH, "Expensive Shoes") {
+    };
+    public static BaseGearType END_CLOTH_BOOTS = new BaseClothBoots("cloth_boots4", LevelRanges.ENDGAME, "Arcana Shoes") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_CLOTH_PANTS = new BaseClothPants("cloth_pants0", LevelRanges.STARTER, "Old Leggings") {
+    };
+    public static BaseGearType LOW_CLOTH_PANTS = new BaseClothPants("cloth_pants1", LevelRanges.LOW, "Cloth Leggings") {
+    };
+    public static BaseGearType MID_CLOTH_PANTS = new BaseClothPants("cloth_pants2", LevelRanges.MIDDLE, "Cloth Leggings") {
+    };
+    public static BaseGearType HIGH_CLOTH_PANTS = new BaseClothPants("cloth_pants3", LevelRanges.HIGH, "Essence Leggings") {
+    };
+    public static BaseGearType END_CLOTH_PANTS = new BaseClothPants("cloth_pants4", LevelRanges.ENDGAME, "Arcana Leggings") {
+    };
+
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_CLOTH_CHEST = new BaseClothChest("cloth_chest0", LevelRanges.STARTER, "Peasant Robe") {
+    };
+    public static BaseGearType LOW_CLOTH_CHEST = new BaseClothChest("cloth_chest1", LevelRanges.LOW, "Simple Robe") {
+    };
+    public static BaseGearType MID_CLOTH_CHEST = new BaseClothChest("cloth_chest2", LevelRanges.MIDDLE, "High Elf Robe") {
+    };
+    public static BaseGearType HIGH_CLOTH_CHEST = new BaseClothChest("cloth_chest3", LevelRanges.HIGH, "Arcana Cloak") {
+    };
+    public static BaseGearType END_CLOTH_CHEST = new BaseClothChest("cloth_chest4", LevelRanges.ENDGAME, "Arcana Robe") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_CLOTH_HELMET = new BaseClothHelmet("cloth_helmet0", LevelRanges.STARTER, "Old Hat") {
+    };
+    public static BaseGearType LOW_CLOTH_HELMET = new BaseClothHelmet("cloth_helmet1", LevelRanges.LOW, "Cloth Hat") {
+    };
+    public static BaseGearType MID_CLOTH_HELMET = new BaseClothHelmet("cloth_helmet2", LevelRanges.MIDDLE, "Magi Hat") {
+    };
+    public static BaseGearType HIGH_CLOTH_HELMET = new BaseClothHelmet("cloth_helmet3", LevelRanges.HIGH, "Sacrificial Hat") {
+    };
+    public static BaseGearType END_CLOTH_HELMET = new BaseClothHelmet("cloth_helmet4", LevelRanges.ENDGAME, "Arcana Hat") {
     };
 
     @Override
@@ -241,11 +291,41 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(HIGH_LEATHER_PANTS);
                     add(END_LEATHER_PANTS);
 
-                    add(NEWBIE_TOWER_SHIELD);
-                    add(LOW_TOWER_SHIELD);
-                    add(MID_TOWER_SHIELD);
-                    add(HIGH_TOWER_SHIELD);
-                    add(END_TOWER_SHIELD);
+                    add(NEWBIE_LEATHER_HELMET);
+                    add(LOW_LEATHER_HELMET);
+                    add(MID_LEATHER_HELMET);
+                    add(HIGH_LEATHER_HELMET);
+                    add(END_LEATHER_HELMET);
+
+                    add(NEWBIE_CLOTH_BOOTS);
+                    add(LOW_CLOTH_BOOTS);
+                    add(MID_CLOTH_BOOTS);
+                    add(HIGH_CLOTH_BOOTS);
+                    add(END_CLOTH_BOOTS);
+
+                    add(NEWBIE_CLOTH_CHEST);
+                    add(LOW_CLOTH_CHEST);
+                    add(MID_CLOTH_CHEST);
+                    add(HIGH_CLOTH_CHEST);
+                    add(END_CLOTH_CHEST);
+
+                    add(NEWBIE_CLOTH_PANTS);
+                    add(LOW_CLOTH_PANTS);
+                    add(MID_CLOTH_PANTS);
+                    add(HIGH_CLOTH_PANTS);
+                    add(END_CLOTH_PANTS);
+
+                    add(NEWBIE_CLOTH_HELMET);
+                    add(LOW_CLOTH_HELMET);
+                    add(MID_CLOTH_HELMET);
+                    add(HIGH_CLOTH_HELMET);
+                    add(END_CLOTH_HELMET);
+
+                    add(NEWBIE_ARMOR_SHIELD);
+                    add(LOW_ARMOR_SHIELD);
+                    add(MID_ARMOR_SHIELD);
+                    add(HIGH_ARMOR_SHIELD);
+                    add(END_ARMOR_SHIELD);
 
                     add(NEWBIE_MAGIC_SHIELD);
                     add(LOW_MAGIC_SHIELD);

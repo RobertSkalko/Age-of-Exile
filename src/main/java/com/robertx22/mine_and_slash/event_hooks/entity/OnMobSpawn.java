@@ -70,13 +70,11 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
     }
 
-    public static Unit Mob(LivingEntity entity, UnitData data,
+    public static Unit Mob(LivingEntity entity, UnitData endata,
                            PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
         mob.initStats();
-
-        UnitData endata = Load.Unit(entity);
 
         endata.SetMobLevelAtSpawn(entity, nearestPlayer);
 
