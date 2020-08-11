@@ -22,6 +22,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.BasePlateH
 import com.robertx22.mine_and_slash.database.data.gearitemslots.plate.BasePlatePants;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.BaseBow;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseAxe;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseScepter;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseSword;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
@@ -45,6 +46,17 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType HIGH_WAND = new BaseWand("wand3", LevelRanges.HIGH, "Crystal Wand") {
     };
     public static BaseGearType END_WAND = new BaseWand("wand4", LevelRanges.ENDGAME, "Ancient Wand") {
+    };
+
+    public static BaseGearType NEWBIE_SCEPTER = new BaseScepter("scepter0", LevelRanges.STARTER, "Wooden Stick Scepter") {
+    };
+    public static BaseGearType LOW_SCEPTER = new BaseScepter("scepter1", LevelRanges.LOW, "Ancient Scepter") {
+    };
+    public static BaseGearType MID_SCEPTER = new BaseScepter("scepter2", LevelRanges.MIDDLE, "Sage Scepter") {
+    };
+    public static BaseGearType HIGH_SCEPTER = new BaseScepter("scepter3", LevelRanges.HIGH, "Crystal Scepter") {
+    };
+    public static BaseGearType END_SCEPTER = new BaseScepter("scepter4", LevelRanges.ENDGAME, "Ancient Scepter") {
     };
 
     //////////////////////////////////////
@@ -334,6 +346,12 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(MID_WAND);
                     add(HIGH_WAND);
                     add(END_WAND);
+
+                    add(NEWBIE_SCEPTER);
+                    add(LOW_SCEPTER);
+                    add(MID_SCEPTER);
+                    add(HIGH_SCEPTER);
+                    add(END_SCEPTER);
 
                     add(NEWBIE_BOW);
                     add(LOW_BOW);

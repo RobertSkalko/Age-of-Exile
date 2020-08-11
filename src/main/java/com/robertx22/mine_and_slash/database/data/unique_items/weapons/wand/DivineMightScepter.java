@@ -44,7 +44,7 @@ public class DivineMightScepter implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return BaseGearTypes.END_WAND;
+        return BaseGearTypes.END_SCEPTER;
     }
 
     @Override
