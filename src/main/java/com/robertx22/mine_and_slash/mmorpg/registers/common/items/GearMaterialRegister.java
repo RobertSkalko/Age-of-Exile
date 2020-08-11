@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common.items;
 
 import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
 import com.robertx22.mine_and_slash.database.registrators.LevelRanges;
+import com.robertx22.mine_and_slash.vanilla_mc.items.misc.GearCraftEssenceItem;
 import com.robertx22.mine_and_slash.vanilla_mc.items.misc.GearMaterialItem;
+import net.minecraft.item.Items;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -30,6 +32,13 @@ public class GearMaterialRegister extends BaseItemRegistrator {
     public GearMaterialItem ORE_2 = of(TYPE.ORE, 2, LevelRanges.MIDDLE);
     public GearMaterialItem ORE_3 = of(TYPE.ORE, 3, LevelRanges.HIGH);
     public GearMaterialItem ORE_4 = of(TYPE.ORE, 4, LevelRanges.ENDGAME);
+
+    public GearCraftEssenceItem ARCANA = item(new GearCraftEssenceItem("arcana", Items.PHANTOM_MEMBRANE, "Essence of Arcana"));
+    public GearCraftEssenceItem LIFE = item(new GearCraftEssenceItem("life", Items.GLISTERING_MELON_SLICE, "Essence of Life"));
+    public GearCraftEssenceItem WATER = item(new GearCraftEssenceItem("water", Items.LAPIS_LAZULI, "Essence of Water"));
+    public GearCraftEssenceItem NATURE = item(new GearCraftEssenceItem("nature", Items.BREAD, "Essence of Nature"));
+    public GearCraftEssenceItem FIRE = item(new GearCraftEssenceItem("fire", Items.BLAZE_POWDER, "Essence of Fire"));
+    public GearCraftEssenceItem THUNDER = item(new GearCraftEssenceItem("thunder", Items.GLOWSTONE_DUST, "Essence of Thunder"));
 
     public GearMaterialItem of(TYPE type, int tier, LevelRange range) {
 

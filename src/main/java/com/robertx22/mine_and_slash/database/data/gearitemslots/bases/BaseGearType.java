@@ -42,6 +42,7 @@ import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.baubles.ItemRing;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons.ItemAxe;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.vanilla_mc.items.gearitems.weapons.ItemWand;
+import com.robertx22.mine_and_slash.vanilla_mc.items.misc.GearCraftEssenceItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
@@ -64,6 +65,8 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     private BaseGearType() {
 
     }
+
+    GearCraftEssenceItem essenceItem = null;
 
     public abstract List<StatModifier> implicitStats();
 
@@ -125,6 +128,15 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public int Weight() {
         return 1000;
+    }
+
+    public BaseGearType setEssenceItem(GearCraftEssenceItem item) {
+        this.essenceItem = item;
+        return this;
+    }
+
+    public GearCraftEssenceItem getEssenceItem() {
+        return this.essenceItem;
     }
 
     public static class Constants {
@@ -527,23 +539,22 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         if (tags.contains(SlotTag.helmet)) {
             return new String[]{
                 "MMM",
-                "M M",
-                "  "
+                "M M"
             };
         }
 
         if (tags.contains(SlotTag.necklace)) {
             return new String[]{
-                "MSM",
+                "MMM",
                 "M M",
-                "MMM"
+                " M "
             };
         }
         if (tags.contains(SlotTag.ring)) {
             return new String[]{
-                "MMM",
+                " M ",
                 "M M",
-                "MMM"
+                " M "
             };
         }
 

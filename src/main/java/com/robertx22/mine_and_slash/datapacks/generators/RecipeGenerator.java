@@ -98,7 +98,16 @@ public class RecipeGenerator {
 
                     ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(x.getItem(), 1);
 
-                    String all = Strings.join(x.getRecipePattern(), "");
+                    String[] pattern = x.getRecipePattern();
+
+                    if (x.getEssenceItem() != null) {
+                        // if item is special and uses essence to craft
+                        for (int i = 0; i < pattern.length; i++) {
+                            pattern[i] = pattern[i].replaceAll(" ", "E");
+                        }
+                    }
+
+                    String all = Strings.join(pattern, "");
 
                     if (all.contains("M")) {
                         fac.input('M', x.getMaterial());
@@ -110,7 +119,7 @@ public class RecipeGenerator {
                         fac.input('B', Items.STRING);
                     }
 
-                    for (String pat : x.getRecipePattern()) {
+                    for (String pat : pattern) {
                         try {
                             fac.pattern(pat);
                         } catch (Exception e) {

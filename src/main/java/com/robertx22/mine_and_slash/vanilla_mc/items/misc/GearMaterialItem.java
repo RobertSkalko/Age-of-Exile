@@ -26,6 +26,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, IAutoModel, IShapedRecipe {
+
     public GearMaterialItem(int tier, GearMaterialRegister.TYPE type, String id, String locname, LevelRange levelRange) {
         super(new Item.Settings().maxCount(64)
             .group(CreativeTabs.MyModTab));

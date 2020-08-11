@@ -26,6 +26,7 @@ import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.Ba
 import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.melee.BaseWand;
 import com.robertx22.mine_and_slash.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.mmorpg.ModRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -121,68 +122,68 @@ public class BaseGearTypes implements ISlashRegistryInit {
 
     //////////////////////////////////////
     public static BaseGearType START_TO_LOW_HP_NECKLACE = new LifeNecklace("life_necklace0", LevelRanges.START_TO_LOW, "Life Giving Amulet") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
     public static BaseGearType MID_TO_END_HP_NECKLACE = new LifeNecklace("life_necklace1", LevelRanges.MID_TO_END, "Lifeblood Amulet") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
     //////////////////////////////////////
     public static BaseGearType START_TO_LOW_HP_RING_COLD = new LifeRing("cold_res_ring_low", LevelRanges.START_TO_LOW, "Aquamarine Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Water), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.WATER);
     public static BaseGearType MID_TO_END_HP_RING_COLD = new LifeRing("cold_res_ring_end", LevelRanges.MID_TO_END, "Sapphire Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Water), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.WATER);
     //////////////////////////////////////
     public static BaseGearType START_TO_LOW_HP_RING_FIRE = new LifeRing("fire_res_ring_low", LevelRanges.START_TO_LOW, "Coral Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Fire), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.FIRE);
     public static BaseGearType MID_TO_END_HP_RING_FIRE = new LifeRing("fire_res_ring_end", LevelRanges.MID_TO_END, "Ruby Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Fire), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.FIRE);
     //////////////////////////////////////
     public static BaseGearType START_TO_LOW_HP_RING_THUNDER = new LifeRing("thunder_res_ring_low", LevelRanges.START_TO_LOW, "Agate Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Thunder), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.THUNDER);
     public static BaseGearType MID_TO_END_HP_RING_THUNDER = new LifeRing("thunder_res_ring_end", LevelRanges.MID_TO_END, "Topaz Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Thunder), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.THUNDER);
     //////////////////////////////////////
     public static BaseGearType START_TO_LOW_HP_RING_POISON = new LifeRing("poison_res_ring_low", LevelRanges.START_TO_LOW, "Opal Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Nature), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.NATURE);
     public static BaseGearType MID_TO_END_HP_RING_POISON = new LifeRing("poison_res_ring_end", LevelRanges.MID_TO_END, "Emerald Ring") {
         @Override
         public List<StatModifier> baseStats() {
             return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Nature), ModType.FLAT));
         }
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.NATURE);
 
     //////////////////////////////////////
     public static BaseGearType START_TO_LOW_HP_RING_MANA_REG = new OccultRing("mana_reg_ring0", LevelRanges.START_TO_LOW, "Occult Ring") {
 
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ARCANA);
     public static BaseGearType MID_TO_END_HP_RING_MANA_REG = new OccultRing("mana_reg_ring1", LevelRanges.MID_TO_END, "Arcana Ring") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ARCANA);
 
     //////////////////////////////////////
     public static BaseGearType NEWBIE_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots0", LevelRanges.STARTER, "Old Boots") {

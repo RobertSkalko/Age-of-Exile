@@ -23,7 +23,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     static final int TicksToRegen = 60; // was 100, todo balance
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
-    static final int TicksToCompatibleItems = 40;
+    static final int TicksToCompatibleItems = 20;
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
