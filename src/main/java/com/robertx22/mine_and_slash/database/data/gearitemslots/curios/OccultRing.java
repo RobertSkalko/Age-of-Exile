@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.data.StatModifier;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.TagList;
 import com.robertx22.mine_and_slash.database.data.level_ranges.LevelRange;
-import com.robertx22.mine_and_slash.database.data.stats.types.resources.Mana;
+import com.robertx22.mine_and_slash.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -29,7 +29,7 @@ public class OccultRing extends BaseCurio {
 
     @Override
     public List<StatModifier> baseStats() {
-        return Arrays.asList(new StatModifier(5, 15, Mana.getInstance(), ModType.FLAT));
+        return Arrays.asList(new StatModifier(1, 2, ManaRegen.getInstance(), ModType.FLAT));
     }
 
     @Override
