@@ -138,6 +138,22 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType MID_TO_END_HP_NECKLACE = new LifeNecklace("life_necklace1", LevelRanges.MID_TO_END, "Lifeblood Amulet") {
     }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
     //////////////////////////////////////
+
+    //////////////////////////////////////
+    public static BaseGearType START_TO_LOW_ALL_RES_NECKLACE = new LifeNecklace("all_res_necklace0", LevelRanges.START_TO_LOW, "Primitive Amulet") {
+        @Override
+        public List<StatModifier> baseStats() {
+            return Arrays.asList(new StatModifier(5, 10, new ElementalResist(Elements.Elemental), ModType.FLAT));
+        }
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL);
+    public static BaseGearType MID_TO_END_ALL_RES_NECKLACE = new LifeNecklace("all_res_necklace1", LevelRanges.MID_TO_END, "Primordial Amulet") {
+        @Override
+        public List<StatModifier> baseStats() {
+            return Arrays.asList(new StatModifier(5, 10, new ElementalResist(Elements.Elemental), ModType.FLAT));
+        }
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL);
+    //////////////////////////////////////
+
     public static BaseGearType START_TO_LOW_HP_RING_COLD = new LifeRing("cold_res_ring_low", LevelRanges.START_TO_LOW, "Aquamarine Ring") {
         @Override
         public List<StatModifier> baseStats() {
@@ -463,6 +479,9 @@ public class BaseGearTypes implements ISlashRegistryInit {
 
                     add(START_TO_LOW_HP_NECKLACE);
                     add(MID_TO_END_HP_NECKLACE);
+
+                    add(START_TO_LOW_ALL_RES_NECKLACE);
+                    add(MID_TO_END_ALL_RES_NECKLACE);
 
                     add(START_TO_LOW_HP_RING_COLD);
                     add(MID_TO_END_HP_RING_COLD);

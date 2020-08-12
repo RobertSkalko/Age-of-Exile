@@ -94,7 +94,6 @@ public class CompatibleItemInventoryCheck {
                 GearItemData gear = Gear.Load(stack);
                 if (gear == null) {
                     stack = config.createStack(level, stack);
-
                 }
             }
         }

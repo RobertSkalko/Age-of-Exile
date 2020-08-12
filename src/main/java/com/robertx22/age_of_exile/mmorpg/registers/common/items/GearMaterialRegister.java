@@ -34,6 +34,7 @@ public class GearMaterialRegister extends BaseItemRegistrator {
     public GearMaterialItem ORE_4 = of(TYPE.ORE, 4, LevelRanges.ENDGAME);
 
     public GearCraftEssenceItem ARCANA = item(new GearCraftEssenceItem("arcana", Items.PHANTOM_MEMBRANE, "Essence of Arcana"));
+    public GearCraftEssenceItem ELEMENTAL = item(new GearCraftEssenceItem("elemental", Items.EMERALD, "Essence of Elements"));
     public GearCraftEssenceItem LIFE = item(new GearCraftEssenceItem("life", Items.GLISTERING_MELON_SLICE, "Essence of Life"));
     public GearCraftEssenceItem WATER = item(new GearCraftEssenceItem("water", Items.LAPIS_LAZULI, "Essence of Water"));
     public GearCraftEssenceItem NATURE = item(new GearCraftEssenceItem("nature", Items.BREAD, "Essence of Nature"));
