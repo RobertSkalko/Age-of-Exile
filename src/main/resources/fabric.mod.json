@@ -18,10 +18,10 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": ["com.robertx22.mine_and_slash.mmorpg.init.CommonInit"],
-	"client": ["com.robertx22.mine_and_slash.mmorpg.init.ClientInit"],		
-	"server": ["com.robertx22.mine_and_slash.mmorpg.init.ServerInit"],
-	"modmenu": ["com.robertx22.mine_and_slash.mmorpg.mod_menu.ModMenuIntegration"]
+    "main": ["com.robertx22.age_of_exile.mmorpg.init.CommonInit"],
+	"client": ["com.robertx22.age_of_exile.mmorpg.init.ClientInit"],		
+	"server": ["com.robertx22.age_of_exile.mmorpg.init.ServerInit"],
+	"modmenu": ["com.robertx22.age_of_exile.mmorpg.mod_menu.ModMenuIntegration"]
   },
   "mixins": [
     "mmorpg.mixins.json"

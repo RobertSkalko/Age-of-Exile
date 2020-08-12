@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.robertx22.mine_and_slash.mixins",
+  "package": "com.robertx22.age_of_exile.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ArrowShootMixin",

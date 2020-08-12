@@ -38,6 +38,7 @@ Compatibility update:
 
 Update your library of exile.
 
+- renamed all my packages to my new mod name
 - mob affixes now aren't separated into prefixes and suffixes
 - fix jewel crash bug
 - lvl 1 common mobs should now have same health as vanilla minecraft.
