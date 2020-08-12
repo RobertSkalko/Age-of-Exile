@@ -41,6 +41,6 @@ public class SkullOfSpiritsNecklace implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return BaseGearTypes.MID_TO_END_HP_NECKLACE;
+        return BaseGearTypes.MID_TO_END_ALL_RES_NECKLACE;
     }
 }

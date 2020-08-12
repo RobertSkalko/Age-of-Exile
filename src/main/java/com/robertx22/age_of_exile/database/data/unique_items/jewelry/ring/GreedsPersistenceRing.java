@@ -44,7 +44,7 @@ public class GreedsPersistenceRing implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return BaseGearTypes.MID_TO_END_HP_RING_MANA_REG;
+        return BaseGearTypes.MID_TO_END_HP_RING_FIRE;
     }
 }
 

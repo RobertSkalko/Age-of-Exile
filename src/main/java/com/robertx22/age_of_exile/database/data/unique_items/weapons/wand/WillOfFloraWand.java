@@ -44,6 +44,6 @@ public class WillOfFloraWand implements IUnique {
 
     @Override
     public BaseGearType getBaseGearType() {
-        return BaseGearTypes.HIGH_WAND;
+        return BaseGearTypes.HIGH_SCEPTER;
     }
 }
