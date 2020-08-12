@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.auto_comp;
 
 import com.google.common.collect.Multimap;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.age_of_exile.config.forge.parts.AutoConfigItemType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class PowerLevel {
 
-    public static HashMap<Item, Types> CACHED = new HashMap<>();
+    public static HashMap<Item, Float> CACHED = new HashMap<>();
 
     public PowerLevel(Item item, BaseGearType slot) {
 
@@ -44,6 +44,11 @@ public class PowerLevel {
     }
 
     public static float getFloatValueOf(Item item) {
+
+        if (CACHED.containsKey(item)) {
+            return CACHED.get(item);
+        }
+
         List<BaseGearType> slots = SlashRegistry.GearTypes()
             .getList()
             .stream()
@@ -55,76 +60,52 @@ public class PowerLevel {
         for (BaseGearType slot : slots) {
             PowerLevel power = new PowerLevel(item, slot);
 
-            PowerLevel best = DeterminePowerLevels.STRONGEST.getOrDefault(slot, new PowerLevel(item, slot));
+            PowerLevel best = DeterminePowerLevels.STRONGEST.get(slot.getGearSlot());
 
             val += power.divideBy(best);
 
         }
 
-        val *= slots.size();
+        val /= slots.size();
+
+        CACHED.put(item, val);
 
         return val;
     }
 
-    public enum Types {
-        HORRIBLE() {
-            @Override
-            public AutoConfigItemType getConfig() {
-                return ModConfig.get().autoCompatibleItems.HORRIBLE;
-            }
-        },
-        TRASH() {
-            @Override
-            public AutoConfigItemType getConfig() {
-                return ModConfig.get().autoCompatibleItems.TRASH;
-            }
-        }, NORMAL() {
-            @Override
-            public AutoConfigItemType getConfig() {
-                return ModConfig.get().autoCompatibleItems.NORMAL;
-            }
-        }, BEST() {
-            @Override
-            public AutoConfigItemType getConfig() {
-                return ModConfig.get().autoCompatibleItems.BEST;
-            }
-        };
-
-        Types() {
-
-        }
-
-        public abstract AutoConfigItemType getConfig();
-
-    }
-
-    public static Types getPowerClassification(Item item) {
-
-        if (CACHED.containsKey(item)) {
-            return CACHED.get(item);
-        }
-
-        float val = getFloatValueOf(item);
+    public static AutoConfigItemType getPowerClassification(Float val) {
 
         AutoCompatibleItemConfig config = ModConfig.get().autoCompatibleItems;
 
-        Types type = null;
+        AutoConfigItemType type = null;
 
-        if (val > config.BEST.POWER_REQ) {
-            type = Types.BEST;
-        }
-        if (val > config.NORMAL.POWER_REQ) {
-            type = Types.NORMAL;
-        }
-        if (val > config.TRASH.POWER_REQ) {
-            type = Types.TRASH;
+        if (config.TIER_5.isInRange(val)) {
+            type = ModConfig.get().autoCompatibleItems.TIER_5;
+        } else if (config.TIER_4.isInRange(val)) {
+            type = ModConfig.get().autoCompatibleItems.TIER_4;
+        } else if (config.TIER_3.isInRange(val)) {
+            type = ModConfig.get().autoCompatibleItems.TIER_3;
+        } else if (config.TIER_2.isInRange(val)) {
+            type = ModConfig.get().autoCompatibleItems.TIER_2;
+        } else if (config.TIER_1.isInRange(val)) {
+            type = ModConfig.get().autoCompatibleItems.TIER_1;
+        } else {
+            type = ModConfig.get().autoCompatibleItems.TIER_0;
+
         }
 
-        if (type == null) {
-            type = Types.HORRIBLE;
+        return type;
+    }
+
+    public static AutoConfigItemType getPowerClassification(Item item) {
+
+        if (CACHED.containsKey(item)) {
+            return getPowerClassification(CACHED.get(item));
         }
 
-        CACHED.put(item, type);
+        AutoConfigItemType type = getPowerClassification(getFloatValueOf(item));
+
+        CACHED.put(item, getFloatValueOf(item));
 
         return type;
     }

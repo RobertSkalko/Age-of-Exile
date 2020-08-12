@@ -18,8 +18,8 @@ public class GearSlots implements ISlashRegistryInit {
 
     public static GearSlot SHIELD = new GearSlot("shield", 1000);
 
-    public static GearSlot RING = new GearSlot("helmet", 750);
-    public static GearSlot NECKLACE = new GearSlot("helmet", 750);
+    public static GearSlot RING = new GearSlot("ring", 750);
+    public static GearSlot NECKLACE = new GearSlot("necklace", 750);
 
     @Override
     public void registerAll() {

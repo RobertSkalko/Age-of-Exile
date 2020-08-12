@@ -1,17 +1,19 @@
 package com.robertx22.age_of_exile.auto_comp;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.util.registry.Registry;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DeterminePowerLevels {
 
-    public static HashMap<BaseGearType, List<PowerLevel>> MAP = new HashMap<>();
-    public static HashMap<BaseGearType, PowerLevel> STRONGEST = new HashMap<>();
+    public static HashMap<GearSlot, PowerLevel> STRONGEST = new HashMap<>();
 
     public static void setupHashMaps() {
 
@@ -20,13 +22,9 @@ public class DeterminePowerLevels {
         Set<BaseGearType> types = new HashSet<>(SlashRegistry.GearTypes()
             .getList());
 
-        types.forEach(x -> {
-            MAP.put(x, new ArrayList<>());
-        });
-
         Registry.ITEM
             .stream()
-            .filter(x -> Registry.ITEM.getId(x) != null && !Ref.MODID.equals(Registry.ITEM.getId(x)
+            .filter(x -> !Ref.MODID.equals(Registry.ITEM.getId(x)
                 .getNamespace()))
             .forEach(item -> {
                 try {
@@ -37,16 +35,13 @@ public class DeterminePowerLevels {
 
                                 PowerLevel current = new PowerLevel(item, slot);
 
-                                MAP.get(slot)
-                                    .add(current);
-
-                                PowerLevel strongest = STRONGEST.getOrDefault(slot, new PowerLevel(item, slot));
+                                PowerLevel strongest = STRONGEST.getOrDefault(slot, current);
 
                                 if (current.isStrongerThan(strongest)) {
                                     strongest = current;
                                 }
 
-                                STRONGEST.put(slot, strongest);
+                                STRONGEST.put(slot.getGearSlot(), strongest);
 
                             }
                         });

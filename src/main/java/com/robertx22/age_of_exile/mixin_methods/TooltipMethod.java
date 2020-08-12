@@ -1,8 +1,11 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
+import com.robertx22.age_of_exile.auto_comp.PowerLevel;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.event_hooks.ontick.CompatibleItemInventoryCheck;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -79,6 +82,17 @@ public class TooltipMethod {
 
                         List<CompatibleItem> matchingItems = SlashRegistry.CompatibleItems()
                             .getFilterWrapped(x -> x.item_id.equals(reg)).list;
+
+                        if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
+
+                            SlashRegistry.GearTypes()
+                                .getFilterWrapped(x -> BaseGearType.isGearOfThisType(x, stack.getItem())).list
+                                .forEach(x -> {
+                                    matchingItems.addAll(PowerLevel.getPowerClassification(stack.getItem())
+                                        .getAutoCompatibleItems(PowerLevel.getFloatValueOf(stack.getItem()), stack.getItem(), x));
+                                });
+
+                        }
 
                         if (!matchingItems.isEmpty()) {
 

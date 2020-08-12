@@ -29,6 +29,10 @@ public class LevelRange implements ISerializable<LevelRange> {
         return end;
     }
 
+    public float getStartPercent() {
+        return start;
+    }
+
     public boolean isLevelInRange(int lvl) {
         return lvl >= getMinLevel() && lvl <= getMaxLevel();
     }

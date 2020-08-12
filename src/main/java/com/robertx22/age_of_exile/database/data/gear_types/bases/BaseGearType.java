@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Wea
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.registrators.GearSlots;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.JsonUtils;
@@ -107,19 +108,24 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public final EquipmentSlot getVanillaSlotType() {
 
-        if (getTags().contains(SlotTag.shield)) {
+        if (getGearSlot().GUID()
+            .equals(GearSlots.SHIELD.GUID())) {
             return EquipmentSlot.OFFHAND;
         }
-        if (getTags().contains(SlotTag.boots)) {
+        if (getGearSlot().GUID()
+            .equals(GearSlots.BOOTS.GUID())) {
             return EquipmentSlot.FEET;
         }
-        if (getTags().contains(SlotTag.chest)) {
+        if (getGearSlot().GUID()
+            .equals(GearSlots.CHEST.GUID())) {
             return EquipmentSlot.CHEST;
         }
-        if (getTags().contains(SlotTag.pants)) {
+        if (getGearSlot().GUID()
+            .equals(GearSlots.PANTS.GUID())) {
             return EquipmentSlot.LEGS;
         }
-        if (getTags().contains(SlotTag.helmet)) {
+        if (getGearSlot().GUID()
+            .equals(GearSlots.HELMET.GUID())) {
             return EquipmentSlot.HEAD;
         }
         if (isWeapon()) {
@@ -316,19 +322,24 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         return new NormalWeaponMechanic();
     }
 
-    private static HashMap<String, HashMap<Item, Boolean>> CACHED = new HashMap<>();
+    private static HashMap<String, HashMap<Item, Boolean>> CACHED_GEAR_SLOTS = new HashMap<>();
 
     // has to use ugly stuff like this cus datapacks.
     public static boolean isGearOfThisType(BaseGearType slot, Item item) {
 
-        String id = slot.GUID();
-
-        if (!CACHED.containsKey(id)) {
-            CACHED.put(id, new HashMap<>());
+        if (item == Items.AIR) {
+            return false;
         }
-        if (CACHED.get(id)
+
+        String id = slot.getGearSlot()
+            .GUID();
+
+        if (!CACHED_GEAR_SLOTS.containsKey(id)) {
+            CACHED_GEAR_SLOTS.put(id, new HashMap<>());
+        }
+        if (CACHED_GEAR_SLOTS.get(id)
             .containsKey(item)) {
-            return CACHED.get(id)
+            return CACHED_GEAR_SLOTS.get(id)
                 .get(item);
         }
 
@@ -338,28 +349,8 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
             if (item instanceof ArmorItem) {
                 if (slot.getVanillaSlotType() != null) {
                     if (slot.getVanillaSlotType()
-                        .equals(EquipmentSlot.FEET)) {
-
-                        bool = ((ArmorItem) item).getSlotType()
-                            .equals(EquipmentSlot.FEET);
-
-                    } else if (slot.getVanillaSlotType()
-                        .equals(EquipmentSlot.CHEST)) {
-
-                        bool = ((ArmorItem) item).getSlotType()
-                            .equals(EquipmentSlot.CHEST);
-
-                    } else if (slot.getVanillaSlotType()
-                        .equals(EquipmentSlot.HEAD)) {
-
-                        bool = ((ArmorItem) item).getSlotType()
-                            .equals(EquipmentSlot.HEAD);
-
-                    } else if (slot.getVanillaSlotType()
-                        .equals(EquipmentSlot.LEGS)) {
-
-                        bool = ((ArmorItem) item).getSlotType()
-                            .equals(EquipmentSlot.LEGS);
+                        .equals(((ArmorItem) item).getSlotType())) {
+                        bool = true;
                     }
                 }
             } else if (slot.getTags()
@@ -379,7 +370,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
                 bool = item instanceof CrossbowItem;
             }
 
-            CACHED.get(slot.GUID())
+            CACHED_GEAR_SLOTS.get(id)
                 .put(item, bool);
 
             return bool;

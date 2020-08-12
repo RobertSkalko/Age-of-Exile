@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -78,10 +79,8 @@ public class CompatibleItemInventoryCheck {
 
                         BaseGearType slot = wrapped.random();
 
-                        PowerLevel.Types type = PowerLevel.getPowerClassification(item);
-
-                        config = type.getConfig()
-                            .getAutoCompatibleItem(item, slot);
+                        config = RandomUtils.randomFromList(PowerLevel.getPowerClassification(item)
+                            .getAutoCompatibleItems(PowerLevel.getFloatValueOf(item), item, slot));
 
                     }
 
@@ -104,11 +103,6 @@ public class CompatibleItemInventoryCheck {
 
         try {
 
-            /*
-            if (ModConfig.get().Server.USE_COMPATIBILITY_ITEMS == false) {
-                return;
-            }
-             */
             if (player.world.isClient) {
                 return;
             }

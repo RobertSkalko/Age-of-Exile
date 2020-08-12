@@ -10,12 +10,17 @@ public class AutoCompatibleItemConfig {
     public int MAX_TOTAL_STATS = 200;
 
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType HORRIBLE = new AutoConfigItemType(0F, 20, IRarity.Common, IRarity.Common);
+    public AutoConfigItemType TIER_0 = new AutoConfigItemType(0, 0.15F, 10).maxRarity(IRarity.Common)
+        .noSalvage();
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TRASH = new AutoConfigItemType(0.03F, 40, IRarity.Common, IRarity.Magical);
+    public AutoConfigItemType TIER_1 = new AutoConfigItemType(0.15F, 0.25F, 10).noSalvage();
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType NORMAL = new AutoConfigItemType(0.3F, 80, IRarity.Magical, IRarity.Magical);
+    public AutoConfigItemType TIER_2 = new AutoConfigItemType(0.25F, 0.5F, 20);
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType BEST = new AutoConfigItemType(0.8F, Integer.MAX_VALUE, IRarity.Magical, IRarity.Rare);
+    public AutoConfigItemType TIER_3 = new AutoConfigItemType(0.5F, 0.8F, 30);
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoConfigItemType TIER_4 = new AutoConfigItemType(0.8F, 0.9F, 40);
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoConfigItemType TIER_5 = new AutoConfigItemType(0.9F, 1F, 50);
 
 }
