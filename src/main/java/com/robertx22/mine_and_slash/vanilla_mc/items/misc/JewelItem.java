@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.vanilla_mc.items.misc;
 import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.jewels.ItemCanHaveAffixJewelReq;
 import com.robertx22.mine_and_slash.database.data.currency.loc_reqs.jewels.NeedsEmptySocket;
@@ -46,6 +47,22 @@ public class JewelItem extends Item implements IAutoModel, ICurrencyItemEffect, 
         Gear.Save(stack, gear);
 
         return stack;
+    }
+
+    @Override
+    public final boolean canItemBeModified(LocReqContext context) {
+
+        if (Gear.Load(context.stack) == null || Jewel.Load(context.Currency) == null) {
+            return false;
+        }
+
+        for (BaseLocRequirement req : requirements()) {
+            if (req.isNotAllowed(context)) {
+                return false;
+            }
+
+        }
+        return true;
     }
 
     @Override

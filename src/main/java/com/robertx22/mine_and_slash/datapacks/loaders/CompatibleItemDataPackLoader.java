@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.datapacks.generators.CompatibleItemGenerator
 import com.robertx22.mine_and_slash.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -37,7 +36,9 @@ public class CompatibleItemDataPackLoader extends BaseDataPackLoader<CompatibleI
             ) {
                 Item item = slot.getItem();
 
-                if (item == Items.AIR || Registry.ITEM.getId(item) == null) {
+                if (!Registry.ITEM.getId(item)
+                    .getNamespace()
+                    .equals(Ref.MODID)) {
                     continue;
                 }
 
@@ -64,7 +65,9 @@ public class CompatibleItemDataPackLoader extends BaseDataPackLoader<CompatibleI
             ) {
                 Item item = uniq.getUniqueItem();
 
-                if (item == Items.AIR || Registry.ITEM.getId(item) == null) {
+                if (!Registry.ITEM.getId(item)
+                    .getNamespace()
+                    .equals(Ref.MODID)) {
                     continue;
                 }
 

@@ -10,9 +10,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public class OnItemCrafted {
     public static void onCraft(ItemStack stack, World world, PlayerEntity player, int amount, CallbackInfo ci) {
+
+        if (world.isClient) {
+            return;
+        }
+
         if (CompatibleItemInventoryCheck.isComp(stack.getItem())) {
             EntityCap.UnitData data = Load.Unit(player);
-            CompatibleItemInventoryCheck.tryCreateCompatibleItemStats(stack, data.getLevel());
+            CompatibleItemInventoryCheck.tryCreateCompatibleItemStats(stack, data.getLevel(), player);
         }
     }
 }

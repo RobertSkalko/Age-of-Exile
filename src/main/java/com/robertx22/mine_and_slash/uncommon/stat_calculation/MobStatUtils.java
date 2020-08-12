@@ -44,18 +44,10 @@ public class MobStatUtils {
 
     public static void addAffixStats(UnitData data) {
 
-        if (data.getUnit()
-            .getPrefix() != null) {
-            data.getUnit()
-                .getPrefix()
-                .applyStats(data);
-        }
-        if (data.getUnit()
-            .getSuffix() != null) {
-            data.getUnit()
-                .getSuffix()
-                .applyStats(data);
-        }
+        data.getUnit()
+            .getAffixes()
+            .forEach(x -> x.applyStats(data));
+
     }
 
     public static void worldMultiplierStats(World world, Unit unit) {

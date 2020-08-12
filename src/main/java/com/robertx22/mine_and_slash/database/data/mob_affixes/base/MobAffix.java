@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.data.mob_affixes.base;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.database.data.StatModifier;
-import com.robertx22.mine_and_slash.database.data.affixes.Affix;
 import com.robertx22.mine_and_slash.database.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.datapacks.JsonUtils;
 import com.robertx22.mine_and_slash.datapacks.bases.ISerializable;
@@ -11,6 +10,7 @@ import com.robertx22.mine_and_slash.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,14 +20,14 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
     List<StatModifier> stats;
     String id;
     String locName;
-    Affix.Type type;
     int weight = 1000;
     public String icon = "";
+    public Formatting format;
 
-    public MobAffix(String id, String locName, Affix.Type type) {
+    public MobAffix(String id, String locName, Formatting format) {
         this.id = id;
         this.locName = locName;
-        this.type = type;
+        this.format = format;
     }
 
     public MobAffix setMods(StatModifier... mods) {
@@ -45,19 +45,11 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
         return true;
     }
 
-    public boolean isPrefix() {
-        return type == Affix.Type.prefix;
-    }
-
-    public boolean isSuffix() {
-        return type == Affix.Type.suffix;
-    }
-
     @Override
     public JsonObject toJson() {
         JsonObject json = getDefaultJson();
 
-        json.addProperty("type", type.name());
+        json.addProperty("format", format.name());
 
         json.addProperty("icon", icon);
 
@@ -74,7 +66,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
         MobAffix affix = new MobAffix(
             getGUIDFromJson(json),
             getLangNameStringFromJson(json),
-            Affix.Type.valueOf(json.get("type")
+            Formatting.valueOf(json.get("format")
                 .getAsString()));
 
         try {

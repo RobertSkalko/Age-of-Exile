@@ -2,7 +2,8 @@ v.1.1.0
 
 Crafting Update!
 
-Warning: This update deletes all existing gear items! Unfortunately required because of the gear rework.
+WARNING: This update deletes all existing gear items! 
+Unfortunately required because of the gear rework.
 A clean start is recommended.
 
 Now for the good news:
@@ -37,6 +38,8 @@ Compatibility update:
 
 Update your library of exile.
 
+- mob affixes now aren't separated into prefixes and suffixes
+- fix jewel crash bug
 - lvl 1 common mobs should now have same health as vanilla minecraft.
 - mobs will have less hp on average
 - fix nature balm

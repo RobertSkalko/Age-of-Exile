@@ -62,22 +62,14 @@ public class Unit {
     @Store
     public String suffix;
 
-    public MobAffix getPrefix() {
-        if (prefix == null) {
-            return null;
-        } else {
-            return SlashRegistry.MobAffixes()
-                .get(prefix);
-        }
-    }
+    @Store
+    public List<String> affixes = new ArrayList<>();
 
-    public MobAffix getSuffix() {
-        if (suffix == null) {
-            return null;
-        } else {
-            return SlashRegistry.MobAffixes()
-                .get(suffix);
-        }
+    public List<MobAffix> getAffixes() {
+        return affixes.stream()
+            .map(x -> SlashRegistry.MobAffixes()
+                .get(x))
+            .collect(Collectors.toList());
     }
 
     public HashMap<String, StatData> getStats() {
@@ -115,34 +107,17 @@ public class Unit {
 
     }
 
-    public void setRandomMobAffixes(MobRarity rarity) {
+    public void randomizeAffixes(MobRarity rarity) {
 
-        if (RandomUtils.roll(rarity.bothAffixesChance())) {
-            randomizePrefix();
-            randomizeSuffix();
-        } else if (RandomUtils.roll(rarity.oneAffixChance())) {
+        int amount = RandomUtils.roll(rarity.oneAffixChance()) ? 1 : 0;
 
-            if (RandomUtils.roll(50)) {
-                randomizePrefix();
-            } else {
-                randomizeSuffix();
-            }
+        this.affixes.clear();
+
+        if (amount > 0) {
+            this.affixes.add(SlashRegistry.MobAffixes()
+                .random()
+                .GUID());
         }
-
-    }
-
-    public void randomizePrefix() {
-        this.prefix = SlashRegistry.MobAffixes()
-            .getFilterWrapped(x -> x.isPrefix())
-            .random()
-            .GUID();
-    }
-
-    public void randomizeSuffix() {
-        this.suffix = SlashRegistry.MobAffixes()
-            .getFilterWrapped(x -> x.isSuffix())
-            .random()
-            .GUID();
     }
 
     public StatData getCreateStat(String guid) {

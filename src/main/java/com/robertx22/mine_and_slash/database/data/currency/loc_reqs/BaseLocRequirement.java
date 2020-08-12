@@ -9,7 +9,8 @@ public abstract class BaseLocRequirement {
     public abstract boolean isAllowed(LocReqContext context);
 
     public boolean isNotAllowed(LocReqContext context) {
-        return this.isAllowed(context) == false;
+
+        return !this.isAllowed(context);
     }
 
 }

@@ -82,7 +82,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
         endata.setRarity(rar);
 
         MobRarity rarity = Rarities.Mobs.get(rar);
-        mob.setRandomMobAffixes(rarity);
+        mob.randomizeAffixes(rarity);
 
         endata.setUnit(mob, entity);
 

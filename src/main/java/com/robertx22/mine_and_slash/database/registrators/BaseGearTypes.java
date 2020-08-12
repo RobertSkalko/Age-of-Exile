@@ -49,15 +49,15 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
 
     public static BaseGearType NEWBIE_SCEPTER = new BaseScepter("scepter0", LevelRanges.STARTER, "Rotten Scepter") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
     public static BaseGearType LOW_SCEPTER = new BaseScepter("scepter1", LevelRanges.LOW, "Ancient Scepter") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
     public static BaseGearType MID_SCEPTER = new BaseScepter("scepter2", LevelRanges.MIDDLE, "Sage Scepter") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
     public static BaseGearType HIGH_SCEPTER = new BaseScepter("scepter3", LevelRanges.HIGH, "Crystal Scepter") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
     public static BaseGearType END_SCEPTER = new BaseScepter("scepter4", LevelRanges.ENDGAME, "Ancestral Scepter") {
-    };
+    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
 
     //////////////////////////////////////
     public static BaseGearType NEWBIE_SWORD = new BaseSword("sword0", LevelRanges.STARTER, "Stick Sword") {
@@ -232,15 +232,15 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType END_LEATHER_CHEST = new BaseLeatherChest("leather_chest4", LevelRanges.ENDGAME, "Full Leather Vest") {
     };
     //////////////////////////////////////
-    public static BaseGearType NEWBIE_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Hat") {
+    public static BaseGearType NEWBIE_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Cap") {
     };
-    public static BaseGearType LOW_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Leather Hat") {
+    public static BaseGearType LOW_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Leather Cap") {
     };
-    public static BaseGearType MID_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Iron Leather Hat") {
+    public static BaseGearType MID_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Iron Leather Cap") {
     };
-    public static BaseGearType HIGH_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Sturdy Leather Hat") {
+    public static BaseGearType HIGH_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Sturdy Leather Cap") {
     };
-    public static BaseGearType END_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Hat") {
+    public static BaseGearType END_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Cap") {
     };
 
     //////////////////////////////////////

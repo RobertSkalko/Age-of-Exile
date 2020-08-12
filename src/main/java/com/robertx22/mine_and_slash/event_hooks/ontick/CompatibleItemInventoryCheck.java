@@ -45,9 +45,9 @@ public class CompatibleItemInventoryCheck {
         return Cached.IS_COMP_ITEM_MAP.get(item);
     }
 
-    public static void tryCreateCompatibleItemStats(ItemStack stack, int level) {
+    public static void tryCreateCompatibleItemStats(ItemStack stack, int level, PlayerEntity player) {
         // fast check for every item
-        if (Gear.has(stack) == false) {
+        if (!Gear.has(stack)) {
 
             if (!isComp(stack.getItem())) {
                 return;
@@ -94,6 +94,7 @@ public class CompatibleItemInventoryCheck {
                 GearItemData gear = Gear.Load(stack);
                 if (gear == null) {
                     stack = config.createStack(level, stack);
+
                 }
             }
         }
@@ -120,7 +121,7 @@ public class CompatibleItemInventoryCheck {
                 }
                 EntityCap.UnitData data = Load.Unit(player);
 
-                tryCreateCompatibleItemStats(stack, data.getLevel());
+                tryCreateCompatibleItemStats(stack, data.getLevel(), player);
 
             }
 

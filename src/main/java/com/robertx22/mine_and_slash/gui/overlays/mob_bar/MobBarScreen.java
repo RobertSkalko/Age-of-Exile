@@ -39,6 +39,9 @@ public class MobBarScreen extends DrawableHelper implements HudRenderCallback {
 
         try {
 
+            if (true) {
+                return;
+            }
             if (!ModConfig.get().client.RENDER_SIMPLE_MOB_BAR) {
                 return;
             }
