@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.unique_items;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.TagList;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.unique_items.bases.*;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.JsonUtils;
@@ -25,7 +25,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.List;
 import java.util.Locale;
 
-import static com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType.SlotTag;
+import static com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 
 public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<IUnique>, ISerializable<IUnique> {

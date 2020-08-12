@@ -8,7 +8,8 @@ import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -94,8 +95,8 @@ public class SlashRegistry {
 
     }
 
-    public static SlashRegistryContainer<BasePotionEffect> PotionEffects() {
-        return getRegistry(SlashRegistryType.EFFECT);
+    public static SlashRegistryContainer<GearSlot> GearSlots() {
+        return getRegistry(SlashRegistryType.GEAR_SLOT);
     }
 
     public static SlashRegistryContainer<IUnique> UniqueGears() {
@@ -235,6 +236,7 @@ public class SlashRegistry {
 
     private static void registerFromAllInits() {
 
+        new GearSlots().registerAll();
         new Tiers().registerAll();
 
         new Spells().registerAll(); // some stats are based on spells, so spells go first
@@ -266,6 +268,7 @@ public class SlashRegistry {
         SERVER = new HashMap<>();
 
         // data pack ones
+        addRegistry(new SlashRegistryContainer<GearSlot>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseGearType>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).isDatapack());
         addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
         addRegistry(new SlashRegistryContainer<Affix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());

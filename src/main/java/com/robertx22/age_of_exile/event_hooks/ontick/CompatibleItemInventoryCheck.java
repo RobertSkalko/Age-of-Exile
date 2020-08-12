@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.auto_comp.PowerLevel;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;

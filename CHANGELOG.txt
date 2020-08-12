@@ -38,10 +38,12 @@ Compatibility update:
 
 Update your library of exile.
 
+- added gear slot datapacks. Super tiny, just declares drop chances. 
+So if there's 100 different sword types, and 5 axe types, they'll still have same chance to drop if their gear slots have same weight.
 - renamed all my packages to my new mod name
 - mob affixes now aren't separated into prefixes and suffixes
 - fix jewel crash bug
-- lvl 1 common mobs should now have same health as vanilla minecraft.
+- lvl 1 common mobs should now have similar health as vanilla minecraft.
 - mobs will have less hp on average
 - fix nature balm
 - level ups now show on screen title messages.

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine;
 
-import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -12,6 +11,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.*;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data.PotionStat;

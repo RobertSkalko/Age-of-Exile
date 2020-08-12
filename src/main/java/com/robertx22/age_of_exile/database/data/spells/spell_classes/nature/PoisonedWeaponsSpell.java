@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.nature;
 
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.cast_types.SpellCastType;

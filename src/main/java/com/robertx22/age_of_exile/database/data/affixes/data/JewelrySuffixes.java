@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.affixes.data;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.database.data.affixes.ElementalAffixBuilder;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType.SlotTag;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;

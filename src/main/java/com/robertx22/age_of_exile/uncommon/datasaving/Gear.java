@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.uncommon.datasaving;
 
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.age_of_exile.api.MineAndSlashEvents;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;

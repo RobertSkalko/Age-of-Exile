@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.requirements.bases;
 
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 
 public class GearRequestedFor {

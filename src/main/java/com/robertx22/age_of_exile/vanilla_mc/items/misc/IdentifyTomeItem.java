@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
-import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import net.fabricmc.api.EnvType;

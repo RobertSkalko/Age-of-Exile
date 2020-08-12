@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt;
 
-import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;

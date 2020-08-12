@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
 
-import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.localization.CLOC;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTile;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;

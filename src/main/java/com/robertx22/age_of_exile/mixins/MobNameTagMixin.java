@@ -28,6 +28,7 @@ public abstract class MobNameTagMixin {
     @Shadow
     public abstract EntityRenderDispatcher getRenderManager();
 
+    // TODO this might be the wrong way to do it.
     @Inject(method = "render", at = @At(value = "HEAD"),
         cancellable = true)
     private void render(Entity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {

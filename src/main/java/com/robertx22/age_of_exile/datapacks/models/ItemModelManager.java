@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.datapacks.models;
 
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;

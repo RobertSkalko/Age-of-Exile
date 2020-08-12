@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.auto_comp;
 
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.util.registry.Registry;

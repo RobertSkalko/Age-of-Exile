@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.requirements;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.TagList;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.datapacks.JsonUtils;

@@ -34,6 +34,7 @@ public class DataGeneration {
     }
 
     public static void registerLoaders(ReloadableResourceManager manager) {
+        manager.registerListener(new GearSlotDatapackLoader());
         manager.registerListener(new BaseGearTypeDatapackLoader());
         manager.registerListener(new TierDatapackLoader());
         manager.registerListener(new AffixDataPackLoader());

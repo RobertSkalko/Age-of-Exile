@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.spells.entities.cloud;
 
-import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.BaseCloudEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.proj.RangerArrowEntity;
@@ -8,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.confi
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvents;

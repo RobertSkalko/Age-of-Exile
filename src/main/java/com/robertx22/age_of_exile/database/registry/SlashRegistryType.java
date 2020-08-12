@@ -15,6 +15,7 @@ public enum SlashRegistryType {
     NONE("none"),
     EFFECT("effect"),
     STAT("stat"),
+    GEAR_SLOT("gear_slot"),
     SPELL_SYNERGY("synergy"),
     TIER("tier") {
         @Override

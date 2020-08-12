@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.datapacks.seriazables;
 
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;

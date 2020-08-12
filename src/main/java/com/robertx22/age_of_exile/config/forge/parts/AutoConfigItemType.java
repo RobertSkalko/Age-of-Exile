@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.config.forge.parts;
 
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
-import com.robertx22.age_of_exile.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import net.minecraft.item.Item;
 
 public class AutoConfigItemType {

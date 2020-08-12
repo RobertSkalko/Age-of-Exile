@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.blocks.holy_flower;
 
-import com.robertx22.library_of_exile.utils.SoundUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.spells.blocks.base.BaseSpellTileEntity;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
