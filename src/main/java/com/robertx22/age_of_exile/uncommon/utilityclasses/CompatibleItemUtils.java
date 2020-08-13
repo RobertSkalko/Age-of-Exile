@@ -22,40 +22,75 @@ public class CompatibleItemUtils {
 
     public static class Data {
 
-        public int minLevel;
-        public int maxLevel;
+        public int minLevel = 0;
+        public int maxLevel = 0;
 
         public boolean isCompatible;
 
         List<CompatibleItem> all;
 
-        public Data(List<CompatibleItem> all) {
-            this.all = all;
+        public Data(Item item) {
+
+            //Watch watch = new Watch();
+
+            this.all = new ArrayList<>();
+
+            String reg = Registry.ITEM.getId(item)
+                .toString();
+
+            all.addAll(SlashRegistry.CompatibleItems()
+                .getFilterWrapped(x -> x.item_id.equals(reg)).list);
+
+            if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
+                if (all.isEmpty()) {
+
+                    Set<GearSlot> slots = new HashSet<>();
+
+                    SlashRegistry.GearTypes()
+                        .getList()
+                        .forEach(x -> {
+                            if (BaseGearType.isGearOfThisType(x, item)) {
+                                slots.add(x.getGearSlot());
+                            }
+                        });
+
+                    slots.forEach(x -> {
+                        all.addAll(PowerLevel.getPowerClassification(item)
+                            .getAutoCompatibleItems(PowerLevel.getFloatValueOf(item), item, x));
+                    });
+
+                }
+            }
 
             this.isCompatible = !all.isEmpty();
 
-            CompatibleItem min = all.stream()
-                .min(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
-                    .get(s.item_type)
-                    .getLevelRange()
-                    .getMinLevel()))
-                .get();
-            CompatibleItem max = all.stream()
-                .max(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
-                    .get(s.item_type)
-                    .getLevelRange()
-                    .getMaxLevel()))
-                .get();
+            if (!all.isEmpty()) {
 
-            this.minLevel = SlashRegistry.GearTypes()
-                .get(min.item_type)
-                .getLevelRange()
-                .getMinLevel();
+                CompatibleItem min = all.stream()
+                    .min(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
+                        .get(s.item_type)
+                        .getLevelRange()
+                        .getMinLevel()))
+                    .get();
+                CompatibleItem max = all.stream()
+                    .max(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
+                        .get(s.item_type)
+                        .getLevelRange()
+                        .getMaxLevel()))
+                    .get();
 
-            this.maxLevel = SlashRegistry.GearTypes()
-                .get(max.item_type)
-                .getLevelRange()
-                .getMaxLevel();
+                this.minLevel = SlashRegistry.GearTypes()
+                    .get(min.item_type)
+                    .getLevelRange()
+                    .getMinLevel();
+
+                this.maxLevel = SlashRegistry.GearTypes()
+                    .get(max.item_type)
+                    .getLevelRange()
+                    .getMaxLevel();
+            }
+
+            //watch.print("Compat for :" + CLOC.translate(item.getName()));
         }
 
         public List<CompatibleItem> getAll() {
@@ -82,42 +117,12 @@ public class CompatibleItemUtils {
 
     public static List<CompatibleItem> getPossibleCompatibleItemsFor(Item item) {
 
-        if (Cached.COMPATIBLE_ITEMS.containsKey(item)) {
-            return Cached.COMPATIBLE_ITEMS.get(item)
-                .getAll();
+        if (!Cached.COMPATIBLE_ITEMS.containsKey(item)) {
+            Cached.COMPATIBLE_ITEMS.put(item, new Data(item));
         }
 
-        List<CompatibleItem> matchingItems = new ArrayList<>();
-
-        String reg = Registry.ITEM.getId(item)
-            .toString();
-
-        matchingItems.addAll(SlashRegistry.CompatibleItems()
-            .getFilterWrapped(x -> x.item_id.equals(reg)).list);
-
-        if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
-            if (matchingItems.isEmpty()) {
-
-                Set<GearSlot> slots = new HashSet<>();
-
-                SlashRegistry.GearTypes()
-                    .getList()
-                    .forEach(x -> {
-                        if (BaseGearType.isGearOfThisType(x, item)) {
-                            slots.add(x.getGearSlot());
-                        }
-                    });
-
-                slots.forEach(x -> {
-                    matchingItems.addAll(PowerLevel.getPowerClassification(item)
-                        .getAutoCompatibleItems(PowerLevel.getFloatValueOf(item), item, x));
-                });
-
-            }
-        }
-
-        Cached.COMPATIBLE_ITEMS.put(item, new Data(matchingItems));
-        return matchingItems;
+        return Cached.COMPATIBLE_ITEMS.get(item)
+            .getAll();
     }
 
     public static void tryCreateCompatibleItemStats(ItemStack stack, int level, PlayerEntity player) {

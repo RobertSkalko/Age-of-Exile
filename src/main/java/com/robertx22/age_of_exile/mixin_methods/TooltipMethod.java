@@ -69,15 +69,13 @@ public class TooltipMethod {
                 if (data != null) {
                     data.BuildTooltip(ctx);
                 } else {
-
                     CompatibleItemUtils.Data cdata = CompatibleItemUtils.getData(stack.getItem());
 
-                    int mini = cdata.minLevel;
-
-                    int maxi = cdata.maxLevel;
-
-                    tooltip.add(new LiteralText("Level: " + mini + " - " + maxi));
-
+                    if (cdata.isCompatible) {
+                        int mini = cdata.minLevel;
+                        int maxi = cdata.maxLevel;
+                        tooltip.add(new LiteralText("Level: " + mini + " - " + maxi));
+                    }
                 }
 
                 MutableText broken = TooltipUtils.itemBrokenText(stack, data);
