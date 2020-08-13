@@ -21,6 +21,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateChest;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateHelmet;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlatePants;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.BaseBow;
+import com.robertx22.age_of_exile.database.data.gear_types.weapons.BaseCrossbow;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.melee.BaseAxe;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.melee.BaseScepter;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.melee.BaseSword;
@@ -81,6 +82,17 @@ public class BaseGearTypes implements ISlashRegistryInit {
     public static BaseGearType HIGH_BOW = new BaseBow("bow3", LevelRanges.HIGH, "Clear Bow") {
     };
     public static BaseGearType END_BOW = new BaseBow("bow4", LevelRanges.ENDGAME, "Royal Bow") {
+    };
+    //////////////////////////////////////
+    public static BaseGearType NEWBIE_CROSSBOW = new BaseCrossbow("crossbow0", LevelRanges.STARTER, "Old Crossbow") {
+    };
+    public static BaseGearType LOW_CROSSBOW = new BaseCrossbow("crossbow1", LevelRanges.LOW, "Short Crossbow") {
+    };
+    public static BaseGearType MID_CROSSBOW = new BaseCrossbow("crossbow2", LevelRanges.MIDDLE, "Durable Crossbow") {
+    };
+    public static BaseGearType HIGH_CROSSBOW = new BaseCrossbow("crossbow3", LevelRanges.HIGH, "Clear Crossbow") {
+    };
+    public static BaseGearType END_CROSSBOW = new BaseCrossbow("crossbow4", LevelRanges.ENDGAME, "Royal Crossbow") {
     };
 
     //////////////////////////////////////
@@ -374,6 +386,12 @@ public class BaseGearTypes implements ISlashRegistryInit {
                     add(MID_BOW);
                     add(HIGH_BOW);
                     add(END_BOW);
+
+                    add(NEWBIE_CROSSBOW);
+                    add(LOW_CROSSBOW);
+                    add(MID_CROSSBOW);
+                    add(HIGH_CROSSBOW);
+                    add(END_CROSSBOW);
 
                     add(NEWBIE_SWORD);
                     add(LOW_SWORD);

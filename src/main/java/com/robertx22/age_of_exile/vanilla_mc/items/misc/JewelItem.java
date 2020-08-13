@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
-import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
@@ -26,8 +25,7 @@ public class JewelItem extends Item implements IAutoModel, ICurrencyItemEffect, 
 
     public JewelItem() {
         super(new Item.Settings().maxCount(1)
-            .maxDamage(0)
-            .group(CreativeTabs.MyModTab));
+            .maxDamage(0));
     }
 
     @Override

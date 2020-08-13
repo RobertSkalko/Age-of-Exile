@@ -17,7 +17,7 @@ public class ArrowShootMixin implements ProjectileEntityDuck {
     @Inject(method = "setProperties(Lnet/minecraft/entity/Entity;FFFFF)V", at = @At("HEAD"))
     public void myOnShoot(Entity user, float pitch, float yaw, float roll, float modifierZ, float modifierXYZ, CallbackInfo ci) {
         ProjectileEntity arrow = (ProjectileEntity) (Object) this;
-        System.out.println(modifierZ);
+        //System.out.println(modifierZ);
         dmg$multi = MathHelper.clamp(modifierZ / 3F, 0, 1); // by default it's multiplied by 3 so i need to divide it
     }
 

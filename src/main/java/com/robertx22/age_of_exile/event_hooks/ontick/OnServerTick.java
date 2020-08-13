@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.Regenerate
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -133,7 +134,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 }
 
                 if (data.ticksToCompItems > TicksToCompatibleItems) {
-                    CompatibleItemInventoryCheck.checkAndGenerate(player);
+                    CompatibleItemUtils.checkAndGenerate(player);
                     data.ticksToCompItems = 0;
 
                 }

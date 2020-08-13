@@ -20,7 +20,7 @@ import net.minecraft.server.command.ServerCommandSource;
 public class CommandRegister {
 
     public static void Register(MinecraftServer server) {
-        System.out.println("Registering Mine and Slash Commands.");
+        System.out.println("Registering Age of Exile Commands.");
 
         CommandDispatcher<ServerCommandSource> dispatcher = server.getCommandManager()
             .getDispatcher();

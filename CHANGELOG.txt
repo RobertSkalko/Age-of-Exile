@@ -34,10 +34,11 @@ Compatibility update:
 - compatible items are now always enabled
 - You can now pick gear from creative tab, and it will get stats.
 - compatible item datapacks no longer specify level, as level is now dictated by gear type
-- compat items now get stats instantly when crafted
+- compat items now get stats instantly when crafted (for some reason you need to reopen inventory for the client to get the data synced tho)
 
 Update your library of exile.
 
+- should fix crossbows not doing extra dmg
 - added gear slot datapacks. Super tiny, just declares drop chances. 
 So if there's 100 different sword types, and 5 axe types, they'll still have same chance to drop if their gear slots have same weight.
 - renamed all my packages to my new mod name

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
-import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -11,8 +10,7 @@ public class SkillGemItem extends Item implements IAutoModel, IAutoLocName {
 
     public SkillGemItem() {
         super(new Item.Settings().maxCount(1)
-            .maxDamage(0)
-            .group(CreativeTabs.MyModTab));
+            .maxDamage(0));
     }
 
     @Override

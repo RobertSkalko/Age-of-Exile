@@ -6,14 +6,9 @@ import com.robertx22.age_of_exile.database.registrators.BaseGearTypes;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.vanilla_mc.items.BaseItem;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -65,18 +60,6 @@ public class ItemNewbieGearBag extends BaseItem {
         print.rarity.setSpecificRarity(0);
 
         return print;
-
-    }
-
-    @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
-                              TooltipContext flagIn) {
-
-        tooltip.add(CLOC.tooltip("newbie_gear_bag"));
-
-        tooltip.add(CLOC.lore("newbie_gear_bag1"));
-        tooltip.add(CLOC.lore("newbie_gear_bag2"));
 
     }
 

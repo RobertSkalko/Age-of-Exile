@@ -76,6 +76,11 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     }
 
     @Override
+    public int Weight() {
+        return loot_drop_weight;
+    }
+
+    @Override
     public CompatibleItem fromJson(JsonObject json) {
         CompatibleItem obj = new CompatibleItem();
 

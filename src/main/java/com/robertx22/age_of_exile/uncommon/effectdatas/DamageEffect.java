@@ -170,14 +170,17 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (event != null && event.getSource() != null) {
             if (event.getSource()
                 .getSource() instanceof ProjectileEntityDuck) {
+                if (weaponType == WeaponTypes.Bow) {
+                    // don't use this for crossbows, only bows need to be charged fully
 
-                ProjectileEntityDuck duck = (ProjectileEntityDuck) event.getSource()
-                    .getSource();
+                    ProjectileEntityDuck duck = (ProjectileEntityDuck) event.getSource()
+                        .getSource();
 
-                float arrowmulti = duck.my$getDmgMulti();
+                    float arrowmulti = duck.my$getDmgMulti();
 
-                dmg *= arrowmulti;
-                // multiply dmg by saved charge value
+                    dmg *= arrowmulti;
+                    // multiply dmg by saved charge value
+                }
             }
         }
 

@@ -9,7 +9,7 @@ public class TestManager {
 
     public static void RunAllTests(ServerWorld world) {
 
-        if (true) {
+        if (false) {
             CountUniqueGearTypes.count();
             CheckWeaponDpsBalanceTest.run();
             MobTypesTest.run(world);

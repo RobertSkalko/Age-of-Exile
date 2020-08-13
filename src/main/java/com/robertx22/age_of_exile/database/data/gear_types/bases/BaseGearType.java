@@ -566,6 +566,9 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         if (tags.contains(SlotTag.bow)) {
             return Items.BOW;
         }
+        if (tags.contains(SlotTag.crossbow)) {
+            return Items.CROSSBOW;
+        }
 
         if (tags.contains(SlotTag.sword)) {
             return new ItemSword(locNameForLangFile());
@@ -575,12 +578,6 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
         }
         if (tags.contains(SlotTag.wand)) {
             return new ItemWand(locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.bow)) {
-            return Items.BOW;
-        }
-        if (tags.contains(SlotTag.crossbow)) {
-            return Items.CROSSBOW;
         }
 
         if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.magic_shield_stat)) {

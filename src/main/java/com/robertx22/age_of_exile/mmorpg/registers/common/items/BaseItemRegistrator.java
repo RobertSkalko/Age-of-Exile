@@ -26,7 +26,8 @@ public abstract class BaseItemRegistrator {
 
         if (slot.getTags()
             .contains(BaseGearType.SlotTag.shield) || slot.getTags()
-            .contains(BaseGearType.SlotTag.bow)) {
+            .contains(BaseGearType.SlotTag.bow) || slot.getTags()
+            .contains(BaseGearType.SlotTag.crossbow)) {
             // TODO , this is for shields and other items i'm temporarily using vanilla items for.
             return c;
         }

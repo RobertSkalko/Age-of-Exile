@@ -28,6 +28,7 @@ public class GearSlots implements ISlashRegistryInit {
         AXE.addToSerializables();
         WAND.addToSerializables();
         BOW.addToSerializables();
+        CROSBOW.addToSerializables();
 
         BOOTS.addToSerializables();
         PANTS.addToSerializables();

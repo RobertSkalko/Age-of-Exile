@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.event_hooks.ontick.CompatibleItemInventoryCheck;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -15,9 +15,9 @@ public class OnItemCrafted {
             return;
         }
 
-        if (CompatibleItemInventoryCheck.isComp(stack.getItem())) {
+        if (CompatibleItemUtils.isCompatible(stack.getItem())) {
             EntityCap.UnitData data = Load.Unit(player);
-            CompatibleItemInventoryCheck.tryCreateCompatibleItemStats(stack, data.getLevel(), player);
+            CompatibleItemUtils.tryCreateCompatibleItemStats(stack, data.getLevel(), player);
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.config.forge.parts;
 
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import net.minecraft.item.Item;
 
@@ -40,7 +40,7 @@ public class AutoConfigItemType {
         return power >= POWER_REQ_MIN && POWER_REQ_MAX >= power;
     }
 
-    public List<CompatibleItem> getAutoCompatibleItems(float power, Item item, BaseGearType slot) {
+    public List<CompatibleItem> getAutoCompatibleItems(float power, Item item, GearSlot slot) {
 
         List<CompatibleItem> list = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class AutoConfigItemType {
 
                     if (x.getGearSlot()
                         .GUID()
-                        .equals(slot.getGearSlot()
+                        .equals(slot
                             .GUID())) {
 
                         if (power < x.getLevelRange()
@@ -62,7 +62,7 @@ public class AutoConfigItemType {
                             return false;
                         }
 
-                        CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
+                        CompatibleItem comp = CompatibleItem.getDefaultAuto(item, x);
                         comp.max_rarity = MAX_RARITY;
                         comp.min_rarity = MIN_RARITY;
                         comp.can_be_salvaged = CAN_BE_SALVAGED;
