@@ -301,7 +301,7 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
     public static BaseGearType MID_CLOTH_CHEST = new BaseClothChest("cloth_chest2", LevelRanges.MIDDLE, "High Elf Robe") {
     };
-    public static BaseGearType HIGH_CLOTH_CHEST = new BaseClothChest("cloth_chest3", LevelRanges.HIGH, "Arcana Cloak") {
+    public static BaseGearType HIGH_CLOTH_CHEST = new BaseClothChest("cloth_chest3", LevelRanges.HIGH, "Cloaked Robe") {
     };
     public static BaseGearType END_CLOTH_CHEST = new BaseClothChest("cloth_chest4", LevelRanges.ENDGAME, "Arcana Robe") {
     };
@@ -318,15 +318,15 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
 
     //////////////////////////////////////
-    public static BaseGearType NEWBIE_PLATE_BOOTS = new BasePlateBoots("plate_boots0", LevelRanges.STARTER, "Old Shoes") {
+    public static BaseGearType NEWBIE_PLATE_BOOTS = new BasePlateBoots("plate_boots0", LevelRanges.STARTER, "Old Footwear") {
     };
-    public static BaseGearType LOW_PLATE_BOOTS = new BasePlateBoots("plate_boots1", LevelRanges.LOW, "Simple Shoes") {
+    public static BaseGearType LOW_PLATE_BOOTS = new BasePlateBoots("plate_boots1", LevelRanges.LOW, "Simple Footwear") {
     };
-    public static BaseGearType MID_PLATE_BOOTS = new BasePlateBoots("plate_boots2", LevelRanges.MIDDLE, "Full Shoes") {
+    public static BaseGearType MID_PLATE_BOOTS = new BasePlateBoots("plate_boots2", LevelRanges.MIDDLE, "Full Footwear") {
     };
-    public static BaseGearType HIGH_PLATE_BOOTS = new BasePlateBoots("plate_boots3", LevelRanges.HIGH, "Expensive Shoes") {
+    public static BaseGearType HIGH_PLATE_BOOTS = new BasePlateBoots("plate_boots3", LevelRanges.HIGH, "Gladiator Footwear") {
     };
-    public static BaseGearType END_PLATE_BOOTS = new BasePlateBoots("plate_boots4", LevelRanges.ENDGAME, "Arcana Shoes") {
+    public static BaseGearType END_PLATE_BOOTS = new BasePlateBoots("plate_boots4", LevelRanges.ENDGAME, "Royal Footwear") {
     };
     //////////////////////////////////////
     public static BaseGearType NEWBIE_PLATE_PANTS = new BasePlatePants("plate_pants0", LevelRanges.STARTER, "Old Greaves") {
@@ -358,9 +358,9 @@ public class BaseGearTypes implements ISlashRegistryInit {
     };
     public static BaseGearType MID_PLATE_HELMET = new BasePlateHelmet("plate_helmet2", LevelRanges.MIDDLE, "Soldier Helmet") {
     };
-    public static BaseGearType HIGH_PLATE_HELMET = new BasePlateHelmet("plate_helmet3", LevelRanges.HIGH, "Gladiator Burgonet") {
+    public static BaseGearType HIGH_PLATE_HELMET = new BasePlateHelmet("plate_helmet3", LevelRanges.HIGH, "Gladiator Helmet") {
     };
-    public static BaseGearType END_PLATE_HELMET = new BasePlateHelmet("plate_helmet4", LevelRanges.ENDGAME, "Royal Burgonet") {
+    public static BaseGearType END_PLATE_HELMET = new BasePlateHelmet("plate_helmet4", LevelRanges.ENDGAME, "Royal Helmet") {
     };
 
     @Override
