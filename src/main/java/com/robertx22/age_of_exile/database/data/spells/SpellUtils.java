@@ -29,7 +29,7 @@ public class SpellUtils {
             (double) entity.getY(),
             (double) entity.getZ() + 0.5D);
 
-        lightningboltentity.method_29498(true);
+        lightningboltentity.setCosmetic(true);
 
         addLightningBolt(((ServerWorld) entity.world), lightningboltentity);
 

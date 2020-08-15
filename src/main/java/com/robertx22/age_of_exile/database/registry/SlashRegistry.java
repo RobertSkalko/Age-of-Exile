@@ -29,6 +29,7 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffe
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class SlashRegistry {
     }
 
     public static DimensionConfig getDimensionConfig(WorldAccess world) {
-        String id = MapManager.getResourceLocation(world.getWorld())
+        String id = MapManager.getResourceLocation((World) world)
             .toString();
         return DimensionConfigs().get(id);
     }

@@ -22,7 +22,7 @@ public class GuiUtils {
 
         RenderSystem.scaled(scale, scale, scale);
 
-        double textWidthMinus = MinecraftClient.getInstance().textRenderer.getWidth(text) / 2 * scale;
+        double textWidthMinus = MinecraftClient.getInstance().textRenderer.getWidth(text) / 2F * scale;
         double textHeightMinus = MinecraftClient.getInstance().textRenderer.fontHeight * scale / 2;
 
         float xp = (float) (x - textWidthMinus);

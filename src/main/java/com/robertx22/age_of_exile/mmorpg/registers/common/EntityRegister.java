@@ -11,17 +11,22 @@ import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bo
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mobs.ArcaneSlime;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
+import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.ServerWorldAccess;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class EntityRegister {
 
@@ -47,12 +52,32 @@ public class EntityRegister {
     public EntityType<RangerArrowEntity> RANGER_ARROW = projectile(RangerArrowEntity::new, "ranger_arrow");
     public EntityType<ArrowStormEntity> ARROW_STORM = projectile(ArrowStormEntity::new, "arrow_storm");
 
+    public EntityType<ArcaneSlime> ARCANE_SLIME = mob(ArcaneSlime::new, "arcane_slime", new EntityDimensions(2.04F, 2.04F, false));
+
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id) {
         return projectile(factory, id, true);
 
+    }
+
+    private <T extends MobEntity> EntityType<T> mob(EntityType.EntityFactory<T> factory,
+                                                    String id, EntityDimensions size) {
+
+        EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MONSTER, factory).dimensions(size)
+            .build();
+        Registry.register(Registry.ENTITY_TYPE, new Identifier(Ref.MODID, id), type);
+        ENTITY_TYPES.add(type);
+
+        SpawnRestrictionAccessor.callRegister(type, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityRegister::canMyMobSpawn);
+
+        return type;
+    }
+
+    // TODO MAKE IT SPAWN ONLY IN APPROPRIATE AREAS
+    public static boolean canMyMobSpawn(EntityType<? extends MobEntity> type, ServerWorldAccess serverWorldAccess, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return serverWorldAccess.getDifficulty() != Difficulty.PEACEFUL && MobEntity.canMobSpawn(type, serverWorldAccess, spawnReason, pos, random);
     }
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,

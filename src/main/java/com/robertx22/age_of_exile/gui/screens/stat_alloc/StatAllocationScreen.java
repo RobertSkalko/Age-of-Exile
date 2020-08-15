@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.HelpButton;
+import com.robertx22.age_of_exile.gui.screens.stat_alloc.StatAllocationScreen.IncreaseStatButton;
 import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;

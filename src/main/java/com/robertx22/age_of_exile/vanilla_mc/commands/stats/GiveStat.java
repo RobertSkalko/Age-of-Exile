@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatTypeSuggestions;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.command.ServerCommandSource;

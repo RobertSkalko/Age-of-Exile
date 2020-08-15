@@ -49,7 +49,7 @@ public class CompatibleItemDataPackLoader extends BaseDataPackLoader<CompatibleI
                     CompatibleItem c = new CompatibleItem();
                     c.can_be_salvaged = true;
                     c.item_type = slot.GUID();
-                    c.add_to_loot_drops = false;
+                    c.loot_drop_weight = 0;
 
                     String id = Registry.ITEM.getId(item)
                         .toString();
@@ -79,7 +79,7 @@ public class CompatibleItemDataPackLoader extends BaseDataPackLoader<CompatibleI
                     c.can_be_salvaged = true;
                     c.item_type = uniq.getBaseGearType()
                         .GUID();
-                    c.add_to_loot_drops = false;
+                    c.loot_drop_weight = 0;
                     c.chance_to_become_unique = 100;
                     c.unique_id = uniq.GUID();
 

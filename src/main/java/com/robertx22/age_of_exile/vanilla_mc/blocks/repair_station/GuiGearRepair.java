@@ -134,7 +134,6 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         }
         // If hoveringText is not empty draw the hovering text
         if (!hoveringText.isEmpty()) {
-
             renderTooltip(matrix, hoveringText.stream()
                 .map(x -> new LiteralText(x))
                 .collect(Collectors.toList()), mouseX - x, mouseY - y);

@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.UniqueGearsSuggestions;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 

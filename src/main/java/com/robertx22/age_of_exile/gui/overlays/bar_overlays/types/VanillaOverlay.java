@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.VanillaOverlay.Side;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;

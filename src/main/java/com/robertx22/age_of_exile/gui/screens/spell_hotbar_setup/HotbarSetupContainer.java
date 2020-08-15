@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.spell_hotbar_setup;
 
+import com.robertx22.age_of_exile.gui.screens.spell_hotbar_setup.HotbarSetupContainer.SpellSlot;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.SkillGem;
 import net.fabricmc.api.EnvType;

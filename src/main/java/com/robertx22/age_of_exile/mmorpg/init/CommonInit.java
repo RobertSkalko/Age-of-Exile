@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.event_registers.Common;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
@@ -24,6 +25,7 @@ public class CommonInit implements ModInitializer {
         System.out.println("Starting " + Ref.MOD_NAME);
 
         ModRegistry.init();
+        MobAttributes.register();
 
         SlashRegistry.initRegistries();
         SlashRegistry.registerAllItems(); // after config registerAll

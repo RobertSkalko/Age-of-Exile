@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRege
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
+import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick.PlayerTickData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;

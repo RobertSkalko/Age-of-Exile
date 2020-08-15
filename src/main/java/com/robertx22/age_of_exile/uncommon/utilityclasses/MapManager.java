@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 public class MapManager {
 
     public static Identifier getResourceLocation(World world) {
-        Identifier loc = world.getDimensionRegistryKey()
+        Identifier loc = world.getRegistryKey()
             .getValue();
         return loc;
     }
