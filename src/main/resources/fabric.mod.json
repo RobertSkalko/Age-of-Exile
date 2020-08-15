@@ -37,6 +37,7 @@
 	"autoconfig1u": "*",
 	"cardinal-components-base": ">=2.5.0-nightly.1.16.2-rc2",
 	"cardinal-components-entity": ">=2.5.0-nightly.1.16.2-rc2",
+	"cardinal-components-chunk": ">=2.5.0-nightly.1.16.2-rc2",
 	"cardinal-components-world": ">=2.5.0-nightly.1.16.2-rc2"
   },
   "suggests": {

@@ -3,9 +3,11 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
+import com.robertx22.age_of_exile.capability.world.ChunkAreaCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
+import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
@@ -33,10 +35,19 @@ public class ComponentRegisters {
             PlayerStatsCap.IPlayerStatPointsData.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerStatsCap.DefaultImpl());
 
+    public ComponentType<ChunkAreaCap> CHUNK_AREA =
+        ComponentRegistry.INSTANCE.registerIfAbsent(
+            new Identifier(Ref.MODID, "area"),
+            ChunkAreaCap.class);
+
     public ComponentRegisters() {
         EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_STAT_POINTS, RespawnCopyStrategy.ALWAYS_COPY);
+
+        ChunkComponentCallback.EVENT.register(
+            (chunk, components) -> components.put(
+                CHUNK_AREA, new ChunkAreaCap(chunk)));
     }
 
 }

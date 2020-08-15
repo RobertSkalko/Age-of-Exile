@@ -2,12 +2,12 @@ package com.robertx22.age_of_exile.event_hooks.ontick;
 
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.world.ChunkAreaCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick.PlayerTickData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -36,6 +36,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             .getPlayerList()) {
 
             try {
+
+                ChunkAreaCap.getArea(player.world, player.getBlockPos());
 
                 PlayerTickData data = PlayerTickDatas.get(player.getUuid());
 
