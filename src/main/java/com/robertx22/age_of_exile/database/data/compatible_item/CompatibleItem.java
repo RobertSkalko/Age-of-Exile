@@ -21,15 +21,14 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     public static CompatibleItem EMPTY = new CompatibleItem();
 
-    public String item_type = "gemstone_sword";
+    public String item_type = "sword0";
     public String guid = "guid_for_this_entry";
     public String item_id = "item_id";
 
     public int min_rarity = 0;
     public int max_rarity = 2;
 
-    public boolean add_to_loot_drops = true;
-    public int loot_drop_weight = 1000;
+    public int loot_drop_weight = 0;
     public boolean can_be_salvaged = false;
 
     public float chance_to_become_unique = 0.5F;
@@ -42,7 +41,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         comp.item_id = Registry.ITEM.getId(item)
             .toString();
         comp.guid = slot.GUID() + ":" + comp.item_id;
-        comp.add_to_loot_drops = false;
 
         return comp;
 
@@ -62,7 +60,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         json.add("rarity", rarity);
 
         JsonObject Misc = new JsonObject();
-        Misc.addProperty("add_to_loot_drops", add_to_loot_drops);
         Misc.addProperty("loot_drop_weight", loot_drop_weight);
         Misc.addProperty("can_be_salvaged", can_be_salvaged);
         json.add("misc", Misc);
@@ -97,8 +94,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             .getAsInt();
 
         JsonObject misc = json.getAsJsonObject("misc");
-        obj.add_to_loot_drops = misc.get("add_to_loot_drops")
-            .getAsBoolean();
         obj.loot_drop_weight = misc.get("loot_drop_weight")
             .getAsInt();
         obj.can_be_salvaged = misc.get("can_be_salvaged")

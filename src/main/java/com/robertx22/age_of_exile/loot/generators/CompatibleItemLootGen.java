@@ -41,7 +41,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
         try {
             FilterListWrap<CompatibleItem> possible = SlashRegistry.CompatibleItems()
-                .getFilterWrapped(x -> x.add_to_loot_drops);
+                .getFilterWrapped(x -> x.loot_drop_weight > 0);
 
             if (!possible.list.isEmpty()) {
 
