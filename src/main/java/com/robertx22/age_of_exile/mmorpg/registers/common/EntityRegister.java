@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ArrowStormEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ThunderstormEntity;
@@ -23,6 +24,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.World;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -79,8 +81,14 @@ public class EntityRegister {
         return type;
     }
 
-    // TODO MAKE IT SPAWN ONLY IN APPROPRIATE AREAS
     public static boolean canMyMobSpawn(EntityType<? extends MobEntity> type, ServerWorldAccess serverWorldAccess, SpawnReason spawnReason, BlockPos pos, Random random) {
+
+        if (!WorldAreas.getArea((World) serverWorldAccess, pos)
+            .getAreaModifier()
+            .canMobSpawn(type)) {
+            return false;
+        }
+
         return serverWorldAccess.getDifficulty() != Difficulty.PEACEFUL && MobEntity.canMobSpawn(type, serverWorldAccess, spawnReason, pos, random);
     }
 

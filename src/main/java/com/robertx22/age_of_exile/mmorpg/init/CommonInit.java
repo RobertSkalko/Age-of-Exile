@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.init;
 
+import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
+import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
@@ -32,6 +34,9 @@ public class CommonInit implements ModInitializer {
         SlashRegistry.checkGuidValidity();
 
         ModRegistry.GEAR_ITEMS = new BaseGearTypeItemRegister();
+
+        BaseAreas.INSTANCE = new BaseAreas();
+        AreaModifiers.INSTANCE = new AreaModifiers();
 
         UniqueGearItemRegister.registerAll();
 

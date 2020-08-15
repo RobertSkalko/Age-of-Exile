@@ -1,6 +1,9 @@
 package com.robertx22.age_of_exile.areas;
 
+import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifier;
+import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseArea;
+import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.BlockPos;
@@ -21,14 +24,25 @@ public class AreaData {
     public String biome_category = "";
     @Store
     public String base_area = "";
+    @Store
+    public String area_modifier = "";
 
     public BaseArea getBaseArea() {
 
-        if (!BaseArea.MAP.containsKey(base_area)) {
-            return BaseArea.DEFAULT;
+        if (!BaseAreas.INSTANCE.MAP.containsKey(base_area)) {
+            return BaseAreas.INSTANCE.DEFAULT;
         }
 
-        return BaseArea.MAP.get(base_area);
+        return BaseAreas.INSTANCE.MAP.get(base_area);
+    }
+
+    public AreaModifier getAreaModifier() {
+
+        if (!AreaModifiers.INSTANCE.MAP.containsKey(base_area)) {
+            return AreaModifiers.INSTANCE.PLAIN;
+        }
+
+        return AreaModifiers.INSTANCE.MAP.get(base_area);
     }
 
     @Store
