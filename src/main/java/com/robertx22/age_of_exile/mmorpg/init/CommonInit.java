@@ -6,9 +6,9 @@ import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.event_registers.Common;
+import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
-import com.robertx22.age_of_exile.mmorpg.registers.common.PacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.UniqueGearItemRegister;
@@ -40,7 +40,7 @@ public class CommonInit implements ModInitializer {
         PotionRegister.register();
 
         //this was in common
-        PacketRegister.register();
+        C2SPacketRegister.register();
         //common
 
         ConfigRegister.registerCustomConfigs();

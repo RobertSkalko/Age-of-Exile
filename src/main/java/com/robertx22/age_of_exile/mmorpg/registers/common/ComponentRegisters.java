@@ -3,19 +3,21 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
-import com.robertx22.age_of_exile.capability.world.ChunkAreaCap;
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
+import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.vanilla_mc.packets.RequestAreaSyncPacket;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
-import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
 import nerdhub.cardinal.components.api.event.WorldComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 public class ComponentRegisters {
 
@@ -37,11 +39,6 @@ public class ComponentRegisters {
             PlayerStatsCap.IPlayerStatPointsData.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerStatsCap.DefaultImpl());
 
-    public ComponentType<ChunkAreaCap> CHUNK_AREA =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-            new Identifier(Ref.MODID, "area"),
-            ChunkAreaCap.class);
-
     public ComponentType<WorldAreas> WORLD_AREAS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
             new Identifier(Ref.MODID, "world_areas"),
@@ -52,13 +49,19 @@ public class ComponentRegisters {
         EntityComponents.setRespawnCopyStrategy(PLAYER_SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_STAT_POINTS, RespawnCopyStrategy.ALWAYS_COPY);
 
-        ChunkComponentCallback.EVENT.register(
-            (chunk, components) -> components.put(
-                CHUNK_AREA, new ChunkAreaCap(chunk)));
-
         WorldComponentCallback.EVENT.register(
             (world, components) -> components.put(
                 WORLD_AREAS, new WorldAreas(world)));
+
+        ClientChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
+            BlockPos pos = chunk.getPos()
+                .getCenterBlockPos();
+            WorldAreas areas = WORLD_AREAS.get(world);
+
+            if (!areas.hasArea(pos)) {
+                Packets.sendToServer(new RequestAreaSyncPacket(pos));
+            }
+        });
     }
 
 }

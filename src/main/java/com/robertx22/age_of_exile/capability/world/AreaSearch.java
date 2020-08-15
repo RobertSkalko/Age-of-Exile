@@ -13,25 +13,35 @@ import java.util.Set;
 import java.util.Stack;
 
 public class AreaSearch {
-    public static ChunkAreaData getOrGenerateArea(World world, BlockPos pos) {
+
+    Set<ChunkPos> matches = new HashSet<>();
+    Stack<ChunkPos> stack = new Stack<>();
+    Set<ChunkPos> visited = new HashSet<>();
+
+    Biome biome;
+    World world;
+    BlockPos pos;
+
+    public AreaSearch(World world, BlockPos pos) {
+        this.world = world;
+        this.pos = pos;
+    }
+
+    public AreaData getOrGenerateArea() {
         WorldAreas worldAreas = ModRegistry.COMPONENTS.WORLD_AREAS.get(world);
 
         if (!worldAreas.hasArea(pos)) {
             Watch watch = new Watch();
 
-            Set<ChunkPos> matches = new HashSet<>();
-            Stack<ChunkPos> stack = new Stack<>();
-            Set<ChunkPos> visited = new HashSet<>();
+            this.biome = world.getBiome(pos);
 
-            Biome biome = world.getBiome(pos);
-
-            branchTo(world, biome, matches, stack, visited, new ChunkPos(pos));
+            branchTo(new ChunkPos(pos));
 
             while (!stack.isEmpty()) {
                 ChunkPos cp = stack.pop();
-                branchTo(world, biome, matches, stack, visited, cp);
+                branchTo(cp);
 
-                if (visited.size() > 2000) {
+                if (visited.size() > 2700) {
                     System.out.println("Biome too big, stopping");
                     break;
                 }
@@ -39,13 +49,13 @@ public class AreaSearch {
 
             worldAreas.createNewArea(biome, new ArrayList<>(matches));
 
-            watch.print("gen area takes: ");
+            watch.print("gen area and visiting: " + visited.size() + " takes: ");
         }
         return worldAreas.getAreaFor(world, pos);
 
     }
 
-    static boolean areSameBiomes(World world, ChunkPos cp, Biome biome) {
+    boolean areSameBiomes(ChunkPos cp) {
 
         Biome other = world.getBiome(cp.getCenterBlockPos());
 
@@ -57,48 +67,37 @@ public class AreaSearch {
             .equals(other.getCategory());
     }
 
-    static void branchTo(World world, Biome biome, Set<ChunkPos> matches, Stack<ChunkPos> stack, Set<ChunkPos> visited, ChunkPos cp) {
+    void branchTo(ChunkPos cp) {
 
-        if (areSameBiomes(world, cp, biome)) {
+        if (areSameBiomes(cp)) {
 
-            shouldAdd(world, biome, cp, matches, stack, visited);
+            if (!visited.contains(cp)) {
+                matches.add(cp);
+                visited.add(cp);
+            }
 
-            ChunkPos left = new ChunkPos(cp.x - 1, cp.z);
-            ChunkPos right = new ChunkPos(cp.x + 1, cp.z);
-            ChunkPos up = new ChunkPos(cp.x, cp.z - 1);
-            ChunkPos down = new ChunkPos(cp.x, cp.z + 1);
-            ChunkPos d1 = new ChunkPos(cp.x + 1, cp.z + 1);
-            ChunkPos d2 = new ChunkPos(cp.x - 1, cp.z - 1);
-            ChunkPos d3 = new ChunkPos(cp.x + 1, cp.z - 1);
-            ChunkPos d4 = new ChunkPos(cp.x - 1, cp.z + 1);
-
-            shouldAdd(world, biome, left, matches, stack, visited);
-            shouldAdd(world, biome, right, matches, stack, visited);
-            shouldAdd(world, biome, up, matches, stack, visited);
-            shouldAdd(world, biome, down, matches, stack, visited);
-            shouldAdd(world, biome, d1, matches, stack, visited);
-            shouldAdd(world, biome, d2, matches, stack, visited);
-            shouldAdd(world, biome, d3, matches, stack, visited);
-            shouldAdd(world, biome, d4, matches, stack, visited);
+            addIfSameBiome(new ChunkPos(cp.x - 1, cp.z));
+            addIfSameBiome(new ChunkPos(cp.x + 1, cp.z));
+            addIfSameBiome(new ChunkPos(cp.x, cp.z - 1));
+            addIfSameBiome(new ChunkPos(cp.x, cp.z + 1));
 
         }
+
     }
 
-    static boolean shouldAdd(World world, Biome biome, ChunkPos cp, Set<ChunkPos> matches, Stack<ChunkPos> stack, Set<ChunkPos> visited) {
-        boolean sameBiome = areSameBiomes(world, cp, biome);
+    void addIfSameBiome(ChunkPos cp) {
 
         if (visited.contains(cp)) {
-            return false;
+            return;
         }
 
-        if (sameBiome) {
+        if (areSameBiomes(cp)) {
             stack.add(cp);
             matches.add(cp);
         }
 
         visited.add(cp);
 
-        return sameBiome;
     }
 
 }

@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 
-public class ClientPacketRegister {
+public class S2CPacketRegister {
 
     public static void register() {
 
@@ -22,6 +22,7 @@ public class ClientPacketRegister {
         Packets.registerServerToClient(new ParticlePacket());
         Packets.registerServerToClient(new SyncCapabilityToClient());
         Packets.registerServerToClient(new TileUpdatePacket());
+        Packets.registerServerToClient(new SyncAreaPacket());
 
         ClientSidePacketRegistry.INSTANCE.register(EntityPacket.ID, (ctx, buf) -> {
             EntityPacketOnClient.onPacket(ctx, buf);

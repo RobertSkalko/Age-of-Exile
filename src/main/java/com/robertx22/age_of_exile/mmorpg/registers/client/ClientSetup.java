@@ -7,6 +7,6 @@ public class ClientSetup {
         RenderLayersRegister.setup();
         ContainerGuiRegisters.reg();
         RenderRegister.regRenders();
-        ClientPacketRegister.register();
+        S2CPacketRegister.register();
     }
 }

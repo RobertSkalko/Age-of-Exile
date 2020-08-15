@@ -8,7 +8,6 @@ import nerdhub.cardinal.components.api.component.Component;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -26,51 +25,52 @@ public class WorldAreas implements Component {
     @Storable
     static class Data {
         @Store
-        public List<ChunkAreaData> areas = new ArrayList<>();
+        public List<AreaData> areas = new ArrayList<>();
     }
 
     World world;
 
-    public static ChunkAreaData getArea(World world, BlockPos pos) {
+    public static AreaData getArea(World world, BlockPos pos) {
         WorldAreas worldAreas = ModRegistry.COMPONENTS.WORLD_AREAS.get(world);
+
         pos = new ChunkPos(pos).getCenterBlockPos(); // this is important
 
         if (world.isClient) {
             // ask for server packet (but player should already have it in chunkloadevent??
             return worldAreas.getAreaFor(world, pos);
         } else {
-            return AreaSearch.getOrGenerateArea(world, pos);
+            return new AreaSearch(world, pos).getOrGenerateArea();
         }
 
     }
 
     Data data = new Data();
 
-    HashMap<ChunkPos, ChunkAreaData> map = new HashMap<>();
+    HashMap<ChunkPos, AreaData> map = new HashMap<>();
 
     public boolean hasArea(BlockPos pos) {
 
         return map.containsKey(new ChunkPos(pos));
     }
 
-    public ChunkAreaData getAreaFor(World world, BlockPos pos) {
+    public AreaData getAreaFor(World world, BlockPos pos) {
         if (hasArea(pos)) {
             return map.get(new ChunkPos(pos));
         }
         if (world.isClient) {
-            return ChunkAreaData.EMPTY;
+            return AreaData.EMPTY;
         } else {
             throw new RuntimeException("How is the area not generated on server before getter is called?");
         }
     }
 
-    public ChunkAreaData createNewArea(Biome biome, List<ChunkPos> chunks) {
-        ChunkAreaData data = new ChunkAreaData();
+    public AreaData createNewArea(Biome biome, List<ChunkPos> chunks) {
+        AreaData data = new AreaData();
         data.uuid = UUID.randomUUID()
             .toString();
         data.setChunks(chunks);
-        data.biome = BuiltinRegistries.BIOME.getId(biome)
-            .toString();
+        data.biome = biome.getCategory()
+            .name();
 
         this.data.areas.add(data);
 
@@ -80,7 +80,7 @@ public class WorldAreas implements Component {
         return data;
     }
 
-    public void updateClientValue(ChunkAreaData data) {
+    public void updateClientValue(AreaData data) {
         this.data.areas.add(data);
         data.getChunks()
             .forEach(x -> map.put(x, data));
