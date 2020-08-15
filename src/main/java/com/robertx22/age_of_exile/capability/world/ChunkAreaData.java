@@ -12,8 +12,12 @@ import java.util.stream.Collectors;
 @Storable
 public class ChunkAreaData {
 
+    public static ChunkAreaData EMPTY = new ChunkAreaData();
+
     @Store
     public String uuid = "";
+    @Store
+    public String biome = "";
 
     @Store
     private List<BlockPos> chunks = new ArrayList<>();
