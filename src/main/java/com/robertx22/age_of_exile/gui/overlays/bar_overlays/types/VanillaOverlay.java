@@ -2,10 +2,12 @@ package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.world.ChunkAreaData;
+import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.VanillaOverlay.Side;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -13,6 +15,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
@@ -41,6 +44,10 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
 
             PlayerEntity en = mc.player;
             UnitData data = Load.Unit(en);
+
+            ChunkAreaData area = WorldAreas.getArea(mc.world, en.getBlockPos());
+
+            GuiUtils.renderScaledText(matrix, 200, 50, 1, area.uuid, Formatting.GREEN);
 
             if (en.isCreative() || en.isSpectator()) {
                 return;

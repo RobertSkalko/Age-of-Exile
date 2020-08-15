@@ -4,11 +4,13 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.capability.world.ChunkAreaCap;
+import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
+import nerdhub.cardinal.components.api.event.WorldComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.minecraft.entity.LivingEntity;
@@ -40,6 +42,11 @@ public class ComponentRegisters {
             new Identifier(Ref.MODID, "area"),
             ChunkAreaCap.class);
 
+    public ComponentType<WorldAreas> WORLD_AREAS =
+        ComponentRegistry.INSTANCE.registerIfAbsent(
+            new Identifier(Ref.MODID, "world_areas"),
+            WorldAreas.class);
+
     public ComponentRegisters() {
         EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
@@ -48,6 +55,10 @@ public class ComponentRegisters {
         ChunkComponentCallback.EVENT.register(
             (chunk, components) -> components.put(
                 CHUNK_AREA, new ChunkAreaCap(chunk)));
+
+        WorldComponentCallback.EVENT.register(
+            (world, components) -> components.put(
+                WORLD_AREAS, new WorldAreas(world)));
     }
 
 }
