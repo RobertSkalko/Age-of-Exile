@@ -8,6 +8,10 @@ public class MobAttributes {
 
     public static void register() {
         FabricDefaultAttributeRegistry.register(ModRegistry.ENTITIES.ARCANE_SLIME, MagmaCubeEntity.createMagmaCubeAttributes());
+        FabricDefaultAttributeRegistry.register(ModRegistry.ENTITIES.FIRE_SLIME, MagmaCubeEntity.createMagmaCubeAttributes());
+        FabricDefaultAttributeRegistry.register(ModRegistry.ENTITIES.WATER_SLIME, MagmaCubeEntity.createMagmaCubeAttributes());
+        FabricDefaultAttributeRegistry.register(ModRegistry.ENTITIES.THUNDER_SLIME, MagmaCubeEntity.createMagmaCubeAttributes());
+        FabricDefaultAttributeRegistry.register(ModRegistry.ENTITIES.NATURE_SLIME, MagmaCubeEntity.createMagmaCubeAttributes());
 
     }
 }

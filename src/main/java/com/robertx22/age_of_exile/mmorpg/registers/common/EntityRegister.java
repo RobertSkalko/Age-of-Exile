@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bo
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mobs.ArcaneSlime;
+import com.robertx22.age_of_exile.mobs.slimes.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
@@ -53,6 +53,10 @@ public class EntityRegister {
     public EntityType<ArrowStormEntity> ARROW_STORM = projectile(ArrowStormEntity::new, "arrow_storm");
 
     public EntityType<ArcaneSlime> ARCANE_SLIME = mob(ArcaneSlime::new, "arcane_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<FireSlime> FIRE_SLIME = mob(FireSlime::new, "fire_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<WaterSlime> WATER_SLIME = mob(WaterSlime::new, "water_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<ThunderSlime> THUNDER_SLIME = mob(ThunderSlime::new, "thunder_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<NatureSlime> NATURE_SLIME = mob(NatureSlime::new, "nature_slime", new EntityDimensions(2.04F, 2.04F, false));
 
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 

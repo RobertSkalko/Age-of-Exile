@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.mobs;
+package com.robertx22.age_of_exile.mobs.slimes;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
@@ -13,9 +13,9 @@ import net.minecraft.util.math.MathHelper;
 public class ModSlimeRenderer extends MobEntityRenderer<MagmaCubeEntity, MagmaCubeEntityModel<MagmaCubeEntity>> {
     private Identifier TEXTURE = new Identifier(Ref.MODID, "textures/entity/slime/arcane_slime.png");
 
-    public ModSlimeRenderer(EntityRenderDispatcher entityRenderDispatcher, Identifier texture) {
+    public ModSlimeRenderer(EntityRenderDispatcher entityRenderDispatcher, String tex) {
         super(entityRenderDispatcher, new MagmaCubeEntityModel(), 0.25F);
-        this.TEXTURE = texture;
+        this.TEXTURE = new Identifier(Ref.MODID, "textures/entity/slime/" + tex);
     }
 
     @Override
