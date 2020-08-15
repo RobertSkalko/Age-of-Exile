@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJ
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.slimes.*;
+import com.robertx22.age_of_exile.mobs.spiders.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
@@ -59,6 +60,12 @@ public class EntityRegister {
     public EntityType<WaterSlime> WATER_SLIME = mob(WaterSlime::new, "water_slime", new EntityDimensions(2.04F, 2.04F, false));
     public EntityType<ThunderSlime> THUNDER_SLIME = mob(ThunderSlime::new, "thunder_slime", new EntityDimensions(2.04F, 2.04F, false));
     public EntityType<NatureSlime> NATURE_SLIME = mob(NatureSlime::new, "nature_slime", new EntityDimensions(2.04F, 2.04F, false));
+
+    public EntityType<ArcaneSpider> ARCANE_SPIDER = mob(ArcaneSpider::new, "arcane_spider", new EntityDimensions(0.7F, 0.5F, true));
+    public EntityType<FireSpider> FIRE_SPIDER = mob(FireSpider::new, "fire_spider", new EntityDimensions(0.7F, 0.5F, true));
+    public EntityType<WaterSpider> WATER_SPIDER = mob(WaterSpider::new, "water_spider", new EntityDimensions(0.7F, 0.5F, true));
+    public EntityType<ThunderSpider> THUNDER_SPIDER = mob(ThunderSpider::new, "thunder_spider", new EntityDimensions(0.7F, 0.5F, true));
+    public EntityType<NatureSpider> NATURE_SPIDER = mob(NatureSpider::new, "nature_spider", new EntityDimensions(0.7F, 0.5F, true));
 
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 
