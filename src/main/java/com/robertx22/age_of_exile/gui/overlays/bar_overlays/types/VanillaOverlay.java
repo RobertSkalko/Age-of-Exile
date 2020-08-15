@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.capability.world.AreaData;
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -46,8 +46,10 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
             UnitData data = Load.Unit(en);
 
             AreaData area = WorldAreas.getArea(mc.world, en.getBlockPos());
+            String name = area.getBaseArea().locname; // TODO
 
-            GuiUtils.renderScaledText(matrix, 200, 50, 1, area.uuid, Formatting.GREEN);
+            GuiUtils.renderScaledText(matrix, mc.getWindow()
+                .getScaledWidth() / 2 - mc.textRenderer.getWidth(name), 30, 1, name, Formatting.GREEN);
 
             if (en.isCreative() || en.isSpectator()) {
                 return;

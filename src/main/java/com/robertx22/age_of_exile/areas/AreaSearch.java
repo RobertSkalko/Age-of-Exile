@@ -1,5 +1,6 @@
-package com.robertx22.age_of_exile.capability.world;
+package com.robertx22.age_of_exile.areas;
 
+import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.util.math.BlockPos;

@@ -1,5 +1,8 @@
 package com.robertx22.age_of_exile.capability.world;
 
+import com.robertx22.age_of_exile.areas.AreaData;
+import com.robertx22.age_of_exile.areas.AreaSearch;
+import com.robertx22.age_of_exile.areas.base_areas.BaseArea;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import info.loenwind.autosave.annotations.Storable;
@@ -69,8 +72,9 @@ public class WorldAreas implements Component {
         data.uuid = UUID.randomUUID()
             .toString();
         data.setChunks(chunks);
-        data.biome = biome.getCategory()
+        data.biome_category = biome.getCategory()
             .name();
+        data.base_area = BaseArea.getRandomAreaFor(biome.getCategory()).id;
 
         this.data.areas.add(data);
 
