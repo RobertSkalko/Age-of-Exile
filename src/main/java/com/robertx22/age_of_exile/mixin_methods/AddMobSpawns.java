@@ -14,11 +14,11 @@ public class AddMobSpawns {
 
         List<SpawnSettings.SpawnEntry> all = new ArrayList<>();
 
-        public SpawnSettings.SpawnEntry ARCANE_SLIME = of(ModRegistry.ENTITIES.ARCANE_SLIME, 500, 3, 3);
-        public SpawnSettings.SpawnEntry FIRE_SLIME = of(ModRegistry.ENTITIES.FIRE_BOMB, 500, 3, 3);
-        public SpawnSettings.SpawnEntry WATER_SLIME = of(ModRegistry.ENTITIES.WATER_SLIME, 500, 3, 3);
-        public SpawnSettings.SpawnEntry THUNDER_SLIME = of(ModRegistry.ENTITIES.THUNDER_SLIME, 500, 3, 3);
-        public SpawnSettings.SpawnEntry NATURE_SLIME = of(ModRegistry.ENTITIES.NATURE_SLIME, 500, 3, 3);
+        public SpawnSettings.SpawnEntry ARCANE_SLIME = of(ModRegistry.ENTITIES.ARCANE_SLIME, 200, 3, 3);
+        public SpawnSettings.SpawnEntry FIRE_SLIME = of(ModRegistry.ENTITIES.FIRE_SLIME, 200, 3, 3);
+        public SpawnSettings.SpawnEntry WATER_SLIME = of(ModRegistry.ENTITIES.WATER_SLIME, 200, 3, 3);
+        public SpawnSettings.SpawnEntry THUNDER_SLIME = of(ModRegistry.ENTITIES.THUNDER_SLIME, 200, 3, 3);
+        public SpawnSettings.SpawnEntry NATURE_SLIME = of(ModRegistry.ENTITIES.NATURE_SLIME, 200, 3, 3);
 
         SpawnSettings.SpawnEntry of(EntityType type, int weight, int min, int max) {
             SpawnSettings.SpawnEntry entry = new SpawnSettings.SpawnEntry(type, weight, min, max);

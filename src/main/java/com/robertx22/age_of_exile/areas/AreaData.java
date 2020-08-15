@@ -38,11 +38,11 @@ public class AreaData {
 
     public AreaModifier getAreaModifier() {
 
-        if (!AreaModifiers.INSTANCE.MAP.containsKey(base_area)) {
+        if (!AreaModifiers.INSTANCE.MAP.containsKey(area_modifier)) {
             return AreaModifiers.INSTANCE.PLAIN;
         }
 
-        return AreaModifiers.INSTANCE.MAP.get(base_area);
+        return AreaModifiers.INSTANCE.MAP.get(area_modifier);
     }
 
     @Store
