@@ -90,13 +90,18 @@ public class EntityRegister {
 
     public static boolean canMyMobSpawn(EntityType<? extends MobEntity> type, ServerWorldAccess serverWorldAccess, SpawnReason spawnReason, BlockPos pos, Random random) {
 
+        if (serverWorldAccess.getDifficulty() == Difficulty.PEACEFUL) {
+            return false;
+        }
+
         if (!WorldAreas.getArea((World) serverWorldAccess, pos)
             .getAreaModifier()
             .canMobSpawn(type)) {
             return false;
         }
 
-        return serverWorldAccess.getDifficulty() != Difficulty.PEACEFUL && MobEntity.canMobSpawn(type, serverWorldAccess, spawnReason, pos, random);
+        return true;
+
     }
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,

@@ -25,6 +25,13 @@ public class BaseAreas {
     public BaseArea JUNGLE = of("jungle", "Jungle", Category.JUNGLE);
     public BaseArea FLATLANDS = of("flatlands", "Flatlands", Category.PLAINS);
     public BaseArea SWAMP = of("swamp", "Swamp", Category.SWAMP);
+    public BaseArea MOUNTAINS = of("mountain", "Mountains", Category.EXTREME_HILLS);
+    public BaseArea TAIGA = of("taiga", "Taiga", Category.TAIGA);
+
+    public BaseArea HELLSCAPE = of("hellscape", "Hellscape", Category.NETHER);
+    public BaseArea CHARRED_DOMAIN = of("charred_domain", "Charred Domain", Category.NETHER);
+
+    public BaseArea SHROOMLANDS = of("shroomland", "Shroomlands", Category.MUSHROOM);
 
     public BaseArea DEFAULT = of("land", "Land", null);
 

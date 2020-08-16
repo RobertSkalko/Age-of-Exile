@@ -112,7 +112,8 @@ public class CompatibleItemUtils {
     }
 
     public static CompatibleItem getRandomCompatibleItemFor(Item item) {
-        return RandomUtils.weightedRandom(getPossibleCompatibleItemsFor(item));
+        List<CompatibleItem> list = getPossibleCompatibleItemsFor(item);
+        return RandomUtils.weightedRandom(list);
     }
 
     public static List<CompatibleItem> getPossibleCompatibleItemsFor(Item item) {

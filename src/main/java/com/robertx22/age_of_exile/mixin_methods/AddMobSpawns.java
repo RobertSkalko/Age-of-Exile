@@ -1,27 +1,34 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.SpawnSettings.SpawnEntry;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
+
 public class AddMobSpawns {
 
     static class Spawns {
 
-        List<SpawnSettings.SpawnEntry> all = new ArrayList<>();
+        List<SpawnEntry> all = new ArrayList<>();
 
-        public SpawnSettings.SpawnEntry ARCANE_SLIME = of(ModRegistry.ENTITIES.ARCANE_SLIME, 200, 3, 3);
-        public SpawnSettings.SpawnEntry FIRE_SLIME = of(ModRegistry.ENTITIES.FIRE_SLIME, 200, 3, 3);
-        public SpawnSettings.SpawnEntry WATER_SLIME = of(ModRegistry.ENTITIES.WATER_SLIME, 200, 3, 3);
-        public SpawnSettings.SpawnEntry THUNDER_SLIME = of(ModRegistry.ENTITIES.THUNDER_SLIME, 200, 3, 3);
-        public SpawnSettings.SpawnEntry NATURE_SLIME = of(ModRegistry.ENTITIES.NATURE_SLIME, 200, 3, 3);
+        public SpawnEntry ARCANE_SLIME = of(ENTITIES.ARCANE_SLIME, 150, 1, 2);
+        public SpawnEntry FIRE_SLIME = of(ENTITIES.FIRE_SLIME, 150, 1, 2);
+        public SpawnEntry WATER_SLIME = of(ENTITIES.WATER_SLIME, 150, 1, 2);
+        public SpawnEntry THUNDER_SLIME = of(ENTITIES.THUNDER_SLIME, 150, 1, 2);
+        public SpawnEntry NATURE_SLIME = of(ENTITIES.NATURE_SLIME, 150, 1, 2);
 
-        SpawnSettings.SpawnEntry of(EntityType type, int weight, int min, int max) {
-            SpawnSettings.SpawnEntry entry = new SpawnSettings.SpawnEntry(type, weight, min, max);
+        public SpawnEntry ARCANE_SPIDER = of(ENTITIES.ARCANE_SPIDER, 200, 2, 3);
+        public SpawnEntry FIRE_SPIDER = of(ENTITIES.FIRE_SPIDER, 200, 2, 3);
+        public SpawnEntry WATER_SPIDER = of(ENTITIES.WATER_SPIDER, 200, 2, 3);
+        public SpawnEntry THUNDER_SPIDER = of(ENTITIES.THUNDER_SPIDER, 200, 2, 3);
+        public SpawnEntry NATURE_SPIDER = of(ENTITIES.NATURE_SPIDER, 200, 2, 3);
+
+        SpawnEntry of(EntityType type, int weight, int min, int max) {
+            SpawnEntry entry = new SpawnEntry(type, weight, min, max);
             all.add(entry);
             return entry;
         }
@@ -29,11 +36,11 @@ public class AddMobSpawns {
 
     static Spawns spawns = null;
 
-    public static void my$onConstruct(CallbackInfoReturnable<List<SpawnSettings.SpawnEntry>> ci) {
+    public static void my$onConstruct(CallbackInfoReturnable<List<SpawnEntry>> ci) {
         if (spawns == null) {
             spawns = new Spawns();
         }
-        List<SpawnSettings.SpawnEntry> list = new ArrayList<>(ci.getReturnValue());
+        List<SpawnEntry> list = new ArrayList<>(ci.getReturnValue());
         list.addAll(spawns.all);
         ci.setReturnValue(list);
 

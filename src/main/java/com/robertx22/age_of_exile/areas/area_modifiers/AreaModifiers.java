@@ -26,24 +26,28 @@ public class AreaModifiers {
         x -> true);
 
     public AreaModifier CHILLING = of("chilling", 1000, Affix.Type.prefix, "Chilling",
-        Arrays.asList(ENTITIES.WATER_SLIME),
+        Arrays.asList(ENTITIES.WATER_SLIME, ENTITIES.WATER_SPIDER),
         x -> x.getTemperature() < 0.2F || x.getCategory() == Category.ICY || x.getCategory() == Category.TAIGA);
 
     public AreaModifier INFERNAL = of("infernal", 1000, Affix.Type.prefix, "Infernal",
-        Arrays.asList(ENTITIES.FIRE_SLIME),
+        Arrays.asList(ENTITIES.FIRE_SLIME, ENTITIES.FIRE_SPIDER),
         x -> x.getTemperature() > 1.2F && x.getCategory() != Category.JUNGLE);
 
     public AreaModifier POISONOUS = of("poisonous", 1000, Affix.Type.prefix, "Poisonous",
-        Arrays.asList(ENTITIES.NATURE_SLIME),
+        Arrays.asList(ENTITIES.NATURE_SLIME, ENTITIES.NATURE_SPIDER),
         x -> x.getCategory() == Category.SWAMP || x.getCategory() == Category.JUNGLE);
 
     public AreaModifier THUNDERING = of("thundering", 1000, Affix.Type.prefix, "Thundering",
-        Arrays.asList(ENTITIES.THUNDER_SLIME),
+        Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.THUNDER_SPIDER),
         x -> x.getCategory() == Category.EXTREME_HILLS);
 
-    public AreaModifier OF_SLIMES = of("of_slimes", 1000, Affix.Type.suffix, "Of Simes",
+    public AreaModifier OF_SLIMES = of("of_slimes", 1000, Affix.Type.suffix, "Of Slimes",
         Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.WATER_SLIME, ENTITIES.NATURE_SLIME),
         x -> x.getCategory() == Category.BEACH);
+
+    public AreaModifier ARCANE = of("arcane", 1000, Affix.Type.prefix, "Arcane",
+        Arrays.asList(ENTITIES.ARCANE_SPIDER, ENTITIES.ARCANE_SLIME),
+        x -> x.getCategory() == Category.FOREST || x.getCategory() == Category.MUSHROOM);
 
     AreaModifier of(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, Predicate<Biome> canUseBiome) {
 

@@ -35,6 +35,7 @@ Compatibility update:
 - You can now pick gear from creative tab, and it will get stats.
 - compatible item datapacks no longer specify level, as level is now dictated by gear type
 - compat items now get stats instantly when crafted (for some reason you need to reopen inventory for the client to get the data synced tho)
+- compat items are no longer added to loot drops automatically
 
 Update your library of exile.
 

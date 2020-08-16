@@ -28,7 +28,8 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int min_rarity = 0;
     public int max_rarity = 2;
 
-    public int loot_drop_weight = 0;
+    public int weight = 1000;
+
     public boolean can_be_salvaged = false;
 
     public float chance_to_become_unique = 0.5F;
@@ -60,7 +61,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         json.add("rarity", rarity);
 
         JsonObject Misc = new JsonObject();
-        Misc.addProperty("loot_drop_weight", loot_drop_weight);
+        Misc.addProperty("weight", weight);
         Misc.addProperty("can_be_salvaged", can_be_salvaged);
         json.add("misc", Misc);
 
@@ -74,7 +75,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     @Override
     public int Weight() {
-        return loot_drop_weight;
+        return weight;
     }
 
     @Override
@@ -94,7 +95,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             .getAsInt();
 
         JsonObject misc = json.getAsJsonObject("misc");
-        obj.loot_drop_weight = misc.get("loot_drop_weight")
+        obj.weight = misc.get("weight")
             .getAsInt();
         obj.can_be_salvaged = misc.get("can_be_salvaged")
             .getAsBoolean();
