@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.database.base.Rarities;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -39,7 +39,7 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     @Override
     public String datapackFolder() {
         try {
-            if (EntityTypeUtils.EntityType.valueOf(identifier.toUpperCase(Locale.ROOT)) != null) {
+            if (EntityTypeUtils.EntityClassification.valueOf(identifier.toUpperCase(Locale.ROOT)) != null) {
                 return "mob_types/";
             }
         } catch (IllegalArgumentException e) {

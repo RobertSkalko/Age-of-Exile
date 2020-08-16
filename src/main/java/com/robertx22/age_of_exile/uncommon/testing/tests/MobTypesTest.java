@@ -16,7 +16,7 @@ public class MobTypesTest {
             Entity en = type.create(world);
 
             if (en instanceof LivingEntity) {
-                EntityTypeUtils.EntityType ent = EntityTypeUtils.getType((LivingEntity) en);
+                EntityTypeUtils.EntityClassification ent = EntityTypeUtils.getType((LivingEntity) en);
 
                 System.out.println(Registry.ENTITY_TYPE.getId(type)
                     .toString() + ": " + ent.id);

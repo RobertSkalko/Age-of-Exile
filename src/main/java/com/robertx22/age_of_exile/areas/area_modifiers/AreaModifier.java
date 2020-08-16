@@ -2,11 +2,14 @@ package com.robertx22.age_of_exile.areas.area_modifiers;
 
 import com.robertx22.age_of_exile.areas.base_areas.BaseArea;
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -18,6 +21,7 @@ public class AreaModifier implements IGUID, IWeighted {
     int weight;
     List<EntityType> mobSpawns;
     Predicate<Biome> canUseBiome;
+    List<StatModifier> stats = new ArrayList<>();
 
     public AreaModifier(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, Predicate<Biome> canUseBiome) {
         this.id = id;
@@ -26,6 +30,11 @@ public class AreaModifier implements IGUID, IWeighted {
         this.locName = locName;
         this.mobSpawns = mobSpawns;
         this.canUseBiome = canUseBiome;
+    }
+
+    public AreaModifier addStats(StatModifier... stats) {
+        this.stats.addAll(Arrays.asList(stats));
+        return this;
     }
 
     public boolean canMobSpawn(EntityType type) {

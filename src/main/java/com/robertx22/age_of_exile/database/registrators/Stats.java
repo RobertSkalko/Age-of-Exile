@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.registrators;
 
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.database.base.AllPreGenMapStats;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
@@ -26,6 +25,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
+import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
@@ -130,6 +130,7 @@ public class Stats implements ISlashRegistryInit {
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
 
+                    add(ManaBurn.getInstance());
                     add(HealPower.getInstance());
                     // traits
 

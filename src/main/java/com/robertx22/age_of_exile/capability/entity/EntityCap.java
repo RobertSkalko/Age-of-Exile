@@ -75,7 +75,7 @@ public class EntityCap {
 
         void setType(LivingEntity en);
 
-        EntityTypeUtils.EntityType getType();
+        EntityTypeUtils.EntityClassification getType();
 
         void trySync(LivingEntity entity);
 
@@ -183,7 +183,7 @@ public class EntityCap {
         int level = 1;
         int exp = 0;
 
-        EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
+        EntityTypeUtils.EntityClassification type = EntityTypeUtils.EntityClassification.PLAYER;
         // sync these for mobs
 
         boolean setMobStats = false;
@@ -223,9 +223,9 @@ public class EntityCap {
 
             try {
                 String typestring = nbt.getString(ENTITY_TYPE);
-                this.type = EntityTypeUtils.EntityType.valueOf(typestring);
+                this.type = EntityTypeUtils.EntityClassification.valueOf(typestring);
             } catch (Exception e) {
-                this.type = EntityTypeUtils.EntityType.OTHER;
+                this.type = EntityTypeUtils.EntityClassification.OTHER;
                 //if no nbt, set to default. Then at spawn, set correctly
             }
 
@@ -348,7 +348,7 @@ public class EntityCap {
         }
 
         @Override
-        public EntityTypeUtils.EntityType getType() {
+        public EntityTypeUtils.EntityClassification getType() {
             return this.type;
         }
 

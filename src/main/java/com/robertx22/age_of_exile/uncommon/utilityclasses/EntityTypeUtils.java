@@ -10,14 +10,14 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class EntityTypeUtils {
 
-    public enum EntityType {
+    public enum EntityClassification {
         MOB("mob"),
         PLAYER("player"),
         ANIMAL("animal"),
         NPC("npc"),
         OTHER("other");
 
-        EntityType(String id) {
+        EntityClassification(String id) {
             this.id = id;
         }
 
@@ -25,18 +25,18 @@ public class EntityTypeUtils {
 
     }
 
-    public static EntityType getType(LivingEntity entity) {
+    public static EntityClassification getType(LivingEntity entity) {
 
         if (isMob(entity)) {
-            return EntityType.MOB;
+            return EntityClassification.MOB;
         } else if (isAnimal(entity)) {
-            return EntityType.ANIMAL;
+            return EntityClassification.ANIMAL;
         } else if (isNPC(entity)) {
-            return EntityType.NPC;
+            return EntityClassification.NPC;
         } else if (entity instanceof PlayerEntity) {
-            return EntityType.PLAYER;
+            return EntityClassification.PLAYER;
         } else {
-            return EntityType.OTHER;
+            return EntityClassification.OTHER;
         }
 
     }
