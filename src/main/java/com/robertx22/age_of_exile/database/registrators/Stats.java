@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.HealToSpellDmgStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
@@ -108,6 +109,8 @@ public class Stats implements ISlashRegistryInit {
                     add(Strength.INSTANCE);
                     add(Dexterity.INSTANCE);
                     add(Intelligence.INSTANCE);
+
+                    add(ExtraMobDropsStat.getInstance());
 
                     add(new UnknownStat());
 

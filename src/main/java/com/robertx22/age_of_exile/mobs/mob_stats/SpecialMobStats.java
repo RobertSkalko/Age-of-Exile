@@ -2,9 +2,9 @@ package com.robertx22.age_of_exile.mobs.mob_stats;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurn;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 
@@ -26,12 +26,12 @@ public class SpecialMobStats {
 
     public static SpecialMobStats EMPTY = new SpecialMobStats();
 
-    public static SpecialMobStats FIRE = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Fire), ModType.FLAT));
-    public static SpecialMobStats WATER = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Water), ModType.FLAT));
-    public static SpecialMobStats NATURE = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Nature), ModType.FLAT));
-    public static SpecialMobStats THUNDER = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Thunder), ModType.FLAT));
+    public static SpecialMobStats FIRE = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Fire)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats WATER = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Water)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats NATURE = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Nature)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats THUNDER = new SpecialMobStats(new StatModifier(1, 1, new WeaponDamage(Elements.Thunder)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));
 
-    public static SpecialMobStats MANA_BURN = new SpecialMobStats(new StatModifier(1, 1, ManaBurn.getInstance(), ModType.FLAT));
+    public static SpecialMobStats MANA_BURN = new SpecialMobStats(new StatModifier(1, 1, ManaBurn.getInstance()), new StatModifier(15, 15, ExtraMobDropsStat.getInstance()));
 
     private HashMap<EntityType, SpecialMobStats> MAP = new HashMap<>();
 

@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -29,6 +29,13 @@ public class StatModifier implements ISerializable<StatModifier> {
         this.firstMax = firstMax;
         this.stat = stat.GUID();
         this.type = type.name();
+    }
+
+    public StatModifier(float firstMin, float firstMax, Stat stat) {
+        this.firstMin = firstMin;
+        this.firstMax = firstMax;
+        this.stat = stat.GUID();
+        this.type = ModType.FLAT.name();
     }
 
     public StatModifier(float firstMin, float firstMax, String stat, ModType type) {

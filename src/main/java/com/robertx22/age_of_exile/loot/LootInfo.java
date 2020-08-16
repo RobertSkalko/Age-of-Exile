@@ -1,14 +1,15 @@
 package com.robertx22.age_of_exile.loot;
 
-import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -131,6 +132,10 @@ public class LootInfo {
 
         if (victim != null && mobData != null) {
             chance *= SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi;
+
+            chance *= mobData.getUnit()
+                .peekAtStat(ExtraMobDropsStat.getInstance())
+                .getMultiplier();
         }
 
         if (this.playerData != null) {
@@ -154,7 +159,6 @@ public class LootInfo {
             if (this.playerData != null) {
                 chance = LootUtils.ApplyLevelDistancePunishment(mobData, playerData, chance);
             }
-
         }
 
         chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;

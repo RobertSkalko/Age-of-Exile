@@ -2,9 +2,11 @@ package com.robertx22.age_of_exile.database.registrators;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.LifeOnHit;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.util.Formatting;
@@ -29,6 +31,14 @@ public class MobAffixes implements ISlashRegistryInit {
 
     public static MobAffix RUIN = new MobAffix("ruin", "Ruin", Formatting.GRAY).setMods(new StatModifier(1, 1, new WeaponDamage(Physical), ModType.FLAT));
     public static MobAffix VIGOROUS = new MobAffix("vit", "Vigorous", Formatting.RED).setMods(new StatModifier(10, 10, Health.getInstance(), ModType.FLAT));
+    public static MobAffix VAMPIRE = new MobAffix("vampire", "Vampire", Formatting.RED).setMods(new StatModifier(3, 3, LifeOnHit.getInstance(), ModType.FLAT));
+
+    public static MobAffix HAUNTED = new MobAffix("haunted", "Haunted", Formatting.GRAY).setMods(
+        new StatModifier(15, 15, ChanceToApplyEffect.BURN, ModType.FLAT),
+        new StatModifier(15, 15, ChanceToApplyEffect.CHILL, ModType.FLAT),
+        new StatModifier(15, 15, ChanceToApplyEffect.POISON, ModType.FLAT),
+        new StatModifier(15, 15, ChanceToApplyEffect.STATIC, ModType.FLAT)
+    );
 
     @Override
     public void registerAll() {
@@ -42,6 +52,8 @@ public class MobAffixes implements ISlashRegistryInit {
 
         all.add(RUIN);
         all.add(VIGOROUS);
+        all.add(VAMPIRE);
+        all.add(HAUNTED);
 
         all.forEach(x -> x.addToSerializables());
 

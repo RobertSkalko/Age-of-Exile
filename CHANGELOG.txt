@@ -1,12 +1,15 @@
 v.1.1.0
 
-Crafting Update!
-
 WARNING: This update deletes all existing gear items! 
 Unfortunately required because of the gear rework.
 A clean start is recommended.
 
-Now for the good news:
+This update is actually a combination of big updates:
+- Crafting update
+- Mob Update
+- Area Update
+
+CRAFTING UPDATE:
 
 All gears now have level ranges, so Old Boots would be lvl 0-10, but Royal boots lvl 40-50.
 Each level range has its own material. You can now craft nearly all the gear of any level!
@@ -28,6 +31,18 @@ All recipes use a very predictable system, so if you can figure out how to craft
 The only confusion might be rings and necklaces. They only have 2 level ranges, 0-20 and 20-50. So only 2 crafting recipes.
 
 The material needed for the item is based on highest level the item can have.
+
+MOB UPDATE:
+
+I added many new elemental or special mobs to the game.
+These mobs spawn during daytime too :)
+World should be a lot more lively now!
+
+AREA UPDATE:
+
+Each biome is now special and has its own modifiers.
+You might get to a Poisonous Swamp or an Infernal Desert.
+These modifiers allow my added mobs to spawn, so you'll see nature spiders in poisonous swamps etc.
 
 Compatibility update:
 
