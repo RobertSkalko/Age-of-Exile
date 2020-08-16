@@ -97,7 +97,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
 
         for (Stat single : Arrays.asList(Dexterity.INSTANCE, Strength.INSTANCE, Intelligence.INSTANCE)) {
             //   this.buttons.add(new IncreaseStatButton(unitdata, data, single, guiLeft + sizeX / 2 + 50, guiTop + 40 + y));
-            y += button_sizeY + 3;
+            //y += button_sizeY + 3;
         }
 
         List<Text> list = new ArrayList<>();
@@ -147,8 +147,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
     }
 
     private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/button.png");
-    static int button_sizeX = 13;
-    static int button_sizeY = 13;
+    static int plus_button_sizeX = 13;
+    static int plus_button_sizeY = 13;
 
     @Override
     public boolean shouldAlert() {
