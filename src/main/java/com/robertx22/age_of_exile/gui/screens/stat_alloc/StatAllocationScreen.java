@@ -7,26 +7,19 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.HelpButton;
-import com.robertx22.age_of_exile.gui.screens.stat_alloc.StatAllocationScreen.IncreaseStatButton;
 import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.ResetStatPointsItem;
-import com.robertx22.age_of_exile.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -103,7 +96,7 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
         int y = 0;
 
         for (Stat single : Arrays.asList(Dexterity.INSTANCE, Strength.INSTANCE, Intelligence.INSTANCE)) {
-            this.buttons.add(new IncreaseStatButton(unitdata, data, single, guiLeft + sizeX / 2 + 50, guiTop + 40 + y));
+            //   this.buttons.add(new IncreaseStatButton(unitdata, data, single, guiLeft + sizeX / 2 + 50, guiTop + 40 + y));
             y += button_sizeY + 3;
         }
 
@@ -166,87 +159,6 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
             e.printStackTrace();
         }
         return false;
-    }
-
-    class IncreaseStatButton extends TexturedButtonWidget {
-
-        TextRenderer font = MinecraftClient.getInstance().textRenderer;
-        PlayerStatsCap.IPlayerStatPointsData data;
-        Stat stat;
-        EntityCap.UnitData unitdata;
-
-        public IncreaseStatButton(EntityCap.UnitData unitdata, PlayerStatsCap.IPlayerStatPointsData data,
-                                  Stat stat, int xPos, int yPos) {
-            super(xPos, yPos, button_sizeX, button_sizeY, 0, 0, button_sizeY, BUTTON_TEX, (button) -> {
-
-                Packets.sendToServer(new SpendStatPointsPacket(stat));
-                Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
-
-            });
-
-            this.data = data;
-            this.stat = stat;
-            this.unitdata = unitdata;
-
-        }
-
-        /*
-        @Override
-        public void onPress() {
-            super.onPress();
-
-            Packets.sendToServer(new SpendStatPointsPacket(this.stat));
-            Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
-
-        }
-
-         */
-
-        @Override
-        public void renderToolTip(MatrixStack matrix, int x, int y) {
-            if (isInside(x, y)) {
-
-                List<Text> tooltip = new ArrayList<>();
-
-                tooltip.add(Styles.BLUECOMP()
-                    .append(stat.locName()));
-
-                if (stat instanceof BaseCoreStat) {
-                    BaseCoreStat core = (BaseCoreStat) stat;
-                    tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit()
-                        .getCreateStat(stat)));
-                }
-                GuiUtils.renderTooltip(matrix, tooltip, x, y);
-
-            }
-        }
-
-        public boolean isInside(int x, int y) {
-            return GuiUtils.isInRect(this.x, this.y, button_sizeX, button_sizeY, x, y);
-        }
-
-        @Override
-        public void renderButton(MatrixStack matrix, int x, int y, float f) {
-            try {
-                super.renderButton(matrix, x, y, f);
-
-                Formatting format = Formatting.YELLOW;
-
-                String str =
-                    stat.getIconFormat() + CLOC.translate(stat.locName()) + format + ": " + Formatting.GREEN + format;
-                str += ", Current(" + Formatting.GREEN + (int) this.unitdata.getUnit()
-                    .getCreateStat(stat)
-                    .getAverageValue() + format + ")";
-
-                font.drawWithShadow(matrix, str, this.x - button_sizeX - 5 - font.getWidth(str),
-                    this.y - button_sizeY / 2 + font.fontHeight, format.getColorValue()
-                );
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
     }
 
 }

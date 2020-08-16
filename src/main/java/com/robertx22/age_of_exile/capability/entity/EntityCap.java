@@ -213,6 +213,7 @@ public class EntityCap {
             nbt.putInt(LEVEL, level);
             nbt.putInt(RARITY, rarity);
             nbt.putString(ENTITY_TYPE, this.type.toString());
+            nbt.putString("area", areaID);
 
             if (unit != null) {
                 // System.out.println(unit.getStats().size()); for testing if mobs get all stats or only ones they need
@@ -227,6 +228,7 @@ public class EntityCap {
 
             this.rarity = nbt.getInt(RARITY);
             this.level = nbt.getInt(LEVEL);
+            this.areaID = nbt.getString("area");
 
             try {
                 String typestring = nbt.getString(ENTITY_TYPE);

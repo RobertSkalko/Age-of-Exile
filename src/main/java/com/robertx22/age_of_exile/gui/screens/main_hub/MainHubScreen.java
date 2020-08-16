@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
-import com.robertx22.age_of_exile.gui.screens.main_hub.MainHubScreen.Button;
+import com.robertx22.age_of_exile.gui.screens.new_stat_screen.StatScreen;
 import com.robertx22.age_of_exile.gui.screens.spell_hotbar_setup.HotbarNamedScreen;
 import com.robertx22.age_of_exile.gui.screens.stat_alloc.StatAllocationScreen;
 import com.robertx22.age_of_exile.gui.screens.stats_overview.StatOverviewScreen;
@@ -51,6 +51,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         screens.add(new HotbarNamedScreen());
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
+        screens.add(new StatScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;
