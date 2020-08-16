@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,13 +46,13 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
             PlayerEntity en = mc.player;
             UnitData data = Load.Unit(en);
 
-            if (true) {
+            if (mc.currentScreen instanceof InventoryScreen) {
                 AreaData area = WorldAreas.getArea(mc.world, en.getBlockPos());
                 String name = area.getAreaModifier()
                     .getFinalLocNameFor(area.getBaseArea()); // TODO
 
                 GuiUtils.renderScaledText(matrix, mc.getWindow()
-                    .getScaledWidth() / 2 - mc.textRenderer.getWidth(name) / 2, 30, 1, name, Formatting.GREEN);
+                    .getScaledWidth() / 2 - mc.textRenderer.getWidth(name) / 2, 50, 1, name, Formatting.GREEN);
 
             }
 

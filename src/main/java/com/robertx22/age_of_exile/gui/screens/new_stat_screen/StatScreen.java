@@ -193,7 +193,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
-        int xe = guiLeft + 81;
+        int xe = guiLeft + 62;
         int ye = guiTop + 75;
         InventoryScreen.drawEntity(xe, ye, 30, xe - x, ye - y, mc.player);
 

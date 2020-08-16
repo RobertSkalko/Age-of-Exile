@@ -7,8 +7,6 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
@@ -23,13 +21,6 @@ public class ContainerGearModify extends BaseTileContainer {
     public static final int MODIFY_SLOTS_COUNT = 3;
 
     Inventory tile;
-
-    public ContainerGearModify(int i, PlayerInventory playerInventory,
-                               PacketByteBuf packetBuffer) {
-        this(i, playerInventory, new SimpleInventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
-            .readBlockPos());
-
-    }
 
     public ContainerGearModify(int i, PlayerInventory invPlayer, Inventory inventory,
                                BlockPos pos) {
