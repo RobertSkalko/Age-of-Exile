@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.event_hooks.entity;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
@@ -50,10 +51,8 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
             nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
 
             if (endata.needsToBeGivenStats()) {
-                Unit unit = Mob(entity, endata, nearestPlayer);
-                endata.setUnit(unit, entity);
-                endata.mobStatsAreSet();
-                endata.forceRecalculateStats(entity);
+                setupNewMob(entity, endata, nearestPlayer);
+
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);
@@ -70,8 +69,8 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
     }
 
-    public static Unit Mob(LivingEntity entity, UnitData endata,
-                           PlayerEntity nearestPlayer) {
+    public static Unit setupNewMob(LivingEntity entity, UnitData endata,
+                                   PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
         mob.initStats();
@@ -86,7 +85,10 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
         endata.setUnit(mob, entity);
 
-        mob.recalculateStats(entity, endata, null);
+        endata.setArea(WorldAreas.getArea(entity.world, entity.getBlockPos()));
+
+        endata.mobStatsAreSet();
+        endata.forceRecalculateStats(entity);
 
         return mob;
 

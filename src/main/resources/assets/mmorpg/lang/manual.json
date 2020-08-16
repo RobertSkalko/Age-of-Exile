@@ -66,6 +66,18 @@
 "mmorpg.tooltip.put_in_mapdevice": "Right Click on Map Device to Use",
 "mmorpg.tooltip.press_shift_more_info": "[Alt]: Desc, [Ctrl]: Hide",
 "mmorpg.tooltip.affix_rarity_lootbonus": "Affix Rarity Loot Bonus",
-"curios.identifier.salvage_bag": "Salvage Bag",
-"curios.identifier.bracelet": "Bracelet",
-"entity.mmorpg.trader.none": "Dungeon Merchant",
+
+
+"entity.mmorpg.nature_slime": "Tera Slime",
+"entity.mmorpg.fire_slime": "Flame Slime",
+"entity.mmorpg.water_slime": "Icy Slime",
+"entity.mmorpg.thunder_slime": "Spark Slime",
+"entity.mmorpg.arcane_slime": "Arcana Slime",
+
+"entity.mmorpg.nature_spider": "Tera Spider",
+"entity.mmorpg.fire_spider": "Flame Spider",
+"entity.mmorpg.water_spider": "Icy Spider",
+"entity.mmorpg.thunder_spider": "Spark Spider",
+"entity.mmorpg.arcane_spider": "Arcana Spider",
+
+

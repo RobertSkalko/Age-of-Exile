@@ -27,6 +27,7 @@ public class BaseAreas {
     public BaseArea SWAMP = of("swamp", "Swamp", Category.SWAMP);
     public BaseArea MOUNTAINS = of("mountain", "Mountains", Category.EXTREME_HILLS);
     public BaseArea TAIGA = of("taiga", "Taiga", Category.TAIGA);
+    public BaseArea MESA = of("mesa", "Mesa", Category.MESA);
 
     public BaseArea HELLSCAPE = of("hellscape", "Hellscape", Category.NETHER);
     public BaseArea CHARRED_DOMAIN = of("charred_domain", "Charred Domain", Category.NETHER);

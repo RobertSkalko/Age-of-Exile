@@ -4,7 +4,7 @@ WARNING: This update deletes all existing gear items!
 Unfortunately required because of the gear rework.
 A clean start is recommended.
 
-This update is actually a combination of big updates:
+This update is actually a combination of a few big updates:
 - Crafting update
 - Mob Update
 - Area Update
@@ -68,3 +68,4 @@ So if there's 100 different sword types, and 5 axe types, they'll still have sam
 - fix attack speed
 - Jar in Jared some deps in my library
 - fix typo in mod name of config
+- added a stat that makes mobs drop more loot if they have it, so now things like mob affixes also give that stat, for convenient balancing

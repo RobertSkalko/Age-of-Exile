@@ -21,7 +21,7 @@ public class AreaModifier implements IGUID, IWeighted {
     int weight;
     List<EntityType> mobSpawns;
     Predicate<Biome> canUseBiome;
-    List<StatModifier> stats = new ArrayList<>();
+    public List<StatModifier> stats = new ArrayList<>();
 
     public AreaModifier(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, Predicate<Biome> canUseBiome) {
         this.id = id;

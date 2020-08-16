@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.capability.entity;
 
+import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
@@ -14,6 +15,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -167,6 +169,9 @@ public class EntityCap {
 
         EntityGears getCurrentGears();
 
+        AreaData getArea();
+
+        void setArea(AreaData area);
     }
 
     public static class DefaultImpl implements UnitData {
@@ -182,6 +187,8 @@ public class EntityCap {
         int rarity = 0;
         int level = 1;
         int exp = 0;
+
+        String areaID = "";
 
         EntityTypeUtils.EntityClassification type = EntityTypeUtils.EntityClassification.PLAYER;
         // sync these for mobs
@@ -672,6 +679,23 @@ public class EntityCap {
         @Override
         public EntityGears getCurrentGears() {
             return gears;
+        }
+
+        @Override
+        public AreaData getArea() {
+
+            if (areaID.isEmpty()) {
+                System.out.println("Area id of mob is empty!!!");
+                return AreaData.EMPTY;
+            }
+
+            return ModRegistry.COMPONENTS.WORLD_AREAS.get(entity.world)
+                .getAreaById(areaID);
+        }
+
+        @Override
+        public void setArea(AreaData area) {
+            this.areaID = area.uuid;
         }
 
         @Override

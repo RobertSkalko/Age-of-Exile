@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.LifeOnHit;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
@@ -20,24 +20,25 @@ public class MobAffixes implements ISlashRegistryInit {
 
     public static MobAffix EMPTY = new MobAffix("empty", "empty", Formatting.AQUA);
 
-    public static MobAffix COLD = new MobAffix("cold", "Cold", Water.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_FROST, ModType.FLAT))
+    public static MobAffix COLD = new MobAffix("cold", "Cold", Water.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_FROST), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Water.format + Water.icon);
-    public static MobAffix FLAMING = new MobAffix("flaming", "Flaming", Fire.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_FIRE, ModType.FLAT))
+    public static MobAffix FLAMING = new MobAffix("flaming", "Flaming", Fire.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_FIRE), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Fire.format + Fire.icon);
-    public static MobAffix LIGHTNING = new MobAffix("lightning", "Thunder", Thunder.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_THUNDER, ModType.FLAT))
+    public static MobAffix LIGHTNING = new MobAffix("lightning", "Thunder", Thunder.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_THUNDER), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Thunder.format + Thunder.icon);
-    public static MobAffix VENOMOUS = new MobAffix("venom", "Poison", Nature.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_POISON, ModType.FLAT))
+    public static MobAffix VENOMOUS = new MobAffix("venom", "Poison", Nature.format).setMods(new StatModifier(1, 1, ChangeDmgElementStat.PHYS_TO_POISON), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Nature.format + Nature.icon);
 
-    public static MobAffix RUIN = new MobAffix("ruin", "Ruin", Formatting.GRAY).setMods(new StatModifier(1, 1, new WeaponDamage(Physical), ModType.FLAT));
-    public static MobAffix VIGOROUS = new MobAffix("vit", "Vigorous", Formatting.RED).setMods(new StatModifier(10, 10, Health.getInstance(), ModType.FLAT));
-    public static MobAffix VAMPIRE = new MobAffix("vampire", "Vampire", Formatting.RED).setMods(new StatModifier(3, 3, LifeOnHit.getInstance(), ModType.FLAT));
+    public static MobAffix RUIN = new MobAffix("ruin", "Ruin", Formatting.GRAY).setMods(new StatModifier(1, 1, new WeaponDamage(Physical)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));
+    public static MobAffix VIGOROUS = new MobAffix("vit", "Vigorous", Formatting.RED).setMods(new StatModifier(10, 10, Health.getInstance()), new StatModifier(5, 5, ExtraMobDropsStat.getInstance()));
+    public static MobAffix VAMPIRE = new MobAffix("vampire", "Vampire", Formatting.RED).setMods(new StatModifier(2, 2, LifeOnHit.getInstance()), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));
 
     public static MobAffix HAUNTED = new MobAffix("haunted", "Haunted", Formatting.GRAY).setMods(
-        new StatModifier(15, 15, ChanceToApplyEffect.BURN, ModType.FLAT),
-        new StatModifier(15, 15, ChanceToApplyEffect.CHILL, ModType.FLAT),
-        new StatModifier(15, 15, ChanceToApplyEffect.POISON, ModType.FLAT),
-        new StatModifier(15, 15, ChanceToApplyEffect.STATIC, ModType.FLAT)
+        new StatModifier(15, 15, ChanceToApplyEffect.BURN),
+        new StatModifier(15, 15, ChanceToApplyEffect.CHILL),
+        new StatModifier(15, 15, ChanceToApplyEffect.POISON),
+        new StatModifier(15, 15, ChanceToApplyEffect.STATIC),
+        new StatModifier(20, 20, ExtraMobDropsStat.getInstance())
     );
 
     @Override

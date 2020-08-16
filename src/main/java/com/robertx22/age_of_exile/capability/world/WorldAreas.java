@@ -51,16 +51,20 @@ public class WorldAreas implements Component {
 
     Data data = new Data();
 
-    HashMap<ChunkPos, AreaData> map = new HashMap<>();
+    HashMap<ChunkPos, AreaData> chunkMap = new HashMap<>();
+    HashMap<String, AreaData> idMap = new HashMap<>();
 
     public boolean hasArea(BlockPos pos) {
+        return chunkMap.containsKey(new ChunkPos(pos));
+    }
 
-        return map.containsKey(new ChunkPos(pos));
+    public AreaData getAreaById(String id) {
+        return idMap.get(id);
     }
 
     public AreaData getAreaFor(World world, BlockPos pos) {
         if (hasArea(pos)) {
-            return map.get(new ChunkPos(pos));
+            return chunkMap.get(new ChunkPos(pos));
         }
         if (world.isClient) {
             return AreaData.EMPTY;
@@ -86,7 +90,8 @@ public class WorldAreas implements Component {
         this.data.areas.add(data);
 
         data.getChunks()
-            .forEach(x -> map.put(x, data));
+            .forEach(x -> chunkMap.put(x, data));
+        idMap.put(data.uuid, data);
 
         return data;
     }
@@ -94,7 +99,7 @@ public class WorldAreas implements Component {
     public void updateClientValue(AreaData data) {
         this.data.areas.add(data);
         data.getChunks()
-            .forEach(x -> map.put(x, data));
+            .forEach(x -> chunkMap.put(x, data));
     }
 
     @Override
@@ -103,8 +108,12 @@ public class WorldAreas implements Component {
         this.data = LoadSave.Load(Data.class, new Data(), nbt, "areas");
 
         data.areas.forEach(x -> {
+            idMap.put(x.uuid, x);
             x.getChunks()
-                .forEach(c -> map.put(c, x));
+                .forEach(c -> {
+
+                    chunkMap.put(c, x);
+                });
         });
 
     }

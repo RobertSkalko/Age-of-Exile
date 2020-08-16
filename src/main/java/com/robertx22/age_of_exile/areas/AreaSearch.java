@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.areas;
 
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -32,7 +31,7 @@ public class AreaSearch {
         WorldAreas worldAreas = ModRegistry.COMPONENTS.WORLD_AREAS.get(world);
 
         if (!worldAreas.hasArea(pos)) {
-            Watch watch = new Watch();
+            //Watch watch = new Watch();
 
             this.biome = world.getBiome(pos);
 
@@ -50,7 +49,7 @@ public class AreaSearch {
 
             worldAreas.createNewArea(biome, new ArrayList<>(matches));
 
-            watch.print("gen area and visiting: " + visited.size() + " takes: ");
+            //watch.print("gen area and visiting: " + visited.size() + " takes: ");
         }
         return worldAreas.getAreaFor(world, pos);
 

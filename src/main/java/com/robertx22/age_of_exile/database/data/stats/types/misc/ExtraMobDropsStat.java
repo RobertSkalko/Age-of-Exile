@@ -18,7 +18,7 @@ public class ExtraMobDropsStat extends Stat {
 
     @Override
     public StatGroup statGroup() {
-        return StatGroup.Main;
+        return StatGroup.Misc;
     }
 
     private ExtraMobDropsStat() {

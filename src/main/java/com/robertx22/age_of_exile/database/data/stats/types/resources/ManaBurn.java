@@ -24,7 +24,7 @@ public class ManaBurn extends Stat implements IStatEffects {
 
     @Override
     public StatGroup statGroup() {
-        return StatGroup.Damage;
+        return StatGroup.Misc;
     }
 
     @Override
