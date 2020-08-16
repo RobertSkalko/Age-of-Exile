@@ -11,14 +11,17 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalStat {
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
-        List<Stat> list = super.generateAllPossibleStatVariations();
-        list.add(newGeneratedInstance(Elements.Physical));
+
+        List<Stat> list = new ArrayList<>();
+        Elements.getAllSingleIncludingPhysical()
+            .forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
     }
 

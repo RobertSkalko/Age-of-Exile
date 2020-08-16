@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -231,6 +231,13 @@ public class StatData {
         other.Flat2 += Flat2;
         other.Percent += Percent;
         other.Multi += Multi;
+
+    }
+
+    public void addCalcValuesTo(StatData other) {
+        other.v1 += v1;
+        other.v2 += v2;
+
     }
 
     public void Clear() {

@@ -10,11 +10,16 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
+import com.robertx22.age_of_exile.gui.buttons.HelpButton;
 import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -25,6 +30,7 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.ResetStatPointsItem;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
@@ -33,6 +39,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -54,7 +61,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public Identifier iconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/stats_screen.png");
+        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/stat_overview.png");
     }
 
     @Override
@@ -91,14 +98,13 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         // CORE STATS
 
         int xpos = guiLeft + 95 + 55;
-        int ypos = guiTop + 10;
+        int ypos = guiTop + 25;
         buttons.add(new StatButton(Dexterity.INSTANCE, xpos, ypos));
         buttons.add(new IncreaseStatButton(data, stats, Dexterity.INSTANCE, xpos - 19, ypos + 1));
-
-        ypos += 25;
+        ypos += 20;
         buttons.add(new StatButton(Intelligence.INSTANCE, xpos, ypos));
         buttons.add(new IncreaseStatButton(data, stats, Intelligence.INSTANCE, xpos - 19, ypos + 1));
-        ypos += 25;
+        ypos += 20;
         buttons.add(new StatButton(Strength.INSTANCE, xpos, ypos));
         buttons.add(new IncreaseStatButton(data, stats, Strength.INSTANCE, xpos - 19, ypos + 1));
         // CORE STATS
@@ -115,7 +121,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         // resources
 
         // resource regen
-        xpos = guiLeft + sizeX - 7 - button_sizeX;
+        xpos = guiLeft + sizeX - 7 - STAT_BUTTON_SIZE_X;
         ypos = guiTop + 7;
 
         buttons.add(new StatButton(HealthRegen.getInstance(), xpos, ypos).verticalText());
@@ -125,6 +131,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         buttons.add(new StatButton(ManaRegen.getInstance(), xpos, ypos).verticalText());
         // resource regen
 
+        // ELE RESISTS
         xpos = guiLeft + 10 + 30;
         ypos = guiTop + 85;
 
@@ -132,16 +139,38 @@ public class StatScreen extends BaseScreen implements INamedScreen {
             buttons.add(new StatButton(x, xpos, ypos));
             ypos += YSPACING;
         }
-        xpos += XSPACING;
-        ypos = guiTop + 85;
+        // ELE RESISTS
 
-        for (Stat x : new ElementalSpellDamage(Elements.Water).generateAllSingleVariations()) {
-            buttons.add(new StatButton(x, xpos, ypos));
-            ypos += YSPACING;
-        }
+        // DAMAGE STATS
+        xpos = guiLeft + 147;
+        ypos = guiTop + 90;
 
-        xpos += XSPACING;
-        ypos = guiTop + 85;
+        buttons.add(new CombinedStatsButton(new WeaponDamage(Elements.Physical), new WeaponDamage(Elements.Water).generateAllPossibleStatVariations(), xpos, ypos));
+        ypos += 25;
+        buttons.add(new StatButton(CriticalHit.getInstance(), xpos, ypos));
+        ypos += 25;
+        buttons.add(new StatButton(CriticalDamage.getInstance(), xpos, ypos));
+        // DAMAGE STATS
+
+        // DEFENSE STATS
+        xpos = guiLeft + 95;
+        ypos = guiTop + 95;
+
+        buttons.add(new StatButton(Armor.getInstance(), xpos, ypos));
+        ypos += 30;
+        buttons.add(new StatButton(DodgeRating.getInstance(), xpos, ypos));
+        // DEFENSE STATS
+
+        List<Text> list = new ArrayList<>();
+        list.add(new LiteralText("Allocate stats here"));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("These stats determine your playstyle."));
+        list.add(new LiteralText("To wear gear that gives Armor, you need strength,"));
+        list.add(new LiteralText("Magic shield > Intelligence, Dodge > Dexterity etc."));
+        list.add(new LiteralText(""));
+        list.add(new LiteralText("To reset stats, you need to craft:"));
+        list.add(new LiteralText(new ResetStatPointsItem().locNameForLangFile()));
+        this.addButton(new HelpButton(list, guiLeft + sizeX - 55, guiTop + 5));
 
     }
 
@@ -168,14 +197,25 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         int ye = guiTop + 75;
         InventoryScreen.drawEntity(xe, ye, 30, xe - x, ye - y, mc.player);
 
+        String str = "Level: " + Load.Unit(mc.player)
+            .getLevel();
+        GuiUtils.renderScaledText(matrix, xe, ye - 60, 0.6F, str, Formatting.YELLOW);
+
+        int xpos = guiLeft + 95 + 55;
+        int ypos = guiTop + 15;
+
+        String points = "Points: " + Load.statPoints(mc.player)
+            .getAvailablePoints(Load.Unit(mc.player));
+        GuiUtils.renderScaledText(matrix, xpos, ypos, 1, points, Formatting.GREEN);
+
     }
 
     private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/button.png");
-    static int button_sizeX = 18;
-    static int button_sizeY = 18;
+    static int STAT_BUTTON_SIZE_X = 18;
+    static int STAT_BUTTON_SIZE_Y = 18;
 
-    static int plus_button_sizeX = 13;
-    static int plus_button_sizeY = 13;
+    static int PLUS_BUTTON_SIZE_X = 13;
+    static int PLUS_BUTTON_SIZE_Y = 13;
 
     public class StatButton extends TexturedButtonWidget {
 
@@ -184,7 +224,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         public boolean verticalText = false;
 
         public StatButton(Stat stat, int xPos, int yPos) {
-            super(xPos, yPos, button_sizeX, button_sizeY, 0, 0, button_sizeY, BUTTON_TEX, (button) -> {
+            super(xPos, yPos, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, 0, 0, STAT_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
             });
 
             this.stat = stat;
@@ -214,7 +254,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         }
 
         public boolean isInside(int x, int y) {
-            return GuiUtils.isInRect(this.x, this.y, button_sizeX, button_sizeY, x, y);
+            return GuiUtils.isInRect(this.x, this.y, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, x, y);
         }
 
         @Override
@@ -231,11 +271,78 @@ public class StatScreen extends BaseScreen implements INamedScreen {
                 RenderUtils.render16Icon(matrix, res, this.x, this.y);
 
                 if (verticalText) {
-                    StatScreen.this.drawStringWithShadow(matrix, font, str, this.x - font.getWidth(str) / 2 + button_sizeX / 2, this.y + button_sizeY + 2, Formatting.GOLD.getColorValue());
+                    StatScreen.this.drawStringWithShadow(matrix, font, str, this.x - font.getWidth(str) / 2 + STAT_BUTTON_SIZE_X / 2, this.y + STAT_BUTTON_SIZE_Y + 2, Formatting.GOLD.getColorValue());
                 } else {
-                    StatScreen.this.drawStringWithShadow(matrix, font, str, this.x + button_sizeX, this.y + 2, Formatting.GOLD.getColorValue());
+                    StatScreen.this.drawStringWithShadow(matrix, font, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
 
                 }
+            }
+        }
+
+    }
+
+    public class CombinedStatsButton extends TexturedButtonWidget {
+
+        TextRenderer font = MinecraftClient.getInstance().textRenderer;
+        List<Stat> stats;
+        Stat describer;
+
+        public CombinedStatsButton(Stat describer, List<Stat> stats, int xPos, int yPos) {
+            super(xPos, yPos, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, 0, 0, STAT_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
+            });
+
+            this.stats = stats;
+            this.describer = describer;
+        }
+
+        @Override
+        public void renderToolTip(MatrixStack matrix, int x, int y) {
+            if (isInside(x, y)) {
+                List<Text> tooltip = new ArrayList<>();
+
+                stats.forEach(s -> {
+
+                    String str = s.translate() + ": " + getStatString(Load.Unit(mc.player)
+                        .getUnit()
+                        .getCreateStat(s), Load.Unit(mc.player));
+
+                    tooltip.add(new LiteralText(str));
+
+                });
+
+                GuiUtils.renderTooltip(matrix,
+                    tooltip, x, y);
+
+            }
+        }
+
+        public boolean isInside(int x, int y) {
+            return GuiUtils.isInRect(this.x, this.y, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, x, y);
+        }
+
+        @Override
+        public void renderButton(MatrixStack matrix, int x, int y, float f) {
+            if (!(stats instanceof UnknownStat)) {
+
+                StatData data = new StatData(describer);
+
+                stats.forEach(s -> {
+                    StatData part = Load.Unit(mc.player)
+                        .getUnit()
+                        .getCreateStat(s);
+
+                    part.addCalcValuesTo(data);
+                });
+
+                String str = getStatString(data, Load.Unit(mc.player));
+
+                Identifier res = describer
+                    .getIconLocation();
+
+                RenderUtils.render16Icon(matrix, res, this.x, this.y);
+
+                StatScreen.this.drawStringWithShadow(matrix, font, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
+
             }
         }
 
@@ -269,7 +376,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
                 usable.getUsableValue((int) data
                     .getAverageValue(), unitdata.getLevel()) * 100);
 
-            str += " (" + value + "%)";
+            str = "" + value + "%";
 
         }
         return str;
@@ -284,7 +391,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
         public IncreaseStatButton(EntityCap.UnitData unitdata, PlayerStatsCap.IPlayerStatPointsData data,
                                   Stat stat, int xPos, int yPos) {
-            super(xPos, yPos, plus_button_sizeX, plus_button_sizeY, 0, 0, plus_button_sizeY, BUTTON_TEX, (button) -> {
+            super(xPos, yPos, PLUS_BUTTON_SIZE_X, PLUS_BUTTON_SIZE_Y, 0, 0, PLUS_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
 
                 Packets.sendToServer(new SpendStatPointsPacket(stat));
                 Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
@@ -317,7 +424,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         }
 
         public boolean isInside(int x, int y) {
-            return GuiUtils.isInRect(this.x, this.y, button_sizeX, button_sizeY, x, y);
+            return GuiUtils.isInRect(this.x, this.y, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, x, y);
         }
 
         @Override

@@ -56,11 +56,11 @@ public enum Elements implements IColor {
         return allSingleElementals;
     }
 
-    public static List<Elements> getAllIncludingPhysical() {
+    public static List<Elements> getAllSingleIncludingPhysical() {
         return allIncludingPhys;
     }
 
-    public static List<Elements> getAllExcludingPhysical() {
+    public static List<Elements> getEverythingBesidesPhysical() {
         return allExcludingPhys;
     }
 

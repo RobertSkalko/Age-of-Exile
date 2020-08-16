@@ -37,7 +37,7 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Elements.getAllExcludingPhysical()
+        Elements.getEverythingBesidesPhysical()
             .forEach(x -> list.add(newGeneratedInstance(x)));
         return list;
 
