@@ -3,7 +3,7 @@
   "package": "com.robertx22.age_of_exile.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ArrowShootMixin",
+    "ArrowShootMixin",    
     "ChestMixin",
     "LivingEntityMixin",
     "OnCraftMixin",
@@ -16,7 +16,7 @@
     "ItemStackMixin",
     "KeyboardMixin",
     "MobNameTagMixin",
-    "PlayerInventoryMixin"
+    "PlayerInventoryMixin"	
   ],
   "injectors": {
     "defaultRequire": 1

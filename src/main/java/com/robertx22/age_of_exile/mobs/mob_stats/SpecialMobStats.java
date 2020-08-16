@@ -51,6 +51,12 @@ public class SpecialMobStats {
         INSTANCE.register(ENTITIES.THUNDER_SPIDER, THUNDER);
         INSTANCE.register(ENTITIES.ARCANE_SPIDER, MANA_BURN);
 
+        INSTANCE.register(ENTITIES.FIRE_ZOMBIE, FIRE);
+        INSTANCE.register(ENTITIES.WATER_ZOMBIE, WATER);
+        INSTANCE.register(ENTITIES.NATURE_ZOMBIE, NATURE);
+        INSTANCE.register(ENTITIES.THUNDER_ZOMBIE, THUNDER);
+        INSTANCE.register(ENTITIES.ARCANE_ZOMBIE, MANA_BURN);
+
     }
 
     public void register(EntityType type, SpecialMobStats stats) {

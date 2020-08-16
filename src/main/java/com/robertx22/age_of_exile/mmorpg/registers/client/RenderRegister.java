@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.special.RangerAr
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.HolyTridentRenderer;
 import com.robertx22.age_of_exile.mobs.slimes.ModSlimeRenderer;
 import com.robertx22.age_of_exile.mobs.spiders.ModSpiderRenderer;
+import com.robertx22.age_of_exile.mobs.zombies.ModZombieRenderer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.entity.TridentEntityRenderer;
 import net.minecraft.entity.EntityType;
@@ -36,6 +37,12 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.WATER_SPIDER, (dispatcher, context) -> new ModSpiderRenderer(dispatcher, "water_spider.png"));
         INSTANCE.register(ENTITIES.THUNDER_SPIDER, (dispatcher, context) -> new ModSpiderRenderer(dispatcher, "thunder_spider.png"));
         INSTANCE.register(ENTITIES.NATURE_SPIDER, (dispatcher, context) -> new ModSpiderRenderer(dispatcher, "nature_spider.png"));
+
+        INSTANCE.register(ENTITIES.FIRE_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "fire_zombie.png", "fire_zombie_outer.png"));
+        INSTANCE.register(ENTITIES.WATER_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "water_zombie.png", "water_zombie_outer.png"));
+        INSTANCE.register(ENTITIES.NATURE_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "nature_zombie.png", "nature_zombie_outer.png"));
+        INSTANCE.register(ENTITIES.THUNDER_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "thunder_zombie.png", "thunder_zombie_outer.png"));
+        INSTANCE.register(ENTITIES.ARCANE_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "arcane_zombie.png", "arcane_zombie_outer.png"));
 
     }
 }

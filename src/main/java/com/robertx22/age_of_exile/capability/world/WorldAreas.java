@@ -13,6 +13,7 @@ import nerdhub.cardinal.components.api.component.Component;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -73,13 +74,18 @@ public class WorldAreas implements Component {
         }
     }
 
-    public AreaData createNewArea(Biome biome, List<ChunkPos> chunks) {
+    public AreaData createNewArea(World world, Biome biome, List<ChunkPos> chunks) {
         AreaData data = new AreaData();
         data.uuid = UUID.randomUUID()
             .toString();
         data.setChunks(chunks);
         data.biome_category = biome.getCategory()
             .name();
+        data.biome = world.getRegistryManager()
+            .get(Registry.BIOME_KEY)
+            .getId(biome)
+            .toString();
+
         data.base_area = BaseAreas.INSTANCE.getRandomAreaFor(biome.getCategory()).id;
 
         AreaModifier mod = AreaModifiers.INSTANCE.getRandomFor(biome);

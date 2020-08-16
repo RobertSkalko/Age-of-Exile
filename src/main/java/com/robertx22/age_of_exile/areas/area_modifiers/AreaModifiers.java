@@ -31,7 +31,7 @@ public class AreaModifiers {
         x -> true);
 
     public AreaModifier CHILLING = of("chilling", 1000, Affix.Type.prefix, "Chilling",
-        Arrays.asList(ENTITIES.WATER_SLIME, ENTITIES.WATER_SPIDER),
+        Arrays.asList(ENTITIES.WATER_SLIME, ENTITIES.WATER_SPIDER, ENTITIES.WATER_ZOMBIE),
         x -> x.getTemperature() < 0.2F || x.getCategory() == Category.ICY || x.getCategory() == Category.TAIGA)
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Water), ModType.FLAT),
@@ -39,7 +39,7 @@ public class AreaModifiers {
         );
 
     public AreaModifier INFERNAL = of("infernal", 1000, Affix.Type.prefix, "Infernal",
-        Arrays.asList(ENTITIES.FIRE_SLIME, ENTITIES.FIRE_SPIDER),
+        Arrays.asList(ENTITIES.FIRE_SLIME, ENTITIES.FIRE_SPIDER, ENTITIES.FIRE_ZOMBIE),
         x -> x.getTemperature() > 1.2F && x.getCategory() != Category.JUNGLE)
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Fire), ModType.FLAT),
@@ -54,7 +54,7 @@ public class AreaModifiers {
         );
 
     public AreaModifier THUNDERING = of("thundering", 1000, Affix.Type.prefix, "Thundering",
-        Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.THUNDER_SPIDER),
+        Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.THUNDER_SPIDER, ENTITIES.THUNDER_ZOMBIE),
         x -> x.getCategory() == Category.EXTREME_HILLS)
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Thunder), ModType.FLAT),
@@ -65,8 +65,12 @@ public class AreaModifiers {
         x -> x.getCategory() == Category.BEACH);
 
     public AreaModifier ARCANE = of("arcane", 1000, Affix.Type.prefix, "Arcane",
-        Arrays.asList(ENTITIES.ARCANE_SPIDER, ENTITIES.ARCANE_SLIME),
+        Arrays.asList(ENTITIES.ARCANE_SPIDER, ENTITIES.ARCANE_SLIME, ENTITIES.ARCANE_ZOMBIE),
         x -> x.getCategory() == Category.FOREST || x.getCategory() == Category.MUSHROOM);
+
+    public AreaModifier APOCALYPTIC = of("apocalyptic", 500, Affix.Type.prefix, "Apocalyptic",
+        Arrays.asList(ENTITIES.FIRE_ZOMBIE, ENTITIES.ARCANE_ZOMBIE, ENTITIES.THUNDER_ZOMBIE, ENTITIES.WATER_ZOMBIE, ENTITIES.NATURE_ZOMBIE),
+        x -> x.getCategory() == Category.PLAINS || x.getCategory() == Category.NETHER || x.getCategory() == Category.FOREST || x.getCategory() == Category.MUSHROOM);
 
     AreaModifier of(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, Predicate<Biome> canUseBiome) {
 

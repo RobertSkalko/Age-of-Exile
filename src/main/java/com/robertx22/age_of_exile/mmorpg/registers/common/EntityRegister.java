@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.trident.Thunders
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.slimes.*;
 import com.robertx22.age_of_exile.mobs.spiders.*;
+import com.robertx22.age_of_exile.mobs.zombies.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
@@ -66,6 +67,14 @@ public class EntityRegister {
     public EntityType<WaterSpider> WATER_SPIDER = mob(WaterSpider::new, "water_spider", new EntityDimensions(0.7F, 0.5F, true));
     public EntityType<ThunderSpider> THUNDER_SPIDER = mob(ThunderSpider::new, "thunder_spider", new EntityDimensions(0.7F, 0.5F, true));
     public EntityType<NatureSpider> NATURE_SPIDER = mob(NatureSpider::new, "nature_spider", new EntityDimensions(0.7F, 0.5F, true));
+
+    static EntityDimensions zombieDim = new EntityDimensions(0.5F, 2, true);
+
+    public EntityType<ArcaneZombie> ARCANE_ZOMBIE = mob(ArcaneZombie::new, "arcane_zombie", zombieDim);
+    public EntityType<FireZombie> FIRE_ZOMBIE = mob(FireZombie::new, "fire_zombie", zombieDim);
+    public EntityType<WaterZombie> WATER_ZOMBIE = mob(WaterZombie::new, "water_zombie", zombieDim);
+    public EntityType<ThunderZombie> THUNDER_ZOMBIE = mob(ThunderZombie::new, "thunder_zombie", zombieDim);
+    public EntityType<NatureZombie> NATURE_ZOMBIE = mob(NatureZombie::new, "nature_zombie", zombieDim);
 
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 

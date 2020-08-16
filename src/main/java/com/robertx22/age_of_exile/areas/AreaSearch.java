@@ -47,7 +47,7 @@ public class AreaSearch {
                 }
             }
 
-            worldAreas.createNewArea(biome, new ArrayList<>(matches));
+            worldAreas.createNewArea(world, biome, new ArrayList<>(matches));
 
             //watch.print("gen area and visiting: " + visited.size() + " takes: ");
         }

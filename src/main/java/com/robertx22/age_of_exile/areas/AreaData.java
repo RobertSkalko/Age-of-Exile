@@ -6,8 +6,13 @@ import com.robertx22.age_of_exile.areas.base_areas.BaseArea;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BuiltinBiomes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +28,22 @@ public class AreaData {
     @Store
     public String biome_category = "";
     @Store
+    public String biome = "";
+    @Store
     public String base_area = "";
     @Store
     public String area_modifier = "";
+
+    public Biome getBiome(World world) {
+        try {
+            return world.getRegistryManager()
+                .get(Registry.BIOME_KEY)
+                .get(new Identifier(biome));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BuiltinBiomes.PLAINS;
+        }
+    }
 
     public BaseArea getBaseArea() {
 
