@@ -6,12 +6,10 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.minecraft.entity.EntityType;
-import net.minecraft.world.biome.Biome;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class AreaModifier implements IGUID, IWeighted {
 
@@ -20,16 +18,16 @@ public class AreaModifier implements IGUID, IWeighted {
     String locName;
     int weight;
     List<EntityType> mobSpawns;
-    Predicate<Biome> canUseBiome;
+    public AreaRequirement requirement;
     public List<StatModifier> stats = new ArrayList<>();
 
-    public AreaModifier(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, Predicate<Biome> canUseBiome) {
+    public AreaModifier(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, AreaRequirement req) {
         this.id = id;
         this.weight = weight;
         this.affixType = affixType;
         this.locName = locName;
         this.mobSpawns = mobSpawns;
-        this.canUseBiome = canUseBiome;
+        this.requirement = req;
     }
 
     public AreaModifier addStats(StatModifier... stats) {

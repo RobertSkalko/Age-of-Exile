@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
@@ -29,11 +28,12 @@ public class AreaModifiers {
 
     public AreaModifier PLAIN = of("plain", 0, Affix.Type.prefix, "",
         Arrays.asList(),
-        x -> true);
+        new AreaRequirement().whitelistAll());
 
     public AreaModifier CHILLING = of("chilling", 1000, Affix.Type.prefix, "Chilling",
         Arrays.asList(ENTITIES.WATER_SLIME, ENTITIES.WATER_SPIDER, ENTITIES.WATER_ZOMBIE),
-        x -> x.getTemperature() < 0.2F || x.getCategory() == Category.ICY || x.getCategory() == Category.TAIGA)
+        new AreaRequirement().temp(0, 0.5F)
+            .whitelist(Category.ICY, Category.TAIGA))
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Water), ModType.FLAT),
             new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
@@ -41,14 +41,16 @@ public class AreaModifiers {
 
     public AreaModifier INFERNAL = of("infernal", 1000, Affix.Type.prefix, "Infernal",
         Arrays.asList(ENTITIES.FIRE_SLIME, ENTITIES.FIRE_SPIDER, ENTITIES.FIRE_ZOMBIE),
-        x -> x.getTemperature() > 1.2F && x.getCategory() != Category.JUNGLE)
-        .addStats(
-            new StatModifier(1, 1, new WeaponDamage(Elements.Fire), ModType.FLAT),
-            new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
-        );
+        new AreaRequirement().temp(0.8F, Integer.MAX_VALUE)
+            .whitelist(Category.DESERT, Category.MESA)
+            .blacklist(Category.JUNGLE)).addStats(
+        new StatModifier(1, 1, new WeaponDamage(Elements.Fire), ModType.FLAT),
+        new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
+    );
+
     public AreaModifier POISONOUS = of("poisonous", 1000, Affix.Type.prefix, "Poisonous",
         Arrays.asList(ENTITIES.NATURE_SLIME, ENTITIES.NATURE_SPIDER),
-        x -> x.getCategory() == Category.SWAMP || x.getCategory() == Category.JUNGLE)
+        new AreaRequirement().whitelist(Category.SWAMP, Category.JUNGLE))
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Nature), ModType.FLAT),
             new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
@@ -56,40 +58,39 @@ public class AreaModifiers {
 
     public AreaModifier THUNDERING = of("thundering", 1000, Affix.Type.prefix, "Thundering",
         Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.THUNDER_SPIDER, ENTITIES.THUNDER_ZOMBIE),
-        x -> x.getCategory() == Category.EXTREME_HILLS)
+        new AreaRequirement().whitelist(Category.EXTREME_HILLS))
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Thunder), ModType.FLAT),
             new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
         );
     public AreaModifier OF_SLIMES = of("of_slimes", 500, Affix.Type.suffix, "Of Slimes",
         Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.WATER_SLIME, ENTITIES.NATURE_SLIME),
-        x -> x.getCategory() == Category.BEACH);
+        new AreaRequirement().whitelist(Category.BEACH));
 
     public AreaModifier DESOLATE = of("desolate", 1000, Affix.Type.prefix, "Desolate",
         Arrays.asList(),
-        x -> x.getCategory() == Category.BEACH);
+        new AreaRequirement().whitelist(Category.BEACH));
 
     public AreaModifier ARCANE = of("arcane", 1000, Affix.Type.prefix, "Arcane",
         Arrays.asList(ENTITIES.ARCANE_SPIDER, ENTITIES.ARCANE_SLIME, ENTITIES.ARCANE_ZOMBIE),
-        x -> x.getCategory() == Category.FOREST || x.getCategory() == Category.MUSHROOM);
+        new AreaRequirement().whitelist(Category.FOREST, Category.MUSHROOM));
 
     public AreaModifier APOCALYPTIC = of("apocalyptic", 500, Affix.Type.prefix, "Apocalyptic",
         Arrays.asList(ENTITIES.FIRE_ZOMBIE, ENTITIES.ARCANE_ZOMBIE, ENTITIES.THUNDER_ZOMBIE, ENTITIES.WATER_ZOMBIE, ENTITIES.NATURE_ZOMBIE),
-        x -> x.getCategory() == Category.PLAINS || x.getCategory() == Category.NETHER || x.getCategory() == Category.FOREST || x.getCategory() == Category.MUSHROOM);
+        new AreaRequirement().whitelist(Category.PLAINS, Category.NETHER, Category.MUSHROOM));
 
     public AreaModifier SPIDERS = of("spider_den", 750, Affix.Type.prefix, "Spider Den",
         Arrays.asList(ENTITIES.ARCANE_SPIDER, ENTITIES.THUNDER_SPIDER, ENTITIES.NATURE_SPIDER, ENTITIES.FIRE_SPIDER, ENTITIES.WATER_SPIDER),
-        x -> x.getCategory() != Category.ICY && x.getCategory() != Category.PLAINS && x.getCategory() != Category.MESA && x.getCategory() != Category.RIVER);
+        new AreaRequirement().blacklist(Category.ICY, Category.PLAINS, Category.MESA, Category.RIVER));
 
     public AreaModifier OF_VAMPIRISM = of("of_vampirism", 500, Affix.Type.suffix, "Of Vampirism",
-        Arrays.asList(),
-        x -> x.getCategory() != Category.OCEAN)
+        Arrays.asList(), new AreaRequirement())
         .addStats(
             new StatModifier(1.5F, 1.5F, LifeOnHit.getInstance(), ModType.FLAT),
             new StatModifier(15, 15, ExtraMobDropsStat.getInstance(), ModType.FLAT)
         );
 
-    AreaModifier of(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, Predicate<Biome> canUseBiome) {
+    AreaModifier of(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, AreaRequirement canUseBiome) {
 
         AreaModifier mod = new AreaModifier(id, weight, affixType, locName, mobSpawns, canUseBiome);
 
@@ -102,7 +103,7 @@ public class AreaModifiers {
 
         List<AreaModifier> list = MAP.values()
             .stream()
-            .filter(x -> x.canUseBiome.test(biome))
+            .filter(x -> x.requirement.isBiomeAcceptable(biome))
             .collect(Collectors.toList());
 
         if (list.isEmpty()) {
