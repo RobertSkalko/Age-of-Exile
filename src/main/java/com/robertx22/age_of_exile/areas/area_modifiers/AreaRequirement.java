@@ -12,20 +12,21 @@ public class AreaRequirement {
     private Set<Category> catWhitelist = new HashSet<>();
     private Set<Category> catBlacklist = new HashSet<>(Arrays.asList(Category.RIVER, Category.OCEAN)); // by default none accept these
 
-    private float minTemperature = 0;
+    private float minTemperature = Integer.MIN_VALUE;
     private float maxTemperature = Integer.MAX_VALUE;
 
     public enum WhitelistType {
         REQUIRE, ALLOW_ALSO
     }
 
-    WhitelistType tempType = WhitelistType.ALLOW_ALSO;
+    WhitelistType tempType = WhitelistType.REQUIRE;
 
     private boolean whitelistAll = false;
 
-    public AreaRequirement temp(float min, float max) {
+    public AreaRequirement temp(float min, float max, WhitelistType type) {
         minTemperature = min;
         maxTemperature = max;
+        this.tempType = type;
         return this;
     }
 
@@ -51,7 +52,9 @@ public class AreaRequirement {
                 return false;
             }
         } else {
-            return true;
+            if (tempType == WhitelistType.ALLOW_ALSO) {
+                return true;
+            }
         }
 
         if (catBlacklist.stream()

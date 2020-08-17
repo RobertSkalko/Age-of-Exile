@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.areas.area_modifiers;
 
+import com.robertx22.age_of_exile.areas.area_modifiers.AreaRequirement.WhitelistType;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
@@ -32,7 +33,7 @@ public class AreaModifiers {
 
     public AreaModifier CHILLING = of("chilling", 1000, Affix.Type.prefix, "Chilling",
         Arrays.asList(ENTITIES.WATER_SLIME, ENTITIES.WATER_SPIDER, ENTITIES.WATER_ZOMBIE),
-        new AreaRequirement().temp(0, 0.5F)
+        new AreaRequirement().temp(0, 0.3F, WhitelistType.ALLOW_ALSO)
             .whitelist(Category.ICY, Category.TAIGA))
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Water), ModType.FLAT),
@@ -41,7 +42,7 @@ public class AreaModifiers {
 
     public AreaModifier INFERNAL = of("infernal", 1000, Affix.Type.prefix, "Infernal",
         Arrays.asList(ENTITIES.FIRE_SLIME, ENTITIES.FIRE_SPIDER, ENTITIES.FIRE_ZOMBIE),
-        new AreaRequirement().temp(0.8F, Integer.MAX_VALUE)
+        new AreaRequirement().temp(0.8F, Integer.MAX_VALUE, WhitelistType.ALLOW_ALSO)
             .whitelist(Category.DESERT, Category.MESA)
             .blacklist(Category.JUNGLE)).addStats(
         new StatModifier(1, 1, new WeaponDamage(Elements.Fire), ModType.FLAT),
@@ -49,7 +50,7 @@ public class AreaModifiers {
     );
 
     public AreaModifier POISONOUS = of("poisonous", 1000, Affix.Type.prefix, "Poisonous",
-        Arrays.asList(ENTITIES.NATURE_SLIME, ENTITIES.NATURE_SPIDER),
+        Arrays.asList(ENTITIES.NATURE_SLIME, ENTITIES.NATURE_SPIDER, ENTITIES.NATURE_ZOMBIE),
         new AreaRequirement().whitelist(Category.SWAMP, Category.JUNGLE))
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Nature), ModType.FLAT),
