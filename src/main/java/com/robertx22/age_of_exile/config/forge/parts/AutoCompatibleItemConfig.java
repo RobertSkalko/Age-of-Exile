@@ -2,10 +2,27 @@ package com.robertx22.age_of_exile.config.forge.parts;
 
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
+import net.minecraft.item.Item;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AutoCompatibleItemConfig {
 
     public boolean ENABLE_AUTOMATIC_COMPATIBLE_ITEMS = false;
+
+    public List<String> BLACKLISTED_MODS_FROM_AUTO_CONFIG = new ArrayList<>();
+    public List<String> BLACKLISTED_ITEMS_FROM_AUTO_CONFIG = new ArrayList<>();
+
+    public boolean isBlacklisted(Item item) {
+        Identifier id = Registry.ITEM.getId(item);
+
+        return BLACKLISTED_MODS_FROM_AUTO_CONFIG.contains(id.getNamespace())
+            || BLACKLISTED_ITEMS_FROM_AUTO_CONFIG.contains(id.toString());
+    }
+
     public int MAX_SINGLE_STAT_VALUE = 50;
     public int MAX_TOTAL_STATS = 200;
 

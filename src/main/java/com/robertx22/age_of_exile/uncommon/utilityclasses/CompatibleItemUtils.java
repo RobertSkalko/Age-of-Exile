@@ -42,23 +42,25 @@ public class CompatibleItemUtils {
                 .getFilterWrapped(x -> x.item_id.equals(reg)).list);
 
             if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
-                if (all.isEmpty()) {
+                if (!ModConfig.get().autoCompatibleItems.isBlacklisted(item)) {
+                    if (all.isEmpty()) {
 
-                    Set<GearSlot> slots = new HashSet<>();
+                        Set<GearSlot> slots = new HashSet<>();
 
-                    SlashRegistry.GearTypes()
-                        .getList()
-                        .forEach(x -> {
-                            if (BaseGearType.isGearOfThisType(x, item)) {
-                                slots.add(x.getGearSlot());
-                            }
+                        SlashRegistry.GearTypes()
+                            .getList()
+                            .forEach(x -> {
+                                if (BaseGearType.isGearOfThisType(x, item)) {
+                                    slots.add(x.getGearSlot());
+                                }
+                            });
+
+                        slots.forEach(x -> {
+                            all.addAll(PowerLevel.getPowerClassification(item)
+                                .getAutoCompatibleItems(PowerLevel.getFloatValueOf(item), item, x));
                         });
 
-                    slots.forEach(x -> {
-                        all.addAll(PowerLevel.getPowerClassification(item)
-                            .getAutoCompatibleItems(PowerLevel.getFloatValueOf(item), item, x));
-                    });
-
+                    }
                 }
             }
 

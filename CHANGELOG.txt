@@ -4,6 +4,8 @@ WARNING: This update deletes all existing gear items!
 Unfortunately required because of the gear rework.
 A clean start is recommended.
 
+Also, update your library of exile.
+
 This update is actually a combination of a few big updates:
 - Crafting update
 - Mob Update
@@ -38,6 +40,8 @@ I added many new elemental or special mobs to the game.
 These mobs spawn during daytime too :)
 World should be a lot more lively now!
 
+Currently there's variations of: zombies, spiders and slimes!
+
 AREA UPDATE:
 
 Each biome is now special and has its own modifiers.
@@ -51,8 +55,10 @@ Compatibility update:
 - compatible item datapacks no longer specify level, as level is now dictated by gear type
 - compat items now get stats instantly when crafted (for some reason you need to reopen inventory for the client to get the data synced tho)
 - compat items are no longer added to loot drops automatically
+- added auto compat config blacklist for both items and mods, this should be useful for some mods that work mostly on item nbt and aren't suitable for compat
 
-Update your library of exile.
+
+Minor notes:
 
 - should fix crossbows not doing extra dmg
 - added gear slot datapacks. Super tiny, just declares drop chances. 
@@ -70,4 +76,5 @@ So if there's 100 different sword types, and 5 axe types, they'll still have sam
 - fix attack speed
 - Jar in Jared some deps in my library
 - fix typo in mod name of config
+- lowered slow scaling of stats (they shouldnt double at max lvl now)
 - added a stat that makes mobs drop more loot if they have it, so now things like mob affixes also give that stat, for convenient balancing
