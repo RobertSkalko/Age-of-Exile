@@ -41,7 +41,7 @@ public class AreaSearch {
                 ChunkPos cp = stack.pop();
                 branchTo(cp);
 
-                if (visited.size() > 2700) {
+                if (visited.size() > 3000) {
                     System.out.println("Biome too big, stopping");
                     break;
                 }

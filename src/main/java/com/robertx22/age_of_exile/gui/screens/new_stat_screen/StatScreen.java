@@ -65,6 +65,11 @@ public class StatScreen extends BaseScreen implements INamedScreen {
     }
 
     @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
+
+    @Override
     public boolean mouseReleased(double x, double y, int ticks) {
 
         buttons.forEach(b -> {
@@ -424,18 +429,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         }
 
         public boolean isInside(int x, int y) {
-            return GuiUtils.isInRect(this.x, this.y, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, x, y);
-        }
-
-        @Override
-        public void renderButton(MatrixStack matrix, int x, int y, float f) {
-            try {
-                super.renderButton(matrix, x, y, f);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            return GuiUtils.isInRect(this.x, this.y, PLUS_BUTTON_SIZE_X, PLUS_BUTTON_SIZE_Y, x, y);
         }
 
     }

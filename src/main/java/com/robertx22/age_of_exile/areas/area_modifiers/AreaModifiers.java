@@ -10,6 +10,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;
 
@@ -87,9 +89,17 @@ public class AreaModifiers {
     public AreaModifier OF_VAMPIRISM = of("of_vampirism", 500, Affix.Type.suffix, "Of Vampirism",
         Arrays.asList(), new AreaRequirement())
         .addStats(
-            new StatModifier(1.5F, 1.5F, LifeOnHit.getInstance(), ModType.FLAT),
+            new StatModifier(1F, 1F, LifeOnHit.getInstance(), ModType.FLAT),
             new StatModifier(15, 15, ExtraMobDropsStat.getInstance(), ModType.FLAT)
-        );
+        )
+        .addEffects(new StatusEffectInstance(StatusEffects.SPEED, Integer.MAX_VALUE, 1));
+
+    public AreaModifier OF_AMBUSHES = of("of_ambushes", 500, Affix.Type.suffix, "Of Ambushes",
+        Arrays.asList(), new AreaRequirement().whitelist(Category.FOREST, Category.JUNGLE))
+        .addStats(
+            new StatModifier(15, 15, ExtraMobDropsStat.getInstance(), ModType.FLAT)
+        )
+        .addEffects(new StatusEffectInstance(StatusEffects.SPEED, Integer.MAX_VALUE, 2));
 
     AreaModifier of(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, AreaRequirement canUseBiome) {
 

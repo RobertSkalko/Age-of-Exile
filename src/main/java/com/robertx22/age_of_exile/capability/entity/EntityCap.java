@@ -698,6 +698,11 @@ public class EntityCap {
         @Override
         public void setArea(AreaData area) {
             this.areaID = area.uuid;
+
+            area.getAreaModifier().effectsOnMobSpawn.forEach(x -> {
+                this.entity.addStatusEffect(x);
+            });
+
         }
 
         @Override

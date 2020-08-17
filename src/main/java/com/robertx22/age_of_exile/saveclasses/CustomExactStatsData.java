@@ -18,7 +18,7 @@ public class CustomExactStatsData {
 
     public void add(String hashmapGUID, String statGUID, float value, ModType type) {
         try {
-            stats.put(hashmapGUID, ExactStatData.scaleTo(value, type, statGUID, 0));
+            stats.put(hashmapGUID, ExactStatData.scaleTo(value, type, statGUID, 1));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffectInstance;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +21,7 @@ public class AreaModifier implements IGUID, IWeighted {
     List<EntityType> mobSpawns;
     public AreaRequirement requirement;
     public List<StatModifier> stats = new ArrayList<>();
+    public List<StatusEffectInstance> effectsOnMobSpawn = new ArrayList<>();
 
     public AreaModifier(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, AreaRequirement req) {
         this.id = id;
@@ -32,6 +34,11 @@ public class AreaModifier implements IGUID, IWeighted {
 
     public AreaModifier addStats(StatModifier... stats) {
         this.stats.addAll(Arrays.asList(stats));
+        return this;
+    }
+
+    public AreaModifier addEffects(StatusEffectInstance... stats) {
+        this.effectsOnMobSpawn.addAll(Arrays.asList(stats));
         return this;
     }
 
