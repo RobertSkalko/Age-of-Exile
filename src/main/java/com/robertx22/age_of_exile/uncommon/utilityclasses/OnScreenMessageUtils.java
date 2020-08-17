@@ -20,4 +20,15 @@ public class OnScreenMessageUtils {
         SoundUtils.ding(player.world, player.getBlockPos());
     }
 
+    public static void sendMessage(PlayerEntity player, MutableText title, MutableText sub) {
+
+        sub.formatted(Formatting.YELLOW, Formatting.BOLD);
+        title.formatted(Formatting.GREEN, Formatting.BOLD);
+
+        ServerPlayerEntity p = (ServerPlayerEntity) player;
+        p.networkHandler.sendPacket(new TitleS2CPacket(TitleS2CPacket.Action.ACTIONBAR, title.append(" ")
+            .append(sub), 5, 15, 8));
+
+    }
+
 }

@@ -4,8 +4,13 @@ import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifier;
 import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseArea;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
+import com.robertx22.age_of_exile.database.data.MinMax;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -14,8 +19,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BuiltinBiomes;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Storable
@@ -33,6 +37,34 @@ public class AreaData {
     public String base_area = "";
     @Store
     public String area_modifier = "";
+
+    public String getName() {
+        return getAreaModifier().getFinalLocNameFor(getBaseArea());
+    }
+
+    @Environment(EnvType.CLIENT)
+    public MinMax getLevelRange(World world) {
+
+        Set<Integer> list = new HashSet<>();
+
+        getChunks().forEach(x -> {
+            list.add(LevelUtils.determineLevel(world, x.getCenterBlockPos(), ClientOnly.getPlayer()));
+        });
+
+        if (list.isEmpty()) {
+            return new MinMax(0, 0);
+        }
+
+        return new MinMax(
+            list.stream()
+                .min(Comparator.comparingInt(x -> x))
+                .get(),
+            list.stream()
+                .max(Comparator.comparingInt(x -> x))
+                .get()
+        );
+
+    }
 
     public Biome getBiome(World world) {
         try {
