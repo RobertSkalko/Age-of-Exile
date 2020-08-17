@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.unique_items.armor.BeastBloodChe
 import com.robertx22.age_of_exile.database.data.unique_items.armor.ExecutionerLeatherChest;
 import com.robertx22.age_of_exile.database.data.unique_items.armor.InnerConfluxRobe;
 import com.robertx22.age_of_exile.database.data.unique_items.armor.JesterHat;
+import com.robertx22.age_of_exile.database.data.unique_items.jewelry.necklace.AngelicProtectionNecklace;
 import com.robertx22.age_of_exile.database.data.unique_items.jewelry.necklace.BirthingMiracleNecklace;
 import com.robertx22.age_of_exile.database.data.unique_items.jewelry.necklace.SkullOfSpiritsNecklace;
 import com.robertx22.age_of_exile.database.data.unique_items.jewelry.ring.GreedsPersistenceRing;
@@ -29,6 +30,7 @@ public class UniqueGears implements ISlashRegistryInit {
         new BeastBloodChest().addToSerializables();
         new LoopOfInfinityRing().addToSerializables();
         new ExecutionerLeatherChest().addToSerializables();
+        new AngelicProtectionNecklace().addToSerializables();
 
         new WaterElementalSword().addToSerializables();
         new ObsidianMightAxe().addToSerializables();

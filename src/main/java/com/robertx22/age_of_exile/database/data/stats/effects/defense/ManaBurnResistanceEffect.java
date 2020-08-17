@@ -1,33 +1,36 @@
-package com.robertx22.age_of_exile.database.data.stats.effects.offense;
+package com.robertx22.age_of_exile.database.data.stats.effects.defense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.ManaBurnEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 
-public class ManaBurnEffect extends BaseDamageEffect {
+public class ManaBurnResistanceEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
-        return Priority.Second.priority;
+        return Priority.afterThis(new ManaBurnEffect().GetPriority());
     }
 
     @Override
     public EffectSides Side() {
-        return EffectSides.Source;
+        return EffectSides.Target;
     }
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.manaBurn = data.getAverageValue();
+
+        if (effect.manaBurn > 0) {
+            effect.manaBurn *= data.getReverseMultiplier();
+        }
+
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.getEffectType()
-            .equals(EffectData.EffectTypes.BASIC_ATTACK);
+        return true;
     }
 
 }

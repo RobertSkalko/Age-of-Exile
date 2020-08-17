@@ -113,6 +113,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public float magicShieldRestoredOnKill;
     public float manaRestoredOnKill;
 
+    public float manaBurn = 0;
+
     public boolean isDodged = false;
 
     public boolean isDmgAllowed() {
@@ -297,6 +299,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             RestoreMana(manaRestored);
             restoreMagicShield(magicShieldRestored);
 
+            doManaBurn();
+
             if (!target.isAlive()) {
                 Heal(healthHealedOnKill);
                 RestoreMana(manaRestoredOnKill);
@@ -345,6 +349,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             onAttackeds.forEach(x -> ((IOnBasicAttackedPotion) x.getEffectType()).onBasicAttacked(x, source, target));
 
+        }
+    }
+
+    public void doManaBurn() {
+        if (manaBurn > 0) {
+            ResourcesData.Context ctx = new ResourcesData.Context(targetData, target,
+                ResourcesData.Type.MANA, manaBurn,
+                ResourcesData.Use.SPEND
+            );
+
+            targetData.getResources()
+                .modify(ctx);
         }
     }
 

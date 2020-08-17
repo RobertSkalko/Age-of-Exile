@@ -234,7 +234,9 @@ public abstract class BasePotionEffect extends StatusEffect implements ISlashReg
         // Called on application
         super.onApplied(target, attributes, amplifier);
 
-        OnPotionChange.onAdded(target, this);
+        // recalc stats;
+        EntityCap.UnitData data = Load.Unit(target);
+        data.setEquipsChanged(true);
 
     }
 

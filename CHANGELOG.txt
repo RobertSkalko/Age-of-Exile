@@ -66,6 +66,7 @@ So if there's 100 different sword types, and 5 axe types, they'll still have sam
 - level ups now show on screen title messages.
 - fixed some texture errors
 - added mana burn stat, arcane mobs all have it
+- added mana burn resistance
 - fix attack speed
 - Jar in Jared some deps in my library
 - fix typo in mod name of config

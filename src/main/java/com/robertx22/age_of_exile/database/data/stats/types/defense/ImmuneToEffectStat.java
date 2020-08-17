@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.defense;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 
@@ -24,12 +23,8 @@ public class ImmuneToEffectStat extends Stat {
         this.name = name;
     }
 
-    public void onPotionAdded(StatusEffect effect, LivingEntity en) {
-        if (effect == this.effect) {
-            if (en.hasStatusEffect(effect)) {
-                en.removeStatusEffect(effect);
-            }
-        }
+    public boolean isImmuneTo(StatusEffect effect) {
+        return effect == this.effect;
     }
 
     @Override
