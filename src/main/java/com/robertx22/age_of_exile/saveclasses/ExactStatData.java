@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.saveclasses;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -64,6 +64,20 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         data.stat_id = stat;
 
         data.scaleToLevel(level);
+
+        return data;
+    }
+
+    public static ExactStatData noScaling(float v1, float v2, ModType type, String stat) {
+        ExactStatData data = new ExactStatData();
+
+        data.first_val = v1;
+        data.second_val = v2;
+
+        data.type = type;
+        data.stat_id = stat;
+
+        data.scaled = true;
 
         return data;
     }

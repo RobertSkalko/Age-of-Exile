@@ -14,7 +14,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 public class CommonStatUtils {
 
     public static void addExactCustomStats(UnitData data) {
-        for (ExactStatData stat : data.getCustomExactStats().stats.values()) {
+        for (ExactStatData stat : data.getCustomExactStats().mods.values()) {
             stat.applyStats(data);
         }
     }

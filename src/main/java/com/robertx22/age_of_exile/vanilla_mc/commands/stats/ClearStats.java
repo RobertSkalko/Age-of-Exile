@@ -31,7 +31,7 @@ public class ClearStats {
 
             if (en instanceof LivingEntity) {
                 EntityCap.UnitData data = Load.Unit(en);
-                data.getCustomExactStats().stats.clear();
+                data.getCustomExactStats().mods.clear();
 
             }
 

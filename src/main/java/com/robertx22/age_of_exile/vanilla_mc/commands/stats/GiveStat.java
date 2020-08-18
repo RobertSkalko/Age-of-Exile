@@ -21,7 +21,6 @@ public class GiveStat {
 
     public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
         commandDispatcher.register(
-
             literal(CommandRefs.ID)
                 .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("exact")
@@ -34,25 +33,28 @@ public class GiveStat {
                                         .suggests(new StatTypeSuggestions())
                                         .then(argument("GUID", StringArgumentType
                                             .string())
-                                            .then(argument("value", FloatArgumentType
+                                            .then(argument("value_min", FloatArgumentType
                                                 .floatArg())
-                                                .executes(ctx -> run(EntityArgumentType
-                                                    .getPlayer(ctx, "target"), StringArgumentType
-                                                    .getString(ctx, "statGUID"), StringArgumentType
-                                                    .getString(ctx, "statType"), StringArgumentType
-                                                    .getString(ctx, "GUID"), FloatArgumentType
-                                                    .getFloat(ctx, "value"))))))))))));
+                                                .then(argument("value_max", FloatArgumentType
+                                                    .floatArg())
+                                                    .executes(ctx -> run(EntityArgumentType
+                                                        .getPlayer(ctx, "target"), StringArgumentType
+                                                        .getString(ctx, "statGUID"), StringArgumentType
+                                                        .getString(ctx, "statType"), StringArgumentType
+                                                        .getString(ctx, "GUID"), FloatArgumentType
+                                                        .getFloat(ctx, "value_min"), FloatArgumentType
+                                                        .getFloat(ctx, "value_max")))))))))))));
     }
 
     private static int run(Entity en, String statGUID, String statType,
-                           String GUID, float value) {
+                           String GUID, float v1, float v2) {
 
         try {
 
             if (en instanceof LivingEntity) {
                 EntityCap.UnitData data = Load.Unit(en);
                 data.getCustomExactStats()
-                    .add(GUID, statGUID, value, ModType.valueOf(statType));
+                    .addExactStat(GUID, statGUID, v1, v2, ModType.valueOf(statType));
             }
 
         } catch (Exception e) {
