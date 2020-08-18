@@ -5,12 +5,11 @@ import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseArea;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import com.robertx22.age_of_exile.database.data.MinMax;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -42,27 +41,34 @@ public class AreaData {
         return getAreaModifier().getFinalLocNameFor(getBaseArea());
     }
 
-    @Environment(EnvType.CLIENT)
     public MinMax getLevelRange(World world) {
 
-        Set<Integer> list = new HashSet<>();
+        if (!Cached.AREA_LEVEL_RANGE.containsKey(this.uuid)) {
 
-        getChunks().forEach(x -> {
-            list.add(LevelUtils.determineLevel(world, x.getCenterBlockPos(), ClientOnly.getPlayer()));
-        });
+            Set<Integer> list = new HashSet<>();
 
-        if (list.isEmpty()) {
-            return new MinMax(0, 0);
+            getChunks().forEach(x -> {
+                list.add(LevelUtils.determineLevel(world, x.getCenterBlockPos(), ClientOnly.getPlayer()));
+            });
+
+            if (list.isEmpty()) {
+                return new MinMax(0, 0);
+            }
+
+            MinMax minmax = new MinMax(
+                list.stream()
+                    .min(Comparator.comparingInt(x -> x))
+                    .get(),
+                list.stream()
+                    .max(Comparator.comparingInt(x -> x))
+                    .get()
+            );
+
+            Cached.AREA_LEVEL_RANGE.put(uuid, minmax);
+
         }
 
-        return new MinMax(
-            list.stream()
-                .min(Comparator.comparingInt(x -> x))
-                .get(),
-            list.stream()
-                .max(Comparator.comparingInt(x -> x))
-                .get()
-        );
+        return Cached.AREA_LEVEL_RANGE.get(uuid);
 
     }
 

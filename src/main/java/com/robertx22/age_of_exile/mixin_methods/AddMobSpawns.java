@@ -1,11 +1,14 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.SpawnSettings.SpawnEntry;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
@@ -48,13 +51,18 @@ public class AddMobSpawns {
 
     static Spawns spawns = null;
 
-    public static void my$onConstruct(CallbackInfoReturnable<List<SpawnEntry>> ci) {
+    public static Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> my$onConstruct(Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> map) {
         if (spawns == null) {
             spawns = new Spawns();
         }
-        List<SpawnEntry> list = new ArrayList<>(ci.getReturnValue());
-        list.addAll(spawns.all);
-        ci.setReturnValue(list);
+        List<SpawnEntry> list = new ArrayList<>(map.get(SpawnGroup.MONSTER));
+        if (!list.contains(spawns.ARCANE_SLIME)) {
+            list.addAll(spawns.all);
+            map = new HashMap<>(map); // map is imutable too..
+            map.put(SpawnGroup.MONSTER, list);
+        }
 
+        return map;
     }
+
 }
