@@ -22,6 +22,11 @@ public class SpecialMobStats {
         this.stats = Arrays.asList(stats);
     }
 
+    public SpecialMobStats add(SpecialMobStats other) {
+        this.stats.addAll(other.stats);
+        return this;
+    }
+
     public static SpecialMobStats INSTANCE;
 
     public static SpecialMobStats EMPTY = new SpecialMobStats();
@@ -51,11 +56,11 @@ public class SpecialMobStats {
         INSTANCE.register(ENTITIES.THUNDER_SPIDER, THUNDER);
         INSTANCE.register(ENTITIES.ARCANE_SPIDER, MANA_BURN);
 
-        INSTANCE.register(ENTITIES.FIRE_ZOMBIE, FIRE);
-        INSTANCE.register(ENTITIES.WATER_ZOMBIE, WATER);
-        INSTANCE.register(ENTITIES.NATURE_ZOMBIE, NATURE);
-        INSTANCE.register(ENTITIES.THUNDER_ZOMBIE, THUNDER);
-        INSTANCE.register(ENTITIES.ARCANE_ZOMBIE, MANA_BURN);
+        INSTANCE.register(ENTITIES.FIRE_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(FIRE));
+        INSTANCE.register(ENTITIES.WATER_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(WATER));
+        INSTANCE.register(ENTITIES.NATURE_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(NATURE));
+        INSTANCE.register(ENTITIES.THUNDER_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(THUNDER));
+        INSTANCE.register(ENTITIES.ARCANE_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(MANA_BURN));
 
     }
 

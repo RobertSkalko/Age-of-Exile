@@ -80,7 +80,10 @@ public class AreaModifiers {
 
     public AreaModifier APOCALYPTIC = of("apocalyptic", 500, Affix.Type.prefix, "Apocalyptic",
         Arrays.asList(ENTITIES.HEALER_MAGE, ENTITIES.FIRE_ZOMBIE, ENTITIES.ARCANE_ZOMBIE, ENTITIES.THUNDER_ZOMBIE, ENTITIES.WATER_ZOMBIE, ENTITIES.NATURE_ZOMBIE),
-        new AreaRequirement().whitelist(Category.PLAINS, Category.NETHER, Category.MUSHROOM));
+        new AreaRequirement().whitelist(Category.PLAINS, Category.NETHER, Category.MUSHROOM))
+        .addStats(
+            new StatModifier(-15, -15, ExtraMobDropsStat.getInstance(), ModType.FLAT)
+        );
 
     public AreaModifier SPIDERS = of("spider_den", 750, Affix.Type.prefix, "Spider Den",
         Arrays.asList(ENTITIES.ARCANE_SPIDER, ENTITIES.THUNDER_SPIDER, ENTITIES.NATURE_SPIDER, ENTITIES.FIRE_SPIDER, ENTITIES.WATER_SPIDER),
