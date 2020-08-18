@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg;
 
+import com.robertx22.age_of_exile.mixin_methods.AddMobSpawns;
 import com.robertx22.age_of_exile.mmorpg.registers.common.*;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItemRegistrator;
@@ -32,6 +33,8 @@ public class ModRegistry {
         PARTICLES = new ModParticles();
         COMPONENTS = new ComponentRegisters();
         GEAR_MATERIALS = new GearMaterialRegister();
+
+        AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
 
     }
 

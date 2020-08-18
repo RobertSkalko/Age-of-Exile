@@ -14,7 +14,7 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class AddMobSpawns {
 
-    static class Spawns {
+    public static class Spawns {
 
         List<SpawnEntry> all = new ArrayList<>();
 
@@ -49,20 +49,21 @@ public class AddMobSpawns {
         }
     }
 
-    static Spawns spawns = null;
+    public static Spawns SPAWNS = null;
 
-    public static Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> my$onConstruct(Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> map) {
-        if (spawns == null) {
-            spawns = new Spawns();
-        }
+    public static Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> addMySpawns(Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> map) {
+
         List<SpawnEntry> list = new ArrayList<>(map.get(SpawnGroup.MONSTER));
-        if (!list.contains(spawns.ARCANE_SLIME)) {
-            list.addAll(spawns.all);
-            map = new HashMap<>(map); // map is imutable too..
-            map.put(SpawnGroup.MONSTER, list);
-        }
-
+        list.addAll(SPAWNS.all);
+        map = new HashMap<>(map); // map is imutable too..
+        map.put(SpawnGroup.MONSTER, list);
         return map;
+    }
+
+    public static boolean shouldAddMySpawns(Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> map) {
+
+        List<SpawnEntry> list = new ArrayList<>(map.get(SpawnGroup.MONSTER));
+        return !list.contains(SPAWNS.ARCANE_SLIME);
     }
 
 }
