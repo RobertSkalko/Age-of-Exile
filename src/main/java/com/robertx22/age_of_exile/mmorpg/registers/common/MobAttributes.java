@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.mob.MagmaCubeEntity;
+import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 
@@ -28,6 +29,11 @@ public class MobAttributes {
         FabricDefaultAttributeRegistry.register(ENTITIES.WATER_ZOMBIE, ZombieEntity.createZombieAttributes());
         FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_ZOMBIE, ZombieEntity.createZombieAttributes());
         FabricDefaultAttributeRegistry.register(ENTITIES.NATURE_ZOMBIE, ZombieEntity.createZombieAttributes());
+
+        FabricDefaultAttributeRegistry.register(ENTITIES.FIRE_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(ENTITIES.WATER_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(ENTITIES.NATURE_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
 
     }
 }

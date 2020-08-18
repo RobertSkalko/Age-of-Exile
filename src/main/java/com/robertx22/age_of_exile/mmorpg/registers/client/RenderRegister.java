@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.MySpriteRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.special.RangerArrowRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.HolyTridentRenderer;
+import com.robertx22.age_of_exile.mobs.mages.MageMobRenderer;
 import com.robertx22.age_of_exile.mobs.slimes.ModSlimeRenderer;
 import com.robertx22.age_of_exile.mobs.spiders.ModSpiderRenderer;
 import com.robertx22.age_of_exile.mobs.zombies.ModZombieRenderer;
@@ -43,6 +44,11 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.NATURE_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "nature_zombie.png", "nature_zombie_outer.png"));
         INSTANCE.register(ENTITIES.THUNDER_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "thunder_zombie.png", "thunder_zombie_outer.png"));
         INSTANCE.register(ENTITIES.ARCANE_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "arcane_zombie.png", "arcane_zombie_outer.png"));
+
+        INSTANCE.register(ENTITIES.FIRE_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "fire_mage.png"));
+        INSTANCE.register(ENTITIES.WATER_SLIME, (dispatcher, context) -> new MageMobRenderer(dispatcher, "water_mage.png"));
+        INSTANCE.register(ENTITIES.NATURE_SLIME, (dispatcher, context) -> new MageMobRenderer(dispatcher, "nature_mage.png"));
+        INSTANCE.register(ENTITIES.THUNDER_SLIME, (dispatcher, context) -> new MageMobRenderer(dispatcher, "thunder_mage.png"));
 
     }
 }

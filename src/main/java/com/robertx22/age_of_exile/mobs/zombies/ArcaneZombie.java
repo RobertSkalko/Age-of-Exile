@@ -8,4 +8,5 @@ public class ArcaneZombie extends BaseZombie {
     public ArcaneZombie(EntityType<? extends ZombieEntity> entityType, World world) {
         super(entityType, world);
     }
+
 }
