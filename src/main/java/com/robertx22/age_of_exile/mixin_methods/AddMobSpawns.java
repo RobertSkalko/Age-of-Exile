@@ -33,6 +33,11 @@ public class AddMobSpawns {
         public SpawnEntry THUNDER_ZOMBIE = of(ENTITIES.THUNDER_ZOMBIE, 200, 2, 3);
         public SpawnEntry NATURE_ZOMBIE = of(ENTITIES.NATURE_ZOMBIE, 200, 2, 3);
 
+        public SpawnEntry FIRE_MAGE = of(ENTITIES.FIRE_MAGE, 50, 1, 1);
+        public SpawnEntry WATER_MAGE = of(ENTITIES.WATER_MAGE, 50, 1, 1);
+        public SpawnEntry THUNDER_MAGE = of(ENTITIES.THUNDER_MAGE, 50, 1, 1);
+        public SpawnEntry NATURE_MAGE = of(ENTITIES.NATURE_MAGE, 50, 1, 1);
+
         SpawnEntry of(EntityType type, int weight, int min, int max) {
             SpawnEntry entry = new SpawnEntry(type, weight, min, max);
             all.add(entry);

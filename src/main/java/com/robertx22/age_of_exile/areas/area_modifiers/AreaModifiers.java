@@ -34,7 +34,7 @@ public class AreaModifiers {
         new AreaRequirement().whitelistAll());
 
     public AreaModifier CHILLING = of("chilling", 1000, Affix.Type.prefix, "Chilling",
-        Arrays.asList(ENTITIES.WATER_SLIME, ENTITIES.WATER_SPIDER, ENTITIES.WATER_ZOMBIE),
+        Arrays.asList(ENTITIES.WATER_SLIME, ENTITIES.WATER_SPIDER, ENTITIES.WATER_ZOMBIE, ENTITIES.WATER_MAGE),
         new AreaRequirement().temp(0, 0.3F, WhitelistType.ALLOW_ALSO)
             .whitelist(Category.ICY, Category.TAIGA))
         .addStats(
@@ -43,7 +43,7 @@ public class AreaModifiers {
         );
 
     public AreaModifier INFERNAL = of("infernal", 1000, Affix.Type.prefix, "Infernal",
-        Arrays.asList(ENTITIES.FIRE_SLIME, ENTITIES.FIRE_SPIDER, ENTITIES.FIRE_ZOMBIE),
+        Arrays.asList(ENTITIES.FIRE_SLIME, ENTITIES.FIRE_SPIDER, ENTITIES.FIRE_ZOMBIE, ENTITIES.FIRE_MAGE),
         new AreaRequirement().temp(0.8F, Integer.MAX_VALUE, WhitelistType.ALLOW_ALSO)
             .whitelist(Category.DESERT, Category.MESA)
             .blacklist(Category.JUNGLE)).addStats(
@@ -52,7 +52,7 @@ public class AreaModifiers {
     );
 
     public AreaModifier POISONOUS = of("poisonous", 1000, Affix.Type.prefix, "Poisonous",
-        Arrays.asList(ENTITIES.NATURE_SLIME, ENTITIES.NATURE_SPIDER, ENTITIES.NATURE_ZOMBIE),
+        Arrays.asList(ENTITIES.NATURE_SLIME, ENTITIES.NATURE_SPIDER, ENTITIES.NATURE_ZOMBIE, ENTITIES.NATURE_MAGE),
         new AreaRequirement().whitelist(Category.SWAMP, Category.JUNGLE))
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Nature), ModType.FLAT),
@@ -60,7 +60,7 @@ public class AreaModifiers {
         );
 
     public AreaModifier THUNDERING = of("thundering", 1000, Affix.Type.prefix, "Thundering",
-        Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.THUNDER_SPIDER, ENTITIES.THUNDER_ZOMBIE),
+        Arrays.asList(ENTITIES.THUNDER_SLIME, ENTITIES.THUNDER_SPIDER, ENTITIES.THUNDER_ZOMBIE, ENTITIES.THUNDER_MAGE),
         new AreaRequirement().whitelist(Category.EXTREME_HILLS))
         .addStats(
             new StatModifier(1, 1, new WeaponDamage(Elements.Thunder), ModType.FLAT),
@@ -84,7 +84,13 @@ public class AreaModifiers {
 
     public AreaModifier SPIDERS = of("spider_den", 750, Affix.Type.prefix, "Spider Den",
         Arrays.asList(ENTITIES.ARCANE_SPIDER, ENTITIES.THUNDER_SPIDER, ENTITIES.NATURE_SPIDER, ENTITIES.FIRE_SPIDER, ENTITIES.WATER_SPIDER),
-        new AreaRequirement().blacklist(Category.ICY, Category.PLAINS, Category.MESA, Category.RIVER));
+        new AreaRequirement().whitelist(Category.JUNGLE, Category.FOREST, Category.NETHER)
+            .blacklist(Category.ICY, Category.PLAINS, Category.MESA, Category.RIVER));
+
+    public AreaModifier OF_HERETICS = of("of_heretics", 500, Affix.Type.suffix, "Of Heretics",
+        Arrays.asList(ENTITIES.THUNDER_MAGE, ENTITIES.NATURE_MAGE, ENTITIES.FIRE_MAGE, ENTITIES.WATER_MAGE),
+        new AreaRequirement().whitelist(Category.JUNGLE, Category.FOREST, Category.NETHER)
+            .blacklist(Category.ICY, Category.PLAINS, Category.MESA, Category.RIVER));
 
     public AreaModifier OF_VAMPIRISM = of("of_vampirism", 500, Affix.Type.suffix, "Of Vampirism",
         Arrays.asList(), new AreaRequirement())

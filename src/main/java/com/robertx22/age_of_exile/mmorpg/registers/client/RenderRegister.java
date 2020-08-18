@@ -46,9 +46,9 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.ARCANE_ZOMBIE, (dispatcher, context) -> new ModZombieRenderer(dispatcher, "arcane_zombie.png", "arcane_zombie_outer.png"));
 
         INSTANCE.register(ENTITIES.FIRE_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "fire_mage.png"));
-        INSTANCE.register(ENTITIES.WATER_SLIME, (dispatcher, context) -> new MageMobRenderer(dispatcher, "water_mage.png"));
-        INSTANCE.register(ENTITIES.NATURE_SLIME, (dispatcher, context) -> new MageMobRenderer(dispatcher, "nature_mage.png"));
-        INSTANCE.register(ENTITIES.THUNDER_SLIME, (dispatcher, context) -> new MageMobRenderer(dispatcher, "thunder_mage.png"));
+        INSTANCE.register(ENTITIES.WATER_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "water_mage.png"));
+        INSTANCE.register(ENTITIES.NATURE_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "nature_mage.png"));
+        INSTANCE.register(ENTITIES.THUNDER_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "thunder_mage.png"));
 
     }
 }

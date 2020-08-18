@@ -6,10 +6,14 @@ import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.SkillGem;
+import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
+import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.EnumSet;
 
@@ -126,13 +130,23 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
             }
 
             if (cooldown < 1) {
-
                 this.skillgem.getSpell()
                     .cast(new SpellCastContext(actor, 0, skillgem));
 
                 this.cooldown = this.attackInterval;
             } else {
                 cooldown--;
+
+                if (cooldown % 5 == 0) {
+                    if (!this.actor.world.isClient) {
+                        ParticleEnum.sendToClients(
+                            actor.getBlockPos(), actor.world, new ParticlePacketData(actor.getPos(), ParticleEnum.AOE).radius(1)
+                                .motion(new Vec3d(0, 0, 0))
+                                .type(ParticleTypes.WITCH)
+                                .amount(8));
+                    }
+                }
+
             }
 
         }
