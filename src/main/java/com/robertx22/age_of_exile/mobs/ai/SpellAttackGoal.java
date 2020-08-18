@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mobs.ai;
 
+import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
@@ -41,6 +42,10 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
             .getLevel() / 2, 1, Integer.MAX_VALUE);
         // smaller lvl spells cus spells hit like a truck because of mana cost
         skillgem = SkillGem.Load(new SkillGemBlueprint(spelllvl).createStack());
+        skillgem.stat_percents = 10; // todo
+        skillgem.stat_percents *= Rarities.Mobs.get(Load.Unit(actor)
+            .getRarity())
+            .DamageMultiplier();
         skillgem.spell_id = spell
             .GUID();
 

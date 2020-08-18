@@ -8,12 +8,12 @@ import net.minecraft.client.render.entity.model.WitchEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
+// witch render doesnt have arms, and cant have them
 public class MageMobRenderer extends MobEntityRenderer<BaseMage, WitchEntityModel<BaseMage>> {
     private Identifier TEXTURE;
 
     public MageMobRenderer(EntityRenderDispatcher entityRenderDispatcher, String tex) {
         super(entityRenderDispatcher, new WitchEntityModel(0.0F), 0.5F);
-
         this.TEXTURE = new Identifier(Ref.MODID, "textures/entity/mages/" + tex);
     }
 

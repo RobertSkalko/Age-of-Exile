@@ -1,13 +1,10 @@
 package com.robertx22.age_of_exile.mobs.mages;
 
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.age_of_exile.database.registrators.BaseGearTypes;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mobs.ai.SpellAttackGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
@@ -18,8 +15,6 @@ public abstract class BaseMage extends SkeletonEntity {
 
     public BaseMage(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
-
-        this.tryEquip(new ItemStack(ModRegistry.GEAR_ITEMS.itemMap.get(BaseGearTypes.LOW_WAND)));
 
     }
 

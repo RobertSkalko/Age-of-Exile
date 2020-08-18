@@ -41,6 +41,8 @@ These mobs spawn during daytime too :)
 World should be a lot more lively now!
 
 Currently there's variations of: zombies, spiders and slimes!
+I also added 2 special kinds of mobs: mages and arcane mobs.
+Mages will cast elemental bolts at you and arcane mobs steal your mana.
 
 AREA UPDATE:
 
