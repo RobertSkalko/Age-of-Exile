@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +17,10 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class SpecialMobStats {
 
-    public List<StatModifier> stats;
+    public List<StatModifier> stats = new ArrayList<>();
 
     public SpecialMobStats(StatModifier... stats) {
-        this.stats = Arrays.asList(stats);
+        this.stats.addAll(Arrays.asList(stats));
     }
 
     public SpecialMobStats add(SpecialMobStats other) {

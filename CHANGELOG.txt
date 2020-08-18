@@ -63,6 +63,7 @@ Compatibility update:
 
 Minor notes:
 
+- reworked stat allocation + stat overview guis into 1 gui
 - should fix crossbows not doing extra dmg
 - added gear slot datapacks. Super tiny, just declares drop chances. 
 So if there's 100 different sword types, and 5 axe types, they'll still have same chance to drop if their gear slots have same weight.

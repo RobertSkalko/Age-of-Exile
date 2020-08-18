@@ -22,7 +22,7 @@ public class ExtraMobDropsStat extends Stat {
     }
 
     private ExtraMobDropsStat() {
-        this.minimumValue = 0;
+        this.minimumValue = -100;
     }
 
     @Override
