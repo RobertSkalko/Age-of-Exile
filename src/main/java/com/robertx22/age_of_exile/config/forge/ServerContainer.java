@@ -19,5 +19,6 @@ public class ServerContainer {
     public List<String> IGNORED_ENTITIES = Arrays.asList("minecraft:bat");
 
     public int MAX_LEVEL = 50;
+    public int LVL_WHEN_MOBS_START_SPAWNING_IN_DAYLIGHT = 10;
 
 }

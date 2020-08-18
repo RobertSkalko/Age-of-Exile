@@ -24,6 +24,11 @@ public class BaseSpider extends SpiderEntity {
         return true;
     }
 
+    @Override
+    public float getBrightnessAtEyes() {
+        return 0.0F;
+
+    }
 }
 
 

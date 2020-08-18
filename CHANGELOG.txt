@@ -1,4 +1,4 @@
-v.1.1.0
+v.1.1.0 - 1.16.2 update + content additions!
 
 WARNING: This update deletes all existing gear items! 
 Unfortunately required because of the gear rework.
@@ -37,7 +37,7 @@ The material needed for the item is based on highest level the item can have.
 MOB UPDATE:
 
 I added many new elemental or special mobs to the game.
-These mobs spawn during daytime too :)
+These mobs spawn during daytime too :) (after a certain level, i set default to 10 so newbies have time to prepare)
 World should be a lot more lively now!
 
 Currently there's variations of: zombies, spiders and slimes!

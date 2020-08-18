@@ -35,10 +35,10 @@
 	"library_of_exile": ">=1.0.2",	
 	"cloth-config2": "*",
 	"autoconfig1u": "*",
-	"cardinal-components-base": ">=2.5.0-nightly.1.16.2-rc2",
-	"cardinal-components-entity": ">=2.5.0-nightly.1.16.2-rc2",
-	"cardinal-components-chunk": ">=2.5.0-nightly.1.16.2-rc2",
-	"cardinal-components-world": ">=2.5.0-nightly.1.16.2-rc2"
+	"cardinal-components-base": ">=2.5.0",
+	"cardinal-components-entity": ">=2.5.0",
+	"cardinal-components-chunk": ">=2.5.0",
+	"cardinal-components-world": ">=2.5.0"
   },
   "suggests": {
     "balance_of_exile": "*"

@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ArrowStormEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ThunderstormEntity;
@@ -11,11 +13,13 @@ import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bo
 import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.PoisonBallEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.mages.*;
 import com.robertx22.age_of_exile.mobs.slimes.*;
 import com.robertx22.age_of_exile.mobs.spiders.*;
 import com.robertx22.age_of_exile.mobs.zombies.*;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
@@ -105,16 +109,24 @@ public class EntityRegister {
         return type;
     }
 
-    public static boolean canMyMobSpawn(EntityType<? extends MobEntity> type, ServerWorldAccess serverWorldAccess, SpawnReason spawnReason, BlockPos pos, Random random) {
+    public static boolean canMyMobSpawn(EntityType<? extends MobEntity> type, ServerWorldAccess sw, SpawnReason spawnReason, BlockPos pos, Random random) {
 
-        if (serverWorldAccess.getDifficulty() == Difficulty.PEACEFUL) {
+        if (sw.getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
 
-        if (!WorldAreas.getArea((World) serverWorldAccess, pos)
+        if (!WorldAreas.getArea((World) sw, pos)
             .getAreaModifier()
             .canMobSpawn(type)) {
             return false;
+        }
+        DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(sw.toServerWorld());
+
+        if (sw.toServerWorld()
+            .isDay()) {
+            if (LevelUtils.determineLevelPerDistanceFromSpawn(sw.toServerWorld(), pos, dimConfig) < ModConfig.get().Server.LVL_WHEN_MOBS_START_SPAWNING_IN_DAYLIGHT) {
+                return false; // otherwise lvl 1 newbies are screwed
+            }
         }
 
         return true;

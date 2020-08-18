@@ -110,7 +110,7 @@ curseforge {
         releaseType = "${curse_release}"
         changelogType = 'text'
         changelog = file('CHANGELOG.txt')
-        addGameVersion("1.16.2")
+        addGameVersion("${project.minecraft_version}")
         addGameVersion("Fabric")
         addGameVersion("Java 8")
 
@@ -119,7 +119,7 @@ curseforge {
             requiredDependency 'library-of-exile'
             requiredDependency 'curios-fabric'
 
-            optionalDependency 'balance-of-exile'
+            //optionalDependency 'balance-of-exile'
         }
         mainArtifact(remapJar)
 
