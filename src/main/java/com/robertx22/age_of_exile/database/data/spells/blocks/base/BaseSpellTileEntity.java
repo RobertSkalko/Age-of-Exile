@@ -28,6 +28,12 @@ public abstract class BaseSpellTileEntity extends BlockEntity implements ISpellE
     public final void tick() {
 
         try {
+
+            if (data == null) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+                return;
+            }
+
             data.ticksExisted++;
         } catch (Exception e) {
             e.printStackTrace();

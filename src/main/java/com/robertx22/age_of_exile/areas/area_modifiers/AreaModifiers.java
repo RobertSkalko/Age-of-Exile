@@ -79,7 +79,7 @@ public class AreaModifiers {
         new AreaRequirement().whitelist(Category.FOREST, Category.MUSHROOM));
 
     public AreaModifier APOCALYPTIC = of("apocalyptic", 500, Affix.Type.prefix, "Apocalyptic",
-        Arrays.asList(ENTITIES.FIRE_ZOMBIE, ENTITIES.ARCANE_ZOMBIE, ENTITIES.THUNDER_ZOMBIE, ENTITIES.WATER_ZOMBIE, ENTITIES.NATURE_ZOMBIE),
+        Arrays.asList(ENTITIES.HEALER_MAGE, ENTITIES.FIRE_ZOMBIE, ENTITIES.ARCANE_ZOMBIE, ENTITIES.THUNDER_ZOMBIE, ENTITIES.WATER_ZOMBIE, ENTITIES.NATURE_ZOMBIE),
         new AreaRequirement().whitelist(Category.PLAINS, Category.NETHER, Category.MUSHROOM));
 
     public AreaModifier SPIDERS = of("spider_den", 750, Affix.Type.prefix, "Spider Den",
@@ -88,7 +88,7 @@ public class AreaModifiers {
             .blacklist(Category.ICY, Category.PLAINS, Category.MESA, Category.RIVER));
 
     public AreaModifier OF_HERETICS = of("of_heretics", 500, Affix.Type.suffix, "Of Heretics",
-        Arrays.asList(ENTITIES.THUNDER_MAGE, ENTITIES.NATURE_MAGE, ENTITIES.FIRE_MAGE, ENTITIES.WATER_MAGE),
+        Arrays.asList(ENTITIES.HEALER_MAGE, ENTITIES.THUNDER_MAGE, ENTITIES.NATURE_MAGE, ENTITIES.FIRE_MAGE, ENTITIES.WATER_MAGE),
         new AreaRequirement().whitelist(Category.JUNGLE, Category.FOREST, Category.NETHER)
             .blacklist(Category.ICY, Category.PLAINS, Category.MESA, Category.RIVER));
 

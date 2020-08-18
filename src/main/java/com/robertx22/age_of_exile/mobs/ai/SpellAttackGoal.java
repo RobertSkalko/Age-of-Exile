@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mobs.ai;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -29,6 +30,9 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
     private boolean backward;
     private int combatTicks = -1;
 
+    int castingTicks = 0;
+
+    int castTicksNeeded;
     SkillGemData skillgem;
 
     public SpellAttackGoal(BaseSpell spell, T actor, double speed, int attackInterval, float range) {
@@ -48,6 +52,11 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
             .DamageMultiplier();
         skillgem.spell_id = spell
             .GUID();
+
+        this.castTicksNeeded = (int) skillgem.getSpell()
+            .getPreCalcConfig()
+            .get(SC.CAST_TIME_TICKS)
+            .get(skillgem);
 
     }
 
@@ -134,27 +143,52 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
                     .lookAt(livingEntity, 30.0F, 30.0F);
             }
 
-            if (cooldown < 1) {
-                this.skillgem.getSpell()
-                    .cast(new SpellCastContext(actor, 0, skillgem));
-
-                this.cooldown = this.attackInterval;
+            if (castTicksNeeded == 0) {
+                castInstantSpell();
             } else {
-                cooldown--;
-
-                if (cooldown % 5 == 0) {
-                    if (!this.actor.world.isClient) {
-                        ParticleEnum.sendToClients(
-                            actor.getBlockPos(), actor.world, new ParticlePacketData(actor.getPos(), ParticleEnum.AOE).radius(1)
-                                .motion(new Vec3d(0, 0, 0))
-                                .type(ParticleTypes.WITCH)
-                                .amount(8));
-                    }
-                }
-
+                castNonInstantSpell();
             }
 
         }
+    }
+
+    private void castInstantSpell() {
+        if (cooldown < 1) {
+            this.skillgem.getSpell()
+                .cast(new SpellCastContext(actor, 0, skillgem));
+            this.cooldown = this.attackInterval;
+        } else {
+            cooldown--;
+
+            if (cooldown % 5 == 0) {
+                if (!this.actor.world.isClient) {
+                    ParticleEnum.sendToClients(
+                        actor.getBlockPos(), actor.world, new ParticlePacketData(actor.getPos(), ParticleEnum.AOE).radius(1)
+                            .motion(new Vec3d(0, 0, 0))
+                            .type(ParticleTypes.WITCH)
+                            .amount(8));
+                }
+            }
+
+        }
+    }
+
+    private void castNonInstantSpell() {
+
+        if (cooldown > 0) {
+            cooldown--;
+            return;
+        }
+
+        this.skillgem.getSpell()
+            .onCastingTick(new SpellCastContext(actor, castingTicks++, skillgem));
+
+        if (castingTicks > castTicksNeeded) {
+            castingTicks = 0;
+
+            cooldown = attackInterval;
+        }
+
     }
 
 }

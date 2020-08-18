@@ -37,6 +37,7 @@ public class AddMobSpawns {
         public SpawnEntry WATER_MAGE = of(ENTITIES.WATER_MAGE, 50, 1, 1);
         public SpawnEntry THUNDER_MAGE = of(ENTITIES.THUNDER_MAGE, 50, 1, 1);
         public SpawnEntry NATURE_MAGE = of(ENTITIES.NATURE_MAGE, 50, 1, 1);
+        public SpawnEntry HEALER_MAGE = of(ENTITIES.HEALER_MAGE, 50, 1, 1);
 
         SpawnEntry of(EntityType type, int weight, int min, int max) {
             SpawnEntry entry = new SpawnEntry(type, weight, min, max);

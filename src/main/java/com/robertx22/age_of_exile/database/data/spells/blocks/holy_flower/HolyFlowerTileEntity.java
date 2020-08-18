@@ -1,13 +1,11 @@
 package com.robertx22.age_of_exile.database.data.spells.blocks.holy_flower;
 
-import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.spells.blocks.base.BaseSpellTileEntity;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.LivingEntity;
@@ -26,6 +24,10 @@ public class HolyFlowerTileEntity extends BaseSpellTileEntity {
     @Override
     public void onTick() {
 
+        if (world.isClient) {
+            return;
+        }
+
         EntitySpellData sdata = getSpellData();
         int TICK_RATE = sdata.configs.get(SC.TICK_RATE)
             .intValue();
@@ -37,7 +39,6 @@ public class HolyFlowerTileEntity extends BaseSpellTileEntity {
             if (data.ticksExisted % TICK_RATE == 0) {
 
                 LivingEntity caster = data.getCaster(world);
-                EntityCap.UnitData data = Load.Unit(caster);
 
                 ParticleEnum.sendToClients(
                     pos, world, new ParticlePacketData(pos, ParticleEnum.AOE).radius(RADIUS)

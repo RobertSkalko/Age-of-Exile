@@ -17,7 +17,6 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketDat
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
@@ -38,7 +37,7 @@ public class HealingAuraSpell extends BaseSpell {
 
                 @Override
                 public SoundEvent sound() {
-                    return SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE;
+                    return null;
                 }
 
                 @Override
@@ -74,8 +73,8 @@ public class HealingAuraSpell extends BaseSpell {
                 en.getBlockPos(), en.world,
                 new ParticlePacketData(en.getPos(), ParticleEnum.AOE).radius(RADIUS)
                     .motion(new Vec3d(0, 0, 0))
-                    .type(ParticleTypes.FALLING_HONEY)
-                    .amount((int) (45)));
+                    .type(ParticleTypes.COMPOSTER)
+                    .amount((int) (55)));
 
         }
     }

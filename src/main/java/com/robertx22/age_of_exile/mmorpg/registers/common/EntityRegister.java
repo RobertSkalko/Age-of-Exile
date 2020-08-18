@@ -12,10 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bo
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mobs.mages.FireMage;
-import com.robertx22.age_of_exile.mobs.mages.NatureMage;
-import com.robertx22.age_of_exile.mobs.mages.ThunderMage;
-import com.robertx22.age_of_exile.mobs.mages.WaterMage;
+import com.robertx22.age_of_exile.mobs.mages.*;
 import com.robertx22.age_of_exile.mobs.slimes.*;
 import com.robertx22.age_of_exile.mobs.spiders.*;
 import com.robertx22.age_of_exile.mobs.zombies.*;
@@ -73,6 +70,7 @@ public class EntityRegister {
     public EntityType<NatureSpider> NATURE_SPIDER = mob(NatureSpider::new, "nature_spider", new EntityDimensions(0.7F, 0.5F, true));
 
     static EntityDimensions zombieDim = new EntityDimensions(0.5F, 2, true);
+    static EntityDimensions mageDim = new EntityDimensions(0.5F, 2.1F, true);
 
     public EntityType<ArcaneZombie> ARCANE_ZOMBIE = mob(ArcaneZombie::new, "arcane_zombie", zombieDim);
     public EntityType<FireZombie> FIRE_ZOMBIE = mob(FireZombie::new, "fire_zombie", zombieDim);
@@ -80,10 +78,11 @@ public class EntityRegister {
     public EntityType<ThunderZombie> THUNDER_ZOMBIE = mob(ThunderZombie::new, "thunder_zombie", zombieDim);
     public EntityType<NatureZombie> NATURE_ZOMBIE = mob(NatureZombie::new, "nature_zombie", zombieDim);
 
-    public EntityType<FireMage> FIRE_MAGE = mob(FireMage::new, "fire_mage", zombieDim);
-    public EntityType<WaterMage> WATER_MAGE = mob(WaterMage::new, "water_mage", zombieDim);
-    public EntityType<ThunderMage> THUNDER_MAGE = mob(ThunderMage::new, "thunder_mage", zombieDim);
-    public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", zombieDim);
+    public EntityType<FireMage> FIRE_MAGE = mob(FireMage::new, "fire_mage", mageDim);
+    public EntityType<WaterMage> WATER_MAGE = mob(WaterMage::new, "water_mage", mageDim);
+    public EntityType<ThunderMage> THUNDER_MAGE = mob(ThunderMage::new, "thunder_mage", mageDim);
+    public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", mageDim);
+    public EntityType<HealerMage> HEALER_MAGE = mob(HealerMage::new, "healer_mage", mageDim);
 
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 
