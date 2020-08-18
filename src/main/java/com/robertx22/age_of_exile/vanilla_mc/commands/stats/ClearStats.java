@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.commands.stats;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
@@ -18,21 +19,31 @@ public class ClearStats {
         commandDispatcher.register(
             literal(CommandRefs.ID)
                 .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
-                    .then(literal("exact")
-                        .then(literal("clear")
-                            .requires(e -> e.hasPermissionLevel(2))
-                            .then(argument("target", EntityArgumentType.entity())
-                                .executes(ctx -> run(EntityArgumentType.getPlayer(ctx, "target"))))))));
+                    .then(literal("clear")
+                        .requires(e -> e.hasPermissionLevel(2))
+                        .then(argument("target", EntityArgumentType.entity())
+                            .then(argument("scaling", StringArgumentType.string())
+                                .suggests(new GiveStat.ModOrExact())
+                                .executes(ctx -> {
+
+                                    return run(EntityArgumentType.getPlayer(ctx, "target"), StringArgumentType
+                                        .getString(ctx, "scaling"));
+
+                                }))))));
     }
 
-    private static int run(Entity en) {
+    private static int run(Entity en, String type) {
 
         try {
 
             if (en instanceof LivingEntity) {
                 EntityCap.UnitData data = Load.Unit(en);
-                data.getCustomExactStats().mods.clear();
 
+                if (type.equals("exact")) {
+                    data.getCustomExactStats().stats.clear();
+                } else {
+                    data.getCustomExactStats().mods.clear();
+                }
             }
 
         } catch (Exception e) {

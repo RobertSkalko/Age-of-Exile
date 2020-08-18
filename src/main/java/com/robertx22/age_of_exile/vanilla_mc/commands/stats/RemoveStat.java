@@ -19,16 +19,20 @@ public class RemoveStat {
         commandDispatcher.register(
             literal(CommandRefs.ID)
                 .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
-                    .then(literal("exact")
-                        .then(literal("remove")
-                            .requires(e -> e.hasPermissionLevel(2))
-                            .then(argument("target", EntityArgumentType.entity())
+                    .then(literal("remove")
+                        .requires(e -> e.hasPermissionLevel(2))
+                        .then(argument("target", EntityArgumentType.entity())
+                            .then(argument("scaling", StringArgumentType.string())
+                                .suggests(new GiveStat.ModOrExact())
                                 .then(argument("GUID", StringArgumentType.string())
-                                    .executes(ctx -> run(EntityArgumentType.getPlayer(ctx, "target"), StringArgumentType
-                                        .getString(ctx, "GUID")))))))));
+                                    .executes(ctx -> {
+                                        return run(EntityArgumentType.getPlayer(ctx, "target"), StringArgumentType
+                                            .getString(ctx, "scaling"), StringArgumentType
+                                            .getString(ctx, "GUID"));
+                                    })))))));
     }
 
-    private static int run(Entity en, String GUID) {
+    private static int run(Entity en, String scaling, String GUID) {
 
         try {
 
@@ -36,9 +40,13 @@ public class RemoveStat {
 
                 EntityCap.UnitData data = Load.Unit(en);
 
-                data.getCustomExactStats()
-                    .removeExactStat(GUID);
-
+                if (scaling.equals("exact")) {
+                    data.getCustomExactStats()
+                        .removeExactStat(GUID);
+                } else {
+                    data.getCustomExactStats()
+                        .removeMod(GUID);
+                }
             }
 
         } catch (Exception e) {

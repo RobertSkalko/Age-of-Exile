@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.saveclasses;
 
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -8,7 +10,7 @@ import info.loenwind.autosave.annotations.Store;
 import java.util.HashMap;
 
 @Storable
-public class CustomExactStatsData {
+public class CustomExactStatsData implements IApplyableStats {
 
     public CustomExactStatsData() {
 
@@ -44,4 +46,15 @@ public class CustomExactStatsData {
         mods.remove(hashmapGUID);
     }
 
+    @Override
+    public void applyStats(EntityCap.UnitData data) {
+
+        this.stats.values()
+            .forEach(x -> x.applyStats(data));
+
+        this.mods.values()
+            .forEach(x -> x.ToExactStat(100, data.getLevel())
+                .applyStats(data));
+
+    }
 }

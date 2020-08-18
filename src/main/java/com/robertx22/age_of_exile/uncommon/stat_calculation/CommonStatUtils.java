@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.uncommon.stat_calculation;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.age_of_exile.database.registrators.Stats;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
@@ -14,9 +13,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 public class CommonStatUtils {
 
     public static void addExactCustomStats(UnitData data) {
-        for (ExactStatData stat : data.getCustomExactStats().mods.values()) {
-            stat.applyStats(data);
-        }
+        data.getCustomExactStats()
+            .applyStats(data);
     }
 
     public static void addPotionStats(LivingEntity entity) {

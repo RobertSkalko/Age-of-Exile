@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -29,6 +30,7 @@ public class StatModifier implements ISerializable<StatModifier> {
 
     public static StatModifier EMPTY = new StatModifier();
 
+    @Factory
     private StatModifier() {
 
     }
