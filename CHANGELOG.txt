@@ -82,3 +82,5 @@ So if there's 100 different sword types, and 5 axe types, they'll still have sam
 - fix typo in mod name of config
 - lowered slow scaling of stats (they shouldnt double at max lvl now)
 - added a stat that makes mobs drop more loot if they have it, so now things like mob affixes also give that stat, for convenient balancing
+- reworked stat commands to allow level scaling stats too and stat ranges (which are only used for weapon dmg tho)
+- added command that lists all extra stats youre given with commands

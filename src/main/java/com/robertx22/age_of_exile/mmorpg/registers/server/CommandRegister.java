@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.vanilla_mc.commands.open_gui.OpenHub;
 import com.robertx22.age_of_exile.vanilla_mc.commands.reset.ResetSpellCooldowns;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.ClearStats;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.GiveStat;
+import com.robertx22.age_of_exile.vanilla_mc.commands.stats.ListStats;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.RemoveStat;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
@@ -36,6 +37,7 @@ public class CommandRegister {
         GiveStat.register(dispatcher);
         RemoveStat.register(dispatcher);
         ClearStats.register(dispatcher);
+        ListStats.register(dispatcher);
 
         ReloadConfigs.register(dispatcher);
         OpenHub.register(dispatcher);
