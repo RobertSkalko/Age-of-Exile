@@ -244,11 +244,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (target.getHealth() <= 0F || !target.isAlive()) {
             return;
         }
-
         if (isBlocked) {
             return;
         }
-
         if (ifPlayersShouldNotDamageEachOther()) {
             return;
         }
@@ -265,11 +263,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             cancelDamage();
             return;
         }
-        DamageSource ds = null;
+        DamageSource ds = event.getSource();
 
+        /*
         if (event != null) {
             ds = event.getSource();
         }
+
+         */
 
         Entity sourcevar = source;
         if (removeKnockback) {
