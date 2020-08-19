@@ -11,24 +11,14 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 
-public class OnLogin implements ServerEntityEvents.Load {
+public class OnLogin {
 
-    @Override
-    public void onLoad(Entity entity, ServerWorld serverWorld) {
-
-        if (!(entity instanceof ServerPlayerEntity)) {
-            return;
-        }
-
-        ServerPlayerEntity player = (ServerPlayerEntity) entity;
+    public static void onLoad(ServerPlayerEntity player) {
 
         Load.spells(player)
             .getCastingData()
