@@ -136,6 +136,9 @@ public class EntityRegister {
 
         if (sw.toServerWorld()
             .isDay()) {
+            if (!ModConfig.get().Server.ALLOW_EXILE_MOBS_DAY_SPAWNS) {
+                return false;
+            }
             if (LevelUtils.determineLevelPerDistanceFromSpawn(sw.toServerWorld(), pos, dimConfig) < ModConfig.get().Server.LVL_WHEN_MOBS_START_SPAWNING_IN_DAYLIGHT) {
                 return false; // otherwise lvl 1 newbies are screwed
             }

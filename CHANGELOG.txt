@@ -46,6 +46,8 @@ I also added 2 special kinds of mobs: mages and arcane mobs.
 Mages will cast elemental bolts at you and arcane mobs steal your mana.
 There's also healer mages that run to nearest mob and heal them!
 
+Also most ele mobs have resistance to damage of that element :) (50%)
+
 AREA UPDATE:
 
 Each biome is now special and has its own modifiers.

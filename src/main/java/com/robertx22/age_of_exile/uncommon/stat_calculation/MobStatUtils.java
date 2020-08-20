@@ -81,8 +81,7 @@ public class MobStatUtils {
 
     public static void AddMobcStats(UnitData unitdata, LivingEntity en) {
 
-        SpecialMobStats.getStatsFor(en).stats.forEach(x -> x.ToExactStat(100, unitdata.getLevel())
-            .applyStats(unitdata));
+        SpecialMobStats.getStatsFor(en).stats.forEach(x -> x.applyStats(unitdata));
 
         try {
             unitdata.getArea()

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ServerContainer {
 
+    public boolean ALLOW_EXILE_MOBS_DAY_SPAWNS = true;
     //public boolean USE_COMPATIBILITY_ITEMS = false;
     public boolean LOG_REGISTRY_ENTRIES = false;
     public boolean GET_STARTER_ITEMS = false;
