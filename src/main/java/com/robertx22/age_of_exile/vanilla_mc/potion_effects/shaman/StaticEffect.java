@@ -49,8 +49,8 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(-15, new ElementalResist(Elements.Thunder)));
-        list.add(new PotionStat(-15, new ElementalResist(Elements.Nature)));
+        list.add(new PotionStat(-20, new ElementalResist(Elements.Thunder)));
+        list.add(new PotionStat(-20, new ElementalResist(Elements.Nature)));
         return list;
     }
 
@@ -61,7 +61,7 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public int getDurationInSeconds(LivingEntity en) {
-        return 10;
+        return 15;
     }
 
     @Override

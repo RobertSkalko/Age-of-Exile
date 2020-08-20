@@ -84,7 +84,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(4);
+        return SpellCalcData.base(3);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public int getTickRate(LivingEntity en) {
-        return 25;
+        return 20;
     }
 
 }

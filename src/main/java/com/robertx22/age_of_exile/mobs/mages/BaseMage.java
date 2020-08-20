@@ -8,6 +8,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
@@ -65,6 +66,11 @@ public abstract class BaseMage extends SkeletonEntity {
     @Override
     protected void dropEquipment(DamageSource source, int lootingMultiplier, boolean allowDrops) {
         // dont
+    }
+
+    @Override
+    protected Identifier getLootTableId() {
+        return EntityType.WITCH.getLootTableId(); // TODO, add loot tables later
     }
 
 }
