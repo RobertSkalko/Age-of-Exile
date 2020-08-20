@@ -20,6 +20,9 @@ public class FoodEffectBuilder {
 
         FoodComponent foodcomponent = food.getFoodComponent();
 
+        float total = foodcomponent.getHunger() + foodcomponent.getSaturationModifier();
+        float value = total * 1.8F;
+
         Identifier effect = null;
 
         if (ItemTags.FISHES.contains(food)) {
@@ -28,11 +31,8 @@ public class FoodEffectBuilder {
             effect = PotionRegister.FOOD_HP;
         } else {
             effect = PotionRegister.FOOD_MANA;
+            value *= 1.75F;
         }
-
-        float total = foodcomponent.getHunger() + foodcomponent.getSaturationModifier();
-
-        float value = total * 2;
 
         data.effects_given.add(new StatusEffectData(effect, durationSeconds, (int) value));
 

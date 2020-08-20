@@ -12,6 +12,7 @@ import net.minecraft.item.Items;
 import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -102,4 +103,10 @@ public class BaseChicken extends HostileEntity {
         this.targetSelector.add(2, new FollowTargetGoal<>(this, PlayerEntity.class, true));
 
     }
+
+    @Override
+    protected Identifier getLootTableId() {
+        return EntityType.CHICKEN.getLootTableId(); // TODO, add loot tables later
+    }
+
 }

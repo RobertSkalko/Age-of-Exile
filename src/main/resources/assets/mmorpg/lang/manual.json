@@ -96,3 +96,7 @@
 "entity.mmorpg.fire_chicken": "Flame Chicken",
 "entity.mmorpg.water_chicken": "Icy Chicken",
 "entity.mmorpg.thunder_chicken": "Spark Chicken",
+
+"effect.mmorpg.food_health_regen": "Health Regen",
+"effect.mmorpg.food_mana_regen": "Mana Regen",
+"effect.mmorpg.food_magic_shield_regen": "Magic Regen",

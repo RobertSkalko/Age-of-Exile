@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.config.forge;
 
 import com.robertx22.age_of_exile.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.age_of_exile.config.forge.parts.DropRatesContainer;
+import com.robertx22.age_of_exile.config.forge.parts.FoodEffectsConfig;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
@@ -24,6 +25,9 @@ public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.CollapsibleObject
     public StatScaleConfigs statScalings = new StatScaleConfigs();
+
+    @ConfigEntry.Gui.CollapsibleObject
+    public FoodEffectsConfig foodEffects = new FoodEffectsConfig();
 
     public static ModConfig get() {
         return AutoConfig.getConfigHolder(ModConfig.class)

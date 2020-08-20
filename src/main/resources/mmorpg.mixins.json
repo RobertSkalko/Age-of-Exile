@@ -5,9 +5,10 @@
   "mixins": [
     "ArrowShootMixin",
     "ChestMixin",
+    "FoodComponentMixin",
     "LivingEntityMixin",
     "OnCraftMixin",
-    "PlayerManagerMixin",    
+    "PlayerManagerMixin",
     "ServerResourceManagerMixin",
     "SpawnSettingsMixin"
   ],

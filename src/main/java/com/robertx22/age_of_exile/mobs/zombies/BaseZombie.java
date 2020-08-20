@@ -6,6 +6,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.network.Packet;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
@@ -44,6 +45,12 @@ public class BaseZombie extends ZombieEntity {
     @Override
     protected void convertInWater() {
     }
+
+    @Override
+    protected Identifier getLootTableId() {
+        return EntityType.ZOMBIE.getLootTableId(); // TODO, add loot tables later
+    }
+
 }
 
 
