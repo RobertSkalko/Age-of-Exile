@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Comparator;
@@ -21,6 +22,10 @@ public class PlayerUtils {
 
     public static PlayerEntity nearestPlayer(ServerWorld world, LivingEntity entity) {
         return nearestPlayer(world, entity.getPos());
+    }
+
+    public static PlayerEntity nearestPlayer(ServerWorld world, BlockPos pos) {
+        return nearestPlayer(world, new Vec3d(pos.getY(), pos.getY(), pos.getZ()));
     }
 
     public static PlayerEntity nearestPlayer(ServerWorld world, Vec3d pos) {

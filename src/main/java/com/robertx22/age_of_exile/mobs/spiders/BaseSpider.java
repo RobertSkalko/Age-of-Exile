@@ -26,11 +26,6 @@ public class BaseSpider extends SpiderEntity {
     }
 
     @Override
-    public float getBrightnessAtEyes() {
-        return 0.0F; // so they attack at daytime
-    }
-
-    @Override
     protected Identifier getLootTableId() {
         return EntityType.SPIDER.getLootTableId(); // TODO, add loot tables later
     }

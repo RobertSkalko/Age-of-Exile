@@ -80,7 +80,7 @@ public class RareItemAffixNames {
         put(0, Words.Leggings);
         put(1, Words.Legguards);
         put(2, Words.Legwraps);
-        put(3, Words.Robes);
+        put(3, Words.Leggings);
         put(4, Words.Britches);
     }};
 

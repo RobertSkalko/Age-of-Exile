@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bo
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.chickens.FireChicken;
 import com.robertx22.age_of_exile.mobs.chickens.NatureChicken;
@@ -24,10 +25,12 @@ import com.robertx22.age_of_exile.mobs.slimes.*;
 import com.robertx22.age_of_exile.mobs.spiders.*;
 import com.robertx22.age_of_exile.mobs.zombies.*;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -37,6 +40,7 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -45,6 +49,21 @@ public class EntityRegister {
 
     public List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
     public List<EntityType<? extends Entity>> ENTITY_THAT_USE_ITEM_RENDERS = new LinkedList();
+
+    public HashMap<EntityType, Boolean> DAYLIGHT_MOBS = new HashMap<>();
+
+    public EntityRegister() {
+        DAYLIGHT_MOBS.put(FIRE_CHICKEN, true);
+        DAYLIGHT_MOBS.put(WATER_CHICKEN, true);
+        DAYLIGHT_MOBS.put(NATURE_CHICKEN, true);
+        DAYLIGHT_MOBS.put(THUNDER_CHICKEN, true);
+
+        DAYLIGHT_MOBS.put(FIRE_SPIDER, true);
+        DAYLIGHT_MOBS.put(WATER_SPIDER, true);
+        DAYLIGHT_MOBS.put(NATURE_SPIDER, true);
+        DAYLIGHT_MOBS.put(THUNDER_SPIDER, true);
+
+    }
 
     public EntityType<ThunderstormEntity> THUNDERSTORM = projectile(ThunderstormEntity::new, "thunderstorm");
     public EntityType<TridentEntity> THUNDER_SPEAR = projectile(ThunderspearEntity::new, "thunder_spear", false);
@@ -126,22 +145,35 @@ public class EntityRegister {
         if (sw.getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
-
         if (!WorldAreas.getArea((World) sw, pos)
             .getAreaModifier()
             .canMobSpawn(type)) {
             return false;
         }
-        DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(sw.toServerWorld());
 
         if (sw.toServerWorld()
             .isDay()) {
+
+            boolean isdaylightmob = ModRegistry.ENTITIES.DAYLIGHT_MOBS.getOrDefault(type, false);
+            if (isdaylightmob) {
+                return true;
+            }
             if (!ModConfig.get().Server.ALLOW_EXILE_MOBS_DAY_SPAWNS) {
                 return false;
             }
+            DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(sw.toServerWorld());
             if (LevelUtils.determineLevelPerDistanceFromSpawn(sw.toServerWorld(), pos, dimConfig) < ModConfig.get().Server.LVL_WHEN_MOBS_START_SPAWNING_IN_DAYLIGHT) {
                 return false; // otherwise lvl 1 newbies are screwed
             }
+            PlayerEntity nearest = PlayerUtils.nearestPlayer(sw.toServerWorld(), pos);
+            if (nearest != null) {
+                double distance = nearest.getBlockPos()
+                    .getSquaredDistance(pos);
+                if (distance < 3000) {
+                    return false;
+                }
+            }
+
         }
 
         return true;
