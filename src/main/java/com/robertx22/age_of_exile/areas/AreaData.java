@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifier;
 import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseArea;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
@@ -13,6 +14,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -55,13 +57,13 @@ public class AreaData {
                 return new MinMax(0, 0);
             }
 
-            MinMax minmax = new MinMax(
+            MinMax minmax = new MinMax(MathHelper.clamp(
                 list.stream()
                     .min(Comparator.comparingInt(x -> x))
-                    .get(),
-                list.stream()
+                    .get(), 1, ModConfig.get().Server.MAX_LEVEL),
+                MathHelper.clamp(list.stream()
                     .max(Comparator.comparingInt(x -> x))
-                    .get()
+                    .get(), 1, ModConfig.get().Server.MAX_LEVEL)
             );
 
             Cached.AREA_LEVEL_RANGE.put(uuid, minmax);
@@ -94,11 +96,13 @@ public class AreaData {
 
     public AreaModifier getAreaModifier() {
 
-        if (!AreaModifiers.INSTANCE.MAP.containsKey(area_modifier)) {
-            return AreaModifiers.INSTANCE.PLAIN;
+        AreaModifier area = AreaModifiers.INSTANCE.MAP.get(area_modifier);
+
+        if (area != null) {
+            return area;
         }
 
-        return AreaModifiers.INSTANCE.MAP.get(area_modifier);
+        return AreaModifiers.INSTANCE.PLAIN;
     }
 
     @Store

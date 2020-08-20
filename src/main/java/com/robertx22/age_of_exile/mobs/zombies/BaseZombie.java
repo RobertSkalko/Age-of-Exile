@@ -35,8 +35,16 @@ public class BaseZombie extends ZombieEntity {
         this.getAttributeInstance(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
             .setBaseValue(0);
     }
-}
 
+    @Override
+    public boolean isConvertingInWater() {
+        return false;
+    }
+
+    @Override
+    protected void convertInWater() {
+    }
+}
 
 
 

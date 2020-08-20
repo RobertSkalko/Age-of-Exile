@@ -10,6 +10,7 @@ This update is actually a combination of a few big updates:
 - Crafting update
 - Mob Update
 - Area Update
+- Food update
 
 CRAFTING UPDATE:
 
@@ -50,6 +51,14 @@ AREA UPDATE:
 Each biome is now special and has its own modifiers.
 You might get to a Poisonous Swamp or an Infernal Desert.
 These modifiers allow my added mobs to spawn, so you'll see nature spiders in poisonous swamps etc.
+
+FOOD UPDATE:
+
+All foods now apply additional effects that scale per level!
+
+- Fish > Magic shield regen
+- Meat > Health regen
+- Other > Mana regen
 
 Compatibility update:
 

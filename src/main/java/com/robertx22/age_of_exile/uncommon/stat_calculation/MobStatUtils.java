@@ -84,10 +84,14 @@ public class MobStatUtils {
         SpecialMobStats.getStatsFor(en).stats.forEach(x -> x.ToExactStat(100, unitdata.getLevel())
             .applyStats(unitdata));
 
-        unitdata.getArea()
-            .getAreaModifier()
-            .stats.forEach(x -> x.ToExactStat(100, unitdata.getLevel())
-            .applyStats(unitdata));
+        try {
+            unitdata.getArea()
+                .getAreaModifier()
+                .stats.forEach(x -> x.ToExactStat(100, unitdata.getLevel())
+                .applyStats(unitdata));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();

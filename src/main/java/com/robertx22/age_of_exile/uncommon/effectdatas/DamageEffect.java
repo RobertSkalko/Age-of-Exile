@@ -18,7 +18,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IOnBasicAttackedPotion;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -269,12 +268,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             ds = event.getSource();
         }
 
-        Entity sourcevar = source;
-        if (removeKnockback) {
-            sourcevar = null; // by making source entity null, knockback isnt applied..
-        }
-
-        MyDamageSource dmgsource = new MyDamageSource(ds, sourcevar, element, dmg);
+        MyDamageSource dmgsource = new MyDamageSource(ds, source, element, dmg);
 
         if (isDodged) {
             cancelDamage();

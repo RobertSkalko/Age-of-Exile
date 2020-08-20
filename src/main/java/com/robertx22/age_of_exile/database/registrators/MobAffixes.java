@@ -34,10 +34,10 @@ public class MobAffixes implements ISlashRegistryInit {
     public static MobAffix VAMPIRE = new MobAffix("vampire", "Vampire", Formatting.RED).setMods(new StatModifier(2, 2, LifeOnHit.getInstance()), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));
 
     public static MobAffix HAUNTED = new MobAffix("haunted", "Haunted", Formatting.GRAY).setMods(
-        new StatModifier(10, 10, ChanceToApplyEffect.BURN),
-        new StatModifier(10, 10, ChanceToApplyEffect.CHILL),
-        new StatModifier(10, 10, ChanceToApplyEffect.POISON),
-        new StatModifier(10, 10, ChanceToApplyEffect.STATIC),
+        new StatModifier(5, 5, ChanceToApplyEffect.BURN),
+        new StatModifier(5, 5, ChanceToApplyEffect.CHILL),
+        new StatModifier(5, 5, ChanceToApplyEffect.POISON),
+        new StatModifier(5, 5, ChanceToApplyEffect.STATIC),
         new StatModifier(33, 33, ExtraMobDropsStat.getInstance())
     );
 

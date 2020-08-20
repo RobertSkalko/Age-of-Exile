@@ -8,6 +8,9 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.TrickeryEffec
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.WizardryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.*;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ember_mage.BurnEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.HealthRegenFoodEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.MagicShieldFoodEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.ManaRegenFoodEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ocean_mystic.FrostEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.HunterInstinctEffect;
@@ -19,6 +22,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class PotionRegister {
+
+    public static Identifier FOOD_HP = new Identifier(Ref.MODID, "food_health_regen");
+    public static Identifier FOOD_MANA = new Identifier(Ref.MODID, "food_mana_regen");
+    public static Identifier FOOD_MAGIC_REGEN = new Identifier(Ref.MODID, "food_magic_shield_regen");
 
     public static void register() {
 
@@ -40,6 +47,10 @@ public class PotionRegister {
         reg(ImbueEffect.getInstance());
         reg(HunterInstinctEffect.getInstance());
         reg(WoundsEffect.getInstance());
+
+        Registry.register(Registry.STATUS_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
+        Registry.register(Registry.STATUS_EFFECT, FOOD_MANA, ManaRegenFoodEffect.INSTANCE);
+        Registry.register(Registry.STATUS_EFFECT, FOOD_MAGIC_REGEN, MagicShieldFoodEffect.INSTANCE);
 
     }
 

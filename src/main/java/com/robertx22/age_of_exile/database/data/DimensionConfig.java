@@ -26,13 +26,13 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
     }
 
     public static DimensionConfig Nether() {
-        DimensionConfig d = new DimensionConfig(15, "minecraft:the_nether").setMobTier(2);
-        d.mob_lvl_per_distance = 30;
+        DimensionConfig d = new DimensionConfig(5, "minecraft:the_nether").setMobTier(2);
+        d.mob_lvl_per_distance = 45;
         return d;
     }
 
     public static DimensionConfig End() {
-        return new DimensionConfig(20, "minecraft:the_end").setMobTier(2);
+        return new DimensionConfig(15, "minecraft:the_end").setMobTier(2);
     }
 
     public static DimensionConfig DefaultExtra() {
