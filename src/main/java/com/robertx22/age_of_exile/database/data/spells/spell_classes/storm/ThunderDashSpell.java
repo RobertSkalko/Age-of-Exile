@@ -106,7 +106,7 @@ public class ThunderDashSpell extends BaseSpell {
 
         float distance = 0.017453292f;
         caster.setVelocity(new Vec3d(0, 0, 0));
-        caster.takeKnockback(3.5f, (double) MathHelper.sin(caster.yaw * distance),
+        caster.takeKnockback(2, (double) MathHelper.sin(caster.yaw * distance),
             (double) (-MathHelper.cos(caster.yaw * distance))
         );
         if (caster instanceof ServerPlayerEntity) {

@@ -57,6 +57,11 @@ public class SpecialMobStats {
         INSTANCE.register(ENTITIES.THUNDER_SPIDER, THUNDER);
         INSTANCE.register(ENTITIES.ARCANE_SPIDER, MANA_BURN);
 
+        INSTANCE.register(ENTITIES.FIRE_CHICKEN, FIRE);
+        INSTANCE.register(ENTITIES.WATER_CHICKEN, WATER);
+        INSTANCE.register(ENTITIES.NATURE_CHICKEN, NATURE);
+        INSTANCE.register(ENTITIES.THUNDER_CHICKEN, THUNDER);
+
         INSTANCE.register(ENTITIES.FIRE_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(FIRE));
         INSTANCE.register(ENTITIES.WATER_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(WATER));
         INSTANCE.register(ENTITIES.NATURE_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(NATURE));

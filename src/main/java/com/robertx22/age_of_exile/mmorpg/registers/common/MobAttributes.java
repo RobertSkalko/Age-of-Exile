@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.SpiderEntity;
@@ -35,6 +36,15 @@ public class MobAttributes {
         FabricDefaultAttributeRegistry.register(ENTITIES.NATURE_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(ENTITIES.HEALER_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
+
+        FabricDefaultAttributeRegistry.register(ENTITIES.FIRE_CHICKEN, SpiderEntity.createSpiderAttributes()
+            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4F));
+        FabricDefaultAttributeRegistry.register(ENTITIES.WATER_CHICKEN, SpiderEntity.createSpiderAttributes()
+            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4F));
+        FabricDefaultAttributeRegistry.register(ENTITIES.NATURE_CHICKEN, SpiderEntity.createSpiderAttributes()
+            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4F));
+        FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_CHICKEN, SpiderEntity.createSpiderAttributes()
+            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4F));
 
     }
 }

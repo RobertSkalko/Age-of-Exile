@@ -263,14 +263,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             cancelDamage();
             return;
         }
-        DamageSource ds = event.getSource();
+        DamageSource ds = null;
 
-        /*
         if (event != null) {
             ds = event.getSource();
         }
-
-         */
 
         Entity sourcevar = source;
         if (removeKnockback) {

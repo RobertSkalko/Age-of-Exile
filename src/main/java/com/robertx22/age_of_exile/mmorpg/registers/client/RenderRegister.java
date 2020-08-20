@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.MySpriteRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.special.RangerArrowRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.HolyTridentRenderer;
+import com.robertx22.age_of_exile.mobs.chickens.ModChickenRenderer;
 import com.robertx22.age_of_exile.mobs.mages.MageMobRenderer;
 import com.robertx22.age_of_exile.mobs.slimes.ModSlimeRenderer;
 import com.robertx22.age_of_exile.mobs.spiders.ModSpiderRenderer;
@@ -50,6 +51,11 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.NATURE_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "nature_mage.png"));
         INSTANCE.register(ENTITIES.THUNDER_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "thunder_mage.png"));
         INSTANCE.register(ENTITIES.HEALER_MAGE, (dispatcher, context) -> new MageMobRenderer(dispatcher, "healer_mage.png"));
+
+        INSTANCE.register(ENTITIES.FIRE_CHICKEN, (dispatcher, context) -> new ModChickenRenderer(dispatcher, "fire_chicken.png"));
+        INSTANCE.register(ENTITIES.WATER_CHICKEN, (dispatcher, context) -> new ModChickenRenderer(dispatcher, "water_chicken.png"));
+        INSTANCE.register(ENTITIES.NATURE_CHICKEN, (dispatcher, context) -> new ModChickenRenderer(dispatcher, "nature_chicken.png"));
+        INSTANCE.register(ENTITIES.THUNDER_CHICKEN, (dispatcher, context) -> new ModChickenRenderer(dispatcher, "thunder_chicken.png"));
 
     }
 }

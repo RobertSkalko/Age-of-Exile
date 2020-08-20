@@ -15,6 +15,10 @@ import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJ
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mobs.chickens.FireChicken;
+import com.robertx22.age_of_exile.mobs.chickens.NatureChicken;
+import com.robertx22.age_of_exile.mobs.chickens.ThunderChicken;
+import com.robertx22.age_of_exile.mobs.chickens.WaterChicken;
 import com.robertx22.age_of_exile.mobs.mages.*;
 import com.robertx22.age_of_exile.mobs.slimes.*;
 import com.robertx22.age_of_exile.mobs.spiders.*;
@@ -87,6 +91,13 @@ public class EntityRegister {
     public EntityType<ThunderMage> THUNDER_MAGE = mob(ThunderMage::new, "thunder_mage", mageDim);
     public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", mageDim);
     public EntityType<HealerMage> HEALER_MAGE = mob(HealerMage::new, "healer_mage", mageDim);
+
+    static EntityDimensions chickenDim = new EntityDimensions(0.7F, 0.5F, true);
+
+    public EntityType<FireChicken> FIRE_CHICKEN = mob(FireChicken::new, "fire_chicken", chickenDim);
+    public EntityType<WaterChicken> WATER_CHICKEN = mob(WaterChicken::new, "water_chicken", chickenDim);
+    public EntityType<NatureChicken> NATURE_CHICKEN = mob(NatureChicken::new, "nature_chicken", chickenDim);
+    public EntityType<ThunderChicken> THUNDER_CHICKEN = mob(ThunderChicken::new, "thunder_chicken", chickenDim);
 
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 
