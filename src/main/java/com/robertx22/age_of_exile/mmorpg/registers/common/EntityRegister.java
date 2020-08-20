@@ -77,8 +77,8 @@ public class EntityRegister {
     public EntityType<ThunderSpider> THUNDER_SPIDER = mob(ThunderSpider::new, "thunder_spider", new EntityDimensions(0.7F, 0.5F, true));
     public EntityType<NatureSpider> NATURE_SPIDER = mob(NatureSpider::new, "nature_spider", new EntityDimensions(0.7F, 0.5F, true));
 
-    static EntityDimensions zombieDim = new EntityDimensions(0.5F, 2, true);
-    static EntityDimensions mageDim = new EntityDimensions(0.5F, 2.1F, true);
+    static EntityDimensions zombieDim = new EntityDimensions(0.6F, 1.95F, false);
+    static EntityDimensions mageDim = new EntityDimensions(0.5F, 2.2F, true);
 
     public EntityType<ArcaneZombie> ARCANE_ZOMBIE = mob(ArcaneZombie::new, "arcane_zombie", zombieDim);
     public EntityType<FireZombie> FIRE_ZOMBIE = mob(FireZombie::new, "fire_zombie", zombieDim);
@@ -103,6 +103,7 @@ public class EntityRegister {
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id) {
+
         return projectile(factory, id, true);
 
     }

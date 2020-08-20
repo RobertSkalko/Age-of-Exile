@@ -40,7 +40,7 @@ I added many new elemental or special mobs to the game.
 These mobs spawn during daytime too :) (after a certain level, i set default to 10 so newbies have time to prepare)
 World should be a lot more lively now!
 
-Currently there's variations of: zombies, spiders and slimes!
+Currently there's variations of: zombies, spiders, chickens and slimes!
 I also added 2 special kinds of mobs: mages and arcane mobs.
 Mages will cast elemental bolts at you and arcane mobs steal your mana.
 There's also healer mages that run to nearest mob and heal them!
@@ -64,6 +64,7 @@ Compatibility update:
 Minor notes:
 
 - reworked stat allocation + stat overview guis into 1 gui
+- made stations much cheaper to craft! 
 - should fix crossbows not doing extra dmg
 - added gear slot datapacks. Super tiny, just declares drop chances. 
 So if there's 100 different sword types, and 5 axe types, they'll still have same chance to drop if their gear slots have same weight.

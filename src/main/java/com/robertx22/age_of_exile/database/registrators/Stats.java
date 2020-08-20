@@ -137,6 +137,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ManaBurnResistance.getInstance());
 
                     add(HealPower.getInstance());
+                    add(HealEffectivenessOnSelf.getInstance());
                     // traits
 
                 }

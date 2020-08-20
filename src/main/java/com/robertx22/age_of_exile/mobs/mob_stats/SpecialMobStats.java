@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mobs.mob_stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurn;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.Entity;
@@ -61,6 +62,8 @@ public class SpecialMobStats {
         INSTANCE.register(ENTITIES.WATER_CHICKEN, WATER);
         INSTANCE.register(ENTITIES.NATURE_CHICKEN, NATURE);
         INSTANCE.register(ENTITIES.THUNDER_CHICKEN, THUNDER);
+
+        INSTANCE.register(ENTITIES.HEALER_MAGE, new SpecialMobStats(new StatModifier(-90, -90, HealEffectivenessOnSelf.getInstance())));
 
         INSTANCE.register(ENTITIES.FIRE_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(FIRE));
         INSTANCE.register(ENTITIES.WATER_ZOMBIE, new SpecialMobStats(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())).add(WATER));

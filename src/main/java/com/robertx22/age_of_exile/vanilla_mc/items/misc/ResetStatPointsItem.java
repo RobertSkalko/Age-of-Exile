@@ -61,12 +61,11 @@ public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLoc
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(ModRegistry.MISC_ITEMS.RESET_STATS_POTION)
-            .input('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
             .input('t', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
             .input('v', Items.GOLD_INGOT)
             .input('b', Items.GLASS_BOTTLE)
             .input('c', Items.COAL)
-            .pattern("#v#")
+            .pattern("cvc")
             .pattern("vtv")
             .pattern("cbc")
             .criterion("player_level", trigger());
