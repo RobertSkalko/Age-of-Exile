@@ -11,7 +11,11 @@ import java.util.List;
 
 public class MagicShieldFoodEffect extends FoodEffectPotion {
 
-    public static MagicShieldFoodEffect INSTANCE = new MagicShieldFoodEffect();
+    public static MagicShieldFoodEffect INSTANCE = new MagicShieldFoodEffect(13458603);
+
+    protected MagicShieldFoodEffect(int color) {
+        super(color);
+    }
 
     @Override
     public ResourcesData.Type resourceType() {

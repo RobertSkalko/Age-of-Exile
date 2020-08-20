@@ -15,8 +15,8 @@ import java.util.List;
 
 public abstract class FoodEffectPotion extends StatusEffect {
 
-    protected FoodEffectPotion() {
-        super(StatusEffectType.BENEFICIAL, 1);
+    protected FoodEffectPotion(int color) {
+        super(StatusEffectType.BENEFICIAL, color);
     }
 
     public abstract ResourcesData.Type resourceType();

@@ -11,7 +11,11 @@ import java.util.List;
 
 public class ManaRegenFoodEffect extends FoodEffectPotion {
 
-    public static ManaRegenFoodEffect INSTANCE = new ManaRegenFoodEffect();
+    public static ManaRegenFoodEffect INSTANCE = new ManaRegenFoodEffect(3035801);
+
+    protected ManaRegenFoodEffect(int color) {
+        super(color);
+    }
 
     @Override
     public ResourcesData.Type resourceType() {
@@ -25,4 +29,5 @@ public class ManaRegenFoodEffect extends FoodEffectPotion {
         list.add(new LiteralText("Restores " + val + " Mana over " + duration / 20 + "s").formatted(Formatting.AQUA));
         return list;
     }
+
 }

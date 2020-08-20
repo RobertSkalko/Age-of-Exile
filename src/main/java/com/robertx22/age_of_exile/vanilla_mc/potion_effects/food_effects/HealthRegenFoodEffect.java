@@ -11,7 +11,11 @@ import java.util.List;
 
 public class HealthRegenFoodEffect extends FoodEffectPotion {
 
-    public static HealthRegenFoodEffect INSTANCE = new HealthRegenFoodEffect();
+    public static HealthRegenFoodEffect INSTANCE = new HealthRegenFoodEffect(14981690);
+
+    protected HealthRegenFoodEffect(int color) {
+        super(color);
+    }
 
     @Override
     public ResourcesData.Type resourceType() {
