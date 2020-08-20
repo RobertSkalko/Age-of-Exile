@@ -173,37 +173,6 @@ public class LivingHurtUtils {
         return false;
     }
 
-    /**
-     * If damage is from my source, leave the value, otherwise decrease it (this
-     * makes my damage source the best one)
-     *
-     * @param event
-     */
-    public static void modifyDamage(LivingHurtEvent event) {
-        if (event.getEntityLiving().world.isClient) {
-            return;
-        }
-        if (event.getSource() == null) {
-            return;
-        }
-
-        if (DmgSourceUtils.isMyDmgSource(event.getSource())) {
-            return;
-        }
-
-        // mobs take much less damage from any source other than my mods. This is
-        // required or else there's no point in getting legendary weapons if a diamond
-        // sword more damage
-
-        if (isEnviromentalDmg(event.getSource())) {
-            if (event.getEntityLiving() instanceof PlayerEntity == false) {
-                return;
-            }
-        } else {
-            return;
-        }
-    }
-
     public static boolean isEnviromentalDmg(DamageSource source) {
         return source.getAttacker() instanceof LivingEntity == false;
     }

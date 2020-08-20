@@ -1,8 +1,5 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
-import com.robertx22.library_of_exile.components.EntityInfoComponent;
-import com.robertx22.library_of_exile.events.base.EventConsumer;
-import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
@@ -16,6 +13,9 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
+import com.robertx22.library_of_exile.components.EntityInfoComponent;
+import com.robertx22.library_of_exile.events.base.EventConsumer;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,6 +53,14 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                                     .getAttacker();
                             }
                         } catch (Exception e) {
+                        }
+                    }
+
+                    if (killerEntity == null) {
+                        if (EntityInfoComponent.get(mobKilled)
+                            .getDamageStats()
+                            .getEnviroOrMobDmg() < mobKilled.getMaxHealth() / 2F) {
+                            killerEntity = onMobDeath.killer;
                         }
                     }
 

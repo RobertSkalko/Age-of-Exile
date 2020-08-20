@@ -15,7 +15,6 @@ public class OnHurtEvent {
 
             // order matters here
             LivingHurtUtils.onAttack(event);
-            LivingHurtUtils.modifyDamage(event);
             LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
             // order matters here
 
