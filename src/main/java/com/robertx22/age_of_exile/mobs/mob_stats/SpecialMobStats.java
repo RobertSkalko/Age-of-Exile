@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mobs.mob_stats;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
@@ -110,10 +111,10 @@ public class SpecialMobStats {
 
         INSTANCE.register(ENTITIES.ARCANE_SPIDER, MANA_BURN);
 
-        reg(ENTITIES.FIRE_MAGE, fire());
-        reg(ENTITIES.WATER_MAGE, water());
-        reg(ENTITIES.NATURE_MAGE, nature());
-        reg(ENTITIES.THUNDER_MAGE, thunder());
+        reg(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire(), new SpecialMobStats(new Data(new StatModifier(100, 100, ChanceToApplyEffect.BURN)))));
+        reg(ENTITIES.WATER_MAGE, new SpecialMobStats(water(), new SpecialMobStats(new Data(new StatModifier(100, 100, ChanceToApplyEffect.CHILL)))));
+        reg(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature(), new SpecialMobStats(new Data(new StatModifier(100, 100, ChanceToApplyEffect.POISON)))));
+        reg(ENTITIES.THUNDER_MAGE, new SpecialMobStats(thunder(), new SpecialMobStats(new Data(new StatModifier(100, 100, ChanceToApplyEffect.STATIC)))));
 
         reg(ENTITIES.FIRE_SKELETON, fire());
         reg(ENTITIES.WATER_SKELETON, water());

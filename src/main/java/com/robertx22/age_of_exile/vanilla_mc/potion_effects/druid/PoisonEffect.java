@@ -79,7 +79,7 @@ public class PoisonEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(2);
+        return SpellCalcData.base(1.5F);
     }
 
     @Override

@@ -52,7 +52,7 @@ public class FireballSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 5, 15);
+        c.set(SC.MANA_COST, 5, 10);
         c.set(SC.BASE_VALUE, 7, 18);
         c.set(SC.SHOOT_SPEED, 0.4F, 0.6F);
         c.set(SC.PROJECTILE_COUNT, 1, 1);

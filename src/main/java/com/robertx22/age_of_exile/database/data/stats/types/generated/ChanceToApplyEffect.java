@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.offense.ChanceToApplyEffectEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
@@ -39,7 +40,7 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Chance to apply effect on basic weapon hits.";
+        return "Chance to apply effect on weapon or spell hits.";
     }
 
     @Override
@@ -54,6 +55,6 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
     @Override
     public IStatEffect getEffect() {
-        return new ChanceToApplyEffectEffect(effect);
+        return new ChanceToApplyEffectEffect(effect, EffectData.EffectTypes.BASIC_ATTACK, EffectData.EffectTypes.SPELL);
     }
 }
