@@ -34,10 +34,13 @@ public class FoodEffectBuilder {
             if (efg.isBeneficial()) {
                 effectMod += 0.15F;
             } else if (efg.getType() == StatusEffectType.HARMFUL) {
-                effectMod -= 0.4F;
+                effectMod -= 0.75F;
             }
-        }
 
+        }
+        if (effectMod < 0) {
+            effectMod = 0;
+        }
         float value = total * 1.8F * effectMod;
 
         if (value < 3) {

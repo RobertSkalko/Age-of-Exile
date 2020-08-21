@@ -20,13 +20,13 @@ public class MobAffixes implements ISlashRegistryInit {
 
     public static MobAffix EMPTY = new MobAffix("empty", "empty", Formatting.AQUA);
 
-    public static MobAffix COLD = new MobAffix("cold", "Cold", Water.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Water)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+    public static MobAffix COLD = new MobAffix("cold", "Cold", Water.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Water)), new StatModifier(1, 1, new WeaponDamage(Water)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Water.format + Water.icon);
-    public static MobAffix FLAMING = new MobAffix("flaming", "Flaming", Fire.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Fire)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+    public static MobAffix FLAMING = new MobAffix("flaming", "Flaming", Fire.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Fire)), new StatModifier(1, 1, new WeaponDamage(Fire)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Fire.format + Fire.icon);
-    public static MobAffix LIGHTNING = new MobAffix("lightning", "Thunder", Thunder.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Thunder)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+    public static MobAffix LIGHTNING = new MobAffix("lightning", "Thunder", Thunder.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Thunder)), new StatModifier(1, 1, new WeaponDamage(Thunder)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Thunder.format + Thunder.icon);
-    public static MobAffix VENOMOUS = new MobAffix("venom", "Poison", Nature.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Nature)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+    public static MobAffix VENOMOUS = new MobAffix("venom", "Poison", Nature.format).setMods(new StatModifier(25, 25, new PhysConvertToEle(Nature)), new StatModifier(1, 1, new WeaponDamage(Nature)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
         .icon(Nature.format + Nature.icon);
 
     public static MobAffix RUIN = new MobAffix("ruin", "Ruin", Formatting.GRAY).setMods(new StatModifier(1, 1, new WeaponDamage(Physical)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()));

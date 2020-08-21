@@ -3,11 +3,13 @@ package com.robertx22.age_of_exile.mixins;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.age_of_exile.event_hooks.entity.damage.LivingHurtUtils;
 import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -34,7 +36,8 @@ public abstract class LivingEntityMixin {
     public void hookarmortodmg(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
         if (source instanceof MyDamageSource) {
-            damageArmor(source, amount / 2F);
+            damageArmor(source, MathHelper.clamp(amount, 1, 8));
+            LivingHurtUtils.damageCurioItems(en, amount);
             ci.setReturnValue(amount);
         }
     }

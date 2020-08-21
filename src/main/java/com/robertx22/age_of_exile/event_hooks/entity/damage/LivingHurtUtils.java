@@ -17,13 +17,18 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LivingHurtUtils {
 
-    public static void damageCurioItems(LivingEntity en) {
+    public static int getItemDamage(float dmg) {
+        return (int) MathHelper.clamp(dmg / 4F, 1, 6);
+    }
+
+    public static void damageCurioItems(LivingEntity en, float dmg) {
 
         if (en instanceof PlayerEntity) {
 
@@ -31,7 +36,7 @@ public class LivingHurtUtils {
 
             List<ItemStack> curios = MyCurioUtils.getAllSlots(player);
 
-            curios.forEach(x -> x.damage(1, player, (entity) -> {
+            curios.forEach(x -> x.damage(getItemDamage(dmg) * 2, player, (entity) -> {
                 entity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
             }));
 

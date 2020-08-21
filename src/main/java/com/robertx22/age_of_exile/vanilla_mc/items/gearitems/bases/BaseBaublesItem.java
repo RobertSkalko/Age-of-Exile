@@ -19,7 +19,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
 
         super(ItemUtils.getDefaultGearProperties()
             .maxCount(1)
-            .maxDamage(1000));
+            .maxDamage(2000));
         this.locname = locname;
     }
 

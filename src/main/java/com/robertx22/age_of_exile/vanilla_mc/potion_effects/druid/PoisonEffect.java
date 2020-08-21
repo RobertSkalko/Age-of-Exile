@@ -33,7 +33,7 @@ public class PoisonEffect extends BasePotionEffect implements IApplyStatPotion {
             int num = getCalc(ctx.caster).getCalculatedValue(ctx.caster);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
-                EffectData.EffectTypes.SPELL, WeaponTypes.None
+                EffectData.EffectTypes.DOT_DMG, WeaponTypes.None
             );
             dmg.element = Elements.Nature;
             dmg.removeKnockback();
