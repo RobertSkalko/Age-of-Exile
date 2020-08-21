@@ -16,7 +16,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import top.theillusivec4.curios.api.event.CurioChangeCallback;
 
-public class Common {
+public class CommonEvents {
 
     public static void register() {
 

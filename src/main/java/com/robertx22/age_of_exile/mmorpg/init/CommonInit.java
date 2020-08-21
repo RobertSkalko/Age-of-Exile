@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mmorpg.event_registers.Common;
+import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
@@ -42,7 +42,7 @@ public class CommonInit implements ModInitializer {
 
         UniqueGearItemRegister.registerAll();
 
-        Common.register();
+        CommonEvents.register();
 
         PotionRegister.register();
 

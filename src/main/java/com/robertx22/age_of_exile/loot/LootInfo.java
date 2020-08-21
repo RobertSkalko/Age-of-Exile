@@ -127,12 +127,12 @@ public class LootInfo {
 
     public void setup(BaseLootGen gen) {
 
-        float modifier = 1;
+        float modifier = 1F;
 
-        modifier += multi - 1;
+        modifier += multi - 1F;
 
         if (victim != null && mobData != null) {
-            modifier += SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi - 1;
+            modifier += SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi - 1F;
             modifier += mobData.getUnit()
                 .peekAtStat(ExtraMobDropsStat.getInstance())
                 .getMultiplier() - 1;
@@ -144,19 +144,19 @@ public class LootInfo {
         if (this.playerData != null) {
             modifier += playerData.getUnit()
                 .peekAtStat(IncreasedItemQuantity.getInstance())
-                .getMultiplier() - 1;
+                .getMultiplier() - 1F;
         }
 
         if (world != null) {
-            modifier += SlashRegistry.getDimensionConfig(world).all_drop_multi - 1;
+            modifier += SlashRegistry.getDimensionConfig(world).all_drop_multi - 1F;
 
         }
 
         if (mobData != null && victim != null) {
-            modifier += LootUtils.getMobHealthBasedLootMulti(mobData, victim) - 1;
+            modifier += LootUtils.getMobHealthBasedLootMulti(mobData, victim) - 1F;
 
             if (this.playerData != null) {
-                modifier += LootUtils.getLevelDistancePunishmentMulti(mobData, playerData) - 1;
+                modifier += LootUtils.getLevelDistancePunishmentMulti(mobData, playerData) - 1F;
             }
         }
 

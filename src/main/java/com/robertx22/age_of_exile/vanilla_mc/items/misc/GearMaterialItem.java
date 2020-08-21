@@ -85,8 +85,12 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
 
         Item resultItem = ModRegistry.GEAR_MATERIALS.MAP.get(type)
             .get(tier);
-
         Item smallResource = Items.GOLD_NUGGET;
+        Item essence = ModRegistry.MISC_ITEMS.MAGIC_ESSENCE;
+
+        if (tier > 3) {
+            essence = ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE;
+        }
 
         if (type == GearMaterialRegister.TYPE.CLOTH) {
             smallResource = Items.STRING;
@@ -94,8 +98,9 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
             smallResource = Items.STRING;
         }
 
+        ShapedRecipeJsonFactory fac = shaped(resultItem);
+
         if (tier == 0) {
-            ShapedRecipeJsonFactory fac = shaped(resultItem);
 
             if (type == GearMaterialRegister.TYPE.CLOTH) {
                 fac.input('v', ItemTags.WOOL);
@@ -104,41 +109,25 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
             } else {
                 fac.input('v', Items.IRON_INGOT);
             }
-
-            fac.input('e', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
-                .input('s', smallResource)
-                .pattern(" e ");
-
-            if (type == GearMaterialRegister.TYPE.ORE) {
-                fac.pattern("svs");
-            } else {
-                fac.pattern(" v "); // less strings needed for cloth and leather
-            }
-
-            fac.pattern(" s ");
-
-            return fac.criterion("player_level", trigger());
+        } else {
+            fac.input('v', ModRegistry.GEAR_MATERIALS.MAP.get(type)
+                .get(tier - 1));
         }
 
-        Item essence = ModRegistry.MISC_ITEMS.MAGIC_ESSENCE;
+        fac.input('e', essence)
+            .input('s', smallResource)
+            .pattern(" e ");
 
-        if (tier > 3) {
-            essence = ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE;
+        if (type == GearMaterialRegister.TYPE.ORE) {
+            fac.pattern("svs");
+        } else {
+            fac.pattern(" v "); // less strings needed for cloth and leather
         }
 
-        if (tier >= 1) {
-            return shaped(resultItem)
-                .input('v', ModRegistry.GEAR_MATERIALS.MAP.get(type)
-                    .get(tier - 1))
-                .input('s', smallResource)
-                .input('e', essence)
-                .pattern(" e ")
-                .pattern("svs")
-                .pattern(" s ")
-                .criterion("player_level", trigger());
-        }
+        fac.pattern(" s ");
 
-        return null;
+        return fac.criterion("player_level", trigger());
+
     }
 
 }
