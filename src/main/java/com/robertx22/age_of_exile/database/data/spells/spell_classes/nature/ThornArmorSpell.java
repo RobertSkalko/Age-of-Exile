@@ -55,7 +55,7 @@ public class ThornArmorSpell extends BaseSpell {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.MANA_COST, 25, 40);
+        c.set(SC.MANA_COST, 25, 35);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
         c.set(SC.COOLDOWN_SECONDS, 120, 60);
         c.set(SC.DURATION_TICKS, 60 * 20, 60 * 60);

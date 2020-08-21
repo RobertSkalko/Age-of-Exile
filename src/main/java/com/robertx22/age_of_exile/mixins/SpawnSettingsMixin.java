@@ -23,11 +23,15 @@ public abstract class SpawnSettingsMixin {
 
     @Inject(method = "getSpawnEntry(Lnet/minecraft/entity/SpawnGroup;)Ljava/util/List;", at = @At("RETURN"))
     public void my$onConstruct(SpawnGroup spawnGroup, CallbackInfoReturnable<List<SpawnSettings.SpawnEntry>> ci) {
-        if (spawnGroup == SpawnGroup.MONSTER) {
-            Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> map = getspawners();
-            if (AddMobSpawns.shouldAddMySpawns(map)) {
-                setspawners(AddMobSpawns.addMySpawns(map));
+        try {
+            if (spawnGroup == SpawnGroup.MONSTER) {
+                Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> map = getspawners();
+                if (AddMobSpawns.shouldAddMySpawns(map)) {
+                    setspawners(AddMobSpawns.addMySpawns(map));
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

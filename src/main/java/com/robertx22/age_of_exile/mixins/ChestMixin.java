@@ -14,7 +14,11 @@ public abstract class ChestMixin {
 
     @Inject(method = "supplyInventory", at = @At(value = "TAIL"))
     public void onLootGen(Inventory inventory, LootContext context, CallbackInfo ci) {
-        GenChestLootMethod.onLootGen(inventory, context, ci);
+        try {
+            GenChestLootMethod.onLootGen(inventory, context, ci);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

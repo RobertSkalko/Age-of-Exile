@@ -42,18 +42,26 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At(value = "HEAD"), cancellable = true)
     public void hook(StatusEffectInstance effect, CallbackInfoReturnable<Boolean> ci) {
-        LivingEntity en = (LivingEntity) (Object) this;
-        CanEntityHavePotionMixin.hook(en, effect, ci);
+        try {
+            LivingEntity en = (LivingEntity) (Object) this;
+            CanEntityHavePotionMixin.hook(en, effect, ci);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Inject(method = "eatFood(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;", at = @At(value = "HEAD"))
     public void food(World world, ItemStack stack, CallbackInfoReturnable<ItemStack> ci) {
-        LivingEntity en = (LivingEntity) (Object) this;
-        if (FoodEffectUtils.isFood(stack.getItem())) {
-            FoodEffect effect = FoodEffectUtils.getEffect(stack.getItem());
-            if (effect != null) {
-                effect.apply(en);
+        try {
+            LivingEntity en = (LivingEntity) (Object) this;
+            if (FoodEffectUtils.isFood(stack.getItem())) {
+                FoodEffect effect = FoodEffectUtils.getEffect(stack.getItem());
+                if (effect != null) {
+                    effect.apply(en);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

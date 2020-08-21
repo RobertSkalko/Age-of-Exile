@@ -14,8 +14,12 @@ public class OnCraftMixin {
 
     @Inject(method = "onCraft(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;I)V", at = @At(value = "HEAD"))
     public void onCraft(World world, PlayerEntity player, int amount, CallbackInfo ci) {
-        ItemStack stack = (ItemStack) (Object) this;
-        OnItemCrafted.onCraft(stack, world, player, amount, ci);
+        try {
+            ItemStack stack = (ItemStack) (Object) this;
+            OnItemCrafted.onCraft(stack, world, player, amount, ci);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

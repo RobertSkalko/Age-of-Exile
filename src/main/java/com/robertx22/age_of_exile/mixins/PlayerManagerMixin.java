@@ -14,6 +14,10 @@ public class PlayerManagerMixin {
 
     @Inject(method = "onPlayerConnect", at = @At(value = "RETURN"))
     public void hook(ClientConnection connection, ServerPlayerEntity player, CallbackInfo ci) {
-        OnLogin.onLoad(player);
+        try {
+            OnLogin.onLoad(player);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
