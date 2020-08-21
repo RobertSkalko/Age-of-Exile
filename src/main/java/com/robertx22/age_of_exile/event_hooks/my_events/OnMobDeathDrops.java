@@ -17,7 +17,6 @@ import com.robertx22.library_of_exile.components.EntityInfoComponent;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -109,13 +108,11 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp *= Rarities.Mobs.get(mobData.getRarity())
             .expMulti();
 
-        exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
+        exp *= (int) LootUtils.getLevelDistancePunishmentMulti(mobData, killerData);
+
+        exp *= LootUtils.getMobHealthBasedLootMulti(mobData, killer);
 
         exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;
-
-        if (victim instanceof SlimeEntity) {
-            exp /= 10;
-        }
 
         if (exp > 0) {
 

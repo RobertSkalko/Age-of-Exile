@@ -97,6 +97,11 @@
 "entity.mmorpg.water_chicken": "Icy Chicken",
 "entity.mmorpg.thunder_chicken": "Spark Chicken",
 
+"entity.mmorpg.nature_skeleton": "Tera Skeleton",
+"entity.mmorpg.fire_skeleton": "Flame Skeleton",
+"entity.mmorpg.water_skeleton": "Icy Skeleton",
+"entity.mmorpg.thunder_skeleton": "Spark Skeleton",
+
 "effect.mmorpg.food_health_regen": "Health Regen",
 "effect.mmorpg.food_mana_regen": "Mana Regen",
 "effect.mmorpg.food_magic_shield_regen": "Magic Regen",

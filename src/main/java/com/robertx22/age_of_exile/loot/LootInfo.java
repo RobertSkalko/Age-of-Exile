@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -126,40 +127,40 @@ public class LootInfo {
 
     public void setup(BaseLootGen gen) {
 
-        float chance = gen.baseDropChance();
+        float modifier = 1;
 
-        chance *= multi;
+        modifier += multi - 1;
 
         if (victim != null && mobData != null) {
-            chance *= SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi;
-
-            chance *= mobData.getUnit()
+            modifier += SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi - 1;
+            modifier += mobData.getUnit()
                 .peekAtStat(ExtraMobDropsStat.getInstance())
-                .getMultiplier();
+                .getMultiplier() - 1;
+            modifier += Rarities.Mobs.get(mobData.getRarity())
+                .LootMultiplier() - 1;
+
         }
 
         if (this.playerData != null) {
-
-            float iqmulti = playerData.getUnit()
+            modifier += playerData.getUnit()
                 .peekAtStat(IncreasedItemQuantity.getInstance())
-                .getMultiplier();
-
-            chance *= iqmulti;
-
+                .getMultiplier() - 1;
         }
 
         if (world != null) {
-            chance *= SlashRegistry.getDimensionConfig(world).all_drop_multi;
+            modifier += SlashRegistry.getDimensionConfig(world).all_drop_multi - 1;
 
         }
 
         if (mobData != null && victim != null) {
-            chance = LootUtils.applyLootMultipliers(chance, mobData, victim);
+            modifier += LootUtils.getMobHealthBasedLootMulti(mobData, victim) - 1;
 
             if (this.playerData != null) {
-                chance = LootUtils.ApplyLevelDistancePunishment(mobData, playerData, chance);
+                modifier += LootUtils.getLevelDistancePunishmentMulti(mobData, playerData) - 1;
             }
         }
+
+        float chance = gen.baseDropChance() * modifier;
 
         chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
 

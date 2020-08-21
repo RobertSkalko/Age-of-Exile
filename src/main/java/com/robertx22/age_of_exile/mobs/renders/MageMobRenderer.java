@@ -1,6 +1,7 @@
-package com.robertx22.age_of_exile.mobs.mages;
+package com.robertx22.age_of_exile.mobs.renders;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mobs.mages.BaseMage;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.MobEntityRenderer;

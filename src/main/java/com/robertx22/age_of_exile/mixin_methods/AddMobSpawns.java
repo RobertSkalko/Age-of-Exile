@@ -47,6 +47,11 @@ public class AddMobSpawns {
         public SpawnEntry THUNDER_CHICKEN = of(ENTITIES.THUNDER_CHICKEN, 50, 1, 1);
         public SpawnEntry NATURE_CHICKEN = of(ENTITIES.NATURE_CHICKEN, 50, 1, 1);
 
+        public SpawnEntry FIRE_SKELETON = of(ENTITIES.FIRE_SKELETON, 50, 1, 1);
+        public SpawnEntry WATER_SKELETON = of(ENTITIES.WATER_SKELETON, 50, 1, 1);
+        public SpawnEntry THUNDER_SKELETON = of(ENTITIES.THUNDER_SKELETON, 50, 1, 1);
+        public SpawnEntry NATURE_SKELETON = of(ENTITIES.NATURE_SKELETON, 50, 1, 1);
+
         SpawnEntry of(EntityType type, int weight, int min, int max) {
             SpawnEntry entry = new SpawnEntry(type, weight, min, max);
             all.add(entry);

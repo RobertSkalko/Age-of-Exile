@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.mobs.spiders;
+package com.robertx22.age_of_exile.mobs.renders;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;

@@ -95,6 +95,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new ElementalResist(Elements.Physical));
                     add(new ElementalPenetration(Elements.Physical));
                     add(new ElementalFocus(Elements.Physical));
+                    add(new PhysConvertToEle(Elements.Physical));
 
                     // generated
 

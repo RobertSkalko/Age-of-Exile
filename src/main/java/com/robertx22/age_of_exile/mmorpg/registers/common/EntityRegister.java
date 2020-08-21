@@ -21,6 +21,10 @@ import com.robertx22.age_of_exile.mobs.chickens.NatureChicken;
 import com.robertx22.age_of_exile.mobs.chickens.ThunderChicken;
 import com.robertx22.age_of_exile.mobs.chickens.WaterChicken;
 import com.robertx22.age_of_exile.mobs.mages.*;
+import com.robertx22.age_of_exile.mobs.skeletons.FireSkeleton;
+import com.robertx22.age_of_exile.mobs.skeletons.NatureSkeleton;
+import com.robertx22.age_of_exile.mobs.skeletons.ThunderSkeleton;
+import com.robertx22.age_of_exile.mobs.skeletons.WaterSkeleton;
 import com.robertx22.age_of_exile.mobs.slimes.*;
 import com.robertx22.age_of_exile.mobs.spiders.*;
 import com.robertx22.age_of_exile.mobs.zombies.*;
@@ -62,8 +66,13 @@ public class EntityRegister {
         DAYLIGHT_MOBS.put(WATER_SPIDER, true);
         DAYLIGHT_MOBS.put(NATURE_SPIDER, true);
         DAYLIGHT_MOBS.put(THUNDER_SPIDER, true);
-
     }
+
+    static EntityDimensions spiderDim = new EntityDimensions(1.4F, 0.9F, false);
+    static EntityDimensions zombieDim = new EntityDimensions(0.6F, 1.95F, false);
+    static EntityDimensions mageDim = new EntityDimensions(0.5F, 2.2F, true);
+    static EntityDimensions skeleDim = new EntityDimensions(0.5F, 2, true);
+    static EntityDimensions chickenDim = new EntityDimensions(0.7F, 0.5F, true);
 
     public EntityType<ThunderstormEntity> THUNDERSTORM = projectile(ThunderstormEntity::new, "thunderstorm");
     public EntityType<TridentEntity> THUNDER_SPEAR = projectile(ThunderspearEntity::new, "thunder_spear", false);
@@ -90,14 +99,11 @@ public class EntityRegister {
     public EntityType<ThunderSlime> THUNDER_SLIME = mob(ThunderSlime::new, "thunder_slime", new EntityDimensions(2.04F, 2.04F, false));
     public EntityType<NatureSlime> NATURE_SLIME = mob(NatureSlime::new, "nature_slime", new EntityDimensions(2.04F, 2.04F, false));
 
-    public EntityType<ArcaneSpider> ARCANE_SPIDER = mob(ArcaneSpider::new, "arcane_spider", new EntityDimensions(0.7F, 0.5F, true));
-    public EntityType<FireSpider> FIRE_SPIDER = mob(FireSpider::new, "fire_spider", new EntityDimensions(0.7F, 0.5F, true));
-    public EntityType<WaterSpider> WATER_SPIDER = mob(WaterSpider::new, "water_spider", new EntityDimensions(0.7F, 0.5F, true));
-    public EntityType<ThunderSpider> THUNDER_SPIDER = mob(ThunderSpider::new, "thunder_spider", new EntityDimensions(0.7F, 0.5F, true));
-    public EntityType<NatureSpider> NATURE_SPIDER = mob(NatureSpider::new, "nature_spider", new EntityDimensions(0.7F, 0.5F, true));
-
-    static EntityDimensions zombieDim = new EntityDimensions(0.6F, 1.95F, false);
-    static EntityDimensions mageDim = new EntityDimensions(0.5F, 2.2F, true);
+    public EntityType<ArcaneSpider> ARCANE_SPIDER = mob(ArcaneSpider::new, "arcane_spider", spiderDim);
+    public EntityType<FireSpider> FIRE_SPIDER = mob(FireSpider::new, "fire_spider", spiderDim);
+    public EntityType<WaterSpider> WATER_SPIDER = mob(WaterSpider::new, "water_spider", spiderDim);
+    public EntityType<ThunderSpider> THUNDER_SPIDER = mob(ThunderSpider::new, "thunder_spider", spiderDim);
+    public EntityType<NatureSpider> NATURE_SPIDER = mob(NatureSpider::new, "nature_spider", spiderDim);
 
     public EntityType<ArcaneZombie> ARCANE_ZOMBIE = mob(ArcaneZombie::new, "arcane_zombie", zombieDim);
     public EntityType<FireZombie> FIRE_ZOMBIE = mob(FireZombie::new, "fire_zombie", zombieDim);
@@ -111,12 +117,15 @@ public class EntityRegister {
     public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", mageDim);
     public EntityType<HealerMage> HEALER_MAGE = mob(HealerMage::new, "healer_mage", mageDim);
 
-    static EntityDimensions chickenDim = new EntityDimensions(0.7F, 0.5F, true);
-
     public EntityType<FireChicken> FIRE_CHICKEN = mob(FireChicken::new, "fire_chicken", chickenDim);
     public EntityType<WaterChicken> WATER_CHICKEN = mob(WaterChicken::new, "water_chicken", chickenDim);
     public EntityType<NatureChicken> NATURE_CHICKEN = mob(NatureChicken::new, "nature_chicken", chickenDim);
     public EntityType<ThunderChicken> THUNDER_CHICKEN = mob(ThunderChicken::new, "thunder_chicken", chickenDim);
+
+    public EntityType<FireSkeleton> FIRE_SKELETON = mob(FireSkeleton::new, "fire_skeleton", skeleDim);
+    public EntityType<WaterSkeleton> WATER_SKELETON = mob(WaterSkeleton::new, "water_skeleton", skeleDim);
+    public EntityType<ThunderSkeleton> THUNDER_SKELETON = mob(ThunderSkeleton::new, "thunder_skeleton", skeleDim);
+    public EntityType<NatureSkeleton> NATURE_SKELETON = mob(NatureSkeleton::new, "nature_skeleton", skeleDim);
 
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 

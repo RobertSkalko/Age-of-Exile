@@ -37,6 +37,11 @@ public class MobAttributes {
         FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(ENTITIES.HEALER_MAGE, SkeletonEntity.createAbstractSkeletonAttributes());
 
+        FabricDefaultAttributeRegistry.register(ENTITIES.FIRE_SKELETON, SkeletonEntity.createAbstractSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(ENTITIES.WATER_SKELETON, SkeletonEntity.createAbstractSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_SKELETON, SkeletonEntity.createAbstractSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(ENTITIES.NATURE_SKELETON, SkeletonEntity.createAbstractSkeletonAttributes());
+
         FabricDefaultAttributeRegistry.register(ENTITIES.FIRE_CHICKEN, SpiderEntity.createSpiderAttributes()
             .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4F));
         FabricDefaultAttributeRegistry.register(ENTITIES.WATER_CHICKEN, SpiderEntity.createSpiderAttributes()

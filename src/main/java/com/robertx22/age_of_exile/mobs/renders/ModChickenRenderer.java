@@ -1,6 +1,7 @@
-package com.robertx22.age_of_exile.mobs.chickens;
+package com.robertx22.age_of_exile.mobs.renders;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mobs.chickens.BaseChicken;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.model.ChickenEntityModel;

@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -13,20 +12,23 @@ import net.minecraft.util.math.MathHelper;
 public class LootUtils {
 
     // prevents lvl 50 players farming lvl 1 mobs
-    public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
+    public static float getLevelDistancePunishmentMulti(UnitData mob, UnitData player) {
 
         int diff = Math.abs(mob.getLevel() - player.getLevel());
 
+        float multi = 1;
+
         if (diff < 5) {
-            return chance;
+            return multi;
         } else {
-            chance = chance * (1F - diff * 0.03F);
+            int num = diff - 5;
+            multi = 1F - num * 0.02F;
         }
 
-        if (chance < 0) {
+        if (multi < 0) {
             return 0;
         }
-        return chance;
+        return multi;
 
     }
 
@@ -45,20 +47,19 @@ public class LootUtils {
         return stack;
     }
 
-    public static float applyLootMultipliers(float chance, UnitData mob, LivingEntity entity) {
+    public static float getMobHealthBasedLootMulti(UnitData mob, LivingEntity entity) {
 
-        chance *= Rarities.Mobs.get(mob.getRarity())
-            .LootMultiplier();
+        float multi = 1;
 
         float hp = EntityUtils.getVanillaMaxHealth(entity);
 
-        chance *= (1 + hp / 20F);
+        multi += (1 + hp / 20F) - 1;
 
         if (entity instanceof SlimeEntity) {
-            chance /= 15;
+            multi *= 0.15F;
         }
 
-        return chance;
+        return multi;
     }
 
     public static int WhileRoll(float chance) {

@@ -1,6 +1,7 @@
-package com.robertx22.age_of_exile.mobs.zombies;
+package com.robertx22.age_of_exile.mobs.renders.zombie;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mobs.zombies.BaseZombie;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.ZombieBaseEntityRenderer;
 import net.minecraft.client.render.entity.model.DrownedEntityModel;

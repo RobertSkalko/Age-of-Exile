@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mobs.mob_stats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurn;
@@ -67,10 +67,10 @@ public class SpecialMobStats {
 
     public static SpecialMobStats EMPTY = new SpecialMobStats();
 
-    public static SpecialMobStats FIRE = new SpecialMobStats(new Data(new StatModifier(1, 1, new WeaponDamage(Elements.Fire))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
-    public static SpecialMobStats WATER = new SpecialMobStats(new Data(new StatModifier(1, 1, new WeaponDamage(Elements.Water))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
-    public static SpecialMobStats NATURE = new SpecialMobStats(new Data(new StatModifier(1, 1, new WeaponDamage(Elements.Nature))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
-    public static SpecialMobStats THUNDER = new SpecialMobStats(new Data(new StatModifier(1, 1, new WeaponDamage(Elements.Thunder))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats FIRE = new SpecialMobStats(new Data(new StatModifier(50, 50, new PhysConvertToEle(Elements.Fire))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats WATER = new SpecialMobStats(new Data(new StatModifier(50, 50, new PhysConvertToEle(Elements.Water))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats NATURE = new SpecialMobStats(new Data(new StatModifier(50, 50, new PhysConvertToEle(Elements.Nature))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats THUNDER = new SpecialMobStats(new Data(new StatModifier(50, 50, new PhysConvertToEle(Elements.Thunder))), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
 
     public static SpecialMobStats FIRE_RES = new SpecialMobStats(new Data(new StatModifier(50, 50, new ElementalResist(Elements.Fire)), false), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
     public static SpecialMobStats WATER_RES = new SpecialMobStats(new Data(new StatModifier(50, 50, new ElementalResist(Elements.Water)), false), new Data(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
@@ -114,6 +114,11 @@ public class SpecialMobStats {
         reg(ENTITIES.WATER_MAGE, water());
         reg(ENTITIES.NATURE_MAGE, nature());
         reg(ENTITIES.THUNDER_MAGE, thunder());
+
+        reg(ENTITIES.FIRE_SKELETON, fire());
+        reg(ENTITIES.WATER_SKELETON, water());
+        reg(ENTITIES.NATURE_SKELETON, nature());
+        reg(ENTITIES.THUNDER_SKELETON, thunder());
 
         INSTANCE.register(ENTITIES.HEALER_MAGE, new SpecialMobStats(new Data(new StatModifier(-90, -90, HealEffectivenessOnSelf.getInstance()))));
 

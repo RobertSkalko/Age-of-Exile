@@ -105,12 +105,19 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
                 fac.input('v', Items.IRON_INGOT);
             }
 
-            return fac.input('e', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
+            fac.input('e', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
                 .input('s', smallResource)
-                .pattern(" e ")
-                .pattern("svs")
-                .pattern(" s ")
-                .criterion("player_level", trigger());
+                .pattern(" e ");
+
+            if (type == GearMaterialRegister.TYPE.ORE) {
+                fac.pattern("svs");
+            } else {
+                fac.pattern(" v "); // less strings needed for cloth and leather
+            }
+
+            fac.pattern(" s ");
+
+            return fac.criterion("player_level", trigger());
         }
 
         Item essence = ModRegistry.MISC_ITEMS.MAGIC_ESSENCE;
