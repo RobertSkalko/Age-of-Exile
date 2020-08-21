@@ -19,6 +19,9 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IOnBasicAttackedPotion;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.passive.TameableEntity;
@@ -30,6 +33,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
@@ -237,6 +241,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return false;
     }
 
+    EntityAttributeModifier NO_KNOCKBACK = new EntityAttributeModifier(
+        UUID.fromString("e926df30-c376-11ea-87d0-0242ac131053"),
+        EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE.getTranslationKey(),
+        100,
+        EntityAttributeModifier.Operation.ADDITION
+    );
+
     @Override
     protected void activate() {
 
@@ -283,7 +294,24 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (event == null || !(event.getSource() instanceof MyDamageSource)) {
                 //int hurtResistantTime = target.timeUntilRegen;
                 //target.timeUntilRegen = 0;
+
+                EntityAttributeInstance attri = target.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
+
+                if (removeKnockback) {
+
+                    if (!attri.hasModifier(NO_KNOCKBACK)) {
+                        attri.addPersistentModifier(NO_KNOCKBACK);
+                    }
+                }
+
                 target.damage(dmgsource, dmg);
+
+                if (removeKnockback) {
+                    if (attri.hasModifier(NO_KNOCKBACK)) {
+                        attri.removeModifier(NO_KNOCKBACK);
+                    }
+                }
+
                 //target.timeUntilRegen = hurtResistantTime;
             }
 
