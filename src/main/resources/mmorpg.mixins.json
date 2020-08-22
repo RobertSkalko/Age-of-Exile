@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ArrowShootMixin",
+    "BiomeAccessor",
     "ChestMixin",
+    "DefaultBiomeFeaturesMixin",
     "FoodComponentMixin",
     "LivingEntityMixin",
     "OnCraftMixin",
