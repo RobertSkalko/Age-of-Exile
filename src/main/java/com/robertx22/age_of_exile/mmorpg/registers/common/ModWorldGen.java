@@ -24,7 +24,7 @@ public class ModWorldGen {
 
         FabricStructureBuilder.create(new Identifier(Ref.MODID, "tower"), TOWER)
             .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-            .defaultConfig(1, 1, 1)
+            .defaultConfig(4, 0, 5555)
             .superflatFeature(CONFIGURED_TOWER)
             .adjustsSurface()
             .register();

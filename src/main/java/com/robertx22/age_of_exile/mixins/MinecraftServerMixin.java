@@ -48,12 +48,12 @@ public class MinecraftServerMixin {
                 List<List<Supplier<ConfiguredFeature<?, ?>>>> tempFeature = ((GenerationSettingsAccessor) biome.getGenerationSettings()).getGSFeatures();
                 List<List<Supplier<ConfiguredFeature<?, ?>>>> mutableFeatures = new ArrayList<>(tempFeature);
 
+                ((GenerationSettingsAccessor) biome.getGenerationSettings()).setGSFeatures(mutableFeatures);
+                ((GenerationSettingsAccessor) biome.getGenerationSettings()).setGSStructureFeatures(new ArrayList<>(((GenerationSettingsAccessor) biome.getGenerationSettings()).getGSStructureFeatures()));
+
                 biome.getGenerationSettings()
                     .getStructureFeatures()
                     .add(() -> ModWorldGen.INSTANCE.CONFIGURED_TOWER);
-
-                ((GenerationSettingsAccessor) biome.getGenerationSettings()).setGSFeatures(mutableFeatures);
-                ((GenerationSettingsAccessor) biome.getGenerationSettings()).setGSStructureFeatures(new ArrayList<>(((GenerationSettingsAccessor) biome.getGenerationSettings()).getGSStructureFeatures()));
 
             }
         }

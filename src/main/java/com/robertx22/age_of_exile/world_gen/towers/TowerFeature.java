@@ -36,6 +36,11 @@ public class TowerFeature extends StructureFeature<DefaultFeatureConfig> {
         }
 
         @Override
+        public boolean hasChildren() {
+            return true;
+        }
+
+        @Override
         public void init(DynamicRegistryManager dynamicRegistryManager, ChunkGenerator chunkGenerator, StructureManager structureManager, int i, int j, Biome biome, DefaultFeatureConfig defaultFeatureConfig) {
             int x = i * 16;
             int z = j * 16;

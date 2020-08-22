@@ -42,7 +42,7 @@ public class TowerPieces {
         int startheight = startstruc.getSize()
             .getY();
 
-        pieces.add(new Piece(manager, randomOf(ALL_STARTS, rand), pos, rotation, amount * 3));
+        pieces.add(new Piece(manager, startid, pos, rotation, 0));
 
         int heightOffset = startheight;
 
@@ -50,7 +50,7 @@ public class TowerPieces {
             Identifier id = randomOf(ALL_MIDS, rand);
             Structure struc = manager.getStructure(id);
 
-            pieces.add(new Piece(manager, id, pos, rotation, j * heightOffset));
+            pieces.add(new Piece(manager, id, pos, rotation, heightOffset));
 
             int height = struc.getSize()
                 .getY();
@@ -96,7 +96,7 @@ public class TowerPieces {
             super.toNbt(tag);
             tag.putString("Template", this.template.toString());
             tag.putString("Rot", this.rotation.name());
-            tag.putInt("y_off", yOffset);
+            tag.putInt("yoff", yOffset);
         }
 
         @Override
