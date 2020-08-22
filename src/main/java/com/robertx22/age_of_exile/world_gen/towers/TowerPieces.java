@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.world_gen.towers;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModWorldGen;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.world_gen.towers.processors.BiomeProcessor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
@@ -24,16 +25,27 @@ public class TowerPieces {
 
     private static Identifier MID1 = new Identifier(Ref.MODID, "tower/middle/air_floor");
     private static Identifier START1 = new Identifier(Ref.MODID, "tower/start/lava");
+    private static Identifier TOP1 = new Identifier(Ref.MODID, "tower/top/simple_fort");
+    private static Identifier FOUNDATION = new Identifier(Ref.MODID, "tower/foundation");
 
     static List<Identifier> ALL_MIDS = Arrays.asList(MID1);
     static List<Identifier> ALL_STARTS = Arrays.asList(START1);
+    static List<Identifier> ALL_TOPS = Arrays.asList(TOP1);
+
+    static int FOUNDATION_SIZE = 8;
 
     static Identifier randomOf(List<Identifier> list, Random ran) {
         return RandomUtils.randomFromList(list, ran);
     }
 
     public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces, Random rand) {
-        int amount = rand.nextInt(4) + 3;
+        int amount = rand.nextInt(4) + 2;
+
+        pos = pos.add(0, -FOUNDATION_SIZE, 0);
+
+        for (int i = 0; i < FOUNDATION_SIZE; i++) {
+            pieces.add(new Piece(manager, FOUNDATION, pos = pos.add(0, 1, 0), rotation));
+        }
 
         Identifier startid = randomOf(ALL_STARTS, rand);
         Structure startstruc = manager.getStructure(startid);
@@ -57,10 +69,11 @@ public class TowerPieces {
             int height = struc.getSize()
                 .getY();
             pos = pos.add(0, height, 0);
-
         }
 
-        //  pieces.add(new Piece(manager, TOP_TEMPLATE, pos, rotation, 0));
+        Identifier topid = randomOf(ALL_TOPS, rand);
+        pieces.add(new Piece(manager, topid, pos, curRot));
+
     }
 
     public static class Piece extends SimpleStructurePiece {
@@ -84,11 +97,13 @@ public class TowerPieces {
 
         private void initializeStructureData(StructureManager manager) {
             Structure structure = manager.getStructureOrBlank(this.template);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation)
+            StructurePlacementData data = (new StructurePlacementData()).setRotation(this.rotation)
                 .setMirror(BlockMirror.NONE)
                 .setPosition(new BlockPos(0, 0, 0))
-                .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
-            this.setStructureData(structure, this.pos, structurePlacementData);
+                .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
+                .addProcessor(new BiomeProcessor(""));
+
+            this.setStructureData(structure, this.pos, data);
         }
 
         @Override
@@ -124,7 +139,7 @@ public class TowerPieces {
                 .get();
 
             if (surfaces.stream()
-                .anyMatch(x -> Math.abs(x - highest) > 8)) {
+                .anyMatch(x -> Math.abs(x - highest) > FOUNDATION_SIZE)) {
                 return false;
 
             } else {

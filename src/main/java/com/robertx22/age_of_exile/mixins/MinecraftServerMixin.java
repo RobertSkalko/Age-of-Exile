@@ -50,6 +50,10 @@ public class MinecraftServerMixin {
             for (Biome biome : registryManager.getOptional(Registry.BIOME_KEY)
                 .get()) {
 
+                if (biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.RIVER) {
+                    continue;
+                }
+
                 BiomeAccessor access = (BiomeAccessor) (Object) biome;
                 Map<Integer, List<StructureFeature<?>>> list = access.getStructureLists();
                 list = new HashMap<>(list);
