@@ -13,13 +13,12 @@ public class DefaultBiomeFeaturesMixin {
 
     @Inject(method = "addDesertLakes", at = @At("RETURN"))
     private static void addGateway(GenerationSettings.Builder builder, CallbackInfo ci) {
-        builder.structureFeature(ModWorldGen.INSTANCE.CONFIGURED_TOWER);
-        System.out.println("Added tower structure.");
+        // builder.structureFeature(ModWorldGen.INSTANCE.CONFIGURED_TOWER);
+        // System.out.println("Added tower structure.");
     }
 
     @Inject(method = "addLandCarvers", at = @At("RETURN"))
     private static void addLandCarvers(GenerationSettings.Builder builder, CallbackInfo ci) {
-
         builder.structureFeature(ModWorldGen.INSTANCE.CONFIGURED_TOWER);
         System.out.println("Added tower structure.");
     }

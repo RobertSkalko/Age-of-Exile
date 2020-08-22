@@ -20,13 +20,18 @@ public class ModWorldGen {
     public final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> CONFIGURED_TOWER = TOWER.configure(new DefaultFeatureConfig());
     public final StructurePieceType TOWER_PIECE = TowerPieces.Piece::new;
 
-    public void register() {
+    public ModWorldGen() {
+
         FabricStructureBuilder.create(new Identifier(Ref.MODID, "tower"), TOWER)
             .step(GenerationStep.Feature.SURFACE_STRUCTURES)
             .defaultConfig(1, 1, 1)
             .superflatFeature(CONFIGURED_TOWER)
             .adjustsSurface()
             .register();
+
+        Registry.register(Registry.STRUCTURE_PIECE, new Identifier(Ref.MODID, "tower_piece"), TOWER_PIECE);
+
+
 
         /*
         List<Biome> biomes = BuiltinRegistries.BIOME.getEntries()
@@ -51,8 +56,6 @@ public class ModWorldGen {
         });
 
          */
-
-        Registry.register(Registry.STRUCTURE_PIECE, new Identifier(Ref.MODID, "tower_piece"), TOWER_PIECE);
 
     }
 
