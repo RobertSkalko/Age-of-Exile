@@ -24,38 +24,11 @@ public class ModWorldGen {
 
         FabricStructureBuilder.create(new Identifier(Ref.MODID, "tower"), TOWER)
             .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-            .defaultConfig(4, 0, 5555)
+            .defaultConfig(6, -1, 378235)
             .superflatFeature(CONFIGURED_TOWER)
-            .adjustsSurface()
             .register();
 
         Registry.register(Registry.STRUCTURE_PIECE, new Identifier(Ref.MODID, "tower_piece"), TOWER_PIECE);
-
-
-
-        /*
-        List<Biome> biomes = BuiltinRegistries.BIOME.getEntries()
-            .stream()
-            .map(x -> x.getValue())
-            .collect(Collectors.toList());
-
-        biomes.forEach(x -> {
-            try {
-                BiomeAccessor access = (BiomeAccessor) (Object) x;
-                Map<Integer, List<StructureFeature<?>>> list = access.getStructureLists();
-
-                list = new HashMap<>(list);
-                list.get(GenerationStep.Feature.SURFACE_STRUCTURES.ordinal())
-                    .add(TOWER);
-
-                access.setStructureLists(list);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-         */
 
     }
 

@@ -18,9 +18,7 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class TowerPieces {
 
@@ -37,25 +35,29 @@ public class TowerPieces {
     public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces, Random rand) {
         int amount = rand.nextInt(4) + 3;
 
-        Identifier startid = randomOf(ALL_MIDS, rand);
+        Identifier startid = randomOf(ALL_STARTS, rand);
         Structure startstruc = manager.getStructure(startid);
         int startheight = startstruc.getSize()
             .getY();
 
-        pieces.add(new Piece(manager, startid, pos, rotation, 0));
+        BlockRotation curRot = rotation;
 
-        int heightOffset = startheight;
+        pieces.add(new Piece(manager, startid, pos, rotation));
+        pos = pos.add(0, startheight, 0);
 
         for (int j = 0; j < amount - 1; ++j) {
+
             Identifier id = randomOf(ALL_MIDS, rand);
             Structure struc = manager.getStructure(id);
 
-            pieces.add(new Piece(manager, id, pos, rotation, heightOffset));
+            BlockPos p = pos;
+
+            pieces.add(new Piece(manager, id, p, curRot));
 
             int height = struc.getSize()
                 .getY();
+            pos = pos.add(0, height, 0);
 
-            heightOffset += height;
         }
 
         //  pieces.add(new Piece(manager, TOP_TEMPLATE, pos, rotation, 0));
@@ -64,29 +66,27 @@ public class TowerPieces {
     public static class Piece extends SimpleStructurePiece {
         private Identifier template;
         private BlockRotation rotation;
-        int yOffset;
 
-        public Piece(StructureManager manager, Identifier identifier, BlockPos pos, BlockRotation rotation, int yOffset) {
+        public Piece(StructureManager manager, Identifier identifier, BlockPos pos, BlockRotation rotation) {
             super(ModWorldGen.INSTANCE.TOWER_PIECE, 0);
             this.template = identifier;
-            this.pos = pos.add(0, yOffset, 0);
+            this.pos = pos;
             this.rotation = rotation;
-            this.initializeStructureData(manager, yOffset);
+            this.initializeStructureData(manager);
         }
 
         public Piece(StructureManager manager, CompoundTag tag) {
             super(ModWorldGen.INSTANCE.TOWER_PIECE, tag);
             this.template = new Identifier(tag.getString("Template"));
             this.rotation = BlockRotation.valueOf(tag.getString("Rot"));
-            this.yOffset = tag.getInt("y_off");
-            this.initializeStructureData(manager, yOffset);
+            this.initializeStructureData(manager);
         }
 
-        private void initializeStructureData(StructureManager manager, int y) {
+        private void initializeStructureData(StructureManager manager) {
             Structure structure = manager.getStructureOrBlank(this.template);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation)
                 .setMirror(BlockMirror.NONE)
-                .setPosition(new BlockPos(0, y, 0))
+                .setPosition(new BlockPos(0, 0, 0))
                 .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
             this.setStructureData(structure, this.pos, structurePlacementData);
         }
@@ -96,7 +96,7 @@ public class TowerPieces {
             super.toNbt(tag);
             tag.putString("Template", this.template.toString());
             tag.putString("Rot", this.rotation.name());
-            tag.putInt("yoff", yOffset);
+
         }
 
         @Override
@@ -104,21 +104,39 @@ public class TowerPieces {
 
         }
 
-        BlockPos getPos() {
-            return new BlockPos(0, yOffset, 0);
-        }
-
         @Override
-        public boolean generate(StructureWorldAccess structureWorldAccess, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockBox boundingBox, ChunkPos chunkPos, BlockPos blockPos) {
+        public boolean generate(StructureWorldAccess waccess, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockBox boundingBox, ChunkPos chunkPos, BlockPos blockPos) {
 
-            BlockPos blockPos2 = getPos();
-            int surfaceY = structureWorldAccess.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos2.getX(), blockPos2.getZ());
-            BlockPos blockPos4 = this.pos;
-            this.pos = this.pos.add(0, surfaceY - 90 - 1, 0);
-            boolean bl = super.generate(structureWorldAccess, structureAccessor, chunkGenerator, random, boundingBox, chunkPos, blockPos);
+            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation)
+                .setMirror(BlockMirror.NONE)
+                .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
+            BlockPos blockPos3 = this.pos.add(Structure.transform(structurePlacementData, new BlockPos(0, 0, 0)));
 
-            this.pos = blockPos4;
-            return bl;
+            List<Integer> surfaces = new ArrayList<>();
+
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
+                    surfaces.add(waccess.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos3.getX() + x, blockPos3.getZ() + z));
+                }
+            }
+            int highest = surfaces.stream()
+                .max(Comparator.comparingInt(x -> x))
+                .get();
+
+            if (surfaces.stream()
+                .anyMatch(x -> Math.abs(x - highest) > 8)) {
+                return false;
+
+            } else {
+                int surfaceY = highest;
+                BlockPos blockPos4 = this.pos;
+                this.pos = this.pos.add(0, surfaceY - 90 - 1, 0);
+                boolean bl = super.generate(waccess, structureAccessor, chunkGenerator, random, boundingBox, chunkPos, blockPos);
+
+                this.pos = blockPos4;
+                return bl;
+            }
         }
     }
+
 }
