@@ -45,7 +45,7 @@ public class Intelligence extends BaseCoreStat {
         return Arrays.asList(
             new StatModifier(1F, 1F, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new StatModifier(0.5F, 0.5F, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new StatModifier(1F, 1F, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
+            new StatModifier(0.5F, 0.5F, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
     }
 

@@ -38,7 +38,7 @@ public class MobAffixes implements ISlashRegistryInit {
         new StatModifier(5, 5, ChanceToApplyEffect.CHILL),
         new StatModifier(5, 5, ChanceToApplyEffect.POISON),
         new StatModifier(5, 5, ChanceToApplyEffect.STATIC),
-        new StatModifier(33, 33, ExtraMobDropsStat.getInstance())
+        new StatModifier(15, 15, ExtraMobDropsStat.getInstance())
     );
 
     @Override

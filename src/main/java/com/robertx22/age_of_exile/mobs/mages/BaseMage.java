@@ -35,7 +35,7 @@ public abstract class BaseMage extends SkeletonEntity {
     }
 
     public void initMyMobGoals() {
-        goalSelector.add(2, new SpellAttackGoal(getSpell(), this, 1, 50, 20));
+        goalSelector.add(2, new SpellAttackGoal(getSpell(), this, 1, 40, 15));
     }
 
     @Override

@@ -7,14 +7,19 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
 public class FoodEffectBuilder {
 
     public static FoodEffect auto(Item food) {
 
         if (food.getFoodComponent() == null) {
+            return null;
+        }
+        if (food == Items.ROTTEN_FLESH || food == Items.SPIDER_EYE) {
             return null;
         }
 
@@ -25,6 +30,8 @@ public class FoodEffectBuilder {
         FoodComponent foodcomponent = food.getFoodComponent();
 
         float total = foodcomponent.getHunger() + foodcomponent.getSaturationModifier();
+
+        total = MathHelper.clamp(total, 1, 30);
 
         float effectMod = 1;
 

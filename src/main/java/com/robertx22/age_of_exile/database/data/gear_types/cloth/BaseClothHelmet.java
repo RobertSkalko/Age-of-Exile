@@ -23,7 +23,7 @@ public class BaseClothHelmet extends BaseArmor {
     @Override
     public List<StatModifier> baseStats() {
         return Arrays.asList(
-            new StatModifier(2, 6, MagicShield.getInstance(), ModType.FLAT)
+            new StatModifier(2, 5, MagicShield.getInstance(), ModType.FLAT)
         );
     }
 
