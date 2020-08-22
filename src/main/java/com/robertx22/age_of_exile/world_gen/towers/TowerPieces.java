@@ -39,7 +39,7 @@ public class TowerPieces {
     }
 
     public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces, Random rand) {
-        int amount = rand.nextInt(4) + 2;
+        int midPieces = rand.nextInt(2) + 2;
 
         pos = pos.add(0, -FOUNDATION_SIZE, 0);
 
@@ -57,7 +57,7 @@ public class TowerPieces {
         pieces.add(new Piece(manager, startid, pos, rotation));
         pos = pos.add(0, startheight, 0);
 
-        for (int j = 0; j < amount - 1; ++j) {
+        for (int i = 0; i < midPieces; i++) {
 
             Identifier id = randomOf(ALL_MIDS, rand);
             Structure struc = manager.getStructure(id);

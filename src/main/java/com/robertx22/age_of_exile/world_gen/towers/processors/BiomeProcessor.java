@@ -28,8 +28,14 @@ public class BiomeProcessor extends StructureProcessor {
 
     static {
         MAP = new HashMap<>();
-        MAP.put(SandstoneProc.getInstance()
-            .id(), SandstoneProc.getInstance());
+        reg(BrickProc.getInstance());
+        reg(MossyProc.getInstance());
+        reg(PrismaProc.getInstance());
+        reg(SandstoneProc.getInstance());
+    }
+
+    static void reg(BiomeProcessorType proc) {
+        MAP.put(proc.id(), proc);
     }
 
     public static final Codec<BiomeProcessor> CODEC = Codec.STRING.fieldOf("type")
