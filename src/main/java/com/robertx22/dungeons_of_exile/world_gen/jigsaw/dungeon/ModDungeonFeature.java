@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.world_gen.jigsaw.dungeon;
+package com.robertx22.dungeons_of_exile.world_gen.jigsaw.dungeon;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.ChunkPos;
@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class ModDungeonFeature extends JigsawFeature {
     public ModDungeonFeature(Codec<StructurePoolFeatureConfig> codec) {
-        super(codec, -8, true, true);
+        super(codec, -9, true, true);
     }
 
     @Override

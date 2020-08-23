@@ -1,10 +1,10 @@
-package com.robertx22.age_of_exile.world_gen.towers.processors;
+package com.robertx22.dungeons_of_exile.world_gen.processors;
 
 import com.mojang.serialization.Codec;
 import com.robertx22.age_of_exile.mixin_ducks.MobSpawnerLogicDuck;
 import com.robertx22.age_of_exile.mixin_ducks.SignDuck;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModWorldGen;
+import com.robertx22.dungeons_of_exile.world_gen.main.ModWorldGen;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SignBlock;

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mixins;
 import com.mojang.authlib.GameProfileRepository;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.datafixers.DataFixer;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModWorldGen;
+import com.robertx22.dungeons_of_exile.world_gen.main.ModWorldGen;
 import net.minecraft.resource.ResourcePackManager;
 import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.MinecraftServer;
