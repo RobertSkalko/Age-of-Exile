@@ -50,23 +50,16 @@ public class MinecraftServerMixin {
             for (Biome biome : registryManager.getOptional(Registry.BIOME_KEY)
                 .get()) {
 
-                /*
-                if (biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.RIVER) {
-                    continue;
-                }
-
-                 */
-
                 BiomeAccessor access = (BiomeAccessor) (Object) biome;
                 Map<Integer, List<StructureFeature<?>>> list = access.getStructureLists();
                 list = new HashMap<>(list);
                 list.get(GenerationStep.Feature.SURFACE_STRUCTURES.ordinal())
-                    .add(ModWorldGen.INSTANCE.TOWER);
+                    .add(ModWorldGen.INSTANCE.DUNGEON);
                 access.setStructureLists(list);
 
                 GenerationSettingsAccessor gen = (GenerationSettingsAccessor) biome.getGenerationSettings();
                 List<Supplier<ConfiguredStructureFeature<?, ?>>> setlist = new ArrayList<>(gen.getGSStructureFeatures());
-                setlist.add(() -> ModWorldGen.INSTANCE.CONFIGURED_TOWER);
+                setlist.add(() -> ModWorldGen.INSTANCE.CONFIG_DUNGEON);
                 gen.setGSStructureFeatures(setlist);
 
             }

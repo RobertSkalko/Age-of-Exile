@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.UniqueGearItemRegister;
 import com.robertx22.age_of_exile.mobs.mob_stats.SpecialMobStats;
+import com.robertx22.age_of_exile.world_gen.jigsaw.dungeon.DungeonPools;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -26,6 +27,8 @@ public class CommonInit implements ModInitializer {
     @Override
     public void onInitialize() {
         System.out.println("Starting " + Ref.MOD_NAME);
+
+        DungeonPools.init();
 
         ModRegistry.init();
         MobAttributes.register();
