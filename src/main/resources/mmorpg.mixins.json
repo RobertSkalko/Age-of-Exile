@@ -9,13 +9,10 @@
     "DefaultBiomeFeaturesMixin",
     "FoodComponentMixin",
     "GenerationSettingsAccessor",
-    "LivingEntityMixin",
-    "MinecraftServerMixin",
-    "MobSpawnerLogicMixin",
+    "LivingEntityMixin",        
     "OnCraftMixin",
     "PlayerManagerMixin",
-    "ServerResourceManagerMixin",
-    "SignMixin",
+    "ServerResourceManagerMixin",    
     "SpawnSettingsMixin"
   ],
   "client": [
