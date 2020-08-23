@@ -154,6 +154,11 @@ public class EntityRegister {
         if (sw.getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
+
+        if (spawnReason == SpawnReason.SPAWNER) {
+            return true;
+        }
+
         if (!WorldAreas.getArea((World) sw, pos)
             .getAreaModifier()
             .canMobSpawn(type)) {

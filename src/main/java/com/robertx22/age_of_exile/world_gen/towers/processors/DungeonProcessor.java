@@ -65,7 +65,7 @@ public class DungeonProcessor extends StructureProcessor {
                     saccess.getspawnPotentials()
                         .clear();
 
-                    EntityType type = ModRegistry.ENTITIES.WATER_MAGE;
+                    EntityType type = ModRegistry.ENTITIES.ARCANE_SPIDER;
 
                     MobSpawnerEntry entry = new MobSpawnerEntry();
                     entry.getEntityTag()
@@ -74,6 +74,7 @@ public class DungeonProcessor extends StructureProcessor {
 
                     saccess.getspawnPotentials()
                         .add(entry);
+
                     spawner.getLogic()
                         .setSpawnEntry(entry);
 
