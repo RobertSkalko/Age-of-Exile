@@ -21,20 +21,30 @@ public class DungeonPools {
 
     static {
 
-        STARTPOOL = StructurePools.register(new StructurePool(new Identifier(Ref.MODID, "start_dungeon"), new Identifier("empty"),
+        STARTPOOL = StructurePools.register(new StructurePool(new Identifier(Ref.MODID, "dungeon/starts"), new Identifier("empty"),
             ImmutableList.of(
-                Pair.of(method_30435(Ref.MODID + ":test/teststart", EMPTY), 1)
+                Pair.of(method_30435(Ref.MODID + ":dungeon/starts/start1", EMPTY), 1)
             ), RIGID)
 
         );
 
-        StructurePools.register(new StructurePool(new Identifier(Ref.MODID, "dungeon"), new Identifier("empty"),
+        StructurePools.register(new StructurePool(new Identifier(Ref.MODID, "dungeon/rooms"), new Identifier("empty"),
             ImmutableList.of(
-                Pair.of(method_30435(Ref.MODID + ":test/testend", EMPTY), 1),
-                Pair.of(method_30435(Ref.MODID + ":test/testhall", EMPTY), 5),
-                Pair.of(method_30435(Ref.MODID + ":test/testroom", EMPTY), 1)
+                Pair.of(method_30435(Ref.MODID + ":dungeon/rooms/room1", EMPTY), 1),
+                Pair.of(method_30435(Ref.MODID + ":dungeon/rooms/small_room_campfire", EMPTY), 3)
             ), RIGID)
+        );
 
+        StructurePools.register(new StructurePool(new Identifier(Ref.MODID, "dungeon/near_starts"), new Identifier("empty"),
+            ImmutableList.of(
+                Pair.of(method_30435(Ref.MODID + ":dungeon/near_starts/near_start1", EMPTY), 1)
+            ), RIGID)
+        );
+
+        StructurePools.register(new StructurePool(new Identifier(Ref.MODID, "dungeon/halls"), new Identifier("empty"),
+            ImmutableList.of(
+                Pair.of(method_30435(Ref.MODID + ":dungeon/halls/straight_hall", EMPTY), 1)
+            ), RIGID)
         );
 
     }

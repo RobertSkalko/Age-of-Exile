@@ -11,12 +11,13 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class ModDungeonFeature extends JigsawFeature {
     public ModDungeonFeature(Codec<StructurePoolFeatureConfig> codec) {
-        super(codec, 0, true, true);
+        super(codec, -8, true, true);
     }
 
     @Override
     protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long l, ChunkRandom chunkRandom, int i, int j, Biome biome, ChunkPos chunkPos, StructurePoolFeatureConfig structurePoolFeatureConfig) {
-        return true;
+
+        return biome.getDepth() < 0.5F && biome.getCategory() != Biome.Category.OCEAN; // no mountains
     }
 }
 
