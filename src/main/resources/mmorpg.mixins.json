@@ -11,9 +11,11 @@
     "GenerationSettingsAccessor",
     "LivingEntityMixin",
     "MinecraftServerMixin",
+    "MobSpawnerLogicMixin",
     "OnCraftMixin",
     "PlayerManagerMixin",
     "ServerResourceManagerMixin",
+    "SignMixin",
     "SpawnSettingsMixin"
   ],
   "client": [

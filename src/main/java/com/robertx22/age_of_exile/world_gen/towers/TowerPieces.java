@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModWorldGen;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.world_gen.towers.processors.BiomeProcessor;
+import com.robertx22.age_of_exile.world_gen.towers.processors.DungeonProcessor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
@@ -23,12 +24,15 @@ import java.util.*;
 
 public class TowerPieces {
 
-    private static Identifier MID1 = new Identifier(Ref.MODID, "tower/middle/air_floor");
+    private static Identifier MIDN1 = new Identifier(Ref.MODID, "tower/middle/normal/air_floor");
+    private static Identifier MIDR1 = new Identifier(Ref.MODID, "tower/middle/rotated/soul_sand_floor");
     private static Identifier START1 = new Identifier(Ref.MODID, "tower/start/lava");
     private static Identifier TOP1 = new Identifier(Ref.MODID, "tower/top/simple_fort");
     private static Identifier FOUNDATION = new Identifier(Ref.MODID, "tower/foundation");
 
-    static List<Identifier> ALL_MIDS = Arrays.asList(MID1);
+    static List<Identifier> ALL_MID_N = Arrays.asList(MIDN1);
+    static List<Identifier> ALL_MID_R = Arrays.asList(MIDR1);
+
     static List<Identifier> ALL_STARTS = Arrays.asList(START1);
     static List<Identifier> ALL_TOPS = Arrays.asList(TOP1);
 
@@ -59,7 +63,13 @@ public class TowerPieces {
 
         for (int i = 0; i < midPieces; i++) {
 
-            Identifier id = randomOf(ALL_MIDS, rand);
+            Identifier id = null;
+            if (i % 2 != 0) {// because stair rotation
+                id = randomOf(ALL_MID_N, rand);
+            } else {
+                id = randomOf(ALL_MID_R, rand);
+            }
+
             Structure struc = manager.getStructure(id);
 
             BlockPos p = pos;
@@ -101,7 +111,8 @@ public class TowerPieces {
                 .setMirror(BlockMirror.NONE)
                 .setPosition(new BlockPos(0, 0, 0))
                 .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
-                .addProcessor(new BiomeProcessor(""));
+                .addProcessor(new BiomeProcessor(""))
+                .addProcessor(new DungeonProcessor(""));
 
             this.setStructureData(structure, this.pos, data);
         }
@@ -139,7 +150,7 @@ public class TowerPieces {
                 .get();
 
             if (surfaces.stream()
-                .anyMatch(x -> Math.abs(x - highest) > FOUNDATION_SIZE)) {
+                .anyMatch(x -> Math.abs(x - highest) > FOUNDATION_SIZE)) {//if surface is flat enough
                 return false;
 
             } else {

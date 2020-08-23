@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.world_gen.towers.TowerFeature;
 import com.robertx22.age_of_exile.world_gen.towers.TowerPieces;
 import com.robertx22.age_of_exile.world_gen.towers.processors.BiomeProcessor;
+import com.robertx22.age_of_exile.world_gen.towers.processors.DungeonProcessor;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.structure.processor.StructureProcessorType;
@@ -19,6 +20,7 @@ public class ModWorldGen {
     public static ModWorldGen INSTANCE = new ModWorldGen();
 
     public StructureProcessorType<BiomeProcessor> BIOME_PROCESSOR = StructureProcessorType.register("biome_processor", BiomeProcessor.CODEC);
+    public StructureProcessorType<DungeonProcessor> SIGN_PROCESSOR = StructureProcessorType.register("sign_processor", DungeonProcessor.CODEC);
 
     public final StructureFeature<DefaultFeatureConfig> TOWER = new TowerFeature(DefaultFeatureConfig.CODEC);
     public final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> CONFIGURED_TOWER = TOWER.configure(new DefaultFeatureConfig());
