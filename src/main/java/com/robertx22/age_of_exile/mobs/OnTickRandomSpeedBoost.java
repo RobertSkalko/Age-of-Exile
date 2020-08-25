@@ -13,8 +13,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class OnTickRandomSpeedBoost {
-    private static final UUID ATTACKING_SPEED_BOOST_ID = UUID.fromString("020E0DFB-87AE-4633-9556-521010E291A0");
-    static EntityAttributeModifier ATTACKING_SPEED_BOOST = new EntityAttributeModifier(ATTACKING_SPEED_BOOST_ID, "Attacking speed boost", 0.1D, EntityAttributeModifier.Operation.ADDITION);
+
+    static EntityAttributeModifier ATTACKING_SPEED_BOOST = new EntityAttributeModifier(
+        UUID.fromString("020E0DFB-87AE-4633-9556-521010E291A0"),
+        "Attacking speed boost",
+        0.075D,
+        EntityAttributeModifier.Operation.ADDITION);
     // attribute copied from enderman or zombifiedpiglin, idk which attribute it is..
 
     public static boolean onTickTryAnger(LivingEntity en, int ticksremaining) {

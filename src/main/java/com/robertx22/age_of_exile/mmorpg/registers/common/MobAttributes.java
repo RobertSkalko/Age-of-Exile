@@ -19,7 +19,7 @@ public class MobAttributes {
 
     public static DefaultAttributeContainer.Builder zombie() {
         return ZombieEntity.createZombieAttributes()
-            .add(GENERIC_MOVEMENT_SPEED, 0.28F);
+            .add(GENERIC_MOVEMENT_SPEED, 0.25F);
     }
 
     public static void register() {

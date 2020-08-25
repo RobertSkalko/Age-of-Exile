@@ -20,6 +20,7 @@ import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
+import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -358,6 +359,7 @@ public class Unit {
             MobStatUtils.worldMultiplierStats(entity.world, this);
             MobStatUtils.increaseMobStatsPerTier(data, this);
             MobStatUtils.modifyMobStatsByConfig(entity, data);
+            ExtraMobRarityAttributes.add(entity, data);
         }
 
         addGearStats(gears, entity, data);

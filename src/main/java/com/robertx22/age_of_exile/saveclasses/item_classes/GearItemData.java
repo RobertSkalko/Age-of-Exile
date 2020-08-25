@@ -35,6 +35,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Storable
@@ -460,8 +461,12 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             } else {
 
                 int amount = RandomUtils.RandomRange(min, max);
-
                 Item item = ItemUtils.randomMagicEssence();
+
+                if (rarity == IRarity.Common) {
+                    item = RandomUtils.randomFromList(Arrays.asList(Items.IRON_NUGGET, Items.IRON_INGOT, Items.GOLD_NUGGET));
+                }
+
                 stack = new ItemStack(item);
                 stack.setCount(amount);
 

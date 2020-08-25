@@ -25,6 +25,8 @@ import java.util.stream.Collectors;
 
 public class MobStatUtils {
 
+    // attribute copied from enderman or zombifiedpiglin, idk which attribute it is..
+
     static int spelldmg = 12;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
