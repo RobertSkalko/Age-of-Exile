@@ -7,8 +7,6 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
-
-
 public abstract class BaseTileContainer extends ScreenHandler {
 
     public int size = 0;
@@ -21,7 +19,7 @@ public abstract class BaseTileContainer extends ScreenHandler {
     }
 
     public boolean isPlayerInventory(int index) {
-        return index < this.slots.size() - size;
+        return index <= this.slots.size() - size;
     }
 
     public int getPlayerInvStart() {

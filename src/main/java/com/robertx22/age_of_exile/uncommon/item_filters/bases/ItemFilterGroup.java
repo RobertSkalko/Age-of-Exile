@@ -12,7 +12,7 @@ public class ItemFilterGroup {
     public static final ItemFilterGroup LOOT_BAG = new ItemFilterGroup(
         Arrays.asList(new GearItemFilter()));
     public static final ItemFilterGroup ANY_CURRENCY = new ItemFilterGroup(new CurrencyItemFilter());
-    public static final ItemFilterGroup ANY_MODIFY = new ItemFilterGroup(new ModifyItemFilter());
+    public static final ItemFilterGroup ANY_CURRENCY_EFFECT = new ItemFilterGroup(new CurrencyItemEffectFilter());
     public static final ItemFilterGroup ANY_UNIQUE = new ItemFilterGroup(new UniqueItemFilter());
     public static final ItemFilterGroup ANY_GEAR = new ItemFilterGroup(new GearItemFilter());
     public static final ItemFilterGroup ANY_GEAR_EXCEPT_UNIQUE = new ItemFilterGroup(new GearExceptUniqueFilter());

@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
 
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTileContainer;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.AnyModifySlot;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.ModifySlot;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.AnyCurrencyEffectItemSlot;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.AnyItemNotACurrencyEffectSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -53,9 +53,8 @@ public class ContainerGearModify extends BaseTileContainer {
 
         int count = 0;
 
-        addSlot(new ModifySlot(inventory, count++, 80, 32));
-
-        addSlot(new AnyModifySlot(inventory, count++, 80, 59));
+        addSlot(new AnyItemNotACurrencyEffectSlot(inventory, count++, 80, 59));
+        addSlot(new AnyCurrencyEffectItemSlot(inventory, count++, 80, 32));
 
         //TOOD
     }

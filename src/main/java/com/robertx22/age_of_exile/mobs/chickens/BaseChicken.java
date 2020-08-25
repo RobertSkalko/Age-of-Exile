@@ -4,7 +4,9 @@ import com.robertx22.age_of_exile.mobs.OnTickRandomSpeedBoost;
 import com.robertx22.age_of_exile.mobs.ai.NightAttackGoal;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.damage.DamageSource;
@@ -35,6 +37,24 @@ public class BaseChicken extends HostileEntity {
         }
         angryTicks--;
         super.tick();
+    }
+
+    boolean warnedOthers = false;
+
+    @Override
+    public boolean damage(DamageSource source, float amount) {
+        if (this.getHealth() >= this.getMaxHealth() * 0.9F) {
+            Entity attacker = source.getAttacker();
+            if (attacker instanceof LivingEntity) {
+                if (attacker != getAttacker()) {
+                    if (!warnedOthers) {
+                        OnTickRandomSpeedBoost.onAttackedAngerNearbyMobs(this, (LivingEntity) attacker);
+                        warnedOthers = true;
+                    }
+                }
+            }
+        }
+        return super.damage(source, amount);
     }
 
     @Override

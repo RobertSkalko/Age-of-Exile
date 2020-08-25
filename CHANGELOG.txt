@@ -45,6 +45,7 @@ Currently there's variations of: zombies, spiders, chickens and slimes!
 I also added 2 special kinds of mobs: mages and arcane mobs.
 Mages will cast elemental bolts at you and arcane mobs steal your mana.
 There's also healer mages that run to nearest mob and heal them!
+Mobs that spawn in daylight anger other mobs when you attack them, so care!
 
 Also most ele mobs have resistance to damage of that element :) (50%)
 

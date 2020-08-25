@@ -29,7 +29,7 @@ public class RareMob extends BaseRare implements MobRarity {
 
     @Override
     public float ExtraHealthMulti() {
-        return 0.75F;
+        return 1;
     }
 
     @Override

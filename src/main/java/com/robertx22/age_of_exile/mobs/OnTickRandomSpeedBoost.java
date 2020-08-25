@@ -1,11 +1,15 @@
 package com.robertx22.age_of_exile.mobs;
 
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.player.PlayerEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 public class OnTickRandomSpeedBoost {
@@ -39,4 +43,31 @@ public class OnTickRandomSpeedBoost {
         }
         return false;
     }
+
+    public static void onAttackedAngerNearbyMobs(LivingEntity en, LivingEntity attacker) {
+        if (en.world.isClient) {
+            return;
+        }
+        if (!en.world.isDay()) {
+            return;
+        }
+
+        if (attacker instanceof PlayerEntity) {
+
+            List<MobEntity> entities = EntityFinder.start(
+                en, MobEntity.class, en.getPos())
+                .radius(40)
+                .searchFor(EntityFinder.SearchFor.ALLIES)
+                .build();
+
+            entities.forEach(x -> {
+                if (x.getAttacker() == null) {
+                    x.setAttacker(attacker);
+                }
+            });
+
+        }
+
+    }
+
 }

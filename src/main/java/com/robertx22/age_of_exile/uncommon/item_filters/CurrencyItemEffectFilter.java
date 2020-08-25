@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.uncommon.item_filters.bases.ItemFilter;
 import net.minecraft.item.ItemStack;
 
-public class ModifyItemFilter extends ItemFilter {
+public class CurrencyItemEffectFilter extends ItemFilter {
 
     @Override
     public boolean IsValidItem(ItemStack stack) {
