@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTile;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.TileGearModify.ResultItem;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.player.PlayerEntity;
@@ -80,28 +79,19 @@ public class TileGearModify extends BaseTile {
     }
 
     public ItemStack GearSlot() {
-        return itemStacks[FIRST_INPUT_SLOT];
+        return itemStacks[0];
     }
 
     public ItemStack CraftItemSlot() {
-        return itemStacks[FIRST_INPUT_SLOT + 1];
-    }
-
-    public ItemStack OutputSot() {
-        return itemStacks[FIRST_INPUT_SLOT + 2];
+        return itemStacks[1];
     }
 
     public void setOutputSot(ItemStack stack) {
-        itemStacks[FIRST_INPUT_SLOT + 2] = stack;
+        itemStacks[0] = stack;
     }
 
-    // IMPORTANT STUFF ABOVE
-
-    // Create and initialize the itemStacks variable that will store store the
-    // itemStacks
     public static final int INPUT_SLOTS_COUNT = 2;
-    public static final int OUTPUT_SLOTS_COUNT = 1;
-    public static final int TOTAL_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
+    public static final int TOTAL_SLOTS_COUNT = INPUT_SLOTS_COUNT;
 
     public static final int FIRST_INPUT_SLOT = 0;
     public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
@@ -117,22 +107,22 @@ public class TileGearModify extends BaseTile {
 
     @Override
     public int ticksRequired() {
-        return COOK_TIME_FOR_COMPLETION;
+        return 555555;
     }
 
     @Override
     public void finishCooking() {
-        this.modifyItem();
+
     }
 
     @Override
     public boolean isCooking() {
-        return canModifyItem();
+        return false;
     }
 
     @Override
     public int tickRate() {
-        return 1;
+        return 555;
     }
 
     @Override
@@ -174,15 +164,11 @@ public class TileGearModify extends BaseTile {
             return false;
         }
 
-        if (OutputSot().isEmpty() == false) {
-            return false;
-        }
-
         return true;
 
     }
 
-    private boolean modifyItem() {
+    public boolean modifyItem() {
 
         if (this.canModifyItem()) {
 

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTileContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.AnyModifySlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.ModifySlot;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -31,7 +30,8 @@ public class ContainerGearModify extends BaseTileContainer {
 
         this.pos = pos;
 
-        final int PLAYER_INVENTORY_XPOS = 47;
+        final int PLAYER_INVENTORY_XPOS = 8;
+        final int PLAYER_INVENTORY_YPOS = 125;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -41,8 +41,6 @@ public class ContainerGearModify extends BaseTileContainer {
             int slotNumber = x;
             addSlot(new Slot(invPlayer, slotNumber, PLAYER_INVENTORY_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
         }
-
-        final int PLAYER_INVENTORY_YPOS = 125;
         // Add the rest of the players inventory to the gui
         for (int y = 0; y < PLAYER_INVENTORY_ROW_COUNT; y++) {
             for (int x = 0; x < PLAYER_INVENTORY_COLUMN_COUNT; x++) {
@@ -53,23 +51,13 @@ public class ContainerGearModify extends BaseTileContainer {
             }
         }
 
-        // VANILLA END
-
-        final int INPUT_SLOTS_XPOS = 65;
-        final int INPUT_SLOTS_YPOS = 24;
-        // Add the tile input slots
-
         int count = 0;
 
-        addSlot(new ModifySlot(inventory, count++, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
+        addSlot(new ModifySlot(inventory, count++, 80, 32));
 
-        addSlot(new AnyModifySlot(inventory, count++, 111, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * 1));
+        addSlot(new AnyModifySlot(inventory, count++, 80, 59));
 
-        final int OUTPUT_SLOTS_XPOS = 172;
-        final int OUTPUT_SLOTS_YPOS = 24;
-
-        addSlot(new OutputSlot(inventory, count++, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * 2));
-
+        //TOOD
     }
 
     @Override

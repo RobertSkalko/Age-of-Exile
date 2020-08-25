@@ -86,6 +86,7 @@ So if there's 100 different sword types, and 5 axe types, they'll still have sam
 - fix jewel crash bug
 - lvl 1 common mobs should now have similar health as vanilla minecraft.
 - mobs will have less hp on average
+- reworked modify station gui to be instant modify with a button click
 - fix nature balm
 - level ups now show on screen title messages.
 - fixed some texture errors
