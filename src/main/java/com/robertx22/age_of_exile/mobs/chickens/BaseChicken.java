@@ -26,9 +26,14 @@ public class BaseChicken extends HostileEntity {
         super(entityType, world);
     }
 
+    int angryTicks = 0;
+
     @Override
     public void tick() {
-        OnTickRandomSpeedBoost.onTick(this, 60, 50);
+        if (OnTickRandomSpeedBoost.onTickTryAnger(this, angryTicks)) {
+            angryTicks = 100;
+        }
+        angryTicks--;
         super.tick();
     }
 
