@@ -54,7 +54,7 @@ public class MagicalGear extends BaseMagical implements GearRarity {
 
     @Override
     public int Weight() {
-        return 2000;
+        return 2500;
     }
 
     @Override

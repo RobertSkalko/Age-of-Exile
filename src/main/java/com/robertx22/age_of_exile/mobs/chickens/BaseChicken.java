@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mobs.chickens;
 
+import com.robertx22.age_of_exile.mobs.OnTickRandomSpeedBoost;
 import com.robertx22.age_of_exile.mobs.ai.NightAttackGoal;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
 import net.minecraft.block.BlockState;
@@ -23,6 +24,12 @@ import net.minecraft.world.WorldAccess;
 public class BaseChicken extends HostileEntity {
     public BaseChicken(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    @Override
+    public void tick() {
+        OnTickRandomSpeedBoost.onTick(this, 60, 50);
+        super.tick();
     }
 
     @Override

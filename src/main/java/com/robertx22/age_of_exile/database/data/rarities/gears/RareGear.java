@@ -59,7 +59,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public int Weight() {
-        return 100;
+        return 200;
     }
 
     @Override
