@@ -16,10 +16,10 @@ public class MagicShieldPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("glimmering")
             .Named("Glimmering")
-            .tier(1, new StatModifier(4, 5, MagicShield.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(3, 4, MagicShield.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(2, 3, MagicShield.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(1, 2, MagicShield.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(3, 4, MagicShield.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 3, MagicShield.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2, MagicShield.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(0, 1, MagicShield.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.magic_shield_stat)
             .Prefix()
             .Build();

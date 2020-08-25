@@ -218,6 +218,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         ctx.castedThisTick = true;
 
+        ctx.caster.swingHand(ctx.caster.getActiveHand());
+
         if (getImmutableConfigs().getSwingsArmOnCast()) {
             ctx.caster.swingHand(Hand.MAIN_HAND, true);
         }

@@ -63,10 +63,10 @@ public class GorgonsGazeSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 25, 35);
+        c.set(SC.MANA_COST, 20, 25);
         c.set(SC.BASE_VALUE, 2, 3);
         c.set(SC.SHOOT_SPEED, 0.4F, 0.6F);
-        c.set(SC.CAST_TIME_TICKS, 25, 20);
+        c.set(SC.CAST_TIME_TICKS, 20, 15);
         c.set(SC.COOLDOWN_SECONDS, 60, 45);
         c.set(SC.DURATION_TICKS, 60, 100);
         c.set(SC.TICK_RATE, 20, 20);

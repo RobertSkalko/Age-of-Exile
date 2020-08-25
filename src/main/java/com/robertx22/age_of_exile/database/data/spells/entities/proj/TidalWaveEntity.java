@@ -57,12 +57,13 @@ public class TidalWaveEntity extends BaseElementalBoltEntity {
     public void onTick() {
         if (world.isClient) {
             if (this.age > 2) {
-                for (int i = 0; i < 15; i++) {
-                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPos(), 0.1F);
+                for (int i = 0; i < 25; i++) {
+                    Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(getPos(), 0.2F);
                     ParticleUtils.spawn(ModRegistry.PARTICLES.BUBBLE, world, p);
                 }
                 if (age % 2 == 0) {
                     ParticleUtils.spawn(ParticleTypes.DRIPPING_WATER, world, getPos());
+
                 }
             }
         }

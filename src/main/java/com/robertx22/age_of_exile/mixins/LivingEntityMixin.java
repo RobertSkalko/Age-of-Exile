@@ -36,7 +36,7 @@ public abstract class LivingEntityMixin {
     public void hookarmortodmg(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
         if (source instanceof MyDamageSource) {
-            damageArmor(source, MathHelper.clamp(amount, 1, 8));
+            damageArmor(source, MathHelper.clamp(amount, 2, 10));
             LivingHurtUtils.damageCurioItems(en, amount);
             ci.setReturnValue(amount);
         }

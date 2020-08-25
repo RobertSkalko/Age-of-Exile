@@ -16,9 +16,13 @@ public class ItemWand extends BaseWeaponItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
+        return super.use(worldIn, player, handIn);
+       /*
         ItemStack itemStack = player.getStackInHand(handIn);
         player.setCurrentHand(handIn);
         return TypedActionResult.success(itemStack);
+
+        */
 
     }
 
