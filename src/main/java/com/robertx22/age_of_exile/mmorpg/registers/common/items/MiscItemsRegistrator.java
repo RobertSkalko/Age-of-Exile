@@ -26,10 +26,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public JewelItem BLUE_JEWEL = jewel(new JewelItem(), "jewels/blue");
     public JewelItem GREEN_JEWEL = jewel(new JewelItem(), "jewels/green");
 
-    public Item INT_SKILL_GEM = item(new SkillGemItem(), "skill_gems/int");
-    public Item DEX_SKILL_GEM = item(new SkillGemItem(), "skill_gems/dex");
-    public Item STR_SKILL_GEM = item(new SkillGemItem(), "skill_gems/str");
-
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");
     public Item INCRESE_MOB_RARITY = item(new ItemIncreaseRarityNearestEntity(), "increase_rarity_nearest_entity");
 

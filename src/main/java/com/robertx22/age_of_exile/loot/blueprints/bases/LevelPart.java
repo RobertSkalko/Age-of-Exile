@@ -39,6 +39,9 @@ public class LevelPart extends BlueprintPart<Integer> {
         if (LevelRange) {
             finalLvl = RandomUtils.RandomRange(number - LevelVariance, number + LevelVariance);
         }
+
+        finalLvl = MathHelper.clamp(finalLvl, minLevel, maxLevel);
+
         return MathHelper.clamp(finalLvl, this.minLevel, ModConfig.get().Server.MAX_LEVEL);
     }
 }

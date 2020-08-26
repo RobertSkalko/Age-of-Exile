@@ -14,15 +14,26 @@ public class ModelHelper {
 
     Item item;
     Type type;
+    String tex;
 
     public ModelHelper(Item item, Type type) {
         this.item = item;
         this.type = type;
     }
 
+    public ModelHelper(Item item, Type type, String tex) {
+        this.item = item;
+        this.type = type;
+        this.tex = tex;
+    }
+
     public void generate() {
 
         String tex = getTextureString();
+        if (this.tex != null) {
+            tex = this.tex;
+        }
+
         String parent = "";
 
         if (type == Type.GENERATED) {

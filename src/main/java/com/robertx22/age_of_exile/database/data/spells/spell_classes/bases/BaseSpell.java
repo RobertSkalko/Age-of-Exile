@@ -9,9 +9,9 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.confi
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SkillGemRegistrator;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
@@ -86,15 +86,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     public abstract BaseGearType.PlayStyle getPlayStyle();
 
     public Item getItem() {
-
-        if (getPlayStyle().isINT()) {
-            return ModRegistry.MISC_ITEMS.INT_SKILL_GEM;
-        }
-        if (getPlayStyle().isDEX()) {
-            return ModRegistry.MISC_ITEMS.DEX_SKILL_GEM;
-        }
-        return ModRegistry.MISC_ITEMS.STR_SKILL_GEM;
-
+        return SkillGemRegistrator.INSTANCE.MAP.get(GUID());
     }
 
     @Override

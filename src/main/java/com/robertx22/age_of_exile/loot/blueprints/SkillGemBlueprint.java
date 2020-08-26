@@ -20,9 +20,7 @@ public class SkillGemBlueprint extends ItemBlueprint {
 
     public SpellPart spellPart = new SpellPart(this);
 
-    @Override
-    ItemStack generate() {
-
+    public SkillGemData createData() {
         SkillGemData data = new SkillGemData();
 
         data.spell_id = spellPart.get()
@@ -33,8 +31,12 @@ public class SkillGemBlueprint extends ItemBlueprint {
         data.stat_percents = data.getRarity()
             .statPercents()
             .random();
+        return data;
+    }
 
-        return data.toItemStack();
+    @Override
+    ItemStack generate() {
+        return createData().toItemStack();
 
     }
 

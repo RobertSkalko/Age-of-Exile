@@ -76,6 +76,8 @@ Compatibility update:
 Minor notes:
 
 - reworked stat allocation + stat overview guis into 1 gui
+- spells are now each a separate item, to show the actual spell icon for easier inventory management
+- spells now work as compatible items, meaning you can take them out of creative and they'll work. You can also make recipes for them if you want.
 - made stations much cheaper to craft! 
 - added stat that converts phys atk dmg to elemental, used by ele mobs currently
 - reworked loot multipliers of different types to stack instead of multiply each other.
