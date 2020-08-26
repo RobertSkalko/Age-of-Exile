@@ -42,8 +42,8 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(10, new ElementalResist(Elements.Nature)));
-        list.add(new PotionStat(30, Armor.getInstance()));
+        list.add(new PotionStat(25, new ElementalResist(Elements.Nature)));
+        list.add(new PotionStat(50, Armor.getInstance()));
         return list;
     }
 
@@ -62,7 +62,7 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
 
     @Override
     public int getDurationInSeconds(LivingEntity en) {
-        return 60;
+        return 10;
     }
 
     @Override

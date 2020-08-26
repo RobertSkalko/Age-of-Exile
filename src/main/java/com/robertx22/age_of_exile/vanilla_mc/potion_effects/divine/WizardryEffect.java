@@ -48,8 +48,8 @@ public class WizardryEffect extends BasePotionEffect implements IApplyStatPotion
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(15, new ElementalSpellDamage(Elements.Elemental)));
-        list.add(new PotionStat(4, ManaRegen.getInstance()));
+        list.add(new PotionStat(20, new ElementalSpellDamage(Elements.Elemental)));
+        list.add(new PotionStat(3, ManaRegen.getInstance()));
         return list;
     }
 
@@ -66,7 +66,7 @@ public class WizardryEffect extends BasePotionEffect implements IApplyStatPotion
 
     @Override
     public int getDurationInSeconds(LivingEntity en) {
-        return 60;
+        return 30;
     }
 
     @Override

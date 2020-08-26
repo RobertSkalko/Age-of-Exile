@@ -20,10 +20,6 @@ public class OnLogin {
 
     public static void onLoad(ServerPlayerEntity player) {
 
-        Load.spells(player)
-            .getCastingData()
-            .dumpLEGACYGemMap(player); // remove after a few updates
-
         try {
 
             Packets.sendToClient(player, new OnLoginClientPacket(OnLoginClientPacket.When.BEFORE));

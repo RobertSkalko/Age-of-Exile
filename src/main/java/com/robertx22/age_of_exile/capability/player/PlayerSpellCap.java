@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.capability.player;
 
-import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundTag;
 
@@ -76,7 +76,6 @@ public class PlayerSpellCap {
         // client only
         @Override
         public SkillGemData getCurrentSkillGem() {
-
             return
                 getCastingData()
                     .getSkillGemByNumber(SpellCastingData.selectedSpell);

@@ -33,4 +33,5 @@ public class ModZombieRenderer extends ZombieBaseEntityRenderer<BaseZombie, Drow
         }
 
     }
+
 }

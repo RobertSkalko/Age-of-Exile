@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.gui.screens.spell_hotbar_setup;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.gui.buttons.HelpButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -27,16 +25,12 @@ public class SpellHotbatSetupScreen extends HandledScreen<HotbarSetupContainer> 
     static int sizeX = 176;
     static int sizeY = 166;
 
-    PlayerSpellCap.ISpellsCap spells;
-
     public int guiLeft = 0;
     public int guiTop = 0;
 
     public SpellHotbatSetupScreen(HotbarSetupContainer container, PlayerEntity player) {
         super(container, player.inventory, new LiteralText(""));
         this.mc = MinecraftClient.getInstance();
-        this.spells = Load.spells(mc.player);
-
     }
 
     @Override

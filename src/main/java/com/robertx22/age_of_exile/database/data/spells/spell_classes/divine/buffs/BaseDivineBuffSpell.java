@@ -23,7 +23,7 @@ public abstract class BaseDivineBuffSpell extends BaseSpell {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.MANA_COST, 25, 40);
+        c.set(SC.MANA_COST, 25, 25);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
         c.set(SC.COOLDOWN_SECONDS, 360, 300);
         c.set(SC.RADIUS, 3, 4);

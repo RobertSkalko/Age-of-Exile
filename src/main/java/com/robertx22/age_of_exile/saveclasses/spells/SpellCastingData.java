@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.confi
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.SkillGem;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,26 +34,6 @@ public class SpellCastingData implements Inventory {
 
     @Store
     public String spellBeingCast = "";
-
-    // todo delete this after a few uptdates
-    @Store
-    private HashMap<Integer, SkillGemData> hotbar = new HashMap<>();
-
-    public void dumpLEGACYGemMap(PlayerEntity player) {
-        try {
-            hotbar.entrySet()
-                .forEach(x -> {
-                    if (x.getValue() != null) {
-                        PlayerUtils.giveItem(x.getValue()
-                            .toItemStack(), player);
-                    }
-                });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        hotbar.clear();
-    }
-    // todo delete this after a few uptdates
 
     @Store
     private HashMap<Integer, ItemStack> bar = new HashMap<>();

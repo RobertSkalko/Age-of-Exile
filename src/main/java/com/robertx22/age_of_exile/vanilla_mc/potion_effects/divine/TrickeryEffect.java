@@ -62,7 +62,7 @@ public class TrickeryEffect extends BasePotionEffect implements IApplyStatPotion
 
     @Override
     public int getDurationInSeconds(LivingEntity en) {
-        return 60;
+        return 30;
     }
 
     @Override

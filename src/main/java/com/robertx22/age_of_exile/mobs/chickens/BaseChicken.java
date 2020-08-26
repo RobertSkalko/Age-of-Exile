@@ -130,10 +130,11 @@ public class BaseChicken extends HostileEntity {
     protected void initGoals() {
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(3, new PounceAtTargetGoal(this, 0.4F));
-        this.goalSelector.add(4, new NightAttackGoal(this, 1.1F));
+        this.goalSelector.add(4, new NightAttackGoal(this, 1.2F));
         this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8D));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 14));
         this.goalSelector.add(6, new LookAroundGoal(this));
+
         this.targetSelector.add(2, new FollowTargetGoal<>(this, PlayerEntity.class, true));
 
     }
