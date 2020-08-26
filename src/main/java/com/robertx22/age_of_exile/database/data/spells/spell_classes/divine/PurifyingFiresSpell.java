@@ -112,11 +112,11 @@ public class PurifyingFiresSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 5, 18);
-        c.set(SC.BASE_VALUE, 5, 15);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 1F);
+        c.set(SC.MANA_COST, 6, 9);
+        c.set(SC.BASE_VALUE, 3, 6);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.5F, 1F);
         c.set(SC.CAST_TIME_TICKS, 0, 0);
-        c.set(SC.COOLDOWN_SECONDS, 6, 3);
+        c.set(SC.COOLDOWN_SECONDS, 1, 1);
         c.set(SC.TIMES_TO_CAST, 1, 1);
 
         c.setMaxLevel(16);

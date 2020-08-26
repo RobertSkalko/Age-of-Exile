@@ -1,3 +1,7 @@
+v.1.1.1
+
+- fixed spear of judgement missing textures
+
 v.1.1.0 - 1.16.2 update + content additions!
 
 WARNING: This update deletes all existing gear items! 

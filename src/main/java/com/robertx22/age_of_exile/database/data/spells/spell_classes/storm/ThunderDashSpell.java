@@ -15,17 +15,14 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -102,25 +99,12 @@ public class ThunderDashSpell extends BaseSpell {
         return Words.ThunderDash;
     }
 
-    public static void dashForward(LivingEntity caster) {
-
-        float distance = 0.017453292f;
-        caster.setVelocity(new Vec3d(0, 0, 0));
-        caster.takeKnockback(2, (double) MathHelper.sin(caster.yaw * distance),
-            (double) (-MathHelper.cos(caster.yaw * distance))
-        );
-        if (caster instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity) caster).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(caster));
-            caster.velocityModified = false;
-        }
-    }
-
     @Override
     public void castExtra(SpellCastContext ctx) {
         LivingEntity caster = ctx.caster;
         World world = ctx.caster.world;
 
-        dashForward(ctx.caster);
+        DashUtils.dash(ctx.caster, DashUtils.Strength.LARGE_DISTANCE, DashUtils.Way.FORWARD);
 
         int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.skillGem);
 

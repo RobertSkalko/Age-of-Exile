@@ -11,15 +11,11 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.confi
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,24 +77,10 @@ public class RecoilShotSpell extends BaseSpell {
         return "recoil_shot";
     }
 
-    public static void dashBackward(LivingEntity caster) {
-
-        float distance = 0.017453292f;
-        caster.setVelocity(new Vec3d(0, 0, 0));
-        double x = (double) -MathHelper.sin(caster.yaw * distance);
-        double z = (double) (MathHelper.cos(caster.yaw * distance));
-
-        caster.takeKnockback(1.8f, x, z);
-
-        if (caster instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity) caster).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(caster));
-            caster.velocityModified = false;
-        }
-    }
-
     @Override
     public void castExtra(SpellCastContext ctx) {
-        dashBackward(ctx.caster);
+        DashUtils.dash(ctx.caster, DashUtils.Strength.MEDIUM_DISTANCE, DashUtils.Way.BACKWARDS);
+
     }
 
     @Override
