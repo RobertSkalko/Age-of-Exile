@@ -483,7 +483,8 @@ public class Unit {
         if (IGNORED_ENTITIES == null) {
             IGNORED_ENTITIES = ModConfig.get().Server.IGNORED_ENTITIES
                 .stream()
-                .filter(x -> Registry.ENTITY_TYPE.containsId(new Identifier(x)))
+                .filter(x -> Registry.ENTITY_TYPE.getOrEmpty(new Identifier(x))
+                    .isPresent())
                 .map(x -> Registry.ENTITY_TYPE.get(new Identifier(x)))
                 .collect(Collectors.toList());
         }

@@ -4,20 +4,16 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
-import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.vanilla_mc.packets.RequestAreaSyncPacket;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
 import nerdhub.cardinal.components.api.event.WorldComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 
 public class ComponentRegisters {
 
@@ -53,15 +49,6 @@ public class ComponentRegisters {
             (world, components) -> components.put(
                 WORLD_AREAS, new WorldAreas(world)));
 
-        ClientChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
-            BlockPos pos = chunk.getPos()
-                .getCenterBlockPos();
-            WorldAreas areas = WORLD_AREAS.get(world);
-
-            if (!areas.hasArea(pos)) {
-                Packets.sendToServer(new RequestAreaSyncPacket(pos));
-            }
-        });
     }
 
 }

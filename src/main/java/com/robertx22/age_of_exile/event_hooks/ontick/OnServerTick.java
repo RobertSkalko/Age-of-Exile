@@ -156,7 +156,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         if (data.areasVisitedUUIDS.add(data.currentArea.uuid)) {
 
-                            MinMax lvlrange = data.currentArea.getLevelRange(player.world);
+                            MinMax lvlrange = data.currentArea.getLevelRange(player.world, player);
 
                             String range = lvlrange.min + "-" + lvlrange.max;
 

@@ -1,5 +1,9 @@
+v.1.1.2
+- fix another server crash 
+
 v.1.1.1
 
+- fix server crash
 - fixed spear of judgement missing textures
 
 v.1.1.0 - 1.16.2 update + content additions!

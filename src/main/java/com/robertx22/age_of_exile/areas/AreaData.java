@@ -7,10 +7,10 @@ import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -43,14 +43,14 @@ public class AreaData {
         return getAreaModifier().getFinalLocNameFor(getBaseArea());
     }
 
-    public MinMax getLevelRange(World world) {
+    public MinMax getLevelRange(World world, PlayerEntity player) {
 
         if (!Cached.AREA_LEVEL_RANGE.containsKey(this.uuid)) {
 
             Set<Integer> list = new HashSet<>();
 
             getChunks().forEach(x -> {
-                list.add(LevelUtils.determineLevel(world, x.getCenterBlockPos(), ClientOnly.getPlayer()));
+                list.add(LevelUtils.determineLevel(world, x.getCenterBlockPos(), player));
             });
 
             if (list.isEmpty()) {
