@@ -95,7 +95,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
             .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
         // draw the fuel remaining bar for each fuel slot flame
-        for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
+        for (int i = 0; i < TileGearRepair.FUEL_SLOTS.size(); ++i) {
             //double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
 
             int yOffset = (int) ((1 - (float) tile.fuel / tile.MaximumFuel) * FLAME_HEIGHT);
@@ -126,7 +126,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
 
         // If the mouse is over one of the burn time indicator add the burn time
         // indicator hovering text
-        for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
+        for (int i = 0; i < TileGearRepair.FUEL_SLOTS.size(); ++i) {
             if (GuiUtils.isInRect(x + FLAME_XPOS + FLAME_X_SPACING * i, y + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
                 // hoveringText.add("Fuel Time:");
                 hoveringText.add(Words.Fuel.translate() + ": " + tile.fuel);

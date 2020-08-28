@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTile;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.EssentiaFuelSlot;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,6 +12,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandler;
@@ -23,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EssentiaFurnaceBlockEntity extends BaseTile {
+    public static int MaximumFuel = 10000;
 
     public static List<Integer> FUEL_SLOTS = Arrays.asList(0);
     public static List<Integer> INPUT_SLOTS = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -77,6 +80,14 @@ public class EssentiaFurnaceBlockEntity extends BaseTile {
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
+    public int getFuelNeededFor(ItemStack stack) {
+        return this.world.getRecipeManager()
+            .getFirstMatch(RecipeType.SMELTING, new SimpleInventory(stack), this.world)
+            .map(AbstractCookingRecipe::getCookTime)
+            .orElse(200);
+
+    }
+
     @Override
     public int ticksRequired() {
         return getCookTime();
@@ -116,6 +127,32 @@ public class EssentiaFurnaceBlockEntity extends BaseTile {
 
     }
 
+    private void burnFuel() {
+        int burningCount = 0;
+        boolean inventoryChanged = false;
+
+        for (int num : FUEL_SLOTS) {
+
+            if (this.fuel < this.MaximumFuel) {
+                if (!itemStacks[num].isEmpty()) { // isEmpty()
+
+                    int fuelgained = EssentiaFuelSlot.FUEL_VALUES.getOrDefault(itemStacks[num].getItem(), 0);
+
+                    if (fuelgained > 0) {
+                        fuel += fuelgained;
+
+                        itemStacks[num].decrement(1); // decreaseStackSize()
+                        ++burningCount;
+                        inventoryChanged = true;
+
+                    }
+                }
+            }
+        }
+        if (inventoryChanged)
+            markDirty();
+    }
+
     private boolean canSmelt() {
         return smeltItem(false);
     }
@@ -133,12 +170,21 @@ public class EssentiaFurnaceBlockEntity extends BaseTile {
         Integer firstSuitableInputSlot = null;
         Integer firstSuitableOutputSlot = null;
 
+        int fuelNeededForStack = 1000000;
+
         // finds the first input slot which is smeltable and whose result fits into an
         // output slot (stacking if possible)
         for (int inputSlot : INPUT_SLOTS) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
                 result = getSmeltingResultForItem(itemStacks[inputSlot]);
+
+                fuelNeededForStack = getFuelNeededFor(itemStacks[inputSlot]);
+
+                if (fuelNeededForStack > this.fuel) {
+                    burnFuel();
+                    return false;
+                }
 
                 if (!result.isEmpty()) { // isEmpty()
 
@@ -191,6 +237,8 @@ public class EssentiaFurnaceBlockEntity extends BaseTile {
             return false;
         if (!performSmelt)
             return true;
+
+        this.fuel -= fuelNeededForStack;
 
         // alter input and output
         itemStacks[firstSuitableInputSlot].decrement(1); // decreaseStackSize()

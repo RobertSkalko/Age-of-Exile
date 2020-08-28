@@ -139,8 +139,6 @@ public class TileGearRepair extends BaseTile {
     @Override
     public void doActionEveryTime() {
 
-        this.burnFuel();
-
     }
 
     private int burnFuel() {
@@ -182,7 +180,9 @@ public class TileGearRepair extends BaseTile {
     }
 
     private boolean smeltItem(boolean performSmelt) {
+
         if (this.fuel < 1) {
+            this.burnFuel();
             return false;
         }
 
@@ -203,6 +203,7 @@ public class TileGearRepair extends BaseTile {
                 fuelNeeded *= fuelMulti;
 
                 if (fuelNeeded > this.fuel) {
+                    this.burnFuel();
                     fuelNeeded = this.fuel;
                 }
 

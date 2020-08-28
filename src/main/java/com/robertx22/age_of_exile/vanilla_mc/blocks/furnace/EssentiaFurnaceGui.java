@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EssentiaFurnaceGui extends TileGui<EssentiaFurnaceContainer, EssentiaFurnaceBlockEntity> {
 
@@ -37,6 +38,14 @@ public class EssentiaFurnaceGui extends TileGui<EssentiaFurnaceContainer, Essent
     final int COOK_BAR_ICON_V = 207;
     final int COOK_BAR_WIDTH = 24;
     final int COOK_BAR_HEIGHT = 18;
+
+    final int FLAME_XPOS = 81;// 54;
+    final int FLAME_YPOS = 74;
+    final int FLAME_ICON_U = 176; // texture position of flame icon
+    final int FLAME_ICON_V = 0;
+    final int FLAME_WIDTH = 14;
+    final int FLAME_HEIGHT = 14;
+    final int FLAME_X_SPACING = 18;
 
     @Override
     protected void init() {
@@ -66,6 +75,13 @@ public class EssentiaFurnaceGui extends TileGui<EssentiaFurnaceContainer, Essent
         // draw the cook progress bar
         drawTexture(matrix, this.x + COOK_BAR_XPOS, this.y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (cookProgress * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
+        // draw the fuel remaining bar for each fuel slot flame
+        for (int i = 0; i < EssentiaFurnaceBlockEntity.FUEL_SLOTS.size(); ++i) {
+            //double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
+
+            int yOffset = (int) ((1 - (float) tile.fuel / tile.MaximumFuel) * FLAME_HEIGHT);
+            drawTexture(matrix, this.x + FLAME_XPOS + FLAME_X_SPACING * i, this.y + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
+        }
         this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
@@ -83,11 +99,18 @@ public class EssentiaFurnaceGui extends TileGui<EssentiaFurnaceContainer, Essent
             hoveringText.add(cookPercentage + "%");
         }
 
-        // If hoveringText is not empty draw the hovering text
-        if (!hoveringText.isEmpty()) {
-
-            // renderTooltip(hoveringText, mouseX - x, mouseY - y, font); todo
+        for (int i = 0; i < EssentiaFurnaceBlockEntity.FUEL_SLOTS.size(); ++i) {
+            if (GuiUtils.isInRect(x + FLAME_XPOS + FLAME_X_SPACING * i, y + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
+                hoveringText.add(Words.Fuel.translate() + ": " + tile.fuel);
+            }
         }
+
+        if (!hoveringText.isEmpty()) {
+            renderTooltip(matrix, hoveringText.stream()
+                .map(x -> new LiteralText(x))
+                .collect(Collectors.toList()), mouseX - x, mouseY - y);
+        }
+
     }
 
 }

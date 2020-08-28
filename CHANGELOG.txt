@@ -5,6 +5,7 @@ Repair it first, because any hit will break it. This is because when max durabil
 
 - special mob stats are now in entity configs instead of hardcoded
 - made gear have similar durability to vanilla diamond gear. I gave it too much it seems
+- repair station now sucks fuel only when needed
 
 todo
 - added golem boss which you can summon same as a wither but: soul sand block > iron block and mob head > bone block.

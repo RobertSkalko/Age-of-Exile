@@ -25,24 +25,35 @@ public class EssentiaFurnaceContainer extends BaseTileContainer {
         final int INPUT_SLOTS_XPOS = 8;
         final int INPUT_SLOTS_YPOS = 56;
 
+        int x = 0;
+        int y = 0;
         // 3x3 slot grid
-        for (int x = 0; x < EssentiaFurnaceBlockEntity.INPUT_SLOTS.size() / 3; x++) {
-            for (int y = 0; y < EssentiaFurnaceBlockEntity.INPUT_SLOTS.size() / 3; y++) {
-                addSlot(new AnyItemNotACurrencyEffectSlot(inventory, EssentiaFurnaceBlockEntity.INPUT_SLOTS.get(y + x), INPUT_SLOTS_XPOS + SLOT_SPACING * x, INPUT_SLOTS_YPOS + SLOT_SPACING * y));
+        for (int i = 0; i < EssentiaFurnaceBlockEntity.INPUT_SLOTS.size(); i++) {
+
+            addSlot(new AnyItemNotACurrencyEffectSlot(inventory, EssentiaFurnaceBlockEntity.INPUT_SLOTS.get(i), INPUT_SLOTS_XPOS + SLOT_SPACING * x, INPUT_SLOTS_YPOS + SLOT_SPACING * y));
+
+            x++;
+            if (x >= 3) {
+                x = 0;
+                y++;
             }
+
         }
 
         final int OUTPUT_SLOTS_XPOS = 116;
         final int OUTPUT_SLOTS_YPOS = 54;
 
+        x = 0;
+        y = 0;
         // 3x3 slot grid
-        for (int x = 0; x < EssentiaFurnaceBlockEntity.OUTPUT_SLOTS.size() / 3; x++) {
-            for (int y = 0; y < EssentiaFurnaceBlockEntity.OUTPUT_SLOTS.size() / 3; y++) {
-                addSlot(
-                    new OutputSlot(inventory,
-                        EssentiaFurnaceBlockEntity.OUTPUT_SLOTS.get(y + x),
-                        OUTPUT_SLOTS_XPOS + SLOT_SPACING * x, OUTPUT_SLOTS_YPOS + SLOT_SPACING * y));
+        for (int i = 0; i < EssentiaFurnaceBlockEntity.OUTPUT_SLOTS.size(); i++) {
+            addSlot(new OutputSlot(inventory, EssentiaFurnaceBlockEntity.OUTPUT_SLOTS.get(i), OUTPUT_SLOTS_XPOS + SLOT_SPACING * x, OUTPUT_SLOTS_YPOS + SLOT_SPACING * y));
+            x++;
+            if (x >= 3) {
+                x = 0;
+                y++;
             }
+
         }
 
         addSlot(

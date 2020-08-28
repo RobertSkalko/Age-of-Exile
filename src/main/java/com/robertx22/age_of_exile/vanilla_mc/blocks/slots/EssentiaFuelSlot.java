@@ -21,8 +21,8 @@ public class EssentiaFuelSlot extends Slot {
     public static HashMap<Item, Integer> FUEL_VALUES = new HashMap<Item, Integer>() {
         {
             {
-                put(ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 50);
-                put(ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE, 250);
+                put(ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 200);
+                put(ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE, 1000);
             }
         }
     };
