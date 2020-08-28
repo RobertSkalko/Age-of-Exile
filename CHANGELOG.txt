@@ -1,5 +1,10 @@
 v.1.1.4
+
+Warning: your gear will have minus durability after this update possibly! 
+Repair it first, because any hit will break it. This is because when max durability is reduced, so is current durability..
+
 - special mob stats are now in entity configs instead of hardcoded
+- made gear have similar durability to vanilla diamond gear. I gave it too much it seems
 
 todo
 - added golem boss which you can summon same as a wither but: soul sand block > iron block and mob head > bone block.

@@ -12,11 +12,6 @@ public class ClothMat extends BaseMat {
     };
 
     @Override
-    public int getDurability(EquipmentSlot slotIn) {
-        return 1000;
-    }
-
-    @Override
     public int getProtectionAmount(EquipmentSlot slotIn) {
         return damageReductions[slotIn.getEntitySlotId()];
     }

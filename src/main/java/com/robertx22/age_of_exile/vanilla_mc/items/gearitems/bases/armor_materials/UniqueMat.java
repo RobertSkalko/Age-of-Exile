@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials;
 
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorMaterials;
 
 public class UniqueMat extends BaseMat {
 
@@ -13,7 +14,7 @@ public class UniqueMat extends BaseMat {
 
     @Override
     public int getDurability(EquipmentSlot slotIn) {
-        return 1500;
+        return (int) (ArmorMaterials.DIAMOND.getDurability(slotIn) * 1.2F);
     }
 
     @Override

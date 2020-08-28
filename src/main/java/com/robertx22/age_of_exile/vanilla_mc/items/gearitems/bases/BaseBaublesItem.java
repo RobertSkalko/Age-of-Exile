@@ -2,7 +2,9 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases;
 
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -19,7 +21,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
 
         super(ItemUtils.getDefaultGearProperties()
             .maxCount(1)
-            .maxDamage(2000));
+            .maxDamage((int) (ArmorMaterials.DIAMOND.getDurability(EquipmentSlot.CHEST) * 1.25F)));
         this.locname = locname;
     }
 
