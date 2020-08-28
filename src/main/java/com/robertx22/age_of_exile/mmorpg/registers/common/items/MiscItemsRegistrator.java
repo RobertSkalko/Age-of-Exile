@@ -36,13 +36,15 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public ResetStatPointsItem RESET_STATS_POTION = item(new ResetStatPointsItem());
 
-    public Item GEAR_MODIFY = station(ModRegistry.BLOCKS.GEAR_MODIFY);
-    public Item GEAR_REPAIR = station(ModRegistry.BLOCKS.GEAR_REPAIR);
-    public Item GEAR_SALVAGE = station(ModRegistry.BLOCKS.GEAR_SALVAGE);
+    public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);
+    public Item GEAR_REPAIR = blockItem(ModRegistry.BLOCKS.GEAR_REPAIR);
+    public Item GEAR_SALVAGE = blockItem(ModRegistry.BLOCKS.GEAR_SALVAGE);
+
+    public Item ESSENTIA_FURNACE = blockItem(ModRegistry.BLOCKS.ESSENTIA_FURNACE);
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
 
-    <T extends Block> Item station(T block) {
+    <T extends Block> Item blockItem(T block) {
         return item(new BlockItem(block, stationProp), Registry.BLOCK.getId(block)
             .getPath());
     }

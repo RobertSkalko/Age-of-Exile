@@ -9,13 +9,14 @@ import net.minecraft.world.World;
 
 public class Containers {
 
-    public Identifier GEAR_MODIFY = of("modify");
-    public Identifier GEAR_REPAIR = of("repair");
-    public Identifier GEAR_SALVAGE = of("salvage");
-    public Identifier CURRENCY_BAG = of("currency_bag");
-    public Identifier HOTBAR_SETUP = of("hotbar_setup");
+    public Identifier GEAR_MODIFY = id("modify");
+    public Identifier GEAR_REPAIR = id("repair");
+    public Identifier GEAR_SALVAGE = id("salvage");
+    public Identifier CURRENCY_BAG = id("currency_bag");
+    public Identifier HOTBAR_SETUP = id("hotbar_setup");
+    public Identifier ESSENTIA_FURNACE = id("furnace");
 
-    Identifier of(String id) {
+    Identifier id(String id) {
         return new Identifier(Ref.MODID, id);
     }
 
@@ -25,6 +26,7 @@ public class Containers {
         register(GEAR_REPAIR);
         register(GEAR_SALVAGE);
         register(CURRENCY_BAG);
+        register(ESSENTIA_FURNACE);
 
         ContainerProviderRegistry.INSTANCE.registerFactory(HOTBAR_SETUP, (syncId, identifier, player, buf) -> {
             return new HotbarSetupContainer(syncId, player);
