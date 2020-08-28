@@ -6,6 +6,7 @@ import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_SPEED;
@@ -61,6 +62,8 @@ public class MobAttributes {
             .add(GENERIC_MOVEMENT_SPEED, 0.35F));
         FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_CHICKEN, SpiderEntity.createSpiderAttributes()
             .add(GENERIC_MOVEMENT_SPEED, 0.35F));
+
+        FabricDefaultAttributeRegistry.register(ENTITIES.GOLEM_BOSS, IronGolemEntity.createIronGolemAttributes());
 
     }
 }

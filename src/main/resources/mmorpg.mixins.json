@@ -3,14 +3,15 @@
   "package": "com.robertx22.age_of_exile.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ArrowShootMixin",    
+    "ArrowShootMixin",
     "ChestMixin",
     "DefaultBiomeFeaturesMixin",
-    "FoodComponentMixin",    
-    "LivingEntityMixin",        
+    "FallingBlockEntityMixin",
+    "FoodComponentMixin",
+    "LivingEntityMixin",
     "OnCraftMixin",
     "PlayerManagerMixin",
-    "ServerResourceManagerMixin",    
+    "ServerResourceManagerMixin",
     "SpawnSettingsMixin"
   ],
   "client": [

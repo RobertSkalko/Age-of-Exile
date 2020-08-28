@@ -4,7 +4,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 
 public class DashUtils {
 
@@ -13,7 +12,7 @@ public class DashUtils {
     }
 
     public enum Strength {
-        SHORT_DISTANCE(0.5F), MEDIUM_DISTANCE(1), LARGE_DISTANCE(2);
+        SHORT_DISTANCE(0.4F), MEDIUM_DISTANCE(0.8F), LARGE_DISTANCE(1.5F);
 
         Strength(float num) {
             this.num = num;
@@ -25,7 +24,7 @@ public class DashUtils {
 
     public static void dash(LivingEntity entity, Strength str, Way way) {
 
-        entity.setVelocity(new Vec3d(0, 0, 0));
+        //entity.setVelocity(new Vec3d(0, 0, 0));
 
         double x;
         double z;

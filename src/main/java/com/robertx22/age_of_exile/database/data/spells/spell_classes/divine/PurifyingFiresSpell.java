@@ -79,6 +79,24 @@ public class PurifyingFiresSpell extends BaseSpell {
             .radius(2)
             .height(2)
             .build();
+        /*
+
+        for (int i = 0; i < 10; i++) {
+            // TODO THIS IS JUST FOR TESTING
+            LivingEntity c = ctx.caster;
+            FallingBlockEntity b = new FallingBlockEntity(c.world, c.getX() + i, c.getY(), c.getZ() + i, Blocks.ICE.getDefaultState());
+            b.dropItem = false;
+            b.timeFalling = 1;
+            b.setVelocity(0, 0.5F, 0);
+            b.setHurtEntities(false);
+
+            destroyedOnLandingDuck m = (destroyedOnLandingDuck) b;
+            m.setDestroyedOnLanding(true);
+
+            ctx.caster.world.spawnEntity(b);
+        }
+
+         */
 
         SoundUtils.playSound(ctx.caster, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
 

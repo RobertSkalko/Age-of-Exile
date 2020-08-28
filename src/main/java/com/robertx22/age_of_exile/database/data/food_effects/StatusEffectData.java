@@ -32,7 +32,7 @@ public class StatusEffectData implements ITooltipList {
 
     public void apply(LivingEntity en) {
         StatusEffectInstance in = new StatusEffectInstance(getEffect(), duration_in_seconds * 20, amplifier);
-        en.applyStatusEffect(in);
+        en.addStatusEffect(in);
     }
 
     public StatusEffect getEffect() {

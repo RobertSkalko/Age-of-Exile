@@ -38,8 +38,13 @@ public abstract class FoodEffectPotion extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity en, int amplifier) {
+
         try {
             if (en.age % 20 == 0) {
+
+                if (en.world.isClient) {
+                    return;
+                }
 
                 StatusEffectInstance instance = en.getStatusEffect(this);
 

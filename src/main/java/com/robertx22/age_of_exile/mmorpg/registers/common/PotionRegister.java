@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses.AngerEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses.ChannelEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.BraveryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.JudgementEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.TrickeryEffect;
@@ -33,6 +35,10 @@ public class PotionRegister {
         reg(WizardryEffect.INSTANCE);
         reg(TrickeryEffect.INSTANCE);
 
+        reg(ChannelEffect.GOOD_FOR_BOSS);
+        reg(ChannelEffect.BAD_FOR_PLAYER);
+
+        reg(AngerEffect.INSTANCE);
         reg(FrostEffect.INSTANCE);
         reg(RegenerateEffect.INSTANCE);
         reg(PoisonEffect.INSTANCE);

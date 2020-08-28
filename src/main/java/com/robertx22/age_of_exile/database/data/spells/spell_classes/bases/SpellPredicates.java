@@ -26,7 +26,7 @@ public class SpellPredicates {
             GearItemData data = Gear.Load(x.getMainHandStack());
             return data != null && data.GetBaseGearType()
                 .getTags()
-                .contains(BaseGearType.SlotTag.warrior_casting_weapon);
+                .contains(BaseGearType.SlotTag.melee_weapon);
         } catch (Exception e) {
             return false;
         }

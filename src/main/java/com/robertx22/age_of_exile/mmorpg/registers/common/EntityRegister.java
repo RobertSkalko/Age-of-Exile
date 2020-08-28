@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.trident.Thunders
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mobs.bosses.GolemBossEntity;
 import com.robertx22.age_of_exile.mobs.chickens.FireChicken;
 import com.robertx22.age_of_exile.mobs.chickens.NatureChicken;
 import com.robertx22.age_of_exile.mobs.chickens.ThunderChicken;
@@ -127,6 +128,8 @@ public class EntityRegister {
     public EntityType<ThunderSkeleton> THUNDER_SKELETON = mob(ThunderSkeleton::new, "thunder_skeleton", skeleDim);
     public EntityType<NatureSkeleton> NATURE_SKELETON = mob(NatureSkeleton::new, "nature_skeleton", skeleDim);
 
+    public EntityType<GolemBossEntity> GOLEM_BOSS = mob(GolemBossEntity::new, "boss_golem", new EntityDimensions(1.4F, 2.7F, true));
+
     public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
@@ -168,10 +171,6 @@ public class EntityRegister {
         if (sw.toServerWorld()
             .isDay()) {
 
-            boolean isdaylightmob = ModRegistry.ENTITIES.DAYLIGHT_MOBS.getOrDefault(type, false);
-            if (isdaylightmob) {
-                return true;
-            }
             if (!ModConfig.get().Server.ALLOW_EXILE_MOBS_DAY_SPAWNS) {
                 return false;
             }
@@ -179,6 +178,12 @@ public class EntityRegister {
             if (LevelUtils.determineLevelPerDistanceFromSpawn(sw.toServerWorld(), pos, dimConfig) < ModConfig.get().Server.LVL_WHEN_MOBS_START_SPAWNING_IN_DAYLIGHT) {
                 return false; // otherwise lvl 1 newbies are screwed
             }
+
+            boolean isdaylightmob = ModRegistry.ENTITIES.DAYLIGHT_MOBS.getOrDefault(type, false);
+            if (isdaylightmob) {
+                return true;
+            }
+
             PlayerEntity nearest = PlayerUtils.nearestPlayer(sw.toServerWorld(), pos);
             if (nearest != null) {
                 double distance = nearest.getBlockPos()

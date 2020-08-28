@@ -3,10 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.MySpriteRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.special.RangerArrowRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.HolyTridentRenderer;
-import com.robertx22.age_of_exile.mobs.renders.MageMobRenderer;
-import com.robertx22.age_of_exile.mobs.renders.ModChickenRenderer;
-import com.robertx22.age_of_exile.mobs.renders.ModSlimeRenderer;
-import com.robertx22.age_of_exile.mobs.renders.ModSpiderRenderer;
+import com.robertx22.age_of_exile.mobs.renders.*;
 import com.robertx22.age_of_exile.mobs.renders.skeleton.ModSkeletonRenderer;
 import com.robertx22.age_of_exile.mobs.renders.zombie.ModZombieRenderer;
 import net.minecraft.client.MinecraftClient;
@@ -62,6 +59,8 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.WATER_SKELETON, (d, ctx) -> new ModSkeletonRenderer(d, "stray.png", "water_overlay.png"));
         INSTANCE.register(ENTITIES.NATURE_SKELETON, (d, ctx) -> new ModSkeletonRenderer(d, "stray.png", "nature_overlay.png"));
         INSTANCE.register(ENTITIES.THUNDER_SKELETON, (d, ctx) -> new ModSkeletonRenderer(d, "stray.png", "thunder_overlay.png"));
+
+        INSTANCE.register(ENTITIES.GOLEM_BOSS, (d, ctx) -> new BossGolemRenderer(d));
 
     }
 }
