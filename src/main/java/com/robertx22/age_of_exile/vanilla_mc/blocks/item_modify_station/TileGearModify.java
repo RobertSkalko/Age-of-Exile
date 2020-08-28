@@ -43,7 +43,7 @@ public class TileGearModify extends BaseTile {
         return false;
     }
 
-    public ResultItem getSmeltingResultForItem(ItemStack stack) {
+    public ResultItem getSmeltingResultForItem() {
 
         LocReqContext context = getLocReqContext();
 
@@ -90,17 +90,11 @@ public class TileGearModify extends BaseTile {
         itemStacks[0] = stack;
     }
 
-    public static final int INPUT_SLOTS_COUNT = 2;
-    public static final int TOTAL_SLOTS_COUNT = INPUT_SLOTS_COUNT;
-
-    public static final int FIRST_INPUT_SLOT = 0;
-    public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
-
     private static final short COOK_TIME_FOR_COMPLETION = 80; // vanilla value is 200 = 10 seconds
 
     public TileGearModify() {
         super(ModRegistry.BLOCK_ENTITIES.GEAR_MODIFY);
-        itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
+        itemStacks = new ItemStack[2];
         clear();
 
     }
@@ -148,7 +142,7 @@ public class TileGearModify extends BaseTile {
 
     private ResultItem getResult() {
 
-        return getSmeltingResultForItem(this.GearSlot());
+        return getSmeltingResultForItem();
 
     }
 
@@ -160,7 +154,7 @@ public class TileGearModify extends BaseTile {
             return false;
         }
 
-        if (getSmeltingResultForItem(gear).stack.isEmpty()) {
+        if (getSmeltingResultForItem().stack.isEmpty()) {
             return false;
         }
 

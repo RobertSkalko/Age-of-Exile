@@ -25,7 +25,6 @@ import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.vanilla_mc.packets.RegistryPacket;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.registry.Registry;
@@ -269,29 +268,29 @@ public class SlashRegistry {
         SERVER = new HashMap<>();
 
         // data pack ones
-        addRegistry(new SlashRegistryContainer<GearSlot>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).isDatapack());
-        addRegistry(new SlashRegistryContainer<BaseGearType>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).isDatapack());
-        addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
-        addRegistry(new SlashRegistryContainer<Affix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
-        addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
-        addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, null).isDatapack());
-        addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.UNIQUE_GEAR, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()
             .logAdditions());
-        addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
             ).logAdditions()
                 .isDatapack()
                 .dontErrorMissingEntriesOnAccess()
         );
-        addRegistry(new SlashRegistryContainer<EntityConfig>(SlashRegistryType.ENTITY_CONFIGS, new EntityConfig("", 0)).logAdditions()
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.ENTITY_CONFIGS, new EntityConfig("", 0)).logAdditions()
             .isDatapack());
 
         // data pack ones
-        addRegistry(new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance()));
-        addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
-        addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
-        addRegistry(new SlashRegistryContainer<BasePotionEffect>(SlashRegistryType.EFFECT, null));
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.STAT, EmptyStat.getInstance()));
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, new EmptySpell()));
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EFFECT, null));
     }
 
 }

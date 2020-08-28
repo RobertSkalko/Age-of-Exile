@@ -37,10 +37,13 @@ public class EntityConfigs implements ISlashRegistryInit {
 
         new EntityConfig("lycanite_mobs", 1.2F).addToSerializables();
 
-        EntityConfig golem = new EntityConfig(Registry.ENTITY_TYPE.getId(ModRegistry.ENTITIES.GOLEM_BOSS)
-            .toString(), 1);
+        EntityConfig golem = mob(ModRegistry.ENTITIES.GOLEM_BOSS, new SpecialMobStats());
         golem.max_lvl = 10;
         golem.min_lvl = 10;
+
+        EntityConfig wither = mob(EntityType.WITHER, new SpecialMobStats());
+        golem.max_lvl = 30;
+        golem.min_lvl = 30;
 
         mob(ENTITIES.FIRE_CHICKEN, fire());
         mob(ENTITIES.WATER_CHICKEN, water());
@@ -80,12 +83,12 @@ public class EntityConfigs implements ISlashRegistryInit {
 
     }
 
-    private static void mob(EntityType type, SpecialMobStats stats) {
+    private EntityConfig mob(EntityType type, SpecialMobStats stats) {
         EntityConfig c = new EntityConfig(Registry.ENTITY_TYPE.getId(type)
             .toString(), 1);
         c.stats = stats;
         c.addToSerializables();
-
+        return c;
     }
 
 }
