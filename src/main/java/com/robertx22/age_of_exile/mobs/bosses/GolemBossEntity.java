@@ -102,7 +102,17 @@ public class GolemBossEntity extends IronGolemEntity implements IBossMob {
             if (age < 300 && this.age % 100 == 0) { // unsure how to do this
                 Explosion.DestructionType destructionType = this.world.getGameRules()
                     .getBoolean(GameRules.DO_MOB_GRIEFING) ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE;
-                this.world.createExplosion(this, null, new NoBlockIsSafeExplosionBehavior(), this.getX(), this.getEyeY(), this.getZ(), 5F, false, destructionType);
+
+                Explosion explosion = new Explosion(
+                    world,
+                    this,
+                    null,
+                    new NoBlockIsSafeExplosionBehavior(),
+                    this.getX(), this.getEyeY(), this.getZ(), 5F, false, destructionType);
+
+                explosion.collectBlocksAndDamageEntities();
+                explosion.affectWorld(true);
+
             }
 
             if (this.age % 20 == 0) {

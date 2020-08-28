@@ -1,13 +1,25 @@
 package com.robertx22.age_of_exile.database.data;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.base.Rarities;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurn;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISerializable<EntityConfig> {
@@ -26,14 +38,24 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
 
     public String identifier = "";
 
+    public SpecialMobStats stats = new SpecialMobStats();
+
     public double loot_multi = 1F;
+
     public double exp_multi = 1F;
+
     public int min_rarity = 0;
+
     public int max_rarity = 4;
+
     public int min_lvl = 1;
-    public int max_lvl = 10000;
+
+    public int max_lvl = 1000000;
+
     public double dmg_multi = 1;
+
     public double hp_multi = 1;
+
     public double stat_multi = 1;
 
     @Override
@@ -52,55 +74,17 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
         }
     }
 
+    static Gson GSON = new Gson();
+
     @Override
     public JsonObject toJson() {
-
-        JsonObject json = new JsonObject();
-
-        json.addProperty("identifier", identifier);
-        json.addProperty("min_rarity", min_rarity);
-        json.addProperty("max_rarity", max_rarity);
-        json.addProperty("min_lvl", min_lvl);
-        json.addProperty("max_lvl", max_lvl);
-        json.addProperty("dmg_multi", dmg_multi);
-        json.addProperty("hp_multi", hp_multi);
-        json.addProperty("stat_multi", stat_multi);
-        json.addProperty("loot_multi", loot_multi);
-        json.addProperty("exp_multi", exp_multi);
-
-        return json;
-
+        return new JsonParser().parse(GSON.toJson(this))
+            .getAsJsonObject();
     }
 
     @Override
     public EntityConfig fromJson(JsonObject json) {
-
-        EntityConfig c = new EntityConfig();
-
-        c.identifier = json.get("identifier")
-            .getAsString();
-        c.min_rarity = json.get("min_rarity")
-            .getAsInt();
-        c.max_rarity = json.get("max_rarity")
-            .getAsInt();
-        c.min_lvl = json.get("min_lvl")
-            .getAsInt();
-        c.max_lvl = json.get("max_lvl")
-            .getAsInt();
-
-        c.dmg_multi = json.get("dmg_multi")
-            .getAsFloat();
-        c.hp_multi = json.get("hp_multi")
-            .getAsFloat();
-        c.stat_multi = json.get("stat_multi")
-            .getAsFloat();
-        c.loot_multi = json.get("loot_multi")
-            .getAsFloat();
-        c.exp_multi = json.get("exp_multi")
-            .getAsFloat();
-
-        return c;
-
+        return GSON.fromJson(json, EntityConfig.class);
     }
 
     @Override
@@ -126,6 +110,92 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     @Override
     public Rarity getRarity() {
         return Rarities.Mobs.get(getRarityRank());
+    }
+
+    public static class MobStatData implements IApplyableStats {
+
+        public StatModifier mod;
+
+        public boolean scaleToLevel = true;
+
+        public MobStatData() {
+
+        }
+
+        public MobStatData(StatModifier mod, boolean scaleToLevel) {
+            this.mod = mod;
+            this.scaleToLevel = scaleToLevel;
+        }
+
+        public MobStatData(StatModifier mod) {
+            this.mod = mod;
+        }
+
+        @Override
+        public void applyStats(EntityCap.UnitData data) {
+            if (scaleToLevel) {
+                mod.ToExactStat(100, data.getLevel())
+                    .applyStats(data);
+            } else {
+                mod.ToExactStat(100, 1)
+                    .applyStats(data);
+            }
+        }
+
+    }
+
+    public static class SpecialMobStats {
+
+        public List<MobStatData> stats = new ArrayList<>();
+
+        public SpecialMobStats(MobStatData... stats) {
+            this.stats.addAll(Arrays.asList(stats));
+        }
+
+        private SpecialMobStats() {
+
+        }
+
+        public SpecialMobStats(SpecialMobStats... stats) {
+            for (SpecialMobStats stat : stats) {
+                this.stats.addAll(stat.stats);
+            }
+        }
+    }
+
+    public static SpecialMobStats FIRE = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Fire))), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats WATER = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Water))), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats NATURE = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Nature))), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats THUNDER = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Thunder))), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+
+    public static SpecialMobStats FIRE_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Fire)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats WATER_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Water)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats NATURE_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Nature)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats THUNDER_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Thunder)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+
+    public static SpecialMobStats LESS_FIRE_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Fire)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats LESS_WATER_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Water)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Nature)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats LESS_THUNDER_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Thunder)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+
+    public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new MobStatData(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance())));
+
+    public static SpecialMobStats MANA_BURN = new SpecialMobStats(new MobStatData(new StatModifier(1, 1, ManaBurn.getInstance())), new MobStatData(new StatModifier(15, 15, ExtraMobDropsStat.getInstance())));
+
+    public static SpecialMobStats fire() {
+        return new SpecialMobStats(FIRE, FIRE_RES, LESS_WATER_RES);
+    }
+
+    public static SpecialMobStats water() {
+        return new SpecialMobStats(WATER, WATER_RES, LESS_FIRE_RES);
+    }
+
+    public static SpecialMobStats nature() {
+        return new SpecialMobStats(NATURE, NATURE_RES, LESS_THUNDER_RES);
+    }
+
+    public static SpecialMobStats thunder() {
+        return new SpecialMobStats(THUNDER, THUNDER_RES, LESS_NATURE_RES);
     }
 
 }

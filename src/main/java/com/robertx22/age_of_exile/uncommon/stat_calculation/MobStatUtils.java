@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDama
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.mobs.mob_stats.SpecialMobStats;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityUtils;
@@ -66,6 +65,8 @@ public class MobStatUtils {
         Unit unit = unitdata.getUnit();
         EntityConfig config = SlashRegistry.getEntityConfig(entity, unitdata);
 
+        config.stats.stats.forEach(x -> x.applyStats(unitdata));
+
         for (StatData data : unit.getStats()
             .values()) {
             Stat stat = data.GetStat();
@@ -82,8 +83,6 @@ public class MobStatUtils {
     }
 
     public static void AddMobcStats(UnitData unitdata, LivingEntity en) {
-
-        SpecialMobStats.getStatsFor(en).stats.forEach(x -> x.applyStats(unitdata));
 
         try {
             unitdata.getArea()

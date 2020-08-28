@@ -7,6 +7,7 @@
     "BlockMixin",
     "ChestMixin",
     "DefaultBiomeFeaturesMixin",
+    "ExplosionMixin",
     "FallingBlockEntityMixin",
     "FoodComponentMixin",
     "LivingEntityMixin",
