@@ -6,12 +6,10 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem
 import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.FuelSlot;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.ItemCapacitor;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
@@ -19,7 +17,15 @@ import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TileGearRepair extends BaseTile {
+
+    public static List<Integer> FUEL_SLOTS = Arrays.asList(0);
+    public static List<Integer> INPUT_SLOTS = Arrays.asList(1, 2, 3, 4, 5);
+    public static List<Integer> OUTPUT_SLOTS = Arrays.asList(6, 7, 8, 9, 10);
+    public static int TOTAL_SLOTS_COUNT = FUEL_SLOTS.size() + INPUT_SLOTS.size() + OUTPUT_SLOTS.size();
 
     @Override
     public boolean isAutomatable() {
@@ -34,15 +40,14 @@ public class TileGearRepair extends BaseTile {
     @Override
     public boolean canInsert(int index, ItemStack itemStackIn, Direction direction) {
 
-        if (this.isAutomatable() && containsSlot(index, this.inputSlots())) {
+        if (this.isAutomatable() && containsSlot(index)) {
             // don't insert shit
             return this.isItemValidInput(itemStackIn);
         }
 
-        if (FIRST_FUEL_SLOT == index) {
+        if (FUEL_SLOTS.contains(index)) {
             if (direction == Direction.NORTH || direction == Direction.EAST ||
                 direction == Direction.SOUTH || direction == Direction.WEST) {
-
                 return true;
 
             }
@@ -52,44 +57,19 @@ public class TileGearRepair extends BaseTile {
     }
 
     @Override
-    public int[] inputSlots() {
-        int[] ints = new int[INPUT_SLOTS_COUNT];
-        for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
-            ints[i] = FIRST_INPUT_SLOT + i;
-        }
-
-        return ints;
+    public List<Integer> inputSlots() {
+        return INPUT_SLOTS;
     }
 
     @Override
     public int getCookTime() {
-
-        ItemCapacitor cap = getCapacitor();
-        if (cap != null) {
-            return (int) (COOK_TIME_FOR_COMPLETION * cap.GetSpeedMultiplier());
-        }
 
         return COOK_TIME_FOR_COMPLETION;
     }
 
     @Override
     public boolean isOutputSlot(int slot) {
-        return slot >= FIRST_OUTPUT_SLOT && slot <= FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
-    }
-
-    public ItemCapacitor getCapacitor() {
-
-        if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
-
-            Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
-
-            if (item instanceof ItemCapacitor) {
-                return (ItemCapacitor) item;
-            }
-
-        }
-        return null;
-
+        return OUTPUT_SLOTS.contains(slot);
     }
 
     public static int MaximumFuel = 50000;
@@ -115,20 +95,6 @@ public class TileGearRepair extends BaseTile {
 
     }
 
-    // IMPORTANT STUFF ABOVE
-
-    // Create and initialize the itemStacks variable that will store store the
-    // itemStacks
-    public static final int FUEL_SLOTS_COUNT = 1;
-    public static final int INPUT_SLOTS_COUNT = 5;
-    public static final int OUTPUT_SLOTS_COUNT = 5;
-    public static final int TOTAL_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
-
-    public static final int FIRST_FUEL_SLOT = 0;
-    public static final int FIRST_INPUT_SLOT = FIRST_FUEL_SLOT + FUEL_SLOTS_COUNT;
-    public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
-    public static final int FIRST_CAPACITOR_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
-
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearRepair() {
@@ -138,25 +104,6 @@ public class TileGearRepair extends BaseTile {
         clear();
     }
 
-    /**
-     * Returns the amount of fuel remaining on the currently burning item in the
-     * given fuel slot.
-     *
-     * @return fraction remaining, between 0 - 1
-     * @fuelSlot the number of the fuel slot (0..3)
-     */
-    public double fractionOfFuelRemaining(int fuelSlot) {
-        if (this.fuel <= 0)
-            return 0;
-        double fraction = fuel / (double) MaximumFuel;
-        return MathHelper.clamp(fraction, 0.0, 1.0);
-    }
-
-    /**
-     * Returns the amount of cook time completed on the currently cooking item.
-     *
-     * @return fraction remaining, between 0 - 1
-     */
     public double fractionOfCookTimeComplete() {
         double fraction = cookTime / (double) getCookTime();
         return MathHelper.clamp(fraction, 0.0, 1.0);
@@ -200,8 +147,7 @@ public class TileGearRepair extends BaseTile {
         int burningCount = 0;
         boolean inventoryChanged = false;
         // Iterate over all the fuel slots
-        for (int i = 0; i < FUEL_SLOTS_COUNT; i++) {
-            int fuelSlotNumber = i + FIRST_FUEL_SLOT;
+        for (int fuelSlotNumber : FUEL_SLOTS) {
 
             if (this.fuel < this.MaximumFuel) {
                 if (!itemStacks[fuelSlotNumber].isEmpty()) { // isEmpty()
@@ -247,19 +193,9 @@ public class TileGearRepair extends BaseTile {
         int fuelNeeded = 0;
         float fuelMulti = 1F;
 
-        if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
-
-            Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
-
-            if (item instanceof ItemCapacitor) {
-                fuelMulti = ((ItemCapacitor) item).GetFuelMultiplier();
-            }
-
-        }
-
         // finds the first input slot which is smeltable and whose result fits into an
         // output slot (stacking if possible)
-        for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
+        for (int inputSlot : INPUT_SLOTS) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
                 fuelNeeded = (int) (itemStacks[inputSlot].getDamage() * ModConfig.get().Server.REPAIR_FUEL_NEEDED_MULTI);
@@ -280,7 +216,7 @@ public class TileGearRepair extends BaseTile {
                 if (!result.isEmpty()) { // isEmpty()
                     // find the first suitable output slot- either empty, or with identical item
                     // that has enough space
-                    for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT; outputSlot++) {
+                    for (int outputSlot : OUTPUT_SLOTS) {
                         ItemStack outputStack = itemStacks[outputSlot];
                         if (outputStack.isEmpty()) { // isEmpty()
                             firstSuitableInputSlot = inputSlot;

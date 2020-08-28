@@ -14,7 +14,9 @@ import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInventory, Tickable, NamedScreenHandlerFactory {
 
@@ -81,45 +83,38 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
 
     // OVERRIDE IF AUTOMATABLE
     @Override
-    public int[] inputSlots() {
-        return new int[0];
+    public List<Integer> inputSlots() {
+        return Arrays.asList();
     }
 
     @Override
     public int[] getAvailableSlots(Direction side) {
-        return slots();
+        int[] ar = new int[slots().size()];
+        for (int i = 0; i < slots().size(); i++) {
+            ar[i] = i;
+        }
+        return ar;
+
     }
 
-    @Override
-    public boolean isItemValidOutput(ItemStack stack) {
-        return true;
-    }
+    private List<Integer> slots() {
 
-    private int[] slots() {
-
-        int[] ints = new int[this.itemStacks.length];
+        List<Integer> slots = new ArrayList<>();
 
         for (int i = 0; i < itemStacks.length; i++) {
-            ints[i] = i;
+            slots.add(i);
         }
 
-        return ints;
+        return slots;
     }
 
-    public boolean containsSlot(int index, int[] slots) {
-
-        for (int i : this.inputSlots()) {
-            if (i == index) {
-                return true;
-            }
-        }
-        return false;
+    public boolean containsSlot(int index) {
+        return inputSlots().contains(index);
     }
 
     @Override
     public boolean canInsert(int index, ItemStack itemStackIn, Direction direction) {
-
-        if (this.isAutomatable() && containsSlot(index, this.inputSlots())) {
+        if (this.isAutomatable() && containsSlot(index)) {
             // don't insert shit
             return this.isItemValidInput(itemStackIn);
         }

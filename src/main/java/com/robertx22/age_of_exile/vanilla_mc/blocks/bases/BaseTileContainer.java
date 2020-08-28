@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
@@ -13,9 +14,36 @@ public abstract class BaseTileContainer extends ScreenHandler {
 
     public BlockPos pos;
 
-    protected BaseTileContainer(int size, ScreenHandlerType<?> type, int id) {
+    private static final int HOTBAR_SLOT_COUNT = 9;
+    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
+    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+
+    protected BaseTileContainer(int size, ScreenHandlerType<?> type, int id, PlayerInventory invPlayer) {
         super(type, id);
         this.size = size;
+
+        final int PLAYER_INVENTORY_XPOS = 8;
+        final int PLAYER_INVENTORY_YPOS = 125;
+
+        final int SLOT_X_SPACING = 18;
+        final int SLOT_Y_SPACING = 18;
+        final int HOTBAR_YPOS = 183;
+        // Add the players hotbar to the gui - the [xpos, ypos] location of each item
+        for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
+            int slotNumber = x;
+            addSlot(new Slot(invPlayer, slotNumber, PLAYER_INVENTORY_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
+        }
+        // Add the rest of the players inventory to the gui
+        for (int y = 0; y < PLAYER_INVENTORY_ROW_COUNT; y++) {
+            for (int x = 0; x < PLAYER_INVENTORY_COLUMN_COUNT; x++) {
+                int slotNumber = HOTBAR_SLOT_COUNT + y * PLAYER_INVENTORY_COLUMN_COUNT + x;
+                int xpos = PLAYER_INVENTORY_XPOS + x * SLOT_X_SPACING;
+                int ypos = PLAYER_INVENTORY_YPOS + y * SLOT_Y_SPACING;
+                addSlot(new Slot(invPlayer, slotNumber, xpos, ypos));
+            }
+        }
+
     }
 
     public boolean isPlayerInventory(int index) {

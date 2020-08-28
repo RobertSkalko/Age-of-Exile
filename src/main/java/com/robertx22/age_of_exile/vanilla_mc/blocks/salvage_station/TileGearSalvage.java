@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTile;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.ItemCapacitor;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
 import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,42 +19,25 @@ import net.minecraft.text.MutableText;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TileGearSalvage extends BaseTile {
 
-    @Override
-    public int[] inputSlots() {
-        int[] ints = new int[INPUT_SLOTS_COUNT];
-        for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
-            ints[i] = FIRST_INPUT_SLOT + i;
-        }
+    public static List<Integer> FUEL_SLOTS = Arrays.asList(0);
+    public static List<Integer> INPUT_SLOTS = Arrays.asList(1, 2, 3, 4, 5);
+    public static List<Integer> OUTPUT_SLOTS = Arrays.asList(6, 7, 8, 9, 10);
+    public static int TOTAL_SLOTS_COUNT = FUEL_SLOTS.size() + INPUT_SLOTS.size() + OUTPUT_SLOTS.size();
 
-        return ints;
+    @Override
+    public List<Integer> inputSlots() {
+        return INPUT_SLOTS;
     }
 
     @Override
     public int getCookTime() {
 
-        ItemCapacitor cap = getCapacitor();
-        if (cap != null) {
-            return (int) (COOK_TIME_FOR_COMPLETION * cap.GetSpeedMultiplier());
-        }
-
         return COOK_TIME_FOR_COMPLETION;
-    }
-
-    public ItemCapacitor getCapacitor() {
-
-        if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
-
-            Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
-
-            if (item instanceof ItemCapacitor) {
-                return (ItemCapacitor) item;
-            }
-
-        }
-        return null;
-
     }
 
     @Override
@@ -65,32 +47,16 @@ public class TileGearSalvage extends BaseTile {
 
     @Override
     public boolean isOutputSlot(int slot) {
-        return slot >= FIRST_OUTPUT_SLOT && slot <= FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
-    }
-
-    private float getCapacitorBonus() {
-
-        ItemStack stack = itemStacks[FIRST_CAPACITOR_SLOT];
-
-        if (stack.getItem() instanceof ItemCapacitor) {
-            ItemCapacitor cap = (ItemCapacitor) stack.getItem();
-
-            return cap.getSalvageBonusChance();
-        }
-
-        return 0;
-
+        return OUTPUT_SLOTS.contains(slot);
     }
 
     public ItemStack getSmeltingResultForItem(ItemStack st) {
-
-        float bonus = getCapacitorBonus();
 
         ICommonDataItem data = ICommonDataItem.load(st);
 
         if (data != null) {
             if (data.isSalvagable(ISalvagable.SalvageContext.SALVAGE_STATION)) {
-                return data.getSalvageResult(bonus);
+                return data.getSalvageResult(0);
             }
         } else {
 
@@ -98,7 +64,7 @@ public class TileGearSalvage extends BaseTile {
             if (item instanceof ISalvagable) {
                 ISalvagable sal = (ISalvagable) item;
                 if (sal.isSalvagable(ISalvagable.SalvageContext.SALVAGE_STATION)) {
-                    return sal.getSalvageResult(bonus);
+                    return sal.getSalvageResult(0);
                 }
             }
         }
@@ -106,18 +72,6 @@ public class TileGearSalvage extends BaseTile {
         return ItemStack.EMPTY;
 
     }
-
-    // IMPORTANT STUFF ABOVE
-
-    // Create and initialize the itemStacks variable that will store store the
-    // itemStacks
-    public static final int INPUT_SLOTS_COUNT = 5;
-    public static final int OUTPUT_SLOTS_COUNT = 5;
-    public static final int TOTAL_SLOTS_COUNT = INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + 1;
-
-    public static final int FIRST_INPUT_SLOT = 0;
-    public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
-    public static final int FIRST_CAPACITOR_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
 
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
@@ -195,7 +149,7 @@ public class TileGearSalvage extends BaseTile {
 
         // finds the first input slot which is smeltable and whose result fits into an
         // output slot (stacking if possible)
-        for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
+        for (int inputSlot : INPUT_SLOTS) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
                 result = getSmeltingResultForItem(itemStacks[inputSlot]);
@@ -206,7 +160,7 @@ public class TileGearSalvage extends BaseTile {
 
                     // find the first suitable output slot- either empty, or with identical item
                     // that has enough space
-                    for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT; outputSlot++) {
+                    for (int outputSlot : OUTPUT_SLOTS) {
                         ItemStack outputStack = itemStacks[outputSlot];
                         if (outputStack.isEmpty()) { // isEmpty()
                             firstSuitableInputSlot = inputSlot;
@@ -229,7 +183,7 @@ public class TileGearSalvage extends BaseTile {
                     }
 
                     boolean anyEmpty = false;
-                    for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT; outputSlot++) {
+                    for (int outputSlot : OUTPUT_SLOTS) {
                         ItemStack outputStack = itemStacks[outputSlot];
                         if (outputStack.isEmpty()) { // isEmpty()
                             anyEmpty = true;
