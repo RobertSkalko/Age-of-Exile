@@ -4,10 +4,11 @@ import com.robertx22.age_of_exile.database.data.spells.blocks.holy_flower.HolyFl
 import com.robertx22.age_of_exile.database.data.spells.blocks.magma_flower.MagmaFlowerBlock;
 import com.robertx22.age_of_exile.database.data.spells.blocks.thorn_bush.ThornBushBlock;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.furnace.EssentiaFurnaceBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.BlockGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
+import com.robertx22.magic_mod.furnace.EssentiaFurnaceBlock;
+import com.robertx22.teleport.RecallBlock;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -23,6 +24,8 @@ public class ModBlocks {
     public ThornBushBlock THORN_BUSH = of("thorn_bush", new ThornBushBlock());
 
     public EssentiaFurnaceBlock ESSENTIA_FURNACE = of("furnace", new EssentiaFurnaceBlock());
+
+    public RecallBlock RECALL_BLOCK = of("recall_block", new RecallBlock());
 
     <T extends Block> T of(String id, T c) {
         Registry.register(Registry.BLOCK, new Identifier(Ref.MODID, id), c);

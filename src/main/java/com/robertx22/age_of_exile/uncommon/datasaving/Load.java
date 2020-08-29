@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.teleport.TeleportComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,6 +37,10 @@ public class Load {
         }
 
         return data;
+    }
+
+    public static TeleportComponent teleport(PlayerEntity provider) {
+        return ModRegistry.COMPONENTS.TELEPORT.get(provider);
     }
 
     public static PlayerStatsCap.IPlayerStatPointsData statPoints(PlayerEntity provider) {

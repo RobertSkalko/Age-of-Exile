@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.mobs.bosses;
 
 import com.robertx22.age_of_exile.mobs.bosses.bases.BossData;
 import com.robertx22.age_of_exile.mobs.bosses.bases.IBossMob;
-import com.robertx22.age_of_exile.mobs.bosses.bases.NoBlockIsSafeExplosionBehavior;
 import com.robertx22.age_of_exile.mobs.bosses.channels.AngerChannel;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
 import net.minecraft.block.Blocks;
@@ -22,10 +21,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.Packet;
 import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.util.function.MaterialPredicate;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.explosion.Explosion;
 
 import java.util.Arrays;
 
@@ -99,6 +96,7 @@ public class GolemBossEntity extends IronGolemEntity implements IBossMob {
 
         if (!world.isClient) {
 
+            /*
             if (age < 300 && this.age % 100 == 0) { // unsure how to do this
                 Explosion.DestructionType destructionType = this.world.getGameRules()
                     .getBoolean(GameRules.DO_MOB_GRIEFING) ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE;
@@ -114,6 +112,8 @@ public class GolemBossEntity extends IronGolemEntity implements IBossMob {
                 explosion.affectWorld(true);
 
             }
+
+             */
 
             if (this.age % 20 == 0) {
                 this.heal(getMaxHealth() * 0.01F);

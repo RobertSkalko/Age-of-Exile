@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
+import com.robertx22.teleport.TeleportItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -28,6 +29,9 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");
     public Item INCRESE_MOB_RARITY = item(new ItemIncreaseRarityNearestEntity(), "increase_rarity_nearest_entity");
+
+    public Item RECALL_ITEM = item(new TeleportItem(), "teleport_item");
+    public Item RECALL_BLOCK_ITEM = blockItem(ModRegistry.BLOCKS.RECALL_BLOCK);
 
     public Item INFUSED_IRON = item(new SimpleMatItem(), "mat/infused_iron");
     public Item CRYSTALLIZED_ESSENCE = item(new SimpleMatItem(), "mat/crystallized_essence");

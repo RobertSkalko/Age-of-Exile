@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.blocks.furnace;
+package com.robertx22.magic_mod.furnace;
 
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTileContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.AnyItemNotACurrencyEffectSlot;

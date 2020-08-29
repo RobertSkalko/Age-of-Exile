@@ -11,6 +11,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.lang.reflect.Field;
@@ -138,6 +139,10 @@ public class EntityUtils {
 
     public static void setLoc(LivingEntity entity, Vec3d p, float yaw, float pitch) {
         entity.requestTeleport(p.x, p.y, p.z);
+    }
+
+    public static void setLoc(LivingEntity entity, BlockPos p) {
+        entity.requestTeleport(p.getX(), p.getY(), p.getZ());
     }
 
 }

@@ -27,10 +27,6 @@ public abstract class NonFullBlock extends Block {
 
     }
 
-    public boolean isNotSolid(BlockState state) {
-        return true;
-    }
-
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         return this.getDefaultState()
