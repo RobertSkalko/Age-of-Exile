@@ -1,0 +1,17 @@
+{
+  "name": "Salvaging",
+  "category": "getting_started",
+  "icon": "mmorpg:salvage_station",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "The Salvage Station",
+		"text": "The salvage station is the first thing you'll want to craft. It allows you to salvage rare materials from exile gear that drops. Those materials will be primarily used to repair your gear in the Repair Station, but they can also be used for other purposes, like crafting."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:salvage_station"   
+    }
+  ]
+}

@@ -12,16 +12,13 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    maven {
-        url = "https://maven.theillusivec4.top/"
-    }
+    maven {        url = "https://maven.theillusivec4.top/"    }
     maven {
         name = "Ladysnake Libs"
         url = 'https://dl.bintray.com/ladysnake/libs'
     }
-    maven {
-        url = 'https://maven.fabricmc.net/io/github/prospector/modmenu/'
-    }
+    maven {        url = 'https://maven.fabricmc.net/io/github/prospector/modmenu/'    }
+	maven { url 'https://maven.blamejared.com' }
 }
 
 
@@ -58,8 +55,13 @@ dependencies {
     modImplementation("top.theillusivec4.curios:curios-fabric:${curios_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
+	
+	//modApi "vazkii.patchouli:Patchouli:${patchouli_version}:api"
+    modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"	
 
     compile files("Library-Of-Exile-1.16.2-1.0.2-dev.jar")
+	
+	
 }
 
 processResources {

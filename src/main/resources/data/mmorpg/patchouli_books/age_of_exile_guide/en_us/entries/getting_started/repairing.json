@@ -1,0 +1,17 @@
+{
+  "name": "Repairing",
+  "category": "getting_started",
+  "icon": "mmorpg:repair_station",
+  "sortnum": 1,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "The Repair Station",
+		"text": "After getting some materials from the Salvage Station, you can use them to fuel this station. It will repair your gear."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:repair_station"   
+    }
+  ]
+}

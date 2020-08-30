@@ -1,0 +1,9 @@
+{
+  "name": "item.patchouli.age_of_exile_guide.name",
+  "landing_text": "item.patchouli.age_of_exile_guide.landing",
+  "model": "minecraft:book",
+  "version": "1",
+  "subtitle": "Subtitle",
+  "creative_tab": "tools",
+  "pause_game": true
+}

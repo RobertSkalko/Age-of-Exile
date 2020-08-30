@@ -1,0 +1,43 @@
+{
+  "name": "Level 10 Boss",
+  "category": "progression",
+  "icon": "minecraft:zombie_head",
+  "pages": [	
+	{  
+		"type": "text",   
+		"title": "Corrupted Golem",
+		"text": "The first Boss you will fight. You should be around level 10 and be decently prepared. If you manage to kill it, it drops an important ingredient that allows you craft the Modify Station, which allows you to upgrade gear."
+	}, 
+    {
+      "type": "multiblock",
+      "name": "Boss Summoning",
+      "multiblock": {
+        "pattern": [
+          [
+            "BBB",
+            "W0W",
+            " W "
+          ]
+        ],
+        "mapping": {
+          "W": "minecraft:iron_block",
+          "B": "minecraft:bone_block",
+		"0": "minecraft:iron_block"
+        }
+      }
+    },
+	{
+      "type": "spotlight",
+      "item": "mmorpg:mat/modify_part",
+      "link_recipe": false,
+	  "text": "With this you can craft the modify station, as it's not attainable in any other way."
+
+    },
+	{
+		"type": "crafting",
+		"recipe": "mmorpg:modify_station",
+		"text": "With this station, you can use currencies to modify gear, socket jewels and so on. It's insanely useful for bettering your gear."
+  
+    }
+  ]
+}
