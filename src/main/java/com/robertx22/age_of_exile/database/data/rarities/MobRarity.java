@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 
 public interface MobRarity extends Rarity {
 
-    public int minMobLevel();
+    public int minMobLevelForRandomSpawns();
 
     public float DamageMultiplier();
 

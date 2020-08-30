@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.registrators.BaseGearTypes;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.vanilla_mc.items.BaseItem;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemNewbieGearBag extends BaseItem {
+public class ItemNewbieGearBag extends Item {
 
     public ItemNewbieGearBag() {
         super(new Settings().group(CreativeTabs.MyModTab));

@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.rarities.mobs.BossMob;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -430,6 +431,12 @@ public class EntityCap {
 
                 MutableText name = new LiteralText("").append(entity.getDisplayName())
                     .formatted(rarformat);
+
+                if (rarity.Rank() == BossMob.getInstance()
+                    .Rank()) {
+                    name = new LiteralText("[" + BossMob.SKULL + "] ").formatted(Formatting.YELLOW)
+                        .append(name);
+                }
 
                 MutableText finalName =
                     name;

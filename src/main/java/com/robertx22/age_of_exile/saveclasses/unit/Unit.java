@@ -260,7 +260,7 @@ public class Unit {
 
         List<MobRarity> rarities = Rarities.Mobs.getAllRarities()
             .stream()
-            .filter(x -> data.getLevel() >= x.minMobLevel() || data.getLevel() >= ModConfig.get().Server.MAX_LEVEL)
+            .filter(x -> data.getLevel() >= x.minMobLevelForRandomSpawns() || data.getLevel() >= ModConfig.get().Server.MAX_LEVEL)
             .collect(Collectors.toList());
 
         if (rarities.isEmpty()) {

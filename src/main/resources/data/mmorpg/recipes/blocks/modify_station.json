@@ -13,7 +13,7 @@
       "item": "minecraft:crafting_table"
     } , 
 	"B": {
-      "item": "minecraft:gold_ingot"
+      "item": "mmorpg:mat/modify_part"
     } 
   },
   "result": {

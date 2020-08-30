@@ -38,6 +38,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item GOLDEN_ORB = item(new SimpleMatItem(), "mat/golden_orb");
     public Item MYTHIC_ESSENCE = item(new SimpleMatItem(), "mat/mythic_essence");
 
+    public Item HEART_OF_IMAGINATION = item(new HeartOfImaginationItem(), "mat/modify_part");
+
     public ResetStatPointsItem RESET_STATS_POTION = item(new ResetStatPointsItem());
 
     public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);

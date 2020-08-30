@@ -1,45 +1,47 @@
 package com.robertx22.age_of_exile.database.data.rarities.mobs;
 
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.data.rarities.base.BaseEpic;
+import com.robertx22.age_of_exile.database.data.rarities.base.BaseUnique;
 
-public class EpicMob extends BaseEpic implements MobRarity {
+public class BossMob extends BaseUnique implements MobRarity {
 
-    private EpicMob() {
+    private BossMob() {
     }
 
-    public static EpicMob getInstance() {
-        return SingletonHolder.INSTANCE;
+    public static String SKULL = "\u2620";
+
+    public static BossMob getInstance() {
+        return BossMob.SingletonHolder.INSTANCE;
     }
 
     @Override
     public int minMobLevelForRandomSpawns() {
-        return 15;
+        return 40;
     }
 
     @Override
     public float StatMultiplier() {
-        return 3.2F;
+        return 4;
     }
 
     @Override
     public float DamageMultiplier() {
-        return 2.2F;
+        return 2.5F;
     }
 
     @Override
     public float ExtraHealthMulti() {
-        return 2;
-    }
-
-    @Override
-    public float LootMultiplier() {
         return 5;
     }
 
     @Override
+    public float LootMultiplier() {
+        return 12;
+    }
+
+    @Override
     public String locNameForLangFile() {
-        return "Elite";
+        return "Boss";
     }
 
     @Override
@@ -49,20 +51,20 @@ public class EpicMob extends BaseEpic implements MobRarity {
 
     @Override
     public float bothAffixesChance() {
-        return 75;
+        return 100;
     }
 
     @Override
     public float expMulti() {
-        return 3;
+        return 6;
     }
 
     @Override
     public int Weight() {
-        return 200;
+        return 3;
     }
 
     private static class SingletonHolder {
-        private static final EpicMob INSTANCE = new EpicMob();
+        private static final BossMob INSTANCE = new BossMob();
     }
 }

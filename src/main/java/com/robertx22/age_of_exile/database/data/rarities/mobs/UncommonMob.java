@@ -18,7 +18,7 @@ public class UncommonMob extends BaseMagical implements MobRarity {
     }
 
     @Override
-    public int minMobLevel() {
+    public int minMobLevelForRandomSpawns() {
         return 5;
     }
 

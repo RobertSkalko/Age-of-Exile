@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.registrators;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig.*;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.rarities.mobs.BossMob;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -40,10 +41,14 @@ public class EntityConfigs implements ISlashRegistryInit {
         EntityConfig golem = mob(ModRegistry.ENTITIES.GOLEM_BOSS, new SpecialMobStats());
         golem.max_lvl = 10;
         golem.min_lvl = 10;
+        golem.min_rarity = BossMob.getInstance()
+            .Rank();
+        golem.max_rarity = BossMob.getInstance()
+            .Rank();
 
         EntityConfig wither = mob(EntityType.WITHER, new SpecialMobStats());
-        golem.max_lvl = 30;
-        golem.min_lvl = 30;
+        wither.max_lvl = 30;
+        wither.min_lvl = 30;
 
         mob(ENTITIES.FIRE_CHICKEN, fire());
         mob(ENTITIES.WATER_CHICKEN, water());

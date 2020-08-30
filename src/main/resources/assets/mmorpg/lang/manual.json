@@ -102,6 +102,8 @@
 "entity.mmorpg.water_skeleton": "Icy Skeleton",
 "entity.mmorpg.thunder_skeleton": "Spark Skeleton",
 
+"entity.mmorpg.boss_golem": "Corrupted Golem",
+
 "effect.mmorpg.food_health_regen": "Health Regen",
 "effect.mmorpg.food_mana_regen": "Mana Regen",
 "effect.mmorpg.food_magic_shield_regen": "Magic Regen",

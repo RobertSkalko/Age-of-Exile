@@ -13,7 +13,7 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
     }
 
     @Override
-    public int minMobLevel() {
+    public int minMobLevelForRandomSpawns() {
         return 20;
     }
 

@@ -18,7 +18,7 @@ public class CommonMob extends BaseCommon implements MobRarity {
     }
 
     @Override
-    public int minMobLevel() {
+    public int minMobLevelForRandomSpawns() {
         return 0;
     }
 
