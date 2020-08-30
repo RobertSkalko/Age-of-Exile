@@ -2,11 +2,13 @@
   "name": "Level 10 Boss",
   "category": "progression",
   "icon": "minecraft:zombie_head",
+  "sortnum": 0,
   "pages": [	
 	{  
-		"type": "text",   
+	    "type": "entity",
+        "entity": "mmorpg:boss_golem",		
 		"title": "Corrupted Golem",
-		"text": "The first Boss you will fight. You should be around level 10 and be decently prepared. If you manage to kill it, it drops an important ingredient that allows you craft the Modify Station, which allows you to upgrade gear."
+		"text": "Lvl 10 Boss. Be prepared! It drops an important ingredient that allows you craft the Modify Station."
 	}, 
     {
       "type": "multiblock",
@@ -24,7 +26,8 @@
           "B": "minecraft:bone_block",
 		"0": "minecraft:iron_block"
         }
-      }
+      },
+	 "text": "Iron Blocks and Bone Blocks needed"	  
     },
 	{
       "type": "spotlight",
