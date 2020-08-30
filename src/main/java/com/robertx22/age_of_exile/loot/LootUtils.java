@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -22,7 +23,7 @@ public class LootUtils {
             return multi;
         } else {
             int num = diff - 5;
-            multi = 1F - num * 0.02F;
+            multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_LVL);
         }
 
         if (multi < 0) {

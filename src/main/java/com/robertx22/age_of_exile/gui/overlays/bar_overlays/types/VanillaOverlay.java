@@ -45,7 +45,7 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
             PlayerEntity en = mc.player;
             UnitData data = Load.Unit(en);
 
-            if (true) {
+            if (ModConfig.get().client.RENDER_AREA_INDICATOR) {
                 AreaData area = WorldAreas.getArea(mc.world, en.getBlockPos());
                 String name = area.getAreaModifier()
                     .getFinalLocNameFor(area.getBaseArea()); // TODO

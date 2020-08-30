@@ -15,6 +15,7 @@ public class ServerContainer {
     public double REPAIR_FUEL_NEEDED_MULTI = 1;
     public double REGEN_HUNGER_COST = 10;
     public double EXP_LOSS_ON_DEATH = 0.05F;
+    public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.02F;
     public double STAT_POINTS_PER_LVL = 1;
     public double VANILLA_MOB_DMG_AS_EXILE_DMG = 0.5F;
 
