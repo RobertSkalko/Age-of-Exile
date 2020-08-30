@@ -6,8 +6,8 @@ import java.util.List;
 public class ServerContainer {
 
     public boolean ALLOW_EXILE_MOBS_DAY_SPAWNS = true;
+    public boolean ALL_PLAYERS_ARE_TEAMED_PVE_MODE = true;
     public boolean ALLOW_OBSIDIAN_BREAKING_MEGA_EXPLOSIONS = true;
-    //public boolean USE_COMPATIBILITY_ITEMS = false;
     public boolean LOG_REGISTRY_ENTRIES = false;
     public boolean GET_STARTER_ITEMS = false;
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
