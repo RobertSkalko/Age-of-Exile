@@ -25,7 +25,7 @@ public class ModBlocks {
 
     public EssentiaFurnaceBlock ESSENTIA_FURNACE = of("furnace", new EssentiaFurnaceBlock());
 
-    public RecallBlock RECALL_BLOCK = of("recall_block", new RecallBlock());
+    public RecallBlock RECALL_BLOCK = of("recall_altar", new RecallBlock());
 
     <T extends Block> T of(String id, T c) {
         Registry.register(Registry.BLOCK, new Identifier(Ref.MODID, id), c);
