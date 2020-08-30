@@ -14,7 +14,7 @@ public class DirUtils {
             .getGameDir()
             .toString();
 
-        String movedpath = path.toString();
+        String movedpath = path;
         movedpath = movedpath.replace("run", "src/generated/resources");
         return Paths.get(movedpath);
 

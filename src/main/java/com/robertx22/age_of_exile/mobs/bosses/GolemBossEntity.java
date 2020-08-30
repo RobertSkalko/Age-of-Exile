@@ -31,7 +31,7 @@ public class GolemBossEntity extends IronGolemEntity implements IBossMob {
     public static DefaultAttributeContainer.Builder createAttributes() {
         return HostileEntity.createHostileAttributes()
             .add(EntityAttributes.GENERIC_MAX_HEALTH, 150)
-            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D)
+            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
             .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 15.0D)
             .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0D)
             .add(EntityAttributes.GENERIC_ARMOR, 3.0D);
