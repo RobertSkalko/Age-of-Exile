@@ -1,0 +1,13 @@
+{
+  "name": "How to get Spells",
+  "category": "spells",
+  "icon": "mmorpg:skill_gems/fireball",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "Mob Drops",
+		"text": "Skill Gems ocassionally drop from monsters you kill, this is currently the only way to get spells."
+	}
+  ]
+}

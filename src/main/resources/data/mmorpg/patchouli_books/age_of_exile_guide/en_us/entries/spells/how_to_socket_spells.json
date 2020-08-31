@@ -1,0 +1,12 @@
+{
+  "name": "How to socket Spells",
+  "category": "spells",
+  "icon": "minecraft:book",
+  "sortnum": 1,
+  "pages": [
+	{  
+		"type": "text",   
+		"text": "When you find a skill gem, you need to open your main menu [H], enter spells gui and move your skill gem there. The skill gem is now part of your spell arsenal!"
+	}
+  ]
+}

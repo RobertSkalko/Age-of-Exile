@@ -1,5 +1,6 @@
 {
-  "name": "Progression",
-  "description": "How to get better!",
-  "icon": "minecraft:diamond"
+  "name": "Progression Milestones",
+  "description": "Fight bosses to unlock features and rewards!",
+  "icon": "minecraft:dragon_head",
+  "sortnum":2
 }

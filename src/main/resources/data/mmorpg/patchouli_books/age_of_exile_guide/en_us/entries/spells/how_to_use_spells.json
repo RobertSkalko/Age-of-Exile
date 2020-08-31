@@ -1,0 +1,13 @@
+{
+  "name": "How to use Spells",
+  "category": "spells",
+  "icon": "mmorpg:skill_gems/volcano",
+  "sortnum": 2,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "It's very simple!",
+		"text": "You press [R] to switch to your spell hotbar and then use keyboard number keys or mouse to select your spell. The selected spell shows in the green bar right of your hotbar. To cast it, simply use the correct weapon and right click. Weapons with a use action like bows require you to press [SHIFT+R] instead."
+	}
+  ]
+}

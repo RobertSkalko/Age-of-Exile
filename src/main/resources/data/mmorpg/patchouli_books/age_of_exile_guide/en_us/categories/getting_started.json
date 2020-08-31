@@ -1,5 +1,6 @@
 {
   "name": "Getting Started",
   "description": "Must read for new adventurers!",
-  "icon": "minecraft:wooden_sword"
+  "icon": "minecraft:wooden_sword",
+  "sortnum":0
 }

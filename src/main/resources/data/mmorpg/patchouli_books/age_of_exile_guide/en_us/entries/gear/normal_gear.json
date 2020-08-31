@@ -1,0 +1,17 @@
+{
+  "name": "Normal Gear",
+  "category": "gear",
+  "icon": "mmorpg:weapon/wand/wand0",
+  "sortnum": 0,
+  "pages": [
+	{  
+	    "type": "spotlight",
+		"item": "mmorpg:weapon/wand/scepter0",		
+		"text": "Normal Gears consist of the base stat and affixes. Some have implicit stats and sockets. The higher the rarity, the more affixes an item can have. They all have level and stat requirements to use them."
+	},
+	{  
+		"type": "text",   
+		"text": "Some gears also have implicit stats, for example wands increase spell damage and scepters increase healing."
+	}
+  ]
+}

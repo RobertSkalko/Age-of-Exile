@@ -1,0 +1,18 @@
+{
+  "name": "Leveling Basics",
+  "category": "getting_started",
+  "icon": "minecraft:experience_bottle",
+  "sortnum": 3,
+  "pages": [
+	{  
+		"type": "entity",
+        "entity": "minecraft:zombie",				
+		"text": "To level up, kill hostile mobs like zombies, skeletons etc!"	
+	},  
+	{  
+		"type": "text",   
+		"title": "More info",
+		"text": "Try kill mobs that are close to your level. There is a small loot and exp penalty for killing mobs that are much lower or higher level than you. Not to mention, you'll need to wait a long time to use high level gear. So it's absolutely not worth killing high level mobs as a newbie."
+	}
+  ]
+}

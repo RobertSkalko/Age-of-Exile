@@ -1,0 +1,16 @@
+{
+  "name": "Identify Tome",
+  "category": "items",
+  "icon": "mmorpg:identify_tome",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   		
+		"text": "Used to reveal unidentified items so they can become usable."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:identify_tome"   
+    }
+  ]
+}
