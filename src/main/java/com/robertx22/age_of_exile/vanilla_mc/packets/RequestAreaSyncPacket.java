@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
-import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;

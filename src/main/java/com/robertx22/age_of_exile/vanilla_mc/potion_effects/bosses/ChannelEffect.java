@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses;
 
 import com.robertx22.age_of_exile.mobs.bosses.bases.ChannelAction.ChannelType;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
-import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
-import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.OnTickAction;
+import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
+import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;

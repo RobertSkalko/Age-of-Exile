@@ -1,7 +1,7 @@
-package com.robertx22.forgotten_magic.teleport.furnace;
+package com.robertx22.forgotten_magic.furnace;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseInventoryBlock;
+import com.robertx22.library_of_exile.tile_bases.BaseInventoryBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;

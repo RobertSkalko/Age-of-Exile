@@ -1,14 +1,14 @@
 package com.robertx22.age_of_exile.database.data.spells.entities.trident;
 
-import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
+import com.robertx22.library_of_exile.utils.GeometryUtils;
+import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

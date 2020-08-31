@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.config.base;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.mmorpg.Packets;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SerializationUtils;

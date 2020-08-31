@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station;
 
-import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTileContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.FuelSlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.RepairSlot;
+import com.robertx22.library_of_exile.tile_bases.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;

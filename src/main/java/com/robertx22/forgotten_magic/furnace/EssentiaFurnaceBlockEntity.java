@@ -1,12 +1,12 @@
-package com.robertx22.forgotten_magic.teleport.furnace;
+package com.robertx22.forgotten_magic.furnace;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.EssentiaFuelSlot;
-import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticleEnum;
-import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacketData;
+import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
+import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
+import com.robertx22.library_of_exile.tile_bases.BaseTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SimpleInventory;

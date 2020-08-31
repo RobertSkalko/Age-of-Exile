@@ -15,8 +15,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShiel
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
@@ -26,8 +24,9 @@ import com.robertx22.age_of_exile.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EfficientMobUnitPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.MyPacket;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.EntityStatusEffectsData;
+import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityType;
@@ -379,7 +378,7 @@ public class Unit {
             if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
                 return;
             }
-            MMORPG.sendToTracking(getUpdatePacketFor(entity, data), entity);
+            Packets.sendToTracking(getUpdatePacketFor(entity, data), entity);
         }
 
         if (entity instanceof PlayerEntity) {

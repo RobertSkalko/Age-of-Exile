@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.entity;
 
-import com.robertx22.age_of_exile.mmorpg.Packets;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import nerdhub.cardinal.components.api.event.TrackingStartCallback;

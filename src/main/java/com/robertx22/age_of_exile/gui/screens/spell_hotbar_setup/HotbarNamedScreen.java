@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.spell_hotbar_setup;
 
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
-import com.robertx22.age_of_exile.mmorpg.Packets;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OpenSpellSetupContainerPacket;

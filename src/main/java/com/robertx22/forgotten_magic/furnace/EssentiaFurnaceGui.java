@@ -1,11 +1,11 @@
-package com.robertx22.forgotten_magic.teleport.furnace;
+package com.robertx22.forgotten_magic.furnace;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.gui.buttons.HelpButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.TileGui;
+import com.robertx22.library_of_exile.tile_bases.TileGui;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;

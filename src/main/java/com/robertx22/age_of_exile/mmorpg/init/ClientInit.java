@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.init;
 
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Packets;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.age_of_exile.mmorpg.event_registers.Client;
 import com.robertx22.age_of_exile.mmorpg.registers.client.ClientSetup;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;

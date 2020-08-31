@@ -1,9 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.client;
 
-import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.vanilla_mc.packets.*;
-import com.robertx22.age_of_exile.vanilla_mc.packets.particles.ParticlePacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
+import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 
 public class S2CPacketRegister {
@@ -19,9 +18,7 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(new RarityPacket());
         Packets.registerServerToClient(new RegistryPacket());
         Packets.registerServerToClient(new SyncConfigToClientPacket());
-        Packets.registerServerToClient(new ParticlePacket());
         Packets.registerServerToClient(new SyncCapabilityToClient());
-        Packets.registerServerToClient(new TileUpdatePacket());
         Packets.registerServerToClient(new SyncAreaPacket());
 
         ClientSidePacketRegistry.INSTANCE.register(EntityPacket.ID, (ctx, buf) -> {

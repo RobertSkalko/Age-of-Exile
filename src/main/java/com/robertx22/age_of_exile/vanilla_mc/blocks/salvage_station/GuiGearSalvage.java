@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.TileGui;
+import com.robertx22.library_of_exile.tile_bases.TileGui;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

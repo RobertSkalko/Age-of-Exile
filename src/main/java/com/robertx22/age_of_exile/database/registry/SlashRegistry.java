@@ -22,9 +22,9 @@ import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyBaseGearT
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptySpell;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.vanilla_mc.packets.RegistryPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.registry.Registry;

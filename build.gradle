@@ -59,7 +59,7 @@ dependencies {
 	//modApi "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"	
 
-    compile files("Library-Of-Exile-1.16.2-1.0.2-dev.jar")
+    compile files("Library-Of-Exile-1.16.2-1.0.3-dev.jar")
 	
 	
 }

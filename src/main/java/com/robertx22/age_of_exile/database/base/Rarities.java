@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.database.data.rarities.RarityTypeEnum;
 import com.robertx22.age_of_exile.database.data.rarities.containers.GearRarities;
 import com.robertx22.age_of_exile.database.data.rarities.containers.MobRarities;
 import com.robertx22.age_of_exile.database.data.rarities.containers.SkillGemRarities;
-import com.robertx22.age_of_exile.mmorpg.Packets;
 import com.robertx22.age_of_exile.vanilla_mc.packets.RarityPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class Rarities {

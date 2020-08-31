@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
 import com.robertx22.age_of_exile.uncommon.interfaces.IColor;
+import com.robertx22.library_of_exile.utils.RGB;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Formatting;
