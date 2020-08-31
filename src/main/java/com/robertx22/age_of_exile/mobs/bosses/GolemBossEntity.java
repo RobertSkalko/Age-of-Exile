@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mobs.bosses;
 import com.robertx22.age_of_exile.mobs.bosses.bases.BossData;
 import com.robertx22.age_of_exile.mobs.bosses.bases.IBossMob;
 import com.robertx22.age_of_exile.mobs.bosses.channels.AngerChannel;
+import com.robertx22.age_of_exile.mobs.bosses.channels.HealIfHitChannel;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
@@ -15,6 +16,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +32,7 @@ public class GolemBossEntity extends IronGolemEntity implements IBossMob {
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return HostileEntity.createHostileAttributes()
-            .add(EntityAttributes.GENERIC_MAX_HEALTH, 150)
+            .add(EntityAttributes.GENERIC_MAX_HEALTH, 75)
             .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
             .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 15.0D)
             .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0D)
@@ -56,7 +58,7 @@ public class GolemBossEntity extends IronGolemEntity implements IBossMob {
         return pattern;
     }
 
-    public BossData bossdata = new BossData(this, Arrays.asList(new AngerChannel(this)));
+    public BossData bossdata = new BossData(this, Arrays.asList(new AngerChannel(this), new HealIfHitChannel(this)));
 
     public GolemBossEntity(EntityType<? extends IronGolemEntity> entityType, World world) {
         super(entityType, world);
@@ -96,31 +98,24 @@ public class GolemBossEntity extends IronGolemEntity implements IBossMob {
         super.tick();
 
         if (!world.isClient) {
-
-            /*
-            if (age < 300 && this.age % 100 == 0) { // unsure how to do this
-                Explosion.DestructionType destructionType = this.world.getGameRules()
-                    .getBoolean(GameRules.DO_MOB_GRIEFING) ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE;
-
-                Explosion explosion = new Explosion(
-                    world,
-                    this,
-                    null,
-                    new NoBlockIsSafeExplosionBehavior(),
-                    this.getX(), this.getEyeY(), this.getZ(), 5F, false, destructionType);
-
-                explosion.collectBlocksAndDamageEntities();
-                explosion.affectWorld(true);
-
-            }
-
-             */
+            this.bossdata.onTick();
 
             if (this.age % 20 == 0) {
-                this.heal(getMaxHealth() * 0.01F);
+                float max = getMaxHealth();
+                this.heal(max * 0.005F);
             }
         }
 
+    }
+
+    @Override
+    public boolean damage(DamageSource source, float amount) {
+
+        if (bossdata.channelAction != null) {
+            this.bossdata.channelAction.onHitBy(source, amount);
+        }
+
+        return super.damage(source, amount);
     }
 
     @Override

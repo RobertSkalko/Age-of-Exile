@@ -18,6 +18,11 @@ public class AngerChannel<T extends LivingEntity & IBossMob> extends ChannelActi
     }
 
     @Override
+    public void onTick() {
+
+    }
+
+    @Override
     public ChannelType getChannelType() {
         return ChannelType.BAD_FOR_PLAYER;
     }

@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mobs.bosses.bases;
 
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 
 public abstract class ChannelAction<T extends LivingEntity & IBossMob> implements IWeighted {
 
@@ -29,7 +30,13 @@ public abstract class ChannelAction<T extends LivingEntity & IBossMob> implement
 
     public abstract void onFinished();
 
+    public abstract void onTick();
+
     public abstract ChannelType getChannelType();
+
+    public void onHitBy(DamageSource source, float amount) {
+
+    }
 
     public abstract boolean canStartChanneling();
 
