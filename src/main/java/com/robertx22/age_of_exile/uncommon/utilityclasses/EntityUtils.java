@@ -1,11 +1,9 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.item.ItemStack;
@@ -19,19 +17,19 @@ import java.lang.reflect.Field;
 public class EntityUtils {
 
     public static float getVanillaMaxHealth(LivingEntity entity) {
-        float hpaddedalready = 0;
 
         try {
-            EntityAttributeModifier hpmod = entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)
-                .getModifier(Unit.hpID);
 
-            if (hpmod != null) {
-                hpaddedalready = (float) hpmod.getValue();
-            }
+            float val = (float) entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)
+                .getBaseValue();
+
+            return val;
+
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return entity.getMaxHealth() - hpaddedalready;
+        return 0;
     }
 
     public static ItemStack getWeaponStackFromThrownEntity(Entity en) {
