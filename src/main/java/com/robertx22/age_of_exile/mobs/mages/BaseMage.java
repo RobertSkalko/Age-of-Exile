@@ -3,14 +3,12 @@ package com.robertx22.age_of_exile.mobs.mages;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.mobs.ai.SpellAttackGoal;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 public abstract class BaseMage extends SkeletonEntity {
 
@@ -29,10 +27,13 @@ public abstract class BaseMage extends SkeletonEntity {
 
     }
 
+    /*
     @Override
     public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
         return true;
     }
+
+     */
 
     public void initMyMobGoals() {
         goalSelector.add(2, new SpellAttackGoal(getSpell(), this, 1, 40, 15));

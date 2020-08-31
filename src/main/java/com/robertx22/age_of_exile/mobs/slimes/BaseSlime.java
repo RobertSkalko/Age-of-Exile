@@ -6,6 +6,7 @@ import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.network.Packet;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
 public class BaseSlime extends MagmaCubeEntity {
 
@@ -17,6 +18,10 @@ public class BaseSlime extends MagmaCubeEntity {
     @Override
     public final Packet<?> createSpawnPacket() {
         return EntityPacket.createPacket(this);
+    }
+
+    public boolean canSpawn(WorldView world) {
+        return super.canSpawn(world) && world.getBrightness(this.getBlockPos()) < 0.5F;
     }
 
     @Override

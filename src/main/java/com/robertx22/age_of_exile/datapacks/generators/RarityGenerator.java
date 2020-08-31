@@ -28,7 +28,7 @@ public class RarityGenerator<T extends IGUID & ISerializable<T>> extends BaseDat
 
     protected void generateAll() {
 
-        Path path = getBasePath();
+        Path path = gameDirPath();
 
         for (T entry : list) {
             Path target = movePath(resolve(path, entry));

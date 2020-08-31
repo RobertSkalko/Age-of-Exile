@@ -7,7 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
@@ -21,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 public class BaseChicken extends HostileEntity {
     public BaseChicken(EntityType<? extends HostileEntity> entityType, World world) {
@@ -62,10 +60,12 @@ public class BaseChicken extends HostileEntity {
         return EntityPacket.createPacket(this);
     }
 
-    @Override
-    public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
-        return true;
-    }
+    /*
+        @Override
+        public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
+            return true;
+        }
+     */
 
     public float flapProgress;
     public float maxWingDeviation;

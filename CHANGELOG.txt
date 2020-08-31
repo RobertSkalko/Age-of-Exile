@@ -13,6 +13,7 @@ Repair it first, because any hit will break it. This is because when max durabil
 - added config that by default makes all players count as if teamed (PVE mode basically), disable for pvp servers
 This should hopefully stop the bug reports of "I can't heal my friend". But whether i keep this as on by default depends on amount of pvp players.
 - fixed +0 exp messages
+- stopped mobs from spawning on daytime and made their spawn restrictions like vanilla mobs. So should be less spawns on nighttime too.
 
 v.1.1.3
 - fix day mobs config not working

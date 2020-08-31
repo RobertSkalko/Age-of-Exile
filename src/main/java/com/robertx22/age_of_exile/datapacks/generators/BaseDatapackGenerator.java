@@ -33,7 +33,7 @@ public abstract class BaseDatapackGenerator<T extends IGUID & ISerializable<T>> 
         }
     }
 
-    protected Path getBasePath() {
+    protected Path gameDirPath() {
         return FabricLoader.getInstance()
             .getGameDir();
     }

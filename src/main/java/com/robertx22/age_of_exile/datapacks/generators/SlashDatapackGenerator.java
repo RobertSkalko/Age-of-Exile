@@ -30,7 +30,7 @@ public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends 
 
     protected void generateAll(DataCache cache) {
 
-        Path path = getBasePath();
+        Path path = gameDirPath();
 
         for (T entry : list) {
 

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -99,6 +100,8 @@ public class MobStatUtils {
         int lvl = unitdata.getLevel();
 
         float hpToAdd = EntityUtils.getVanillaMaxHealth(en) * rar.ExtraHealthMulti();
+
+        hpToAdd += ModConfig.get().Server.EXTRA_MOB_STATS_PER_LEVEL * hpToAdd;
 
         if (hpToAdd < 0) {
             hpToAdd = 0;
