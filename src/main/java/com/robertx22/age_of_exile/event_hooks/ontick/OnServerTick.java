@@ -44,8 +44,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
             try {
 
-                //ChunkAreaCap.getArea(player.world, player.getBlockPos());
-
                 PlayerTickData data = PlayerTickDatas.get(player.getUuid());
 
                 if (data == null) {

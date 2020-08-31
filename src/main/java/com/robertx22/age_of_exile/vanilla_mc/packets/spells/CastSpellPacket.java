@@ -22,6 +22,10 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
         if (cspell != null) {
             this.spellid = cspell.GUID();
         }
+
+        if (spellid == null) {
+            spellid = "";
+        }
     }
 
     public CastSpellPacket() {

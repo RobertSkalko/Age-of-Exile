@@ -50,11 +50,14 @@ public class PlayerSpellCap {
         @Override
         public void fromTag(CompoundTag nbt) {
 
-            this.spellCastingData = LoadSave.Load(
-                SpellCastingData.class, new SpellCastingData(), nbt, PLAYER_SPELL_DATA);
+            try {
+                this.spellCastingData = LoadSave.Load(SpellCastingData.class, new SpellCastingData(), nbt, PLAYER_SPELL_DATA);
 
-            if (spellCastingData == null) {
-                spellCastingData = new SpellCastingData();
+                if (spellCastingData == null) {
+                    spellCastingData = new SpellCastingData();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

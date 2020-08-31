@@ -92,8 +92,6 @@ public class SpellCastingData implements Inventory {
 
                         spell.onCastingTick(ctx);
 
-                    } else {
-
                     }
                 }
 
@@ -233,10 +231,6 @@ public class SpellCastingData implements Inventory {
             }
         });
         return datamap;
-    }
-
-    public HashMap<Integer, ItemStack> getStacks() {
-        return this.bar;
     }
 
     public SkillGemData getSkillGem(String id) {

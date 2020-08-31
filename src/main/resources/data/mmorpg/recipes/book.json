@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "O",
+    "B"
+  ],
+  "key": {  
+	"O": {
+      "item": "minecraft:bone"
+    }, 
+	"B": {
+      "item": "minecraft:book"
+    }
+  },
+  "result": {
+		"item": "patchouli:guide_book",
+        "data": {
+            "patchouli:book": "mmorpg:age_of_exile_guide"
+        }   
+  }
+}
