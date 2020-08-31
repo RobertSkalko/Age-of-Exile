@@ -18,12 +18,6 @@ public enum PlayerCaps {
             return Load.statPoints(player);
         }
     },
-    TELEPORT {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.teleport(player);
-        }
-    },
     SPELLS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {

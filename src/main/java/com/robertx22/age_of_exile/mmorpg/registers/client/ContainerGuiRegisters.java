@@ -9,8 +9,6 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.ContainerGear
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.GuiGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.GuiGearSalvage;
-import com.robertx22.forgotten_magic.furnace.EssentiaFurnaceContainer;
-import com.robertx22.forgotten_magic.furnace.EssentiaFurnaceGui;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
@@ -24,8 +22,6 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<ContainerGearRepair>registerFactory(ModRegistry.CONTAINERS.GEAR_REPAIR, x -> new GuiGearRepair(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<ContainerGearSalvage>registerFactory(ModRegistry.CONTAINERS.GEAR_SALVAGE, x -> new GuiGearSalvage(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<HotbarSetupContainer>registerFactory(ModRegistry.CONTAINERS.HOTBAR_SETUP, x -> new SpellHotbatSetupScreen(x, MinecraftClient.getInstance().player));
-        ScreenProviderRegistry.INSTANCE.<EssentiaFurnaceContainer>registerFactory(ModRegistry.CONTAINERS.ESSENTIA_FURNACE, x -> new EssentiaFurnaceGui(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")))
-        ;
 
     }
 

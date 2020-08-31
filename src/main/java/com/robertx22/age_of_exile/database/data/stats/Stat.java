@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.stats;
 
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
+import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
@@ -13,11 +13,11 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -85,7 +85,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         for (int i = 0; i < cut.size(); i++) {
 
-            MutableText comp = Styles.BLUECOMP();
+            MutableText comp = new LiteralText("");
             if (i == 0) {
                 comp.append(" [");
             }
@@ -96,6 +96,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
             }
 
             list.add(comp);
+
+            comp.formatted(Formatting.BLUE);
 
         }
         return list;

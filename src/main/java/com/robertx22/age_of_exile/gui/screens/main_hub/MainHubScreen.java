@@ -11,8 +11,8 @@ import com.robertx22.age_of_exile.gui.screens.spell_hotbar_setup.HotbarNamedScre
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;

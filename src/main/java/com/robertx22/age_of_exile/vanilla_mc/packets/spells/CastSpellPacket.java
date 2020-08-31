@@ -35,13 +35,11 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         this.spellid = tag.readString(30);
-
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
         tag.writeString(spellid);
-
     }
 
     @Override
@@ -49,6 +47,11 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
         PlayerEntity player = ctx.getPlayer();
 
         PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+
+        if (!SlashRegistry.Spells()
+            .isRegistered(spellid)) {
+            return;
+        }
 
         BaseSpell spell = SlashRegistry.Spells()
             .get(this.spellid);

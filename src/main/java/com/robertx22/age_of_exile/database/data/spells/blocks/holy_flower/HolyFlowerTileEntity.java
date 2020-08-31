@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.confi
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;

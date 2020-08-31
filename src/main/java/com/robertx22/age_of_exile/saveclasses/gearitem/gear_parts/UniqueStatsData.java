@@ -1,22 +1,21 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,9 +56,10 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     }
 
     public MutableText getHeader() {
-        return new LiteralText(Styles.YELLOW + "").append(Words.Unique_Stats
+        return Words.Unique_Stats
             .locName()
-            .append(":"));
+            .append(":")
+            .formatted(Formatting.YELLOW);
     }
 
     @Override

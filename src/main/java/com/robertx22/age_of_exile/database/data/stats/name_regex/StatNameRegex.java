@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.database.data.stats.name_regex;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.util.Formatting;
 
 public abstract class StatNameRegex {

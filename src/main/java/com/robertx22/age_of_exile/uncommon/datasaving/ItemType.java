@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.uncommon.datasaving;
 
 import com.robertx22.age_of_exile.uncommon.item_filters.bases.ItemFilterGroup;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
+import net.minecraft.util.Formatting;
 
 public enum ItemType {
 
@@ -28,10 +28,11 @@ public enum ItemType {
 
     public static MutableText getTooltipString(ItemType types) {
 
-        MutableText comp = Styles.LIGHT_PURPLECOMP()
-            .append(Words.UsableOn.locName())
+        MutableText comp = Words.UsableOn.locName()
             .append(": ")
             .append(types.word.locName());
+
+        comp.formatted(Formatting.LIGHT_PURPLE);
 
         return comp;
 

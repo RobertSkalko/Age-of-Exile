@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.entities.bases;
 
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;

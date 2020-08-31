@@ -30,7 +30,11 @@ public abstract class ItemStackMixin {
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void onItemUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> ci) {
-        ItemStack stack = (ItemStack) (Object) this;
-        OnItemUseCastSpell.onItemUse(stack, world, user, hand, ci);
+        try {
+            ItemStack stack = (ItemStack) (Object) this;
+            OnItemUseCastSpell.onItemUse(stack, world, user, hand, ci);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.gui.buttons.HelpButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.FuelSlot;
+import com.robertx22.library_of_exile.gui.HelpButton;
 import com.robertx22.library_of_exile.tile_bases.TileGui;
+import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

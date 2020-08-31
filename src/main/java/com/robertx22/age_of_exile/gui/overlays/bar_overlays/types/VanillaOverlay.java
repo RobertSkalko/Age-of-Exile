@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;

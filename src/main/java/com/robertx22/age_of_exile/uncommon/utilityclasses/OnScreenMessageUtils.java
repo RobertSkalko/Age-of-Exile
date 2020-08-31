@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;

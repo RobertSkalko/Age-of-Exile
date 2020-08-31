@@ -5,21 +5,22 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
@@ -48,10 +49,12 @@ public class GearTooltipUtils {
 
             tip.add(new SText(""));
 
-            tip.add(Styles.GRAYCOMP()
-                .append(Words.ItemIsUnidentified.locName()));
-            tip.add(Styles.GRAYCOMP()
-                .append(Words.UseAnIdentifyScroll.locName()));
+            tip.add(
+                Words.ItemIsUnidentified.locName()
+                    .formatted(Formatting.GRAY));
+            tip.add(
+                Words.UseAnIdentifyScroll.locName()
+                    .formatted(Formatting.GRAY));
 
             tip.add(new SText(""));
 
@@ -132,8 +135,9 @@ public class GearTooltipUtils {
 
         if (Screen.hasShiftDown()) {
             if (!gear.isSalvagable) {
-                tip.add(Styles.REDCOMP()
-                    .append(Words.Unsalvagable.locName()));
+                tip.add(
+                    Words.Unsalvagable.locName()
+                        .formatted(Formatting.RED));
             }
         }
 
@@ -176,16 +180,13 @@ public class GearTooltipUtils {
             tip.add(new SText(Formatting.LIGHT_PURPLE + "Socketed [" + jewels + "]"));
         }
 
-        //tip.add(new SText(""));
-
         tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
-
-        //tip.add(new SText(""));
 
         if (Screen.hasShiftDown() == false) {
             tooltip
-                .add(Styles.BLUECOMP()
-                    .append(CLOC.tooltip("press_shift_more_info")));
+                .add(
+                    new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
+                        .formatted(Formatting.BLUE));
         }
 
         List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
@@ -195,4 +196,5 @@ public class GearTooltipUtils {
         tip.addAll(tool);
 
     }
+
 }

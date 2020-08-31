@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.FuelSlot;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;

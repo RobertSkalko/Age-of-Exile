@@ -62,7 +62,6 @@ public class PotionRegister {
 
     static void reg(BasePotionEffect effect) {
         Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, effect.GUID()), effect);
-
     }
 
 }

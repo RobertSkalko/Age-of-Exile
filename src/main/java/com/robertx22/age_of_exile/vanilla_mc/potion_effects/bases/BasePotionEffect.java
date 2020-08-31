@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data.ExtraPotionData;

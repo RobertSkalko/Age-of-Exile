@@ -8,8 +8,9 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +46,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         TooltipInfo info = new TooltipInfo(unitdata, null);
 
         List<Text> list = new ArrayList<>();
-        list.add(Styles.GREENCOMP()
-            .append("Stats that benefit: "));
+        list.add(
+            new LiteralText("Stats that benefit: ").formatted(Formatting.GREEN));
         getMods(data, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
         return list;
 

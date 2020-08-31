@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.interfaces;
 
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
+import com.robertx22.library_of_exile.utils.CLOC;
 import java.util.ArrayList;
 import java.util.List;
 

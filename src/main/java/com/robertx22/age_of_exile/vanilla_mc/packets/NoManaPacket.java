@@ -29,10 +29,8 @@ public class NoManaPacket extends MyPacket<NoManaPacket> {
     @Override
     public void onReceived(PacketContext ctx) {
         if (ModConfig.get().client.SHOW_LOW_ENERGY_MANA_WARNING) {
-
             PlayerEntity player = ctx.getPlayer();
             player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
-
         }
     }
 

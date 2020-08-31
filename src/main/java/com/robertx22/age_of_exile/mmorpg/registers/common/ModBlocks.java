@@ -7,8 +7,6 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.BlockGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
-import com.robertx22.forgotten_magic.furnace.EssentiaFurnaceBlock;
-import com.robertx22.forgotten_magic.teleport.RecallBlock;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -22,10 +20,6 @@ public class ModBlocks {
     public MagmaFlowerBlock MAGMA_FLOWER = of("magma_flower", new MagmaFlowerBlock());
     public HolyFlowerBlock HOLY_FLOWER = of("holy_flower", new HolyFlowerBlock());
     public ThornBushBlock THORN_BUSH = of("thorn_bush", new ThornBushBlock());
-
-    public EssentiaFurnaceBlock ESSENTIA_FURNACE = of("furnace", new EssentiaFurnaceBlock());
-
-    public RecallBlock RECALL_BLOCK = of("recall_altar", new RecallBlock());
 
     <T extends Block> T of(String id, T c) {
         Registry.register(Registry.BLOCK, new Identifier(Ref.MODID, id), c);

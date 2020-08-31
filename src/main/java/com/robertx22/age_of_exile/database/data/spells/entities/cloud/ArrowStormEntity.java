@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.spells.entities.proj.RangerArrow
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.library_of_exile.utils.GeometryUtils;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvents;

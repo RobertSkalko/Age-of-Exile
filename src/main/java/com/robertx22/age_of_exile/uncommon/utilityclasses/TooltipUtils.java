@@ -1,12 +1,10 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.database.data.rarities.gears.UniqueGear;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -157,19 +155,9 @@ public class TooltipUtils {
     }
 
     public static MutableText tier(int tier) {
-
-        return Styles.YELLOWCOMP()
-            .append(Words.Tier.locName())
-            .append(": " + tier);
-
-    }
-
-    public static MutableText uniqueTier(int tier) {
-        return Styles.YELLOWCOMP()
-            .append(Words.Tier.locName())
-            .append(" " + tier + " ")
-            .append(UniqueGear.getInstance()
-                .locName());
+        return
+            Words.Tier.locName()
+                .append(": " + tier);
 
     }
 

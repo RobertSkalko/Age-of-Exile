@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.database.data.spells.entities.bases.BaseElemen
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ParticleUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.library_of_exile.utils.GeometryUtils;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.EntityType;

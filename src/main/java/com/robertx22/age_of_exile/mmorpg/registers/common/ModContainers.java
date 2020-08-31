@@ -7,26 +7,24 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class Containers {
+public class ModContainers {
 
     public Identifier GEAR_MODIFY = id("modify");
     public Identifier GEAR_REPAIR = id("repair");
     public Identifier GEAR_SALVAGE = id("salvage");
     public Identifier CURRENCY_BAG = id("currency_bag");
     public Identifier HOTBAR_SETUP = id("hotbar_setup");
-    public Identifier ESSENTIA_FURNACE = id("furnace");
 
     Identifier id(String id) {
         return new Identifier(Ref.MODID, id);
     }
 
     @SuppressWarnings("deprecation")
-    public Containers() {
+    public ModContainers() {
         register(GEAR_MODIFY);
         register(GEAR_REPAIR);
         register(GEAR_SALVAGE);
         register(CURRENCY_BAG);
-        register(ESSENTIA_FURNACE);
 
         ContainerProviderRegistry.INSTANCE.registerFactory(HOTBAR_SETUP, (syncId, identifier, player, buf) -> {
             return new HotbarSetupContainer(syncId, player);

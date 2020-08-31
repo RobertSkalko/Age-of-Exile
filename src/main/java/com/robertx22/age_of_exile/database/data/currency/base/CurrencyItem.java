@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.currency.base;
 
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
+import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -101,8 +100,9 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
                               TooltipContext flagIn) {
 
-        tooltip.add(Styles.YELLOWCOMP()
-            .append(this.locDesc()));
+        tooltip.add(
+            this.locDesc()
+                .formatted(Formatting.YELLOW));
 
         String test = this.locDescLangFileGUID();
 
@@ -110,8 +110,9 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.BLUECOMP()
-            .append(Words.Item_modifiable_in_station.locName()));
+        tooltip.add(
+            Words.Item_modifiable_in_station.locName()
+                .formatted(Formatting.BLUE));
 
         TooltipUtils.addEmpty(tooltip);
 

@@ -50,14 +50,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class EntityRegister {
+public class ModEntities {
 
     public List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
     public List<EntityType<? extends Entity>> ENTITY_THAT_USE_ITEM_RENDERS = new LinkedList();
 
     public HashMap<EntityType, Boolean> DAYLIGHT_MOBS = new HashMap<>();
 
-    public EntityRegister() {
+    public ModEntities() {
         DAYLIGHT_MOBS.put(FIRE_CHICKEN, true);
         DAYLIGHT_MOBS.put(WATER_CHICKEN, true);
         DAYLIGHT_MOBS.put(NATURE_CHICKEN, true);
@@ -147,8 +147,7 @@ public class EntityRegister {
         Registry.register(Registry.ENTITY_TYPE, new Identifier(Ref.MODID, id), type);
         ENTITY_TYPES.add(type);
 
-        SpawnRestrictionAccessor.callRegister(type, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityRegister::canMyMobSpawn);
-
+        SpawnRestrictionAccessor.callRegister(type, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ModEntities::canMyMobSpawn);
         return type;
     }
 

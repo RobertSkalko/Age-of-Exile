@@ -19,21 +19,20 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
-import com.robertx22.age_of_exile.gui.buttons.HelpButton;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.localization.Styles;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.ResetStatPointsItem;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
+import com.robertx22.library_of_exile.gui.HelpButton;
+import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
@@ -245,9 +244,9 @@ public class StatScreen extends BaseScreen implements INamedScreen {
             if (isInside(x, y)) {
                 List<Text> tooltip = new ArrayList<>();
 
-                tooltip.add(Styles.GREENCOMP()
-                    .append(stat
-                        .locName()));
+                tooltip.add(stat
+                    .locName()
+                    .formatted(Formatting.GREEN));
 
                 tooltip.addAll(stat
                     .getCutDescTooltip());
@@ -415,8 +414,9 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
                 List<Text> tooltip = new ArrayList<>();
 
-                tooltip.add(Styles.BLUECOMP()
-                    .append(stat.locName()));
+                tooltip.add(
+                    stat.locName()
+                        .formatted(Formatting.BLUE));
 
                 if (stat instanceof BaseCoreStat) {
                     BaseCoreStat core = (BaseCoreStat) stat;

@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.datapacks.models.ModelHelper;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.localization.CLOC;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 

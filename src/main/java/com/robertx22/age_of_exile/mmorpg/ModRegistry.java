@@ -13,10 +13,10 @@ public class ModRegistry {
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
     public static ModBlocks BLOCKS;
-    public static Containers CONTAINERS;
+    public static ModContainers CONTAINERS;
     public static ModSounds SOUNDS;
-    public static EntityRegister ENTITIES;
-    public static BlockEntities BLOCK_ENTITIES;
+    public static ModEntities ENTITIES;
+    public static ModBlockEntities BLOCK_ENTITIES;
     public static ModParticles PARTICLES;
     public static ComponentRegisters COMPONENTS;
     public static GearMaterialRegister GEAR_MATERIALS;
@@ -26,10 +26,10 @@ public class ModRegistry {
         BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks
         MISC_ITEMS = new MiscItemsRegistrator();
         CURRENCIES = new CurrencyItemRegistrator();
-        CONTAINERS = new Containers();
+        CONTAINERS = new ModContainers();
         SOUNDS = new ModSounds();
-        ENTITIES = new EntityRegister();
-        BLOCK_ENTITIES = new BlockEntities();
+        ENTITIES = new ModEntities();
+        BLOCK_ENTITIES = new ModBlockEntities();
         PARTICLES = new ModParticles();
         COMPONENTS = new ComponentRegisters();
         GEAR_MATERIALS = new GearMaterialRegister();
