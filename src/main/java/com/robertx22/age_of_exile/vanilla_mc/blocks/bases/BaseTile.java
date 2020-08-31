@@ -258,19 +258,6 @@ public abstract class BaseTile extends BlockEntity implements IOBlock, SidedInve
             .getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
     }
 
-    static public boolean isItemValidForFuelSlot(ItemStack itemStack) {
-        return true;
-    }
-
-    static public boolean isItemValidForInputSlot(ItemStack itemStack) {
-
-        return true;
-    }
-
-    static public boolean isItemValidForOutputSlot(ItemStack itemStack) {
-        return false;
-    }
-
     @Override
     public CompoundTag toTag(CompoundTag parentNBTTagCompound) {
         super.toTag(parentNBTTagCompound); // The super call is required to save and load the tiles location

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.teleport.TeleportComponent;
+import com.robertx22.forgotten_magic.teleport.TeleportComponent;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;

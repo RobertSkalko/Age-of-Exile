@@ -1,4 +1,4 @@
-package com.robertx22.teleport;
+package com.robertx22.forgotten_magic.teleport;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

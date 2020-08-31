@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.TileGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.TileGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.TileGearSalvage;
-import com.robertx22.magic_mod.furnace.EssentiaFurnaceBlockEntity;
+import com.robertx22.forgotten_magic.teleport.furnace.EssentiaFurnaceBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

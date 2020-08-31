@@ -17,7 +17,6 @@ public abstract class BaseTileContainer extends ScreenHandler {
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
 
     protected BaseTileContainer(int size, ScreenHandlerType<?> type, int id, PlayerInventory invPlayer) {
         super(type, id);

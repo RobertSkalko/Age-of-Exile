@@ -1,4 +1,4 @@
-package com.robertx22.teleport;
+package com.robertx22.forgotten_magic.teleport;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;

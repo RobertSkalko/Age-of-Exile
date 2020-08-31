@@ -12,6 +12,7 @@ public class SalvageSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        return TileGearSalvage.isItemValidForInputSlot(stack);
+        return !TileGearSalvage.getSmeltingResultForItem(stack)
+            .isEmpty();
     }
 }

@@ -9,8 +9,8 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.ContainerGear
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.GuiGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.GuiGearSalvage;
-import com.robertx22.magic_mod.furnace.EssentiaFurnaceContainer;
-import com.robertx22.magic_mod.furnace.EssentiaFurnaceGui;
+import com.robertx22.forgotten_magic.teleport.furnace.EssentiaFurnaceContainer;
+import com.robertx22.forgotten_magic.teleport.furnace.EssentiaFurnaceGui;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;

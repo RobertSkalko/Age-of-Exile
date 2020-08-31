@@ -50,7 +50,7 @@ public class TileGearSalvage extends BaseTile {
         return OUTPUT_SLOTS.contains(slot);
     }
 
-    public ItemStack getSmeltingResultForItem(ItemStack st) {
+    public static ItemStack getSmeltingResultForItem(ItemStack st) {
 
         ICommonDataItem data = ICommonDataItem.load(st);
 
