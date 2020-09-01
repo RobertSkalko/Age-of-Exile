@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -113,6 +114,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<CompatibleItem> CompatibleItems() {
         return getRegistry(SlashRegistryType.COMPATIBLE_ITEM);
+    }
+
+    public static SlashRegistryContainer<Gem> Gems() {
+        return getRegistry(SlashRegistryType.GEM);
     }
 
     public static SlashRegistryContainer<Affix> Affixes() {
@@ -257,6 +262,7 @@ public class SlashRegistry {
         new EntityConfigs().registerAll();
 
         new CurrencyItems().registerAll();
+        new Gems().registerAll();
 
     }
 
@@ -274,6 +280,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.UNIQUE_GEAR, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEM, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()

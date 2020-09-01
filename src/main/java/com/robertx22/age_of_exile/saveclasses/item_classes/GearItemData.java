@@ -78,60 +78,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return data;
     }
 
-    public void insertJewel(JewelData jewel) {
-
-        AffixData touse = new AffixData(jewel.affix.affixType);
-
-        if (jewel.affix.affixType == Affix.Type.prefix) {
-            if (affixes.canGetMorePrefixSockets(this)) {
-                affixes.prefixes.add(touse);
-                affixes.emptySockets--;
-            }
-        } else {
-            if (affixes.canGetMoreSuffixSockets(this)) {
-                affixes.suffixes.add(touse);
-                affixes.emptySockets--;
-            }
-        }
-
-        if (touse != null) {
-            touse.level = jewel.affix.level;
-            touse.baseAffix = jewel.affix.baseAffix;
-            touse.percent = jewel.affix.percent;
-            touse.tier = jewel.affix.tier;
-            touse.is_socket = true;
-        }
-    }
-
-    public boolean canInsertJewel(JewelData jewel) {
-        if (jewel.affix.level > this.level) {
-            return false;
-        }
-
-        if (!canGetAffix(jewel.affix.getAffix())) {
-            return false;
-        }
-
-        if (!canGetMoreSocketsOfType(jewel.affix.affixType)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean canGetMoreSocketsOfType(Affix.Type type) {
-        if (type == Affix.Type.prefix) {
-            if (!affixes.canGetMorePrefixSockets(this)) {
-                return false;
-            }
-        } else {
-            if (!affixes.canGetMoreSuffixSockets(this)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public boolean canGetAffix(Affix affix) {
 
         if (affixes.containsAffix(affix)) {
@@ -214,6 +160,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public ImplicitStatsData implicitStats = new ImplicitStatsData();
     @Store
     public GearAffixesData affixes = new GearAffixesData();
+    @Store
+    public GearSocketsData sockets = new GearSocketsData();
     @Store
     public UniqueStatsData uniqueStats;
 
@@ -359,6 +307,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         affixes.getAllAffixesAndSockets()
             .forEach(x -> IfNotNullAdd(x, list));
+
+        IfNotNullAdd(sockets, list);
 
         IfNotNullAdd(uniqueStats, list);
 

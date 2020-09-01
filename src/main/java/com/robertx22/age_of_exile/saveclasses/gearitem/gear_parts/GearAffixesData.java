@@ -18,63 +18,6 @@ public class GearAffixesData {
     @Store
     public List<AffixData> prefixes = new ArrayList<>();
 
-    @Store
-    public int emptySockets = 0;
-
-    public boolean canGetMorePrefixSockets(GearItemData gear) {
-
-        if (emptySockets <= 0) {
-            return false;
-
-        }
-        int max = gear.getRarity()
-            .maxSockets() / 2;
-
-        if (gear.getRarity()
-            .maxSockets() == 1) {
-            if (max == 0) {
-                max = 1;
-            }
-        }
-
-        int current = (int) prefixes.stream()
-            .filter(x -> x.is_socket)
-            .count();
-
-        return max > current;
-
-    }
-
-    public boolean canGetMoreSuffixSockets(GearItemData gear) {
-        if (emptySockets <= 0) {
-            return false;
-
-        }
-        int max = gear.getRarity()
-            .maxSockets() / 2;
-
-        if (gear.getRarity()
-            .maxSockets() == 1) {
-            if (max == 0) {
-                max = 1;
-            }
-        }
-
-        int current = (int) suffixes.stream()
-            .filter(x -> x.is_socket)
-            .count();
-
-        return max > current;
-
-    }
-
-    public int getSocketedJewelsCount() {
-        return (int) getAllAffixesAndSockets().stream()
-            .filter(x -> x.is_socket && !x.isEmpty())
-            .count();
-
-    }
-
     public int getMaxAffixesPerType(GearItemData gear) {
         int affixes = gear.getRarity()
             .maximumOfOneAffixType();
@@ -115,10 +58,6 @@ public class GearAffixesData {
         return suffixes.size();
     }
 
-    public int getNumberOfEmptySockets() {
-        return emptySockets;
-    }
-
     public void randomize(GearItemData gear) {
 
         GearRarity rarity = gear.getRarity();
@@ -157,13 +96,6 @@ public class GearAffixesData {
             }
 
             affixesToGen--;
-        }
-
-        emptySockets = 0;
-        for (int i = 0; i < rarity.maxSockets(); i++) {
-            if (RandomUtils.roll(rarity.socketChance())) {
-                emptySockets++;
-            }
         }
 
     }

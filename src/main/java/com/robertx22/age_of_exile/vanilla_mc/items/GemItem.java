@@ -1,14 +1,16 @@
 package com.robertx22.age_of_exile.vanilla_mc.items;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
+import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -16,6 +18,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -172,14 +175,14 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
 
         public abstract List<StatModifier> onWeapons();
 
-        public final List<StatModifier> getFor(StatsFor sfor) {
-            if (sfor == StatsFor.ARMOR) {
+        public final List<StatModifier> getFor(SlotFamily sfor) {
+            if (sfor == SlotFamily.Armor) {
                 return onArmor();
             }
-            if (sfor == StatsFor.JEWELRY) {
+            if (sfor == SlotFamily.Jewelry) {
                 return onJewelry();
             }
-            if (sfor == StatsFor.WEAPONS) {
+            if (sfor == SlotFamily.Weapon) {
                 return onWeapons();
             }
 
@@ -218,7 +221,7 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
 
     public GemType gemType;
     int weight;
-    GemRank gemRank;
+    public GemRank gemRank;
     public float levelToStartDrop;
 
     @Override
@@ -236,11 +239,7 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
         return true;
     }
 
-    public enum StatsFor {
-        ARMOR, JEWELRY, WEAPONS
-    }
-
-    public List<StatModifier> getStats(StatsFor statsfor) {
+    public List<StatModifier> getStatsForSerialization(SlotFamily statsfor) {
 
         List<StatModifier> list = new ArrayList<>();
 
@@ -274,30 +273,45 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 
-        int lvl = (int) (gemRank.lvlreq * ModConfig.get().Server.MAX_LEVEL);
-        if (lvl < 1) {
-            lvl = 1;
-        }
+        try {
+            String id = Registry.ITEM.getId(this)
+                .toString();
 
-        tooltip.add(new LiteralText(""));
-        List<StatModifier> wep = getStats(StatsFor.WEAPONS);
-        tooltip.add(new LiteralText("On Weapon:").formatted(Formatting.RED));
-        for (StatModifier x : wep) {
-            tooltip.addAll(x.getEstimationTooltip(lvl));
-        }
+            Gem gem = SlashRegistry.Gems()
+                .getList()
+                .stream()
+                .filter(x -> id.equals(x.item_id))
+                .findFirst()
+                .get();
 
-        tooltip.add(new LiteralText(""));
-        List<StatModifier> armor = getStats(StatsFor.ARMOR);
-        tooltip.add(new LiteralText("On Armor:").formatted(Formatting.BLUE));
-        for (StatModifier x : armor) {
-            tooltip.addAll(x.getEstimationTooltip(lvl));
-        }
+            int efflvl = gem.getEffectiveLevel();
 
-        tooltip.add(new LiteralText(""));
-        List<StatModifier> jewelry = getStats(StatsFor.JEWELRY);
-        tooltip.add(new LiteralText("On Jewelry:").formatted(Formatting.LIGHT_PURPLE));
-        for (StatModifier x : jewelry) {
-            tooltip.addAll(x.getEstimationTooltip(lvl));
+            tooltip.add(new LiteralText(""));
+            List<StatModifier> wep = gem.getFor(SlotFamily.Weapon);
+            tooltip.add(new LiteralText("On Weapon:").formatted(Formatting.RED));
+            for (StatModifier x : wep) {
+                tooltip.addAll(x.getEstimationTooltip(efflvl));
+            }
+
+            tooltip.add(new LiteralText(""));
+            List<StatModifier> armor = gem.getFor(SlotFamily.Armor);
+            tooltip.add(new LiteralText("On Armor:").formatted(Formatting.BLUE));
+            for (StatModifier x : armor) {
+                tooltip.addAll(x.getEstimationTooltip(efflvl));
+            }
+
+            tooltip.add(new LiteralText(""));
+            List<StatModifier> jewelry = gem.getFor(SlotFamily.Jewelry);
+            tooltip.add(new LiteralText("On Jewelry:").formatted(Formatting.LIGHT_PURPLE));
+            for (StatModifier x : jewelry) {
+                tooltip.addAll(x.getEstimationTooltip(efflvl));
+            }
+
+            tooltip.add(new LiteralText(""));
+            tooltip.add(TooltipUtils.level(gem.getReqLevel()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

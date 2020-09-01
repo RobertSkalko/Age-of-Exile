@@ -59,15 +59,9 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     @Override
     public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
-
-        Affix affix = BaseAffix();
-
         List<Text> list = new ArrayList<Text>();
-
         GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
-
         return list;
-
     }
 
     public Affix getAffix() {

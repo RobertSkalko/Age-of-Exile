@@ -5,11 +5,14 @@ import com.robertx22.age_of_exile.vanilla_mc.items.GemItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GemItemRegister extends BaseItemRegistrator {
 
     public HashMap<GemItem.GemType, HashMap<GemItem.GemRank, GemItem>> MAP = new HashMap<>();
+    public List<GemItem> ALL = new ArrayList<>();
 
     public GemItemRegister() {
 
@@ -26,6 +29,8 @@ public class GemItemRegister extends BaseItemRegistrator {
 
                 MAP.get(type)
                     .put(rank, item);
+
+                ALL.add(item);
 
             }
         }

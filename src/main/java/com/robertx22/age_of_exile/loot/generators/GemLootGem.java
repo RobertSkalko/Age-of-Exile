@@ -1,24 +1,23 @@
 package com.robertx22.age_of_exile.loot.generators;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.gems.Gem;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.item_classes.JewelData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
-public class JewelLootGen extends BaseLootGen<GearBlueprint> {
+public class GemLootGem extends BaseLootGen<GearBlueprint> {
 
-    public JewelLootGen(LootInfo info) {
+    public GemLootGem(LootInfo info) {
         super(info);
 
     }
 
     @Override
     public float baseDropChance() {
-        return (float) (ModConfig.get().DropRates.JEWEL_DROPRATE);
+        return (float) (ModConfig.get().DropRates.GEM_DROPRATE);
     }
 
     @Override
@@ -29,12 +28,11 @@ public class JewelLootGen extends BaseLootGen<GearBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        JewelData jewel = new JewelData();
-        jewel.randomize(info.level);
+        Gem gem = SlashRegistry.Gems()
+            .getFilterWrapped(x -> this.info.level >= x.getReqLevel())
+            .random();
 
-        ItemStack stack = new ItemStack(RandomUtils.randomFromList(ModRegistry.MISC_ITEMS.ALL_JEWELS));
-
-        jewel.saveToStack(stack);
+        ItemStack stack = new ItemStack(gem.getItem());
 
         return stack;
 
