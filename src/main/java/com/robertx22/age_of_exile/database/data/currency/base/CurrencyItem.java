@@ -41,6 +41,11 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
     public abstract String GUID();
 
+    @Override
+    public StationType forStation() {
+        return StationType.MODIFY;
+    }
+
     public CurrencyItem(String name) {
         super(new ItemDefault().maxCount(64));
     }

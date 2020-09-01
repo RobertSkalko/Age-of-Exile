@@ -31,6 +31,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);
     public Item GEAR_REPAIR = blockItem(ModRegistry.BLOCKS.GEAR_REPAIR);
     public Item GEAR_SALVAGE = blockItem(ModRegistry.BLOCKS.GEAR_SALVAGE);
+    public Item GEAR_SOCKET = blockItem(ModRegistry.BLOCKS.SOCKET_STATION);
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
 

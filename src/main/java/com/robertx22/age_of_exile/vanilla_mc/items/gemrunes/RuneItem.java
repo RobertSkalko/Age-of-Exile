@@ -42,6 +42,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, ICurrencyItemEffect {
+    @Override
+    public StationType forStation() {
+        return StationType.SOCKET;
+    }
 
     @Override
     public AutoLocGroup locNameGroup() {

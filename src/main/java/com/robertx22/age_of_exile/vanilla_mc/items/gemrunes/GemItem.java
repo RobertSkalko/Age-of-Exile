@@ -55,6 +55,11 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     @Override
+    public StationType forStation() {
+        return StationType.SOCKET;
+    }
+
+    @Override
     public String locNameLangFileGUID() {
         return Registry.ITEM.getId(this)
             .toString();

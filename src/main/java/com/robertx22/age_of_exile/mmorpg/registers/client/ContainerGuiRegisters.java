@@ -9,6 +9,8 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.ContainerGear
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.GuiGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.GuiGearSalvage;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationContainer;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationGui;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
@@ -21,6 +23,8 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<ContainerGearModify>registerFactory(ModRegistry.CONTAINERS.GEAR_MODIFY, x -> new GuiGearModify(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<ContainerGearRepair>registerFactory(ModRegistry.CONTAINERS.GEAR_REPAIR, x -> new GuiGearRepair(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<ContainerGearSalvage>registerFactory(ModRegistry.CONTAINERS.GEAR_SALVAGE, x -> new GuiGearSalvage(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<SocketStationContainer>registerFactory(ModRegistry.CONTAINERS.GEAR_SOCKET, x -> new SocketStationGui(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+
         ScreenProviderRegistry.INSTANCE.<HotbarSetupContainer>registerFactory(ModRegistry.CONTAINERS.HOTBAR_SETUP, x -> new SpellHotbatSetupScreen(x, MinecraftClient.getInstance().player));
 
     }

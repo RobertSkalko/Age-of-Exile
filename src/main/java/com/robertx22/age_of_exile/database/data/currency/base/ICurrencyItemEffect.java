@@ -18,6 +18,12 @@ public interface ICurrencyItemEffect {
 
     public abstract List<BaseLocRequirement> requirements();
 
+    public enum StationType {
+        MODIFY, SOCKET
+    }
+
+    StationType forStation();
+
     default boolean canItemBeModified(LocReqContext context) {
 
         for (BaseLocRequirement req : requirements()) {

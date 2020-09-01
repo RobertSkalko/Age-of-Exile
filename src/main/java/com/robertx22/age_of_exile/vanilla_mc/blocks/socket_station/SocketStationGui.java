@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
+package com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
@@ -10,8 +10,6 @@ import com.robertx22.library_of_exile.gui.HelpButton;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.tile_bases.TileGui;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -26,14 +24,13 @@ import net.minecraft.util.math.BlockPos;
 import java.util.ArrayList;
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
-public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> {
+public class SocketStationGui extends TileGui<SocketStationContainer, SocketStationBlockEntity> {
 
     // This is the resource location for the background image
-    private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/modify_station.png");
+    private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/socket/socket_station.png");
 
-    public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer, MutableText comp) {
-        super(cont, invPlayer, new LiteralText(""), TileGearModify.class);
+    public SocketStationGui(SocketStationContainer cont, PlayerInventory invPlayer, MutableText comp) {
+        super(cont, invPlayer, new LiteralText(""), SocketStationBlockEntity.class);
 
         backgroundWidth = 176;
         backgroundHeight = 207;
@@ -46,14 +43,11 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Here you can modify items with currencies."));
-        list.add(new LiteralText(""));
-        list.add(new LiteralText("Put the gear on one side, and the currency-"));
-        list.add(new LiteralText("on the other."));
+        list.add(new LiteralText("Here you can socket gems and runes into items!"));
 
         this.addButton(new HelpButton(list, this.x + this.backgroundWidth - 25, this.y + 5));
 
-        this.addButton(new CraftButton(tile.getPos(), this.x + 58, this.y + 85));
+        this.addButton(new CraftButton(tile.getPos(), this.x + 110, this.y + 23));
     }
 
     @Override
@@ -75,7 +69,6 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     @Override
     protected void drawForeground(MatrixStack matrix, int mouseX, int mouseY) {
         super.drawForeground(matrix, mouseX, mouseY);
-
     }
 
     private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/craftbutton.png");

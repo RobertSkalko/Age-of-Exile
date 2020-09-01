@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
+package com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station;
 
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
@@ -18,7 +18,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-public class TileGearModify extends BaseModificationStation {
+public class SocketStationBlockEntity extends BaseModificationStation {
 
     @Override
     public boolean isAutomatable() {
@@ -30,13 +30,13 @@ public class TileGearModify extends BaseModificationStation {
         return true;
     }
 
+    public enum SocketResult {
+        BREAK, SUCCESS, NONE
+    }
+
     @Override
     public int getCookTime() {
         return COOK_TIME_FOR_COMPLETION;
-    }
-
-    public enum ModifyResult {
-        BREAK, SUCCESS, NONE
     }
 
     @Override
@@ -49,23 +49,23 @@ public class TileGearModify extends BaseModificationStation {
         LocReqContext context = getLocReqContext();
 
         if (context.isValid() == false) {
-            return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
+            return new ResultItem(ItemStack.EMPTY, SocketResult.NONE);
         }
 
-        if (context.effect != null && context.effect.forStation() == ICurrencyItemEffect.StationType.MODIFY) {
+        if (context.effect != null && context.effect.forStation() == ICurrencyItemEffect.StationType.SOCKET) {
 
             if (context.effect.canItemBeModified(context)) {
                 ItemStack copy = context.stack.copy();
                 copy = context.effect.ModifyItem(copy, context.Currency);
 
-                return new ResultItem(copy, ModifyResult.SUCCESS);
+                return new ResultItem(copy, SocketResult.SUCCESS);
             } else {
-                return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
+                return new ResultItem(ItemStack.EMPTY, SocketResult.NONE);
             }
 
         }
 
-        return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
+        return new ResultItem(ItemStack.EMPTY, SocketResult.NONE);
     }
 
     public LocReqContext getLocReqContext() {
@@ -93,11 +93,10 @@ public class TileGearModify extends BaseModificationStation {
 
     private static final short COOK_TIME_FOR_COMPLETION = 80; // vanilla value is 200 = 10 seconds
 
-    public TileGearModify() {
-        super(ModRegistry.BLOCK_ENTITIES.GEAR_MODIFY);
+    public SocketStationBlockEntity() {
+        super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION);
         itemStacks = new ItemStack[2];
         clear();
-
     }
 
     @Override
@@ -130,12 +129,12 @@ public class TileGearModify extends BaseModificationStation {
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
-    public static class ResultItem {
+    static class ResultItem {
 
-        public ItemStack stack;
-        public ModifyResult resultEnum;
+        ItemStack stack;
+        SocketResult resultEnum;
 
-        public ResultItem(ItemStack stack, ModifyResult resultEnum) {
+        public ResultItem(ItemStack stack, SocketResult resultEnum) {
             this.stack = stack;
             this.resultEnum = resultEnum;
         }
@@ -154,7 +153,6 @@ public class TileGearModify extends BaseModificationStation {
         if (gear.isEmpty()) {
             return false;
         }
-
         if (getSmeltingResultForItem().stack.isEmpty()) {
             return false;
         }
@@ -179,7 +177,7 @@ public class TileGearModify extends BaseModificationStation {
 
             markDirty();
 
-            if (result.resultEnum.equals(ModifyResult.BREAK)) {
+            if (result.resultEnum.equals(SocketResult.BREAK)) {
 
                 SoundUtils.playSound(world, pos, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
 
@@ -189,7 +187,7 @@ public class TileGearModify extends BaseModificationStation {
                         .motion(new Vec3d(0, 0, 0))
                         .amount(5));
 
-            } else if (result.resultEnum.equals(ModifyResult.SUCCESS)) {
+            } else if (result.resultEnum.equals(SocketResult.SUCCESS)) {
                 SoundUtils.ding(world, pos);
 
                 ParticleEnum.sendToClients(
@@ -207,11 +205,11 @@ public class TileGearModify extends BaseModificationStation {
 
     @Override
     public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
-        return new ContainerGearModify(num, inventory, this, this.getPos());
+        return new SocketStationContainer(num, inventory, this, this.getPos());
     }
 
     @Override
     public MutableText getDisplayName() {
-        return CLOC.blank("block.mmorpg.modify_station");
+        return CLOC.blank("block.mmorpg.socket_station");
     }
 }

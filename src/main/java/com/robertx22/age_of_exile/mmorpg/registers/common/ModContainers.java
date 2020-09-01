@@ -12,7 +12,7 @@ public class ModContainers {
     public Identifier GEAR_MODIFY = id("modify");
     public Identifier GEAR_REPAIR = id("repair");
     public Identifier GEAR_SALVAGE = id("salvage");
-    public Identifier CURRENCY_BAG = id("currency_bag");
+    public Identifier GEAR_SOCKET = id("socket");
     public Identifier HOTBAR_SETUP = id("hotbar_setup");
 
     Identifier id(String id) {
@@ -24,7 +24,7 @@ public class ModContainers {
         register(GEAR_MODIFY);
         register(GEAR_REPAIR);
         register(GEAR_SALVAGE);
-        register(CURRENCY_BAG);
+        register(GEAR_SOCKET);
 
         ContainerProviderRegistry.INSTANCE.registerFactory(HOTBAR_SETUP, (syncId, identifier, player, buf) -> {
             return new HotbarSetupContainer(syncId, player);

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.TileGearModify;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.network.PacketByteBuf;
@@ -36,7 +36,7 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
     public void onReceived(PacketContext ctx) {
 
         try {
-            TileGearModify modify = (TileGearModify) ctx.getPlayer().world.getBlockEntity(pos);
+            BaseModificationStation modify = (BaseModificationStation) ctx.getPlayer().world.getBlockEntity(pos);
             modify.modifyItem();
         } catch (Exception e) {
             e.printStackTrace();
