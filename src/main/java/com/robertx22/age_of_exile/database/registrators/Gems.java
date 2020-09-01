@@ -24,6 +24,8 @@ public class Gems implements ISlashRegistryInit {
             gem.required_item_level = x.gemRank.lvlreq;
             gem.socket_type = x.gemType.id;
 
+            gem.weight = x.weight;
+
             gem.addToSerializables();
         });
     }

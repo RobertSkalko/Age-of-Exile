@@ -47,6 +47,8 @@ public class DataGeneration {
         manager.registerListener(new DimConfigsDatapackLoader());
         manager.registerListener(new EntityConfigsDatapackLoader());
         manager.registerListener(new RuneDatapackLoader());
+        manager.registerListener(new RunewordDatapackLoader());
+
     }
 
 }

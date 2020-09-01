@@ -145,6 +145,10 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.MOB_AFFIX);
     }
 
+    public static SlashRegistryContainer<MobAffix> Runewords() {
+        return getRegistry(SlashRegistryType.RUNEWORD);
+    }
+
     public static SlashRegistryContainer<EntityConfig> EntityConfigs() {
         return getRegistry(SlashRegistryType.ENTITY_CONFIGS);
     }
@@ -269,6 +273,7 @@ public class SlashRegistry {
         new CurrencyItems().registerAll();
         new Gems().registerAll();
         new Runes().registerAll();
+        new Runewords().registerAll();
 
     }
 
@@ -288,6 +293,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.UNIQUE_GEAR, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEM, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNE, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNEWORD, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()

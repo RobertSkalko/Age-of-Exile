@@ -22,6 +22,8 @@ public class Runes implements ISlashRegistryInit {
             rune.effective_level = x.type.lvl;
             rune.required_item_level = x.type.lvl;
 
+            rune.weight = x.type.weight;
+
             rune.addToSerializables();
         });
     }

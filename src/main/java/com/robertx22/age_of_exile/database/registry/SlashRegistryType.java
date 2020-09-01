@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registrators.MobAffixes;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
@@ -17,6 +18,12 @@ public enum SlashRegistryType {
     NONE("none"),
     EFFECT("effect"),
     STAT("stat"),
+    RUNEWORD("runeword") {
+        @Override
+        public ISerializable getSerializer() {
+            return RuneWord.SERIALIZER;
+        }
+    },
     GEM("gem") {
         @Override
         public ISerializable getSerializer() {

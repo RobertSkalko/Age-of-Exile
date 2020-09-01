@@ -6,7 +6,12 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -69,7 +74,45 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
     }
 
     public enum RuneType {
-        XER("xer", "Xer", 0.5F, new GemStatPerTypes() {
+        ENO(1000, "eno", "Eno", 0.5F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(0.1F, 0.2F, Dexterity.INSTANCE));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(
+                    new StatModifier(2, 5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(2, 5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+                );
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(3, 5, CriticalHit.getInstance()));
+
+            }
+        }),
+        HAR(1000, "har", "Har", 0.5F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(0.1F, 0.2F, Strength.INSTANCE));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(
+                    new StatModifier(5, 10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+                );
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(5, 10, CriticalDamage.getInstance()));
+            }
+        }),
+        XER(1000, "xer", "Xer", 0.5F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
                 return Arrays.asList(new StatModifier(0.1F, 0.2F, Intelligence.INSTANCE));
@@ -91,12 +134,14 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         public String locName;
         public float lvl;
         public GemStatPerTypes stats;
+        public int weight;
 
-        RuneType(String id, String locName, float lvl, GemStatPerTypes stats) {
+        RuneType(int weight, String id, String locName, float lvl, GemStatPerTypes stats) {
             this.id = id;
             this.locName = locName;
             this.stats = stats;
             this.lvl = lvl;
+            this.weight = weight;
         }
     }
 

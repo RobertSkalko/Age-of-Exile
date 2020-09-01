@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
+import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 
 import static com.robertx22.age_of_exile.config.forge.ModConfig.get;
 
-public class BaseRuneGem implements IGUID {
+public class BaseRuneGem implements IGUID, IWeighted {
 
     public List<StatModifier> on_armor_stats = new ArrayList<>();
 
@@ -21,6 +22,8 @@ public class BaseRuneGem implements IGUID {
     public String identifier = "";
 
     public float required_item_level;
+
+    public int weight = 1000;
 
     public float effective_level;
 
@@ -49,5 +52,10 @@ public class BaseRuneGem implements IGUID {
     @Override
     public String GUID() {
         return identifier;
+    }
+
+    @Override
+    public int Weight() {
+        return weight;
     }
 }
