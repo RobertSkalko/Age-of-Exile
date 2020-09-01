@@ -63,8 +63,8 @@ dependencies {
 	//modApi "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"	
 
-	modImplementation "de.siphalor:nbtcrafting-${nbtcrafting_version}"
-	include "de.siphalor:nbtcrafting-${nbtcrafting_version}"
+	//modImplementation "de.siphalor:nbtcrafting-${nbtcrafting_version}"  ADD BACK WHEN PUBLISHING, IT MAKES IN IDE SERVERS BROKEN
+	//include "de.siphalor:nbtcrafting-${nbtcrafting_version}"
 
     compile files("Library-Of-Exile-1.16.2-1.0.3-dev.jar")
 	

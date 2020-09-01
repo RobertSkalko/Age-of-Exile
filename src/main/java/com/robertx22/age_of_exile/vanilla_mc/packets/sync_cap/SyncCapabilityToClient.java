@@ -37,9 +37,12 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
     @Override
     public void saveToData(PacketByteBuf tag) {
-        tag.writeCompoundTag(nbt);
-        tag.writeEnumConstant(type);
-
+        try {
+            tag.writeCompoundTag(nbt);
+            tag.writeEnumConstant(type);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
