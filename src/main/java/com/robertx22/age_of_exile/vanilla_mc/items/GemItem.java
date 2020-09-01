@@ -3,7 +3,13 @@ package com.robertx22.age_of_exile.vanilla_mc.items;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.NoDuplicateSocketsReq;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.SocketLvlNotHigherThanItemLvl;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
@@ -14,10 +20,14 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -36,7 +46,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAutoLocName, IShapedRecipe {
+public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAutoLocName, IShapedRecipe, ICurrencyItemEffect {
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -84,6 +94,32 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
                 .get(gemRank.lower()))
             .pattern("ggg")
             .criterion("player_level", trigger());
+    }
+
+    @Override
+    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
+
+        GemItem gitem = (GemItem) currency.getItem();
+        Gem gem = gitem.getGem();
+        GearItemData gear = Gear.Load(stack);
+
+        SocketData socket = new SocketData();
+        socket.gem_id = gem.identifier;
+        socket.level = gem.getEffectiveLevel();
+        socket.percent = RandomUtils.RandomRange(0, 100);
+        socket.slot_family = gear.GetBaseGearType()
+            .family();
+
+        gear.sockets.sockets.add(socket);
+
+        Gear.Save(stack, gear);
+
+        return stack;
+    }
+
+    @Override
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_SOCKETS, new NoDuplicateSocketsReq(), new SocketLvlNotHigherThanItemLvl());
     }
 
     public static class EleGem extends GemStatPerTypes {
@@ -269,20 +305,26 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
 
     }
 
+    public Gem getGem() {
+        String id = Registry.ITEM.getId(this)
+            .toString();
+
+        Gem gem = SlashRegistry.Gems()
+            .getList()
+            .stream()
+            .filter(x -> id.equals(x.item_id))
+            .findFirst()
+            .get();
+        return gem;
+    }
+
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 
         try {
-            String id = Registry.ITEM.getId(this)
-                .toString();
 
-            Gem gem = SlashRegistry.Gems()
-                .getList()
-                .stream()
-                .filter(x -> id.equals(x.item_id))
-                .findFirst()
-                .get();
+            Gem gem = getGem();
 
             int efflvl = gem.getEffectiveLevel();
 

@@ -280,6 +280,8 @@ public enum Words implements IAutoLocName {
     NoSuffix("Doesn't have suffix"),
 
     CantGetMoreAffixes("Can't get more affixes."),
+    HasEmptySockets("Has Empty Sockets"),
+    NoDuplicateSockets("No Duplicate Sockets"),
 
     NoPrefix("Doesn't have prefix"),
 
@@ -388,6 +390,8 @@ public enum Words implements IAutoLocName {
     Infusion("Infusion"),
 
     Item("Item"),
+
+    SocketLvlIsntHigherThanItemLvl("Socket lvl not higher than gear lvl"),
 
     Left("Left"),
 

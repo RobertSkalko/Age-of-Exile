@@ -33,6 +33,8 @@ public class Gem implements IAutoGson<Gem>, ISerializedRegistryEntry<Gem> {
 
     public float required_item_level;
 
+    public String socket_type = "";
+
     public Item getItem() {
         return Registry.ITEM.get(new Identifier(item_id));
     }

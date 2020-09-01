@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPart;
@@ -62,14 +63,18 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
         return Part.SOCKETS;
     }
 
+    public Gem getGem() {
+        return SlashRegistry.Gems()
+            .get(gem_id);
+    }
+
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
         List<ExactStatData> stats = new ArrayList<>();
         try {
             if (isGem()) {
-                SlashRegistry.Gems()
-                    .get(gem_id)
+                getGem()
                     .getFor(this.slot_family)
                     .forEach(x -> {
                         stats.add(x.ToExactStat(this.percent, this.level));

@@ -69,6 +69,8 @@ public class GearCreationUtils {
             }
         }
 
+        data.sockets.create(data);
+
         data.baseStats = new BaseStatsData();
         data.baseStats.RerollFully(data);
 

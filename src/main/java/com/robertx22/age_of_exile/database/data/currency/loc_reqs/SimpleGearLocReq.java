@@ -12,8 +12,12 @@ import java.util.function.Predicate;
 
 public class SimpleGearLocReq extends BaseLocRequirement {
 
+    public static final SimpleGearLocReq HAS_EMPTY_SOCKETS = new SimpleGearLocReq(
+        x -> x.sockets.getEmptySockets() > 0, Words.HasEmptySockets.locName());
+
     public static final SimpleGearLocReq NO_PREFIX = new SimpleGearLocReq(
         x -> x.affixes.prefixes.size() == 0, Words.NoPrefix.locName());
+
     public static final SimpleGearLocReq NO_SUFFIX = new SimpleGearLocReq(
         x -> x.affixes.suffixes.size() == 0, Words.NoSuffix.locName());
 

@@ -187,7 +187,8 @@ public class GearTooltipUtils {
         if (Screen.hasShiftDown() == false) {
             tooltip
                 .add(
-                    new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
+                    new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
+                    )
                         .formatted(Formatting.BLUE));
         }
 
