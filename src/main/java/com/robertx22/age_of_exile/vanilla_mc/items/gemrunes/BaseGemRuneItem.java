@@ -18,6 +18,8 @@ public abstract class BaseGemRuneItem extends Item {
         super(settings);
     }
 
+    public int weight;
+
     public abstract float getStatMultiForNonLvlScaledStat();
 
     public abstract BaseRuneGem getBaseRuneGem();

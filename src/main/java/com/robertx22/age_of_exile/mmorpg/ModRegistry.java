@@ -10,6 +10,7 @@ public class ModRegistry {
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
     public static GemItemRegister GEMS;
+    public static RuneItemRegister RUNES;
     public static ModBlocks BLOCKS;
     public static ModContainers CONTAINERS;
     public static ModSounds SOUNDS;
@@ -32,6 +33,7 @@ public class ModRegistry {
         COMPONENTS = new ComponentRegisters();
         GEAR_MATERIALS = new GearMaterialRegister();
         GEMS = new GemItemRegister();
+        RUNES = new RuneItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
 

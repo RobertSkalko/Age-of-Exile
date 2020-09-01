@@ -22,4 +22,8 @@ public class CreativeTabs {
         () -> new ItemStack(ModRegistry.GEMS.MAP.get(GemItem.GemType.TOPAZ)
             .get(GemItem.GemRank.PERFECT)));
 
+    public static ItemGroup Runes = FabricItemGroupBuilder.build(
+        new Identifier(Ref.MODID, "runes_group")
+        ,
+        () -> new ItemStack(ModRegistry.RUNES.ALL.get(0)));
 }

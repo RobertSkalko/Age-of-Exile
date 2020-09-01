@@ -27,7 +27,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -43,7 +42,7 @@ import net.minecraft.world.World;
 import java.util.Arrays;
 import java.util.List;
 
-public class GemItem extends BaseGemRuneItem implements IGUID, IWeighted, IAutoModel, IAutoLocName, IShapedRecipe, ICurrencyItemEffect {
+public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, IShapedRecipe, ICurrencyItemEffect {
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -292,18 +291,12 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IWeighted, IAutoM
     }
 
     public GemType gemType;
-    int weight;
     public GemRank gemRank;
     public float levelToStartDrop;
 
     @Override
     public String GUID() {
         return "gems/" + gemType.id + "/" + gemRank.num;
-    }
-
-    @Override
-    public int Weight() {
-        return 0;
     }
 
     @Override
