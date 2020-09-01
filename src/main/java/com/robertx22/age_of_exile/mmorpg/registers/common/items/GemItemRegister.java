@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.vanilla_mc.items.GemItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 

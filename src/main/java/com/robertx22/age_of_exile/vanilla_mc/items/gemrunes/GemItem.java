@@ -1,6 +1,7 @@
-package com.robertx22.age_of_exile.vanilla_mc.items;
+package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
@@ -12,10 +13,10 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.SocketLvl
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
-import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
@@ -28,25 +29,21 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAutoLocName, IShapedRecipe, ICurrencyItemEffect {
+public class GemItem extends BaseGemRuneItem implements IGUID, IWeighted, IAutoModel, IAutoLocName, IShapedRecipe, ICurrencyItemEffect {
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -122,6 +119,21 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
         return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_SOCKETS, new NoDuplicateSocketsReq(), new SocketLvlNotHigherThanItemLvl());
     }
 
+    @Override
+    public float getStatMultiForNonLvlScaledStat() {
+        return gemRank.valMultiIfNonLvlScaledStat;
+    }
+
+    @Override
+    public BaseRuneGem getBaseRuneGem() {
+        return getGem();
+    }
+
+    @Override
+    public List<StatModifier> getStatModsForSerialization(SlotFamily family) {
+        return gemType.stats.getFor(family);
+    }
+
     public static class EleGem extends GemStatPerTypes {
         public Elements ele;
 
@@ -146,6 +158,55 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
     }
 
     public enum GemType {
+
+        TOURMALINE("tourmaline", "Tourmaline", Formatting.LIGHT_PURPLE, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 2, Health.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(0.4F, 1.5F, HealthRegen.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(2, 5, Lifesteal.getInstance()));
+            }
+        }),
+        AZURITE("azurite", "Azurite", Formatting.AQUA, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(2, 4, Mana.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(0.5F, 1.5F, ManaRegen.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(1, 3, ManaOnHit.getInstance()));
+            }
+        }),
+        AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(2, 4, MagicShield.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(0.5F, 1.5F, MagicShieldRegen.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(2, 4, MagicSteal.getInstance()));
+            }
+        }),
         TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Thunder)),
         RUBY("ruby", "Ruby", Formatting.RED, new EleGem(Elements.Fire)),
         EMERALD("emerald", "Emerald", Formatting.GREEN, new EleGem(Elements.Nature)),
@@ -203,31 +264,6 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
         }
     }
 
-    public abstract static class GemStatPerTypes {
-
-        public abstract List<StatModifier> onArmor();
-
-        public abstract List<StatModifier> onJewelry();
-
-        public abstract List<StatModifier> onWeapons();
-
-        public final List<StatModifier> getFor(SlotFamily sfor) {
-            if (sfor == SlotFamily.Armor) {
-                return onArmor();
-            }
-            if (sfor == SlotFamily.Jewelry) {
-                return onJewelry();
-            }
-            if (sfor == SlotFamily.Weapon) {
-                return onWeapons();
-            }
-
-            return null;
-
-        }
-
-    }
-
     public GemItem(GemType type, GemRank gemRank) {
         super(new Settings().group(CreativeTabs.Gems)
             .maxCount(16));
@@ -249,7 +285,7 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
             levelToStartDrop = 0.6F;
         } else if (gemRank.num == 4) {
             weight = 50;
-            levelToStartDrop = 0.8F;
+            levelToStartDrop = 0.9F;
         } else {
             throw new RuntimeException("Gem rank not accounted for?");
         }
@@ -275,36 +311,6 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
         return true;
     }
 
-    public List<StatModifier> getStatsForSerialization(SlotFamily statsfor) {
-
-        List<StatModifier> list = new ArrayList<>();
-
-        float multi = gemRank.valMultiIfNonLvlScaledStat;
-
-        this.gemType.stats.getFor(statsfor)
-            .forEach(x -> {
-                if (x.GetStat()
-                    .getScaling() == StatScaling.SCALING) {
-                    list.add(x);
-                } else {
-                    if (x.GetStat()
-                        .UsesSecondValue()) {
-                        list.add(new StatModifier(
-                            x.firstMin * multi, x.firstMax * multi, x.secondMin * multi, x.secondMax * multi,
-                            x.GetStat(), x.getModType()));
-                    } else {
-                        list.add(new StatModifier(
-                            x.firstMin * multi, x.firstMax * multi,
-                            x.GetStat(), x.getModType()));
-                    }
-
-                }
-            });
-
-        return list;
-
-    }
-
     public Gem getGem() {
         String id = Registry.ITEM.getId(this)
             .toString();
@@ -324,33 +330,7 @@ public class GemItem extends Item implements IGUID, IWeighted, IAutoModel, IAuto
 
         try {
 
-            Gem gem = getGem();
-
-            int efflvl = gem.getEffectiveLevel();
-
-            tooltip.add(new LiteralText(""));
-            List<StatModifier> wep = gem.getFor(SlotFamily.Weapon);
-            tooltip.add(new LiteralText("On Weapon:").formatted(Formatting.RED));
-            for (StatModifier x : wep) {
-                tooltip.addAll(x.getEstimationTooltip(efflvl));
-            }
-
-            tooltip.add(new LiteralText(""));
-            List<StatModifier> armor = gem.getFor(SlotFamily.Armor);
-            tooltip.add(new LiteralText("On Armor:").formatted(Formatting.BLUE));
-            for (StatModifier x : armor) {
-                tooltip.addAll(x.getEstimationTooltip(efflvl));
-            }
-
-            tooltip.add(new LiteralText(""));
-            List<StatModifier> jewelry = gem.getFor(SlotFamily.Jewelry);
-            tooltip.add(new LiteralText("On Jewelry:").formatted(Formatting.LIGHT_PURPLE));
-            for (StatModifier x : jewelry) {
-                tooltip.addAll(x.getEstimationTooltip(efflvl));
-            }
-
-            tooltip.add(new LiteralText(""));
-            tooltip.add(TooltipUtils.level(gem.getReqLevel()));
+            tooltip.addAll(getBaseTooltip());
 
         } catch (Exception e) {
             e.printStackTrace();
