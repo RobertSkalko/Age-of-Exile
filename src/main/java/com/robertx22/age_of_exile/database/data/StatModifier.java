@@ -9,6 +9,13 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Storable
 public class StatModifier implements ISerializable<StatModifier> {
@@ -94,6 +101,24 @@ public class StatModifier implements ISerializable<StatModifier> {
             .equals(ModType.FLAT) && secondMax != 0;
     }
 
+    public MutableText getRangeToShow(int lvl) {
+
+        int fmin = (int) GetStat().scale(firstMin, lvl);
+        int fmax = (int) GetStat().scale(firstMax, lvl);
+
+        String text = fmin + "-" + fmax;
+
+        if (GetStat().UsesSecondValue()) {
+            int smin = (int) GetStat().scale(secondMin, lvl);
+            int smax = (int) GetStat().scale(secondMax, lvl);
+
+            text += " / " + smin + "-" + smax;
+        }
+
+        return new LiteralText(text).formatted(Formatting.GREEN);
+
+    }
+
     public ModType getModType() {
         return ModType.fromString(type);
     }
@@ -135,6 +160,18 @@ public class StatModifier implements ISerializable<StatModifier> {
 
         return new StatModifier(firstMin, firstMax, secondMin, secondMax, stat, type);
 
+    }
+
+    public List<Text> getEstimationTooltip(int lvl) {
+
+        List<Text> list = new ArrayList<>();
+
+        Text txt = getRangeToShow(lvl).append(" ")
+            .append(GetStat().locName());
+
+        list.add(txt);
+
+        return list;
     }
 
     public ExactStatData ToExactStat(int percent, int lvl) {

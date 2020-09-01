@@ -71,7 +71,7 @@ public class Health extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Maximum Health";
+        return "Health";
     }
 
     private static class SingletonHolder {

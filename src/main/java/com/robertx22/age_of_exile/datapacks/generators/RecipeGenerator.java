@@ -82,8 +82,10 @@ public class RecipeGenerator {
         for (Item item : Registry.ITEM) {
             if (item instanceof IShapedRecipe) {
                 IShapedRecipe ir = (IShapedRecipe) item;
-                ir.getRecipe()
-                    .offerTo(consumer);
+                ShapedRecipeJsonFactory rec = ir.getRecipe();
+                if (rec != null) {
+                    rec.offerTo(consumer);
+                }
 
             }
         }

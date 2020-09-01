@@ -2,16 +2,14 @@ package com.robertx22.age_of_exile.mmorpg;
 
 import com.robertx22.age_of_exile.mixin_methods.AddMobSpawns;
 import com.robertx22.age_of_exile.mmorpg.registers.common.*;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItemRegistrator;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.MiscItemsRegistrator;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 
 public class ModRegistry {
 
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
+    public static GemItemRegister GEMS;
     public static ModBlocks BLOCKS;
     public static ModContainers CONTAINERS;
     public static ModSounds SOUNDS;
@@ -33,6 +31,7 @@ public class ModRegistry {
         PARTICLES = new ModParticles();
         COMPONENTS = new ComponentRegisters();
         GEAR_MATERIALS = new GearMaterialRegister();
+        GEMS = new GemItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
 
