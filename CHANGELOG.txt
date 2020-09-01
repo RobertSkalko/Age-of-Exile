@@ -3,11 +3,24 @@ v.1.1.4
 Warning: your gear will have minus durability after this update possibly! 
 Repair it first, because any hit will break it. This is because when max durability is reduced, so is current durability..
 
-- removed jewels, added gems instead
+- removed jewels
+
+- added gems!
+- added runes!
+- added runewords!
+- added runeword awaken items // TODO
+
 Gems are basically the jewels, but stackable and you can craft them into higher level versions.
 They're also datapacks!
 I have an idea how to add jewels back in, and they'll be more interesting :)
 
+Yes runes were a long time coming. I waited till I figured out a good way to do them.
+It's not hard to add them, it's hard to get them right.
+
+Runes are now stackable just like gems and not random. Only the end result of socketing is random (the stat numbers).
+I really didn't think of how much of a pain inventory management was until I saw dozens of chests full of runes.
+
+Minor changes:
 - fixed server crash on casting spell
 - special mob stats are now in entity configs instead of hardcoded
 - made gear have similar durability to vanilla diamond gear. I gave it too much it seems

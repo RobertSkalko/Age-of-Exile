@@ -111,8 +111,13 @@ public class StatModifier implements ISerializable<StatModifier> {
         if (GetStat().UsesSecondValue()) {
             int smin = (int) GetStat().scale(secondMin, lvl);
             int smax = (int) GetStat().scale(secondMax, lvl);
-
             text += " / " + smin + "-" + smax;
+        } else {
+            if (GetStat().IsPercent() || getModType().isLocalIncrease()) {
+                text = text + "%";
+            } else if (getModType().isGlobalIncrease()) {
+                text = text + " global";
+            }
         }
 
         return new LiteralText(text).formatted(Formatting.GREEN);
