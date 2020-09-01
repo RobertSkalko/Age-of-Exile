@@ -4,6 +4,11 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.SocketLvlNotHigherThanItemLvl;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
@@ -17,8 +22,12 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -32,7 +41,7 @@ import net.minecraft.world.World;
 import java.util.Arrays;
 import java.util.List;
 
-public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName {
+public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, ICurrencyItemEffect {
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -71,6 +80,41 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
     @Override
     public String GUID() {
         return "runes/" + type.id;
+    }
+
+    @Override
+    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
+
+        RuneItem ritem = (RuneItem) currency.getItem();
+        Rune rune = ritem.getRune();
+        GearItemData gear = Gear.Load(stack);
+
+        SocketData socket = new SocketData();
+        socket.rune_id = rune.identifier;
+        socket.level = rune.getEffectiveLevel();
+        socket.percent = RandomUtils.RandomRange(0, 100);
+        socket.slot_family = gear.GetBaseGearType()
+            .family();
+
+        gear.sockets.sockets.add(socket);
+
+        SlashRegistry.Runewords()
+            .getList()
+            .forEach(x -> {
+                if (x.canItemHave(gear) && x.HasRuneWord(gear)) {
+                    gear.sockets.activated_runeword = x.GUID();
+                    gear.sockets.runeword_percent = RandomUtils.RandomRange(0, 100);
+                }
+            });
+
+        Gear.Save(stack, gear);
+
+        return stack;
+    }
+
+    @Override
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_SOCKETS, new SocketLvlNotHigherThanItemLvl());
     }
 
     public enum RuneType {

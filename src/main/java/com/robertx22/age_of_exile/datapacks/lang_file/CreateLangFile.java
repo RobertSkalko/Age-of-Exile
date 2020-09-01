@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.datapacks.lang_file;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.base.Rarities;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -145,7 +145,8 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(SlashRegistry.Affixes()
             .getSerializable());
-
+        list.addAll(SlashRegistry.Runewords()
+            .getSerializable());
         list.addAll(SlashRegistry.Stats()
             .getAll()
             .values());

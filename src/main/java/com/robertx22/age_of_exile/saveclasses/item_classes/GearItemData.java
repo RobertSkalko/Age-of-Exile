@@ -210,14 +210,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .get(gear_type);
     }
 
-    public MutableText getOnGroundDisplayName() {
-        return new SText(getRarity().textFormatting() + "").append(GetBaseGearType().locName());
-    }
-
     public MutableText GetDisplayName(ItemStack stack) {
 
         Formatting format = this.getRarity()
             .textFormatting();
+
+        if (this.hasRuneWord()) {
+            format = Formatting.GOLD;
+        }
 
         if (!isIdentified()) {
             MutableText text = new SText(format + "")
@@ -255,7 +255,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                     .append("");
             }
         } else {
-            if (!isUnique()) {
+
+            if (isUnique()) {
+                text.append(this.uniqueStats.getUnique()
+                    .locName());
+            } else if (hasRuneWord()) {
+                text.append(this.sockets.getRuneWord()
+                    .locName());
+            } else {
                 Words prefix = RareItemAffixNames.getPrefix(this);
                 Words suffix = RareItemAffixNames.getSuffix(this);
 
@@ -264,11 +271,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                         .append(" ")
                         .append(suffix.locName());
                 }
-
-            } else {
-                text.append(this.uniqueStats.getUnique()
-                    .locName());
-
             }
 
             text.append(" ")
@@ -280,12 +282,18 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     }
 
+    public boolean hasRuneWord() {
+        return sockets.getRuneWord() != null;
+    }
+
     private boolean useAffixedName() {
 
         if (isUnique()) {
             return false;
         }
-
+        if (hasRuneWord()) {
+            return false;
+        }
         if (affixes.getNumberOfPrefixes() > 1) {
             return false;
         }

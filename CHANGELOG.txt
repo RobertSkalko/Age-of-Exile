@@ -1,8 +1,5 @@
 v.1.1.4
 
- TODO REMIND MYSELF TO LINK TWITTER OF THE GUY WHO MADE THE GEM TEXTURES, DELETE THIS WHEN DONE
-
-
 Warning: your gear will have minus durability after this update possibly! 
 Repair it first, because any hit will break it. This is because when max durability is reduced, so is current durability..
 

@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
+import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPart;
@@ -68,6 +69,11 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
             .get(gem_id);
     }
 
+    public Rune getRune() {
+        return SlashRegistry.Runes()
+            .get(rune_id);
+    }
+
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
@@ -79,7 +85,14 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
                     .forEach(x -> {
                         stats.add(x.ToExactStat(this.percent, this.level));
                     });
+            } else if (isRune()) {
+                getRune()
+                    .getFor(this.slot_family)
+                    .forEach(x -> {
+                        stats.add(x.ToExactStat(this.percent, this.level));
+                    });
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

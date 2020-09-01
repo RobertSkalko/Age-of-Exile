@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
@@ -145,7 +146,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.MOB_AFFIX);
     }
 
-    public static SlashRegistryContainer<MobAffix> Runewords() {
+    public static SlashRegistryContainer<RuneWord> Runewords() {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
 

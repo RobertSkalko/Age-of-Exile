@@ -6,8 +6,10 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 
 import java.util.ArrayList;
@@ -15,12 +17,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<RuneWord> {
+public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<RuneWord>, IAutoLocName {
     public static RuneWord SERIALIZER = new RuneWord();
 
     public String identifier = "";
 
-    List<StatModifier> stats = new ArrayList<>();
+    public List<StatModifier> stats = new ArrayList<>();
 
     List<String> runes_needed = new ArrayList<>();
 
@@ -90,5 +92,20 @@ public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<R
     @Override
     public String GUID() {
         return identifier;
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Rune_Words;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".runeword." + formattedGUID();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return loc_name;
     }
 }
