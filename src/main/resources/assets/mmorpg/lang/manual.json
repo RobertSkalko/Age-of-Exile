@@ -14,6 +14,7 @@
 "itemGroup.mmorpg_currency": "Crafting Items",
 "itemGroup.mmorpg_lootboxes": "LootBoxes",
 "itemGroup.mmorpg_alchemy": "Alchemy",
+"death.attack.mmorpg.custom_damage": "Tons of Damage!",
 
 "_comment": "STATIONS",
 "block.mmorpg.modify_station": "Gear Modify Station",

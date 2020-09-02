@@ -14,11 +14,18 @@ public class MyDamageSource extends EntityDamageSource {
     DamageSource source;
 
     public MyDamageSource(DamageSource s, Entity source, Elements element, float dmg) {
-        super(DamageEffect.dmgSourceName, source);
+        super(source(s), source);
         this.element = element;
         this.setBypassesArmor();
         realDamage = dmg;
         this.source = s;
     }
 
+    static String source(DamageSource s) {
+        if (s == null) {
+            return DamageEffect.dmgSourceName;
+
+        }
+        return s.name;
+    }
 }

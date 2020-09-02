@@ -39,7 +39,7 @@
 	{
 		"type": "crafting",
 		"recipe": "mmorpg:modify_station",
-		"text": "With this station, you can use currencies to modify gear, socket jewels and so on. It's insanely useful for bettering your gear."
+		"text": "With this station you can use currencies to modify gear. It's insanely useful for bettering your gear."
   
     }
   ]

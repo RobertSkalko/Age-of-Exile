@@ -212,7 +212,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Thunder)),
         RUBY("ruby", "Ruby", Formatting.RED, new EleGem(Elements.Fire)),
         EMERALD("emerald", "Emerald", Formatting.GREEN, new EleGem(Elements.Nature)),
-        SAPPHIRE("sapphire", "Sapphire", Formatting.BLUE, new EleGem(Elements.Nature));
+        SAPPHIRE("sapphire", "Sapphire", Formatting.BLUE, new EleGem(Elements.Water));
 
         public String locName;
         public String id;

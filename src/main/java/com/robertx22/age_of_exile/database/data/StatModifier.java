@@ -108,7 +108,7 @@ public class StatModifier implements ISerializable<StatModifier> {
 
         String text = fmin + "-" + fmax;
 
-        if (GetStat().UsesSecondValue()) {
+        if (GetStat().UsesSecondValue() && getModType().isFlat()) {
             int smin = (int) GetStat().scale(secondMin, lvl);
             int smax = (int) GetStat().scale(secondMax, lvl);
             text += " / " + smin + "-" + smax;

@@ -38,7 +38,7 @@ public class FoodEffectBuilder {
         for (Pair<StatusEffectInstance, Float> x : foodcomponent.getStatusEffects()) {
             StatusEffect efg = x.getFirst()
                 .getEffectType();
-            if (efg.isBeneficial()) {
+            if (efg.getType() == StatusEffectType.BENEFICIAL) {
                 effectMod += 0.15F;
             } else if (efg.getType() == StatusEffectType.HARMFUL) {
                 effectMod -= 0.75F;

@@ -42,6 +42,8 @@ This should hopefully stop the bug reports of "I can't heal my friend". But whet
 - added new stat, +maximum resistance
 - common items can now have 5 sockets, while magical items only 2.
 - added bonus exp stat
+- fix crash on eating foods with effects on server
+- fix death message 
 
 v.1.1.3
 - fix day mobs config not working
