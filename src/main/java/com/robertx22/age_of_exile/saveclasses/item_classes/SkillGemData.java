@@ -21,6 +21,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Storable
 public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
 
@@ -102,10 +105,13 @@ public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
     }
 
     @Override
-    public ItemStack getSalvageResult(float salvageBonus) {
+    public List<ItemStack> getSalvageResult(float salvageBonus) {
         Item item = ItemUtils.randomMagicEssence();
         ItemStack stack = new ItemStack(item);
-        return stack;
+
+        List<ItemStack> list = new ArrayList<>();
+        list.add(stack);
+        return list;
     }
 
     @Override

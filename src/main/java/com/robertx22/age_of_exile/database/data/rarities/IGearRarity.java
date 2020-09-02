@@ -12,6 +12,8 @@ public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
 
     MinMax affixStatPercents();
 
+    float valueMulti();
+
     MinMax uniqueStatPercents();
 
     int AffixChance();

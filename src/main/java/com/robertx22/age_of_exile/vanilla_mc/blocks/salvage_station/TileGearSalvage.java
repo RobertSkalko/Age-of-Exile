@@ -3,11 +3,14 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
-import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import com.robertx22.library_of_exile.tile_bases.BaseTile;
+import com.robertx22.library_of_exile.tile_bases.NonFullBlock;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.SoundUtils;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
@@ -16,6 +19,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -50,7 +54,7 @@ public class TileGearSalvage extends BaseTile {
         return OUTPUT_SLOTS.contains(slot);
     }
 
-    public static ItemStack getSmeltingResultForItem(ItemStack st) {
+    public static List<ItemStack> getSmeltingResultForItem(ItemStack st) {
 
         ICommonDataItem data = ICommonDataItem.load(st);
 
@@ -69,7 +73,7 @@ public class TileGearSalvage extends BaseTile {
             }
         }
 
-        return ItemStack.EMPTY;
+        return Arrays.asList();
 
     }
 
@@ -122,7 +126,7 @@ public class TileGearSalvage extends BaseTile {
 
     @Override
     public int tickRate() {
-        return 2;
+        return 10;
     }
 
     @Override
@@ -141,94 +145,58 @@ public class TileGearSalvage extends BaseTile {
         smeltItem(true);
     }
 
-    ItemStack result = ItemStack.EMPTY;
-
     private boolean smeltItem(boolean performSmelt) {
-        Integer firstSuitableInputSlot = null;
-        Integer firstSuitableOutputSlot = null;
 
-        // finds the first input slot which is smeltable and whose result fits into an
-        // output slot (stacking if possible)
-        for (int inputSlot : INPUT_SLOTS) {
-            if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
+        try {
+            List<ItemStack> results;
 
-                result = getSmeltingResultForItem(itemStacks[inputSlot]);
+            for (int inputSlot : INPUT_SLOTS) {
+                if (!itemStacks[inputSlot].isEmpty()) {
+                    results = getSmeltingResultForItem(itemStacks[inputSlot]);
 
-                if (!result.isEmpty()) { // isEmpty()
+                    if (!results.isEmpty()) {
 
-                    boolean merged = false;
-
-                    // find the first suitable output slot- either empty, or with identical item
-                    // that has enough space
-                    for (int outputSlot : OUTPUT_SLOTS) {
-                        ItemStack outputStack = itemStacks[outputSlot];
-                        if (outputStack.isEmpty()) { // isEmpty()
-                            firstSuitableInputSlot = inputSlot;
-                            firstSuitableOutputSlot = outputSlot;
-
-                            break;
+                        if (!performSmelt) {
+                            return true;
                         }
 
-                        if (outputStack.getItem() == result.getItem()
-                            && ItemStack.areTagsEqual(outputStack, result)) {
-                            int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
-                            if (combinedSize <= getMaxCountPerStack() && combinedSize <= itemStacks[outputSlot].getMaxCount()) {
-                                firstSuitableInputSlot = inputSlot;
-                                firstSuitableOutputSlot = outputSlot;
+                        itemStacks[inputSlot] = ItemStack.EMPTY;
 
-                                break;
+                        Vec3d itempos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
 
-                            }
+                        BlockState block = world.getBlockState(pos);
+
+                        Direction dir = block.get(NonFullBlock.direction);
+
+                        itempos = itempos.add(dir.getVector()
+                            .getX(), 0, dir.getVector()
+                            .getZ());
+
+                        for (ItemStack x : results) {
+                            ItemEntity itemEntity = new ItemEntity(
+                                this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
+                            itemEntity.setToDefaultPickupDelay();
+                            this.world.spawnEntity(itemEntity);
                         }
-                    }
 
-                    boolean anyEmpty = false;
-                    for (int outputSlot : OUTPUT_SLOTS) {
-                        ItemStack outputStack = itemStacks[outputSlot];
-                        if (outputStack.isEmpty()) { // isEmpty()
-                            anyEmpty = true;
-                            break;
-                        }
-                    }
+                        return true;
 
-                    if (!anyEmpty) {
-                        return false;
                     }
-
-                    if (firstSuitableInputSlot != null)
-                        break;
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        if (firstSuitableInputSlot == null)
-            return false;
-        if (!performSmelt)
-            return true;
-
-        // alter input and output
-        itemStacks[firstSuitableInputSlot].decrement(1); // decreaseStackSize()
-        if (itemStacks[firstSuitableInputSlot].getCount() <= 0) {
-            itemStacks[firstSuitableInputSlot] = ItemStack.EMPTY; // getStackSize(), EmptyItem
-        }
-        if (itemStacks[firstSuitableOutputSlot].isEmpty()) { // isEmpty()
-            itemStacks[firstSuitableOutputSlot] = result.copy(); // Use deep .copy() to avoid altering the recipe
-            result = ItemStack.EMPTY;
-
-        } else {
-            int newStackSize = itemStacks[firstSuitableOutputSlot].getCount() + result.getCount();
-            itemStacks[firstSuitableOutputSlot].setCount(newStackSize); // setStackSize(), getStackSize()
-        }
-
-        markDirty();
-        return true;
+        return false;
     }
 
     @Override
     public boolean isItemValidInput(ItemStack stack) {
-        ItemStack result = this.getSmeltingResultForItem(stack);
+        return this.getSmeltingResultForItem(stack)
+            .stream()
+            .anyMatch(x -> !x.isEmpty());
 
-        return result.isEmpty() == false;
     }
 
     @Override

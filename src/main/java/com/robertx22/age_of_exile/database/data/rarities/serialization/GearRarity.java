@@ -57,6 +57,11 @@ public class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<Gea
     }
 
     @Override
+    public float valueMulti() {
+        return this.item_value_multi;
+    }
+
+    @Override
     public MinMax uniqueStatPercents() {
         return unique_stat_percents;
     }

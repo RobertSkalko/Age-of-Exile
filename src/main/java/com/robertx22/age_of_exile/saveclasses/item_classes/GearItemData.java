@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -13,13 +14,9 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -373,66 +370,13 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
     }
 
     @Override
-    public ItemStack getSalvageResult(float salvageBonus) {
+    public List<ItemStack> getSalvageResult(float salvageBonus) {
+        if (this.isSalvagable) {
 
-        if (this.isSalvagable) { // problems with issalvagable?
-            ItemStack stack = ItemStack.EMPTY;
-            int tier = 0;
+            return ModConfig.get().Salvaging.getResult(this);
 
-            int min = 1;
-            int max = 2;
-
-            if (rarity == IRarity.Common) {
-                max = 1;
-            }
-
-            min = tryIncreaseAmount(salvageBonus, min);
-            max = tryIncreaseAmount(salvageBonus, max);
-
-            if (is_unique) {
-                try {
-                    tier = this.uniqueStats.getUnique()
-                        .getTier();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            // TODO
-            if (false) {
-
-                Item item = SlashRegistry.CurrencyItems()
-                    .getWrapped()
-                    .ofCurrencyUsableOnItemType(ItemType.GEAR)
-                    .ofTierRange(tier - 5, tier + 2)
-                    .random();
-
-                int tierAmountBonus = (tier / 4);
-
-                int amount = RandomUtils.RandomRange(min + tierAmountBonus, max + tierAmountBonus);
-                stack = new ItemStack(item);
-                stack.setCount(amount);
-
-                return stack;
-
-            } else {
-
-                int amount = RandomUtils.RandomRange(min, max);
-                Item item = ItemUtils.randomMagicEssence();
-
-                if (rarity == IRarity.Common) {
-                    item = RandomUtils.randomFromList(Arrays.asList(Items.IRON_NUGGET, Items.IRON_INGOT, Items.GOLD_NUGGET));
-                }
-
-                stack = new ItemStack(item);
-                stack.setCount(amount);
-
-            }
-
-            return stack;
         } else
-            return ItemStack.EMPTY;
+            return Arrays.asList(ItemStack.EMPTY);
 
     }
 

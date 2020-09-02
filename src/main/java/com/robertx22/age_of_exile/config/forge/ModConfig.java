@@ -29,6 +29,9 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public FoodEffectsConfig foodEffects = new FoodEffectsConfig();
 
+    @ConfigEntry.Gui.CollapsibleObject
+    public GearSalvageConfig Salvaging = new GearSalvageConfig();
+
     public static ModConfig get() {
         return AutoConfig.getConfigHolder(ModConfig.class)
             .getConfig();

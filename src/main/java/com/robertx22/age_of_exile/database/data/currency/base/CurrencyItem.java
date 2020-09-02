@@ -30,6 +30,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ISalvagable,
@@ -139,7 +140,7 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     }
 
     @Override
-    public ItemStack getSalvageResult(float salvageBonus) {
+    public List<ItemStack> getSalvageResult(float salvageBonus) {
 
         int min = 1;
         int max = 2;
@@ -153,7 +154,7 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
         ItemStack stack = new ItemStack(item);
         stack.setCount(amount);
 
-        return stack;
+        return Arrays.asList(stack);
     }
 
     @Override
