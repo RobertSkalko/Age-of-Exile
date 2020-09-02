@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.runewords;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
@@ -30,6 +31,11 @@ public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<R
 
     public String loc_name = "";
 
+    public boolean containsRune(Rune rune) {
+        return this.runes_needed.stream()
+            .anyMatch(x -> x.equals(rune.identifier));
+    }
+
     public boolean HasRuneWord(GearItemData gear) {
 
         int index = 0;
@@ -52,6 +58,11 @@ public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<R
     }
 
     public boolean canItemHave(GearItemData gear) {
+
+        if (gear.sockets.getEmptySockets() == 0) {
+            return false;
+        }
+
         int minlvl = runes_needed.stream()
             .map(x -> SlashRegistry.Runes()
                 .get(x))
@@ -62,6 +73,25 @@ public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<R
         if (minlvl > gear.level) {
             return false;
         }
+
+        List<String> runes = new ArrayList<>();
+
+        gear.sockets.sockets.forEach(x -> runes.add(x.rune_id));
+
+        int matches = 0;
+
+        for (String rune : runes) {
+            if (rune.equals(runes_needed.get(matches))) {
+                matches++;
+            } else {
+                matches = 0;
+            }
+        }
+
+        if (matches + gear.sockets.getEmptySockets() < runes_needed.size()) {
+            return false;
+        }
+
         return gear.GetBaseGearType()
             .family()
             .equals(this.family);

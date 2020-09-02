@@ -45,7 +45,8 @@ public class BaseRuneGem implements IGUID, IWeighted {
         if (sfor == SlotFamily.Weapon) {
             return on_weapons_stats;
         }
-        return null;
+
+        return on_armor_stats;
 
     }
 

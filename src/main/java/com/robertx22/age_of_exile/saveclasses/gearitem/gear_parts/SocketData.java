@@ -25,7 +25,7 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     public BaseGearType.SlotFamily slot_family;
 
     @Store
-    public Integer percent = 0;
+    public Integer percent = -1;
 
     @Store
     public Integer level = 0;
@@ -45,11 +45,11 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     }
 
     public boolean isRune() {
-        return !rune_id.isEmpty();
+        return getRune() != null;
     }
 
     public boolean isGem() {
-        return !gem_id.isEmpty();
+        return getGem() != null;
     }
 
     @Override

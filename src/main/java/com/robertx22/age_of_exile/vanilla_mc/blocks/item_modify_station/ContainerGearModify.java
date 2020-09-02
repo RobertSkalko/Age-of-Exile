@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearModify extends BaseTileContainer {
 
-    public static final int MODIFY_SLOTS_COUNT = 3;
+    public static final int MODIFY_SLOTS_COUNT = 2;
 
     Inventory tile;
 
