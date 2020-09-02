@@ -73,6 +73,11 @@ public class RareGear extends BaseRare implements GearRarity {
     }
 
     @Override
+    public int minSockets() {
+        return 0;
+    }
+
+    @Override
     public float socketChance() {
         return 0;
     }

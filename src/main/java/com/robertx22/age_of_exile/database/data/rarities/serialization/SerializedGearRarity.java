@@ -20,6 +20,7 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     public MinMax spawnDurabilityHit;
 
     public int max_sockets;
+    public int min_sockets;
     public float socket_chance;
 
     public SerializedGearRarity(SerializedBaseRarity baseRarity) {
@@ -59,6 +60,11 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     @Override
     public int maxSockets() {
         return this.max_sockets;
+    }
+
+    @Override
+    public int minSockets() {
+        return this.min_sockets;
     }
 
     @Override

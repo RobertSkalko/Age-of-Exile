@@ -50,7 +50,7 @@ public class Runewords implements ISlashRegistryInit {
             "Venom",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(0.4F, 0.6F, 0.6F, 1.5F, new WeaponDamage(Elements.Nature), ModType.FLAT),
+                new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(4, 20, ChanceToApplyEffect.POISON, ModType.FLAT)
             ),
             Arrays.asList(DOS, ITA, NOS))
@@ -61,7 +61,7 @@ public class Runewords implements ISlashRegistryInit {
             "Dream of Ice",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(0.4F, 0.6F, 0.6F, 1.5F, new WeaponDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(4, 20, ChanceToApplyEffect.CHILL, ModType.FLAT)
             ),
             Arrays.asList(TOQ, ITA, NOS))
@@ -72,7 +72,7 @@ public class Runewords implements ISlashRegistryInit {
             "Dawn Light",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(0.4F, 0.6F, 0.6F, 1.5F, new WeaponDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(4, 20, ChanceToApplyEffect.STATIC, ModType.FLAT)
             ),
             Arrays.asList(CEN, ITA, NOS))
@@ -83,7 +83,7 @@ public class Runewords implements ISlashRegistryInit {
             "Blaze Fury",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(0.4F, 0.6F, 0.6F, 1.5F, new WeaponDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(4, 20, ChanceToApplyEffect.BURN, ModType.FLAT)
             ),
             Arrays.asList(ANO, ITA, NOS))

@@ -19,7 +19,7 @@
 "_comment": "STATIONS",
 "block.mmorpg.modify_station": "Gear Modify Station",
 "block.mmorpg.repair_station": "Gear Repair Station",
-"block.mmorpg.repair_station": "Socketing Station",
+"block.mmorpg.socket_station": "Socketing Station",
 "block.mmorpg.salvage_station": "Salvaging Station",
 
 "_comment": "ITEM TOOLTIPS",

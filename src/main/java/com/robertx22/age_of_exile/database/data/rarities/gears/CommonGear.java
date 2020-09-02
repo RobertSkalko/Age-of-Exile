@@ -64,7 +64,12 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public int maxSockets() {
-        return 5;
+        return 3;
+    }
+
+    @Override
+    public int minSockets() {
+        return 0;
     }
 
     @Override

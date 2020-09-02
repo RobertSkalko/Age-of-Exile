@@ -40,7 +40,7 @@ This should hopefully stop the bug reports of "I can't heal my friend". But whet
 - stopped mobs from spawning on daytime and made their spawn restrictions like vanilla mobs. So should be less spawns on nighttime too.
 - used the proper creative tab code, now no longer replace vanilla brewing tab. Seriously, nobody noticed?
 - added new stat, +maximum resistance
-- common items can now have 5 sockets, while magical items only 2.
+- new rarity, Relic! These items have no affixes but can have up to 5 socket slots!
 - added bonus exp stat
 - fix crash on eating foods with effects on server
 - fix death message 

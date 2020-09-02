@@ -7,9 +7,6 @@ import com.robertx22.age_of_exile.datapacks.loaders.*;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
 import net.minecraft.resource.ReloadableResourceManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DataGeneration {
 
     public static void generateAll() {
@@ -17,13 +14,6 @@ public class DataGeneration {
         if (!MMORPG.RUN_DEV_TOOLS) {
             return;
         }
-
-        List<BaseRarityDatapackLoader> rars = new ArrayList<>();
-        rars.add(new GearRarityLoader());
-        rars.add(new SkillGemRarityLoader());
-
-        rars.forEach(x -> x.getDatapackGenerator()
-            .run());
 
         new RecipeGenerator().run();
 

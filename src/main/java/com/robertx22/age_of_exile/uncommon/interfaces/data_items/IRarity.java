@@ -17,6 +17,7 @@ public interface IRarity<R extends Rarity> {
     int Rare = 2;
     int Epic = 3;
     int Legendary = 4;
+    int Relic = 5;
 
     int Unique = 10;
 

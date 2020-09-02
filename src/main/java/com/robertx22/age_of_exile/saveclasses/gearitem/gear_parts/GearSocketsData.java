@@ -31,13 +31,13 @@ public class GearSocketsData implements IStatsContainer {
     public void create(GearItemData gear) {
         GearRarity rarity = gear.getRarity();
 
-        max_sockets = 3; // TODO
-        for (int i = 0; i < rarity.maxSockets(); i++) {
+        this.max_sockets = rarity.minSockets();
+
+        for (int i = 0; i < rarity.maxSockets() - rarity.minSockets(); i++) {
             if (RandomUtils.roll(rarity.socketChance())) {
                 max_sockets++;
             }
         }
-
     }
 
     public int getEmptySockets() {
