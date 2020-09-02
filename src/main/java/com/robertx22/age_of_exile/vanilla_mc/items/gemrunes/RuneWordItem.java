@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -25,6 +26,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,6 +52,14 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
     }
 
     public static RuneWord get(ItemStack stack) {
+
+        if (SlashRegistry.Runewords()
+            .isEmpty()) {
+            return SlashRegistry.Runewords()
+                .getSerializable()
+                .get(0);
+        }
+
         RuneWord word = SlashRegistry.Runewords()
             .get(stack.getTag()
                 .getString("runeword"));
@@ -76,6 +86,12 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 
         try {
+
+            if (SlashRegistry.Runewords()
+                .isEmpty()) {
+                return;
+            }
+
             RuneWord word = get(stack);
 
             tooltip.add(new LiteralText("To create the runeword: ").formatted(Formatting.BLUE));
@@ -100,6 +116,17 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
                 tooltip.addAll(x.getEstimationTooltip(Load.Unit(ClientOnly.getPlayer())
                     .getLevel()));
             }
+
+            tooltip.add(new LiteralText(""));
+
+            tooltip.add(TooltipUtils.level(word.runes_needed.stream()
+                .map(x -> SlashRegistry.Runes()
+                    .get(x))
+                .min(Comparator.comparingInt(y -> y.getReqLevel()))
+                .get()
+                .getReqLevel()));
+
+            tooltip.add(new LiteralText(""));
 
             tooltip.add(new LiteralText("Socketing is done in the Socketing Station").formatted(Formatting.BLUE));
 

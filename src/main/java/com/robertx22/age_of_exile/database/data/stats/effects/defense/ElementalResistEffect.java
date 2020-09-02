@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.effects.defense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IElementalEffect;
@@ -32,6 +33,13 @@ public class ElementalResistEffect extends BaseDamageEffect {
             IElementalPenetrable ipen = (IElementalPenetrable) effect;
             pene = ipen.GetElementalPenetration();
         }
+
+        int max = stat.maximumValue;
+
+        StatData maxdata = effect.targetData.getUnit()
+            .peekAtStat(new MaxElementalResist(effect.element));
+
+        max += maxdata.getAverageValue();
 
         float resistPercent = MathHelper.clamp(data.getAverageValue() - pene, stat.minimumValue, stat.maximumValue);
 

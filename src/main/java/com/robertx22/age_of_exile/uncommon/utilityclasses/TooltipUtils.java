@@ -36,7 +36,8 @@ public class TooltipUtils {
 
     public static MutableText level(int lvl) {
         return new LiteralText(Formatting.YELLOW + "").append(Words.Level.locName())
-            .append((": " + lvl));
+            .append((": " + lvl))
+            .formatted(Formatting.YELLOW);
 
     }
 

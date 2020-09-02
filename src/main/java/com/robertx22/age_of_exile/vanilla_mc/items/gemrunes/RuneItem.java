@@ -12,12 +12,19 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.SocketLvl
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -26,6 +33,7 @@ import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -123,6 +131,102 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
     }
 
     public enum RuneType {
+        CEN(1000, "cen", "Cen", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 4, new MaxElementalResist(Elements.Thunder)));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Thunder)));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Thunder), ModType.FLAT));
+            }
+        }),
+        DOS(1000, "dos", "Dos", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 4, new MaxElementalResist(Elements.Nature)));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Nature)));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Nature), ModType.FLAT));
+            }
+        }),
+        ANO(1000, "ano", "Ano", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 4, new MaxElementalResist(Elements.Fire)));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Fire)));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Fire), ModType.FLAT));
+            }
+        }),
+        TOQ(1000, "toq", "Toq", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 4, new MaxElementalResist(Elements.Water)));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Water)));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Water), ModType.FLAT));
+            }
+        }),
+        ORU(500, "oru", "Oru", 0.6F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(4, 12, IncreasedItemQuantity.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(25, 50, ManaBurnResistance.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+            }
+        }),
+        WIR(200, "wir", "Wir", 0.7F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(6, 12, MagicFind.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(0.1F, 0.2F, AllAttributes.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(4, 10, CriticalDamage.getInstance()));
+            }
+        }),
         ENO(1000, "eno", "Eno", 0.5F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
