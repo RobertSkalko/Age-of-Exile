@@ -26,4 +26,10 @@ public class CreativeTabs {
         new Identifier(Ref.MODID, "runes_group")
         ,
         () -> new ItemStack(ModRegistry.RUNES.ALL.get(0)));
+
+    public static ItemGroup Runewords = FabricItemGroupBuilder.build(
+        new Identifier(Ref.MODID, "runeword_group")
+        ,
+        () -> new ItemStack(ModRegistry.RUNES.ALL.get(1)));
+
 }

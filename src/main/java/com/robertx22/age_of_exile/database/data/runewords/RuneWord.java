@@ -24,7 +24,7 @@ public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<R
 
     public List<StatModifier> stats = new ArrayList<>();
 
-    List<String> runes_needed = new ArrayList<>();
+    public List<String> runes_needed = new ArrayList<>();
 
     public BaseGearType.SlotFamily family;
 

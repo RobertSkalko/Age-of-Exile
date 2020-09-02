@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems;
 
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
-import com.robertx22.age_of_exile.database.data.gems.Gem;
+import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import net.minecraft.text.MutableText;
 
-public class NoDuplicateSocketsReq extends BaseLocRequirement {
+public class NoDuplicateRunes extends BaseLocRequirement {
     @Override
     public MutableText getText() {
         return Words.NoDuplicateSockets.locName();
@@ -17,20 +17,21 @@ public class NoDuplicateSocketsReq extends BaseLocRequirement {
     @Override
     public boolean isAllowed(LocReqContext ctx) {
 
-        if (ctx.Currency.getItem() instanceof GemItem) {
+        if (ctx.Currency.getItem() instanceof RuneItem) {
 
-            GemItem gitem = (GemItem) ctx.Currency.getItem();
+            RuneItem gitem = (RuneItem) ctx.Currency.getItem();
 
-            Gem gem = gitem.getGem();
+            Rune gem = gitem.getRune();
 
             GearItemData gear = (GearItemData) ctx.data;
 
             return gear.sockets.sockets.stream()
-                .noneMatch(x -> x.getGem() != null && x.getGem().socket_type
-                    .equals(gem.socket_type));
+                .noneMatch(x -> x.getRune() != null && x.rune_id
+                    .equals(gem.identifier));
 
         }
 
         return false;
     }
 }
+
