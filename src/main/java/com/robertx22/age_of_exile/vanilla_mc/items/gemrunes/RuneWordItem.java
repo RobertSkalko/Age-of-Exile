@@ -128,6 +128,10 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
 
             tooltip.add(new LiteralText(""));
 
+            tooltip.add(new LiteralText(Formatting.GREEN + "Can be used on: " + word.family.name()));
+
+            tooltip.add(new LiteralText(""));
+
             tooltip.add(new LiteralText("Socketing is done in the Socketing Station").formatted(Formatting.BLUE));
 
         } catch (Exception e) {

@@ -132,10 +132,26 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
     public static StatModifier dmg(Elements ele) {
         return new
-            StatModifier(0.2F, 0.4F, 0.4F, 1.5F, new WeaponDamage(ele), ModType.FLAT);
+            StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(ele), ModType.FLAT);
     }
 
     public enum RuneType {
+        NOS(1000, "nos", "Nos", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(5, 20, MagicShield.getInstance(), ModType.LOCAL_INCREASE));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(1, 3, new WeaponDamage(Elements.Physical), ModType.FLAT));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(5, 12, CriticalDamage.getInstance()));
+            }
+        }),
         MOS(1000, "mos", "Mos", 0.2F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
