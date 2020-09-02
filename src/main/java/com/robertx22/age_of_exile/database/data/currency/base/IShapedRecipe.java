@@ -14,7 +14,6 @@ public interface IShapedRecipe {
 
     default ShapedRecipeJsonFactory shaped(ItemConvertible pro, int i) {
         return ShapedRecipeJsonFactory.create(pro, i);
-
     }
 
     default CriterionConditions trigger() {

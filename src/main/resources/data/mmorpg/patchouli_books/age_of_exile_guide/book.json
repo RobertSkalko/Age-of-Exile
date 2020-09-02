@@ -4,6 +4,6 @@
   "model": "minecraft:book",
   "version": "1",
   "subtitle": "Subtitle",
-  "creative_tab": "tools",
+  "creative_tab": "mmorpg.main_group",
   "pause_game": true
 }

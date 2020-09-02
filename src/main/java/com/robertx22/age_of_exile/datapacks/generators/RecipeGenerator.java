@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.datapacks.generators;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import joptsimple.internal.Strings;
@@ -12,6 +13,7 @@ import net.minecraft.data.DataCache;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
@@ -87,6 +89,13 @@ public class RecipeGenerator {
                     rec.offerTo(consumer);
                 }
 
+            }
+            if (item instanceof IShapelessRecipe) {
+                IShapelessRecipe sr = (IShapelessRecipe) item;
+                ShapelessRecipeJsonFactory srec = sr.getRecipe();
+                if (srec != null) {
+                    srec.offerTo(consumer);
+                }
             }
         }
 

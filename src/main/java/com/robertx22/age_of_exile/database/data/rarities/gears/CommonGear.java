@@ -44,7 +44,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(3, 25);
+        return new MinMax(0, 100);
     }
 
     @Override
@@ -64,12 +64,12 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public int maxSockets() {
-        return 1;
+        return 5;
     }
 
     @Override
     public float socketChance() {
-        return 5;
+        return 20;
     }
 
     @Override

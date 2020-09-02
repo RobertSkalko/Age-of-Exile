@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.NoDuplicateSocketsReq;
@@ -31,7 +31,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -42,7 +42,7 @@ import net.minecraft.world.World;
 import java.util.Arrays;
 import java.util.List;
 
-public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, IShapedRecipe, ICurrencyItemEffect {
+public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, IShapelessRecipe, ICurrencyItemEffect {
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -83,17 +83,15 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     static float MAX_ELE_DMG = 10;
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapelessRecipeJsonFactory getRecipe() {
 
         if (this.gemRank.lower() == null) {
             return null;
         }
-
-        return shaped(ModRegistry.GEMS.MAP.get(gemType)
+        return ShapelessRecipeJsonFactory.create(ModRegistry.GEMS.MAP.get(gemType)
             .get(gemRank))
-            .input('g', ModRegistry.GEMS.MAP.get(gemType)
-                .get(gemRank.lower()))
-            .pattern("ggg")
+            .input(ModRegistry.GEMS.MAP.get(gemType)
+                .get(gemRank.lower()), 3)
             .criterion("player_level", trigger());
     }
 

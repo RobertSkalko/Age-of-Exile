@@ -8,15 +8,27 @@ import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 
 import java.util.Arrays;
 
-import static com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem.RuneType;
+import static com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem.RuneType.*;
 
 public class Runewords implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-        RuneWord.create("all_knowing", "All Knowing", BaseGearType.SlotFamily.Armor,
+
+        RuneWord.create(
+            "all_knowing",
+            "All Knowing",
+            BaseGearType.SlotFamily.Armor,
             Arrays.asList(new StatModifier(0.1F, 0.2F, AllAttributes.getInstance())),
-            Arrays.asList(RuneType.ENO, RuneType.HAR, RuneType.XER))
+            Arrays.asList(ENO, HAR, XER))
+            .addToSerializables();
+
+        RuneWord.create(
+            "ele_fury",
+            "Elemental Fury",
+            BaseGearType.SlotFamily.Weapon,
+            Arrays.asList(new StatModifier(0.1F, 0.2F, AllAttributes.getInstance())),
+            Arrays.asList(ENO, HAR, XER))
             .addToSerializables();
 
     }

@@ -2,14 +2,15 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -25,6 +26,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class GearTooltipUtils {
 
@@ -38,8 +40,6 @@ public class GearTooltipUtils {
 
         TooltipInfo info = new TooltipInfo(data, gear.getRarity()
             .StatPercents());
-
-        BaseGearType slot = gear.GetBaseGearType();
 
         tip.clear();
 
@@ -173,14 +173,46 @@ public class GearTooltipUtils {
 
         tip.add(new SText(""));
 
+        RuneWord word = gear.sockets.getRuneWord();
+
+        if (word != null) {
+
+            tip.add(new LiteralText(Formatting.GOLD + "'Runeword: ").append(word.locName())
+                .append("'")
+                .formatted(Formatting.GOLD));
+        }
+        tip.add(new LiteralText(""));
+
         GearRarity rarity = gear.getRarity();
-        tip.add(TooltipUtils.rarity(rarity));
 
         int socketed = gear.sockets.sockets.size();
 
         if (socketed > 0) {
-            tip.add(new SText(Formatting.LIGHT_PURPLE + "Socketed [" + socketed + "]"));
+
+            String runes = "";
+            for (SocketData x : gear.sockets.sockets) {
+                if (x.isRune()) {
+                    if (!runes.isEmpty()) {
+                        runes += " ";
+                    }
+                    runes += x.rune_id.toUpperCase(Locale.ROOT);
+                }
+            }
+
+            tip.add(new LiteralText(Formatting.GOLD + runes).formatted(Formatting.GOLD));
+
+            Formatting socketformat = Formatting.LIGHT_PURPLE;
+
+            if (runes.length() > 3) {
+                socketformat = Formatting.GOLD;
+            }
+
+            tip.add(new LiteralText(socketformat + "Socketed [" + socketed + "]").formatted(socketformat));
         }
+
+        tip.add(new LiteralText(""));
+
+        tip.add(TooltipUtils.rarity(rarity));
 
         tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
 

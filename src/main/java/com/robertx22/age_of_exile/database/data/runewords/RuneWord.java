@@ -138,4 +138,5 @@ public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<R
     public String locNameForLangFile() {
         return loc_name;
     }
+
 }
