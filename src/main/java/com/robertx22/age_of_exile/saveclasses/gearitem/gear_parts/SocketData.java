@@ -65,13 +65,22 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     }
 
     public Gem getGem() {
-        return SlashRegistry.Gems()
-            .get(gem_id);
+        if (SlashRegistry.Gems()
+            .isRegistered(gem_id)) {
+            return SlashRegistry.Gems()
+                .get(gem_id);
+
+        }
+        return null;
     }
 
     public Rune getRune() {
-        return SlashRegistry.Runes()
-            .get(rune_id);
+        if (SlashRegistry.Runes()
+            .isRegistered(rune_id)) {
+            return SlashRegistry.Runes()
+                .get(rune_id);
+        }
+        return null;
     }
 
     @Override

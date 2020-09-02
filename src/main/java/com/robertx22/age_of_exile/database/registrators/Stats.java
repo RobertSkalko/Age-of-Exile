@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.elementals.all_damag
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.HealToSpellDmgStat;
@@ -113,6 +114,7 @@ public class Stats implements ISlashRegistryInit {
                     add(Intelligence.INSTANCE);
 
                     add(ExtraMobDropsStat.getInstance());
+                    add(BonusExp.getInstance());
 
                     add(new UnknownStat());
 

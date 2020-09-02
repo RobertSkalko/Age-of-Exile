@@ -20,6 +20,8 @@ I have an idea how to add jewels back in, and they'll be more interesting :)
 Yes runes were a long time coming. I waited till I figured out a good way to do them.
 It's not hard to add them, it's hard to get them right.
 
+Runes are weaker than gems but when matched into runewords become stronger.
+
 Runes are now stackable just like gems and not random. Only the end result of socketing is random (the stat numbers).
 I really didn't think of how much of a pain inventory management was until I saw dozens of chests full of runes.
 
@@ -39,6 +41,7 @@ This should hopefully stop the bug reports of "I can't heal my friend". But whet
 - used the proper creative tab code, now no longer replace vanilla brewing tab. Seriously, nobody noticed?
 - added new stat, +maximum resistance
 - common items can now have 5 sockets, while magical items only 2.
+- added bonus exp stat
 
 v.1.1.3
 - fix day mobs config not working

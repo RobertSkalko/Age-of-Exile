@@ -16,6 +16,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttrib
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
@@ -23,10 +25,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQu
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurnResistance;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaOnHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
@@ -114,7 +114,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         SlashRegistry.Runewords()
             .getList()
             .forEach(x -> {
-                if (x.canItemHave(gear) && x.HasRuneWord(gear)) {
+                if (x.HasRuneWord(gear)) {
                     gear.sockets.activated_runeword = x.GUID();
                     gear.sockets.runeword_percent = RandomUtils.RandomRange(0, 100);
                 }
@@ -130,7 +130,44 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_SOCKETS, new NoDuplicateRunes(), new SocketLvlNotHigherThanItemLvl());
     }
 
+    public static StatModifier dmg(Elements ele) {
+        return new
+            StatModifier(0.2F, 0.4F, 0.4F, 1.5F, new WeaponDamage(ele), ModType.FLAT);
+    }
+
     public enum RuneType {
+        MOS(1000, "mos", "Mos", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(5, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(5, 15, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+            }
+        }),
+        ITA(1000, "ita", "Ita", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(5, 20, Armor.getInstance(), ModType.LOCAL_INCREASE));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(3, 8, SpellDamage.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(0.5F, 2, LifeOnHit.getInstance()));
+            }
+        }),
         CEN(1000, "cen", "Cen", 0.2F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
@@ -144,7 +181,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Thunder), ModType.FLAT));
+                return Arrays.asList(dmg(Elements.Thunder));
             }
         }),
         DOS(1000, "dos", "Dos", 0.2F, new GemStatPerTypes() {
@@ -160,7 +197,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Nature), ModType.FLAT));
+                return Arrays.asList(dmg(Elements.Nature));
             }
         }),
         ANO(1000, "ano", "Ano", 0.2F, new GemStatPerTypes() {
@@ -176,7 +213,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Fire), ModType.FLAT));
+                return Arrays.asList(dmg(Elements.Fire));
             }
         }),
         TOQ(1000, "toq", "Toq", 0.2F, new GemStatPerTypes() {
@@ -192,7 +229,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(Elements.Water), ModType.FLAT));
+                return Arrays.asList(dmg(Elements.Water));
             }
         }),
         ORU(500, "oru", "Oru", 0.6F, new GemStatPerTypes() {

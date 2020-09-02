@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.event_hooks.my_events;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.library_of_exile.components.EntityInfoComponent;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -111,6 +112,10 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp *= LootUtils.getLevelDistancePunishmentMulti(mobData, killerData);
 
         exp *= LootUtils.getMobHealthBasedLootMulti(mobData, killer);
+
+        exp *= killerData.getUnit()
+            .peekAtStat(BonusExp.getInstance())
+            .getMultiplier();
 
         exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;
 
