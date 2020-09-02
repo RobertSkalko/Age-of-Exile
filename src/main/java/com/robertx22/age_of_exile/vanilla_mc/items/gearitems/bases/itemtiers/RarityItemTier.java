@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.itemtiers;
 
 import com.robertx22.age_of_exile.database.base.Rarities;
-import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
@@ -15,7 +15,7 @@ public class RarityItemTier implements ToolMaterial {
         this.rar = Rarities.Gears.get(rar);
     }
 
-    GearRarity rar;
+    IGearRarity rar;
 
     @Override
     public int getDurability() {

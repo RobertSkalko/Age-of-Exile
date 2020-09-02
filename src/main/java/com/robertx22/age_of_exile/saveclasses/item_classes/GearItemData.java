@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -39,7 +39,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ICommonDataItem<GearRarity> {
+public class GearItemData implements ICommonDataItem<IGearRarity> {
 
     public boolean meetsStatRequirements(EntityCap.UnitData data) {
 
@@ -139,7 +139,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     @Override
-    public GearRarity getRarity() {
+    public IGearRarity getRarity() {
         return Rarities.Gears.get(this.rarity);
     }
 
@@ -399,8 +399,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                 }
             }
 
-            if (RandomUtils.roll(this.getRarity()
-                .salvageLotteryWinChance())) {
+            // TODO
+            if (false) {
 
                 Item item = SlashRegistry.CurrencyItems()
                     .getWrapped()

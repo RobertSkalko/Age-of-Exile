@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
-import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
@@ -15,7 +15,7 @@ public class UnidentifiedPart extends BlueprintPart<Boolean> {
     @Override
     protected Boolean generateIfNull() {
         if (chance == 0) {
-            chance = ((GearRarity) blueprint.rarity.get())
+            chance = ((IGearRarity) blueprint.rarity.get())
                 .unidentifiedChance();
         }
 

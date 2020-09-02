@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
-import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -60,7 +60,7 @@ public class GearAffixesData {
 
     public void randomize(GearItemData gear) {
 
-        GearRarity rarity = gear.getRarity();
+        IGearRarity rarity = gear.getRarity();
 
         for (int i = 0; i < gear.getRarity()
             .maximumOfOneAffixType(); i++) {

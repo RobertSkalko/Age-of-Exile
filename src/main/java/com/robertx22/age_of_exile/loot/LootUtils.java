@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
@@ -33,7 +33,7 @@ public class LootUtils {
 
     }
 
-    public static ItemStack RandomDamagedGear(ItemStack stack, GearRarity rar) {
+    public static ItemStack RandomDamagedGear(ItemStack stack, IGearRarity rar) {
         if (stack.isDamageable()) {
 
             float dmgMulti = (float) RandomUtils.RandomRange(

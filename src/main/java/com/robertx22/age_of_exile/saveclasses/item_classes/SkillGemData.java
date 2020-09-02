@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.database.base.Rarities;
-import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
+import com.robertx22.age_of_exile.database.data.rarities.ISkillGemRarity;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
@@ -22,7 +22,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 
 @Storable
-public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
+public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
 
 // todo add affixes and stuff
 
@@ -114,7 +114,7 @@ public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
     }
 
     @Override
-    public SkillGemRarity getRarity() {
+    public ISkillGemRarity getRarity() {
         return Rarities.SkillGems.get(rarity);
     }
 

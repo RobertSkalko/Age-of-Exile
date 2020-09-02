@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.loot.generators.util;
 
 import com.google.common.base.Preconditions;
-import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.GearItemEnum;
@@ -40,7 +40,7 @@ public class GearCreationUtils {
 
         GearItemEnum gearType = GearItemEnum.NORMAL;
 
-        GearRarity rarity = (GearRarity) blueprint.rarity.get();
+        IGearRarity rarity = (IGearRarity) blueprint.rarity.get();
         GearItemData data = new GearItemData();
 
         data.gear_type = blueprint.gearItemSlot.get()
