@@ -6,6 +6,10 @@ import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 
 public class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
 
+    public GearRarity() {
+        super(RarityType.GEAR);
+    }
+
     @Override
     public Class<GearRarity> getClassForSerialization() {
         return GearRarity.class;

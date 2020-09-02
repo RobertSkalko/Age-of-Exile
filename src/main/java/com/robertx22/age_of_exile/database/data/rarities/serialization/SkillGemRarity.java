@@ -8,6 +8,10 @@ public class SkillGemRarity extends BaseRarity implements ISkillGemRarity, IAuto
 
     public MinMax stat_percents = new MinMax(0, 100);
 
+    public SkillGemRarity() {
+        super(RarityType.SKILL_GEM);
+    }
+
     @Override
     public MinMax statPercents() {
         return this.stat_percents;

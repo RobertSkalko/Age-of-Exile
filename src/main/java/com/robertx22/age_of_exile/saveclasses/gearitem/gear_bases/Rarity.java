@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.minecraft.util.Formatting;
@@ -18,11 +17,6 @@ public interface Rarity extends IWeighted, IAutoLocName {
     int Weight();
 
     Formatting textFormatting();
-
-    @Override
-    public default String locNameLangFileGUID() {
-        return Ref.MODID + ".rarity." + formattedGUID();
-    }
 
     @Override
     public default AutoLocGroup locNameGroup() {
