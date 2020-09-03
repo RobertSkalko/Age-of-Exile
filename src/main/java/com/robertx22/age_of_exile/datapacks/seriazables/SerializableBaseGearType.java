@@ -23,9 +23,9 @@ public class SerializableBaseGearType extends BaseGearType {
     public String item_id;
     public StatRequirement stat_req;
     public WeaponTypes weapon_type;
-    public String lang_name_id;
+    public String loc_name_id;
     public int weight;
-    public String gearSlot;
+    public String gear_slot;
 
     public SerializableBaseGearType() {
         super("", null, "");
@@ -33,7 +33,7 @@ public class SerializableBaseGearType extends BaseGearType {
 
     @Override
     public String locNameLangFileGUID() {
-        return lang_name_id;
+        return loc_name_id;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class SerializableBaseGearType extends BaseGearType {
     @Override
     public GearSlot getGearSlot() {
         return SlashRegistry.GearSlots()
-            .get(gearSlot);
+            .get(gear_slot);
     }
 
 }

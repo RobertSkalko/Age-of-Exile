@@ -26,6 +26,12 @@ public class RuneLootGen extends BaseLootGen<GearBlueprint> {
     }
 
     @Override
+    public boolean condition() {
+        return !SlashRegistry.Runes()
+            .getFilterWrapped(x -> this.info.level >= x.getReqLevel()).list.isEmpty();
+    }
+
+    @Override
     public ItemStack generateOne() {
 
         Rune rune = SlashRegistry.Runes()

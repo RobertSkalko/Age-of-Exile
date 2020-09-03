@@ -98,12 +98,12 @@ public class GenericAffixBuilder<T> {
                 int tierweight = (tier + 1) * 100; // simple for now
                 AffixTier affixTier = new AffixTier(modsPerTier.get(tier)
                     .apply(element), tierweight, tier);
-                affix.tierMap.put(tier, affixTier);
+                affix.tier_map.put(tier, affixTier);
             }
 
             affix.type = type;
             affix.weight = weight;
-            affix.langName = nameMap.get(element);
+            affix.loc_name = nameMap.get(element);
             affix.tags = tags;
 
             affix.addToSerializables();

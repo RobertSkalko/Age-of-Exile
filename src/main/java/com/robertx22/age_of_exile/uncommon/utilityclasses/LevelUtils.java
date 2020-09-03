@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class LevelUtils {
 
     public static int getExpRequiredForLevel(int level) {
-        return level * level * 10;
+        return level * level * 20;
     }
 
     // dirty hack, let's see how useful you are.

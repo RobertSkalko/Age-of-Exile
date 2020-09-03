@@ -23,8 +23,10 @@ public class GearSalvageConfig {
     List<ItemAndPrice> SALVAGE_RESULTS = new ArrayList<ItemAndPrice>() {
         {
             add(new ItemAndPrice(500, ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 1000));
-            add(new ItemAndPrice(1000, ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 200));
+            add(new ItemAndPrice(1000, ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE, 200));
             add(new ItemAndPrice(500, Items.IRON_INGOT, 50));
+            add(new ItemAndPrice(75, Items.IRON_NUGGET, 25));
+            add(new ItemAndPrice(100, Items.GOLD_NUGGET, 25));
         }
     };
 
@@ -42,6 +44,8 @@ public class GearSalvageConfig {
         value += gear.sockets.sockets.size() * VALUE_ADDED_PER_FULL_SOCKET;
         value += gear.sockets.getEmptySockets() * VALUE_ADDED_PER_SOCKET;
         value += gear.affixes.getNumberOfAffixes() * VALUE_ADDED_PER_AFFIX;
+
+        value += VALUE_PER_LEVEL_SCALING.PERCENT_ADDED_PER_LEVEL * gear.level;
 
         value *= gear.getRarity()
             .valueMulti();

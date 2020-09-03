@@ -21,14 +21,14 @@ import java.util.List;
 public class StatModifier implements ISerializable<StatModifier> {
 
     @Store
-    public float firstMin = 0;
+    public float first_min = 0;
     @Store
-    public float firstMax = 0;
+    public float first_max = 0;
 
     @Store
-    public float secondMin = 0;
+    public float second_min = 0;
     @Store
-    public float secondMax = 0;
+    public float second_max = 0;
 
     @Store
     public String stat;
@@ -43,22 +43,22 @@ public class StatModifier implements ISerializable<StatModifier> {
     }
 
     public StatModifier(float firstMin, float firstMax, Stat stat, ModType type) {
-        this.firstMin = firstMin;
-        this.firstMax = firstMax;
+        this.first_min = firstMin;
+        this.first_max = firstMax;
         this.stat = stat.GUID();
         this.type = type.name();
     }
 
     public StatModifier(float firstMin, float firstMax, Stat stat) {
-        this.firstMin = firstMin;
-        this.firstMax = firstMax;
+        this.first_min = firstMin;
+        this.first_max = firstMax;
         this.stat = stat.GUID();
         this.type = ModType.FLAT.name();
     }
 
     public StatModifier(float firstMin, float firstMax, String stat, ModType type) {
-        this.firstMin = firstMin;
-        this.firstMax = firstMax;
+        this.first_min = firstMin;
+        this.first_max = firstMax;
         this.stat = stat;
         this.type = type.name();
     }
@@ -73,20 +73,20 @@ public class StatModifier implements ISerializable<StatModifier> {
             }
         }
 
-        this.firstMin = firstMin;
-        this.firstMax = firstMax;
-        this.secondMin = secondMin;
-        this.secondMax = secondMax;
+        this.first_min = firstMin;
+        this.first_max = firstMax;
+        this.second_min = secondMin;
+        this.second_max = secondMax;
         this.stat = stat.GUID();
         this.type = type.name();
     }
 
     public StatModifier(float firstMin, float firstMax, float secondMin, float secondMax, String stat, ModType type) {
 
-        this.firstMin = firstMin;
-        this.firstMax = firstMax;
-        this.secondMin = secondMin;
-        this.secondMax = secondMax;
+        this.first_min = firstMin;
+        this.first_max = firstMax;
+        this.second_min = secondMin;
+        this.second_max = secondMax;
         this.stat = stat;
         this.type = type.name();
     }
@@ -98,19 +98,23 @@ public class StatModifier implements ISerializable<StatModifier> {
 
     public boolean usesNumberRanges() {
         return getModType()
-            .equals(ModType.FLAT) && secondMax != 0;
+            .equals(ModType.FLAT) && second_max != 0;
     }
 
     public MutableText getRangeToShow(int lvl) {
 
-        int fmin = (int) GetStat().scale(firstMin, lvl);
-        int fmax = (int) GetStat().scale(firstMax, lvl);
+        int fmin = (int) first_min;
+        int fmax = (int) first_max;
 
+        if (getModType().isFlat()) {
+            fmin = (int) GetStat().scale(first_min, lvl);
+            fmax = (int) GetStat().scale(first_max, lvl);
+        }
         String text = fmin + "-" + fmax;
 
         if (GetStat().UsesSecondValue() && getModType().isFlat()) {
-            int smin = (int) GetStat().scale(secondMin, lvl);
-            int smax = (int) GetStat().scale(secondMax, lvl);
+            int smin = (int) GetStat().scale(second_min, lvl);
+            int smax = (int) GetStat().scale(second_max, lvl);
             text += " / " + smin + "-" + smax;
         } else {
             if (GetStat().IsPercent() || getModType().isLocalIncrease()) {
@@ -133,10 +137,10 @@ public class StatModifier implements ISerializable<StatModifier> {
 
         JsonObject json = new JsonObject();
 
-        json.addProperty("firstMin", firstMin);
-        json.addProperty("firstMax", firstMax);
-        json.addProperty("secondMin", secondMin);
-        json.addProperty("secondMax", secondMax);
+        json.addProperty("firstMin", first_min);
+        json.addProperty("firstMax", first_max);
+        json.addProperty("secondMin", second_min);
+        json.addProperty("secondMax", second_max);
 
         json.addProperty("stat", stat);
         json.addProperty("type", ModType.valueOf(type).id);

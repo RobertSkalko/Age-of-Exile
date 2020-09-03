@@ -107,7 +107,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     public void create(GearItemData gear, Affix suffix) {
         baseAffix = suffix.GUID();
-        this.tier = RandomUtils.weightedRandom(suffix.tierMap.values()).tier;
+        this.tier = RandomUtils.weightedRandom(suffix.tier_map.values()).tier;
         this.level = gear.level;
         RerollNumbers(gear);
     }

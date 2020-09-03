@@ -42,11 +42,11 @@ public abstract class BaseGemRuneItem extends Item {
                     if (x.GetStat()
                         .UsesSecondValue()) {
                         list.add(new StatModifier(
-                            x.firstMin * multi, x.firstMax * multi, x.secondMin * multi, x.secondMax * multi,
+                            x.first_min * multi, x.first_max * multi, x.second_min * multi, x.second_max * multi,
                             x.GetStat(), x.getModType()));
                     } else {
                         list.add(new StatModifier(
-                            x.firstMin * multi, x.firstMax * multi,
+                            x.first_min * multi, x.first_max * multi,
                             x.GetStat(), x.getModType()));
                     }
 

@@ -4,6 +4,8 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
@@ -121,6 +123,28 @@ public class Runewords implements ISlashRegistryInit {
                 new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT)
             ),
             Arrays.asList(XER, CEN, ORU, NOS))
+            .addToSerializables();
+
+        RuneWord.create(
+            "shadow",
+            "Shadow",
+            BaseGearType.SlotFamily.Armor,
+            Arrays.asList(
+                new StatModifier(10, 20, DodgeRating.getInstance(), ModType.FLAT),
+                new StatModifier(20, 60, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            ),
+            Arrays.asList(XER, CEN, ORU, MOS))
+            .addToSerializables();
+
+        RuneWord.create(
+            "rock_golem",
+            "Rock Golem",
+            BaseGearType.SlotFamily.Armor,
+            Arrays.asList(
+                new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT),
+                new StatModifier(20, 60, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            ),
+            Arrays.asList(XER, CEN, ORU, ITA))
             .addToSerializables();
 
     }

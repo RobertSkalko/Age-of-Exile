@@ -1,13 +1,12 @@
 package com.robertx22.age_of_exile.database.data.affixes;
 
-import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.base.IhasRequirements;
 import com.robertx22.age_of_exile.database.base.Rarities;
+import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.requirements.Requirements;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -18,10 +17,9 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
-    ISerializedRegistryEntry<Affix>, ISerializable<Affix> {
+    ISerializedRegistryEntry<Affix>, IAutoGson<Affix> {
 
     public enum Type {
         prefix,
@@ -48,17 +46,17 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
     }
 
     String guid;
-    String langName;
+    String loc_name;
     int weight = 1000;
     Requirements requirements;
     public List<String> tags = new ArrayList<>();
     public Type type;
 
-    public HashMap<Integer, AffixTier> tierMap = new HashMap<>();
+    public HashMap<Integer, AffixTier> tier_map = new HashMap<>();
 
     @Override
     public boolean isRegistryEntryValid() {
-        if (guid == null || langName == null || tierMap.isEmpty() || requirements == null || type == null || weight < 0) {
+        if (guid == null || loc_name == null || tier_map.isEmpty() || requirements == null || type == null || weight < 0) {
             return false;
         }
 
@@ -106,13 +104,13 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
 
     public List<StatModifier> getTierStats(int tier) {
 
-        if (tierMap.containsKey(tier)) {
-            return tierMap.get(tier).mods;
+        if (tier_map.containsKey(tier)) {
+            return tier_map.get(tier).mods;
         }
 
         System.out.println("Tier number not found, returning default. Affix: " + GUID() + " tier: " + tier);
 
-        return tierMap.values()
+        return tier_map.values()
             .stream()
             .findFirst()
             .get().mods;
@@ -121,7 +119,7 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
 
     @Override
     public String locNameForLangFile() {
-        return this.langName;
+        return this.loc_name;
     }
 
     @Override
@@ -135,56 +133,7 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
     }
 
     @Override
-    public JsonObject toJson() {
-        JsonObject json = getDefaultJson();
-
-        json.addProperty("type", type.name());
-        json.add("requirements", requirements().toJson());
-
-        JsonObject tiers = new JsonObject();
-
-        for (Map.Entry<Integer, AffixTier> entry : tierMap.entrySet()) {
-            tiers.add(entry.getKey() + "", entry.getValue()
-                .toJson());
-        }
-        json.add("tiers", tiers);
-
-        return json;
-    }
-
-    @Override
-    public Affix fromJson(JsonObject json) {
-
-        try {
-            String guid = getGUIDFromJson(json);
-            String langName = getLangNameStringFromJson(json);
-            int weight = getWeightFromJson(json);
-
-            Type type = Type.valueOf(json.get("type")
-                .getAsString());
-
-            Requirements req = Requirements.EMPTY.fromJson(json.getAsJsonObject("requirements"));
-
-            Affix affix = new Affix();
-            affix.weight = weight;
-            affix.requirements = req;
-            affix.guid = guid;
-            affix.langName = langName;
-            affix.type = type;
-
-            JsonObject tiers = json.getAsJsonObject("tiers");
-
-            for (int i = 0; i < 10; i++) {
-                if (tiers.has(i + "")) {
-                    AffixTier tier = AffixTier.EMPTY.fromJson(tiers.getAsJsonObject(i + ""));
-                    affix.tierMap.put(i, tier);
-                }
-            }
-
-            return affix;
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public Class<Affix> getClassForSerialization() {
+        return Affix.class;
     }
 }

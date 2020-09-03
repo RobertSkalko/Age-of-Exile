@@ -1,4 +1,4 @@
-v.1.1.4
+v.1.2.0
 
 Warning: your gear will have minus durability after this update possibly! 
 Repair it first, because any hit will break it. This is because when max durability is reduced, so is current durability..
@@ -47,6 +47,7 @@ This should hopefully stop the bug reports of "I can't heal my friend". But whet
 - gear salvage outputs are now configurable! 
 - tried to uncap health from 1024 to max int. Experimental as i'm not an expect at reflection.
 - salvage station now throws items on ground if the output slots arent all empty. This is to prevent cheating as the salvage results are random
+- added new currencies! They can add additional socket slots and turn common items into rares!
 
 v.1.1.3
 - fix day mobs config not working

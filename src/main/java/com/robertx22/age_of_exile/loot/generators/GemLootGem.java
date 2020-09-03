@@ -26,6 +26,12 @@ public class GemLootGem extends BaseLootGen<GearBlueprint> {
     }
 
     @Override
+    public boolean condition() {
+        return !SlashRegistry.Gems()
+            .getFilterWrapped(x -> this.info.level >= x.getReqLevel()).list.isEmpty();
+    }
+
+    @Override
     public ItemStack generateOne() {
 
         Gem gem = SlashRegistry.Gems()

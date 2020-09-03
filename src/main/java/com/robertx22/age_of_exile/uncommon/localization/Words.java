@@ -281,6 +281,7 @@ public enum Words implements IAutoLocName {
 
     CantGetMoreAffixes("Can't get more affixes."),
     HasEmptySockets("Has Empty Sockets"),
+    CanGetMoreSockets("Can get more sockets "),
     NoDuplicateSockets("No Duplicate Sockets"),
 
     NoPrefix("Doesn't have prefix"),

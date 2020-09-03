@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
@@ -17,6 +18,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 public class SpellUtils {
@@ -30,6 +32,8 @@ public class SpellUtils {
             (double) entity.getZ() + 0.5D);
 
         lightningboltentity.setCosmetic(true);
+
+        SoundUtils.playSound(entity, SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 1, 1);
 
         addLightningBolt(((ServerWorld) entity.world), lightningboltentity);
 

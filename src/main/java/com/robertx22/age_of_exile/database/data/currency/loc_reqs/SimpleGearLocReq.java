@@ -14,6 +14,9 @@ public class SimpleGearLocReq extends BaseLocRequirement {
 
     public static final SimpleGearLocReq HAS_EMPTY_SOCKETS = new SimpleGearLocReq(
         x -> x.sockets.getEmptySockets() > 0, Words.HasEmptySockets.locName());
+    public static final SimpleGearLocReq CAN_GET_MORE_SOCKETS = new SimpleGearLocReq(
+        x -> x.sockets.max_sockets < x.getRarity()
+            .maxSockets(), Words.CanGetMoreSockets.locName());
 
     public static final SimpleGearLocReq NO_PREFIX = new SimpleGearLocReq(
         x -> x.affixes.prefixes.size() == 0, Words.NoPrefix.locName());

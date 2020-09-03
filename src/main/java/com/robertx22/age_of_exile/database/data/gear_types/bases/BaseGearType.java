@@ -60,7 +60,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     public BaseGearType(String guid, LevelRange levelRange, String locname) {
         this.guid = guid;
-        this.levelRange = levelRange;
+        this.level_range = levelRange;
         this.locname = locname;
     }
 
@@ -83,7 +83,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     public abstract StatRequirement getStatRequirements();
 
     protected String guid;
-    protected LevelRange levelRange;
+    protected LevelRange level_range;
     protected String locname;
 
     @Override
@@ -103,7 +103,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     }
 
     public LevelRange getLevelRange() {
-        return levelRange;
+        return level_range;
     }
 
     public final EquipmentSlot getVanillaSlotType() {
@@ -684,12 +684,12 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         o.guid = this.getGUIDFromJson(json);
         o.weight = this.getWeightFromJson(json);
-        o.lang_name_id = this.getLangNameStringFromJson(json);
-        o.levelRange = LevelRange.SERIALIZER.fromJson(json.getAsJsonObject("level_range"));
+        o.loc_name_id = this.getLangNameStringFromJson(json);
+        o.level_range = LevelRange.SERIALIZER.fromJson(json.getAsJsonObject("level_range"));
         o.stat_req = StatRequirement.EMPTY.fromJson(json.getAsJsonObject("stat_req"));
         o.base_stats = JsonUtils.getStats(json, "base_stats");
         o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");
-        o.gearSlot = json.get("gear_slot")
+        o.gear_slot = json.get("gear_slot")
             .getAsString();
         o.item_id = json.get("item_id")
             .getAsString();
