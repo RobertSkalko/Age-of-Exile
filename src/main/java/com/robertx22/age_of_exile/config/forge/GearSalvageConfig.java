@@ -56,11 +56,11 @@ public class GearSalvageConfig {
             .min(Comparator.comparingInt(x -> x.price))
             .get().price;
 
-        while (value > smallest) {
+        while (value >= smallest) {
 
             List<ItemAndPrice> list = new ArrayList<>();
             for (ItemAndPrice x : SALVAGE_RESULTS) {
-                if (x.price < value) {
+                if (x.price <= value) {
                     list.add(x);
                 }
             }

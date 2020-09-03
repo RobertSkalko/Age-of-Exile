@@ -138,6 +138,15 @@ public class TileGearSalvage extends BaseTile {
         return smeltItem(false);
     }
 
+    boolean outputsAreEmpty() {
+        for (int slot : OUTPUT_SLOTS) {
+            if (!itemStacks[slot].isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Smelt an input item into an output slot, if possible
      */
@@ -162,23 +171,32 @@ public class TileGearSalvage extends BaseTile {
 
                         itemStacks[inputSlot] = ItemStack.EMPTY;
 
-                        Vec3d itempos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
+                        if (outputsAreEmpty()) {
+                            for (int slot : OUTPUT_SLOTS) {
+                                if (!results.isEmpty()) {
+                                    itemStacks[slot] = results.get(0);
+                                    results.remove(0);
+                                }
+                            }
+                        } else {
 
-                        BlockState block = world.getBlockState(pos);
+                            Vec3d itempos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
 
-                        Direction dir = block.get(NonFullBlock.direction);
+                            BlockState block = world.getBlockState(pos);
 
-                        itempos = itempos.add(dir.getVector()
-                            .getX(), 0, dir.getVector()
-                            .getZ());
+                            Direction dir = block.get(NonFullBlock.direction);
 
-                        for (ItemStack x : results) {
-                            ItemEntity itemEntity = new ItemEntity(
-                                this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
-                            itemEntity.setToDefaultPickupDelay();
-                            this.world.spawnEntity(itemEntity);
+                            itempos = itempos.add(dir.getVector()
+                                .getX(), 0, dir.getVector()
+                                .getZ());
+
+                            for (ItemStack x : results) {
+                                ItemEntity itemEntity = new ItemEntity(
+                                    this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
+                                itemEntity.setToDefaultPickupDelay();
+                                this.world.spawnEntity(itemEntity);
+                            }
                         }
-
                         return true;
 
                     }

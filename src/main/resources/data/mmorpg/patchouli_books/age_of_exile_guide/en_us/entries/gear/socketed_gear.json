@@ -7,11 +7,11 @@
 	{  
 	    "type": "spotlight",
 		"item": "mmorpg:jewelry/ring/cold_res_ring_low",		
-		"text": "Some gears have sockets. These are empty spots that can be filled with jewels!"
+		"text": "Some gears have sockets. These are empty spots that can be filled with gems or runes! There is also a Relic item rarity, which is a rare drop and can contain more sockets!"
 	},
 	{  
 		"type": "text",   
-		"text": "Not all jewels can be socketed in every item. The easiest rule to follow is this: the affix needs to be able to naturally spawn on that item. So +fire damage can only be socketed to weapons and jewelry."
+		"text": "There are some limitations with socketing. The gem/rune can't be higher level than the gear it's being inserted. You also can't have duplicate gems or runes in an item."
 	}
   ]
 }

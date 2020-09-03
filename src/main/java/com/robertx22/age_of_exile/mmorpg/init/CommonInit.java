@@ -18,8 +18,12 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.UniqueGearItemRe
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.entity.attribute.ClampedEntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributes;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeInfo;
+
+import java.lang.reflect.Field;
 
 public class CommonInit implements ModInitializer {
 
@@ -60,5 +64,37 @@ public class CommonInit implements ModInitializer {
             .build());
 
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
+
+        uncapHealth();
+    }
+
+    static void uncapHealth() {
+
+        boolean succeded = false;
+
+        ClampedEntityAttribute hp = (ClampedEntityAttribute) EntityAttributes.GENERIC_MAX_HEALTH;
+        for (Field field : hp.getClass()
+            .getDeclaredFields()
+        ) {
+
+            try {
+                field.setAccessible(true);
+                double num = field.getDouble(hp);
+
+                if (num > 1000) {
+                    field.set(hp, Double.MAX_VALUE);
+                    succeded = true;
+                }
+
+            } catch (IllegalArgumentException e) {
+                //e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (!succeded) {
+            System.out.println("Uncapping max health failed! Contact mcrobertx22/Age of Exile dev!");
+        }
     }
 }

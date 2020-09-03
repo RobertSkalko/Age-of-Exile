@@ -11,7 +11,8 @@
 	},  
     {
 		"type": "crafting",
-		"recipe": "mmorpg:salvage_station"   
+		"recipe": "mmorpg:salvage_station",
+		"text": "Note, if the salvage station's output slots are not all empty, it will throw items on the ground. So be sure to automate it with hoppers!"
     }
   ]
 }
