@@ -14,6 +14,7 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 import java.util.Comparator;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SkillTreeScreen extends BaseScreen {
+    static Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/skill_tree/background.png");
 
     Identifier BACKGROUND_TEXTURE = new Identifier(
         Ref.MODID, "textures/gui/skill_tree/water.png");
@@ -33,7 +35,23 @@ public class SkillTreeScreen extends BaseScreen {
             .getScaledHeight());
     }
 
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (keyCode == 32) { // space
+            this.goToCenter();
+            return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
+
+    }
+
+    int tick_count = 0;
+    int scrollX = 0;
+    int scrollY = 0;
+
     HashMap<AbstractButtonWidget, Point2D> originalButtonLocMap = new HashMap<>();
+
+    SpellSchoolButton schoolButton;
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -50,9 +68,14 @@ public class SkillTreeScreen extends BaseScreen {
 
         refreshButtons();
 
+        goToCenter();
+
     }
 
     public void refreshButtons() {
+
+        this.buttons.clear();
+
         this.scrollX = 0;
         this.scrollY = 0;
 
@@ -70,21 +93,74 @@ public class SkillTreeScreen extends BaseScreen {
                 int suby = e.getValue()
                     .getType().height / 2;
 
-                int x = (e.getKey().x * PerkButton.SPACING + 2) + addx - subx + SpellSchoolButton.XSIZE / 2;
-                int y = (e.getKey().y * PerkButton.SPACING + 2) + addy - suby + SpellSchoolButton.YSIZE / 2;
+                int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
+                int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
 
                 this.newButton(new PerkButton(e.getValue(), x, y));
             });
 
-        Point point = school.calcData.buttonLoc;
+        int sx = mc.getWindow()
+            .getScaledWidth() / 2 - SpellSchoolButton.XSIZE / 2;
+        int sy = 0;
 
-        int x = point.x * PerkButton.SPACING + 2;
-        int y = point.y * PerkButton.SPACING + 2;
+        this.schoolButton = new SpellSchoolButton(school, sx, sy);
 
-        this.newButton(new SpellSchoolButton(school, x, y));
-        this.newButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.LEFT, x - 15, y + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
-        this.newButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.RIGHT, x + SpellSchoolButton.XSIZE + 1, y + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+        this.addButton(schoolButton);
+        this.addButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.LEFT, sx - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+        this.addButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.RIGHT, sx + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
 
+    }
+
+    /*
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
+
+        if (scroll < 0) {
+            this.scale -= 0.075F;
+        }
+        if (scroll > 0) {
+            this.scale += 0.075F;
+        }
+        this.scale = MathHelper.clamp(scale, 0.25F, 1);
+
+        return true;
+
+    }
+
+     */
+
+    private Point getPosForPoint(Point point) {
+
+        float halfx = mc.getWindow()
+            .getScaledWidth() / 2F;
+        float halfy = mc.getWindow()
+            .getScaledHeight() / 2F;
+
+        float x = (point.x - school.calcData.start.x) * PerkButton.SPACING + 2;
+        float y = (point.y - school.calcData.start.y) * PerkButton.SPACING + 2;
+
+        x -= SpellSchoolButton.XSIZE / 2F;
+        y -= SpellSchoolButton.YSIZE / 2F;
+
+        /*
+        x *= scale;
+        y *= scale;
+
+        halfx /= scale;
+        halfy /= scale;
+
+         */
+
+        int tx = (int) (halfx + x);
+        int ty = (int) (halfy + y);
+
+        return new Point(tx, ty);
+
+    }
+
+    public void goToCenter() {
+        this.scrollX = 0;
+        this.scrollY = 0;
     }
 
     private void newButton(AbstractButtonWidget b) {
@@ -92,17 +168,14 @@ public class SkillTreeScreen extends BaseScreen {
         originalButtonLocMap.put(b, new Point2D(b.x, b.y));
     }
 
-    int tick_count = 0;
-
-    int scrollX = 0;
-    int scrollY = 0;
-
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
         this.scrollX += deltaX;
         this.scrollY += deltaY;
-        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
 
+        scrollY = MathHelper.clamp(scrollY, -3333, 3333);
+
+        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 
     @Override
@@ -120,9 +193,28 @@ public class SkillTreeScreen extends BaseScreen {
         renderBackgroundTexture(0);
 
         super.render(matrix, x, y, ticks);
+
+        MinecraftClient mc = MinecraftClient.getInstance();
+        mc.getTextureManager()
+            .bindTexture(BACKGROUND);
+        RenderSystem.enableDepthTest();
+
+        int xp = mc.getWindow()
+            .getScaledWidth() / 2 - 256 / 2;
+        int yp = 0;
+
+        drawTexture(matrix, xp, yp, 0, 0, 256, 39);
+
+        buttons.forEach(b -> {
+            if (b instanceof SpellSchoolButton || b instanceof SelectTreeButton) {
+                b.render(matrix, x, y, ticks);
+            }
+        });
+
         this.tick_count++;
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+
     }
 
     public void renderBackgroundTexture(int vOffset) {

@@ -56,9 +56,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
     public static class CalcData {
 
-        Point start;
-
-        public transient Point buttonLoc;
+        public Point start;
 
         public transient HashMap<Point, Set<Point>> connections = new HashMap<>();
         public transient HashMap<Point, Perk> perks = new HashMap<>();

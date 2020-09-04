@@ -43,6 +43,13 @@ public class PerkButton extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+
+        if (this.y > MinecraftClient.getInstance()
+            .getWindow()
+            .getScaledHeight() - SpellSchoolButton.YSIZE - 30) {
+            //  return;
+        }
+
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
             .bindTexture(ID);

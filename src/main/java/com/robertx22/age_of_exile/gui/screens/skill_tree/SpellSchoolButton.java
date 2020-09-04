@@ -12,8 +12,8 @@ import net.minecraft.util.Identifier;
 public class SpellSchoolButton extends TexturedButtonWidget {
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/spellschoolbutton.png");
 
-    public static int XSIZE = 82;
-    public static int YSIZE = 82;
+    public static int XSIZE = 32;
+    public static int YSIZE = 32;
 
     SpellSchool school;
 
@@ -36,13 +36,13 @@ public class SpellSchoolButton extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        super.renderButton(matrices, mouseX, mouseY, delta);
+        // super.renderButton(matrices, mouseX, mouseY, delta);
 
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
             .bindTexture(new Identifier(school.icon));
         RenderSystem.enableDepthTest();
-        drawTexture(matrices, this.x + 9, this.y + 9, 0, 0, 64, 64, 64, 64);
+        drawTexture(matrices, this.x, this.y, 0, 0, XSIZE, XSIZE, XSIZE, XSIZE);
     }
 
 }
