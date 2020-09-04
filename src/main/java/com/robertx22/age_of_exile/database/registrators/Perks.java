@@ -10,12 +10,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShield;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -46,6 +44,7 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, Armor.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, MagicShield.getInstance(), ModType.LOCAL_INCREASE));
+        PerkBuilder.stat(new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE));
 
         new ElementalSpellDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
@@ -55,6 +54,11 @@ public class Perks implements ISlashRegistryInit {
         new ElementalResist(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(4, x, ModType.FLAT));
+            });
+
+        new WeaponDamage(Elements.Nature).generateAllPossibleStatVariations()
+            .forEach(x -> {
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.LOCAL_INCREASE));
             });
 
         SlashRegistry.Spells()

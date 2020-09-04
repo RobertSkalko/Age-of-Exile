@@ -111,24 +111,6 @@ public class SkillTreeScreen extends BaseScreen {
 
     }
 
-    /*
-    @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
-
-        if (scroll < 0) {
-            this.scale -= 0.075F;
-        }
-        if (scroll > 0) {
-            this.scale += 0.075F;
-        }
-        this.scale = MathHelper.clamp(scale, 0.25F, 1);
-
-        return true;
-
-    }
-
-     */
-
     private Point getPosForPoint(Point point) {
 
         float halfx = mc.getWindow()

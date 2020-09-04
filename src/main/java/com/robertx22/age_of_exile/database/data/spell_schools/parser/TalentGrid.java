@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 
 import java.util.*;
@@ -45,8 +46,17 @@ public class TalentGrid {
         for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {
                 if (point.isTalent()) {
-                    school.calcData.addPerk(point.getPoint(), point.getPerk());
-                    perks.add(point);
+
+                    try {
+                        Perk perk = point.getPerk();
+                        Objects.requireNonNull(perk);
+                        school.calcData.addPerk(point.getPoint(), perk);
+                        perks.add(point);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("PERK: " + point.getId() + " is broken!");
+                    }
+
                 }
 
             }
