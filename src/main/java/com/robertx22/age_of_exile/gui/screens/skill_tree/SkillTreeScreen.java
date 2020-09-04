@@ -12,6 +12,7 @@ import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
 import java.util.Arrays;
@@ -38,7 +39,8 @@ public class SkillTreeScreen extends BaseScreen {
     protected void init() {
         super.init();
 
-        this.newButton(new HelpButton(Arrays.asList(), -5, -5));
+        this.newButton(new HelpButton(Arrays.asList(new LiteralText("TEST")), -5, -5));
+        this.newButton(new HelpButton(Arrays.asList(new LiteralText("TEST2")), -55, -5));
         this.newButton(new HelpButton(Arrays.asList(), 5, 55));
         this.newButton(new HelpButton(Arrays.asList(), 555, 55));
 
@@ -96,6 +98,8 @@ public class SkillTreeScreen extends BaseScreen {
 
         super.render(matrix, x, y, ticks);
         this.tick_count++;
+
+        buttons.forEach(b -> b.renderToolTip(matrix, x, y));
     }
 
     public void renderBackgroundTexture(int vOffset) {

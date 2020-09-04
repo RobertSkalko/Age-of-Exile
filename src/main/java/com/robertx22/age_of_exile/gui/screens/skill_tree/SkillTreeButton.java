@@ -9,8 +9,8 @@ import net.minecraft.util.Identifier;
 public class SkillTreeButton extends TexturedButtonWidget {
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/spellschoolbutton.png");
 
-    public static int XSIZE = 104;
-    public static int YSIZE = 70;
+    public static int XSIZE = 82;
+    public static int YSIZE = 82;
 
     public SkillTreeButton(int x, int y) {
         super(x, y, XSIZE, YSIZE, 0, 0, 1, ID, (action) -> {
