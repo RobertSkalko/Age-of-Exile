@@ -46,6 +46,11 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
     }
 
+    @Override
+    public boolean shouldGenerateJson() {
+        return false; // i'll do these manually as its easier to use a program for a grid then to do it in code
+    }
+
     public static class CalcData {
 
         public transient HashMap<Point, Set<Point>> connections = new HashMap<>();

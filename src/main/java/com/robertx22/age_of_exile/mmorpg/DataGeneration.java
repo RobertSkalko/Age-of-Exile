@@ -38,6 +38,8 @@ public class DataGeneration {
         manager.registerListener(new EntityConfigsDatapackLoader());
         manager.registerListener(new RuneDatapackLoader());
         manager.registerListener(new RunewordDatapackLoader());
+        manager.registerListener(new PerkDatapackLoader());
+        manager.registerListener(new SpellSchoolDatapackLoader());
 
     }
 

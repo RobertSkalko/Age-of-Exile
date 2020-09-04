@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.datapacks.bases;
 
 import com.google.gson.JsonObject;
 import com.google.gson.internal.Streams;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -98,6 +98,10 @@ public interface ISerializable<T> {
         }
 
         return json;
+    }
+
+    default boolean shouldGenerateJson() {
+        return true;
     }
 
     default String toJsonNoSpaces() { // todo , unsure if this is much or any better. it removes 2 new object calls and thats it

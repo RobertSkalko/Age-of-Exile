@@ -34,6 +34,10 @@ public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends 
 
         for (T entry : list) {
 
+            if (!entry.shouldGenerateJson()) {
+                continue;
+            }
+
             Path target = movePath(resolve(path, entry));
 
             try {

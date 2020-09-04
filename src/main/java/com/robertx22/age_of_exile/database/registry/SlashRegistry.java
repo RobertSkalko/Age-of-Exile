@@ -285,6 +285,7 @@ public class SlashRegistry {
         new Gems().registerAll();
         new Runes().registerAll();
         new Runewords().registerAll();
+        new Perks().registerAll();
 
     }
 

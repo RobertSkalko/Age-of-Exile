@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 
-public interface IAutoGson<T> extends ISerializable<T> {
+public interface IAutoGson<T extends IAutoGson<T>> extends ISerializable<T> {
 
     Gson GSON = new Gson();
 
@@ -22,7 +22,7 @@ public interface IAutoGson<T> extends ISerializable<T> {
     @Override
     default T fromJson(JsonObject json) {
         T t = GSON.fromJson(json, getClassForSerialization());
-        onLoadedFromJson();
+        t.onLoadedFromJson();
         return t;
     }
 

@@ -14,9 +14,32 @@ public class OptScaleExactStat implements IApplyableStats {
     public String stat;
     public String type;
 
-    public boolean scaleToLevel = true;
+    public boolean scaleToLevel = false;
 
-    ModType getModType() {
+    public OptScaleExactStat(float first, Stat stat, ModType type) {
+        this.first = first;
+        this.stat = stat.GUID();
+        this.type = type.name();
+    }
+
+    public OptScaleExactStat(float first, float second, Stat stat, ModType type) {
+        this.first = first;
+        this.second = second;
+        this.stat = stat.GUID();
+        this.type = type.name();
+    }
+
+    public OptScaleExactStat scale() {
+        this.scaleToLevel = true;
+        return this;
+    }
+
+    public Stat getStat() {
+        return SlashRegistry.Stats()
+            .get(stat);
+    }
+
+    public ModType getModType() {
         return ModType.fromString(type);
     }
 
