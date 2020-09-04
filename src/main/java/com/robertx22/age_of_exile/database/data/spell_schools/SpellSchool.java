@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spell_schools;
 
 import com.robertx22.age_of_exile.database.data.IAutoGson;
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.parser.TalentGrid;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
@@ -14,6 +15,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
     public static SpellSchool SERIALIZER = new SpellSchool();
 
+    public int order = 0;
     public String text_format;
     public String identifier;
 
@@ -42,7 +44,14 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
         TalentGrid grid = new TalentGrid(this, perks);
 
-        grid.createConnections();
+        grid.loadIntoTree();
+
+        this.calcData.start = this.calcData.perks.entrySet()
+            .stream()
+            .filter(x -> x.getValue().is_entry)
+            .findFirst()
+            .get()
+            .getKey();
 
     }
 
@@ -53,7 +62,14 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
     public static class CalcData {
 
+        Point start;
+
         public transient HashMap<Point, Set<Point>> connections = new HashMap<>();
+        public transient HashMap<Point, Perk> perks = new HashMap<>();
+
+        public void addPerk(Point point, Perk perk) {
+            perks.put(point, perk);
+        }
 
         public void addConnection(Point from, Point to) {
 

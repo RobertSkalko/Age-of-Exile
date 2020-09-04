@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.gui.HelpButton;
@@ -12,11 +14,11 @@ import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 public class SkillTreeScreen extends BaseScreen {
 
@@ -35,14 +37,30 @@ public class SkillTreeScreen extends BaseScreen {
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
+    SpellSchool school;
+
     @Override
     protected void init() {
         super.init();
 
+        List<SpellSchool> list = SlashRegistry.SpellSchools()
+            .getList();
+        list.sort(Comparator.comparingInt(x -> x.order));
+        this.school = list.get(0);
+
+        school.calcData.perks.entrySet()
+            .forEach(e -> {
+                int x = e.getKey().x * PerkButton.SPACING + 5;
+                int y = e.getKey().y * PerkButton.SPACING + 5;
+                this.newButton(new PerkButton(e.getValue(), x, y));
+            });
+
+        /*
         this.newButton(new HelpButton(Arrays.asList(new LiteralText("TEST")), -5, -5));
         this.newButton(new HelpButton(Arrays.asList(new LiteralText("TEST2")), -55, -5));
         this.newButton(new HelpButton(Arrays.asList(), 5, 55));
         this.newButton(new HelpButton(Arrays.asList(), 555, 55));
+                 */
 
         int xoff = 0;
 

@@ -38,21 +38,22 @@ public class TalentGrid {
         }
     }
 
-    public void createConnections() {
+    public void loadIntoTree() {
 
-        List<GridPoint> talents = new ArrayList<>();
+        List<GridPoint> perks = new ArrayList<>();
 
         for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {
                 if (point.isTalent()) {
-                    talents.add(point);
+                    school.calcData.addPerk(point.getPoint(), point.getPerk());
+                    perks.add(point);
                 }
             }
 
         }
 
-        for (GridPoint one : talents) {
-            for (GridPoint two : talents) {
+        for (GridPoint one : perks) {
+            for (GridPoint two : perks) {
                 if (hasPath(one, two)) {
                     this.school.calcData.addConnection(one.getPoint(), two.getPoint());
                 }
