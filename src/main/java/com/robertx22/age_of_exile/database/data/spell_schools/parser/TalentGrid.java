@@ -44,10 +44,15 @@ public class TalentGrid {
 
         for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {
-                if (point.isTalent()) {
+                if (point.getId()
+                    .toLowerCase(Locale.ROOT)
+                    .contains("button")) {
+                    school.calcData.buttonLoc = point.getPoint();
+                } else if (point.isTalent()) {
                     school.calcData.addPerk(point.getPoint(), point.getPerk());
                     perks.add(point);
                 }
+
             }
 
         }

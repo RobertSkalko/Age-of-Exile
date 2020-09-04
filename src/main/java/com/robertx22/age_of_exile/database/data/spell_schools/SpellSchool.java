@@ -18,6 +18,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     public int order = 0;
     public String text_format;
     public String identifier;
+    public String icon;
 
     // 2d grid with whitespace
     public String perks = "";
@@ -56,6 +57,8 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     public static class CalcData {
 
         Point start;
+
+        public transient Point buttonLoc;
 
         public transient HashMap<Point, Set<Point>> connections = new HashMap<>();
         public transient HashMap<Point, Perk> perks = new HashMap<>();

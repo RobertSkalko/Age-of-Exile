@@ -47,10 +47,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
             return order + PerkButton.SPACING * (order - 1);
         }
 
-        public int getYOffset() {
-            return 1;
-        }
-
     }
 
     public boolean isLockedUnderAdvancement() {

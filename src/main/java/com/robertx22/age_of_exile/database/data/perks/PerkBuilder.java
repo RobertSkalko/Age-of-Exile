@@ -32,4 +32,8 @@ public class PerkBuilder {
         return perk;
     }
 
+    public static Perk stat(OptScaleExactStat stat) {
+        return stat(stat.stat, stat);
+    }
+
 }

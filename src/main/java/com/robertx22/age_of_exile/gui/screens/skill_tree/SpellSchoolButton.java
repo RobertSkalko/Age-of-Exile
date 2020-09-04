@@ -1,20 +1,26 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.utils.GuiUtils;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-public class SkillTreeButton extends TexturedButtonWidget {
+public class SpellSchoolButton extends TexturedButtonWidget {
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/spellschoolbutton.png");
 
     public static int XSIZE = 82;
     public static int YSIZE = 82;
 
-    public SkillTreeButton(int x, int y) {
+    SpellSchool school;
+
+    public SpellSchoolButton(SpellSchool school, int x, int y) {
         super(x, y, XSIZE, YSIZE, 0, 0, 1, ID, (action) -> {
         });
+        this.school = school;
     }
 
     public boolean isInside(int x, int y) {
@@ -26,6 +32,17 @@ public class SkillTreeButton extends TexturedButtonWidget {
         if (this.isInside(mouseX, mouseY)) {
             //GuiUtils.renderTooltip(matrices, this.tooltip, mouseX, mouseY);
         }
+    }
+
+    @Override
+    public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        super.renderButton(matrices, mouseX, mouseY, delta);
+
+        MinecraftClient mc = MinecraftClient.getInstance();
+        mc.getTextureManager()
+            .bindTexture(new Identifier(school.icon));
+        RenderSystem.enableDepthTest();
+        drawTexture(matrices, this.x + 9, this.y + 9, 0, 0, 64, 64, 64, 64);
     }
 
 }

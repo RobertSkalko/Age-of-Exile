@@ -15,6 +15,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
+import java.awt.*;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +48,14 @@ public class SkillTreeScreen extends BaseScreen {
         list.sort(Comparator.comparingInt(x -> x.order));
         this.school = list.get(0);
 
+        refreshButtons();
+
+    }
+
+    public void refreshButtons() {
+        this.scrollX = 0;
+        this.scrollY = 0;
+
         school.calcData.perks.entrySet()
             .forEach(e -> {
 
@@ -56,30 +65,26 @@ public class SkillTreeScreen extends BaseScreen {
                 int addy = (e.getValue()
                     .getType().height - PerkButton.BIGGEST) / 2;
 
-                int x = e.getKey().x * PerkButton.SPACING + 2 + addx;
-                int y = e.getKey().y * PerkButton.SPACING + 2 + addy;
+                int subx = e.getValue()
+                    .getType().width / 2;
+                int suby = e.getValue()
+                    .getType().height / 2;
+
+                int x = (e.getKey().x * PerkButton.SPACING + 2) + addx - subx + SpellSchoolButton.XSIZE / 2;
+                int y = (e.getKey().y * PerkButton.SPACING + 2) + addy - suby + SpellSchoolButton.YSIZE / 2;
 
                 this.newButton(new PerkButton(e.getValue(), x, y));
             });
 
-        int xoff = 0;
+        Point point = school.calcData.buttonLoc;
 
-        int spacing = 10;
-        int size = SkillTreeButton.XSIZE;
+        int x = point.x * PerkButton.SPACING + 2;
+        int y = point.y * PerkButton.SPACING + 2;
 
-        int total = 5 * (spacing + size);
+        this.newButton(new SpellSchoolButton(school, x, y));
+        this.newButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.LEFT, x - 15, y + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+        this.newButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.RIGHT, x + SpellSchoolButton.XSIZE + 1, y + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
 
-        xoff += (mc.getWindow()
-            .getScaledWidth() - total) / 2; // screen space in between left
-
-        for (int i = 0; i < 5; i++) {
-
-            this.addButton(new SkillTreeButton(xoff, mc.getWindow()
-                .getScaledHeight() - SkillTreeButton.YSIZE - 10));
-
-            xoff += spacing + size;
-
-        }
     }
 
     private void newButton(AbstractButtonWidget b) {
@@ -104,7 +109,7 @@ public class SkillTreeScreen extends BaseScreen {
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         this.buttons.forEach(b -> {
-            if (b instanceof PerkButton) {
+            if (originalButtonLocMap.containsKey(b)) {
                 b.x = (int) (this.originalButtonLocMap.get(b)
                     .getX() + scrollX);
                 b.y = (int) (this.originalButtonLocMap.get(b)
