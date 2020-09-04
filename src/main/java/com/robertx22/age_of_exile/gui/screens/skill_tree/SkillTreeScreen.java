@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.library_of_exile.gui.HelpButton;
 import javafx.geometry.Point2D;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -50,17 +49,18 @@ public class SkillTreeScreen extends BaseScreen {
 
         school.calcData.perks.entrySet()
             .forEach(e -> {
-                int x = e.getKey().x * PerkButton.SPACING + 5;
-                int y = e.getKey().y * PerkButton.SPACING + 5;
+
+                // centers them if they are smaller than the biggest one
+                int addx = (e.getValue()
+                    .getType().width - PerkButton.BIGGEST) / 2;
+                int addy = (e.getValue()
+                    .getType().height - PerkButton.BIGGEST) / 2;
+
+                int x = e.getKey().x * PerkButton.SPACING + 2 + addx;
+                int y = e.getKey().y * PerkButton.SPACING + 2 + addy;
+
                 this.newButton(new PerkButton(e.getValue(), x, y));
             });
-
-        /*
-        this.newButton(new HelpButton(Arrays.asList(new LiteralText("TEST")), -5, -5));
-        this.newButton(new HelpButton(Arrays.asList(new LiteralText("TEST2")), -55, -5));
-        this.newButton(new HelpButton(Arrays.asList(), 5, 55));
-        this.newButton(new HelpButton(Arrays.asList(), 555, 55));
-                 */
 
         int xoff = 0;
 
@@ -104,7 +104,7 @@ public class SkillTreeScreen extends BaseScreen {
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         this.buttons.forEach(b -> {
-            if (b instanceof HelpButton) {
+            if (b instanceof PerkButton) {
                 b.x = (int) (this.originalButtonLocMap.get(b)
                     .getX() + scrollX);
                 b.y = (int) (this.originalButtonLocMap.get(b)

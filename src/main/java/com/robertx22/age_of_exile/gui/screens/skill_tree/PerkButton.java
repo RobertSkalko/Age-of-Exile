@@ -11,7 +11,8 @@ import net.minecraft.util.Identifier;
 
 public class PerkButton extends TexturedButtonWidget {
 
-    public static int SPACING = 29;
+    public static int SPACING = 28;
+    public static int BIGGEST = 26;
 
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
 
@@ -41,10 +42,30 @@ public class PerkButton extends TexturedButtonWidget {
         mc.getTextureManager()
             .bindTexture(ID);
 
+        // background
         RenderSystem.enableDepthTest();
         drawTexture(matrices, this.x, this.y, perk.getType()
             .getXOffset(), perk.getType()
-            .getYOffset(), this.width, this.height, this.width, this.height);
+            .getYOffset(), this.width, this.height);
+
+        if (this.perk.getType() == Perk.PerkType.STAT) {
+            // icon
+            mc.getTextureManager()
+                .bindTexture(this.perk.getIcon());
+            drawTexture(matrices, this.x + 4, this.y + 4, 0, 0, 16, 16, 16, 16);
+        } else if (this.perk.getType() == Perk.PerkType.SPELL) {
+            // icon
+            mc.getTextureManager()
+                .bindTexture(this.perk.getIcon());
+            drawTexture(matrices, this.x + 8, this.y + 8, 0, 0, 32, 32, 32, 32);
+        } else if (perk.getType() == Perk.PerkType.START) {
+
+        } else {
+            // icon
+            mc.getTextureManager()
+                .bindTexture(this.perk.getIcon());
+            drawTexture(matrices, this.x + 4, this.y + 4, 0, 0, 16, 16, 16, 16);
+        }
     }
 
 }

@@ -46,13 +46,6 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
         grid.loadIntoTree();
 
-        this.calcData.start = this.calcData.perks.entrySet()
-            .stream()
-            .filter(x -> x.getValue().is_entry)
-            .findFirst()
-            .get()
-            .getKey();
-
     }
 
     @Override
@@ -69,6 +62,10 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
         public void addPerk(Point point, Perk perk) {
             perks.put(point, perk);
+
+            if (perk.is_entry) {
+                start = point;
+            }
         }
 
         public void addConnection(Point from, Point to) {

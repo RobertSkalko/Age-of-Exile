@@ -26,8 +26,12 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
     public String icon = "";
     public boolean is_entry = false;
 
+    public Identifier getIcon() {
+        return new Identifier(icon);
+    }
+
     public enum PerkType {
-        STAT(1, 24, 24), SPELL(3, 24, 26), SPECIAL(2, 26, 26);
+        STAT(1, 24, 24), SPECIAL(2, 26, 26), SPELL(3, 24, 26), START(4, 23, 23);
         int order;
 
         public int width;
@@ -44,7 +48,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
         }
 
         public int getYOffset() {
-            return order + PerkButton.SPACING * (order - 1);
+            return 1;
         }
 
     }
