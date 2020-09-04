@@ -21,12 +21,12 @@ public class BossMob extends BaseUnique implements MobRarity {
 
     @Override
     public float StatMultiplier() {
-        return 4;
+        return 3.75F;
     }
 
     @Override
     public float DamageMultiplier() {
-        return 2.5F;
+        return 2.4F;
     }
 
     @Override
@@ -46,12 +46,12 @@ public class BossMob extends BaseUnique implements MobRarity {
 
     @Override
     public float oneAffixChance() {
-        return 100;
+        return 0;
     }
 
     @Override
     public float bothAffixesChance() {
-        return 100;
+        return 0;
     }
 
     @Override

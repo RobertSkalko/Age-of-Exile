@@ -27,7 +27,7 @@ public class OrbOfDiscoveryItem extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public int getWeight() {
-        return 500;
+        return 400;
     }
 
     public OrbOfDiscoveryItem() {

@@ -189,25 +189,27 @@ public class GearTooltipUtils {
 
         if (socketed > 0) {
 
+            Formatting BR = Formatting.GRAY;
             String runes = "";
             for (SocketData x : gear.sockets.sockets) {
-                if (x.isRune()) {
-                    if (!runes.isEmpty()) {
-                        runes += " ";
-                    }
-                    runes += x.rune_id.toUpperCase(Locale.ROOT);
+                if (!runes.isEmpty()) {
+                    runes += " ";
                 }
+
+                if (x.isRune()) {
+                    runes += BR + "[" + Formatting.GOLD + x.rune_id.toUpperCase(Locale.ROOT) + BR + "]";
+
+                }
+                if (x.isGem()) {
+                    runes += BR + "[" + x.getGem()
+                        .getFormat() + x.getGem()
+                        .getIcon() + BR + "]";
+                }
+
             }
 
             tip.add(new LiteralText(Formatting.GOLD + runes).formatted(Formatting.GOLD));
 
-            Formatting socketformat = Formatting.LIGHT_PURPLE;
-
-            if (runes.length() > 3) {
-                socketformat = Formatting.GOLD;
-            }
-
-            tip.add(new LiteralText(socketformat + "Socketed [" + socketed + "]").formatted(socketformat));
         }
 
         tip.add(new LiteralText(""));

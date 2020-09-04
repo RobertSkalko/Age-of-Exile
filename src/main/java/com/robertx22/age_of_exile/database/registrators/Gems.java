@@ -23,6 +23,7 @@ public class Gems implements ISlashRegistryInit {
             gem.effective_level = x.gemRank.lvlreq;
             gem.required_item_level = x.gemRank.lvlreq;
             gem.socket_type = x.gemType.id;
+            gem.text_format = x.gemType.format.name();
 
             gem.weight = x.weight;
 

@@ -78,9 +78,9 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     static float MIN_WEP_DMG = 0.5F;
     static float MAX_WEP_DMG = 1.5F;
     static float MIN_RES = 4;
-    static float MAX_RES = 10;
+    static float MAX_RES = 12;
     static float MIN_ELE_DMG = 4;
-    static float MAX_ELE_DMG = 10;
+    static float MAX_ELE_DMG = 8;
 
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
@@ -232,7 +232,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         FLAWED("Flawed", 1, 0.1F, 1.2F),
         REGULAR("Regular", 2, 0.25F, 1.4F),
         FLAWLESS("Flawless", 3, 0.5F, 1.6F),
-        PERFECT("Perfect", 4, 0.75F, 1.8F);
+        PERFECT("Perfect", 4, 0.8F, 1.8F);
 
         public String locName;
         public int num;
