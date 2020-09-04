@@ -1,3 +1,7 @@
+v.1.2.1
+
+-prettier and more informative gem tooltips
+
 v.1.2.0
 
 Warning: your gear will have minus durability after this update possibly! 
