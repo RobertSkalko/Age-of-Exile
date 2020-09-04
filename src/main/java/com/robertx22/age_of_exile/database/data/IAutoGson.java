@@ -15,9 +15,15 @@ public interface IAutoGson<T> extends ISerializable<T> {
             .getAsJsonObject();
     }
 
+    default void onLoadedFromJson() {
+
+    }
+
     @Override
     default T fromJson(JsonObject json) {
-        return GSON.fromJson(json, getClassForSerialization());
+        T t = GSON.fromJson(json, getClassForSerialization());
+        onLoadedFromJson();
+        return t;
     }
 
     Class<T> getClassForSerialization();

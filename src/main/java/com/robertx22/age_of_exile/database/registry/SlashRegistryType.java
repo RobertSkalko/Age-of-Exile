@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registrators.MobAffixes;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
@@ -19,6 +20,12 @@ public enum SlashRegistryType {
     NONE("none"),
     EFFECT("effect"),
     STAT("stat"),
+    SPELL_SCHOOL("spell_school") {
+        @Override
+        public ISerializable getSerializer() {
+            return SpellSchool.SERIALIZER;
+        }
+    },
     PERK("perk") {
         @Override
         public ISerializable getSerializer() {
@@ -44,7 +51,6 @@ public enum SlashRegistryType {
         }
     },
     GEAR_SLOT("gear_slot"),
-    SPELL_SYNERGY("synergy"),
     TIER("tier") {
         @Override
         public ISerializable getSerializer() {
@@ -58,7 +64,6 @@ public enum SlashRegistryType {
         }
     },
     STATMOD("stat_mod"),
-    CHAOS_STAT("chaos_stat"),
     UNIQUE_GEAR("unique_gear") {
         @Override
         public ISerializable getSerializer() {
@@ -78,7 +83,6 @@ public enum SlashRegistryType {
             return EmptyAffix.getInstance();
         }
     },
-    WORLD_PROVIDER("world_provider"),
     EMPTY("empty"),
     DIMENSION_CONFIGS("dimension_config") {
         @Override
@@ -99,7 +103,6 @@ public enum SlashRegistryType {
             return CompatibleItem.EMPTY;
         }
     },
-    SYNERGY_EFFECT("synergy_effect"),
     LOOT_CRATE("loot_crate");
 
     public String id;

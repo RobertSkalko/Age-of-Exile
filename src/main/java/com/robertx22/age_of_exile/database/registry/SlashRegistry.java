@@ -12,8 +12,10 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
@@ -120,6 +122,14 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<Gem> Gems() {
         return getRegistry(SlashRegistryType.GEM);
+    }
+
+    public static SlashRegistryContainer<SpellSchool> SpellSchools() {
+        return getRegistry(SlashRegistryType.SPELL_SCHOOL);
+    }
+
+    public static SlashRegistryContainer<Perk> Perks() {
+        return getRegistry(SlashRegistryType.PERK);
     }
 
     public static SlashRegistryContainer<Rune> Runes() {
@@ -295,6 +305,8 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEM, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNE, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNEWORD, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PERK, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_SCHOOL, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()

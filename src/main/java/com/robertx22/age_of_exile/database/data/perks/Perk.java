@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.database.data.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import net.minecraft.advancement.Advancement;
@@ -16,15 +18,20 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
     public static Perk SERIALIZER = new Perk();
 
     public PerkType type;
-
     public String identifier;
-
-    public String unlocks_spell = "";
-
-    public String locked_under_advancement = "";
+    public String spell = "";
+    public String lock_under_adv = "";
+    public List<OptScaleExactStat> stats = new ArrayList<>();
+    public String icon = "";
+    public boolean is_entry = false;
 
     public boolean isLockedUnderAdvancement() {
-        return !locked_under_advancement.isEmpty();
+        return !lock_under_adv.isEmpty();
+    }
+
+    public BaseSpell getSpell() {
+        return SlashRegistry.Spells()
+            .get(spell);
     }
 
     public boolean didPlayerUnlockAdvancement(ServerPlayerEntity player) {
@@ -38,10 +45,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
             .getProgress(adv)
             .isDone();
     }
-
-    public List<OptScaleExactStat> stats = new ArrayList<>();
-
-    public String icon = "";
 
     public enum PerkType {
         SPELL, STAT
