@@ -139,7 +139,10 @@ public class SkillTreeScreen extends BaseScreen {
 
     public void refreshButtons() {
 
+        originalButtonLocMap.clear();
+        pointPerkButtonMap.clear();
         this.buttons.clear();
+        this.children.clear();
 
         this.scrollX = 0;
         this.scrollY = 0;
@@ -180,10 +183,6 @@ public class SkillTreeScreen extends BaseScreen {
 
             SpellSchool school1 = getSchoolByIndexAllowsOutOfBounds(place + index1);
             SpellSchool school2 = getSchoolByIndexAllowsOutOfBounds(place + index2);
-
-            assert school != school1;
-            assert school != school2;
-            assert school1 != school2;
 
             this.addButton(new SpellSchoolButton(this, school1, sx + xadd, sy));
             this.addButton(new SpellSchoolButton(this, school2, sx - xadd, sy));

@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
@@ -16,25 +15,20 @@ public class SpellSchoolButton extends TexturedButtonWidget {
     public static int XSIZE = 32;
     public static int YSIZE = 32;
 
-    String id;
-
-    SpellSchool getSchool() {
-        return SlashRegistry.SpellSchools()
-            .get(id);
-    }
+    SpellSchool school;
 
     SkillTreeScreen screen;
 
     public SpellSchoolButton(SkillTreeScreen screen, SpellSchool school, int x, int y) {
         super(x, y, XSIZE, YSIZE, 0, 0, 1, ID, (action) -> {
         });
-        this.id = school.identifier;
+        this.school = school;
         this.screen = screen;
     }
 
     @Override
     public void onPress() {
-        screen.school = getSchool();
+        screen.school = school;
         screen.refreshButtons();
     }
 
@@ -55,7 +49,7 @@ public class SpellSchoolButton extends TexturedButtonWidget {
 
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
-            .bindTexture(new Identifier(getSchool().icon));
+            .bindTexture(new Identifier(school.icon));
         RenderSystem.enableDepthTest();
         drawTexture(matrices, this.x, this.y, 0, 0, XSIZE, XSIZE, XSIZE, XSIZE);
     }
