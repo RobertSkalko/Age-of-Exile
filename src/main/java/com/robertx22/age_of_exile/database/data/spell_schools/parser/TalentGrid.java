@@ -52,16 +52,20 @@ public class TalentGrid {
                         Objects.requireNonNull(perk);
                         school.calcData.addPerk(point.getPoint(), perk);
                         perks.add(point);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println("PERK: " + point.getId() + " is broken!");
                     }
 
+                } else if (point.isCenter()) {
+                    school.calcData.center = point.getPoint();
                 }
-
             }
 
         }
+
+        Objects.requireNonNull(school.calcData.center, "Tree needs a center!");
 
         for (GridPoint one : perks) {
             for (GridPoint two : perks) {

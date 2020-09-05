@@ -32,6 +32,12 @@ public class PerkBuilder {
         return perk;
     }
 
+    public static Perk bigStat(String id, OptScaleExactStat stat) {
+        Perk perk = stat(id, stat);
+        perk.type = Perk.PerkType.SPECIAL;
+        return perk;
+    }
+
     public static Perk stat(OptScaleExactStat stat) {
         return stat(stat.stat, stat);
     }

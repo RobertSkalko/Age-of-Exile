@@ -77,7 +77,7 @@ public class PerkButton extends TexturedButtonWidget {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, this.x + 4, this.y + 4, 0, 0, 16, 16, 16, 16);
+            drawTexture(matrices, this.x + 5, this.y + 5, 0, 0, 16, 16, 16, 16);
         }
     }
 

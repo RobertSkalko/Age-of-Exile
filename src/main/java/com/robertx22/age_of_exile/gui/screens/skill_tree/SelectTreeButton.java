@@ -14,10 +14,28 @@ public class SelectTreeButton extends TexturedButtonWidget {
 
     public static int XSIZE = 14;
     public static int YSIZE = 22;
+    LeftOrRight way;
+    SkillTreeScreen screen;
 
-    public SelectTreeButton(LeftOrRight way, int x, int y) {
+    public SelectTreeButton(SkillTreeScreen screen, LeftOrRight way, int x, int y) {
         super(x, y, XSIZE, YSIZE, getXoffset(way), 0, 1, ID, (action) -> {
+
+            if (way == LeftOrRight.LEFT) {
+                screen.school = screen.schoolsInOrder.stream()
+                    .filter(o -> o.order <= screen.school.order && !screen.school.identifier.equals(o.identifier))
+                    .findFirst()
+                    .get();
+
+            } else {
+                screen.school = screen.schoolsInOrder.stream()
+                    .filter(o -> o.order >= screen.school.order && !screen.school.identifier.equals(o.identifier))
+                    .findFirst()
+                    .get();
+            }
+            screen.refreshButtons();
         });
+        this.way = way;
+        this.screen = screen;
     }
 
     static int getXoffset(LeftOrRight way) {

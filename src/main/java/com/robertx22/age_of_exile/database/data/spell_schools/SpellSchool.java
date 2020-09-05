@@ -56,7 +56,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
     public static class CalcData {
 
-        public Point start;
+        public Point center;
 
         public transient HashMap<Point, Set<Point>> connections = new HashMap<>();
         public transient HashMap<Point, Perk> perks = new HashMap<>();
@@ -69,10 +69,6 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
         public void addPerk(Point point, Perk perk) {
             perks.put(point, perk);
-
-            if (perk.is_entry) {
-                start = point;
-            }
         }
 
         public void addConnection(Point from, Point to) {

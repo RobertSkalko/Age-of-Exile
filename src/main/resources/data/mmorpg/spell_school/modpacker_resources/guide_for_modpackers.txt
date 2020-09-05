@@ -21,6 +21,10 @@ Also, there are multiple types of perks: SPELL, STAT, START and SPECIAL.
 
 spell, stat are self explanatory
 
-Start is for the starting point of the skill tree, use only 1!
+Start is for the starting point of the skill tree.
 
 Special is a way of differentiating good perks, it uses a prettier icon.
+
+There'a also a required field, [CENTER]. This tells the game where to center the gui to.
+
+Always a good idea to start by copying an existing skill tree and modifying it.

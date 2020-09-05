@@ -54,6 +54,8 @@ public class SkillTreeScreen extends BaseScreen {
     HashMap<AbstractButtonWidget, Point2D> originalButtonLocMap = new HashMap<>();
     HashMap<Point, PerkButton> pointPerkButtonMap = new HashMap<>();
 
+    public List<SpellSchool> schoolsInOrder;
+
     SpellSchoolButton schoolButton;
 
     MinecraftClient mc = MinecraftClient.getInstance();
@@ -64,10 +66,11 @@ public class SkillTreeScreen extends BaseScreen {
     protected void init() {
         super.init();
 
-        List<SpellSchool> list = SlashRegistry.SpellSchools()
+        schoolsInOrder = SlashRegistry.SpellSchools()
             .getList();
-        list.sort(Comparator.comparingInt(x -> x.order));
-        this.school = list.get(0);
+        schoolsInOrder.sort(Comparator.comparingInt(x -> x.order));
+
+        this.school = schoolsInOrder.get(0);
 
         refreshButtons();
 
@@ -150,8 +153,8 @@ public class SkillTreeScreen extends BaseScreen {
         this.schoolButton = new SpellSchoolButton(school, sx, sy);
 
         this.addButton(schoolButton);
-        this.addButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.LEFT, sx - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
-        this.addButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.RIGHT, sx + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+        this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.LEFT, sx - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+        this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.RIGHT, sx + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
 
         addConnections();
 
@@ -161,11 +164,12 @@ public class SkillTreeScreen extends BaseScreen {
 
         float halfx = mc.getWindow()
             .getScaledWidth() / 2F;
+
         float halfy = mc.getWindow()
             .getScaledHeight() / 2F;
 
-        float x = (point.x - school.calcData.start.x) * PerkButton.SPACING + 2;
-        float y = (point.y - school.calcData.start.y) * PerkButton.SPACING + 2;
+        float x = (point.x - school.calcData.center.x) * PerkButton.SPACING + 2;
+        float y = (point.y - school.calcData.center.y) * PerkButton.SPACING + 2;
 
         x -= SpellSchoolButton.XSIZE / 2F;
         y -= SpellSchoolButton.YSIZE / 2F;

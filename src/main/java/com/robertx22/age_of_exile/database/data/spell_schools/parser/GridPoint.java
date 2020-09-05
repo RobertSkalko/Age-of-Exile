@@ -54,8 +54,14 @@ public class GridPoint {
             .get(id);
     }
 
+    public static String CENTER_ID = "[CENTER]";
+
     public boolean isTalent() {
-        return !id.isEmpty() && id.length() > 2;
+        return !id.isEmpty() && id.length() > 2 && !isCenter();
+    }
+
+    public boolean isCenter() {
+        return id.equalsIgnoreCase(CENTER_ID);
     }
 
     public boolean isConnector() {

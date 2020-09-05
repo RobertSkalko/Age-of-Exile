@@ -10,7 +10,9 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.PerkButton;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -35,12 +37,22 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
+        BaseSpell spell = getSpell();
 
-        if (type == PerkType.SPELL) {
-            // TODO REWORK SPELLS FIRST  list.addAll(getSpell().getto)
-        }
-        if (type == PerkType.STAT) {
+        try {
+            if (spell != null) {
+                // TODO REWORK SPELLS FIRST  list.addAll(getSpell().getto)
+            }
+
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+
+            Advancement adv = AdvancementUtils.getAdvancement(info.player.world, new Identifier(lock_under_adv));
+
+            if (adv != null) {
+                list.add(new LiteralText("Needs advancement: ").append(adv.toHoverableText()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return list;
