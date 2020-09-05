@@ -2,6 +2,7 @@ v.1.2.1
 
 - prettier and more informative gem tooltips
 - should fix skeletons and chickens spawning in bases in light
+- added chinese patchouli translation
 
 v.1.2.0
 
