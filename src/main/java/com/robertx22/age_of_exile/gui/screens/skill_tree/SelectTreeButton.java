@@ -1,11 +1,8 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.util.Identifier;
-
-import java.util.Optional;
 
 public class SelectTreeButton extends TexturedButtonWidget {
 
@@ -22,31 +19,16 @@ public class SelectTreeButton extends TexturedButtonWidget {
 
     public SelectTreeButton(SkillTreeScreen screen, LeftOrRight way, int x, int y) {
         super(x, y, XSIZE, YSIZE, getXoffset(way), 0, 1, ID, (action) -> {
+            int place = screen.schoolsInOrder.indexOf(screen.school);
 
             if (way == LeftOrRight.LEFT) {
-                Optional<SpellSchool> opt = screen.schoolsInOrder.stream()
-                    .filter(o -> o.order <= screen.school.order && !screen.school.identifier.equals(o.identifier))
-                    .findFirst();
-
-                if (opt.isPresent()) {
-                    screen.school = opt.get();
-                } else {
-                    screen.school = screen.schoolsInOrder.get(0);
-                }
-
+                screen.school = screen.getSchoolByIndexAllowsOutOfBounds(place - 1);
             } else {
-                Optional<SpellSchool> opt = screen.schoolsInOrder.stream()
-                    .filter(o -> o.order >= screen.school.order && !screen.school.identifier.equals(o.identifier))
-                    .findFirst();
-
-                if (opt.isPresent()) {
-                    screen.school = opt.get();
-                } else {
-                    screen.school = screen.schoolsInOrder.get(screen.schoolsInOrder.size() - 1);
-                }
+                screen.school = screen.getSchoolByIndexAllowsOutOfBounds(place + 1);
             }
             screen.refreshButtons();
         });
+
         this.way = way;
         this.screen = screen;
     }

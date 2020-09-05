@@ -56,7 +56,16 @@ public class SkillTreeScreen extends BaseScreen {
 
     public List<SpellSchool> schoolsInOrder;
 
-    SpellSchoolButton schoolButton;
+    public SpellSchool getSchoolByIndexAllowsOutOfBounds(int i) {
+        if (i >= schoolsInOrder.size()) {
+            return schoolsInOrder.get(i - schoolsInOrder.size());
+        }
+        if (i < 0) {
+            return schoolsInOrder.get(schoolsInOrder.size() + i);
+        }
+        return schoolsInOrder.get(i);
+
+    }
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -159,11 +168,32 @@ public class SkillTreeScreen extends BaseScreen {
             .getScaledWidth() / 2 - SpellSchoolButton.XSIZE / 2;
         int sy = 0;
 
-        this.schoolButton = new SpellSchoolButton(school, sx, sy);
+        this.addButton(new SpellSchoolButton(this, school, sx, sy));
 
-        this.addButton(schoolButton);
-        this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.LEFT, sx - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
-        this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.RIGHT, sx + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+        int place = this.schoolsInOrder.indexOf(school);
+
+        for (int i = 0; i < 2; i++) {
+            int xadd = SpellSchoolButton.XSIZE * (i + 1) + i + 1;
+
+            int index1 = i + 1;
+            int index2 = -i - 1;
+
+            SpellSchool school1 = getSchoolByIndexAllowsOutOfBounds(place + index1);
+            SpellSchool school2 = getSchoolByIndexAllowsOutOfBounds(place + index2);
+
+            assert school != school1;
+            assert school != school2;
+            assert school1 != school2;
+
+            this.addButton(new SpellSchoolButton(this, school1, sx + xadd, sy));
+            this.addButton(new SpellSchoolButton(this, school2, sx - xadd, sy));
+
+            if (i == 1) {
+                this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.LEFT, sx - xadd - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+                this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.RIGHT, sx + xadd + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+            }
+
+        }
 
         addConnections();
 
