@@ -18,6 +18,7 @@ public class ServerContainer {
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.02F;
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.01F;
     public double STAT_POINTS_PER_LVL = 1;
+    public double TALENT_POINTS_PER_LVL = 1;
     public double VANILLA_MOB_DMG_AS_EXILE_DMG = 0.5F;
 
     public List<String> IGNORED_ENTITIES = Arrays.asList("minecraft:bat");

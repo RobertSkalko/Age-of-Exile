@@ -2,10 +2,9 @@ package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import java.awt.*;
 
 public class GridPoint {
 
@@ -23,8 +22,8 @@ public class GridPoint {
         this.id = str;
     }
 
-    public Point getPoint() {
-        return new Point(x, y);
+    public PointData getPoint() {
+        return new PointData(x, y);
     }
 
     @Override

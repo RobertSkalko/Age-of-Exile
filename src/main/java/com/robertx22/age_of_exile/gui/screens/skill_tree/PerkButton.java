@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -13,7 +14,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.awt.*;
 import java.util.List;
 
 public class PerkButton extends TexturedButtonWidget {
@@ -25,9 +25,9 @@ public class PerkButton extends TexturedButtonWidget {
 
     public Perk perk;
     PerkStatus status;
-    Point point;
+    PointData point;
 
-    public PerkButton(Point point, Perk perk, int x, int y) {
+    public PerkButton(PointData point, Perk perk, int x, int y) {
         super(x, y, perk.getType().width, perk.getType().height, 0, 0, 1, ID, (action) -> {
         });
         this.perk = perk;

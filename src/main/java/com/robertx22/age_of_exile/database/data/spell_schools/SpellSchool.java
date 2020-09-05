@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.parser.TalentGrid;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,22 +56,22 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
     public static class CalcData {
 
-        public Point center;
+        public PointData center;
 
-        public transient HashMap<Point, Set<Point>> connections = new HashMap<>();
-        public transient HashMap<Point, Perk> perks = new HashMap<>();
+        public transient HashMap<PointData, Set<PointData>> connections = new HashMap<>();
+        public transient HashMap<PointData, Perk> perks = new HashMap<>();
 
-        public boolean isConnected(Point one, Point two) {
+        public boolean isConnected(PointData one, PointData two) {
             return connections.get(one)
                 .contains(two) || connections.get(two)
                 .contains(one);
         }
 
-        public void addPerk(Point point, Perk perk) {
+        public void addPerk(PointData point, Perk perk) {
             perks.put(point, perk);
         }
 
-        public void addConnection(Point from, Point to) {
+        public void addConnection(PointData from, PointData to) {
 
             if (from.x == to.x && from.y == to.y) {
                 return;

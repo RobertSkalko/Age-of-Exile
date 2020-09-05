@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils.PointF;
 import javafx.geometry.Point2D;
@@ -52,7 +53,7 @@ public class SkillTreeScreen extends BaseScreen {
     int scrollY = 0;
 
     HashMap<AbstractButtonWidget, Point2D> originalButtonLocMap = new HashMap<>();
-    HashMap<Point, PerkButton> pointPerkButtonMap = new HashMap<>();
+    HashMap<PointData, PerkButton> pointPerkButtonMap = new HashMap<>();
 
     public List<SpellSchool> schoolsInOrder;
 
@@ -89,13 +90,13 @@ public class SkillTreeScreen extends BaseScreen {
 
     private void addConnections() {
 
-        Set<List<Point>> cons = new HashSet<>();
+        Set<List<PointData>> cons = new HashSet<>();
 
         new ArrayList<>(buttons).forEach(b -> {
             if (b instanceof PerkButton) {
                 PerkButton pb = (PerkButton) b;
 
-                Set<Point> connections = this.school.calcData.connections.getOrDefault(pb.point, new HashSet<>());
+                Set<PointData> connections = this.school.calcData.connections.getOrDefault(pb.point, new HashSet<>());
 
                 int x1 = pb.x + pb.getWidth() / 2;
                 int y1 = pb.y + pb.getHeight() / 2;
@@ -105,7 +106,7 @@ public class SkillTreeScreen extends BaseScreen {
                 int size = 6;
                 float spacing = size + size / 2F;
 
-                for (Point p : connections) {
+                for (PointData p : connections) {
 
                     if (cons.stream()
                         .anyMatch(x -> x.contains(p) && x.contains(pb.point))) {
@@ -198,7 +199,7 @@ public class SkillTreeScreen extends BaseScreen {
 
     }
 
-    private Point getPosForPoint(Point point) {
+    private Point getPosForPoint(PointData point) {
 
         float halfx = mc.getWindow()
             .getScaledWidth() / 2F;
@@ -269,11 +270,12 @@ public class SkillTreeScreen extends BaseScreen {
             .bindTexture(BACKGROUND);
         RenderSystem.enableDepthTest();
 
+        int BG_WIDTH = 237;
         int xp = mc.getWindow()
-            .getScaledWidth() / 2 - 256 / 2;
+            .getScaledWidth() / 2 - BG_WIDTH / 2;
         int yp = 0;
 
-        drawTexture(matrix, xp, yp, 0, 0, 256, 39);
+        drawTexture(matrix, xp, yp, 0, 0, BG_WIDTH, 39);
 
         // we order them here so school buttons are on top, and perks are on top of connection buttons..
         // probably a better way to do it exists?
