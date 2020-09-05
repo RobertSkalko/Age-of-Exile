@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intellige
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
@@ -34,6 +35,10 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat("dex", new OptScaleExactStat(1, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.stat("str", new OptScaleExactStat(1, Strength.INSTANCE, ModType.FLAT));
 
+        PerkBuilder.bigStat("big_int", new OptScaleExactStat(3, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_dex", new OptScaleExactStat(3, Dexterity.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_str", new OptScaleExactStat(3, Strength.INSTANCE, ModType.FLAT));
+
         PerkBuilder.stat(new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, CriticalHit.getInstance(), ModType.FLAT));
 
@@ -43,6 +48,11 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(5, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE));
+
+        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.BURN, ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.CHILL, ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.STATIC, ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.POISON, ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, Armor.getInstance(), ModType.LOCAL_INCREASE));
