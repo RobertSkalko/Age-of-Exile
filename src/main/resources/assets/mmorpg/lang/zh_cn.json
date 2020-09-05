@@ -1019,7 +1019,7 @@
 	"mmorpg.chat.a_piece_of_gear_is_too_high_level_for_you": "这件装备的等级高于你的等级",
 	"mmorpg.chat.can_not_go_over_maximum_level": "无法超过最高等级",
 	"mmorpg.chat.cooldown_not_met": "冷却中……",
-	"mmorpg.chat.dev_tools_enabled_contact_the_author": "开发者工具启用，如果你看到这个请联系 流放时代| 的作者[robertx22]，他忘了关闭!",
+	"mmorpg.chat.dev_tools_enabled_contact_the_author": "开发者工具启用，如果你看到这个请联系 流放时代 的作者[robertx22]，他忘了关闭!",
 	"mmorpg.chat.distance_too_high_to_teleport": "距离太远而无法传送",
 	"mmorpg.chat.no_targets_found": "找不到目标",
 	"mmorpg.chat.not_enough_experience": "没有足够的经验",
