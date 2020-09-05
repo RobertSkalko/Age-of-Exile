@@ -30,6 +30,10 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
         return new Identifier(icon);
     }
 
+    public enum Connection {
+        LINKED, BLOCKED, POSSIBLE
+    }
+
     public enum PerkType {
         STAT(1, 24, 24), SPECIAL(2, 26, 26), SPELL(3, 24, 26), START(4, 23, 23);
         int order;

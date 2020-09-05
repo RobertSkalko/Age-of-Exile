@@ -1,10 +1,13 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.library_of_exile.utils.GuiUtils;
+import com.robertx22.library_of_exile.utils.GuiUtils.PointF;
 import javafx.geometry.Point2D;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -17,9 +20,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
+import java.util.*;
 
 public class SkillTreeScreen extends BaseScreen {
     static Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/skill_tree/background.png");
@@ -50,6 +52,7 @@ public class SkillTreeScreen extends BaseScreen {
     int scrollY = 0;
 
     HashMap<AbstractButtonWidget, Point2D> originalButtonLocMap = new HashMap<>();
+    HashMap<Point, PerkButton> pointPerkButtonMap = new HashMap<>();
 
     SpellSchoolButton schoolButton;
 
@@ -69,6 +72,47 @@ public class SkillTreeScreen extends BaseScreen {
         refreshButtons();
 
         goToCenter();
+
+    }
+
+    private void addConnections() {
+
+        new ArrayList<>(buttons).forEach(b -> {
+            if (b instanceof PerkButton) {
+                PerkButton pb = (PerkButton) b;
+
+                Set<Point> connections = this.school.calcData.connections.getOrDefault(pb.point, new HashSet<>());
+
+                int x1 = pb.x + pb.getWidth() / 2;
+                int y1 = pb.y + pb.getHeight() / 2;
+
+                // todo
+
+                int size = 6;
+                float spacing = size + size / 2F;
+
+                for (Point p : connections) {
+
+                    PerkButton sb = this.pointPerkButtonMap.get(p);
+
+                    int x2 = sb.x + sb.getWidth() / 2;
+                    int y2 = sb.y + sb.getHeight() / 2;
+
+                    List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 360f, spacing, true);
+
+                    for (PointF point : points) {
+
+                        int x = (int) (point.x - ((float) size / 2));
+                        int y = (int) (point.y - ((float) size / 2));
+
+                        this.newButton(new ConnectionButton(Perk.Connection.LINKED, x, y));
+
+                    }
+
+                }
+            }
+
+        });
 
     }
 
@@ -96,7 +140,7 @@ public class SkillTreeScreen extends BaseScreen {
                 int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
                 int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
 
-                this.newButton(new PerkButton(e.getValue(), x, y));
+                this.newButton(new PerkButton(e.getKey(), e.getValue(), x, y));
             });
 
         int sx = mc.getWindow()
@@ -108,6 +152,8 @@ public class SkillTreeScreen extends BaseScreen {
         this.addButton(schoolButton);
         this.addButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.LEFT, sx - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
         this.addButton(new SelectTreeButton(SelectTreeButton.LeftOrRight.RIGHT, sx + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+
+        addConnections();
 
     }
 
@@ -124,15 +170,6 @@ public class SkillTreeScreen extends BaseScreen {
         x -= SpellSchoolButton.XSIZE / 2F;
         y -= SpellSchoolButton.YSIZE / 2F;
 
-        /*
-        x *= scale;
-        y *= scale;
-
-        halfx /= scale;
-        halfy /= scale;
-
-         */
-
         int tx = (int) (halfx + x);
         int ty = (int) (halfy + y);
 
@@ -148,6 +185,9 @@ public class SkillTreeScreen extends BaseScreen {
     private void newButton(AbstractButtonWidget b) {
         this.addButton(b);
         originalButtonLocMap.put(b, new Point2D(b.x, b.y));
+        if (b instanceof PerkButton) {
+            this.pointPerkButtonMap.put(((PerkButton) b).point, (PerkButton) b);
+        }
     }
 
     @Override
@@ -176,6 +216,12 @@ public class SkillTreeScreen extends BaseScreen {
 
         super.render(matrix, x, y, ticks);
 
+        buttons.forEach(b -> {
+            if (b instanceof PerkButton) {
+                b.render(matrix, x, y, ticks);
+            }
+        });
+
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
             .bindTexture(BACKGROUND);
@@ -187,10 +233,15 @@ public class SkillTreeScreen extends BaseScreen {
 
         drawTexture(matrix, xp, yp, 0, 0, 256, 39);
 
+        // we order them here so school buttons are on top, and perks are on top of connection buttons..
+        // probably a better way to do it exists?
+
         buttons.forEach(b -> {
+
             if (b instanceof SpellSchoolButton || b instanceof SelectTreeButton) {
                 b.render(matrix, x, y, ticks);
             }
+
         });
 
         this.tick_count++;

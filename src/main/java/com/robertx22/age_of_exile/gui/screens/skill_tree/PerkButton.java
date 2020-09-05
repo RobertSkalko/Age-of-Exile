@@ -11,6 +11,8 @@ import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
+import java.awt.*;
+
 public class PerkButton extends TexturedButtonWidget {
 
     public static int SPACING = 28;
@@ -20,12 +22,13 @@ public class PerkButton extends TexturedButtonWidget {
 
     public Perk perk;
     PerkStatus status;
+    Point point;
 
-    public PerkButton(Perk perk, int x, int y) {
+    public PerkButton(Point point, Perk perk, int x, int y) {
         super(x, y, perk.getType().width, perk.getType().height, 0, 0, 1, ID, (action) -> {
         });
         this.perk = perk;
-
+        this.point = point;
         this.status = PerkStatus.CONNECTED; // TODO NEED CAP FOR THIS
     }
 

@@ -61,6 +61,12 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         public transient HashMap<Point, Set<Point>> connections = new HashMap<>();
         public transient HashMap<Point, Perk> perks = new HashMap<>();
 
+        public boolean isConnected(Point one, Point two) {
+            return connections.get(one)
+                .contains(two) || connections.get(two)
+                .contains(one);
+        }
+
         public void addPerk(Point point, Perk perk) {
             perks.put(point, perk);
 
@@ -70,6 +76,10 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         }
 
         public void addConnection(Point from, Point to) {
+
+            if (from.x == to.x && from.y == to.y) {
+                return;
+            }
 
             if (!connections.containsKey(from)) {
                 connections.put(from, new HashSet<>());
