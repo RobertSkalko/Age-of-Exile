@@ -80,6 +80,8 @@ public class SkillTreeScreen extends BaseScreen {
 
     private void addConnections() {
 
+        Set<List<Point>> cons = new HashSet<>();
+
         new ArrayList<>(buttons).forEach(b -> {
             if (b instanceof PerkButton) {
                 PerkButton pb = (PerkButton) b;
@@ -95,6 +97,13 @@ public class SkillTreeScreen extends BaseScreen {
                 float spacing = size + size / 2F;
 
                 for (Point p : connections) {
+
+                    if (cons.stream()
+                        .anyMatch(x -> x.contains(p) && x.contains(pb.point))) {
+                        continue;
+                    }
+
+                    cons.add(Arrays.asList(p, pb.point));
 
                     PerkButton sb = this.pointPerkButtonMap.get(p);
 
