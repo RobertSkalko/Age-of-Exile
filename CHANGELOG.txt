@@ -1,6 +1,7 @@
 v.1.2.1
 
--prettier and more informative gem tooltips
+- prettier and more informative gem tooltips
+- should fix skeletons and chickens spawning in bases in light
 
 v.1.2.0
 

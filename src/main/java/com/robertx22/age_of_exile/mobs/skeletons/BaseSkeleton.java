@@ -31,8 +31,4 @@ public class BaseSkeleton extends SkeletonEntity {
         return EntityType.SKELETON.getLootTableId(); // TODO, add loot tables later
     }
 
-    @Override
-    protected boolean isInDaylight() {
-        return false;
-    }
 }
