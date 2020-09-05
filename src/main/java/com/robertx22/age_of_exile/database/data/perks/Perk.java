@@ -7,15 +7,17 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.PerkButton;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.server.ServerAdvancementLoader;
-import net.minecraft.server.network.ServerPlayerEntity;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
+public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, ITooltipList {
     public static Perk SERIALIZER = new Perk();
 
     public PerkType type;
@@ -28,6 +30,20 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
 
     public Identifier getIcon() {
         return new Identifier(icon);
+    }
+
+    @Override
+    public List<Text> GetTooltipString(TooltipInfo info) {
+        List<Text> list = new ArrayList<>();
+
+        if (type == PerkType.SPELL) {
+            // TODO REWORK SPELLS FIRST  list.addAll(getSpell().getto)
+        }
+        if (type == PerkType.STAT) {
+            stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+        }
+
+        return list;
     }
 
     public enum Connection {
@@ -66,16 +82,9 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk> {
             .get(spell);
     }
 
-    public boolean didPlayerUnlockAdvancement(ServerPlayerEntity player) {
-        if (!isLockedUnderAdvancement()) {
-            return true;
-        }
-        ServerAdvancementLoader loader = player.getServer()
-            .getAdvancementLoader();
-        Advancement adv = loader.get(new Identifier(identifier));
-        return player.getAdvancementTracker()
-            .getProgress(adv)
-            .isDone();
+    public boolean didPlayerUnlockAdvancement(PlayerEntity player) {
+        Identifier id = new Identifier(this.lock_under_adv);
+        return AdvancementUtils.didPlayerFinish(player, id);
     }
 
     @Override

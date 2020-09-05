@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes.tooltips;
 
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -27,6 +28,14 @@ public class TooltipStatInfo implements ITooltipList {
         this.firstValue = data.getFirstValue();
         this.secondValue = data.getSecondValue();
         this.type = data.getType();
+        this.tooltipInfo = info;
+    }
+
+    public TooltipStatInfo(OptScaleExactStat data, TooltipInfo info) {
+        this.stat = data.getStat();
+        this.firstValue = data.first;
+        this.secondValue = data.second;
+        this.type = data.getModType();
         this.tooltipInfo = info;
     }
 

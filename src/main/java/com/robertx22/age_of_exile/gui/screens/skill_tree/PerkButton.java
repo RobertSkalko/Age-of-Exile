@@ -4,14 +4,17 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
+import java.util.List;
 
 public class PerkButton extends TexturedButtonWidget {
 
@@ -38,20 +41,15 @@ public class PerkButton extends TexturedButtonWidget {
 
     @Override
     public void renderToolTip(MatrixStack matrices, int mouseX, int mouseY) {
+        List<Text> tooltip = perk.GetTooltipString(new TooltipInfo(MinecraftClient.getInstance().player));
         if (this.isInside(mouseX, mouseY)) {
-            //GuiUtils.renderTooltip(matrices, this.tooltip, mouseX, mouseY);
-        }
 
+            GuiUtils.renderTooltip(matrices, tooltip, mouseX, mouseY);
+        }
     }
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-
-        if (this.y > MinecraftClient.getInstance()
-            .getWindow()
-            .getScaledHeight() - SpellSchoolButton.YSIZE - 30) {
-            //  return;
-        }
 
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
@@ -72,9 +70,7 @@ public class PerkButton extends TexturedButtonWidget {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-
             RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + 4, this.y + 4);
-            //drawTexture(matrices, this.x + 8, this.y + 8, 0, 0, 32, 32, 32, 32);
         } else if (perk.getType() == Perk.PerkType.START) {
 
         } else {

@@ -176,10 +176,6 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
 
-        if (first_val == 0) {
-            // return new ArrayList<>();
-        }
-
         Stat stat = getStat();
         TooltipStatInfo statInfo = new TooltipStatInfo(this, info);
         return new ArrayList<>(stat.getTooltipList(statInfo));

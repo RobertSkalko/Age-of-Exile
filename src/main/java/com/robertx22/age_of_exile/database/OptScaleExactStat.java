@@ -5,9 +5,16 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.text.Text;
 
-public class OptScaleExactStat implements IApplyableStats {
+import java.util.ArrayList;
+import java.util.List;
+
+public class OptScaleExactStat implements IApplyableStats, ITooltipList {
 
     public float first = 0;
     public float second = 0;
@@ -27,6 +34,13 @@ public class OptScaleExactStat implements IApplyableStats {
         this.second = second;
         this.stat = stat.GUID();
         this.type = type.name();
+    }
+
+    @Override
+    public List<Text> GetTooltipString(TooltipInfo info) {
+        Stat stat = getStat();
+        TooltipStatInfo statInfo = new TooltipStatInfo(this, info);
+        return new ArrayList<>(stat.getTooltipList(statInfo));
     }
 
     public OptScaleExactStat scale() {
