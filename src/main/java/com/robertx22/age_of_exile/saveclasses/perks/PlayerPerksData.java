@@ -81,12 +81,20 @@ public class PlayerPerksData {
 
     public boolean canRemove(SpellSchool school, PointData point, PlayerEntity player) {
 
+        if (!getSchool(school).isAllocated(point)) {
+            return false;
+        }
+
         if (reset_points < 1) {
             return false;
         }
 
         for (PointData con : school.calcData.connections.get(point)) {
             if (getSchool(school).isAllocated(con)) {
+                Perk perk = school.calcData.perks.get(con);
+                if (perk.is_entry) {
+                    continue;
+                }
                 if (!hasPathToStart(school, con, point)) {
                     return false;
                 }

@@ -21,6 +21,7 @@ import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -29,7 +30,8 @@ import java.util.List;
 import java.util.*;
 
 public class SkillTreeScreen extends BaseScreen {
-    static Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/skill_tree/background.png");
+    static Identifier BIG_PANEL = new Identifier(Ref.MODID, "textures/gui/skill_tree/background.png");
+    static Identifier SMALL_PANEL = new Identifier(Ref.MODID, "textures/gui/skill_tree/small_panel.png");
 
     Identifier BACKGROUND_TEXTURE = new Identifier(
         Ref.MODID, "textures/gui/skill_tree/water.png");
@@ -273,17 +275,7 @@ public class SkillTreeScreen extends BaseScreen {
             }
         });
 
-        MinecraftClient mc = MinecraftClient.getInstance();
-        mc.getTextureManager()
-            .bindTexture(BACKGROUND);
-        RenderSystem.enableDepthTest();
-
-        int BG_WIDTH = 237;
-        int xp = mc.getWindow()
-            .getScaledWidth() / 2 - BG_WIDTH / 2;
-        int yp = 0;
-
-        drawTexture(matrix, xp, yp, 0, 0, BG_WIDTH, 39);
+        renderPanels(matrix);
 
         // we order them here so school buttons are on top, and perks are on top of connection buttons..
         // probably a better way to do it exists?
@@ -299,6 +291,49 @@ public class SkillTreeScreen extends BaseScreen {
         this.tick_count++;
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+
+    }
+
+    private void renderPanels(MatrixStack matrix) {
+
+        int SMALL_PANEL_WIDTH = 57;
+
+        int BG_HEIGHT = 38;
+        MinecraftClient mc = MinecraftClient.getInstance();
+        mc.getTextureManager()
+            .bindTexture(BIG_PANEL);
+        RenderSystem.enableDepthTest();
+
+        int BG_WIDTH = 237;
+        int xp = mc.getWindow()
+            .getScaledWidth() / 2 - BG_WIDTH / 2;
+        int yp = 0;
+
+        drawTexture(matrix, xp, yp, 0, 0, BG_WIDTH, 39);
+
+        mc.getTextureManager()
+            .bindTexture(SMALL_PANEL);
+        RenderSystem.enableDepthTest();
+
+        int savedx = xp;
+        int savedy = yp;
+
+        // LEFT
+        xp = savedx;
+        yp = savedy;
+
+        String text = "Points: " + entityPerks.data.getFreePoints(Load.Unit(mc.player));
+
+        int tx = xp - mc.textRenderer.getWidth(text) - 10;
+        int yx = yp + BG_HEIGHT / 2 - mc.textRenderer.fontHeight / 2;
+
+        MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, text, tx, yx, Formatting.GREEN.getColorValue());
+
+        text = "Reset Points: " + entityPerks.data.reset_points;
+
+        tx = savedx + 10 + BG_WIDTH;
+
+        MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, text, tx, yx, Formatting.GREEN.getColorValue());
 
     }
 
