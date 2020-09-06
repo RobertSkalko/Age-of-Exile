@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SkillGemRegistrator;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
@@ -29,7 +28,6 @@ import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -89,10 +87,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     }
 
     public abstract BaseGearType.PlayStyle getPlayStyle();
-
-    public Item getItem() {
-        return SkillGemRegistrator.INSTANCE.MAP.get(GUID());
-    }
 
     @Override
     public MutableText getLocName() {

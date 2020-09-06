@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SkillGemRegistrator;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.UniqueGearItemRegister;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
@@ -38,7 +37,6 @@ public class CommonInit implements ModInitializer {
         SlashRegistry.registerAllItems(); // after config registerAll
         SlashRegistry.checkGuidValidity();
 
-        SkillGemRegistrator.INSTANCE = new SkillGemRegistrator();
         ModRegistry.GEAR_ITEMS = new BaseGearTypeItemRegister();
 
         BaseAreas.INSTANCE = new BaseAreas();

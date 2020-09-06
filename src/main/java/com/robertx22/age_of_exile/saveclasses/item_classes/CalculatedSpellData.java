@@ -78,14 +78,4 @@ public class CalculatedSpellData {
 
     }
 
-    public ItemStack toItemStack() {
-        ItemStack stack = new ItemStack(SlashRegistry.Spells()
-            .get(spell_id)
-            .getItem());
-
-        this.saveToStack(stack);
-
-        return stack;
-    }
-
 }
