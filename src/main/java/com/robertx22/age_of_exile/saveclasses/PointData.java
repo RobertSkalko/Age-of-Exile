@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses;
 
+import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -9,6 +10,11 @@ public class PointData {
     public int x;
     @Store
     public int y;
+
+    @Factory
+    protected PointData() {
+
+    }
 
     public PointData(int x, int y) {
         this.x = x;

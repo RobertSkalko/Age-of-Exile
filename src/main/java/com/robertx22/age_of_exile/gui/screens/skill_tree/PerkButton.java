@@ -1,12 +1,16 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
+import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
@@ -24,15 +28,17 @@ public class PerkButton extends TexturedButtonWidget {
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
 
     public Perk perk;
-    PerkStatus status;
     PointData point;
+    SpellSchool school;
+    EntityPerks enperks;
 
-    public PerkButton(PointData point, Perk perk, int x, int y) {
+    public PerkButton(EntityPerks enperks, SpellSchool school, PointData point, Perk perk, int x, int y) {
         super(x, y, perk.getType().width, perk.getType().height, 0, 0, 1, ID, (action) -> {
         });
         this.perk = perk;
         this.point = point;
-        this.status = PerkStatus.CONNECTED; // TODO NEED CAP FOR THIS
+        this.school = school;
+        this.enperks = enperks;
     }
 
     public boolean isInside(int x, int y) {
@@ -48,8 +54,37 @@ public class PerkButton extends TexturedButtonWidget {
         }
     }
 
+    // copied from abstractbutton
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (this.active && this.visible) {
+
+            boolean bl = this.clicked(mouseX, mouseY);
+            if (bl) {
+                this.playDownSound(MinecraftClient.getInstance()
+                    .getSoundManager());
+
+                if (button == 0) {
+                    Packets.sendToServer(new PerkChangePacket(school, point, PerkChangePacket.ACTION.ALLOCATE));
+                }
+                if (button == 1) {
+                    Packets.sendToServer(new PerkChangePacket(school, point, PerkChangePacket.ACTION.REMOVE));
+                }
+                this.onClick(mouseX, mouseY);
+
+                return true;
+            }
+
+            return false;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+
+        PerkStatus status = enperks.getStatus(MinecraftClient.getInstance().player, school, point);
 
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()

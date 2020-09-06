@@ -12,6 +12,12 @@ public enum PlayerCaps {
             return Load.Unit(player);
         }
     },
+    ENTITY_PERKS {
+        @Override
+        public ICommonPlayerCap getCap(PlayerEntity player) {
+            return Load.perks(player);
+        }
+    },
     STAT_POINTS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {

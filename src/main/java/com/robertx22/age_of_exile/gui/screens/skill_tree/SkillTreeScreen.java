@@ -1,12 +1,13 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.database.data.perks.Perk;
+import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils.PointF;
 import javafx.geometry.Point2D;
@@ -70,6 +71,8 @@ public class SkillTreeScreen extends BaseScreen {
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
+    EntityPerks entityPerks = Load.perks(mc.player);
+
     SpellSchool school;
 
     @Override
@@ -127,7 +130,7 @@ public class SkillTreeScreen extends BaseScreen {
                         int x = (int) (point.x - ((float) size / 2));
                         int y = (int) (point.y - ((float) size / 2));
 
-                        this.newButton(new ConnectionButton(Perk.Connection.LINKED, x, y));
+                        this.newButton(new ConnectionButton(school, p, pb.point, x, y));
 
                     }
 
@@ -165,7 +168,7 @@ public class SkillTreeScreen extends BaseScreen {
                 int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
                 int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
 
-                this.newButton(new PerkButton(e.getKey(), e.getValue(), x, y));
+                this.newButton(new PerkButton(entityPerks, school, e.getKey(), e.getValue(), x, y));
             });
 
         int sx = mc.getWindow()

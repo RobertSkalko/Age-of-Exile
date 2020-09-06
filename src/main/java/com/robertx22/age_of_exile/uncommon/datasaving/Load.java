@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.datasaving;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -42,4 +43,7 @@ public class Load {
         return ModRegistry.COMPONENTS.PLAYER_STAT_POINTS.get(provider);
     }
 
+    public static EntityPerks perks(Entity provider) {
+        return ModRegistry.COMPONENTS.PERKS.get(provider);
+    }
 }

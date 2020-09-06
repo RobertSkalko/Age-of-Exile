@@ -66,6 +66,7 @@ public class RarityPacket extends MyPacket<RarityPacket> {
             System.out.println("Failed reading Age of Exile packet to bufferer.");
             e.printStackTrace();
         }
+
     }
 
     @Override

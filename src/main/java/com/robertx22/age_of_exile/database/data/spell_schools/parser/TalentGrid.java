@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.Safety;
 
 import java.util.*;
 
@@ -49,7 +50,7 @@ public class TalentGrid {
 
                     try {
                         Perk perk = point.getPerk();
-                        Objects.requireNonNull(perk);
+                        Safety.logIfNull(perk, point.getId() + " is null!");
                         school.calcData.addPerk(point.getPoint(), perk);
                         perks.add(point);
 
