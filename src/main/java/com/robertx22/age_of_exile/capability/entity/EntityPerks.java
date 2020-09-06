@@ -27,6 +27,10 @@ public class EntityPerks implements ICommonPlayerCap {
         return PlayerCaps.ENTITY_PERKS;
     }
 
+    public void clearAllPerks() {
+        this.data.perks.clear();
+    }
+
     public PerkStatus getStatus(PlayerEntity player, SpellSchool school, PointData point) {
 
         if (isAllocated(school, point)) {

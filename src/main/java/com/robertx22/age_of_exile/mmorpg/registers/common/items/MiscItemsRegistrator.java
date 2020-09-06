@@ -29,6 +29,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item HEART_OF_IMAGINATION = item(new HeartOfImaginationItem(), "mat/modify_part");
 
     public ResetStatPointsItem RESET_STATS_POTION = item(new ResetStatPointsItem());
+    public ResetAllPerksItem RESET_ALL_PERKS = item(new ResetAllPerksItem());
+    public AddResetPerkPointsItem ADD_RESET_PERK_POINTS = item(new AddResetPerkPointsItem());
 
     public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);
     public Item GEAR_REPAIR = blockItem(ModRegistry.BLOCKS.GEAR_REPAIR);
