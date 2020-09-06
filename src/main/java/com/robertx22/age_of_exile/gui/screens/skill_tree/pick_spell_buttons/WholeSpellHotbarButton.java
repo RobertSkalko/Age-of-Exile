@@ -23,7 +23,7 @@ public class WholeSpellHotbarButton extends TexturedButtonWidget implements IMar
         for (int i = 0; i < 9; i++) {
             int xp = x + 8 + (i * 20);
             int yp = y + 9;
-            screen.addButtonPublic(new StartChoosingSpellButton(screen, this, i, xp, yp));
+            screen.addButtonPublic(new SpellHotbarButton(screen, this, i, xp, yp));
         }
 
     }

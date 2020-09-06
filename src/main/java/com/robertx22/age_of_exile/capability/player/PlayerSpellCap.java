@@ -97,7 +97,9 @@ public class PlayerSpellCap {
             return Load.perks(en)
                 .getAllAllocatedPerks()
                 .stream()
-                .filter(x -> x.getSpell() != null)
+                .filter(x -> x.getSpell() != null && !x.getSpell()
+                    .GUID()
+                    .isEmpty())
                 .map(p -> p.getSpell())
                 .collect(Collectors.toList());
         }

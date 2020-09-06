@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking.PossibleSpellsOverviewButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
@@ -11,7 +12,7 @@ import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-public class StartChoosingSpellButton extends TexturedButtonWidget implements IMarkOnTop {
+public class SpellHotbarButton extends TexturedButtonWidget implements IMarkOnTop {
 
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/hotbar.png");
 
@@ -21,7 +22,7 @@ public class StartChoosingSpellButton extends TexturedButtonWidget implements IM
 
     int hotbar;
 
-    public StartChoosingSpellButton(SkillTreeScreen screen, WholeSpellHotbarButton hb, int hotbarPosition, int x, int y) {
+    public SpellHotbarButton(SkillTreeScreen screen, WholeSpellHotbarButton hb, int hotbarPosition, int x, int y) {
         super(x, y, XSIZE, YSIZE, 0, 0, 1, ID, (action) -> {
             screen.addButtonPublic(new PossibleSpellsOverviewButton(screen, hotbarPosition, hb.x, hb.y - PossibleSpellsOverviewButton.YSIZE));
 

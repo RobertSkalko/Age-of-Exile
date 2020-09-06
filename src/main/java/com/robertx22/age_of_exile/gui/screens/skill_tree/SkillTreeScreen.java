@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SelectTreeButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SpellSchoolButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.WholeSpellHotbarButton;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking.PickSpellForHotBarButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -47,6 +48,42 @@ public class SkillTreeScreen extends BaseScreen {
             .getScaledWidth(), MinecraftClient.getInstance()
             .getWindow()
             .getScaledHeight());
+    }
+
+    @Override
+    public boolean mouseReleased(double x, double y, int ticks) {
+
+        boolean didClickInside = false;
+        for (AbstractButtonWidget b : buttons) {
+            if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getWidth()),
+                new Point((int) x, (int) y)
+            )) {
+                if (b instanceof IRemoveOnClickedOutside) {
+                    didClickInside = true;
+                }
+            }
+        }
+
+        if (!didClickInside) {
+            boolean did = false;
+            if (this.buttons.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
+                did = true;
+            }
+            if (this.children.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
+                did = true;
+            }
+            if (did) {
+                this.refreshButtons();
+            }
+        }
+
+        return super.mouseReleased(x, y, ticks);
+
+    }
+
+    public void removePerkButtons() {
+        this.buttons.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
+        this.children.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
     }
 
     @Override
@@ -296,6 +333,14 @@ public class SkillTreeScreen extends BaseScreen {
         buttons.forEach(b -> {
 
             if (b instanceof IMarkOnTop) {
+                b.render(matrix, x, y, ticks);
+            }
+
+        });
+
+        buttons.forEach(b -> {
+
+            if (b instanceof PickSpellForHotBarButton) {
                 b.render(matrix, x, y, ticks);
             }
 
