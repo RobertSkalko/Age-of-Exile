@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import info.loenwind.autosave.annotations.Storable;
@@ -38,7 +38,7 @@ public class EntitySpellData {
     public EntityCalcSpellConfigs configs;
 
     @Store
-    public SkillGemData skillgem;
+    public CalculatedSpellData skillgem;
 
     @Store
     private String spellGUID = "";
@@ -56,7 +56,7 @@ public class EntitySpellData {
         return lifeInTicks - ticksExisted;
     }
 
-    public EntitySpellData(SkillGemData skillgem, LivingEntity caster, EntityCalcSpellConfigs config) {
+    public EntitySpellData(CalculatedSpellData skillgem, LivingEntity caster, EntityCalcSpellConfigs config) {
         this.skillgem = skillgem;
         this.spellGUID = skillgem.getSpell()
             .GUID();

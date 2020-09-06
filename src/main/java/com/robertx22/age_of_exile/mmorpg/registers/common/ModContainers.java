@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.gui.screens.spell_hotbar_setup.HotbarSetupContainer;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.util.Identifier;
@@ -13,7 +12,6 @@ public class ModContainers {
     public Identifier GEAR_REPAIR = id("repair");
     public Identifier GEAR_SALVAGE = id("salvage");
     public Identifier GEAR_SOCKET = id("socket");
-    public Identifier HOTBAR_SETUP = id("hotbar_setup");
 
     Identifier id(String id) {
         return new Identifier(Ref.MODID, id);
@@ -26,9 +24,6 @@ public class ModContainers {
         register(GEAR_SALVAGE);
         register(GEAR_SOCKET);
 
-        ContainerProviderRegistry.INSTANCE.registerFactory(HOTBAR_SETUP, (syncId, identifier, player, buf) -> {
-            return new HotbarSetupContainer(syncId, player);
-        });
     }
 
     @SuppressWarnings("deprecation")

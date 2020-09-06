@@ -4,7 +4,12 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
+import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,7 +45,31 @@ public class PlayerPerksData {
         return perks.get(school.GUID());
     }
 
-    public void allocate(SpellSchool school, PointData point) {
+    public void allocate(PlayerEntity player, SpellSchool school, PointData point) {
+        Perk perk = school.calcData.perks.get(point);
+
+        if (SlashRegistry.Spells()
+            .isRegistered(perk.spell)) {
+
+            for (Map.Entry<Integer, String> entry : new HashMap<>(Load.spells(player)
+                .getCastingData()
+                .getBar())
+                .entrySet()) {
+
+                if (entry.getValue()
+                    .isEmpty()) {
+                    Load.spells(player)
+                        .getCastingData()
+                        .getBar()
+                        .put(entry.getKey(), perk.spell);
+                    break;
+                }
+
+            }
+
+        }
+        Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
+
         getSchool(school).map.put(point, true);
     }
 

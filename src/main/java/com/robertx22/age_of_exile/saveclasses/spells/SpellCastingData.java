@@ -5,21 +5,16 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseS
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
-import com.robertx22.age_of_exile.uncommon.datasaving.SkillGem;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Storable
-public class SpellCastingData implements Inventory {
+public class SpellCastingData {
 
     @Store
     public int castingTicksLeft = 0;
@@ -36,14 +31,23 @@ public class SpellCastingData implements Inventory {
     public String spellBeingCast = "";
 
     @Store
-    private HashMap<Integer, ItemStack> bar = new HashMap<>();
+    private HashMap<Integer, String> bar = new HashMap<>();
+
+    public HashMap<Integer, String> getBar() {
+        for (int i = 0; i < 9; i++) {
+            if (!bar.containsKey(i)) {
+                bar.put(i, "");
+            }
+        }
+        return bar;
+    }
 
     @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
 
     public void cancelCast(PlayerEntity player) {
         try {
-            SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(getSpellBeingCast().GUID()));
+            SpellCastContext ctx = new SpellCastContext(player, 0, getSpellBeingCast());
 
             BaseSpell spell = getSpellBeingCast();
             if (spell != null && spell.goesOnCooldownIfCastCanceled()) {
@@ -84,7 +88,7 @@ public class SpellCastingData implements Inventory {
                 BaseSpell spell = SlashRegistry.Spells()
                     .get(spellBeingCast);
 
-                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, getSkillGem(spellBeingCast));
+                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
 
                 if (!player.world.isClient) {
                     if (spell != null && spells != null && SlashRegistry.Spells()
@@ -125,7 +129,7 @@ public class SpellCastingData implements Inventory {
     }
 
     public void setToCast(BaseSpell spell, PlayerEntity player) {
-        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         this.spellBeingCast = spell.GUID();
         this.castingTicksLeft = spell.useTimeTicks(ctx);
@@ -162,22 +166,6 @@ public class SpellCastingData implements Inventory {
 
     }
 
-    public void setHotbar(int number, SkillGemData data) {
-
-        if (data != null) {
-            if (!SlashRegistry.Spells()
-                .isRegistered(data.spell_id)) {
-                try {
-                    throw new Exception("Trying to setup spell that isn't registered!");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        getHotbar().put(number, data);
-    }
-
     public BaseSpell getSpellBeingCast() {
         return SlashRegistry.Spells()
             .get(spellBeingCast);
@@ -192,9 +180,6 @@ public class SpellCastingData implements Inventory {
         if (spell == null) {
             return false;
         }
-        if (getSkillGem(spell.GUID()) == null) {
-            return false;
-        }
 
         SpellData data = getDataBySpell(spell);
 
@@ -202,7 +187,7 @@ public class SpellCastingData implements Inventory {
             return false;
         }
 
-        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         return spell.canCast(ctx);
 
@@ -211,7 +196,7 @@ public class SpellCastingData implements Inventory {
     private void onSpellCast(BaseSpell spell, PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
         SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-        SpellCastContext ctx = new SpellCastContext(player, 0, getSkillGem(spell.GUID()));
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         if (spell.shouldActivateCooldown(player, spells)) {
             int cd = spell.getCooldownInTicks(ctx);
@@ -219,32 +204,6 @@ public class SpellCastingData implements Inventory {
         }
 
         spellDatas.put(spell.GUID(), data);
-
-    }
-
-    public HashMap<Integer, SkillGemData> getHotbar() {
-        HashMap<Integer, SkillGemData> datamap = new HashMap<>();
-        bar.forEach((key, value) -> {
-            SkillGemData gem = SkillGem.Load(value);
-            if (gem != null) {
-                datamap.put(key, gem);
-            }
-        });
-        return datamap;
-    }
-
-    public SkillGemData getSkillGem(String id) {
-
-        Optional<SkillGemData> opt1 = getHotbar().values()
-            .stream()
-            .filter(x -> x.spell_id.equals(id))
-            .findFirst();
-
-        if (opt1.isPresent()) {
-            return opt1.get();
-        }
-
-        return null;
 
     }
 
@@ -260,15 +219,11 @@ public class SpellCastingData implements Inventory {
 
     }
 
-    public SkillGemData getSkillGemByNumber(int key) {
-        return getHotbar().getOrDefault(key, new SkillGemData());
-    }
-
     public BaseSpell getSpellByNumber(int key) {
 
         String id = "";
         try {
-            id = getHotbar().getOrDefault(key, new SkillGemData()).spell_id;
+            id = bar.getOrDefault(key, "");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -284,43 +239,4 @@ public class SpellCastingData implements Inventory {
         return null;
     }
 
-    @Override
-    public int size() {
-        return 9;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return bar.isEmpty();
-    }
-
-    @Override
-    public ItemStack getStack(int slot) {
-        return bar.getOrDefault(slot, ItemStack.EMPTY);
-    }
-
-    @Override
-    public ItemStack removeStack(int slot, int amount) {
-        return bar.put(slot, ItemStack.EMPTY);
-    }
-
-    @Override
-    public ItemStack removeStack(int slot) {
-        return bar.put(slot, ItemStack.EMPTY);
-    }
-
-    @Override
-    public void setStack(int slot, ItemStack stack) {
-        bar.put(slot, stack);
-    }
-
-    @Override
-    public void markDirty() {
-
-    }
-
-    @Override
-    public boolean canPlayerUse(PlayerEntity player) {
-        return true;
-    }
 }

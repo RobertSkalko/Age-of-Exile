@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.conf
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
@@ -37,7 +37,7 @@ public class PreCalcSpellConfigs {
 
     public int maxSpellLevel = 12;
 
-    public SpellCalcData getCalc(SkillGemData skillgem) {
+    public SpellCalcData getCalc(CalculatedSpellData skillgem) {
 
         if (has(SC.ATTACK_SCALE_VALUE)) {
             return SpellCalcData.scaleWithAttack(

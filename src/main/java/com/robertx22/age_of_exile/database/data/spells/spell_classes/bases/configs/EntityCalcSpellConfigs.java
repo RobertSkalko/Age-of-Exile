@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs;
 
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
@@ -36,7 +36,7 @@ public class EntityCalcSpellConfigs {
         return map.get(sc);
     }
 
-    public EntityCalcSpellConfigs(SkillGemData skillgem) {
+    public EntityCalcSpellConfigs(CalculatedSpellData skillgem) {
 
         PreCalcSpellConfigs pre = skillgem.getSpell()
             .getPreCalcConfig();

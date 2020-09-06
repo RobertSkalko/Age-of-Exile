@@ -1,31 +1,22 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
-import com.robertx22.age_of_exile.database.base.Rarities;
-import com.robertx22.age_of_exile.database.data.rarities.ISkillGemRarity;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.uncommon.datasaving.SkillGem;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.age_of_exile.uncommon.datasaving.CalculatedSpellDataSaving;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Storable
-public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
+public class CalculatedSpellData {
 
 // todo add affixes and stuff
 
@@ -33,26 +24,14 @@ public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
     public String spell_id = "";
 
     @Store
-    public int rarity = 0;
-
-    @Store
     public int level = 1;
 
-    @Store
-    public int stat_percents = 0;
-
-    public SkillGemData() {
+    public CalculatedSpellData() {
 
     }
 
-    @Override
-    public DataItemType getDataType() {
-        return DataItemType.SKILL_GEM;
-    }
-
-    @Override
     public void saveToStack(ItemStack stack) {
-        SkillGem.Save(stack, this);
+        CalculatedSpellDataSaving.Save(stack, this);
     }
 
     public BaseSpell getSpell() {
@@ -60,7 +39,6 @@ public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
             .get(spell_id);
     }
 
-    @Override
     public void BuildTooltip(TooltipContext ctx) {
 
         try {
@@ -87,10 +65,6 @@ public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
 
             ctx.tooltip.addAll(spell.GetTooltipString(info, this));
 
-            ctx.tooltip.add(getRarity().locName()
-                .append(" Level " + level + " item")
-                .formatted(getRarity().textFormatting()));
-
             if (!Screen.hasShiftDown()) {
                 ctx.tooltip.add(new LiteralText(Formatting.BLUE + "")
                     .append(Words.AltDescShiftDetails.locName()
@@ -102,31 +76,6 @@ public class SkillGemData implements ICommonDataItem<ISkillGemRarity> {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    public List<ItemStack> getSalvageResult(float salvageBonus) {
-        Item item = ItemUtils.randomMagicEssence();
-        ItemStack stack = new ItemStack(item);
-
-        List<ItemStack> list = new ArrayList<>();
-        list.add(stack);
-        return list;
-    }
-
-    @Override
-    public int getRarityRank() {
-        return rarity;
-    }
-
-    @Override
-    public ISkillGemRarity getRarity() {
-        return Rarities.SkillGems.get(rarity);
-    }
-
-    @Override
-    public int getTier() {
-        return 0;
     }
 
     public ItemStack toItemStack() {

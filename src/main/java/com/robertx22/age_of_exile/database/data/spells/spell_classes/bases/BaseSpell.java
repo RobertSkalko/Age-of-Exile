@@ -14,7 +14,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SkillGemRegistrator;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.IAbility;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
@@ -278,7 +278,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
     }
 
-    public final List<Text> GetTooltipString(TooltipInfo info, SkillGemData skillgem) {
+    public final List<Text> GetTooltipString(TooltipInfo info, CalculatedSpellData skillgem) {
 
         SpellCastContext ctx = new SpellCastContext(info.player, 0, skillgem);
 

@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleSpellUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
@@ -143,7 +142,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data.ticksToCompItems > TicksToCompatibleItems) {
                     CompatibleItemUtils.checkAndGenerate(player);
-                    CompatibleSpellUtils.checkAndGenerate(player);
                     data.ticksToCompItems = 0;
 
                     // area changing notification

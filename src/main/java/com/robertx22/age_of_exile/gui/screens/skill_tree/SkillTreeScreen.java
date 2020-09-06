@@ -5,15 +5,18 @@ import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
+import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.ConnectionButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SelectTreeButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SpellSchoolButton;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.SpellHotbarButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.WholeSpellHotbarButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking.PickSpellForHotBarButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.library_of_exile.main.Packets;
@@ -35,7 +38,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.*;
 
-public class SkillTreeScreen extends BaseScreen {
+public class SkillTreeScreen extends BaseScreen implements INamedScreen {
     static Identifier BIG_PANEL = new Identifier(Ref.MODID, "textures/gui/skill_tree/background.png");
     static Identifier SMALL_PANEL = new Identifier(Ref.MODID, "textures/gui/skill_tree/small_panel.png");
 
@@ -48,6 +51,19 @@ public class SkillTreeScreen extends BaseScreen {
             .getScaledWidth(), MinecraftClient.getInstance()
             .getWindow()
             .getScaledHeight());
+    }
+
+    public void removeRemovableButtons() {
+        boolean did = false;
+        if (this.buttons.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
+            did = true;
+        }
+        if (this.children.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
+            did = true;
+        }
+        if (did) {
+            this.refreshButtons();
+        }
     }
 
     @Override
@@ -65,16 +81,7 @@ public class SkillTreeScreen extends BaseScreen {
         }
 
         if (!didClickInside) {
-            boolean did = false;
-            if (this.buttons.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
-                did = true;
-            }
-            if (this.children.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
-                did = true;
-            }
-            if (did) {
-                this.refreshButtons();
-            }
+            removeRemovableButtons();
         }
 
         return super.mouseReleased(x, y, ticks);
@@ -340,7 +347,7 @@ public class SkillTreeScreen extends BaseScreen {
 
         buttons.forEach(b -> {
 
-            if (b instanceof PickSpellForHotBarButton) {
+            if (b instanceof PickSpellForHotBarButton || b instanceof SpellHotbarButton) {
                 b.render(matrix, x, y, ticks);
             }
 
@@ -424,4 +431,13 @@ public class SkillTreeScreen extends BaseScreen {
         tessellator.draw();
     }
 
+    @Override
+    public Identifier iconLocation() {
+        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/skill_tree.png");
+    }
+
+    @Override
+    public Words screenName() {
+        return Words.SkillTrees;
+    }
 }

@@ -1,7 +1,10 @@
 package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.loot.generators.*;
+import com.robertx22.age_of_exile.loot.generators.CurrencyLootGen;
+import com.robertx22.age_of_exile.loot.generators.GearLootGen;
+import com.robertx22.age_of_exile.loot.generators.GemLootGem;
+import com.robertx22.age_of_exile.loot.generators.RuneLootGen;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,7 +56,6 @@ public class MasterLootGen {
 
         items.addAll(new CurrencyLootGen(info).tryGenerate());
         items.addAll(new GearLootGen(info).tryGenerate());
-        items.addAll(new SkillGemLootGen(info).tryGenerate());
         items.addAll(new GemLootGem(info).tryGenerate());
         items.addAll(new RuneLootGen(info).tryGenerate());
 

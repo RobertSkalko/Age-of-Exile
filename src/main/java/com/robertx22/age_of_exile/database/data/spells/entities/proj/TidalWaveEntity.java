@@ -63,7 +63,6 @@ public class TidalWaveEntity extends BaseElementalBoltEntity {
                 }
                 if (age % 2 == 0) {
                     ParticleUtils.spawn(ParticleTypes.DRIPPING_WATER, world, getPos());
-
                 }
             }
         }

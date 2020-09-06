@@ -68,7 +68,7 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
         PointData point = new PointData(x, y);
         if (action == ACTION.ALLOCATE) {
             if (perks.data.canAllocate(sc, point, Load.Unit(ctx.getPlayer()), ctx.getPlayer())) {
-                perks.data.allocate(sc, new PointData(x, y));
+                perks.data.allocate(ctx.getPlayer(), sc, new PointData(x, y));
             }
         } else if (action == ACTION.REMOVE) {
             if (perks.data.canRemove(sc, point, ctx.getPlayer())) {

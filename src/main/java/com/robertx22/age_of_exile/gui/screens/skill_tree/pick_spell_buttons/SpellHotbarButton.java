@@ -1,12 +1,15 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons;
 
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.registry.empty_entries.EmptySpell;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking.PossibleSpellsOverviewButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.spells.HotbarSetupPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -42,7 +45,32 @@ public class SpellHotbarButton extends TexturedButtonWidget implements IMarkOnTo
             MinecraftClient mc = MinecraftClient.getInstance();
             mc.getTextureManager()
                 .bindTexture(spell.getIconLoc());
-            RenderUtils.render16Icon(matrices, spell.getIconLoc(), this.x + 4, this.y + 4);
+            RenderUtils.render16Icon(matrices, spell.getIconLoc(), this.x + 0, this.y + 0);
+        }
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (this.active && this.visible) {
+
+            boolean bl = this.clicked(mouseX, mouseY);
+            if (bl) {
+                this.playDownSound(MinecraftClient.getInstance()
+                    .getSoundManager());
+
+                if (button == 0) {
+                    this.onClick(mouseX, mouseY);
+                }
+                if (button == 1) {
+                    Packets.sendToServer(new HotbarSetupPacket(new EmptySpell(), hotbar));
+                }
+
+                return true;
+            }
+
+            return false;
+        } else {
+            return false;
         }
     }
 

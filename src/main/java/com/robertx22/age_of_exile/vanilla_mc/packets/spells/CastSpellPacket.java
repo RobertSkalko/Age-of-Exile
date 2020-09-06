@@ -68,8 +68,7 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
                 spells.getCastingData()
                     .setToCast(spell, player);
 
-                SpellCastContext c = new SpellCastContext(player, 0, spells.getCastingData()
-                    .getSkillGem(spell.GUID()));
+                SpellCastContext c = new SpellCastContext(player, 0, spell);
                 spell.spendResources(c);
             }
 

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.level_based_numbers;
 
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import net.minecraft.util.math.MathHelper;
 
 public class LevelBased {
@@ -31,8 +31,8 @@ public class LevelBased {
         return min == ERROR || max == ERROR; // unsure how to use this
     }
 
-    public float get(SkillGemData data) {
-        return get(data.stat_percents);
+    public float get(CalculatedSpellData data) {
+        return get(100);
     }
 
     public float getMax() {

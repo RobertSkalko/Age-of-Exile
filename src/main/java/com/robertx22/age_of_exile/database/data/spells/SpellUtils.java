@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.bases.ISpellEnti
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -95,7 +95,7 @@ public class SpellUtils {
 
     public static <T extends Entity> T getSpellEntity(EntityCalcSpellConfigs config, T spellEntity,
 
-                                                      SkillGemData skillgem,
+                                                      CalculatedSpellData skillgem,
 
                                                       LivingEntity caster
 
@@ -127,7 +127,7 @@ public class SpellUtils {
     public static void healCaster(SpellCastContext ctx) {
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
-                ctx.getConfigFor(ctx.ability)
+                ctx.getConfigFor(ctx.spell)
                     .getCalc(ctx.skillGem)
                     .getCalculatedValue(ctx.data, ctx.skillGem), ResourcesData.Use.RESTORE,
                 ctx.spell
@@ -138,7 +138,7 @@ public class SpellUtils {
     public static void healCasterMagicShield(SpellCastContext ctx) {
         ctx.data
             .modifyResource(new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.MAGIC_SHIELD,
-                ctx.getConfigFor(ctx.ability)
+                ctx.getConfigFor(ctx.spell)
                     .getCalc(ctx.skillGem)
                     .getCalculatedValue(ctx.data, ctx.skillGem), ResourcesData.Use.RESTORE,
                 ctx.spell

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.IAbility;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
@@ -20,10 +20,9 @@ public class SpellCastContext {
     public final PlayerSpellCap.ISpellsCap spellsCap;
     public final int ticksInUse;
     public final BaseSpell spell;
-    public final IAbility ability;
     public boolean isLastCastTick;
     public boolean castedThisTick = false;
-    public SkillGemData skillGem;
+    public CalculatedSpellData skillGem;
 
     public EntityCalcSpellConfigs configForSummonedEntities;
 
@@ -45,13 +44,21 @@ public class SpellCastContext {
         return cacheMap.get(ability.GUID());
     }
 
-    public SpellCastContext(LivingEntity caster, int ticksInUse, SkillGemData skillgem) {
+    private void calcSpellData() {
+        this.skillGem = new CalculatedSpellData();
+        skillGem.level = this.data.getLevel();
+        skillGem.spell_id = spell.GUID();
+    }
+
+    public SpellCastContext(LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {
+        this(caster, ticksInUse, spell.getSpell());
+    }
+
+    public SpellCastContext(LivingEntity caster, int ticksInUse, BaseSpell spell) {
         this.caster = caster;
         this.ticksInUse = ticksInUse;
 
-        this.skillGem = skillgem;
-
-        this.ability = skillgem.getSpell();
+        this.spell = spell;
 
         this.data = Load.Unit(caster);
 
@@ -61,14 +68,15 @@ public class SpellCastContext {
             this.spellsCap = new PlayerSpellCap.DefaultImpl();
         }
 
-        this.configForSummonedEntities = new EntityCalcSpellConfigs(skillgem);
+        calcSpellData();
 
-        this.spell = ability.getSpell();
+        this.configForSummonedEntities = new EntityCalcSpellConfigs(this.skillGem);
 
         if (spell != null) {
             int castTicks = (int) getConfigFor(spell).get(SC.CAST_TIME_TICKS)
                 .get(skillGem);
             this.isLastCastTick = castTicks == ticksInUse;
         }
+
     }
 }

@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.uncommon.datasaving;
 
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 
-public class SkillGem {
+public class CalculatedSpellDataSaving {
 
     private static final String LOC = "skill_gem_data";
 
@@ -14,7 +14,7 @@ public class SkillGem {
             .contains(LOC);
     }
 
-    public static SkillGemData Load(ItemStack stack) {
+    public static CalculatedSpellData Load(ItemStack stack) {
 
         if (stack == null) {
             return null;
@@ -23,11 +23,11 @@ public class SkillGem {
             return null;
         }
 
-        return LoadSave.Load(SkillGemData.class, new SkillGemData(), stack.getTag(), LOC);
+        return LoadSave.Load(CalculatedSpellData.class, new CalculatedSpellData(), stack.getTag(), LOC);
 
     }
 
-    public static void Save(ItemStack stack, SkillGemData gem) {
+    public static void Save(ItemStack stack, CalculatedSpellData gem) {
 
         if (stack == null) {
             return;

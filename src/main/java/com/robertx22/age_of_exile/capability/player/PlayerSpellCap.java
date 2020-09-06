@@ -2,13 +2,11 @@ package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.List;
@@ -26,11 +24,8 @@ public class PlayerSpellCap {
 
         public abstract SpellCastingData getCastingData();
 
-        public abstract SkillGemData getCurrentSkillGem();
-
         public abstract List<BaseSpell> getLearnedSpells(LivingEntity en);
 
-        public abstract Inventory getInventory();
     }
 
     public static class DefaultImpl extends ISpellsCap {
@@ -83,15 +78,6 @@ public class PlayerSpellCap {
             return this.spellCastingData;
         }
 
-        // client only
-        @Override
-        public SkillGemData getCurrentSkillGem() {
-            return
-                getCastingData()
-                    .getSkillGemByNumber(SpellCastingData.selectedSpell);
-
-        }
-
         @Override
         public List<BaseSpell> getLearnedSpells(LivingEntity en) {
             return Load.perks(en)
@@ -102,11 +88,6 @@ public class PlayerSpellCap {
                     .isEmpty())
                 .map(p -> p.getSpell())
                 .collect(Collectors.toList());
-        }
-
-        @Override
-        public Inventory getInventory() {
-            return getCastingData();
         }
 
     }

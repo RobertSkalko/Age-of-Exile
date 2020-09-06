@@ -8,7 +8,7 @@ import java.util.Locale;
 public enum Words implements IAutoLocName {
 
     AltDescShiftDetails("[Shift]: Details"),
-
+    SkillTrees("Skill Trees"),
     Miracle("Miracle"),
     Oblivion("Oblivion"),
     Beast("Beast"),

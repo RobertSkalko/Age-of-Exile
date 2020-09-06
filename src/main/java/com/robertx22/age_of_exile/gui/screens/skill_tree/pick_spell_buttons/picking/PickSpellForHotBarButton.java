@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.IRemoveOnClickedOutside
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.spells.HotbarSetupPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -22,8 +24,8 @@ public class PickSpellForHotBarButton extends TexturedButtonWidget implements IM
 
     public PickSpellForHotBarButton(SkillTreeScreen screen, int hotbarPosition, BaseSpell spell, int x, int y) {
         super(x, y, XSIZE, YSIZE, 0, 0, 1, ID, (action) -> {
-
-            // todo send choose spell packet
+            Packets.sendToServer(new HotbarSetupPacket(spell, hotbarPosition));
+            screen.removeRemovableButtons();
 
         });
         this.spell = spell;

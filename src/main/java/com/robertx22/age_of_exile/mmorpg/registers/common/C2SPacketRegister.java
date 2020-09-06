@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.OpenSpellSetupContainerPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.RequestAreaSyncPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
@@ -19,7 +18,6 @@ public class C2SPacketRegister {
         Packets.registerClientToServerPacket(new SpendStatPointsPacket());
         Packets.registerClientToServerPacket(new HotbarSetupPacket());
         Packets.registerClientToServerPacket(new CastSpellPacket());
-        Packets.registerClientToServerPacket(new OpenSpellSetupContainerPacket());
         Packets.registerClientToServerPacket(new RequestAreaSyncPacket());
         Packets.registerClientToServerPacket(new PerkChangePacket());
 

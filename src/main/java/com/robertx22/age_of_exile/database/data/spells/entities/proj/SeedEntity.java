@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.entities.proj;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
@@ -75,7 +75,7 @@ public class SeedEntity extends EntityBaseProjectile {
 
                     if (canPlace(pos)) {
 
-                        SkillGemData skillgem = getSpellData().skillgem;
+                        CalculatedSpellData skillgem = getSpellData().skillgem;
 
                         caster.world.setBlockState(pos, skillgem.getSpell()
                             .getImmutableConfigs()

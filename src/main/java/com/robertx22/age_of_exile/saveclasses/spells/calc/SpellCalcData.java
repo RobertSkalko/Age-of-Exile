@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
@@ -101,7 +101,7 @@ public class SpellCalcData {
             .sum();
     }
 
-    public int getCalculatedValue(EntityCap.UnitData data, SkillGemData skillgem) {
+    public int getCalculatedValue(EntityCap.UnitData data, CalculatedSpellData skillgem) {
         int val = getCalculatedScalingValue(data);
         val += getCalculatedBaseValue(skillgem.level);
         return val;

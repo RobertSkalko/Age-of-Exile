@@ -1,33 +1,33 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.item_classes.SkillGemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.datasaving.SkillGem;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
 
     public int number;
-    public int invSlot = 0;
+    public String spell;
 
     public HotbarSetupPacket() {
 
     }
 
-    public HotbarSetupPacket(int invSlot, int num) {
+    public HotbarSetupPacket(BaseSpell spell, int num) {
         this.number = num;
-        this.invSlot = invSlot;
+        this.spell = spell.GUID();
     }
 
     @Override
@@ -38,15 +38,14 @@ public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         number = tag.readInt();
-        invSlot = tag.readInt();
+        spell = tag.readString(30);
 
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
-
         tag.writeInt(number);
-        tag.writeInt(invSlot);
+        tag.writeString(spell, 30);
 
     }
 
@@ -58,28 +57,19 @@ public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
         SpellCastingData data = Load.spells(player)
             .getCastingData();
 
-        if (invSlot < 0) {
-            SkillGemData skillgem = data.getHotbar()
-                .get(number);
-            if (skillgem != null) {
-                PlayerUtils.giveItem(skillgem.toItemStack(), player);
-                data.getHotbar()
-                    .remove(number);
-            }
-        } else {
-            ItemStack stack = player.inventory.main.get(invSlot);
-
-            SkillGemData skillgem = SkillGem.Load(stack);
-
-            if (skillgem != null) {
-
-                stack.decrement(1);
-
-                data.setHotbar(number, skillgem);
-
-                Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
+        for (Map.Entry<Integer, String> entry : new HashMap<>(data.getBar()).entrySet()) {
+            if (entry.getValue()
+                .equals(this.spell)) {
+                data.getBar()
+                    .put(entry.getKey(), ""); // no duplicate spells on hotbar
             }
         }
+
+        data.getBar()
+            .put(this.number, this.spell);
+
+        Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
+
     }
 
     @Override
