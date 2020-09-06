@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.gui.screens.skill_tree;
+package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
@@ -28,9 +28,9 @@ public class PerkButton extends TexturedButtonWidget {
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
 
     public Perk perk;
-    PointData point;
-    SpellSchool school;
-    EntityPerks enperks;
+    public PointData point;
+    public SpellSchool school;
+    public EntityPerks enperks;
 
     public PerkButton(EntityPerks enperks, SpellSchool school, PointData point, Perk perk, int x, int y) {
         super(x, y, perk.getType().width, perk.getType().height, 0, 0, 1, ID, (action) -> {

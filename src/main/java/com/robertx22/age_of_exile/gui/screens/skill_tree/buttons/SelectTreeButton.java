@@ -1,10 +1,12 @@
-package com.robertx22.age_of_exile.gui.screens.skill_tree;
+package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
+import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.util.Identifier;
 
-public class SelectTreeButton extends TexturedButtonWidget {
+public class SelectTreeButton extends TexturedButtonWidget implements IMarkOnTop {
 
     public enum LeftOrRight {
         LEFT, RIGHT

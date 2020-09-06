@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.gui.screens.skill_tree;
+package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;

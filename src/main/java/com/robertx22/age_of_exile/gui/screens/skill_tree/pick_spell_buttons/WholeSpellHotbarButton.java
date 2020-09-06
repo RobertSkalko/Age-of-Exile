@@ -1,10 +1,12 @@
-package com.robertx22.age_of_exile.gui.screens.skill_tree;
+package com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons;
 
+import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.util.Identifier;
 
-public class WholeSpellHotbarButton extends TexturedButtonWidget {
+public class WholeSpellHotbarButton extends TexturedButtonWidget implements IMarkOnTop {
 
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/hotbar.png");
 
@@ -17,6 +19,13 @@ public class WholeSpellHotbarButton extends TexturedButtonWidget {
 
         });
         this.screen = screen;
+
+        for (int i = 0; i < 9; i++) {
+            int xp = x + 8 + (i * 20);
+            int yp = y + 9;
+            screen.addButtonPublic(new StartChoosingSpellButton(screen, this, i, xp, yp));
+        }
+
     }
 
 }

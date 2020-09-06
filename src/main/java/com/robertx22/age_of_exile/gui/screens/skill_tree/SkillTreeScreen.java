@@ -5,6 +5,11 @@ import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.ConnectionButton;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SelectTreeButton;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SpellSchoolButton;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.WholeSpellHotbarButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -74,11 +79,11 @@ public class SkillTreeScreen extends BaseScreen {
 
     }
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    public MinecraftClient mc = MinecraftClient.getInstance();
 
     EntityPerks entityPerks = Load.perks(mc.player);
 
-    SpellSchool school;
+    public SpellSchool school;
 
     @Override
     protected void init() {
@@ -96,6 +101,10 @@ public class SkillTreeScreen extends BaseScreen {
 
         goToCenter();
 
+    }
+
+    public void addButtonPublic(AbstractButtonWidget b) {
+        this.addButton(b);
     }
 
     private void addConnections() {
@@ -286,7 +295,7 @@ public class SkillTreeScreen extends BaseScreen {
 
         buttons.forEach(b -> {
 
-            if (b instanceof SpellSchoolButton || b instanceof SelectTreeButton || b instanceof WholeSpellHotbarButton) {
+            if (b instanceof IMarkOnTop) {
                 b.render(matrix, x, y, ticks);
             }
 
