@@ -5,7 +5,9 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Storable
 public class SchoolData {
@@ -15,6 +17,14 @@ public class SchoolData {
 
     public boolean isAllocated(PointData point) {
         return map.getOrDefault(point, false);
+    }
+
+    public List<PointData> getAllocatedPoints() {
+        return map.entrySet()
+            .stream()
+            .filter(x -> x.getValue())
+            .map(x -> x.getKey())
+            .collect(Collectors.toList());
     }
 
     public int getAllocatedPointsInSchool() {

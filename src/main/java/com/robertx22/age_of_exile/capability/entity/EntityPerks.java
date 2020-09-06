@@ -1,11 +1,15 @@
 package com.robertx22.age_of_exile.capability.entity;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.perks.PlayerPerksData;
+import com.robertx22.age_of_exile.saveclasses.perks.SchoolData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -13,7 +17,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 
-public class EntityPerks implements ICommonPlayerCap {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     LivingEntity entity;
 
     public PlayerPerksData data = new PlayerPerksData();
@@ -29,6 +37,20 @@ public class EntityPerks implements ICommonPlayerCap {
 
     public void clearAllPerks() {
         this.data.perks.clear();
+    }
+
+    public List<Perk> getAllAllocatedPerks() {
+        List<Perk> perks = new ArrayList<>();
+        for (Map.Entry<String, SchoolData> x : data.perks.entrySet()) {
+            SpellSchool school = SlashRegistry.SpellSchools()
+                .get(x.getKey());
+            for (PointData p : x.getValue()
+                .getAllocatedPoints()) {
+                perks.add(school.calcData.perks.get(p));
+            }
+        }
+
+        return perks;
     }
 
     public PerkStatus getStatus(PlayerEntity player, SpellSchool school, PointData point) {
@@ -94,5 +116,14 @@ public class EntityPerks implements ICommonPlayerCap {
         }
 
         return tag;
+    }
+
+    @Override
+    public void applyStats(EntityCap.UnitData data) {
+        for (Perk x : getAllAllocatedPerks()) {
+            for (OptScaleExactStat s : x.stats) {
+                s.applyStats(data);
+            }
+        }
     }
 }

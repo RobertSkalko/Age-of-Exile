@@ -63,7 +63,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList {
         if (stat.UsesSecondValue()) {
             return new StatModifier(first, first, second, second, stat, getModType());
         } else {
-            return new StatModifier(first, second, stat, getModType());
+            return new StatModifier(first, first, stat, getModType());
         }
     }
 

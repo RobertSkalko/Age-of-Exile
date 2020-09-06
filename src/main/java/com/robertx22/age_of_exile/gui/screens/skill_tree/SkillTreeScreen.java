@@ -205,6 +205,10 @@ public class SkillTreeScreen extends BaseScreen {
 
         }
 
+        this.addButton(new WholeSpellHotbarButton(this, mc.getWindow()
+            .getScaledWidth() / 2 - WholeSpellHotbarButton.XSIZE / 2, mc.getWindow()
+            .getScaledHeight() - WholeSpellHotbarButton.YSIZE));
+
         addConnections();
 
     }
@@ -282,7 +286,7 @@ public class SkillTreeScreen extends BaseScreen {
 
         buttons.forEach(b -> {
 
-            if (b instanceof SpellSchoolButton || b instanceof SelectTreeButton) {
+            if (b instanceof SpellSchoolButton || b instanceof SelectTreeButton || b instanceof WholeSpellHotbarButton) {
                 b.render(matrix, x, y, ticks);
             }
 

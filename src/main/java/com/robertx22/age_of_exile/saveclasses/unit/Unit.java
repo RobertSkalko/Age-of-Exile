@@ -350,6 +350,8 @@ public class Unit {
 
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
+            Load.perks(entity)
+                .applyStats(data);
             Load.statPoints((PlayerEntity) entity)
                 .applyStats(data);
         } else {
