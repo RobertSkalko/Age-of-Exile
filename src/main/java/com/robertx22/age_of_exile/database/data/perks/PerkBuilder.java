@@ -16,6 +16,8 @@ public class PerkBuilder {
         perk.icon = spell.getIconLoc()
             .toString();
 
+        spell.modifyPerkForSerialization(perk);
+
         perk.addToSerializables();
         return perk;
     }

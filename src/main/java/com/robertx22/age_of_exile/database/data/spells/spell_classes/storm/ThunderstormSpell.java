@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.storm;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
@@ -41,6 +42,11 @@ public class ThunderstormSpell extends BaseSpell {
             }
                 .summonsEntity(world -> new ThunderstormEntity(world))
                 .setSwingArmOnCast());
+    }
+
+    @Override
+    public void modifyPerkForSerialization(Perk perk) {
+        perk.lvl_req = 25;
     }
 
     @Override

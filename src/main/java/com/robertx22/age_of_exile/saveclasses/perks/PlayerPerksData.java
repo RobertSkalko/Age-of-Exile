@@ -60,6 +60,10 @@ public class PlayerPerksData {
 
         Perk perk = school.calcData.perks.get(point);
 
+        if (perk.lvl_req > data.getLevel()) {
+            return false;
+        }
+
         if (!perk.is_entry) {
             Set<PointData> con = school.calcData.connections.get(point);
             if (!con.stream()

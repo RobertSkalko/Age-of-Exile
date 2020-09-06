@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
@@ -29,6 +30,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public List<OptScaleExactStat> stats = new ArrayList<>();
     public String icon = "";
     public boolean is_entry = false;
+    public int lvl_req = 1;
 
     public Identifier getIcon() {
         return new Identifier(icon);
@@ -40,7 +42,8 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         BaseSpell spell = getSpell();
 
         try {
-            if (spell != null) {
+            if (spell != null && !spell.GUID()
+                .isEmpty()) {
                 // TODO REWORK SPELLS FIRST  list.addAll(getSpell().getto)
             }
 
@@ -51,6 +54,11 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
             if (adv != null) {
                 list.add(new LiteralText("Needs advancement: ").append(adv.toHoverableText()));
             }
+
+            if (lvl_req > 1) {
+                list.add(TooltipUtils.level(lvl_req));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

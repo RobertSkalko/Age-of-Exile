@@ -72,4 +72,5 @@ public class AddResetPerkPointsItem extends AutoItem {
     public String locNameForLangFile() {
         return "Perk Reset Points Potion";
     }
+
 }
