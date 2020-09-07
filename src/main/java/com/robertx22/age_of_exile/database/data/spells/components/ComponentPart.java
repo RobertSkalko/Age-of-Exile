@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.particle.DefaultParticleType;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -54,6 +55,13 @@ public class ComponentPart {
         public static ComponentPart justAction(MapHolder data) {
             ComponentPart c = new ComponentPart();
             c.actions.add(data);
+            return c;
+        }
+
+        public static ComponentPart particleOnTick(Double ticks, DefaultParticleType particle, Double count, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.actions.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
+            c.conditions.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
 

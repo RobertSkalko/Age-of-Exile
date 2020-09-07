@@ -24,7 +24,9 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
@@ -182,22 +184,37 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
     @Override
     public void remove() {
-        this.getSpellData().attached.tryActivate(Activation.ON_EXPIRE, SpellCtx.onTick(getCaster(), this, getSpellData()));
+
+        LivingEntity caster = getCaster();
+
+        if (caster != null) {
+            this.getSpellData().attached.tryActivate(Activation.ON_EXPIRE, SpellCtx.onTick(caster, this, getSpellData()));
+        }
+
         super.remove();
     }
 
     @Override
     public final void tick() {
 
+        if (this.removeNextTick) {
+            this.remove();
+        }
+
+        try {
+            super.tick();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if (this.getSpellData() == null || getCaster() == null) {
             if (age > 100) {
-                remove();
+                this.scheduleRemoval();
             }
             return;
         }
 
         try {
-            super.tick();
             onTick();
 
             if (this.inGround) {
@@ -206,7 +223,8 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
             if (this.age >= this.getDeathTime()) {
                 onExpireProc(this.getCaster());
-                this.remove();
+                this.scheduleRemoval();
+                return;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -271,7 +289,13 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             }
         }
 
-        this.remove();
+        this.scheduleRemoval();
+    }
+
+    boolean removeNextTick = false;
+
+    public void scheduleRemoval() {
+        removeNextTick = true;
     }
 
     static Gson GSON = new Gson();
@@ -298,9 +322,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity dataInstance from NBT.
-     */
     @Override
     public void readCustomDataFromTag(CompoundTag nbt) {
 
@@ -366,7 +387,17 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
     @Override
     public ItemStack getItem() {
-        return new ItemStack(Registry.ITEM.get(new Identifier(getSpellData().item_id)));
+
+        try {
+            Item item = Registry.ITEM.get(new Identifier(getSpellData().item_id));
+            if (item != null) {
+                return new ItemStack(item);
+            }
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        return new ItemStack(Items.SNOWBALL);
     }
 
     @Override

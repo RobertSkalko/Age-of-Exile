@@ -15,6 +15,7 @@ public class MapField<T> implements IGUID {
     // double
     public static MapField<Double> RADIUS = make("radius");
     public static MapField<Double> TICK_RATE = make("tick_rate");
+    public static MapField<Double> PARTICLE_COUNT = make("particle_count");
     public static MapField<Double> LIFESPAN_TICKS = make("lifespan_ticks");
     public static MapField<Double> DISTANCE = make("distance");
     public static MapField<Double> WIDTH = make("width");
@@ -29,6 +30,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> ELEMENT = make(new MapField<String>("element"));
     public static MapField<String> SELECTION_TYPE = make("selection_type");
     public static MapField<String> ENTITY_PREDICATE = make("entity_predicate");
+    public static MapField<String> PARTICLE_TYPE = make("particle_type");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");
@@ -69,5 +71,9 @@ public class MapField<T> implements IGUID {
     @Override
     public String GUID() {
         return id;
+    }
+
+    public static void init() {
+
     }
 }

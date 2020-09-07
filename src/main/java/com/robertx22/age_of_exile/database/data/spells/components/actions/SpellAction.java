@@ -23,10 +23,10 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
 
     public static SummonProjectileAction SUMMON_PROJECTILE = of(new SummonProjectileAction());
     public static DamageAction DEAL_DAMAGE = of(new DamageAction());
+    public static ParticleInRadiusAction PARTICLES_IN_RADIUS = of(new ParticleInRadiusAction());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);
         return s;
-
     }
 }

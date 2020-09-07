@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 
 import java.util.Arrays;
 
+import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.TICK_RATE;
+
 public class TickRateCondition extends EffectCondition {
 
     public TickRateCondition() {
@@ -17,6 +19,13 @@ public class TickRateCondition extends EffectCondition {
         int ticks = data.get(MapField.TICK_RATE)
             .intValue();
         return ctx.sourceEntity != null && ctx.sourceEntity.age % ticks == 0;
+    }
+
+    public MapHolder create(Double ticks) {
+        MapHolder d = new MapHolder();
+        d.type = GUID();
+        d.put(TICK_RATE, ticks);
+        return d;
     }
 
     @Override

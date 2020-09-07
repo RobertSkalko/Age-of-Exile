@@ -15,7 +15,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
         super(requiredPieces);
     }
 
-    public TickRateCondition EVERY_X_TICKS = of(new TickRateCondition());
+    public static TickRateCondition EVERY_X_TICKS;
 
     public abstract boolean canActivate(SpellCtx ctx, MapHolder data);
 
@@ -24,7 +24,10 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     private static <T extends EffectCondition> T of(T s) {
         MAP.put(s.GUID(), s);
         return s;
+    }
 
+    public static void init() {
+        EVERY_X_TICKS = of(new TickRateCondition());
     }
 }
 

@@ -4,6 +4,8 @@ import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -13,12 +15,14 @@ public class SpellCtx {
     // the entity the effect came from, player summons fireball. fireball hits enemy, dmg comes from fireball
     public Entity sourceEntity;
 
+    public World world;
     public LivingEntity caster;
 
     @Nullable
     public LivingEntity target;
 
     public BlockPos pos;
+    public Vec3d vecPos;
 
     public EntitySavedSpellData calculatedSpellData;
 
@@ -28,6 +32,9 @@ public class SpellCtx {
         this.target = target;
         this.pos = pos;
         this.calculatedSpellData = calculatedSpellData;
+        this.world = caster.world;
+        this.vecPos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
+
     }
 
     public static SpellCtx onCast(LivingEntity caster, EntitySavedSpellData data) {

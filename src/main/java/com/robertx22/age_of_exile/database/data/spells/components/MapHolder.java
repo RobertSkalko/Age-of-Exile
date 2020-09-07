@@ -4,6 +4,9 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
@@ -34,6 +37,10 @@ public class MapHolder {
 
     public Elements getElement() {
         return Elements.valueOf(get(MapField.ELEMENT));
+    }
+
+    public DefaultParticleType getParticle() {
+        return (DefaultParticleType) Registry.PARTICLE_TYPE.get(new Identifier(get(MapField.PARTICLE_TYPE)));
     }
 
     public EntityFinder.SelectionType getSelectionType() {

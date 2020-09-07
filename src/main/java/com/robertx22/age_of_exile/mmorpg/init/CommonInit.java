@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.mmorpg.init;
 import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -26,6 +28,9 @@ public class CommonInit implements ModInitializer {
     @Override
     public void onInitialize() {
         System.out.println("Starting " + Ref.MOD_NAME);
+
+        MapField.init();
+        EffectCondition.init();
 
         ModRegistry.init();
         MobAttributes.register();
