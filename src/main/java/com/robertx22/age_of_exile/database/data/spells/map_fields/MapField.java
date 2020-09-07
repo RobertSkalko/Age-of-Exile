@@ -14,6 +14,7 @@ public class MapField<T> implements IGUID {
     public static HashMap<String, MapField> MAP = new HashMap<>();
 
     public static MapField<Float> RADIUS = make("radius");
+    public static MapField<Integer> TICK_RATE = make("tick_rate");
     public static MapField<Float> DISTANCE = make("distance");
     public static MapField<Float> WIDTH = make("width");
     public static MapField<Float> CHANCE = make("chance");
