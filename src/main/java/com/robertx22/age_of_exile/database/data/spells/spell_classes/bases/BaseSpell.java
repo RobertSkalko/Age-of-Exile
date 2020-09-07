@@ -204,6 +204,12 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     public abstract Words getName();
 
     public final boolean cast(SpellCastContext ctx) {
+
+        if (true) {
+
+            return true; // REMOVE AFTER TESTING
+        }
+
         boolean bool = immutableConfigs.castType()
             .cast(ctx);
 

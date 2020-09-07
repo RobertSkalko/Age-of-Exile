@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.map_fields;
 
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -50,6 +51,10 @@ public class MapField<T> implements IGUID {
 
     public T get(HashMap<String, Object> map) {
         return (T) map.get(GUID());
+    }
+
+    public T get(MapHolder data) {
+        return data.get(this);
     }
 
     public boolean isThere(HashMap<String, Object> map) {

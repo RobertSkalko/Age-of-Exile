@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
+import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
@@ -8,7 +9,6 @@ import net.minecraft.entity.LivingEntity;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.ELEMENT;
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.VALUE_CALCULATION;
@@ -20,10 +20,10 @@ public class DamageAction extends SpellAction {
     }
 
     @Override
-    public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, HashMap<String, Object> map) {
+    public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        Elements ele = ELEMENT.get(map);
-        ValueCalculationData calc = VALUE_CALCULATION.get(map);
+        Elements ele = data.get(ELEMENT);
+        ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
         int value = calc.getCalculatedValue(ctx.caster);
 
@@ -33,6 +33,14 @@ public class DamageAction extends SpellAction {
             dmg.Activate();
         });
 
+    }
+
+    public MapHolder create(ValueCalculationData calc, Elements ele) {
+        MapHolder dmg = new MapHolder();
+        dmg.type = GUID();
+        dmg.put(VALUE_CALCULATION, calc);
+        dmg.put(ELEMENT, ele);
+        return dmg;
     }
 
     @Override

@@ -8,12 +8,12 @@ public class SpellTargetSelectors {
 
     public static HashMap<String, BaseTargetSelector> MAP = new HashMap<>();
 
-    public static BaseTargetSelector SELF = of(new SelfSelector());
-    public static BaseTargetSelector TARGET = of(new TargetSelector());
-    public static BaseTargetSelector AOE = of(new AoeSelector());
-    public static BaseTargetSelector IN_FRONT = of(new InFrontSelector());
+    public static SelfSelector SELF = of(new SelfSelector());
+    public static TargetSelector TARGET = of(new TargetSelector());
+    public static AoeSelector AOE = of(new AoeSelector());
+    public static InFrontSelector IN_FRONT = of(new InFrontSelector());
 
-    private static BaseTargetSelector of(BaseTargetSelector s) {
+    private static <T extends BaseTargetSelector> T of(T s) {
         MAP.put(s.GUID(), s);
         return s;
 

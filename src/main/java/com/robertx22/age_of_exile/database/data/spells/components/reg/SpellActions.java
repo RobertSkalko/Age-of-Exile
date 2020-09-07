@@ -8,9 +8,9 @@ import java.util.HashMap;
 public class SpellActions {
     public static HashMap<String, SpellAction> MAP = new HashMap<>();
 
-    public static SpellAction DAMAGE = of(new DamageAction());
+    public static DamageAction DAMAGE = of(new DamageAction());
 
-    private static SpellAction of(SpellAction s) {
+    private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);
         return s;
 
