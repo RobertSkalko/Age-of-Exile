@@ -36,12 +36,15 @@ public class Spell {
 
         }
 
-        public Builder addActivation(ActivationTypeData data, ComponentPart comp) {
+        public Builder addOnCast(ComponentPart part) {
+            return addEffect(ActivationTypeData.createOnCast(), part);
+        }
+
+        public Builder addEffect(ActivationTypeData data, ComponentPart comp) {
             if (!spell.attached.components.containsKey(data)) {
                 spell.attached.components.put(data, new ArrayList<>());
-            } else {
-                throw new RuntimeException("Can't add same activation type multiple times!");
             }
+
             this.spell.attached.components.get(data)
                 .add(comp);
             return this;

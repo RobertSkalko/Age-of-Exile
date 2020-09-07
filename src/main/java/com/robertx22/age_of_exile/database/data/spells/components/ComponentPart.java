@@ -46,12 +46,20 @@ public class ComponentPart {
     }
 
     public static class Builder {
+
         public static ComponentPart damage(ValueCalculationData calc, Elements ele) {
             ComponentPart c = new ComponentPart();
-            c.actions.add(SpellActions.DAMAGE.create(calc, ele));
+            c.actions.add(SpellActions.DEAL_DAMAGE.create(calc, ele));
             c.target_selectors.add(SpellTargetSelectors.TARGET.create());
             return c;
         }
+
+        public static ComponentPart justAction(MapHolder data) {
+            ComponentPart c = new ComponentPart();
+            c.actions.add(data);
+            return c;
+        }
+
     }
 
 }

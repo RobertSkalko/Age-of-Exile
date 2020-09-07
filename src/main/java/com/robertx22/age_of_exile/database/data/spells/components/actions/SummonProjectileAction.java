@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spells.components.cast_actions;
+package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.ProjectileCastOptions;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
@@ -6,18 +6,20 @@ import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 
-public class ProjectileCastAction extends CastAction {
+public class SummonProjectileAction extends SpellAction {
 
-    public ProjectileCastAction() {
+    public SummonProjectileAction() {
         super(Arrays.asList(MapField.PROJECTILE_COUNT, MapField.PROJECTILE_SPEED, MapField.LIFESPAN_TICKS));
     }
 
     @Override
-    public void onCast(SpellCtx ctx, MapHolder data) {
+    public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
         SpellCastContext cctx = new SpellCastContext(ctx.caster, 0, ctx.calculatedSpellData);
 
         Optional<EntityType<?>> projectile = EntityType.get(data.get(MapField.PROJECTILE_ENTITY));
@@ -44,4 +46,5 @@ public class ProjectileCastAction extends CastAction {
     public String GUID() {
         return "projectile";
     }
+
 }
