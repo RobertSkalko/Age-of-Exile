@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
@@ -41,6 +42,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
@@ -787,6 +789,10 @@ public class EntityCap {
             }
 
             if (CheckIfCanLevelUp() && CheckLevelCap()) {
+
+                if (player instanceof ServerPlayerEntity) {
+                    ModCriteria.PLAYER_LEVEL.trigger((ServerPlayerEntity) player);
+                }
 
                 this.setLevel(level + 1, player);
                 setExp(getRemainingExp());

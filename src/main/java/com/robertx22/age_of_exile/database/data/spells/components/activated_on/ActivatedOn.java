@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spells.activated_on;
+package com.robertx22.age_of_exile.database.data.spells.components.activated_on;
 
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.components.BaseFieldNeeder;

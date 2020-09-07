@@ -15,11 +15,13 @@ public class MapField<T> implements IGUID {
 
     public static MapField<Float> RADIUS = make("radius");
     public static MapField<Integer> TICK_RATE = make("tick_rate");
+    public static MapField<Integer> LIFESPAN_TICKS = make("lifespan_ticks");
     public static MapField<Float> DISTANCE = make("distance");
     public static MapField<Float> WIDTH = make("width");
     public static MapField<Float> CHANCE = make("chance");
     public static MapField<Float> PROJECTILE_SPEED = make("projectile_speed");
     public static MapField<Float> PROJECTILE_COUNT = make("projectile_count");
+    public static MapField<String> PROJECTILE_ENTITY = make("projectile_entity");
     public static MapField<String> STATUS_EFFECT = make("status_effect");
     public static MapField<Elements> ELEMENT = make("element");
     public static MapField<EntityFinder.SelectionType> SELECTION_TYPE = make("selection_type");
@@ -33,6 +35,11 @@ public class MapField<T> implements IGUID {
 
     private static <T> MapField<T> make(String f) {
         MapField<T> field = new MapField<T>(f);
+        MAP.put(field.GUID(), field);
+        return field;
+    }
+
+    private static <T> MapField<T> make(MapField<T> field, String f) {
         MAP.put(field.GUID(), field);
         return field;
     }

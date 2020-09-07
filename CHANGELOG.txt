@@ -18,3 +18,4 @@ It still took a few days though.
 
 Other changes:
 - should fix my mobs spawning in light
+- added 2 new gems: opals and garnets!

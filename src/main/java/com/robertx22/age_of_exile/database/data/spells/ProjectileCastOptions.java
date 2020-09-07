@@ -1,30 +1,25 @@
 package com.robertx22.age_of_exile.database.data.spells;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
 
-import java.util.function.Function;
-
 public class ProjectileCastOptions {
 
-    BaseSpell spell;
-    Function<World, Entity> projectile;
     LivingEntity caster;
 
     public float apart = 3;
     public float shootSpeed = 1;
     public int projectilesAmount = 1;
     SpellCastContext ctx;
+    EntityType projectile;
 
-    public ProjectileCastOptions(SpellCastContext ctx) {
-        this.spell = ctx.spell;
-        this.projectile = ctx.spell.getImmutableConfigs()
-            .newEntitySummoner();
+    public ProjectileCastOptions(SpellCastContext ctx, EntityType projectile) {
+        this.projectile = projectile;
         this.caster = ctx.caster;
         this.ctx = ctx;
 
@@ -54,7 +49,7 @@ public class ProjectileCastOptions {
                 } else if (i > projectilesAmount / 2) {
                     addYaw += apart / projectilesAmount;
                 }
-                PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), ctx.calcData, caster);
+                PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.create(world), ctx.calcData, caster);
                 SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch,
                     caster.yaw + addYaw
                 );
@@ -63,7 +58,7 @@ public class ProjectileCastOptions {
                 playSound(en);
             }
         } else {
-            PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), ctx.calcData, caster);
+            PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.create(world), ctx.calcData, caster);
             SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch, caster.yaw
             );
             caster.world.spawnEntity(en);

@@ -26,7 +26,6 @@ public class SeedEntity extends EntityBaseProjectile {
 
     public SeedEntity(World worldIn) {
         super(ModRegistry.ENTITIES.SEED, worldIn);
-
     }
 
     @Override

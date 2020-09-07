@@ -8,10 +8,7 @@ import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
-import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
-import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
+import com.robertx22.age_of_exile.mmorpg.registers.common.*;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.UniqueGearItemRegister;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -60,6 +57,8 @@ public class CommonInit implements ModInitializer {
             .build());
         CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, new SlotTypeInfo.Builder("necklace").size(1)
             .build());
+
+        ModCriteria.init();
 
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 

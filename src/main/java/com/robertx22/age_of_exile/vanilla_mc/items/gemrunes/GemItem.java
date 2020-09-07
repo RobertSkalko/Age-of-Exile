@@ -13,9 +13,13 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.SocketLvl
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
@@ -207,6 +211,38 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
             @Override
             public List<StatModifier> onWeapons() {
                 return Arrays.asList(new StatModifier(2, 4, MagicSteal.getInstance()));
+            }
+        }),
+        GARNET("garnet", "Garnet", Formatting.GREEN, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(4, 15, DodgeRating.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(3, 10, CriticalDamage.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+            }
+        }),
+        OPAL("opal", "Opal", Formatting.GOLD, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(5, 15, Armor.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(3, 10, CriticalDamage.getInstance()));
             }
         }),
         TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Thunder)),

@@ -12,7 +12,12 @@ public class CastProjectile extends SpellCastType {
     public boolean cast(SpellCastContext ctx) {
         World world = ctx.caster.world;
 
-        ProjectileCastOptions builder = new ProjectileCastOptions(ctx);
+        // todo delete this when i manage to datapack spells
+
+        ProjectileCastOptions builder = new ProjectileCastOptions(ctx, ctx.spell.getImmutableConfigs()
+            .newEntitySummoner()
+            .apply(world)
+            .getType());
 
         builder.projectilesAmount = (int) ctx.getConfigFor(ctx.spell)
             .get(SC.PROJECTILE_COUNT)
