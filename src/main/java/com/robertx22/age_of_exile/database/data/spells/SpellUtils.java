@@ -55,34 +55,6 @@ public class SpellUtils {
 
     }
 
-    /*
-    public static void castTripleProjectileInCone(EntityCalcSpellConfigs config, float apart, BaseSpell spell, Function<World, PersistentProjectileEntity> projectile, LivingEntity caster, float speed) {
-        World world = caster.world;
-
-        for (int i = 0; i < 3; i++) {
-
-            float f = 0;
-
-            if (i == 0) {
-                f = apart;
-            }
-            if (i == 2) {
-                f = -apart;
-            }
-            f *= 10;
-
-            PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(config, projectile.apply(world), spell, caster);
-            SpellUtils.setupProjectileForCasting(en, caster, speed, caster.pitch,
-                caster.yaw + f
-            );
-            caster.world.spawnEntity(en);
-
-        }
-
-    }
-
-     */
-
     public static void setupProjectileForCasting(PersistentProjectileEntity projectile, LivingEntity caster, float speed,
                                                  float pitch, float yaw) {
         Vec3d pos = caster.getPos();
@@ -102,8 +74,6 @@ public class SpellUtils {
     ) {
 
         ISpellEntity se = (ISpellEntity) spellEntity;
-
-        int lifeInTicks = se.getDefaultLifeInTicks();
 
         EntitySpellData syncData = new EntitySpellData(skillgem, caster, config);
 

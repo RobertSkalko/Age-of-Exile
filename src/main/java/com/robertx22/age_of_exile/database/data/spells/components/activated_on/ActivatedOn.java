@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class ActivatedOn extends BaseFieldNeeder implements IGUID {
 
-    public enum ActivationType {
+    public enum Activation {
         ON_CAST, ON_TICK, ON_HIT,
     }
 

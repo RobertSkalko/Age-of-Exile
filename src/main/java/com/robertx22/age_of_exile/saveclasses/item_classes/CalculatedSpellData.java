@@ -1,14 +1,17 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -28,6 +31,15 @@ public class CalculatedSpellData implements ITooltipList {
     public int level = 1;
 
     public CalculatedSpellData() {
+
+    }
+
+    public static CalculatedSpellData create(LivingEntity caster, Spell spell) {
+        CalculatedSpellData data = new CalculatedSpellData();
+        data.spell_id = spell.GUID();
+        data.level = Load.Unit(caster)
+            .getLevel();
+        return data;
 
     }
 

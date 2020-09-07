@@ -14,14 +14,14 @@ public class MapField<T> implements IGUID {
 
     public static HashMap<String, MapField> MAP = new HashMap<>();
 
-    public static MapField<Float> RADIUS = make("radius");
-    public static MapField<Integer> TICK_RATE = make("tick_rate");
-    public static MapField<Integer> LIFESPAN_TICKS = make("lifespan_ticks");
-    public static MapField<Float> DISTANCE = make("distance");
-    public static MapField<Float> WIDTH = make("width");
-    public static MapField<Float> CHANCE = make("chance");
-    public static MapField<Float> PROJECTILE_SPEED = make("projectile_speed");
-    public static MapField<Float> PROJECTILE_COUNT = make("projectile_count");
+    public static MapField<Double> RADIUS = make("radius");
+    public static MapField<Double> TICK_RATE = make("tick_rate");
+    public static MapField<Double> LIFESPAN_TICKS = make("lifespan_ticks");
+    public static MapField<Double> DISTANCE = make("distance");
+    public static MapField<Double> WIDTH = make("width");
+    public static MapField<Double> CHANCE = make("chance");
+    public static MapField<Double> PROJECTILE_SPEED = make("projectile_speed");
+    public static MapField<Double> PROJECTILE_COUNT = make("projectile_count");
     public static MapField<String> PROJECTILE_ENTITY = make("projectile_entity");
     public static MapField<String> STATUS_EFFECT = make("status_effect");
     public static MapField<Elements> ELEMENT = make("element");

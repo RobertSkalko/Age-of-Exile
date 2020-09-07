@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
@@ -15,5 +16,13 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     }
 
     public abstract boolean canActivate(SpellCtx ctx, MapHolder data);
+
+    public static HashMap<String, EffectCondition> MAP = new HashMap<>();
+
+    private static EffectCondition of(EffectCondition s) {
+        MAP.put(s.GUID(), s);
+        return s;
+
+    }
 }
 

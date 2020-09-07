@@ -9,12 +9,12 @@ import java.util.Map;
 
 public class AttachedSpell {
 
-    HashMap<ActivationTypeData, List<ComponentPart>> components = new HashMap<>();
+    HashMap<ActivatedOn.Activation, List<ComponentPart>> components = new HashMap<>();
 
-    public void tryActivate(ActivatedOn.ActivationType type, SpellCtx ctx) {
+    public void tryActivate(ActivatedOn.Activation type, SpellCtx ctx) {
 
-        for (Map.Entry<ActivationTypeData, List<ComponentPart>> entry : components.entrySet()) {
-            if (entry.getKey().activationType == type) {
+        for (Map.Entry<ActivatedOn.Activation, List<ComponentPart>> entry : components.entrySet()) {
+            if (entry.getKey() == type) {
                 entry.getValue()
                     .forEach(v -> v.tryActivate(ctx));
             }

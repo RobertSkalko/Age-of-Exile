@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -45,7 +44,7 @@ public class ValueCalculationData {
 
         List<Stat> list = new WeaponDamage(Elements.Nature).generateAllSingleVariations();
         list.add(new WeaponDamage(Elements.Physical));
-        data.mergedScalingValues.add(new MergedScalingStatsCalc(list, attack, new SText(Formatting.GOLD + "Attack Damage")));
+        data.mergedScalingValues.add(new MergedScalingStatsCalc(list, attack, Formatting.GOLD + "Attack Damage"));
 
         data.baseValue = base;
 
@@ -53,7 +52,7 @@ public class ValueCalculationData {
     }
 
     @Factory
-    private ValueCalculationData() {
+    public ValueCalculationData() {
 
     }
 

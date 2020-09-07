@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
+import com.robertx22.age_of_exile.database.data.spells.components.TestSpells;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
@@ -101,10 +102,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     @Override
     public BaseSpell getSpell() {
         return this;
-    }
-
-    public final int getMaxSpellLevelNormal() {
-        return getPreCalcConfig().maxSpellLevel;
     }
 
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
@@ -206,6 +203,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     public final boolean cast(SpellCastContext ctx) {
 
         if (true) {
+            TestSpells.TEST_SPELL.cast(ctx.caster);
 
             return true; // REMOVE AFTER TESTING
         }

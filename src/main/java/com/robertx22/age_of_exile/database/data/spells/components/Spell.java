@@ -1,12 +1,18 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.spells.components.activated_on.ActivatedOn;
+import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Spell {
+public class Spell implements IGUID {
 
     private String identifier;
     private List<ActivationCost> costs = new ArrayList<>();
@@ -15,11 +21,28 @@ public class Spell {
     static Gson GSON = new Gson();
 
     public AttachedSpell getAttachedSpell(LivingEntity caster) {
-        AttachedSpell calc = GSON.fromJson(GSON.toJson(this), AttachedSpell.class);
+
+        String json = GSON.toJson(attached);
+        JsonElement json2 = GSON.toJsonTree(attached);
+
+        System.out.println(json2.toString());
+
+        AttachedSpell calc = GSON.fromJson(json, AttachedSpell.class);
         // todo, lot player stats, and spell modifiers modify this
 
         return calc;
 
+    }
+
+    public void cast(LivingEntity caster) {
+        CalculatedSpellData calc = CalculatedSpellData.create(caster, this);
+        AttachedSpell as = getAttachedSpell(caster);
+        as.tryActivate(ActivatedOn.Activation.ON_CAST, SpellCtx.onCast(caster, calc));
+    }
+
+    @Override
+    public String GUID() {
+        return identifier;
     }
 
     public static class Builder {
@@ -29,18 +52,17 @@ public class Spell {
         public static Builder of(String id) {
             Builder builder = new Builder();
 
-            Spell spell = new Spell();
-            spell.identifier = id;
+            builder.spell = new Spell();
+            builder.spell.identifier = id;
 
             return builder;
 
         }
 
-        public Builder addOnCast(ComponentPart part) {
-            return addEffect(ActivationTypeData.createOnCast(), part);
-        }
+        public Builder addEffect(ActivatedOn.Activation data, ComponentPart comp) {
+            Objects.requireNonNull(data);
+            Objects.requireNonNull(comp);
 
-        public Builder addEffect(ActivationTypeData data, ComponentPart comp) {
             if (!spell.attached.components.containsKey(data)) {
                 spell.attached.components.put(data, new ArrayList<>());
             }
@@ -51,6 +73,7 @@ public class Spell {
         }
 
         public Spell build() {
+            Objects.requireNonNull(spell);
             return spell;
         }
 

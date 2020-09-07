@@ -15,7 +15,8 @@ public class ActivatedOnTick extends ActivatedOn {
 
     @Override
     public boolean canActivate(SpellCtx ctx, HashMap<String, Object> map) {
-        int ticks = TICK_RATE.get(map);
+        int ticks = TICK_RATE.get(map)
+            .intValue();
         return ctx.sourceEntity != null && ctx.sourceEntity.age % ticks == 0;
     }
 

@@ -2,9 +2,6 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
-import com.robertx22.age_of_exile.database.data.spells.components.reg.SpellActions;
-import com.robertx22.age_of_exile.database.data.spells.components.reg.SpellConditions;
-import com.robertx22.age_of_exile.database.data.spells.components.reg.SpellTargetSelectors;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
@@ -25,7 +22,7 @@ public class ComponentPart {
     public void tryActivate(SpellCtx ctx) {
 
         for (MapHolder part : conditions) {
-            EffectCondition condition = SpellConditions.MAP.get(part.type);
+            EffectCondition condition = EffectCondition.MAP.get(part.type);
             if (!condition.canActivate(ctx, part)) {
                 return;
             }
@@ -34,12 +31,12 @@ public class ComponentPart {
         Set<LivingEntity> list = new HashSet<>();
 
         for (MapHolder part : target_selectors) {
-            BaseTargetSelector selector = SpellTargetSelectors.MAP.get(part.type);
+            BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
             list.addAll(selector.get(ctx.caster, ctx.target, ctx.pos, part));
         }
 
         for (MapHolder part : actions) {
-            SpellAction action = SpellActions.MAP.get(part.type);
+            SpellAction action = SpellAction.MAP.get(part.type);
             action.tryActivate(list, ctx, part);
         }
 
@@ -49,8 +46,8 @@ public class ComponentPart {
 
         public static ComponentPart damage(ValueCalculationData calc, Elements ele) {
             ComponentPart c = new ComponentPart();
-            c.actions.add(SpellActions.DEAL_DAMAGE.create(calc, ele));
-            c.target_selectors.add(SpellTargetSelectors.TARGET.create());
+            c.actions.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+            c.target_selectors.add(BaseTargetSelector.TARGET.create());
             return c;
         }
 

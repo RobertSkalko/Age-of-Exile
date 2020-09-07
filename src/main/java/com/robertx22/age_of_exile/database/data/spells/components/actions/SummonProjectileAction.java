@@ -27,18 +27,22 @@ public class SummonProjectileAction extends SpellAction {
         ProjectileCastOptions builder = new ProjectileCastOptions(cctx, projectile.get());
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
             .intValue();
-        builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED);
+
+        builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
+            .floatValue();
 
         builder.apart = 75;
         builder.cast();
     }
 
-    public MapHolder create(int projCount, float speed, EntityType type) {
+    public MapHolder create(Double projCount, Double speed, EntityType type, Double lifespan) {
         MapHolder c = new MapHolder();
-        c.put(MapField.PROJECTILE_COUNT, (float) projCount);
+        c.put(MapField.PROJECTILE_COUNT, projCount);
         c.put(MapField.PROJECTILE_SPEED, speed);
+        c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(type)
             .toString());
+        c.type = GUID();
         return c;
     }
 

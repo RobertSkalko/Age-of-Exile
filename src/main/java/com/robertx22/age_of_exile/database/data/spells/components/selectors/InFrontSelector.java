@@ -19,8 +19,10 @@ public class InFrontSelector extends BaseTargetSelector {
     @Override
     public List<LivingEntity> get(LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
         EntityFinder.EntityPredicate predicate = data.get(ENTITY_PREDICATE);
-        float distance = data.get(DISTANCE);
-        float width = data.get(WIDTH);
+        float distance = data.get(DISTANCE)
+            .floatValue();
+        float width = data.get(WIDTH)
+            .floatValue();
 
         EntityFinder.Setup<LivingEntity> finder = EntityFinder.start(caster, LivingEntity.class, pos)
             .finder(EntityFinder.SelectionType.IN_FRONT)

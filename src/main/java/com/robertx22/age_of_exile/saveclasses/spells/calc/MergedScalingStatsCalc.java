@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,14 +22,15 @@ public class MergedScalingStatsCalc extends BaseStatCalc {
     @Store
     public float multi;
 
-    MutableText name;
+    @Store
+    String name;
 
     @Factory
-    private MergedScalingStatsCalc() {
+    public MergedScalingStatsCalc() {
 
     }
 
-    public MergedScalingStatsCalc(List<Stat> stats, float multi, MutableText name) {
+    public MergedScalingStatsCalc(List<Stat> stats, float multi, String name) {
         super();
         this.statIDs = stats.stream()
             .map(x -> x.GUID())
@@ -60,6 +61,6 @@ public class MergedScalingStatsCalc extends BaseStatCalc {
 
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
-        return getTooltipFor(multi, getCalculatedValue(info.unitdata), name, Elements.Elemental);
+        return getTooltipFor(multi, getCalculatedValue(info.unitdata), new TranslatableText(name), Elements.Elemental);
     }
 }

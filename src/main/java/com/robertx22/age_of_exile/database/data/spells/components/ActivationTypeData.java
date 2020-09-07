@@ -7,38 +7,43 @@ import java.util.HashMap;
 
 public class ActivationTypeData {
 
-    ActivatedOn.ActivationType activationType;
-    HashMap<String, Object> map;
+    private String activation;
+
+    HashMap<String, Object> map = new HashMap<>();
+
+    public ActivatedOn.Activation getActivation() {
+        return ActivatedOn.Activation.valueOf(activation);
+    }
 
     public static ActivationTypeData createOnHit() {
         ActivationTypeData d = new ActivationTypeData();
-        d.activationType = ActivatedOn.ActivationType.ON_HIT;
+        d.activation = ActivatedOn.Activation.ON_HIT.name();
         return d;
     }
 
     public static ActivationTypeData createOnCast() {
         ActivationTypeData d = new ActivationTypeData();
-        d.activationType = ActivatedOn.ActivationType.ON_CAST;
+        d.activation = ActivatedOn.Activation.ON_CAST.name();
         return d;
     }
 
     public static ActivationTypeData createOnTick(int ticks) {
         ActivationTypeData d = new ActivationTypeData();
-        d.activationType = ActivatedOn.ActivationType.ON_TICK;
+        d.activation = ActivatedOn.Activation.ON_TICK.name();
         d.map.put(MapField.TICK_RATE.GUID(), ticks);
         return d;
     }
 
     @Override
     public int hashCode() {
-        return this.activationType.hashCode();
+        return this.activation.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) { // otherwise hashmaps dont work
         if (obj instanceof ActivationTypeData) {
             ActivationTypeData pt = (ActivationTypeData) obj;
-            return pt.activationType == this.activationType;
+            return pt.activation == this.activation;
         }
         return super.equals(obj);
     }
