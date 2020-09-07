@@ -10,7 +10,7 @@ import net.minecraft.item.Items;
 public class TestSpells {
 
     public static Spell TEST_SPELL = Spell.Builder.of("test")
-        .addEffect(ActivatedOn.Activation.ON_CAST, ComponentPart.Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.DIAMOND_SWORD, 5D, 1D, ModRegistry.ENTITIES.POISON_BALL, 200D)))
+        .addEffect(ActivatedOn.Activation.ON_CAST, ComponentPart.Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.DIAMOND_SWORD, 5D, 1D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 200D)))
         .addEffect(ActivatedOn.Activation.ON_HIT, ComponentPart.Builder.damage(ValueCalculationData.base(500), Elements.Nature))
         .build();
 

@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.IMyRenderAsItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
@@ -35,6 +36,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class SimpleProjectileEntity extends PersistentProjectileEntity implements IMyRenderAsItem, IDatapackSpellEntity {
 
@@ -181,24 +183,20 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     }
 
     public void onTick() {
-        this.spellData.attached.tryActivate(ActivatedOn.Activation.ON_TICK, SpellCtx.onTick(getCaster(), this, getSpellData()));
+        this.getSpellData().attached.tryActivate(ActivatedOn.Activation.ON_TICK, SpellCtx.onTick(getCaster(), this, getSpellData()));
     }
 
     @Override
     public final void tick() {
 
-        if (!world.isClient) {
-            if (this.getSpellData() == null || getOwner() == null) {
-                this.remove();
-                return;
+        if (this.getSpellData() == null || getCaster() == null) {
+            if (age > 100) {
+                remove();
             }
-        }
-        if (world.isClient && getSpellData() == null) {
             return;
         }
 
         try {
-
             super.tick();
             onTick();
 
@@ -262,8 +260,11 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
                 SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 1F, 0.9F);
             }
 
-            this.getSpellData().attached.tryActivate(ActivatedOn.Activation.ON_HIT, SpellCtx.onHit(getCaster(), this, entityHit, getSpellData()));
+            LivingEntity caster = getCaster();
 
+            if (caster != null) {
+                this.getSpellData().attached.tryActivate(ActivatedOn.Activation.ON_HIT, SpellCtx.onHit(caster, this, entityHit, getSpellData()));
+            }
         } else {
             if (world.isClient) {
                 SoundUtils.playSound(this, SoundEvents.BLOCK_STONE_HIT, 0.7F, 0.9F);
@@ -323,10 +324,18 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         }
     }
 
-    ////////////////////////////////////////////////////////
+    LivingEntity caster;
 
     public LivingEntity getCaster() {
-        return (LivingEntity) this.getOwner();
+        if (caster == null) {
+            try {
+                this.caster = Utilities.getLivingEntityByUUID(world, UUID.fromString(getSpellData().caster_uuid));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return caster;
     }
 
     @Override
@@ -363,7 +372,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         CompoundTag nbt = new CompoundTag();
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
-
         this.setOwner(caster);
     }
 

@@ -29,6 +29,8 @@ public class AreaData {
     public static AreaData EMPTY = new AreaData();
 
     @Store
+    private List<BlockPos> chunks = new ArrayList<>();
+    @Store
     public String uuid = "";
     @Store
     public String biome_category = "";
@@ -104,9 +106,6 @@ public class AreaData {
 
         return AreaModifiers.INSTANCE.PLAIN;
     }
-
-    @Store
-    private List<BlockPos> chunks = new ArrayList<>();
 
     public void setChunks(List<ChunkPos> chunks) {
         this.chunks = chunks.stream()

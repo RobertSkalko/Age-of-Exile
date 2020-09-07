@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -13,6 +14,8 @@ public class SpellCtx {
     public Entity sourceEntity;
 
     public LivingEntity caster;
+
+    @Nullable
     public LivingEntity target;
 
     public BlockPos pos;
@@ -36,7 +39,6 @@ public class SpellCtx {
     public static SpellCtx onHit(LivingEntity caster, Entity sourceEntity, LivingEntity target, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(sourceEntity);
-        Objects.requireNonNull(target);
         Objects.requireNonNull(data);
         return new SpellCtx(sourceEntity, caster, target, target.getBlockPos(), data);
     }

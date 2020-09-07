@@ -60,7 +60,7 @@ public class WorldAreas implements Component {
     }
 
     public AreaData getAreaById(String id) {
-        return idMap.get(id);
+        return idMap.getOrDefault(id, AreaData.EMPTY);
     }
 
     public AreaData getAreaFor(World world, BlockPos pos) {

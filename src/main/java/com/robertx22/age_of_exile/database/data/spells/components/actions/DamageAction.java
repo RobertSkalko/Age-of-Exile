@@ -22,7 +22,7 @@ public class DamageAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        Elements ele = data.get(ELEMENT);
+        Elements ele = data.getElement();
         ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
         int value = calc.getCalculatedValue(ctx.caster);
@@ -39,7 +39,7 @@ public class DamageAction extends SpellAction {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(VALUE_CALCULATION, calc);
-        dmg.put(ELEMENT, ele);
+        dmg.put(ELEMENT, ele.name());
         return dmg;
     }
 

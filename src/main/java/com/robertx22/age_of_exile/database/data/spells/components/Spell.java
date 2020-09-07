@@ -36,7 +36,7 @@ public class Spell implements IGUID {
 
     public void cast(LivingEntity caster) {
         AttachedSpell attached = getAttachedSpell(caster);
-        EntitySavedSpellData data = EntitySavedSpellData.create(this, attached);
+        EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, attached);
         attached.tryActivate(ActivatedOn.Activation.ON_CAST, SpellCtx.onCast(caster, data));
     }
 

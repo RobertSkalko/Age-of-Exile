@@ -18,7 +18,7 @@ public class AoeSelector extends BaseTargetSelector {
 
     @Override
     public List<LivingEntity> get(LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
-        EntityFinder.EntityPredicate predicate = data.get(ENTITY_PREDICATE);
+        EntityFinder.EntityPredicate predicate = data.getEntityPredicate();
         float radius = data.get(RADIUS)
             .floatValue();
 

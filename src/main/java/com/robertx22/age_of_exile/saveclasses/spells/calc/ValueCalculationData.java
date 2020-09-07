@@ -57,41 +57,41 @@ public class ValueCalculationData {
     }
 
     public ValueCalculationData(ScalingStatCalc calc, int base) {
-        this.scalingValues.add(calc);
+        this.scaling_values.add(calc);
         this.baseValue = base;
     }
 
     public double getScalingMultiAverage() {
         return getAllScalingValues().stream()
             .mapToDouble(x -> x.getMulti())
-            .sum() / scalingValues.size();
+            .sum() / scaling_values.size();
 
     }
 
     public List<BaseStatCalc> getAllScalingValues() {
         List<BaseStatCalc> list = new ArrayList<>();
-        list.addAll(scalingValues);
+        list.addAll(scaling_values);
         list.addAll(mergedScalingValues);
 
         return list;
     }
 
     @Store
-    public List<ScalingStatCalc> scalingValues = new ArrayList<>();
+    public List<ScalingStatCalc> scaling_values = new ArrayList<>();
 
     @Store
     public List<MergedScalingStatsCalc> mergedScalingValues = new ArrayList<>();
 
     @Store
-    public StatScaling baseScaling = StatScaling.SCALING;
+    public StatScaling base_scaling = StatScaling.SCALING;
 
-    private boolean empty = false;
+    private transient boolean empty = false;
 
     @Store
     public float baseValue = 0;
 
     public int getCalculatedBaseValue(int lvl) {
-        return (int) baseScaling.scale(baseValue, lvl);
+        return (int) base_scaling.scale(baseValue, lvl);
     }
 
     private int getCalculatedScalingValue(EntityCap.UnitData data) {

@@ -206,6 +206,7 @@ public class EntityFinder {
         double distanceToSearch = 10;
 
         public Setup(LivingEntity caster, Class<T> entityType, Vec3d pos) {
+            Objects.requireNonNull(caster);
             this.entityType = entityType;
             this.caster = caster;
             this.world = caster.world;
