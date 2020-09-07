@@ -2,10 +2,12 @@ package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entitie
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.robertx22.age_of_exile.database.data.spells.components.activated_on.ActivatedOn;
+import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.activated_on.Activation;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.IMyRenderAsItem;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
@@ -23,15 +25,16 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -50,7 +53,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
     private int ticksInGround = 0;
     private int deathTime = 80;
-    private boolean doGroundProc;
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
 
@@ -80,10 +82,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
     }
 
-    public boolean getDoExpireProc() {
-        return this.doGroundProc;
-    }
-
     public int getTicksInGround() {
         return this.ticksInGround;
     }
@@ -94,10 +92,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
     public void setDeathTime(int newVal) {
         this.deathTime = newVal;
-    }
-
-    public void setDoExpireProc(boolean newVal) {
-        this.doGroundProc = newVal;
     }
 
     public SimpleProjectileEntity(EntityType<? extends Entity> type, World worldIn) {
@@ -183,7 +177,13 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     }
 
     public void onTick() {
-        this.getSpellData().attached.tryActivate(ActivatedOn.Activation.ON_TICK, SpellCtx.onTick(getCaster(), this, getSpellData()));
+        this.getSpellData().attached.tryActivate(Activation.ON_TICK, SpellCtx.onTick(getCaster(), this, getSpellData()));
+    }
+
+    @Override
+    public void remove() {
+        this.getSpellData().attached.tryActivate(Activation.ON_EXPIRE, SpellCtx.onTick(getCaster(), this, getSpellData()));
+        super.remove();
     }
 
     @Override
@@ -263,7 +263,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             LivingEntity caster = getCaster();
 
             if (caster != null) {
-                this.getSpellData().attached.tryActivate(ActivatedOn.Activation.ON_HIT, SpellCtx.onHit(caster, this, entityHit, getSpellData()));
+                this.getSpellData().attached.tryActivate(Activation.ON_HIT, SpellCtx.onHit(caster, this, entityHit, getSpellData()));
             }
         } else {
             if (world.isClient) {
@@ -281,7 +281,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
         try {
 
-            super.writeCustomDataToTag(nbt);
+            // super.writeCustomDataToTag(nbt);
 
             nbt.putInt("xTile", this.xTile);
             nbt.putInt("yTile", this.yTile);
@@ -289,7 +289,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
             nbt.putByte("inGround", (byte) (this.inGround ? 1 : 0));
 
-            nbt.putBoolean("doGroundProc", this.getDoExpireProc());
             nbt.putInt("deathTime", this.getDeathTime());
 
             nbt.putString("data", GSON.toJson(spellData));
@@ -307,7 +306,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
         try {
 
-            super.readCustomDataFromTag(nbt);
+//            super.readCustomDataFromTag(nbt);
 
             this.xTile = nbt.getInt("xTile");
             this.yTile = nbt.getInt("yTile");
@@ -315,7 +314,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
             this.inGround = nbt.getByte("inGround") == 1;
 
-            this.setDoExpireProc(nbt.getBoolean("doGroundProc"));
             this.setDeathTime(nbt.getInt("deathTime"));
 
             this.spellData = GSON.fromJson(nbt.getString("data"), EntitySavedSpellData.class);
@@ -367,16 +365,20 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     }
 
     @Override
-    public void init(LivingEntity caster, EntitySavedSpellData data) {
+    public ItemStack getItem() {
+        return new ItemStack(Registry.ITEM.get(new Identifier(getSpellData().item_id)));
+    }
+
+    @Override
+    public void init(LivingEntity caster, EntitySavedSpellData data, MapHolder holder) {
         this.spellData = data;
+
+        this.setNoGravity(!holder.getOrDefault(MapField.GRAVITY, true));
+
+        data.item_id = holder.get(MapField.ITEM);
         CompoundTag nbt = new CompoundTag();
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
         this.setOwner(caster);
-    }
-
-    @Override
-    public ItemStack getItem() {
-        return new ItemStack(Items.NETHER_STAR); // TODO
     }
 }

@@ -16,6 +16,8 @@ public class EntitySavedSpellData {
 
     AttachedSpell attached;
 
+    public String item_id;
+
     public static EntitySavedSpellData create(LivingEntity caster, Spell spell, AttachedSpell att) {
         Objects.requireNonNull(caster);
 

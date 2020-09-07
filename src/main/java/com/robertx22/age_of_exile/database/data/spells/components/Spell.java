@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.spells.components.activated_on.ActivatedOn;
+import com.robertx22.age_of_exile.database.data.spells.components.activated_on.Activation;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
 import net.minecraft.entity.LivingEntity;
@@ -37,7 +37,7 @@ public class Spell implements IGUID {
     public void cast(LivingEntity caster) {
         AttachedSpell attached = getAttachedSpell(caster);
         EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, attached);
-        attached.tryActivate(ActivatedOn.Activation.ON_CAST, SpellCtx.onCast(caster, data));
+        attached.tryActivate(Activation.ON_CAST, SpellCtx.onCast(caster, data));
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Spell implements IGUID {
 
         }
 
-        public Builder addEffect(ActivatedOn.Activation data, ComponentPart comp) {
+        public Builder addEffect(Activation data, ComponentPart comp) {
             Objects.requireNonNull(data);
             Objects.requireNonNull(comp);
 

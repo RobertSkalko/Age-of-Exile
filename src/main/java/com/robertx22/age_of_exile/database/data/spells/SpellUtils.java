@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells;
 
+import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.ISpellEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.IDatapackSpellEntity;
@@ -67,9 +68,10 @@ public class SpellUtils {
 
     }
 
-    public static void initSpellEntity(Entity spellEntity, LivingEntity caster, EntitySavedSpellData data) {
+    public static void initSpellEntity(Entity spellEntity, LivingEntity caster, EntitySavedSpellData data, MapHolder holder) {
+
         IDatapackSpellEntity se = (IDatapackSpellEntity) spellEntity;
-        se.init(caster, data);
+        se.init(caster, data, holder);
     }
 
     public static <T extends Entity> T getSpellEntity(EntityCalcSpellConfigs config, T spellEntity,

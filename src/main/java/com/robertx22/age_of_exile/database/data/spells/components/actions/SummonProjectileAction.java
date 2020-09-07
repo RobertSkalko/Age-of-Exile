@@ -24,7 +24,7 @@ public class SummonProjectileAction extends SpellAction {
 
         Optional<EntityType<?>> projectile = EntityType.get(data.get(MapField.PROJECTILE_ENTITY));
 
-        ProjectileCastHelper builder = new ProjectileCastHelper(ctx.caster, projectile.get(), ctx.calculatedSpellData);
+        ProjectileCastHelper builder = new ProjectileCastHelper(data, ctx.caster, projectile.get(), ctx.calculatedSpellData);
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
             .intValue();
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
@@ -34,13 +34,14 @@ public class SummonProjectileAction extends SpellAction {
         builder.cast();
     }
 
-    public MapHolder create(Item item, Double projCount, Double speed, EntityType type, Double lifespan) {
+    public MapHolder create(Item item, Double projCount, Double speed, EntityType type, Double lifespan, boolean gravity) {
         MapHolder c = new MapHolder();
         c.put(MapField.PROJECTILE_COUNT, projCount);
         c.put(MapField.PROJECTILE_SPEED, speed);
         c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.put(MapField.ITEM, Registry.ITEM.getId(item)
             .toString());
+        c.put(MapField.GRAVITY, gravity);
         c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(type)
             .toString());
         c.type = GUID();

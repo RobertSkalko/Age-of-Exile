@@ -18,12 +18,13 @@ public class ProjectileCastHelper {
     public boolean gravity = true;
     EntityType projectile;
     EntitySavedSpellData data;
+    MapHolder holder;
 
-    public ProjectileCastHelper(LivingEntity caster, EntityType projectile, EntitySavedSpellData data) {
+    public ProjectileCastHelper(MapHolder holder, LivingEntity caster, EntityType projectile, EntitySavedSpellData data) {
         this.projectile = projectile;
         this.caster = caster;
         this.data = data;
-
+        this.holder = holder;
     }
 
     private void playSound(Entity en) {
@@ -48,7 +49,7 @@ public class ProjectileCastHelper {
 
             PersistentProjectileEntity en = (PersistentProjectileEntity) projectile.create(world);
             SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch, caster.yaw + addYaw);
-            SpellUtils.initSpellEntity(en, caster, data);
+            SpellUtils.initSpellEntity(en, caster, data, holder);
             caster.world.spawnEntity(en);
             playSound(en);
         }
