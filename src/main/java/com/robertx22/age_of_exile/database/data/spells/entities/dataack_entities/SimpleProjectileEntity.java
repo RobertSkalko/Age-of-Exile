@@ -1,10 +1,13 @@
-package com.robertx22.age_of_exile.database.data.spells.entities.bases;
+package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities;
 
-import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
-import com.robertx22.age_of_exile.uncommon.datasaving.EntitySpellDataSaving;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.robertx22.age_of_exile.database.data.spells.components.activated_on.ActivatedOn;
+import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
+import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBaseProjectile;
+import com.robertx22.age_of_exile.database.data.spells.entities.bases.IMyRenderAsItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
-import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -31,10 +34,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EntityBaseProjectile extends PersistentProjectileEntity implements IMyRenderAsItem,
-    ISpellEntity {
+public final class SimpleProjectileEntity extends PersistentProjectileEntity implements IMyRenderAsItem {
 
-    EntitySpellData spellData;
+    EntitySavedSpellData spellData;
 
     private int xTile;
     private int yTile;
@@ -42,7 +44,7 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
 
     protected boolean inGround;
 
-    private int ticksInGround;
+    private int ticksInGround = 0;
     private int deathTime = 80;
     private boolean doGroundProc;
 
@@ -96,14 +98,11 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
         this.doGroundProc = newVal;
     }
 
-    public EntityBaseProjectile(EntityType<? extends Entity> type, World worldIn) {
+    public SimpleProjectileEntity(EntityType<? extends Entity> type, World worldIn) {
         super((EntityType<? extends PersistentProjectileEntity>) type, worldIn);
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;
-
-        this.setDeathTime(this.getDefaultLifeInTicks());
-
     }
 
     public LivingEntity getEntityHit(HitResult result, double radius) {
@@ -181,13 +180,15 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
         }
     }
 
-    public abstract void onTick();
+    public void onTick() {
+        this.spellData.attached.tryActivate(ActivatedOn.Activation.ON_TICK, SpellCtx.onTick(getCaster(), this, getSpellData()));
+    }
 
     @Override
     public final void tick() {
 
         if (!world.isClient) {
-            if (this.spellData == null || this.spellData.getCaster(world) == null) {
+            if (this.getSpellData() == null || getOwner() == null) {
                 this.remove();
                 return;
             }
@@ -261,19 +262,29 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
      * (abstract) Protected helper method to write subclass entity dataInstance to NBT.
      */
 
+    static Gson GSON = new Gson();
+
     @Override
     public void writeCustomDataToTag(CompoundTag nbt) {
 
-        nbt.putInt("xTile", this.xTile);
-        nbt.putInt("yTile", this.yTile);
-        nbt.putInt("zTile", this.zTile);
+        try {
 
-        nbt.putByte("inGround", (byte) (this.inGround ? 1 : 0));
+            super.writeCustomDataToTag(nbt);
 
-        nbt.putBoolean("doGroundProc", this.getDoExpireProc());
-        nbt.putInt("deathTime", this.getDeathTime());
+            nbt.putInt("xTile", this.xTile);
+            nbt.putInt("yTile", this.yTile);
+            nbt.putInt("zTile", this.zTile);
 
-        EntitySpellDataSaving.Save(nbt, spellData);
+            nbt.putByte("inGround", (byte) (this.inGround ? 1 : 0));
+
+            nbt.putBoolean("doGroundProc", this.getDoExpireProc());
+            nbt.putInt("deathTime", this.getDeathTime());
+
+            nbt.putString("data", GSON.toJson(spellData));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -282,28 +293,29 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
     @Override
     public void readCustomDataFromTag(CompoundTag nbt) {
 
-        this.xTile = nbt.getInt("xTile");
-        this.yTile = nbt.getInt("yTile");
-        this.zTile = nbt.getInt("zTile");
+        try {
 
-        this.inGround = nbt.getByte("inGround") == 1;
+            super.readCustomDataFromTag(nbt);
 
-        this.setDoExpireProc(nbt.getBoolean("doGroundProc"));
-        this.setDeathTime(nbt.getInt("deathTime"));
+            this.xTile = nbt.getInt("xTile");
+            this.yTile = nbt.getInt("yTile");
+            this.zTile = nbt.getInt("zTile");
 
-        this.spellData = EntitySpellDataSaving.Load(nbt);
-    }
+            this.inGround = nbt.getByte("inGround") == 1;
 
-    protected void setPos(LivingEntity caster) {
-        Vec3d look = caster.getRotationVector();
-        updatePosition(caster.getX() - look.x, caster.getY() - look.y + 1.3, caster.getZ() - look.z);
+            this.setDoExpireProc(nbt.getBoolean("doGroundProc"));
+            this.setDeathTime(nbt.getInt("deathTime"));
+
+            this.spellData = GSON.fromJson(nbt.getString("data"), EntitySavedSpellData.class);
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     ////////////////////////////////////////////////////////
 
     public LivingEntity getCaster() {
-        return this.getSpellData()
-            .getCaster(world);
+        return (LivingEntity) this.getOwner();
     }
 
     @Override
@@ -322,25 +334,25 @@ public abstract class EntityBaseProjectile extends PersistentProjectileEntity im
         return false;
     }
 
-    @Override
-    public EntitySpellData getSpellData() {
+    public EntitySavedSpellData getSpellData() {
         if (world.isClient) {
             if (spellData == null) {
                 CompoundTag nbt = dataTracker.get(SPELL_DATA);
                 if (nbt != null) {
-                    this.spellData = LoadSave.Load(EntitySpellData.class, new EntitySpellData(), nbt, "spell");
+                    this.spellData = GSON.fromJson(nbt.getString("spell"), EntitySavedSpellData.class);
                 }
             }
         }
         return spellData;
     }
 
-    @Override
-    public void setSpellData(EntitySpellData data) {
+    public void init(LivingEntity caster, EntitySavedSpellData data) {
         this.spellData = data;
         CompoundTag nbt = new CompoundTag();
-        LoadSave.Save(spellData, nbt, "spell");
+        nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
+
+        this.setOwner(caster);
     }
 
 }

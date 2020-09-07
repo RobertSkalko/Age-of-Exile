@@ -15,11 +15,13 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
         super(requiredPieces);
     }
 
+    public TickRateCondition EVERY_X_TICKS = of(new TickRateCondition());
+
     public abstract boolean canActivate(SpellCtx ctx, MapHolder data);
 
     public static HashMap<String, EffectCondition> MAP = new HashMap<>();
 
-    private static EffectCondition of(EffectCondition s) {
+    private static <T extends EffectCondition> T of(T s) {
         MAP.put(s.GUID(), s);
         return s;
 

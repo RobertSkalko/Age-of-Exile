@@ -15,6 +15,7 @@ public class ProjectileCastOptions {
     public float apart = 3;
     public float shootSpeed = 1;
     public int projectilesAmount = 1;
+    public boolean gravity = true;
     SpellCastContext ctx;
     EntityType projectile;
 

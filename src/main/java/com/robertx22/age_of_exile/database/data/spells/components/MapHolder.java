@@ -18,4 +18,8 @@ public class MapHolder {
         return (T) map.get(field.GUID());
     }
 
+    public <T> T getOrDefault(MapField<T> field, T defa) {
+        return (T) map.getOrDefault(field.GUID(), defa);
+    }
+
 }

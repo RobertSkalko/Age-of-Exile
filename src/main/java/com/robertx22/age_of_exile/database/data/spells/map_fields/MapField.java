@@ -24,6 +24,8 @@ public class MapField<T> implements IGUID {
     public static MapField<Double> PROJECTILE_COUNT = make("projectile_count");
     public static MapField<String> PROJECTILE_ENTITY = make("projectile_entity");
     public static MapField<String> STATUS_EFFECT = make("status_effect");
+    public static MapField<String> ITEM = make("item");
+    public static MapField<Boolean> GRAVITY = make("gravity");
     public static MapField<Elements> ELEMENT = make("element");
     public static MapField<EntityFinder.SelectionType> SELECTION_TYPE = make("selection_type");
     public static MapField<EntityFinder.EntityPredicate> ENTITY_PREDICATE = make("entity_predicate");
