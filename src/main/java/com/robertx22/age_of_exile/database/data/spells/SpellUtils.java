@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.database.data.spells;
 
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.ISpellEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.IDatapackSpellEntity;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
@@ -63,6 +65,11 @@ public class SpellUtils {
 
         projectile.setProperties(caster, pitch, yaw, 0.0F, speed, 1F);
 
+    }
+
+    public static void initSpellEntity(Entity spellEntity, LivingEntity caster, EntitySavedSpellData data) {
+        IDatapackSpellEntity se = (IDatapackSpellEntity) spellEntity;
+        se.init(caster, data);
     }
 
     public static <T extends Entity> T getSpellEntity(EntityCalcSpellConfigs config, T spellEntity,

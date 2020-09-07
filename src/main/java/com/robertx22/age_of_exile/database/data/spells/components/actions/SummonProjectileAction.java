@@ -1,10 +1,9 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
-import com.robertx22.age_of_exile.database.data.spells.ProjectileCastOptions;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.ProjectileCastHelper;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -22,11 +21,10 @@ public class SummonProjectileAction extends SpellAction {
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
-        SpellCastContext cctx = new SpellCastContext(ctx.caster, 0, ctx.calculatedSpellData);
 
         Optional<EntityType<?>> projectile = EntityType.get(data.get(MapField.PROJECTILE_ENTITY));
 
-        ProjectileCastOptions builder = new ProjectileCastOptions(cctx, projectile.get());
+        ProjectileCastHelper builder = new ProjectileCastHelper(ctx.caster, projectile.get(), ctx.calculatedSpellData);
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
             .intValue();
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)

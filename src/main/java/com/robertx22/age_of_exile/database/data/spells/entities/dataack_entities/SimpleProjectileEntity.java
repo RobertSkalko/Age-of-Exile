@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBase
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.IMyRenderAsItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -21,6 +22,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
@@ -34,7 +36,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class SimpleProjectileEntity extends PersistentProjectileEntity implements IMyRenderAsItem {
+public final class SimpleProjectileEntity extends PersistentProjectileEntity implements IMyRenderAsItem, IDatapackSpellEntity {
 
     EntitySavedSpellData spellData;
 
@@ -56,8 +58,6 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     public Packet<?> createSpawnPacket() {
         return EntityPacket.createPacket(this);
     }
-
-    public abstract double radius();
 
     @Override
     protected ItemStack asItemStack() {
@@ -253,14 +253,25 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         }
     }
 
-    /**
-     * Called when this EntityThrowable hits a block or entity.
-     */
-    protected abstract void onImpact(HitResult result);
+    protected void onImpact(HitResult result) {
 
-    /**
-     * (abstract) Protected helper method to write subclass entity dataInstance to NBT.
-     */
+        LivingEntity entityHit = getEntityHit(result, 0.3D);
+
+        if (entityHit != null) {
+            if (world.isClient) {
+                SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 1F, 0.9F);
+            }
+
+            this.getSpellData().attached.tryActivate(ActivatedOn.Activation.ON_HIT, SpellCtx.onHit(getCaster(), this, entityHit, getSpellData()));
+
+        } else {
+            if (world.isClient) {
+                SoundUtils.playSound(this, SoundEvents.BLOCK_STONE_HIT, 0.7F, 0.9F);
+            }
+        }
+
+        this.remove();
+    }
 
     static Gson GSON = new Gson();
 
@@ -346,6 +357,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         return spellData;
     }
 
+    @Override
     public void init(LivingEntity caster, EntitySavedSpellData data) {
         this.spellData = data;
         CompoundTag nbt = new CompoundTag();
@@ -355,4 +367,8 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         this.setOwner(caster);
     }
 
+    @Override
+    public ItemStack getItem() {
+        return new ItemStack(Items.NETHER_STAR); // TODO
+    }
 }
