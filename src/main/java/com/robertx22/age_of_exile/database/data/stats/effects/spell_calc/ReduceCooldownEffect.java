@@ -15,7 +15,7 @@ public class ReduceCooldownEffect extends BaseSpellCalcEffect {
 
         if (effect.configs.has(SC.CDR_EFFICIENCY)) {
             cdrEfficiency = effect.configs.get(SC.CDR_EFFICIENCY)
-                .get(effect.ctx.skillGem);
+                .get(effect.ctx.calcData);
         }
 
         float multi = 1 - (data.getAverageValue() * cdrEfficiency / 100);

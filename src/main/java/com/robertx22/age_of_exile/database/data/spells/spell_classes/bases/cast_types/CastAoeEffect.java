@@ -18,11 +18,11 @@ public class CastAoeEffect extends SpellCastType {
 
             float RADIUS = ctx.getConfigFor(ctx.spell)
                 .get(SC.RADIUS)
-                .get(ctx.skillGem);
+                .get(ctx.calcData);
 
             EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos())
                 .radius(RADIUS)
-                .searchFor(EntityFinder.SearchFor.ALL)
+                .searchFor(EntityFinder.EntityPredicate.ALL)
                 .build()
                 .forEach(x -> PotionEffectUtils.apply(ctx.spell.getImmutableConfigs()
                     .potionEffect(), ctx.caster, x));

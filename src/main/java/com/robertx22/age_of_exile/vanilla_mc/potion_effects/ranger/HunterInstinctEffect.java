@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data.PotionStat;
@@ -49,8 +49,8 @@ public class HunterInstinctEffect extends BasePotionEffect implements IApplyStat
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(0);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(0);
     }
 
     @Override

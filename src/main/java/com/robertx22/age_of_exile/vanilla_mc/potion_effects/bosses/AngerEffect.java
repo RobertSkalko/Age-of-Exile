@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses;
 
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data.PotionStat;
@@ -26,8 +26,8 @@ public class AngerEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(5);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(5);
     }
 
     @Override

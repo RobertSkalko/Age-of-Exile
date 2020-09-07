@@ -53,19 +53,19 @@ public class HealingAuraSpell extends BaseSpell {
 
         float RADIUS = ctx.getConfigFor(this)
             .get(SC.RADIUS)
-            .get(ctx.skillGem);
+            .get(ctx.calcData);
 
         List<LivingEntity> list = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos())
-            .finder(EntityFinder.Finder.RADIUS)
+            .finder(EntityFinder.SelectionType.RADIUS)
             .radius(RADIUS)
-            .searchFor(EntityFinder.SearchFor.ALLIES)
+            .searchFor(EntityFinder.EntityPredicate.ALLIES)
             .build();
 
         for (LivingEntity en : list) {
 
             int num = ctx.getConfigFor(this)
-                .getCalc(ctx.skillGem)
-                .getCalculatedValue(ctx.data, ctx.skillGem);
+                .getCalc(ctx.calcData)
+                .getCalculatedValue(ctx.data, ctx.calcData);
 
             SpellUtils.heal(this, en, num);
 

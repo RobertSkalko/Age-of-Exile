@@ -15,7 +15,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.IAbility;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -61,13 +61,13 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         int timesToCast = (int) ctx.getConfigFor(this)
             .get(SC.TIMES_TO_CAST)
-            .get(ctx.skillGem);
+            .get(ctx.calcData);
 
         if (timesToCast > 1) {
 
             int castTimeTicks = (int) ctx.getConfigFor(this)
                 .get(SC.CAST_TIME_TICKS)
-                .get(ctx.skillGem);
+                .get(ctx.calcData);
 
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
@@ -153,11 +153,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     public int getCooldownInTicks(SpellCastContext ctx) {
         int ticks = (int) ctx.getConfigFor(this)
             .get(SC.COOLDOWN_TICKS)
-            .get(ctx.skillGem);
+            .get(ctx.calcData);
 
         int seconds = (int) ctx.getConfigFor(this)
             .get(SC.COOLDOWN_SECONDS)
-            .get(ctx.skillGem);
+            .get(ctx.calcData);
 
         return (int) ((seconds * 20F) + ticks);
     }
@@ -177,22 +177,22 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
         return (int) Mana.getInstance()
             .scale(ctx.getConfigFor(this)
                 .get(SC.MANA_COST)
-                .get(ctx.skillGem), ctx.skillGem.level);
+                .get(ctx.calcData), ctx.calcData.level);
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {
         return (int) ctx.getConfigFor(this)
             .get(SC.CAST_TIME_TICKS)
-            .get(ctx.skillGem);
+            .get(ctx.calcData);
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {
         return (float) useTimeTicks(ctx) / 20;
     }
 
-    public final SpellCalcData getCalculation(SpellCastContext ctx) {
+    public final ValueCalculationData getCalculation(SpellCastContext ctx) {
         return ctx.getConfigFor(this)
-            .getCalc(ctx.skillGem);
+            .getCalc(ctx.calcData);
     }
 
     public final Elements getElement() {

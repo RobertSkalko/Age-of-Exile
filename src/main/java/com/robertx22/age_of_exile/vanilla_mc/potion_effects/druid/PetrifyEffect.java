@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid;
 
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -95,8 +95,8 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(6);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(6);
     }
 
     @Override

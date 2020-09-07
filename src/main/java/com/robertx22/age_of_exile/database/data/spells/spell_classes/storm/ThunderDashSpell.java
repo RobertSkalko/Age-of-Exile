@@ -106,12 +106,12 @@ public class ThunderDashSpell extends BaseSpell {
 
         DashUtils.dash(ctx.caster, DashUtils.Strength.LARGE_DISTANCE, DashUtils.Way.FORWARD);
 
-        int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.skillGem);
+        int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.calcData);
 
         List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPos())
             .radius(2)
             .distance(10)
-            .finder(EntityFinder.Finder.IN_FRONT)
+            .finder(EntityFinder.SelectionType.IN_FRONT)
             .build();
 
         entities.forEach(x -> {

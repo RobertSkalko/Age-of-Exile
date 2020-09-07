@@ -32,7 +32,7 @@ public class LevelBased {
     }
 
     public float get(CalculatedSpellData data) {
-        return get(100);
+        return get(50);
     }
 
     public float getMax() {

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.perks;
 
+import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -19,10 +20,12 @@ public class SchoolData {
         return map.getOrDefault(point, false);
     }
 
-    public List<PointData> getAllocatedPoints() {
+    public List<PointData> getAllocatedPoints(SpellSchool school) {
         return map.entrySet()
             .stream()
-            .filter(x -> x.getValue())
+            .filter(x -> {
+                return x.getValue() && school.calcData.perks.containsKey(x.getKey());
+            })
             .map(x -> x.getKey())
             .collect(Collectors.toList());
     }

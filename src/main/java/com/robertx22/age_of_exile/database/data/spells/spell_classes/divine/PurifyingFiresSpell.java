@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.confi
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -75,7 +74,7 @@ public class PurifyingFiresSpell extends BaseSpell {
         List<LivingEntity> list = EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPos()
             .add(look)
             .add(0, ctx.caster.getHeight() / 2, 0))
-            .finder(EntityFinder.Finder.RADIUS)
+            .finder(EntityFinder.SelectionType.RADIUS)
             .radius(2)
             .height(2)
             .build();
@@ -103,12 +102,10 @@ public class PurifyingFiresSpell extends BaseSpell {
         for (LivingEntity en : list) {
 
             int num = ctx.getConfigFor(this)
-                .getCalc(ctx.skillGem)
-                .getCalculatedValue(ctx.data, ctx.skillGem);
+                .getCalc(ctx.calcData)
+                .getCalculatedValue(ctx.data, ctx.calcData);
 
-            SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, en, num, ctx.data, Load.Unit(en),
-                this
-            );
+            SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, en, num, this);
             dmg.removeKnockback();
             dmg.Activate();
 

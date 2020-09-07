@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs;
 
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class EntityCalcSpellConfigs {
 
     @Store
-    public SpellCalcData calc = null;
+    public ValueCalculationData calc = null;
 
     @Store
     private HashMap<SC, Float> map = new HashMap<>();
@@ -43,12 +43,12 @@ public class EntityCalcSpellConfigs {
 
         if (pre.has(SC.BASE_VALUE)) {
             if (pre.has(SC.ATTACK_SCALE_VALUE)) {
-                this.calc = SpellCalcData.scaleWithAttack(pre.get(SC.ATTACK_SCALE_VALUE)
+                this.calc = ValueCalculationData.scaleWithAttack(pre.get(SC.ATTACK_SCALE_VALUE)
                     .get(skillgem), pre.get(SC.BASE_VALUE)
                     .get(skillgem));
 
             } else {
-                this.calc = SpellCalcData.base(pre.get(SC.BASE_VALUE)
+                this.calc = ValueCalculationData.base(pre.get(SC.BASE_VALUE)
                     .get(skillgem));
 
             }

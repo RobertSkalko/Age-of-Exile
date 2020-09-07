@@ -115,7 +115,7 @@ public class GorgonsGazeSpell extends BaseSpell {
         EntityFinder.start(caster, LivingEntity.class, caster.getPos())
             .radius(3)
             .distance(15)
-            .finder(EntityFinder.Finder.IN_FRONT)
+            .finder(EntityFinder.SelectionType.IN_FRONT)
             .build()
             .forEach(x -> PotionEffectUtils.apply(PetrifyEffect.INSTANCE, caster, x));
 

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses;
 
 import com.robertx22.age_of_exile.mobs.bosses.bases.ChannelAction.ChannelType;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.OnTickAction;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
@@ -63,8 +63,8 @@ public class ChannelEffect extends BasePotionEffect {
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(5);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(5);
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
@@ -37,15 +37,15 @@ public class PreCalcSpellConfigs {
 
     public int maxSpellLevel = 12;
 
-    public SpellCalcData getCalc(CalculatedSpellData skillgem) {
+    public ValueCalculationData getCalc(CalculatedSpellData skillgem) {
 
         if (has(SC.ATTACK_SCALE_VALUE)) {
-            return SpellCalcData.scaleWithAttack(
+            return ValueCalculationData.scaleWithAttack(
                 get(SC.ATTACK_SCALE_VALUE).get(skillgem),
                 get(SC.BASE_VALUE).get(skillgem)
             );
         } else {
-            return SpellCalcData.base(
+            return ValueCalculationData.base(
                 get(SC.BASE_VALUE).get(skillgem)
             );
         }
@@ -123,7 +123,7 @@ public class PreCalcSpellConfigs {
                 if (x.getKey()
                     .shouldAddToTooltip()) {
                     String val = NumberUtils.formatForTooltip(x.getValue()
-                        .get(ctx.skillGem));
+                        .get(ctx.calcData));
                     list.add(new SText(Formatting.GRAY + "").append(x.getKey().word.locName())
                         .append(": " + Formatting.GREEN + val));
 

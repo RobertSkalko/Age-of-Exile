@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
@@ -102,8 +102,8 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(10);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(10);
     }
 
     @Override

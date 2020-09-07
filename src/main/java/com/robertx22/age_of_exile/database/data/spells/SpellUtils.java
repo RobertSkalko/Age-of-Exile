@@ -128,8 +128,8 @@ public class SpellUtils {
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
                 ctx.getConfigFor(ctx.spell)
-                    .getCalc(ctx.skillGem)
-                    .getCalculatedValue(ctx.data, ctx.skillGem), ResourcesData.Use.RESTORE,
+                    .getCalc(ctx.calcData)
+                    .getCalculatedValue(ctx.data, ctx.calcData), ResourcesData.Use.RESTORE,
                 ctx.spell
             ));
         heal.Activate();
@@ -139,8 +139,8 @@ public class SpellUtils {
         ctx.data
             .modifyResource(new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.MAGIC_SHIELD,
                 ctx.getConfigFor(ctx.spell)
-                    .getCalc(ctx.skillGem)
-                    .getCalculatedValue(ctx.data, ctx.skillGem), ResourcesData.Use.RESTORE,
+                    .getCalc(ctx.calcData)
+                    .getCalculatedValue(ctx.data, ctx.calcData), ResourcesData.Use.RESTORE,
                 ctx.spell
             ));
     }

@@ -11,7 +11,6 @@ public enum SC {
     COOLDOWN_SECONDS(0, Words.CooldownSeconds),
     COOLDOWN_TICKS(0, Words.CooldownTicks),
     SHOOT_SPEED(0.05F, Words.ShootSpeed),
-    SUMMONED_ENTITIES(1, Words.SummonedEntities),
     CHANCE(0, Words.Chance),
     CDR_EFFICIENCY(0, Words.CooldownReductionEfficiency),
     DURATION_TICKS(0, Words.DurationTicks),

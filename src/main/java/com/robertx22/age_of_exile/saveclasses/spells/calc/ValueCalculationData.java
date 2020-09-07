@@ -22,26 +22,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class SpellCalcData {
+public class ValueCalculationData {
 
-    public static SpellCalcData empty() {
+    public static ValueCalculationData empty() {
 
-        SpellCalcData d = new SpellCalcData();
+        ValueCalculationData d = new ValueCalculationData();
         d.empty = true;
 
         return d;
     }
 
-    public static SpellCalcData base(float base) {
-        SpellCalcData data = new SpellCalcData();
+    public static ValueCalculationData base(float base) {
+        ValueCalculationData data = new ValueCalculationData();
 
         data.baseValue = base;
 
         return data;
     }
 
-    public static SpellCalcData scaleWithAttack(float attack, float base) {
-        SpellCalcData data = new SpellCalcData();
+    public static ValueCalculationData scaleWithAttack(float attack, float base) {
+        ValueCalculationData data = new ValueCalculationData();
 
         List<Stat> list = new WeaponDamage(Elements.Nature).generateAllSingleVariations();
         list.add(new WeaponDamage(Elements.Physical));
@@ -53,11 +53,11 @@ public class SpellCalcData {
     }
 
     @Factory
-    private SpellCalcData() {
+    private ValueCalculationData() {
 
     }
 
-    public SpellCalcData(ScalingStatCalc calc, int base) {
+    public ValueCalculationData(ScalingStatCalc calc, int base) {
         this.scalingValues.add(calc);
         this.baseValue = base;
     }
@@ -123,7 +123,7 @@ public class SpellCalcData {
 
             if (baseValue > 0) {
                 list.add(new LiteralText(
-                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(ctx.skillGem.level)));
+                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(ctx.calcData.level)));
             }
         }
 

@@ -100,14 +100,14 @@ public class BlazingInfernoSpell extends BaseSpell {
 
             float radius = ctx.getConfigFor(this)
                 .get(SC.RADIUS)
-                .get(ctx.skillGem);
+                .get(ctx.calcData);
 
             ParticlePacketData pdata = new ParticlePacketData(caster.getBlockPos()
                 .up(1), ParticleEnum.BLAZING_INFERNO);
             pdata.radius = radius;
             ParticleEnum.BLAZING_INFERNO.sendToClients(caster, pdata);
 
-            int num = getCalculation(ctx).getCalculatedValue(ctx.data, ctx.skillGem);
+            int num = getCalculation(ctx).getCalculatedValue(ctx.data, ctx.calcData);
 
             List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPos())
                 .radius(radius)

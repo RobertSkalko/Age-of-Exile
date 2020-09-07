@@ -114,9 +114,7 @@ public interface ISpellEntity {
         int num = data.configs.calc
             .getCalculatedValue(casterData, data.skillgem);
 
-        SpellDamageEffect dmg = new SpellDamageEffect(caster, target, num, casterData, Load.Unit(target),
-            data.getSpell()
-        );
+        SpellDamageEffect dmg = new SpellDamageEffect(caster, target, num, data.getSpell());
 
         if (opt.knockback == false) {
             dmg.removeKnockback();

@@ -1,57 +1,20 @@
-v.1.2.1
+v.1.3.0
 
-- prettier and more informative gem tooltips
-- should fix skeletons and chickens spawning in bases in light
-- added chinese patchouli translation
+This update reworks skill gems into skill trees!
 
-v.1.2.0
+- skill gems gone
+- added skill trees
 
-Warning: your gear will have minus durability after this update possibly! 
-Repair it first, because any hit will break it. This is because when max durability is reduced, so is current durability..
+By investing points into Skill trees you can unlock stat bonuses and spells.
+There's currently 6 skill trees: Fire, Ocean, Nature, Storm, Divine, Hunting.
 
-- removed jewels
+There's currently no limit to the amount of trees you can invest in, besides the points themselves.
 
-- added gems!
-- added runes!
-- added runewords!
-- added socketing station!
+Oh, and skill trees are 100% datapacks. Meaning you can edit or add new ones to your will!
+You can go nuts and add a perk that gives 100 health but locked under kill ender dragon advancement.. Or something crazy like that.
 
-Both gems, runes and runewords are datapacks!
-Runewords can be added by datapacks, runes and gems currenltly can't. But you can edit them!
+This update was quick as most of the hard part was done by me in earlier version. I just removed talents while thinking how to add them back.
+It still took a few days though.
 
-Gems are basically the jewels, but stackable and you can craft them into higher level versions.
-They're also datapacks!
-I have an idea how to add jewels back in, and they'll be more interesting :)
-
-Yes runes were a long time coming. I waited till I figured out a good way to do them.
-It's not hard to add them, it's hard to get them right.
-
-Runes are weaker than gems but when matched into runewords become stronger.
-
-Runes are now stackable just like gems and not random. Only the end result of socketing is random (the stat numbers).
-I really didn't think of how much of a pain inventory management was until I saw dozens of chests full of runes.
-
-Minor changes:
-- fixed server crash on casting spell
-- special mob stats are now in entity configs instead of hardcoded
-- made gear have similar durability to vanilla diamond gear. I gave it too much it seems
-- repair station now sucks fuel only when needed
-- added config to show area screen text
-- added level distance penalty config
-- added golem boss which you can summon same as a wither but: soul sand block > iron block and mob head > bone block.
-- you now need material only gotten by the golem boss drops to craft the modify station. 
-- added config that by default makes all players count as if teamed (PVE mode basically), disable for pvp servers
-This should hopefully stop the bug reports of "I can't heal my friend". But whether i keep this as on by default depends on amount of pvp players.
-- fixed +0 exp messages
-- stopped mobs from spawning on daytime and made their spawn restrictions like vanilla mobs. So should be less spawns on nighttime too.
-- used the proper creative tab code, now no longer replace vanilla brewing tab. Seriously, nobody noticed?
-- added new stat, +maximum resistance
-- new rarity, Relic! These items have no affixes but can have up to 5 socket slots!
-- added bonus exp stat
-- fix crash on eating foods with effects on server
-- fix death message 
-- gear salvage outputs are now configurable! 
-- tried to uncap health from 1024 to max int. Experimental as i'm not an expect at reflection.
-- salvage station now throws items on ground if the output slots arent all empty. This is to prevent cheating as the salvage results are random
-- added new currencies! They can add additional socket slots and turn common items into rares!
-- changed a few datapacks to load with auto gson, some changes probably
+Other changes:
+- should fix my mobs spawning in light

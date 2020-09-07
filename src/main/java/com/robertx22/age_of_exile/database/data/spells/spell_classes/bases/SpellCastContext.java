@@ -22,7 +22,7 @@ public class SpellCastContext {
     public final BaseSpell spell;
     public boolean isLastCastTick;
     public boolean castedThisTick = false;
-    public CalculatedSpellData skillGem;
+    public CalculatedSpellData calcData;
 
     public EntityCalcSpellConfigs configForSummonedEntities;
 
@@ -45,9 +45,9 @@ public class SpellCastContext {
     }
 
     private void calcSpellData() {
-        this.skillGem = new CalculatedSpellData();
-        skillGem.level = this.data.getLevel();
-        skillGem.spell_id = spell.GUID();
+        this.calcData = new CalculatedSpellData();
+        calcData.level = this.data.getLevel();
+        calcData.spell_id = spell.GUID();
     }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {
@@ -70,11 +70,11 @@ public class SpellCastContext {
 
         calcSpellData();
 
-        this.configForSummonedEntities = new EntityCalcSpellConfigs(this.skillGem);
+        this.configForSummonedEntities = new EntityCalcSpellConfigs(this.calcData);
 
         if (spell != null) {
             int castTicks = (int) getConfigFor(spell).get(SC.CAST_TIME_TICKS)
-                .get(skillGem);
+                .get(calcData);
             this.isLastCastTick = castTicks == ticksInUse;
         }
 

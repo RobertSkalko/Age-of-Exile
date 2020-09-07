@@ -61,7 +61,7 @@ public class OnTickRandomSpeedBoost {
             List<MobEntity> entities = EntityFinder.start(
                 en, MobEntity.class, en.getPos())
                 .radius(40)
-                .searchFor(EntityFinder.SearchFor.ALLIES)
+                .searchFor(EntityFinder.EntityPredicate.ALLIES)
                 .build();
 
             entities.forEach(x -> {

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IApplyStatPotion;
@@ -56,8 +56,8 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(0);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(0);
     }
 
     @Override

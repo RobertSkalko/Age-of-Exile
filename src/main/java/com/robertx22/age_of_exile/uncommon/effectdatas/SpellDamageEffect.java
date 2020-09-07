@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
@@ -13,10 +13,8 @@ public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
 
     public BaseSpell spell;
 
-    public SpellDamageEffect(LivingEntity source, LivingEntity target, int dmg, EntityCap.UnitData sourceData,
-                             EntityCap.UnitData targetData, BaseSpell spell) {
-        super(null, source, target, dmg, sourceData, targetData, EffectTypes.SPELL, WeaponTypes.None);
-
+    public SpellDamageEffect(LivingEntity source, LivingEntity target, int dmg, BaseSpell spell) {
+        super(null, source, target, dmg, Load.Unit(source), Load.Unit(target), EffectTypes.SPELL, WeaponTypes.None);
         this.spell = spell;
         this.element = spell.getElement();
     }

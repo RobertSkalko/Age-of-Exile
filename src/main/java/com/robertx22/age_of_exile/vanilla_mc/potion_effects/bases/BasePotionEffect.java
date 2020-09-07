@@ -6,14 +6,14 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
@@ -32,7 +32,7 @@ import java.util.List;
 
 public abstract class BasePotionEffect extends StatusEffect implements ISlashRegistryEntry<BasePotionEffect>, IAutoLocName, ITooltipList {
 
-    public abstract SpellCalcData getCalc(LivingEntity caster);
+    public abstract ValueCalculationData getCalc(LivingEntity caster);
 
     public Elements getElement() {
 

@@ -1,8 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ArrowStormEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ThunderstormEntity;
@@ -13,8 +11,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bo
 import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.PoisonBallEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.bosses.GolemBossEntity;
 import com.robertx22.age_of_exile.mobs.chickens.FireChicken;
@@ -29,13 +25,11 @@ import com.robertx22.age_of_exile.mobs.skeletons.WaterSkeleton;
 import com.robertx22.age_of_exile.mobs.slimes.*;
 import com.robertx22.age_of_exile.mobs.spiders.*;
 import com.robertx22.age_of_exile.mobs.zombies.*;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -157,45 +151,12 @@ public class ModEntities {
             return false;
         }
 
-        if (spawnReason == SpawnReason.SPAWNER) {
-            return true;
-        }
-
         if (!WorldAreas.getArea((World) sw, pos)
             .getAreaModifier()
             .canMobSpawn(type)) {
             return false;
         }
-
-        if (sw.toServerWorld()
-            .isDay()) {
-
-            if (!ModConfig.get().Server.ALLOW_EXILE_MOBS_DAY_SPAWNS) {
-                return false;
-            }
-            DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(sw.toServerWorld());
-            if (LevelUtils.determineLevelPerDistanceFromSpawn(sw.toServerWorld(), pos, dimConfig) < ModConfig.get().Server.LVL_WHEN_MOBS_START_SPAWNING_IN_DAYLIGHT) {
-                return false; // otherwise lvl 1 newbies are screwed
-            }
-
-            boolean isdaylightmob = ModRegistry.ENTITIES.DAYLIGHT_MOBS.getOrDefault(type, false);
-            if (isdaylightmob) {
-                return true;
-            }
-
-            PlayerEntity nearest = PlayerUtils.nearestPlayer(sw.toServerWorld(), pos);
-            if (nearest != null) {
-                double distance = nearest.getBlockPos()
-                    .getSquaredDistance(pos);
-                if (distance < 3000) {
-                    return false;
-                }
-            }
-
-        }
-
-        return true;
-
+        return HostileEntity.canSpawnInDark((EntityType<? extends HostileEntity>) type, sw, spawnReason, pos, random);
     }
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,

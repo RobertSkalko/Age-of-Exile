@@ -30,8 +30,7 @@ public class EntityFinder {
         return en instanceof PlayerEntity;
     }
 
-    public enum SearchFor {
-
+    public enum EntityPredicate {
         ALLIES() {
             @Override
             public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
@@ -109,7 +108,7 @@ public class EntityFinder {
         public abstract boolean includesCaster();
     }
 
-    public enum Finder {
+    public enum SelectionType {
         RADIUS() {
             @Override
             public <T extends Entity> List<T> getEntities(Setup setup) {
@@ -143,7 +142,7 @@ public class EntityFinder {
 
                 double horizontal = setup.horizontal;
                 double vertical = setup.vertical;
-                ;
+
                 double x = entity.getX();
                 double y = entity.getY();
                 double z = entity.getZ();
@@ -189,8 +188,8 @@ public class EntityFinder {
     public static class Setup<T extends LivingEntity> {
 
         Class<T> entityType;
-        Finder finder = Finder.RADIUS;
-        SearchFor searchFor = SearchFor.ENEMIES;
+        SelectionType selectionType = SelectionType.RADIUS;
+        EntityPredicate entityPredicate = EntityPredicate.ENEMIES;
         LivingEntity caster;
         boolean forceExcludeCaster = false;
         World world;
@@ -223,7 +222,7 @@ public class EntityFinder {
             Objects.requireNonNull(caster, "Blockpos can't be null");
             Objects.requireNonNull(caster, "World can't be null");
 
-            List<T> list = this.finder.getEntities(this);
+            List<T> list = this.selectionType.getEntities(this);
 
             list.removeIf(x -> x == null);
 
@@ -231,9 +230,9 @@ public class EntityFinder {
                 list.removeIf(y -> !predicate.test(y));
             }
 
-            list = this.searchFor.getMatchingEntities(list, this);
+            list = this.entityPredicate.getMatchingEntities(list, this);
 
-            if (forceExcludeCaster || !searchFor.includesCaster()) {
+            if (forceExcludeCaster || !entityPredicate.includesCaster()) {
                 list.removeIf(x -> x == caster);
             }
 
@@ -248,13 +247,13 @@ public class EntityFinder {
             return this;
         }
 
-        public Setup<T> finder(Finder f) {
-            this.finder = f;
+        public Setup<T> finder(SelectionType f) {
+            this.selectionType = f;
             return this;
         }
 
-        public Setup<T> searchFor(SearchFor f) {
-            this.searchFor = f;
+        public Setup<T> searchFor(EntityPredicate f) {
+            this.entityPredicate = f;
             return this;
         }
 

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger;
 
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -86,8 +86,8 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(2);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(2);
     }
 
     @Override

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class ServerContainer {
 
-    public boolean ALLOW_EXILE_MOBS_DAY_SPAWNS = true;
     public boolean ALL_PLAYERS_ARE_TEAMED_PVE_MODE = true;
     public boolean ALLOW_OBSIDIAN_BREAKING_MEGA_EXPLOSIONS = true;
     public boolean LOG_REGISTRY_ENTRIES = false;

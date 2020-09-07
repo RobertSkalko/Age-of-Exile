@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid;
 
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IApplyStatPotion;
@@ -56,8 +56,8 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
     }
 
     @Override
-    public SpellCalcData getCalc(LivingEntity caster) {
-        return SpellCalcData.base(4);
+    public ValueCalculationData getCalc(LivingEntity caster) {
+        return ValueCalculationData.base(4);
     }
 
     @Override

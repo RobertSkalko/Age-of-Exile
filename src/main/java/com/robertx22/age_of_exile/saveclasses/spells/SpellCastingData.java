@@ -146,7 +146,7 @@ public class SpellCastingData {
 
                 int timesToCast = (int) ctx.getConfigFor(spell)
                     .get(SC.TIMES_TO_CAST)
-                    .get(ctx.skillGem);
+                    .get(ctx.calcData);
 
                 if (timesToCast == 1) {
                     spell.cast(ctx);

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.perks;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
@@ -42,9 +43,10 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         BaseSpell spell = getSpell();
 
         try {
+
             if (spell != null && !spell.GUID()
                 .isEmpty()) {
-                // TODO REWORK SPELLS FIRST  list.addAll(getSpell().getto)
+                list.addAll(new SpellCastContext(info.player, 0, getSpell()).calcData.GetTooltipString(info));
             }
 
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));

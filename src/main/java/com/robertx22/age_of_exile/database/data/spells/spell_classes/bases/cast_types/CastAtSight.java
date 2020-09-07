@@ -24,7 +24,7 @@ public class CastAtSight extends SpellCastType {
 
         Entity en = SpellUtils.getSpellEntity(ctx.configForSummonedEntities, ctx.spell.getImmutableConfigs()
             .newEntitySummoner()
-            .apply(world), ctx.skillGem, ctx.caster);
+            .apply(world), ctx.calcData, ctx.caster);
 
         en.updatePosition(pos.x, pos.y, pos.z);
 
