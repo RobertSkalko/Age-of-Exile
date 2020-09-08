@@ -14,8 +14,10 @@ public class MapField<T> implements IGUID {
 
     // double
     public static MapField<Double> RADIUS = make("radius");
+    public static MapField<Double> HEIGHT = make("height");
     public static MapField<Double> TICK_RATE = make("tick_rate");
     public static MapField<Double> PARTICLE_COUNT = make("particle_count");
+    public static MapField<Double> Y_RANDOM = make("y_rand");
     public static MapField<Double> LIFESPAN_TICKS = make("life_ticks");
     public static MapField<Double> DISTANCE = make("distance");
     public static MapField<Double> WIDTH = make("width");
@@ -36,6 +38,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> ENTITY_PREDICATE = make("en_predicate");
     public static MapField<String> PARTICLE_TYPE = make("particle_type");
     public static MapField<String> SOUND = make("sound");
+    public static MapField<String> PARTICLE_SHAPE = make("shape");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");

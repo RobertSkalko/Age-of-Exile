@@ -50,4 +50,11 @@ public class TestSpells {
         .onHit(Builder.damage(ValueCalculationData.scaleWithAttack(0.25F, 4), Elements.Water))
         .build();
 
+    public static Spell THUNDERSTORM = Spell.Builder.of("thunderstorm")
+        .onCast(Builder.playSound(SoundEvents.ITEM_TRIDENT_THUNDER, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
+        .onTick(Builder.particleOnTick(2D, ParticleTypes.FALLING_WATER, 20D, 4D))
+        .onHit(Builder.damage(ValueCalculationData.base(2), Elements.Water))
+        .build();
+
 }

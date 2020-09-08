@@ -350,7 +350,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             try {
                 this.caster = Utilities.getLivingEntityByUUID(world, UUID.fromString(getSpellData().caster_uuid));
             } catch (Exception e) {
-                e.printStackTrace();
+                // e.printStackTrace();
             }
         }
 
@@ -397,7 +397,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             // e.printStackTrace();
         }
 
-        return new ItemStack(Items.SNOWBALL);
+        return new ItemStack(Items.AIR);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spells.components.actions.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -50,6 +51,16 @@ public class MapHolder {
 
     public EntityFinder.SelectionType getSelectionType() {
         return EntityFinder.SelectionType.valueOf(get(MapField.SELECTION_TYPE));
+    }
+
+    public ParticleInRadiusAction.Shape getParticleShape() {
+        String str = get(MapField.PARTICLE_SHAPE);
+
+        if (str != null && !str.isEmpty()) {
+            return ParticleInRadiusAction.Shape.valueOf(str);
+        } else {
+            return ParticleInRadiusAction.Shape.CIRCLE;
+        }
     }
 
     public EntityFinder.EntityPredicate getEntityPredicate() {

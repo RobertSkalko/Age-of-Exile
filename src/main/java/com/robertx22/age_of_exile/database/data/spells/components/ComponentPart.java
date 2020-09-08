@@ -1,9 +1,11 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spells.components.actions.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
@@ -62,6 +64,22 @@ public class ComponentPart {
         public static ComponentPart particleOnTick(Double ticks, DefaultParticleType particle, Double count, Double radius) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart cloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
+                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+                .put(MapField.Y_RANDOM, 2.5D));
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart particleOnTick(Double ticks, MapHolder map) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(map);
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }

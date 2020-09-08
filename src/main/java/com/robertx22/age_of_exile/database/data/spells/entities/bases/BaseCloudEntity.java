@@ -59,7 +59,6 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
             if (world.isClient && age % 2 == 0) {
 
                 for (int i = 1; i < 12; i++) {
-                    double speed = (random.nextBoolean() ? 1 : -1) * 0.1 + 0.05 * random.nextDouble();
 
                     float yRandom = (float) RandomUtils.RandomRange(1, 100) / 40F;
 

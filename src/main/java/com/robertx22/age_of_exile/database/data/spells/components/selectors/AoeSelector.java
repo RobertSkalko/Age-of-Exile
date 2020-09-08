@@ -19,12 +19,12 @@ public class AoeSelector extends BaseTargetSelector {
     @Override
     public List<LivingEntity> get(LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
         EntityFinder.EntityPredicate predicate = data.getEntityPredicate();
-        float radius = data.get(RADIUS)
-            .floatValue();
+        Double radius = data.get(RADIUS);
 
         EntityFinder.Setup<LivingEntity> finder = EntityFinder.start(caster, LivingEntity.class, pos)
             .finder(EntityFinder.SelectionType.RADIUS)
             .searchFor(predicate)
+            .height(data.getOrDefault(HEIGHT, radius))
             .radius(radius);
 
         return finder.build();
