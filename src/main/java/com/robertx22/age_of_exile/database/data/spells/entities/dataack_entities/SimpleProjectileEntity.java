@@ -405,6 +405,8 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         this.spellData = data;
 
         this.setNoGravity(!holder.getOrDefault(MapField.GRAVITY, true));
+        this.deathTime = holder.get(MapField.LIFESPAN_TICKS)
+            .intValue();
 
         data.item_id = holder.get(MapField.ITEM);
         CompoundTag nbt = new CompoundTag();

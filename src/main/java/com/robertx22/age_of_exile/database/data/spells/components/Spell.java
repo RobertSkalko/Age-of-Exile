@@ -1,9 +1,11 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.activated_on.Activation;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
 import net.minecraft.entity.LivingEntity;
@@ -20,12 +22,47 @@ public class Spell implements IGUID {
 
     static Gson GSON = new Gson();
 
+    public void validate() {
+        for (ComponentPart x : this.attached.getAllComponents()) {
+            for (MapHolder part : x.conditions) {
+                EffectCondition condition = EffectCondition.MAP.get(part.type);
+                condition.validate(part);
+            }
+            for (MapHolder part : x.target_selectors) {
+                BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
+                selector.validate(part);
+            }
+            for (MapHolder part : x.actions) {
+                SpellAction action = SpellAction.MAP.get(part.type);
+                action.validate(part);
+            }
+        }
+    }
+
+    transient String json;
+    transient boolean isInit = false;
+
+    public void onInit() {
+
+        if (!isInit) {
+            json = GSON.toJson(attached);
+            this.isInit = true;
+
+            this.validate();
+        }
+    }
+
     public AttachedSpell getAttachedSpell(LivingEntity caster) {
 
-        String json = GSON.toJson(attached);
+        onInit();
+
+
+        /*
         JsonElement json2 = GSON.toJsonTree(attached);
 
         System.out.println(json2.toString());
+
+         */
 
         AttachedSpell calc = GSON.fromJson(json, AttachedSpell.class);
         // todo, lot player stats, and spell modifiers modify this
@@ -59,7 +96,23 @@ public class Spell implements IGUID {
 
         }
 
-        public Builder addEffect(Activation data, ComponentPart comp) {
+        public Builder onCast(ComponentPart comp) {
+            return this.addEffect(Activation.ON_CAST, comp);
+        }
+
+        public Builder onTick(ComponentPart comp) {
+            return this.addEffect(Activation.ON_TICK, comp);
+        }
+
+        public Builder onExpire(ComponentPart comp) {
+            return this.addEffect(Activation.ON_EXPIRE, comp);
+        }
+
+        public Builder onHit(ComponentPart comp) {
+            return this.addEffect(Activation.ON_HIT, comp);
+        }
+
+        private Builder addEffect(Activation data, ComponentPart comp) {
             Objects.requireNonNull(data);
             Objects.requireNonNull(comp);
 

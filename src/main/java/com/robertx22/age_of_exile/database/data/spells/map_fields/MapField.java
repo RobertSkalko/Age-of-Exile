@@ -16,21 +16,26 @@ public class MapField<T> implements IGUID {
     public static MapField<Double> RADIUS = make("radius");
     public static MapField<Double> TICK_RATE = make("tick_rate");
     public static MapField<Double> PARTICLE_COUNT = make("particle_count");
-    public static MapField<Double> LIFESPAN_TICKS = make("lifespan_ticks");
+    public static MapField<Double> LIFESPAN_TICKS = make("life_ticks");
     public static MapField<Double> DISTANCE = make("distance");
     public static MapField<Double> WIDTH = make("width");
     public static MapField<Double> CHANCE = make("chance");
-    public static MapField<Double> PROJECTILE_SPEED = make("projectile_speed");
-    public static MapField<Double> PROJECTILE_COUNT = make("projectile_count");
+    public static MapField<Double> PROJECTILE_SPEED = make("proj_speed");
+    public static MapField<Double> PROJECTILE_COUNT = make("proj_count");
+    public static MapField<Double> PROJECTILES_APART = make("proj_apart");
+
+    public static MapField<Double> VOLUME = make("volume");
+    public static MapField<Double> PITCH = make("pitch");
 
     // string
-    public static MapField<String> PROJECTILE_ENTITY = make("projectile_entity");
+    public static MapField<String> PROJECTILE_ENTITY = make("proj_en");
     public static MapField<String> STATUS_EFFECT = make("status_effect");
     public static MapField<String> ITEM = make("item");
     public static MapField<String> ELEMENT = make(new MapField<String>("element"));
     public static MapField<String> SELECTION_TYPE = make("selection_type");
-    public static MapField<String> ENTITY_PREDICATE = make("entity_predicate");
+    public static MapField<String> ENTITY_PREDICATE = make("en_predicate");
     public static MapField<String> PARTICLE_TYPE = make("particle_type");
+    public static MapField<String> SOUND = make("sound");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");

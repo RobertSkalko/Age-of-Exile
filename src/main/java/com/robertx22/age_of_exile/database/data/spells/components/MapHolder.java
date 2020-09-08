@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -18,20 +19,20 @@ public class MapHolder {
 
     private ValueCalculationData calc = null;
 
-    public <T> void put(MapField<T> field, T t) {
+    public <T> MapHolder put(MapField<T> field, T t) {
         if (field == MapField.VALUE_CALCULATION) {
             calc = (ValueCalculationData) t;
-            return;
+            return this;
         }
 
         this.map.put(field.GUID(), t);
+        return this;
     }
 
     public <T> T get(MapField<T> field) {
         if (field == MapField.VALUE_CALCULATION) {
             return (T) calc;
         }
-
         return (T) map.get(field.GUID());
     }
 
@@ -41,6 +42,10 @@ public class MapHolder {
 
     public DefaultParticleType getParticle() {
         return (DefaultParticleType) Registry.PARTICLE_TYPE.get(new Identifier(get(MapField.PARTICLE_TYPE)));
+    }
+
+    public SoundEvent getSound() {
+        return Registry.SOUND_EVENT.get(new Identifier(get(MapField.SOUND)));
     }
 
     public EntityFinder.SelectionType getSelectionType() {

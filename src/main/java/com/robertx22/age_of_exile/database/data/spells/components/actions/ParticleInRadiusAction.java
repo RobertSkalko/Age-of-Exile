@@ -22,15 +22,17 @@ public class ParticleInRadiusAction extends SpellAction {
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
-        DefaultParticleType particle = data.getParticle();
-
-        float radius = data.get(RADIUS)
-            .floatValue();
-        int amount = data.get(PARTICLE_COUNT)
-            .intValue();
 
         if (ctx.sourceEntity.world.isClient) {
-            if (ctx.sourceEntity.age > 1) {
+
+            DefaultParticleType particle = data.getParticle();
+
+            float radius = data.get(RADIUS)
+                .floatValue();
+            int amount = data.get(PARTICLE_COUNT)
+                .intValue();
+
+            if (ctx.sourceEntity.age > 2) {
                 for (int i = 0; i < amount; i++) {
                     Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(ctx.vecPos, radius);
                     ParticleUtils.spawn(particle, ctx.world, p);

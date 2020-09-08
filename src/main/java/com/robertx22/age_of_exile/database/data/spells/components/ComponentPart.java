@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.sound.SoundEvent;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -62,6 +63,12 @@ public class ComponentPart {
             ComponentPart c = new ComponentPart();
             c.actions.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
             c.conditions.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart playSound(SoundEvent sound, Double volume, Double pitch) {
+            ComponentPart c = new ComponentPart();
+            c.actions.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
             return c;
         }
 

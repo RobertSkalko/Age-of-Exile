@@ -203,7 +203,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
     public final boolean cast(SpellCastContext ctx) {
 
         if (true) {
-            TestSpells.TEST_SPELL.cast(ctx.caster);
+
+            TestSpells.TIDAL_WAVE.cast(ctx.caster);
 
             return true; // REMOVE AFTER TESTING
         }

@@ -30,7 +30,8 @@ public class SummonProjectileAction extends SpellAction {
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
             .floatValue();
 
-        builder.apart = 75;
+        builder.apart = data.getOrDefault(MapField.PROJECTILES_APART, 75D)
+            .floatValue();
         builder.cast();
     }
 

@@ -33,8 +33,12 @@ public class SpellCtx {
         this.pos = pos;
         this.calculatedSpellData = calculatedSpellData;
         this.world = caster.world;
-        this.vecPos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
 
+        if (sourceEntity != null) {
+            this.vecPos = sourceEntity.getPos();
+        } else {
+            this.vecPos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
+        }
     }
 
     public static SpellCtx onCast(LivingEntity caster, EntitySavedSpellData data) {
