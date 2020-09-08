@@ -17,6 +17,7 @@ public class Spell implements IGUID {
     private String identifier;
     private List<ActivationCost> costs = new ArrayList<>();
     private AttachedSpell attached = new AttachedSpell();
+    private SpellConfiguration config;
 
     static Gson GSON = new Gson();
 
@@ -68,11 +69,12 @@ public class Spell implements IGUID {
 
         Spell spell;
 
-        public static Builder of(String id) {
+        public static Builder of(String id, SpellConfiguration config) {
             Builder builder = new Builder();
 
             builder.spell = new Spell();
             builder.spell.identifier = id;
+            builder.spell.config = config;
 
             return builder;
 

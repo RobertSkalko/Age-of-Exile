@@ -14,6 +14,7 @@ public class MapField<T> implements IGUID {
 
     // double
     public static MapField<Double> RADIUS = make("radius");
+    public static MapField<Double> COUNT = make("count");
     public static MapField<Double> HEIGHT = make("height");
     public static MapField<Double> TICK_RATE = make("tick_rate");
     public static MapField<Double> PARTICLE_COUNT = make("particle_count");
@@ -40,6 +41,8 @@ public class MapField<T> implements IGUID {
     public static MapField<String> PARTICLE_TYPE = make("particle_type");
     public static MapField<String> SOUND = make("sound");
     public static MapField<String> PARTICLE_SHAPE = make("shape");
+    public static MapField<String> POTION_ID = make("potion_id");
+    public static MapField<String> POTION_ACTION = make("potion_action");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");

@@ -26,7 +26,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static ParticleInRadiusAction PARTICLES_IN_RADIUS = of(new ParticleInRadiusAction());
     public static SoundAction PLAY_SOUND = of(new SoundAction());
     public static PlaySoundPerTarget PLAY_SOUND_PER_TARGET = of(new PlaySoundPerTarget());
-
+    public static ExilePotionAction EXILE_POTION = of(new ExilePotionAction());
     public static SummonAtSightAction SUMMON_AT_SIGHT = of(new SummonAtSightAction());
     public static SummonLightningStrikeAction SUMMON_LIGHTNING_STRIKE = of(new SummonLightningStrikeAction());
 

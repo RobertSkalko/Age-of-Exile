@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spells.components.actions.ExilePotionAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
@@ -39,6 +40,10 @@ public class MapHolder {
 
     public Elements getElement() {
         return Elements.valueOf(get(MapField.ELEMENT));
+    }
+
+    public ExilePotionAction.PotionAction getPotionAction() {
+        return ExilePotionAction.PotionAction.valueOf(get(MapField.POTION_ACTION));
     }
 
     public DefaultParticleType getParticle() {

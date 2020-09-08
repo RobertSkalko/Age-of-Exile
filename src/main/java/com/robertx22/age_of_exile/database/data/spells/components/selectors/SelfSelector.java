@@ -18,6 +18,12 @@ public class SelfSelector extends BaseTargetSelector {
         return Arrays.asList(caster);
     }
 
+    public MapHolder create() {
+        MapHolder d = new MapHolder();
+        d.type = GUID();
+        return d;
+    }
+
     @Override
     public String GUID() {
         return "self";

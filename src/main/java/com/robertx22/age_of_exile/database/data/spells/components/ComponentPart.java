@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spells.components.actions.ExilePotionAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
@@ -9,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
@@ -168,6 +170,13 @@ public class ComponentPart {
         public static ComponentPart playSound(SoundEvent sound, Double volume, Double pitch) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
+            return c;
+        }
+
+        public static ComponentPart giveSelfExileEffect(BasePotionEffect effect) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.targets.add(BaseTargetSelector.SELF.create());
             return c;
         }
 

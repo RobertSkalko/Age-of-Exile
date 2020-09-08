@@ -29,6 +29,20 @@ public class Spells implements ISlashRegistryInit {
         List<BaseSpell> All = new ArrayList<BaseSpell>() {
             {
                 {
+                    //DONE
+
+                    add(FrostballSpell.getInstance());
+                    add(WhirlpoolSpell.getInstance());
+                    add(TidalWaveSpell.getInstance());
+                    add(BlizzardSpell.getInstance());
+                    add(PoisonBallSpell.getInstance());
+                    add(ThunderstormSpell.getInstance());
+                    add(FireballSpell.getInstance());
+                    add(ThrowFlamesSpell.getInstance());
+                    add(ThornArmorSpell.getInstance());
+                    add(PoisonedWeaponsSpell.getInstance());
+
+                    /// UNFINISHED
 
                     add(BraverySpell.getInstance());
                     add(TrickerySpell.getInstance());
@@ -39,29 +53,19 @@ public class Spells implements ISlashRegistryInit {
                     add(PurifyingFiresSpell.getInstance());
                     add(HealingAuraSpell.getInstance());
 
-                    add(FrostballSpell.getInstance());
-                    add(WhirlpoolSpell.getInstance());
                     add(HeartOfIceSpell.getInstance());
-                    add(TidalWaveSpell.getInstance());
-                    add(BlizzardSpell.getInstance());
 
                     add(NatureBalmSpell.getInstance());
                     add(GorgonsGazeSpell.getInstance());
-                    add(ThornArmorSpell.getInstance());
                     add(ThornBushSpell.getInstance());
-                    add(PoisonedWeaponsSpell.getInstance());
-                    add(PoisonBallSpell.getInstance());
 
-                    add(ThunderstormSpell.getInstance());
                     add(ThunderspearSpell.getInstance());
                     add(ThunderDashSpell.getInstance());
                     add(LightningTotemSpell.getInstance());
 
                     add(BlazingInfernoSpell.getInstance());
-                    add(FireballSpell.getInstance());
                     add(VolcanoSpell.getInstance());
                     add(MagmaFlowerSpell.getInstance());
-                    add(ThrowFlamesSpell.getInstance());
                     add(FireBombsSpell.getInstance());
 
                     add(ArrowBarrageSpell.getInstance());
