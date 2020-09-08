@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.ProjectileCastHelper;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import net.minecraft.entity.EntityType;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class SummonProjectileAction extends SpellAction {
 
     public SummonProjectileAction() {
-        super(Arrays.asList(MapField.PROJECTILE_COUNT, MapField.ITEM, MapField.PROJECTILE_SPEED, MapField.LIFESPAN_TICKS));
+        super(Arrays.asList(MapField.ENTITY_NAME, MapField.PROJECTILE_COUNT, MapField.ITEM, MapField.PROJECTILE_SPEED, MapField.LIFESPAN_TICKS));
     }
 
     @Override
@@ -38,6 +39,7 @@ public class SummonProjectileAction extends SpellAction {
     public MapHolder create(Item item, Double projCount, Double speed, EntityType type, Double lifespan, boolean gravity) {
         MapHolder c = new MapHolder();
         c.put(MapField.PROJECTILE_COUNT, projCount);
+        c.put(MapField.ENTITY_NAME, Spell.Builder.DEFAULT_EN_NAME);
         c.put(MapField.PROJECTILE_SPEED, speed);
         c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.put(MapField.ITEM, Registry.ITEM.getId(item)

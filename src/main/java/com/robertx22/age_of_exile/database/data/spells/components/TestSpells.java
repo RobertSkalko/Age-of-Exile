@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonedWeaponsEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.ThornArmorEffect;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -98,6 +99,14 @@ public class TestSpells {
     public static Spell POISON_WEAPONS = Spell.Builder.of("poisoned_weapons", SpellConfiguration.Builder.instant(15, 160 * 20))
         .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
         .onCast(Builder.giveSelfExileEffect(PoisonedWeaponsEffect.getInstance()))
+        .build();
+
+    // BIG PROBLEM
+    public static Spell HEALING_FLOWER = Spell.Builder.of("healing_flower", SINGLE_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+        .onTick(Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, false))
+            .addChained(Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE))))
         .build();
 
 }

@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entitie
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.robertx22.age_of_exile.database.data.spells.components.Activation;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBaseProjectile;
@@ -59,6 +58,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     boolean expireOnHit = false;
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
+    private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.STRING);
 
     public Entity ignoreEntity;
 
@@ -181,7 +181,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     }
 
     public void onTick() {
-        this.getSpellData().attached.tryActivate(Activation.ON_TICK, SpellCtx.onTick(getCaster(), this, getSpellData()));
+        this.getSpellData().attached.onEntityTick(getEntityName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
     }
 
     @Override
@@ -190,7 +190,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         LivingEntity caster = getCaster();
 
         if (caster != null) {
-            this.getSpellData().attached.tryActivate(Activation.ON_EXPIRE, SpellCtx.onExpire(caster, this, getSpellData()));
+            this.getSpellData().attached.onEntityExpire(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
         }
 
         super.remove();
@@ -283,7 +283,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             LivingEntity caster = getCaster();
 
             if (caster != null) {
-                this.getSpellData().attached.tryActivate(Activation.ON_HIT, SpellCtx.onHit(caster, this, entityHit, getSpellData()));
+                this.getSpellData().attached.onEntityImpact(getEntityName(), SpellCtx.onHit(caster, this, entityHit, getSpellData()));
             }
         } else {
             if (world.isClient) {
@@ -404,6 +404,10 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         return new ItemStack(Items.AIR);
     }
 
+    public String getEntityName() {
+        return dataTracker.get(ENTITY_NAME);
+    }
+
     @Override
     public void init(LivingEntity caster, EntitySavedSpellData data, MapHolder holder) {
         this.spellData = data;
@@ -419,5 +423,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
         this.setOwner(caster);
+        dataTracker.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));
+
     }
 }

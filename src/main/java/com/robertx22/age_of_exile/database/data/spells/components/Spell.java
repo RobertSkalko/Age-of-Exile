@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities
 import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Spell implements IGUID {
@@ -54,7 +55,7 @@ public class Spell implements IGUID {
     public void cast(LivingEntity caster) {
         AttachedSpell attached = getAttachedSpell(caster);
         EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, attached);
-        attached.tryActivate(Activation.ON_CAST, SpellCtx.onCast(caster, data));
+        attached.onCast(SpellCtx.onCast(caster, data));
     }
 
     @Override
@@ -78,31 +79,54 @@ public class Spell implements IGUID {
         }
 
         public Builder onCast(ComponentPart comp) {
-            return this.addEffect(Activation.ON_CAST, comp);
+            this.spell.attached.on_cast.add(comp);
+            return this;
         }
 
+        public static String DEFAULT_EN_NAME = "default_entity_name";
+
         public Builder onTick(ComponentPart comp) {
-            return this.addEffect(Activation.ON_TICK, comp);
+            return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_TICK, comp);
         }
 
         public Builder onExpire(ComponentPart comp) {
-            return this.addEffect(Activation.ON_EXPIRE, comp);
+            return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_EXPIRE, comp);
         }
 
         public Builder onHit(ComponentPart comp) {
-            return this.addEffect(Activation.ON_HIT, comp);
+            return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_HIT, comp);
         }
 
-        private Builder addEffect(Activation data, ComponentPart comp) {
+        public Builder onTick(String entity, ComponentPart comp) {
+            return this.addEffect(entity, EntityActivation.ON_TICK, comp);
+        }
+
+        public Builder onExpire(String entity, ComponentPart comp) {
+            return this.addEffect(entity, EntityActivation.ON_EXPIRE, comp);
+        }
+
+        public Builder onHit(String entity, ComponentPart comp) {
+            return this.addEffect(entity, EntityActivation.ON_HIT, comp);
+        }
+
+        private Builder addEffect(String entity, EntityActivation data, ComponentPart comp) {
             Objects.requireNonNull(data);
             Objects.requireNonNull(comp);
 
-            if (!spell.attached.components.containsKey(data)) {
-                spell.attached.components.put(data, new ArrayList<>());
+            if (!spell.attached.entity_components.containsKey(entity)) {
+                spell.attached.entity_components.put(entity, new HashMap<>());
             }
 
-            this.spell.attached.components.get(data)
+            if (spell.attached.entity_components.get(entity)
+                .containsKey(data)) {
+                spell.attached.entity_components.get(entity)
+                    .put(data, new ArrayList<>());
+            }
+
+            this.spell.attached.getDataForEntity(entity)
+                .get(data)
                 .add(comp);
+
             return this;
         }
 

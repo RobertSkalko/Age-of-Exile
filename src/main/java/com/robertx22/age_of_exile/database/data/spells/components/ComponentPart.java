@@ -26,12 +26,13 @@ public class ComponentPart {
     public List<MapHolder> acts = new ArrayList<>();
     public List<MapHolder> ifs = new ArrayList<>();
 
-    private List<ComponentPart> chained = null;
+    List<ComponentPart> chained = null;
 
     public ComponentPart addChained(ComponentPart add) {
         if (chained == null) {
             chained = new ArrayList<>();
         }
+
         this.chained.add(add);
         return this;
     }
@@ -52,6 +53,7 @@ public class ComponentPart {
 
         if (chained != null) {
             chained.forEach(x -> x.validate());
+
         }
     }
 
@@ -78,6 +80,7 @@ public class ComponentPart {
 
         if (chained != null) {
             chained.forEach(x -> x.tryActivate(ctx));
+
         }
     }
 

@@ -44,6 +44,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> POTION_ID = make("potion_id");
     public static MapField<String> POTION_ACTION = make("potion_action");
     public static MapField<String> BLOCK = make("block");
+    public static MapField<String> ENTITY_NAME = make("entity_name");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");

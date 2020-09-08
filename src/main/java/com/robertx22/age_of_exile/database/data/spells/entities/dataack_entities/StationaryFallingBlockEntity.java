@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities;
 
 import com.google.gson.Gson;
-import com.robertx22.age_of_exile.database.data.spells.components.Activation;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -47,6 +46,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     EntitySavedSpellData spellData;
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
+    private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
 
     @Override
     public Iterable<ItemStack> getArmorItems() {
@@ -57,7 +57,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         this.age++;
 
         try {
-            this.getSpellData().attached.tryActivate(Activation.ON_TICK, SpellCtx.onTick(getSpellData().getCaster(world), this, getSpellData()));
+            this.getSpellData().attached.onEntityTick(getEntityName(), SpellCtx.onTick(getSpellData().getCaster(world), this, getSpellData()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,6 +81,10 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         return spellData;
     }
 
+    public String getEntityName() {
+        return dataTracker.get(ENTITY_NAME);
+    }
+
     @Override
     public void init(LivingEntity caster, EntitySavedSpellData data, MapHolder holder) {
         this.spellData = data;
@@ -92,6 +96,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         CompoundTag nbt = new CompoundTag();
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
+        dataTracker.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));
 
     }
 }

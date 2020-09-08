@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -55,6 +56,8 @@ public class SummonBlockAction extends SpellAction {
 
     public MapHolder create(Block block) {
         MapHolder dmg = new MapHolder();
+        dmg.put(MapField.BLOCK, Registry.BLOCK.getId(block)
+            .toString());
         dmg.type = GUID();
         return dmg;
     }
