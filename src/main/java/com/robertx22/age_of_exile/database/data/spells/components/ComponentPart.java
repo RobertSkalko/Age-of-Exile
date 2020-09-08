@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
@@ -22,6 +23,35 @@ public class ComponentPart {
     public List<MapHolder> targets = new ArrayList<>();
     public List<MapHolder> acts = new ArrayList<>();
     public List<MapHolder> ifs = new ArrayList<>();
+
+    private List<ComponentPart> chained = null;
+
+    public ComponentPart addChained(ComponentPart add) {
+        if (chained == null) {
+            chained = new ArrayList<>();
+        }
+        this.chained.add(add);
+        return this;
+    }
+
+    public void validate() {
+        for (MapHolder part : ifs) {
+            EffectCondition condition = EffectCondition.MAP.get(part.type);
+            condition.validate(part);
+        }
+        for (MapHolder part : targets) {
+            BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
+            selector.validate(part);
+        }
+        for (MapHolder part : acts) {
+            SpellAction action = SpellAction.MAP.get(part.type);
+            action.validate(part);
+        }
+
+        if (chained != null) {
+            chained.forEach(x -> x.validate());
+        }
+    }
 
     public void tryActivate(SpellCtx ctx) {
 
@@ -44,14 +74,51 @@ public class ComponentPart {
             action.tryActivate(list, ctx, part);
         }
 
+        if (chained != null) {
+            chained.forEach(x -> x.tryActivate(ctx));
+        }
+    }
+
+    public ComponentPart addTarget(MapHolder map) {
+        this.targets.add(map);
+        return this;
+    }
+
+    public ComponentPart addActions(MapHolder map) {
+        this.acts.add(map);
+        return this;
+    }
+
+    public ComponentPart addCondition(MapHolder map) {
+        this.ifs.add(map);
+        return this;
     }
 
     public static class Builder {
+
+        public static ComponentPart empty() {
+            ComponentPart c = new ComponentPart();
+            return c;
+        }
 
         public static ComponentPart damage(ValueCalculationData calc, Elements ele) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
             c.targets.add(BaseTargetSelector.TARGET.create());
+            return c;
+        }
+
+        public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculationData calc, Elements ele, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart onTickEmpty(Double ticks) {
+            ComponentPart c = new ComponentPart();
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
 

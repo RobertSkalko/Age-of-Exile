@@ -2,10 +2,12 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart.Builder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -51,10 +53,23 @@ public class TestSpells {
         .build();
 
     public static Spell THUNDERSTORM = Spell.Builder.of("thunderstorm")
-        .onCast(Builder.playSound(SoundEvents.ITEM_TRIDENT_THUNDER, 1D, 1D))
+        .onCast(Builder.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
-        .onTick(Builder.particleOnTick(2D, ParticleTypes.FALLING_WATER, 20D, 4D))
-        .onHit(Builder.damage(ValueCalculationData.base(2), Elements.Water))
+        .onTick(Builder.cloudParticle(2D, ParticleTypes.CLOUD, 20D, 4D))
+        .onTick(Builder.cloudParticle(2D, ParticleTypes.FALLING_WATER, 20D, 4D))
+        .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Thunder, 4D)
+            .addChained(Builder.empty()
+                .addTarget(BaseTargetSelector.AOE.create(4D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES)
+                    .put(MapField.SELECTION_CHANCE, 20D))
+                .addActions(SpellAction.SUMMON_LIGHTNING_STRIKE.create())))
+        .build();
+
+    public static Spell BLIZZARD = Spell.Builder.of("blizzard")
+        .onCast(Builder.playSound(SoundEvents.ENTITY_EVOKER_CAST_SPELL, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
+        .onTick(Builder.cloudParticle(2D, ParticleTypes.CLOUD, 20D, 4D))
+        .onTick(Builder.cloudParticle(2D, ParticleTypes.ITEM_SNOWBALL, 20D, 4D))
+        .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Water, 4D))
         .build();
 
 }

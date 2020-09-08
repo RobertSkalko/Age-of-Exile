@@ -26,6 +26,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static ParticleInRadiusAction PARTICLES_IN_RADIUS = of(new ParticleInRadiusAction());
     public static SoundAction PLAY_SOUND = of(new SoundAction());
     public static SummonAtSightAction SUMMON_AT_SIGHT = of(new SummonAtSightAction());
+    public static SummonLightningStrikeAction SUMMON_LIGHTNING_STRIKE = of(new SummonLightningStrikeAction());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);

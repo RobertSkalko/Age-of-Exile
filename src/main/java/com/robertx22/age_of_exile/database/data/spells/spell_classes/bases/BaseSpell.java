@@ -5,15 +5,12 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart.Builder;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.TestSpells;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -32,9 +29,7 @@ import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -209,16 +204,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         if (true) {
 
-            Spell.Builder.of("thunderstorm")
-                .onCast(Builder.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, 1D, 1D))
-                .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
-                .onTick(Builder.cloudParticle(2D, ParticleTypes.CLOUD, 20D, 4D))
-                .onTick(Builder.cloudParticle(2D, ParticleTypes.FALLING_WATER, 20D, 4D))
-                .onHit(Builder.damage(ValueCalculationData.base(2), Elements.Water))
-                .build()
-                .cast(ctx.caster);
-
-            // TestSpells.THUNDERSTORM.cast(ctx.caster);
+            TestSpells.BLIZZARD.cast(ctx.caster);
 
             return true; // REMOVE AFTER TESTING
         }

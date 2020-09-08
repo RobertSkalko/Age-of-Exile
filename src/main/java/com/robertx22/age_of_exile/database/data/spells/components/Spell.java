@@ -3,10 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.activated_on.Activation;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
-import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
 import net.minecraft.entity.LivingEntity;
@@ -25,18 +22,7 @@ public class Spell implements IGUID {
 
     public void validate() {
         for (ComponentPart x : this.attached.getAllComponents()) {
-            for (MapHolder part : x.ifs) {
-                EffectCondition condition = EffectCondition.MAP.get(part.type);
-                condition.validate(part);
-            }
-            for (MapHolder part : x.targets) {
-                BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
-                selector.validate(part);
-            }
-            for (MapHolder part : x.acts) {
-                SpellAction action = SpellAction.MAP.get(part.type);
-                action.validate(part);
-            }
+            x.validate();
         }
     }
 

@@ -25,6 +25,7 @@ public class MapField<T> implements IGUID {
     public static MapField<Double> PROJECTILE_SPEED = make("proj_speed");
     public static MapField<Double> PROJECTILE_COUNT = make("proj_count");
     public static MapField<Double> PROJECTILES_APART = make("proj_apart");
+    public static MapField<Double> SELECTION_CHANCE = make("selection_chance");
 
     public static MapField<Double> VOLUME = make("volume");
     public static MapField<Double> PITCH = make("pitch");

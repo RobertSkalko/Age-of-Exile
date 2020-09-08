@@ -16,6 +16,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     }
 
     public static TickRateCondition EVERY_X_TICKS;
+    public static ChanceCondition CHANCE;
 
     public abstract boolean canActivate(SpellCtx ctx, MapHolder data);
 
@@ -28,6 +29,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
 
     public static void init() {
         EVERY_X_TICKS = of(new TickRateCondition());
+        CHANCE = of(new ChanceCondition());
     }
 }
 
