@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.activated_on.Activation;
@@ -24,15 +25,15 @@ public class Spell implements IGUID {
 
     public void validate() {
         for (ComponentPart x : this.attached.getAllComponents()) {
-            for (MapHolder part : x.conditions) {
+            for (MapHolder part : x.ifs) {
                 EffectCondition condition = EffectCondition.MAP.get(part.type);
                 condition.validate(part);
             }
-            for (MapHolder part : x.target_selectors) {
+            for (MapHolder part : x.targets) {
                 BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
                 selector.validate(part);
             }
-            for (MapHolder part : x.actions) {
+            for (MapHolder part : x.acts) {
                 SpellAction action = SpellAction.MAP.get(part.type);
                 action.validate(part);
             }
@@ -56,13 +57,8 @@ public class Spell implements IGUID {
 
         onInit();
 
-
-        /*
         JsonElement json2 = GSON.toJsonTree(attached);
-
         System.out.println(json2.toString());
-
-         */
 
         AttachedSpell calc = GSON.fromJson(json, AttachedSpell.class);
         // todo, lot player stats, and spell modifiers modify this

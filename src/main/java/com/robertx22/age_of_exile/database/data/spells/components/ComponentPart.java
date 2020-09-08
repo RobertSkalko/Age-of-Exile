@@ -17,13 +17,13 @@ import java.util.Set;
 
 public class ComponentPart {
 
-    public List<MapHolder> target_selectors = new ArrayList<>();
-    public List<MapHolder> actions = new ArrayList<>();
-    public List<MapHolder> conditions = new ArrayList<>();
+    public List<MapHolder> targets = new ArrayList<>();
+    public List<MapHolder> acts = new ArrayList<>();
+    public List<MapHolder> ifs = new ArrayList<>();
 
     public void tryActivate(SpellCtx ctx) {
 
-        for (MapHolder part : conditions) {
+        for (MapHolder part : ifs) {
             EffectCondition condition = EffectCondition.MAP.get(part.type);
             if (!condition.canActivate(ctx, part)) {
                 return;
@@ -32,12 +32,12 @@ public class ComponentPart {
 
         Set<LivingEntity> list = new HashSet<>();
 
-        for (MapHolder part : target_selectors) {
+        for (MapHolder part : targets) {
             BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
             list.addAll(selector.get(ctx.caster, ctx.target, ctx.pos, part));
         }
 
-        for (MapHolder part : actions) {
+        for (MapHolder part : acts) {
             SpellAction action = SpellAction.MAP.get(part.type);
             action.tryActivate(list, ctx, part);
         }
@@ -48,27 +48,27 @@ public class ComponentPart {
 
         public static ComponentPart damage(ValueCalculationData calc, Elements ele) {
             ComponentPart c = new ComponentPart();
-            c.actions.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
-            c.target_selectors.add(BaseTargetSelector.TARGET.create());
+            c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+            c.targets.add(BaseTargetSelector.TARGET.create());
             return c;
         }
 
         public static ComponentPart justAction(MapHolder data) {
             ComponentPart c = new ComponentPart();
-            c.actions.add(data);
+            c.acts.add(data);
             return c;
         }
 
         public static ComponentPart particleOnTick(Double ticks, DefaultParticleType particle, Double count, Double radius) {
             ComponentPart c = new ComponentPart();
-            c.actions.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
-            c.conditions.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
 
         public static ComponentPart playSound(SoundEvent sound, Double volume, Double pitch) {
             ComponentPart c = new ComponentPart();
-            c.actions.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
+            c.acts.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
             return c;
         }
 

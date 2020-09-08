@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.spells.calc;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -24,17 +23,15 @@ import java.util.List;
 public class ValueCalculationData {
 
     public static ValueCalculationData empty() {
-
         ValueCalculationData d = new ValueCalculationData();
         d.empty = true;
-
         return d;
     }
 
     public static ValueCalculationData base(float base) {
         ValueCalculationData data = new ValueCalculationData();
 
-        data.baseValue = base;
+        data.base_val = base;
 
         return data;
     }
@@ -42,11 +39,11 @@ public class ValueCalculationData {
     public static ValueCalculationData scaleWithAttack(float attack, float base) {
         ValueCalculationData data = new ValueCalculationData();
 
-        List<Stat> list = new WeaponDamage(Elements.Nature).generateAllSingleVariations();
-        list.add(new WeaponDamage(Elements.Physical));
-        data.mergedScalingValues.add(new MergedScalingStatsCalc(list, attack, Formatting.GOLD + "Attack Damage"));
+        new WeaponDamage(Elements.Nature).generateAllSingleVariations()
+            .forEach(x ->
+                data.scaling_values.add(new ScalingStatCalc(x, attack)));
 
-        data.baseValue = base;
+        data.base_val = base;
 
         return data;
     }
@@ -58,7 +55,7 @@ public class ValueCalculationData {
 
     public ValueCalculationData(ScalingStatCalc calc, int base) {
         this.scaling_values.add(calc);
-        this.baseValue = base;
+        this.base_val = base;
     }
 
     public double getScalingMultiAverage() {
@@ -71,8 +68,6 @@ public class ValueCalculationData {
     public List<BaseStatCalc> getAllScalingValues() {
         List<BaseStatCalc> list = new ArrayList<>();
         list.addAll(scaling_values);
-        list.addAll(mergedScalingValues);
-
         return list;
     }
 
@@ -80,18 +75,15 @@ public class ValueCalculationData {
     public List<ScalingStatCalc> scaling_values = new ArrayList<>();
 
     @Store
-    public List<MergedScalingStatsCalc> mergedScalingValues = new ArrayList<>();
-
-    @Store
     public StatScaling base_scaling = StatScaling.SCALING;
 
     private transient boolean empty = false;
 
     @Store
-    public float baseValue = 0;
+    public float base_val = 0;
 
     public int getCalculatedBaseValue(int lvl) {
-        return (int) base_scaling.scale(baseValue, lvl);
+        return (int) base_scaling.scale(base_val, lvl);
     }
 
     private int getCalculatedScalingValue(EntityCap.UnitData data) {
@@ -120,7 +112,7 @@ public class ValueCalculationData {
         if (!empty) {
             getAllScalingValues().forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-            if (baseValue > 0) {
+            if (base_val > 0) {
                 list.add(new LiteralText(
                     Formatting.RED + "Base Value: " + getCalculatedBaseValue(ctx.calcData.level)));
             }
@@ -136,7 +128,7 @@ public class ValueCalculationData {
         if (!empty) {
             getAllScalingValues().forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-            if (baseValue > 0) {
+            if (base_val > 0) {
                 list.add(new LiteralText(
                     Formatting.RED + "Base Value: " + getCalculatedBaseValue(info.unitdata.getLevel())));
             }
