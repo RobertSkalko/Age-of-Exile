@@ -136,10 +136,24 @@ public class ComponentPart {
         }
 
         public static ComponentPart cloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius) {
+            return cloudParticle(ticks, particle, count, radius, 2.5D);
+        }
+
+        public static ComponentPart cloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
                 .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
-                .put(MapField.Y_RANDOM, 2.5D));
+                .put(MapField.Y_RANDOM, randomY));
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart groundParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
+                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+                .put(MapField.Y_RANDOM, randomY)
+                .put(MapField.HEIGHT, 0.5D));
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
@@ -154,6 +168,20 @@ public class ComponentPart {
         public static ComponentPart playSound(SoundEvent sound, Double volume, Double pitch) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
+            return c;
+        }
+
+        public static ComponentPart playSoundPerTarget(SoundEvent sound, Double volume, Double pitch) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PLAY_SOUND_PER_TARGET.create(sound, volume, pitch));
+            return c;
+        }
+
+        public static ComponentPart playSoundEveryTicks(Double ticks, SoundEvent sound, Double volume, Double pitch) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+
             return c;
         }
 

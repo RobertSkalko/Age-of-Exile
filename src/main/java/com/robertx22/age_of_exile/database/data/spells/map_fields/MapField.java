@@ -43,6 +43,7 @@ public class MapField<T> implements IGUID {
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");
+    public static MapField<Boolean> EXPIRE_ON_HIT = make("expire_on_hit");
 
     public static MapField<ValueCalculationData> VALUE_CALCULATION = make("value_calculation");
 

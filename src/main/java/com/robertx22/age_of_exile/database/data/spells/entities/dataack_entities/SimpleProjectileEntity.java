@@ -56,6 +56,8 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     private int ticksInGround = 0;
     private int deathTime = 80;
 
+    boolean expireOnHit = false;
+
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
 
     public Entity ignoreEntity;
@@ -289,7 +291,9 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             }
         }
 
-        this.scheduleRemoval();
+        if (this.expireOnHit) {
+            this.scheduleRemoval();
+        }
     }
 
     boolean removeNextTick = false;
@@ -407,6 +411,8 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         this.setNoGravity(!holder.getOrDefault(MapField.GRAVITY, true));
         this.deathTime = holder.get(MapField.LIFESPAN_TICKS)
             .intValue();
+
+        this.expireOnHit = holder.getOrDefault(MapField.EXPIRE_ON_HIT, false);
 
         data.item_id = holder.get(MapField.ITEM);
         CompoundTag nbt = new CompoundTag();

@@ -64,6 +64,18 @@ public class TestSpells {
                 .addActions(SpellAction.SUMMON_LIGHTNING_STRIKE.create())))
         .build();
 
+    public static Spell WHIRLPOOL = Spell.Builder.of("whirlpool")
+        .onCast(Builder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 0.5D)
+            .put(MapField.EXPIRE_ON_HIT, false)
+            .put(MapField.GRAVITY, true)))
+        .onTick(Builder.groundParticle(1D, ParticleTypes.BUBBLE, 25D, 3.5D, 0.5D))
+        .onTick(Builder.groundParticle(1D, ParticleTypes.BUBBLE_POP, 75D, 3.5D, 0.5D))
+        .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Water, 3.5D)
+            .addChained(Builder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)
+                .addTarget(BaseTargetSelector.AOE.create(3.5D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))))
+        .build();
+
     public static Spell BLIZZARD = Spell.Builder.of("blizzard")
         .onCast(Builder.playSound(SoundEvents.ENTITY_EVOKER_CAST_SPELL, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))

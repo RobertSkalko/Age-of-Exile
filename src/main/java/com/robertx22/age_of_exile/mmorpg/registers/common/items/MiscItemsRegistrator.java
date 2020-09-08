@@ -26,6 +26,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item GOLDEN_ORB = item(new SimpleMatItem(), "mat/golden_orb");
     public Item MYTHIC_ESSENCE = item(new SimpleMatItem(), "mat/mythic_essence");
 
+    public Item ICE_BALL_ANIMATED = item(new Item(new Item.Settings()), "spells/ice_ball");
+
     public Item HEART_OF_IMAGINATION = item(new HeartOfImaginationItem(), "mat/modify_part");
 
     public ResetStatPointsItem RESET_STATS_POTION = item(new ResetStatPointsItem());
