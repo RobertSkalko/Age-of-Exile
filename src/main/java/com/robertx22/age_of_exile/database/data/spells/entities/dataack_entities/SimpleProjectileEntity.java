@@ -55,12 +55,14 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     private int ticksInGround = 0;
     private int deathTime = 80;
 
-    boolean expireOnHit = false;
+    boolean expireOnHit = true;
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.STRING);
 
     public Entity ignoreEntity;
+
+    boolean collidedAlready = false;
 
     @Override
     public Packet<?> createSpawnPacket() {
@@ -201,6 +203,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
 
         if (this.removeNextTick) {
             this.remove();
+            return;
         }
 
         try {
@@ -255,6 +258,12 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HIT, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 
         } else if (raytraceresult$type == HitResult.Type.BLOCK) {
+
+            if (collidedAlready) {
+                return;
+            }
+            collidedAlready = true;
+
             BlockHitResult blockraytraceresult = (BlockHitResult) raytraceResultIn;
             BlockState blockstate = this.world.getBlockState(blockraytraceresult.getBlockPos());
 
@@ -364,6 +373,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     @Override
     protected void initDataTracker() {
         this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
+        this.dataTracker.startTracking(ENTITY_NAME, "");
         super.initDataTracker();
     }
 
@@ -416,14 +426,16 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         this.deathTime = holder.get(MapField.LIFESPAN_TICKS)
             .intValue();
 
-        this.expireOnHit = holder.getOrDefault(MapField.EXPIRE_ON_HIT, false);
+        this.expireOnHit = holder.getOrDefault(MapField.EXPIRE_ON_HIT, true);
 
         data.item_id = holder.get(MapField.ITEM);
         CompoundTag nbt = new CompoundTag();
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
         this.setOwner(caster);
-        dataTracker.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));
+
+        String name = holder.get(MapField.ENTITY_NAME);
+        dataTracker.set(ENTITY_NAME, name);
 
     }
 }

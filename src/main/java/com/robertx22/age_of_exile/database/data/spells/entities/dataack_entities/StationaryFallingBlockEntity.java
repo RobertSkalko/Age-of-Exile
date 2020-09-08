@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.mixin_ducks.FallingBlockAccessor;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FallingBlockEntity;
@@ -15,8 +16,11 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Packet;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -24,7 +28,7 @@ import java.util.ArrayList;
 public class StationaryFallingBlockEntity extends FallingBlockEntity implements IDatapackSpellEntity {
 
     public StationaryFallingBlockEntity(EntityType<? extends FallingBlockEntity> entityType, World world) {
-        super(entityType, world);
+        super(ModRegistry.ENTITIES.SIMPLE_BLOCK_ENTITY, world);
     }
 
     public StationaryFallingBlockEntity(World world, BlockPos pos, BlockState block) {
@@ -33,12 +37,29 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         acc.setBlockState(block);
         acc.setDestroyedOnLanding(false);
         this.inanimate = true;
-        this.updatePosition(pos.getX(), pos.getY() + (double) ((1.0F - this.getHeight()) / 2.0F), pos.getZ());
+        this.updatePosition(pos.getX() + 0.5D, pos.getY() + (double) ((1.0F - this.getHeight()) / 2.0F), pos.getZ() + 0.5D);
         this.setVelocity(Vec3d.ZERO);
         this.prevX = pos.getX();
         this.prevY = pos.getY();
         this.prevZ = pos.getZ();
         this.setFallingBlockPos(this.getBlockPos());
+    }
+
+    @Override
+    public BlockState getBlockState() {
+
+        try {
+            return Registry.BLOCK.get(new Identifier(this.dataTracker.get(BLOCK)))
+                .getDefaultState();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return super.getBlockState();
+    }
+
+    @Override
+    public Packet<?> createSpawnPacket() {
+        return EntityPacket.createPacket(this);
     }
 
     int lifespan = 1000;
@@ -47,12 +68,14 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
+    private static final TrackedData<String> BLOCK = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
 
     @Override
     public Iterable<ItemStack> getArmorItems() {
         return new ArrayList<>();
     }
 
+    @Override
     public void tick() {
         this.age++;
 
@@ -81,6 +104,14 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         return spellData;
     }
 
+    @Override
+    protected void initDataTracker() {
+        this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
+        this.dataTracker.startTracking(ENTITY_NAME, "");
+        this.dataTracker.startTracking(BLOCK, "");
+        super.initDataTracker();
+    }
+
     public String getEntityName() {
         return dataTracker.get(ENTITY_NAME);
     }
@@ -97,6 +128,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
         dataTracker.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));
+        dataTracker.set(BLOCK, holder.get(MapField.BLOCK));
 
     }
 }

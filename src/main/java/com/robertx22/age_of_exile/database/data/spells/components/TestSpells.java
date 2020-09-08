@@ -106,7 +106,7 @@ public class TestSpells {
         .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
         .onTick(Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, false))
-            .addChained(Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE))))
+            .addChained(Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 80D))))
         .build();
 
 }

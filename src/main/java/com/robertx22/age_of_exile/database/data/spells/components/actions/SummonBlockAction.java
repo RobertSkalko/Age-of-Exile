@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -18,7 +19,7 @@ import java.util.Objects;
 public class SummonBlockAction extends SpellAction {
 
     public SummonBlockAction() {
-        super(Arrays.asList(MapField.BLOCK));
+        super(Arrays.asList(MapField.ENTITY_NAME, MapField.BLOCK));
     }
 
     static int SEARCH = 10;
@@ -54,12 +55,14 @@ public class SummonBlockAction extends SpellAction {
         }
     }
 
-    public MapHolder create(Block block) {
-        MapHolder dmg = new MapHolder();
-        dmg.put(MapField.BLOCK, Registry.BLOCK.getId(block)
+    public MapHolder create(Block block, Double lifespan) {
+        MapHolder c = new MapHolder();
+        c.put(MapField.BLOCK, Registry.BLOCK.getId(block)
             .toString());
-        dmg.type = GUID();
-        return dmg;
+        c.put(MapField.ENTITY_NAME, Spell.Builder.DEFAULT_EN_NAME);
+        c.put(MapField.LIFESPAN_TICKS, lifespan);
+        c.type = GUID();
+        return c;
     }
 
     @Override

@@ -117,7 +117,7 @@ public class Spell implements IGUID {
                 spell.attached.entity_components.put(entity, new HashMap<>());
             }
 
-            if (spell.attached.entity_components.get(entity)
+            if (!spell.attached.entity_components.get(entity)
                 .containsKey(data)) {
                 spell.attached.entity_components.get(entity)
                     .put(data, new ArrayList<>());

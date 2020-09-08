@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import net.minecraft.entity.Entity;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class SummonAtSightAction extends SpellAction {
 
     public SummonAtSightAction() {
-        super(Arrays.asList(MapField.PROJECTILE_ENTITY, MapField.LIFESPAN_TICKS, MapField.HEIGHT));
+        super(Arrays.asList(MapField.ENTITY_NAME, MapField.PROJECTILE_ENTITY, MapField.LIFESPAN_TICKS, MapField.HEIGHT));
     }
 
     @Override
@@ -44,6 +45,7 @@ public class SummonAtSightAction extends SpellAction {
         MapHolder c = new MapHolder();
         c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.put(MapField.GRAVITY, false);
+        c.put(MapField.ENTITY_NAME, Spell.Builder.DEFAULT_EN_NAME);
         c.put(MapField.HEIGHT, height);
         c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(type)
             .toString());

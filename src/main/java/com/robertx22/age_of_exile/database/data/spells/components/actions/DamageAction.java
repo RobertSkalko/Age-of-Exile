@@ -22,16 +22,18 @@ public class DamageAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        Elements ele = data.getElement();
-        ValueCalculationData calc = data.get(VALUE_CALCULATION);
+        if (!ctx.world.isClient) {
+            Elements ele = data.getElement();
+            ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
-        int value = calc.getCalculatedValue(ctx.caster);
+            int value = calc.getCalculatedValue(ctx.caster);
 
-        targets.forEach(t -> {
-            SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value, ctx.calculatedSpellData.getSpell());
-            dmg.element = ele;
-            dmg.Activate();
-        });
+            targets.forEach(t -> {
+                SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value, ctx.calculatedSpellData.getSpell());
+                dmg.element = ele;
+                dmg.Activate();
+            });
+        }
 
     }
 
