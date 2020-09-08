@@ -304,7 +304,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     }
                 }
 
+                int saved = target.timeUntilRegen;
+                target.timeUntilRegen = saved;
                 target.damage(dmgsource, dmg);
+
+                target.timeUntilRegen = saved;
+                // allow multiple dmg same tick
 
                 if (removeKnockback) {
                     if (attri.hasModifier(NO_KNOCKBACK)) {
