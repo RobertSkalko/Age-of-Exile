@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.mobs.renders.*;
 import com.robertx22.age_of_exile.mobs.renders.skeleton.ModSkeletonRenderer;
 import com.robertx22.age_of_exile.mobs.renders.zombie.ModZombieRenderer;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.entity.FallingBlockEntityRenderer;
 import net.minecraft.client.render.entity.TridentEntityRenderer;
 import net.minecraft.entity.EntityType;
 
@@ -61,6 +62,8 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.THUNDER_SKELETON, (d, ctx) -> new ModSkeletonRenderer(d, "stray.png", "thunder_overlay.png"));
 
         INSTANCE.register(ENTITIES.GOLEM_BOSS, (d, ctx) -> new BossGolemRenderer(d));
+
+        INSTANCE.register(ENTITIES.SIMPLE_BLOCK_ENTITY, (d, ctx) -> new FallingBlockEntityRenderer(d));
 
     }
 }

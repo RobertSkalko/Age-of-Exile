@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 
@@ -30,12 +29,7 @@ public class SummonAtSightAction extends SpellAction {
         Double height = data.getOrDefault(MapField.HEIGHT, 10D);
 
         HitResult ray = ctx.caster.rayTrace(distance, 0.0F, false);
-
         Vec3d pos = ray.getPos();
-
-        if (ctx.caster instanceof PlayerEntity == false) {
-            pos = ctx.caster.getPos();
-        }
 
         Entity en = projectile.get()
             .create(ctx.world);

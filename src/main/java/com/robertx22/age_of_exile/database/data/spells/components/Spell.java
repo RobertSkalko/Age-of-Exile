@@ -3,19 +3,16 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.spells.components.activated_on.Activation;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
 import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Spell implements IGUID {
 
     private String identifier;
-    private List<ActivationCost> costs = new ArrayList<>();
     private AttachedSpell attached = new AttachedSpell();
     private SpellConfiguration config;
 

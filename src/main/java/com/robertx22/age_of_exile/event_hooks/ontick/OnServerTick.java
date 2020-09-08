@@ -171,7 +171,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     Load.spells(player)
                         .getCastingData()
                         .onTimePass(player, Load.spells(player), TicksToSpellCooldowns);
-
                 }
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {

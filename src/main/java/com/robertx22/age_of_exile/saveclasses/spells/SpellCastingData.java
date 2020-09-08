@@ -114,8 +114,9 @@ public class SpellCastingData {
 
         } catch (Exception e) {
             e.printStackTrace();
+            this.cancelCast(player);
+            // cancel when error, cus this is called on tick, so it doesn't crash servers when 1 spell fails
         }
-
     }
 
     public List<String> getSpellsOnCooldown() {

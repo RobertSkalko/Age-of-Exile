@@ -54,6 +54,13 @@ public class SpellCtx {
         return new SpellCtx(sourceEntity, caster, target, target.getBlockPos(), data);
     }
 
+    public static SpellCtx onExpire(LivingEntity caster, Entity sourceEntity, EntitySavedSpellData data) {
+        Objects.requireNonNull(caster);
+        Objects.requireNonNull(sourceEntity);
+        Objects.requireNonNull(data);
+        return new SpellCtx(sourceEntity, caster, null, sourceEntity.getBlockPos(), data);
+    }
+
     public static SpellCtx onTick(LivingEntity caster, Entity sourceEntity, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(sourceEntity);

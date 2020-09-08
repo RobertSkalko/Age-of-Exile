@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entitie
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.robertx22.age_of_exile.database.data.spells.components.Activation;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
-import com.robertx22.age_of_exile.database.data.spells.components.activated_on.Activation;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.IMyRenderAsItem;
@@ -190,7 +190,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         LivingEntity caster = getCaster();
 
         if (caster != null) {
-            this.getSpellData().attached.tryActivate(Activation.ON_EXPIRE, SpellCtx.onTick(caster, this, getSpellData()));
+            this.getSpellData().attached.tryActivate(Activation.ON_EXPIRE, SpellCtx.onExpire(caster, this, getSpellData()));
         }
 
         super.remove();

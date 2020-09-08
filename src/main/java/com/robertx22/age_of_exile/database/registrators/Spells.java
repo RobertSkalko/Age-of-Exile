@@ -30,7 +30,6 @@ public class Spells implements ISlashRegistryInit {
             {
                 {
                     //DONE
-
                     add(FrostballSpell.getInstance());
                     add(WhirlpoolSpell.getInstance());
                     add(TidalWaveSpell.getInstance());
@@ -43,21 +42,16 @@ public class Spells implements ISlashRegistryInit {
                     add(PoisonedWeaponsSpell.getInstance());
 
                     /// UNFINISHED
-
                     add(BraverySpell.getInstance());
                     add(TrickerySpell.getInstance());
                     add(WizardrySpell.getInstance());
 
-                    add(HolyFlowerSpell.getInstance());
-                    add(SpearOfJudgementSpell.getInstance());
                     add(PurifyingFiresSpell.getInstance());
                     add(HealingAuraSpell.getInstance());
 
                     add(HeartOfIceSpell.getInstance());
 
                     add(NatureBalmSpell.getInstance());
-                    add(GorgonsGazeSpell.getInstance());
-                    add(ThornBushSpell.getInstance());
 
                     add(ThunderspearSpell.getInstance());
                     add(ThunderDashSpell.getInstance());
@@ -72,7 +66,13 @@ public class Spells implements ISlashRegistryInit {
                     add(RecoilShotSpell.getInstance());
                     add(MultiShotSpell.getInstance());
                     add(ImbueSpell.getInstance());
+
+                    // tough ones
+                    add(HolyFlowerSpell.getInstance());
+                    add(SpearOfJudgementSpell.getInstance());
                     add(ArrowStormSpell.getInstance());
+                    add(GorgonsGazeSpell.getInstance());
+                    add(ThornBushSpell.getInstance());
 
                 }
             }

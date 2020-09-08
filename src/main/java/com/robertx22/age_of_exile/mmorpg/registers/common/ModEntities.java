@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.cloud.BlizzardEn
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.VolcanoEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleProjectileEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.proj.*;
 import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.FireballEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.FrostballEntity;
@@ -71,6 +72,7 @@ public class ModEntities {
     static EntityDimensions chickenDim = new EntityDimensions(0.7F, 0.5F, true);
 
     public EntityType<SimpleProjectileEntity> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "projectile");
+    public EntityType<StationaryFallingBlockEntity> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "block_entity", false);
 
     public EntityType<ThunderstormEntity> THUNDERSTORM = projectile(ThunderstormEntity::new, "thunderstorm");
     public EntityType<TridentEntity> THUNDER_SPEAR = projectile(ThunderspearEntity::new, "thunder_spear", false);
