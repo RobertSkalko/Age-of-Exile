@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.Partic
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.block.Block;
 import net.minecraft.particle.DefaultParticleType;
@@ -41,6 +42,10 @@ public class MapHolder {
 
     public Elements getElement() {
         return Elements.valueOf(get(MapField.ELEMENT));
+    }
+
+    public DashUtils.Way getPushWay() {
+        return DashUtils.Way.valueOf(get(MapField.PUSH_WAY));
     }
 
     public ExilePotionAction.PotionAction getPotionAction() {

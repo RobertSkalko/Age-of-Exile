@@ -27,6 +27,7 @@ public class MapField<T> implements IGUID {
     public static MapField<Double> PROJECTILE_COUNT = make("proj_count");
     public static MapField<Double> PROJECTILES_APART = make("proj_apart");
     public static MapField<Double> SELECTION_CHANCE = make("selection_chance");
+    public static MapField<Double> PUSH_STRENGTH = make("push_str");
 
     public static MapField<Double> VOLUME = make("volume");
     public static MapField<Double> PITCH = make("pitch");
@@ -45,6 +46,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> POTION_ACTION = make("potion_action");
     public static MapField<String> BLOCK = make("block");
     public static MapField<String> ENTITY_NAME = make("entity_name");
+    public static MapField<String> PUSH_WAY = make("push_way");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");

@@ -27,10 +27,20 @@ public class InFrontSelector extends BaseTargetSelector {
         EntityFinder.Setup<LivingEntity> finder = EntityFinder.start(caster, LivingEntity.class, pos)
             .finder(EntityFinder.SelectionType.IN_FRONT)
             .searchFor(predicate)
-            .radius(width)
+            .radius(Math.min(width, distance))
             .distance(distance);
 
         return finder.build();
+    }
+
+    public MapHolder create(Double distance, Double width, EntityFinder.EntityPredicate pred) {
+        MapHolder d = new MapHolder();
+        d.type = GUID();
+        d.put(DISTANCE, distance);
+        d.put(WIDTH, width);
+        d.put(ENTITY_PREDICATE, pred.name());
+        validate(d);
+        return d;
     }
 
     @Override

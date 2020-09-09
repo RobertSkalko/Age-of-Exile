@@ -7,10 +7,13 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.JudgementEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonedWeaponsEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.ThornArmorEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.WoundsEffect;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -177,6 +180,15 @@ public class DatapackSpells {
         .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
         .build();
 
+    public static Spell RECOIL_SHOT = Spell.Builder.of("recoil_shot", SINGLE_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))
+        .onHit(Builder.damage(ValueCalculationData.base(4), Elements.Physical))
+        .onCast(Builder.pushCaster(DashUtils.Way.BACKWARDS, DashUtils.Strength.MEDIUM_DISTANCE))
+        .onHit(Builder.addExileEffectToEnemiesInAoe(WoundsEffect.getInstance(), 1D))
+        .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+        .build();
+
     public static Spell MULTI_SHOT = Spell.Builder.of("multi_shot", SINGLE_TARGET_PROJ_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(3D, 1.2D, 80D, true)))
@@ -190,4 +202,20 @@ public class DatapackSpells {
         .onHit(Builder.damage(ValueCalculationData.base(6), Elements.Thunder))
         .onHit(Builder.playSound(SoundEvents.ITEM_TRIDENT_HIT, 1D, 1D))
         .build();
+
+    public static Spell SPEAR_OF_JUDGEMENT = Spell.Builder.of("spear_of_judgement", HIGH_AOE_LONG_CD)
+        .onCast(Builder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createTrident(1D, 1.25D, 80D)))
+        .onHit(Builder.damage(ValueCalculationData.base(6), Elements.Thunder))
+        .onHit(Builder.playSound(SoundEvents.ITEM_TRIDENT_HIT, 1D, 1D))
+        .onHit(Builder.addExileEffectToEnemiesInAoe(JudgementEffect.INSTANCE, 1D))
+        .onTick(Builder.particleOnTick(1D, ParticleTypes.CLOUD, 15D, 0.015D))
+        .build();
+
+    public static Spell THUNDER_DASH = Spell.Builder.of("thunder_dash", SINGLE_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(ModRegistry.SOUNDS.DASH, 1D, 1D))
+        .onCast(Builder.pushCaster(DashUtils.Way.FORWARDS, DashUtils.Strength.LARGE_DISTANCE))
+        .onCast(Builder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
+        .build();
+
 }

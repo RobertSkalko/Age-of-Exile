@@ -104,7 +104,7 @@ public class ThunderDashSpell extends BaseSpell {
         LivingEntity caster = ctx.caster;
         World world = ctx.caster.world;
 
-        DashUtils.dash(ctx.caster, DashUtils.Strength.LARGE_DISTANCE, DashUtils.Way.FORWARD);
+        DashUtils.dash(ctx.caster, DashUtils.Strength.LARGE_DISTANCE, DashUtils.Way.FORWARDS);
 
         int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.calcData);
 

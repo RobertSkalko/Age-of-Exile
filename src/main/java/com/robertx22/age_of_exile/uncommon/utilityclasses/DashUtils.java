@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 public class DashUtils {
 
     public enum Way {
-        FORWARD, BACKWARDS;
+        FORWARDS, BACKWARDS;
     }
 
     public enum Strength {
@@ -18,11 +18,11 @@ public class DashUtils {
             this.num = num;
         }
 
-        float num;
+        public float num;
 
     }
 
-    public static void dash(LivingEntity entity, Strength str, Way way) {
+    public static void dash(LivingEntity entity, float str, Way way) {
 
         //entity.setVelocity(new Vec3d(0, 0, 0));
 
@@ -40,12 +40,16 @@ public class DashUtils {
         }
 
         // this is removed with knockback resistance, TODO
-        entity.takeKnockback(str.num, x, z);
+        entity.takeKnockback(str, x, z);
 
         if (entity instanceof ServerPlayerEntity) {
             ((ServerPlayerEntity) entity).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(entity));
             entity.velocityModified = false;
         }
+    }
+
+    public static void dash(LivingEntity entity, Strength str, Way way) {
+        dash(entity, str.num, way);
     }
 
 }

@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.LivingEntity;
@@ -126,6 +127,13 @@ public class ComponentPart {
             return c;
         }
 
+        public static ComponentPart damageInFront(ValueCalculationData calc, Elements ele, Double distance, Double width) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+            c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
+            return c;
+        }
+
         public static ComponentPart onTickHealInAoe(Double ticks, ValueCalculationData calc, Double radius) {
             ComponentPart c = healInAoe(calc, radius);
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
@@ -142,6 +150,13 @@ public class ComponentPart {
         public static ComponentPart healCaster(ValueCalculationData calc) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
+            c.targets.add(BaseTargetSelector.SELF.create());
+            return c;
+        }
+
+        public static ComponentPart pushCaster(DashUtils.Way way, DashUtils.Strength str) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PUSH.create((double) str.num, way));
             c.targets.add(BaseTargetSelector.SELF.create());
             return c;
         }
