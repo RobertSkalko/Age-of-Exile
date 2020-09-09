@@ -238,4 +238,11 @@ public class DatapackSpells {
         .onCast(Builder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
         .build();
 
+    public static Spell PURIFYING_FIRES = Spell.Builder.of("purifying_fires", DIVINE_BUFF_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
+        .onCast(Builder.swordSweepParticles())
+        .onCast(Builder.damageInFront(ValueCalculationData.scaleWithAttack(1F, 3), Elements.Fire, 2D, 3D)
+            .addChained(EntityActivation.PER_ENTITY_HIT, Builder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
+        .build();
+
 }

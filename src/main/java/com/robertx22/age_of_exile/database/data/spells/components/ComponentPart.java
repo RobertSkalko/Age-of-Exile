@@ -83,20 +83,23 @@ public class ComponentPart {
 
         if (chained != null) {
             if (chained.containsKey(EntityActivation.PER_ENTITY_HIT)) {
+
                 for (LivingEntity en : list) {
+                    SpellCtx chainedCtx = SpellCtx.onEntityHit(ctx, en);
+
                     for (ComponentPart onEn : chained.get(EntityActivation.PER_ENTITY_HIT)) {
 
                         List<LivingEntity> single = Arrays.asList(en);
 
                         for (MapHolder part : onEn.ifs) {
                             EffectCondition condition = EffectCondition.MAP.get(part.type);
-                            if (!condition.canActivate(ctx, part)) {
+                            if (!condition.canActivate(chainedCtx, part)) {
                                 return;
                             }
                         }
                         for (MapHolder part : onEn.acts) {
                             SpellAction action = SpellAction.MAP.get(part.type);
-                            action.tryActivate(single, ctx, part);
+                            action.tryActivate(single, chainedCtx, part);
                         }
 
                     }
@@ -264,6 +267,12 @@ public class ComponentPart {
         public static ComponentPart playSound(SoundEvent sound, Double volume, Double pitch) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
+            return c;
+        }
+
+        public static ComponentPart swordSweepParticles() {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.SWORD_SWEEP_PARTICLES.create());
             return c;
         }
 

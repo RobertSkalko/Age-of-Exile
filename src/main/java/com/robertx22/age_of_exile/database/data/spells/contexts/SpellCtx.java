@@ -26,46 +26,48 @@ public class SpellCtx {
 
     public EntitySavedSpellData calculatedSpellData;
 
-    private SpellCtx(Entity sourceEntity, LivingEntity caster, LivingEntity target, BlockPos pos, EntitySavedSpellData calculatedSpellData) {
+    private SpellCtx(Entity sourceEntity, LivingEntity caster, LivingEntity target, BlockPos pos, Vec3d vec, EntitySavedSpellData calculatedSpellData) {
         this.sourceEntity = sourceEntity;
         this.caster = caster;
         this.target = target;
         this.pos = pos;
         this.calculatedSpellData = calculatedSpellData;
         this.world = caster.world;
+        this.vecPos = vec;
 
-        if (sourceEntity != null) {
-            this.vecPos = sourceEntity.getPos();
-        } else {
-            this.vecPos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
-        }
     }
 
     public static SpellCtx onCast(LivingEntity caster, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(data);
-        return new SpellCtx(caster, caster, caster, caster.getBlockPos(), data);
+        return new SpellCtx(caster, caster, caster, caster.getBlockPos(), caster.getPos(), data);
     }
 
     public static SpellCtx onHit(LivingEntity caster, Entity sourceEntity, LivingEntity target, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
-        return new SpellCtx(sourceEntity, caster, target, target.getBlockPos(), data);
+        return new SpellCtx(sourceEntity, caster, target, target.getBlockPos(), target.getPos(), data);
+    }
+
+    public static SpellCtx onEntityHit(SpellCtx ctx, LivingEntity target) {
+        Objects.requireNonNull(ctx);
+        Objects.requireNonNull(target);
+        return new SpellCtx(ctx.sourceEntity, ctx.caster, target, target.getBlockPos(), target.getPos(), ctx.calculatedSpellData);
     }
 
     public static SpellCtx onExpire(LivingEntity caster, Entity sourceEntity, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
-        return new SpellCtx(sourceEntity, caster, null, sourceEntity.getBlockPos(), data);
+        return new SpellCtx(sourceEntity, caster, null, sourceEntity.getBlockPos(), sourceEntity.getPos(), data);
     }
 
     public static SpellCtx onTick(LivingEntity caster, Entity sourceEntity, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
-        return new SpellCtx(sourceEntity, caster, null, sourceEntity.getBlockPos(), data);
+        return new SpellCtx(sourceEntity, caster, null, sourceEntity.getBlockPos(), sourceEntity.getPos(), data);
     }
 
 }

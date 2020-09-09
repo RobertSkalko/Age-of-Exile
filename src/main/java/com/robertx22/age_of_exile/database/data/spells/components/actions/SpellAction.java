@@ -32,6 +32,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static SummonBlockAction SUMMON_BLOCK = of(new SummonBlockAction());
     public static RestoreHealthAction RESTORE_HEALTH = of(new RestoreHealthAction());
     public static PushAction PUSH = of(new PushAction());
+    public static SwordSweepParticlesAction SWORD_SWEEP_PARTICLES = of(new SwordSweepParticlesAction());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);
