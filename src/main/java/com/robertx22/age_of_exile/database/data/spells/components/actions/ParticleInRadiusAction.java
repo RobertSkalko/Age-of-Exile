@@ -18,7 +18,7 @@ import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapFiel
 public class ParticleInRadiusAction extends SpellAction {
 
     public enum Shape {
-        CIRCLE, HORIZONTAL_CIRCLE
+        CIRCLE, HORIZONTAL_CIRCLE, HORIZONTAL_CIRCLE_EDGE
     }
 
     public ParticleInRadiusAction() {
@@ -56,8 +56,21 @@ public class ParticleInRadiusAction extends SpellAction {
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
                     ParticleUtils.spawn(particle, ctx.world, p);
                 }
+            } else if (shape == Shape.HORIZONTAL_CIRCLE_EDGE) {
+                for (int i = 0; i < amount; i++) {
+                    float yRandom = (int) RandomUtils.RandomRange(0, yrand);
+                    Vec3d p = randomEdgeCirclePos(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
+                    ParticleUtils.spawn(particle, ctx.world, p);
+                }
             }
         }
+    }
+
+    public static Vec3d randomEdgeCirclePos(double x, double y, double z, float radius) {
+        double angle = Math.random() * Math.PI * 2;
+        double xpos = x + Math.cos(angle) * radius;
+        double zpos = z + Math.sin(angle) * radius;
+        return new Vec3d(xpos, y, zpos);
     }
 
     public MapHolder create(DefaultParticleType particle, Double count, Double radius) {

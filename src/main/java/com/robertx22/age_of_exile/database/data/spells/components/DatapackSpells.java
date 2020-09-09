@@ -153,17 +153,21 @@ public class DatapackSpells {
         .build();
 
     public static Spell BLAZING_INFERNO = Spell.Builder.of("blazing_inferno", SpellConfiguration.Builder.instant(20, 160 * 20))
-        .onCast(Builder.playSound(ModRegistry.SOUNDS.FIREBALL, 1D, 1D))
-        .onCast(Builder.groundParticles(ParticleTypes.FLAME, 50D, 3D, 0.2D))
-        .onCast(Builder.groundParticles(ParticleTypes.SMOKE, 20D, 3D, 0.2D))
+        .onCast(Builder.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
+        .onCast(Builder.groundEdgeParticles(ParticleTypes.FLAME, 100D, 2.8D, 0.2D))
+        .onCast(Builder.groundEdgeParticles(ParticleTypes.FLAME, 50D, 2D, 0.2D))
+        .onCast(Builder.groundEdgeParticles(ParticleTypes.FLAME, 25D, 1D, 0.2D))
+        .onCast(Builder.groundEdgeParticles(ParticleTypes.SMOKE, 200D, 3D, 0.2D))
         .onCast(Builder.damageInAoe(ValueCalculationData.base(3), Elements.Fire, 3D))
         .build();
+
+// it falls into ground
 
     public static Spell LIGHTNING_TOTEM = Spell.Builder.of("lightning_totem", MULTI_TARGET_PROJ_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.TOTEM_OF_UNDYING, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 120D, true)
             .put(MapField.EXPIRE_ON_HIT, false)))
-        .onTick(Builder.particleOnTick(20D, ModRegistry.PARTICLES.THUNDER, 20D, 2D))
+        .onTick(Builder.particleOnTick(20D, ModRegistry.PARTICLES.THUNDER, 80D, 2D))
         .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Thunder, 2D))
         .build();
 

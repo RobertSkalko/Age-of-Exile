@@ -21,6 +21,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
@@ -419,8 +420,15 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     }
 
     @Override
+    public void onPlayerCollision(PlayerEntity player) {
+        // don't allow player to pickup lol
+    }
+
+    @Override
     public void init(LivingEntity caster, EntitySavedSpellData data, MapHolder holder) {
         this.spellData = data;
+
+        this.pickupType = PickupPermission.DISALLOWED;
 
         this.setNoGravity(!holder.getOrDefault(MapField.GRAVITY, true));
         this.deathTime = holder.get(MapField.LIFESPAN_TICKS)

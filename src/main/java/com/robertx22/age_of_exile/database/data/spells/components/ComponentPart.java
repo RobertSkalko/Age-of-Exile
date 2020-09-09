@@ -195,6 +195,16 @@ public class ComponentPart {
             return c;
         }
 
+        public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
+                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+                .put(MapField.Y_RANDOM, randomY)
+                .put(MapField.HEIGHT, 0.5D)
+                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE_EDGE.name()));
+            return c;
+        }
+
         public static ComponentPart groundParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
