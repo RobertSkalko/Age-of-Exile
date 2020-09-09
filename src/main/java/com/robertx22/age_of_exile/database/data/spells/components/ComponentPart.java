@@ -121,6 +121,14 @@ public class ComponentPart {
             return c;
         }
 
+        public static ComponentPart onTickHealInAoe(Double ticks, ValueCalculationData calc, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
         public static ComponentPart onTickEmpty(Double ticks) {
             ComponentPart c = new ComponentPart();
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
@@ -180,6 +188,13 @@ public class ComponentPart {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
             c.targets.add(BaseTargetSelector.SELF.create());
+            return c;
+        }
+
+        public static ComponentPart addExileEffectToEnemiesInAoe(BasePotionEffect effect, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
             return c;
         }
 

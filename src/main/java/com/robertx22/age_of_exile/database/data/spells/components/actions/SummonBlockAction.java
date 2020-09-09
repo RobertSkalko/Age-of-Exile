@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
@@ -28,8 +27,8 @@ public class SummonBlockAction extends SpellAction {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
         if (!ctx.world.isClient) {
 
-            HitResult ray = ctx.caster.rayTrace(5D, 0.0F, false);
-            BlockPos pos = new BlockPos(ray.getPos());
+            //HitResult ray = ctx.caster.rayTrace(5D, 0.0F, false);
+            BlockPos pos = ctx.pos;
 
             boolean found = false;
 

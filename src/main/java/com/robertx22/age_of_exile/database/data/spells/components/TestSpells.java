@@ -17,7 +17,7 @@ import net.minecraft.sound.SoundEvents;
 
 public class TestSpells {
 
-    static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG = SpellConfiguration.Builder.instant(7, 20);
+    public static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG = SpellConfiguration.Builder.instant(7, 20);
     static SpellConfiguration MULTI_TARGET_PROJ_CONFIG = SpellConfiguration.Builder.instant(10, 25);
     static SpellConfiguration HIGH_AOE_LONG_CD = SpellConfiguration.Builder.nonInstant(20, 120 * 20, 40);
 
@@ -102,11 +102,26 @@ public class TestSpells {
         .build();
 
     // BIG PROBLEM
-    public static Spell HEALING_FLOWER = Spell.Builder.of("healing_flower", SINGLE_TARGET_PROJ_CONFIG)
+    public static Spell MAGMA_FLOWER = Spell.Builder.of("magma_flower", TestSpells.SINGLE_TARGET_PROJ_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-        .onTick(Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
-        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, false))
-            .addChained(Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 80D))))
+        .onTick("projectile", Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
+        .onExpire("projectile", Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.FIRE_CORAL, 150D)))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, true)
+            .put(MapField.ENTITY_NAME, "projectile")))
+        .onTick(Builder.particleOnTick(30D, ParticleTypes.FLAME, 20D, 2D))
+        .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
+        .onTick(Builder.onTickDamageInAoe(30D, ValueCalculationData.base(3), Elements.Fire, 2D))
+        .build();
+
+    public static Spell HOLY_FLOWER = Spell.Builder.of("holy_flower", TestSpells.SINGLE_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+        .onTick("projectile", Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
+        .onExpire("projectile", Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.HORN_CORAL, 150D)))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, true)
+            .put(MapField.ENTITY_NAME, "projectile")))
+        .onTick(Builder.particleOnTick(30D, ParticleTypes.HEART, 20D, 2D))
+        .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.ITEM_CROP_PLANT, 1D, 1D))
+        .onTick(Builder.onTickHealInAoe(30D, ValueCalculationData.base(3), 2D))
         .build();
 
 }
