@@ -40,6 +40,13 @@ public class Spells implements ISlashRegistryInit {
                     add(ThrowFlamesSpell.getInstance());
                     add(ThornArmorSpell.getInstance());
                     add(PoisonedWeaponsSpell.getInstance());
+                    add(MagmaFlowerSpell.getInstance());
+                    add(HolyFlowerSpell.getInstance());
+                    add(ThornBushSpell.getInstance());
+                    add(HeartOfIceSpell.getInstance());
+                    add(HealingAuraSpell.getInstance());
+                    add(BlazingInfernoSpell.getInstance());
+                    add(LightningTotemSpell.getInstance());
 
                     /// UNFINISHED
                     add(BraverySpell.getInstance());
@@ -47,19 +54,13 @@ public class Spells implements ISlashRegistryInit {
                     add(WizardrySpell.getInstance());
 
                     add(PurifyingFiresSpell.getInstance());
-                    add(HealingAuraSpell.getInstance());
-
-                    add(HeartOfIceSpell.getInstance());
 
                     add(NatureBalmSpell.getInstance());
 
                     add(ThunderspearSpell.getInstance());
                     add(ThunderDashSpell.getInstance());
-                    add(LightningTotemSpell.getInstance());
 
-                    add(BlazingInfernoSpell.getInstance());
                     add(VolcanoSpell.getInstance());
-                    add(MagmaFlowerSpell.getInstance());
                     add(FireBombsSpell.getInstance());
 
                     add(ArrowBarrageSpell.getInstance());
@@ -68,11 +69,9 @@ public class Spells implements ISlashRegistryInit {
                     add(ImbueSpell.getInstance());
 
                     // tough ones
-                    add(HolyFlowerSpell.getInstance());
                     add(SpearOfJudgementSpell.getInstance());
                     add(ArrowStormSpell.getInstance());
                     add(GorgonsGazeSpell.getInstance());
-                    add(ThornBushSpell.getInstance());
 
                 }
             }

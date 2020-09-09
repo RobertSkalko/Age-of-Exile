@@ -114,18 +114,35 @@ public class ComponentPart {
         }
 
         public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculationData calc, Elements ele, Double radius) {
-            ComponentPart c = new ComponentPart();
-            c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
-            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            ComponentPart c = damageInAoe(calc, ele, radius);
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
 
+        public static ComponentPart damageInAoe(ValueCalculationData calc, Elements ele, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            return c;
+        }
+
         public static ComponentPart onTickHealInAoe(Double ticks, ValueCalculationData calc, Double radius) {
+            ComponentPart c = healInAoe(calc, radius);
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart healInAoe(ValueCalculationData calc, Double radius) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
             c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
-            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart healCaster(ValueCalculationData calc) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
+            c.targets.add(BaseTargetSelector.SELF.create());
             return c;
         }
 
@@ -148,26 +165,42 @@ public class ComponentPart {
             return c;
         }
 
-        public static ComponentPart cloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius) {
-            return cloudParticle(ticks, particle, count, radius, 2.5D);
+        public static ComponentPart aoeParticles(DefaultParticleType particle, Double count, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
+            return c;
         }
 
-        public static ComponentPart cloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
-            ComponentPart c = new ComponentPart();
-            c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
-                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
-                .put(MapField.Y_RANDOM, randomY));
+        public static ComponentPart tickCloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius) {
+            return tickCloudParticle(ticks, particle, count, radius, 2.5D);
+        }
+
+        public static ComponentPart tickCloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
+            ComponentPart c = cloudParticles(particle, count, radius, randomY);
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
 
-        public static ComponentPart groundParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
+        public static ComponentPart cloudParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
+                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+                .put(MapField.Y_RANDOM, randomY));
+            return c;
+        }
+
+        public static ComponentPart tickGroundParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
+            ComponentPart c = groundParticles(particle, count, radius, randomY);
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart groundParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
                 .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
                 .put(MapField.Y_RANDOM, randomY)
                 .put(MapField.HEIGHT, 0.5D));
-            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
 

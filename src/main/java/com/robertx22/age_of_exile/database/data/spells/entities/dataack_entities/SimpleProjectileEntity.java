@@ -55,10 +55,9 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     private int ticksInGround = 0;
     private int deathTime = 80;
 
-    boolean expireOnHit = true;
-
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.STRING);
+    private static final TrackedData<Boolean> EXPIRE_ON_HIT = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public Entity ignoreEntity;
 
@@ -300,7 +299,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
             }
         }
 
-        if (this.expireOnHit) {
+        if (this.dataTracker.get(EXPIRE_ON_HIT)) {
             this.scheduleRemoval();
         }
     }
@@ -374,6 +373,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
     protected void initDataTracker() {
         this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
         this.dataTracker.startTracking(ENTITY_NAME, "");
+        this.dataTracker.startTracking(EXPIRE_ON_HIT, true);
         super.initDataTracker();
     }
 
@@ -426,7 +426,7 @@ public final class SimpleProjectileEntity extends PersistentProjectileEntity imp
         this.deathTime = holder.get(MapField.LIFESPAN_TICKS)
             .intValue();
 
-        this.expireOnHit = holder.getOrDefault(MapField.EXPIRE_ON_HIT, true);
+        this.dataTracker.set(EXPIRE_ON_HIT, holder.getOrDefault(MapField.EXPIRE_ON_HIT, true));
 
         data.item_id = holder.get(MapField.ITEM);
         CompoundTag nbt = new CompoundTag();

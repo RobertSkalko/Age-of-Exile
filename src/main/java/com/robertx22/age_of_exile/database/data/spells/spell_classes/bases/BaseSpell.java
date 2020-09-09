@@ -5,17 +5,12 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart.Builder;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.components.TestSpells;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.database.data.spells.components.DatapackSpells;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -30,16 +25,11 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonEffect;
 import com.robertx22.library_of_exile.main.Packets;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -214,21 +204,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         if (true) {
 
-            Spell.Builder.of("thorn_bush", TestSpells.SINGLE_TARGET_PROJ_CONFIG)
-                .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-                .onTick("projectile", Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
-                .onExpire("projectile", Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.BUBBLE_CORAL, 150D)))
-                .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, true)
-                    .put(MapField.ENTITY_NAME, "projectile")))
-                .onTick(Builder.particleOnTick(30D, ParticleTypes.ITEM_SLIME, 60D, 2D))
-                .onTick(Builder.particleOnTick(30D, ParticleTypes.WITCH, 15D, 2D))
-                .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH, 1D, 2D))
-                .onTick(Builder.onTickDamageInAoe(30D, ValueCalculationData.base(1), Elements.Nature, 2D))
-                .onTick(Builder.addExileEffectToEnemiesInAoe(PoisonEffect.INSTANCE, 2D))
-                .build()
-                .cast(ctx.caster);
-
-            // TestSpells.HEALING_FLOWER.cast(ctx.caster);
+            DatapackSpells.LIGHTNING_TOTEM.cast(ctx.caster);
 
             return true; // REMOVE AFTER TESTING
         }
