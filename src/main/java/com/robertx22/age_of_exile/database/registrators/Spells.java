@@ -53,11 +53,11 @@ public class Spells implements ISlashRegistryInit {
                     add(SpearOfJudgementSpell.getInstance());
                     add(ThunderDashSpell.getInstance());
                     add(RecoilShotSpell.getInstance());
-
-                    /// UNFINISHED
                     add(BraverySpell.getInstance());
                     add(TrickerySpell.getInstance());
                     add(WizardrySpell.getInstance());
+
+                    /// UNFINISHED
 
                     add(PurifyingFiresSpell.getInstance());
 

@@ -2,14 +2,16 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart.Builder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.BraveryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.JudgementEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.TrickeryEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.WizardryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonedWeaponsEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.ThornArmorEffect;
@@ -70,10 +72,9 @@ public class DatapackSpells {
         .onTick(Builder.tickCloudParticle(2D, ParticleTypes.CLOUD, 20D, 4D))
         .onTick(Builder.tickCloudParticle(2D, ParticleTypes.FALLING_WATER, 20D, 4D))
         .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Thunder, 4D)
-            .addChained(Builder.empty()
-                .addTarget(BaseTargetSelector.AOE.create(4D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES)
-                    .put(MapField.SELECTION_CHANCE, 20D))
-                .addActions(SpellAction.SUMMON_LIGHTNING_STRIKE.create())))
+            .addChained(EntityActivation.PER_ENTITY_HIT, Builder.empty()
+                .addActions(SpellAction.SUMMON_LIGHTNING_STRIKE.create())
+                .addCondition(EffectCondition.CHANCE.create(20D))))
         .build();
 
     public static Spell WHIRLPOOL = Spell.Builder.of("whirlpool", HIGH_AOE_LONG_CD)
@@ -84,8 +85,7 @@ public class DatapackSpells {
         .onTick(Builder.tickGroundParticle(1D, ParticleTypes.BUBBLE, 25D, 3.5D, 0.5D))
         .onTick(Builder.tickGroundParticle(1D, ParticleTypes.BUBBLE_POP, 75D, 3.5D, 0.5D))
         .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Water, 3.5D)
-            .addChained(Builder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)
-                .addTarget(BaseTargetSelector.AOE.create(3.5D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))))
+            .addChained(EntityActivation.PER_ENTITY_HIT, Builder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
         .build();
 
     public static Spell BLIZZARD = Spell.Builder.of("blizzard", HIGH_AOE_LONG_CD)
@@ -216,6 +216,26 @@ public class DatapackSpells {
         .onCast(Builder.playSound(ModRegistry.SOUNDS.DASH, 1D, 1D))
         .onCast(Builder.pushCaster(DashUtils.Way.FORWARDS, DashUtils.Strength.LARGE_DISTANCE))
         .onCast(Builder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
+        .build();
+
+    static SpellConfiguration DIVINE_BUFF_CONFIG = SpellConfiguration.Builder.nonInstant(30, 20 * 180, 40);
+
+    public static Spell WIZARDRY = Spell.Builder.of("wizardry", DIVINE_BUFF_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+        .onCast(Builder.giveToAlliesInRadius(WizardryEffect.INSTANCE, 4D))
+        .onCast(Builder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
+        .build();
+
+    public static Spell TRICKERY = Spell.Builder.of("trickery", DIVINE_BUFF_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+        .onCast(Builder.giveToAlliesInRadius(TrickeryEffect.INSTANCE, 4D))
+        .onCast(Builder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
+        .build();
+
+    public static Spell BRAVERY = Spell.Builder.of("bravery", DIVINE_BUFF_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+        .onCast(Builder.giveToAlliesInRadius(BraveryEffect.INSTANCE, 4D))
+        .onCast(Builder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
         .build();
 
 }

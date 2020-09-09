@@ -16,10 +16,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ComponentPart {
 
@@ -27,14 +24,17 @@ public class ComponentPart {
     public List<MapHolder> acts = new ArrayList<>();
     public List<MapHolder> ifs = new ArrayList<>();
 
-    List<ComponentPart> chained = null;
+    HashMap<EntityActivation, List<ComponentPart>> chained = null;
 
-    public ComponentPart addChained(ComponentPart add) {
+    public ComponentPart addChained(EntityActivation act, ComponentPart add) {
         if (chained == null) {
-            chained = new ArrayList<>();
+            chained = new HashMap<>();
         }
-
-        this.chained.add(add);
+        if (!chained.containsKey(act)) {
+            chained.put(act, new ArrayList<>());
+        }
+        this.chained.get(act)
+            .add(add);
         return this;
     }
 
@@ -53,7 +53,9 @@ public class ComponentPart {
         }
 
         if (chained != null) {
-            chained.forEach(x -> x.validate());
+            chained.entrySet()
+                .forEach(e -> e.getValue()
+                    .forEach(t -> t.validate()));
 
         }
     }
@@ -80,8 +82,31 @@ public class ComponentPart {
         }
 
         if (chained != null) {
-            chained.forEach(x -> x.tryActivate(ctx));
+            if (chained.containsKey(EntityActivation.PER_ENTITY_HIT)) {
+                for (LivingEntity en : list) {
+                    for (ComponentPart onEn : chained.get(EntityActivation.PER_ENTITY_HIT)) {
 
+                        List<LivingEntity> single = Arrays.asList(en);
+
+                        for (MapHolder part : onEn.ifs) {
+                            EffectCondition condition = EffectCondition.MAP.get(part.type);
+                            if (!condition.canActivate(ctx, part)) {
+                                return;
+                            }
+                        }
+                        for (MapHolder part : onEn.acts) {
+                            SpellAction action = SpellAction.MAP.get(part.type);
+                            action.tryActivate(single, ctx, part);
+                        }
+
+                    }
+                }
+            }
+            chained.entrySet()
+                .stream()
+                .filter(x -> x.getKey() != EntityActivation.PER_ENTITY_HIT)
+                .forEach(x -> x.getValue()
+                    .forEach(v -> v.tryActivate(ctx)));
         }
     }
 
@@ -246,6 +271,13 @@ public class ComponentPart {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
             c.targets.add(BaseTargetSelector.SELF.create());
+            return c;
+        }
+
+        public static ComponentPart giveToAlliesInRadius(BasePotionEffect effect, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
             return c;
         }
 
