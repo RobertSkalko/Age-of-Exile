@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.PotionEffectUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
@@ -26,7 +25,7 @@ public class ExilePotionAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        BasePotionEffect potion = (BasePotionEffect) Registry.STATUS_EFFECT.get(new Identifier(data.get(POTION_ID)));
+        BasePotionEffect potion = (BasePotionEffect) data.getPotion();
 
         PotionAction action = data.getPotionAction();
 

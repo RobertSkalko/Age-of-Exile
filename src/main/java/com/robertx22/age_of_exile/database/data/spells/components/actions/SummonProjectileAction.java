@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
@@ -22,12 +23,28 @@ public class SummonProjectileAction extends SpellAction {
         super(Arrays.asList(MapField.ENTITY_NAME, MapField.PROJECTILE_COUNT, MapField.ITEM, MapField.PROJECTILE_SPEED, MapField.LIFESPAN_TICKS));
     }
 
+    public enum ShootWay {
+        FROM_PLAYER_VIEW, DOWN
+    }
+
+    public enum PositionSource {
+        CASTER, SOURCE_ENTITY
+    }
+
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         Optional<EntityType<?>> projectile = EntityType.get(data.get(MapField.PROJECTILE_ENTITY));
 
-        ProjectileCastHelper builder = new ProjectileCastHelper(data, ctx.caster, projectile.get(), ctx.calculatedSpellData);
+        PositionSource posSource = data.getOrDefault(PositionSource.CASTER);
+        ShootWay shootWay = data.getOrDefault(ShootWay.FROM_PLAYER_VIEW);
+
+        Vec3d pos = ctx.caster.getPos();
+        if (posSource == PositionSource.SOURCE_ENTITY) {
+            pos = ctx.sourceEntity.getPos();
+        }
+
+        ProjectileCastHelper builder = new ProjectileCastHelper(pos, data, ctx.caster, projectile.get(), ctx.calculatedSpellData);
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
             .intValue();
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
@@ -35,6 +52,15 @@ public class SummonProjectileAction extends SpellAction {
 
         builder.apart = data.getOrDefault(MapField.PROJECTILES_APART, 75D)
             .floatValue();
+
+        if (posSource == PositionSource.SOURCE_ENTITY) {
+            builder.pitch = ctx.sourceEntity.pitch;
+            builder.yaw = ctx.sourceEntity.yaw;
+        }
+        if (shootWay == ShootWay.DOWN) {
+            builder.fallDown = true;
+        }
+
         builder.cast();
     }
 
@@ -57,6 +83,15 @@ public class SummonProjectileAction extends SpellAction {
         MapHolder c = createBase(projCount, speed, lifespan, gravity);
         c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(ModRegistry.ENTITIES.SIMPLE_ARROW)
             .toString());
+        return c;
+    }
+
+    public MapHolder createFallingArrow(Double speed) {
+        MapHolder c = createBase(1D, speed, 60D, true);
+        c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(ModRegistry.ENTITIES.SIMPLE_ARROW)
+            .toString());
+        c.put(MapField.POS_SOURCE, PositionSource.SOURCE_ENTITY.name());
+        c.put(MapField.SHOOT_DIRECTION, ShootWay.DOWN.name());
         return c;
     }
 

@@ -49,20 +49,18 @@ public class SpellUtils {
                 , new EntitySpawnS2CPacket(entityIn));
     }
 
-    public static void setupProjectileForCasting(PersistentProjectileEntity projectile, LivingEntity caster, float speed) {
-        Vec3d pos = caster.getPos();
+    public static void shootProjectile(Vec3d pos, PersistentProjectileEntity projectile, LivingEntity caster, float speed) {
 
-        ((Entity) projectile).updatePosition(pos.x, caster.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
+        ((Entity) projectile).updatePosition(pos.x, pos.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
 
         projectile.setProperties(caster, caster.pitch, caster.yaw, 0.0F, speed, 1F);
 
     }
 
-    public static void setupProjectileForCasting(PersistentProjectileEntity projectile, LivingEntity caster, float speed,
-                                                 float pitch, float yaw) {
-        Vec3d pos = caster.getPos();
+    public static void shootProjectile(Vec3d pos, PersistentProjectileEntity projectile, LivingEntity caster, float speed,
+                                       float pitch, float yaw) {
 
-        ((Entity) projectile).updatePosition(pos.x, caster.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
+        ((Entity) projectile).updatePosition(pos.x, pos.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
 
         projectile.setProperties(caster, pitch, yaw, 0.0F, speed, 1F);
 

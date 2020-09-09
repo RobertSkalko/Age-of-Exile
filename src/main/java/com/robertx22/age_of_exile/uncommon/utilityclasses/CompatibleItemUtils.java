@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.auto_comp.PowerLevel;
+import com.robertx22.age_of_exile.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
@@ -56,8 +56,8 @@ public class CompatibleItemUtils {
                             });
 
                         slots.forEach(x -> {
-                            all.addAll(PowerLevel.getPowerClassification(item)
-                                .getAutoCompatibleItems(PowerLevel.getFloatValueOf(item), item, x));
+                            all.addAll(ItemAutoPowerLevels.getPowerClassification(item)
+                                .getAutoCompatibleItems(ItemAutoPowerLevels.getFloatValueOf(item), item, x));
                         });
 
                     }

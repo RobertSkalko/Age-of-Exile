@@ -12,9 +12,11 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.BraveryEffect
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.JudgementEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.TrickeryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.WizardryEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PetrifyEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonedWeaponsEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.ThornArmorEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.ImbueEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.WoundsEffect;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
@@ -27,6 +29,7 @@ public class DatapackSpells {
     static SpellConfiguration MULTI_TARGET_PROJ_CONFIG = SpellConfiguration.Builder.instant(10, 25);
     static SpellConfiguration HIGH_AOE_LONG_CD = SpellConfiguration.Builder.nonInstant(30, 120 * 20, 40);
     static SpellConfiguration PLANT_CONFIG = SpellConfiguration.Builder.instant(25, 60 * 20);
+    static SpellConfiguration DIVINE_BUFF_CONFIG = SpellConfiguration.Builder.nonInstant(30, 20 * 180, 40);
 
     public static Spell FROSTBALL = Spell.Builder.of("frostball", SINGLE_TARGET_PROJ_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
@@ -178,6 +181,10 @@ public class DatapackSpells {
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))
         .onHit(Builder.damage(ValueCalculationData.base(4), Elements.Physical))
         .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+        .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Elemental)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
+        .onTick(Builder.particleOnTick(5D, ParticleTypes.WITCH, 5D, 0.1D)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
         .build();
 
     public static Spell RECOIL_SHOT = Spell.Builder.of("recoil_shot", SINGLE_TARGET_PROJ_CONFIG)
@@ -187,13 +194,21 @@ public class DatapackSpells {
         .onCast(Builder.pushCaster(DashUtils.Way.BACKWARDS, DashUtils.Strength.MEDIUM_DISTANCE))
         .onHit(Builder.addExileEffectToEnemiesInAoe(WoundsEffect.getInstance(), 1D))
         .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+        .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Elemental)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
+        .onTick(Builder.particleOnTick(5D, ParticleTypes.WITCH, 5D, 0.1D)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
         .build();
 
     public static Spell MULTI_SHOT = Spell.Builder.of("multi_shot", SINGLE_TARGET_PROJ_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(3D, 1.2D, 80D, true)))
-        .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Physical))
+        .onHit(Builder.damage(ValueCalculationData.scaleWithAttack(0.5F, 3), Elements.Physical))
         .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+        .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Elemental)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
+        .onTick(Builder.particleOnTick(5D, ParticleTypes.WITCH, 5D, 0.1D)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
         .build();
 
     public static Spell THUNDER_SPEAR = Spell.Builder.of("thunder_spear", SINGLE_TARGET_PROJ_CONFIG)
@@ -218,8 +233,6 @@ public class DatapackSpells {
         .onCast(Builder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
         .build();
 
-    static SpellConfiguration DIVINE_BUFF_CONFIG = SpellConfiguration.Builder.nonInstant(30, 20 * 180, 40);
-
     public static Spell WIZARDRY = Spell.Builder.of("wizardry", DIVINE_BUFF_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
         .onCast(Builder.giveToAlliesInRadius(WizardryEffect.INSTANCE, 4D))
@@ -243,6 +256,35 @@ public class DatapackSpells {
         .onCast(Builder.swordSweepParticles())
         .onCast(Builder.damageInFront(ValueCalculationData.scaleWithAttack(1F, 3), Elements.Fire, 2D, 3D)
             .addChained(EntityActivation.PER_ENTITY_HIT, Builder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
+        .build();
+
+    public static Spell GORGONS_GAZE = Spell.Builder.of("gorgons_gaze", DIVINE_BUFF_CONFIG)
+        .onCast(Builder.playSound(ModRegistry.SOUNDS.STONE_CRACK, 1D, 1D))
+        .onCast(Builder.addExileEffectToEnemiesInFront(PetrifyEffect.INSTANCE, 15D, 3D))
+        .build();
+
+    public static Spell FIRE_BOMBS = Spell.Builder.of("fire_bombs", MULTI_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COAL, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
+        .onTick(Builder.particleOnTick(1D, ParticleTypes.SMOKE, 45D, 1D))
+        .onHit(Builder.damageInAoe(ValueCalculationData.base(10), Elements.Nature, 2D))
+        .build();
+
+    public static Spell ARROW_STORM = Spell.Builder.of("arrow_storm", HIGH_AOE_LONG_CD)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D, 1.2D, 80D, true)))
+        .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Physical))
+        .onHit(Builder.particleOnTick(3D, ParticleTypes.CLOUD, 3D, 0.1D))
+        .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+        .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Elemental)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
+        .onTick(Builder.particleOnTick(5D, ParticleTypes.WITCH, 5D, 0.1D)
+            .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))
+        .build();
+
+    public static Spell IMBUE = Spell.Builder.of("imbue", SpellConfiguration.Builder.instant(15, 200 * 20))
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+        .onCast(Builder.giveSelfExileEffect(ImbueEffect.getInstance()))
         .build();
 
 }

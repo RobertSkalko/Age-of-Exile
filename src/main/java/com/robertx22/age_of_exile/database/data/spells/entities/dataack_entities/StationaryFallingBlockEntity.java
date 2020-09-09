@@ -83,6 +83,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
             this.getSpellData().attached.onEntityTick(getEntityName(), SpellCtx.onTick(getSpellData().getCaster(world), this, getSpellData()));
         } catch (Exception e) {
             e.printStackTrace();
+            this.remove();
         }
 
         if (age > lifespan) {

@@ -210,6 +210,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             super.tick();
         } catch (Exception e) {
             e.printStackTrace();
+            this.scheduleRemoval();
         }
 
         if (this.getSpellData() == null || getCaster() == null) {
@@ -233,6 +234,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
         } catch (Exception e) {
             e.printStackTrace();
+            this.scheduleRemoval();
         }
 
     }

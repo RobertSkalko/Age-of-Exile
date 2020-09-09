@@ -34,7 +34,6 @@ public class MapField<T> implements IGUID {
 
     // string
     public static MapField<String> PROJECTILE_ENTITY = make("proj_en");
-    public static MapField<String> STATUS_EFFECT = make("status_effect");
     public static MapField<String> ITEM = make("item");
     public static MapField<String> ELEMENT = make(new MapField<String>("element"));
     public static MapField<String> SELECTION_TYPE = make("selection_type");
@@ -42,11 +41,13 @@ public class MapField<T> implements IGUID {
     public static MapField<String> PARTICLE_TYPE = make("particle_type");
     public static MapField<String> SOUND = make("sound");
     public static MapField<String> PARTICLE_SHAPE = make("shape");
-    public static MapField<String> POTION_ID = make("potion_id");
+    public static MapField<String> POTION_ID = make("exile_potion_id");
     public static MapField<String> POTION_ACTION = make("potion_action");
     public static MapField<String> BLOCK = make("block");
     public static MapField<String> ENTITY_NAME = make("entity_name");
     public static MapField<String> PUSH_WAY = make("push_way");
+    public static MapField<String> POS_SOURCE = make("pos_source");
+    public static MapField<String> SHOOT_DIRECTION = make("shoot_way");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");

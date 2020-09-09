@@ -189,8 +189,9 @@ public class ComponentPart {
             return c;
         }
 
-        public static ComponentPart onTickEmpty(Double ticks) {
+        public static ComponentPart onTickAction(Double ticks, MapHolder action) {
             ComponentPart c = new ComponentPart();
+            c.acts.add(action);
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
             return c;
         }
@@ -294,6 +295,13 @@ public class ComponentPart {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
             c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            return c;
+        }
+
+        public static ComponentPart addExileEffectToEnemiesInFront(BasePotionEffect effect, Double distance, Double width) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
             return c;
         }
 

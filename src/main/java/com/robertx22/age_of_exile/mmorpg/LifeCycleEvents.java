@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg;
 
-import com.robertx22.age_of_exile.auto_comp.DeterminePowerLevels;
+import com.robertx22.age_of_exile.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.server.CommandRegister;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
@@ -21,8 +21,7 @@ public class LifeCycleEvents {
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-
-            DeterminePowerLevels.setupHashMaps();
+            ItemAutoPowerLevels.setupHashMaps();
 
             CommandRegister.Register(server);
 

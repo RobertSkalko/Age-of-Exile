@@ -4,22 +4,29 @@ import com.google.common.collect.Multimap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.age_of_exile.config.forge.parts.AutoConfigItemType;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-public class PowerLevel {
+public class ItemAutoPowerLevels {
 
+    private static HashMap<String, ItemAutoPowerLevels> STRONGEST = new HashMap<>();
     public static HashMap<Item, Float> CACHED = new HashMap<>();
 
-    public PowerLevel(Item item, BaseGearType slot) {
+    public ItemAutoPowerLevels(Item item, BaseGearType slot) {
 
         try {
             this.item = item;
@@ -58,9 +65,18 @@ public class PowerLevel {
         float val = 0;
 
         for (BaseGearType slot : slots) {
-            PowerLevel power = new PowerLevel(item, slot);
+            ItemAutoPowerLevels power = new ItemAutoPowerLevels(item, slot);
 
-            PowerLevel best = DeterminePowerLevels.STRONGEST.get(slot.getGearSlot());
+            ItemAutoPowerLevels best = getStrongestOf(slot.getGearSlot());
+
+            if (best == null) {
+                try {
+                    throw new RuntimeException("No best item for slot: " + slot.getGearSlot()
+                        .GUID());
+                } catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
+            }
 
             val += power.divideBy(best);
 
@@ -110,16 +126,61 @@ public class PowerLevel {
         return type;
     }
 
-    public boolean isStrongerThan(PowerLevel other) {
+    public boolean isStrongerThan(ItemAutoPowerLevels other) {
         return totalStatNumbers > other.totalStatNumbers;
     }
 
-    public float divideBy(PowerLevel other) {
+    public float divideBy(ItemAutoPowerLevels other) {
         return totalStatNumbers / other.totalStatNumbers;
     }
 
     public Item item;
     public int statAmount = 0;
     public float totalStatNumbers = 0;
+
+    public static ItemAutoPowerLevels getStrongestOf(GearSlot slot) {
+        return STRONGEST.get(slot.GUID());
+    }
+
+    public static void setupHashMaps() {
+
+        Watch watch = new Watch();
+
+        Set<BaseGearType> types = new HashSet<>(SlashRegistry.GearTypes()
+            .getList());
+
+        Registry.ITEM
+            .stream()
+            .filter(x -> !Ref.MODID.equals(Registry.ITEM.getId(x)
+                .getNamespace()))
+            .forEach(item -> {
+                try {
+
+                    types
+                        .forEach(slot -> {
+                            if (BaseGearType.isGearOfThisType(slot, item)) {
+
+                                ItemAutoPowerLevels current = new ItemAutoPowerLevels(item, slot);
+
+                                ItemAutoPowerLevels strongest = STRONGEST.getOrDefault(slot.GUID(), current);
+
+                                if (current.isStrongerThan(strongest)) {
+                                    strongest = current;
+                                }
+
+                                STRONGEST.put(slot.getGearSlot()
+                                    .GUID(), strongest);
+
+                            }
+                        });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
+        watch.print("[Setting up auto compatibility config power levels] ");
+
+    }
 
 }

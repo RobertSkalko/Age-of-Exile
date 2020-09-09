@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ProjectileCastHelper {
@@ -19,16 +19,22 @@ public class ProjectileCastHelper {
     EntityType projectile;
     EntitySavedSpellData data;
     MapHolder holder;
+    Vec3d pos;
 
-    public ProjectileCastHelper(MapHolder holder, LivingEntity caster, EntityType projectile, EntitySavedSpellData data) {
+    public float pitch;
+    public float yaw;
+
+    public boolean fallDown = false;
+
+    public ProjectileCastHelper(Vec3d pos, MapHolder holder, LivingEntity caster, EntityType projectile, EntitySavedSpellData data) {
         this.projectile = projectile;
         this.caster = caster;
         this.data = data;
         this.holder = holder;
-    }
+        this.pos = pos;
 
-    private void playSound(Entity en) {
-
+        this.pitch = caster.pitch;
+        this.yaw = caster.yaw;
     }
 
     public void cast() {
@@ -48,10 +54,13 @@ public class ProjectileCastHelper {
             }
 
             PersistentProjectileEntity en = (PersistentProjectileEntity) projectile.create(world);
-            SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch, caster.yaw + addYaw);
+            SpellUtils.shootProjectile(pos, en, caster, shootSpeed, pitch, yaw + addYaw);
             SpellUtils.initSpellEntity(en, caster, data, holder);
+
+            if (fallDown) {
+                en.setVelocity(0, -1, 0);
+            }
             caster.world.spawnEntity(en);
-            playSound(en);
         }
 
     }

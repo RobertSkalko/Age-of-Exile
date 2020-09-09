@@ -204,8 +204,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
 
         if (true) {
 
-            DatapackSpells.PURIFYING_FIRES
-                .cast(ctx.caster);
+            DatapackSpells.RECOIL_SHOT.cast(ctx.caster);
 
             return true; // REMOVE AFTER TESTING
         }

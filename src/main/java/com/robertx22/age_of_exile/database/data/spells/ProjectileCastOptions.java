@@ -51,7 +51,7 @@ public class ProjectileCastOptions {
                     addYaw += apart / projectilesAmount;
                 }
                 PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.create(world), ctx.calcData, caster);
-                SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch,
+                SpellUtils.shootProjectile(caster.getPos(), en, caster, shootSpeed, caster.pitch,
                     caster.yaw + addYaw
                 );
                 caster.world.spawnEntity(en);
@@ -60,7 +60,7 @@ public class ProjectileCastOptions {
             }
         } else {
             PersistentProjectileEntity en = (PersistentProjectileEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.create(world), ctx.calcData, caster);
-            SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.pitch, caster.yaw
+            SpellUtils.shootProjectile(caster.getPos(), en, caster, shootSpeed, caster.pitch, caster.yaw
             );
             caster.world.spawnEntity(en);
 
