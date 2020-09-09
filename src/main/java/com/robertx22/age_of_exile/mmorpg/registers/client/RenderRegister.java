@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.client;
 
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.MySpriteRenderer;
+import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.renders.ModTridentRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.special.RangerArrowRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.trident.HolyTridentRenderer;
 import com.robertx22.age_of_exile.mobs.renders.*;
@@ -63,7 +64,9 @@ public class RenderRegister {
 
         INSTANCE.register(ENTITIES.GOLEM_BOSS, (d, ctx) -> new BossGolemRenderer(d));
 
+        INSTANCE.register(ENTITIES.SIMPLE_ARROW, (d, ctx) -> new RangerArrowRenderer(d));
         INSTANCE.register(ENTITIES.SIMPLE_BLOCK_ENTITY, (d, ctx) -> new FallingBlockEntityRenderer(d));
+        INSTANCE.register(ENTITIES.SIMPLE_TRIDENT, (d, ctx) -> new ModTridentRenderer(d));
 
     }
 }

@@ -161,8 +161,7 @@ public class DatapackSpells {
         .onCast(Builder.damageInAoe(ValueCalculationData.base(3), Elements.Fire, 3D))
         .build();
 
-// it falls into ground
-
+    // it falls into ground
     public static Spell LIGHTNING_TOTEM = Spell.Builder.of("lightning_totem", MULTI_TARGET_PROJ_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.TOTEM_OF_UNDYING, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 120D, true)
@@ -171,4 +170,24 @@ public class DatapackSpells {
         .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Thunder, 2D))
         .build();
 
+    public static Spell ARROW_BARRAGE = Spell.Builder.of("arrow_barrage", SINGLE_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))
+        .onHit(Builder.damage(ValueCalculationData.base(4), Elements.Physical))
+        .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+        .build();
+
+    public static Spell MULTI_SHOT = Spell.Builder.of("multi_shot", SINGLE_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(3D, 1.2D, 80D, true)))
+        .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Physical))
+        .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+        .build();
+
+    public static Spell THUNDER_SPEAR = Spell.Builder.of("thunder_spear", SINGLE_TARGET_PROJ_CONFIG)
+        .onCast(Builder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createTrident(1D, 1.25D, 80D)))
+        .onHit(Builder.damage(ValueCalculationData.base(6), Elements.Thunder))
+        .onHit(Builder.playSound(SoundEvents.ITEM_TRIDENT_HIT, 1D, 1D))
+        .build();
 }

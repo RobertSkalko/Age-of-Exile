@@ -47,6 +47,8 @@ public class Spells implements ISlashRegistryInit {
                     add(HealingAuraSpell.getInstance());
                     add(BlazingInfernoSpell.getInstance());
                     add(LightningTotemSpell.getInstance());
+                    add(MultiShotSpell.getInstance());
+                    add(ArrowBarrageSpell.getInstance());
 
                     /// UNFINISHED
                     add(BraverySpell.getInstance());
@@ -63,9 +65,7 @@ public class Spells implements ISlashRegistryInit {
                     add(VolcanoSpell.getInstance());
                     add(FireBombsSpell.getInstance());
 
-                    add(ArrowBarrageSpell.getInstance());
                     add(RecoilShotSpell.getInstance());
-                    add(MultiShotSpell.getInstance());
                     add(ImbueSpell.getInstance());
 
                     // tough ones

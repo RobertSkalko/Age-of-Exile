@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public final class SimpleProjectileEntity extends PersistentProjectileEntity implements IMyRenderAsItem, IDatapackSpellEntity {
+public class SimpleProjectileEntity extends PersistentProjectileEntity implements IMyRenderAsItem, IDatapackSpellEntity {
 
     EntitySavedSpellData spellData;
 

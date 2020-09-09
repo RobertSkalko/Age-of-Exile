@@ -5,7 +5,9 @@ import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ArrowStorm
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.cloud.VolcanoEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleArrowEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleProjectileEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleTridentEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.proj.*;
 import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.FireballEntity;
@@ -71,8 +73,10 @@ public class ModEntities {
     static EntityDimensions skeleDim = new EntityDimensions(0.5F, 2, true);
     static EntityDimensions chickenDim = new EntityDimensions(0.7F, 0.5F, true);
 
-    public EntityType<SimpleProjectileEntity> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "projectile");
-    public EntityType<StationaryFallingBlockEntity> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "block_entity", false);
+    public EntityType<SimpleProjectileEntity> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "spell_projectile");
+    public EntityType<SimpleArrowEntity> SIMPLE_ARROW = projectile(SimpleArrowEntity::new, "spell_arrow");
+    public EntityType<StationaryFallingBlockEntity> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "spell_block_entity", false);
+    public EntityType<SimpleTridentEntity> SIMPLE_TRIDENT = projectile(SimpleTridentEntity::new, "spell_trident", false);
 
     public EntityType<ThunderstormEntity> THUNDERSTORM = projectile(ThunderstormEntity::new, "thunderstorm");
     public EntityType<TridentEntity> THUNDER_SPEAR = projectile(ThunderspearEntity::new, "thunder_spear", false);
