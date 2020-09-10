@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entitie
 
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
-import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.mixin_ducks.FallingBlockAccessor;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;

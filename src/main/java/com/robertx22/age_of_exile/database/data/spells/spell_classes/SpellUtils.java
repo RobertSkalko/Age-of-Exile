@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spells;
+package com.robertx22.age_of_exile.database.data.spells.spell_classes;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;

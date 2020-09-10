@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
-import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.text.LiteralText;

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine;
 
-import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;

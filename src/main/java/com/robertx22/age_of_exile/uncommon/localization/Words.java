@@ -69,6 +69,11 @@ public enum Words implements IAutoLocName {
     CooldownSeconds("Cooldown Seconds"), NatureBalm("Nature's Balm"),
 
     CooldownTicks("Cooldown Ticks"),
+    CastSpeed("Cast speed"),
+    ManaCost("Mana Cost"),
+    ProjectileSpeed("Projectile Speed"),
+    Cooldown("Cooldown"),
+    Damage("Damage"), Healing("Healing"),
 
     CastTimeTicks("Cast Time Ticks"),
 
@@ -81,6 +86,7 @@ public enum Words implements IAutoLocName {
     SummonedEntities("Summoned Entities"),
 
     Chance("Chance"),
+
     IsNotMaxRarity("Is not max rarity"),
 
     CooldownReductionEfficiency("Cooldown Reduction Efficiency"),
@@ -280,16 +286,23 @@ public enum Words implements IAutoLocName {
     NoSuffix("Doesn't have suffix"),
 
     CantGetMoreAffixes("Can't get more affixes."),
+
     HasEmptySockets("Has Empty Sockets"),
+
     CanGetMoreSockets("Can get more sockets "),
+
     NoDuplicateSockets("No Duplicate Sockets"),
 
     NoPrefix("Doesn't have prefix"),
 
     TierLessThanMax("Tier less than maximum"),
+
     OnHit("On Hit"),
+
     OnExpire("On Expire"),
+
     PerEntityHit("Per Entity Hit"),
+
     AllowedOn("Allowed on"),
 
     NotAllowedOn("Not Allowed on: "),
@@ -370,11 +383,7 @@ public enum Words implements IAutoLocName {
 
     Chaos_Stats("Chaos Stats"),
 
-    Cooldown("Cooldown"),
-
     Currency("Currency"),
-
-    Damage("Damage"),
 
     Dealt("Dealt"),
 

@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.components.BaseFieldNeeder;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.*;
-import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import net.minecraft.entity.LivingEntity;
 
 import java.util.Collection;

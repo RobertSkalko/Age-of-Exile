@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registrators.MobAffixes;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
@@ -21,6 +22,12 @@ public enum SlashRegistryType {
     NONE("none"),
     EFFECT("effect"),
     STAT("stat"),
+    SPELL_MODIFIER("spell_modifier") {
+        @Override
+        public ISerializable getSerializer() {
+            return SpellModifier.SERIALIZER;
+        }
+    },
     SPELL_SCHOOL("spell_school") {
         @Override
         public ISerializable getSerializer() {

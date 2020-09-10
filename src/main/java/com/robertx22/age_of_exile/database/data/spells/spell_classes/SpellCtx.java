@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spells.contexts;
+package com.robertx22.age_of_exile.database.data.spells.spell_classes;
 
 import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
