@@ -10,7 +10,7 @@ public class ReduceCooldownEffect extends BaseSpellCalcEffect {
 
     @Override
     public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-        effect.data.add(SpellModEnum.COOLDOWN, data);
+        effect.data.add(SpellModEnum.COOLDOWN, -data.getAverageValue());
         return effect;
     }
 

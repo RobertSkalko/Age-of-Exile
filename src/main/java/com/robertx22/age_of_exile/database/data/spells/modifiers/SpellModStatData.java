@@ -26,7 +26,8 @@ public class SpellModStatData implements ITooltipList {
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
         String perc = "%";
-        MutableText txt = new LiteralText(value + perc + " ").append(spell_stat.word.locName());
+        String plus = value > 0 ? "+" : "";
+        MutableText txt = new LiteralText(plus + value + perc + " ").append(spell_stat.word.locName());
         list.add(txt);
         return list;
     }

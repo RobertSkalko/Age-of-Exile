@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.database.data.perks;
 
-import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
-
 public enum PerkStatus {
 
     CONNECTED(1), BLOCKED(2), LOCKED_UNDER_ACHIEV(3), POSSIBLE(4);
@@ -13,7 +11,7 @@ public enum PerkStatus {
     }
 
     public int getYOffset() {
-        return order + PerkButton.SPACING * (order - 1);
+        return order + 28 * (order - 1);
     }
 
 }

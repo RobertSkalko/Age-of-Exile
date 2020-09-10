@@ -25,9 +25,7 @@ public class SpellCastContext {
     public SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig;
 
     private void calcSpellData() {
-
-        this.calcData = CalculatedSpellData.create(caster, spell);
-
+        this.calcData = CalculatedSpellData.create(caster, spell, spellConfig);
     }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {
@@ -43,6 +41,7 @@ public class SpellCastContext {
         this.data = Load.Unit(caster);
 
         SpellStatsCalcEffect effect = new SpellStatsCalcEffect(caster, spell.GUID());
+        effect.Activate();
         this.spellConfig = effect.data;
 
         if (caster instanceof PlayerEntity) {
@@ -54,7 +53,8 @@ public class SpellCastContext {
         calcSpellData();
 
         if (spell != null) {
-            int castTicks = (int) this.calcData.spell.getConfig().cast_time_ticks;
+            int castTicks = (int) this.calcData.getSpell()
+                .getConfig().cast_time_ticks;
             this.isLastCastTick = castTicks == ticksInUse;
         }
 

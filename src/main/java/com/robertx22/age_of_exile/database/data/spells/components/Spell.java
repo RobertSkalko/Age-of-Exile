@@ -60,11 +60,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public final void onCastingTick(SpellCastContext ctx) {
 
-        int timesToCast = (int) ctx.calcData.spell.getConfig().times_to_cast;
+        int timesToCast = (int) ctx.calcData.getSpell()
+            .getConfig().times_to_cast;
 
         if (timesToCast > 1) {
 
-            int castTimeTicks = (int) ctx.calcData.spell.getConfig().cast_time_ticks;
+            int castTimeTicks = (int) ctx.calcData.getSpell()
+                .getConfig().cast_time_ticks;
 
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
@@ -97,12 +99,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         float multi = ctx.spellConfig.getMulti(SpellModEnum.COOLDOWN);
 
-        return (int) ((ctx.calcData.spell.config.cooldown_ticks * multi) / 20);
+        return (int) ((config.cooldown_ticks * multi) / 20);
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {
         float multi = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
-        return (ctx.calcData.spell.config.cast_time_ticks * multi) / 20;
+        return (config.cast_time_ticks * multi) / 20;
     }
 
     @Override
@@ -169,7 +171,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public final int getCalculatedManaCost(SpellCastContext ctx) {
         float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
         return (int) Mana.getInstance()
-            .scale(ctx.calcData.spell.getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
+            .scale(getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
     }
 
     public final List<Text> GetTooltipString(TooltipInfo info, CalculatedSpellData data) {
@@ -181,7 +183,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         TooltipUtils.addEmpty(list);
 
         if (Screen.hasShiftDown()) {
-            list.addAll(data.spell.attached
+            list.addAll(attached
                 .getTooltip());
         }
 

@@ -19,25 +19,22 @@ import java.util.List;
 
 public class CalculatedSpellData implements ITooltipList {
 
-    public Spell spell;
-
     public String spell_id = "";
 
     public int level = 1;
+
+    SpellStatsCalcEffect.CalculatedSpellConfiguration config;
 
     public CalculatedSpellData() {
 
     }
 
-    public static CalculatedSpellData create(LivingEntity caster, Spell spell) {
+    public static CalculatedSpellData create(LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig) {
         CalculatedSpellData data = new CalculatedSpellData();
         data.spell_id = spell.GUID();
-        data.spell = Spell.GSON.fromJson(spell.toJson(), Spell.class);
+        data.config = spellConfig;
         data.level = Load.Unit(caster)
             .getLevel();
-
-        new SpellStatsCalcEffect(caster, data).Activate();
-
         return data;
 
     }

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModStatData;
-import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 
@@ -43,8 +42,8 @@ public class SpellStatsCalcEffect extends EffectData {
             }
         }
 
-        public void add(SpellModEnum mod, StatData data) {
-            map.put(mod, map.get(mod) + data.getAverageValue());
+        public void add(SpellModEnum mod, float val) {
+            map.put(mod, map.get(mod) + val);
         }
 
         public void add(SpellModStatData data) {

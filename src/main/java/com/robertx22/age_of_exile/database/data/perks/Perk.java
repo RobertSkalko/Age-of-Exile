@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
@@ -98,7 +97,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         }
 
         public int getXOffset() {
-            return order + PerkButton.SPACING * (order - 1);
+            return order + 28 * (order - 1);
         }
 
     }

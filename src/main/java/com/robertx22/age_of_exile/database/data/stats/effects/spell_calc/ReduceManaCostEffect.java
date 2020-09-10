@@ -10,7 +10,8 @@ public class ReduceManaCostEffect extends BaseSpellCalcEffect {
 
     @Override
     public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-        effect.data.add(SpellModEnum.MANA_COST, data);
+        // minus cus reduced mana cost vs mana cost etc...
+        effect.data.add(SpellModEnum.MANA_COST, -data.getAverageValue());
         return effect;
     }
 

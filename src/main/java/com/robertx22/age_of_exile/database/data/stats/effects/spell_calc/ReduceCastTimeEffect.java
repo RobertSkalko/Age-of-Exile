@@ -10,7 +10,7 @@ public class ReduceCastTimeEffect extends BaseSpellCalcEffect {
 
     @Override
     public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-        effect.data.add(SpellModEnum.CAST_SPEED, data);
+        effect.data.add(SpellModEnum.CAST_SPEED, -data.getAverageValue());
         return effect;
     }
 

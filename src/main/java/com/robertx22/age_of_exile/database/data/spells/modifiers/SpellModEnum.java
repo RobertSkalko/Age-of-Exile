@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.util.Identifier;
 
 public enum SpellModEnum {
-    CAST_SPEED(Words.CastSpeed, "cast_speed", 10),
-    MANA_COST(Words.ManaCost, "mana_cost", 10),
-    COOLDOWN(Words.Cooldown, "cooldown", 10),
+    CAST_SPEED(Words.CastSpeed, "cast_speed", -10),
+    MANA_COST(Words.ManaCost, "mana_cost", -10),
+    COOLDOWN(Words.Cooldown, "cooldown", -10),
     DAMAGE(Words.Damage, "damage", 5),
     HEALING(Words.Healing, "healing", 5),
     PROJECTILE_SPEED(Words.ProjectileSpeed, "projectile_speed", 15);
