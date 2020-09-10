@@ -3,13 +3,16 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AttachedSpell {
 
@@ -28,14 +31,16 @@ public class AttachedSpell {
     public List<MutableText> getTooltipForEntity(TooltipInfo info, AttachedSpell spell, String en) {
         List<MutableText> list = new ArrayList<>();
 
-        for (Map.Entry<EntityActivation, List<ComponentPart>> entry : getDataForEntity(en)
+        for (Map.Entry<EntityActivation, List<ComponentPart>> entry : spell.getDataForEntity(en)
             .entrySet()) {
+
             for (ComponentPart part : entry.getValue()) {
-                List<MutableText> tip = part.GetTooltipString(info, spell);
-                if (entry.getKey().word != null) {
-                    tip.forEach(t -> t.append(" ")
-                        .append(entry.getKey().word.locName()));
-                }
+
+                List<MutableText> tip = part.GetTooltipString(entry.getKey(), info, spell)
+                    .stream()
+                    .map(x -> new LiteralText(Formatting.RED + " * ").append(x))
+                    .collect(Collectors.toList());
+
                 list.addAll(tip);
             }
         }
@@ -46,7 +51,7 @@ public class AttachedSpell {
     public List<Text> getTooltip() {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<Text> list = new ArrayList<>();
-        on_cast.forEach(x -> list.addAll(x.GetTooltipString(info, this)));
+        on_cast.forEach(x -> list.addAll(x.GetTooltipString(EntityActivation.ON_CAST, info, this)));
         return list;
     }
 

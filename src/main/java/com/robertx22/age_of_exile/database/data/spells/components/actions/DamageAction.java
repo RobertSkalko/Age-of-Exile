@@ -28,9 +28,12 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
         MutableText text = new LiteralText("");
 
         ValueCalculationData calc = data.get(VALUE_CALCULATION);
+        Elements ele = data.getElement();
 
         text.append("Deals ")
             .append(calc.getShortTooltip(info.unitdata))
+            .append(" ")
+            .append(ele.dmgName)
             .append(" Damage");
 
         return text;

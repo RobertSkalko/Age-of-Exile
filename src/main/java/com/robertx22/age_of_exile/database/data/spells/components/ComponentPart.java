@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
@@ -133,7 +134,7 @@ public class ComponentPart {
         return this;
     }
 
-    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell) {
+    public List<MutableText> GetTooltipString(EntityActivation activation, TooltipInfo info, AttachedSpell spell) {
         List<MutableText> list = new ArrayList<>();
 
         MutableText text = new LiteralText("");
@@ -165,6 +166,12 @@ public class ComponentPart {
         }
 
  */
+        Words word = activation.word;
+
+        if (false && word != null) {
+            list.forEach(t -> t.append(" ")
+                .append(word.locName()));
+        }
 
         boolean hasAction = false;
 
