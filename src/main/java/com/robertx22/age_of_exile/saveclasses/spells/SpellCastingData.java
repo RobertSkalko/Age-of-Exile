@@ -89,13 +89,9 @@ public class SpellCastingData {
 
                 SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
 
-                if (!player.world.isClient) {
-                    if (spell != null && spells != null && SlashRegistry.Spells()
-                        .isRegistered(spell)) {
-
-                        spell.onCastingTick(ctx);
-
-                    }
+                if (spell != null && spells != null && SlashRegistry.Spells()
+                    .isRegistered(spell)) {
+                    spell.onCastingTick(ctx);
                 }
 
                 tryCast(player, spells, ctx);
