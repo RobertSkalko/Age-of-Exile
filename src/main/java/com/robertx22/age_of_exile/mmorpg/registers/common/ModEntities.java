@@ -1,20 +1,10 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
-import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ArrowStormEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.cloud.BlizzardEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.cloud.ThunderstormEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.cloud.VolcanoEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleArrowEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleProjectileEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleTridentEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.StationaryFallingBlockEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.proj.*;
-import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.FireballEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.FrostballEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.single_target_bolt.PoisonBallEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.trident.SpearOfJudgementEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.bosses.GolemBossEntity;
 import com.robertx22.age_of_exile.mobs.chickens.FireChicken;
@@ -34,7 +24,6 @@ import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -78,25 +67,6 @@ public class ModEntities {
     public EntityType<StationaryFallingBlockEntity> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "spell_block_entity", false);
     public EntityType<SimpleTridentEntity> SIMPLE_TRIDENT = projectile(SimpleTridentEntity::new, "spell_trident", false);
 
-    public EntityType<ThunderstormEntity> THUNDERSTORM = projectile(ThunderstormEntity::new, "thunderstorm");
-    public EntityType<TridentEntity> THUNDER_SPEAR = projectile(ThunderspearEntity::new, "thunder_spear", false);
-    public EntityType<SpearOfJudgementEntity> HOLY_SPEAR = projectile(SpearOfJudgementEntity::new, "holy_spear", false);
-    public EntityType<LightningTotemEntity> LIGHTNING_TOTEM = projectile(LightningTotemEntity::new, "lightning_totem");
-
-    public EntityType<FireballEntity> FIREBOLT = projectile(FireballEntity::new, "fireball");
-    public EntityType<FireBombEntity> FIRE_BOMB = projectile(FireBombEntity::new, "fire_bomb");
-    public EntityType<ThrowFlameEntity> THROW_FLAMES = projectile(ThrowFlameEntity::new, "seeker_flame");
-    public EntityType<VolcanoEntity> VOLCANO = projectile(VolcanoEntity::new, "volcano");
-    public EntityType<PoisonBallEntity> POISON_BALL = projectile(PoisonBallEntity::new, "poison_ball");
-
-    public EntityType<FrostballEntity> FROSTBOLT = projectile(FrostballEntity::new, "frostball");
-    public EntityType<WhirlpoolEntity> WHIRPOOL = projectile(WhirlpoolEntity::new, "whirlpool");
-    public EntityType<BlizzardEntity> BLIZZARD = projectile(BlizzardEntity::new, "blizzard");
-    public EntityType<TidalWaveEntity> TIDAL_WAVE = projectile(TidalWaveEntity::new, "tidal_wave");
-
-    public EntityType<RangerArrowEntity> RANGER_ARROW = projectile(RangerArrowEntity::new, "ranger_arrow");
-    public EntityType<ArrowStormEntity> ARROW_STORM = projectile(ArrowStormEntity::new, "arrow_storm");
-
     public EntityType<ArcaneSlime> ARCANE_SLIME = mob(ArcaneSlime::new, "arcane_slime", new EntityDimensions(2.04F, 2.04F, false));
     public EntityType<FireSlime> FIRE_SLIME = mob(FireSlime::new, "fire_slime", new EntityDimensions(2.04F, 2.04F, false));
     public EntityType<WaterSlime> WATER_SLIME = mob(WaterSlime::new, "water_slime", new EntityDimensions(2.04F, 2.04F, false));
@@ -132,8 +102,6 @@ public class ModEntities {
     public EntityType<NatureSkeleton> NATURE_SKELETON = mob(NatureSkeleton::new, "nature_skeleton", skeleDim);
 
     public EntityType<GolemBossEntity> GOLEM_BOSS = mob(GolemBossEntity::new, "boss_golem", new EntityDimensions(1.4F, 2.7F, true));
-
-    public EntityType<SeedEntity> SEED = projectile(SeedEntity::new, "seed_entity");
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id) {

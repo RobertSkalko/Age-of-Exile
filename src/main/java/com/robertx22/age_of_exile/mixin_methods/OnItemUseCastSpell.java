@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.CastSpellPacket;
@@ -22,11 +22,11 @@ public class OnItemUseCastSpell {
 
             if (Gear.has(stack)) {
 
-                BaseSpell spell = Load.spells(user)
+                Spell spell = Load.spells(user)
                     .getCurrentRightClickSpell();
-                if (spell != null && spell.getSpell() != null) {
-                    if (spell
-                        .getImmutableConfigs().castingWeapon.predicate.predicate.test(user)) {
+                if (spell != null && !spell.GUID()
+                    .isEmpty()) {
+                    if (spell.getConfig().castingWeapon.predicate.predicate.test(user)) {
 
                         if (stack.getUseAction() == UseAction.NONE) {
                             Packets.sendToServer(new CastSpellPacket(user));

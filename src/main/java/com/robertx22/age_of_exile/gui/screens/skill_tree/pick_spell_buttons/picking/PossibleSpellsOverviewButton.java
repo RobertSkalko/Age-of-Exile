@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IRemoveOnClickedOutside;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
@@ -26,13 +26,13 @@ public class PossibleSpellsOverviewButton extends TexturedButtonWidget implement
 
         screen.removePerkButtons();
 
-        List<BaseSpell> spells = Load.spells(screen.mc.player)
+        List<Spell> spells = Load.spells(screen.mc.player)
             .getLearnedSpells(screen.mc.player);
 
         int placeX = 0;
         int placeY = 0;
 
-        for (BaseSpell spell : spells) {
+        for (Spell spell : spells) {
 
             int xp = x + 3 + placeX * 19;
             int yp = y + 3 * placeY * 19;

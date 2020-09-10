@@ -12,8 +12,5 @@ public class RenderLayersRegister {
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_REPAIR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.SOCKET_STATION, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.MAGMA_FLOWER, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.THORN_BUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.HOLY_FLOWER, RenderLayer.getCutout());
     }
 }

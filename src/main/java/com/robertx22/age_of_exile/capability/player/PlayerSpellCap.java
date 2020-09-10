@@ -1,7 +1,8 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -18,18 +19,24 @@ public class PlayerSpellCap {
 
     public abstract static class ISpellsCap implements ICommonPlayerCap {
 
-        public abstract BaseSpell getCurrentRightClickSpell();
+        public abstract Spell getCurrentRightClickSpell();
 
-        public abstract BaseSpell getSpellByNumber(int key);
+        public abstract Spell getSpellByNumber(int key);
 
         public abstract SpellCastingData getCastingData();
 
-        public abstract List<BaseSpell> getLearnedSpells(LivingEntity en);
+        public abstract List<Spell> getLearnedSpells(LivingEntity en);
+
+        public abstract void setCurrentSpellData(CalculatedSpellData data);
+
+        public abstract CalculatedSpellData getCurrentSpellData();
 
     }
 
     public static class DefaultImpl extends ISpellsCap {
         SpellCastingData spellCastingData = new SpellCastingData();
+
+        CalculatedSpellData currentSpellData;
 
         @Override
         public CompoundTag toTag(CompoundTag nbt) {
@@ -64,12 +71,12 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public BaseSpell getCurrentRightClickSpell() {
+        public Spell getCurrentRightClickSpell() {
             return this.spellCastingData.getSelectedSpell();
         }
 
         @Override
-        public BaseSpell getSpellByNumber(int key) {
+        public Spell getSpellByNumber(int key) {
             return this.spellCastingData.getSpellByNumber(key);
         }
 
@@ -79,7 +86,7 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public List<BaseSpell> getLearnedSpells(LivingEntity en) {
+        public List<Spell> getLearnedSpells(LivingEntity en) {
             return Load.perks(en)
                 .getAllAllocatedPerks()
                 .stream()
@@ -88,6 +95,16 @@ public class PlayerSpellCap {
                     .isEmpty())
                 .map(p -> p.getSpell())
                 .collect(Collectors.toList());
+        }
+
+        @Override
+        public void setCurrentSpellData(CalculatedSpellData data) {
+            this.currentSpellData = data;
+        }
+
+        @Override
+        public CalculatedSpellData getCurrentSpellData() {
+            return this.currentSpellData;
         }
 
     }

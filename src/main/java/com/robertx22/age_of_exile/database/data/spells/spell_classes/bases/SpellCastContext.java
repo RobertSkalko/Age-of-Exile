@@ -2,16 +2,11 @@ package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.IAbility;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-
-import java.util.HashMap;
 
 public class SpellCastContext {
 
@@ -19,42 +14,25 @@ public class SpellCastContext {
     public final EntityCap.UnitData data;
     public final PlayerSpellCap.ISpellsCap spellsCap;
     public final int ticksInUse;
-    public final BaseSpell spell;
+    public final Spell spell;
     public boolean isLastCastTick;
     public boolean castedThisTick = false;
     public CalculatedSpellData calcData;
 
-    public EntityCalcSpellConfigs configForSummonedEntities;
-
-    private HashMap<String, PreCalcSpellConfigs> cacheMap = new HashMap<>();
-
-    public PreCalcSpellConfigs getConfigFor(IAbility ability) {
-
-        if (!cacheMap.containsKey(ability.GUID())) {
-
-            PreCalcSpellConfigs pre = ability.getPreCalcConfig();
-
-            if (ability.getAbilityType() == IAbility.Type.SPELL) {
-                pre.modifyByUserStats(this);
-            }
-
-            cacheMap.put(ability.GUID(), pre);
-        }
-
-        return cacheMap.get(ability.GUID());
-    }
-
     private void calcSpellData() {
-        this.calcData = new CalculatedSpellData();
-        calcData.level = this.data.getLevel();
-        calcData.spell_id = spell.GUID();
+
+        this.calcData = this.spellsCap.getCurrentSpellData();
+
+        if (calcData == null) {
+            this.calcData = CalculatedSpellData.create(caster, spell);
+        }
     }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {
         this(caster, ticksInUse, spell.getSpell());
     }
 
-    public SpellCastContext(LivingEntity caster, int ticksInUse, BaseSpell spell) {
+    public SpellCastContext(LivingEntity caster, int ticksInUse, Spell spell) {
         this.caster = caster;
         this.ticksInUse = ticksInUse;
 
@@ -70,11 +48,8 @@ public class SpellCastContext {
 
         calcSpellData();
 
-        this.configForSummonedEntities = new EntityCalcSpellConfigs(this.calcData);
-
         if (spell != null) {
-            int castTicks = (int) getConfigFor(spell).get(SC.CAST_TIME_TICKS)
-                .get(calcData);
+            int castTicks = (int) this.calcData.spell.getConfig().cast_time_ticks;
             this.isLastCastTick = castTicks == ticksInUse;
         }
 

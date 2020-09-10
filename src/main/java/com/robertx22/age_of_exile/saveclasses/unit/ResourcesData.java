@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
@@ -20,7 +20,7 @@ public class ResourcesData {
 
     public static class Context {
 
-        public BaseSpell spell;
+        public Spell spell;
 
         public UnitData sourceData;
         public LivingEntity source;
@@ -34,7 +34,7 @@ public class ResourcesData {
 
         public boolean statsCalculated = false;
 
-        public Context(UnitData data, LivingEntity entity, Type type, float amount, Use use, BaseSpell spell) {
+        public Context(UnitData data, LivingEntity entity, Type type, float amount, Use use, Spell spell) {
             this.targetData = data;
             this.target = entity;
             this.sourceData = data;
@@ -57,7 +57,7 @@ public class ResourcesData {
             calculateStats();
         }
 
-        public Context(LivingEntity caster, LivingEntity target, Type type, float amount, Use use, BaseSpell spell) {
+        public Context(LivingEntity caster, LivingEntity target, Type type, float amount, Use use, Spell spell) {
             this.targetData = Load.Unit(target);
             this.target = target;
             this.sourceData = Load.Unit(caster);
@@ -71,7 +71,7 @@ public class ResourcesData {
         }
 
         public Context(LivingEntity caster, LivingEntity target, UnitData casterData, UnitData targetData, Type type,
-                       float amount, Use use, BaseSpell spell) {
+                       float amount, Use use, Spell spell) {
             this.targetData = targetData;
             this.target = target;
             this.sourceData = casterData;
@@ -79,6 +79,7 @@ public class ResourcesData {
             this.type = type;
             this.amount = amount;
             this.use = use;
+            this.spell = spell;
             calculateStats();
         }
 

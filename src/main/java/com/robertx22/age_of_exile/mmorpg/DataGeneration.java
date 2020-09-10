@@ -28,6 +28,7 @@ public class DataGeneration {
         manager.registerListener(new BaseGearTypeDatapackLoader());
         manager.registerListener(new TierDatapackLoader());
         manager.registerListener(new AffixDataPackLoader());
+        manager.registerListener(new SpellDatapackLoader());
         manager.registerListener(new GemDatapackLoader());
         manager.registerListener(new MobAffixDataPackLoader());
         manager.registerListener(new UniqueGearDatapackLoader());

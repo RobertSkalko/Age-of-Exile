@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -40,7 +40,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
-        BaseSpell spell = getSpell();
+        Spell spell = getSpell();
 
         try {
 
@@ -99,7 +99,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         return type;
     }
 
-    public BaseSpell getSpell() {
+    public Spell getSpell() {
         return SlashRegistry.Spells()
             .get(spell);
     }

@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.database.data.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 
 import java.util.Arrays;
 
 public class PerkBuilder {
 
-    public static Perk spell(BaseSpell spell) {
+    public static Perk spell(Spell spell) {
         Perk perk = new Perk();
 
         perk.spell = spell.GUID();
@@ -15,8 +15,6 @@ public class PerkBuilder {
         perk.identifier = spell.GUID();
         perk.icon = spell.getIconLoc()
             .toString();
-
-        spell.modifyPerkForSerialization(perk);
 
         perk.addToSerializables();
         return perk;

@@ -16,7 +16,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
@@ -24,7 +24,6 @@ import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
 import com.robertx22.age_of_exile.database.registrators.*;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyBaseGearType;
-import com.robertx22.age_of_exile.database.registry.empty_entries.EmptySpell;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
@@ -148,7 +147,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.GEAR_TYPE);
     }
 
-    public static SlashRegistryContainer<BaseSpell> Spells() {
+    public static SlashRegistryContainer<Spell> Spells() {
         return getRegistry(SlashRegistryType.SPELL);
     }
 
@@ -306,6 +305,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEM, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNE, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNEWORD, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, Spell.SERIALIZER).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PERK, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_SCHOOL, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
@@ -322,7 +322,6 @@ public class SlashRegistry {
 
         // data pack ones
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.STAT, EmptyStat.getInstance()));
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EFFECT, null));
     }

@@ -1,49 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
-import com.robertx22.age_of_exile.database.base.Rarities;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spells.components.DatapackSpells;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.IAbility;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.age_of_exile.uncommon.wrappers.SText;
-import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
-import com.robertx22.library_of_exile.main.Packets;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbility {
-
-    public List<EffectChance> onDamageEffects = new ArrayList<>();
-
+public abstract class ToDeleteSpell {
+/*
     private final ImmutableSpellConfigs immutableConfigs;
 
     public BaseSpell(ImmutableSpellConfigs immutable) {
@@ -313,5 +271,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, IAbil
         return list;
 
     }
+    */
 
 }

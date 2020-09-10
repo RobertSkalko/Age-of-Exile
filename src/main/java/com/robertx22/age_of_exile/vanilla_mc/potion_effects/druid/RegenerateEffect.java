@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.nature.NatureBalmSpell;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ParticleUtils;
@@ -33,7 +32,7 @@ public class RegenerateEffect extends BasePotionEffect {
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
                     ctx.entityData, ResourcesData.Type.HEALTH, num,
                     ResourcesData.Use.RESTORE,
-                    NatureBalmSpell.getInstance()
+                    null
                 );
 
                 ctx.entityData.modifyResource(hp);

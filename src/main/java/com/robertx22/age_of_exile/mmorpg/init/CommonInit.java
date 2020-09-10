@@ -32,6 +32,7 @@ public class CommonInit implements ModInitializer {
         MapField.init();
         EffectCondition.init();
 
+        PotionRegister.register();
         ModRegistry.init();
         MobAttributes.register();
 
@@ -47,8 +48,6 @@ public class CommonInit implements ModInitializer {
         UniqueGearItemRegister.registerAll();
 
         CommonEvents.register();
-
-        PotionRegister.register();
 
         //this was in common
         C2SPacketRegister.register();

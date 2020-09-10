@@ -1,8 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.database.data.spells.blocks.holy_flower.HolyFlowerTileEntity;
-import com.robertx22.age_of_exile.database.data.spells.blocks.magma_flower.MagmaFlowerTileEntity;
-import com.robertx22.age_of_exile.database.data.spells.blocks.thorn_bush.ThornBushTileEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.TileGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.TileGearRepair;
@@ -21,9 +18,6 @@ public class ModBlockEntities {
     public BlockEntityType<SocketStationBlockEntity> SOCKET_STATION = of(ModRegistry.BLOCKS.SOCKET_STATION, SocketStationBlockEntity::new);
     public BlockEntityType<TileGearRepair> GEAR_REPAIR = of(ModRegistry.BLOCKS.GEAR_REPAIR, TileGearRepair::new);
     public BlockEntityType<TileGearSalvage> GEAR_SALVAGE = of(ModRegistry.BLOCKS.GEAR_SALVAGE, TileGearSalvage::new);
-    public BlockEntityType<MagmaFlowerTileEntity> MAGMA_FLOWER = of(ModRegistry.BLOCKS.MAGMA_FLOWER, MagmaFlowerTileEntity::new);
-    public BlockEntityType<HolyFlowerTileEntity> HOLY_FLOWER = of(ModRegistry.BLOCKS.HOLY_FLOWER, HolyFlowerTileEntity::new);
-    public BlockEntityType<ThornBushTileEntity> THORN_BUSH = of(ModRegistry.BLOCKS.THORN_BUSH, ThornBushTileEntity::new);
 
     private <T extends BlockEntity> BlockEntityType<T> of(Block block, Supplier<T> en) {
         BlockEntityType<T> type = BlockEntityType.Builder.create(en, block)

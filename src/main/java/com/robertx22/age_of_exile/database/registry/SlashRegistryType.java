@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registrators.MobAffixes;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
@@ -76,7 +77,12 @@ public enum SlashRegistryType {
             return SerializableBaseGearType.EMPTY;
         }
     },
-    SPELL("spell"),
+    SPELL("spell") {
+        @Override
+        public ISerializable getSerializer() {
+            return Spell.SERIALIZER;
+        }
+    },
     AFFIX("affix") {
         @Override
         public ISerializable getSerializer() {

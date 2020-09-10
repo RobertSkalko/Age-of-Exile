@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entitie
 
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
@@ -38,7 +37,7 @@ public class EntitySavedSpellData {
         return data;
     }
 
-    public BaseSpell getSpell() {
+    public Spell getSpell() {
         return SlashRegistry.Spells()
             .get(spell_id);
     }

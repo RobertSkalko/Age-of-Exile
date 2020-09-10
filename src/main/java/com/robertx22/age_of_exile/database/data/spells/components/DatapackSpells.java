@@ -148,14 +148,14 @@ public class DatapackSpells {
         .onCast(Builder.healCaster(ValueCalculationData.base(10)))
         .build();
 
-    public static Spell HEALING_AURA = Spell.Builder.of("healing_aura", SpellConfiguration.Builder.instant(20, 160 * 20))
+    public static Spell HEALING_AURA = Spell.Builder.of("healing_aura", SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3))
         .onCast(Builder.playSound(SoundEvents.ITEM_HOE_TILL, 1D, 1D))
         .onCast(Builder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
         .onCast(Builder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
         .onCast(Builder.healInAoe(ValueCalculationData.base(2), 2D))
         .build();
 
-    public static Spell BLAZING_INFERNO = Spell.Builder.of("blazing_inferno", SpellConfiguration.Builder.instant(20, 160 * 20))
+    public static Spell BLAZING_INFERNO = Spell.Builder.of("blazing_inferno", SpellConfiguration.Builder.multiCast(20, 20 * 30, 60, 3))
         .onCast(Builder.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
         .onCast(Builder.groundEdgeParticles(ParticleTypes.FLAME, 100D, 2.8D, 0.2D))
         .onCast(Builder.groundEdgeParticles(ParticleTypes.FLAME, 50D, 2D, 0.2D))
@@ -173,7 +173,7 @@ public class DatapackSpells {
         .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Thunder, 2D))
         .build();
 
-    public static Spell ARROW_BARRAGE = Spell.Builder.of("arrow_barrage", SINGLE_TARGET_PROJ_CONFIG)
+    public static Spell ARROW_BARRAGE = Spell.Builder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(35, 20 * 200, 60, 6))
         .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))
         .onHit(Builder.damage(ValueCalculationData.base(4), Elements.Physical))
@@ -215,7 +215,7 @@ public class DatapackSpells {
         .onHit(Builder.playSound(SoundEvents.ITEM_TRIDENT_HIT, 1D, 1D))
         .build();
 
-    public static Spell SPEAR_OF_JUDGEMENT = Spell.Builder.of("spear_of_judgement", HIGH_AOE_LONG_CD)
+    public static Spell SPEAR_OF_JUDGEMENT = Spell.Builder.of("spear_of_judgement", SpellConfiguration.Builder.nonInstant(15, 20 * 45, 40))
         .onCast(Builder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createTrident(1D, 1.25D, 80D)))
         .onHit(Builder.damage(ValueCalculationData.base(6), Elements.Thunder))
@@ -224,7 +224,7 @@ public class DatapackSpells {
         .onTick(Builder.particleOnTick(1D, ParticleTypes.CLOUD, 15D, 0.015D))
         .build();
 
-    public static Spell THUNDER_DASH = Spell.Builder.of("thunder_dash", SINGLE_TARGET_PROJ_CONFIG)
+    public static Spell THUNDER_DASH = Spell.Builder.of("thunder_dash", SpellConfiguration.Builder.instant(15, 20 * 30))
         .onCast(Builder.playSound(ModRegistry.SOUNDS.DASH, 1D, 1D))
         .onCast(Builder.pushCaster(DashUtils.Way.FORWARDS, DashUtils.Strength.LARGE_DISTANCE))
         .onCast(Builder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
@@ -248,7 +248,7 @@ public class DatapackSpells {
         .onCast(Builder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
         .build();
 
-    public static Spell PURIFYING_FIRES = Spell.Builder.of("purifying_fires", DIVINE_BUFF_CONFIG)
+    public static Spell PURIFYING_FIRES = Spell.Builder.of("purifying_fires", SpellConfiguration.Builder.instant(7, 20))
         .onCast(Builder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
         .onCast(Builder.swordSweepParticles())
         .onCast(Builder.damageInFront(ValueCalculationData.scaleWithAttack(1F, 3), Elements.Fire, 2D, 3D)
@@ -260,7 +260,7 @@ public class DatapackSpells {
         .onCast(Builder.addExileEffectToEnemiesInFront(PetrifyEffect.INSTANCE, 15D, 3D))
         .build();
 
-    public static Spell FIRE_BOMBS = Spell.Builder.of("fire_bombs", MULTI_TARGET_PROJ_CONFIG)
+    public static Spell FIRE_BOMBS = Spell.Builder.of("fire_bombs", SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3))
         .onCast(Builder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COAL, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
         .onTick(Builder.particleOnTick(1D, ParticleTypes.SMOKE, 45D, 1D))
@@ -297,4 +297,8 @@ public class DatapackSpells {
         .onTick(Builder.tickGroundParticle(1D, ParticleTypes.FALLING_LAVA, 10D, 3.5D, 0.5D))
         .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Fire, 3.5D))
         .build();
+
+    public static void init() {
+
+    }
 }

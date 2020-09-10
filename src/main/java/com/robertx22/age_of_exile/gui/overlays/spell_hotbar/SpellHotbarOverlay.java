@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.overlays.spell_hotbar;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
 import com.robertx22.age_of_exile.mixin_methods.OnKeyMethod;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -86,7 +86,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             .bindTexture(SPELL_READY_TEX);
         this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
 
-        BaseSpell spell = Load.spells(this.mc.player)
+        Spell spell = Load.spells(this.mc.player)
             .getCurrentRightClickSpell();
 
         if (spell != null) {
@@ -118,7 +118,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         y += 3;
 
         for (int i = 0; i < 9; i++) {
-            BaseSpell spell = data.getSpellByNumber(i);
+            Spell spell = data.getSpellByNumber(i);
 
             boolean selected = i == SpellCastingData.selectedSpell;
 

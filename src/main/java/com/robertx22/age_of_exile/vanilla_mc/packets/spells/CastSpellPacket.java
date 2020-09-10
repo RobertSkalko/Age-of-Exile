@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -17,7 +17,7 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
     public String spellid = "";
 
     public CastSpellPacket(PlayerEntity player) {
-        BaseSpell cspell = Load.spells(player)
+        Spell cspell = Load.spells(player)
             .getCurrentRightClickSpell();
         if (cspell != null) {
             this.spellid = cspell.GUID();
@@ -57,7 +57,7 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
             return;
         }
 
-        BaseSpell spell = SlashRegistry.Spells()
+        Spell spell = SlashRegistry.Spells()
             .get(this.spellid);
 
         if (spell != null) {

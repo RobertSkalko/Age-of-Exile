@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.age_of_exile.database.data.spells.entities.bases.IMyRenderAsItem;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -56,9 +55,9 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     private int ticksInGround = 0;
     private int deathTime = 80;
 
-    private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
-    private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.STRING);
-    private static final TrackedData<Boolean> EXPIRE_ON_HIT = DataTracker.registerData(EntityBaseProjectile.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
+    private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.STRING);
+    private static final TrackedData<Boolean> EXPIRE_ON_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public Entity ignoreEntity;
 

@@ -1,9 +1,8 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -49,11 +48,11 @@ public class SpellCastingData {
         try {
             SpellCastContext ctx = new SpellCastContext(player, 0, getSpellBeingCast());
 
-            BaseSpell spell = getSpellBeingCast();
-            if (spell != null && spell.goesOnCooldownIfCastCanceled()) {
+            Spell spell = getSpellBeingCast();
+            if (spell != null) {
                 SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-                int cd = spell.getCooldownInTicks(ctx);
+                int cd = ctx.spell.getConfig().cooldown_ticks;
                 data.setCooldown(cd);
             }
 
@@ -71,7 +70,7 @@ public class SpellCastingData {
         bar.clear();
     }
 
-    public BaseSpell getSelectedSpell() {
+    public Spell getSelectedSpell() {
         return getSpellByNumber(selectedSpell);
     }
 
@@ -85,7 +84,7 @@ public class SpellCastingData {
         try {
 
             if (spellBeingCast != null && spellBeingCast.length() > 0) {
-                BaseSpell spell = SlashRegistry.Spells()
+                Spell spell = SlashRegistry.Spells()
                     .get(spellBeingCast);
 
                 SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
@@ -129,12 +128,12 @@ public class SpellCastingData {
 
     }
 
-    public void setToCast(BaseSpell spell, PlayerEntity player) {
+    public void setToCast(Spell spell, PlayerEntity player) {
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         this.spellBeingCast = spell.GUID();
-        this.castingTicksLeft = spell.useTimeTicks(ctx);
-        this.lastSpellCastTimeInTicks = spell.useTimeTicks(ctx);
+        this.castingTicksLeft = ctx.spell.getConfig().cast_time_ticks;
+        this.lastSpellCastTimeInTicks = ctx.spell.getConfig().cast_time_ticks;
         this.castingTicksDone = 0;
     }
 
@@ -142,12 +141,10 @@ public class SpellCastingData {
 
         if (!spellBeingCast.isEmpty()) {
             if (castingTicksLeft <= 0) {
-                BaseSpell spell = SlashRegistry.Spells()
+                Spell spell = SlashRegistry.Spells()
                     .get(spellBeingCast);
 
-                int timesToCast = (int) ctx.getConfigFor(spell)
-                    .get(SC.TIMES_TO_CAST)
-                    .get(ctx.calcData);
+                int timesToCast = ctx.spell.getConfig().times_to_cast;
 
                 if (timesToCast == 1) {
                     spell.cast(ctx);
@@ -158,7 +155,7 @@ public class SpellCastingData {
                         player.sendToolBreakStatus(player.getActiveHand());
                     });
 
-                onSpellCast(spell, player, spells);
+                onSpellCast(ctx);
 
                 spellBeingCast = "";
 
@@ -167,12 +164,12 @@ public class SpellCastingData {
 
     }
 
-    public BaseSpell getSpellBeingCast() {
+    public Spell getSpellBeingCast() {
         return SlashRegistry.Spells()
             .get(spellBeingCast);
     }
 
-    public boolean canCast(BaseSpell spell, PlayerEntity player) {
+    public boolean canCast(Spell spell, PlayerEntity player) {
 
         if (isCasting()) {
             return false;
@@ -194,21 +191,16 @@ public class SpellCastingData {
 
     }
 
-    private void onSpellCast(BaseSpell spell, PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
-        SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
+    private void onSpellCast(SpellCastContext ctx) {
+        SpellData data = spellDatas.getOrDefault(ctx.spell.GUID(), new SpellData());
 
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+        int cd = ctx.spell.getConfig().cooldown_ticks;
+        data.setCooldown(cd);
 
-        if (spell.shouldActivateCooldown(player, spells)) {
-            int cd = spell.getCooldownInTicks(ctx);
-            data.setCooldown(cd);
-        }
-
-        spellDatas.put(spell.GUID(), data);
-
+        spellDatas.put(ctx.spell.GUID(), data);
     }
 
-    public SpellData getDataBySpell(BaseSpell spell) {
+    public SpellData getDataBySpell(Spell spell) {
 
         String id = spell.GUID();
 
@@ -220,7 +212,7 @@ public class SpellCastingData {
 
     }
 
-    public BaseSpell getSpellByNumber(int key) {
+    public Spell getSpellByNumber(int key) {
 
         String id = "";
         try {

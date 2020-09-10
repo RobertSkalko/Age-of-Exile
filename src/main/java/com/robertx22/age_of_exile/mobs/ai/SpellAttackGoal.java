@@ -1,8 +1,7 @@
 package com.robertx22.age_of_exile.mobs.ai;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.SC;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
@@ -11,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.EnumSet;
@@ -30,28 +28,23 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
     int castingTicks = 0;
 
     int castTicksNeeded;
-    CalculatedSpellData skillgem;
+    CalculatedSpellData data;
 
-    public SpellAttackGoal(BaseSpell spell, T actor, double speed, int attackInterval, float range) {
+    public SpellAttackGoal(Spell spell, T actor, double speed, int attackInterval, float range) {
         this.actor = actor;
         this.speed = speed;
         this.attackInterval = attackInterval;
         this.squaredRange = range * range;
         this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 
-        int spelllvl = MathHelper.clamp(Load.Unit(actor)
-            .getLevel() / 2, 1, Integer.MAX_VALUE);
-        // smaller lvl spells cus spells hit like a truck because of mana cost
-        skillgem = new CalculatedSpellData();
-        skillgem.level = Load.Unit(actor)
+        data = new CalculatedSpellData();
+        data.level = Load.Unit(actor)
             .getLevel();
-        skillgem.spell_id = spell
+        data.spell_id = spell
             .GUID();
 
-        this.castTicksNeeded = (int) skillgem.getSpell()
-            .getPreCalcConfig()
-            .get(SC.CAST_TIME_TICKS)
-            .get(skillgem);
+        this.castTicksNeeded = (int) data.getSpell()
+            .getConfig().cast_time_ticks;
 
     }
 
@@ -149,8 +142,8 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
 
     private void castInstantSpell() {
         if (cooldown < 1) {
-            this.skillgem.getSpell()
-                .cast(new SpellCastContext(actor, 0, skillgem.getSpell()));
+            this.data.getSpell()
+                .cast(new SpellCastContext(actor, 0, data.getSpell()));
             this.cooldown = this.attackInterval;
         } else {
             cooldown--;
@@ -175,8 +168,8 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
             return;
         }
 
-        this.skillgem.getSpell()
-            .onCastingTick(new SpellCastContext(actor, castingTicks++, skillgem.getSpell()));
+        this.data.getSpell()
+            .onCastingTick(new SpellCastContext(actor, castingTicks++, data.getSpell()));
 
         if (castingTicks > castTicksNeeded) {
             castingTicks = 0;

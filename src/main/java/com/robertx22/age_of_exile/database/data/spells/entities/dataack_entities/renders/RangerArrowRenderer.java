@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spells.entities.special;
+package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.renders;
 
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.ProjectileEntityRenderer;

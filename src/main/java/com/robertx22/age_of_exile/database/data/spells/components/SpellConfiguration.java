@@ -1,9 +1,12 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+
 public class SpellConfiguration {
 
+    public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public int mana_cost;
-    public int times_casted = 1;
+    public int times_to_cast = 1;
     public int cast_time_ticks;
     public int cooldown_ticks;
 
@@ -27,7 +30,7 @@ public class SpellConfiguration {
 
         public static SpellConfiguration multiCast(int mana, int cd, int casttime, int times) {
             SpellConfiguration c = new SpellConfiguration();
-            c.times_casted = times;
+            c.times_to_cast = times;
             c.cast_time_ticks = casttime;
             c.mana_cost = mana;
             c.cooldown_ticks = cd;

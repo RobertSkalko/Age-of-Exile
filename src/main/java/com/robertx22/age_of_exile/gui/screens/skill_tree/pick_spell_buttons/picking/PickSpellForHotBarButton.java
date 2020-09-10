@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IRemoveOnClickedOutside;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
@@ -20,9 +20,9 @@ public class PickSpellForHotBarButton extends TexturedButtonWidget implements IM
     public static int XSIZE = 16;
     public static int YSIZE = 16;
     SkillTreeScreen screen;
-    BaseSpell spell;
+    Spell spell;
 
-    public PickSpellForHotBarButton(SkillTreeScreen screen, int hotbarPosition, BaseSpell spell, int x, int y) {
+    public PickSpellForHotBarButton(SkillTreeScreen screen, int hotbarPosition, Spell spell, int x, int y) {
         super(x, y, XSIZE, YSIZE, 0, 0, 1, ID, (action) -> {
             Packets.sendToServer(new HotbarSetupPacket(spell, hotbarPosition));
             screen.removeRemovableButtons();

@@ -1,8 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.empty_entries.EmptySpell;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking.PossibleSpellsOverviewButton;
@@ -44,7 +43,7 @@ public class SpellHotbarButton extends TexturedButtonWidget implements IMarkOnTo
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        BaseSpell spell = Load.spells(screen.mc.player)
+        Spell spell = Load.spells(screen.mc.player)
             .getSpellByNumber(hotbar);
 
         if (spell != null && !spell.GUID()
@@ -58,7 +57,7 @@ public class SpellHotbarButton extends TexturedButtonWidget implements IMarkOnTo
 
     @Override
     public void renderToolTip(MatrixStack matrices, int mouseX, int mouseY) {
-        BaseSpell spell = Load.spells(screen.mc.player)
+        Spell spell = Load.spells(screen.mc.player)
             .getSpellByNumber(hotbar);
 
         if (spell != null && !spell.GUID()
@@ -89,7 +88,7 @@ public class SpellHotbarButton extends TexturedButtonWidget implements IMarkOnTo
                     this.onClick(mouseX, mouseY);
                 }
                 if (button == 1) {
-                    Packets.sendToServer(new HotbarSetupPacket(new EmptySpell(), hotbar));
+                    Packets.sendToServer(new HotbarSetupPacket(Spell.SERIALIZER, hotbar));
                 }
 
                 return true;

@@ -1,14 +1,9 @@
 package com.robertx22.age_of_exile.database.data.spells;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
-import com.robertx22.age_of_exile.database.data.spells.entities.bases.ISpellEntity;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.IDatapackSpellEntity;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.EntitySpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
@@ -72,54 +67,13 @@ public class SpellUtils {
         se.init(caster, data, holder);
     }
 
-    public static <T extends Entity> T getSpellEntity(EntityCalcSpellConfigs config, T spellEntity,
-
-                                                      CalculatedSpellData skillgem,
-
-                                                      LivingEntity caster
-
-    ) {
-
-        ISpellEntity se = (ISpellEntity) spellEntity;
-
-        EntitySpellData syncData = new EntitySpellData(skillgem, caster, config);
-
-        se.setSpellData(syncData);
-
-        se.initSpellEntity();
-
-        return spellEntity;
-
-    }
-
-    public static void heal(BaseSpell spell, LivingEntity en, float amount) {
+    public static void heal(Spell spell, LivingEntity en, float amount) {
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(Load.Unit(en), en, ResourcesData.Type.HEALTH,
                 amount, ResourcesData.Use.RESTORE,
                 spell
             ));
         heal.Activate();
-    }
-
-    public static void healCaster(SpellCastContext ctx) {
-        SpellHealEffect heal = new SpellHealEffect(
-            new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
-                ctx.getConfigFor(ctx.spell)
-                    .getCalc(ctx.calcData)
-                    .getCalculatedValue(ctx.data, ctx.calcData), ResourcesData.Use.RESTORE,
-                ctx.spell
-            ));
-        heal.Activate();
-    }
-
-    public static void healCasterMagicShield(SpellCastContext ctx) {
-        ctx.data
-            .modifyResource(new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.MAGIC_SHIELD,
-                ctx.getConfigFor(ctx.spell)
-                    .getCalc(ctx.calcData)
-                    .getCalculatedValue(ctx.data, ctx.calcData), ResourcesData.Use.RESTORE,
-                ctx.spell
-            ));
     }
 
 }

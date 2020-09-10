@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mobs.mages;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mobs.ai.SpellAttackGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public abstract class BaseMage extends SkeletonEntity {
 
-    public abstract BaseSpell getSpell();
+    public abstract Spell getSpell();
 
     public BaseMage(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
@@ -26,14 +26,6 @@ public abstract class BaseMage extends SkeletonEntity {
         initMyMobGoals();
 
     }
-
-    /*
-    @Override
-    public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
-        return true;
-    }
-
-     */
 
     public void initMyMobGoals() {
         goalSelector.add(2, new SpellAttackGoal(getSpell(), this, 1, 40, 15));

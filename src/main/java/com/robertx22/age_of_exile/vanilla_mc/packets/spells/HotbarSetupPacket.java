@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -25,7 +25,7 @@ public class HotbarSetupPacket extends MyPacket<HotbarSetupPacket> {
 
     }
 
-    public HotbarSetupPacket(BaseSpell spell, int num) {
+    public HotbarSetupPacket(Spell spell, int num) {
         this.number = num;
         this.spell = spell.GUID();
     }
