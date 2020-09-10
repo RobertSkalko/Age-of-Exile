@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -22,6 +23,23 @@ public class AttachedSpell {
 
     public HashMap<EntityActivation, List<ComponentPart>> getDataForEntity(String en) {
         return entity_components.get(en);
+    }
+
+    public List<MutableText> getTooltipForEntity(TooltipInfo info, AttachedSpell spell, String en) {
+        List<MutableText> list = new ArrayList<>();
+
+        for (Map.Entry<EntityActivation, List<ComponentPart>> entry : getDataForEntity(en)
+            .entrySet()) {
+            for (ComponentPart part : entry.getValue()) {
+                List<MutableText> tip = part.GetTooltipString(info, spell);
+                if (entry.getKey().word != null) {
+                    tip.forEach(t -> t.append(entry.getKey().word.locName()));
+                }
+                list.addAll(tip);
+            }
+        }
+
+        return list;
     }
 
     public List<Text> getTooltip() {

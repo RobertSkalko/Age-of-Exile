@@ -1,6 +1,9 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
-import com.robertx22.age_of_exile.database.data.spells.components.*;
+import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.ProjectileCastHelper;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -12,7 +15,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 
@@ -25,20 +28,22 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
     }
 
     @Override
-    public List<Text> getLines(AttachedSpell spell, MapHolder holder) {
+    public List<MutableText> getLines(AttachedSpell spell, MapHolder data) {
 
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
-        List<Text> list = new ArrayList<>();
-        list.add(new LiteralText("Summons Projectile"));
+        List<MutableText> list = new ArrayList<>();
 
-        spell.getDataForEntity(holder.get(MapField.ENTITY_NAME))
-            .entrySet()
-            .forEach(e -> {
-                if (e.getKey() == EntityActivation.ON_HIT) {
-                    e.getValue()
-                        .forEach(x -> list.addAll(x.GetTooltipString(info, spell)));
-                }
-            });
+        int amount = data.get(MapField.PROJECTILE_COUNT)
+            .intValue();
+
+        if (amount > 1) {
+            list.add(new LiteralText("Shoot " + amount + " Projectiles"));
+
+        } else {
+            list.add(new LiteralText("Shoot a Projectile"));
+        }
+
+        list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME)));
 
         return list;
     }

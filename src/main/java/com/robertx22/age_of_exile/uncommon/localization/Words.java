@@ -287,7 +287,9 @@ public enum Words implements IAutoLocName {
     NoPrefix("Doesn't have prefix"),
 
     TierLessThanMax("Tier less than maximum"),
-
+    OnHit("On Hit"),
+    OnExpire("On Expire"),
+    PerEntityHit("Per Entity Hit"),
     AllowedOn("Allowed on"),
 
     NotAllowedOn("Not Allowed on: "),

@@ -20,7 +20,6 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
 
 import java.util.*;
 
@@ -134,8 +133,8 @@ public class ComponentPart {
         return this;
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info, AttachedSpell spell) {
-        List<Text> list = new ArrayList<>();
+    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell) {
+        List<MutableText> list = new ArrayList<>();
 
         MutableText text = new LiteralText("");
 

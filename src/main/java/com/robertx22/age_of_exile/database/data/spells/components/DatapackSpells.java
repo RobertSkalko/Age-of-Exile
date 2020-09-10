@@ -266,7 +266,7 @@ public class DatapackSpells {
         .onCast(Builder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COAL, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
         .onTick(Builder.particleOnTick(1D, ParticleTypes.SMOKE, 45D, 1D))
-        .onHit(Builder.damageInAoe(ValueCalculationData.base(10), Elements.Nature, 2D))
+        .onHit(Builder.damageInAoe(ValueCalculationData.base(10), Elements.Fire, 2D))
         .build();
 
     public static Spell ARROW_STORM = Spell.Builder.of("arrow_storm", HIGH_AOE_LONG_CD)
