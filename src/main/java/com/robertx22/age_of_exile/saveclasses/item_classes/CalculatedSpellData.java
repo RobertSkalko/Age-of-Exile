@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.screen.Screen;
@@ -35,7 +36,7 @@ public class CalculatedSpellData implements ITooltipList {
         data.level = Load.Unit(caster)
             .getLevel();
 
-        // todo allow player stats etc to modify this copied spell
+        new SpellStatsCalcEffect(caster, data).Activate();
 
         return data;
 

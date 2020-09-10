@@ -1,9 +1,11 @@
 v.1.3.0
 
-This update reworks skill gems into skill trees!
+This update reworks skill gems into skill trees and turns spells into datapacks!
 
 - skill gems gone
 - added skill trees
+- spells are now datapacks
+- added skill tree datapacks
 
 By investing points into Skill trees you can unlock stat bonuses and spells.
 There's currently 6 skill trees: Fire, Ocean, Nature, Storm, Divine, Hunting.
@@ -13,8 +15,11 @@ There's currently no limit to the amount of trees you can invest in, besides the
 Oh, and skill trees are 100% datapacks. Meaning you can edit or add new ones to your will!
 You can go nuts and add a perk that gives 100 health but locked under kill ender dragon advancement.. Or something crazy like that.
 
-This update was quick as most of the hard part was done by me in earlier version. I just removed talents while thinking how to add them back.
-It still took a few days though.
+Spells were turned into datapacks too, so now you can make a spell that shoots 50 chicken eggs and deals nature damage or whatever you really want.
+
+[WARNING]: As this is a new system, it's prone to changes. I suggest you don't create too many spells just yet but I do wish you try to create one or two good ones.
+Reason being is that those changes are likely to break existing datapacks. The situation should stabilize after I get some feedback on the system, fix bugs etc.
+
 
 Other changes:
 - should fix my mobs spawning in light

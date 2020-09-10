@@ -47,9 +47,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return config;
     }
 
-    transient String json;
-    transient boolean isInit = false;
-
     public void validate() {
         for (ComponentPart x : this.attached.getAllComponents()) {
             x.validate();
@@ -58,16 +55,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public final Identifier getIconLoc() {
         return new Identifier(Ref.MODID, "textures/gui/spells/icons/" + GUID() + ".png");
-    }
-
-    public void onInit() {
-
-        if (!isInit) {
-            json = GSON.toJson(attached);
-            this.isInit = true;
-
-            this.validate();
-        }
     }
 
     public final void onCastingTick(SpellCastContext ctx) {
@@ -95,26 +82,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     }
 
-    public AttachedSpell getAttachedSpell(LivingEntity caster) {
-
-        onInit();
-
-        //JsonElement json2 = GSON.toJsonTree(attached);
-        //System.out.println(json2.toString());
-
-        AttachedSpell calc = GSON.fromJson(json, AttachedSpell.class);
-        // todo, lot player stats, and spell modifiers modify this
-
-        return calc;
-
-    }
-
     public void cast(SpellCastContext ctx) {
         LivingEntity caster = ctx.caster;
 
-        AttachedSpell attached = getAttachedSpell(caster);
-        EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, attached);
-        CalculatedSpellData calc = CalculatedSpellData.create(caster, this);
+        EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, ctx.spell.attached);
 
         ctx.castedThisTick = true;
 
@@ -204,7 +175,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         TooltipUtils.addEmpty(list);
 
         if (Screen.hasShiftDown()) {
-            list.addAll(data.spell.getAttachedSpell(info.player)
+            list.addAll(data.spell.attached
                 .getTooltip());
         }
 

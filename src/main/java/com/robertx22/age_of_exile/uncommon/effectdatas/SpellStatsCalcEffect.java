@@ -1,26 +1,37 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 
 public class SpellStatsCalcEffect extends EffectData {
-    public PreCalcSpellConfigs configs;
+    public CalculatedSpellData data;
+
+    public SpellConfiguration config;
+
+    public String spell_id;
 
     public PlayerSpellCap.ISpellsCap spells;
-    public SpellCastContext ctx;
 
-    public SpellStatsCalcEffect(SpellCastContext ctx, PreCalcSpellConfigs configs, LivingEntity source, LivingEntity target) {
-        super(source, target);
+    public Float cooldown = 100F;
+    public Float castTime = 100F;
+    public Float manaCost = 100F;
 
-        this.ctx = ctx;
-        this.spells = ctx.spellsCap;
-        this.configs = configs;
+    public SpellStatsCalcEffect(LivingEntity caster, CalculatedSpellData data) {
+        super(caster, caster);
+
+        this.spell_id = data.spell_id;
+        this.spells = Load.spells(caster);
+        this.data = data;
+        this.config = data.spell.getConfig();
     }
 
     @Override
     protected void activate() {
-
+        this.config.cast_time_ticks *= castTime / 100F;
+        this.config.cooldown_ticks *= cooldown / 100F;
+        this.config.mana_cost *= manaCost / 100F;
     }
 }

@@ -33,12 +33,8 @@ public class OnItemUseCastSpell {
 
                         } else {
                             if (Screen.hasShiftDown()) {
-                                if (world.isClient) {
-                                    user.swingHand(hand);
-                                } else {
-                                    Packets.sendToServer(new CastSpellPacket(user));
-                                    ci.setReturnValue(TypedActionResult.success(stack));
-                                }
+                                Packets.sendToServer(new CastSpellPacket(user));
+                                ci.setReturnValue(TypedActionResult.success(stack));
                             }
                         }
                     }
