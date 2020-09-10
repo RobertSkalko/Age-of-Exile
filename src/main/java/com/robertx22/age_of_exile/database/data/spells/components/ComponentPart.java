@@ -1,12 +1,15 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExilePotionAction;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
+import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
+import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
@@ -15,6 +18,9 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffe
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.*;
 
@@ -126,6 +132,68 @@ public class ComponentPart {
     public ComponentPart addCondition(MapHolder map) {
         this.ifs.add(map);
         return this;
+    }
+
+    public List<Text> GetTooltipString(TooltipInfo info, AttachedSpell spell) {
+        List<Text> list = new ArrayList<>();
+
+        MutableText text = new LiteralText("");
+
+        for (MapHolder part : acts) {
+            SpellAction handler = SpellAction.MAP.get(part.type);
+            if (handler instanceof ICMainTooltip) {
+                ICMainTooltip line = (ICMainTooltip) handler;
+                list.addAll(line.getLines(spell, part));
+            }
+
+        }
+
+        for (MapHolder part : ifs) {
+            EffectCondition handler = EffectCondition.MAP.get(part.type);
+            if (handler instanceof ICMainTooltip) {
+                ICMainTooltip line = (ICMainTooltip) handler;
+                list.addAll(line.getLines(spell, part));
+            }
+
+        }
+        for (MapHolder part : targets) {
+            BaseTargetSelector handler = BaseTargetSelector.MAP.get(part.type);
+            if (handler instanceof ICMainTooltip) {
+                ICMainTooltip line = (ICMainTooltip) handler;
+                list.addAll(line.getLines(spell, part));
+            }
+
+        }
+        for (MapHolder part : acts) {
+            SpellAction handler = SpellAction.MAP.get(part.type);
+
+            if (handler instanceof ICTextTooltip) {
+                ICTextTooltip ictext = (ICTextTooltip) handler;
+                text.append(ictext.getText(info, part));
+            }
+        }
+
+        for (MapHolder part : ifs) {
+            EffectCondition handler = EffectCondition.MAP.get(part.type);
+
+            if (handler instanceof ICTextTooltip) {
+                ICTextTooltip ictext = (ICTextTooltip) handler;
+                text.append(ictext.getText(info, part));
+            }
+        }
+
+        for (MapHolder part : targets) {
+            BaseTargetSelector handler = BaseTargetSelector.MAP.get(part.type);
+
+            if (handler instanceof ICTextTooltip) {
+                ICTextTooltip ictext = (ICTextTooltip) handler;
+                text.append(ictext.getText(info, part));
+            }
+        }
+
+        list.add(text);
+
+        return list;
     }
 
     public static class Builder {

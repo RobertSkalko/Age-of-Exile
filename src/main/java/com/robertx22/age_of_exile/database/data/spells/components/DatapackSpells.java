@@ -42,7 +42,7 @@ public class DatapackSpells {
         .onHit(Builder.damage(ValueCalculationData.base(10), Elements.Fire))
         .build();
 
-    public static Spell POISONBALL = Spell.Builder.of("poisonball", SINGLE_TARGET_PROJ_CONFIG)
+    public static Spell POISONBALL = Spell.Builder.of("poison_ball", SINGLE_TARGET_PROJ_CONFIG)
         .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
         .onTick(Builder.particleOnTick(3D, ParticleTypes.ITEM_SLIME, 3D, 0.15D))
@@ -84,6 +84,7 @@ public class DatapackSpells {
             .put(MapField.GRAVITY, true)))
         .onTick(Builder.tickGroundParticle(1D, ParticleTypes.BUBBLE, 25D, 3.5D, 0.5D))
         .onTick(Builder.tickGroundParticle(1D, ParticleTypes.BUBBLE_POP, 75D, 3.5D, 0.5D))
+        .onTick(Builder.playSoundEveryTicks(20D, SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
         .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Water, 3.5D)
             .addChained(EntityActivation.PER_ENTITY_HIT, Builder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
         .build();

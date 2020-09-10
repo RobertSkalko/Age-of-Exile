@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.capability.player;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -28,16 +27,10 @@ public class PlayerSpellCap {
 
         public abstract List<Spell> getLearnedSpells(LivingEntity en);
 
-        public abstract void setCurrentSpellData(CalculatedSpellData data);
-
-        public abstract CalculatedSpellData getCurrentSpellData();
-
     }
 
     public static class DefaultImpl extends ISpellsCap {
         SpellCastingData spellCastingData = new SpellCastingData();
-
-        CalculatedSpellData currentSpellData;
 
         @Override
         public CompoundTag toTag(CompoundTag nbt) {
@@ -99,16 +92,6 @@ public class PlayerSpellCap {
                 }
             }
             return list;
-        }
-
-        @Override
-        public void setCurrentSpellData(CalculatedSpellData data) {
-            this.currentSpellData = data;
-        }
-
-        @Override
-        public CalculatedSpellData getCurrentSpellData() {
-            return this.currentSpellData;
         }
 
     }

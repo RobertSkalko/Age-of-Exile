@@ -21,11 +21,8 @@ public class SpellCastContext {
 
     private void calcSpellData() {
 
-        this.calcData = this.spellsCap.getCurrentSpellData();
+        this.calcData = CalculatedSpellData.create(caster, spell);
 
-        if (calcData == null) {
-            this.calcData = CalculatedSpellData.create(caster, spell);
-        }
     }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {

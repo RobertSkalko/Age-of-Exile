@@ -1,7 +1,8 @@
-package com.robertx22.age_of_exile.database.data.spells.components.actions;
+package com.robertx22.age_of_exile.database.data.spells.components.actions.vanity;
 
 import com.robertx22.age_of_exile.database.data.spells.SpellUtils;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import net.minecraft.entity.LivingEntity;
 

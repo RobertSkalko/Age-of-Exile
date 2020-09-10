@@ -3,16 +3,15 @@ package com.robertx22.age_of_exile.saveclasses.spells.calc;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -38,11 +37,7 @@ public class ValueCalculationData {
 
     public static ValueCalculationData scaleWithAttack(float attack, float base) {
         ValueCalculationData data = new ValueCalculationData();
-
-        new WeaponDamage(Elements.Nature).generateAllSingleVariations()
-            .forEach(x ->
-                data.scaling_values.add(new ScalingStatCalc(x, attack)));
-
+        data.attack_scaling = attack;
         data.base_val = base;
 
         return data;
@@ -58,13 +53,6 @@ public class ValueCalculationData {
         this.base_val = base;
     }
 
-    public double getScalingMultiAverage() {
-        return getAllScalingValues().stream()
-            .mapToDouble(x -> x.getMulti())
-            .sum() / scaling_values.size();
-
-    }
-
     public List<BaseStatCalc> getAllScalingValues() {
         List<BaseStatCalc> list = new ArrayList<>();
         list.addAll(scaling_values);
@@ -76,6 +64,9 @@ public class ValueCalculationData {
 
     @Store
     public StatScaling base_scaling = StatScaling.SCALING;
+
+    @Store
+    public float attack_scaling = 0;
 
     private transient boolean empty = false;
 
@@ -103,6 +94,21 @@ public class ValueCalculationData {
         val += getCalculatedBaseValue(Load.Unit(caster)
             .getLevel());
         return val;
+    }
+
+    public Text getShortTooltip(EntityCap.UnitData data) {
+        MutableText text = new LiteralText("");
+
+        if (this.base_val > 0) {
+            text.append(getCalculatedBaseValue(data.getLevel()) + "");
+        }
+
+        if (attack_scaling > 0) {
+            text.append(" + " + (int) (attack_scaling * 100) + "% Weapon Attack");
+        }
+
+        return text;
+
     }
 
     public List<Text> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {

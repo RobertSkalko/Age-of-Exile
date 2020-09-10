@@ -115,8 +115,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         AttachedSpell attached = getAttachedSpell(caster);
         EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, attached);
         CalculatedSpellData calc = CalculatedSpellData.create(caster, this);
-        Load.spells(caster)
-            .setCurrentSpellData(calc);
 
         ctx.castedThisTick = true;
 
@@ -201,7 +199,8 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         TooltipUtils.addEmpty(list);
 
         if (Screen.hasShiftDown()) {
-
+            list.addAll(data.spell.getAttachedSpell(info.player)
+                .getTooltip());
         }
 
         TooltipUtils.addEmpty(list);
