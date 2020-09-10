@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities;
 
-import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
@@ -16,20 +16,20 @@ public class EntitySavedSpellData {
 
     String spell_id;
 
-    AttachedSpell attached;
-
     public String item_id;
+
+    public SpellStatsCalcEffect.CalculatedSpellConfiguration config;
 
     public LivingEntity getCaster(World world) {
         return Utilities.getLivingEntityByUUID(world, UUID.fromString(caster_uuid));
     }
 
-    public static EntitySavedSpellData create(LivingEntity caster, Spell spell, AttachedSpell att) {
+    public static EntitySavedSpellData create(LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration config) {
         Objects.requireNonNull(caster);
 
         EntitySavedSpellData data = new EntitySavedSpellData();
         data.spell_id = spell.GUID();
-        data.attached = att;
+        data.config = config;
 
         data.caster_uuid = caster.getUuid()
             .toString();

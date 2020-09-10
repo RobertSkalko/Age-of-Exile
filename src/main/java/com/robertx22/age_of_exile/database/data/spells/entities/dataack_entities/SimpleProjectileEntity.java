@@ -182,7 +182,10 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     public void onTick() {
-        this.getSpellData().attached.tryActivate(getEntityName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
+        this.getSpellData()
+            .getSpell()
+            .getAttached()
+            .tryActivate(getEntityName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
     }
 
     @Override
@@ -191,7 +194,10 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         LivingEntity caster = getCaster();
 
         if (caster != null) {
-            this.getSpellData().attached.tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+            this.getSpellData()
+                .getSpell()
+                .getAttached()
+                .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
         }
 
         super.remove();
@@ -293,7 +299,10 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             LivingEntity caster = getCaster();
 
             if (caster != null) {
-                this.getSpellData().attached.tryActivate(getEntityName(), SpellCtx.onHit(caster, this, entityHit, getSpellData()));
+                this.getSpellData()
+                    .getSpell()
+                    .getAttached()
+                    .tryActivate(getEntityName(), SpellCtx.onHit(caster, this, entityHit, getSpellData()));
             }
         } else {
             if (world.isClient) {

@@ -59,6 +59,19 @@ public class SummonBlockAction extends SpellAction implements ICMainTooltip {
                     pos = pos.down();
                 }
             }
+            if (!found) {
+                pos = ctx.pos;
+                times = 0;
+                while (!found && pos.getY() < ctx.world.getHeight() && SEARCH > times) {
+                    times++;
+                    if (ctx.world.isAir(pos) && !ctx.world.isAir(pos.down())) {
+                        found = true;
+                    } else {
+                        pos = pos.up();
+                    }
+                }
+            }
+
             Block block = data.getBlock();
             Objects.requireNonNull(block);
 

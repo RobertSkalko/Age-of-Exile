@@ -44,6 +44,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     private AttachedSpell attached = new AttachedSpell();
     private SpellConfiguration config = new SpellConfiguration();
 
+    public AttachedSpell getAttached() {
+        return attached;
+    }
+
     public SpellConfiguration getConfig() {
         return config;
     }
@@ -88,7 +92,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public void cast(SpellCastContext ctx) {
         LivingEntity caster = ctx.caster;
 
-        EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, ctx.spell.attached);
+        EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, ctx.spellConfig);
 
         ctx.castedThisTick = true;
 
