@@ -13,11 +13,11 @@ public class SpellModStatData implements ITooltipList {
 
     public float value;
     public SpellModEnum spell_stat;
-    public SpellModType mod_type = SpellModType.PERCENT;
+    // public SpellModType mod_type = SpellModType.PERCENT;
 
-    public static SpellModStatData create(float percent, SpellModEnum spellStat) {
+    public static SpellModStatData create(SpellModEnum spellStat) {
         SpellModStatData data = new SpellModStatData();
-        data.value = percent;
+        data.value = spellStat.defaultValue;
         data.spell_stat = spellStat;
         return data;
     }
@@ -25,7 +25,7 @@ public class SpellModStatData implements ITooltipList {
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
-        String perc = mod_type == SpellModType.PERCENT ? "%" : "";
+        String perc = "%";
         MutableText txt = new LiteralText(value + perc + " ").append(spell_stat.word.locName());
         list.add(txt);
         return list;

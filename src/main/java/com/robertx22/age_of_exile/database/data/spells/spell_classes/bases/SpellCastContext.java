@@ -5,8 +5,11 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+
+;
 
 public class SpellCastContext {
 
@@ -18,6 +21,8 @@ public class SpellCastContext {
     public boolean isLastCastTick;
     public boolean castedThisTick = false;
     public CalculatedSpellData calcData;
+
+    public SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig;
 
     private void calcSpellData() {
 
@@ -36,6 +41,9 @@ public class SpellCastContext {
         this.spell = spell;
 
         this.data = Load.Unit(caster);
+
+        SpellStatsCalcEffect effect = new SpellStatsCalcEffect(caster, spell.GUID());
+        this.spellConfig = effect.data;
 
         if (caster instanceof PlayerEntity) {
             this.spellsCap = Load.spells((PlayerEntity) caster);

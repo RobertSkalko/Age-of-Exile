@@ -342,7 +342,7 @@ public enum Words implements IAutoLocName {
     Jewerly("Jewerly"),
 
     Offhand("Offhand"),
-
+    Modifier("Modifier"),
     RunesNeeded("Runes needed"),
 
     Item_modifiable_in_station("Can be used inside Modify Station"),

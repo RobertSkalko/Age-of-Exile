@@ -5,6 +5,8 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -20,6 +22,7 @@ import net.minecraft.nbt.CompoundTag;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     LivingEntity entity;
@@ -37,6 +40,17 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
 
     public void clearAllPerks() {
         this.data.perks.clear();
+    }
+
+    public List<SpellModifier> getAllSpellModifiersFor(Spell spell) {
+        List<SpellModifier> list = new ArrayList<>();
+        getAllAllocatedPerks().stream()
+            .filter(x -> x.type == Perk.PerkType.SPELL_MOD)
+            .forEach(x -> list.addAll(x.getSpellMods()
+                .stream()
+                .filter(e -> e.affectsSpell(spell))
+                .collect(Collectors.toList())));
+        return list;
     }
 
     public List<Perk> getAllAllocatedPerks() {

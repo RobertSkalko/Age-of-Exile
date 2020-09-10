@@ -3,10 +3,12 @@ package com.robertx22.age_of_exile.database.data.spells.modifiers;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -20,11 +22,11 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
 
     public String for_spell;
 
-    public static SpellModifier addToSeriazables(String spell, float val, SpellModEnum spellStat) {
+    public static SpellModifier addToSeriazables(String spell, SpellModEnum spellStat) {
         SpellModifier mod = new SpellModifier();
         mod.identifier = getIdFor(spellStat, spell);
         mod.for_spell = spell;
-        mod.mods.add(SpellModStatData.create(val, spellStat));
+        mod.mods.add(SpellModStatData.create(spellStat));
         mod.addToSerializables();
         return mod;
     }
@@ -69,6 +71,11 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
+        list.add(SlashRegistry.Spells()
+            .get(for_spell)
+            .locName()
+            .append(" ")
+            .append(Words.Modifier.locName()));
         this.mods.forEach(x -> list.addAll(x.GetTooltipString(info)));
         return list;
     }

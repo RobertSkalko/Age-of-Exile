@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
@@ -93,11 +94,15 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public final int getCooldownInSeconds(SpellCastContext ctx) {
-        return ctx.calcData.spell.config.cooldown_ticks / 20;
+
+        float multi = ctx.spellConfig.getMulti(SpellModEnum.COOLDOWN);
+
+        return (int) ((ctx.calcData.spell.config.cooldown_ticks * multi) / 20);
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {
-        return (float) ctx.calcData.spell.config.cast_time_ticks / 20;
+        float multi = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
+        return (ctx.calcData.spell.config.cast_time_ticks * multi) / 20;
     }
 
     @Override
@@ -162,8 +167,9 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
+        float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
         return (int) Mana.getInstance()
-            .scale(ctx.calcData.spell.getConfig().mana_cost, ctx.calcData.level);
+            .scale(ctx.calcData.spell.getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
     }
 
     public final List<Text> GetTooltipString(TooltipInfo info, CalculatedSpellData data) {

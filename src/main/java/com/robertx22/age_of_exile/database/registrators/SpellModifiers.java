@@ -14,7 +14,7 @@ public class SpellModifiers implements ISlashRegistryInit {
             .getSerializable()
             .forEach(x -> {
                 for (SpellModEnum value : SpellModEnum.values()) {
-                    SpellModifier.addToSeriazables(x.GUID(), 5F, value);
+                    SpellModifier.addToSeriazables(x.GUID(), value);
                 }
             });
 
