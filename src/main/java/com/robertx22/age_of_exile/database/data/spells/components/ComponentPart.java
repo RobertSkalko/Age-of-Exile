@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
@@ -30,18 +29,27 @@ public class ComponentPart {
     public List<MapHolder> acts = new ArrayList<>();
     public List<MapHolder> ifs = new ArrayList<>();
 
-    HashMap<EntityActivation, List<ComponentPart>> chained = null;
+    List<ComponentPart> per_entity_hit = null;
 
-    public ComponentPart addChained(EntityActivation act, ComponentPart add) {
-        if (chained == null) {
-            chained = new HashMap<>();
+    public ComponentPart addPerEntityHit(ComponentPart add) {
+        if (per_entity_hit == null) {
+            per_entity_hit = new ArrayList<>();
         }
-        if (!chained.containsKey(act)) {
-            chained.put(act, new ArrayList<>());
-        }
-        this.chained.get(act)
+        this.per_entity_hit
             .add(add);
         return this;
+    }
+
+    public void addActivationRequirement(EntityActivation act) {
+        if (act == EntityActivation.ON_EXPIRE) {
+            this.addCondition(EffectCondition.ON_ENTITY_EXPIRE.create());
+        }
+        if (act == EntityActivation.ON_HIT) {
+            this.addCondition(EffectCondition.ON_HIT.create());
+        }
+        if (act == EntityActivation.ON_CAST) {
+            this.addCondition(EffectCondition.ON_CAST.create());
+        }
     }
 
     public void validate() {
@@ -58,11 +66,8 @@ public class ComponentPart {
             action.validate(part);
         }
 
-        if (chained != null) {
-            chained.entrySet()
-                .forEach(e -> e.getValue()
-                    .forEach(t -> t.validate()));
-
+        if (per_entity_hit != null) {
+            per_entity_hit.forEach(x -> x.validate());
         }
     }
 
@@ -87,35 +92,30 @@ public class ComponentPart {
             action.tryActivate(list, ctx, part);
         }
 
-        if (chained != null) {
-            if (chained.containsKey(EntityActivation.PER_ENTITY_HIT)) {
+        if (per_entity_hit != null) {
 
-                for (LivingEntity en : list) {
-                    SpellCtx chainedCtx = SpellCtx.onEntityHit(ctx, en);
+            for (LivingEntity en : list) {
+                SpellCtx chainedCtx = SpellCtx.onEntityHit(ctx, en);
 
-                    for (ComponentPart onEn : chained.get(EntityActivation.PER_ENTITY_HIT)) {
+                for (ComponentPart onEn : per_entity_hit) {
 
-                        List<LivingEntity> single = Arrays.asList(en);
+                    List<LivingEntity> single = Arrays.asList(en);
 
-                        for (MapHolder part : onEn.ifs) {
-                            EffectCondition condition = EffectCondition.MAP.get(part.type);
-                            if (!condition.canActivate(chainedCtx, part)) {
-                                return;
-                            }
+                    for (MapHolder part : onEn.ifs) {
+                        EffectCondition condition = EffectCondition.MAP.get(part.type);
+                        if (!condition.canActivate(chainedCtx, part)) {
+                            return;
                         }
-                        for (MapHolder part : onEn.acts) {
-                            SpellAction action = SpellAction.MAP.get(part.type);
-                            action.tryActivate(single, chainedCtx, part);
-                        }
-
                     }
+                    for (MapHolder part : onEn.acts) {
+                        SpellAction action = SpellAction.MAP.get(part.type);
+                        action.tryActivate(single, chainedCtx, part);
+                    }
+
                 }
+
             }
-            chained.entrySet()
-                .stream()
-                .filter(x -> x.getKey() != EntityActivation.PER_ENTITY_HIT)
-                .forEach(x -> x.getValue()
-                    .forEach(v -> v.tryActivate(ctx)));
+
         }
     }
 
@@ -134,7 +134,7 @@ public class ComponentPart {
         return this;
     }
 
-    public List<MutableText> GetTooltipString(EntityActivation activation, TooltipInfo info, AttachedSpell spell) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell) {
         List<MutableText> list = new ArrayList<>();
 
         MutableText text = new LiteralText("");
@@ -146,31 +146,6 @@ public class ComponentPart {
                 list.addAll(line.getLines(spell, part));
             }
 
-        }
-/*
-        for (MapHolder part : ifs) {
-            EffectCondition handler = EffectCondition.MAP.get(part.type);
-            if (handler instanceof ICMainTooltip) {
-                ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part));
-            }
-
-        }
-        for (MapHolder part : targets) {
-            BaseTargetSelector handler = BaseTargetSelector.MAP.get(part.type);
-            if (handler instanceof ICMainTooltip) {
-                ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part));
-            }
-
-        }
-
- */
-        Words word = activation.word;
-
-        if (false && word != null) {
-            list.forEach(t -> t.append(" ")
-                .append(word.locName()));
         }
 
         boolean hasAction = false;

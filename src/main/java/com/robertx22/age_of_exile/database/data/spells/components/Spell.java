@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.contexts.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -30,7 +31,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -172,6 +172,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                         return false;
                     }
 
+                    if (!ctx.spellsCap.getLearnedSpells(ctx.caster)
+                        .contains(this)) {
+                        return false;
+                    }
+
                     return true;
                 } else {
                     if (caster instanceof ServerPlayerEntity) {
@@ -254,19 +259,26 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         Spell spell;
 
-        public static Builder of(String id, SpellConfiguration config) {
+        public static Builder of(String id, SpellConfiguration config, String name) {
             Builder builder = new Builder();
 
             builder.spell = new Spell();
             builder.spell.identifier = id;
             builder.spell.config = config;
+            builder.spell.locName = name;
 
             return builder;
 
         }
 
+        public Builder weaponReq(CastingWeapon wep) {
+            this.spell.config.castingWeapon = wep;
+            return this;
+        }
+
         public Builder onCast(ComponentPart comp) {
             this.spell.attached.on_cast.add(comp);
+            comp.addActivationRequirement(EntityActivation.ON_CAST);
             return this;
         }
 
@@ -277,10 +289,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         }
 
         public Builder onExpire(ComponentPart comp) {
+            comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
             return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_EXPIRE, comp);
         }
 
         public Builder onHit(ComponentPart comp) {
+            comp.addActivationRequirement(EntityActivation.ON_HIT);
             return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_HIT, comp);
         }
 
@@ -289,10 +303,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         }
 
         public Builder onExpire(String entity, ComponentPart comp) {
+            comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
             return this.addEffect(entity, EntityActivation.ON_EXPIRE, comp);
         }
 
         public Builder onHit(String entity, ComponentPart comp) {
+            comp.addActivationRequirement(EntityActivation.ON_HIT);
             return this.addEffect(entity, EntityActivation.ON_HIT, comp);
         }
 
@@ -301,17 +317,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             Objects.requireNonNull(comp);
 
             if (!spell.attached.entity_components.containsKey(entity)) {
-                spell.attached.entity_components.put(entity, new HashMap<>());
-            }
-
-            if (!spell.attached.entity_components.get(entity)
-                .containsKey(data)) {
-                spell.attached.entity_components.get(entity)
-                    .put(data, new ArrayList<>());
+                spell.attached.entity_components.put(entity, new ArrayList<>());
             }
 
             this.spell.attached.getDataForEntity(entity)
-                .get(data)
                 .add(comp);
 
             return this;

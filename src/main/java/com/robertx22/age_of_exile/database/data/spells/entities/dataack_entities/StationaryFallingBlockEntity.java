@@ -80,7 +80,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         this.age++;
 
         try {
-            this.getSpellData().attached.onEntityTick(getEntityName(), SpellCtx.onTick(getSpellData().getCaster(world), this, getSpellData()));
+            this.getSpellData().attached.tryActivate(getEntityName(), SpellCtx.onTick(getSpellData().getCaster(world), this, getSpellData()));
         } catch (Exception e) {
             e.printStackTrace();
             this.remove();

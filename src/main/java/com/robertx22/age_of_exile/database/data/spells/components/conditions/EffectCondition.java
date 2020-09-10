@@ -15,9 +15,13 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
         super(requiredPieces);
     }
 
-    public static TickRateCondition EVERY_X_TICKS;
+    public static OnTickCondition EVERY_X_TICKS;
     public static ChanceCondition CHANCE;
     public static CasterHasEffectCondition CASTER_HAS_POTION;
+
+    public static OnCastCondition ON_CAST;
+    public static OnExpireCondition ON_ENTITY_EXPIRE;
+    public static OnHitCondition ON_HIT;
 
     public abstract boolean canActivate(SpellCtx ctx, MapHolder data);
 
@@ -29,9 +33,14 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     }
 
     public static void init() {
-        EVERY_X_TICKS = of(new TickRateCondition());
+        EVERY_X_TICKS = of(new OnTickCondition());
         CHANCE = of(new ChanceCondition());
         CASTER_HAS_POTION = of(new CasterHasEffectCondition());
+
+        ON_CAST = of(new OnCastCondition());
+        ON_ENTITY_EXPIRE = of(new OnExpireCondition());
+        ON_HIT = of(new OnHitCondition());
+
     }
 }
 

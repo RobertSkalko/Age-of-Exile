@@ -11,38 +11,32 @@ import net.minecraft.util.Formatting;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AttachedSpell {
 
     public List<ComponentPart> on_cast = new ArrayList<>();
 
-    public HashMap<String, HashMap<EntityActivation, List<ComponentPart>>> entity_components = new HashMap<>();
+    public HashMap<String, List<ComponentPart>> entity_components = new HashMap<>();
 
     public void onCast(SpellCtx ctx) {
         on_cast.forEach(x -> x.tryActivate(ctx));
     }
 
-    public HashMap<EntityActivation, List<ComponentPart>> getDataForEntity(String en) {
+    public List<ComponentPart> getDataForEntity(String en) {
         return entity_components.get(en);
     }
 
     public List<MutableText> getTooltipForEntity(TooltipInfo info, AttachedSpell spell, String en) {
         List<MutableText> list = new ArrayList<>();
 
-        for (Map.Entry<EntityActivation, List<ComponentPart>> entry : spell.getDataForEntity(en)
-            .entrySet()) {
+        for (ComponentPart part : spell.getDataForEntity(en)) {
+            List<MutableText> tip = part.GetTooltipString(info, spell)
+                .stream()
+                .map(x -> new LiteralText(Formatting.RED + " * ").append(x))
+                .collect(Collectors.toList());
 
-            for (ComponentPart part : entry.getValue()) {
-
-                List<MutableText> tip = part.GetTooltipString(entry.getKey(), info, spell)
-                    .stream()
-                    .map(x -> new LiteralText(Formatting.RED + " * ").append(x))
-                    .collect(Collectors.toList());
-
-                list.addAll(tip);
-            }
+            list.addAll(tip);
         }
 
         return list;
@@ -51,38 +45,21 @@ public class AttachedSpell {
     public List<Text> getTooltip() {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<Text> list = new ArrayList<>();
-        on_cast.forEach(x -> list.addAll(x.GetTooltipString(EntityActivation.ON_CAST, info, this)));
+        on_cast.forEach(x -> list.addAll(x.GetTooltipString(info, this)));
         return list;
     }
 
-    public void onEntityTick(String entity_name, SpellCtx ctx) {
-        tryActivate(entity_name, EntityActivation.ON_TICK, ctx);
-    }
-
-    public void onEntityImpact(String entity_name, SpellCtx ctx) {
-        tryActivate(entity_name, EntityActivation.ON_HIT, ctx);
-    }
-
-    public void onEntityExpire(String entity_name, SpellCtx ctx) {
-        tryActivate(entity_name, EntityActivation.ON_EXPIRE, ctx);
-    }
-
-    private void tryActivate(String entity_name, EntityActivation type, SpellCtx ctx) {
-        for (Map.Entry<EntityActivation, List<ComponentPart>> entry : entity_components.get(entity_name)
-            .entrySet()) {
-            if (entry.getKey() == type) {
-                entry.getValue()
-                    .forEach(v -> v.tryActivate(ctx));
-            }
+    public void tryActivate(String entity_name, SpellCtx ctx) {
+        for (ComponentPart entry : entity_components.get(entity_name)) {
+            entry.tryActivate(ctx);
         }
     }
 
     public List<ComponentPart> getAllComponents() {
         List<ComponentPart> list = new ArrayList<>();
-        entity_components.entrySet()
-            .forEach(x -> x.getValue()
-                .entrySet()
-                .forEach(y -> list.addAll(y.getValue())));
+        list.addAll(this.on_cast);
+        this.entity_components.entrySet()
+            .forEach(x -> list.addAll(x.getValue()));
         return list;
     }
 
