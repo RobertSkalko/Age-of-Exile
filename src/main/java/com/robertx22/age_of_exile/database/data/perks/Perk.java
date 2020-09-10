@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.perks;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -20,6 +21,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, ITooltipList {
     public static Perk SERIALIZER = new Perk();
@@ -29,9 +31,17 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public String spell = "";
     public String lock_under_adv = "";
     public List<OptScaleExactStat> stats = new ArrayList<>();
+    public List<String> spell_mods = new ArrayList<>();
     public String icon = "";
     public boolean is_entry = false;
     public int lvl_req = 1;
+
+    public List<SpellModifier> getSpellMods() {
+        return spell_mods.stream()
+            .map(x -> SlashRegistry.SpellModifiers()
+                .get(x))
+            .collect(Collectors.toList());
+    }
 
     public Identifier getIcon() {
         return new Identifier(icon);
@@ -48,6 +58,8 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
                 .isEmpty()) {
                 list.addAll(new SpellCastContext(info.player, 0, getSpell()).calcData.GetTooltipString(info));
             }
+
+            getSpellMods().forEach(x -> list.addAll(x.GetTooltipString(info)));
 
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
 
@@ -73,7 +85,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     }
 
     public enum PerkType {
-        STAT(1, 24, 24), SPECIAL(2, 26, 26), SPELL(3, 24, 26), START(4, 23, 23);
+        STAT(1, 24, 24), SPECIAL(2, 26, 26), SPELL(3, 24, 26), START(4, 23, 23), SPELL_MOD(1, 24, 24);
         int order;
 
         public int width;

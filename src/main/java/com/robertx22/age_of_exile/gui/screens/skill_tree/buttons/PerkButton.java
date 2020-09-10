@@ -22,7 +22,7 @@ import java.util.List;
 
 public class PerkButton extends TexturedButtonWidget {
 
-    public static int SPACING = 28;
+    public static int SPACING = 25;
     public static int BIGGEST = 26;
 
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
@@ -106,6 +106,15 @@ public class PerkButton extends TexturedButtonWidget {
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
             RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + 4, this.y + 4);
+        } else if (this.perk.getType() == Perk.PerkType.SPELL_MOD) {
+            // icon
+            mc.getTextureManager()
+                .bindTexture(this.perk.getIcon());
+            drawTexture(matrices, this.x + 4, this.y + 4, 0, 0, 16, 16, 16, 16);
+            mc.getTextureManager()
+                .bindTexture(this.perk.getSpellMods()
+                    .get(0).mods.get(0).spell_stat.getIconLoc());
+            drawTexture(matrices, this.x + 4, this.y + 4, 0, 0, 16, 16, 16, 16);
         } else if (perk.getType() == Perk.PerkType.START) {
 
         } else {

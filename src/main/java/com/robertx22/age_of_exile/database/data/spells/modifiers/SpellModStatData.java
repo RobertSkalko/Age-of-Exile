@@ -15,6 +15,13 @@ public class SpellModStatData implements ITooltipList {
     public SpellModEnum spell_stat;
     public SpellModType mod_type = SpellModType.PERCENT;
 
+    public static SpellModStatData create(float percent, SpellModEnum spellStat) {
+        SpellModStatData data = new SpellModStatData();
+        data.value = percent;
+        data.spell_stat = spellStat;
+        return data;
+    }
+
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();

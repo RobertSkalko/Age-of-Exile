@@ -209,7 +209,7 @@ public class DatapackSpells {
             .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Thunder, 2D))
             .build();
 
-        Spell.Builder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(35, 20 * 200, 60, 6), "Arrow Barrage")
+        Spell.Builder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(35, 20 * 25, 60, 6), "Arrow Barrage")
             .weaponReq(CastingWeapon.RANGED)
             .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))

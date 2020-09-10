@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
@@ -159,6 +160,10 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
 
+    public static SlashRegistryContainer<SpellModifier> SpellModifiers() {
+        return getRegistry(SlashRegistryType.SPELL_MODIFIER);
+    }
+
     public static SlashRegistryContainer<EntityConfig> EntityConfigs() {
         return getRegistry(SlashRegistryType.ENTITY_CONFIGS);
     }
@@ -264,6 +269,7 @@ public class SlashRegistry {
         new Tiers().registerAll();
 
         new Spells().registerAll(); // some stats are based on spells, so spells go first
+
         new PotionEffects().registerAll();// some stats are based on effects ,so they go first
 
         new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
@@ -284,6 +290,7 @@ public class SlashRegistry {
         new Gems().registerAll();
         new Runes().registerAll();
         new Runewords().registerAll();
+        new SpellModifiers().registerAll();
         new Perks().registerAll();
 
     }
@@ -307,6 +314,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNEWORD, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, Spell.SERIALIZER).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PERK, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_MODIFIER, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_SCHOOL, null).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()

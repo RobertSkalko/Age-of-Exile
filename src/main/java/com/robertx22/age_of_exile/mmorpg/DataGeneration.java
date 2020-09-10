@@ -36,6 +36,7 @@ public class DataGeneration {
         manager.registerListener(new GearRarityLoader());
         manager.registerListener(new SkillGemRarityLoader());
         manager.registerListener(new DimConfigsDatapackLoader());
+        manager.registerListener(new SpellModifierDatapackLoader());
         manager.registerListener(new EntityConfigsDatapackLoader());
         manager.registerListener(new RuneDatapackLoader());
         manager.registerListener(new RunewordDatapackLoader());
