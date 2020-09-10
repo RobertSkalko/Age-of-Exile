@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
@@ -10,8 +11,8 @@ import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PlayerSpellCap {
 
@@ -87,14 +88,17 @@ public class PlayerSpellCap {
 
         @Override
         public List<Spell> getLearnedSpells(LivingEntity en) {
-            return Load.perks(en)
-                .getAllAllocatedPerks()
-                .stream()
-                .filter(x -> x.getSpell() != null && !x.getSpell()
+            List<Spell> list = new ArrayList<>();
+            for (Perk x : Load.perks(en)
+                .getAllAllocatedPerks()) {
+                if (x.getSpell() != null && !x.getSpell()
                     .GUID()
-                    .isEmpty())
-                .map(p -> p.getSpell())
-                .collect(Collectors.toList());
+                    .isEmpty()) {
+                    Spell spell = x.getSpell();
+                    list.add(spell);
+                }
+            }
+            return list;
         }
 
         @Override

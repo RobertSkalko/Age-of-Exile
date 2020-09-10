@@ -66,7 +66,7 @@ public class DatapackSpells {
         .onHit(Builder.damage(ValueCalculationData.scaleWithAttack(0.25F, 4), Elements.Water))
         .build();
 
-    public static Spell THUNDERSTORM = Spell.Builder.of("thunderstorm", HIGH_AOE_LONG_CD)
+    public static Spell THUNDERSTORM = Spell.Builder.of("thunder_storm", HIGH_AOE_LONG_CD)
         .onCast(Builder.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
         .onTick(Builder.tickCloudParticle(2D, ParticleTypes.CLOUD, 20D, 4D))
@@ -165,12 +165,13 @@ public class DatapackSpells {
         .build();
 
     // it falls into ground
-    public static Spell LIGHTNING_TOTEM = Spell.Builder.of("lightning_totem", MULTI_TARGET_PROJ_CONFIG)
+    public static Spell LIGHTNING_TOTEM = Spell.Builder.of("lightning_totem", SpellConfiguration.Builder.nonInstant(25, 45 * 20, 20))
         .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.TOTEM_OF_UNDYING, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 120D, true)
             .put(MapField.EXPIRE_ON_HIT, false)))
         .onTick(Builder.particleOnTick(20D, ModRegistry.PARTICLES.THUNDER, 80D, 2D))
-        .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Thunder, 2D))
+        .onTick(Builder.playSoundEveryTicks(20D, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
+        .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Thunder, 2D))
         .build();
 
     public static Spell ARROW_BARRAGE = Spell.Builder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(35, 20 * 200, 60, 6))
@@ -255,7 +256,7 @@ public class DatapackSpells {
             .addChained(EntityActivation.PER_ENTITY_HIT, Builder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
         .build();
 
-    public static Spell GORGONS_GAZE = Spell.Builder.of("gorgons_gaze", DIVINE_BUFF_CONFIG)
+    public static Spell GORGONS_GAZE = Spell.Builder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 200 * 20))
         .onCast(Builder.playSound(ModRegistry.SOUNDS.STONE_CRACK, 1D, 1D))
         .onCast(Builder.addExileEffectToEnemiesInFront(PetrifyEffect.INSTANCE, 15D, 3D))
         .build();

@@ -34,8 +34,8 @@ public class PossibleSpellsOverviewButton extends TexturedButtonWidget implement
 
         for (Spell spell : spells) {
 
-            int xp = x + 3 + placeX * 19;
-            int yp = y + 3 * placeY * 19;
+            int xp = x + 3 + (placeX * 19);
+            int yp = y + 3 + (placeY * 19);
 
             screen.addButtonPublic(new PickSpellForHotBarButton(screen, pickSpellForHotbar, spell, xp, yp));
 
