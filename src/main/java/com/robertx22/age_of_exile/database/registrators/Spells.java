@@ -61,13 +61,8 @@ public class Spells implements ISlashRegistryInit {
                     add(FireBombsSpell.getInstance());
                     add(ArrowStormSpell.getInstance());
                     add(ImbueSpell.getInstance());
-
-                    /// UNFINISHED
-
                     add(NatureBalmSpell.getInstance());
                     add(VolcanoSpell.getInstance());
-
-                    // tough ones
 
                 }
             }

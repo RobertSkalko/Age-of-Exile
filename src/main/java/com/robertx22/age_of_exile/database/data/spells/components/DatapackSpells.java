@@ -12,10 +12,7 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.BraveryEffect
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.JudgementEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.TrickeryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.WizardryEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PetrifyEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonedWeaponsEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.ThornArmorEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.*;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.ImbueEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.WoundsEffect;
 import net.minecraft.block.Blocks;
@@ -287,4 +284,17 @@ public class DatapackSpells {
         .onCast(Builder.giveSelfExileEffect(ImbueEffect.getInstance()))
         .build();
 
+    public static Spell NATURE_BALM = Spell.Builder.of("nature_balm", SpellConfiguration.Builder.instant(15, 200 * 20))
+        .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+        .onCast(Builder.giveSelfExileEffect(RegenerateEffect.INSTANCE))
+        .build();
+
+    public static Spell VOLCANO = Spell.Builder.of("volcano", HIGH_AOE_LONG_CD)
+        .onCast(Builder.playSound(ModRegistry.SOUNDS.FIREBALL, 1D, 1D))
+        .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
+        .onTick(Builder.tickGroundParticle(1D, ParticleTypes.SMOKE, 10D, 3.5D, 0.5D))
+        .onTick(Builder.tickGroundParticle(1D, ParticleTypes.LAVA, 10D, 3.5D, 0.5D))
+        .onTick(Builder.tickGroundParticle(1D, ParticleTypes.FALLING_LAVA, 10D, 3.5D, 0.5D))
+        .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Fire, 3.5D))
+        .build();
 }
