@@ -20,7 +20,7 @@ public abstract class BaseTargetSelector extends BaseFieldNeeder implements IGUI
 
     public static HashMap<String, BaseTargetSelector> MAP = new HashMap<>();
 
-    public static SelfSelector SELF = of(new SelfSelector());
+    public static CasterSelector CASTER = of(new CasterSelector());
     public static TargetSelector TARGET = of(new TargetSelector());
     public static AoeSelector AOE = of(new AoeSelector());
     public static InFrontSelector IN_FRONT = of(new InFrontSelector());

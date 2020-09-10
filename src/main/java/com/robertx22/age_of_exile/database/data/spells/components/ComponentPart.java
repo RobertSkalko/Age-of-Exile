@@ -146,7 +146,7 @@ public class ComponentPart {
             }
 
         }
-
+/*
         for (MapHolder part : ifs) {
             EffectCondition handler = EffectCondition.MAP.get(part.type);
             if (handler instanceof ICMainTooltip) {
@@ -163,21 +163,27 @@ public class ComponentPart {
             }
 
         }
+
+ */
+
+        boolean hasAction = false;
+
+        for (MapHolder part : ifs) {
+            EffectCondition handler = EffectCondition.MAP.get(part.type);
+
+            if (handler instanceof ICTextTooltip) {
+                ICTextTooltip ictext = (ICTextTooltip) handler;
+                text.append(ictext.getText(info, part));
+            }
+        }
+
         for (MapHolder part : acts) {
             SpellAction handler = SpellAction.MAP.get(part.type);
 
             if (handler instanceof ICTextTooltip) {
                 ICTextTooltip ictext = (ICTextTooltip) handler;
                 text.append(ictext.getText(info, part));
-            }
-        }
-
-        for (MapHolder part : ifs) {
-            EffectCondition handler = EffectCondition.MAP.get(part.type);
-
-            if (handler instanceof ICTextTooltip) {
-                ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part));
+                hasAction = true;
             }
         }
 
@@ -190,7 +196,9 @@ public class ComponentPart {
             }
         }
 
-        list.add(text);
+        if (hasAction) {
+            list.add(text);
+        }
 
         return list;
     }
@@ -245,14 +253,14 @@ public class ComponentPart {
         public static ComponentPart healCaster(ValueCalculationData calc) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
-            c.targets.add(BaseTargetSelector.SELF.create());
+            c.targets.add(BaseTargetSelector.CASTER.create());
             return c;
         }
 
         public static ComponentPart pushCaster(DashUtils.Way way, DashUtils.Strength str) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PUSH.create((double) str.num, way));
-            c.targets.add(BaseTargetSelector.SELF.create());
+            c.targets.add(BaseTargetSelector.CASTER.create());
             return c;
         }
 
@@ -347,7 +355,7 @@ public class ComponentPart {
         public static ComponentPart giveSelfExileEffect(BasePotionEffect effect) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
-            c.targets.add(BaseTargetSelector.SELF.create());
+            c.targets.add(BaseTargetSelector.CASTER.create());
             return c;
         }
 

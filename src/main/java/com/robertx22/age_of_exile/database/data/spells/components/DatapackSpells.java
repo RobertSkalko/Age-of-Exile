@@ -178,7 +178,7 @@ public class DatapackSpells {
     public static Spell ARROW_BARRAGE = Spell.Builder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(35, 20 * 200, 60, 6))
         .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
         .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))
-        .onHit(Builder.damage(ValueCalculationData.base(4), Elements.Physical))
+        .onHit(Builder.damage(ValueCalculationData.scaleWithAttack(0.5F, 2), Elements.Physical))
         .onHit(Builder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
         .onHit(Builder.damage(ValueCalculationData.base(3), Elements.Elemental)
             .addCondition(EffectCondition.CASTER_HAS_POTION.create(ImbueEffect.getInstance())))

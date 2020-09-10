@@ -33,7 +33,8 @@ public class AttachedSpell {
             for (ComponentPart part : entry.getValue()) {
                 List<MutableText> tip = part.GetTooltipString(info, spell);
                 if (entry.getKey().word != null) {
-                    tip.forEach(t -> t.append(entry.getKey().word.locName()));
+                    tip.forEach(t -> t.append(" ")
+                        .append(entry.getKey().word.locName()));
                 }
                 list.addAll(tip);
             }
