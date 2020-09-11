@@ -1,7 +1,7 @@
 {
   "name": "How to use Spells",
   "category": "spells",
-  "icon": "mmorpg:skill_gems/volcano",
+  "icon": "minecraft:stick",
   "sortnum": 2,
   "pages": [
 	{  

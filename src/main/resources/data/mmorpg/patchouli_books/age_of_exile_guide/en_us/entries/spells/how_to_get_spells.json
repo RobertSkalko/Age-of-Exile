@@ -1,13 +1,13 @@
 {
   "name": "How to get Spells",
   "category": "spells",
-  "icon": "mmorpg:skill_gems/fireball",
+  "icon": "minecraft:blaze_powder",
   "sortnum": 0,
   "pages": [
 	{  
 		"type": "text",   
-		"title": "Mob Drops",
-		"text": "Skill Gems ocassionally drop from monsters you kill, this is currently the only way to get spells."
+		"title": "The Skill Tree",
+		"text": "Go to your main menu [H] and open the Skill Tree. Choose between various Schools of Magic and unlock perks. Some perks give you spells! You can get more points by leveling up."
 	}
   ]
 }

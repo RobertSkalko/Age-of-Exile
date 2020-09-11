@@ -234,7 +234,7 @@ public class DatapackSpells {
             .build();
 
         // it falls into ground
-        Spell.Builder.of("lightning_totem", SpellConfiguration.Builder.nonInstant(25, 45 * 20, 20), "Lightning Totem")
+        Spell.Builder.of("lightning_totem", SpellConfiguration.Builder.nonInstant(12, 45 * 20, 20), "Lightning Totem")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.TOTEM_OF_UNDYING, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 120D, true)
@@ -244,7 +244,7 @@ public class DatapackSpells {
             .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Thunder, 2D))
             .build();
 
-        Spell.Builder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(35, 20 * 25, 60, 6), "Arrow Barrage")
+        Spell.Builder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(10, 20 * 25, 60, 6), "Arrow Barrage")
             .weaponReq(CastingWeapon.RANGED)
             .onCast(Builder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))

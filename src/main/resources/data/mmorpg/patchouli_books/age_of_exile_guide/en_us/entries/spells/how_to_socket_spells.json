@@ -6,7 +6,7 @@
   "pages": [
 	{  
 		"type": "text",   
-		"text": "When you find a skill gem, you need to open your main menu [H], enter spells gui and move your skill gem there. The skill gem is now part of your spell arsenal!"
+		"text": "Spells are automatically put on an empty hotbar spot when when you unlock them. To change the place or swap spells, go to your Skill Tree and click on the hotbar on the bottom."
 	}
   ]
 }
