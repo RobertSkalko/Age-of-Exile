@@ -139,6 +139,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             return true;
         }
 
+        if (((PlayerEntity) caster).isCreative()) {
+            return true;
+        }
+
         if (!caster.world.isClient) {
 
             EntityCap.UnitData data = Load.Unit(caster);
@@ -268,35 +272,34 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         public static String DEFAULT_EN_NAME = "default_entity_name";
 
         public Builder onTick(ComponentPart comp) {
-            return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_TICK, comp);
+            return this.addEffect(DEFAULT_EN_NAME, comp);
         }
 
         public Builder onExpire(ComponentPart comp) {
             comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
-            return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_EXPIRE, comp);
+            return this.addEffect(DEFAULT_EN_NAME, comp);
         }
 
         public Builder onHit(ComponentPart comp) {
             comp.addActivationRequirement(EntityActivation.ON_HIT);
-            return this.addEffect(DEFAULT_EN_NAME, EntityActivation.ON_HIT, comp);
+            return this.addEffect(DEFAULT_EN_NAME, comp);
         }
 
         public Builder onTick(String entity, ComponentPart comp) {
-            return this.addEffect(entity, EntityActivation.ON_TICK, comp);
+            return this.addEffect(entity, comp);
         }
 
         public Builder onExpire(String entity, ComponentPart comp) {
             comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
-            return this.addEffect(entity, EntityActivation.ON_EXPIRE, comp);
+            return this.addEffect(entity, comp);
         }
 
         public Builder onHit(String entity, ComponentPart comp) {
             comp.addActivationRequirement(EntityActivation.ON_HIT);
-            return this.addEffect(entity, EntityActivation.ON_HIT, comp);
+            return this.addEffect(entity, comp);
         }
 
-        private Builder addEffect(String entity, EntityActivation data, ComponentPart comp) {
-            Objects.requireNonNull(data);
+        private Builder addEffect(String entity, ComponentPart comp) {
             Objects.requireNonNull(comp);
 
             if (!spell.attached.entity_components.containsKey(entity)) {

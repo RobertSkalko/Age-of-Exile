@@ -27,3 +27,4 @@ Other changes:
 - added 2 new gems: opals and garnets!
 - added projectile speed stat
 - added pvp dmg multi config
+- creative players now dont have spell cast restrictions (no need for mana, wep etc)

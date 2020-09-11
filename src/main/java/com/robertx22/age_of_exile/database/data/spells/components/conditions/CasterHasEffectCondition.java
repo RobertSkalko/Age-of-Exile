@@ -15,14 +15,14 @@ import java.util.Arrays;
 public class CasterHasEffectCondition extends EffectCondition implements ICTextTooltip {
 
     public CasterHasEffectCondition() {
-        super(Arrays.asList(MapField.POTION_ID));
+        super(Arrays.asList(MapField.EXILE_POTION_ID));
     }
 
     @Override
     public MutableText getText(TooltipInfo info, MapHolder data) {
         MutableText text = new LiteralText("");
 
-        StatusEffect potion = data.getPotion();
+        StatusEffect potion = data.getExilePotion();
 
         text.append("If caster has ")
             .append(potion.getName())
@@ -34,14 +34,14 @@ public class CasterHasEffectCondition extends EffectCondition implements ICTextT
 
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
-        StatusEffect potion = data.getPotion();
+        StatusEffect potion = data.getExilePotion();
         return ctx.caster.hasStatusEffect(potion);
     }
 
     public MapHolder create(StatusEffect effect) {
         MapHolder d = new MapHolder();
         d.type = GUID();
-        d.put(MapField.POTION_ID, Registry.STATUS_EFFECT.getId(effect)
+        d.put(MapField.EXILE_POTION_ID, Registry.STATUS_EFFECT.getId(effect)
             .toString());
         return d;
     }

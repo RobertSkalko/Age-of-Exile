@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
@@ -38,6 +39,11 @@ public class ComponentPart {
         }
         this.per_entity_hit
             .add(add);
+        return this;
+    }
+
+    public ComponentPart onTick(Double ticks) {
+        ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return this;
     }
 
@@ -217,6 +223,27 @@ public class ComponentPart {
             return c;
         }
 
+        public static ComponentPart restoreManaInRadius(ValueCalculationData calc, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.RESTORE_MANA.create(calc));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            return c;
+        }
+
+        public static ComponentPart restoreMagicShieldInRadius(ValueCalculationData calc, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.RESTORE_MAGIC_SHIELD.create(calc));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            return c;
+        }
+
+        public static ComponentPart restoreMagicShieldToCaster(ValueCalculationData calc) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.RESTORE_MAGIC_SHIELD.create(calc));
+            c.targets.add(BaseTargetSelector.CASTER.create());
+            return c;
+        }
+
         public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculationData calc, Elements ele, Double radius) {
             ComponentPart c = damageInAoe(calc, ele, radius);
             c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
@@ -300,6 +327,19 @@ public class ComponentPart {
             return c;
         }
 
+        public static ComponentPart onTickCleanseInRadius(Double ticks, StatusEffect effect, Double radius) {
+            ComponentPart c = cleanseInRadius(effect, radius);
+            c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+            return c;
+        }
+
+        public static ComponentPart cleanseInRadius(StatusEffect effect, Double radius) {
+            ComponentPart c = new ComponentPart();
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+            c.acts.add(SpellAction.POTION.create(effect, ExilePotionAction.GiveOrTake.REMOVE_STACKS));
+            return c;
+        }
+
         public static ComponentPart cloudParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
@@ -354,28 +394,28 @@ public class ComponentPart {
 
         public static ComponentPart giveSelfExileEffect(BasePotionEffect effect) {
             ComponentPart c = new ComponentPart();
-            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
             c.targets.add(BaseTargetSelector.CASTER.create());
             return c;
         }
 
         public static ComponentPart giveToAlliesInRadius(BasePotionEffect effect, Double radius) {
             ComponentPart c = new ComponentPart();
-            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
             c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
             return c;
         }
 
         public static ComponentPart addExileEffectToEnemiesInAoe(BasePotionEffect effect, Double radius) {
             ComponentPart c = new ComponentPart();
-            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
             c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
             return c;
         }
 
         public static ComponentPart addExileEffectToEnemiesInFront(BasePotionEffect effect, Double distance, Double width) {
             ComponentPart c = new ComponentPart();
-            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.PotionAction.GIVE_STACKS));
+            c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
             c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
             return c;
         }

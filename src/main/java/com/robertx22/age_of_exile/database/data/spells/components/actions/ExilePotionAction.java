@@ -18,7 +18,7 @@ import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapFiel
 
 public class ExilePotionAction extends SpellAction implements ICTextTooltip {
 
-    public enum PotionAction {
+    public enum GiveOrTake {
         GIVE_STACKS, REMOVE_STACKS
     }
 
@@ -26,14 +26,14 @@ public class ExilePotionAction extends SpellAction implements ICTextTooltip {
     public MutableText getText(TooltipInfo info, MapHolder data) {
         MutableText text = new LiteralText("");
 
-        BasePotionEffect potion = (BasePotionEffect) data.getPotion();
-        PotionAction action = data.getPotionAction();
+        BasePotionEffect potion = (BasePotionEffect) data.getExilePotion();
+        GiveOrTake action = data.getPotionAction();
         int count = data.get(COUNT)
             .intValue();
 
         boolean isStackable = potion.getMaxStacks() > 1;
 
-        if (action == PotionAction.GIVE_STACKS) {
+        if (action == GiveOrTake.GIVE_STACKS) {
             text.append("Gives ");
         } else {
             text.append("Removes ");
@@ -55,19 +55,19 @@ public class ExilePotionAction extends SpellAction implements ICTextTooltip {
     }
 
     public ExilePotionAction() {
-        super(Arrays.asList(POTION_ID, COUNT, POTION_ACTION));
+        super(Arrays.asList(EXILE_POTION_ID, COUNT, POTION_ACTION));
     }
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        BasePotionEffect potion = (BasePotionEffect) data.getPotion();
-        PotionAction action = data.getPotionAction();
+        BasePotionEffect potion = (BasePotionEffect) data.getExilePotion();
+        GiveOrTake action = data.getPotionAction();
         int count = data.get(COUNT)
             .intValue();
 
         targets.forEach(t -> {
-            if (action == PotionAction.GIVE_STACKS) {
+            if (action == GiveOrTake.GIVE_STACKS) {
                 for (int i = 0; i < count; i++) {
                     PotionEffectUtils.apply(potion, ctx.caster, t);
                 }
@@ -77,12 +77,12 @@ public class ExilePotionAction extends SpellAction implements ICTextTooltip {
         });
     }
 
-    public MapHolder create(BasePotionEffect effect, PotionAction action) {
+    public MapHolder create(BasePotionEffect effect, GiveOrTake action) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(COUNT, 1D);
         dmg.put(POTION_ACTION, action.name());
-        dmg.put(POTION_ID, Registry.STATUS_EFFECT.getId(effect)
+        dmg.put(EXILE_POTION_ID, Registry.STATUS_EFFECT.getId(effect)
             .toString());
         return dmg;
     }

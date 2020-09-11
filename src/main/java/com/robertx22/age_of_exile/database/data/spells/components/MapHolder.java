@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.block.Block;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.particle.DefaultParticleType;
@@ -17,6 +18,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
+import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.EXILE_POTION_ID;
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.POTION_ID;
 
 public class MapHolder {
@@ -44,6 +46,10 @@ public class MapHolder {
         return (T) map.get(field.GUID());
     }
 
+    public BasePotionEffect getExilePotion() {
+        return (BasePotionEffect) Registry.STATUS_EFFECT.get(new Identifier(get(EXILE_POTION_ID)));
+    }
+
     public StatusEffect getPotion() {
         return Registry.STATUS_EFFECT.get(new Identifier(get(POTION_ID)));
     }
@@ -56,8 +62,8 @@ public class MapHolder {
         return DashUtils.Way.valueOf(get(MapField.PUSH_WAY));
     }
 
-    public ExilePotionAction.PotionAction getPotionAction() {
-        return ExilePotionAction.PotionAction.valueOf(get(MapField.POTION_ACTION));
+    public ExilePotionAction.GiveOrTake getPotionAction() {
+        return ExilePotionAction.GiveOrTake.valueOf(get(MapField.POTION_ACTION));
     }
 
     public SummonProjectileAction.ShootWay getOrDefault(SummonProjectileAction.ShootWay way) {

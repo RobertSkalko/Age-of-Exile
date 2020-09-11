@@ -15,14 +15,28 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.JudgementEffe
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.TrickeryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.divine.WizardryEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.*;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.ImbueEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.WoundsEffect;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
 public class DatapackSpells {
+
+    public static String FROSTBALL_ID = "frostball";
+    public static String FIREBALL_ID = "fireball";
+    public static String POISONBALL_ID = "poison_ball";
+    public static String THUNDERSPEAR_ID = "thunder_spear";
+    public static String HEALING_AURA_ID = "healing_aura";
+    public static String THORN_BUSH_ID = "thorn_bush";
+    public static String HOLY_FLOWER_ID = "holy_flower";
+    public static String THROW_FLAMES_ID = "throw_flames";
+    public static String FLOWER_OF_ICE_ID = "flower_of_ice";
+    public static String HEART_OF_ICE_ID = "heart_of_ice";
+    public static String MAGMA_FLOWER_ID = "magma_flower";
 
     public static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG() {
         return SpellConfiguration.Builder.instant(7, 20);
@@ -43,13 +57,6 @@ public class DatapackSpells {
     static SpellConfiguration DIVINE_BUFF_CONFIG() {
         return SpellConfiguration.Builder.nonInstant(30, 20 * 180, 40);
     }
-
-    public static String FROSTBALL_ID = "frostball";
-    public static String FIREBALL_ID = "fireball";
-    public static String POISONBALL_ID = "poison_ball";
-    public static String THUNDERSPEAR_ID = "thunder_spear";
-    public static String HEALING_AURA_ID = "healing_aura";
-    public static String THORN_BUSH_ID = "thorn_bush";
 
     public static void init() {
 
@@ -77,12 +84,14 @@ public class DatapackSpells {
             .onHit(Builder.damage(ValueCalculationData.base(10), Elements.Nature))
             .build();
 
-        Spell.Builder.of("throw_flames", MULTI_TARGET_PROJ_CONFIG(), "Throw Flames")
+        Spell.Builder.of(THROW_FLAMES_ID, MULTI_TARGET_PROJ_CONFIG(), "Throw Flames")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BLAZE_POWDER, 3D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 50D, false)
                 .put(MapField.PROJECTILES_APART, 30D)))
             .onTick(Builder.particleOnTick(3D, ParticleTypes.FLAME, 5D, 0.15D))
+            .onHit(Builder.addExileEffectToEnemiesInAoe(BurnEffect.INSTANCE, 1D)
+                .requiresSpellMod(SpellModifiers.THROW_FLAMES_BURN))
             .onHit(Builder.damage(ValueCalculationData.base(7), Elements.Fire))
             .build();
 
@@ -140,7 +149,7 @@ public class DatapackSpells {
             .onCast(Builder.giveSelfExileEffect(PoisonedWeaponsEffect.getInstance()))
             .build();
 
-        Spell.Builder.of("magma_flower", DatapackSpells.PLANT_CONFIG(), "Magma Flower")
+        Spell.Builder.of(MAGMA_FLOWER_ID, DatapackSpells.PLANT_CONFIG(), "Magma Flower")
             .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onTick("projectile", Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
             .onExpire("projectile", Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.FIRE_CORAL, 150D)))
@@ -149,14 +158,35 @@ public class DatapackSpells {
             .onTick(Builder.particleOnTick(30D, ParticleTypes.FLAME, 20D, 2D))
             .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onTick(Builder.onTickDamageInAoe(30D, ValueCalculationData.base(3), Elements.Fire, 2D))
+            .onTick(Builder.healInAoe(ValueCalculationData.base(2), 2D)
+                .onTick(30D)
+                .requiresSpellMod(SpellModifiers.MAGMA_FLOWER_HEAL))
             .build();
 
-        Spell.Builder.of("holy_flower", DatapackSpells.PLANT_CONFIG(), "Holy Flower")
+        Spell.Builder.of(FLOWER_OF_ICE_ID, DatapackSpells.PLANT_CONFIG(), "Flower of Ice")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, true)
+                .put(MapField.ENTITY_NAME, "projectile")))
+            .onTick("projectile", Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
+            .onExpire("projectile", Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.TUBE_CORAL, 150D)))
+            .onTick(Builder.particleOnTick(1D, ModRegistry.PARTICLES.BUBBLE, 30D, 2D))
+            .onTick(Builder.particleOnTick(1D, ParticleTypes.BUBBLE_POP, 30D, 2D))
+            .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.ENTITY_GENERIC_SPLASH, 1D, 1D))
+            .onTick(Builder.restoreMagicShieldInRadius(ValueCalculationData.base(3), 2D)
+                .onTick(30D))
+            .onTick(Builder.restoreManaInRadius(ValueCalculationData.base(2), 2D)
+                .onTick(30D)
+                .requiresSpellMod(SpellModifiers.ICE_FLOWER_MANA_RESTORE))
+            .build();
+
+        Spell.Builder.of(HOLY_FLOWER_ID, DatapackSpells.PLANT_CONFIG(), "Holy Flower")
             .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onTick("projectile", Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
             .onExpire("projectile", Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.HORN_CORAL, 150D)))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 60D, true)
                 .put(MapField.ENTITY_NAME, "projectile")))
+            .onTick(Builder.onTickCleanseInRadius(30D, StatusEffects.POISON, 2D)
+                .requiresSpellMod(SpellModifiers.HOLY_FLOWER_CLEANSE))
             .onTick(Builder.particleOnTick(30D, ParticleTypes.HEART, 20D, 2D))
             .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.ITEM_CROP_PLANT, 1D, 1D))
             .onTick(Builder.onTickHealInAoe(30D, ValueCalculationData.base(3), 2D))
@@ -176,12 +206,14 @@ public class DatapackSpells {
                 .requiresSpellMod(SpellModifiers.THORN_BUSH_EFFECT))
             .build();
 
-        Spell.Builder.of("heart_of_ice", SpellConfiguration.Builder.instant(15, 160 * 20), "Hear of Ice")
+        Spell.Builder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 160 * 20), "Hear of Ice")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(Builder.playSound(ModRegistry.SOUNDS.FREEZE, 1D, 1D))
             .onCast(Builder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))
             .onCast(Builder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(Builder.healCaster(ValueCalculationData.base(10)))
+            .onCast(Builder.restoreMagicShieldToCaster(ValueCalculationData.base(10))
+                .requiresSpellMod(SpellModifiers.HEART_OF_ICE_MAGIC_SHIELD))
             .build();
 
         Spell.Builder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Aura")
