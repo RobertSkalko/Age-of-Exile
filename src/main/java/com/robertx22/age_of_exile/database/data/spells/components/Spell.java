@@ -29,6 +29,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -99,6 +100,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, ctx.spellConfig);
 
         ctx.castedThisTick = true;
+
+        if (this.config.swing_arm) {
+            caster.swingHand(Hand.MAIN_HAND);
+        }
 
         attached.onCast(SpellCtx.onCast(caster, data));
     }

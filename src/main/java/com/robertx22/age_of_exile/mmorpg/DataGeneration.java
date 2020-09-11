@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.datapacks.generators.RecipeGenerator;
 import com.robertx22.age_of_exile.datapacks.lang_file.CreateLangFile;
 import com.robertx22.age_of_exile.datapacks.loaders.*;
 import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
+import com.robertx22.age_of_exile.datapacks.modpack_helper_lists.ModpackerHelperLists;
 import net.minecraft.resource.ReloadableResourceManager;
 
 public class DataGeneration {
@@ -16,6 +17,8 @@ public class DataGeneration {
         }
 
         new RecipeGenerator().run();
+
+        ModpackerHelperLists.generate();
 
         CreateLangFile.create();
         GenerateCurioDataJsons.generate();

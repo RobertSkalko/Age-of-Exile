@@ -16,7 +16,8 @@ public class PossibleSpellsOverviewButton extends TexturedButtonWidget implement
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/possible_spells.png");
 
     public static int XSIZE = 193;
-    public static int YSIZE = 89;
+    public static int YSIZE = 123;
+
     SkillTreeScreen screen;
 
     public PossibleSpellsOverviewButton(SkillTreeScreen screen, int pickSpellForHotbar, int x, int y) {
@@ -40,7 +41,7 @@ public class PossibleSpellsOverviewButton extends TexturedButtonWidget implement
             screen.addButtonPublic(new PickSpellForHotBarButton(screen, pickSpellForHotbar, spell, xp, yp));
 
             placeX++;
-            if (placeX == 8) {
+            if (placeX == 9) {
                 placeX = 0;
                 placeY++;
             }

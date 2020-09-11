@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
@@ -29,8 +30,11 @@ public class NoManaPacket extends MyPacket<NoManaPacket> {
     @Override
     public void onReceived(PacketContext ctx) {
         if (ModConfig.get().client.SHOW_LOW_ENERGY_MANA_WARNING) {
-            PlayerEntity player = ctx.getPlayer();
-            player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
+            if (OnClientTick.canSoundNoMana()) {
+                OnClientTick.setNoManaSoundCooldown();
+                PlayerEntity player = ctx.getPlayer();
+                player.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 0.5F, 0);
+            }
         }
     }
 

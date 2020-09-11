@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.config.forge;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
@@ -18,6 +19,7 @@ public class GearSalvageConfig {
     public int VALUE_ADDED_PER_SOCKET = 50;
     public int VALUE_ADDED_PER_FULL_SOCKET = 150;
 
+    @ConfigEntry.Gui.CollapsibleObject
     public LinearScalingConfig VALUE_PER_LEVEL_SCALING = new LinearScalingConfig(0.02D);
 
     List<ItemAndPrice> SALVAGE_RESULTS = new ArrayList<ItemAndPrice>() {

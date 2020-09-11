@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.overlays.spell_hotbar;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
 import com.robertx22.age_of_exile.mixin_methods.OnKeyMethod;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -27,6 +28,13 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     private static final Identifier SPELL_READY_TEX = new Identifier(Ref.MODID,
         "textures/gui/spells/spell_ready.png"
     );
+    private static final Identifier SPELl_NO_MANA = new Identifier(Ref.MODID,
+        "textures/gui/spells/no_mana.png"
+    );
+    private static final Identifier SPELL_ON_COOLDOWN = new Identifier(Ref.MODID,
+        "textures/gui/spells/on_cooldown.png"
+    );
+
     static int WIDTH = 182;
     static int HEIGHT = 22;
 
@@ -71,6 +79,23 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
     private void renderCurrentSpell(MatrixStack matrix) {
 
+        boolean render = true;
+
+        Spell spell = null;
+        SpellCastContext ctx = null;
+        try {
+            spell = Load.spells(this.mc.player)
+                .getCurrentRightClickSpell();
+
+            ctx = new SpellCastContext(mc.player, 0, spell);
+        } catch (Exception e) {
+            render = false;
+        }
+
+        if (!render) {
+            return;
+        }
+
         int x = mc.getWindow()
             .getScaledWidth() / 2 + 98;
         int y = mc.getWindow()
@@ -82,12 +107,22 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         int xs = (int) (x * 1 / scale);
         int ys = (int) (y * 1 / scale);
 
-        mc.getTextureManager()
-            .bindTexture(SPELL_READY_TEX);
-        this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
+        if (!this.data.getCastingData()
+            .getDataBySpell(spell)
+            .cooldownIsReady()) {
+            mc.getTextureManager()
+                .bindTexture(SPELL_ON_COOLDOWN);
+        } else if (!Load.Unit(this.mc.player)
+            .getResources()
+            .hasEnough(spell.getManaCostCtx(ctx))) {
+            mc.getTextureManager()
+                .bindTexture(SPELl_NO_MANA);
+        } else {
+            mc.getTextureManager()
+                .bindTexture(SPELL_READY_TEX);
+        }
 
-        Spell spell = Load.spells(this.mc.player)
-            .getCurrentRightClickSpell();
+        this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
 
         if (spell != null) {
             mc.getTextureManager()

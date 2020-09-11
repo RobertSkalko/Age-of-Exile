@@ -4,11 +4,17 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeap
 
 public class SpellConfiguration {
 
+    public boolean swing_arm = false;
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public int mana_cost;
     public int times_to_cast = 1;
     public int cast_time_ticks;
     public int cooldown_ticks;
+
+    public SpellConfiguration setSwingArm() {
+        this.swing_arm = true;
+        return this;
+    }
 
     public static class Builder {
 

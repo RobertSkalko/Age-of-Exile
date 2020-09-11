@@ -3,11 +3,13 @@ package com.robertx22.age_of_exile.capability.player;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
@@ -82,6 +84,15 @@ public class PlayerSpellCap {
 
         @Override
         public List<Spell> getLearnedSpells(LivingEntity en) {
+
+            if (en instanceof PlayerEntity) {
+                PlayerEntity p = (PlayerEntity) en;
+                if (p.isCreative()) { // allow easy testing of all spells
+                    return SlashRegistry.Spells()
+                        .getList();
+                }
+            }
+
             List<Spell> list = new ArrayList<>();
             for (Perk x : Load.perks(en)
                 .getAllAllocatedPerks()) {

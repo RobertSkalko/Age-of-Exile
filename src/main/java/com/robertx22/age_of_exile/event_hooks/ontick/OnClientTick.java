@@ -15,6 +15,16 @@ public class OnClientTick implements ClientTickEvents.EndTick {
 
     static int TICKS_TO_SHOW = 50;
 
+    private static int NO_MANA_SOUND_COOLDOWN = 0;
+
+    public static boolean canSoundNoMana() {
+        return NO_MANA_SOUND_COOLDOWN <= 0;
+    }
+
+    public static void setNoManaSoundCooldown() {
+        NO_MANA_SOUND_COOLDOWN = 30;
+    }
+
     @Override
     public void onEndTick(MinecraftClient minecraftClient) {
 
@@ -27,6 +37,8 @@ public class OnClientTick implements ClientTickEvents.EndTick {
         if (player.isPartOf(player)) {
 
             if (player != null) {
+
+                NO_MANA_SOUND_COOLDOWN--;
 
                 PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 

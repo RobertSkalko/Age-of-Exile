@@ -31,6 +31,10 @@ public class DirUtils {
         return modDir() + "/main/resources/assets/mmorpg/lang/";
     }
 
+    public static String modpackHelperFolderDir() {
+        return modDir() + "/main/resources/assets/mmorpg/modpack_dev_helper/";
+    }
+
     public static String langFilePath() {
         return langFolderDir() + "en_us.json";
     }

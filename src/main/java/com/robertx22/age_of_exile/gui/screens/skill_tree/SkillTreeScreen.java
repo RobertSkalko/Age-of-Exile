@@ -22,7 +22,6 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToCl
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils.PointF;
-import javafx.geometry.Point2D;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
@@ -107,7 +106,7 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
     int scrollX = 0;
     int scrollY = 0;
 
-    HashMap<AbstractButtonWidget, Point2D> originalButtonLocMap = new HashMap<>();
+    HashMap<AbstractButtonWidget, PointData> originalButtonLocMap = new HashMap<>();
     HashMap<PointData, PerkButton> pointPerkButtonMap = new HashMap<>();
 
     public List<SpellSchool> schoolsInOrder;
@@ -296,7 +295,7 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
 
     private void newButton(AbstractButtonWidget b) {
         this.addButton(b);
-        originalButtonLocMap.put(b, new Point2D(b.x, b.y));
+        originalButtonLocMap.put(b, new PointData(b.x, b.y));
         if (b instanceof PerkButton) {
             this.pointPerkButtonMap.put(((PerkButton) b).point, (PerkButton) b);
         }
@@ -317,10 +316,10 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
 
         this.buttons.forEach(b -> {
             if (originalButtonLocMap.containsKey(b)) {
-                b.x = (int) (this.originalButtonLocMap.get(b)
-                    .getX() + scrollX);
+                b.x = (int) (this.originalButtonLocMap.get(b).
+                    x + scrollX);
                 b.y = (int) (this.originalButtonLocMap.get(b)
-                    .getY() + scrollY);
+                    .y + scrollY);
             }
         });
 

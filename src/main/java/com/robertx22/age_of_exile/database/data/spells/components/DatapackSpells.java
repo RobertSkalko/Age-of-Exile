@@ -324,7 +324,8 @@ public class DatapackSpells {
             .onCast(Builder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
             .build();
 
-        Spell.Builder.of("purifying_fires", SpellConfiguration.Builder.instant(7, 20), "Purifying Fires")
+        Spell.Builder.of("purifying_fires", SpellConfiguration.Builder.instant(7, 20)
+            .setSwingArm(), "Purifying Fires")
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(Builder.swordSweepParticles())

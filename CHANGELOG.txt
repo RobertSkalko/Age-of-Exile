@@ -28,3 +28,6 @@ Other changes:
 - added projectile speed stat
 - added pvp dmg multi config
 - creative players now dont have spell cast restrictions (no need for mana, wep etc)
+- added cooldown to "no mana" wooshing sounds
+- current spell now shows if on cooldown or not enough mana to cast it
+- creative players now have access to all spells for easy testing
