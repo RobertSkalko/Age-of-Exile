@@ -6,6 +6,7 @@ This update reworks skill gems into skill trees and turns spells into datapacks!
 - added skill trees
 - spells are now datapacks
 - added skill tree datapacks
+- added skill modifier datapacks
 
 By investing points into Skill trees you can unlock stat bonuses and spells.
 There's currently 6 skill trees: Fire, Ocean, Nature, Storm, Divine, Hunting.
@@ -24,3 +25,5 @@ Reason being is that those changes are likely to break existing datapacks. The s
 Other changes:
 - should fix my mobs spawning in light
 - added 2 new gems: opals and garnets!
+- added projectile speed stat
+- added pvp dmg multi config

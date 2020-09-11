@@ -84,7 +84,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     }
 
     public enum PerkType {
-        STAT(1, 24, 24), SPECIAL(2, 26, 26), SPELL(3, 24, 26), START(4, 23, 23), SPELL_MOD(1, 24, 24);
+        STAT(2, 24, 24), SPECIAL(3, 24, 26), SPELL(1, 33, 33), START(4, 23, 23), SPELL_MOD(5, 26, 26);
         int order;
 
         public int width;
@@ -97,7 +97,9 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         }
 
         public int getXOffset() {
-            return order + 28 * (order - 1);
+            int num = order + 37 * (order - 1);
+
+            return num;
         }
 
     }

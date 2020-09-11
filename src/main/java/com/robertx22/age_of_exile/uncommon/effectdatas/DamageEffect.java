@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
@@ -136,6 +137,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (source instanceof PlayerEntity) {
             dmg = modifyByAttackSpeedIfMelee(dmg);
             dmg = modifyIfArrowDamage(dmg);
+
+        }
+
+        if (areBothPlayers()) {
+            dmg *= ModConfig.get().Server.PVP_DMG_MULTI;
         }
 
         return dmg * percentMulti;

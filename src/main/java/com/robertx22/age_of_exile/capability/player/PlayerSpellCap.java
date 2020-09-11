@@ -27,6 +27,7 @@ public class PlayerSpellCap {
 
         public abstract List<Spell> getLearnedSpells(LivingEntity en);
 
+        public abstract boolean isSpellLearned(LivingEntity en, Spell spell);
     }
 
     public static class DefaultImpl extends ISpellsCap {
@@ -92,6 +93,11 @@ public class PlayerSpellCap {
                 }
             }
             return list;
+        }
+
+        @Override
+        public boolean isSpellLearned(LivingEntity en, Spell spell) {
+            return getLearnedSpells(en).contains(spell);
         }
 
     }

@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModStatData;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 
@@ -24,12 +26,12 @@ public class SpellStatsCalcEffect extends EffectData {
 
     @Override
     protected void activate() {
+        Spell spell = SlashRegistry.Spells()
+            .get(spell_id);
         Load.perks(this.source)
-            .getAllAllocatedPerks()
-            .forEach(x -> {
-                x.getSpellMods()
-                    .forEach(m -> m.mods.forEach(e -> data.add(e)));
-            });
+            .getAllSpellModifiersFor(spell)
+            .forEach(m -> m.mods.forEach(e -> data.add(e)));
+
     }
 
     public static class CalculatedSpellConfiguration {

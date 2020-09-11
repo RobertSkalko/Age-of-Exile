@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.ProjectileCast
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -74,6 +75,8 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
             .intValue();
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
             .floatValue();
+
+        builder.shootSpeed *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.PROJECTILE_SPEED);
 
         builder.apart = data.getOrDefault(MapField.PROJECTILES_APART, 75D)
             .floatValue();

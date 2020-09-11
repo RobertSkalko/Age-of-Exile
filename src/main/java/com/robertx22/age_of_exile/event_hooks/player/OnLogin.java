@@ -5,12 +5,12 @@ import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,6 +29,10 @@ public class OnLogin {
             SlashRegistry.sendAllPacketsToClientOnLogin(player);
 
             Packets.sendToClient(player, new OnLoginClientPacket(OnLoginClientPacket.When.AFTER));
+
+            Load.spells(player)
+                .getCastingData()
+                .clearLockedSpells(player);
 
             SlashRegistry.restoreFromBackupifEmpty();
 

@@ -215,15 +215,13 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             .forEach(e -> {
 
                 // centers them if they are smaller than the biggest one
-                int addx = (e.getValue()
-                    .getType().width - PerkButton.BIGGEST) / 2;
-                int addy = (e.getValue()
-                    .getType().height - PerkButton.BIGGEST) / 2;
-
-                int subx = e.getValue()
+                int addx = (PerkButton.BIGGEST) / 2 - e.getValue()
                     .getType().width / 2;
-                int suby = e.getValue()
+                int addy = (PerkButton.BIGGEST) / 2 - e.getValue()
                     .getType().height / 2;
+
+                int subx = PerkButton.BIGGEST / 2;
+                int suby = PerkButton.BIGGEST / 2;
 
                 int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
                 int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;

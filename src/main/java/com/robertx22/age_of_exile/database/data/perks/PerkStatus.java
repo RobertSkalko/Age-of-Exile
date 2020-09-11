@@ -11,7 +11,8 @@ public enum PerkStatus {
     }
 
     public int getYOffset() {
-        return order + 28 * (order - 1);
+
+        return order + 37 * (order - 1);
     }
 
 }

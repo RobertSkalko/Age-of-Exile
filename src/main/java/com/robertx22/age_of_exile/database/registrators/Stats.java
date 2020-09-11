@@ -25,6 +25,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncr
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -101,6 +102,7 @@ public class Stats implements ISlashRegistryInit {
 
                     // generated
 
+                    add(ProjectileSpeedStat.getInstance());
                     add(ReducedCooldownStat.getInstance());
                     add(ReducedManaCost.getInstance());
                     add(FasterCastRate.getInstance());
