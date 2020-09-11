@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExilePotionAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasModifierCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
@@ -22,6 +23,7 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.util.Formatting;
 
 import java.util.*;
 
@@ -151,7 +153,7 @@ public class ComponentPart {
         MutableText text = new LiteralText("");
 
         String firstLetter = "*";
-        boolean isCondition = false;
+        boolean isSpellModifier = false;
 
         for (MapHolder part : acts) {
             SpellAction handler = SpellAction.MAP.get(part.type);
@@ -163,15 +165,16 @@ public class ComponentPart {
 
         for (MapHolder part : ifs) {
             EffectCondition handler = EffectCondition.MAP.get(part.type);
+            if (handler instanceof CasterHasModifierCondition) {
+                isSpellModifier = true;
+            }
             if (handler instanceof ICMainTooltip) {
                 ICMainTooltip line = (ICMainTooltip) handler;
                 list.addAll(line.getLines(spell, part));
-                isCondition = true;
+
             }
         }
-        if (isCondition) {
-            firstLetter = "-";
-        }
+
         boolean hasAction = false;
 
         for (MapHolder part : ifs) {
@@ -202,6 +205,14 @@ public class ComponentPart {
             }
         }
 
+        if (isSpellModifier) {
+            text.formatted(Formatting.DARK_PURPLE);
+            text = new LiteralText(" - ").formatted(Formatting.DARK_PURPLE)
+                .append(text);
+        } else {
+            text.formatted(Formatting.GREEN);
+        }
+
         if (hasAction) {
             list.add(text);
         }
@@ -226,14 +237,14 @@ public class ComponentPart {
         public static ComponentPart restoreManaInRadius(ValueCalculationData calc, Double radius) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.RESTORE_MANA.create(calc));
-            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
             return c;
         }
 
         public static ComponentPart restoreMagicShieldInRadius(ValueCalculationData calc, Double radius) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.RESTORE_MAGIC_SHIELD.create(calc));
-            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+            c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
             return c;
         }
 

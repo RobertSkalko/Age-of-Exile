@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,8 @@ public class CasterHasModifierCondition extends EffectCondition implements ICMai
         text.append("Spell Modifier: ")
             .append(mod.locName())
             .append(" ");
+
+        text.formatted(Formatting.DARK_PURPLE);
 
         list.add(text);
         return list;

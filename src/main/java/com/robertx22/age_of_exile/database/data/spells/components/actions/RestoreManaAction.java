@@ -49,8 +49,10 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
                 ctx.calculatedSpellData.getSpell()
             );
 
-            Load.Unit(ctx.target)
-                .modifyResource(hctx);
+            targets.forEach(x -> {
+                Load.Unit(x)
+                    .modifyResource(hctx);
+            });
 
         }
 

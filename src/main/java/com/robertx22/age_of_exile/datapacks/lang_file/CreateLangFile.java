@@ -31,7 +31,7 @@ public class CreateLangFile {
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocName iauto : entry.getValue()) {
 
-                if (iauto.shouldRegisterLangName() && !iauto.locNameForLangFile()
+                if (iauto.shouldRegisterLangName() && iauto.locNameForLangFile() != null && !iauto.locNameForLangFile()
                     .isEmpty()) {
 
                     if (iauto.locNameForLangFile()

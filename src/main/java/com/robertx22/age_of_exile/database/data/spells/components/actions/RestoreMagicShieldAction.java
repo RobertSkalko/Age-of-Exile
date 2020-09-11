@@ -48,8 +48,11 @@ public class RestoreMagicShieldAction extends SpellAction implements ICTextToolt
                 value, ResourcesData.Use.RESTORE,
                 ctx.calculatedSpellData.getSpell()
             );
-            Load.Unit(ctx.target)
-                .modifyResource(hctx);
+
+            targets.forEach(x -> {
+                Load.Unit(x)
+                    .modifyResource(hctx);
+            });
 
         }
 

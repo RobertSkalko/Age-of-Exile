@@ -214,19 +214,23 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
         school.calcData.perks.entrySet()
             .forEach(e -> {
 
-                // centers them if they are smaller than the biggest one
-                int addx = (PerkButton.BIGGEST) / 2 - e.getValue()
-                    .getType().width / 2;
-                int addy = (PerkButton.BIGGEST) / 2 - e.getValue()
-                    .getType().height / 2;
+                try {
+                    // centers them if they are smaller than the biggest one
+                    int addx = (PerkButton.BIGGEST) / 2 - e.getValue()
+                        .getType().width / 2;
+                    int addy = (PerkButton.BIGGEST) / 2 - e.getValue()
+                        .getType().height / 2;
 
-                int subx = PerkButton.BIGGEST / 2;
-                int suby = PerkButton.BIGGEST / 2;
+                    int subx = PerkButton.BIGGEST / 2;
+                    int suby = PerkButton.BIGGEST / 2;
 
-                int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
-                int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
+                    int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
+                    int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
 
-                this.newButton(new PerkButton(entityPerks, school, e.getKey(), e.getValue(), x, y));
+                    this.newButton(new PerkButton(entityPerks, school, e.getKey(), e.getValue(), x, y));
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             });
 
         int sx = mc.getWindow()

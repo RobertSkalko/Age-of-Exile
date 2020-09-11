@@ -11,7 +11,9 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +32,7 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
         mod.identifier = id;
         mod.locName = locname;
         mod.for_spell = spell;
-        mod.iconForPerk = SlashRegistry.Spells()
-            .get(spell)
-            .getIconLoc()
+        mod.iconForPerk = Spell.getIconLoc(spell)
             .toString();
 
         return mod;
@@ -93,12 +93,20 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
+
+        if (I18n.hasTranslation(locNameLangFileGUID())) {
+            list.add(locName().formatted(Formatting.DARK_PURPLE));
+        }
+
         list.add(SlashRegistry.Spells()
             .get(for_spell)
             .locName()
             .append(" ")
-            .append(Words.Modifier.locName()));
+            .append(Words.Modifier.locName())
+            .formatted(Formatting.RED));
+
         this.mods.forEach(x -> list.addAll(x.GetTooltipString(info)));
+
         return list;
     }
 

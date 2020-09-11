@@ -51,20 +51,22 @@ public class PlayerPerksData {
         if (SlashRegistry.Spells()
             .isRegistered(perk.spell)) {
 
-            for (Map.Entry<Integer, String> entry : new HashMap<>(Load.spells(player)
-                .getCastingData()
-                .getBar())
-                .entrySet()) {
+            if (!getSchool(school).map.getOrDefault(point, false)) {
+                for (Map.Entry<Integer, String> entry : new HashMap<>(Load.spells(player)
+                    .getCastingData()
+                    .getBar())
+                    .entrySet()) {
 
-                if (entry.getValue()
-                    .isEmpty()) {
-                    Load.spells(player)
-                        .getCastingData()
-                        .getBar()
-                        .put(entry.getKey(), perk.spell);
-                    break;
+                    if (entry.getValue()
+                        .isEmpty()) {
+                        Load.spells(player)
+                            .getCastingData()
+                            .getBar()
+                            .put(entry.getKey(), perk.spell);
+                        break;
+                    }
+
                 }
-
             }
 
         }

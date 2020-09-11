@@ -84,22 +84,22 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     }
 
     public enum PerkType {
-        STAT(2, 24, 24), SPECIAL(3, 24, 26), SPELL(1, 33, 33), START(4, 23, 23), SPELL_MOD(5, 26, 26);
+        STAT(2, 24, 24, 39), SPECIAL(3, 24, 26, 77), SPELL(1, 33, 33, 1), START(4, 23, 23, 115), SPELL_MOD(5, 26, 26, 153);
         int order;
 
         public int width;
         public int height;
+        private int xoff;
 
-        PerkType(int order, int width, int height) {
+        PerkType(int order, int width, int height, int xoff) {
             this.order = order;
             this.width = width;
             this.height = height;
+            this.xoff = xoff;
         }
 
         public int getXOffset() {
-            int num = order + 37 * (order - 1);
-
-            return num;
+            return xoff;
         }
 
     }

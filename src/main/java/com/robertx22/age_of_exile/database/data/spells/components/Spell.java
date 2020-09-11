@@ -59,7 +59,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public final Identifier getIconLoc() {
-        return new Identifier(Ref.MODID, "textures/gui/spells/icons/" + GUID() + ".png");
+        return getIconLoc(GUID());
+    }
+
+    public static final Identifier getIconLoc(String id) {
+        return new Identifier(Ref.MODID, "textures/gui/spells/icons/" + id + ".png");
     }
 
     public final void onCastingTick(SpellCastContext ctx) {
