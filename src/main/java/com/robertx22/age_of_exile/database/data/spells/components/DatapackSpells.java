@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.database.registrators.SpellModifiers;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -48,6 +49,7 @@ public class DatapackSpells {
     public static String POISONBALL_ID = "poison_ball";
     public static String THUNDERSPEAR_ID = "thunder_spear";
     public static String HEALING_AURA_ID = "healing_aura";
+    public static String THORN_BUSH_ID = "thorn_bush";
 
     public static void init() {
 
@@ -160,7 +162,7 @@ public class DatapackSpells {
             .onTick(Builder.onTickHealInAoe(30D, ValueCalculationData.base(3), 2D))
             .build();
 
-        Spell.Builder.of("thorn_bush", DatapackSpells.PLANT_CONFIG(), "Poison Bush")
+        Spell.Builder.of(THORN_BUSH_ID, DatapackSpells.PLANT_CONFIG(), "Poison Bush")
             .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onTick("projectile", Builder.particleOnTick(3D, ParticleTypes.HAPPY_VILLAGER, 3D, 0.15D))
             .onExpire("projectile", Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.BUBBLE_CORAL, 150D)))
@@ -170,7 +172,8 @@ public class DatapackSpells {
             .onTick(Builder.particleOnTick(30D, ParticleTypes.WITCH, 15D, 2D))
             .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH, 1D, 2D))
             .onTick(Builder.onTickDamageInAoe(30D, ValueCalculationData.base(1), Elements.Nature, 2D))
-            .onTick(Builder.addExileEffectToEnemiesInAoe(PoisonEffect.INSTANCE, 2D))
+            .onTick(Builder.addExileEffectToEnemiesInAoe(PoisonEffect.INSTANCE, 2D)
+                .requiresSpellMod(SpellModifiers.THORN_BUSH_EFFECT))
             .build();
 
         Spell.Builder.of("heart_of_ice", SpellConfiguration.Builder.instant(15, 160 * 20), "Hear of Ice")

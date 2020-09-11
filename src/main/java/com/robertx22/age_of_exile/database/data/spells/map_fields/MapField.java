@@ -49,6 +49,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> PUSH_WAY = make("push_way");
     public static MapField<String> POS_SOURCE = make("pos_source");
     public static MapField<String> SHOOT_DIRECTION = make("shoot_way");
+    public static MapField<String> SPELL_MODIFIER = make("spell_mod");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");

@@ -6,21 +6,38 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, IAutoGson<SpellModifier>, ITooltipList {
+public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, IAutoGson<SpellModifier>, ITooltipList, IAutoLocName {
     public static SpellModifier SERIALIZER = new SpellModifier();
     public String identifier;
 
     public List<SpellModStatData> mods = new ArrayList<>();
 
     public String for_spell;
+
+    public static SpellModifier createSpecial(String id, String spell, String locname) {
+
+        SpellModifier mod = new SpellModifier();
+        mod.identifier = id;
+        mod.locName = locname;
+        mod.for_spell = spell;
+        mod.iconForPerk = SlashRegistry.Spells()
+            .get(spell)
+            .getIconLoc()
+            .toString();
+
+        return mod;
+
+    }
 
     public static SpellModifier addToSeriazables(String spell, SpellModEnum spellStat) {
         SpellModifier mod = new SpellModifier();
@@ -40,8 +57,13 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
         perk.identifier = identifier;
         perk.type = Perk.PerkType.SPELL_MOD;
         perk.spell_mods.add(this.GUID());
-        perk.icon = this.mods.get(0).spell_stat.getIconLoc()
-            .toString();
+
+        if (iconForPerk.isEmpty()) {
+            perk.icon = this.mods.get(0).spell_stat.getIconLoc()
+                .toString();
+        } else {
+            perk.icon = iconForPerk;
+        }
         perk.addToSerializables();
         return perk;
     }
@@ -51,7 +73,7 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
     }
 
     public transient String locName;
-    public transient String iconForPerk;
+    public transient String iconForPerk = "";
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -78,6 +100,21 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
             .append(Words.Modifier.locName()));
         this.mods.forEach(x -> list.addAll(x.GetTooltipString(info)));
         return list;
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Spells;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".spell_mods." + GUID();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return locName;
     }
 }
 

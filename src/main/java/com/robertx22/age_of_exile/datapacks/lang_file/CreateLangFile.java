@@ -31,8 +31,8 @@ public class CreateLangFile {
             json += CreateLangFileUtils.comment(entry.getKey());
             for (IAutoLocName iauto : entry.getValue()) {
 
-                if (iauto.shouldRegisterLangName() && iauto.locNameForLangFile()
-                    .isEmpty() == false) {
+                if (iauto.shouldRegisterLangName() && !iauto.locNameForLangFile()
+                    .isEmpty()) {
 
                     if (iauto.locNameForLangFile()
                         .contains("\"")) {
@@ -146,6 +146,8 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.UniqueGears()
             .getSerializable());
         list.addAll(SlashRegistry.Affixes()
+            .getSerializable());
+        list.addAll(SlashRegistry.SpellModifiers()
             .getSerializable());
         list.addAll(SlashRegistry.Runewords()
             .getSerializable());

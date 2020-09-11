@@ -67,6 +67,14 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         return perks;
     }
 
+    public Boolean hasSpellModifier(SpellModifier mod) {
+        return getAllAllocatedPerks().stream()
+            .filter(x -> x.type == Perk.PerkType.SPELL_MOD)
+            .anyMatch(e -> e.getSpellMods()
+                .stream()
+                .anyMatch(m -> m.identifier.equals(mod.identifier)));
+    }
+
     public PerkStatus getStatus(PlayerEntity player, SpellSchool school, PointData point) {
 
         if (isAllocated(school, point)) {

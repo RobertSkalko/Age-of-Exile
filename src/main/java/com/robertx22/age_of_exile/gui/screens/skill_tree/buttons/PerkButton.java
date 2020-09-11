@@ -22,7 +22,7 @@ import java.util.List;
 
 public class PerkButton extends TexturedButtonWidget {
 
-    public static int SPACING = 24;
+    public static int SPACING = 26;
     public static int BIGGEST = 33;
 
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");

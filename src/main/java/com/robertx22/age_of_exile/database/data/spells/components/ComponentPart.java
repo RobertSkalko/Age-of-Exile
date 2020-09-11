@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Base
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
@@ -129,6 +130,10 @@ public class ComponentPart {
         return this;
     }
 
+    public ComponentPart requiresSpellMod(SpellModifier mod) {
+        return addCondition(EffectCondition.CASTER_HAS_SPELL_MOD.create(mod));
+    }
+
     public ComponentPart addCondition(MapHolder map) {
         this.ifs.add(map);
         return this;
@@ -139,15 +144,28 @@ public class ComponentPart {
 
         MutableText text = new LiteralText("");
 
+        String firstLetter = "*";
+        boolean isCondition = false;
+
         for (MapHolder part : acts) {
             SpellAction handler = SpellAction.MAP.get(part.type);
             if (handler instanceof ICMainTooltip) {
                 ICMainTooltip line = (ICMainTooltip) handler;
                 list.addAll(line.getLines(spell, part));
             }
-
         }
 
+        for (MapHolder part : ifs) {
+            EffectCondition handler = EffectCondition.MAP.get(part.type);
+            if (handler instanceof ICMainTooltip) {
+                ICMainTooltip line = (ICMainTooltip) handler;
+                list.addAll(line.getLines(spell, part));
+                isCondition = true;
+            }
+        }
+        if (isCondition) {
+            firstLetter = "-";
+        }
         boolean hasAction = false;
 
         for (MapHolder part : ifs) {
