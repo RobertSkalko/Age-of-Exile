@@ -1,3 +1,6 @@
+v.1.3.2
+- forgot to include chinese translation
+
 v.1.3.1
 
 - fix datapacks not loading correctly on server
