@@ -57,7 +57,7 @@ public class AreaSearch {
 
     boolean areSameBiomes(ChunkPos cp) {
 
-        Biome other = world.getBiome(cp.getCenterBlockPos());
+        Biome other = world.getBiome(cp.getStartPos());
 
         if (biome == other) {
             return true;

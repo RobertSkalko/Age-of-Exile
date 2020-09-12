@@ -52,8 +52,6 @@ public class ModpackerHelperLists {
 
                     fw.close();
 
-                    System.out.println("Saved lang file to " + file.toPath()
-                        .toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

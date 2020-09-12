@@ -220,6 +220,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         TooltipUtils.addEmpty(list);
 
+        if (this.config.times_to_cast > 1) {
+            TooltipUtils.addEmpty(list);
+            list.add(new LiteralText("Casted " + config.times_to_cast + " times during channel.").formatted(Formatting.RED));
+        }
+
         return list;
 
     }

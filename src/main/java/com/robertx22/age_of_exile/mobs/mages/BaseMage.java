@@ -37,7 +37,7 @@ public abstract class BaseMage extends SkeletonEntity {
     }
 
     @Override
-    protected boolean isInDaylight() {
+    protected boolean isAffectedByDaylight() {
         return false; // dont burn
     }
 

@@ -52,7 +52,7 @@ public class AreaData {
             Set<Integer> list = new HashSet<>();
 
             getChunks().forEach(x -> {
-                list.add(LevelUtils.determineLevel(world, x.getCenterBlockPos(), player));
+                list.add(LevelUtils.determineLevel(world, x.getStartPos(), player));
             });
 
             if (list.isEmpty()) {
@@ -109,7 +109,7 @@ public class AreaData {
 
     public void setChunks(List<ChunkPos> chunks) {
         this.chunks = chunks.stream()
-            .map(x -> x.getCenterBlockPos())
+            .map(x -> x.getStartPos())
             .collect(Collectors.toList());
     }
 

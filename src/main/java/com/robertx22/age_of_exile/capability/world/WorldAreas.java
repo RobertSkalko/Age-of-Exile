@@ -39,7 +39,7 @@ public class WorldAreas implements Component {
     public static AreaData getArea(World world, BlockPos pos) {
         WorldAreas worldAreas = ModRegistry.COMPONENTS.WORLD_AREAS.get(world);
 
-        pos = new ChunkPos(pos).getCenterBlockPos(); // this is important
+        pos = new ChunkPos(pos).getStartPos(); // this is important
 
         if (world.isClient) {
             // ask for server packet (but player should already have it in chunkloadevent??

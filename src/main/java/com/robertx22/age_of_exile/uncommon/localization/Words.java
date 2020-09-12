@@ -169,6 +169,8 @@ public enum Words implements IAutoLocName {
 
     Blizzard("Blizzard"),
 
+    ClickToOpen("Click to Open"),
+
     Whirpool("Whirpool"),
 
     Geyser("Geyser"),

@@ -46,7 +46,7 @@ public class SummonAtSightAction extends SpellAction implements ICMainTooltip {
         Double distance = data.getOrDefault(MapField.DISTANCE, 10D);
         Double height = data.getOrDefault(MapField.HEIGHT, 10D);
 
-        HitResult ray = ctx.caster.rayTrace(distance, 0.0F, false);
+        HitResult ray = ctx.caster.raycast(distance, 0.0F, false);
         Vec3d pos = ray.getPos();
 
         Entity en = projectile.get()

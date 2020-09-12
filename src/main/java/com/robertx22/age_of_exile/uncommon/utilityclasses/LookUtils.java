@@ -5,7 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RayTraceContext;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class LookUtils {
                 float collisionBorderSize = entity.getTargetingMargin();
                 Box hitbox = entity.getBoundingBox()
                     .stretch(collisionBorderSize, collisionBorderSize, collisionBorderSize);
-                Optional<Vec3d> interceptPosition = hitbox.rayTrace(positionVector, reachVector);
+                Optional<Vec3d> interceptPosition = hitbox.raycast(positionVector, reachVector);
                 Vec3d interceptVec = interceptPosition.orElse(null);
 
                 if (hitbox.contains(positionVector)) {
@@ -83,7 +83,7 @@ public class LookUtils {
                                     double len) {
         Vec3d end = origin.add(ray.normalize()
             .multiply(len));
-        HitResult pos = world.rayTrace(new RayTraceContext(origin, end, RayTraceContext.ShapeType.OUTLINE, RayTraceContext.FluidHandling.NONE, e));
+        HitResult pos = world.raycast(new RaycastContext(origin, end, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, e));
         return pos;
     }
 

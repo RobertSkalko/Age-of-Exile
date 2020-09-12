@@ -85,7 +85,7 @@ public class DatapackSpells {
             .build();
 
         Spell.Builder.of(THROW_FLAMES_ID, MULTI_TARGET_PROJ_CONFIG(), "Throw Flames")
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BLAZE_POWDER, 3D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 50D, false)
                 .put(MapField.PROJECTILES_APART, 30D)))

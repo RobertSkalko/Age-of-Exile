@@ -66,7 +66,7 @@ dependencies {
 	modImplementation "de.siphalor:nbtcrafting-${nbtcrafting_version}"
 	include "de.siphalor:nbtcrafting-${nbtcrafting_version}"
 
-    compile files("Library-Of-Exile-1.16.2-1.0.3-dev.jar")
+    compile files("Library-Of-Exile-1.16.2-1.0.4-dev.jar")
 	
 	
 }

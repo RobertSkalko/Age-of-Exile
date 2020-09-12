@@ -29,7 +29,7 @@
   "depends": {
     "fabricloader": ">=0.9.0",
     "fabric": ">=0.19.0",
-    "minecraft": "1.16.2",
+    "minecraft": ">=1.16.2",
 	"curios": ">=0.0.6-1.16.2",
 	"library_of_exile": ">=1.0.3",	
 	"cloth-config2": "*",
