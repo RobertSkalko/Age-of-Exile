@@ -198,22 +198,23 @@ public class SlashRegistry {
 
     public static void sendAllPacketsToClientOnLogin(ServerPlayerEntity player) {
 
-        getAllRegistries()
+        SlashRegistryType.getInRegisterOrder()
             .forEach(x -> {
-                if (x.getType()
-                    .getSerializer() != null) {
+                if (x.getLoader() != null && x.ser != null) {
+
                     try {
 
-                        List<ISerializedRegistryEntry> list = x.getFromDatapacks();
+                        SlashRegistryContainer cont = SlashRegistry.getRegistry(x);
+
+                        List<ISerializedRegistryEntry> list = cont.getFromDatapacks();
 
                         if (list.size() == 0) {
-                            throw new Exception("Registry empty: " + x.getType()
-                                .name());
+                            throw new Exception("Registry empty: " + x.name());
                         } else if (list.size() < 100) {
-                            Packets.sendToClient(player, new RegistryPacket(x.getType(), list));
+                            Packets.sendToClient(player, new RegistryPacket(x, list));
                         } else {
                             for (List<ISerializedRegistryEntry> part : Lists.partition(list, 100)) {
-                                Packets.sendToClient(player, new RegistryPacket(x.getType(), part));
+                                Packets.sendToClient(player, new RegistryPacket(x, part));
                             }
 
                         }
@@ -221,9 +222,9 @@ public class SlashRegistry {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
                 }
             });
-
     }
 
     public static void checkGuidValidity() {
@@ -302,6 +303,8 @@ public class SlashRegistry {
     public static void initRegistries() {
         SERVER = new HashMap<>();
 
+        SlashRegistryType.init();
+
         // data pack ones
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).isDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).isDatapack());
@@ -328,7 +331,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.ENTITY_CONFIGS, new EntityConfig("", 0)).logAdditions()
             .isDatapack());
 
-        // data pack ones
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.STAT, EmptyStat.getInstance()));
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EFFECT, null));

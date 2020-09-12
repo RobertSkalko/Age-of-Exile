@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.database.registry;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 
 import java.util.ArrayList;
@@ -8,48 +10,61 @@ import java.util.List;
 
 public class SlashRegistryPackets {
 
-    private static HashMap<SlashRegistryType, List<ISerializedRegistryEntry>> map = new HashMap<>();
+    private static HashMap<SlashRegistryType, List<JsonObject>> map = new HashMap<>();
 
     public static boolean allPacketsRecieved = false;
 
-    public static void add(ISerializedRegistryEntry entry) {
+    public static void add(SlashRegistryType type, JsonObject entry) {
 
-        if (!map.containsKey(entry.getSlashRegistryType())) {
-            map.put(entry.getSlashRegistryType(), new ArrayList<>());
+        if (!map.containsKey(type)) {
+            map.put(type, new ArrayList<>());
         }
-
-        List<ISerializedRegistryEntry> list = map.get(entry.getSlashRegistryType());
+        List<JsonObject> list = map.get(type);
         list.add(entry);
-
     }
 
     public static void registerAll() {
 
-        map.entrySet()
-            .forEach(entry -> {
+        SlashRegistryType.getInRegisterOrder()
+            .forEach(type -> {
 
-                SlashRegistryType type = entry.getKey();
+                if (type.getLoader() != null) {
 
-                SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
+                    SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
 
-                reg.unregisterAllEntriesFromDatapacks();
+                    reg.unregisterAllEntriesFromDatapacks();
 
-                List<ISerializedRegistryEntry> list = entry.getValue();
+                    List<JsonObject> list = map.get(type);
 
-                if (list
-                    .isEmpty()) {
-                    throw new RuntimeException("Registry list sent from server is empty!");
-                }
+                    if (list
+                        .isEmpty()) {
+                        throw new RuntimeException("Registry list sent from server is empty!");
+                    }
 
-                list.forEach(x -> x.registerToSlashRegistry());
+                    list.forEach(x -> {
 
-                if (reg
-                    .isEmpty()) {
-                    throw new RuntimeException("Mine and Slash Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
-                } else {
-                    System.out.println(type.name() + " registry load on client succeeded with: " + reg.getSize() + " entries.");
+                        try {
+                            ISerializedRegistryEntry entry = (ISerializedRegistryEntry) type.getSerializer()
+                                .fromJson(x);
+                            entry.registerToSlashRegistry();
+
+                        } catch (JsonSyntaxException e) {
+                            System.out.println("Failed to parse Age of Exile registry Json!!!");
+                            e.printStackTrace();
+                        }
+
+                    });
+
+                    if (reg
+                        .isEmpty()) {
+                        throw new RuntimeException("Mine and Slash Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
+                    } else {
+                        System.out.println(type.name() + " registry load on client succeeded with: " + reg.getSize() + " entries.");
+                    }
                 }
             });
+
+        SlashRegistryPackets.allPacketsRecieved = true;
 
         map.clear();
     }

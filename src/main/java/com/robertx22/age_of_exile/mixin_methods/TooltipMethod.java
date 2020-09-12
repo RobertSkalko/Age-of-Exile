@@ -10,10 +10,10 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
-import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
@@ -81,6 +81,7 @@ public class TooltipMethod {
                 if (data != null) {
                     data.BuildTooltip(ctx);
                 } else {
+
                     CompatibleItemUtils.Data cdata = CompatibleItemUtils.getData(stack.getItem());
 
                     if (cdata.isCompatible) {

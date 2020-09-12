@@ -3,7 +3,10 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.robertx22.age_of_exile.database.registry.*;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryPackets;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -21,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class RegistryPacket extends MyPacket<RegistryPacket> {
 
-    static final JsonParser PARSER = new JsonParser();
+    public static final JsonParser PARSER = new JsonParser();
 
     SlashRegistryType type;
     ListStringData data;
@@ -104,25 +107,15 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
         }
 
         data.getList()
-            .stream()
-            .map(x -> {
+            .forEach(x -> {
                 try {
                     JsonObject json = (JsonObject) PARSER.parse(x);
-                    return type.getSerializer()
-                        .fromJson(json);
+                    SlashRegistryPackets.add(this.type, json);
                 } catch (JsonSyntaxException e) {
-                    System.out.println("Failed to parse Age of Exile registry Json!!!");
                     e.printStackTrace();
                 }
-                return null;
-
-            })
-            .collect(Collectors.toList())
-            .forEach(x -> {
-                if (x instanceof ISlashRegistryEntry) {
-                    SlashRegistryPackets.add((ISerializedRegistryEntry) x);
-                }
             });
+
     }
 
     @Override

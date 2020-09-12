@@ -19,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 
 public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends JsonDataLoader {
@@ -31,6 +32,7 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
 
     public BaseDataPackLoader(SlashRegistryType registryType, String id, Function<JsonObject, T> serializer) {
         super(GSON, id);
+        Objects.requireNonNull(registryType);
         this.id = id;
         this.serializer = serializer;
         this.registryType = registryType;

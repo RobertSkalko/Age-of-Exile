@@ -1,3 +1,9 @@
+v.1.3.1
+
+- fix datapacks not loading correctly on server
+- added new weapon icons by catscythe
+- chinese translation
+
 v.1.3.0
 
 This update reworks skill gems into skill trees and turns spells into datapacks!

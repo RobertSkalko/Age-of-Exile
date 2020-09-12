@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryPackets;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -28,6 +29,17 @@ public class CompatibleItemUtils {
         public boolean isCompatible;
 
         List<CompatibleItem> all;
+
+        public static Data empty() {
+            Data data = new Data();
+            data.isCompatible = false;
+            data.all = new ArrayList<>();
+            return data;
+        }
+
+        private Data() {
+
+        }
 
         public Data(Item item) {
 
@@ -106,6 +118,10 @@ public class CompatibleItemUtils {
     }
 
     public static Data getData(Item item) {
+
+        if (!SlashRegistryPackets.allPacketsRecieved) {
+            return Data.empty();
+        }
         if (!Cached.COMPATIBLE_ITEMS.containsKey(item)) {
             getPossibleCompatibleItemsFor(item); // this also sets up the map
         }

@@ -158,7 +158,6 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.Gears.getAllRarities());
-        list.addAll(Rarities.SkillGems.getAllRarities());
         list.addAll(Rarities.Mobs.getAllRarities());
         list.addAll(Arrays.asList(Chats.values()));
 
