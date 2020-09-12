@@ -15,7 +15,7 @@ public class OnItemCrafted {
             return;
         }
 
-        if (CompatibleItemUtils.isCompatible(stack.getItem())) {
+        if (CompatibleItemUtils.isCompatible(world, stack.getItem())) {
             EntityCap.UnitData data = Load.Unit(player);
             CompatibleItemUtils.tryCreateCompatibleItemStats(stack, data.getLevel(), player);
         }

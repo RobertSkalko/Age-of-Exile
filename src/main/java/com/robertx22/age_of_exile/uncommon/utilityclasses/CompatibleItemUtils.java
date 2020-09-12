@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryPackets;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -16,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 
 import java.util.*;
 
@@ -113,13 +113,13 @@ public class CompatibleItemUtils {
 
     }
 
-    public static boolean isCompatible(Item item) {
-        return getData(item).isCompatible;
+    public static boolean isCompatible(World world, Item item) {
+        return getData(world, item).isCompatible;
     }
 
-    public static Data getData(Item item) {
+    public static Data getData(World world, Item item) {
 
-        if (!SlashRegistryPackets.allPacketsRecieved) {
+        if (!SlashRegistry.areDatapacksLoaded(world)) {
             return Data.empty();
         }
         if (!Cached.COMPATIBLE_ITEMS.containsKey(item)) {
@@ -148,7 +148,7 @@ public class CompatibleItemUtils {
         // fast check for every item
         if (!Gear.has(stack)) {
 
-            if (!CompatibleItemUtils.isCompatible(stack.getItem())) {
+            if (!CompatibleItemUtils.isCompatible(player.world, stack.getItem())) {
                 return;
             }
 

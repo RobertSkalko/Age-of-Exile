@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.registry;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import com.robertx22.age_of_exile.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 
 import java.util.ArrayList;
@@ -11,8 +12,6 @@ import java.util.List;
 public class SlashRegistryPackets {
 
     private static HashMap<SlashRegistryType, List<JsonObject>> map = new HashMap<>();
-
-    public static boolean allPacketsRecieved = false;
 
     public static void add(SlashRegistryType type, JsonObject entry) {
 
@@ -64,7 +63,7 @@ public class SlashRegistryPackets {
                 }
             });
 
-        SlashRegistryPackets.allPacketsRecieved = true;
+        ItemAutoPowerLevels.setupHashMaps();
 
         map.clear();
     }

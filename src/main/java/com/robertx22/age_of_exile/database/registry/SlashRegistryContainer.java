@@ -86,6 +86,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return map.size();
     }
 
+    public boolean isRegistrationDone() {
+        return getSize() > 0;
+    }
+
     public SlashRegistryContainer(SlashRegistryType type, C emptyDefault) {
         this.type = type;
         this.emptyDefault = emptyDefault;

@@ -19,6 +19,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -46,9 +47,15 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
 
     @Override
     public Text getName(ItemStack stack) {
-        return new TranslatableText(this.getTranslationKey()).append(": ")
-            .append(get(stack).locName())
-            .formatted(Formatting.GOLD);
+        MutableText txt = new TranslatableText(this.getTranslationKey());
+        try {
+            txt.append(": ")
+                .append(get(stack).locName())
+                .formatted(Formatting.GOLD);
+        } catch (Exception e) {
+        }
+        return txt;
+
     }
 
     public static RuneWord get(ItemStack stack) {

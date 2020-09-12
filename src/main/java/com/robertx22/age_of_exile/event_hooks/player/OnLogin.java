@@ -27,14 +27,12 @@ public class OnLogin {
                 .forEach(x -> x.sendToClient(player));
             Rarities.sendAllPacketsToClientOnLogin(player);
             SlashRegistry.sendAllPacketsToClientOnLogin(player);
-
             Packets.sendToClient(player, new OnLoginClientPacket(OnLoginClientPacket.When.AFTER));
+            SlashRegistry.restoreFromBackupifEmpty();
 
             Load.spells(player)
                 .getCastingData()
                 .clearLockedSpells(player);
-
-            SlashRegistry.restoreFromBackupifEmpty();
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);

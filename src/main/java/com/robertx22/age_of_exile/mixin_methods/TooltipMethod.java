@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
@@ -62,6 +63,9 @@ public class TooltipMethod {
             if (unit == null) {
                 return;
             }
+            if (!SlashRegistry.areDatapacksLoaded(player.world)) {
+                return;
+            }
 
             if (FoodEffectUtils.isFood(stack.getItem())) {
 
@@ -82,7 +86,7 @@ public class TooltipMethod {
                     data.BuildTooltip(ctx);
                 } else {
 
-                    CompatibleItemUtils.Data cdata = CompatibleItemUtils.getData(stack.getItem());
+                    CompatibleItemUtils.Data cdata = CompatibleItemUtils.getData(player.world, stack.getItem());
 
                     if (cdata.isCompatible) {
                         int mini = cdata.minLevel;

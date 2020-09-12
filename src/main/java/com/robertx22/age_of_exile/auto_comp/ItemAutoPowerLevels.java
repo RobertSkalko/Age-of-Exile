@@ -55,6 +55,9 @@ public class ItemAutoPowerLevels {
         if (CACHED.containsKey(item)) {
             return CACHED.get(item);
         }
+        if (STRONGEST.isEmpty()) {
+            return 0F;
+        }
 
         List<BaseGearType> slots = SlashRegistry.GearTypes()
             .getList()
@@ -70,12 +73,9 @@ public class ItemAutoPowerLevels {
             ItemAutoPowerLevels best = getStrongestOf(slot.getGearSlot());
 
             if (best == null) {
-                try {
-                    throw new RuntimeException("No best item for slot: " + slot.getGearSlot()
-                        .GUID());
-                } catch (RuntimeException e) {
-                    e.printStackTrace();
-                }
+                System.out.println("No best item for slot: " + slot.getGearSlot()
+                    .GUID());
+                return 0F;
             }
 
             val += power.divideBy(best);

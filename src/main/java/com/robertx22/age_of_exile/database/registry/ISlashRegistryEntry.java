@@ -44,11 +44,6 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
         return false;
     }
 
-    // true for configs cus they sync from server to client, so unregister on loadFromJsons, then registerForgeConfigs
-    default boolean unregisterBeforeConfigsLoad() {
-        return false;
-    }
-
     @Override
     default int Weight() {
         return getRarity().Weight();

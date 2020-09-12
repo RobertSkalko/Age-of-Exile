@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryPackets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.network.PacketByteBuf;
@@ -30,7 +29,6 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
     public void onReceived(PacketContext ctx) {
 
         if (when == When.BEFORE) {
-            ConfigRegister.unregisterFlaggedEntries();
         }
         if (when == When.AFTER) {
             SlashRegistry.backup();
