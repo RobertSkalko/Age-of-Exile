@@ -38,14 +38,15 @@ public class ModpackerHelperLists {
                     }
 
                     String stuff = String.join("\n", ids);
-                    String filepath = DirUtils.modpackHelperFolderDir() + x.getType().id;
+                    String filepath = DirUtils.modpackHelperFolderDir() + x.getType().id + ".txt";
 
-                    if (Files.exists(Paths.get(DirUtils.modpackHelperFolderDir())) == false) {
+                    new File(DirUtils.modpackHelperFolderDir()).mkdirs();
+
+                    if (!Files.exists(Paths.get(DirUtils.modpackHelperFolderDir()))) {
                         Files.createFile(Paths.get(filepath));
                     }
 
-                    File file = new File(DirUtils.langFilePath());
-
+                    File file = new File(filepath);
                     FileWriter fw = new FileWriter(file);
                     fw.write(stuff);
 

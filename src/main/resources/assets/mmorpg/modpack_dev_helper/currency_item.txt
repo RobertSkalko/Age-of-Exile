@@ -1,0 +1,12 @@
+These are all default registry entries of this type.
+This registry can't be modified or added to.
+currency/crystal_of_truth
+currency/randomize_affixes
+currency/number_reroll
+currency/reroll_affix_numbers
+currency/orb_of_transmutation
+currency/orb_of_infinity
+currency/reroll_primary_stats_numbers
+currency/orb_of_discovery
+currency/stone_of_hope
+currency/reroll_unique_numbers

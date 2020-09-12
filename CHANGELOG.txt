@@ -31,3 +31,4 @@ Other changes:
 - added cooldown to "no mana" wooshing sounds
 - current spell now shows if on cooldown or not enough mana to cast it
 - creative players now have access to all spells for easy testing
+- added a resources\assets\mmorpg\modpack_dev_helper folder where i generate a list of all my default registries. Should be helpful to modpack devs.

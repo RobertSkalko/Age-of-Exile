@@ -1,0 +1,16 @@
+These are all default registry entries of this type.
+This registry can't be modified or added to.
+self_regen
+burn
+judgement
+hunter_instinct
+petrify
+wounds
+static
+poison
+shiver
+thorn_armor
+imbue
+frost
+thunder_essence
+poisoned_weapons
