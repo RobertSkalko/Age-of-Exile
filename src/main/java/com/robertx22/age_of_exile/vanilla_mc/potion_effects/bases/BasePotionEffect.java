@@ -1,8 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -30,18 +29,13 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasePotionEffect extends StatusEffect implements ISlashRegistryEntry<BasePotionEffect>, IAutoLocName, ITooltipList {
+public abstract class BasePotionEffect extends StatusEffect implements IGUID, IAutoLocName, ITooltipList {
 
     public abstract ValueCalculationData getCalc(LivingEntity caster);
 
     public Elements getElement() {
 
         return Elements.Physical;
-    }
-
-    @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.EFFECT;
     }
 
     protected List<OnTickAction> tickActions = new ArrayList<>();

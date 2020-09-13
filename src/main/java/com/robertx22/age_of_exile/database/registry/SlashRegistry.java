@@ -278,8 +278,6 @@ public class SlashRegistry {
 
         new Spells().registerAll(); // some stats are based on spells, so spells go first
 
-        new PotionEffects().registerAll();// some stats are based on effects ,so they go first
-
         new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
         // should be at least
 

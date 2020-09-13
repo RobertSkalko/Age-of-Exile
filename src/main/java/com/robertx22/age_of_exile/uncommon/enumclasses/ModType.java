@@ -10,7 +10,6 @@ public enum ModType {
 
     ModType(String id) {
         this.id = id;
-
     }
 
     public String id;

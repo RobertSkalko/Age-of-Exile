@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.datapacks.lang_file;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IBaseAutoLoc;
 import net.minecraft.block.Block;
@@ -79,16 +78,6 @@ public class CreateLangFileUtils {
         if (list != null && list.size() > 1) {
             try {
                 Collections.sort(list, Comparator.comparing(x -> x.locDescLangFileGUID()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void sortLores(List<IAutoLocMultiLore> list) {
-        if (list != null && list.size() > 1) {
-            try {
-                Collections.sort(list, Comparator.comparing(x -> x.formattedGUID()));
             } catch (Exception e) {
                 e.printStackTrace();
             }

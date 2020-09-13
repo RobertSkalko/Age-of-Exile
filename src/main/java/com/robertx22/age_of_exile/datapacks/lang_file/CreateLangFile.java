@@ -3,9 +3,7 @@ package com.robertx22.age_of_exile.datapacks.lang_file;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.interfaces.IBaseAutoLoc;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
@@ -85,31 +83,6 @@ public class CreateLangFile {
         }
 
         usedGUIDS.clear();
-
-        for (Map.Entry<String, List<IAutoLocMultiLore>> entry : getMultiLoreMap().entrySet()) {
-            json += CreateLangFileUtils.comment(entry.getKey());
-            for (IAutoLocMultiLore iauto : entry.getValue()) {
-
-                if (usedGUIDS.contains(iauto.formattedLocLoresLangFileGUID())) {
-                    continue;
-                }
-                usedGUIDS.add(iauto.formattedLocLoresLangFileGUID());
-
-                if (iauto.loreLines()
-                    .size() > 0) {
-                    int i = 0;
-
-                    for (String line : iauto.loreLines()) {
-
-                        json += "\t" + "\"" + iauto.getPrefixListForLangFile()
-                            .get(i) + iauto.formattedLocLoresLangFileGUID() + "\": \"" + line + "\",\n";
-                        i++;
-                    }
-                }
-            }
-            json += CreateLangFileUtils.comment(entry.getKey());
-
-        }
 
         json += "\n}";
 
@@ -218,36 +191,6 @@ public class CreateLangFile {
                 sortedMap.put(entry.getValue()
                     .get(0)
                     .getDescGroupName(), sortedlist);
-            }
-        }
-
-        return sortedMap;
-
-    }
-
-    public static HashMap<String, List<IAutoLocMultiLore>> getMultiLoreMap() {
-        List<IAutoLocMultiLore> list = CreateLangFileUtils.getFromRegistries(IAutoLocMultiLore.class);
-
-        HashMap<IBaseAutoLoc.AutoLocGroup, List<IAutoLocMultiLore>> map = new HashMap<>();
-
-        for (IBaseAutoLoc.AutoLocGroup autoLocGroup : IBaseAutoLoc.AutoLocGroup.values()) {
-            map.put(
-                autoLocGroup,
-                list.stream()
-                    .filter(x -> x.locLoresGroup()
-                        .equals(autoLocGroup))
-                    .collect(Collectors.toList())
-            );
-        }
-
-        HashMap<String, List<IAutoLocMultiLore>> sortedMap = new HashMap<>();
-        for (Map.Entry<IAutoLocName.AutoLocGroup, List<IAutoLocMultiLore>> entry : map.entrySet()) {
-            List<IAutoLocMultiLore> sortedlist = new ArrayList<>(entry.getValue());
-            CreateLangFileUtils.sortLores(sortedlist);
-            if (sortedlist.size() > 0) {
-                sortedMap.put(entry.getValue()
-                    .get(0)
-                    .getMultiGroupName(), sortedlist);
             }
         }
 

@@ -11,8 +11,6 @@ public enum Chats implements IAutoLocName {
 
     Not_enough_time("Not enough time"),
 
-    A_Piece_of_gear_is_too_high_level_for_you("You Don't meet requirements of a piece of current gear."),
-
     No_targets_found("No targets found"),
 
     You_are_too_low_level("You are too low level"),
@@ -22,10 +20,6 @@ public enum Chats implements IAutoLocName {
     Weapon_durability_is_too_low("Weapon durability is too low"),
 
     You_have_leveled_up("You have leveled up"),
-
-    Teleport_canceled_due_to_movement("Teleport canceled due to movement"),
-
-    Distance_too_high_to_teleport("Distance too high to teleport"),
 
     Not_enough_experience("Not enough experience"),
 

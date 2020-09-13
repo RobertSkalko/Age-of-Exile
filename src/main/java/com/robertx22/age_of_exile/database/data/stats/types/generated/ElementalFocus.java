@@ -7,18 +7,14 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
-import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
 public class ElementalFocus extends SingleElementalStat implements IStatEffects {
 
-    public static MapWrapper<Elements, ElementalFocus> MAP = new MapWrapper();
-
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
-        list.forEach(x -> MAP.put(x.getElement(), (ElementalFocus) x));
         return list;
 
     }
