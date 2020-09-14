@@ -11,9 +11,9 @@ import net.minecraft.network.Packet;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class BaseSpider extends SpiderEntity {
+public class ModSpider extends SpiderEntity {
 
-    public BaseSpider(EntityType<? extends SpiderEntity> entityType, World world) {
+    public ModSpider(EntityType<? extends SpiderEntity> entityType, World world) {
         super(entityType, world);
     }
 

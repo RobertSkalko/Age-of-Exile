@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mobs.renders.zombie;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mobs.zombies.BaseZombie;
+import com.robertx22.age_of_exile.mobs.zombies.ModZombie;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.ZombieBaseEntityRenderer;
 import net.minecraft.client.render.entity.model.DrownedEntityModel;
@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-public class ModZombieRenderer extends ZombieBaseEntityRenderer<BaseZombie, DrownedEntityModel<BaseZombie>> {
+public class ModZombieRenderer extends ZombieBaseEntityRenderer<ModZombie, DrownedEntityModel<ModZombie>> {
     private Identifier TEXTURE;
 
     public ModZombieRenderer(EntityRenderDispatcher entityRenderDispatcher, String id, String id2) {
@@ -20,12 +20,12 @@ public class ModZombieRenderer extends ZombieBaseEntityRenderer<BaseZombie, Drow
     }
 
     @Override
-    public Identifier getTexture(BaseZombie zombieEntity) {
+    public Identifier getTexture(ModZombie zombieEntity) {
         return TEXTURE;
     }
 
     @Override
-    protected void setupTransforms(BaseZombie drownedEntity, MatrixStack matrixStack, float f, float g, float h) {
+    protected void setupTransforms(ModZombie drownedEntity, MatrixStack matrixStack, float f, float g, float h) {
         super.setupTransforms(drownedEntity, matrixStack, f, g, h);
         float i = drownedEntity.getLeaningPitch(h);
         if (i > 0.0F) {

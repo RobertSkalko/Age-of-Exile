@@ -8,9 +8,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class BaseSlime extends MagmaCubeEntity {
+public class ModSlime extends MagmaCubeEntity {
 
-    public BaseSlime(EntityType<? extends MagmaCubeEntity> entityType, World world) {
+    public ModSlime(EntityType<? extends MagmaCubeEntity> entityType, World world) {
         super(entityType, world);
 
     }

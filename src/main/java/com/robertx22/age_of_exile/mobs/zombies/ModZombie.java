@@ -9,9 +9,9 @@ import net.minecraft.network.Packet;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class BaseZombie extends ZombieEntity {
+public class ModZombie extends ZombieEntity {
 
-    public BaseZombie(EntityType<? extends ZombieEntity> entityType, World world) {
+    public ModZombie(EntityType<? extends ZombieEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -30,14 +30,6 @@ public class BaseZombie extends ZombieEntity {
     public Packet<?> createSpawnPacket() {
         return EntityPacket.createPacket(this);
     }
-
-    /*
-    @Override
-    public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
-        return true;
-    }
-
-     */
 
     @Override
     protected boolean burnsInDaylight() {

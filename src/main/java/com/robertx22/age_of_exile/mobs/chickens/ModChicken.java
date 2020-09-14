@@ -24,8 +24,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-public class BaseChicken extends HostileEntity {
-    public BaseChicken(EntityType<? extends HostileEntity> entityType, World world) {
+public class ModChicken extends HostileEntity {
+    public ModChicken(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
 

@@ -7,9 +7,9 @@ import net.minecraft.network.Packet;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class BaseSkeleton extends SkeletonEntity {
+public class ModSkeleton extends SkeletonEntity {
 
-    public BaseSkeleton(EntityType<? extends SkeletonEntity> entityType, World world) {
+    public ModSkeleton(EntityType<? extends SkeletonEntity> entityType, World world) {
         super(entityType, world);
     }
 

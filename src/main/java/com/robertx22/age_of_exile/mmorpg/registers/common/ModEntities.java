@@ -7,18 +7,12 @@ import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities
 import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.bosses.GolemBossEntity;
-import com.robertx22.age_of_exile.mobs.chickens.FireChicken;
-import com.robertx22.age_of_exile.mobs.chickens.NatureChicken;
-import com.robertx22.age_of_exile.mobs.chickens.ThunderChicken;
-import com.robertx22.age_of_exile.mobs.chickens.WaterChicken;
+import com.robertx22.age_of_exile.mobs.chickens.ModChicken;
 import com.robertx22.age_of_exile.mobs.mages.*;
-import com.robertx22.age_of_exile.mobs.skeletons.FireSkeleton;
-import com.robertx22.age_of_exile.mobs.skeletons.NatureSkeleton;
-import com.robertx22.age_of_exile.mobs.skeletons.ThunderSkeleton;
-import com.robertx22.age_of_exile.mobs.skeletons.WaterSkeleton;
-import com.robertx22.age_of_exile.mobs.slimes.*;
-import com.robertx22.age_of_exile.mobs.spiders.*;
-import com.robertx22.age_of_exile.mobs.zombies.*;
+import com.robertx22.age_of_exile.mobs.skeletons.ModSkeleton;
+import com.robertx22.age_of_exile.mobs.slimes.ModSlime;
+import com.robertx22.age_of_exile.mobs.spiders.ModSpider;
+import com.robertx22.age_of_exile.mobs.zombies.ModZombie;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
@@ -32,7 +26,6 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -42,18 +35,8 @@ public class ModEntities {
     public List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
     public List<EntityType<? extends Entity>> ENTITY_THAT_USE_ITEM_RENDERS = new LinkedList();
 
-    public HashMap<EntityType, Boolean> DAYLIGHT_MOBS = new HashMap<>();
-
     public ModEntities() {
-        DAYLIGHT_MOBS.put(FIRE_CHICKEN, true);
-        DAYLIGHT_MOBS.put(WATER_CHICKEN, true);
-        DAYLIGHT_MOBS.put(NATURE_CHICKEN, true);
-        DAYLIGHT_MOBS.put(THUNDER_CHICKEN, true);
 
-        DAYLIGHT_MOBS.put(FIRE_SPIDER, true);
-        DAYLIGHT_MOBS.put(WATER_SPIDER, true);
-        DAYLIGHT_MOBS.put(NATURE_SPIDER, true);
-        DAYLIGHT_MOBS.put(THUNDER_SPIDER, true);
     }
 
     static EntityDimensions spiderDim = new EntityDimensions(1.4F, 0.9F, false);
@@ -67,23 +50,23 @@ public class ModEntities {
     public EntityType<StationaryFallingBlockEntity> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "spell_block_entity", false);
     public EntityType<SimpleTridentEntity> SIMPLE_TRIDENT = projectile(SimpleTridentEntity::new, "spell_trident", false);
 
-    public EntityType<ArcaneSlime> ARCANE_SLIME = mob(ArcaneSlime::new, "arcane_slime", new EntityDimensions(2.04F, 2.04F, false));
-    public EntityType<FireSlime> FIRE_SLIME = mob(FireSlime::new, "fire_slime", new EntityDimensions(2.04F, 2.04F, false));
-    public EntityType<WaterSlime> WATER_SLIME = mob(WaterSlime::new, "water_slime", new EntityDimensions(2.04F, 2.04F, false));
-    public EntityType<ThunderSlime> THUNDER_SLIME = mob(ThunderSlime::new, "thunder_slime", new EntityDimensions(2.04F, 2.04F, false));
-    public EntityType<NatureSlime> NATURE_SLIME = mob(NatureSlime::new, "nature_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<ModSlime> ARCANE_SLIME = mob(ModSlime::new, "arcane_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<ModSlime> FIRE_SLIME = mob(ModSlime::new, "fire_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<ModSlime> WATER_SLIME = mob(ModSlime::new, "water_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<ModSlime> THUNDER_SLIME = mob(ModSlime::new, "thunder_slime", new EntityDimensions(2.04F, 2.04F, false));
+    public EntityType<ModSlime> NATURE_SLIME = mob(ModSlime::new, "nature_slime", new EntityDimensions(2.04F, 2.04F, false));
 
-    public EntityType<ArcaneSpider> ARCANE_SPIDER = mob(ArcaneSpider::new, "arcane_spider", spiderDim);
-    public EntityType<FireSpider> FIRE_SPIDER = mob(FireSpider::new, "fire_spider", spiderDim);
-    public EntityType<WaterSpider> WATER_SPIDER = mob(WaterSpider::new, "water_spider", spiderDim);
-    public EntityType<ThunderSpider> THUNDER_SPIDER = mob(ThunderSpider::new, "thunder_spider", spiderDim);
-    public EntityType<NatureSpider> NATURE_SPIDER = mob(NatureSpider::new, "nature_spider", spiderDim);
+    public EntityType<ModSpider> ARCANE_SPIDER = mob(ModSpider::new, "arcane_spider", spiderDim);
+    public EntityType<ModSpider> FIRE_SPIDER = mob(ModSpider::new, "fire_spider", spiderDim);
+    public EntityType<ModSpider> WATER_SPIDER = mob(ModSpider::new, "water_spider", spiderDim);
+    public EntityType<ModSpider> THUNDER_SPIDER = mob(ModSpider::new, "thunder_spider", spiderDim);
+    public EntityType<ModSpider> NATURE_SPIDER = mob(ModSpider::new, "nature_spider", spiderDim);
 
-    public EntityType<ArcaneZombie> ARCANE_ZOMBIE = mob(ArcaneZombie::new, "arcane_zombie", zombieDim);
-    public EntityType<FireZombie> FIRE_ZOMBIE = mob(FireZombie::new, "fire_zombie", zombieDim);
-    public EntityType<WaterZombie> WATER_ZOMBIE = mob(WaterZombie::new, "water_zombie", zombieDim);
-    public EntityType<ThunderZombie> THUNDER_ZOMBIE = mob(ThunderZombie::new, "thunder_zombie", zombieDim);
-    public EntityType<NatureZombie> NATURE_ZOMBIE = mob(NatureZombie::new, "nature_zombie", zombieDim);
+    public EntityType<ModZombie> ARCANE_ZOMBIE = mob(ModZombie::new, "arcane_zombie", zombieDim);
+    public EntityType<ModZombie> FIRE_ZOMBIE = mob(ModZombie::new, "fire_zombie", zombieDim);
+    public EntityType<ModZombie> WATER_ZOMBIE = mob(ModZombie::new, "water_zombie", zombieDim);
+    public EntityType<ModZombie> THUNDER_ZOMBIE = mob(ModZombie::new, "thunder_zombie", zombieDim);
+    public EntityType<ModZombie> NATURE_ZOMBIE = mob(ModZombie::new, "nature_zombie", zombieDim);
 
     public EntityType<FireMage> FIRE_MAGE = mob(FireMage::new, "fire_mage", mageDim);
     public EntityType<WaterMage> WATER_MAGE = mob(WaterMage::new, "water_mage", mageDim);
@@ -91,15 +74,15 @@ public class ModEntities {
     public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", mageDim);
     public EntityType<HealerMage> HEALER_MAGE = mob(HealerMage::new, "healer_mage", mageDim);
 
-    public EntityType<FireChicken> FIRE_CHICKEN = mob(FireChicken::new, "fire_chicken", chickenDim);
-    public EntityType<WaterChicken> WATER_CHICKEN = mob(WaterChicken::new, "water_chicken", chickenDim);
-    public EntityType<NatureChicken> NATURE_CHICKEN = mob(NatureChicken::new, "nature_chicken", chickenDim);
-    public EntityType<ThunderChicken> THUNDER_CHICKEN = mob(ThunderChicken::new, "thunder_chicken", chickenDim);
+    public EntityType<ModChicken> FIRE_CHICKEN = mob(ModChicken::new, "fire_chicken", chickenDim);
+    public EntityType<ModChicken> WATER_CHICKEN = mob(ModChicken::new, "water_chicken", chickenDim);
+    public EntityType<ModChicken> NATURE_CHICKEN = mob(ModChicken::new, "nature_chicken", chickenDim);
+    public EntityType<ModChicken> THUNDER_CHICKEN = mob(ModChicken::new, "thunder_chicken", chickenDim);
 
-    public EntityType<FireSkeleton> FIRE_SKELETON = mob(FireSkeleton::new, "fire_skeleton", skeleDim);
-    public EntityType<WaterSkeleton> WATER_SKELETON = mob(WaterSkeleton::new, "water_skeleton", skeleDim);
-    public EntityType<ThunderSkeleton> THUNDER_SKELETON = mob(ThunderSkeleton::new, "thunder_skeleton", skeleDim);
-    public EntityType<NatureSkeleton> NATURE_SKELETON = mob(NatureSkeleton::new, "nature_skeleton", skeleDim);
+    public EntityType<ModSkeleton> FIRE_SKELETON = mob(ModSkeleton::new, "fire_skeleton", skeleDim);
+    public EntityType<ModSkeleton> WATER_SKELETON = mob(ModSkeleton::new, "water_skeleton", skeleDim);
+    public EntityType<ModSkeleton> THUNDER_SKELETON = mob(ModSkeleton::new, "thunder_skeleton", skeleDim);
+    public EntityType<ModSkeleton> NATURE_SKELETON = mob(ModSkeleton::new, "nature_skeleton", skeleDim);
 
     public EntityType<GolemBossEntity> GOLEM_BOSS = mob(GolemBossEntity::new, "boss_golem", new EntityDimensions(1.4F, 2.7F, true));
 
