@@ -26,9 +26,9 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson GSON = new GsonBuilder().create();
 
-    String id;
+    public String id;
     Function<JsonObject, T> serializer;
-    SlashRegistryType registryType;
+    public SlashRegistryType registryType;
 
     public BaseDataPackLoader(SlashRegistryType registryType, String id, Function<JsonObject, T> serializer) {
         super(GSON, id);

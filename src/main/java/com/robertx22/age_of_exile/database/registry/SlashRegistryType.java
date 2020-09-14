@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.registry;
 
+import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
@@ -16,8 +17,10 @@ import com.robertx22.age_of_exile.database.registrators.MobAffixes;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyUniqueGear;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.datapacks.loaders.*;
+import com.robertx22.age_of_exile.datapacks.generators.SlashDatapackGenerator;
+import com.robertx22.age_of_exile.datapacks.loaders.BaseDataPackLoader;
 import com.robertx22.age_of_exile.datapacks.seriazables.SerializableBaseGearType;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -38,114 +41,43 @@ public enum SlashRegistryType {
             return null;
         }
     },
-    EFFECT("effect", 2, null) {
+    GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER),
+    GEAR_TYPE("base_gear_types", 4, SerializableBaseGearType.EMPTY),
+    TIER("tier", 5, Tier.SERIALIZER),
+    GEM("gems", 6, Gem.SERIALIZER),
+    RUNE("runes", 7, Rune.SERIALIZER),
+    MOB_AFFIX("mob_affix", 8, MobAffixes.EMPTY),
+    RUNEWORD("runewords", 9, RuneWord.SERIALIZER),
+    AFFIX("affixes", 10, EmptyAffix.getInstance()) {
         @Override
         public BaseDataPackLoader getLoader() {
-            return null;
+            return new BaseDataPackLoader(this, this.id, x -> this.ser.fromJson((JsonObject) x)) {
+                @Override
+                public SlashDatapackGenerator getDataPackGenerator() {
+                    return new SlashDatapackGenerator<>(SlashRegistry.getRegistry(this.registryType)
+                        .getSerializable(), this.id);
+                }
+            };
         }
     },
-    GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new GearSlotDatapackLoader();
-        }
-    },
-    GEAR_TYPE("gear_type", 4, SerializableBaseGearType.EMPTY) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new BaseGearTypeDatapackLoader();
-        }
-    },
-    TIER("tier", 5, Tier.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new TierDatapackLoader();
-        }
-    },
-    GEM("gem", 6, Gem.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new GemDatapackLoader();
-        }
-    },
-    RUNE("rune", 7, Rune.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new RuneDatapackLoader();
-        }
-    },
-    MOB_AFFIX("mob_affix", 8, MobAffixes.EMPTY) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new MobAffixDataPackLoader();
-        }
-    },
-    RUNEWORD("runeword", 9, RuneWord.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new RunewordDatapackLoader();
-        }
-    },
-    AFFIX("affix", 10, EmptyAffix.getInstance()) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new AffixDataPackLoader();
-        }
-    },
-    UNIQUE_GEAR("unique_gear", 11, new EmptyUniqueGear()) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new UniqueGearDatapackLoader();
-        }
-    },
+    UNIQUE_GEAR("unique_gears", 11, new EmptyUniqueGear()),
     CURRENCY_ITEMS("currency_item", 12, null) {
         @Override
         public BaseDataPackLoader getLoader() {
             return null;
         }
     },
-    DIMENSION_CONFIGS("dimension_config", 13, DimensionConfig.EMPTY) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new DimConfigsDatapackLoader();
+    DIMENSION_CONFIGS("dimension_config", 13, DimensionConfig.EMPTY),
+    ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY),
+    COMPATIBLE_ITEM("compatible_items", 15, CompatibleItem.EMPTY) {
+        public List getAllForSerialization() {
+            return CompatibleItemUtils.getAllForSerialization();
         }
     },
-    ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new EntityConfigsDatapackLoader();
-        }
-    },
-    COMPATIBLE_ITEM("compatible_item", 15, CompatibleItem.EMPTY) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new CompatibleItemDataPackLoader();
-        }
-    },
-    SPELL_MODIFIER("spell_modifier", 16, SpellModifier.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new SpellModifierDatapackLoader();
-        }
-    },
-    PERK("perk", 17, Perk.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new PerkDatapackLoader();
-        }
-    },
-    SPELL("spell", 18, Spell.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new SpellDatapackLoader();
-        }
-    },
-    SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new SpellSchoolDatapackLoader();
-        }
-    };
+    SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER),
+    PERK("perk", 17, Perk.SERIALIZER),
+    SPELL("spells", 18, Spell.SERIALIZER),
+    SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER);
 
     public String id;
     ISerializable ser;
@@ -169,7 +101,19 @@ public enum SlashRegistryType {
 
     }
 
-    public abstract BaseDataPackLoader getLoader();
+    public BaseDataPackLoader getLoader() {
+        return new BaseDataPackLoader(this, this.id, x -> this.ser.fromJson((JsonObject) x)) {
+            @Override
+            public SlashDatapackGenerator getDataPackGenerator() {
+                return new SlashDatapackGenerator<>(getAllForSerialization(), this.id);
+            }
+        };
+    }
+
+    public List getAllForSerialization() {
+        return SlashRegistry.getRegistry(this)
+            .getSerializable();
+    }
 
     public final ISerializable getSerializer() {
         return ser;

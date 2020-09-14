@@ -338,7 +338,6 @@ public class SlashRegistry {
 
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.STAT, EmptyStat.getInstance()));
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EFFECT, null));
     }
 
 }
