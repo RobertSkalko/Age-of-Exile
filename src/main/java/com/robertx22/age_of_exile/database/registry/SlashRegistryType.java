@@ -13,9 +13,9 @@ import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registrators.MobAffixes;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
-import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyUniqueGear;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.age_of_exile.datapacks.loaders.BaseDataPackLoader;
@@ -48,19 +48,8 @@ public enum SlashRegistryType {
     RUNE("runes", 7, Rune.SERIALIZER),
     MOB_AFFIX("mob_affix", 8, MobAffixes.EMPTY),
     RUNEWORD("runewords", 9, RuneWord.SERIALIZER),
-    AFFIX("affixes", 10, EmptyAffix.getInstance()) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return new BaseDataPackLoader(this, this.id, x -> this.ser.fromJson((JsonObject) x)) {
-                @Override
-                public SlashDatapackGenerator getDataPackGenerator() {
-                    return new SlashDatapackGenerator<>(SlashRegistry.getRegistry(this.registryType)
-                        .getSerializable(), this.id);
-                }
-            };
-        }
-    },
-    UNIQUE_GEAR("unique_gears", 11, new EmptyUniqueGear()),
+    AFFIX("affixes", 10, EmptyAffix.getInstance()),
+    UNIQUE_GEAR("unique_gears", 11, UniqueGear.SERIALIZER),
     CURRENCY_ITEMS("currency_item", 12, null) {
         @Override
         public BaseDataPackLoader getLoader() {

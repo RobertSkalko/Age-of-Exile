@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

@@ -69,11 +69,6 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
     }
 
     @Override
-    public boolean isFromDatapack() {
-        return true;
-    }
-
-    @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.AFFIX;
     }

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -15,8 +15,8 @@ public class UniqueGearItemRegister {
             .forEach(x -> of(x));
     }
 
-    static Item of(IUnique uniq) {
-        Item c = IUnique.getBaseItemForRegistration(uniq);
+    static Item of(UniqueGear uniq) {
+        Item c = UniqueGear.getBaseItemForRegistration(uniq);
         if (c == null) {
             try {
                 throw new Exception("Unique of type " + uniq.getBaseGearType()

@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleArrowEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleProjectileEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.SimpleTridentEntity;
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.StationaryFallingBlockEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.SimpleArrowEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.SimpleProjectileEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.SimpleTridentEntity;
+import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mobs.bosses.GolemBossEntity;
 import com.robertx22.age_of_exile.mobs.chickens.ModChicken;

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
+import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import net.minecraft.client.MinecraftClient;

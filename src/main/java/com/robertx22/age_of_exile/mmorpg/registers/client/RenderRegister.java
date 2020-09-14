@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.client;
 
-import com.robertx22.age_of_exile.database.data.spells.entities.bases.MySpriteRenderer;
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.renders.ModTridentRenderer;
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.renders.RangerArrowRenderer;
+import com.robertx22.age_of_exile.database.data.spells.entities.renders.MySpriteRenderer;
+import com.robertx22.age_of_exile.database.data.spells.entities.renders.ModTridentRenderer;
+import com.robertx22.age_of_exile.database.data.spells.entities.renders.RangerArrowRenderer;
 import com.robertx22.age_of_exile.mobs.renders.*;
 import com.robertx22.age_of_exile.mobs.renders.skeleton.ModSkeletonRenderer;
 import com.robertx22.age_of_exile.mobs.renders.zombie.ModZombieRenderer;

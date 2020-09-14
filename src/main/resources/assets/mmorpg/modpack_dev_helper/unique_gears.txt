@@ -1,0 +1,17 @@
+These are all default registry entries of this type.
+This registry is modify-able through datapacks.
+eye_of_zegrath
+divine_might
+water_ele_sword
+inner_conflux
+jester_hat
+obsi_might
+greed_persist
+loop_of_infinity
+angel_prot_necklace
+exec_pride
+will_of_flora
+skull_of_spirits
+beast_blood
+birth_miracle
+inca_thunder

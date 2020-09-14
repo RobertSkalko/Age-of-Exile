@@ -112,16 +112,12 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     @Override
     public String datapackFolder() {
         return new Identifier(item_id).getNamespace() + "/";
+
     }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.COMPATIBLE_ITEM;
-    }
-
-    @Override
-    public boolean isFromDatapack() {
-        return true;
     }
 
     public String getFileName() {

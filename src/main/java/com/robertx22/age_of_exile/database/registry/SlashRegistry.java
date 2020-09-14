@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
-import com.robertx22.age_of_exile.database.data.mob_affixes.base.MobAffix;
+import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
@@ -21,7 +21,8 @@ import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
-import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGearReg;
 import com.robertx22.age_of_exile.database.registrators.*;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyBaseGearType;
@@ -111,7 +112,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.GEAR_SLOT);
     }
 
-    public static SlashRegistryContainer<IUnique> UniqueGears() {
+    public static SlashRegistryContainer<UniqueGear> UniqueGears() {
         return getRegistry(SlashRegistryType.UNIQUE_GEAR);
     }
 
@@ -286,7 +287,7 @@ public class SlashRegistry {
         new Prefixes().registerAll();
         new Suffixes().registerAll();
 
-        new UniqueGears().registerAll();
+        new UniqueGearReg().registerAll();
 
         new MobAffixes().registerAll();
         new DimConfigs().registerAll();
@@ -311,30 +312,30 @@ public class SlashRegistry {
         SlashRegistryType.init();
 
         // data pack ones
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.UNIQUE_GEAR, null).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEM, null).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNE, null).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNEWORD, null).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, Spell.SERIALIZER).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PERK, null).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_MODIFIER, null).isDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_SCHOOL, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.UNIQUE_GEAR, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEM, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNE, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNEWORD, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, Spell.SERIALIZER).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PERK, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_MODIFIER, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_SCHOOL, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
-            .isDatapack()
+            .setIsDatapack()
             .logAdditions());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
             ).logAdditions()
-                .isDatapack()
+                .setIsDatapack()
                 .dontErrorMissingEntriesOnAccess()
         );
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.ENTITY_CONFIGS, new EntityConfig("", 0)).logAdditions()
-            .isDatapack());
+            .setIsDatapack());
 
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.STAT, EmptyStat.getInstance()));
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));

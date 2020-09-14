@@ -19,11 +19,6 @@ public class Tier implements ISerializedRegistryEntry<Tier>, ISerializable<Tier>
     public int id_rank;
 
     @Override
-    public boolean isFromDatapack() {
-        return true;
-    }
-
-    @Override
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
 

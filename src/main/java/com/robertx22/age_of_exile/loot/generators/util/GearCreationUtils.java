@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.loot.generators.util;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
-import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
@@ -52,7 +52,7 @@ public class GearCreationUtils {
             if (blueprint.gearItemSlot.get()
                 .hasUniqueItemVersions()) {
 
-                IUnique unique = blueprint.uniquePart.get();
+                UniqueGear unique = blueprint.uniquePart.get();
 
                 Preconditions.checkNotNull(unique);
                 Preconditions.checkArgument(data.gear_type.equals(unique.getBaseGearType()

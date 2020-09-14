@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -224,7 +224,7 @@ public class CompatibleItemUtils {
                     items.add(c);
                 }
             }
-            for (IUnique uniq : SlashRegistry.UniqueGears()
+            for (UniqueGear uniq : SlashRegistry.UniqueGears()
                 .getList()
             ) {
                 Item item = uniq.getUniqueItem();

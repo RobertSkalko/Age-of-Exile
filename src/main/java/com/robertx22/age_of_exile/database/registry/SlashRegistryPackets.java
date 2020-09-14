@@ -35,9 +35,8 @@ public class SlashRegistryPackets {
 
                     List<JsonObject> list = map.get(type);
 
-                    if (list
-                        .isEmpty()) {
-                        throw new RuntimeException("Registry list sent from server is empty!");
+                    if (list == null || list.isEmpty()) {
+                        throw new RuntimeException("Registry list sent from server is empty! " + type.id);
                     }
 
                     list.forEach(x -> {

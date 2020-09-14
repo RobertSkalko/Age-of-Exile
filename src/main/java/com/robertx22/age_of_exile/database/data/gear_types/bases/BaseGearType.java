@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Nor
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.WeaponMechanic;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registrators.GearSlots;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -200,7 +200,7 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         String id = GUID();
 
-        List<IUnique> list = SlashRegistry.UniqueGears()
+        List<UniqueGear> list = SlashRegistry.UniqueGears()
             .getFilterWrapped(x -> {
                 String otherid = x.getBaseGearType()
                     .GUID();

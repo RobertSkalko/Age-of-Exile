@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
@@ -78,7 +78,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
     }
 
-    public IUnique getUnique() {
+    public UniqueGear getUnique() {
         return SlashRegistry.UniqueGears()
             .get(this.uniqueGUID);
 

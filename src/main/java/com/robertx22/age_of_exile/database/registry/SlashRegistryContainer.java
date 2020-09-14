@@ -20,8 +20,11 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     private boolean dataPacksAreRegistered = true;
 
-    public SlashRegistryContainer<C> isDatapack() {
+    boolean isDatapack = false;
+
+    public SlashRegistryContainer<C> setIsDatapack() {
         this.dataPacksAreRegistered = false;
+        this.isDatapack = true;
         return this;
     }
 
@@ -143,13 +146,12 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public void unregisterAllEntriesFromDatapacks() {
-        new HashMap<String, C>(map).entrySet()
-            .forEach(x -> {
-                if (x.getValue()
-                    .isFromDatapack()) {
-                    map.remove(x.getKey());
-                }
-            });
+        new HashMap<>(map).forEach((key, value) -> {
+            if (value
+                .isFromDatapack()) {
+                map.remove(key);
+            }
+        });
     }
 
     public C get(String guid) {
@@ -248,6 +250,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public void addSerializable(C entry) {
+        if (serializables.containsKey(entry.GUID())) {
+            System.out.println("Entry already exists as seriazable: " + entry.GUID());
+        }
         this.serializables.put(entry.GUID(), entry);
 
     }

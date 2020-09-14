@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.data.unique_items.IUnique;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
@@ -144,7 +144,7 @@ public class GearTooltipUtils {
         }
 
         if (gear.is_unique) {
-            IUnique unique = gear.uniqueStats.getUnique();
+            UniqueGear unique = gear.uniqueStats.getUnique();
 
             String uniqdesc = CLOC.translate(unique.locDesc());
 

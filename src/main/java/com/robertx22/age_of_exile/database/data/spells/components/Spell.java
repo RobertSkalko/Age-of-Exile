@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.spells.entities.dataack_entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
