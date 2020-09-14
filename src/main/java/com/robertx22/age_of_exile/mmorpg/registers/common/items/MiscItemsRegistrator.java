@@ -17,6 +17,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public MagicEssenceItem MAGIC_ESSENCE = item(new MagicEssenceItem());
     public RareMagicEssence RARE_MAGIC_ESSENCE = item(new RareMagicEssence());
 
+    LootCrateItem COMMON_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.COMMON), "loot_crate/common");
+    LootCrateItem MAGIC_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.MAGIC), "loot_crate/magic");
     LootCrateItem RARE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.RARE), "loot_crate/rare");
     LootCrateItem RELIC_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.RELIC), "loot_crate/relic");
     LootCrateItem UNIQUE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.UNIQUE), "loot_crate/unique");

@@ -53,7 +53,7 @@ public class Runewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Nature), ModType.FLAT),
-                new StatModifier(4, 20, ChanceToApplyEffect.POISON, ModType.FLAT)
+                new StatModifier(4, 15, ChanceToApplyEffect.POISON, ModType.FLAT)
             ),
             Arrays.asList(DOS, ITA, NOS))
             .addToSerializables();
@@ -64,7 +64,7 @@ public class Runewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(4, 20, ChanceToApplyEffect.CHILL, ModType.FLAT)
+                new StatModifier(4, 15, ChanceToApplyEffect.CHILL, ModType.FLAT)
             ),
             Arrays.asList(TOQ, ITA, NOS))
             .addToSerializables();
@@ -75,7 +75,7 @@ public class Runewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(4, 20, ChanceToApplyEffect.STATIC, ModType.FLAT)
+                new StatModifier(4, 15, ChanceToApplyEffect.STATIC, ModType.FLAT)
             ),
             Arrays.asList(CEN, ITA, NOS))
             .addToSerializables();
@@ -86,7 +86,7 @@ public class Runewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new WeaponDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(4, 20, ChanceToApplyEffect.BURN, ModType.FLAT)
+                new StatModifier(4, 15, ChanceToApplyEffect.BURN, ModType.FLAT)
             ),
             Arrays.asList(ANO, ITA, NOS))
             .addToSerializables();

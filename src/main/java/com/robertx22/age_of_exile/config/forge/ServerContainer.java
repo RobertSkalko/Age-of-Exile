@@ -17,6 +17,7 @@ public class ServerContainer {
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.01F;
     public double STAT_POINTS_PER_LVL = 1;
     public double TALENT_POINTS_PER_LVL = 1;
+    public double STARTING_TALENT_POINTS = 1;
     public double VANILLA_MOB_DMG_AS_EXILE_DMG = 0.5F;
     public double PVP_DMG_MULTI = 1F;
 

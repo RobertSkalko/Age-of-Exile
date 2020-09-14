@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.registry;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -128,13 +127,16 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         if (!map.isEmpty()) {
             return new ArrayList<C>(map.values());
         }
+
+        /*
         if (MMORPG.RUN_DEV_TOOLS && !serializables.isEmpty()) {
             return new ArrayList<C>(serializables.values());
             // if called before datapacks load, get serializables. This should only be used in dev enviroment to generate data
             // this should allow multiple registries to depend on each other before datapacks load while they're in serializables list
-        } else {
-            this.tryLogEmptyRegistry();
-        }
+
+         */
+
+        this.tryLogEmptyRegistry();
 
         return Arrays.asList();
     }

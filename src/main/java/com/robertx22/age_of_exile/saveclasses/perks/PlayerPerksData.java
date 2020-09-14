@@ -35,7 +35,7 @@ public class PlayerPerksData {
     }
 
     public int getFreePoints(EntityCap.UnitData data) {
-        return (int) ((ModConfig.get().Server.TALENT_POINTS_PER_LVL * data.getLevel()) - getAllocatedPoints());
+        return (int) ((ModConfig.get().Server.STARTING_TALENT_POINTS + (ModConfig.get().Server.TALENT_POINTS_PER_LVL * data.getLevel())) - getAllocatedPoints());
     }
 
     public SchoolData getSchool(SpellSchool school) {

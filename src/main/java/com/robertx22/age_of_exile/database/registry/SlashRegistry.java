@@ -28,6 +28,7 @@ import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyBaseGearType;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.vanilla_mc.packets.RegistryPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -274,31 +275,37 @@ public class SlashRegistry {
 
     private static void registerFromAllInits() {
 
-        new GearSlots().registerAll();
-        new Tiers().registerAll();
-
-        new Spells().registerAll(); // some stats are based on spells, so spells go first
-
-        new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
+        new Stats().registerAll();// STATS MUST BE INIT FIRST
         // should be at least
-
-        new BaseGearTypes().registerAll();
-
-        new Prefixes().registerAll();
-        new Suffixes().registerAll();
-
-        new UniqueGearReg().registerAll();
-
-        new MobAffixes().registerAll();
-        new DimConfigs().registerAll();
-        new EntityConfigs().registerAll();
-
         new CurrencyItems().registerAll();
-        new Gems().registerAll();
-        new Runes().registerAll();
-        new Runewords().registerAll();
-        new SpellModifiers().registerAll();
-        new Perks().registerAll();
+
+        new BaseGearTypes().registerAll();// used cus i register items based on seralizables..
+        new UniqueGearReg().registerAll();// used cus i register items based on seralizables..
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            // as these only add serizables.
+            // They shouldn't be needed at all to play the game.
+            // If it errors without them, then that means i hardcoded something i shouldn't have
+
+            new GearSlots().registerAll();
+
+            new Tiers().registerAll();
+
+            new Spells().registerAll(); // some stats are based on spells, so spells go first
+
+            new Prefixes().registerAll();
+            new Suffixes().registerAll();
+
+            new MobAffixes().registerAll();
+            new DimConfigs().registerAll();
+            new EntityConfigs().registerAll();
+
+            new Gems().registerAll();
+            new Runes().registerAll();
+            new Runewords().registerAll();
+            new SpellModifiers().registerAll();
+            new Perks().registerAll();
+        }
 
     }
 

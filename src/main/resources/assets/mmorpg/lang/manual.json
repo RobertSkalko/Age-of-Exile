@@ -109,6 +109,8 @@
 "item.patchouli.age_of_exile_guide.name": "Age of Exile Guidebook",
 "item.patchouli.age_of_exile_guide.landing": "The Adventurer's Guide",
 
+"item.mmorpg.loot_crate.common": "Common Item Loot Crate",
+"item.mmorpg.loot_crate.magic": "Magic Item Loot Crate",
 "item.mmorpg.loot_crate.rare": "Rare Item Loot Crate",
 "item.mmorpg.loot_crate.relic": "Relic Item Loot Crate",
 "item.mmorpg.loot_crate.unique": "Unique Item Loot Crate",

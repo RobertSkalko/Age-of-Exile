@@ -48,7 +48,26 @@ public class LootCrateItem extends Item implements IAutoModel {
     }
 
     public enum LootCrateType {
-
+        COMMON(new MinMax(2, 6)) {
+            @Override
+            public ItemStack generate(LivingEntity en) {
+                int lvl = Load.Unit(en)
+                    .getLevel();
+                GearBlueprint blueprint = new GearBlueprint(lvl);
+                blueprint.rarity.setSpecificRarity(IRarity.Common);
+                return blueprint.createStack();
+            }
+        },
+        MAGIC(new MinMax(2, 5)) {
+            @Override
+            public ItemStack generate(LivingEntity en) {
+                int lvl = Load.Unit(en)
+                    .getLevel();
+                GearBlueprint blueprint = new GearBlueprint(lvl);
+                blueprint.rarity.setSpecificRarity(IRarity.Magical);
+                return blueprint.createStack();
+            }
+        },
         RARE(new MinMax(2, 4)) {
             @Override
             public ItemStack generate(LivingEntity en) {
