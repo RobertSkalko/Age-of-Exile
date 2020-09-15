@@ -1,8 +1,11 @@
 v.1.3.4
+Might be unstable due to internal refactors
+
 - fix rare magic essence being a bit too rare. Needs config clear
 - added common and magic loot crates
 - reworked parts of code internally trying to clean it up, might be buggy
 - added starting talent points. Determines how many bonus points a lvl 1 user has. Default 1, so users can now pick their first spell when they spawn.
+- fix weapon attack dmg scaling in spells not working. 
 
 v.1.3.3
 - fix auto compat items not working on servers

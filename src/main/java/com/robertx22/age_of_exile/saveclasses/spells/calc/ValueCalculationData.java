@@ -2,10 +2,12 @@ package com.robertx22.age_of_exile.saveclasses.spells.calc;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -78,21 +80,27 @@ public class ValueCalculationData {
     }
 
     private int getCalculatedScalingValue(EntityCap.UnitData data) {
-        return getAllScalingValues().stream()
+
+        float amount = 0;
+        if (attack_scaling > 0) {
+            for (Stat stat : new WeaponDamage(Elements.Nature).generateAllPossibleStatVariations()) {
+                amount += data.getUnit()
+                    .peekAtStat(stat.GUID())
+                    .getAverageValue() * attack_scaling;
+            }
+        }
+        amount += getAllScalingValues().stream()
             .mapToInt(x -> x.getCalculatedValue(data))
             .sum();
-    }
 
-    public int getCalculatedValue(EntityCap.UnitData data, CalculatedSpellData skillgem) {
-        int val = getCalculatedScalingValue(data);
-        val += getCalculatedBaseValue(skillgem.level);
-        return val;
+        return (int) amount;
     }
 
     public int getCalculatedValue(LivingEntity caster) {
         int val = getCalculatedScalingValue(Load.Unit(caster));
         val += getCalculatedBaseValue(Load.Unit(caster)
             .getLevel());
+
         return val;
     }
 

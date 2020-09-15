@@ -23,7 +23,7 @@ public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends 
 
     public Path resolve(Path path, T object) {
         return path.resolve(
-            "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.formattedGUID()
+            "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.getFileName()
                 .replaceAll(":", "_") +
                 ".json");
     }

@@ -120,6 +120,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return SlashRegistryType.COMPATIBLE_ITEM;
     }
 
+    @Override
     public String getFileName() {
         return new Identifier(item_id).getPath();
     }

@@ -329,7 +329,7 @@ public class DatapackSpells {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(Builder.swordSweepParticles())
-            .onCast(Builder.damageInFront(ValueCalculationData.scaleWithAttack(1F, 3), Elements.Fire, 2D, 3D)
+            .onCast(Builder.damageInFront(ValueCalculationData.scaleWithAttack(0.75F, 2), Elements.Fire, 2D, 3D)
                 .addPerEntityHit(Builder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
             .build();
 

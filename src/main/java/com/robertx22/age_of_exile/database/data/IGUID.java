@@ -11,6 +11,10 @@ public interface IGUID {
 
     }
 
+    default String getFileName() {
+        return formattedGUID();
+    }
+
     public default String formatString(String str) {
         return getformattedString(str);
     }
