@@ -128,6 +128,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     }
 
     public boolean isLockedToPlayer(PlayerEntity player) {
+
         if (one_of_a_kind != null) {
             if (!one_of_a_kind.isEmpty()) {
                 if (Load.perks(player)
