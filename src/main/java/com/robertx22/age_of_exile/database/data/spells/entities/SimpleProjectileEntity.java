@@ -399,13 +399,17 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     public EntitySavedSpellData getSpellData() {
-        if (world.isClient) {
-            if (spellData == null) {
-                CompoundTag nbt = dataTracker.get(SPELL_DATA);
-                if (nbt != null) {
-                    this.spellData = GSON.fromJson(nbt.getString("spell"), EntitySavedSpellData.class);
+        try {
+            if (world.isClient) {
+                if (spellData == null) {
+                    CompoundTag nbt = dataTracker.get(SPELL_DATA);
+                    if (nbt != null) {
+                        this.spellData = GSON.fromJson(nbt.getString("spell"), EntitySavedSpellData.class);
+                    }
                 }
             }
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
         }
         return spellData;
     }

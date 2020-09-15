@@ -14,7 +14,8 @@
     "OnCraftMixin",
     "PlayerManagerMixin",
     "ServerResourceManagerMixin",
-    "SpawnSettingsMixin"
+    "SpawnSettingsMixin",
+    "StatusEffectMixin"
   ],
   "client": [
     "InGameHudMixin",

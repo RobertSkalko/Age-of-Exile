@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.food_effects;
 
 import com.mojang.datafixers.util.Pair;
+import com.robertx22.age_of_exile.mixin_ducks.StatusEffectAccesor;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -38,12 +39,13 @@ public class FoodEffectBuilder {
         for (Pair<StatusEffectInstance, Float> x : foodcomponent.getStatusEffects()) {
             StatusEffect efg = x.getFirst()
                 .getEffectType();
-            if (efg.getType() == StatusEffectType.BENEFICIAL) {
+            StatusEffectAccesor acc = (StatusEffectAccesor) efg;
+
+            if (acc.my$getstatusEffectType() == StatusEffectType.BENEFICIAL) {
                 effectMod += 0.15F;
-            } else if (efg.getType() == StatusEffectType.HARMFUL) {
+            } else if (acc.my$getstatusEffectType() == StatusEffectType.HARMFUL) {
                 effectMod -= 0.75F;
             }
-
         }
         if (effectMod < 0) {
             effectMod = 0;

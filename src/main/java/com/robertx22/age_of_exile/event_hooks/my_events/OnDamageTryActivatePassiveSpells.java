@@ -19,36 +19,40 @@ public class OnDamageTryActivatePassiveSpells extends EventConsumer<ExileEvents.
     @Override
     public void accept(ExileEvents.OnDamageEntity event) {
 
-        LivingEntity target = event.mob;
-        if (target instanceof PlayerEntity) {
+        try {
+            LivingEntity target = event.mob;
+            if (target instanceof PlayerEntity) {
 
-            if (event.source.getAttacker() instanceof LivingEntity) {
-                if (event.source.getAttacker() instanceof PlayerEntity) {
-                    return; // we dont want a chain thunder strike explosion in pvp
-                }
-
-                PlayerSpellCap.ISpellsCap spells = Load.spells(target);
-                List<Spell> passives = spells
-                    .getLearnedSpells(target)
-                    .stream()
-                    .filter(x -> x.getConfig().passive_config.is_passive)
-                    .collect(Collectors.toList());
-
-                passives.forEach(x -> {
-                    if (spells.getCastingData()
-                        .getDataBySpell(x)
-                        .cooldownIsReady()) {
-                        SpellCastContext ctx = new SpellCastContext(target, 0, x);
-                        if (x.getConfig().passive_config.canCastNow(target)) {
-                            Packets.sendToClient((PlayerEntity) target, new TellClientToCastSpellPacket(x));// because this is server only, so client wouldnt know how to cast particles on spell cast
-                            x.cast(ctx);
-                            spells.getCastingData()
-                                .onSpellCast(ctx);
-                        }
+                if (event.source.getAttacker() instanceof LivingEntity) {
+                    if (event.source.getAttacker() instanceof PlayerEntity) {
+                        return; // we dont want a chain thunder strike explosion in pvp
                     }
-                });
 
+                    PlayerSpellCap.ISpellsCap spells = Load.spells(target);
+                    List<Spell> passives = spells
+                        .getLearnedSpells(target)
+                        .stream()
+                        .filter(x -> x.getConfig().passive_config.is_passive)
+                        .collect(Collectors.toList());
+
+                    passives.forEach(x -> {
+                        if (spells.getCastingData()
+                            .getDataBySpell(x)
+                            .cooldownIsReady()) {
+                            SpellCastContext ctx = new SpellCastContext(target, 0, x);
+                            if (x.getConfig().passive_config.canCastNow(target)) {
+                                Packets.sendToClient((PlayerEntity) target, new TellClientToCastSpellPacket(x));// because this is server only, so client wouldnt know how to cast particles on spell cast
+                                x.cast(ctx);
+                                spells.getCastingData()
+                                    .onSpellCast(ctx);
+                            }
+                        }
+                    });
+
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
