@@ -50,8 +50,13 @@ public class AttachedSpell {
     }
 
     public void tryActivate(String entity_name, SpellCtx ctx) {
-        for (ComponentPart entry : entity_components.get(entity_name)) {
-            entry.tryActivate(ctx);
+        if (entity_components.containsKey(entity_name)) {
+            for (ComponentPart entry : entity_components.get(entity_name)) {
+                entry.tryActivate(ctx);
+            }
+        } else {
+            System.out.println("Spell doesn't have data for spell entity called: " + entity_name + ". Spell id: " + ctx.calculatedSpellData.getSpell()
+                .GUID());
         }
     }
 

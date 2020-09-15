@@ -19,7 +19,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LivingHurtUtils {
@@ -41,20 +40,6 @@ public class LivingHurtUtils {
             }));
 
         }
-    }
-
-    public static void damageArmorItems(LivingEntity en) {
-
-        List<ItemStack> stacks = new ArrayList<>();
-
-        en.getArmorItems()
-            .forEach(x -> stacks.add(x));
-        stacks.add(en.getOffHandStack());
-
-        stacks.forEach(x -> x.damage(1, en, (entity) -> {
-            entity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-        }));
-
     }
 
     public static void onAttack(LivingHurtEvent event) {

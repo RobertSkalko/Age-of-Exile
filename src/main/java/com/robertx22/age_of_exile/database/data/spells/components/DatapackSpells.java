@@ -380,5 +380,60 @@ public class DatapackSpells {
             .onTick(Builder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Fire, 3.5D))
             .build();
 
+        Spell.Builder.of("passive_fire", SpellConfiguration.Builder.passive(), "Burning Rage")
+            .onCast(Builder.playSound(ModRegistry.SOUNDS.FIREBALL, 1D, 1D))
+            .onCast(Builder.groundParticles(ParticleTypes.SMOKE, 100D, 5D, 0.5D))
+            .onCast(Builder.groundParticles(ParticleTypes.LAVA, 100D, 5D, 0.5D))
+            .onCast(Builder.groundParticles(ParticleTypes.FALLING_LAVA, 100D, 5D, 0.5D))
+            .onCast(Builder.damageInAoe(ValueCalculationData.base(5), Elements.Fire, 5D))
+            .onCast(Builder.addExileEffectToEnemiesInAoe(BurnEffect.INSTANCE, 5D))
+            .build();
+
+        Spell.Builder.of("passive_divine", SpellConfiguration.Builder.passive(), "Holy Protection")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(Builder.aoeParticles(ParticleTypes.CLOUD, 100D, 2D))
+            .onCast(Builder.healCaster(ValueCalculationData.base(15)))
+            .onCast(Builder.giveSelfEffect(StatusEffects.REGENERATION, 100D))
+            .onCast(Builder.removeSelfEffect(StatusEffects.POISON))
+            .onCast(Builder.removeSelfEffect(StatusEffects.WITHER))
+            .build();
+
+        Spell.Builder.of("passive_storm", SpellConfiguration.Builder.passive(), "Sky Rage")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, 1D, 1D))
+            .onCast(Builder.groundParticles(ParticleTypes.CLOUD, 100D, 4D, 0.5D))
+            .onCast(Builder.groundParticles(ModRegistry.PARTICLES.THUNDER, 100D, 4D, 0.5D))
+            .onCast(Builder.damageInAoe(ValueCalculationData.base(15), Elements.Thunder, 4D)
+                .addPerEntityHit(Builder.empty()
+                    .addActions(SpellAction.SUMMON_LIGHTNING_STRIKE.create())))
+            .build();
+
+        Spell.Builder.of("passive_ocean", SpellConfiguration.Builder.passive(), "Regenerative Shell")
+            .onCast(Builder.playSound(ModRegistry.SOUNDS.FREEZE, 1D, 1D))
+            .onCast(Builder.aoeParticles(ParticleTypes.BUBBLE_POP, 100D, 2D))
+            .onCast(Builder.aoeParticles(ModRegistry.PARTICLES.BUBBLE, 100D, 2D))
+            .onCast(Builder.healCaster(ValueCalculationData.base(5)))
+            .onCast(Builder.restoreMagicShieldToCaster(ValueCalculationData.base(10)))
+            .onCast(Builder.restoreManaToCaster(ValueCalculationData.base(10)))
+            .onCast(Builder.giveSelfEffect(StatusEffects.REGENERATION, 80D))
+            .build();
+
+        Spell.Builder.of("passive_nature", SpellConfiguration.Builder.passive(), "Gorgon's Patience")
+            .onCast(Builder.playSound(ModRegistry.SOUNDS.STONE_CRACK, 1D, 1D))
+            .onCast(Builder.healCaster(ValueCalculationData.base(5)))
+            .onCast(Builder.groundParticles(ParticleTypes.COMPOSTER, 100D, 4D, 0.5D))
+            .onCast(Builder.groundParticles(ModRegistry.PARTICLES.THUNDER, 100D, 4D, 0.5D))
+            .onCast(Builder.addExileEffectToEnemiesInAoe(PetrifyEffect.INSTANCE, 4D)
+                .addPerEntityHit(Builder.empty()
+                    .addActions(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.ASH, 30D, 1D))))
+            .build();
+
+        Spell.Builder.of("passive_hunting", SpellConfiguration.Builder.passive(), "")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1D, 1D))
+            .onCast(Builder.aoeParticles(ParticleTypes.CLOUD, 100D, 2D))
+            .onCast(Builder.restoreMagicShieldToCaster(ValueCalculationData.base(10)))
+            .onCast(Builder.restoreManaToCaster(ValueCalculationData.base(10)))
+            .onCast(Builder.giveSelfEffect(RegenerateEffect.INSTANCE, 80D))
+            .build();
+
     }
 }

@@ -19,7 +19,7 @@ import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapFiel
 public class PotionAction extends SpellAction implements ICTextTooltip {
 
     public PotionAction() {
-        super(Arrays.asList(POTION_ID, POTION_ACTION));
+        super(Arrays.asList(POTION_ID, POTION_ACTION, POTION_DURATION));
     }
 
     @Override
@@ -60,11 +60,22 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
         });
     }
 
-    public MapHolder create(StatusEffect effect, ExilePotionAction.GiveOrTake action) {
+    public MapHolder createGive(StatusEffect effect, Double duration) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(COUNT, 1D);
-        dmg.put(POTION_ACTION, action.name());
+        dmg.put(POTION_DURATION, duration);
+        dmg.put(POTION_ACTION, ExilePotionAction.GiveOrTake.GIVE_STACKS.name());
+        dmg.put(POTION_ID, Registry.STATUS_EFFECT.getId(effect)
+            .toString());
+        return dmg;
+    }
+
+    public MapHolder createRemove(StatusEffect effect) {
+        MapHolder dmg = new MapHolder();
+        dmg.type = GUID();
+        dmg.put(COUNT, 1D);
+        dmg.put(POTION_ACTION, ExilePotionAction.GiveOrTake.REMOVE_STACKS.name());
         dmg.put(POTION_ID, Registry.STATUS_EFFECT.getId(effect)
             .toString());
         return dmg;

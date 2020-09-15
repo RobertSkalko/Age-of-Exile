@@ -47,4 +47,8 @@ E,,,,,,,,,,,,,,,,,,,,,,,,health,,,flower_of_ice,,,health,,,,,,,,,,,,,,,,,,,,,,,,
 E,,,,,,,,,,,,,,,,,,,,,,,,,,O,,O,,,,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,flower_of_ice_healing,O,flower_of_ice_mana_cost,,,,flower_of_ice_mana_cost,O,flower_of_ice_healing,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,,,,O,flower_of_ice_mana_restore,O,,,,,,,,,,,,,,,,,,,,,,,,,,,E
-E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E
+E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,,,,,,,mana_regen,,O,,mana_regen,,,,,,,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E
+,,,,,,,,,,,,,,,,,,,,,,,,,,O,O,O,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,passive_ocean,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,O,,O,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,spell_water_damage,,,,spell_water_damage,,,,,,,,,,,,,,,,,,,,,,,,,,

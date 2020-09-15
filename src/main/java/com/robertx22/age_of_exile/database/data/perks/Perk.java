@@ -19,6 +19,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -73,9 +74,9 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
             }
 
             if (this.one_of_a_kind != null) {
-                list.add(new LiteralText("Can only have one Perk of this type! [")
-                    .append(new TranslatableText(Ref.MODID + ".one_of_a_kind." + one_of_a_kind))
-                    .append("]"));
+                list.add(new LiteralText("Can only have one Perk of this type: ").formatted(Formatting.GREEN));
+
+                list.add(new TranslatableText(Ref.MODID + ".one_of_a_kind." + one_of_a_kind).formatted(Formatting.GREEN));
             }
 
             if (lvl_req > 1) {
@@ -134,8 +135,8 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
                 if (Load.perks(player)
                     .getAllAllocatedPerks()
                     .stream()
-                    .anyMatch(x -> this.one_of_a_kind.equals(x.one_of_a_kind))) {
-                    return false;
+                    .anyMatch(x -> !x.identifier.equals(this.identifier) && this.one_of_a_kind.equals(x.one_of_a_kind))) {
+                    return true;
                 }
             }
         }

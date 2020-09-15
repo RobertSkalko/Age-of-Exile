@@ -6,11 +6,15 @@ healing_aura
 poison_ball
 thorn_armor
 throw_flames
+passive_divine
 blazing_inferno
 lightning_totem
 thunder_storm
 thunder_dash
+passive_ocean
+passive_nature
 holy_flower
+passive_fire
 gorgons_gaze
 nature_balm
 tidal_wave
@@ -22,6 +26,7 @@ arrow_barrage
 fireball
 thunder_spear
 heart_of_ice
+passive_storm
 blizzard
 wizardry
 frostball

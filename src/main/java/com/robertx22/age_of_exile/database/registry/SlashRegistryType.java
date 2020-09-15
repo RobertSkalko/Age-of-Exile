@@ -64,8 +64,8 @@ public enum SlashRegistryType {
         }
     },
     SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER),
-    PERK("perk", 17, Perk.SERIALIZER),
-    SPELL("spells", 18, Spell.SERIALIZER),
+    SPELL("spells", 17, Spell.SERIALIZER),
+    PERK("perk", 18, Perk.SERIALIZER),
     SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER);
 
     public String id;

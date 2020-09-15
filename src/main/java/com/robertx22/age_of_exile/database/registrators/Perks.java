@@ -86,7 +86,7 @@ public class Perks implements ISlashRegistryInit {
             });
 
         SlashRegistry.Spells()
-            .getList()
+            .getSerializable()
             .forEach(x -> {
                 PerkBuilder.spell(x);
             });

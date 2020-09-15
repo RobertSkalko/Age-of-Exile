@@ -179,6 +179,10 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
 
                     PerkButton sb = this.pointPerkButtonMap.get(p);
 
+                    if (sb == null) {
+                        continue;
+                    }
+
                     int x2 = sb.x + sb.getWidth() / 2;
                     int y2 = sb.y + sb.getHeight() / 2;
 

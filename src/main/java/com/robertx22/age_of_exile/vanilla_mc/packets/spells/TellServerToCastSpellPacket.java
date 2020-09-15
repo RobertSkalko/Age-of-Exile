@@ -12,11 +12,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
-public class CastSpellPacket extends MyPacket<CastSpellPacket> {
+public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellPacket> {
 
     public String spellid = "";
 
-    public CastSpellPacket(PlayerEntity player) {
+    public TellServerToCastSpellPacket(PlayerEntity player) {
         Spell cspell = Load.spells(player)
             .getCurrentRightClickSpell();
         if (cspell != null) {
@@ -28,7 +28,7 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
         }
     }
 
-    public CastSpellPacket() {
+    public TellServerToCastSpellPacket() {
     }
 
     @Override
@@ -77,7 +77,7 @@ public class CastSpellPacket extends MyPacket<CastSpellPacket> {
     }
 
     @Override
-    public MyPacket<CastSpellPacket> newInstance() {
-        return new CastSpellPacket();
+    public MyPacket<TellServerToCastSpellPacket> newInstance() {
+        return new TellServerToCastSpellPacket();
     }
 }

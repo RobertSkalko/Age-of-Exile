@@ -323,7 +323,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     }
                 }
 
-                //target.timeUntilRegen = hurtResistantTime;
             }
 
             Heal(healthHealed);

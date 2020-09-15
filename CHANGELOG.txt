@@ -1,3 +1,12 @@
+v.1.3.5
+
+- added passive skills! You can only choose 1 of these, and each school of magic has one. 
+They are strong, automatic life savers that activate when you are damaged and at low health.
+
+- added a "one_of_a_kind" field to perks. 
+If name isn't explanatory by itself, it means if 2 perks have "one_of_a_kind": "apple",
+then you can only pick one of them. This will be used for my new passive skills but it should be really helpful to modpack makers.
+
 v.1.3.4
 Might be unstable due to internal refactors
 

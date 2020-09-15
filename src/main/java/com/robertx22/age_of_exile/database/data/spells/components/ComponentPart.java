@@ -241,6 +241,13 @@ public class ComponentPart {
             return c;
         }
 
+        public static ComponentPart restoreManaToCaster(ValueCalculationData calc) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.RESTORE_MANA.create(calc));
+            c.targets.add(BaseTargetSelector.CASTER.create());
+            return c;
+        }
+
         public static ComponentPart restoreMagicShieldInRadius(ValueCalculationData calc, Double radius) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.RESTORE_MAGIC_SHIELD.create(calc));
@@ -347,7 +354,7 @@ public class ComponentPart {
         public static ComponentPart cleanseInRadius(StatusEffect effect, Double radius) {
             ComponentPart c = new ComponentPart();
             c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
-            c.acts.add(SpellAction.POTION.create(effect, ExilePotionAction.GiveOrTake.REMOVE_STACKS));
+            c.acts.add(SpellAction.POTION.createRemove(effect));
             return c;
         }
 
@@ -406,6 +413,20 @@ public class ComponentPart {
         public static ComponentPart giveSelfExileEffect(BasePotionEffect effect) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
+            c.targets.add(BaseTargetSelector.CASTER.create());
+            return c;
+        }
+
+        public static ComponentPart giveSelfEffect(StatusEffect effect, Double dura) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.POTION.createGive(effect, dura));
+            c.targets.add(BaseTargetSelector.CASTER.create());
+            return c;
+        }
+
+        public static ComponentPart removeSelfEffect(StatusEffect effect) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.POTION.createRemove(effect));
             c.targets.add(BaseTargetSelector.CASTER.create());
             return c;
         }

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.packets.spells.CastSpellPacket;
+import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,11 +29,11 @@ public class OnItemUseCastSpell {
                     if (spell.getConfig().castingWeapon.predicate.predicate.test(user)) {
 
                         if (stack.getUseAction() == UseAction.NONE) {
-                            Packets.sendToServer(new CastSpellPacket(user));
+                            Packets.sendToServer(new TellServerToCastSpellPacket(user));
 
                         } else {
                             if (Screen.hasShiftDown()) {
-                                Packets.sendToServer(new CastSpellPacket(user));
+                                Packets.sendToServer(new TellServerToCastSpellPacket(user));
                                 ci.setReturnValue(TypedActionResult.success(stack));
                             }
                         }

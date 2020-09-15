@@ -3,10 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.event_registers;
 import com.robertx22.age_of_exile.a_libraries.curios.OnCurioChangeEvent;
 import com.robertx22.age_of_exile.event_hooks.entity.OnMobSpawn;
 import com.robertx22.age_of_exile.event_hooks.entity.OnTrackEntity;
-import com.robertx22.age_of_exile.event_hooks.my_events.OnEntityTick;
-import com.robertx22.age_of_exile.event_hooks.my_events.OnMobDeathDrops;
-import com.robertx22.age_of_exile.event_hooks.my_events.OnNonPlayerDamageEntityEvent;
-import com.robertx22.age_of_exile.event_hooks.my_events.OnPlayerDamageEntityEvent;
+import com.robertx22.age_of_exile.event_hooks.my_events.*;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
@@ -32,6 +29,7 @@ public class CommonEvents {
 
         ExileEvents.DAMAGE_BEFORE_CALC.register(new OnNonPlayerDamageEntityEvent());
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnPlayerDamageEntityEvent());
+        ExileEvents.DAMAGE_AFTER_CALC.register(new OnDamageTryActivatePassiveSpells());
 
     }
 

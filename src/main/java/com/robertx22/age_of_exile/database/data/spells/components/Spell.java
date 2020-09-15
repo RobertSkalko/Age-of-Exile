@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -26,7 +27,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -151,6 +151,9 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         if (((PlayerEntity) caster).isCreative()) {
             return true;
         }
+        if (this.config.passive_config.is_passive) {
+            return false;
+        }
 
         if (!caster.world.isClient) {
 
@@ -191,6 +194,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             .scale(getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
     }
 
+    public boolean isPassive() {
+        return getConfig().passive_config.is_passive;
+    }
+
     public final List<Text> GetTooltipString(TooltipInfo info, CalculatedSpellData data) {
 
         SpellCastContext ctx = new SpellCastContext(info.player, 0, data);
@@ -206,24 +213,36 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         TooltipUtils.addEmpty(list);
 
-        MutableText mana = new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx));
-        MutableText cd = new LiteralText(Formatting.YELLOW + "Cooldown: " + getCooldownInSeconds(ctx) + "s");
-        MutableText casttime = new LiteralText(Formatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s");
+        if (this.isPassive()) {
+            list.add(Words.PassiveSkill.locName()
+                .formatted(Formatting.GOLD));
+            list.add(Words.PassiveDesc.locName()
+                .formatted(Formatting.GOLD));
+        }
 
-        list.add(mana);
-        list.add(cd);
-        list.add(casttime);
+        if (!isPassive()) {
+            list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
+        }
+        list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + getCooldownInSeconds(ctx) + "s"));
+        if (!isPassive()) {
+            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s"));
+        }
 
         TooltipUtils.addEmpty(list);
 
-        list.add(getConfig().castingWeapon.predicate.text);
+        if (!isPassive()) {
+            list.add(getConfig().castingWeapon.predicate.text);
+        }
 
         TooltipUtils.addEmpty(list);
 
         if (this.config.times_to_cast > 1) {
             TooltipUtils.addEmpty(list);
             list.add(new LiteralText("Casted " + config.times_to_cast + " times during channel.").formatted(Formatting.RED));
+
         }
+
+        TooltipUtils.removeDoubleBlankLines(list);
 
         return list;
 

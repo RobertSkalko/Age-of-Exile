@@ -16,6 +16,10 @@ public class PerkBuilder {
         perk.icon = spell.getIconLoc()
             .toString();
 
+        if (spell.getConfig().passive_config.is_passive) {
+            perk.one_of_a_kind = "passive_spell";
+        }
+
         perk.addToSerializables();
         return perk;
     }

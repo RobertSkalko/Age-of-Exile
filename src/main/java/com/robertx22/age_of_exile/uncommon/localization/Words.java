@@ -217,6 +217,8 @@ public enum Words implements IAutoLocName {
 
     Good("Good"),
 
+    PassiveSkill("Passive Skill"),
+    PassiveDesc("Casted when hit by mob at low health."),
     Average("Average"),
 
     Great("Great"),
@@ -344,7 +346,9 @@ public enum Words implements IAutoLocName {
     Jewerly("Jewerly"),
 
     Offhand("Offhand"),
+
     Modifier("Modifier"),
+
     RunesNeeded("Runes needed"),
 
     Item_modifiable_in_station("Can be used inside Modify Station"),
