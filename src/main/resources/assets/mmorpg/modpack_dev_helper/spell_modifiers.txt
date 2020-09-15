@@ -24,6 +24,7 @@ throw_flames_cast_speed
 imbue_cast_speed
 holy_flower_cast_speed
 gorgons_gaze_projectile_speed
+passive_hunting_cooldown
 multi_shot_healing
 tidal_wave_cast_speed
 blizzard_damage
@@ -123,6 +124,7 @@ flower_of_ice_cooldown
 passive_ocean_cast_speed
 arrow_storm_cooldown
 imbue_healing
+passive_hunting_cast_speed
 volcano_projectile_speed
 thorn_armor_cooldown
 lightning_totem_damage
@@ -149,14 +151,17 @@ trickery_projectile_speed
 multi_shot_mana_cost
 frostball_projectile_speed
 flower_of_ice_mana_cost
+passive_hunting_damage
 poisoned_weapons_damage
 magma_flower_heal
 passive_storm_mana_cost
 passive_fire_damage
+passive_hunting_healing
 purifying_fires_damage
 healing_aura_damage
 multi_shot_projectile_speed
 passive_nature_damage
+passive_hunting_mana_cost
 thunder_storm_projectile_speed
 recoil_shot_damage
 trickery_cooldown
@@ -173,6 +178,7 @@ thunder_storm_healing
 poisoned_weapons_cooldown
 thorn_armor_mana_cost
 frostball_damage
+passive_hunting_projectile_speed
 lightning_totem_projectile_speed
 passive_ocean_mana_cost
 wizardry_mana_cost

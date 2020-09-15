@@ -172,6 +172,7 @@ public class DatapackSpells {
             .onTick(Builder.particleOnTick(1D, ModRegistry.PARTICLES.BUBBLE, 30D, 2D))
             .onTick(Builder.particleOnTick(1D, ParticleTypes.BUBBLE_POP, 30D, 2D))
             .onTick(Builder.playSoundEveryTicks(30D, SoundEvents.ENTITY_GENERIC_SPLASH, 1D, 1D))
+            .onTick(Builder.onTickDamageInAoe(30D, ValueCalculationData.base(2), Elements.Water, 2D))
             .onTick(Builder.restoreMagicShieldInRadius(ValueCalculationData.base(3), 2D)
                 .onTick(30D))
             .onTick(Builder.restoreManaInRadius(ValueCalculationData.base(2), 2D)
@@ -427,12 +428,13 @@ public class DatapackSpells {
                     .addActions(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.ASH, 30D, 1D))))
             .build();
 
-        Spell.Builder.of("passive_hunting", SpellConfiguration.Builder.passive(), "")
+        Spell.Builder.of("passive_hunting", SpellConfiguration.Builder.passive(), "Unchained")
             .onCast(Builder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 1D, 1D))
             .onCast(Builder.aoeParticles(ParticleTypes.CLOUD, 100D, 2D))
-            .onCast(Builder.restoreMagicShieldToCaster(ValueCalculationData.base(10)))
-            .onCast(Builder.restoreManaToCaster(ValueCalculationData.base(10)))
-            .onCast(Builder.giveSelfEffect(RegenerateEffect.INSTANCE, 80D))
+            .onCast(Builder.healCaster(ValueCalculationData.base(5)))
+            .onCast(Builder.removeSelfEffect(StatusEffects.SLOWNESS))
+            .onCast(Builder.removeSelfEffect(StatusEffects.BLINDNESS))
+            .onCast(Builder.giveSelfEffect(StatusEffects.SPEED, 300D))
             .build();
 
     }

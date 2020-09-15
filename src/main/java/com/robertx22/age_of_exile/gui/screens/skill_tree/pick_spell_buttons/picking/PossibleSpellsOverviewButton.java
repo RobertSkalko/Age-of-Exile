@@ -10,6 +10,7 @@ import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PossibleSpellsOverviewButton extends TexturedButtonWidget implements IMarkOnTop, IRemoveOnClickedOutside {
 
@@ -28,7 +29,10 @@ public class PossibleSpellsOverviewButton extends TexturedButtonWidget implement
         screen.removePerkButtons();
 
         List<Spell> spells = Load.spells(screen.mc.player)
-            .getLearnedSpells(screen.mc.player);
+            .getLearnedSpells(screen.mc.player)
+            .stream()
+            .filter(s -> !s.isPassive())
+            .collect(Collectors.toList());
 
         int placeX = 0;
         int placeY = 0;

@@ -88,7 +88,9 @@ public class Perks implements ISlashRegistryInit {
         SlashRegistry.Spells()
             .getSerializable()
             .forEach(x -> {
-                PerkBuilder.spell(x);
+                if (!x.isPassive()) { // we wont use mods for passives
+                    PerkBuilder.spell(x);
+                }
             });
 
         SlashRegistry.SpellModifiers()

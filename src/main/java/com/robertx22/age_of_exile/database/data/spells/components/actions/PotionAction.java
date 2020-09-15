@@ -51,7 +51,7 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
             if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
                 int dura = data.get(POTION_DURATION)
                     .intValue();
-                int str = data.get(POTION_STRENGTH)
+                int str = data.getOrDefault(POTION_STRENGTH, 1D)
                     .intValue();
                 t.addStatusEffect(new StatusEffectInstance(potion, dura, str));
             } else {
