@@ -82,10 +82,8 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         }
         Perk perk = school.calcData.perks.get(point);
 
-        if (perk.isLockedUnderAdvancement()) {
-            if (!perk.didPlayerUnlockAdvancement(player)) {
-                return PerkStatus.LOCKED_UNDER_ACHIEV;
-            }
+        if (perk.isLockedToPlayer(player)) {
+            return PerkStatus.LOCKED_UNDER_ACHIEV;
         }
 
         if (data.canAllocate(school, point, Load.Unit(player), player)) {

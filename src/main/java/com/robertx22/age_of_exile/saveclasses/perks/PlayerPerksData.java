@@ -104,10 +104,8 @@ public class PlayerPerksData {
             }
         }
 
-        if (perk.isLockedUnderAdvancement()) {
-            if (!perk.didPlayerUnlockAdvancement(player)) {
-                return false;
-            }
+        if (perk.isLockedToPlayer(player)) {
+            return false;
         }
 
         return true;

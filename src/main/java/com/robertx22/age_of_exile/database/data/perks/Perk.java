@@ -8,14 +8,17 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public String icon = "";
     public boolean is_entry = false;
     public int lvl_req = 1;
+    public String one_of_a_kind = null;
 
     public List<SpellModifier> getSpellMods() {
         return spell_mods.stream()
@@ -66,6 +70,12 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
             if (adv != null) {
                 list.add(new LiteralText("Needs advancement: ").append(adv.toHoverableText()));
+            }
+
+            if (this.one_of_a_kind != null) {
+                list.add(new LiteralText("Can only have one Perk of this type! [")
+                    .append(new TranslatableText(Ref.MODID + ".one_of_a_kind." + one_of_a_kind))
+                    .append("]"));
             }
 
             if (lvl_req > 1) {
@@ -115,6 +125,27 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public Spell getSpell() {
         return SlashRegistry.Spells()
             .get(spell);
+    }
+
+    public boolean isLockedToPlayer(PlayerEntity player) {
+        if (one_of_a_kind != null) {
+            if (!one_of_a_kind.isEmpty()) {
+                if (Load.perks(player)
+                    .getAllAllocatedPerks()
+                    .stream()
+                    .anyMatch(x -> this.one_of_a_kind.equals(x.one_of_a_kind))) {
+                    return false;
+                }
+            }
+        }
+        if (isLockedUnderAdvancement()) {
+            if (!didPlayerUnlockAdvancement(player)) {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
     public boolean didPlayerUnlockAdvancement(PlayerEntity player) {

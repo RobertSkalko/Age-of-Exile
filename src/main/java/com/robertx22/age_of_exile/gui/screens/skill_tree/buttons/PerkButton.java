@@ -26,6 +26,7 @@ public class PerkButton extends TexturedButtonWidget {
     public static int BIGGEST = 33;
 
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
+    static Identifier LOCKED_TEX = new Identifier(Ref.MODID, "textures/gui/locked.png");
 
     public Perk perk;
     public PointData point;
@@ -90,6 +91,8 @@ public class PerkButton extends TexturedButtonWidget {
         mc.getTextureManager()
             .bindTexture(ID);
 
+        int offset = 4;
+
         // background
         RenderSystem.enableDepthTest();
         drawTexture(matrices, this.x, this.y, perk.getType()
@@ -100,17 +103,19 @@ public class PerkButton extends TexturedButtonWidget {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, this.x + 4, this.y + 4, 0, 0, 16, 16, 16, 16);
+            drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
         } else if (this.perk.getType() == Perk.PerkType.SPELL) {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + 8, this.y + 8);
+            offset = 8;
+            RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + offset, this.y + offset);
         } else if (this.perk.getType() == Perk.PerkType.SPELL_MOD) {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, this.x + 5, this.y + 5, 0, 0, 16, 16, 16, 16);
+            offset = 5;
+            drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
 
         } else if (perk.getType() == Perk.PerkType.START) {
 
@@ -118,7 +123,13 @@ public class PerkButton extends TexturedButtonWidget {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, this.x + 4, this.y + 4, 0, 0, 16, 16, 16, 16);
+            drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
+        }
+
+        if (this.perk.isLockedToPlayer(mc.player)) {
+            mc.getTextureManager()
+                .bindTexture(LOCKED_TEX);
+            drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
         }
     }
 
