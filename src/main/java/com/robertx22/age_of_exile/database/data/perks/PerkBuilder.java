@@ -18,6 +18,7 @@ public class PerkBuilder {
 
         if (spell.getConfig().passive_config.is_passive) {
             perk.one_of_a_kind = "passive_spell";
+            perk.lvl_req = 20;
         }
 
         perk.addToSerializables();

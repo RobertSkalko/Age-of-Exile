@@ -12,8 +12,8 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
@@ -80,7 +80,9 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
             }
 
             if (lvl_req > 1) {
-                list.add(TooltipUtils.level(lvl_req));
+                list.add(Words.RequiresLevel.locName()
+                    .append(": " + lvl_req)
+                    .formatted(Formatting.YELLOW));
             }
 
         } catch (Exception e) {
@@ -129,6 +131,11 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     }
 
     public boolean isLockedToPlayer(PlayerEntity player) {
+
+        if (Load.Unit(player)
+            .getLevel() < lvl_req) {
+            return true;
+        }
 
         if (one_of_a_kind != null) {
             if (!one_of_a_kind.isEmpty()) {

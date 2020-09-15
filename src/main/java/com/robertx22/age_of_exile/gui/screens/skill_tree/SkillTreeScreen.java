@@ -318,49 +318,53 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        this.buttons.forEach(b -> {
-            if (originalButtonLocMap.containsKey(b)) {
-                b.x = (int) (this.originalButtonLocMap.get(b).
-                    x + scrollX);
-                b.y = (int) (this.originalButtonLocMap.get(b)
-                    .y + scrollY);
-            }
-        });
+        try {
+            this.buttons.forEach(b -> {
+                if (originalButtonLocMap.containsKey(b)) {
+                    b.x = (int) (this.originalButtonLocMap.get(b).
+                        x + scrollX);
+                    b.y = (int) (this.originalButtonLocMap.get(b)
+                        .y + scrollY);
+                }
+            });
 
-        renderBackgroundTexture(0);
+            renderBackgroundTexture(0);
 
-        super.render(matrix, x, y, ticks);
+            super.render(matrix, x, y, ticks);
 
-        buttons.forEach(b -> {
-            if (b instanceof PerkButton) {
-                b.render(matrix, x, y, ticks);
-            }
-        });
+            buttons.forEach(b -> {
+                if (b instanceof PerkButton) {
+                    b.render(matrix, x, y, ticks);
+                }
+            });
 
-        renderPanels(matrix);
+            renderPanels(matrix);
 
-        // we order them here so school buttons are on top, and perks are on top of connection buttons..
-        // probably a better way to do it exists?
+            // we order them here so school buttons are on top, and perks are on top of connection buttons..
+            // probably a better way to do it exists?
 
-        buttons.forEach(b -> {
+            buttons.forEach(b -> {
 
-            if (b instanceof IMarkOnTop) {
-                b.render(matrix, x, y, ticks);
-            }
+                if (b instanceof IMarkOnTop) {
+                    b.render(matrix, x, y, ticks);
+                }
 
-        });
+            });
 
-        buttons.forEach(b -> {
+            buttons.forEach(b -> {
 
-            if (b instanceof PickSpellForHotBarButton || b instanceof SpellHotbarButton) {
-                b.render(matrix, x, y, ticks);
-            }
+                if (b instanceof PickSpellForHotBarButton || b instanceof SpellHotbarButton) {
+                    b.render(matrix, x, y, ticks);
+                }
 
-        });
+            });
 
-        this.tick_count++;
+            this.tick_count++;
 
-        buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+            buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

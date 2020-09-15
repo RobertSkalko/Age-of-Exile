@@ -31,8 +31,10 @@ public class SpellModifiers implements ISlashRegistryInit {
         SlashRegistry.Spells()
             .getSerializable()
             .forEach(x -> {
-                for (SpellModEnum value : SpellModEnum.values()) {
-                    addToSeriazables(x.GUID(), value);
+                if (!x.isPassive()) {
+                    for (SpellModEnum value : SpellModEnum.values()) {
+                        addToSeriazables(x.GUID(), value);
+                    }
                 }
             });
 

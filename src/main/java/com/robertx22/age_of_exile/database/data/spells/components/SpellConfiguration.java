@@ -28,11 +28,6 @@ public class SpellConfiguration {
         return this;
     }
 
-    public SpellConfiguration setIsPassive() {
-        this.passive_config.is_passive = true;
-        return this;
-    }
-
     public static class Builder {
 
         public static SpellConfiguration instant(int mana, int cd) {

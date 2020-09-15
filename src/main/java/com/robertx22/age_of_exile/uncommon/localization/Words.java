@@ -324,6 +324,7 @@ public enum Words implements IAutoLocName {
     AddRarestAffixes("Add Rarest Affixes"),
 
     Requirements("Requirements"),
+    RequiresLevel("Requires Level"),
 
     RequirementsNotMet("Requirements not met"),
 
