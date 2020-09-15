@@ -8,6 +8,8 @@ Currently they have a 10 minute cooldown but that's up to change.
 If name isn't explanatory by itself, it means if 2 perks have "one_of_a_kind": "apple",
 then you can only pick one of them. This will be used for my new passive skills but it should be really helpful to modpack makers.
 
+- should fix spell crash
+
 v.1.3.4
 Might be unstable due to internal refactors
 
