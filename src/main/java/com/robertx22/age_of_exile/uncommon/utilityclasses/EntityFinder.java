@@ -201,8 +201,6 @@ public class EntityFinder {
 
         List<Predicate<T>> predicates = new ArrayList();
 
-        boolean setRadius = false;
-
         double distanceToSearch = 10;
 
         public Setup(LivingEntity caster, Class<T> entityType, Vec3d pos) {

@@ -251,7 +251,6 @@ public class SlashRegistry {
     }
 
     public static void sendAllPacketsToClientOnLogin(ServerPlayerEntity player) {
-
         SlashRegistryType.getInRegisterOrder()
             .forEach(x -> {
                 if (x.getLoader() != null && x.ser != null) {
@@ -265,7 +264,7 @@ public class SlashRegistry {
                 }
             });
     }
-
+    
     public static void checkGuidValidity() {
 
         SERVER.values()

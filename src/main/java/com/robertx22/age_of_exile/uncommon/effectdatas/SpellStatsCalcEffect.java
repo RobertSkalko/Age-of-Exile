@@ -38,7 +38,7 @@ public class SpellStatsCalcEffect extends EffectData {
 
         private HashMap<SpellModEnum, Float> map = new HashMap<>();
 
-        private CalculatedSpellConfiguration() {
+        public CalculatedSpellConfiguration() {
             for (SpellModEnum value : SpellModEnum.values()) {
                 map.put(value, 100F);
             }

@@ -27,7 +27,9 @@ public class OnLogin {
 
             Watch watch = new Watch();
             watch.unit = TimeUnit.SECONDS;
-            watch.min = 1;
+            if (MMORPG.RUN_DEV_TOOLS) {
+                watch.min = 1;
+            }
             Watch mili = null;
             if (MMORPG.RUN_DEV_TOOLS) {
                 mili = new Watch();

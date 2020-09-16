@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.entities;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
@@ -15,13 +16,26 @@ public class EntitySavedSpellData {
     String caster_uuid;
 
     String spell_id;
+    String exile_effect_id;
 
     public String item_id;
 
-    public SpellStatsCalcEffect.CalculatedSpellConfiguration config;
+    public SpellStatsCalcEffect.CalculatedSpellConfiguration config = new SpellStatsCalcEffect.CalculatedSpellConfiguration();
 
     public LivingEntity getCaster(World world) {
         return Utilities.getLivingEntityByUUID(world, UUID.fromString(caster_uuid));
+    }
+
+    public static EntitySavedSpellData create(LivingEntity caster, ExileEffect exEffect) {
+        Objects.requireNonNull(caster);
+
+        EntitySavedSpellData data = new EntitySavedSpellData();
+        data.exile_effect_id = exEffect.GUID();
+
+        data.caster_uuid = caster.getUuid()
+            .toString();
+
+        return data;
     }
 
     public static EntitySavedSpellData create(LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration config) {
