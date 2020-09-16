@@ -47,6 +47,7 @@ public class ModEntities {
 
     public EntityType<SimpleProjectileEntity> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "spell_projectile");
     public EntityType<SimpleArrowEntity> SIMPLE_ARROW = projectile(SimpleArrowEntity::new, "spell_arrow");
+    public EntityType<SimpleArrowEntity> SIMPLE_BONE_PROJECTILE = projectile(SimpleArrowEntity::new, "spell_bone_projectile");
     public EntityType<StationaryFallingBlockEntity> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "spell_block_entity", false);
     public EntityType<SimpleTridentEntity> SIMPLE_TRIDENT = projectile(SimpleTridentEntity::new, "spell_trident", false);
 

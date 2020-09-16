@@ -13,8 +13,6 @@ public class Rarities {
     public static final MobRarities Mobs = new MobRarities();
 
     public static void sendAllPacketsToClientOnLogin(ServerPlayerEntity player) {
-
         Packets.sendToClient(player, new RarityPacket(RarityTypeEnum.GEAR));
-
     }
 }

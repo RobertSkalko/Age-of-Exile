@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spells.modifiers;
+package com.robertx22.age_of_exile.database.data.spell_modifiers;
 
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;

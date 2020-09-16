@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExilePotionAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
@@ -9,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Base
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;

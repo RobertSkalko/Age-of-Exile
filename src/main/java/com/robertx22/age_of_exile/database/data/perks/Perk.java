@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.database.data.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
+import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;

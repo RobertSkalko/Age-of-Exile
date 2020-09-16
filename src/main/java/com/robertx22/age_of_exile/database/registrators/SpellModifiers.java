@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.database.registrators;
 
-import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModEnum;
-import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
+import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModEnum;
+import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 
+import static com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier.addToSeriazables;
+import static com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier.createSpecial;
 import static com.robertx22.age_of_exile.database.data.spells.components.DatapackSpells.*;
-import static com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier.addToSeriazables;
-import static com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier.createSpecial;
 
 public class SpellModifiers implements ISlashRegistryInit {
 

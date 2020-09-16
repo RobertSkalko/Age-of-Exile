@@ -208,7 +208,7 @@ public class DatapackSpells {
             .build();
 
         Spell.Builder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 160 * 20), "Hear of Ice")
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(Builder.playSound(ModRegistry.SOUNDS.FREEZE, 1D, 1D))
             .onCast(Builder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))
             .onCast(Builder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
@@ -218,7 +218,7 @@ public class DatapackSpells {
             .build();
 
         Spell.Builder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Aura")
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(Builder.playSound(SoundEvents.ITEM_HOE_TILL, 1D, 1D))
             .onCast(Builder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(Builder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
@@ -301,7 +301,7 @@ public class DatapackSpells {
             .build();
 
         Spell.Builder.of("thunder_dash", SpellConfiguration.Builder.instant(15, 20 * 30), "Thunder Dash")
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(Builder.playSound(ModRegistry.SOUNDS.DASH, 1D, 1D))
             .onCast(Builder.pushCaster(DashUtils.Way.FORWARDS, DashUtils.Strength.LARGE_DISTANCE))
             .onCast(Builder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
@@ -366,7 +366,6 @@ public class DatapackSpells {
             .build();
 
         Spell.Builder.of("nature_balm", SpellConfiguration.Builder.instant(15, 200 * 20), "Nature's Balm")
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(Builder.giveSelfExileEffect(RegenerateEffect.INSTANCE))
             .build();

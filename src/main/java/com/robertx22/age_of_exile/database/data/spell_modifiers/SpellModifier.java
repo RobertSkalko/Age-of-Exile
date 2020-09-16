@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spells.modifiers;
+package com.robertx22.age_of_exile.database.data.spell_modifiers;
 
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
