@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -13,11 +14,12 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 
-public class CompatibleItem implements ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
+public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
 
     public static CompatibleItem EMPTY = new CompatibleItem();
 
@@ -34,6 +36,43 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     public float chance_to_become_unique = 0.5F;
     public String unique_id = "";
+
+    @Override
+    public CompatibleItem getFromBuf(PacketByteBuf buf) {
+        CompatibleItem c = new CompatibleItem();
+        c.item_type = buf.readString(25);
+        c.guid = buf.readString(50);
+        c.item_id = buf.readString(50);
+
+        c.min_rarity = buf.readInt();
+        c.max_rarity = buf.readInt();
+
+        c.weight = buf.readInt();
+
+        c.can_be_salvaged = buf.readBoolean();
+
+        c.chance_to_become_unique = buf.readFloat();
+        c.unique_id = buf.readString(50);
+
+        return c;
+    }
+
+    @Override
+    public void toBuf(PacketByteBuf buf) {
+        buf.writeString(item_type, 25);
+        buf.writeString(guid, 50);
+        buf.writeString(item_id, 50);
+
+        buf.writeInt(min_rarity);
+        buf.writeInt(max_rarity);
+
+        buf.writeInt(weight);
+
+        buf.writeBoolean(can_be_salvaged);
+
+        buf.writeFloat(chance_to_become_unique);
+        buf.writeString(unique_id, 50);
+    }
 
     public static CompatibleItem getDefaultAuto(Item item, BaseGearType slot) {
 

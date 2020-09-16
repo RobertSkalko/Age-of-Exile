@@ -42,7 +42,12 @@ public enum SlashRegistryType {
         }
     },
     GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER),
-    EXILE_EFFECT("exile_effect", 3, null), // TODO
+    EXILE_EFFECT("exile_effect", 3, null) {
+        @Override
+        public BaseDataPackLoader getLoader() {
+            return null;
+        }
+    }, // TODO
     GEAR_TYPE("base_gear_types", 4, SerializableBaseGearType.EMPTY),
     TIER("tier", 5, Tier.SERIALIZER),
     GEM("gems", 6, Gem.SERIALIZER),

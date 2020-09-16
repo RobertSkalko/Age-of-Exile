@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.registry;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.robertx22.age_of_exile.auto_comp.ItemAutoPowerLevels;
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
@@ -14,6 +15,7 @@ import java.util.List;
 public class SlashRegistryPackets {
 
     private static HashMap<SlashRegistryType, List<JsonObject>> map = new HashMap<>();
+    private static HashMap<SlashRegistryType, List<ISerializedRegistryEntry>> readyObjects = new HashMap<>();
 
     public static void add(SlashRegistryType type, JsonObject entry) {
 
@@ -30,7 +32,7 @@ public class SlashRegistryPackets {
         SlashRegistryType.getInRegisterOrder()
             .forEach(type -> {
 
-                if (type.getLoader() != null) {
+                if (type.getLoader() != null && type.ser instanceof IByteBuf == false) {
 
                     SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
 

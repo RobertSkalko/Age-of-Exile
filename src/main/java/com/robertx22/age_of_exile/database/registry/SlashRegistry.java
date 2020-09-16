@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.registry;
 
 import com.google.common.collect.Lists;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
@@ -32,6 +33,7 @@ import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
+import com.robertx22.age_of_exile.vanilla_mc.packets.EfficientRegistryPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.RegistryPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
@@ -255,16 +257,21 @@ public class SlashRegistry {
             .forEach(x -> {
                 if (x.getLoader() != null && x.ser != null) {
                     try {
-                        getDataFor(x).forEach(d -> {
-                            Packets.sendToClient(player, new RegistryPacket(x, d));
-                        });
+                        if (x.ser instanceof IByteBuf) {
+                            Packets.sendToClient(player, new EfficientRegistryPacket(x, SlashRegistry.getRegistry(x)
+                                .getFromDatapacks()));
+                        } else {
+                            getDataFor(x).forEach(d -> {
+                                Packets.sendToClient(player, new RegistryPacket(x, d));
+                            });
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             });
     }
-    
+
     public static void checkGuidValidity() {
 
         SERVER.values()
