@@ -132,17 +132,21 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
     protected void init() {
         super.init();
 
-        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
+        try {
+            Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
 
-        schoolsInOrder = SlashRegistry.SpellSchools()
-            .getList();
-        schoolsInOrder.sort(Comparator.comparingInt(x -> x.order));
+            schoolsInOrder = SlashRegistry.SpellSchools()
+                .getList();
+            schoolsInOrder.sort(Comparator.comparingInt(x -> x.order));
 
-        this.school = schoolsInOrder.get(0);
+            this.school = schoolsInOrder.get(0);
 
-        refreshButtons();
+            refreshButtons();
 
-        goToCenter();
+            goToCenter();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

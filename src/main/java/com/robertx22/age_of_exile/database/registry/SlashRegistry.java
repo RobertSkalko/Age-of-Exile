@@ -252,8 +252,8 @@ public class SlashRegistry {
         return cachedRegistryPackets.get(type);
     }
 
-    public static void sendAllPacketsToClientOnLogin(ServerPlayerEntity player) {
-        SlashRegistryType.getInRegisterOrder()
+    public static void sendPacketsToClientOnLogin(ServerPlayerEntity player, SyncTime sync) {
+        SlashRegistryType.getInRegisterOrder(sync)
             .forEach(x -> {
                 if (x.getLoader() != null && x.ser != null) {
                     try {

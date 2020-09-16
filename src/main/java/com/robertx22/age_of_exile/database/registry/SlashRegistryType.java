@@ -29,62 +29,73 @@ import java.util.stream.Collectors;
 
 public enum SlashRegistryType {
 
-    EMPTY("none", 0, null) {
+    EMPTY("none", 0, null, SyncTime.NEVER) {
         @Override
         public BaseDataPackLoader getLoader() {
             return null;
         }
     },
-    STAT("stat", 1, null) {
+    STAT("stat", 1, null, SyncTime.NEVER) {
         @Override
         public BaseDataPackLoader getLoader() {
             return null;
         }
     },
-    GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER),
-    EXILE_EFFECT("exile_effect", 3, null) {
+    GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER, SyncTime.ON_LOGIN),
+    EXILE_EFFECT("exile_effect", 3, null, SyncTime.NEVER) {
         @Override
         public BaseDataPackLoader getLoader() {
             return null;
         }
     }, // TODO
-    GEAR_TYPE("base_gear_types", 4, SerializableBaseGearType.EMPTY),
-    TIER("tier", 5, Tier.SERIALIZER),
-    GEM("gems", 6, Gem.SERIALIZER),
-    RUNE("runes", 7, Rune.SERIALIZER),
-    MOB_AFFIX("mob_affix", 8, MobAffixes.EMPTY),
-    RUNEWORD("runewords", 9, RuneWord.SERIALIZER),
-    AFFIX("affixes", 10, EmptyAffix.getInstance()),
-    UNIQUE_GEAR("unique_gears", 11, UniqueGear.SERIALIZER),
-    CURRENCY_ITEMS("currency_item", 12, null) {
+    GEAR_TYPE("base_gear_types", 4, SerializableBaseGearType.EMPTY, SyncTime.ON_LOGIN),
+    TIER("tier", 5, Tier.SERIALIZER, SyncTime.ON_LOGIN),
+    GEM("gems", 6, Gem.SERIALIZER, SyncTime.ON_LOGIN),
+    RUNE("runes", 7, Rune.SERIALIZER, SyncTime.ON_LOGIN),
+    MOB_AFFIX("mob_affix", 8, MobAffixes.EMPTY, SyncTime.ON_LOGIN),
+    RUNEWORD("runewords", 9, RuneWord.SERIALIZER, SyncTime.ON_LOGIN),
+    AFFIX("affixes", 10, EmptyAffix.getInstance(), SyncTime.ON_LOGIN),
+    UNIQUE_GEAR("unique_gears", 11, UniqueGear.SERIALIZER, SyncTime.ON_LOGIN),
+    CURRENCY_ITEMS("currency_item", 12, null, SyncTime.NEVER) {
         @Override
         public BaseDataPackLoader getLoader() {
             return null;
         }
     },
-    DIMENSION_CONFIGS("dimension_config", 13, DimensionConfig.EMPTY),
-    ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY),
-    COMPATIBLE_ITEM("compatible_items", 15, CompatibleItem.EMPTY) {
+    DIMENSION_CONFIGS("dimension_config", 13, DimensionConfig.EMPTY, SyncTime.ON_LOGIN),
+    ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY, SyncTime.ON_LOGIN),
+    COMPATIBLE_ITEM("compatible_items", 15, CompatibleItem.EMPTY, SyncTime.ON_LOGIN) {
         public List getAllForSerialization() {
             return CompatibleItemUtils.getAllForSerialization();
         }
     },
-    SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER),
-    SPELL("spells", 17, Spell.SERIALIZER),
-    PERK("perk", 18, Perk.SERIALIZER),
-    SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER);
+    SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER, SyncTime.ON_SKILL_TREE),
+    SPELL("spells", 17, Spell.SERIALIZER, SyncTime.ON_SKILL_TREE),
+    PERK("perk", 18, Perk.SERIALIZER, SyncTime.ON_SKILL_TREE),
+    SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_SKILL_TREE);
 
     public String id;
     ISerializable ser;
     int order;
+    public SyncTime syncTime;
 
-    SlashRegistryType(String id, int order, ISerializable ser) {
+    SlashRegistryType(String id, int order, ISerializable ser, SyncTime synctime) {
         this.id = id;
         this.order = order;
         this.ser = ser;
+        this.syncTime = synctime;
     }
 
-    public static List<SlashRegistryType> getInRegisterOrder() {
+    public static List<SlashRegistryType> getInRegisterOrder(SyncTime sync) {
+        List<SlashRegistryType> list = Arrays.stream(SlashRegistryType.values())
+            .filter(x -> x.syncTime == sync)
+            .collect(Collectors.toList());
+        list.sort(Comparator.comparingInt(x -> x.order));
+        return list;
+
+    }
+
+    public static List<SlashRegistryType> getAllInRegisterOrder() {
         List<SlashRegistryType> list = Arrays.stream(SlashRegistryType.values())
             .collect(Collectors.toList());
         list.sort(Comparator.comparingInt(x -> x.order));

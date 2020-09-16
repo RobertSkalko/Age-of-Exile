@@ -29,7 +29,7 @@ public class DataGeneration {
 
     public static void registerLoaders(ReloadableResourceManager manager) {
 
-        SlashRegistryType.getInRegisterOrder()
+        SlashRegistryType.getAllInRegisterOrder()
             .forEach(x -> {
                 if (x.getLoader() != null) {
                     manager.registerListener(x.getLoader());

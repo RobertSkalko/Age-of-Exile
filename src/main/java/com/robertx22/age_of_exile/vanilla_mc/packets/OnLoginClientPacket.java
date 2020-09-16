@@ -1,7 +1,8 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
+import com.robertx22.age_of_exile.database.registry.RegistryPackets;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryPackets;
+import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
@@ -18,11 +19,13 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         when = When.valueOf(tag.readString(10));
+        sync = SyncTime.valueOf(tag.readString(30));
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
         tag.writeString(when.name(), 10);
+        tag.writeString(sync.name(), 30);
     }
 
     @Override
@@ -32,7 +35,7 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
         }
         if (when == When.AFTER) {
             SlashRegistry.backup();
-            SlashRegistryPackets.registerAll();
+            RegistryPackets.registerAll(sync);
         }
     }
 
@@ -46,9 +49,11 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
     }
 
     public When when;
+    SyncTime sync;
 
-    public OnLoginClientPacket(When when) {
+    public OnLoginClientPacket(SyncTime sync, When when) {
         this.when = when;
+        this.sync = sync;
     }
 
     public OnLoginClientPacket() {

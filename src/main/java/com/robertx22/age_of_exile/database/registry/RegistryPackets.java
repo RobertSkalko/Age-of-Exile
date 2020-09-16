@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SlashRegistryPackets {
+public class RegistryPackets {
 
     private static HashMap<SlashRegistryType, List<JsonObject>> map = new HashMap<>();
-    private static HashMap<SlashRegistryType, List<ISerializedRegistryEntry>> readyObjects = new HashMap<>();
 
     public static void add(SlashRegistryType type, JsonObject entry) {
 
@@ -26,10 +25,10 @@ public class SlashRegistryPackets {
         list.add(entry);
     }
 
-    public static void registerAll() {
+    public static void registerAll(SyncTime sync) {
         Watch watch = new Watch();
 
-        SlashRegistryType.getInRegisterOrder()
+        SlashRegistryType.getInRegisterOrder(sync)
             .forEach(type -> {
 
                 if (type.getLoader() != null && type.ser instanceof IByteBuf == false) {

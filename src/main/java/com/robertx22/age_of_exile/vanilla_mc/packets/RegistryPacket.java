@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryPackets;
+import com.robertx22.age_of_exile.database.registry.RegistryPackets;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -81,7 +81,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
             .forEach(x -> {
                 try {
                     JsonObject json = (JsonObject) PARSER.parse(x);
-                    SlashRegistryPackets.add(this.type, json);
+                    RegistryPackets.add(this.type, json);
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
                 }
