@@ -9,10 +9,17 @@ public interface IAutoGson<T extends IAutoGson<T>> extends ISerializable<T> {
 
     Gson GSON = new Gson();
 
+    JsonParser PARSER = new JsonParser();
+
     @Override
     default JsonObject toJson() {
-        return new JsonParser().parse(GSON.toJson(this))
+        return PARSER.parse(GSON.toJson(this))
             .getAsJsonObject();
+    }
+
+    @Override
+    default String toJsonString() {
+        return GSON.toJson(this);
     }
 
     default void onLoadedFromJson() {

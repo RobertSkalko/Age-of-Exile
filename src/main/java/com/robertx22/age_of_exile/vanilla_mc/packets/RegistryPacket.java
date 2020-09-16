@@ -3,11 +3,8 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryPackets;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
@@ -18,9 +15,6 @@ import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class RegistryPacket extends MyPacket<RegistryPacket> {
 
@@ -33,32 +27,9 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
 
     }
 
-    public <T extends ISerializedRegistryEntry> RegistryPacket(SlashRegistryType type, List<T> items) {
-
-        SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
-
-        if (reg.isEmpty()) {
-            SlashRegistry.restoreBackup();
-        }
-
-        // TODO CACHE THIS
-        List<String> list = items
-            .stream()
-            .map(x -> ((ISerializable) x).toJsonNoSpaces())
-            .collect(Collectors.toList());
-
-        if (list.isEmpty()) {
-            throw new RuntimeException(type.name() + " Registry is empty on the server when trying to send registry packet!");
-        }
-
-        this.data = new ListStringData(items
-            .stream()
-            .map(x -> ((ISerializable) x).toJson()
-                .toString())
-            .collect(Collectors.toList()));
-
+    public <T extends ISerializedRegistryEntry> RegistryPacket(SlashRegistryType type, ListStringData data) {
         this.type = type;
-
+        this.data = data;
     }
 
     @Override

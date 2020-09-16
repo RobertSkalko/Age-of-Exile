@@ -100,6 +100,10 @@ public interface ISerializable<T> {
         return json;
     }
 
+    default String toJsonString() {
+        return toJson().toString();
+    }
+
     default boolean shouldGenerateJson() {
         return true;
     }

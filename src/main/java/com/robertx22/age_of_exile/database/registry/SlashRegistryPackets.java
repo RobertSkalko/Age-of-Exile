@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.robertx22.age_of_exile.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +25,7 @@ public class SlashRegistryPackets {
     }
 
     public static void registerAll() {
+        Watch watch = new Watch();
 
         SlashRegistryType.getInRegisterOrder()
             .forEach(type -> {
@@ -61,6 +64,10 @@ public class SlashRegistryPackets {
                     }
                 }
             });
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            watch.print("Registering registry from packets on client");
+        }
 
         ItemAutoPowerLevels.setupHashMaps();
 

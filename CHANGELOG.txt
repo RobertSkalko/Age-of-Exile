@@ -1,3 +1,11 @@
+v.1.3.7
+
+- tried optimizing login packets hoping to stop server lag when players login. 
+I found some old code and removing it should fix half the lag, but I also cached most of it which seems to speed it up by a lot!
+This should only be for cpu time but it seems it could speed it up by seconds. I don't know how much of the lag is from packet size,
+if it still lags, I'll have to tackle that too.
+- relax some weapon requirements for spells, specifically heals.
+
 v.1.3.6
 - should fix golden apple eat crash on servers
 

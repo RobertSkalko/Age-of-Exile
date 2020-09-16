@@ -15,9 +15,9 @@ import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
@@ -27,8 +27,10 @@ import com.robertx22.age_of_exile.database.registrators.*;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyBaseGearType;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
+import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.vanilla_mc.packets.RegistryPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -41,6 +43,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SlashRegistry {
 
@@ -205,33 +208,60 @@ public class SlashRegistry {
         }
     }
 
+    static HashMap<SlashRegistryType, List<ListStringData>> cachedRegistryPackets = new HashMap<>();
+
+    private static List<ListStringData> getDataFor(SlashRegistryType type) {
+        if (!cachedRegistryPackets.containsKey(type)) {
+
+            SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
+
+            if (reg.isEmpty()) {
+                SlashRegistry.restoreBackup();
+            }
+
+            List<ISerializedRegistryEntry> items = reg.getFromDatapacks();
+
+            if (items.isEmpty()) {
+                throw new RuntimeException(type.name() + " Registry is empty on the server when trying to send registry packet!");
+            }
+
+            new ListStringData(items
+                .stream()
+                .map(x -> ((ISerializable) x).toJsonString())
+                .collect(Collectors.toList()));
+
+            List<ListStringData> list = new ArrayList<>();
+            if (items.size() < 100) {
+                list.add(new ListStringData(items
+                    .stream()
+                    .map(x -> ((ISerializable) x).toJsonString())
+                    .collect(Collectors.toList())));
+            } else {
+                for (List<ISerializedRegistryEntry> part : Lists.partition(items, 100)) {
+                    list.add(new ListStringData(part
+                        .stream()
+                        .map(x -> ((ISerializable) x).toJsonString())
+                        .collect(Collectors.toList())));
+                }
+            }
+            cachedRegistryPackets.put(type, list);
+        }
+
+        return cachedRegistryPackets.get(type);
+    }
+
     public static void sendAllPacketsToClientOnLogin(ServerPlayerEntity player) {
 
         SlashRegistryType.getInRegisterOrder()
             .forEach(x -> {
                 if (x.getLoader() != null && x.ser != null) {
-
                     try {
-
-                        SlashRegistryContainer cont = SlashRegistry.getRegistry(x);
-
-                        List<ISerializedRegistryEntry> list = cont.getFromDatapacks();
-
-                        if (list.size() == 0) {
-                            throw new Exception("Registry empty: " + x.name());
-                        } else if (list.size() < 100) {
-                            Packets.sendToClient(player, new RegistryPacket(x, list));
-                        } else {
-                            for (List<ISerializedRegistryEntry> part : Lists.partition(list, 100)) {
-                                Packets.sendToClient(player, new RegistryPacket(x, part));
-                            }
-
-                        }
-
+                        getDataFor(x).forEach(d -> {
+                            Packets.sendToClient(player, new RegistryPacket(x, d));
+                        });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                 }
             });
     }

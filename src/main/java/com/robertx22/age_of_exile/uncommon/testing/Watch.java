@@ -8,8 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class Watch {
 
     public StopWatch stop = new StopWatch();
-    int min = 0;
+    public int min = 0;
     public TimeUnit unit = TimeUnit.MICROSECONDS;
+    public Long time;
 
     public Watch() {
         stop = new StopWatch();
@@ -49,8 +50,8 @@ public class Watch {
     public void print(String str) {
 
         stop.stop();
-        Long time = stop.getTime(unit);
-        if (time > min) {
+        time = stop.getTime(unit);
+        if (time >= min) {
             System.out.println(str + "Action took: " + time + " " + unit.name()
                 .toLowerCase(Locale.ROOT));
 
@@ -60,8 +61,8 @@ public class Watch {
     public void print() {
 
         stop.stop();
-        Long time = stop.getTime(unit);
-        if (time > min) {
+        time = stop.getTime(unit);
+        if (time >= min) {
             System.out.println("Action took: " + time + " " + unit.name()
                 .toLowerCase(Locale.ROOT));
 
