@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mobs.mages;
 
-import com.robertx22.age_of_exile.database.data.spells.components.DatapackSpells;
+import com.robertx22.age_of_exile.database.data.spells.DatapackSpells;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import net.minecraft.entity.EntityType;

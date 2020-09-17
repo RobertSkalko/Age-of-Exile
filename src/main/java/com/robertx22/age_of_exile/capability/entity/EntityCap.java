@@ -24,6 +24,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
@@ -33,14 +34,13 @@ import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.EntityStatusEffectsData;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
@@ -48,7 +48,6 @@ import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Random;
 import java.util.UUID;
@@ -536,12 +535,10 @@ public class EntityCap {
                 if (isNewbie()) {
                     setNewbieStatus(false);
 
-                    // guide book
-                    ItemStack book = new ItemStack(Registry.ITEM.get(new Identifier("patchouli", "guide_book")));
-                    CompoundTag tag = new CompoundTag();
-                    tag.putString("patchouli:book", "mmorpg:age_of_exile_guide");
-                    book.setTag(tag);
-                    PlayerUtils.giveItem(book, player);
+                    SlashRegistry.Spells()
+                        .getFiltered(x -> x.getConfig().is_starter)
+                        .forEach(x -> Load.perks(player).data.putOnFirstEmptyHotbarSlot(player, x));
+                    Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
 
                     if (ModConfig.get().Server.GET_STARTER_ITEMS) {
                         OnLogin.GiveStarterItems(player);

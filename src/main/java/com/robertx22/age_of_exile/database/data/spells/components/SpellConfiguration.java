@@ -12,6 +12,7 @@ public class SpellConfiguration {
     public int times_to_cast = 1;
     public int cast_time_ticks;
     public int cooldown_ticks;
+    public boolean is_starter = false;
     public PassiveConfig passive_config = new PassiveConfig();
 
     public static class PassiveConfig {
@@ -21,6 +22,11 @@ public class SpellConfiguration {
         public boolean canCastNow(LivingEntity en) {
             return en.getHealth() <= en.getMaxHealth() * cast_when_hp_bellow;
         }
+    }
+
+    public SpellConfiguration setIsStarter() {
+        this.is_starter = true;
+        return this;
     }
 
     public SpellConfiguration setSwingArm() {

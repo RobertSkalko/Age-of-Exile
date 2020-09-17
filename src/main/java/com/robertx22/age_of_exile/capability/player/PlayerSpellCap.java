@@ -13,7 +13,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PlayerSpellCap {
 
@@ -93,7 +95,7 @@ public class PlayerSpellCap {
                 }
             }
 
-            List<Spell> list = new ArrayList<>();
+            Set<Spell> list = new HashSet<>();
             for (Perk x : Load.perks(en)
                 .getAllAllocatedPerks()) {
                 if (x.getSpell() != null && !x.getSpell()
@@ -103,7 +105,14 @@ public class PlayerSpellCap {
                     list.add(spell);
                 }
             }
-            return list;
+
+            SlashRegistry.Spells()
+                .getList()
+                .stream()
+                .filter(x -> x.getConfig().is_starter)
+                .forEach(x -> list.add(x));
+
+            return new ArrayList<>(list);
         }
 
         @Override

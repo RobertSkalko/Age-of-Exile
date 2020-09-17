@@ -37,6 +37,7 @@ fire_bombs
 imbue
 spear_of_judgement
 purifying_fires
+arcane_bolt
 multi_shot
 poisoned_weapons
 bravery

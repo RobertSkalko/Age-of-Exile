@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -45,6 +46,27 @@ public class PlayerPerksData {
         return perks.get(school.GUID());
     }
 
+    public void putOnFirstEmptyHotbarSlot(PlayerEntity player, Spell spell) {
+        for (Map.Entry<Integer, String> entry : new HashMap<>(Load.spells(player)
+            .getCastingData()
+            .getBar())
+            .entrySet()) {
+
+            if (entry.getValue()
+                .isEmpty()) {
+
+                Load.spells(player)
+                    .getCastingData()
+                    .getBar()
+                    .put(entry.getKey(), spell.GUID());
+
+                break;
+            }
+
+        }
+
+    }
+
     public void allocate(PlayerEntity player, SpellSchool school, PointData point) {
         Perk perk = school.calcData.perks.get(point);
 
@@ -53,30 +75,15 @@ public class PlayerPerksData {
             if (perk.getSpell() != null && !perk.getSpell()
                 .isPassive()) {
                 if (!getSchool(school).map.getOrDefault(point, false)) {
-                    for (Map.Entry<Integer, String> entry : new HashMap<>(Load.spells(player)
-                        .getCastingData()
-                        .getBar())
-                        .entrySet()) {
-
-                        if (entry.getValue()
-                            .isEmpty()) {
-
-                            Load.spells(player)
-                                .getCastingData()
-                                .getBar()
-                                .put(entry.getKey(), perk.spell);
-
-                            break;
-                        }
-
-                    }
+                    putOnFirstEmptyHotbarSlot(player, perk.getSpell());
                 }
             }
 
         }
+        getSchool(school).map.put(point, true);
+
         Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
 
-        getSchool(school).map.put(point, true);
     }
 
     public void remove(SpellSchool school, PointData point) {

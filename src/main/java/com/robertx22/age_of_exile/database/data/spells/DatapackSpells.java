@@ -1,6 +1,8 @@
-package com.robertx22.age_of_exile.database.data.spells.components;
+package com.robertx22.age_of_exile.database.data.spells;
 
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart.Builder;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -59,6 +61,14 @@ public class DatapackSpells {
     }
 
     public static void init() {
+
+        Spell.Builder.of("arcane_bolt", SpellConfiguration.Builder.instant(5, 20)
+            .setIsStarter(), "Arcane Bolt")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDER_PEARL, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
+            .onTick(Builder.particleOnTick(3D, ParticleTypes.WITCH, 3D, 0.15D))
+            .onHit(Builder.damage(ValueCalculationData.base(6), Elements.Elemental))
+            .build();
 
         Spell.Builder.of(FROSTBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Ice Ball")
             .weaponReq(CastingWeapon.MAGE_WEAPON)

@@ -36,11 +36,13 @@ gorgons_gaze_projectile_speed
 multi_shot_healing
 tidal_wave_cast_speed
 blizzard_damage
+arcane_bolt_projectile_speed
 str
 wizardry_healing
 thunder_dash_cooldown
 bravery_projectile_speed
 chance_of_static
+arcane_bolt
 multi_shot
 frostball_healing
 heart_of_ice_magic_shield
@@ -135,6 +137,7 @@ blizzard_cast_speed
 holy_flower_cleanse
 lightning_totem
 arrow_storm_cast_speed
+arcane_bolt_cooldown
 heart_of_ice_cooldown
 passive_nature
 arrow_barrage_mana_cost
@@ -196,6 +199,7 @@ spear_of_judgement
 spell_damage
 healing_aura_damage
 multi_shot_projectile_speed
+arcane_bolt_cast_speed
 thunder_storm_projectile_speed
 recoil_shot_damage
 trickery_cooldown
@@ -253,7 +257,10 @@ health_regen
 spell_fire_damage
 purifying_fires_projectile_speed
 imbue_cooldown
+arcane_bolt_damage
 heart_of_ice_cast_speed
+arcane_bolt_healing
+arcane_bolt_mana_cost
 arrow_barrage_cooldown
 elemental_resist
 volcano_damage
