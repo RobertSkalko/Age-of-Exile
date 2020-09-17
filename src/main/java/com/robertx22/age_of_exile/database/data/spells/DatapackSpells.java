@@ -82,11 +82,32 @@ public class DatapackSpells {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, true)))
             .onTick("block", Builder.particleOnTick(3D, ParticleTypes.WITCH, 25D, 0.5D))
-            .onExpire("block", Builder.damageInAoe(ValueCalculationData.base(10), Elements.Elemental, 3D))
+            .onExpire("block", Builder.damageInAoe(ValueCalculationData.base(12), Elements.Elemental, 3D))
             .onExpire("block", Builder.aoeParticles(ParticleTypes.WITCH, 150D, 3D))
             .onExpire("block", Builder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
             .onExpire("block", Builder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
             .onExpire("block", Builder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
+            .build();
+
+        Spell.Builder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport")
+            .onCast(Builder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
+            .onCast(Builder.justAction(SpellAction.TP_CASTER_IN_DIRECTION.create(12D)))
+            .onCast(Builder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
+            .onCast(Builder.damageInAoe(ValueCalculationData.base(5), Elements.Elemental, 2D)
+                .addPerEntityHit(Builder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D)))
+            .build();
+
+        Spell.Builder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(15, 20 * 15, 20)
+            .setIsStarter(), "Magic Bomb")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_WITCH_THROW, 1D, 1D))
+            .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDERMITE_SPAWN_EGG, 1D, 0.2D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, true)
+                .put(MapField.EXPIRE_ON_HIT, false)))
+            .onTick(Builder.particleOnTick(2D, ParticleTypes.WITCH, 12D, 0.15D))
+            .onTick(Builder.playSoundEveryTicks(20D, SoundEvents.ENTITY_ENDERMITE_STEP, 1D, 1D))
+            .onExpire(Builder.damageInAoe(ValueCalculationData.base(12), Elements.Elemental, 2D))
+            .onExpire(Builder.aoeParticles(ParticleTypes.WITCH, 150D, 2D))
+            .onExpire(Builder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
+            .onExpire(Builder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
             .build();
 
         Spell.Builder.of(FROSTBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Ice Ball")
@@ -120,6 +141,7 @@ public class DatapackSpells {
                 .put(MapField.PROJECTILES_APART, 30D)))
             .onTick(Builder.particleOnTick(3D, ParticleTypes.FLAME, 5D, 0.15D))
             .onHit(Builder.addExileEffectToEnemiesInAoe(BurnEffect.INSTANCE, 1D)
+                .addCondition(EffectCondition.CHANCE.create(25D))
                 .requiresSpellMod(SpellModifiers.THROW_FLAMES_BURN))
             .onHit(Builder.damage(ValueCalculationData.base(7), Elements.Fire))
             .build();

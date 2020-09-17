@@ -20,11 +20,13 @@ dex
 imbue_damage
 poison_ball_projectile_speed
 big_health
+teleport_cooldown
 blizzard_mana_cost
 thunder_spear_projectile_speed
 multi_shot_cooldown
 whirlpool_healing
 poison_ball_healing
+magic_bomb_mana_cost
 blazing_inferno_healing
 gorgons_gaze_damage
 nature_balm_mana_cost
@@ -69,6 +71,7 @@ blizzard
 fire_bombs_cast_speed
 holy_flower_damage
 fireball_projectile_speed
+magic_bomb
 thorn_bush
 imbue_projectile_speed
 big_crit_dmg
@@ -85,6 +88,7 @@ trickery_damage
 magma_flower
 poisoned_weapons_healing
 thunder_storm_mana_cost
+magic_bomb_healing
 fire_bombs_healing
 nature_balm_cooldown
 volcano_healing
@@ -92,6 +96,7 @@ recoil_shot_mana_cost
 multi_shot_cast_speed
 flower_of_ice_healing
 gorgons_gaze_cooldown
+teleport_projectile_speed
 wizardry_cooldown
 tidal_wave_cooldown
 thunder_storm
@@ -103,9 +108,11 @@ poisoned_weapons_mana_cost
 spear_of_judgement_projectile_speed
 big_armor
 wizardry_damage
+teleport_healing
 blizzard_projectile_speed
 holy_flower_mana_cost
 purifying_fires_healing
+magic_bomb_cast_speed
 bravery_damage
 thorn_bush_projectile_speed
 bravery_mana_cost
@@ -163,6 +170,7 @@ lightning_totem_damage
 thunder_storm_cooldown
 tidal_wave_healing
 wizardry_projectile_speed
+magic_bomb_cooldown
 bravery
 blazing_inferno_cooldown
 imbue_mana_cost
@@ -211,6 +219,7 @@ frostball_mana_cost
 arcane_comet_cooldown
 poison_ball_mana_cost
 nature_balm_cast_speed
+teleport_damage
 blizzard_cooldown
 thunder_storm_healing
 big_str
@@ -233,6 +242,7 @@ throw_flames_burn
 whirlpool
 health
 gorgons_gaze_cast_speed
+magic_bomb_projectile_speed
 throw_flames_mana_cost
 fire_bombs_projectile_speed
 magma_flower_cooldown
@@ -251,6 +261,7 @@ blazing_inferno_damage
 thunder_weapon_damage
 arrow_barrage_healing
 thunder_dash_projectile_speed
+teleport_cast_speed
 passive_ocean
 arrow_storm_mana_cost
 gorgons_gaze
@@ -274,9 +285,12 @@ heart_of_ice_mana_cost
 frostball_cooldown
 recoil_shot
 poison_ball
+teleport
 spear_of_judgement_cast_speed
 poisoned_weapons_projectile_speed
 thunder_dash_mana_cost
+teleport_mana_cost
+magic_bomb_damage
 multi_shot_damage
 throw_flames_damage
 nature_balm

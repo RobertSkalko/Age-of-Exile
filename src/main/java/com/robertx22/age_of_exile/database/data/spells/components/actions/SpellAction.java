@@ -34,7 +34,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static PushAction PUSH = of(new PushAction());
     public static SwordSweepParticlesAction SWORD_SWEEP_PARTICLES = of(new SwordSweepParticlesAction());
     public static PotionAction POTION = of(new PotionAction());
-
+    public static TeleportCasterToSightAction TP_CASTER_IN_DIRECTION = of(new TeleportCasterToSightAction());
     public static RestoreHealthAction RESTORE_HEALTH = of(new RestoreHealthAction());
     public static RestoreManaAction RESTORE_MANA = of(new RestoreManaAction());
     public static RestoreMagicShieldAction RESTORE_MAGIC_SHIELD = of(new RestoreMagicShieldAction());

@@ -12,11 +12,13 @@ trickery_cast_speed
 fireball_damage
 imbue_damage
 poison_ball_projectile_speed
+teleport_cooldown
 blizzard_mana_cost
 thunder_spear_projectile_speed
 multi_shot_cooldown
 whirlpool_healing
 poison_ball_healing
+magic_bomb_mana_cost
 blazing_inferno_healing
 gorgons_gaze_damage
 nature_balm_mana_cost
@@ -60,6 +62,7 @@ heart_of_ice_projectile_speed
 trickery_damage
 poisoned_weapons_healing
 thunder_storm_mana_cost
+magic_bomb_healing
 fire_bombs_healing
 nature_balm_cooldown
 volcano_healing
@@ -67,6 +70,7 @@ recoil_shot_mana_cost
 multi_shot_cast_speed
 flower_of_ice_healing
 gorgons_gaze_cooldown
+teleport_projectile_speed
 wizardry_cooldown
 tidal_wave_cooldown
 blazing_inferno_cast_speed
@@ -74,9 +78,11 @@ bravery_cooldown
 poisoned_weapons_mana_cost
 spear_of_judgement_projectile_speed
 wizardry_damage
+teleport_healing
 blizzard_projectile_speed
 holy_flower_mana_cost
 purifying_fires_healing
+magic_bomb_cast_speed
 bravery_damage
 thorn_bush_projectile_speed
 bravery_mana_cost
@@ -122,6 +128,7 @@ lightning_totem_damage
 thunder_storm_cooldown
 tidal_wave_healing
 wizardry_projectile_speed
+magic_bomb_cooldown
 blazing_inferno_cooldown
 imbue_mana_cost
 trickery_healing
@@ -156,6 +163,7 @@ frostball_mana_cost
 arcane_comet_cooldown
 poison_ball_mana_cost
 nature_balm_cast_speed
+teleport_damage
 blizzard_cooldown
 thunder_storm_healing
 poisoned_weapons_cooldown
@@ -166,6 +174,7 @@ lightning_totem_projectile_speed
 wizardry_mana_cost
 throw_flames_burn
 gorgons_gaze_cast_speed
+magic_bomb_projectile_speed
 throw_flames_mana_cost
 fire_bombs_projectile_speed
 magma_flower_cooldown
@@ -180,6 +189,7 @@ recoil_shot_cooldown
 blazing_inferno_damage
 arrow_barrage_healing
 thunder_dash_projectile_speed
+teleport_cast_speed
 arrow_storm_mana_cost
 arcane_comet_projectile_speed
 arrow_barrage_projectile_speed
@@ -196,6 +206,8 @@ frostball_cooldown
 spear_of_judgement_cast_speed
 poisoned_weapons_projectile_speed
 thunder_dash_mana_cost
+teleport_mana_cost
+magic_bomb_damage
 multi_shot_damage
 throw_flames_damage
 frostball_cast_speed

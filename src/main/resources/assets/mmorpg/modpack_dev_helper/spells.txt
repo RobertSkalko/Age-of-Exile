@@ -4,6 +4,7 @@ magma_flower
 recoil_shot
 healing_aura
 poison_ball
+teleport
 thorn_armor
 throw_flames
 passive_divine
@@ -30,6 +31,7 @@ thunder_spear
 heart_of_ice
 passive_storm
 blizzard
+magic_bomb
 wizardry
 frostball
 whirlpool
