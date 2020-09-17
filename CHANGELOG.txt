@@ -6,6 +6,7 @@ Trying to fix login lag further:
 This should cut down the login lag by a bunch. But might be buggy.
 - datapacks no longer have a lang name id field. This is to reduce the size but also because it's not needed.
 All of them have a predetermined lang file id based on their guid/identifier
+- entity configs are now not synced at all. They dont appear to be ever used on client
 
 v.1.3.7
 
