@@ -2,6 +2,7 @@ v.1.3.9
 
 - added Arcanist school of magic! Focuses on doing elemental damage, teleporation and mana.
 - added starter spell, arcane bolt
+- fixed item tooltips not being shown
 
 v.1.3.8
 

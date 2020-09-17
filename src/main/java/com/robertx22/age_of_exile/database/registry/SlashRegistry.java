@@ -53,10 +53,10 @@ public class SlashRegistry {
     private static HashMap<SlashRegistryType, SlashRegistryContainer> BACKUP = new HashMap<>();
 
     public static boolean areDatapacksLoaded(World world) {
-        return SlashRegistry.getAllRegistries()
+        return SlashRegistryType.getInRegisterOrder(SyncTime.ON_LOGIN)
             .stream()
-            .filter(x -> x.getType().ser != null)
-            .allMatch(x -> x.isRegistrationDone());
+            .allMatch(x -> SlashRegistry.getRegistry(x)
+                .isRegistrationDone());
     }
 
     public static void backup() {
