@@ -20,9 +20,6 @@ public class UniqueGearBuilder {
         b.uniq.gearType = gearType.GUID();
 
         b.uniq.itemID = b.uniq.getResourceLocForItemForSerialization();
-        b.uniq.langDescID = "item." + b.uniq.itemID
-            + ".desc";
-        b.uniq.langNameID = "item." + b.uniq.itemID;
 
         return b;
 

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -12,24 +13,53 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
+import net.minecraft.network.PacketByteBuf;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RuneWord implements IAutoGson<RuneWord>, ISerializedRegistryEntry<RuneWord>, IAutoLocName {
+public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISerializedRegistryEntry<RuneWord>, IAutoLocName {
     public static RuneWord SERIALIZER = new RuneWord();
 
     public String identifier = "";
-
     public List<StatModifier> stats = new ArrayList<>();
-
     public List<String> runes_needed = new ArrayList<>();
-
     public BaseGearType.SlotFamily family;
 
-    public String loc_name = "";
+    public transient String loc_name = "";
+
+    @Override
+    public RuneWord getFromBuf(PacketByteBuf buf) {
+        RuneWord word = new RuneWord();
+
+        word.identifier = buf.readString(50);
+
+        int statAmount = buf.readInt();
+        for (int i = 0; i < statAmount; i++) {
+            word.stats.add(StatModifier.EMPTY.getFromBuf(buf));
+        }
+        int count = buf.readInt();
+        for (int i = 0; i < count; i++) {
+            word.runes_needed.add(buf.readString(10));
+        }
+        word.family = BaseGearType.SlotFamily.valueOf(buf.readString(30));
+
+        return word;
+    }
+
+    @Override
+    public void toBuf(PacketByteBuf buf) {
+        buf.writeString(identifier, 50);
+
+        buf.writeInt(stats.size());
+        stats.forEach(x -> x.toBuf(buf));
+        buf.writeInt(runes_needed.size());
+        runes_needed.forEach(x -> buf.writeString(x, 10));
+
+        buf.writeString(family.name(), 30);
+    }
 
     public boolean containsRune(Rune rune) {
         return this.runes_needed.stream()

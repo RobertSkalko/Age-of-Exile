@@ -19,10 +19,10 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
 
     List<StatModifier> stats;
     String id;
-    String locName;
     int weight = 1000;
     public String icon = "";
     public Formatting format;
+    transient String locName;
 
     public MobAffix(String id, String locName, Formatting format) {
         this.id = id;
@@ -60,7 +60,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
 
         MobAffix affix = new MobAffix(
             getGUIDFromJson(json),
-            getLangNameStringFromJson(json),
+            "",
             Formatting.valueOf(json.get("format")
                 .getAsString()));
 

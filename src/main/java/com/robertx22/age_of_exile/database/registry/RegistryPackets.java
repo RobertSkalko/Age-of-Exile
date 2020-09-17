@@ -70,7 +70,9 @@ public class RegistryPackets {
             watch.print("Registering registry from packets on client");
         }
 
-        ItemAutoPowerLevels.setupHashMaps();
+        if (sync == SyncTime.ON_LOGIN) {
+            ItemAutoPowerLevels.setupHashMaps();
+        }
 
         map.clear();
     }

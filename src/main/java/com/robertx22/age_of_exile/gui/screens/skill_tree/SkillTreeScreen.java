@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.ConnectionButton;
@@ -50,6 +51,8 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             .getScaledWidth(), MinecraftClient.getInstance()
             .getWindow()
             .getScaledHeight());
+
+        SyncTime.ON_SKILL_TREE.trySyncIfNeeded();
     }
 
     public void removeRemovableButtons() {

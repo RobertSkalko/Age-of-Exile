@@ -23,17 +23,11 @@ public class SerializableBaseGearType extends BaseGearType {
     public String item_id;
     public StatRequirement stat_req;
     public WeaponTypes weapon_type;
-    public String loc_name_id;
     public int weight;
     public String gear_slot;
 
     public SerializableBaseGearType() {
         super("", null, "");
-    }
-
-    @Override
-    public String locNameLangFileGUID() {
-        return loc_name_id;
     }
 
     @Override

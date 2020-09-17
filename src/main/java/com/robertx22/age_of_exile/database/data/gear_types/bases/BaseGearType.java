@@ -684,7 +684,6 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
         o.guid = this.getGUIDFromJson(json);
         o.weight = this.getWeightFromJson(json);
-        o.loc_name_id = this.getLangNameStringFromJson(json);
         o.level_range = LevelRange.SERIALIZER.fromJson(json.getAsJsonObject("level_range"));
         o.stat_req = StatRequirement.EMPTY.fromJson(json.getAsJsonObject("stat_req"));
         o.base_stats = JsonUtils.getStats(json, "base_stats");

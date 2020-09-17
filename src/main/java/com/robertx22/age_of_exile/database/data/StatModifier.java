@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
@@ -9,6 +10,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class StatModifier implements ISerializable<StatModifier> {
+public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatModifier> {
 
     @Store
     public float first_min = 0;
@@ -40,6 +42,30 @@ public class StatModifier implements ISerializable<StatModifier> {
     @Factory
     private StatModifier() {
 
+    }
+
+    @Override
+    public StatModifier getFromBuf(PacketByteBuf buf) {
+        StatModifier mod = new StatModifier();
+        mod.first_min = buf.readFloat();
+        mod.first_max = buf.readFloat();
+        mod.second_min = buf.readFloat();
+        mod.second_max = buf.readFloat();
+
+        mod.stat = buf.readString(30);
+        mod.type = buf.readString(30);
+        return mod;
+    }
+
+    @Override
+    public void toBuf(PacketByteBuf buf) {
+        buf.writeFloat(first_min);
+        buf.writeFloat(first_max);
+        buf.writeFloat(second_min);
+        buf.writeFloat(second_max);
+
+        buf.writeString(stat, 30);
+        buf.writeString(type, 30);
     }
 
     public StatModifier(float firstMin, float firstMax, Stat stat, ModType type) {

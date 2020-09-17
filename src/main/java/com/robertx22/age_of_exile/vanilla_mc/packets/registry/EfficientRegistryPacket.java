@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.packets;
+package com.robertx22.age_of_exile.vanilla_mc.packets.registry;
 
 import com.google.common.collect.Lists;
 import com.robertx22.age_of_exile.database.IByteBuf;

@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.main_hub;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
@@ -38,6 +39,8 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         super(x, y);
         this.mc = MinecraftClient.getInstance();
         this.data = Load.Unit(mc.player);
+
+        SyncTime.ON_SKILL_TREE.trySyncIfNeeded();
     }
 
     @Override

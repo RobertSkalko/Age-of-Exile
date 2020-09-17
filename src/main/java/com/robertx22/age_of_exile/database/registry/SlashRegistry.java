@@ -33,8 +33,8 @@ import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
-import com.robertx22.age_of_exile.vanilla_mc.packets.EfficientRegistryPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.RegistryPacket;
+import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
+import com.robertx22.age_of_exile.vanilla_mc.packets.registry.RegistryPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -252,7 +252,7 @@ public class SlashRegistry {
         return cachedRegistryPackets.get(type);
     }
 
-    public static void sendPacketsToClientOnLogin(ServerPlayerEntity player, SyncTime sync) {
+    public static void sendPacketsToClient(ServerPlayerEntity player, SyncTime sync) {
         SlashRegistryType.getInRegisterOrder(sync)
             .forEach(x -> {
                 if (x.getLoader() != null && x.ser != null) {

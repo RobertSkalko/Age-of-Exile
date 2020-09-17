@@ -1,17 +1,10 @@
 package com.robertx22.age_of_exile.datapacks.bases;
 
 import com.google.gson.JsonObject;
-import com.google.gson.internal.Streams;
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
-import com.robertx22.age_of_exile.datapacks.JsonUtils;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
-
-import java.io.IOException;
 
 public interface ISerializable<T> {
     JsonObject toJson();
@@ -19,9 +12,6 @@ public interface ISerializable<T> {
     T fromJson(JsonObject json);
 
     static String ID = "id";
-    static String REGISTRY = "registry";
-    static String LANG_NAME = "lang_file_string";
-    static String LANG_DESC = "lang_file_desc_string";
     static String WEIGHT = "weight";
     static String RARITY = "rarity";
     static String TIER = "tier";
@@ -50,16 +40,6 @@ public interface ISerializable<T> {
             .getAsInt();
     }
 
-    default String getLangDescStringFromJson(JsonObject json) {
-        return json.get(LANG_DESC)
-            .getAsString();
-    }
-
-    default String getLangNameStringFromJson(JsonObject json) {
-        return json.get(LANG_NAME)
-            .getAsString();
-    }
-
     default JsonObject getDefaultJson() {
         JsonObject json = new JsonObject();
 
@@ -83,20 +63,6 @@ public interface ISerializable<T> {
             json.addProperty(TIER, claz.getTier());
         }
 
-        if (this instanceof ISlashRegistryEntry) {
-            ISlashRegistryEntry claz = (ISlashRegistryEntry) this;
-            json.addProperty(REGISTRY, claz.getSlashRegistryType().id);
-        }
-
-        if (this instanceof IAutoLocName) {
-            IAutoLocName loc = (IAutoLocName) this;
-            json.addProperty(LANG_NAME, loc.formattedLocNameLangFileGUID());
-        }
-        if (this instanceof IAutoLocDesc) {
-            IAutoLocDesc loc = (IAutoLocDesc) this;
-            json.addProperty(LANG_DESC, loc.formattedLocDescLangFileGUID());
-        }
-
         return json;
     }
 
@@ -106,18 +72,6 @@ public interface ISerializable<T> {
 
     default boolean shouldGenerateJson() {
         return true;
-    }
-
-    default String toJsonNoSpaces() { // todo , unsure if this is much or any better. it removes 2 new object calls and thats it
-        try {
-
-            Streams.write(toJson(), JsonUtils.jsonWriter);
-            return JsonUtils.stringWriter.toString();
-
-        } catch (IOException e) {
-            throw new AssertionError(e);
-        }
-
     }
 
 }

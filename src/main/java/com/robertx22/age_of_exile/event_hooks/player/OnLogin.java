@@ -39,7 +39,7 @@ public class OnLogin {
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
             Rarities.sendAllPacketsToClientOnLogin(player);
-            SlashRegistry.sendPacketsToClientOnLogin(player, SyncTime.ON_LOGIN);
+            SlashRegistry.sendPacketsToClient(player, SyncTime.ON_LOGIN);
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.AFTER));
             SlashRegistry.restoreFromBackupifEmpty();
 

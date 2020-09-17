@@ -1,7 +1,11 @@
 v.1.3.8
 
 Trying to fix login lag further:
-- used direct bytebuf packets for compatible items
+- used direct bytebuf packets for compatible items, unique gears, runewords
+- skill tree related datapacks are now synced only when you open main hub or skill tree gui.
+This should cut down the login lag by a bunch. But might be buggy.
+- datapacks no longer have a lang name id field. This is to reduce the size but also because it's not needed.
+All of them have a predetermined lang file id based on their guid/identifier
 
 v.1.3.7
 
