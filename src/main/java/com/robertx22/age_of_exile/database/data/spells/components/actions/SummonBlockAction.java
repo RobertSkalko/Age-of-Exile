@@ -47,36 +47,42 @@ public class SummonBlockAction extends SpellAction implements ICMainTooltip {
             //HitResult ray = ctx.caster.rayTrace(5D, 0.0F, false);
             BlockPos pos = ctx.pos;
 
-            boolean found = false;
+            boolean found = true;
 
-            int times = 0;
+            if (data.getOrDefault(MapField.FIND_NEAREST_SURFACE, true)) {
 
-            while (!found && pos.getY() > 1 && SEARCH > times) {
-                times++;
-                if (ctx.world.isAir(pos) && !ctx.world.isAir(pos.down())) {
-                    found = true;
-                } else {
-                    pos = pos.down();
-                }
-            }
-            if (!found) {
-                pos = ctx.pos;
-                times = 0;
-                while (!found && pos.getY() < ctx.world.getHeight() && SEARCH > times) {
+                found = false;
+
+                int times = 0;
+
+                while (!found && pos.getY() > 1 && SEARCH > times) {
                     times++;
                     if (ctx.world.isAir(pos) && !ctx.world.isAir(pos.down())) {
                         found = true;
                     } else {
-                        pos = pos.up();
+                        pos = pos.down();
+                    }
+                }
+                if (!found) {
+                    pos = ctx.pos;
+                    times = 0;
+                    while (!found && pos.getY() < ctx.world.getHeight() && SEARCH > times) {
+                        times++;
+                        if (ctx.world.isAir(pos) && !ctx.world.isAir(pos.down())) {
+                            found = true;
+                        } else {
+                            pos = pos.up();
+                        }
                     }
                 }
             }
-
             Block block = data.getBlock();
             Objects.requireNonNull(block);
 
             if (found) {
                 StationaryFallingBlockEntity be = new StationaryFallingBlockEntity(ctx.world, pos, block.getDefaultState());
+                be.getDataTracker()
+                    .set(StationaryFallingBlockEntity.IS_FALLING, data.getOrDefault(MapField.IS_BLOCK_FALLING, false));
                 SpellUtils.initSpellEntity(be, ctx.caster, ctx.calculatedSpellData, data);
                 ctx.world.spawnEntity(be);
             }

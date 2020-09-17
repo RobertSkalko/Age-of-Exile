@@ -25,6 +25,7 @@ flower_of_ice
 volcano
 arrow_barrage
 fireball
+arcane_comet
 thunder_spear
 heart_of_ice
 passive_storm

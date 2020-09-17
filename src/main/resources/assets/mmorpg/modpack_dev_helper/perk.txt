@@ -137,6 +137,7 @@ blizzard_cast_speed
 holy_flower_cleanse
 lightning_totem
 arrow_storm_cast_speed
+arcane_comet_cast_speed
 arcane_bolt_cooldown
 heart_of_ice_cooldown
 passive_nature
@@ -207,6 +208,7 @@ whirlpool_mana_cost
 blizzard_healing
 spear_of_judgement_mana_cost
 frostball_mana_cost
+arcane_comet_cooldown
 poison_ball_mana_cost
 nature_balm_cast_speed
 blizzard_cooldown
@@ -217,10 +219,12 @@ nature_resist
 poisoned_weapons_cooldown
 thorn_armor_mana_cost
 big_magic_shield
+arcane_comet_damage
 arrow_barrage
 fireball
 frostball_damage
 fire_resist
+arcane_comet
 lightning_totem_projectile_speed
 heart_of_ice
 wizardry_mana_cost
@@ -250,6 +254,7 @@ thunder_dash_projectile_speed
 passive_ocean
 arrow_storm_mana_cost
 gorgons_gaze
+arcane_comet_projectile_speed
 critical_damage
 arrow_barrage_projectile_speed
 physical_weapon_damage
@@ -289,6 +294,7 @@ fireball_healing
 poisoned_weapons_cast_speed
 thunder_spear
 thunder_spear_healing
+arcane_comet_mana_cost
 poison_ball_damage
 thorn_bush_mana_cost
 thorn_armor_projectile_speed
@@ -301,4 +307,5 @@ arrow_barrage_cast_speed
 thorn_bush_cooldown
 volcano_cooldown
 arrow_storm_projectile_speed
+arcane_comet_healing
 arrow_barrage_damage

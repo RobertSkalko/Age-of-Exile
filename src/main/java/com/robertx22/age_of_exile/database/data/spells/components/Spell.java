@@ -322,6 +322,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             return this.addEffect(entity, comp);
         }
 
+        public Builder onCast(String entity, ComponentPart comp) {
+            this.spell.attached.on_cast.add(comp);
+            comp.addActivationRequirement(EntityActivation.ON_CAST);
+            return this.addEffect(entity, comp);
+        }
+
         public Builder onExpire(String entity, ComponentPart comp) {
             comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
             return this.addEffect(entity, comp);

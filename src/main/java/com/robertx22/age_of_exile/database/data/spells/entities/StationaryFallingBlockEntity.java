@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -69,6 +70,8 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<String> BLOCK = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
+    public static final TrackedData<Boolean> IS_FALLING = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static final TrackedData<Float> FALL_SPEED = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
     @Override
     public Iterable<ItemStack> getArmorItems() {
@@ -78,6 +81,23 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     @Override
     public void tick() {
         this.age++;
+
+        if (dataTracker.get(IS_FALLING)) {
+            if (!this.hasNoGravity()) {
+
+                float speed = dataTracker.get(FALL_SPEED);
+                speed *= 1 + 0.03F * age;
+
+                this.setVelocity(this.getVelocity()
+                    .add(0.0D, speed, 0.0D));
+            }
+            this.move(MovementType.SELF, this.getVelocity());
+
+            if (this.onGround) {
+                remove();
+            }
+
+        }
 
         try {
             this.getSpellData()
@@ -92,6 +112,25 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         if (age > lifespan) {
             remove();
         }
+    }
+
+    @Override
+    public void remove() {
+
+        try {
+            LivingEntity caster = getSpellData().getCaster(world);
+
+            if (caster != null) {
+                this.getSpellData()
+                    .getSpell()
+                    .getAttached()
+                    .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        super.remove();
     }
 
     static Gson GSON = new Gson();
@@ -113,6 +152,8 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
         this.dataTracker.startTracking(ENTITY_NAME, "");
         this.dataTracker.startTracking(BLOCK, "");
+        this.dataTracker.startTracking(IS_FALLING, false);
+        this.dataTracker.startTracking(FALL_SPEED, -0.04F);
         super.initDataTracker();
     }
 
@@ -133,6 +174,8 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         dataTracker.set(SPELL_DATA, nbt);
         dataTracker.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));
         dataTracker.set(BLOCK, holder.get(MapField.BLOCK));
+        dataTracker.set(FALL_SPEED, holder.getOrDefault(MapField.BLOCK_FALL_SPEED, -0.04D)
+            .floatValue());
 
     }
 }

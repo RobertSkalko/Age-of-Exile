@@ -62,12 +62,31 @@ public class DatapackSpells {
 
     public static void init() {
 
-        Spell.Builder.of("arcane_bolt", SpellConfiguration.Builder.instant(5, 20)
+        Spell.Builder.of("arcane_bolt", SINGLE_TARGET_PROJ_CONFIG()
             .setIsStarter(), "Arcane Bolt")
             .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDER_PEARL, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
             .onTick(Builder.particleOnTick(3D, ParticleTypes.WITCH, 3D, 0.15D))
-            .onHit(Builder.damage(ValueCalculationData.base(6), Elements.Elemental))
+            .onHit(Builder.damage(ValueCalculationData.base(8), Elements.Elemental))
+            .build();
+
+        Spell.Builder.of("arcane_comet", SpellConfiguration.Builder.instant(20, 20 * 30)
+            .setIsStarter(), "Arcane Comet")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 1D, 6D)
+                .put(MapField.HEIGHT, 14D)
+            ))
+            .onExpire(Builder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.BUBBLE_CORAL_BLOCK, 200D)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, -0.02D)
+                .put(MapField.FIND_NEAREST_SURFACE, false)
+                .put(MapField.IS_BLOCK_FALLING, true)))
+            .onTick("block", Builder.particleOnTick(3D, ParticleTypes.WITCH, 25D, 0.5D))
+            .onExpire("block", Builder.damageInAoe(ValueCalculationData.base(10), Elements.Elemental, 3D))
+            .onExpire("block", Builder.aoeParticles(ParticleTypes.WITCH, 150D, 3D))
+            .onExpire("block", Builder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
+            .onExpire("block", Builder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
+            .onExpire("block", Builder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
             .build();
 
         Spell.Builder.of(FROSTBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Ice Ball")

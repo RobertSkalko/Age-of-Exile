@@ -103,6 +103,7 @@ tidal_wave_projectile_speed
 blizzard_cast_speed
 holy_flower_cleanse
 arrow_storm_cast_speed
+arcane_comet_cast_speed
 arcane_bolt_cooldown
 heart_of_ice_cooldown
 arrow_barrage_mana_cost
@@ -152,12 +153,14 @@ whirlpool_mana_cost
 blizzard_healing
 spear_of_judgement_mana_cost
 frostball_mana_cost
+arcane_comet_cooldown
 poison_ball_mana_cost
 nature_balm_cast_speed
 blizzard_cooldown
 thunder_storm_healing
 poisoned_weapons_cooldown
 thorn_armor_mana_cost
+arcane_comet_damage
 frostball_damage
 lightning_totem_projectile_speed
 wizardry_mana_cost
@@ -178,6 +181,7 @@ blazing_inferno_damage
 arrow_barrage_healing
 thunder_dash_projectile_speed
 arrow_storm_mana_cost
+arcane_comet_projectile_speed
 arrow_barrage_projectile_speed
 purifying_fires_projectile_speed
 imbue_cooldown
@@ -205,6 +209,7 @@ healing_aura_mana_cost
 fireball_healing
 poisoned_weapons_cast_speed
 thunder_spear_healing
+arcane_comet_mana_cost
 poison_ball_damage
 thorn_bush_mana_cost
 thorn_armor_projectile_speed
@@ -215,4 +220,5 @@ arrow_barrage_cast_speed
 thorn_bush_cooldown
 volcano_cooldown
 arrow_storm_projectile_speed
+arcane_comet_healing
 arrow_barrage_damage

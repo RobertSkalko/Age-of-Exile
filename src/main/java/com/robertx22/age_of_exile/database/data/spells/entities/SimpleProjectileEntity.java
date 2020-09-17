@@ -125,27 +125,29 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
         }
 
-        List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPos())
-            .radius(radius)
-            .build();
+        if (getCaster() != null) {
+            List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPos())
+                .radius(radius)
+                .build();
 
-        if (entities.size() > 0) {
+            if (entities.size() > 0) {
 
-            LivingEntity closest = entities.get(0);
+                LivingEntity closest = entities.get(0);
 
-            for (LivingEntity en : entities) {
-                if (en != closest) {
-                    if (this.distanceTo(en) < this.distanceTo(closest)) {
-                        closest = en;
+                for (LivingEntity en : entities) {
+                    if (en != closest) {
+                        if (this.distanceTo(en) < this.distanceTo(closest)) {
+                            closest = en;
+                        }
                     }
                 }
+
+                if (!closest.isAlive()) {
+
+                }
+
+                return closest;
             }
-
-            if (!closest.isAlive()) {
-
-            }
-
-            return closest;
         }
 
         return null;

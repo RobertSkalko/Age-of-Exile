@@ -30,6 +30,7 @@ public class MapField<T> implements IGUID {
     public static MapField<Double> PUSH_STRENGTH = make("push_str");
     public static MapField<Double> POTION_DURATION = make("potion_dur");
     public static MapField<Double> POTION_STRENGTH = make("potion_str");
+    public static MapField<Double> BLOCK_FALL_SPEED = make("block_fall_speed");
 
     public static MapField<Double> VOLUME = make("volume");
     public static MapField<Double> PITCH = make("pitch");
@@ -57,6 +58,8 @@ public class MapField<T> implements IGUID {
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");
     public static MapField<Boolean> EXPIRE_ON_HIT = make("expire_on_hit");
+    public static MapField<Boolean> IS_BLOCK_FALLING = make("is_falling_block");
+    public static MapField<Boolean> FIND_NEAREST_SURFACE = make("find_surface");
 
     public static MapField<ValueCalculationData> VALUE_CALCULATION = make("value_calculation");
 
