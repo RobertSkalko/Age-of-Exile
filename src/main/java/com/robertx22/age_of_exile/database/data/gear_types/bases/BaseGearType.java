@@ -212,23 +212,6 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     }
 
-    public enum PlayStyle {
-        INT, DEX, STR, NONE;
-
-        public boolean isINT() {
-            return this == INT;
-        }
-
-        public boolean isDEX() {
-            return this == DEX;
-        }
-
-        public boolean isSTR() {
-            return this == STR;
-        }
-
-    }
-
     public final boolean isWeapon() {
         return this.family()
             .equals(SlotFamily.Weapon);

@@ -63,7 +63,7 @@ public enum SlashRegistryType {
         }
     },
     DIMENSION_CONFIGS("dimension_config", 13, DimensionConfig.EMPTY, SyncTime.ON_LOGIN),
-    ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY, SyncTime.ON_LOGIN),
+    ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY, SyncTime.NEVER),
     COMPATIBLE_ITEM("compatible_items", 15, CompatibleItem.EMPTY, SyncTime.ON_LOGIN) {
         public List getAllForSerialization() {
             return CompatibleItemUtils.getAllForSerialization();
