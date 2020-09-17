@@ -5,4 +5,5 @@ nature
 fire
 divine
 hunting
+arcane
 water

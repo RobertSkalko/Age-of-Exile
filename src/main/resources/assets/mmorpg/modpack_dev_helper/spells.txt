@@ -37,10 +37,12 @@ frostball
 whirlpool
 thorn_bush
 fire_bombs
+awaken_mana
 imbue
 spear_of_judgement
 purifying_fires
 arcane_bolt
 multi_shot
+passive_arcane
 poisoned_weapons
 bravery

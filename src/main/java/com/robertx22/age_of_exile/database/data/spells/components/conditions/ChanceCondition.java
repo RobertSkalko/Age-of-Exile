@@ -23,7 +23,7 @@ public class ChanceCondition extends EffectCondition implements ICTextTooltip {
 
         Double chance = data.get(MapField.CHANCE);
 
-        text.append(chance + "% chance to");
+        text.append(chance + "% chance: ");
 
         return text;
 

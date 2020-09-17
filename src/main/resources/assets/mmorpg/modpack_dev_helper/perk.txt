@@ -4,6 +4,7 @@ arrow_storm_damage
 spear_of_judgement_cooldown
 holy_flower_healing
 throw_flames
+awaken_mana_healing
 passive_divine
 chance_of_frost
 holy_flower_projectile_speed
@@ -163,6 +164,7 @@ frostball
 fire_bombs
 arrow_storm_cooldown
 imbue_healing
+awaken_mana
 volcano_projectile_speed
 chance_of_burn
 thorn_armor_cooldown
@@ -179,6 +181,7 @@ trickery_healing
 thorn_armor
 passive_hunting
 thorn_bush_cast_speed
+awaken_mana_projectile_speed
 tidal_wave_mana_cost
 fire_bombs_cooldown
 thunder_dash
@@ -208,6 +211,7 @@ spear_of_judgement
 spell_damage
 healing_aura_damage
 multi_shot_projectile_speed
+awaken_mana_mana_cost
 arcane_bolt_cast_speed
 thunder_storm_projectile_speed
 recoil_shot_damage
@@ -248,6 +252,7 @@ fire_bombs_projectile_speed
 magma_flower_cooldown
 fire_bombs_damage
 poisoned_weapons
+passive_arcane
 big_dex
 healing_aura_projectile_speed
 heart_of_ice_damage
@@ -287,6 +292,7 @@ recoil_shot
 poison_ball
 teleport
 spear_of_judgement_cast_speed
+awaken_mana_damage
 poisoned_weapons_projectile_speed
 thunder_dash_mana_cost
 teleport_mana_cost
@@ -294,6 +300,7 @@ magic_bomb_damage
 multi_shot_damage
 throw_flames_damage
 nature_balm
+awaken_mana_cooldown
 frostball_cast_speed
 thunder_storm_cast_speed
 magma_flower_mana_cost
@@ -311,6 +318,7 @@ thunder_spear_healing
 arcane_comet_mana_cost
 poison_ball_damage
 thorn_bush_mana_cost
+awaken_mana_cast_speed
 thorn_armor_projectile_speed
 fireball_cast_speed
 blazing_inferno_projectile_speed

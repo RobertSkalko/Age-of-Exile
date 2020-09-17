@@ -3,6 +3,7 @@ This registry is modify-able through datapacks.
 arrow_storm_damage
 spear_of_judgement_cooldown
 holy_flower_healing
+awaken_mana_healing
 holy_flower_projectile_speed
 bravery_healing
 thorn_bush_damage
@@ -133,6 +134,7 @@ blazing_inferno_cooldown
 imbue_mana_cost
 trickery_healing
 thorn_bush_cast_speed
+awaken_mana_projectile_speed
 tidal_wave_mana_cost
 fire_bombs_cooldown
 healing_aura_healing
@@ -152,6 +154,7 @@ magma_flower_heal
 purifying_fires_damage
 healing_aura_damage
 multi_shot_projectile_speed
+awaken_mana_mana_cost
 arcane_bolt_cast_speed
 thunder_storm_projectile_speed
 recoil_shot_damage
@@ -204,12 +207,14 @@ volcano_damage
 heart_of_ice_mana_cost
 frostball_cooldown
 spear_of_judgement_cast_speed
+awaken_mana_damage
 poisoned_weapons_projectile_speed
 thunder_dash_mana_cost
 teleport_mana_cost
 magic_bomb_damage
 multi_shot_damage
 throw_flames_damage
+awaken_mana_cooldown
 frostball_cast_speed
 thunder_storm_cast_speed
 magma_flower_mana_cost
@@ -224,6 +229,7 @@ thunder_spear_healing
 arcane_comet_mana_cost
 poison_ball_damage
 thorn_bush_mana_cost
+awaken_mana_cast_speed
 thorn_armor_projectile_speed
 fireball_cast_speed
 blazing_inferno_projectile_speed

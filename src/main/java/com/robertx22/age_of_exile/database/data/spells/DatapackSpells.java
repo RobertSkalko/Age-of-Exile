@@ -62,16 +62,24 @@ public class DatapackSpells {
 
     public static void init() {
 
-        Spell.Builder.of("arcane_bolt", SINGLE_TARGET_PROJ_CONFIG()
-            .setIsStarter(), "Arcane Bolt")
+        Spell.Builder.of("awaken_mana", SpellConfiguration.Builder.instant(0, 300 * 20), "Awaken Mana")
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(Builder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
+            .onCast(Builder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
+            .onCast(Builder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
+            .onCast(Builder.restoreManaToCaster(ValueCalculationData.base(30)))
+            .build();
+
+        Spell.Builder.of("arcane_bolt", SINGLE_TARGET_PROJ_CONFIG().setIsStarter(), "Arcane Bolt")
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDER_PEARL, 1D, 0.5D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
             .onTick(Builder.particleOnTick(3D, ParticleTypes.WITCH, 3D, 0.15D))
             .onHit(Builder.damage(ValueCalculationData.base(8), Elements.Elemental))
             .build();
 
-        Spell.Builder.of("arcane_comet", SpellConfiguration.Builder.instant(20, 20 * 30)
-            .setIsStarter(), "Arcane Comet")
+        Spell.Builder.of("arcane_comet", SpellConfiguration.Builder.instant(20, 20 * 30), "Arcane Comet")
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(Builder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 1D, 6D)
                 .put(MapField.HEIGHT, 14D)
@@ -97,8 +105,7 @@ public class DatapackSpells {
                 .addPerEntityHit(Builder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D)))
             .build();
 
-        Spell.Builder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(15, 20 * 15, 20)
-            .setIsStarter(), "Magic Bomb")
+        Spell.Builder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(15, 20 * 15, 20), "Magic Bomb")
             .onCast(Builder.playSound(SoundEvents.ENTITY_WITCH_THROW, 1D, 1D))
             .onCast(Builder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDERMITE_SPAWN_EGG, 1D, 0.2D, ModRegistry.ENTITIES.SIMPLE_PROJECTILE, 80D, true)
                 .put(MapField.EXPIRE_ON_HIT, false)))
@@ -458,7 +465,7 @@ public class DatapackSpells {
                     .addActions(SpellAction.SUMMON_LIGHTNING_STRIKE.create())))
             .build();
 
-        Spell.Builder.of("passive_ocean", SpellConfiguration.Builder.passive(), "Regenerative Shell")
+        Spell.Builder.of("passive_ocean", SpellConfiguration.Builder.passive(), "Regenerative Shell") // todo transfer power into over time regen to match name
             .onCast(Builder.playSound(ModRegistry.SOUNDS.FREEZE, 1D, 1D))
             .onCast(Builder.aoeParticles(ParticleTypes.BUBBLE_POP, 100D, 2D))
             .onCast(Builder.aoeParticles(ModRegistry.PARTICLES.BUBBLE, 100D, 2D))
@@ -485,6 +492,13 @@ public class DatapackSpells {
             .onCast(Builder.removeSelfEffect(StatusEffects.SLOWNESS))
             .onCast(Builder.removeSelfEffect(StatusEffects.BLINDNESS))
             .onCast(Builder.giveSelfEffect(StatusEffects.SPEED, 300D))
+            .build();
+
+        Spell.Builder.of("passive_arcane", SpellConfiguration.Builder.passive(), "Magical Infusion")
+            .onCast(Builder.playSound(SoundEvents.ENTITY_ENDERMAN_SCREAM, 1D, 1D))
+            .onCast(Builder.aoeParticles(ParticleTypes.WITCH, 100D, 3D))
+            .onCast(Builder.restoreMagicShieldToCaster(ValueCalculationData.base(20)))
+            .onCast(Builder.damageInAoe(ValueCalculationData.base(5), Elements.Elemental, 3D))
             .build();
 
     }
