@@ -85,7 +85,8 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
         endata.setUnit(mob, entity);
 
-        endata.setArea(WorldAreas.getArea(entity.world, entity.getBlockPos()));
+        endata.setAreaMod(WorldAreas.getArea(entity.world, entity.getBlockPos())
+            .getAreaModifier());
 
         endata.mobStatsAreSet();
         endata.forceRecalculateStats(entity);

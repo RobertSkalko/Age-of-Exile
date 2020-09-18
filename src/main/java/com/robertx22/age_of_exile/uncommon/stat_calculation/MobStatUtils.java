@@ -87,8 +87,8 @@ public class MobStatUtils {
     public static void AddMobcStats(UnitData unitdata, LivingEntity en) {
 
         try {
-            for (StatModifier x : unitdata.getArea()
-                .getAreaModifier().stats) {
+            for (StatModifier x : unitdata.getAreaMod()
+                .stats) {
                 x.ToExactStat(100, unitdata.getLevel())
                     .applyStats(unitdata);
             }

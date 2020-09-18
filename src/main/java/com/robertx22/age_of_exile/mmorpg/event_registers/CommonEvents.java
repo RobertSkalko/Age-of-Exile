@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.event_hooks.entity.OnMobSpawn;
 import com.robertx22.age_of_exile.event_hooks.entity.OnTrackEntity;
 import com.robertx22.age_of_exile.event_hooks.my_events.*;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
+import com.robertx22.age_of_exile.event_hooks.ontick.WorldTickEvent;
 import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import nerdhub.cardinal.components.api.event.TrackingStartCallback;
@@ -31,6 +32,7 @@ public class CommonEvents {
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnPlayerDamageEntityEvent());
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnDamageTryActivatePassiveSpells());
 
+        ServerTickEvents.END_WORLD_TICK.register(new WorldTickEvent());
     }
 
 }

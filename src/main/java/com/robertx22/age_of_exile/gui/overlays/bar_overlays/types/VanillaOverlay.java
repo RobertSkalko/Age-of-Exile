@@ -1,13 +1,10 @@
 package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
-import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -15,7 +12,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tag.FluidTags;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
@@ -44,17 +40,6 @@ public class VanillaOverlay extends DrawableHelper implements HudRenderCallback 
 
             PlayerEntity en = mc.player;
             UnitData data = Load.Unit(en);
-
-            if (ModConfig.get().client.RENDER_AREA_INDICATOR) {
-                AreaData area = WorldAreas.getArea(mc.world, en.getBlockPos());
-                String name = area.getAreaModifier()
-                    .getFinalLocNameFor(area.getBaseArea()); // TODO
-
-                GuiUtils.renderScaledText(matrix, mc.getWindow()
-                    .getScaledWidth() - 10 - mc.textRenderer.getWidth(name) / 2, mc.getWindow()
-                    .getScaledHeight() - 10, 1, name, Formatting.GREEN);
-
-            }
 
             if (en.isCreative() || en.isSpectator()) {
                 return;

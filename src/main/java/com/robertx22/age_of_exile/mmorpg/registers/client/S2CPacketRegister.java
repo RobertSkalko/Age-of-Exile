@@ -23,7 +23,6 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(new EfficientRegistryPacket());
         Packets.registerServerToClient(new SyncConfigToClientPacket());
         Packets.registerServerToClient(new SyncCapabilityToClient());
-        Packets.registerServerToClient(new SyncAreaPacket());
         Packets.registerServerToClient(new TellClientToCastSpellPacket());
 
         ClientSidePacketRegistry.INSTANCE.register(EntityPacket.ID, (ctx, buf) -> {

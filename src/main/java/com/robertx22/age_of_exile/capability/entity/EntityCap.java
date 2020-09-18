@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.capability.entity;
 
-import com.robertx22.age_of_exile.areas.AreaData;
+import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifier;
+import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
@@ -15,7 +16,6 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
@@ -174,9 +174,9 @@ public class EntityCap {
 
         EntityGears getCurrentGears();
 
-        AreaData getArea();
+        AreaModifier getAreaMod();
 
-        void setArea(AreaData area);
+        void setAreaMod(AreaModifier area);
     }
 
     public static class DefaultImpl implements UnitData {
@@ -193,7 +193,7 @@ public class EntityCap {
         int level = 1;
         int exp = 0;
 
-        String areaID = "";
+        String area_mod = "";
 
         EntityTypeUtils.EntityClassification type = EntityTypeUtils.EntityClassification.PLAYER;
         // sync these for mobs
@@ -218,7 +218,7 @@ public class EntityCap {
             nbt.putInt(LEVEL, level);
             nbt.putInt(RARITY, rarity);
             nbt.putString(ENTITY_TYPE, this.type.toString());
-            nbt.putString("area", areaID);
+            nbt.putString("area", area_mod);
 
             if (unit != null) {
                 // System.out.println(unit.getStats().size()); for testing if mobs get all stats or only ones they need
@@ -233,7 +233,7 @@ public class EntityCap {
 
             this.rarity = nbt.getInt(RARITY);
             this.level = nbt.getInt(LEVEL);
-            this.areaID = nbt.getString("area");
+            this.area_mod = nbt.getString("area");
 
             try {
                 String typestring = nbt.getString(ENTITY_TYPE);
@@ -699,25 +699,17 @@ public class EntityCap {
         }
 
         @Override
-        public AreaData getArea() {
+        public AreaModifier getAreaMod() {
+            return AreaModifiers.INSTANCE.MAP.getOrDefault(area_mod, AreaModifiers.INSTANCE.PLAIN);
 
-            if (areaID.isEmpty()) {
-                System.out.println("Area id of mob is empty!!!");
-                return AreaData.EMPTY;
-            }
-
-            return ModRegistry.COMPONENTS.WORLD_AREAS.get(entity.world)
-                .getAreaById(areaID);
         }
 
         @Override
-        public void setArea(AreaData area) {
-            this.areaID = area.uuid;
-
-            area.getAreaModifier().effectsOnMobSpawn.forEach(x -> {
+        public void setAreaMod(AreaModifier area) {
+            this.area_mod = area.GUID();
+            area.effectsOnMobSpawn.forEach(x -> {
                 this.entity.addStatusEffect(x);
             });
-
         }
 
         @Override

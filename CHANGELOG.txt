@@ -1,5 +1,12 @@
-v.1.3.9
+v.1.3.10
 
+- fix save lag on big servers
+Turns out world areas were causing major server save lag as the file accumulated to 100 megabytes.
+Good news is that this should be fixed with this update as now i store much less data and instead of each biome having unique modifiers, all biomes have the same modifiers now.
+Key difference is that the modifiers change every in game day now. So jungle might be infernal one day, and poisonous the next. 
+- updated chinese lang
+
+v.1.3.9
 - added Arcanist school of magic! Focuses on doing elemental damage, teleporation and mana.
 - added starter spell, arcane bolt
 - fixed item tooltips not being shown
