@@ -50,8 +50,8 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
         for (int i = 0; i < amount; i++) {
             uniq.uniqueStats.add(StatModifier.EMPTY.getFromBuf(buf));
         }
-        uniq.guid = buf.readString(50);
-        uniq.gearType = buf.readString(50);
+        uniq.guid = buf.readString(500);
+        uniq.gearType = buf.readString(500);
         uniq.itemID = buf.readIdentifier();
 
         return uniq;
@@ -61,8 +61,8 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
     public void toBuf(PacketByteBuf buf) {
         buf.writeInt(this.uniqueStats.size());
         uniqueStats.forEach(x -> x.toBuf(buf));
-        buf.writeString(guid, 50);
-        buf.writeString(gearType, 50);
+        buf.writeString(guid, 500);
+        buf.writeString(gearType, 500);
         buf.writeIdentifier(itemID);
     }
 

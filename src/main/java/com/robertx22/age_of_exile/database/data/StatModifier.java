@@ -52,8 +52,8 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
         mod.second_min = buf.readFloat();
         mod.second_max = buf.readFloat();
 
-        mod.stat = buf.readString(30);
-        mod.type = buf.readString(30);
+        mod.stat = buf.readString(500);
+        mod.type = buf.readString(500);
         return mod;
     }
 

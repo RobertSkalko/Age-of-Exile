@@ -10,7 +10,10 @@ import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
-import com.robertx22.age_of_exile.mmorpg.registers.common.*;
+import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.UniqueGearItemRegister;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -32,7 +35,6 @@ public class CommonInit implements ModInitializer {
         MapField.init();
         EffectCondition.init();
 
-        PotionRegister.register();
         ModRegistry.init();
         MobAttributes.register();
 

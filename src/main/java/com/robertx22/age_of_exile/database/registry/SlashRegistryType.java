@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -42,12 +43,7 @@ public enum SlashRegistryType {
         }
     },
     GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER, SyncTime.ON_LOGIN),
-    EXILE_EFFECT("exile_effect", 3, null, SyncTime.NEVER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return null;
-        }
-    }, // TODO
+    EXILE_EFFECT("exile_effect", 3, ExileEffect.SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_TYPE("base_gear_types", 4, SerializableBaseGearType.EMPTY, SyncTime.ON_LOGIN),
     TIER("tier", 5, Tier.SERIALIZER, SyncTime.ON_LOGIN),
     GEM("gems", 6, Gem.SERIALIZER, SyncTime.ON_LOGIN),

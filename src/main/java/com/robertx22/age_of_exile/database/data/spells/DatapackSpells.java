@@ -103,6 +103,10 @@ public class DatapackSpells {
             .onCast(Builder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
             .onCast(Builder.damageInAoe(ValueCalculationData.base(5), Elements.Elemental, 2D)
                 .addPerEntityHit(Builder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D)))
+            /*
+            .onCast(Builder.NEWgiveSelfExileEffect(ExileEffects.ELE_WEAKNESS, 20 * 10D))
+
+             */
             .build();
 
         Spell.Builder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(15, 20 * 15, 20), "Magic Bomb")

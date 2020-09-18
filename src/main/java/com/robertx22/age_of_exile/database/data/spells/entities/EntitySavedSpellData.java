@@ -5,19 +5,24 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 
 import java.util.Objects;
 import java.util.UUID;
 
+@Storable
 public class EntitySavedSpellData {
 
+    @Store
     String caster_uuid;
-
+    @Store
     String spell_id;
+    @Store
     String exile_effect_id;
-
+    @Store
     public String item_id;
 
     public SpellStatsCalcEffect.CalculatedSpellConfiguration config = new SpellStatsCalcEffect.CalculatedSpellConfiguration();

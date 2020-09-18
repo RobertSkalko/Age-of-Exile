@@ -65,6 +65,12 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList {
         } else {
             return new StatModifier(first, first, stat, getModType());
         }
+
+    }
+
+    public void applyStats(EntityCap.UnitData data, int lvl) {
+        toStatModifier().ToExactStat(100, lvl)
+            .applyStats(data);
     }
 
     @Override

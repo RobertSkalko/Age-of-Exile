@@ -9,6 +9,8 @@ import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffects;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
@@ -136,6 +138,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<Gem> Gems() {
         return getRegistry(SlashRegistryType.GEM);
+    }
+
+    public static SlashRegistryContainer<ExileEffect> ExileEffects() {
+        return getRegistry(SlashRegistryType.EXILE_EFFECT);
     }
 
     public static SlashRegistryContainer<SpellSchool> SpellSchools() {
@@ -324,6 +330,7 @@ public class SlashRegistry {
             // If it errors without them, then that means i hardcoded something i shouldn't have
 
             new GearSlots().registerAll();
+            new ExileEffects().registerAll();
 
             new Tiers().registerAll();
 
@@ -357,6 +364,7 @@ public class SlashRegistry {
         // data pack ones
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EXILE_EFFECT, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).setIsDatapack());

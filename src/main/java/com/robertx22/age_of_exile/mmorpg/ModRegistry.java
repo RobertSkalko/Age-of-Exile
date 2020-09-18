@@ -19,9 +19,11 @@ public class ModRegistry {
     public static ModParticles PARTICLES;
     public static ComponentRegisters COMPONENTS;
     public static GearMaterialRegister GEAR_MATERIALS;
+    public static PotionRegister POTIONS;
 
     public static void init() {
 
+        POTIONS = new PotionRegister();
         BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks
         MISC_ITEMS = new MiscItemsRegistrator();
         CURRENCIES = new CurrencyItemRegistrator();

@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses.AngerEffect;
@@ -23,13 +25,28 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.shaman.ThunderEssenc
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.HashMap;
+
 public class PotionRegister {
 
     public static Identifier FOOD_HP = new Identifier(Ref.MODID, "food_health_regen");
     public static Identifier FOOD_MANA = new Identifier(Ref.MODID, "food_mana_regen");
     public static Identifier FOOD_MAGIC_REGEN = new Identifier(Ref.MODID, "food_magic_shield_regen");
 
-    public static void register() {
+    HashMap<Integer, ExileStatusEffect> exileEffectsMap = new HashMap<>();
+
+    public ExileStatusEffect getExileEffectByNumber(int num) {
+        return exileEffectsMap.get(num);
+    }
+
+    public PotionRegister() {
+
+        if (MMORPG.RUN_DEV_TOOLS) { // TODO
+            for (int i = 0; i < 20; i++) {
+                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(i));
+                exileEffectsMap.put(i, eff);
+            }
+        }
 
         reg(BraveryEffect.INSTANCE);
         reg(WizardryEffect.INSTANCE);
@@ -60,7 +77,7 @@ public class PotionRegister {
 
     }
 
-    static void reg(BasePotionEffect effect) {
+    void reg(BasePotionEffect effect) {
         Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, effect.GUID()), effect);
     }
 

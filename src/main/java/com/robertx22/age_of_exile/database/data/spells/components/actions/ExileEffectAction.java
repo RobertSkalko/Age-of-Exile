@@ -1,23 +1,21 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.PotionEffectUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.*;
 
-@Deprecated
-public class ExilePotionAction extends SpellAction implements ICTextTooltip {
+public class ExileEffectAction extends SpellAction implements ICTextTooltip {
 
     public enum GiveOrTake {
         GIVE_STACKS, REMOVE_STACKS
@@ -27,14 +25,14 @@ public class ExilePotionAction extends SpellAction implements ICTextTooltip {
     public MutableText getText(TooltipInfo info, MapHolder data) {
         MutableText text = new LiteralText("");
 
-        BasePotionEffect potion = (BasePotionEffect) data.getExilePotion();
-        GiveOrTake action = data.getPotionAction();
+        ExileEffect potion = data.getExileEffect();
+        ExilePotionAction.GiveOrTake action = data.getPotionAction();
         int count = data.get(COUNT)
             .intValue();
 
-        boolean isStackable = potion.getMaxStacks() > 1;
+        boolean isStackable = potion.max_stacks > 1;
 
-        if (action == GiveOrTake.GIVE_STACKS) {
+        if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
             text.append("Gives ");
         } else {
             text.append("Removes ");
@@ -49,48 +47,48 @@ public class ExilePotionAction extends SpellAction implements ICTextTooltip {
             }
         }
 
-        text.append(potion.locName());
+        text.append(potion.GUID()); // todo
 
         return text;
-
     }
 
-    public ExilePotionAction() {
-        super(Arrays.asList(EXILE_POTION_ID, COUNT, POTION_ACTION));
+    public ExileEffectAction() {
+        super(Arrays.asList(EXILE_POTION_ID, COUNT, POTION_ACTION, POTION_DURATION));
     }
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        BasePotionEffect potion = (BasePotionEffect) data.getExilePotion();
-        GiveOrTake action = data.getPotionAction();
+        ExileEffect potion = data.getExileEffect();
+        ExilePotionAction.GiveOrTake action = data.getPotionAction();
         int count = data.get(COUNT)
+            .intValue();
+        int duration = data.get(POTION_DURATION)
             .intValue();
 
         targets.forEach(t -> {
-            if (action == GiveOrTake.GIVE_STACKS) {
+            if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
                 for (int i = 0; i < count; i++) {
-                    PotionEffectUtils.apply(potion, ctx.caster, t);
+                    ExileEffectsManager.apply(potion, ctx.caster, t, duration);
                 }
             } else {
-                PotionEffectUtils.reduceStacks(t, potion, count);
+                // ExileEffectsManager.reduceStacks(t, potion, count); // todo
             }
         });
     }
 
-    public MapHolder create(BasePotionEffect effect, GiveOrTake action) {
+    public MapHolder create(int num, ExilePotionAction.GiveOrTake action, Double duration) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(COUNT, 1D);
+        dmg.put(POTION_DURATION, duration);
         dmg.put(POTION_ACTION, action.name());
-        dmg.put(EXILE_POTION_ID, Registry.STATUS_EFFECT.getId(effect)
-            .toString());
+        dmg.put(EXILE_POTION_ID, num + "");
         return dmg;
     }
 
     @Override
     public String GUID() {
-        return "exile_potion";
+        return "exile_effect";
     }
 }
-

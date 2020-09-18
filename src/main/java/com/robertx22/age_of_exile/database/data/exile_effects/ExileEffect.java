@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
@@ -19,11 +20,23 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
     public String id;
     public String one_of_a_kind_id = "";
 
+    public int max_stacks = 1;
+
+    public transient String locName = "";
+
     public List<OptScaleExactStat> stats = new ArrayList<>();
 
     public AttachedSpell spell;
 
+    public ExileStatusEffect getStatusEffect() {
+        return ModRegistry.POTIONS.getExileEffectByNumber(Integer.parseInt(id));
+    }
+
     public void onTick(LivingEntity caster, LivingEntity effectCarrier, EntitySavedSpellData data) {
+        if (spell == null) {
+            return;
+        }
+
         try {
             SpellCtx ctx = SpellCtx.onTick(caster, effectCarrier, data);
             this.spell.onCast(ctx);

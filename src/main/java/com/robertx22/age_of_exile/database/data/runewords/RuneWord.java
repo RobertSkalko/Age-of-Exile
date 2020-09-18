@@ -34,7 +34,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
     public RuneWord getFromBuf(PacketByteBuf buf) {
         RuneWord word = new RuneWord();
 
-        word.identifier = buf.readString(50);
+        word.identifier = buf.readString(500);
 
         int statAmount = buf.readInt();
         for (int i = 0; i < statAmount; i++) {
@@ -44,21 +44,21 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         for (int i = 0; i < count; i++) {
             word.runes_needed.add(buf.readString(10));
         }
-        word.family = BaseGearType.SlotFamily.valueOf(buf.readString(30));
+        word.family = BaseGearType.SlotFamily.valueOf(buf.readString(500));
 
         return word;
     }
 
     @Override
     public void toBuf(PacketByteBuf buf) {
-        buf.writeString(identifier, 50);
+        buf.writeString(identifier, 500);
 
         buf.writeInt(stats.size());
         stats.forEach(x -> x.toBuf(buf));
         buf.writeInt(runes_needed.size());
         runes_needed.forEach(x -> buf.writeString(x, 10));
 
-        buf.writeString(family.name(), 30);
+        buf.writeString(family.name(), 500);
     }
 
     public boolean containsRune(Rune rune) {

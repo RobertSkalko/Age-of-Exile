@@ -417,6 +417,13 @@ public class ComponentPart {
             return c;
         }
 
+        public static ComponentPart NEWgiveSelfExileEffect(int effect, Double duration) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.EXILE_EFFECT.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS, duration));
+            c.targets.add(BaseTargetSelector.CASTER.create());
+            return c;
+        }
+
         public static ComponentPart giveSelfEffect(StatusEffect effect, Double dura) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.POTION.createGive(effect, dura));

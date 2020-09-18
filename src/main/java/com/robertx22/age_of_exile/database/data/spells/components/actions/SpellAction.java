@@ -39,6 +39,8 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static RestoreManaAction RESTORE_MANA = of(new RestoreManaAction());
     public static RestoreMagicShieldAction RESTORE_MAGIC_SHIELD = of(new RestoreMagicShieldAction());
 
+    public static ExileEffectAction EXILE_EFFECT = of(new ExileEffectAction());
+
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);
         return s;

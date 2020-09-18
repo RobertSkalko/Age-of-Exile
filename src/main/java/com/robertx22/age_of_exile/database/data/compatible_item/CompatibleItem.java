@@ -40,9 +40,9 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
     @Override
     public CompatibleItem getFromBuf(PacketByteBuf buf) {
         CompatibleItem c = new CompatibleItem();
-        c.item_type = buf.readString(25);
-        c.guid = buf.readString(50);
-        c.item_id = buf.readString(50);
+        c.item_type = buf.readString(500);
+        c.guid = buf.readString(500);
+        c.item_id = buf.readString(500);
 
         c.min_rarity = buf.readInt();
         c.max_rarity = buf.readInt();
@@ -52,16 +52,15 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         c.can_be_salvaged = buf.readBoolean();
 
         c.chance_to_become_unique = buf.readFloat();
-        c.unique_id = buf.readString(50);
-
+        c.unique_id = buf.readString(500);
         return c;
     }
 
     @Override
     public void toBuf(PacketByteBuf buf) {
-        buf.writeString(item_type, 25);
-        buf.writeString(guid, 50);
-        buf.writeString(item_id, 50);
+        buf.writeString(item_type, 500);
+        buf.writeString(guid, 500);
+        buf.writeString(item_id, 500);
 
         buf.writeInt(min_rarity);
         buf.writeInt(max_rarity);
@@ -71,7 +70,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         buf.writeBoolean(can_be_salvaged);
 
         buf.writeFloat(chance_to_become_unique);
-        buf.writeString(unique_id, 50);
+        buf.writeString(unique_id, 500);
     }
 
     public static CompatibleItem getDefaultAuto(Item item, BaseGearType slot) {
