@@ -26,9 +26,10 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
     public String identifier = "";
     public List<StatModifier> stats = new ArrayList<>();
     public List<String> runes_needed = new ArrayList<>();
-    public BaseGearType.SlotFamily family;
+    public BaseGearType.SlotFamily family = BaseGearType.SlotFamily.NONE;
 
     public transient String loc_name = "";
+
 
     @Override
     public RuneWord getFromBuf(PacketByteBuf buf) {
@@ -51,19 +52,24 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
     @Override
     public void toBuf(PacketByteBuf buf) {
-        buf.writeString(identifier, 500);
+        try {
+            buf.writeString(identifier, 500);
 
-        buf.writeInt(stats.size());
-        stats.forEach(x -> x.toBuf(buf));
-        buf.writeInt(runes_needed.size());
-        runes_needed.forEach(x -> buf.writeString(x, 10));
+            buf.writeInt(stats.size());
+            stats.forEach(x -> x.toBuf(buf));
+            buf.writeInt(runes_needed.size());
+            runes_needed.forEach(x -> buf.writeString(x, 10));
 
-        buf.writeString(family.name(), 500);
+            buf.writeString(family.name(), 500);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print("Runeword: " + identifier + " error.");
+        }
     }
 
     public boolean containsRune(Rune rune) {
         return this.runes_needed.stream()
-            .anyMatch(x -> x.equals(rune.identifier));
+                .anyMatch(x -> x.equals(rune.identifier));
     }
 
     public boolean HasRuneWord(GearItemData gear) {
@@ -94,11 +100,11 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         }
 
         int minlvl = runes_needed.stream()
-            .map(x -> SlashRegistry.Runes()
-                .get(x))
-            .min(Comparator.comparingInt(x -> x.getReqLevel()))
-            .get()
-            .getReqLevel();
+                .map(x -> SlashRegistry.Runes()
+                        .get(x))
+                .min(Comparator.comparingInt(x -> x.getReqLevel()))
+                .get()
+                .getReqLevel();
 
         if (minlvl > gear.level) {
             return false;
@@ -123,8 +129,8 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         }
 
         return gear.GetBaseGearType()
-            .family()
-            .equals(this.family);
+                .family()
+                .equals(this.family);
     }
 
     public static RuneWord create(String id, String locname, BaseGearType.SlotFamily family, List<StatModifier> stats, List<RuneItem.RuneType> runes_needed) {
@@ -134,8 +140,8 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         word.loc_name = locname;
         word.family = family;
         word.runes_needed = runes_needed.stream()
-            .map(x -> x.id)
-            .collect(Collectors.toList());
+                .map(x -> x.id)
+                .collect(Collectors.toList());
         return word;
     }
 

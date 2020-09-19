@@ -70,12 +70,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public final void onCastingTick(SpellCastContext ctx) {
 
         int timesToCast = (int) ctx.calcData.getSpell()
-            .getConfig().times_to_cast;
+                .getConfig().times_to_cast;
 
         if (timesToCast > 1) {
 
             int castTimeTicks = (int) ctx.calcData.getSpell()
-                .getConfig().cast_time_ticks;
+                    .getConfig().cast_time_ticks;
 
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
@@ -127,7 +127,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public void spendResources(SpellCastContext ctx) {
         ctx.data.getResources()
-            .modify(getManaCostCtx(ctx));
+                .modify(getManaCostCtx(ctx));
     }
 
     public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
@@ -137,7 +137,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         cost += this.getCalculatedManaCost(ctx);
 
         return new ResourcesData.Context(
-            ctx.data, ctx.caster, ResourcesData.Type.MANA, cost, ResourcesData.Use.SPEND);
+                ctx.data, ctx.caster, ResourcesData.Type.MANA, cost, ResourcesData.Use.SPEND);
     }
 
     public boolean canCast(SpellCastContext ctx) {
@@ -164,14 +164,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 ResourcesData.Context rctx = getManaCostCtx(ctx);
 
                 if (data.getResources()
-                    .hasEnough(rctx)) {
+                        .hasEnough(rctx)) {
 
                     if (!getConfig().castingWeapon.predicate.predicate.test(caster)) {
                         return false;
                     }
 
                     if (!ctx.spellsCap.getLearnedSpells(ctx.caster)
-                        .contains(this)) {
+                            .contains(this)) {
                         return false;
                     }
 
@@ -191,7 +191,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public final int getCalculatedManaCost(SpellCastContext ctx) {
         float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
         return (int) Mana.getInstance()
-            .scale(getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
+                .scale(getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
     }
 
     public boolean isPassive() {
@@ -208,16 +208,16 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (Screen.hasShiftDown()) {
             list.addAll(attached
-                .getTooltip());
+                    .getTooltip());
         }
 
         TooltipUtils.addEmpty(list);
 
         if (this.isPassive()) {
             list.add(Words.PassiveSkill.locName()
-                .formatted(Formatting.GOLD));
+                    .formatted(Formatting.GOLD));
             list.add(Words.PassiveDesc.locName()
-                .formatted(Formatting.GOLD));
+                    .formatted(Formatting.GOLD));
         }
 
         if (!isPassive()) {
@@ -288,8 +288,17 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             builder.spell.locName = name;
 
             return builder;
-
         }
+
+        public static Builder forEffect() {
+            Builder builder = new Builder();
+            builder.spell = new Spell();
+            builder.spell.identifier = "";
+            builder.spell.config = new SpellConfiguration();
+            builder.spell.locName = "";
+            return builder;
+        }
+
 
         public Builder weaponReq(CastingWeapon wep) {
             this.spell.config.castingWeapon = wep;
@@ -346,7 +355,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             }
 
             this.spell.attached.getDataForEntity(entity)
-                .add(comp);
+                    .add(comp);
 
             return this;
         }
@@ -354,6 +363,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         public Spell build() {
             Objects.requireNonNull(spell);
             this.spell.addToSerializables();
+            return spell;
+        }
+
+        public Spell buildForEffect() {
+            Objects.requireNonNull(spell);
             return spell;
         }
 

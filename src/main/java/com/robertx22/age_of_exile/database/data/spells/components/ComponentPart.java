@@ -40,7 +40,7 @@ public class ComponentPart {
             per_entity_hit = new ArrayList<>();
         }
         this.per_entity_hit
-            .add(add);
+                .add(add);
         return this;
     }
 
@@ -208,7 +208,7 @@ public class ComponentPart {
         if (isSpellModifier) {
             text.formatted(Formatting.DARK_PURPLE);
             text = new LiteralText(" - ").formatted(Formatting.DARK_PURPLE)
-                .append(text);
+                    .append(text);
         } else {
             text.formatted(Formatting.GREEN);
         }
@@ -220,7 +220,7 @@ public class ComponentPart {
         return list;
     }
 
-    public static class Builder {
+    public static class PartBuilder {
 
         public static ComponentPart empty() {
             ComponentPart c = new ComponentPart();
@@ -361,8 +361,8 @@ public class ComponentPart {
         public static ComponentPart cloudParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
-                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
-                .put(MapField.Y_RANDOM, randomY));
+                    .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+                    .put(MapField.Y_RANDOM, randomY));
             return c;
         }
 
@@ -375,19 +375,19 @@ public class ComponentPart {
         public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
-                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
-                .put(MapField.Y_RANDOM, randomY)
-                .put(MapField.HEIGHT, 0.5D)
-                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE_EDGE.name()));
+                    .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+                    .put(MapField.Y_RANDOM, randomY)
+                    .put(MapField.HEIGHT, 0.5D)
+                    .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE_EDGE.name()));
             return c;
         }
 
         public static ComponentPart groundParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
-                .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
-                .put(MapField.Y_RANDOM, randomY)
-                .put(MapField.HEIGHT, 0.5D));
+                    .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+                    .put(MapField.Y_RANDOM, randomY)
+                    .put(MapField.HEIGHT, 0.5D));
             return c;
         }
 

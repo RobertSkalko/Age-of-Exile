@@ -9,6 +9,7 @@ public interface IBaseAutoLoc extends IGUID {
 
     enum AutoLocGroup {
         Runes,
+        StatusEffects,
         Unique_Items,
         Spells,
         Gear_Items,

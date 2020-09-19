@@ -9,6 +9,7 @@ bravery_healing
 thorn_bush_damage
 magma_flower_cast_speed
 purifying_fires_mana_cost
+_cooldown
 trickery_cast_speed
 fireball_damage
 imbue_damage
@@ -38,6 +39,7 @@ frostball_healing
 heart_of_ice_magic_shield
 thunder_dash_healing
 whirlpool_cooldown
+_healing
 flower_of_ice_cast_speed
 thunder_spear_cooldown
 fireball_cooldown
@@ -99,6 +101,7 @@ thorn_armor_cast_speed
 whirlpool_cast_speed
 lightning_totem_cooldown
 fire_bombs_mana_cost
+_cast_speed
 magma_flower_damage
 bravery_cast_speed
 throw_flames_healing
@@ -135,6 +138,7 @@ imbue_mana_cost
 trickery_healing
 thorn_bush_cast_speed
 awaken_mana_projectile_speed
+_damage
 tidal_wave_mana_cost
 fire_bombs_cooldown
 healing_aura_healing
@@ -185,6 +189,7 @@ fire_bombs_damage
 healing_aura_projectile_speed
 heart_of_ice_damage
 thunder_dash_cast_speed
+_projectile_speed
 recoil_shot_healing
 blazing_inferno_mana_cost
 wizardry_cast_speed
@@ -215,6 +220,7 @@ magic_bomb_damage
 multi_shot_damage
 throw_flames_damage
 awaken_mana_cooldown
+_mana_cost
 frostball_cast_speed
 thunder_storm_cast_speed
 magma_flower_mana_cost

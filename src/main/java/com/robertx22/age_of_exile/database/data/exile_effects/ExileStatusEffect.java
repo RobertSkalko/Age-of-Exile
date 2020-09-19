@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IApplyStatPotion;
@@ -28,18 +30,18 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
     public boolean hasExileRegistry() {
         return SlashRegistry.ExileEffects()
-            .isRegistered(numericIdString);
+                .isRegistered(numericIdString);
     }
 
     public ExileEffect getExileEffect() {
         return SlashRegistry.ExileEffects()
-            .get(numericIdString);
+                .get(numericIdString);
     }
 
     public ExileEffectInstanceData getSavedData(LivingEntity en) {
         return Load.Unit(en)
-            .getStatusEffectsData()
-            .get(this);
+                .getStatusEffectsData()
+                .get(this);
     }
 
     @Override
@@ -48,19 +50,35 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
         EntityCap.UnitData unitdata = Load.Unit(target);
         unitdata.getStatusEffectsData()
-            .set(this, null);
+                .set(this, null);
         unitdata.setEquipsChanged(true);
         super.onRemoved(target, attributes, amplifier);
     }
 
+    @Override
+    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+        return true;
+    }
+
+
+    @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 
         try {
             ExileEffect exect = getExileEffect();
             ExileEffectInstanceData data = getSavedData(entity);
-            LivingEntity caster = data.spellData.getCaster(entity.world);
-            exect.onTick(caster, entity, data.spellData);
 
+            if (data == null || data.spellData == null) {
+                return;
+            }
+
+            LivingEntity caster = data.spellData.getCaster(entity.world);
+            if (caster == null) {
+                return;
+            }
+
+            SpellCtx ctx = SpellCtx.onTick(caster, entity, data.spellData);
+            exect.spell.tryActivate(Spell.Builder.DEFAULT_EN_NAME, ctx); // source is default name at all times
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,9 +86,13 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
     @Override
     public void applyStats(World world, StatusEffectInstance instance, LivingEntity target) {
-        int casterlvl = Load.Unit(getSavedData(target).spellData.getCaster(world))
-            .getLevel();
-        getExileEffect().stats.forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
+        ExileEffectInstanceData data = getSavedData(target);
+
+        if (data != null && data.spellData != null && data.spellData.getCaster(world) != null) {
+            int casterlvl = Load.Unit(data.spellData.getCaster(world))
+                    .getLevel();
+            getExileEffect().stats.forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
+        }
     }
 
     @Override

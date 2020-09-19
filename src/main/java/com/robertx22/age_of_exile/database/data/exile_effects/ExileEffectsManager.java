@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.exile_effects;
 
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -17,8 +18,8 @@ public class ExileEffectsManager {
 
         if (instance != null) {
             extraData = Load.Unit(target)
-                .getStatusEffectsData()
-                .get(effect);
+                    .getStatusEffectsData()
+                    .get(effect);
             if (extraData == null) {
                 extraData = new ExileEffectInstanceData();
             }
@@ -26,16 +27,18 @@ public class ExileEffectsManager {
             extraData = new ExileEffectInstanceData();
         }
 
+        extraData.spellData = EntitySavedSpellData.create(caster, reg);
+
         StatusEffectInstance newInstance = new StatusEffectInstance(effect, duration, 1, false, false, true);
 
         target.addStatusEffect(newInstance);
 
         Load.Unit(target)
-            .getStatusEffectsData()
-            .set(effect, extraData);
+                .getStatusEffectsData()
+                .set(effect, extraData);
 
         Load.Unit(target)
-            .setEquipsChanged(true);
+                .setEquipsChanged(true);
 
     }
 }

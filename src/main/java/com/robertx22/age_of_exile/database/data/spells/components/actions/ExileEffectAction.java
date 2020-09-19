@@ -28,7 +28,7 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
         ExileEffect potion = data.getExileEffect();
         ExilePotionAction.GiveOrTake action = data.getPotionAction();
         int count = data.get(COUNT)
-            .intValue();
+                .intValue();
 
         boolean isStackable = potion.max_stacks > 1;
 
@@ -47,7 +47,7 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
             }
         }
 
-        text.append(potion.GUID()); // todo
+        text.append(potion.locName()); // todo
 
         return text;
     }
@@ -59,22 +59,26 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        ExileEffect potion = data.getExileEffect();
-        ExilePotionAction.GiveOrTake action = data.getPotionAction();
-        int count = data.get(COUNT)
-            .intValue();
-        int duration = data.get(POTION_DURATION)
-            .intValue();
+        try {
+            ExileEffect potion = data.getExileEffect();
+            ExilePotionAction.GiveOrTake action = data.getPotionAction();
+            int count = data.get(COUNT)
+                    .intValue();
+            int duration = data.get(POTION_DURATION)
+                    .intValue();
 
-        targets.forEach(t -> {
-            if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
-                for (int i = 0; i < count; i++) {
-                    ExileEffectsManager.apply(potion, ctx.caster, t, duration);
+            targets.forEach(t -> {
+                if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
+                    for (int i = 0; i < count; i++) {
+                        ExileEffectsManager.apply(potion, ctx.caster, t, duration);
+                    }
+                } else {
+                    // ExileEffectsManager.reduceStacks(t, potion, count); // todo
                 }
-            } else {
-                // ExileEffectsManager.reduceStacks(t, potion, count); // todo
-            }
-        });
+            });
+        } finally {
+
+        }
     }
 
     public MapHolder create(int num, ExilePotionAction.GiveOrTake action, Double duration) {

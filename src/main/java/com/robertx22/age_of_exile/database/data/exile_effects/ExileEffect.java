@@ -3,17 +3,16 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import net.minecraft.entity.LivingEntity;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAutoGson<ExileEffect> {
+public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAutoGson<ExileEffect>, IAutoLocName {
 
     public static ExileEffect SERIALIZER = new ExileEffect();
 
@@ -26,24 +25,13 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     public List<OptScaleExactStat> stats = new ArrayList<>();
 
+
     public AttachedSpell spell;
 
     public ExileStatusEffect getStatusEffect() {
         return ModRegistry.POTIONS.getExileEffectByNumber(Integer.parseInt(id));
     }
 
-    public void onTick(LivingEntity caster, LivingEntity effectCarrier, EntitySavedSpellData data) {
-        if (spell == null) {
-            return;
-        }
-
-        try {
-            SpellCtx ctx = SpellCtx.onTick(caster, effectCarrier, data);
-            this.spell.onCast(ctx);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -58,5 +46,20 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
     @Override
     public Class<ExileEffect> getClassForSerialization() {
         return ExileEffect.class;
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.StatusEffects;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Registry.STATUS_EFFECT.getId(getStatusEffect()).toString();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return this.locName;
     }
 }
