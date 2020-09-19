@@ -99,6 +99,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new ElementalFocus(Elements.Physical));
                     add(new PhysConvertToEle(Elements.Physical));
                     add(new MaxElementalResist(Elements.Nature));
+                    add(new SpecificElementalWeaponDamage(WeaponTypes.Axe));
 
                     // generated
 
@@ -159,9 +160,6 @@ public class Stats implements ISlashRegistryInit {
                 All.add(stat);
             }
         }
-
-        SpecificElementalWeaponDamage.register();
-
         All.forEach(x -> x.registerToSlashRegistry());
 
     }

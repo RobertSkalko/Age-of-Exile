@@ -8,27 +8,24 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
-import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SpecificElementalWeaponDamage extends Stat implements IStatEffects, IGenerated<SpecificElementalWeaponDamage> {
 
-    public static MapWrapper<WeaponTypes, SpecificElementalWeaponDamage> MAP = new MapWrapper();
-
     @Override
     public List<SpecificElementalWeaponDamage> generateAllPossibleStatVariations() {
+        List<SpecificElementalWeaponDamage> list = new ArrayList<>();
         for (WeaponTypes x : WeaponTypes.getAll()) {
-            SpecificElementalWeaponDamage stat = new SpecificElementalWeaponDamage(x);
-            MAP.put(x, stat);
+            list.add(new SpecificElementalWeaponDamage(x));
         }
-        return MAP.getList();
-
+        return list;
     }
 
     private WeaponTypes weaponType;
 
-    private SpecificElementalWeaponDamage(WeaponTypes type) {
+    public SpecificElementalWeaponDamage(WeaponTypes type) {
         this.weaponType = type;
     }
 
@@ -75,14 +72,6 @@ public class SpecificElementalWeaponDamage extends Stat implements IStatEffects,
     public String locNameForLangFile() {
         return "Elemental " + this.weaponType()
             .name() + " Damage";
-    }
-
-    public static void register() {
-        for (WeaponTypes x : WeaponTypes.getAll()) {
-            SpecificElementalWeaponDamage stat = new SpecificElementalWeaponDamage(x);
-            MAP.put(x, stat);
-            stat.registerToSlashRegistry();
-        }
     }
 
 }

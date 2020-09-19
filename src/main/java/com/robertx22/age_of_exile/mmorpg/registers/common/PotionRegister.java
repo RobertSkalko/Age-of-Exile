@@ -42,7 +42,6 @@ public class PotionRegister {
 
     public PotionRegister() {
 
-
         if (MMORPG.RUN_DEV_TOOLS) { // TODO
             for (int i = 0; i < 20; i++) {
                 ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(StatusEffectType.NEUTRAL, i));
@@ -71,22 +70,17 @@ public class PotionRegister {
         reg(BurnEffect.INSTANCE);
         reg(WoundsEffect.getInstance());
         reg(JudgementEffect.INSTANCE);
-
-
-        // unfinished
-        reg(ThunderEssenceEffect.INSTANCE);
         reg(PoisonedWeaponsEffect.getInstance());
         reg(ImbueEffect.getInstance());
         reg(HunterInstinctEffect.getInstance());
-
-
         reg(ChannelEffect.GOOD_FOR_BOSS);
         reg(ChannelEffect.BAD_FOR_PLAYER);
         reg(AngerEffect.INSTANCE);
 
+        // unfinished
+        reg(ThunderEssenceEffect.INSTANCE);
 
         // unfinished
-
 
         Registry.register(Registry.STATUS_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
         Registry.register(Registry.STATUS_EFFECT, FOOD_MANA, ManaRegenFoodEffect.INSTANCE);

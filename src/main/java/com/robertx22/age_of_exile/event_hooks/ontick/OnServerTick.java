@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
+import com.robertx22.age_of_exile.aoe_data.adders.exile_effects.NegativeEffects;
 import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
-import com.robertx22.age_of_exile.database.data.exile_effects.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
@@ -39,18 +39,17 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     public void onEndTick(MinecraftServer server) {
 
         for (ServerPlayerEntity player : server.getPlayerManager()
-                .getPlayerList()) {
+            .getPlayerList()) {
 
             try {
-
 
                 if (MMORPG.RUN_DEV_TOOLS) { // TODO
                     // testing
                     if (player.age % 100 == 0) {
-                        ExileEffectsManager.apply(SlashRegistry.ExileEffects().get(NegativeEffects.CHILL + ""), player, player, 90);
+                        ExileEffectsManager.apply(SlashRegistry.ExileEffects()
+                            .get(NegativeEffects.CHILL + ""), player, player, 90);
                     }
                 }
-
 
                 PlayerTickData data = PlayerTickDatas.get(player.getUuid());
 
@@ -75,22 +74,22 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                         Unit unit = unitdata.getUnit();
 
                         float manarestored = unit.peekAtStat(ManaRegen.GUID)
-                                .getAverageValue();
+                            .getAverageValue();
                         manarestored += unit.peekAtStat(RegeneratePercentStat.MANA)
-                                .getAverageValue() * unit.manaData()
-                                .getAverageValue() / 100F;
+                            .getAverageValue() * unit.manaData()
+                            .getAverageValue() / 100F;
 
                         ResourcesData.Context mana = new ResourcesData.Context(unitdata, player, ResourcesData.Type.MANA,
-                                manarestored,
-                                ResourcesData.Use.RESTORE
+                            manarestored,
+                            ResourcesData.Use.RESTORE
                         );
                         unitdata.getResources()
-                                .modify(mana);
+                            .modify(mana);
 
                         boolean restored = false;
 
                         boolean canHeal = player.getHungerManager()
-                                .getFoodLevel() >= 16;
+                            .getFoodLevel() >= 16;
 
                         if (canHeal) {
                             if (player.getHealth() < player.getMaxHealth()) {
@@ -98,36 +97,36 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                             }
 
                             float healthrestored = unit.peekAtStat(HealthRegen.GUID)
-                                    .getAverageValue();
+                                .getAverageValue();
                             healthrestored += unit.peekAtStat(RegeneratePercentStat.HEALTH)
-                                    .getAverageValue() * player.getMaxHealth() / 100F;
+                                .getAverageValue() * player.getMaxHealth() / 100F;
                             ResourcesData.Context hp = new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH,
-                                    healthrestored,
-                                    ResourcesData.Use.RESTORE
+                                healthrestored,
+                                ResourcesData.Use.RESTORE
                             );
 
                             unitdata.getResources()
-                                    .modify(hp);
+                                .modify(hp);
 
                             if (unitdata.getResources()
-                                    .getMagicShield() < unitdata.getUnit()
-                                    .magicShieldData()
-                                    .getAverageValue()) {
+                                .getMagicShield() < unitdata.getUnit()
+                                .magicShieldData()
+                                .getAverageValue()) {
                                 restored = true;
                             }
 
                             float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID)
-                                    .getAverageValue();
+                                .getAverageValue();
                             magicshieldrestored += unit.peekAtStat(RegeneratePercentStat.MAGIC_SHIELD)
-                                    .getAverageValue() * unit.magicShieldData()
-                                    .getAverageValue() / 100F;
+                                .getAverageValue() * unit.magicShieldData()
+                                .getAverageValue() / 100F;
                             ResourcesData.Context ms = new ResourcesData.Context(unitdata, player,
-                                    ResourcesData.Type.MAGIC_SHIELD,
-                                    magicshieldrestored,
-                                    ResourcesData.Use.RESTORE
+                                ResourcesData.Type.MAGIC_SHIELD,
+                                magicshieldrestored,
+                                ResourcesData.Use.RESTORE
                             );
                             unitdata.getResources()
-                                    .modify(ms);
+                                .modify(ms);
 
                             if (restored) {
                                 unitdata.syncToClient(player);
@@ -137,7 +136,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
 
                                 player.getHungerManager()
-                                        .addExhaustion(exhaustion);
+                                    .addExhaustion(exhaustion);
 
                             }
                         }
@@ -158,8 +157,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data.ticksToSpellCooldowns = 0;
 
                     Load.spells(player)
-                            .getCastingData()
-                            .onTimePass(player, Load.spells(player), TicksToSpellCooldowns);
+                        .getCastingData()
+                        .onTimePass(player, Load.spells(player), TicksToSpellCooldowns);
                 }
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
