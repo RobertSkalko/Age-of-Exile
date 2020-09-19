@@ -16,10 +16,10 @@ public class VanillaStatData {
     String id;
     ModType type;
 
-
     public static VanillaStatData create(EntityAttribute attri, float val, ModType type, UUID uuid) {
         VanillaStatData data = new VanillaStatData();
-        data.id = Registry.ATTRIBUTE.getId(attri).toString();
+        data.id = Registry.ATTRIBUTE.getId(attri)
+            .toString();
         data.uuid = uuid.toString();
         data.type = type;
         data.val = val;
@@ -30,14 +30,15 @@ public class VanillaStatData {
         return Registry.ATTRIBUTE.get(new Identifier(id));
     }
 
-
     public void apply(LivingEntity en) {
 
         EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString(uuid), "", val, type.operation);
         EntityAttribute attri = getAttribute();
 
-        if (!en.getAttributeInstance(attri).hasModifier(mod)) {
-            en.getAttributeInstance(attri).addPersistentModifier(mod);
+        if (!en.getAttributeInstance(attri)
+            .hasModifier(mod)) {
+            en.getAttributeInstance(attri)
+                .addTemporaryModifier(mod);
         }
 
     }
@@ -46,10 +47,11 @@ public class VanillaStatData {
         EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString(uuid), "", val, type.operation);
         EntityAttribute attri = getAttribute();
 
-        if (en.getAttributeInstance(attri).hasModifier(mod)) {
-            en.getAttributeInstance(attri).removeModifier(mod);
+        if (en.getAttributeInstance(attri)
+            .hasModifier(mod)) {
+            en.getAttributeInstance(attri)
+                .removeModifier(mod);
         }
     }
-
 
 }

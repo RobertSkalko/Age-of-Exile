@@ -8,8 +8,8 @@ spell_thunder_damage
 trident_damage
 increase_healing
 bonus_exp
-ele_axe_damage
 all_water_damage
+ele_axe_damage
 thunder_focus
 hammer_damage
 life_on_hit
@@ -69,8 +69,8 @@ armor_penetration
 bow_damage
 static_bonus_dmg
 axe_damage
-ele_trident_damage
 magic_find
+ele_trident_damage
 physical_weapon_damage
 max_fire_resist
 health_regen
@@ -88,9 +88,9 @@ spell_water_damage
 water_focus
 wither_immunity
 max_thunder_resist
-ele_sword_damage
 alter_req_percent
 elemental_penetration
+ele_sword_damage
 crossbow_damage
 nature_penetration
 all_ele_dmg

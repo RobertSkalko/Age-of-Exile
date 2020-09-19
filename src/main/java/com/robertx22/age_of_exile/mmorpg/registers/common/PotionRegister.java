@@ -34,9 +34,9 @@ public class PotionRegister {
     public static Identifier FOOD_MANA = new Identifier(Ref.MODID, "food_mana_regen");
     public static Identifier FOOD_MAGIC_REGEN = new Identifier(Ref.MODID, "food_magic_shield_regen");
 
-    HashMap<Integer, ExileStatusEffect> exileEffectsMap = new HashMap<>();
+    HashMap<String, ExileStatusEffect> exileEffectsMap = new HashMap<>();
 
-    public ExileStatusEffect getExileEffectByNumber(int num) {
+    public ExileStatusEffect getExileEffect(String num) {
         return exileEffectsMap.get(num);
     }
 
@@ -44,16 +44,21 @@ public class PotionRegister {
 
         if (MMORPG.RUN_DEV_TOOLS) { // TODO
             for (int i = 0; i < 20; i++) {
-                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(StatusEffectType.NEUTRAL, i));
-                exileEffectsMap.put(i, eff);
+                String key = ExileStatusEffect.getIdPath(StatusEffectType.NEUTRAL, i);
+                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.NEUTRAL, i));
+                exileEffectsMap.put(key, eff);
             }
             for (int i = 0; i < 20; i++) {
-                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(StatusEffectType.HARMFUL, i));
-                exileEffectsMap.put(i, eff);
+                String key = ExileStatusEffect.getIdPath(StatusEffectType.HARMFUL, i);
+
+                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.HARMFUL, i));
+                exileEffectsMap.put(key, eff);
             }
             for (int i = 0; i < 20; i++) {
-                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(StatusEffectType.BENEFICIAL, i));
-                exileEffectsMap.put(i, eff);
+                String key = ExileStatusEffect.getIdPath(StatusEffectType.BENEFICIAL, i);
+
+                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.BENEFICIAL, i));
+                exileEffectsMap.put(key, eff);
             }
         }
 

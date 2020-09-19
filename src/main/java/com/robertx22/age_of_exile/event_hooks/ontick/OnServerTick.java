@@ -47,7 +47,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     // testing
                     if (player.age % 100 == 0) {
                         ExileEffectsManager.apply(SlashRegistry.ExileEffects()
-                            .get(NegativeEffects.CHILL + ""), player, player, 90);
+                            .get(NegativeEffects.JUDGEMENT + ""), player, player, 90);
                     }
                 }
 

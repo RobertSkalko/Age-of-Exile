@@ -25,7 +25,7 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_S
 public class NegativeEffects implements ISlashRegistryInit {
 
     public static String ELE_WEAKNESS = "negative/" + 0;
-    public static String PETRIFY = "negative" + 1;
+    public static String PETRIFY = "negative/" + 1;
     public static String CHILL = "negative/" + 2;
     public static String THORNS = "negative/" + 3;
     public static String WOUNDS = "negative/" + 4;

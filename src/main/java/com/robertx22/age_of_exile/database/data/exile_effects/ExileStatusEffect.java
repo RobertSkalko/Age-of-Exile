@@ -23,11 +23,10 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
     public ExileStatusEffect(StatusEffectType type, int numericId) {
         super(type, 0);
-        this.exileEffectId = getId(type, numericId);
+        this.exileEffectId = getIdPath(type, numericId);
     }
 
-
-    private static String getId(StatusEffectType type, int num) {
+    public static String getIdPath(StatusEffectType type, int num) {
 
         if (type == StatusEffectType.BENEFICIAL) {
             return "beneficial/" + num;
@@ -40,20 +39,19 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
     public boolean hasExileRegistry() {
         return SlashRegistry.ExileEffects()
-                .isRegistered(exileEffectId);
+            .isRegistered(exileEffectId);
     }
 
     public ExileEffect getExileEffect() {
         return SlashRegistry.ExileEffects()
-                .get(exileEffectId);
+            .get(exileEffectId);
     }
 
     public ExileEffectInstanceData getSavedData(LivingEntity en) {
         return Load.Unit(en)
-                .getStatusEffectsData()
-                .get(this);
+            .getStatusEffectsData()
+            .get(this);
     }
-
 
     @Override
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
@@ -70,29 +68,24 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
                           int amplifier) {
 
         try {
+
             ExileEffect exect = getExileEffect();
             exect.mc_stats.forEach(x -> x.remove(target));
 
+            ExileEffectInstanceData data = getSavedData(target);
+
+            if (data != null && data.spellData != null) {
+                LivingEntity caster = data.spellData.getCaster(target.world);
+                if (caster != null) {
+                    SpellCtx ctx = SpellCtx.onExpire(caster, target, data.spellData);
+                    exect.spell.tryActivate(Spell.Builder.DEFAULT_EN_NAME, ctx); // source is default name at all times
+                }
+            }
 
             EntityCap.UnitData unitdata = Load.Unit(target);
             unitdata.getStatusEffectsData()
-                    .set(this, null);
+                .set(this, null);
             unitdata.setEquipsChanged(true);
-
-
-            ExileEffectInstanceData data = getSavedData(target);
-
-            if (data == null || data.spellData == null) {
-                return;
-            }
-
-            LivingEntity caster = data.spellData.getCaster(target.world);
-            if (caster == null) {
-                return;
-            }
-
-            SpellCtx ctx = SpellCtx.onExpire(caster, target, data.spellData);
-            exect.spell.tryActivate(Spell.Builder.DEFAULT_EN_NAME, ctx); // source is default name at all times
 
             super.onRemoved(target, attributes, amplifier);
         } catch (Exception e) {
@@ -104,7 +97,6 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
-
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
@@ -135,7 +127,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
         if (data != null && data.spellData != null && data.spellData.getCaster(world) != null) {
             int casterlvl = Load.Unit(data.spellData.getCaster(world))
-                    .getLevel();
+                .getLevel();
             getExileEffect().stats.forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
         }
     }

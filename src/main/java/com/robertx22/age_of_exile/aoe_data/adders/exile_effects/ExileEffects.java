@@ -8,5 +8,6 @@ public class ExileEffects implements ISlashRegistryInit {
     public void registerAll() {
         new NegativeEffects().registerAll();
         new BeneficialEffects().registerAll();
+        new NeutralEffects().registerAll();
     }
 }

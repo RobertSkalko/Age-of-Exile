@@ -22,7 +22,7 @@ public class NeutralEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         ExileEffectBuilder.of(GOOD_FOR_BOSS, "Boss Prepare", EffectType.NEUTRAL)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1, ModType.GLOBAL_INCREASE, UUID.fromString("bu9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
+            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1, ModType.GLOBAL_INCREASE, UUID.fromString("f4d02ec5-75ea-471b-be9b-b9ecb0972d1a")))
             .spell(Builder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.HAPPY_VILLAGER, 10D, 1D)
                     .onTick(10D))
@@ -30,7 +30,7 @@ public class NeutralEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(BAD_FOR_PLAYER, "Boss Angry", EffectType.NEUTRAL)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1, ModType.GLOBAL_INCREASE, UUID.fromString("bu9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
+            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1, ModType.GLOBAL_INCREASE, UUID.fromString("f4d02ec5-75ea-471b-be9b-b9ecb0972d1a")))
             .spell(Builder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 10D, 1D)
                     .onTick(10D))

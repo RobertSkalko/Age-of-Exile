@@ -33,10 +33,10 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
         Elements ele = data.getElement();
 
         text.append("Deals ")
-                .append(calc.getShortTooltip(info.unitdata))
-                .append(" ")
-                .append(ele.dmgName)
-                .append(" Damage");
+            .append(calc.getShortTooltip(info.unitdata))
+            .append(" ")
+            .append(ele.dmgName)
+            .append(" Damage");
 
         return text;
 

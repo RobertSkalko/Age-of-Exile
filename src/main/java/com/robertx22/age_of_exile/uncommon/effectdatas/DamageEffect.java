@@ -38,7 +38,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
-        IElementalResistable, IElementalPenetrable, ICrittable {
+    IElementalResistable, IElementalPenetrable, ICrittable {
 
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg, UnitData sourceData,
                         UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
@@ -87,11 +87,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         // blocking check
         if (target.isBlocking() && event != null) {
             Vec3d vec3d = event.getSource()
-                    .getPosition();
+                .getPosition();
             if (vec3d != null) {
                 Vec3d vec3d2 = target.getRotationVec(1.0F);
                 Vec3d vec3d3 = vec3d.reverseSubtract(target.getPos())
-                        .normalize();
+                    .normalize();
                 vec3d3 = new Vec3d(vec3d3.x, 0.0D, vec3d3.z);
                 if (vec3d3.dotProduct(vec3d2) < 0.0D) {
                     this.isBlocked = true;
@@ -157,7 +157,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                 if (gear != null) {
                     float atkpersec = gear.GetBaseGearType()
-                            .getAttacksPerSecondCalculated(sourceData);
+                        .getAttacksPerSecondCalculated(sourceData);
 
                     float secWaited = (float) (source.age - source.getLastAttackTime()) / 20F;
 
@@ -180,12 +180,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     private float modifyIfArrowDamage(float dmg) {
         if (event != null && event.getSource() != null) {
             if (event.getSource()
-                    .getSource() instanceof ProjectileEntityDuck) {
+                .getSource() instanceof ProjectileEntityDuck) {
                 if (weaponType == WeaponTypes.Bow) {
                     // don't use this for crossbows, only bows need to be charged fully
 
                     ProjectileEntityDuck duck = (ProjectileEntityDuck) event.getSource()
-                            .getSource();
+                        .getSource();
 
                     float arrowmulti = duck.my$getDmgMulti();
 
@@ -222,7 +222,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public boolean ifPlayersShouldNotDamageEachOther() {
+
         if (areBothPlayers()) {
+            if (source.equals(target)) {
+                return false; // it's the same player, let him hit himself
+            }
             if (TeamUtils.areOnSameTeam((ServerPlayerEntity) source, (ServerPlayerEntity) target)) {
                 return true;
             }
@@ -248,10 +252,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     EntityAttributeModifier NO_KNOCKBACK = new EntityAttributeModifier(
-            UUID.fromString("e926df30-c376-11ea-87d0-0242ac131053"),
-            EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE.getTranslationKey(),
-            100,
-            EntityAttributeModifier.Operation.ADDITION
+        UUID.fromString("e926df30-c376-11ea-87d0-0242ac131053"),
+        EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE.getTranslationKey(),
+        100,
+        EntityAttributeModifier.Operation.ADDITION
     );
 
     @Override
@@ -343,17 +347,17 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 if (source instanceof ServerPlayerEntity) {
 
                     info.dmgmap.entrySet()
-                            .forEach(x -> {
-                                if (x.getValue()
-                                        .intValue() > 0) {
-                                    ServerPlayerEntity player = (ServerPlayerEntity) source;
+                        .forEach(x -> {
+                            if (x.getValue()
+                                .intValue() > 0) {
+                                ServerPlayerEntity player = (ServerPlayerEntity) source;
 
-                                    String str = NumberUtils.formatDamageNumber(this, x.getValue()
-                                            .intValue());
-                                    DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str, x.getValue());
-                                    Packets.sendToClient(player, packet);
-                                }
-                            });
+                                String str = NumberUtils.formatDamageNumber(this, x.getValue()
+                                    .intValue());
+                                DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str, x.getValue());
+                                Packets.sendToClient(player, packet);
+                            }
+                        });
 
                 }
             }
@@ -365,16 +369,16 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (this.getEffectType() == EffectTypes.BASIC_ATTACK) {
             List<StatusEffectInstance> onAttacks = source.getStatusEffects()
-                    .stream()
-                    .filter(x -> x.getEffectType() instanceof IOnBasicAttackPotion)
-                    .collect(Collectors.toList());
+                .stream()
+                .filter(x -> x.getEffectType() instanceof IOnBasicAttackPotion)
+                .collect(Collectors.toList());
 
             onAttacks.forEach(x -> ((IOnBasicAttackPotion) x.getEffectType()).OnBasicAttack(source, target));
 
             List<StatusEffectInstance> onAttackeds = target.getStatusEffects()
-                    .stream()
-                    .filter(x -> x.getEffectType() instanceof IOnBasicAttackedPotion)
-                    .collect(Collectors.toList());
+                .stream()
+                .filter(x -> x.getEffectType() instanceof IOnBasicAttackedPotion)
+                .collect(Collectors.toList());
 
             onAttackeds.forEach(x -> ((IOnBasicAttackedPotion) x.getEffectType()).onBasicAttacked(x, source, target));
 
@@ -384,12 +388,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public void doManaBurn() {
         if (manaBurn > 0) {
             ResourcesData.Context ctx = new ResourcesData.Context(targetData, target,
-                    ResourcesData.Type.MANA, manaBurn,
-                    ResourcesData.Use.SPEND
+                ResourcesData.Type.MANA, manaBurn,
+                ResourcesData.Use.SPEND
             );
 
             targetData.getResources()
-                    .modify(ctx);
+                .modify(ctx);
         }
     }
 
@@ -397,9 +401,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (healed > 0) {
 
             sourceData.getResources()
-                    .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MANA, healed,
-                            ResourcesData.Use.RESTORE
-                    ));
+                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MANA, healed,
+                    ResourcesData.Use.RESTORE
+                ));
 
         }
     }
@@ -407,18 +411,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public void Heal(float healed) {
         if (healed > 0) {
             sourceData.getResources()
-                    .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.HEALTH, healed,
-                            ResourcesData.Use.RESTORE
-                    ));
+                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.HEALTH, healed,
+                    ResourcesData.Use.RESTORE
+                ));
         }
     }
 
     public void restoreMagicShield(float healed) {
         if (healed > 0) {
             sourceData.getResources()
-                    .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MAGIC_SHIELD, healed,
-                            ResourcesData.Use.RESTORE
-                    ));
+                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MAGIC_SHIELD, healed,
+                    ResourcesData.Use.RESTORE
+                ));
         }
     }
 
@@ -463,7 +467,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(event, source, target, entry.getValue(), this.sourceData,
-                        this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType
+                    this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType
                 );
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;

@@ -33,7 +33,7 @@ public class MapHolder {
     private ValueCalculationData calc = null;
 
     public boolean has(MapField f) {
-        return map.containsKey(f);
+        return map.containsKey(f.GUID());
     }
 
     public <T> MapHolder put(MapField<T> field, T t) {
@@ -59,7 +59,7 @@ public class MapHolder {
 
     public ExileEffect getExileEffect() {
         return SlashRegistry.ExileEffects()
-                .get(get(EXILE_POTION_ID));
+            .get(get(EXILE_POTION_ID));
     }
 
     public EffectData.EffectTypes getDmgEffectType() {

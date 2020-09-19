@@ -27,13 +27,11 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     public List<OptScaleExactStat> stats = new ArrayList<>();
 
-
     public AttachedSpell spell;
 
     public ExileStatusEffect getStatusEffect() {
-        return ModRegistry.POTIONS.getExileEffectByNumber(Integer.parseInt(id));
+        return ModRegistry.POTIONS.getExileEffect(id);
     }
-
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -57,7 +55,8 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.STATUS_EFFECT.getId(getStatusEffect()).toString();
+        return Registry.STATUS_EFFECT.getId(getStatusEffect())
+            .toString();
     }
 
     @Override
