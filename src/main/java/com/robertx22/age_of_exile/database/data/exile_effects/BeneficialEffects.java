@@ -27,14 +27,15 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_S
 
 public class BeneficialEffects implements ISlashRegistryInit {
 
-    public static String ELE_RESIST = "b" + 0;
-    public static String CLEANSE = "b" + 1;
-    public static String BRAVERY = "b" + 2;
-    public static String WIZARDRY = "b" + 3;
-    public static String TRICKERY = "b" + 4;
-    public static String REGENERATE = "b" + 5;
-    public static String THORN_ARMOR = "b" + 6;
-    public static String ANGER = "b" + 7;
+    public static String ELE_RESIST = "beneficial/" + 0;
+    public static String CLEANSE = "beneficial/" + 1;
+    public static String BRAVERY = "beneficial/" + 2;
+    public static String WIZARDRY = "beneficial/" + 3;
+    public static String TRICKERY = "beneficial/" + 4;
+    public static String REGENERATE = "beneficial/" + 5;
+    public static String THORN_ARMOR = "beneficial/" + 6;
+    public static String ANGER = "beneficial/" + 7;
+    public static String DIVINE_SHIELD = "beneficial/" + 8;
 
 
     @Override
@@ -90,6 +91,13 @@ public class BeneficialEffects implements ISlashRegistryInit {
                 .stat(15, CriticalHit.getInstance(), ModType.FLAT)
                 .stat(20, CriticalDamage.getInstance(), ModType.FLAT)
                 .build();
+
+
+        ExileEffectBuilder.of(DIVINE_SHIELD, "Divine Shield", EffectType.BENEFICIAL)
+                .stat(25, new ElementalResist(Elements.Elemental), ModType.FLAT)
+                .stat(75, Armor.getInstance(), ModType.FLAT)
+                .build();
+
 
     }
 }

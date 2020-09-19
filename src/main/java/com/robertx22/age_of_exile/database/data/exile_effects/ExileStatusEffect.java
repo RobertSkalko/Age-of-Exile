@@ -26,15 +26,16 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
         this.exileEffectId = getId(type, numericId);
     }
 
+
     private static String getId(StatusEffectType type, int num) {
 
         if (type == StatusEffectType.BENEFICIAL) {
-            return "b" + num;
+            return "beneficial/" + num;
         }
         if (type == StatusEffectType.HARMFUL) {
-            return "n" + num;
+            return "negative/" + num;
         }
-        return num + "";
+        return "neutral/" + num;
     }
 
     public boolean hasExileRegistry() {

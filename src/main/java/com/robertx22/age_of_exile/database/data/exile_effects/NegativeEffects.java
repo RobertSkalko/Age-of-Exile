@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -22,13 +21,13 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_S
 
 public class NegativeEffects implements ISlashRegistryInit {
 
-    public static String ELE_WEAKNESS = "n" + 0;
-    public static String CLEANSE = "n" + 1;
-    public static String CHILL = "n" + 2;
-    public static String THORNS = "n" + 3;
-    public static String WOUNDS = "n" + 4;
-    public static String BURN = "n" + 5;
-    public static String JUDGEMENT = "n" + 6;
+    public static String ELE_WEAKNESS = "negative/" + 0;
+    public static String PETRIFY = "negative" + 1;
+    public static String CHILL = "negative/" + 2;
+    public static String THORNS = "negative/" + 3;
+    public static String WOUNDS = "negative/" + 4;
+    public static String BURN = "negative/" + 5;
+    public static String JUDGEMENT = "negative/" + 6;
 
     @Override
     public void registerAll() {
@@ -37,12 +36,6 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
                 .build();
 
-
-        ExileEffectBuilder.of(CLEANSE, "Cleanse", EffectType.HARMFUL)
-                .spell(Builder.forEffect()
-                        .onTick(PartBuilder.removeSelfEffect(StatusEffects.POISON).onTick(10D))
-                        .buildForEffect())
-                .build();
 
         ExileEffectBuilder.of(CHILL, "Chill", EffectType.HARMFUL)
                 .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.05F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
@@ -80,6 +73,17 @@ public class NegativeEffects implements ISlashRegistryInit {
                         .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D).onTick(20D))
                         .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(10), Elements.Thunder)).setTarget(TargetSelector.TARGET.create()))
                         .onExpire(PartBuilder.justAction(SpellAction.SUMMON_LIGHTNING_STRIKE.create()).setTarget(TargetSelector.TARGET.create()))
+                        .buildForEffect())
+                .build();
+
+
+        ExileEffectBuilder.of(PETRIFY, "Petrify", EffectType.HARMFUL)
+                .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
+                .spell(Builder.forEffect()
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D).onTick(20D))
+                        .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(5), Elements.Nature)).setTarget(TargetSelector.TARGET.create()))
+                        .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
+                        .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.ENTITY_SHEEP_SHEAR, 1D, 1D)))
                         .buildForEffect())
                 .build();
 
