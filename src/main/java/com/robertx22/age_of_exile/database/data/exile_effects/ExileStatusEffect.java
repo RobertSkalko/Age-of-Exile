@@ -19,23 +19,32 @@ import java.util.List;
 
 public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStatPotion {
 
-    int numericId;
-    String numericIdString;
+    String exileEffectId;
 
-    public ExileStatusEffect(int numericId) {
-        super(StatusEffectType.NEUTRAL, 0);
-        this.numericId = numericId;
-        this.numericIdString = numericId + "";
+    public ExileStatusEffect(StatusEffectType type, int numericId) {
+        super(type, 0);
+        this.exileEffectId = getId(type, numericId);
+    }
+
+    private static String getId(StatusEffectType type, int num) {
+
+        if (type == StatusEffectType.BENEFICIAL) {
+            return "b" + num;
+        }
+        if (type == StatusEffectType.HARMFUL) {
+            return "n" + num;
+        }
+        return num + "";
     }
 
     public boolean hasExileRegistry() {
         return SlashRegistry.ExileEffects()
-                .isRegistered(numericIdString);
+                .isRegistered(exileEffectId);
     }
 
     public ExileEffect getExileEffect() {
         return SlashRegistry.ExileEffects()
-                .get(numericIdString);
+                .get(exileEffectId);
     }
 
     public ExileEffectInstanceData getSavedData(LivingEntity en) {
@@ -63,10 +72,27 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
             ExileEffect exect = getExileEffect();
             exect.mc_stats.forEach(x -> x.remove(target));
 
+
             EntityCap.UnitData unitdata = Load.Unit(target);
             unitdata.getStatusEffectsData()
                     .set(this, null);
             unitdata.setEquipsChanged(true);
+
+
+            ExileEffectInstanceData data = getSavedData(target);
+
+            if (data == null || data.spellData == null) {
+                return;
+            }
+
+            LivingEntity caster = data.spellData.getCaster(target.world);
+            if (caster == null) {
+                return;
+            }
+
+            SpellCtx ctx = SpellCtx.onExpire(caster, target, data.spellData);
+            exect.spell.tryActivate(Spell.Builder.DEFAULT_EN_NAME, ctx); // source is default name at all times
+
             super.onRemoved(target, attributes, amplifier);
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,7 +146,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
     @Override
     public String GUID() {
-        return numericIdString;
+        return exileEffectId;
     }
 
 }

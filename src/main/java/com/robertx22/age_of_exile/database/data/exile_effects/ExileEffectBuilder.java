@@ -10,9 +10,10 @@ public class ExileEffectBuilder {
 
     private ExileEffect effect = new ExileEffect();
 
-    public static ExileEffectBuilder of(Integer num, String locname) {
+    public static ExileEffectBuilder of(String id, String locname, EffectType type) {
         ExileEffectBuilder b = new ExileEffectBuilder();
-        b.effect.id = num + "";
+        b.effect.type = type;
+        b.effect.id = id;
         b.effect.locName = locname;
         return b;
     }

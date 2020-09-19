@@ -64,7 +64,8 @@ public class SpellCtx {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
-        return new SpellCtx(EntityActivation.ON_EXPIRE, sourceEntity, caster, null, sourceEntity.getBlockPos(), sourceEntity.getPos(), data);
+        LivingEntity target = sourceEntity instanceof LivingEntity ? (LivingEntity) sourceEntity : null;
+        return new SpellCtx(EntityActivation.ON_EXPIRE, sourceEntity, caster, target, sourceEntity.getBlockPos(), sourceEntity.getPos(), data);
     }
 
 

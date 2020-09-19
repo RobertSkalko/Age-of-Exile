@@ -18,7 +18,7 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     public String id;
     public String one_of_a_kind_id = "";
-
+    EffectType type = EffectType.NEUTRAL;
     public int max_stacks = 1;
 
     public transient String locName = "";

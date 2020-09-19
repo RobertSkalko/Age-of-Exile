@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffects;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
+import com.robertx22.age_of_exile.database.data.exile_effects.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
@@ -47,7 +47,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 if (MMORPG.RUN_DEV_TOOLS) { // TODO
                     // testing
                     if (player.age % 100 == 0) {
-                        ExileEffectsManager.apply(SlashRegistry.ExileEffects().get(ExileEffects.CHILL + ""), player, player, 90);
+                        ExileEffectsManager.apply(SlashRegistry.ExileEffects().get(NegativeEffects.CHILL + ""), player, player, 90);
                     }
                 }
 

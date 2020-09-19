@@ -22,6 +22,7 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.ImbueEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ranger.WoundsEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.shaman.StaticEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.shaman.ThunderEssenceEffect;
+import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -41,9 +42,18 @@ public class PotionRegister {
 
     public PotionRegister() {
 
+
         if (MMORPG.RUN_DEV_TOOLS) { // TODO
             for (int i = 0; i < 20; i++) {
-                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(i));
+                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(StatusEffectType.NEUTRAL, i));
+                exileEffectsMap.put(i, eff);
+            }
+            for (int i = 0; i < 20; i++) {
+                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(StatusEffectType.HARMFUL, i));
+                exileEffectsMap.put(i, eff);
+            }
+            for (int i = 0; i < 20; i++) {
+                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, i + ""), new ExileStatusEffect(StatusEffectType.BENEFICIAL, i));
                 exileEffectsMap.put(i, eff);
             }
         }
@@ -51,25 +61,32 @@ public class PotionRegister {
         reg(BraveryEffect.INSTANCE);
         reg(WizardryEffect.INSTANCE);
         reg(TrickeryEffect.INSTANCE);
-
-        reg(ChannelEffect.GOOD_FOR_BOSS);
-        reg(ChannelEffect.BAD_FOR_PLAYER);
-        reg(AngerEffect.INSTANCE);
-
         reg(FrostEffect.INSTANCE);
         reg(RegenerateEffect.INSTANCE);
         reg(PoisonEffect.INSTANCE);
         reg(PetrifyEffect.INSTANCE);
         reg(ShiverEffect.INSTANCE);
-        reg(JudgementEffect.INSTANCE);
         reg(ThornArmorEffect.INSTANCE);
         reg(StaticEffect.INSTANCE);
         reg(BurnEffect.INSTANCE);
+        reg(WoundsEffect.getInstance());
+        reg(JudgementEffect.INSTANCE);
+
+
+        // unfinished
         reg(ThunderEssenceEffect.INSTANCE);
         reg(PoisonedWeaponsEffect.getInstance());
         reg(ImbueEffect.getInstance());
         reg(HunterInstinctEffect.getInstance());
-        reg(WoundsEffect.getInstance());
+
+
+        reg(ChannelEffect.GOOD_FOR_BOSS);
+        reg(ChannelEffect.BAD_FOR_PLAYER);
+        reg(AngerEffect.INSTANCE);
+
+
+        // unfinished
+
 
         Registry.register(Registry.STATUS_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
         Registry.register(Registry.STATUS_EFFECT, FOOD_MANA, ManaRegenFoodEffect.INSTANCE);

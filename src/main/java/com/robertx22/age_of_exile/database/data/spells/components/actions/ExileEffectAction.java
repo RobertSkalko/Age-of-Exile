@@ -81,13 +81,13 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
         }
     }
 
-    public MapHolder create(int num, ExilePotionAction.GiveOrTake action, Double duration) {
+    public MapHolder create(String id, ExilePotionAction.GiveOrTake action, Double duration) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(COUNT, 1D);
         dmg.put(POTION_DURATION, duration);
         dmg.put(POTION_ACTION, action.name());
-        dmg.put(EXILE_POTION_ID, num + "");
+        dmg.put(EXILE_POTION_ID, id);
         return dmg;
     }
 

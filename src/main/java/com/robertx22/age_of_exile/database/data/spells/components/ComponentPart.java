@@ -422,7 +422,7 @@ public class ComponentPart {
             return c;
         }
 
-        public static ComponentPart NEWgiveSelfExileEffect(int effect, Double duration) {
+        public static ComponentPart NEWgiveSelfExileEffect(String effect, Double duration) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.EXILE_EFFECT.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS, duration));
             c.targets.add(BaseTargetSelector.CASTER.create());
