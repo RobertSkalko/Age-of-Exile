@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect.EffectSides;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Formatting;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +89,7 @@ public abstract class EffectData {
 
     }
 
-    private EffectTypes effectType = EffectTypes.BASIC_ATTACK;
+    public EffectTypes effectType = EffectTypes.BASIC_ATTACK;
 
     public EffectTypes getEffectType() {
         return effectType;
@@ -155,21 +156,21 @@ public abstract class EffectData {
     public void logOnStartData() {
         if (MMORPG.statEffectDebuggingEnabled()) {
             System.out.println(
-                Formatting.DARK_PURPLE + "Starting to activate effects for: " + getClass().toString() + " " + "Starting Number: " + number);
+                    Formatting.DARK_PURPLE + "Starting to activate effects for: " + getClass().toString() + " " + "Starting Number: " + number);
         }
     }
 
     public void logOnEndData() {
         if (MMORPG.statEffectDebuggingEnabled()) {
             System.out.println(
-                Formatting.DARK_PURPLE + "Effects for : " + getClass().toString() + " are finished.");
+                    Formatting.DARK_PURPLE + "Effects for : " + getClass().toString() + " are finished.");
         }
     }
 
     public void logAfterEffect(IStatEffect effect) {
         if (MMORPG.statEffectDebuggingEnabled()) {
             System.out.println(Formatting.GREEN + "After : " + Formatting.BLUE + effect.getClass()
-                .toString() + Formatting.WHITE + ": " + this.number);
+                    .toString() + Formatting.WHITE + ": " + this.number);
         }
     }
 
@@ -190,7 +191,7 @@ public abstract class EffectData {
         for (EffectUnitStat item : Effects) {
             if (item.stat.isNotZero()) {
                 if (item.effect.Side()
-                    .equals(side)) {
+                        .equals(side)) {
                     item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
 
                 }
@@ -225,18 +226,18 @@ public abstract class EffectData {
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit, EffectSides side) {
         if (unit != null) {
             unit.getStats()
-                .values()
-                .forEach(data -> {
-                    if (data.isNotZero()) {
-                        Stat stat = data.GetStat();
-                        if (stat instanceof IStatEffects) {
-                            ((IStatEffects) stat).getEffects()
-                                .forEach(effect -> {
-                                    effects.add(new EffectUnitStat(effect, unit, data));
-                                });
+                    .values()
+                    .forEach(data -> {
+                        if (data.isNotZero()) {
+                            Stat stat = data.GetStat();
+                            if (stat instanceof IStatEffects) {
+                                ((IStatEffects) stat).getEffects()
+                                        .forEach(effect -> {
+                                            effects.add(new EffectUnitStat(effect, unit, data));
+                                        });
+                            }
                         }
-                    }
-                });
+                    });
         }
 
         return effects;

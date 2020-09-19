@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -31,6 +32,10 @@ public class MapHolder {
 
     private ValueCalculationData calc = null;
 
+    public boolean has(MapField f) {
+        return map.containsKey(f);
+    }
+
     public <T> MapHolder put(MapField<T> field, T t) {
         if (field == MapField.VALUE_CALCULATION) {
             calc = (ValueCalculationData) t;
@@ -54,7 +59,11 @@ public class MapHolder {
 
     public ExileEffect getExileEffect() {
         return SlashRegistry.ExileEffects()
-            .get(get(EXILE_POTION_ID));
+                .get(get(EXILE_POTION_ID));
+    }
+
+    public EffectData.EffectTypes getDmgEffectType() {
+        return EffectData.EffectTypes.valueOf(get(MapField.DMG_EFFECT_TYPE));
     }
 
     public StatusEffect getPotion() {

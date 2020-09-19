@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
@@ -32,10 +33,10 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
         Elements ele = data.getElement();
 
         text.append("Deals ")
-            .append(calc.getShortTooltip(info.unitdata))
-            .append(" ")
-            .append(ele.dmgName)
-            .append(" Damage");
+                .append(calc.getShortTooltip(info.unitdata))
+                .append(" ")
+                .append(ele.dmgName)
+                .append(" Damage");
 
         return text;
 
@@ -54,7 +55,11 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
 
             for (LivingEntity t : targets) {
                 SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value, ctx.calculatedSpellData.getSpell());
+                if (data.has(MapField.DMG_EFFECT_TYPE)) {
+                    dmg.effectType = data.getDmgEffectType();
+                }
                 dmg.element = ele;
+
                 dmg.Activate();
             }
         }

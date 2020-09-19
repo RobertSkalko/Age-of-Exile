@@ -49,6 +49,11 @@ public class ComponentPart {
         return this;
     }
 
+    public ComponentPart setTarget(MapHolder target) {
+        targets.add(target);
+        return this;
+    }
+
     public void addActivationRequirement(EntityActivation act) {
         if (act == EntityActivation.ON_EXPIRE) {
             this.addCondition(EffectCondition.ON_ENTITY_EXPIRE.create());

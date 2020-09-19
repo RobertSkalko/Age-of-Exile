@@ -54,8 +54,8 @@ public class PotionRegister {
 
         reg(ChannelEffect.GOOD_FOR_BOSS);
         reg(ChannelEffect.BAD_FOR_PLAYER);
-
         reg(AngerEffect.INSTANCE);
+
         reg(FrostEffect.INSTANCE);
         reg(RegenerateEffect.INSTANCE);
         reg(PoisonEffect.INSTANCE);

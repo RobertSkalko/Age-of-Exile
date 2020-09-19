@@ -50,7 +50,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList {
 
     public Stat getStat() {
         return SlashRegistry.Stats()
-            .get(stat);
+                .get(stat);
     }
 
     public ModType getModType() {
@@ -59,7 +59,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList {
 
     public StatModifier toStatModifier() {
         Stat stat = SlashRegistry.Stats()
-            .get(this.stat);
+                .get(this.stat);
         if (stat.UsesSecondValue()) {
             return new StatModifier(first, first, second, second, stat, getModType());
         } else {
@@ -69,18 +69,19 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList {
     }
 
     public void applyStats(EntityCap.UnitData data, int lvl) {
-        toStatModifier().ToExactStat(100, lvl)
-            .applyStats(data);
+        toStatModifier().ToExactStat(100, scaleToLevel ? lvl : 1)
+                .applyStats(data);
     }
+
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
         if (scaleToLevel) {
             toStatModifier().ToExactStat(100, data.getLevel())
-                .applyStats(data);
+                    .applyStats(data);
         } else {
             toStatModifier().ToExactStat(100, 1)
-                .applyStats(data);
+                    .applyStats(data);
         }
     }
 

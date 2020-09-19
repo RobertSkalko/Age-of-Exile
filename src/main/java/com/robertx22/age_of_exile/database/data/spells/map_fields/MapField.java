@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.map_fields;
 
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 
 import java.util.HashMap;
@@ -54,6 +53,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> POS_SOURCE = make("pos_source");
     public static MapField<String> SHOOT_DIRECTION = make("shoot_way");
     public static MapField<String> SPELL_MODIFIER = make("spell_mod");
+    public static MapField<String> DMG_EFFECT_TYPE = make("dmg_effect_type");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");
@@ -73,26 +73,12 @@ public class MapField<T> implements IGUID {
         return field;
     }
 
+
     private static <T> MapField<T> make(MapField<T> field) {
         MAP.put(field.GUID(), field);
         return field;
     }
 
-    public boolean has(HashMap<String, Object> map) {
-        return map.containsKey(GUID()) && map.get(GUID()) != null;
-    }
-
-    public T get(HashMap<String, Object> map) {
-        return (T) map.get(GUID());
-    }
-
-    public T get(MapHolder data) {
-        return data.get(this);
-    }
-
-    public boolean isThere(HashMap<String, Object> map) {
-        return map.containsKey(GUID());
-    }
 
     @Override
     public String GUID() {

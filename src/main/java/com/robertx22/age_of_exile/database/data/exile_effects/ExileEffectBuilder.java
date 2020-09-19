@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 public class ExileEffectBuilder {
@@ -33,7 +34,9 @@ public class ExileEffectBuilder {
 
 
     public ExileEffectBuilder stat(float first, Stat stat, ModType type) {
-        this.effect.stats.add(new OptScaleExactStat(first, stat, type));
+        OptScaleExactStat data = new OptScaleExactStat(first, stat, type);
+        data.scaleToLevel = stat.getScaling() == StatScaling.LINEAR;
+        this.effect.stats.add(data);
         return this;
     }
 
