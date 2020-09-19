@@ -44,15 +44,33 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
                 .get(this);
     }
 
+
+    @Override
+    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+
+        ExileEffect exect = getExileEffect();
+        exect.mc_stats.forEach(x -> x.apply(entity));
+
+        super.onApplied(entity, attributes, amplifier);
+
+    }
+
     @Override
     public void onRemoved(LivingEntity target, AttributeContainer attributes,
                           int amplifier) {
 
-        EntityCap.UnitData unitdata = Load.Unit(target);
-        unitdata.getStatusEffectsData()
-                .set(this, null);
-        unitdata.setEquipsChanged(true);
-        super.onRemoved(target, attributes, amplifier);
+        try {
+            ExileEffect exect = getExileEffect();
+            exect.mc_stats.forEach(x -> x.remove(target));
+
+            EntityCap.UnitData unitdata = Load.Unit(target);
+            unitdata.getStatusEffectsData()
+                    .set(this, null);
+            unitdata.setEquipsChanged(true);
+            super.onRemoved(target, attributes, amplifier);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -21,6 +21,11 @@ public class ExileEffectBuilder {
         return this;
     }
 
+    public ExileEffectBuilder vanillaStat(VanillaStatData stat) {
+        this.effect.mc_stats.add(stat);
+        return this;
+    }
+
     public ExileEffectBuilder spell(Spell stat) {
         this.effect.spell = stat.getAttached();
         return this;

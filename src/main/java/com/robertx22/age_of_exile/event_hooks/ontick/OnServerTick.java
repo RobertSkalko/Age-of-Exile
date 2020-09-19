@@ -4,12 +4,14 @@ import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffects;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -42,9 +44,11 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             try {
 
 
-                // testing
-                if (player.age % 100 == 0) {
-                    ExileEffectsManager.apply(SlashRegistry.ExileEffects().get(2 + ""), player, player, 90);
+                if (MMORPG.RUN_DEV_TOOLS) { // TODO
+                    // testing
+                    if (player.age % 100 == 0) {
+                        ExileEffectsManager.apply(SlashRegistry.ExileEffects().get(ExileEffects.CHILL + ""), player, player, 90);
+                    }
                 }
 
 

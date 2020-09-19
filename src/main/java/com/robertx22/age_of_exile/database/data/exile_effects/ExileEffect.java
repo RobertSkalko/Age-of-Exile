@@ -23,6 +23,8 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     public transient String locName = "";
 
+    public List<VanillaStatData> mc_stats = new ArrayList<>();
+
     public List<OptScaleExactStat> stats = new ArrayList<>();
 
 
