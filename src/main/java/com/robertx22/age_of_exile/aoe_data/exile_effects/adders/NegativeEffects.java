@@ -1,7 +1,7 @@
-package com.robertx22.age_of_exile.aoe_data.adders.exile_effects;
+package com.robertx22.age_of_exile.aoe_data.exile_effects.adders;
 
+import com.robertx22.age_of_exile.aoe_data.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart.PartBuilder;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell.Builder;

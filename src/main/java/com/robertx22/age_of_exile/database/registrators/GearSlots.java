@@ -1,44 +1,45 @@
 package com.robertx22.age_of_exile.database.registrators;
 
+import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 
 public class GearSlots implements ISlashRegistryInit {
 
-    public static GearSlot SWORD = new GearSlot("sword", 1000);
-    public static GearSlot AXE = new GearSlot("axe", 1000);
-    public static GearSlot WAND = new GearSlot("wand", 1250);
-    public static GearSlot BOW = new GearSlot("bow", 750);
-    public static GearSlot CROSBOW = new GearSlot("crossbow", 750);
+    public static DataGenKey<GearSlot> SWORD = new DataGenKey<GearSlot>("sword");
+    public static DataGenKey<GearSlot> AXE = new DataGenKey<GearSlot>("axe");
+    public static DataGenKey<GearSlot> WAND = new DataGenKey<GearSlot>("wand");
+    public static DataGenKey<GearSlot> BOW = new DataGenKey<GearSlot>("bow");
+    public static DataGenKey<GearSlot> CROSBOW = new DataGenKey<GearSlot>("crossbow");
 
-    public static GearSlot BOOTS = new GearSlot("boots", 1000);
-    public static GearSlot PANTS = new GearSlot("pants", 1000);
-    public static GearSlot CHEST = new GearSlot("chest", 1000);
-    public static GearSlot HELMET = new GearSlot("helmet", 1000);
+    public static DataGenKey<GearSlot> BOOTS = new DataGenKey<GearSlot>("boots");
+    public static DataGenKey<GearSlot> PANTS = new DataGenKey<GearSlot>("pants");
+    public static DataGenKey<GearSlot> CHEST = new DataGenKey<GearSlot>("chest");
+    public static DataGenKey<GearSlot> HELMET = new DataGenKey<GearSlot>("helmet");
 
-    public static GearSlot SHIELD = new GearSlot("shield", 1000);
+    public static DataGenKey<GearSlot> SHIELD = new DataGenKey<GearSlot>("shield");
 
-    public static GearSlot RING = new GearSlot("ring", 750);
-    public static GearSlot NECKLACE = new GearSlot("necklace", 750);
+    public static DataGenKey<GearSlot> RING = new DataGenKey<GearSlot>("ring");
+    public static DataGenKey<GearSlot> NECKLACE = new DataGenKey<GearSlot>("necklace");
 
     @Override
     public void registerAll() {
 
-        SWORD.addToSerializables();
-        AXE.addToSerializables();
-        WAND.addToSerializables();
-        BOW.addToSerializables();
-        CROSBOW.addToSerializables();
+        new GearSlot(SWORD, 1000).addToSerializables();
+        new GearSlot(AXE, 1000).addToSerializables();
+        new GearSlot(WAND, 1250).addToSerializables();
+        new GearSlot(BOW, 750).addToSerializables();
+        new GearSlot(CROSBOW, 750).addToSerializables();
 
-        BOOTS.addToSerializables();
-        PANTS.addToSerializables();
-        CHEST.addToSerializables();
-        HELMET.addToSerializables();
+        new GearSlot(BOOTS, 1000).addToSerializables();
+        new GearSlot(PANTS, 1000).addToSerializables();
+        new GearSlot(CHEST, 1000).addToSerializables();
+        new GearSlot(HELMET, 1000).addToSerializables();
 
-        SHIELD.addToSerializables();
+        new GearSlot(SHIELD, 1000).addToSerializables();
 
-        NECKLACE.addToSerializables();
-        RING.addToSerializables();
+        new GearSlot(RING, 750).addToSerializables();
+        new GearSlot(NECKLACE, 750).addToSerializables();
 
     }
 }

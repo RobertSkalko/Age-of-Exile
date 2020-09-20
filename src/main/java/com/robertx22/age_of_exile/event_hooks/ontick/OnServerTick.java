@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
-import com.robertx22.age_of_exile.aoe_data.adders.exile_effects.NegativeEffects;
+import com.robertx22.age_of_exile.aoe_data.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;

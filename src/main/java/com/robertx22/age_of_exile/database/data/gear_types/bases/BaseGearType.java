@@ -54,9 +54,23 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryEntry<BaseGearType>, ISerializable<BaseGearType> {
+public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntry<BaseGearType>, ISerializable<BaseGearType> {
+
+    public BaseGearType SERIALIZER = new BaseGearType();
 
     public float attacksPerSecond = 1;
+    protected String guid;
+    protected LevelRange level_range;
+    protected String locname;
+    String gear_slot = "";
+
+    public List<StatModifier> implicit_stats = new ArrayList<>();
+    public List<StatModifier> base_stats = new ArrayList<>();
+
+    public WeaponTypes weapon_type = WeaponTypes.None;
+    public StatRequirement stat_reqs = new StatRequirement();
+    public TagList tags = new TagList();
+    transient GearCraftEssenceItem essenceItem = null;
 
     public BaseGearType(String guid, LevelRange levelRange, String locname) {
         this.guid = guid;
@@ -68,30 +82,35 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
 
     }
 
-    GearCraftEssenceItem essenceItem = null;
-
-    public abstract List<StatModifier> implicitStats();
-
-    public abstract List<StatModifier> baseStats();
-
-    public WeaponTypes weaponType() {
-        return WeaponTypes.None;
+    public List<StatModifier> implicitStats() {
+        return implicit_stats;
     }
 
-    public abstract TagList getTags();
+    public List<StatModifier> baseStats() {
+        return base_stats;
+    }
 
-    public abstract StatRequirement getStatRequirements();
+    public WeaponTypes weaponType() {
+        return weapon_type;
+    }
 
-    protected String guid;
-    protected LevelRange level_range;
-    protected String locname;
+    public TagList getTags() {
+        return tags;
+    }
+
+    public StatRequirement getStatRequirements() {
+        return stat_reqs;
+    }
 
     @Override
     public final String GUID() {
         return guid;
     }
 
-    public abstract GearSlot getGearSlot();
+    public GearSlot getGearSlot() {
+        return SlashRegistry.GearSlots()
+            .get(gear_slot);
+    }
 
     @Override
     public final String locNameForLangFile() {

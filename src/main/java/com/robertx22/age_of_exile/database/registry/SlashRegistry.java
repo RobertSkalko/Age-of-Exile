@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.registry;
 
 import com.google.common.collect.Lists;
-import com.robertx22.age_of_exile.aoe_data.adders.exile_effects.ExileEffects;
+import com.robertx22.age_of_exile.aoe_data.exile_effects.adders.ExileEffects;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;

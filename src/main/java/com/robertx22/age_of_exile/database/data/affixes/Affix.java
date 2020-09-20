@@ -45,10 +45,10 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
         }
     }
 
-    String guid;
-    String loc_name;
-    int weight = 1000;
-    Requirements requirements;
+    public String guid;
+    public String loc_name;
+    public int weight = 1000;
+    public Requirements requirements;
     public List<String> tags = new ArrayList<>();
     public Type type;
 

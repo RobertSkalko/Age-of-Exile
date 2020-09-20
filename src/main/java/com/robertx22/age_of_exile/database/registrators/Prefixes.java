@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.registrators;
 
+import com.robertx22.age_of_exile.aoe_data.affixes.adders.*;
 import com.robertx22.age_of_exile.database.base.IRandomDefault;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
-import com.robertx22.age_of_exile.database.data.affixes.data.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 

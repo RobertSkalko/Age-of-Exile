@@ -1,6 +1,9 @@
-package com.robertx22.age_of_exile.database.data.affixes;
+package com.robertx22.age_of_exile.aoe_data.affixes;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.data.affixes.AffixTag;
+import com.robertx22.age_of_exile.database.data.affixes.AffixTier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.requirements.Requirements;
 import com.robertx22.age_of_exile.database.data.requirements.TagRequirement;
