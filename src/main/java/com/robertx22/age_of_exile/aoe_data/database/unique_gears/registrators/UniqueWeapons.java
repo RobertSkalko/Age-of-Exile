@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -27,6 +28,22 @@ public class UniqueWeapons implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.JUDGEMENT_AXE,
+            "judgement",
+            "Judgement",
+            "Are you worthy, mortal?",
+            BaseGearWeapons.AXE.get(LevelRanges.HIGH))
+            .stats(Arrays.asList(
+                new StatModifier(1, 3, 3, 3, new WeaponDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(1, 3, 3, 3, new WeaponDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(-50, 50, HealPower.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(-5, 5, ManaBurn.getInstance(), ModType.FLAT),
+                new StatModifier(0.2F, 0.4F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+            ))
+            .build();
+
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.OBSI_MIGHT_AXE,
             "obsi_might",
@@ -109,6 +126,17 @@ public class UniqueWeapons implements ISlashRegistryInit {
                 new StatModifier(10, 30, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+            ))
+            .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.ROT_PHYS,
+            "rot_phys",
+            "Smell of Rot",
+            "Strange things you find yourself liking. Like a stick, with a piece of rotten piece of flesh on it.",
+            BaseGearWeapons.WAND.get(LevelRanges.LOW))
+            .stats(Arrays.asList(
+                new StatModifier(150, 300, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE)
             ))
             .build();
 

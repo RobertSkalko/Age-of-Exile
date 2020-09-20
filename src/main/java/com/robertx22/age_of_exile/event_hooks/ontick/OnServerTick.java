@@ -43,7 +43,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
             try {
 
-                if (MMORPG.RUN_DEV_TOOLS) { // TODO
+                if (false && MMORPG.RUN_DEV_TOOLS) { // TODO
                     // testing
                     if (player.age % 100 == 0) {
                         ExileEffectsManager.apply(SlashRegistry.ExileEffects()

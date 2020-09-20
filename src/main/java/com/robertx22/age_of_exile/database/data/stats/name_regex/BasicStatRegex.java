@@ -31,7 +31,8 @@ public class BasicStatRegex extends StatNameRegex {
             }
         }
         if (type == ModType.LOCAL_INCREASE) {
-            return VALUE + " Increased " + NAME;
+            String s = v1 > 0 ? " Extra " : " ";
+            return VALUE + s + NAME;
         }
         if (type == ModType.GLOBAL_INCREASE) {
             return VALUE + " To Global " + NAME;

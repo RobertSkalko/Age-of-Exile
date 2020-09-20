@@ -1,5 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+judgement
+rot_phys
 eye_of_zegrath
 divine_might
 water_ele_sword
@@ -14,4 +16,5 @@ will_of_flora
 skull_of_spirits
 beast_blood
 birth_miracle
+snake_eye
 inca_thunder

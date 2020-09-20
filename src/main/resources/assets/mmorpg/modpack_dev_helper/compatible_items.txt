@@ -58,8 +58,10 @@ mmorpg:armor/leather/chest/leather_chest3
 mmorpg:armor/cloth/boots/cloth_boots0
 mmorpg:armor/leather/chest/leather_chest4
 mmorpg:armor/leather/boots/leather_boots0
+mmorpg:uniques/weapon/rot_phys
 mmorpg:armor/cloth/chest/cloth_chest0
 mmorpg:armor/cloth/chest/cloth_chest3
+mmorpg:uniques/weapon/judgement
 mmorpg:armor/cloth/chest/cloth_chest4
 mmorpg:armor/cloth/chest/cloth_chest1
 mmorpg:armor/cloth/chest/cloth_chest2
@@ -107,5 +109,6 @@ mmorpg:weapon/sword/sword1
 mmorpg:armor/plate/chest/plate_chest1
 mmorpg:weapon/sword/sword0
 mmorpg:armor/plate/chest/plate_chest2
+mmorpg:uniques/jewelry/snake_eye
 mmorpg:uniques/jewelry/loop_of_infinity
 mmorpg:jewelry/ring/mana_reg_ring_low

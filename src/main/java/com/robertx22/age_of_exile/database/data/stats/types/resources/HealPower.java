@@ -49,7 +49,7 @@ public class HealPower extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Increased Healing";
+        return "Healing Power";
     }
 
     private static class SingletonHolder {

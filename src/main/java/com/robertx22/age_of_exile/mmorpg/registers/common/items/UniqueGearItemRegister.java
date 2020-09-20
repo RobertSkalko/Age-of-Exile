@@ -14,6 +14,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item ANGEL_PROT_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/angel_prot_necklace");
     public Item BIRTH_MIRACLE_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/birth_miracle");
     public Item SKULL_OF_SPIRITS_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/skull_of_spirits");
+    public Item SNAKE_EYE_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/snake_eye");
 
     public Item GREED_PERSIST_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/greed_persist");
     public Item LOOP_OF_INFINITY_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/loop_of_infinity");
@@ -21,10 +22,12 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item DIVINE_MIGHT_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/divine_might");
     public Item EZE_OF_ZEGRATH_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/eye_of_zegrath");
     public Item WILL_OF_FLORA_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/will_of_flora");
+    public Item ROT_PHYS = item(new BaseUniqueWand("Wand"), "uniques/weapon/rot_phys");
 
     public Item INCA_THUNDER_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/inca_thunder");
     public Item WATER_ELE_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/water_ele_sword");
 
     public Item OBSI_MIGHT_AXE = item(new BaseUniqueSword("Axe"), "uniques/weapon/obsi_might");
+    public Item JUDGEMENT_AXE = item(new BaseUniqueSword("Axe"), "uniques/weapon/judgement");
 
 }

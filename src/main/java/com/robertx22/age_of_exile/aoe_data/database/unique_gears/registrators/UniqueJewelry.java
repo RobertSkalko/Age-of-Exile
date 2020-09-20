@@ -4,9 +4,11 @@ import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseG
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ImmuneToEffectStat;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
@@ -26,6 +28,19 @@ public class UniqueJewelry implements ISlashRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.SNAKE_EYE_NECKLACE,
+            "snake_eye",
+            "Snake Eye",
+            "Eternally dead, and yet not blind.",
+            BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_LOW))
+            .stats(Arrays.asList(
+                new StatModifier(3, 8, ChanceToApplyEffect.POISON, ModType.FLAT),
+                new StatModifier(3, 5, Lifesteal.getInstance(), ModType.FLAT),
+                new StatModifier(0.5F, 0.35F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
+            ))
+            .build();
+
+        UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.ANGEL_PROT_NECKLACE,
             "angel_prot_necklace",
             "Angelic Protection",
@@ -35,7 +50,7 @@ public class UniqueJewelry implements ISlashRegistryInit {
                 new StatModifier(50, 100, ManaBurnResistance.getInstance(), ModType.FLAT),
                 new StatModifier(1, 1, ImmuneToEffectStat.POISON, ModType.FLAT),
                 new StatModifier(3, 5, PlusResourceOnKill.MANA, ModType.FLAT),
-                new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(0.4F, 0.55F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
             ))
             .build();
 
@@ -49,7 +64,7 @@ public class UniqueJewelry implements ISlashRegistryInit {
                 new StatModifier(3, 8, Health.getInstance(), ModType.FLAT),
                 new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(2, 5, PlusResourceOnKill.HEALTH, ModType.FLAT),
-                new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+                new StatModifier(0.3F, 0.45F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
             ))
             .build();
 
@@ -91,7 +106,7 @@ public class UniqueJewelry implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(5, 10, Mana.getInstance(), ModType.FLAT),
                 new StatModifier(1, 4, RegeneratePercentStat.MANA, ModType.FLAT),
-                new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(0.2F, 0.35F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
             ))
             .build();
 
