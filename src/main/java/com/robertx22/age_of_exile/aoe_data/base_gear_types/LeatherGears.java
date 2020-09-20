@@ -3,16 +3,14 @@ package com.robertx22.age_of_exile.aoe_data.base_gear_types;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.registrators.GearSlots;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.HashMap;
@@ -27,14 +25,32 @@ public class LeatherGears implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        AXE = BaseGearBuilder.of(GearSlots.AXE, "axe", "Axe", ModRegistry.GEAR_ITEMS.AXES)
-            .attackSpeed(BaseGearType.Constants.AXE_ATK_SPEED)
-            .weaponType(WeaponTypes.Axe)
-            .req(new StatRequirement().strength(0.5f))
-            .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.axe, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
-            .baseStat(new StatModifier(2, 3, 4, 9, new WeaponDamage(Elements.Physical), ModType.FLAT))
-            .baseStat(new StatModifier(4, 15, CriticalHit.getInstance(), ModType.FLAT))
-            .addWarriorLevelRanges()
+        BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "boots", "Boots", ModRegistry.GEAR_ITEMS.LEATHER_BOOTS)
+            .req(new StatRequirement().dexterity(0.5f))
+            .tags(new TagList(SlotTag.leather, SlotTag.boots, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
+            .baseStat(new StatModifier(15, 40, DodgeRating.getInstance(), ModType.FLAT))
+            .addHunterLevelRanges()
+            .build();
+
+        PANTS = BaseGearBuilder.of(GearSlots.PANTS, "pants", "Pants", ModRegistry.GEAR_ITEMS.LEATHER_PANTS)
+            .req(new StatRequirement().dexterity(0.5f))
+            .tags(new TagList(SlotTag.leather, SlotTag.pants, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
+            .baseStat(new StatModifier(45, 80, DodgeRating.getInstance(), ModType.FLAT))
+            .addHunterLevelRanges()
+            .build();
+
+        CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "chest", "Vest", ModRegistry.GEAR_ITEMS.LEATHER_CHESTS)
+            .req(new StatRequirement().dexterity(0.5f))
+            .tags(new TagList(SlotTag.leather, SlotTag.chest, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
+            .baseStat(new StatModifier(45, 80, DodgeRating.getInstance(), ModType.FLAT))
+            .addHunterLevelRanges()
+            .build();
+
+        HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "helmet", "Cap", ModRegistry.GEAR_ITEMS.LEATHER_HELMETS)
+            .req(new StatRequirement().dexterity(0.5f))
+            .tags(new TagList(SlotTag.leather, SlotTag.helmet, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
+            .baseStat(new StatModifier(25, 60, DodgeRating.getInstance(), ModType.FLAT))
+            .addHunterLevelRanges()
             .build();
 
     }

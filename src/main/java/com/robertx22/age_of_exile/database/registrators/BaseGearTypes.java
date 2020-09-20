@@ -5,10 +5,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothBoots;
 import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothChest;
 import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothHelmet;
 import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothPants;
-import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherBoots;
-import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherChest;
-import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherHelmet;
-import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherPants;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateBoots;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateChest;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateHelmet;
@@ -19,56 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseGearTypes implements ISlashRegistryInit {
-
-
-
-  /
-
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots0", LevelRanges.STARTER, "Old Boots") {
-    };
-    public static BaseGearType LOW_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots1", LevelRanges.LOW, "Simple Boots") {
-    };
-    public static BaseGearType MID_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots2", LevelRanges.MIDDLE, "Full Boots") {
-    };
-    public static BaseGearType HIGH_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots3", LevelRanges.HIGH, "Expensive Boots") {
-    };
-    public static BaseGearType END_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots4", LevelRanges.ENDGAME, "Shiny Boots") {
-    };
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_LEATHER_PANTS = new BaseLeatherPants("leather_pants0", LevelRanges.STARTER, "Old Pants") {
-    };
-    public static BaseGearType LOW_LEATHER_PANTS = new BaseLeatherPants("leather_pants1", LevelRanges.LOW, "Leather Shorts") {
-    };
-    public static BaseGearType MID_LEATHER_PANTS = new BaseLeatherPants("leather_pants2", LevelRanges.MIDDLE, "Leather Pants") {
-    };
-    public static BaseGearType HIGH_LEATHER_PANTS = new BaseLeatherPants("leather_pants3", LevelRanges.HIGH, "Gilded Leather Pants") {
-    };
-    public static BaseGearType END_LEATHER_PANTS = new BaseLeatherPants("leather_pants4", LevelRanges.ENDGAME, "Full Leather Pants") {
-    };
-
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_LEATHER_CHEST = new BaseLeatherChest("leather_chest0", LevelRanges.STARTER, "Old Vest") {
-    };
-    public static BaseGearType LOW_LEATHER_CHEST = new BaseLeatherChest("leather_chest1", LevelRanges.LOW, "Leather Vest") {
-    };
-    public static BaseGearType MID_LEATHER_CHEST = new BaseLeatherChest("leather_chest2", LevelRanges.MIDDLE, "Iron Leather Vest") {
-    };
-    public static BaseGearType HIGH_LEATHER_CHEST = new BaseLeatherChest("leather_chest3", LevelRanges.HIGH, "Sturdy Leather Vest") {
-    };
-    public static BaseGearType END_LEATHER_CHEST = new BaseLeatherChest("leather_chest4", LevelRanges.ENDGAME, "Full Leather Vest") {
-    };
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet0", LevelRanges.STARTER, "Old Cap") {
-    };
-    public static BaseGearType LOW_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet1", LevelRanges.LOW, "Horned Leather Cap") {
-    };
-    public static BaseGearType MID_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet2", LevelRanges.MIDDLE, "Iron Leather Cap") {
-    };
-    public static BaseGearType HIGH_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet3", LevelRanges.HIGH, "Sturdy Leather Cap") {
-    };
-    public static BaseGearType END_LEATHER_HELMET = new BaseLeatherHelmet("leather_helmet4", LevelRanges.ENDGAME, "Full Leather Cap") {
-    };
 
     //////////////////////////////////////
     public static BaseGearType NEWBIE_CLOTH_BOOTS = new BaseClothBoots("cloth_boots0", LevelRanges.STARTER, "Old Shoes") {

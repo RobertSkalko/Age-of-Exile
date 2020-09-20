@@ -3,6 +3,15 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.cloth.ClothBootsItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.cloth.ClothChestItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.cloth.ClothPantsItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.leather.LeatherBootsItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.leather.LeatherChestItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.leather.LeatherPantsItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlateBootsItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlateChestItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlatePantsItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemAxe;
@@ -18,6 +27,21 @@ import static net.minecraft.util.registry.Registry.ITEM;
 import static net.minecraft.util.registry.Registry.register;
 
 public class BaseGearTypeItemRegister extends BaseItemRegistrator {
+
+    public HashMap<LevelRange, Item> LEATHER_BOOTS = of("armor/leather/boots/leather_boots", new LeatherBootsItem("Leather Boots", false));
+    public HashMap<LevelRange, Item> LEATHER_CHESTS = of("armor/leather/chest/leather_chest", new LeatherChestItem("Leather Chest", false));
+    public HashMap<LevelRange, Item> LEATHER_PANTS = of("armor/leather/pants/leather_pants", new LeatherPantsItem("Leather Pants", false));
+    public HashMap<LevelRange, Item> LEATHER_HELMETS = of("armor/leather/helmet/leather_helmet", new LeatherBootsItem("Leather Helmet", false));
+
+    public HashMap<LevelRange, Item> CLOTH_BOOTS = of("armor/cloth/boots/cloth_boots", new ClothBootsItem("Cloth Boots", false));
+    public HashMap<LevelRange, Item> CLOTH_CHESTS = of("armor/cloth/chest/cloth_chest", new ClothChestItem("Cloth Chest", false));
+    public HashMap<LevelRange, Item> CLOTH_PANTS = of("armor/cloth/pants/cloth_pants", new ClothPantsItem("Cloth Pants", false));
+    public HashMap<LevelRange, Item> CLOTH_HELMETS = of("armor/cloth/helmet/cloth_helmet", new ClothBootsItem("Cloth Helmet", false));
+
+    public HashMap<LevelRange, Item> PLATE_BOOTS = of("armor/plate/boots/plate_boots", new PlateBootsItem("Plate Boots", false));
+    public HashMap<LevelRange, Item> PLATE_CHESTS = of("armor/plate/chest/plate_chest", new PlateChestItem("Plate Chest", false));
+    public HashMap<LevelRange, Item> PLATE_PANTS = of("armor/plate/pants/plate_pants", new PlatePantsItem("Plate Pants", false));
+    public HashMap<LevelRange, Item> PLATE_HELMETS = of("armor/plate/helmet/plate_helmet", new PlateBootsItem("Plate Helmet", false));
 
     public HashMap<LevelRange, Item> SWORDS = of("weapon/sword/sword", new ItemSword("Sword"));
     public HashMap<LevelRange, Item> AXES = of("weapon/axe/axe", new ItemAxe("Axe"));
