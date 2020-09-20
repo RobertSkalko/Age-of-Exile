@@ -1,6 +1,7 @@
-package com.robertx22.age_of_exile.database.data.unique_items.registrators;
+package com.robertx22.age_of_exile.aoe_data.unique_gears.registrators;
 
 import com.robertx22.age_of_exile.aoe_data.base_gear_types.BaseGearWeapons;
+import com.robertx22.age_of_exile.aoe_data.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
@@ -14,18 +15,20 @@ import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncr
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.age_of_exile.database.data.unique_items.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
 
 public class UniqueWeapons implements ISlashRegistryInit {
+
     @Override
     public void registerAll() {
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.OBSI_MIGHT_AXE,
             "obsi_might",
             "Obsidian's Might",
             "This thirst for blood only seems lower than it's desire to taste burning flesh.",
@@ -40,6 +43,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.INCA_THUNDER_SWORD,
             "inca_thunder",
             "Incarnation of Thunder",
             "The ability to wield thunder is said to come once in a millennium.",
@@ -53,6 +57,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.WATER_ELE_SWORD,
             "water_ele_sword",
             "Water Elemental",
             "Essence lies in water.",
@@ -66,6 +71,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.EZE_OF_ZEGRATH_WAND,
             "eye_of_zegrath",
             "Eye of Zegrath",
             "A cultist once so powerful, even his remnant eye inflicts ills on others.",
@@ -79,6 +85,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.DIVINE_MIGHT_WAND,
             "divine_might",
             "Divine Might",
             "God might prefer peaceful means, but sometimes peace is not an option.",
@@ -92,6 +99,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.WILL_OF_FLORA_WAND,
             "will_of_flora",
             "Will of Flora",
             "Everything must be exactly as required.",

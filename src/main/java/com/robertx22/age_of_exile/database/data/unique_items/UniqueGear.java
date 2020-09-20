@@ -5,15 +5,11 @@ import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
-import com.robertx22.age_of_exile.database.data.unique_items.bases.*;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -21,7 +17,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -35,12 +30,12 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
 
     public static UniqueGear SERIALIZER = new UniqueGear();
 
-    List<StatModifier> uniqueStats = new ArrayList<>();
-    int tier;
-    int weight = 1000;
-    String guid;
-    String gearType;
-    Identifier itemID;
+    public List<StatModifier> uniqueStats = new ArrayList<>();
+    public int tier;
+    public int weight = 1000;
+    public String guid;
+    public String gearType;
+    public Identifier itemID;
 
     @Override
     public UniqueGear getFromBuf(PacketByteBuf buf) {
@@ -66,9 +61,9 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
         buf.writeIdentifier(itemID);
     }
 
-    transient String langName;
-    transient String langDesc;
-    transient BaseGearType serBaseGearType;
+    public transient String langName;
+    public transient String langDesc;
+    public transient BaseGearType serBaseGearType;
 
     @Override
     public String datapackFolder() {
@@ -126,17 +121,6 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
         return Rarities.Gears.get(0);
     }
 
-    public String getGeneratedResourceID() {
-        return getGeneratedResourceFolderPath() + GUID();
-    }
-
-    public String getGeneratedResourceFolderPath() {
-        return "uniques/" + this.getBaseGearType()
-            .family()
-            .name()
-            .toLowerCase(Locale.ROOT) + "/";
-    }
-
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Unique_Items;
@@ -150,58 +134,6 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.UNIQUE_GEAR;
-    }
-
-    public Identifier getResourceLocForItemForSerialization() {
-        return new Identifier(Ref.MODID, getGeneratedResourceID());
-    }
-
-    public Item getUniqueItemForSer() {
-        return Registry.ITEM.get(getResourceLocForItem());
-    }
-
-    public static Item getBaseItemForRegistration(UniqueGear uniq) {
-
-        TagList tags = uniq.getBaseGearType()
-            .getTags();
-
-        if (tags.contains(SlotTag.sword)) {
-            return new BaseUniqueSword(uniq.locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.axe)) {
-            return new BaseUniqueAxe(uniq.locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.wand)) {
-            return new BaseUniqueWand(uniq.locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.boots)) {
-            return new BaseUniqueBoots(uniq.locNameForLangFile(), true);
-        }
-        if (tags.contains(SlotTag.chest)) {
-            return new BaseUniqueChest(uniq.locNameForLangFile(), true);
-        }
-        if (tags.contains(SlotTag.pants)) {
-            return new BaseUniquePantsItem(uniq.locNameForLangFile(), true);
-        }
-        if (tags.contains(SlotTag.helmet)) {
-            return new BaseUniqueHelmet(uniq.locNameForLangFile(), true);
-        }
-        if (tags.contains(SlotTag.crossbow)) {
-            return Items.CROSSBOW;
-        }
-        if (tags.contains(SlotTag.bow)) {
-            return new BaseUniqueBow(uniq.locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.necklace)) {
-            return new BaseUniqueNecklace(uniq.locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.ring)) {
-            return new BaseUniqueRing(uniq.locNameForLangFile());
-        }
-
-        System.out.println("No item found for unique gear registration: " + uniq.GUID());
-
-        return null;
     }
 
     public Identifier getResourceLocForItem() {

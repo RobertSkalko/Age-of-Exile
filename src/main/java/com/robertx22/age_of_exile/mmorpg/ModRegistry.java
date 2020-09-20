@@ -20,9 +20,11 @@ public class ModRegistry {
     public static ComponentRegisters COMPONENTS;
     public static GearMaterialRegister GEAR_MATERIALS;
     public static PotionRegister POTIONS;
+    public static UniqueGearItemRegister UNIQUE_GEARS;
 
     public static void init() {
 
+        UNIQUE_GEARS = new UniqueGearItemRegister();
         POTIONS = new PotionRegister();
         BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks
         MISC_ITEMS = new MiscItemsRegistrator();

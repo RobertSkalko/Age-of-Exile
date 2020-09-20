@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
@@ -20,7 +21,6 @@ import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.age_of_exile.datapacks.loaders.BaseDataPackLoader;
-import com.robertx22.age_of_exile.datapacks.seriazables.SerializableBaseGearType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 
 import java.util.Arrays;
@@ -44,7 +44,7 @@ public enum SlashRegistryType {
     },
     GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER, SyncTime.ON_LOGIN),
     EXILE_EFFECT("exile_effect", 3, ExileEffect.SERIALIZER, SyncTime.ON_LOGIN),
-    GEAR_TYPE("base_gear_types", 4, SerializableBaseGearType.EMPTY, SyncTime.ON_LOGIN),
+    GEAR_TYPE("base_gear_types", 4, BaseGearType.SERIALIZER, SyncTime.ON_LOGIN),
     TIER("tier", 5, Tier.SERIALIZER, SyncTime.ON_LOGIN),
     GEM("gems", 6, Gem.SERIALIZER, SyncTime.ON_LOGIN),
     RUNE("runes", 7, Rune.SERIALIZER, SyncTime.ON_LOGIN),

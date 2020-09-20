@@ -37,7 +37,7 @@ public class SpellPredicates {
             GearItemData data = Gear.Load(x.getMainHandStack());
             return data != null && data.GetBaseGearType()
                 .getTags()
-                .contains(BaseGearType.SlotTag.mage_casting_weapon);
+                .contains(BaseGearType.SlotTag.mage_weapon);
         } catch (Exception e) {
             return false;
         }

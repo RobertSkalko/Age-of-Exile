@@ -1,7 +1,9 @@
 package com.robertx22.age_of_exile.database.registry;
 
 import com.google.common.collect.Lists;
+import com.robertx22.age_of_exile.aoe_data.base_gear_types.BaseGearsRegister;
 import com.robertx22.age_of_exile.aoe_data.exile_effects.adders.ExileEffects;
+import com.robertx22.age_of_exile.aoe_data.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
@@ -25,10 +27,8 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.data.unique_items.UniqueGearReg;
 import com.robertx22.age_of_exile.database.registrators.*;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
-import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyBaseGearType;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
@@ -315,16 +315,18 @@ public class SlashRegistry {
         }
     }
 
+    // TODO TRANSFER THIS INTO SEPARATE CLASS
     private static void registerFromAllInits() {
 
         new Stats().registerAll();// STATS MUST BE INIT FIRST
         // should be at least
         new CurrencyItems().registerAll();
 
-        new BaseGearTypes().registerAll();// used cus i register items based on seralizables..
-        new UniqueGearReg().registerAll();// used cus i register items based on seralizables..
-
         if (MMORPG.RUN_DEV_TOOLS) {
+
+            new BaseGearsRegister().registerAll();// used cus i register items based on seralizables..
+            new UniqueGearReg().registerAll();// used cus i register items based on seralizables..
+
             // as these only add serizables.
             // They shouldn't be needed at all to play the game.
             // If it errors without them, then that means i hardcoded something i shouldn't have
@@ -363,7 +365,7 @@ public class SlashRegistry {
 
         // data pack ones
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).setIsDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EXILE_EFFECT, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).setIsDatapack());

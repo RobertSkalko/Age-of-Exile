@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.UniqueGearItemRegister;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -46,8 +45,6 @@ public class CommonInit implements ModInitializer {
 
         BaseAreas.INSTANCE = new BaseAreas();
         AreaModifiers.INSTANCE = new AreaModifiers();
-
-        UniqueGearItemRegister.registerAll();
 
         CommonEvents.register();
 

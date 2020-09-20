@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registrators.BaseGearTypes;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -37,7 +37,8 @@ public class ItemNewbieGearBag extends Item {
 
                 List<BaseGearType> list = new ArrayList<>();
 
-                list.add(BaseGearTypes.NEWBIE_WAND);
+                list.add(SlashRegistry.GearTypes()
+                    .get("wand0")); // todo, how many times do i have to hard link to specific things?
 
                 list.forEach(x -> {
                     GearItemData data = getBlueprint(x).createData();

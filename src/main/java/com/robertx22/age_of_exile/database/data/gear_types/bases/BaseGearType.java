@@ -17,7 +17,6 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.datapacks.seriazables.SerializableBaseGearType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -28,23 +27,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.cloth.ClothBootsItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.cloth.ClothChestItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.cloth.ClothHelmetItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.cloth.ClothPantsItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.leather.LeatherBootsItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.leather.LeatherChestItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.leather.LeatherHelmetItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.leather.LeatherPantsItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlateBootsItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlateChestItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlateHelmetItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlatePantsItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemNecklace;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemAxe;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemSword;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemWand;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearCraftEssenceItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
@@ -58,7 +40,7 @@ import java.util.List;
 
 public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntry<BaseGearType>, ISerializable<BaseGearType> {
 
-    public BaseGearType SERIALIZER = new BaseGearType();
+    public static BaseGearType SERIALIZER = new BaseGearType();
 
     public float attacksPerSecond = 1;
     protected String guid;
@@ -558,81 +540,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         return null;
     }
 
-    public final Item getItemForRegistration() {
-
-        TagList tags = getTags();
-
-        // TODO TODO TODO REPLACE WHEN FABRIC API GETS SUPPORT FOR BOWS AND SHIELDS ETC
-        if (tags.contains(SlotTag.shield)) {
-            return Items.SHIELD;
-        }
-        if (tags.contains(SlotTag.bow)) {
-            return Items.BOW;
-        }
-        if (tags.contains(SlotTag.crossbow)) {
-            return Items.CROSSBOW;
-        }
-
-        if (tags.contains(SlotTag.sword)) {
-            return new ItemSword(locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.axe)) {
-            return new ItemAxe(locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.wand)) {
-            return new ItemWand(locNameForLangFile());
-        }
-
-        if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothChestItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothBootsItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothPantsItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.magic_shield_stat)) {
-            return new ClothHelmetItem(locNameForLangFile(), false);
-        }
-
-        if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.armor_stat)) {
-            return new PlateChestItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.armor_stat)) {
-            return new PlateBootsItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.armor_stat)) {
-            return new PlatePantsItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.armor_stat)) {
-            return new PlateHelmetItem(locNameForLangFile(), false);
-        }
-
-        if (tags.contains(SlotTag.chest) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherChestItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.boots) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherBootsItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.pants) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherPantsItem(locNameForLangFile(), false);
-        }
-        if (tags.contains(SlotTag.helmet) && tags.contains(SlotTag.dodge_stat)) {
-            return new LeatherHelmetItem(locNameForLangFile(), false);
-        }
-
-        if (tags.contains(SlotTag.necklace)) {
-            return new ItemNecklace(locNameForLangFile());
-        }
-        if (tags.contains(SlotTag.ring)) {
-            return new ItemRing(locNameForLangFile());
-        }
-
-        return null;
-
-    }
-
     @Override
     public int getRarityRank() {
         return 0;
@@ -683,12 +590,12 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     @Override
     public BaseGearType fromJson(JsonObject json) {
 
-        SerializableBaseGearType o = new SerializableBaseGearType();
+        BaseGearType o = new BaseGearType();
 
         o.guid = this.getGUIDFromJson(json);
         o.weight = this.getWeightFromJson(json);
         o.level_range = LevelRange.SERIALIZER.fromJson(json.getAsJsonObject("level_range"));
-        o.stat_req = StatRequirement.EMPTY.fromJson(json.getAsJsonObject("stat_req"));
+        o.stat_reqs = StatRequirement.EMPTY.fromJson(json.getAsJsonObject("stat_req"));
         o.base_stats = JsonUtils.getStats(json, "base_stats");
         o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");
         o.gear_slot = json.get("gear_slot")

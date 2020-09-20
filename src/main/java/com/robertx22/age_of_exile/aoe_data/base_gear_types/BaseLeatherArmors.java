@@ -15,7 +15,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.HashMap;
 
-public class LeatherGears implements ISlashRegistryInit {
+public class BaseLeatherArmors implements ISlashRegistryInit {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> BOOTS;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> PANTS;

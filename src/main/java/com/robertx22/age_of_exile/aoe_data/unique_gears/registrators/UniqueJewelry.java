@@ -1,5 +1,7 @@
-package com.robertx22.age_of_exile.database.data.unique_items.registrators;
+package com.robertx22.age_of_exile.aoe_data.unique_gears.registrators;
 
+import com.robertx22.age_of_exile.aoe_data.base_gear_types.BaseGearJewelry;
+import com.robertx22.age_of_exile.aoe_data.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
@@ -10,9 +12,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQu
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
-import com.robertx22.age_of_exile.database.data.unique_items.UniqueGearBuilder;
-import com.robertx22.age_of_exile.database.registrators.BaseGearTypes;
+import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -24,10 +26,11 @@ public class UniqueJewelry implements ISlashRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.ANGEL_PROT_NECKLACE,
             "angel_prot_necklace",
             "Angelic Protection",
             "If your guardian is careful enough, you just might think they don't exist.",
-            BaseGearTypes.START_TO_LOW_ALL_RES_NECKLACE)
+            BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(50, 100, ManaBurnResistance.getInstance(), ModType.FLAT),
                 new StatModifier(1, 1, ImmuneToEffectStat.POISON, ModType.FLAT),
@@ -37,10 +40,11 @@ public class UniqueJewelry implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.BIRTH_MIRACLE_NECKLACE,
             "birth_miracle",
             "Birthing Miracle",
             "Life can sometimes keep on giving.",
-            BaseGearTypes.MID_TO_END_HP_NECKLACE)
+            BaseGearJewelry.HP_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(3, 8, Health.getInstance(), ModType.FLAT),
                 new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT),
@@ -50,10 +54,11 @@ public class UniqueJewelry implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.SKULL_OF_SPIRITS_NECKLACE,
             "skull_of_spirits",
             "Skull of Spirits",
             "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
-            BaseGearTypes.MID_TO_END_ALL_RES_NECKLACE)
+            BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(0.15F, 0.4F, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
@@ -63,10 +68,11 @@ public class UniqueJewelry implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.GREED_PERSIST_RING,
             "greed_persist",
             "Greed's Persistence",
             "When desire for perfection overtakes your sanity, you too will be blessed.",
-            BaseGearTypes.MID_TO_END_HP_RING_FIRE)
+            BaseGearJewelry.FIRE_RES_RING.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(-30, 25, IncreasedItemQuantity.getInstance(), ModType.FLAT),
                 new StatModifier(-30, 25, MagicFind.getInstance(), ModType.FLAT),
@@ -77,10 +83,11 @@ public class UniqueJewelry implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.LOOP_OF_INFINITY_RING,
             "loop_of_infinity",
             "Loop of Infinity",
             "Is it truly an end if everything just starts all over again? Maybe it really is just a loop.",
-            BaseGearTypes.MID_TO_END_HP_RING_MANA_REG)
+            BaseGearJewelry.RING_MANA_REG.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(5, 10, Mana.getInstance(), ModType.FLAT),
                 new StatModifier(1, 4, RegeneratePercentStat.MANA, ModType.FLAT),

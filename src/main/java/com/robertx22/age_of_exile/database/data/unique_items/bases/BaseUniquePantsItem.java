@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlatePa
 
 public final class BaseUniquePantsItem extends PlatePantsItem {
 
-    public BaseUniquePantsItem(String locname, boolean isunique) {
-        super(locname, isunique);
+    public BaseUniquePantsItem(String locname) {
+        super(locname, true);
     }
 
     @Override

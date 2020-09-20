@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.armor.plate.PlateHe
 
 public final class BaseUniqueHelmet extends PlateHelmetItem {
 
-    public BaseUniqueHelmet(String locname, boolean isunique) {
-        super(locname, isunique);
+    public BaseUniqueHelmet(String locname) {
+        super(locname, true);
     }
 
     @Override
