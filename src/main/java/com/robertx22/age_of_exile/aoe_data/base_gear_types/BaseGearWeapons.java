@@ -26,9 +26,29 @@ public class BaseGearWeapons implements ISlashRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> AXE;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> WAND;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> SCEPTER;
+    public static HashMap<LevelRange, DataGenKey<BaseGearType>> BOW;
+    public static HashMap<LevelRange, DataGenKey<BaseGearType>> CROSSBOW;
 
     @Override
     public void registerAll() {
+
+        BOW = BaseGearBuilder.of(GearSlots.BOW, "bow", "Bow", ModRegistry.GEAR_ITEMS.BOWS)
+            .weaponType(WeaponTypes.Bow)
+            .req(new StatRequirement().dexterity(0.5f))
+            .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
+            .baseStat(new StatModifier(1, 3, 2, 8, new WeaponDamage(Elements.Physical), ModType.FLAT))
+            .baseStat(new StatModifier(5, 18, CriticalHit.getInstance(), ModType.FLAT))
+            .addHunterLevelRanges()
+            .build();
+
+        CROSSBOW = BaseGearBuilder.of(GearSlots.CROSBOW, "crossbow", "Crossbow", ModRegistry.GEAR_ITEMS.CROSSBOWS)
+            .weaponType(WeaponTypes.CrossBow)
+            .req(new StatRequirement().dexterity(0.5f))
+            .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
+            .baseStat(new StatModifier(2, 4, 3, 7, new WeaponDamage(Elements.Physical), ModType.FLAT))
+            .baseStat(new StatModifier(3, 6, CriticalHit.getInstance(), ModType.FLAT))
+            .addHunterLevelRanges()
+            .build();
 
         AXE = BaseGearBuilder.of(GearSlots.AXE, "axe", "Axe", ModRegistry.GEAR_ITEMS.AXES)
             .attackSpeed(BaseGearType.Constants.AXE_ATK_SPEED)
@@ -63,6 +83,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .build();
 
         SCEPTER = BaseGearBuilder.of(GearSlots.WAND, "scepter", "Scepter", ModRegistry.GEAR_ITEMS.SCEPTERS)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.LIFE)
             .attackSpeed(BaseGearType.Constants.WAND_ATK_SPEED)
             .weight(2000)
             .weaponType(WeaponTypes.Wand)

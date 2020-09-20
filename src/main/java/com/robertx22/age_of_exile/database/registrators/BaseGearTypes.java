@@ -1,229 +1,28 @@
 package com.robertx22.age_of_exile.database.registrators;
 
-import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothBoots;
 import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothChest;
 import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothHelmet;
 import com.robertx22.age_of_exile.database.data.gear_types.cloth.BaseClothPants;
-import com.robertx22.age_of_exile.database.data.gear_types.curios.LifeNecklace;
-import com.robertx22.age_of_exile.database.data.gear_types.curios.LifeRing;
-import com.robertx22.age_of_exile.database.data.gear_types.curios.OccultRing;
 import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherBoots;
 import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherChest;
 import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherHelmet;
 import com.robertx22.age_of_exile.database.data.gear_types.leather.BaseLeatherPants;
-import com.robertx22.age_of_exile.database.data.gear_types.offhand.BaseArmorShield;
-import com.robertx22.age_of_exile.database.data.gear_types.offhand.BaseDodgeShield;
-import com.robertx22.age_of_exile.database.data.gear_types.offhand.BaseMagicShield;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateBoots;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateChest;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlateHelmet;
 import com.robertx22.age_of_exile.database.data.gear_types.plate.BasePlatePants;
-import com.robertx22.age_of_exile.database.data.gear_types.weapons.BaseBow;
-import com.robertx22.age_of_exile.database.data.gear_types.weapons.BaseCrossbow;
-import com.robertx22.age_of_exile.database.data.gear_types.weapons.melee.BaseAxe;
-import com.robertx22.age_of_exile.database.data.gear_types.weapons.melee.BaseScepter;
-import com.robertx22.age_of_exile.database.data.gear_types.weapons.melee.BaseSword;
-import com.robertx22.age_of_exile.database.data.gear_types.weapons.melee.BaseWand;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BaseGearTypes implements ISlashRegistryInit {
 
-    public static BaseGearType NEWBIE_WAND = new BaseWand("wand0", LevelRanges.STARTER, "Rotten Wand") {
-    };
-    public static BaseGearType LOW_WAND = new BaseWand("wand1", LevelRanges.LOW, "Ancient Wand") {
-    };
-    public static BaseGearType MID_WAND = new BaseWand("wand2", LevelRanges.MIDDLE, "Sage Wand") {
-    };
-    public static BaseGearType HIGH_WAND = new BaseWand("wand3", LevelRanges.HIGH, "Crystal Wand") {
-    };
-    public static BaseGearType END_WAND = new BaseWand("wand4", LevelRanges.ENDGAME, "Ancestral Wand") {
-    };
 
-    public static BaseGearType NEWBIE_SCEPTER = new BaseScepter("scepter0", LevelRanges.STARTER, "Rotten Scepter") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
-    public static BaseGearType LOW_SCEPTER = new BaseScepter("scepter1", LevelRanges.LOW, "Ancient Scepter") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
-    public static BaseGearType MID_SCEPTER = new BaseScepter("scepter2", LevelRanges.MIDDLE, "Sage Scepter") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
-    public static BaseGearType HIGH_SCEPTER = new BaseScepter("scepter3", LevelRanges.HIGH, "Crystal Scepter") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
-    public static BaseGearType END_SCEPTER = new BaseScepter("scepter4", LevelRanges.ENDGAME, "Ancestral Scepter") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
 
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_SWORD = new BaseSword("sword0", LevelRanges.STARTER, "Stick Sword") {
-    };
-    public static BaseGearType LOW_SWORD = new BaseSword("sword1", LevelRanges.LOW, "Short Sword") {
-    };
-    public static BaseGearType MID_SWORD = new BaseSword("sword2", LevelRanges.MIDDLE, "Gemstone Sword") {
-    };
-    public static BaseGearType HIGH_SWORD = new BaseSword("sword3", LevelRanges.HIGH, "Clear Sword") {
-    };
-    public static BaseGearType END_SWORD = new BaseSword("sword4", LevelRanges.ENDGAME, "Royal Sword") {
-    };
-
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_BOW = new BaseBow("bow0", LevelRanges.STARTER, "Old Bow") {
-    };
-    public static BaseGearType LOW_BOW = new BaseBow("bow1", LevelRanges.LOW, "Short Bow") {
-    };
-    public static BaseGearType MID_BOW = new BaseBow("bow2", LevelRanges.MIDDLE, "Durable Bow") {
-    };
-    public static BaseGearType HIGH_BOW = new BaseBow("bow3", LevelRanges.HIGH, "Clear Bow") {
-    };
-    public static BaseGearType END_BOW = new BaseBow("bow4", LevelRanges.ENDGAME, "Royal Bow") {
-    };
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_CROSSBOW = new BaseCrossbow("crossbow0", LevelRanges.STARTER, "Old Crossbow") {
-    };
-    public static BaseGearType LOW_CROSSBOW = new BaseCrossbow("crossbow1", LevelRanges.LOW, "Short Crossbow") {
-    };
-    public static BaseGearType MID_CROSSBOW = new BaseCrossbow("crossbow2", LevelRanges.MIDDLE, "Durable Crossbow") {
-    };
-    public static BaseGearType HIGH_CROSSBOW = new BaseCrossbow("crossbow3", LevelRanges.HIGH, "Clear Crossbow") {
-    };
-    public static BaseGearType END_CROSSBOW = new BaseCrossbow("crossbow4", LevelRanges.ENDGAME, "Royal Crossbow") {
-    };
-
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_AXE = new BaseAxe("axe0", LevelRanges.STARTER, "Woodcutter Axe") {
-    };
-    public static BaseGearType LOW_AXE = new BaseAxe("axe1", LevelRanges.LOW, "Primitive Axe") {
-    };
-    public static BaseGearType MID_AXE = new BaseAxe("axe2", LevelRanges.MIDDLE, "Brutal Axe") {
-    };
-    public static BaseGearType HIGH_AXE = new BaseAxe("axe3", LevelRanges.HIGH, "Soldier Axe") {
-    };
-    public static BaseGearType END_AXE = new BaseAxe("axe4", LevelRanges.ENDGAME, "Royal Axe") {
-    };
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_ARMOR_SHIELD = new BaseArmorShield("tower_shield0", LevelRanges.STARTER, "Old Tower Shield") {
-    };
-    public static BaseGearType LOW_ARMOR_SHIELD = new BaseArmorShield("tower_shield1", LevelRanges.LOW, "Rusty Tower Shield") {
-    };
-    public static BaseGearType MID_ARMOR_SHIELD = new BaseArmorShield("tower_shield2", LevelRanges.MIDDLE, "Sturdy Tower Shield") {
-    };
-    public static BaseGearType HIGH_ARMOR_SHIELD = new BaseArmorShield("tower_shield3", LevelRanges.HIGH, "Soldier Tower Shield") {
-    };
-    public static BaseGearType END_ARMOR_SHIELD = new BaseArmorShield("tower_shield4", LevelRanges.ENDGAME, "Royal Tower Shield") {
-    };
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_MAGIC_SHIELD = new BaseMagicShield("spirit_shield0", LevelRanges.STARTER, "Old Spirit Shield") {
-    };
-    public static BaseGearType LOW_MAGIC_SHIELD = new BaseMagicShield("spirit_shield1", LevelRanges.LOW, "Rusty Spirit Shield") {
-    };
-    public static BaseGearType MID_MAGIC_SHIELD = new BaseMagicShield("spirit_shield2", LevelRanges.MIDDLE, "Sturdy Spirit Shield") {
-    };
-    public static BaseGearType HIGH_MAGIC_SHIELD = new BaseMagicShield("spirit_shield3", LevelRanges.HIGH, "Ancient Spirit Shield") {
-    };
-    public static BaseGearType END_MAGIC_SHIELD = new BaseMagicShield("spirit_shield4", LevelRanges.ENDGAME, "Ancestral Spirit Shield") {
-    };
-
-    //////////////////////////////////////
-    public static BaseGearType NEWBIE_DODGE_SHIELD = new BaseDodgeShield("buckler_shield0", LevelRanges.STARTER, "Old Buckler") {
-    };
-    public static BaseGearType LOW_DODGE_SHIELD = new BaseDodgeShield("buckler_shield1", LevelRanges.LOW, "Rusty Buckler") {
-    };
-    public static BaseGearType MID_DODGE_SHIELD = new BaseDodgeShield("buckler_shield2", LevelRanges.MIDDLE, "Sturdy Buckler") {
-    };
-    public static BaseGearType HIGH_DODGE_SHIELD = new BaseDodgeShield("buckler_shield3", LevelRanges.HIGH, "Ancient Buckler") {
-    };
-    public static BaseGearType END_DODGE_SHIELD = new BaseDodgeShield("buckler_shield4", LevelRanges.ENDGAME, "Royal Buckler") {
-    };
-
-    static int minResist = 7;
-    static int maxResist = 15;
-
-    //////////////////////////////////////
-    public static BaseGearType START_TO_LOW_HP_NECKLACE = new LifeNecklace("life_necklace0", LevelRanges.START_TO_LOW, "Life Giving Amulet") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
-    public static BaseGearType MID_TO_END_HP_NECKLACE = new LifeNecklace("life_necklace1", LevelRanges.MID_TO_END, "Lifeblood Amulet") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.LIFE);
-    //////////////////////////////////////
-
-    //////////////////////////////////////
-    public static BaseGearType START_TO_LOW_ALL_RES_NECKLACE = new LifeNecklace("all_res_necklace0", LevelRanges.START_TO_LOW, "Primitive Amulet") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(5, 10, new ElementalResist(Elements.Elemental), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL);
-    public static BaseGearType MID_TO_END_ALL_RES_NECKLACE = new LifeNecklace("all_res_necklace1", LevelRanges.MID_TO_END, "Primordial Amulet") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(5, 10, new ElementalResist(Elements.Elemental), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL);
-    //////////////////////////////////////
-
-    public static BaseGearType START_TO_LOW_HP_RING_COLD = new LifeRing("cold_res_ring_low", LevelRanges.START_TO_LOW, "Aquamarine Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Water), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.WATER);
-    public static BaseGearType MID_TO_END_HP_RING_COLD = new LifeRing("cold_res_ring_end", LevelRanges.MID_TO_END, "Sapphire Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Water), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.WATER);
-    //////////////////////////////////////
-    public static BaseGearType START_TO_LOW_HP_RING_FIRE = new LifeRing("fire_res_ring_low", LevelRanges.START_TO_LOW, "Coral Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Fire), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.FIRE);
-    public static BaseGearType MID_TO_END_HP_RING_FIRE = new LifeRing("fire_res_ring_end", LevelRanges.MID_TO_END, "Ruby Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Fire), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.FIRE);
-    //////////////////////////////////////
-    public static BaseGearType START_TO_LOW_HP_RING_THUNDER = new LifeRing("thunder_res_ring_low", LevelRanges.START_TO_LOW, "Agate Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Thunder), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.THUNDER);
-    public static BaseGearType MID_TO_END_HP_RING_THUNDER = new LifeRing("thunder_res_ring_end", LevelRanges.MID_TO_END, "Topaz Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Thunder), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.THUNDER);
-    //////////////////////////////////////
-    public static BaseGearType START_TO_LOW_HP_RING_POISON = new LifeRing("poison_res_ring_low", LevelRanges.START_TO_LOW, "Opal Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Nature), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.NATURE);
-    public static BaseGearType MID_TO_END_HP_RING_POISON = new LifeRing("poison_res_ring_end", LevelRanges.MID_TO_END, "Emerald Ring") {
-        @Override
-        public List<StatModifier> baseStats() {
-            return Arrays.asList(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Nature), ModType.FLAT));
-        }
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.NATURE);
-
-    //////////////////////////////////////
-    public static BaseGearType START_TO_LOW_HP_RING_MANA_REG = new OccultRing("mana_reg_ring0", LevelRanges.START_TO_LOW, "Occult Ring") {
-
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ARCANA);
-    public static BaseGearType MID_TO_END_HP_RING_MANA_REG = new OccultRing("mana_reg_ring1", LevelRanges.MID_TO_END, "Arcana Ring") {
-    }.setEssenceItem(ModRegistry.GEAR_MATERIALS.ARCANA);
+  /
 
     //////////////////////////////////////
     public static BaseGearType NEWBIE_LEATHER_BOOTS = new BaseLeatherBoots("leather_boots0", LevelRanges.STARTER, "Old Boots") {

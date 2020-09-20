@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearCraftEssenceItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
@@ -32,6 +33,7 @@ public class BaseGearBuilder {
     private float atkspeed = 1F;
     private int weight = 1000;
     private HashMap<LevelRange, Item> itemMap;
+    private GearCraftEssenceItem essenceItem;
 
     public static BaseGearBuilder of(DataGenKey<GearSlot> slot, String idprefix, String locnamesuffix, HashMap<LevelRange, Item> itemMap) {
         BaseGearBuilder b = new BaseGearBuilder();
@@ -113,6 +115,11 @@ public class BaseGearBuilder {
         return this;
     }
 
+    public BaseGearBuilder essenceItem(GearCraftEssenceItem item) {
+        this.essenceItem = item;
+        return this;
+    }
+
     public BaseGearBuilder baseStat(StatModifier mod) {
         this.basestats.add(mod);
         return this;
@@ -144,12 +151,15 @@ public class BaseGearBuilder {
             type.base_stats = basestats;
             type.attacksPerSecond = atkspeed;
             type.weight = weight;
+            type.essenceItem = essenceItem;
             type.item_id = Registry.ITEM.getId(itemMap.get(x))
                 .toString();
             map.put(x, new DataGenKey<>(type.GUID()));
             type.addToSerializables();
         });
         return map;
+
     }
+
 }
 

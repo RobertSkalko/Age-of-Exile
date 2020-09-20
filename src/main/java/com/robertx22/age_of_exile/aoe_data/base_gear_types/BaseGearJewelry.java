@@ -37,6 +37,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
     public void registerAll() {
 
         RING_MANA_REG = BaseGearBuilder.of(GearSlots.RING, "mana_reg_ring", "Ring", ModRegistry.GEAR_ITEMS.MANA_REG_RINGS)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(1, 2, ManaRegen.getInstance(), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Occult")
@@ -44,6 +45,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
             .build();
 
         POISON_RES_RING = BaseGearBuilder.of(GearSlots.RING, "poison_res_ring", "Ring", ModRegistry.GEAR_ITEMS.POISON_RES_RINGS)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.NATURE)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Nature), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Opal")
@@ -51,6 +53,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
             .build();
 
         COLD_RES_RING = BaseGearBuilder.of(GearSlots.RING, "cold_res_ring", "Ring", ModRegistry.GEAR_ITEMS.COLD_RES_RINGS)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.WATER)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Water), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Aquamarine")
@@ -58,6 +61,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
             .build();
 
         THUNDER_RES_RING = BaseGearBuilder.of(GearSlots.RING, "thunder_res_ring", "Ring", ModRegistry.GEAR_ITEMS.THUNDER_RES_RINGS)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.THUNDER)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Thunder), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Agate")
@@ -65,6 +69,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
             .build();
 
         FIRE_RES_RING = BaseGearBuilder.of(GearSlots.RING, "fire_res_ring", "Ring", ModRegistry.GEAR_ITEMS.FIRE_RES_RINGS)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.FIRE)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Thunder), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Coral")
@@ -72,6 +77,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
             .build();
 
         ALL_RES_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "all_res_necklace", "Necklace", ModRegistry.GEAR_ITEMS.ALL_RES_NECKLACES)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL)
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
             .baseStat(new StatModifier(5, 10, new ElementalResist(Elements.Elemental), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Primitive")
@@ -79,6 +85,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
             .build();
 
         HP_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "life_necklace", "Necklace", ModRegistry.GEAR_ITEMS.HP_NECKLACES)
+            .essenceItem(ModRegistry.GEAR_MATERIALS.LIFE)
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
             .baseStat(new StatModifier(2, 6, Health.getInstance(), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Life Giving")

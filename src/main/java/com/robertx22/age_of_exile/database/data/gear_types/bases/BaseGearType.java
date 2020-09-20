@@ -73,7 +73,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public StatRequirement stat_reqs = new StatRequirement();
     public TagList tags = new TagList();
 
-    transient GearCraftEssenceItem essenceItem = null;
+    public transient GearCraftEssenceItem essenceItem = null;
     protected transient String locname;
 
     public BaseGearType(DataGenKey<GearSlot> slot, String guid, LevelRange levelRange, String locname) {
@@ -163,11 +163,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     public int Weight() {
         return weight;
-    }
-
-    public BaseGearType setEssenceItem(GearCraftEssenceItem item) {
-        this.essenceItem = item;
-        return this;
     }
 
     public GearCraftEssenceItem getEssenceItem() {
