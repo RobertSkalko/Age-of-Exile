@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.base_gear_types;
 
+import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
@@ -25,7 +26,7 @@ public class BaseGearBuilder {
     private List<LevelRange> lvls = new ArrayList<>();
     private List<StatModifier> basestats = new ArrayList<>();
     private List<StatModifier> implicitstats = new ArrayList<>();
-    private StatRequirement req;
+    private StatRequirement req = new StatRequirement();
     private WeaponTypes wep = WeaponTypes.None;
     private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;
@@ -37,6 +38,7 @@ public class BaseGearBuilder {
         b.locnamesuffix = locnamesuffix;
         b.idprefix = idprefix;
         b.slot = slot;
+        b.itemMap = itemMap;
         return b;
     }
 
@@ -130,6 +132,8 @@ public class BaseGearBuilder {
         HashMap<LevelRange, DataGenKey<BaseGearType>> map = new HashMap<>();
 
         lvls.forEach(x -> {
+            Preconditions.checkArgument(itemMap.containsKey(x));
+
             String name = namePrefixes.get(x) + " " + locnamesuffix;
             String id = idprefix + x.id_suffix;
             BaseGearType type = new BaseGearType(slot, id, x, name);
