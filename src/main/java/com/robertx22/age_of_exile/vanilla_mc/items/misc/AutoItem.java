@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
-import com.robertx22.age_of_exile.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.datapacks.models.ItemModelManager;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;

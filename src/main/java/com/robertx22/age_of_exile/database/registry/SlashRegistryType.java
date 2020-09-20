@@ -1,6 +1,11 @@
 package com.robertx22.age_of_exile.database.registry;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.database.compat_items.CompatibleItems;
+import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
+import com.robertx22.age_of_exile.aoe_data.datapacks.loaders.BaseDataPackLoader;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
@@ -16,12 +21,7 @@ import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registrators.MobAffixes;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.datapacks.generators.SlashDatapackGenerator;
-import com.robertx22.age_of_exile.datapacks.loaders.BaseDataPackLoader;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -62,7 +62,7 @@ public enum SlashRegistryType {
     ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY, SyncTime.NEVER),
     COMPATIBLE_ITEM("compatible_items", 15, CompatibleItem.EMPTY, SyncTime.ON_LOGIN) {
         public List getAllForSerialization() {
-            return CompatibleItemUtils.getAllForSerialization();
+            return CompatibleItems.getAllForSerialization();
         }
     },
     SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER, SyncTime.ON_SKILL_TREE),

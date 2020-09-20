@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.registry;
 
 import com.google.common.collect.Lists;
-import com.robertx22.age_of_exile.aoe_data.base_gear_types.BaseGearsRegister;
-import com.robertx22.age_of_exile.aoe_data.exile_effects.adders.ExileEffects;
-import com.robertx22.age_of_exile.aoe_data.unique_gears.UniqueGearReg;
+import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
@@ -27,12 +27,10 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registrators.*;
+import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
+import com.robertx22.age_of_exile.database.registrators.Stats;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
@@ -207,7 +205,7 @@ public class SlashRegistry {
 
     public static void registerAllItems() {
         try {
-            registerFromAllInits();
+            registerAllNonDatapackEntries();
         } catch (ExceptionInInitializerError e) {
             // leave this, once this error happened and we don't know why. this is to know the cause if it happens again
             e.printStackTrace();
@@ -315,43 +313,10 @@ public class SlashRegistry {
         }
     }
 
-    // TODO TRANSFER THIS INTO SEPARATE CLASS
-    private static void registerFromAllInits() {
-
+    private static void registerAllNonDatapackEntries() {
         new Stats().registerAll();// STATS MUST BE INIT FIRST
         // should be at least
         new CurrencyItems().registerAll();
-
-        if (MMORPG.RUN_DEV_TOOLS) {
-
-            new GearSlots().registerAll();
-            new BaseGearsRegister().registerAll();// used cus i register items based on seralizables..
-            new UniqueGearReg().registerAll();// used cus i register items based on seralizables..
-
-            // as these only add serizables.
-            // They shouldn't be needed at all to play the game.
-            // If it errors without them, then that means i hardcoded something i shouldn't have
-
-            new ExileEffects().registerAll();
-
-            new Tiers().registerAll();
-
-            new Spells().registerAll(); // some stats are based on spells, so spells go first
-
-            new Prefixes().registerAll();
-            new Suffixes().registerAll();
-
-            new MobAffixes().registerAll();
-            new DimConfigs().registerAll();
-            new EntityConfigs().registerAll();
-
-            new Gems().registerAll();
-            new Runes().registerAll();
-            new Runewords().registerAll();
-            new SpellModifiers().registerAll();
-            new Perks().registerAll();
-        }
-
     }
 
     private static void addRegistry(SlashRegistryContainer cont) {

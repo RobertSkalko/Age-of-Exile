@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.robertx22.age_of_exile.database.data.rarities.RarityTypeEnum;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.food_effects;
 
-import com.robertx22.age_of_exile.datapacks.bases.IGson;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.IGson;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.entity.LivingEntity;

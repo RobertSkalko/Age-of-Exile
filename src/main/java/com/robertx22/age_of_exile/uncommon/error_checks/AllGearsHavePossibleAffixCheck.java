@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.uncommon.error_checks;
 
+import com.robertx22.age_of_exile.aoe_data.database.affixes.Prefixes;
+import com.robertx22.age_of_exile.aoe_data.database.affixes.Suffixes;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
-import com.robertx22.age_of_exile.database.registrators.Prefixes;
-import com.robertx22.age_of_exile.database.registrators.Suffixes;
-import com.robertx22.age_of_exile.uncommon.error_checks.base.IErrorCheck;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.uncommon.error_checks.base.IErrorCheck;
 
 public class AllGearsHavePossibleAffixCheck implements IErrorCheck {
 

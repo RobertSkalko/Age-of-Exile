@@ -3,8 +3,8 @@ package com.robertx22.age_of_exile.database.data;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 
 public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig>, ISerializable<DimensionConfig> {

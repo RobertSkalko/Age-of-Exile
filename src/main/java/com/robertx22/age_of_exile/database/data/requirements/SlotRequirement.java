@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.requirements.bases.BaseRequireme
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.datapacks.JsonUtils;
+import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.text.MutableText;

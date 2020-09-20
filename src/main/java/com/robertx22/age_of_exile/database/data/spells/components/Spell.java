@@ -6,12 +6,11 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
@@ -34,16 +33,17 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistryEntry<Spell>, IAutoLocName {
     public static Spell SERIALIZER = new Spell();
 
+    public static String DEFAULT_EN_NAME = "default_entity_name";
+
     public static Gson GSON = new Gson();
 
-    private String identifier = "";
-    private AttachedSpell attached = new AttachedSpell();
-    private SpellConfiguration config = new SpellConfiguration();
+    public String identifier = "";
+    public AttachedSpell attached = new AttachedSpell();
+    public SpellConfiguration config = new SpellConfiguration();
 
     public AttachedSpell getAttached() {
         return attached;
@@ -70,12 +70,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public final void onCastingTick(SpellCastContext ctx) {
 
         int timesToCast = (int) ctx.calcData.getSpell()
-                .getConfig().times_to_cast;
+            .getConfig().times_to_cast;
 
         if (timesToCast > 1) {
 
             int castTimeTicks = (int) ctx.calcData.getSpell()
-                    .getConfig().cast_time_ticks;
+                .getConfig().cast_time_ticks;
 
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
@@ -127,7 +127,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public void spendResources(SpellCastContext ctx) {
         ctx.data.getResources()
-                .modify(getManaCostCtx(ctx));
+            .modify(getManaCostCtx(ctx));
     }
 
     public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
@@ -137,7 +137,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         cost += this.getCalculatedManaCost(ctx);
 
         return new ResourcesData.Context(
-                ctx.data, ctx.caster, ResourcesData.Type.MANA, cost, ResourcesData.Use.SPEND);
+            ctx.data, ctx.caster, ResourcesData.Type.MANA, cost, ResourcesData.Use.SPEND);
     }
 
     public boolean canCast(SpellCastContext ctx) {
@@ -164,14 +164,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 ResourcesData.Context rctx = getManaCostCtx(ctx);
 
                 if (data.getResources()
-                        .hasEnough(rctx)) {
+                    .hasEnough(rctx)) {
 
                     if (!getConfig().castingWeapon.predicate.predicate.test(caster)) {
                         return false;
                     }
 
                     if (!ctx.spellsCap.getLearnedSpells(ctx.caster)
-                            .contains(this)) {
+                        .contains(this)) {
                         return false;
                     }
 
@@ -191,7 +191,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public final int getCalculatedManaCost(SpellCastContext ctx) {
         float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
         return (int) Mana.getInstance()
-                .scale(getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
+            .scale(getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
     }
 
     public boolean isPassive() {
@@ -208,16 +208,16 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (Screen.hasShiftDown()) {
             list.addAll(attached
-                    .getTooltip());
+                .getTooltip());
         }
 
         TooltipUtils.addEmpty(list);
 
         if (this.isPassive()) {
             list.add(Words.PassiveSkill.locName()
-                    .formatted(Formatting.GOLD));
+                .formatted(Formatting.GOLD));
             list.add(Words.PassiveDesc.locName()
-                    .formatted(Formatting.GOLD));
+                .formatted(Formatting.GOLD));
         }
 
         if (!isPassive()) {
@@ -273,104 +273,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     @Override
     public String locNameForLangFile() {
         return locName;
-    }
-
-    public static class Builder {
-
-        Spell spell;
-
-        public static Builder of(String id, SpellConfiguration config, String name) {
-            Builder builder = new Builder();
-
-            builder.spell = new Spell();
-            builder.spell.identifier = id;
-            builder.spell.config = config;
-            builder.spell.locName = name;
-
-            return builder;
-        }
-
-        public static Builder forEffect() {
-            Builder builder = new Builder();
-            builder.spell = new Spell();
-            builder.spell.identifier = "";
-            builder.spell.config = new SpellConfiguration();
-            builder.spell.locName = "";
-            return builder;
-        }
-
-
-        public Builder weaponReq(CastingWeapon wep) {
-            this.spell.config.castingWeapon = wep;
-            return this;
-        }
-
-        public Builder onCast(ComponentPart comp) {
-            this.spell.attached.on_cast.add(comp);
-            comp.addActivationRequirement(EntityActivation.ON_CAST);
-            return this;
-        }
-
-        public static String DEFAULT_EN_NAME = "default_entity_name";
-
-        public Builder onTick(ComponentPart comp) {
-            return this.addEffect(DEFAULT_EN_NAME, comp);
-        }
-
-        public Builder onExpire(ComponentPart comp) {
-            comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
-            return this.addEffect(DEFAULT_EN_NAME, comp);
-        }
-
-        public Builder onHit(ComponentPart comp) {
-            comp.addActivationRequirement(EntityActivation.ON_HIT);
-            return this.addEffect(DEFAULT_EN_NAME, comp);
-        }
-
-        public Builder onTick(String entity, ComponentPart comp) {
-            return this.addEffect(entity, comp);
-        }
-
-        public Builder onCast(String entity, ComponentPart comp) {
-            this.spell.attached.on_cast.add(comp);
-            comp.addActivationRequirement(EntityActivation.ON_CAST);
-            return this.addEffect(entity, comp);
-        }
-
-        public Builder onExpire(String entity, ComponentPart comp) {
-            comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
-            return this.addEffect(entity, comp);
-        }
-
-        public Builder onHit(String entity, ComponentPart comp) {
-            comp.addActivationRequirement(EntityActivation.ON_HIT);
-            return this.addEffect(entity, comp);
-        }
-
-        private Builder addEffect(String entity, ComponentPart comp) {
-            Objects.requireNonNull(comp);
-
-            if (!spell.attached.entity_components.containsKey(entity)) {
-                spell.attached.entity_components.put(entity, new ArrayList<>());
-            }
-
-            this.spell.attached.getDataForEntity(entity)
-                    .add(comp);
-
-            return this;
-        }
-
-        public Spell build() {
-            Objects.requireNonNull(spell);
-            this.spell.addToSerializables();
-            return spell;
-        }
-
-        public Spell buildForEffect() {
-            Objects.requireNonNull(spell);
-            return spell;
-        }
-
     }
 
 }

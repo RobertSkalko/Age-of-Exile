@@ -95,7 +95,7 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
     public MapHolder create(Item item, Double projCount, Double speed, EntityType type, Double lifespan, boolean gravity) {
         MapHolder c = new MapHolder();
         c.put(MapField.PROJECTILE_COUNT, projCount);
-        c.put(MapField.ENTITY_NAME, Spell.Builder.DEFAULT_EN_NAME);
+        c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
         c.put(MapField.PROJECTILE_SPEED, speed);
         c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.put(MapField.ITEM, Registry.ITEM.getId(item)
@@ -133,7 +133,7 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
     private MapHolder createBase(Double projCount, Double speed, Double lifespan, boolean gravity) {
         MapHolder c = new MapHolder();
         c.put(MapField.PROJECTILE_COUNT, projCount);
-        c.put(MapField.ENTITY_NAME, Spell.Builder.DEFAULT_EN_NAME);
+        c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
         c.put(MapField.PROJECTILE_SPEED, speed);
         c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.put(MapField.ITEM, Registry.ITEM.getId(Items.AIR)

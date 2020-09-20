@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.level_ranges;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import net.minecraft.util.math.MathHelper;
 
 public class LevelRange implements ISerializable<LevelRange> {

@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.database.data.tiers.base;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 
 public class Tier implements ISerializedRegistryEntry<Tier>, ISerializable<Tier> {
 

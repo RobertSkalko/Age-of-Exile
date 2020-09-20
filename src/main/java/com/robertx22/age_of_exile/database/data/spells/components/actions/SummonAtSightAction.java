@@ -62,7 +62,7 @@ public class SummonAtSightAction extends SpellAction implements ICMainTooltip {
         MapHolder c = new MapHolder();
         c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.put(MapField.GRAVITY, false);
-        c.put(MapField.ENTITY_NAME, Spell.Builder.DEFAULT_EN_NAME);
+        c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
         c.put(MapField.HEIGHT, height);
         c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(type)
             .toString());

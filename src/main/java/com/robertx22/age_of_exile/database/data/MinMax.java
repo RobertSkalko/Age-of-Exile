@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
 public class MinMax implements ISerializable<MinMax> {

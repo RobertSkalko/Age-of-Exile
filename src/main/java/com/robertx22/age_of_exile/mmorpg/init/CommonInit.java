@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.init;
 
+import com.robertx22.age_of_exile.aoe_data.GeneratedData;
 import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
@@ -38,6 +39,7 @@ public class CommonInit implements ModInitializer {
 
         SlashRegistry.initRegistries();
         SlashRegistry.registerAllItems(); // after config registerAll
+        GeneratedData.addAllObjectsToGenerate();
         SlashRegistry.checkGuidValidity();
 
         BaseAreas.INSTANCE = new BaseAreas();
@@ -45,9 +47,7 @@ public class CommonInit implements ModInitializer {
 
         CommonEvents.register();
 
-        //this was in common
         C2SPacketRegister.register();
-        //common
 
         ConfigRegister.registerCustomConfigs();
 

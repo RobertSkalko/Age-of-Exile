@@ -94,7 +94,7 @@ public class SummonBlockAction extends SpellAction implements ICMainTooltip {
         MapHolder c = new MapHolder();
         c.put(MapField.BLOCK, Registry.BLOCK.getId(block)
             .toString());
-        c.put(MapField.ENTITY_NAME, Spell.Builder.DEFAULT_EN_NAME);
+        c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
         c.put(MapField.LIFESPAN_TICKS, lifespan);
         c.type = GUID();
         return c;

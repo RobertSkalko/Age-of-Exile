@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.rarities.containers.GearRarities;
-import com.robertx22.age_of_exile.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 
 public enum RarityTypeEnum {
 

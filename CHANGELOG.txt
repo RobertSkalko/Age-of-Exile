@@ -1,3 +1,8 @@
+v.1.4.0
+
+- reworked inner code. Might be buggy. Goal: separate my data generation code from actual in game code. Data gen code should never run outside of my dev environment.
+As a result some ring and necklaces changed ids
+
 v.1.3.12
 * fix teleport spell
 
