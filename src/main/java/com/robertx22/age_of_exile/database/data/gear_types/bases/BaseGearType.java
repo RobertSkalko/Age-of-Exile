@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.gear_types.bases;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -61,8 +62,8 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public float attacksPerSecond = 1;
     protected String guid;
     protected LevelRange level_range;
-    protected String locname;
-    String gear_slot = "";
+    public String gear_slot = "";
+    public int weight = 1000;
 
     public List<StatModifier> implicit_stats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();
@@ -70,12 +71,15 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public WeaponTypes weapon_type = WeaponTypes.None;
     public StatRequirement stat_reqs = new StatRequirement();
     public TagList tags = new TagList();
-    transient GearCraftEssenceItem essenceItem = null;
 
-    public BaseGearType(String guid, LevelRange levelRange, String locname) {
+    transient GearCraftEssenceItem essenceItem = null;
+    protected transient String locname;
+
+    public BaseGearType(DataGenKey<GearSlot> slot, String guid, LevelRange levelRange, String locname) {
         this.guid = guid;
         this.level_range = levelRange;
         this.locname = locname;
+        this.gear_slot = slot.GUID();
     }
 
     private BaseGearType() {
@@ -155,7 +159,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     }
 
     public int Weight() {
-        return 1000;
+        return weight;
     }
 
     public BaseGearType setEssenceItem(GearCraftEssenceItem item) {

@@ -10,11 +10,17 @@ public class LevelRange implements ISerializable<LevelRange> {
 
     private float start;
     private float end;
+    public transient String id_suffix;
 
-    public LevelRange(float start, float end) {
+    public LevelRange(String id_suffix, float start, float end) {
         this.start = start;
         this.end = end;
+        this.id_suffix = id_suffix;
+    }
 
+    private LevelRange(float start, float end) {
+        this.start = start;
+        this.end = end;
     }
 
     public int getMinLevel() {

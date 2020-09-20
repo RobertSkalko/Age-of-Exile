@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.registry;
 
+import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
@@ -154,6 +155,10 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
                 map.remove(key);
             }
         });
+    }
+
+    public C getFromSerializables(DataGenKey<C> key) {
+        return this.serializables.get(key.GUID());
     }
 
     public C get(String guid) {
