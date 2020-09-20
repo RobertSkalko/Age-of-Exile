@@ -9,6 +9,8 @@ import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import net.minecraft.item.Item;
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,8 +30,9 @@ public class BaseGearBuilder {
     private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;
     private int weight = 1000;
+    private HashMap<LevelRange, Item> itemMap;
 
-    public static BaseGearBuilder of(DataGenKey<GearSlot> slot, String idprefix, String locnamesuffix) {
+    public static BaseGearBuilder of(DataGenKey<GearSlot> slot, String idprefix, String locnamesuffix, HashMap<LevelRange, Item> itemMap) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = locnamesuffix;
         b.idprefix = idprefix;
@@ -123,8 +126,9 @@ public class BaseGearBuilder {
         return this;
     }
 
-    public HashMap<DataGenKey<BaseGearType>, BaseGearType> build() {
-        HashMap<DataGenKey<BaseGearType>, BaseGearType> map = new HashMap<>();
+    public HashMap<LevelRange, DataGenKey<BaseGearType>> build() {
+        HashMap<LevelRange, DataGenKey<BaseGearType>> map = new HashMap<>();
+
         lvls.forEach(x -> {
             String name = namePrefixes.get(x) + " " + locnamesuffix;
             String id = idprefix + x.id_suffix;
@@ -136,7 +140,9 @@ public class BaseGearBuilder {
             type.base_stats = basestats;
             type.attacksPerSecond = atkspeed;
             type.weight = weight;
-            map.put(new DataGenKey<>(type.GUID()), type);
+            type.item_id = Registry.ITEM.getId(itemMap.get(x))
+                .toString();
+            map.put(x, new DataGenKey<>(type.GUID()));
             type.addToSerializables();
         });
         return map;

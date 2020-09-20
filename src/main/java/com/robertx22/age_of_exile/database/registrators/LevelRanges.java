@@ -2,6 +2,9 @@ package com.robertx22.age_of_exile.database.registrators;
 
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class LevelRanges {
 
     public static LevelRange STARTER = new LevelRange(0 + "", 0, 0.2F);
@@ -13,4 +16,11 @@ public class LevelRanges {
     public static LevelRange START_TO_LOW = new LevelRange("_low", 0F, 0.4F);
     public static LevelRange MID_TO_END = new LevelRange("_end", 0.4F, 1F);
 
+    public static List<LevelRange> allNormal() {
+        return Arrays.asList(STARTER, LOW, MIDDLE, HIGH, ENDGAME);
+    }
+
+    public static List<LevelRange> allJewelry() {
+        return Arrays.asList(START_TO_LOW, MID_TO_END);
+    }
 }

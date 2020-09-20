@@ -49,7 +49,7 @@ public abstract class BaseWand extends BaseWeapon {
 
     @Override
     public TagList getTags() {
-        return new TagList(SlotTag.mage_casting_weapon, SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence);
+        return new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence);
     }
 
     @Override

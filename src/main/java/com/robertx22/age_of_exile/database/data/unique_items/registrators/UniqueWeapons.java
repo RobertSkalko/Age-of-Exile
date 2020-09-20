@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.unique_items.registrators;
 
+import com.robertx22.age_of_exile.aoe_data.base_gear_types.BaseGearWeapons;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
@@ -14,7 +15,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedA
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGearBuilder;
-import com.robertx22.age_of_exile.database.registrators.BaseGearTypes;
+import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -28,7 +29,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "obsi_might",
             "Obsidian's Might",
             "This thirst for blood only seems lower than it's desire to taste burning flesh.",
-            BaseGearTypes.END_AXE)
+            BaseGearWeapons.AXE.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
                 new StatModifier(3, 5, 5, 12, new WeaponDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(15, 50, CriticalHit.getInstance(), ModType.LOCAL_INCREASE),
@@ -42,7 +43,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "inca_thunder",
             "Incarnation of Thunder",
             "The ability to wield thunder is said to come once in a millennium.",
-            BaseGearTypes.END_SWORD)
+            BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
                 new StatModifier(1, 1, 10, 16, new WeaponDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 15, ChanceToApplyEffect.STATIC, ModType.FLAT),
@@ -55,7 +56,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "water_ele_sword",
             "Water Elemental",
             "Essence lies in water.",
-            BaseGearTypes.HIGH_SWORD)
+            BaseGearWeapons.SWORD.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
                 new StatModifier(1, 3, 4, 12, new WeaponDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(15, 30, new WeaponDamage(Elements.Water), ModType.LOCAL_INCREASE),
@@ -68,7 +69,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "eye_of_zegrath",
             "Eye of Zegrath",
             "A cultist once so powerful, even his remnant eye inflicts ills on others.",
-            BaseGearTypes.MID_WAND)
+            BaseGearWeapons.WAND.get(LevelRanges.MIDDLE))
             .stats(Arrays.asList(
                 new StatModifier(10, 30, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 10, ChanceToApplyEffect.BURN, ModType.FLAT),
@@ -81,7 +82,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "divine_might",
             "Divine Might",
             "God might prefer peaceful means, but sometimes peace is not an option.",
-            BaseGearTypes.END_SCEPTER)
+            BaseGearWeapons.SCEPTER.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
                 new StatModifier(1, 3, 3, 5, new WeaponDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
@@ -94,7 +95,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "will_of_flora",
             "Will of Flora",
             "Everything must be exactly as required.",
-            BaseGearTypes.HIGH_SCEPTER)
+            BaseGearWeapons.SCEPTER.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
                 new StatModifier(5, 5, 5, 5, new WeaponDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(10, 30, HealPower.getInstance(), ModType.FLAT),

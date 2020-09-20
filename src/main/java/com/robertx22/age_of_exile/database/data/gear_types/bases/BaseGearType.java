@@ -48,6 +48,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemWand;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearCraftEssenceItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -121,8 +122,10 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         return locname;
     }
 
+    public String item_id = "";
+
     public Item getItem() {
-        return ModRegistry.GEAR_ITEMS.itemMap.get(GUID());
+        return Registry.ITEM.get(new Identifier(item_id));
     }
 
     public LevelRange getLevelRange() {
@@ -275,7 +278,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         armor_stat(SlotFamily.NONE),
         dodge_stat(SlotFamily.NONE),
 
-        mage_casting_weapon(SlotFamily.Weapon),
         warrior_casting_weapon(SlotFamily.Weapon),
         ranger_casting_weapon(SlotFamily.Weapon),
 
