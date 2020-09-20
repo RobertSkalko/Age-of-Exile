@@ -51,7 +51,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .addWarriorLevelRanges()
             .build();
 
-        WAND = BaseGearBuilder.of(GearSlots.WAND, "wand", "Wand")
+        WAND = BaseGearBuilder.of(GearSlots.WAND, "wand", "Wand", ModRegistry.GEAR_ITEMS.WANDS)
             .attackSpeed(BaseGearType.Constants.WAND_ATK_SPEED)
             .weaponType(WeaponTypes.Wand)
             .req(new StatRequirement().intelligence(0.5F))
@@ -62,7 +62,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .addMageWeaponLevelRanges()
             .build();
 
-        SCEPTER = BaseGearBuilder.of(GearSlots.WAND, "scepter", "Scepter")
+        SCEPTER = BaseGearBuilder.of(GearSlots.WAND, "scepter", "Scepter", ModRegistry.GEAR_ITEMS.SCEPTERS)
             .attackSpeed(BaseGearType.Constants.WAND_ATK_SPEED)
             .weight(2000)
             .weaponType(WeaponTypes.Wand)
