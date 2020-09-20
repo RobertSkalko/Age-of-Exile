@@ -10,6 +10,7 @@ cloth_pants0
 cloth_pants1
 plate_boots4
 cloth_pants2
+mana_reg_ring_low
 tower_shield2
 tower_shield1
 leather_boots3
@@ -30,6 +31,7 @@ sword2
 leather_boots1
 sword0
 leather_boots2
+all_res_necklace_low
 leather_boots0
 cloth_helmet3
 cloth_helmet2
@@ -39,8 +41,6 @@ scepter0
 scepter1
 cold_res_ring_low
 scepter4
-mana_reg_ring0
-mana_reg_ring1
 scepter2
 buckler_shield1
 scepter3
@@ -50,16 +50,13 @@ buckler_shield2
 buckler_shield4
 cloth_helmet1
 cloth_helmet0
-all_res_necklace1
-all_res_necklace0
 poison_res_ring_low
 leather_helmet2
 leather_helmet1
 leather_helmet0
+life_necklace_end
 leather_helmet4
 leather_helmet3
-life_necklace1
-life_necklace0
 bow4
 bow2
 bow3
@@ -70,8 +67,10 @@ wand3
 wand0
 wand1
 wand4
+mana_reg_ring_end
 thunder_res_ring_end
 spirit_shield4
+all_res_necklace_end
 spirit_shield3
 spirit_shield0
 spirit_shield2
@@ -114,6 +113,7 @@ plate_pants1
 plate_pants2
 plate_pants0
 poison_res_ring_end
+life_necklace_low
 plate_helmet1
 plate_helmet0
 plate_helmet3

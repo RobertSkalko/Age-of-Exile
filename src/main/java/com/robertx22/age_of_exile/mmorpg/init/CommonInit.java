@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.BaseGearTypeItemRegister;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -40,8 +39,6 @@ public class CommonInit implements ModInitializer {
         SlashRegistry.initRegistries();
         SlashRegistry.registerAllItems(); // after config registerAll
         SlashRegistry.checkGuidValidity();
-
-        ModRegistry.GEAR_ITEMS = new BaseGearTypeItemRegister();
 
         BaseAreas.INSTANCE = new BaseAreas();
         AreaModifiers.INSTANCE = new AreaModifiers();

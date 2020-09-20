@@ -33,10 +33,10 @@ public class ItemModelManager {
                     }
                 }
             });
+
         SlashRegistry.GearTypes()
             .getSerializable()
             .forEach(x -> {
-
                 if (!x.getTags()
                     .contains(BaseGearType.SlotTag.bow) && !x.getTags()
                     .contains(BaseGearType.SlotTag.crossbow) && !x.isShield()) {
@@ -47,7 +47,6 @@ public class ItemModelManager {
                         generated(x.getItem());
                     }
                 }
-
             });
 
     }

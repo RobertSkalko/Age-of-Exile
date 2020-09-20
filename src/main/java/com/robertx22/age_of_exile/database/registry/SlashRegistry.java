@@ -324,6 +324,7 @@ public class SlashRegistry {
 
         if (MMORPG.RUN_DEV_TOOLS) {
 
+            new GearSlots().registerAll();
             new BaseGearsRegister().registerAll();// used cus i register items based on seralizables..
             new UniqueGearReg().registerAll();// used cus i register items based on seralizables..
 
@@ -331,7 +332,6 @@ public class SlashRegistry {
             // They shouldn't be needed at all to play the game.
             // If it errors without them, then that means i hardcoded something i shouldn't have
 
-            new GearSlots().registerAll();
             new ExileEffects().registerAll();
 
             new Tiers().registerAll();

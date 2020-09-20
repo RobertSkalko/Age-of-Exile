@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Wea
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registrators.GearSlots;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.datapacks.JsonUtils;
@@ -116,24 +115,19 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     public final EquipmentSlot getVanillaSlotType() {
 
-        if (getGearSlot().GUID()
-            .equals(GearSlots.SHIELD.GUID())) {
+        if (tags.contains(SlotTag.shield)) {
             return EquipmentSlot.OFFHAND;
         }
-        if (getGearSlot().GUID()
-            .equals(GearSlots.BOOTS.GUID())) {
+        if (tags.contains(SlotTag.boots)) {
             return EquipmentSlot.FEET;
         }
-        if (getGearSlot().GUID()
-            .equals(GearSlots.CHEST.GUID())) {
+        if (tags.contains(SlotTag.chest)) {
             return EquipmentSlot.CHEST;
         }
-        if (getGearSlot().GUID()
-            .equals(GearSlots.PANTS.GUID())) {
+        if (tags.contains(SlotTag.pants)) {
             return EquipmentSlot.LEGS;
         }
-        if (getGearSlot().GUID()
-            .equals(GearSlots.HELMET.GUID())) {
+        if (tags.contains(SlotTag.pants)) {
             return EquipmentSlot.HEAD;
         }
         if (isWeapon()) {
@@ -581,7 +575,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         json.add("stat_req", getStatRequirements().toJson());
         json.addProperty("item_id", Registry.ITEM.getId(getItem())
             .toString());
-        json.addProperty("gear_slot", getGearSlot().GUID());
+        json.addProperty("gear_slot", this.gear_slot);
         json.addProperty("weapon_type", weaponType().toString());
 
         return json;

@@ -38,9 +38,9 @@ public class ModRegistry {
         GEAR_MATERIALS = new GearMaterialRegister();
         GEMS = new GemItemRegister();
         RUNES = new RuneItemRegister();
+        GEAR_ITEMS = new BaseGearTypeItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
-
     }
 
 }

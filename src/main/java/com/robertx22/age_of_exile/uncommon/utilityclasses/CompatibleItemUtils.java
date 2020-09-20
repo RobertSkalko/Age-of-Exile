@@ -197,7 +197,7 @@ public class CompatibleItemUtils {
         try {
 
             for (BaseGearType slot : SlashRegistry.GearTypes()
-                .getList()
+                .getSerializable()
             ) {
                 Item item = slot.getItem();
 
@@ -225,7 +225,7 @@ public class CompatibleItemUtils {
                 }
             }
             for (UniqueGear uniq : SlashRegistry.UniqueGears()
-                .getList()
+                .getSerializable()
             ) {
                 Item item = uniq.getUniqueItem();
 

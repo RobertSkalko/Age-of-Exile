@@ -25,28 +25,28 @@ public class BaseClothArmors implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "boots", "Shoes", ModRegistry.GEAR_ITEMS.CLOTH_BOOTS)
+        BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "cloth_boots", "Shoes", ModRegistry.GEAR_ITEMS.CLOTH_BOOTS)
             .req(new StatRequirement().intelligence(0.5f))
             .tags(new TagList(SlotTag.cloth, SlotTag.boots, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(1, 3, MagicShield.getInstance(), ModType.FLAT))
             .addMageLevelRanges()
             .build();
 
-        PANTS = BaseGearBuilder.of(GearSlots.PANTS, "pants", "Leggings", ModRegistry.GEAR_ITEMS.CLOTH_PANTS)
+        PANTS = BaseGearBuilder.of(GearSlots.PANTS, "cloth_pants", "Leggings", ModRegistry.GEAR_ITEMS.CLOTH_PANTS)
             .req(new StatRequirement().intelligence(0.5f))
             .tags(new TagList(SlotTag.cloth, SlotTag.pants, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(3, 7, MagicShield.getInstance(), ModType.FLAT))
             .addMageLevelRanges()
             .build();
 
-        CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "chest", "Robe", ModRegistry.GEAR_ITEMS.CLOTH_CHESTS)
+        CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "cloth_chest", "Robe", ModRegistry.GEAR_ITEMS.CLOTH_CHESTS)
             .req(new StatRequirement().intelligence(0.5f))
             .tags(new TagList(SlotTag.cloth, SlotTag.chest, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(4, 8, MagicShield.getInstance(), ModType.FLAT))
             .addMageLevelRanges()
             .build();
 
-        HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "helmet", "Hat", ModRegistry.GEAR_ITEMS.CLOTH_HELMETS)
+        HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "cloth_helmet", "Hat", ModRegistry.GEAR_ITEMS.CLOTH_HELMETS)
             .req(new StatRequirement().intelligence(0.5f))
             .tags(new TagList(SlotTag.cloth, SlotTag.helmet, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(2, 5, MagicShield.getInstance(), ModType.FLAT))

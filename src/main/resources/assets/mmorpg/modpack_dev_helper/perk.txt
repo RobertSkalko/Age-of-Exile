@@ -1,6 +1,5 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-
 arrow_storm_damage
 spear_of_judgement_cooldown
 holy_flower_healing
@@ -15,7 +14,6 @@ bravery_healing
 thorn_bush_damage
 magma_flower_cast_speed
 purifying_fires_mana_cost
-_cooldown
 increase_healing
 trickery_cast_speed
 fireball_damage
@@ -53,7 +51,6 @@ frostball_healing
 heart_of_ice_magic_shield
 thunder_dash_healing
 whirlpool_cooldown
-_healing
 flower_of_ice_cast_speed
 critical_hit
 thunder_spear_cooldown
@@ -134,7 +131,6 @@ lightning_totem_cooldown
 magic_shield
 armor
 fire_bombs_mana_cost
-_cast_speed
 magma_flower_damage
 spell_nature_damage
 bravery_cast_speed
@@ -186,7 +182,6 @@ thorn_armor
 passive_hunting
 thorn_bush_cast_speed
 awaken_mana_projectile_speed
-_damage
 tidal_wave_mana_cost
 fire_bombs_cooldown
 thunder_dash
@@ -262,7 +257,6 @@ big_dex
 healing_aura_projectile_speed
 heart_of_ice_damage
 thunder_dash_cast_speed
-_projectile_speed
 recoil_shot_healing
 mana_regen
 blazing_inferno_mana_cost
@@ -307,7 +301,6 @@ multi_shot_damage
 throw_flames_damage
 nature_balm
 awaken_mana_cooldown
-_mana_cost
 frostball_cast_speed
 thunder_storm_cast_speed
 magma_flower_mana_cost
