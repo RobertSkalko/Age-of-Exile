@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.ExilePotionAction;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.SoundEvent;
@@ -207,16 +206,9 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart giveSelfExileEffect(BasePotionEffect effect) {
+    public static ComponentPart giveSelfExileEffect(String effect, Double duration) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
-        c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
-    public static ComponentPart NEWgiveSelfExileEffect(String effect, Double duration) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS, duration));
+        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
         c.targets.add(BaseTargetSelector.CASTER.create());
         return c;
     }
@@ -235,23 +227,23 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart giveToAlliesInRadius(BasePotionEffect effect, Double radius) {
+    public static ComponentPart giveToAlliesInRadius(String effect, Double radius, Double duration) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
+        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
         return c;
     }
 
-    public static ComponentPart addExileEffectToEnemiesInAoe(BasePotionEffect effect, Double radius) {
+    public static ComponentPart addExileEffectToEnemiesInAoe(String effect, Double radius, Double duration) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
+        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
         return c;
     }
 
-    public static ComponentPart addExileEffectToEnemiesInFront(BasePotionEffect effect, Double distance, Double width) {
+    public static ComponentPart addExileEffectToEnemiesInFront(String effect, Double distance, Double width, Double duration) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_POTION.create(effect, ExilePotionAction.GiveOrTake.GIVE_STACKS));
+        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
         c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
         return c;
     }

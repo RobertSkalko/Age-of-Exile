@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -27,9 +28,9 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
         MutableText text = new LiteralText("");
 
         StatusEffect potion = data.getPotion();
-        ExilePotionAction.GiveOrTake action = data.getPotionAction();
+        GiveOrTake action = data.getPotionAction();
 
-        if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
+        if (action == GiveOrTake.GIVE_STACKS) {
             text.append("Gives ");
         } else {
             text.append("Removes ");
@@ -45,10 +46,10 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         StatusEffect potion = data.getPotion();
-        ExilePotionAction.GiveOrTake action = data.getPotionAction();
+        GiveOrTake action = data.getPotionAction();
 
         targets.forEach(t -> {
-            if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
+            if (action == GiveOrTake.GIVE_STACKS) {
                 int dura = data.get(POTION_DURATION)
                     .intValue();
                 int str = data.getOrDefault(POTION_STRENGTH, 1D)
@@ -65,7 +66,7 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
         dmg.type = GUID();
         dmg.put(COUNT, 1D);
         dmg.put(POTION_DURATION, duration);
-        dmg.put(POTION_ACTION, ExilePotionAction.GiveOrTake.GIVE_STACKS.name());
+        dmg.put(POTION_ACTION, GiveOrTake.GIVE_STACKS.name());
         dmg.put(POTION_ID, Registry.STATUS_EFFECT.getId(effect)
             .toString());
         return dmg;
@@ -75,7 +76,7 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(COUNT, 1D);
-        dmg.put(POTION_ACTION, ExilePotionAction.GiveOrTake.REMOVE_STACKS.name());
+        dmg.put(POTION_ACTION, GiveOrTake.REMOVE_STACKS.name());
         dmg.put(POTION_ID, Registry.STATUS_EFFECT.getId(effect)
             .toString());
         return dmg;

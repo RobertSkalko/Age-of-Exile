@@ -1,9 +1,10 @@
 package com.robertx22.age_of_exile.mobs.bosses.channels;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mobs.bosses.bases.ChannelAction;
 import com.robertx22.age_of_exile.mobs.bosses.bases.IBossMob;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses.AngerEffect;
 import net.minecraft.entity.LivingEntity;
 
 public class AngerChannel<T extends LivingEntity & IBossMob> extends ChannelAction<T> {
@@ -14,7 +15,8 @@ public class AngerChannel<T extends LivingEntity & IBossMob> extends ChannelActi
 
     @Override
     public void onFinished() {
-        PotionEffectUtils.applyToSelf(AngerEffect.INSTANCE, en);
+        ExileEffectsManager.apply(SlashRegistry.ExileEffects()
+            .get(BeneficialEffects.ANGER), en, en, 1);
     }
 
     @Override

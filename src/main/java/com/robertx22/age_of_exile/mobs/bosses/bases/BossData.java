@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.mobs.bosses.bases;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NeutralEffects;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bosses.ChannelEffect;
 import net.minecraft.entity.LivingEntity;
 
 import java.util.List;
@@ -31,12 +32,26 @@ public class BossData {
         this.ticksWithoutChanneling = 0;
         this.timesHitDuringChannel = 0;
 
-        PotionEffectUtils.applyToSelf(ChannelEffect.getFor(channelAction.getChannelType()), en);
+        if (channelAction.getChannelType() == ChannelAction.ChannelType.BAD_FOR_PLAYER) {
+            ExileEffectsManager.apply(SlashRegistry.ExileEffects()
+                .get(NeutralEffects.BAD_FOR_PLAYER), en, en, 1);
+
+        } else {
+            ExileEffectsManager.apply(SlashRegistry.ExileEffects()
+                .get(NeutralEffects.GOOD_FOR_BOSS), en, en, 1);
+        }
+
     }
 
     private void stop() {
+        if (channelAction.getChannelType() == ChannelAction.ChannelType.BAD_FOR_PLAYER) {
+            ExileEffectsManager.reduceStacks(SlashRegistry.ExileEffects()
+                .get(NeutralEffects.BAD_FOR_PLAYER), en, 1);
 
-        PotionEffectUtils.reduceStacks(en, ChannelEffect.getFor(channelAction.getChannelType()), 555);
+        } else {
+            ExileEffectsManager.reduceStacks(SlashRegistry.ExileEffects()
+                .get(NeutralEffects.GOOD_FOR_BOSS), en, 1);
+        }
 
         this.channelAction = null;
         this.channelTicks = 0;

@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -31,9 +32,18 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static String WOUNDS = "negative/" + 4;
     public static String BURN = "negative/" + 5;
     public static String JUDGEMENT = "negative/" + 6;
+    public static String STATIC = "negative/" + 7;
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(STATIC, "Static", EffectType.HARMFUL)
+            .stat(-20, new ElementalResist(Elements.Thunder), ModType.FLAT)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.THUNDER, 10D, 1D)
+                    .onTick(10D))
+                .buildForEffect())
+            .build();
 
         ExileEffectBuilder.of(ELE_WEAKNESS, "+Ele Res", EffectType.HARMFUL)
             .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)

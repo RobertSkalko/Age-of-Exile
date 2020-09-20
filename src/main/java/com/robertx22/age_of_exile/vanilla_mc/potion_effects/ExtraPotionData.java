@@ -1,11 +1,9 @@
-package com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data;
+package com.robertx22.age_of_exile.vanilla_mc.potion_effects;
 
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.UUID;
@@ -27,24 +25,6 @@ public class ExtraPotionData {
 
     @Store
     private int stacks = 1;
-
-    public int getInitialDurationTicks() {
-        return initialDurationTicks;
-    }
-
-    public void setInitialDurationTicks(int ticks) {
-        if (initialDurationTicks == -1) {
-            this.initialDurationTicks = ticks;
-        }
-    }
-
-    public void addStacks(int num, BasePotionEffect effect) {
-        this.stacks = MathHelper.clamp(stacks + num, 0, effect.getMaxStacks());
-    }
-
-    public void decreaseStacks(int num, BasePotionEffect effect) {
-        this.stacks = MathHelper.clamp(stacks - num, 0, effect.getMaxStacks());
-    }
 
     public int getStacks() {
         return stacks;

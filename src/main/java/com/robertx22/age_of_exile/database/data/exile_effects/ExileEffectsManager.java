@@ -4,8 +4,32 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.util.math.MathHelper;
 
 public class ExileEffectsManager {
+    public static void reduceStacks(ExileEffect reg, LivingEntity target, int amount) {
+
+        try {
+            if (target.world.isClient) {
+                return;
+            }
+            ExileStatusEffect effect = reg.getStatusEffect();
+
+            StatusEffectInstance instance = target.getStatusEffect(effect);
+            ExileEffectInstanceData extraData = Load.Unit(target)
+                .getStatusEffectsData()
+                .get(effect);
+
+            extraData.stacks -= amount;
+            extraData.stacks = MathHelper.clamp(extraData.stacks, 0, 1000);
+
+            Load.Unit(target)
+                .setEquipsChanged(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void apply(ExileEffect reg, LivingEntity caster, LivingEntity target, int duration) {
 
         if (caster.world.isClient) {
@@ -18,8 +42,8 @@ public class ExileEffectsManager {
 
         if (instance != null) {
             extraData = Load.Unit(target)
-                    .getStatusEffectsData()
-                    .get(effect);
+                .getStatusEffectsData()
+                .get(effect);
             if (extraData == null) {
                 extraData = new ExileEffectInstanceData();
             }
@@ -34,11 +58,11 @@ public class ExileEffectsManager {
         target.addStatusEffect(newInstance);
 
         Load.Unit(target)
-                .getStatusEffectsData()
-                .set(effect, extraData);
+            .getStatusEffectsData()
+            .set(effect, extraData);
 
         Load.Unit(target)
-                .setEquipsChanged(true);
+            .setEquipsChanged(true);
 
     }
 }

@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases;
+package com.robertx22.age_of_exile.vanilla_mc.potion_effects;
 
 public interface IOneOfATypePotion {
 

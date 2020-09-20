@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ImmuneToEffectStat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.IOneOfATypePotion;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IOneOfATypePotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components.conditions;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -22,10 +23,10 @@ public class CasterHasEffectCondition extends EffectCondition implements ICTextT
     public MutableText getText(TooltipInfo info, MapHolder data) {
         MutableText text = new LiteralText("");
 
-        StatusEffect potion = data.getExilePotion();
+        ExileEffect potion = data.getExileEffect();
 
         text.append("If caster has ")
-            .append(potion.getName())
+            .append(potion.locName())
             .append(" ");
 
         return text;
@@ -34,7 +35,8 @@ public class CasterHasEffectCondition extends EffectCondition implements ICTextT
 
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
-        StatusEffect potion = data.getExilePotion();
+        StatusEffect potion = data.getExileEffect()
+            .getStatusEffect();
         return ctx.caster.hasStatusEffect(potion);
     }
 

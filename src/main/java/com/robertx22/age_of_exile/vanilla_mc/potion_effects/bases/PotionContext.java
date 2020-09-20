@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ExtraPotionData;
 import net.minecraft.entity.LivingEntity;
 
 public class PotionContext {

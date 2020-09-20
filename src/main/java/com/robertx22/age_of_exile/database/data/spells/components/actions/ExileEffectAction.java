@@ -26,13 +26,13 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
         MutableText text = new LiteralText("");
 
         ExileEffect potion = data.getExileEffect();
-        ExilePotionAction.GiveOrTake action = data.getPotionAction();
+        GiveOrTake action = data.getPotionAction();
         int count = data.get(COUNT)
-                .intValue();
+            .intValue();
 
         boolean isStackable = potion.max_stacks > 1;
 
-        if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
+        if (action == GiveOrTake.GIVE_STACKS) {
             text.append("Gives ");
         } else {
             text.append("Removes ");
@@ -61,19 +61,19 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
 
         try {
             ExileEffect potion = data.getExileEffect();
-            ExilePotionAction.GiveOrTake action = data.getPotionAction();
+            GiveOrTake action = data.getPotionAction();
             int count = data.get(COUNT)
-                    .intValue();
+                .intValue();
             int duration = data.get(POTION_DURATION)
-                    .intValue();
+                .intValue();
 
             targets.forEach(t -> {
-                if (action == ExilePotionAction.GiveOrTake.GIVE_STACKS) {
+                if (action == GiveOrTake.GIVE_STACKS) {
                     for (int i = 0; i < count; i++) {
                         ExileEffectsManager.apply(potion, ctx.caster, t, duration);
                     }
                 } else {
-                    // ExileEffectsManager.reduceStacks(t, potion, count); // todo
+                    ExileEffectsManager.reduceStacks(potion, ctx.target, count);
                 }
             });
         } finally {
@@ -81,7 +81,7 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
         }
     }
 
-    public MapHolder create(String id, ExilePotionAction.GiveOrTake action, Double duration) {
+    public MapHolder create(String id, GiveOrTake action, Double duration) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(COUNT, 1D);
