@@ -66,7 +66,7 @@ public class SlashRegistry {
     }
 
     public static void restoreBackup() {
-        SERVER = new HashMap<>(BACKUP);
+        SERVER = new HashMap<>(BACKUP); // this doesnt appear to be EVER called.. But unsure if good idea to remove
     }
 
     public static void restoreFromBackupifEmpty() {

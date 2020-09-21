@@ -18,6 +18,10 @@ public class BlockMixin {
     // also copied from witherskullblock
     @Inject(method = "onPlaced(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;)V", at = @At(value = "HEAD"), cancellable = true)
     public void hook(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci) {
-        BlockPlacedMethod.hook(world, pos, state, placer, itemStack, ci);
+        try {
+            BlockPlacedMethod.hook(world, pos, state, placer, itemStack, ci);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

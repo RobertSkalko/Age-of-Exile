@@ -418,7 +418,6 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
     @Override
     public ItemStack getItem() {
-
         try {
             Item item = Registry.ITEM.get(new Identifier(getSpellData().item_id));
             if (item != null) {

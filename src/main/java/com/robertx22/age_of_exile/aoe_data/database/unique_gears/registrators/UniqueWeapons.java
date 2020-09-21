@@ -38,7 +38,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(1, 3, 3, 3, new WeaponDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(1, 3, 3, 3, new WeaponDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(-50, 50, HealPower.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(-30, 30, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(-5, 5, ManaBurn.getInstance(), ModType.FLAT),
                 new StatModifier(0.2F, 0.4F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
             ))
@@ -51,7 +51,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "This thirst for blood only seems lower than it's desire to taste burning flesh.",
             BaseGearWeapons.AXE.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(3, 5, 5, 12, new WeaponDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(3, 5, 5, 10, new WeaponDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(15, 50, CriticalHit.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(1, 3, PlusResourceOnKill.HEALTH, ModType.FLAT),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.BURN, ModType.FLAT),
@@ -66,7 +66,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "The ability to wield thunder is said to come once in a millennium.",
             BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(1, 1, 10, 16, new WeaponDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(1, 1, 10, 15, new WeaponDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 15, ChanceToApplyEffect.STATIC, ModType.FLAT),
                 new StatModifier(-20, 20, CriticalDamage.getInstance(), ModType.FLAT),
                 new StatModifier(-200, -10, new ReducedAllStatReqOnItem(), ModType.FLAT)
@@ -80,7 +80,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Essence lies in water.",
             BaseGearWeapons.SWORD.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
-                new StatModifier(1, 3, 4, 12, new WeaponDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(1, 3, 4, 10, new WeaponDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(15, 30, new WeaponDamage(Elements.Water), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.FROST, ModType.FLAT),
                 new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
@@ -133,7 +133,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             ModRegistry.UNIQUE_GEARS.ROT_PHYS,
             "rot_phys",
             "Smell of Rot",
-            "Strange things you find yourself liking. Like a stick, with a piece of rotten piece of flesh on it.",
+            "Strange things you find yourself liking. Like a stick, with a piece of rotten flesh on it.",
             BaseGearWeapons.WAND.get(LevelRanges.LOW))
             .stats(Arrays.asList(
                 new StatModifier(100, 200, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE)
