@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.rarities.serialization;
+package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;

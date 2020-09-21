@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.mob_rarities;
 
-import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
+import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 
 public class MobRaritiesAdder implements ISlashRegistryInit {

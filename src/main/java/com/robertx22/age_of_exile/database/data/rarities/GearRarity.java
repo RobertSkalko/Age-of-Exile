@@ -1,8 +1,7 @@
-package com.robertx22.age_of_exile.database.data.rarities.serialization;
+package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.MinMax;
-import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 
 public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
     public static GearRarity SERIALIZER = new GearRarity();

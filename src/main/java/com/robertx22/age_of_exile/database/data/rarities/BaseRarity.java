@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.rarities.serialization;
+package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;

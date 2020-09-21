@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
-import com.robertx22.age_of_exile.database.data.rarities.RarityRegistryContainer;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;

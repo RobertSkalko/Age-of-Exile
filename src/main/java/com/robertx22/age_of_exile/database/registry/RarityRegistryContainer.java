@@ -1,7 +1,5 @@
-package com.robertx22.age_of_exile.database.data.rarities;
+package com.robertx22.age_of_exile.database.registry;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
