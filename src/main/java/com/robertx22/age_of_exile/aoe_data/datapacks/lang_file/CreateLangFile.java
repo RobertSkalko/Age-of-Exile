@@ -129,6 +129,8 @@ public class CreateLangFile {
             .values());
         list.addAll(SlashRegistry.GearTypes()
             .getSerializable());
+        list.addAll(SlashRegistry.ExileEffects()
+            .getSerializable());
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.Gears.getAllRarities());
         list.addAll(Rarities.Mobs.getAllRarities());

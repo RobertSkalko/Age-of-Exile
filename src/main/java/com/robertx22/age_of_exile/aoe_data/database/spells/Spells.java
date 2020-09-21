@@ -98,10 +98,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
             .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Elemental, 2D)
                 .addPerEntityHit(PartBuilder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D)))
-            /*
-            .onCast(Builder.NEWgiveSelfExileEffect(ExileEffects.ELE_WEAKNESS, 20 * 10D))
-
-             */
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST, 20 * 10D))
             .build();
 
         SpellBuilder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(15, 20 * 15, 20), "Magic Bomb")
@@ -146,10 +143,10 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BLAZE_POWDER, 3D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 50D, false)
                 .put(MapField.PROJECTILES_APART, 30D)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 5D, 0.15D))
-            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.BURN, 1D, 10D)
+            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.BURN, 1D, 20 * 3D)
                 .addCondition(EffectCondition.CHANCE.create(25D))
                 .requiresSpellMod(SpellModifiers.THROW_FLAMES_BURN))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(7), Elements.Fire))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Fire))
             .build();
 
         SpellBuilder.of("tidal_wave", MULTI_TARGET_PROJ_CONFIG(), "Tidal Wave")

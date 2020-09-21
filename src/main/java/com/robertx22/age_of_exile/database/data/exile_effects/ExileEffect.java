@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.exile_effects;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.util.registry.Registry;
@@ -55,7 +55,7 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.STATUS_EFFECT.getId(getStatusEffect())
+        return "effect." + Registry.STATUS_EFFECT.getId(getStatusEffect())
             .toString();
     }
 

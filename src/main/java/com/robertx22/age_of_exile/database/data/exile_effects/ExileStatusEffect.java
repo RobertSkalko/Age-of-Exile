@@ -73,8 +73,9 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
             if (data != null && data.spellData != null) {
                 LivingEntity caster = data.spellData.getCaster(target.world);
-                if (caster != null) {
+                if (caster != null && exect.spell != null) {
                     SpellCtx ctx = SpellCtx.onExpire(caster, target, data.spellData);
+
                     exect.spell.tryActivate(Spell.DEFAULT_EN_NAME, ctx); // source is default name at all times
                 }
             }
@@ -100,6 +101,11 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
         try {
             ExileEffect exect = getExileEffect();
+
+            if (exect.spell == null) {
+                return;
+            }
+
             ExileEffectInstanceData data = getSavedData(entity);
 
             if (data == null || data.spellData == null) {
