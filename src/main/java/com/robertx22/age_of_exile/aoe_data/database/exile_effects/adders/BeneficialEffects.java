@@ -49,7 +49,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        ExileEffectBuilder.of(ELE_RESIST, "-Ele Res", EffectType.BENEFICIAL)
+        ExileEffectBuilder.of(ELE_RESIST, "Ele Resist", EffectType.BENEFICIAL)
             .stat(15, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .build();
 

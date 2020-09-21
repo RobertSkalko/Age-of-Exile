@@ -49,6 +49,14 @@ public class AttachedSpell {
         return list;
     }
 
+    public List<Text> getEffectTooltip() {
+        TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
+        List<Text> list = new ArrayList<>();
+        entity_components.values()
+            .forEach(x -> x.forEach(e -> list.addAll(e.GetTooltipString(info, this))));
+        return list;
+    }
+
     public void tryActivate(String entity_name, SpellCtx ctx) {
         try {
             if (entity_components.containsKey(entity_name)) {

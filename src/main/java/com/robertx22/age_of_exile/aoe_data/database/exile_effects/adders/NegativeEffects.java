@@ -40,12 +40,12 @@ public class NegativeEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(STATIC, "Static", EffectType.HARMFUL)
             .stat(-20, new ElementalResist(Elements.Thunder), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.THUNDER, 10D, 1D)
+                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.THUNDER, 20D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(ELE_WEAKNESS, "+Ele Res", EffectType.HARMFUL)
+        ExileEffectBuilder.of(ELE_WEAKNESS, "-Ele Resist", EffectType.HARMFUL)
             .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .build();
 
@@ -53,7 +53,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.05F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
             .stat(-15, new ElementalResist(Elements.Water), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 5D, 1D)
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
@@ -64,7 +64,7 @@ public class NegativeEffects implements ISlashRegistryInit {
                     .put(MapField.DMG_EFFECT_TYPE, EffectData.EffectTypes.DOT_DMG.name()))
                     .setTarget(TargetSelector.TARGET.create())
                     .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 5D, 1D)
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 15D, 1D)
                     .onTick(20D))
                 .onTick(PartBuilder.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 0.5D, 0.5D)
                     .onTick(20D))
@@ -81,7 +81,7 @@ public class NegativeEffects implements ISlashRegistryInit {
                     .put(MapField.DMG_EFFECT_TYPE, EffectData.EffectTypes.DOT_DMG.name()))
                     .setTarget(TargetSelector.TARGET.create())
                     .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 5D, 1D)
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
                     .onTick(20D))
                 .onTick(PartBuilder.playSound(SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5D, 1D)
                     .onTick(20D))

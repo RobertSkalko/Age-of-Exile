@@ -1,16 +1,18 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
@@ -32,7 +34,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistryEntry<Spell>, IAutoLocName {
     public static Spell SERIALIZER = new Spell();
@@ -242,6 +246,29 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         }
 
+        if (Screen.hasShiftDown()) {
+
+            Set<ExileEffect> effect = new HashSet<>();
+
+            try {
+                this.getAttached()
+                    .getAllComponents()
+                    .forEach(x -> {
+                        x.acts.forEach(a -> {
+                            if (a.has(MapField.EXILE_POTION_ID)) {
+                                effect.add(a.getExileEffect());
+                            }
+                        });
+                    });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                effect.forEach(x -> list.addAll(x.GetTooltipString(info)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         TooltipUtils.removeDoubleBlankLines(list);
 
         return list;

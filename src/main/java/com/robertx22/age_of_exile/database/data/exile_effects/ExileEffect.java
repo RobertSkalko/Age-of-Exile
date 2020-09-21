@@ -6,13 +6,19 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAutoGson<ExileEffect>, IAutoLocName {
+public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAutoGson<ExileEffect>, IAutoLocName, ITooltipList {
 
     public static ExileEffect SERIALIZER = new ExileEffect();
 
@@ -62,5 +68,26 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
     @Override
     public String locNameForLangFile() {
         return this.locName;
+    }
+
+    @Override
+    public List<Text> GetTooltipString(TooltipInfo info) {
+        List<Text> list = new ArrayList<>();
+
+        list.add(new LiteralText("Status Effect: ").append(this.locName())
+            .formatted(Formatting.YELLOW));
+        if (!stats.isEmpty()) {
+            list.add(Words.Stats.locName()
+                .append(": ")
+                .formatted(Formatting.GREEN));
+            stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+        }
+        if (spell != null) {
+            // list.add(new LiteralText("Effect:"));
+            list.addAll(spell.getEffectTooltip());
+        }
+
+        return list;
+
     }
 }

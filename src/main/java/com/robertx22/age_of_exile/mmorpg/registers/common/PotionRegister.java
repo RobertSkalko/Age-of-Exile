@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.HealthRegenFoodEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.MagicShieldFoodEffect;
@@ -21,29 +21,28 @@ public class PotionRegister {
     HashMap<String, ExileStatusEffect> exileEffectsMap = new HashMap<>();
 
     public ExileStatusEffect getExileEffect(String num) {
+        Preconditions.checkArgument(exileEffectsMap.containsKey(num), num + " effect not there?");
         return exileEffectsMap.get(num);
     }
 
     public PotionRegister() {
 
-        if (MMORPG.RUN_DEV_TOOLS) { // TODO
-            for (int i = 0; i < 20; i++) {
-                String key = ExileStatusEffect.getIdPath(StatusEffectType.NEUTRAL, i);
-                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.NEUTRAL, i));
-                exileEffectsMap.put(key, eff);
-            }
-            for (int i = 0; i < 20; i++) {
-                String key = ExileStatusEffect.getIdPath(StatusEffectType.HARMFUL, i);
+        for (int i = 0; i < 20; i++) {
+            String key = ExileStatusEffect.getIdPath(StatusEffectType.NEUTRAL, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.NEUTRAL, i));
+            exileEffectsMap.put(key, eff);
+        }
+        for (int i = 0; i < 20; i++) {
+            String key = ExileStatusEffect.getIdPath(StatusEffectType.HARMFUL, i);
 
-                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.HARMFUL, i));
-                exileEffectsMap.put(key, eff);
-            }
-            for (int i = 0; i < 20; i++) {
-                String key = ExileStatusEffect.getIdPath(StatusEffectType.BENEFICIAL, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.HARMFUL, i));
+            exileEffectsMap.put(key, eff);
+        }
+        for (int i = 0; i < 20; i++) {
+            String key = ExileStatusEffect.getIdPath(StatusEffectType.BENEFICIAL, i);
 
-                ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.BENEFICIAL, i));
-                exileEffectsMap.put(key, eff);
-            }
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.BENEFICIAL, i));
+            exileEffectsMap.put(key, eff);
         }
 
         Registry.register(Registry.STATUS_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
