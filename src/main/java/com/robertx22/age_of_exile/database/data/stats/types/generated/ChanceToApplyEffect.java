@@ -1,28 +1,30 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.offense.ChanceToApplyEffectEffect;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.bases.BasePotionEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.druid.PoisonEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ember_mage.BurnEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ocean_mystic.FrostEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.shaman.StaticEffect;
 
 public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
-    public static ChanceToApplyEffect BURN = new ChanceToApplyEffect(BurnEffect.INSTANCE);
-    public static ChanceToApplyEffect CHILL = new ChanceToApplyEffect(FrostEffect.INSTANCE);
-    public static ChanceToApplyEffect POISON = new ChanceToApplyEffect(PoisonEffect.INSTANCE);
-    public static ChanceToApplyEffect STATIC = new ChanceToApplyEffect(StaticEffect.INSTANCE);
+    public static ChanceToApplyEffect BURN = new ChanceToApplyEffect(NegativeEffects.BURN, "Burn", "burn");
+    public static ChanceToApplyEffect CHILL = new ChanceToApplyEffect(NegativeEffects.CHILL, "Chill", "chill");
+    public static ChanceToApplyEffect POISON = new ChanceToApplyEffect(NegativeEffects.THORNS, "Thorns", "poison");
+    public static ChanceToApplyEffect STATIC = new ChanceToApplyEffect(NegativeEffects.STATIC, "Static", "static");
 
-    BasePotionEffect effect;
+    String effect;
+    String locname;
+    String id;
 
-    private ChanceToApplyEffect(BasePotionEffect effect) {
+    public ChanceToApplyEffect(String effect, String locname, String id) {
         this.effect = effect;
+        this.locname = locname;
+        this.id = id;
+
         this.add$To$toTooltip = false;
         this.add$plusminus$toTooltip = false;
         this.minimumValue = 0;
@@ -45,16 +47,17 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Chance to Apply " + effect.locNameForLangFile();
+        return "Chance to Apply " + locname;
     }
 
     @Override
     public String GUID() {
-        return "chance_of_" + effect.GUID();
+        return "chance_of_" + id;
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new ChanceToApplyEffectEffect(effect, EffectData.EffectTypes.BASIC_ATTACK, EffectData.EffectTypes.SPELL);
+        return new ChanceToApplyEffectEffect(SlashRegistry.ExileEffects()
+            .get(effect), EffectData.EffectTypes.BASIC_ATTACK, EffectData.EffectTypes.SPELL);
     }
 }

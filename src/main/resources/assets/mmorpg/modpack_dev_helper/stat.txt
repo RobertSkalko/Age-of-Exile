@@ -3,7 +3,6 @@ This registry can't be modified or added to.
 lifesteal
 ele_bow_damage
 heal_to_dmg
-chance_of_frost
 spell_thunder_damage
 trident_damage
 increase_healing
@@ -83,10 +82,11 @@ renamed_or_deleted_stat
 armor
 spell_nature_damage
 elemental_resist
-frost_bonus_dmg
+chance_of_chill
 spell_water_damage
 water_focus
 wither_immunity
+chill_bonus_dmg
 max_thunder_resist
 alter_req_percent
 elemental_penetration

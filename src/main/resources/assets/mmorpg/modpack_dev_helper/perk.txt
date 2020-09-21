@@ -6,7 +6,6 @@ holy_flower_healing
 throw_flames
 awaken_mana_healing
 passive_divine
-chance_of_frost
 holy_flower_projectile_speed
 blazing_inferno
 spell_thunder_damage
@@ -287,6 +286,7 @@ elemental_resist
 volcano_damage
 purifying_fires
 heart_of_ice_mana_cost
+chance_of_chill
 frostball_cooldown
 recoil_shot
 poison_ball

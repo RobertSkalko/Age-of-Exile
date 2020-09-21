@@ -27,7 +27,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item INCA_THUNDER_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/inca_thunder");
     public Item WATER_ELE_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/water_ele_sword");
 
-    public Item OBSI_MIGHT_AXE = item(new BaseUniqueSword("Axe"), "uniques/weapon/obsi_might");
-    public Item JUDGEMENT_AXE = item(new BaseUniqueSword("Axe"), "uniques/weapon/judgement");
+    public Item OBSI_MIGHT_AXE = item(new BaseUniqueAxe("Axe"), "uniques/weapon/obsi_might");
+    public Item JUDGEMENT_AXE = item(new BaseUniqueAxe("Axe"), "uniques/weapon/judgement");
 
 }
