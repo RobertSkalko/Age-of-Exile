@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot.blueprints;
 
-import com.robertx22.age_of_exile.database.data.rarities.BaseRaritiesContainer;
+import com.robertx22.age_of_exile.database.data.rarities.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.bases.LevelPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.RarityPart;
@@ -47,7 +47,7 @@ public abstract class ItemBlueprint {
 
     abstract ItemStack generate();
 
-    public abstract BaseRaritiesContainer<? extends Rarity> getRarityContainer();
+    public abstract RarityRegistryContainer<? extends Rarity> getRarityContainer();
 
     final public ItemStack createStack() {
         checkAndSetGeneratedBoolean();

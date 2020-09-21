@@ -18,7 +18,6 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(new NoManaPacket());
         Packets.registerServerToClient(new OnLoginClientPacket());
         Packets.registerServerToClient(new OpenGuiPacket());
-        Packets.registerServerToClient(new RarityPacket());
         Packets.registerServerToClient(new RegistryPacket());
         Packets.registerServerToClient(new EfficientRegistryPacket());
         Packets.registerServerToClient(new SyncConfigToClientPacket());

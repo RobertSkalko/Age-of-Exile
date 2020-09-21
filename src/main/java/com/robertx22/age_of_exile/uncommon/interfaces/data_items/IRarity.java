@@ -20,5 +20,6 @@ public interface IRarity<R extends Rarity> {
     int Relic = 5;
 
     int Unique = 10;
+    int Boss = 9;
 
 }

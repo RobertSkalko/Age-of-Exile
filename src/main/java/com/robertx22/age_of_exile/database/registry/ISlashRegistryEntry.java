@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.registry;
 
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
@@ -61,7 +60,8 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
 
     @Override
     default Rarity getRarity() {
-        return Rarities.Gears.get(getRarityRank());
+        return SlashRegistry.GearRarities()
+            .get(getRarityRank());
     }
 
     @Override

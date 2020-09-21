@@ -18,7 +18,7 @@ public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
 
     public ItemSword(String locname) {
         super(
-            new RarityItemTier(0), 6, -2.4F, (ItemUtils.getDefaultGearProperties()
+            new RarityItemTier(), 6, -2.4F, (ItemUtils.getDefaultGearProperties()
                 .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, false)
                     .getDurability(EquipmentSlot.MAINHAND))));
         this.locname = locname;

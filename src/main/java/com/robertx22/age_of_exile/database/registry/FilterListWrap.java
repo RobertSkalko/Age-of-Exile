@@ -8,11 +8,12 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -75,33 +76,6 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
             .filter(x -> ((ITiered) x).getTier() == tier)
             .collect(Collectors.toList());
 
-        return this;
-    }
-
-    public FilterListWrap<C> ofExactRarity(int rarity) {
-        this.list = list.stream()
-            .filter(x -> ((IRarity) x).getRarityRank() == rarity)
-            .collect(Collectors.toList());
-        return this;
-    }
-
-    public FilterListWrap<C> ofHighestRarity() {
-
-        final int highest;
-
-        Optional<C> optional = list.stream()
-            .max(Comparator.comparingInt(x -> x.getRarityRank()));
-
-        if (optional.isPresent()) {
-            highest = optional.get()
-                .getRarityRank();
-
-            this.list = list.stream()
-                .filter(x -> ((IRarity) x).getRarityRank() == highest)
-                .collect(Collectors.toList());
-        } else {
-            this.list.clear();
-        }
         return this;
     }
 

@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.currency.base;
 
-import com.robertx22.age_of_exile.database.base.Rarities;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
@@ -136,7 +136,8 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Mobs.get(getRarityRank());
+        return SlashRegistry.MobRarities()
+            .get(getRarityRank());
     }
 
     @Override

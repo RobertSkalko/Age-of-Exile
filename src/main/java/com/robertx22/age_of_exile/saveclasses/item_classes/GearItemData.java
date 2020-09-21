@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
@@ -130,14 +129,17 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
 
     @Override
     public int getRarityRank() {
-        return MathHelper.clamp(rarity, Rarities.Gears.lowest()
-            .Rank(), Rarities.Gears.highest()
+        return MathHelper.clamp(rarity, SlashRegistry.GearRarities()
+            .lowest()
+            .Rank(), SlashRegistry.GearRarities()
+            .highest()
             .Rank());
     }
 
     @Override
     public IGearRarity getRarity() {
-        return Rarities.Gears.get(this.rarity);
+        return SlashRegistry.GearRarities()
+            .get(this.rarity);
     }
 
     public boolean changesItemStack() {

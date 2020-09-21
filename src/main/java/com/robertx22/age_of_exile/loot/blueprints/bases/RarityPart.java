@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
-import com.robertx22.age_of_exile.database.data.rarities.BaseRaritiesContainer;
+import com.robertx22.age_of_exile.database.data.rarities.RarityRegistryContainer;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class RarityPart extends BlueprintPart<Rarity> {
 
-    BaseRaritiesContainer container;
+    RarityRegistryContainer container;
 
     public int minRarity = -1;
     public int maxRarity = 5;
@@ -48,7 +48,8 @@ public class RarityPart extends BlueprintPart<Rarity> {
 
         Rarity rar = RandomUtils.weightedRandom(possible);
 
-        if (rar.Rank() < container.maxNonUniqueRarity.Rank() && RandomUtils.roll(chanceForHigherRarity)) {
+        if (rar.Rank() < container.maxNonUnique()
+            .Rank() && RandomUtils.roll(chanceForHigherRarity)) {
             rar = container.getHigherRarity(rar);
         }
 

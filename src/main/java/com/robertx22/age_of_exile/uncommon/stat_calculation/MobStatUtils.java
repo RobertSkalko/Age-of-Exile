@@ -2,10 +2,9 @@ package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
@@ -96,7 +95,8 @@ public class MobStatUtils {
             e.printStackTrace();
         }
 
-        MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
+        MobRarity rar = SlashRegistry.MobRarities()
+            .get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
         int lvl = unitdata.getLevel();

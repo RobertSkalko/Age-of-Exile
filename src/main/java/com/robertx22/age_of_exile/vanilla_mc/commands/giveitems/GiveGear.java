@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.age_of_exile.database.base.Rarities;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearTypeSuggestions;
@@ -34,8 +34,10 @@ public class GiveGear {
                                     .then(argument(
                                         "rarity",
                                         IntegerArgumentType.integer(
-                                            Rarities.Gears.lowest()
-                                                .Rank() - 1, Rarities.Gears.highest()
+                                            SlashRegistry.GearRarities()
+                                                .lowest()
+                                                .Rank() - 1, SlashRegistry.GearRarities()
+                                                .highest()
                                                 .Rank())
                                     )
                                         .then(argument(
@@ -95,7 +97,8 @@ public class GiveGear {
             blueprint.unidentifiedPart.set(false);
             blueprint.level.set(lvl);
 
-            if (Rarities.Gears.has(rarity)) {
+            if (SlashRegistry.GearRarities()
+                .has(rarity)) {
                 blueprint.rarity.setSpecificRarity(rarity);
             }
             if (!type.equals("random")) {

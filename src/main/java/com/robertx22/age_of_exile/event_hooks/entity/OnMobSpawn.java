@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.event_hooks.entity;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
-import com.robertx22.age_of_exile.database.base.Rarities;
-import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -80,7 +80,8 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
         int rar = mob.randomRarity(entity, endata);
         endata.setRarity(rar);
 
-        MobRarity rarity = Rarities.Mobs.get(rar);
+        MobRarity rarity = SlashRegistry.MobRarities()
+            .get(rar);
         mob.randomizeAffixes(rarity);
 
         endata.setUnit(mob, entity);

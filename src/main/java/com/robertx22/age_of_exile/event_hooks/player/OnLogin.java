@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.player;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -38,7 +37,6 @@ public class OnLogin {
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.BEFORE));
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
-            Rarities.sendAllPacketsToClientOnLogin(player);
             SlashRegistry.sendPacketsToClient(player, SyncTime.ON_LOGIN);
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.AFTER));
             SlashRegistry.restoreFromBackupifEmpty();

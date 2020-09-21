@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -136,7 +135,8 @@ public class LootInfo {
             modifier += mobData.getUnit()
                 .peekAtStat(ExtraMobDropsStat.getInstance())
                 .getMultiplier() - 1;
-            modifier += Rarities.Mobs.get(mobData.getRarity())
+            modifier += SlashRegistry.MobRarities()
+                .get(mobData.getRarity())
                 .LootMultiplier() - 1;
 
         }

@@ -18,6 +18,9 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
+import com.robertx22.age_of_exile.database.data.rarities.RarityRegistryContainer;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
@@ -156,6 +159,14 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<Affix> Affixes() {
         return getRegistry(SlashRegistryType.AFFIX);
+    }
+
+    public static RarityRegistryContainer<GearRarity> GearRarities() {
+        return (RarityRegistryContainer<GearRarity>) getRegistry(SlashRegistryType.GEAR_RARITY);
+    }
+
+    public static RarityRegistryContainer<MobRarity> MobRarities() {
+        return (RarityRegistryContainer<MobRarity>) getRegistry(SlashRegistryType.MOB_RARITY);
     }
 
     public static SlashRegistryContainer<Tier> Tiers() {
@@ -329,6 +340,8 @@ public class SlashRegistry {
         SlashRegistryType.init();
 
         // data pack ones
+        addRegistry(new RarityRegistryContainer<GearRarity>(SlashRegistryType.GEAR_RARITY, null).setIsDatapack());
+        addRegistry(new RarityRegistryContainer<MobRarity>(SlashRegistryType.MOB_RARITY, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EXILE_EFFECT, null).setIsDatapack());

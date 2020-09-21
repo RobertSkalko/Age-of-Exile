@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.lang_file;
 
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -132,8 +131,10 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.ExileEffects()
             .getSerializable());
         list.addAll(Arrays.asList(Words.values()));
-        list.addAll(Rarities.Gears.getAllRarities());
-        list.addAll(Rarities.Mobs.getAllRarities());
+        list.addAll(SlashRegistry.GearRarities()
+            .getSerializable());
+        list.addAll(SlashRegistry.MobRarities()
+            .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();

@@ -3,11 +3,11 @@ package com.robertx22.age_of_exile.aoe_data.database.entity_configs;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig.*;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.rarities.mobs.BossMob;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.registry.Registry;
@@ -41,10 +41,8 @@ public class EntityConfigs implements ISlashRegistryInit {
         EntityConfig golem = mob(ModRegistry.ENTITIES.GOLEM_BOSS, new SpecialMobStats());
         golem.max_lvl = 10;
         golem.min_lvl = 10;
-        golem.min_rarity = BossMob.getInstance()
-            .Rank();
-        golem.max_rarity = BossMob.getInstance()
-            .Rank();
+        golem.min_rarity = IRarity.Boss;
+        golem.max_rarity = IRarity.Boss;
 
         EntityConfig wither = mob(EntityType.WITHER, new SpecialMobStats());
         wither.max_lvl = 30;

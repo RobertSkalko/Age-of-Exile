@@ -4,7 +4,8 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 
-public class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
+public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
+    public static GearRarity SERIALIZER = new GearRarity();
 
     public GearRarity() {
         super(RarityType.GEAR);

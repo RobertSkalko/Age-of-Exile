@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.base.Rarities;
-import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -32,7 +32,8 @@ public class ExtraMobRarityAttributes {
 
     public static void add(LivingEntity en, EntityCap.UnitData data) {
 
-        MobRarity rar = Rarities.Mobs.get(data.getRarity());
+        MobRarity rar = SlashRegistry.MobRarities()
+            .get(data.getRarity());
 
         if (en.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
             .getModifier(MOVESPEED_ID) == null) {

@@ -14,6 +14,8 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.GearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
@@ -36,6 +38,8 @@ public enum SlashRegistryType {
             return null;
         }
     },
+    GEAR_RARITY("gear_rarity", 0, GearRarity.SERIALIZER, SyncTime.ON_LOGIN),
+    MOB_RARITY("mob_rarity", 0, MobRarity.SERIALIZER, SyncTime.ON_LOGIN),
     STAT("stat", 1, null, SyncTime.NEVER) {
         @Override
         public BaseDataPackLoader getLoader() {

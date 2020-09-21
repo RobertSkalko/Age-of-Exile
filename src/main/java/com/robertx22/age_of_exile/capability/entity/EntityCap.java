@@ -6,11 +6,9 @@ import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.data.rarities.mobs.BossMob;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -396,8 +394,10 @@ public class EntityCap {
 
         @Override
         public void setRarity(int rarity) {
-            this.rarity = MathHelper.clamp(rarity, Rarities.Mobs.lowest()
-                .Rank(), Rarities.Mobs.highest()
+            this.rarity = MathHelper.clamp(rarity, SlashRegistry.MobRarities()
+                .lowest()
+                .Rank(), SlashRegistry.MobRarities()
+                .highest()
                 .Rank());
             this.equipsChanged = true;
             this.shouldSync = true;
@@ -405,8 +405,10 @@ public class EntityCap {
 
         @Override
         public int getRarity() {
-            return MathHelper.clamp(rarity, Rarities.Mobs.lowest()
-                .Rank(), Rarities.Mobs.highest()
+            return MathHelper.clamp(rarity, SlashRegistry.MobRarities()
+                .lowest()
+                .Rank(), SlashRegistry.MobRarities()
+                .highest()
                 .Rank());
         }
 
@@ -429,16 +431,16 @@ public class EntityCap {
 
             } else {
 
-                MobRarity rarity = Rarities.Mobs.get(getRarity());
+                MobRarity rarity = SlashRegistry.MobRarities()
+                    .get(getRarity());
 
                 Formatting rarformat = rarity.textFormatting();
 
                 MutableText name = new LiteralText("").append(entity.getDisplayName())
                     .formatted(rarformat);
 
-                if (rarity.Rank() == BossMob.getInstance()
-                    .Rank()) {
-                    name = new LiteralText("[" + BossMob.SKULL + "] ").formatted(Formatting.YELLOW)
+                if (!rarity.name_add.isEmpty()) {
+                    name = new LiteralText("[" + rarity.name_add + "] ").formatted(Formatting.YELLOW)
                         .append(name);
                 }
 
@@ -553,7 +555,8 @@ public class EntityCap {
         @Override
         public boolean increaseRarity(LivingEntity entity) {
 
-            if (rarity >= Rarities.Mobs.highest()
+            if (rarity >= SlashRegistry.MobRarities()
+                .highest()
                 .Rank()) {
                 return false;
             } else {
@@ -655,7 +658,8 @@ public class EntityCap {
 
         @Override
         public void mobBasicAttack(DamageEventData data) {
-            MobRarity rar = Rarities.Mobs.get(data.sourceData.getRarity());
+            MobRarity rar = SlashRegistry.MobRarities()
+                .get(data.sourceData.getRarity());
 
             float vanilla = data.getEventDamage() * (float) ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG;
 

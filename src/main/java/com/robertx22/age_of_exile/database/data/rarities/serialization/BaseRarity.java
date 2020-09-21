@@ -5,14 +5,14 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.Formatting;
 
-public class BaseRarity implements Rarity {
+public abstract class BaseRarity implements Rarity {
 
     public BaseRarity(RarityType rarity_type) {
         this.rarity_type = rarity_type;
     }
 
     public enum RarityType {
-        GEAR("gear"), MOB("mob"), SKILL_GEM("skill_gem");
+        GEAR("gear"), MOB("mob");
 
         public String id;
 
@@ -25,13 +25,13 @@ public class BaseRarity implements Rarity {
     public int rank;
     public int weight;
     public String text_format;
-    public String loc_name_id;
-    public String loc_name;
+
+    public transient String loc_name;
     public String guid;
 
     @Override
     public String locNameLangFileGUID() {
-        return loc_name_id;
+        return Ref.MODID + ".rarity." + rarity_type.id + "." + formattedGUID();
     }
 
     @Override
@@ -64,7 +64,7 @@ public class BaseRarity implements Rarity {
         return loc_name;
     }
 
-    protected void setCommonFields() {
+    public void setCommonFields() {
         this.guid = "common";
         this.loc_name = "Common";
         this.text_format = Formatting.GRAY.name();
@@ -72,7 +72,7 @@ public class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    protected void setMagicalFields() {
+    public void setMagicalFields() {
         this.guid = "magical";
         this.loc_name = "Magical";
         this.text_format = Formatting.GREEN.name();
@@ -81,7 +81,7 @@ public class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    protected void setRareFields() {
+    public void setRareFields() {
         this.guid = "rare";
         this.loc_name = "Rare";
         this.text_format = Formatting.YELLOW.name();
@@ -90,7 +90,7 @@ public class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    protected void setEpicFields() {
+    public void setEpicFields() {
         this.guid = "epic";
         this.loc_name = "Epic";
         this.text_format = Formatting.LIGHT_PURPLE.name();
@@ -99,7 +99,7 @@ public class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    protected void setLegendaryFields() {
+    public void setLegendaryFields() {
         this.guid = "legendary";
         this.loc_name = "Legendary";
         this.text_format = Formatting.GOLD.name();
@@ -108,7 +108,16 @@ public class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    protected void setRelicFields() {
+    public void setBossFields() {
+        this.guid = "boss";
+        this.loc_name = "Boss";
+        this.text_format = Formatting.RED.name();
+
+        this.rank = 9;
+        onSetFields();
+    }
+
+    public void setRelicFields() {
         this.guid = "relic";
         this.loc_name = "Relic";
         this.text_format = Formatting.GOLD.name();
@@ -117,7 +126,7 @@ public class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    protected void setUniqueFields() {
+    public void setUniqueFields() {
         this.guid = "unique";
         this.loc_name = "Unique";
         this.text_format = Formatting.RED.name();
@@ -127,7 +136,7 @@ public class BaseRarity implements Rarity {
     }
 
     private void onSetFields() {
-        this.loc_name_id = Ref.MODID + ".rarity." + rarity_type.id + "." + formattedGUID();
+
     }
 
 }

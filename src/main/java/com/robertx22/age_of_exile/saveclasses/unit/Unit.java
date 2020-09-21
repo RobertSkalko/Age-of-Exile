@@ -3,11 +3,9 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 import com.robertx22.age_of_exile.api.MineAndSlashEvents;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.base.Rarities;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
-import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.data.rarities.mobs.CommonMob;
+import com.robertx22.age_of_exile.database.data.rarities.serialization.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
@@ -257,13 +255,15 @@ public class Unit {
 
         double y = entity.getY();
 
-        List<MobRarity> rarities = Rarities.Mobs.getAllRarities()
+        List<MobRarity> rarities = SlashRegistry.MobRarities()
+            .getAllRarities()
             .stream()
             .filter(x -> data.getLevel() >= x.minMobLevelForRandomSpawns() || data.getLevel() >= ModConfig.get().Server.MAX_LEVEL)
             .collect(Collectors.toList());
 
         if (rarities.isEmpty()) {
-            rarities.add(CommonMob.getInstance());
+            rarities.add(SlashRegistry.MobRarities()
+                .lowest());
         }
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);

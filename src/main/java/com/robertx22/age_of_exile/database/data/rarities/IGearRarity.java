@@ -1,10 +1,15 @@
 package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.data.MinMax;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPart;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 
 public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
+    @Override
+    public default SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.GEAR_RARITY;
+    }
 
     MinMax SpawnDurabilityHit();
 
