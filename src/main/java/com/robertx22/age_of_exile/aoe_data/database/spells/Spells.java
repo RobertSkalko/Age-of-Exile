@@ -141,7 +141,7 @@ public class Spells implements ISlashRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BLAZE_POWDER, 3D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 50D, false)
-                .put(MapField.PROJECTILES_APART, 30D)))
+                .put(MapField.PROJECTILES_APART, 45D)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 5D, 0.15D))
             .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.BURN, 1D, 20 * 3D)
                 .addCondition(EffectCondition.CHANCE.create(25D))

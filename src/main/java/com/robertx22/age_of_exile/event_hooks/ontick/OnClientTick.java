@@ -26,7 +26,7 @@ public class OnClientTick implements ClientTickEvents.EndTick {
     }
 
     @Override
-    public void onEndTick(MinecraftClient minecraftClient) {
+    public void onEndTick(MinecraftClient mc) {
 
         PlayerEntity player = MinecraftClient.getInstance().player;
 
@@ -64,6 +64,7 @@ public class OnClientTick implements ClientTickEvents.EndTick {
             }
 
         }
+
     }
 
 }
