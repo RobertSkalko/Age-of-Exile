@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.interfaces.data_items;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 
 import java.util.Comparator;
 import java.util.Optional;

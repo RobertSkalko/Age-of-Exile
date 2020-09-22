@@ -50,10 +50,13 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
         data.type = PerkType.valueOf(buf.readString(50));
         data.identifier = buf.readString(100);
-        data.spell = buf.readString(100);
+        data.spell = buf.readString(80);
         data.lock_under_adv = buf.readString(100);
         data.icon = buf.readString(150);
-        data.one_of_a_kind = buf.readString(100);
+        data.one_of_a_kind = buf.readString(80);
+        if (data.one_of_a_kind.isEmpty()) {
+            data.one_of_a_kind = null;
+        }
 
         data.is_entry = buf.readBoolean();
         data.lvl_req = buf.readInt();
@@ -75,11 +78,11 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public void toBuf(PacketByteBuf buf) {
         buf.writeString(type.name(), 100);
         buf.writeString(identifier, 100);
-        buf.writeString(spell, 100);
+        buf.writeString(spell, 80);
         buf.writeString(lock_under_adv, 100);
         buf.writeString(icon, 150);
 
-        buf.writeString(one_of_a_kind != null ? one_of_a_kind : "", 100);
+        buf.writeString(one_of_a_kind != null ? one_of_a_kind : "", 80);
 
         buf.writeBoolean(is_entry);
         buf.writeInt(lvl_req);

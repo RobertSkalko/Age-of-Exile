@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.registry;
 
-import com.google.common.collect.Lists;
 import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
@@ -251,12 +250,12 @@ public class SlashRegistry {
                 .collect(Collectors.toList()));
 
             List<ListStringData> list = new ArrayList<>();
-            if (items.size() < 100) {
-                list.add(new ListStringData(items
-                    .stream()
-                    .map(x -> ((ISerializable) x).toJsonString())
-                    .collect(Collectors.toList())));
-            } else {
+            // if (items.size() < 100) {
+            list.add(new ListStringData(items
+                .stream()
+                .map(x -> ((ISerializable) x).toJsonString())
+                .collect(Collectors.toList())));
+         /*   } else {
                 for (List<ISerializedRegistryEntry> part : Lists.partition(items, 100)) {
                     list.add(new ListStringData(part
                         .stream()
@@ -264,6 +263,8 @@ public class SlashRegistry {
                         .collect(Collectors.toList())));
                 }
             }
+
+          */
             cachedRegistryPackets.put(type, list);
         }
 

@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,6 +22,8 @@ public class OnLogin {
     public static boolean CLIENT_ONLY_GOT_SKILL_PACKETS = false;
 
     public static void onLoad(ServerPlayerEntity player) {
+
+        Watch total = new Watch();
 
         try {
 
@@ -59,6 +62,10 @@ public class OnLogin {
         }
 
         SlashRegistry.restoreFromBackupifEmpty();
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            total.print("Total on login actions took ");
+        }
     }
 
     public static void GiveStarterItems(PlayerEntity player) {

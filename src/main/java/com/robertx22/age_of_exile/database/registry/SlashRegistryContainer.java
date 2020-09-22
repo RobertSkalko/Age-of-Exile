@@ -34,10 +34,20 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return new ArrayList<>(serializables.values());
     }
 
+    List<C> fromDatapacks = null;
+
+    public void onAllDatapacksLoaded() {
+        fromDatapacks = null;
+        getFromDatapacks();
+    }
+
     public List<C> getFromDatapacks() {
-        return getList().stream()
-            .filter(x -> x.isFromDatapack())
-            .collect(Collectors.toList());
+        if (fromDatapacks == null) {// cache this cus it's called every login
+            fromDatapacks = getList().stream()
+                .filter(x -> x.isFromDatapack())
+                .collect(Collectors.toList());
+        }
+        return fromDatapacks;
     }
 
     public SlashRegistryType getType() {

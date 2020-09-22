@@ -20,6 +20,5 @@ public abstract class CommandSuggestions implements SuggestionProvider<ServerCom
         CommandSource.suggestMatching(this.suggestions(), builder);
         return builder.buildFuture();
     }
-
 }
 

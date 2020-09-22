@@ -41,6 +41,10 @@ public class EfficientRegistryPacket<T extends IByteBuf & ISerializedRegistryEnt
 
         this.type = SlashRegistryType.valueOf(buf.readString(30));
 
+        if (MMORPG.RUN_DEV_TOOLS) {
+            //System.out.print("\n Eff packet " + type.name() + " is " + buf.readableBytes() + " bytes big \n");
+        }
+
         IByteBuf<T> serializer = (IByteBuf<T>) type.getSerializer();
 
         this.items = Lists.newArrayList();

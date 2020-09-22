@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Factory;
@@ -52,8 +52,8 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
         mod.second_min = buf.readFloat();
         mod.second_max = buf.readFloat();
 
-        mod.stat = buf.readString(500);
-        mod.type = buf.readString(500);
+        mod.stat = buf.readString(100);
+        mod.type = buf.readString(100);
         return mod;
     }
 
@@ -64,8 +64,8 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
         buf.writeFloat(second_min);
         buf.writeFloat(second_max);
 
-        buf.writeString(stat, 30);
-        buf.writeString(type, 30);
+        buf.writeString(stat, 100);
+        buf.writeString(type, 100);
     }
 
     public StatModifier(float firstMin, float firstMax, Stat stat, ModType type) {

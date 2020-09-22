@@ -77,10 +77,6 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
             System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
         }
 
-        if (registryType.isLastToLoad()) {
-            SlashRegistry.backup();
-        }
-
     }
 
 }

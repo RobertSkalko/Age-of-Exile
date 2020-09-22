@@ -6,6 +6,7 @@ import com.google.gson.JsonSyntaxException;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.RegistryPackets;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
@@ -40,9 +41,13 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
+
         try {
             type = SlashRegistryType.valueOf(tag.readString(30));
 
+            if (MMORPG.RUN_DEV_TOOLS) {
+                //System.out.print("\n Gson packet " + type.name() + " is " + tag.readableBytes() + " bytes big\n");
+            }
             CompoundTag nbt = tag.readCompoundTag();
 
             data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
