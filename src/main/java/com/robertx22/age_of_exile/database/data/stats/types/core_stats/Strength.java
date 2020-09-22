@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDama
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,11 +17,6 @@ public class Strength extends BaseCoreStat {
 
     private Strength() {
 
-    }
-
-    @Override
-    public Formatting getIconFormat() {
-        return Formatting.RED;
     }
 
     @Override

@@ -31,9 +31,9 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public Stat() {
     }
 
-    public int maximumValue = Integer.MAX_VALUE;
-    public float minimumValue = -1000;
-    public int BaseFlat = 0;
+    public int max_val = Integer.MAX_VALUE;
+    public float min_val = -1000;
+    public int base_val = 0;
 
     public boolean add$To$toTooltip = true;
     public boolean add$plusminus$toTooltip = true;
@@ -52,28 +52,12 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return uses_second_val;
     }
 
-    public Formatting getIconFormat() {
-        if (this.getElement() != null) {
-            return this.getElement().format;
-        } else {
-            return Elements.Physical.format;
-        }
-    }
-
     public StatScaling getScaling() {
         return StatScaling.SLOW_SCALING;
     }
 
     public final float scale(float stat, int lvl) {
         return getScaling().scale(stat, lvl);
-    }
-
-    public String getIcon() {
-        if (this.getElement() != null) {
-            return this.getElement().icon;
-        } else {
-            return Elements.Physical.icon;
-        }
     }
 
     public List<MutableText> getCutDescTooltip() {

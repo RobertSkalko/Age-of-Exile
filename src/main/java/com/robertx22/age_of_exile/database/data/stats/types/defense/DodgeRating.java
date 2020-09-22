@@ -43,7 +43,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
     }
 
     private DodgeRating() {
-        this.minimumValue = 0;
+        this.min_val = 0;
     }
 
     @Override

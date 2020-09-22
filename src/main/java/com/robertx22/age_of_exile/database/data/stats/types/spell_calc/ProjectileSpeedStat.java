@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 public class ProjectileSpeedStat extends Stat implements IStatEffects {
 
     private ProjectileSpeedStat() {
-        this.maximumValue = 200;
+        this.max_val = 200;
     }
 
     public static ProjectileSpeedStat getInstance() {

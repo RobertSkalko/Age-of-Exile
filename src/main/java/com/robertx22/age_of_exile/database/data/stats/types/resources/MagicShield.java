@@ -7,13 +7,12 @@ import com.robertx22.age_of_exile.database.data.stats.effects.defense.MagicShiel
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
-import net.minecraft.util.Formatting;
 
 public class MagicShield extends Stat implements IStatEffects, ILocalStat {
     public static String GUID = "magic_shield";
 
     private MagicShield() {
-        this.minimumValue = 0;
+        this.min_val = 0;
     }
 
     public static MagicShield getInstance() {
@@ -28,16 +27,6 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
     @Override
     public String getIconPath() {
         return "resource/magic_shield";
-    }
-
-    @Override
-    public Formatting getIconFormat() {
-        return Formatting.BLUE;
-    }
-
-    @Override
-    public String getIcon() {
-        return "\u2764";
     }
 
     @Override

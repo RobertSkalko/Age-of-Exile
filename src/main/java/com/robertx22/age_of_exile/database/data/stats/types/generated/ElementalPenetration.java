@@ -29,7 +29,7 @@ public class ElementalPenetration extends ElementalStat implements IStatEffects 
 
     public ElementalPenetration(Elements element) {
         super(element);
-        this.minimumValue = 0;
+        this.min_val = 0;
 
     }
 

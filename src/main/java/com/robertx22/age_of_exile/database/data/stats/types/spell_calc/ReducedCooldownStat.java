@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 public class ReducedCooldownStat extends Stat implements IStatEffects {
 
     private ReducedCooldownStat() {
-        this.maximumValue = 75;
+        this.max_val = 75;
     }
 
     public static ReducedCooldownStat getInstance() {

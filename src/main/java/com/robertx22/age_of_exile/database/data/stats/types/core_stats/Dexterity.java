@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+
 import java.util.Arrays;
 import java.util.List;
-import net.minecraft.util.Formatting;
 
 public class Dexterity extends BaseCoreStat {
 
@@ -17,11 +17,6 @@ public class Dexterity extends BaseCoreStat {
 
     private Dexterity() {
 
-    }
-
-    @Override
-    public Formatting getIconFormat() {
-        return Formatting.GREEN;
     }
 
     @Override

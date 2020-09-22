@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
 
 public class HealthRegen extends BaseRegenClass {
     public static String GUID = "health_regen";
@@ -17,16 +16,6 @@ public class HealthRegen extends BaseRegenClass {
     }
 
     @Override
-    public Formatting getIconFormat() {
-        return Formatting.RED;
-    }
-
-    @Override
-    public String getIcon() {
-        return "\u0E51";
-    }
-
-    @Override
     public String getIconPath() {
         return "regen/hp_regen";
     }
@@ -37,7 +26,7 @@ public class HealthRegen extends BaseRegenClass {
     }
 
     private HealthRegen() {
-        this.minimumValue = 0.05F;
+        this.min_val = 0.05F;
     }
 
     @Override

@@ -103,7 +103,7 @@ public class StatData {
             }
             return;
         } else {
-            float finalValue = stat.BaseFlat;
+            float finalValue = stat.base_val;
 
             finalValue += Flat;
 
@@ -111,7 +111,7 @@ public class StatData {
 
             finalValue *= 1 + Multi / 100;
 
-            v1 = MathHelper.clamp(finalValue, stat.minimumValue, stat.maximumValue);
+            v1 = MathHelper.clamp(finalValue, stat.min_val, stat.max_val);
 
         }
     }
@@ -129,7 +129,7 @@ public class StatData {
             }
             return;
         } else {
-            float finalValue = stat.BaseFlat;
+            float finalValue = stat.base_val;
 
             finalValue += Flat2;
 
@@ -137,7 +137,7 @@ public class StatData {
 
             finalValue *= 1 + Multi / 100;
 
-            v2 = MathHelper.clamp(finalValue, stat.minimumValue, stat.maximumValue);
+            v2 = MathHelper.clamp(finalValue, stat.min_val, stat.max_val);
 
         }
     }
@@ -153,7 +153,7 @@ public class StatData {
     public void setValue(float val) {
         Stat stat = GetStat();
 
-        this.v1 = MathHelper.clamp(val, stat.minimumValue, stat.maximumValue);
+        this.v1 = MathHelper.clamp(val, stat.min_val, stat.max_val);
 
     }
 
@@ -177,7 +177,7 @@ public class StatData {
         float val = (getFirstValue() + getSecondValue()) / 2;
 
         Stat stat = GetStat();
-        return MathHelper.clamp(val, stat.minimumValue, stat.maximumValue);
+        return MathHelper.clamp(val, stat.min_val, stat.max_val);
     }
 
     public boolean isNotZero() {

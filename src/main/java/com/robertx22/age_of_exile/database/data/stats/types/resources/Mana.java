@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
 
 public class Mana extends Stat {
     public static String GUID = "mana";
@@ -15,16 +14,6 @@ public class Mana extends Stat {
     @Override
     public StatScaling getScaling() {
         return StatScaling.SCALING;
-    }
-
-    @Override
-    public Formatting getIconFormat() {
-        return Formatting.AQUA;
-    }
-
-    @Override
-    public String getIcon() {
-        return "\u25CE";
     }
 
     @Override
@@ -43,7 +32,7 @@ public class Mana extends Stat {
     }
 
     private Mana() {
-        this.minimumValue = 0;
+        this.min_val = 0;
     }
 
     @Override

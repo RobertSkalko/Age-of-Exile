@@ -5,13 +5,12 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Formatting;
 
 public class Health extends Stat {
     public static String GUID = "health";
 
     private Health() {
-        this.minimumValue = 1;
+        this.min_val = 1;
     }
 
     public static Health getInstance() {
@@ -21,16 +20,6 @@ public class Health extends Stat {
     @Override
     public StatScaling getScaling() {
         return StatScaling.SCALING;
-    }
-
-    @Override
-    public Formatting getIconFormat() {
-        return Formatting.RED;
-    }
-
-    @Override
-    public String getIcon() {
-        return "\u2764";
     }
 
     @Override

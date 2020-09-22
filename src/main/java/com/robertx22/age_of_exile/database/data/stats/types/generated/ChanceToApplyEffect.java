@@ -27,7 +27,7 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
         this.add$To$toTooltip = false;
         this.add$plusminus$toTooltip = false;
-        this.minimumValue = 0;
+        this.min_val = 0;
     }
 
     @Override

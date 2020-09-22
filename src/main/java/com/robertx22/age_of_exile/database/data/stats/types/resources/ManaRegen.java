@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import net.minecraft.util.Formatting;
 
 public class ManaRegen extends BaseRegenClass {
     public static String GUID = "mana_regen";
@@ -16,16 +15,6 @@ public class ManaRegen extends BaseRegenClass {
     }
 
     @Override
-    public Formatting getIconFormat() {
-        return Formatting.AQUA;
-    }
-
-    @Override
-    public String getIcon() {
-        return "\u0E51";
-    }
-
-    @Override
     public String getIconPath() {
         return "regen/mana_regen";
     }
@@ -36,7 +25,7 @@ public class ManaRegen extends BaseRegenClass {
     }
 
     private ManaRegen() {
-        this.minimumValue = 0;
+        this.min_val = 0;
     }
 
     @Override

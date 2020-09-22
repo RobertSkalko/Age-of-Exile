@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShiel
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,11 +18,6 @@ public class Intelligence extends BaseCoreStat {
 
     public static final Intelligence INSTANCE = new Intelligence();
     public static String GUID = "intelligence";
-
-    @Override
-    public Formatting getIconFormat() {
-        return Formatting.BLUE;
-    }
 
     @Override
     public String getIconPath() {

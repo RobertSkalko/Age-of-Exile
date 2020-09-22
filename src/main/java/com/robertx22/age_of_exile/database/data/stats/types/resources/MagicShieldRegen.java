@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
 
 public class MagicShieldRegen extends BaseRegenClass {
 
@@ -24,16 +23,6 @@ public class MagicShieldRegen extends BaseRegenClass {
     @Override
     public String getIconPath() {
         return "regen/magic_shield_regen";
-    }
-
-    @Override
-    public Formatting getIconFormat() {
-        return Formatting.BLUE;
-    }
-
-    @Override
-    public String getIcon() {
-        return "\u0E51";
     }
 
     @Override

@@ -26,11 +26,6 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
     }
 
     @Override
-    public String getIcon() {
-        return "\u25BC";
-    }
-
-    @Override
     public String getIconPath() {
         return "armor";
     }
@@ -43,7 +38,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
     public static String GUID = "armor";
 
     private Armor() {
-        this.minimumValue = 0;
+        this.min_val = 0;
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 public class ReducedManaCost extends Stat implements IStatEffects {
 
     private ReducedManaCost() {
-        this.maximumValue = 75;
+        this.max_val = 75;
     }
 
     public static ReducedManaCost getInstance() {

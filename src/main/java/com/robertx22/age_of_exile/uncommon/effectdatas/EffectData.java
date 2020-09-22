@@ -156,21 +156,21 @@ public abstract class EffectData {
     public void logOnStartData() {
         if (MMORPG.statEffectDebuggingEnabled()) {
             System.out.println(
-                    Formatting.DARK_PURPLE + "Starting to activate effects for: " + getClass().toString() + " " + "Starting Number: " + number);
+                Formatting.DARK_PURPLE + "Starting to activate effects for: " + getClass().toString() + " " + "Starting Number: " + number);
         }
     }
 
     public void logOnEndData() {
         if (MMORPG.statEffectDebuggingEnabled()) {
             System.out.println(
-                    Formatting.DARK_PURPLE + "Effects for : " + getClass().toString() + " are finished.");
+                Formatting.DARK_PURPLE + "Effects for : " + getClass().toString() + " are finished.");
         }
     }
 
     public void logAfterEffect(IStatEffect effect) {
         if (MMORPG.statEffectDebuggingEnabled()) {
             System.out.println(Formatting.GREEN + "After : " + Formatting.BLUE + effect.getClass()
-                    .toString() + Formatting.WHITE + ": " + this.number);
+                .toString() + Formatting.WHITE + ": " + this.number);
         }
     }
 
@@ -191,7 +191,7 @@ public abstract class EffectData {
         for (EffectUnitStat item : Effects) {
             if (item.stat.isNotZero()) {
                 if (item.effect.Side()
-                        .equals(side)) {
+                    .equals(side)) {
                     item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
 
                 }
@@ -202,42 +202,21 @@ public abstract class EffectData {
         return this;
     }
 
-    /*
-    public boolean AffectsThisUnit(IStatEffect effect, EffectSides side, EffectData data, Unit source) {
-
-        boolean affects = false;
-
-        if (effect.Side()
-            .equals(EffectSides.Target)) {
-            affects = source.equals(data.targetUnit);
-        } else {
-            affects = source.equals(data.sourceUnit);
-        }
-
-        if (affects == false) {
-            //System.out.println("works");
-        }
-
-        return affects;
-    }
-
-
-     */
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit, EffectSides side) {
         if (unit != null) {
             unit.getStats()
-                    .values()
-                    .forEach(data -> {
-                        if (data.isNotZero()) {
-                            Stat stat = data.GetStat();
-                            if (stat instanceof IStatEffects) {
-                                ((IStatEffects) stat).getEffects()
-                                        .forEach(effect -> {
-                                            effects.add(new EffectUnitStat(effect, unit, data));
-                                        });
-                            }
+                .values()
+                .forEach(data -> {
+                    if (data.isNotZero()) {
+                        Stat stat = data.GetStat();
+                        if (stat instanceof IStatEffects) {
+                            ((IStatEffects) stat).getEffects()
+                                .forEach(effect -> {
+                                    effects.add(new EffectUnitStat(effect, unit, data));
+                                });
                         }
-                    });
+                    }
+                });
         }
 
         return effects;

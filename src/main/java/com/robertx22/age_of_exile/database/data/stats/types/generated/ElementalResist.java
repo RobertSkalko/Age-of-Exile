@@ -31,9 +31,9 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IAdd
 
     public ElementalResist(Elements element) {
         super(element);
-        this.minimumValue = -300;
+        this.min_val = -300;
 
-        this.maximumValue = 80;
+        this.max_val = 80;
     }
 
     @Override

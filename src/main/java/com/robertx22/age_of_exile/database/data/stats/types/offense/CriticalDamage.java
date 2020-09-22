@@ -35,9 +35,9 @@ public class CriticalDamage extends Stat implements IStatEffects {
     }
 
     private CriticalDamage() {
-        this.BaseFlat = 20;
-        this.minimumValue = 0;
-        this.maximumValue = 400;
+        this.base_val = 20;
+        this.min_val = 0;
+        this.max_val = 400;
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 public class FasterCastRate extends Stat implements IStatEffects {
 
     private FasterCastRate() {
-        this.maximumValue = 75;
+        this.max_val = 75;
     }
 
     public static FasterCastRate getInstance() {

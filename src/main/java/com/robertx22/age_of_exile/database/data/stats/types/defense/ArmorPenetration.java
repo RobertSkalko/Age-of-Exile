@@ -18,11 +18,6 @@ public class ArmorPenetration extends Stat implements IStatEffects {
     }
 
     @Override
-    public String getIcon() {
-        return "\u25BC";
-    }
-
-    @Override
     public String getIconPath() {
         return "armor";
     }
@@ -35,7 +30,7 @@ public class ArmorPenetration extends Stat implements IStatEffects {
     public static String GUID = "armor_penetration";
 
     private ArmorPenetration() {
-        this.minimumValue = 0;
+        this.min_val = 0;
     }
 
     @Override
