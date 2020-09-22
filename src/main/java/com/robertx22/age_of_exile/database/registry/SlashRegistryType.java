@@ -69,10 +69,10 @@ public enum SlashRegistryType {
             return CompatibleItems.getAllForSerialization();
         }
     },
-    SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER, SyncTime.ON_SKILL_TREE),
-    SPELL("spells", 17, Spell.SERIALIZER, SyncTime.ON_SKILL_TREE),
-    PERK("perk", 18, Perk.SERIALIZER, SyncTime.ON_SKILL_TREE),
-    SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_SKILL_TREE);
+    SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER, SyncTime.ON_LOGIN),
+    SPELL("spells", 17, Spell.SERIALIZER, SyncTime.ON_LOGIN),
+    PERK("perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN),
+    SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;
     ISerializable ser;
@@ -105,6 +105,12 @@ public enum SlashRegistryType {
 
     public static void init() {
 
+    }
+
+    public boolean isLastToLoad() {
+        return getAllInRegisterOrder().stream()
+            .max(Comparator.comparingInt(x -> x.order))
+            .get() == this;
     }
 
     public BaseDataPackLoader getLoader() {

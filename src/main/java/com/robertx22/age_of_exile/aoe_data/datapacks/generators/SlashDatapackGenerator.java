@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.data.DataCache;
 import net.minecraft.data.DataProvider;
@@ -46,5 +46,6 @@ public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends 
                 throw new RuntimeException(e);
             }
         }
+
     }
 }

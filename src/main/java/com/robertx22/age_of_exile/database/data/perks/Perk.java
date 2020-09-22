@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.database.data.perks;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
@@ -7,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -16,6 +17,7 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -26,19 +28,67 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, ITooltipList {
+public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, ITooltipList, IByteBuf<Perk> {
     public static Perk SERIALIZER = new Perk();
 
     public PerkType type;
     public String identifier;
     public String spell = "";
     public String lock_under_adv = "";
-    public List<OptScaleExactStat> stats = new ArrayList<>();
-    public List<String> spell_mods = new ArrayList<>();
     public String icon = "";
+    public String one_of_a_kind = null;
+
     public boolean is_entry = false;
     public int lvl_req = 1;
-    public String one_of_a_kind = null;
+
+    public List<OptScaleExactStat> stats = new ArrayList<>();
+    public List<String> spell_mods = new ArrayList<>();
+
+    @Override
+    public Perk getFromBuf(PacketByteBuf buf) {
+        Perk data = new Perk();
+
+        data.type = PerkType.valueOf(buf.readString(50));
+        data.identifier = buf.readString(100);
+        data.spell = buf.readString(100);
+        data.lock_under_adv = buf.readString(100);
+        data.icon = buf.readString(150);
+        data.one_of_a_kind = buf.readString(100);
+
+        data.is_entry = buf.readBoolean();
+        data.lvl_req = buf.readInt();
+
+        int s = buf.readInt();
+
+        for (int i = 0; i < s; i++) {
+            data.stats.add(OptScaleExactStat.SERIALIZER.getFromBuf(buf));
+        }
+        int m = buf.readInt();
+        for (int i = 0; i < m; i++) {
+            data.spell_mods.add(buf.readString(100));
+        }
+
+        return data;
+    }
+
+    @Override
+    public void toBuf(PacketByteBuf buf) {
+        buf.writeString(type.name(), 100);
+        buf.writeString(identifier, 100);
+        buf.writeString(spell, 100);
+        buf.writeString(lock_under_adv, 100);
+        buf.writeString(icon, 150);
+
+        buf.writeString(one_of_a_kind != null ? one_of_a_kind : "", 100);
+
+        buf.writeBoolean(is_entry);
+        buf.writeInt(lvl_req);
+
+        buf.writeInt(stats.size());
+        stats.forEach(x -> x.toBuf(buf));
+        buf.writeInt(spell_mods.size());
+        spell_mods.forEach(x -> buf.writeString(x, 100));
+    }
 
     public List<SpellModifier> getSpellMods() {
         return spell_mods.stream()

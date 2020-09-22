@@ -1,30 +1,51 @@
 package com.robertx22.age_of_exile.database.data.spell_modifiers;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, IAutoGson<SpellModifier>, ITooltipList, IAutoLocName {
+public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, IByteBuf<SpellModifier>, IAutoGson<SpellModifier>, ITooltipList, IAutoLocName {
     public static SpellModifier SERIALIZER = new SpellModifier();
+
     public String identifier;
-
     public List<SpellModStatData> mods = new ArrayList<>();
-
     public String for_spell;
+
+    @Override
+    public SpellModifier getFromBuf(PacketByteBuf buf) {
+        SpellModifier mod = new SpellModifier();
+        mod.identifier = buf.readString(100);
+        int c = buf.readInt();
+        for (int i = 0; i < c; i++) {
+            mod.mods.add(SpellModStatData.SERIALIZER.getFromBuf(buf));
+        }
+        mod.for_spell = buf.readString(100);
+        return mod;
+    }
+
+    @Override
+    public void toBuf(PacketByteBuf buf) {
+        buf.writeString(identifier, 100);
+        buf.writeInt(mods.size());
+        mods.forEach(x -> x.toBuf(buf));
+        buf.writeString(for_spell, 100);
+    }
 
     public static SpellModifier createSpecial(String id, String spell, String locname) {
 
@@ -124,6 +145,7 @@ public class SpellModifier implements ISerializedRegistryEntry<SpellModifier>, I
     public String locNameForLangFile() {
         return locName;
     }
+
 }
 
 

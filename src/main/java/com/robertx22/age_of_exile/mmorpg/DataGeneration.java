@@ -33,6 +33,7 @@ public class DataGeneration {
                     manager.registerListener(x.getLoader());
                 }
             });
+
     }
 
 }

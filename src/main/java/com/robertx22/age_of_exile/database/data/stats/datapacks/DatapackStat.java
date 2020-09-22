@@ -4,6 +4,9 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class DatapackStat extends Stat {
+
+    public String spell = null;
+
     @Override
     public boolean IsPercent() {
         return false;

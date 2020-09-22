@@ -33,7 +33,9 @@ import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
 import com.robertx22.age_of_exile.database.registrators.Stats;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.registry.RegistryPacket;
@@ -47,6 +49,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class SlashRegistry {
@@ -66,6 +69,7 @@ public class SlashRegistry {
     }
 
     public static void restoreBackup() {
+        System.out.print("Restoring registry backup, this should never happen!");
         SERVER = new HashMap<>(BACKUP); // this doesnt appear to be EVER called.. But unsure if good idea to remove
     }
 
@@ -267,7 +271,20 @@ public class SlashRegistry {
     }
 
     public static void sendPacketsToClient(ServerPlayerEntity player, SyncTime sync) {
-        SlashRegistryType.getInRegisterOrder(sync)
+
+        Watch watch = new Watch();
+        watch.unit = TimeUnit.SECONDS;
+        if (MMORPG.RUN_DEV_TOOLS) {
+            watch.min = 1;
+        }
+        Watch mili = null;
+        if (MMORPG.RUN_DEV_TOOLS) {
+            mili = new Watch();
+        }
+
+        List<SlashRegistryType> list = SlashRegistryType.getInRegisterOrder(sync);
+
+        list
             .forEach(x -> {
                 if (x.getLoader() != null && x.ser != null) {
                     try {
@@ -284,6 +301,11 @@ public class SlashRegistry {
                     }
                 }
             });
+
+        watch.print("Sending " + sync.name() + " Packets ");
+        if (MMORPG.RUN_DEV_TOOLS) {
+            mili.print("Sending " + sync.name() + " Packets ");
+        }
     }
 
     public static void checkGuidValidity() {

@@ -4,11 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import net.minecraft.resource.JsonDataLoader;
@@ -75,6 +75,10 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
             throw new RuntimeException("Mine and Slash Registry of type " + registryType.id + " is EMPTY after datapack loading!");
         } else {
             System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
+        }
+
+        if (registryType.isLastToLoad()) {
+            SlashRegistry.backup();
         }
 
     }

@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.database.registry.RegistryPackets;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SyncTime;
+import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
@@ -34,8 +34,10 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
         if (when == When.BEFORE) {
         }
         if (when == When.AFTER) {
-            SlashRegistry.backup();
             RegistryPackets.registerAll(sync);
+        }
+        if (sync == SyncTime.ON_SKILL_TREE) {
+            OnLogin.CLIENT_ONLY_GOT_SKILL_PACKETS = true;
         }
     }
 

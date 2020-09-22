@@ -31,8 +31,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public Stat() {
     }
 
-    public int max_val = Integer.MAX_VALUE;
     public float min_val = -1000;
+    public float max_val = Integer.MAX_VALUE;
     public int base_val = 0;
 
     protected StatScaling scaling = StatScaling.SLOW_SCALING;
@@ -138,7 +138,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     @Override
     public AutoLocGroup locDescGroup() {
         return AutoLocGroup.Stats;
-
     }
 
     @Override

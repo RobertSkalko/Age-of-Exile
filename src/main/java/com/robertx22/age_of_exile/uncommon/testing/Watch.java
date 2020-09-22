@@ -13,7 +13,6 @@ public class Watch {
     public Long time;
 
     public Watch() {
-        stop = new StopWatch();
         stop.start();
     }
 

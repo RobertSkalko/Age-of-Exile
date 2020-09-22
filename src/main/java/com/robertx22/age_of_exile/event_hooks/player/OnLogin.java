@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,34 +16,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 
-import java.util.concurrent.TimeUnit;
-
 public class OnLogin {
+
+    public static boolean CLIENT_ONLY_GOT_SKILL_PACKETS = false;
 
     public static void onLoad(ServerPlayerEntity player) {
 
         try {
 
-            Watch watch = new Watch();
-            watch.unit = TimeUnit.SECONDS;
-            if (MMORPG.RUN_DEV_TOOLS) {
-                watch.min = 1;
-            }
-            Watch mili = null;
-            if (MMORPG.RUN_DEV_TOOLS) {
-                mili = new Watch();
-            }
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.BEFORE));
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
             SlashRegistry.sendPacketsToClient(player, SyncTime.ON_LOGIN);
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.AFTER));
             SlashRegistry.restoreFromBackupifEmpty();
-
-            watch.print("Sending Login Packets ");
-            if (MMORPG.RUN_DEV_TOOLS) {
-                mili.print("Sending Login Packets ");
-            }
 
             Load.spells(player)
                 .getCastingData()

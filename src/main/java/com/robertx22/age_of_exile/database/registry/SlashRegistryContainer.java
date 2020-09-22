@@ -129,14 +129,6 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             return new ArrayList<C>(map.values());
         }
 
-        /*
-        if (MMORPG.RUN_DEV_TOOLS && !serializables.isEmpty()) {
-            return new ArrayList<C>(serializables.values());
-            // if called before datapacks load, get serializables. This should only be used in dev enviroment to generate data
-            // this should allow multiple registries to depend on each other before datapacks load while they're in serializables list
-
-         */
-
         this.tryLogEmptyRegistry();
 
         return Arrays.asList();
@@ -220,21 +212,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return map.containsKey(guid);
     }
 
-    // for mod addon devs if they want to overwrite some of my stuff
-    public void registerOverride(C c) {
-
-        if (isRegistered(c)) {
-            System.out.println("[Mine and Slash Registry Note]: Overriding: " + c.GUID());
-        }
-
-        map.put(c.GUID(), c);
-
-    }
-
     public void register(C c) {
 
         if (isRegistered(c)) {
-
             if (registersErrorsAlertedFor.contains(c.GUID()) == false) {
                 logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c.getSlashRegistryType()
                     .toString() + " registry.");

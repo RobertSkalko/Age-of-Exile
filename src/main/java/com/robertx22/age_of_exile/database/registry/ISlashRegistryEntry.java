@@ -10,11 +10,6 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
 
     SlashRegistryType getSlashRegistryType();
 
-    // this could be used for stuff like setdata, affixdata etc?  prototype
-    default C getFromRegistry() {
-        return (C) SlashRegistry.get(getSlashRegistryType(), this.GUID());
-    }
-
     default void registerToSlashRegistry() {
         SlashRegistry.getRegistry(getSlashRegistryType())
             .register(this);

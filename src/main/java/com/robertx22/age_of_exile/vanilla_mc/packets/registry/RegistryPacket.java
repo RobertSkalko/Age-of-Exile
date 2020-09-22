@@ -3,12 +3,13 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.registry;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.RegistryPackets;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.fabric.api.network.PacketContext;
@@ -55,17 +56,21 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
 
     @Override
     public void saveToData(PacketByteBuf tag) {
+
         try {
+            Watch watch = new Watch();
             tag.writeString(type.name(), 30);
             CompoundTag nbt = new CompoundTag();
 
             LoadSave.Save(data, nbt, "data");
 
             tag.writeCompoundTag(nbt);
+            watch.print("Writing gson packet for " + this.type.name() + " ");
         } catch (Exception e) {
             System.out.println("Failed saving " + type.name() + " Age of Exile packet to bufferer.");
             e.printStackTrace();
         }
+
     }
 
     @Override

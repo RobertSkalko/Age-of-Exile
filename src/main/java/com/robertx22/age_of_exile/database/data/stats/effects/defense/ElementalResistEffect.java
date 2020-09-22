@@ -34,7 +34,7 @@ public class ElementalResistEffect extends BaseDamageEffect {
             pene = ipen.GetElementalPenetration();
         }
 
-        int max = stat.max_val;
+        int max = (int) stat.max_val;
 
         StatData maxdata = effect.targetData.getUnit()
             .peekAtStat(new MaxElementalResist(effect.element));
