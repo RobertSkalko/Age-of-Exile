@@ -10,11 +10,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 public class DamageShield extends Stat implements IStatEffects {
 
     private DamageShield() {
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
+        this.scaling = StatScaling.SCALING;
     }
 
     public static DamageShield getInstance() {

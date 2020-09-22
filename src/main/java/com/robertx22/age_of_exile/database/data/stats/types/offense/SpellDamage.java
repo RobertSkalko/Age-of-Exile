@@ -10,12 +10,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 public class SpellDamage extends Stat implements IStatEffects {
 
     private SpellDamage() {
-
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SLOW_SCALING;
+        this.scaling = StatScaling.SLOW_SCALING;
     }
 
     public static String GUID = "spell_damage";

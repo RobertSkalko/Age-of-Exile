@@ -17,9 +17,8 @@ import java.util.List;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.LINEAR;
+    public BaseCoreStat() {
+        this.scaling = StatScaling.LINEAR;
     }
 
     @Override

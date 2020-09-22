@@ -8,11 +8,7 @@ public class HealthRegen extends BaseRegenClass {
 
     public static HealthRegen getInstance() {
         return SingletonHolder.INSTANCE;
-    }
 
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
     }
 
     @Override
@@ -27,6 +23,7 @@ public class HealthRegen extends BaseRegenClass {
 
     private HealthRegen() {
         this.min_val = 0.05F;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override

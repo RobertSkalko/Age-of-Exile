@@ -26,11 +26,6 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
-    }
-
-    @Override
     public Stat.StatGroup statGroup() {
         return Stat.StatGroup.EleAttackDamage;
     }
@@ -38,6 +33,7 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
     public WeaponDamage(Elements element) {
         super(element);
         this.uses_second_val = true;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override

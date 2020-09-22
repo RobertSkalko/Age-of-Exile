@@ -12,17 +12,13 @@ public class ExtraMobDropsStat extends Stat {
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
-    }
-
-    @Override
     public StatGroup statGroup() {
         return StatGroup.Misc;
     }
 
     private ExtraMobDropsStat() {
         this.min_val = -100;
+        this.scaling = StatScaling.NONE;
     }
 
     @Override

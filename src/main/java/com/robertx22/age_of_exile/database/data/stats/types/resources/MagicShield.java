@@ -13,15 +13,11 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
 
     private MagicShield() {
         this.min_val = 0;
+        this.scaling = StatScaling.SCALING;
     }
 
     public static MagicShield getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
     }
 
     @Override

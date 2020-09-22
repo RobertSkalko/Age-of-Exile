@@ -16,11 +16,6 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
-    }
-
-    @Override
     public StatGroup statGroup() {
         return StatGroup.Defenses;
     }
@@ -39,6 +34,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
 
     private Armor() {
         this.min_val = 0;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override

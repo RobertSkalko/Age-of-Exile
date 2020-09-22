@@ -16,12 +16,8 @@ public class RegeneratePercentStat extends Stat {
 
     private RegeneratePercentStat(Stat statRestored) {
         this.statRestored = statRestored;
+        this.scaling = StatScaling.NONE;
 
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
     }
 
     @Override

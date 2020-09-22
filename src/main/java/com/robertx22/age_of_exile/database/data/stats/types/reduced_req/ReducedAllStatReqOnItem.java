@@ -10,16 +10,12 @@ public class ReducedAllStatReqOnItem extends Stat {
 
     public ReducedAllStatReqOnItem() {
         this.add$plusminus$toTooltip = false;
+        this.scaling = StatScaling.NONE;
     }
 
     @Override
     public StatNameRegex getStatNameRegex() {
         return StatNameRegex.REDUCED_REQ_BY_PECRENT;
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
     }
 
     public float getModifiedRequirement(float req, ExactStatData data) {

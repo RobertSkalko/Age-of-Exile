@@ -9,11 +9,7 @@ public class MaxElementalResist extends ElementalStat {
 
     public MaxElementalResist(Elements element) {
         super(element);
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
+        this.scaling = StatScaling.NONE;
     }
 
     @Override

@@ -10,11 +10,6 @@ public class ManaRegen extends BaseRegenClass {
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
-    }
-
-    @Override
     public String getIconPath() {
         return "regen/mana_regen";
     }
@@ -26,6 +21,7 @@ public class ManaRegen extends BaseRegenClass {
 
     private ManaRegen() {
         this.min_val = 0;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override

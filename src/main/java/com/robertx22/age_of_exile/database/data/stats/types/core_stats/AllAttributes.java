@@ -13,11 +13,7 @@ import java.util.List;
 public class AllAttributes extends Stat implements IAddToOtherStats {
 
     private AllAttributes() {
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.LINEAR;
+        this.scaling = StatScaling.LINEAR;
     }
 
     public static AllAttributes getInstance() {

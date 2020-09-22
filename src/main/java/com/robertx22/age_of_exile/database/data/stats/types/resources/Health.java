@@ -11,15 +11,11 @@ public class Health extends Stat {
 
     private Health() {
         this.min_val = 1;
+        this.scaling = StatScaling.SCALING;
     }
 
     public static Health getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
     }
 
     @Override

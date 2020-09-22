@@ -35,9 +35,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public float min_val = -1000;
     public int base_val = 0;
 
+    protected StatScaling scaling = StatScaling.SLOW_SCALING;
+
     public boolean add$To$toTooltip = true;
     public boolean add$plusminus$toTooltip = true;
-    public boolean uses_second_val = true;
+    public boolean uses_second_val = false;
 
     @Override
     public boolean isRegistryEntryValid() {
@@ -52,8 +54,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return uses_second_val;
     }
 
-    public StatScaling getScaling() {
-        return StatScaling.SLOW_SCALING;
+    public final StatScaling getScaling() {
+        return scaling;
     }
 
     public final float scale(float stat, int lvl) {

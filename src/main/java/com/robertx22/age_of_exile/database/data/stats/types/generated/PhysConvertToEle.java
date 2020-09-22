@@ -17,11 +17,6 @@ public class PhysConvertToEle extends ElementalStat implements IStatEffects {
     public static MapWrapper<Elements, PhysConvertToEle> MAP = new MapWrapper();
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
-    }
-
-    @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllSingleVariations();
         list.forEach(x -> MAP.put(x.getElement(), (PhysConvertToEle) x));
@@ -31,6 +26,7 @@ public class PhysConvertToEle extends ElementalStat implements IStatEffects {
 
     public PhysConvertToEle(Elements element) {
         super(element);
+        this.scaling = StatScaling.NONE;
     }
 
     @Override

@@ -16,11 +16,6 @@ public class LifeOnHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
-    }
-
-    @Override
     public StatGroup statGroup() {
         return StatGroup.Regeneration;
     }
@@ -36,6 +31,7 @@ public class LifeOnHit extends Stat implements IStatEffects {
     }
 
     private LifeOnHit() {
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override

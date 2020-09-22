@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.reduced_req;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
@@ -13,16 +12,12 @@ public class FlatIncreasedReq extends Stat {
 
     public FlatIncreasedReq(BaseCoreStat statReq) {
         this.statReq = statReq;
+        this.scaling = Dexterity.INSTANCE.getScaling();
     }
 
     @Override
     public StatNameRegex getStatNameRegex() {
         return StatNameRegex.BASIC;
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return Dexterity.INSTANCE.getScaling();
     }
 
     public float getModifiedRequirement(Stat stat, float req, ExactStatData data) {

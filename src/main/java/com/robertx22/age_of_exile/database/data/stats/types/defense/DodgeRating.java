@@ -13,11 +13,6 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     public static String GUID = "dodge";
 
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
-    }
-
     public static DodgeRating getInstance() {
         return SingletonHolder.INSTANCE;
     }
@@ -44,6 +39,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     private DodgeRating() {
         this.min_val = 0;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override

@@ -11,11 +11,7 @@ public class ManaOnHit extends Stat implements IStatEffects {
     public static String GUID = "mana_on_hit";
 
     private ManaOnHit() {
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
+        this.scaling = StatScaling.SCALING;
     }
 
     public static ManaOnHit getInstance() {

@@ -12,11 +12,6 @@ public class Mana extends Stat {
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
-    }
-
-    @Override
     public String getIconPath() {
         return "resource/mana";
     }
@@ -33,6 +28,7 @@ public class Mana extends Stat {
 
     private Mana() {
         this.min_val = 0;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override

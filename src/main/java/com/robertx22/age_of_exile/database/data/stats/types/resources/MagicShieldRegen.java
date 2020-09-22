@@ -8,12 +8,7 @@ public class MagicShieldRegen extends BaseRegenClass {
     public static String GUID = "magic_shield_regen";
 
     private MagicShieldRegen() {
-
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SCALING;
+        this.scaling = StatScaling.SCALING;
     }
 
     public static MagicShieldRegen getInstance() {

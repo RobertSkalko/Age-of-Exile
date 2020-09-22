@@ -14,11 +14,6 @@ import java.util.List;
 public class ElementalDamageBonus extends ElementalStat implements IStatEffects {
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
-    }
-
-    @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
         return list;
@@ -27,6 +22,7 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
 
     public ElementalDamageBonus(Elements element) {
         super(element);
+        this.scaling = StatScaling.NONE;
     }
 
     @Override
