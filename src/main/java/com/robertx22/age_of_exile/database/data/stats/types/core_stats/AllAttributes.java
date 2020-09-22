@@ -16,11 +16,6 @@ public class AllAttributes extends Stat implements IAddToOtherStats {
     }
 
     @Override
-    public boolean IsShownOnStatGui() {
-        return false;
-    }
-
-    @Override
     public StatScaling getScaling() {
         return StatScaling.LINEAR;
     }

@@ -11,11 +11,6 @@ public class UnknownStat extends Stat {
     }
 
     @Override
-    public boolean IsShownOnStatGui() {
-        return false;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "";
     }

@@ -13,6 +13,7 @@ loop_of_infinity
 angel_prot_necklace
 exec_pride
 will_of_flora
+ms_armor_chest
 skull_of_spirits
 beast_blood
 birth_miracle

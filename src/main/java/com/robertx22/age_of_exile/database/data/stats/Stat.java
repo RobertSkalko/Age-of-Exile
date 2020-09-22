@@ -23,7 +23,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +31,13 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public Stat() {
     }
 
-    public boolean isInt = false;
+    public int maximumValue = Integer.MAX_VALUE;
+    public float minimumValue = -1000;
+    public int BaseFlat = 0;
 
     public boolean add$To$toTooltip = true;
     public boolean add$plusminus$toTooltip = true;
+    public boolean uses_second_val = true;
 
     @Override
     public boolean isRegistryEntryValid() {
@@ -46,8 +48,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return StatNameRegex.BASIC;
     }
 
-    public boolean UsesSecondValue() {
-        return false;
+    public final boolean UsesSecondValue() {
+        return uses_second_val;
     }
 
     public Formatting getIconFormat() {
@@ -72,10 +74,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         } else {
             return Elements.Physical.icon;
         }
-    }
-
-    public String getFormattedIcon() {
-        return getIconFormat() + getIcon();
     }
 
     public List<MutableText> getCutDescTooltip() {
@@ -176,41 +174,13 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return AutoLocGroup.Stats;
     }
 
-    public int maximumValue = Integer.MAX_VALUE;
-
-    public float minimumValue = -1000;
-
     public abstract boolean IsPercent();
 
     public abstract Elements getElement();
 
-    public int BaseFlat = 0;
-
-    public String printValue(float val) {
-
-        DecimalFormat format = new DecimalFormat();
-
-        if (val < 5) {
-            format.setMaximumFractionDigits(1);
-
-            return format.format(val);
-
-        } else {
-
-            int intval = (int) val;
-            return intval + "";
-
-        }
-
-    }
-
     @Environment(EnvType.CLIENT)
     public List<Text> getTooltipList(TooltipStatInfo info) {
         return info.tooltipInfo.statTooltipType.impl.getTooltipList(info);
-    }
-
-    public boolean IsShownOnStatGui() {
-        return true;
     }
 
     public StatGroup statGroup() {
@@ -229,22 +199,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         Regeneration(Words.Regeneration, 7);
 
         StatGroup(Words word, int place) {
-            this.place = place;
             this.word = word;
         }
 
         public Words word;
 
-        public final int width = 18;
-        public final int height = 18;
-
-        public int place = 0;
-
-        public final int Y = 8;
-
-        public int X() {
-            return 25 + width * place;
-        }
     }
 
 }

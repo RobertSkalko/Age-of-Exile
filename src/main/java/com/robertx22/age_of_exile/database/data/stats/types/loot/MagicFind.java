@@ -13,11 +13,6 @@ public class MagicFind extends Stat {
     }
 
     @Override
-    public boolean IsShownOnStatGui() {
-        return true;
-    }
-
-    @Override
     public boolean IsPercent() {
         return true;
     }

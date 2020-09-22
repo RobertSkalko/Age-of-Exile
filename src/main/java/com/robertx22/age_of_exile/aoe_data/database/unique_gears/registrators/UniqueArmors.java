@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ImmuneToEffectStat;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
@@ -16,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -27,6 +29,19 @@ import java.util.Arrays;
 public class UniqueArmors implements ISlashRegistryInit {
     @Override
     public void registerAll() {
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.MS_REG_ARMOR_CHEST,
+            "ms_armor_chest",
+            "The Unfading",
+            "If only they knew that the inscription referred to the armor.",
+            BasePlateArmors.CHESTS.get(LevelRanges.MIDDLE))
+            .stats(Arrays.asList(
+                new StatModifier(20, 100, Armor.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(20, 60, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(0.2F, 0.45F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+            ))
+            .build();
 
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.BEAST_BLOOD,

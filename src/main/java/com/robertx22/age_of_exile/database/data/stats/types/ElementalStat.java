@@ -30,11 +30,6 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     public abstract Stat newGeneratedInstance(Elements element);
 
     @Override
-    public boolean IsShownOnStatGui() {
-        return getElement() != Elements.Elemental;
-    }
-
-    @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
         Elements.getEverythingBesidesPhysical()

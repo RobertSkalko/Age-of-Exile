@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
-import com.robertx22.age_of_exile.database.data.stats.FillableStat;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.util.Formatting;
 
-public class Mana extends FillableStat {
+public class Mana extends Stat {
     public static String GUID = "mana";
 
     public static Mana getInstance() {

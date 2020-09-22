@@ -8,6 +8,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item BEAST_BLOOD = item(new BaseUniqueChest("Plate Chest"), "uniques/armor/beast_blood");
     public Item EXEC_PRIDE = item(new BaseUniqueChest("Leather Chest"), "uniques/armor/exec_pride");
     public Item INNFER_CONFLUX_ROBE = item(new BaseUniqueChest("Cloth Chest"), "uniques/armor/inner_conflux");
+    public Item MS_REG_ARMOR_CHEST = item(new BaseUniqueChest("Plate chest"), "uniques/armor/ms_armor_chest");
 
     public Item JESTER_HAT = item(new BaseUniqueHelmet("Cloth Hat"), "uniques/armor/jester_hat");
 

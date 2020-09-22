@@ -35,13 +35,9 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
         return Stat.StatGroup.EleAttackDamage;
     }
 
-    @Override
-    public boolean UsesSecondValue() {
-        return true;
-    }
-
     public WeaponDamage(Elements element) {
         super(element);
+        this.uses_second_val = true;
     }
 
     @Override
