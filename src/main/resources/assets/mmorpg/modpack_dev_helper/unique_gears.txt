@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 judgement
 rot_phys
+frost_crown
 eye_of_zegrath
 divine_might
 water_ele_sword
@@ -10,6 +11,7 @@ jester_hat
 obsi_might
 greed_persist
 loop_of_infinity
+gluttony_helmet
 angel_prot_necklace
 exec_pride
 fifth_rider
@@ -18,6 +20,7 @@ ms_armor_chest
 skull_of_spirits
 beast_blood
 birth_miracle
+crown_of_elements
 snake_eye
 harbinger
 inca_thunder

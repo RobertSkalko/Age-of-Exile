@@ -4,6 +4,10 @@ import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseC
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
@@ -15,6 +19,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.Regenerate
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
@@ -53,5 +58,36 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(0.2F, 0.6F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
             ))
             .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.FROST_CROWN,
+            "frost_crown",
+            "Crown of Ice",
+            "Everyone needs a proper burial, and I will make theirs dazzling.",
+            BaseClothArmors.HELMETS.get(LevelRanges.MIDDLE))
+            .stats(Arrays.asList(
+                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(25, 50, new ElementalResist(Elements.Water), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalPenetration(Elements.Water), ModType.FLAT),
+                new StatModifier(5, 15, ChanceToApplyEffect.CHILL, ModType.FLAT),
+                new StatModifier(0.2F, 0.3F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+            ))
+            .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.CROWN_OF_ELEMENTS,
+            "crown_of_elements",
+            "Crown of Elements",
+            "Have you ever felt true power?",
+            BaseClothArmors.HELMETS.get(LevelRanges.ENDGAME))
+            .stats(Arrays.asList(
+                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
+                new StatModifier(0.2F, 0.3F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+            ))
+            .build();
+
     }
 }

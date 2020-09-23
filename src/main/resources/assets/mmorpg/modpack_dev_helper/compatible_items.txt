@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry can't be modified or added to.
 mmorpg:uniques/weapon/eye_of_zegrath
 mmorpg:uniques/jewelry/birth_miracle
+mmorpg:uniques/armor/gluttony_helmet
 mmorpg:armor/plate/pants/plate_pants0
 mmorpg:armor/plate/pants/plate_pants2
 mmorpg:armor/plate/pants/plate_pants1
@@ -72,6 +73,7 @@ mmorpg:uniques/armor/jester_hat
 mmorpg:jewelry/ring/poison_res_ring_end
 mmorpg:weapon/wand/wand4
 mmorpg:jewelry/ring/thunder_res_ring_end
+mmorpg:uniques/armor/crown_of_elements
 mmorpg:uniques/weapon/divine_might
 mmorpg:armor/plate/helmet/plate_helmet3
 mmorpg:armor/plate/helmet/plate_helmet4
@@ -113,5 +115,6 @@ mmorpg:weapon/sword/sword0
 mmorpg:armor/plate/chest/plate_chest2
 mmorpg:uniques/jewelry/snake_eye
 mmorpg:uniques/jewelry/loop_of_infinity
+mmorpg:uniques/armor/frost_crown
 mmorpg:uniques/armor/ms_armor_chest
 mmorpg:jewelry/ring/mana_reg_ring_low

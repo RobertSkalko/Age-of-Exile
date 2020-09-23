@@ -12,7 +12,10 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item MS_REG_ARMOR_CHEST = item(new BaseUniqueChest("Plate chest"), "uniques/armor/ms_armor_chest");
 
     public Item FIFTH_RIDER_HELMET = item(new BaseUniqueHelmet("Plate Helmet"), "uniques/armor/fifth_rider");
+    public Item GLUTTONY_HELMET = item(new BaseUniqueHelmet("Plate Helmet"), "uniques/armor/gluttony_helmet");
     public Item JESTER_HAT = item(new BaseUniqueHelmet("Cloth Hat"), "uniques/armor/jester_hat");
+    public Item FROST_CROWN = item(new BaseUniqueHelmet("Cloth Hat"), "uniques/armor/frost_crown");
+    public Item CROWN_OF_ELEMENTS = item(new BaseUniqueHelmet("Cloth Hat"), "uniques/armor/crown_of_elements");
 
     public Item ANGEL_PROT_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/angel_prot_necklace");
     public Item BIRTH_MIRACLE_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/birth_miracle");

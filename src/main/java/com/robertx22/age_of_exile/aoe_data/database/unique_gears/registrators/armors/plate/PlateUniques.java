@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWe
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
@@ -63,13 +64,26 @@ public class PlateUniques implements ISlashRegistryInit {
             "The only thing that's missing is the horse.",
             BasePlateArmors.CHESTS.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
-                new StatModifier(20, 100, Armor.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(0.2F, 0.3F, Strength.INSTANCE, ModType.FLAT),
-                new StatModifier(10, 20, new SpecificWeaponDamage(WeaponTypes.Sword), ModType.FLAT),
+                new StatModifier(20, 80, Armor.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(15, 25, new SpecificWeaponDamage(WeaponTypes.Sword), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Thunder), ModType.FLAT),
                 new StatModifier(0.1F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
             ))
             .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.GLUTTONY_HELMET,
+            "gluttony_helmet",
+            "Gluttony",
+            "If only hunger could be sated, I would not be doomed.",
+            BasePlateArmors.CHESTS.get(LevelRanges.MIDDLE))
+            .stats(Arrays.asList(
+                new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
+                new StatModifier(50, 100, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(0.1F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+            ))
+            .build();
+
     }
 }
