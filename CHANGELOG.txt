@@ -1,7 +1,19 @@
 v.1.4.0
 
-- added a few unique gears
+Added a few new unique gears:
+- Snake eye
+- Judgement
+- Smell of Rot
+- The Unfading
+- Fifth Rider
+- Harbinger
+- Gluttony
+- Crown of Ice
+- Crown of Elements
 
+- added gem and rune loot crates.
+
+Reworks:
 - perks and spell mods now use efficient packets
 - reworked inner code. Might be buggy. Goal: separate my data generation code from actual in game code. Data gen code should never run outside of my dev environment.
 As a result some ring and necklaces changed ids

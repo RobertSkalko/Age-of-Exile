@@ -1,11 +1,14 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
+import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
+import com.robertx22.age_of_exile.loot.generators.GemLootGen;
+import com.robertx22.age_of_exile.loot.generators.RuneLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -48,9 +51,21 @@ public class LootCrateItem extends Item implements IAutoModel {
     }
 
     public enum LootCrateType {
+        RUNE(new MinMax(2, 5)) {
+            @Override
+            public ItemStack generate(PlayerEntity en) {
+                return new RuneLootGen(LootInfo.ofPlayer(en)).generateOne();
+            }
+        },
+        GEM(new MinMax(3, 6)) {
+            @Override
+            public ItemStack generate(PlayerEntity en) {
+                return new GemLootGen(LootInfo.ofPlayer(en)).generateOne();
+            }
+        },
         COMMON(new MinMax(2, 6)) {
             @Override
-            public ItemStack generate(LivingEntity en) {
+            public ItemStack generate(PlayerEntity en) {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
@@ -60,7 +75,7 @@ public class LootCrateItem extends Item implements IAutoModel {
         },
         MAGIC(new MinMax(2, 5)) {
             @Override
-            public ItemStack generate(LivingEntity en) {
+            public ItemStack generate(PlayerEntity en) {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
@@ -70,7 +85,7 @@ public class LootCrateItem extends Item implements IAutoModel {
         },
         RARE(new MinMax(2, 4)) {
             @Override
-            public ItemStack generate(LivingEntity en) {
+            public ItemStack generate(PlayerEntity en) {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
@@ -80,7 +95,7 @@ public class LootCrateItem extends Item implements IAutoModel {
         },
         UNIQUE(new MinMax(1, 2)) {
             @Override
-            public ItemStack generate(LivingEntity en) {
+            public ItemStack generate(PlayerEntity en) {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
@@ -99,7 +114,7 @@ public class LootCrateItem extends Item implements IAutoModel {
         },
         RELIC(new MinMax(2, 3)) {
             @Override
-            public ItemStack generate(LivingEntity en) {
+            public ItemStack generate(PlayerEntity en) {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
@@ -108,7 +123,7 @@ public class LootCrateItem extends Item implements IAutoModel {
             }
         };
 
-        public abstract ItemStack generate(LivingEntity en);
+        public abstract ItemStack generate(PlayerEntity en);
 
         public MinMax amount;
 

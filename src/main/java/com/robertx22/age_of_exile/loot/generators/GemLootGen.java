@@ -8,9 +8,9 @@ import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
-public class GemLootGem extends BaseLootGen<GearBlueprint> {
+public class GemLootGen extends BaseLootGen<GearBlueprint> {
 
-    public GemLootGem(LootInfo info) {
+    public GemLootGen(LootInfo info) {
         super(info);
 
     }

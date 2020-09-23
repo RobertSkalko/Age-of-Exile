@@ -72,6 +72,10 @@ public class LootInfo {
         return info;
     }
 
+    public static LootInfo ofPlayer(PlayerEntity player) {
+        return ofMobKilled(player, player);
+    }
+
     public static LootInfo ofBlockPosition(World world, BlockPos pos) {
 
         LootInfo info = new LootInfo();
