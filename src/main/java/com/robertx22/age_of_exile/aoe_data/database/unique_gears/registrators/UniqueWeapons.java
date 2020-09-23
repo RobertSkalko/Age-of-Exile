@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.HealToSpellDmgStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
@@ -16,7 +17,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncr
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurn;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
@@ -154,6 +157,34 @@ public class UniqueWeapons implements ISlashRegistryInit {
                 new StatModifier(10, 20, ReducedManaCost.getInstance(), ModType.FLAT),
                 new StatModifier(10, 30, ReducedCooldownStat.getInstance(), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)))
+            .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.FRIGID_STAFF,
+            "frigid_staff",
+            "Gem of The North",
+            "Found in a deep pit of ice. Many wands were shattered in attempts to imbue it.",
+            BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
+            .stats(Arrays.asList(
+                new StatModifier(1, 1, 3, 3, new WeaponDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(15, 30, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(15, 25, ProjectileSpeedStat.getInstance(), ModType.FLAT),
+                new StatModifier(3, 3, ManaOnHit.getInstance(), ModType.FLAT),
+                new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)))
+            .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.WORLDBEARER_STAFF,
+            "worldbearer",
+            "Worldbearer",
+            "The ability to carry any burden is a heavy one.",
+            BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
+            .stats(Arrays.asList(
+                new StatModifier(3, 3, 3, 6, new WeaponDamage(Elements.Nature), ModType.FLAT),
+                new StatModifier(15, 30, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
+                new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),
+                new StatModifier(15, 30, Strength.INSTANCE, ModType.LOCAL_INCREASE),
+                new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)))
             .build();
 
     }

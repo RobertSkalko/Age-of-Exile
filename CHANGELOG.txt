@@ -1,6 +1,6 @@
 v.1.4.0
 
-Added a few new unique gears:
+Added a "few" new unique gears:
 - Snake eye
 - Judgement
 - Smell of Rot
@@ -11,6 +11,8 @@ Added a few new unique gears:
 - Crown of Ice
 - Crown of Elements
 - Origin of Arcane
+- Gem of the North
+- Worldbearer
 
 Added new stats:
 - dmg at day

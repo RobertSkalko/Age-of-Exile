@@ -21,6 +21,7 @@ mmorpg:jewelry/necklace/life_necklace_low
 mmorpg:jewelry/necklace/all_res_necklace_low
 mmorpg:jewelry/ring/fire_res_ring_end
 mmorpg:armor/leather/pants/leather_pants0
+mmorpg:uniques/weapon/worldbearer
 mmorpg:jewelry/ring/thunder_res_ring_low
 mmorpg:uniques/armor/exec_pride
 mmorpg:armor/leather/pants/leather_pants3
@@ -28,6 +29,7 @@ mmorpg:armor/leather/pants/leather_pants4
 mmorpg:uniques/weapon/will_of_flora
 mmorpg:armor/leather/pants/leather_pants1
 mmorpg:armor/leather/pants/leather_pants2
+mmorpg:uniques/weapon/frigid_staff
 mmorpg:uniques/armor/beast_blood
 mmorpg:uniques/jewelry/greed_persist
 mmorpg:jewelry/ring/mana_reg_ring_end

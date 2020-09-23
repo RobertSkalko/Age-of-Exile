@@ -20,6 +20,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +103,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
                     color = Formatting.YELLOW;
                 }
 
-                MutableText comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + color + NumberUtils.format(exactStatData.getFirstValue()) + perc);
+                MutableText comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + color + NumberUtils.format(MathHelper.clamp(exactStatData.getFirstValue(), 0, Integer.MAX_VALUE)) + perc);
 
                 if (stat instanceof CriticalHit) {
                     critchance = comp;

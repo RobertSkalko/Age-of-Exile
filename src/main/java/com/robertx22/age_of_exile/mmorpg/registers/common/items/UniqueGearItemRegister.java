@@ -30,6 +30,8 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item WILL_OF_FLORA_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/will_of_flora");
     public Item ROT_PHYS = item(new BaseUniqueWand("Wand"), "uniques/weapon/rot_phys");
     public Item CRYSTAL_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/crystal_wand");
+    public Item FRIGID_STAFF = item(new BaseUniqueWand("Wand"), "uniques/weapon/frigid_staff");
+    public Item WORLDBEARER_STAFF = item(new BaseUniqueWand("Wand"), "uniques/weapon/worldbearer");
 
     public Item INCA_THUNDER_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/inca_thunder");
     public Item WATER_ELE_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/water_ele_sword");
