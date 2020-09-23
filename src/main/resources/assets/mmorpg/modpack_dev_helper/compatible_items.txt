@@ -15,6 +15,7 @@ mmorpg:weapon/wand/scepter4
 mmorpg:jewelry/ring/cold_res_ring_end
 mmorpg:weapon/wand/scepter1
 mmorpg:weapon/wand/scepter0
+mmorpg:uniques/armor/harbinger
 mmorpg:jewelry/necklace/life_necklace_low
 mmorpg:jewelry/necklace/all_res_necklace_low
 mmorpg:jewelry/ring/fire_res_ring_end
@@ -32,6 +33,7 @@ mmorpg:jewelry/ring/mana_reg_ring_end
 mmorpg:armor/leather/helmet/leather_helmet4
 mmorpg:armor/leather/helmet/leather_helmet3
 mmorpg:armor/leather/helmet/leather_helmet0
+mmorpg:uniques/armor/fifth_rider
 mmorpg:armor/leather/helmet/leather_helmet2
 mmorpg:armor/leather/helmet/leather_helmet1
 mmorpg:uniques/armor/inner_conflux

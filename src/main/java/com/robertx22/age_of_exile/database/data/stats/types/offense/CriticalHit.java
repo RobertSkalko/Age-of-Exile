@@ -58,7 +58,7 @@ public class CriticalHit extends Stat implements IStatEffects, ILocalStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Critical Strike Chance";
+        return "Critical Chance";
     }
 
     private static class SingletonHolder {

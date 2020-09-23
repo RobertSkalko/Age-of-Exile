@@ -6,6 +6,7 @@ v.1.4.0
 - reworked inner code. Might be buggy. Goal: separate my data generation code from actual in game code. Data gen code should never run outside of my dev environment.
 As a result some ring and necklaces changed ids
 - added datapack effects! You can use similar format to spells and make effects do custom things, or just make them purely give stats, even vanilla ones!
+- sync all packets at login again. (there was a problem, spells didnt work until you opened menu, woops)
 
 Reworked my rarities into registries like all my other datapacks, as a result:
 - you can now add as many rarities as you want!
