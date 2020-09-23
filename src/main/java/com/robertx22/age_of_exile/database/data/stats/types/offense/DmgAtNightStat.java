@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
 public class DmgAtNightStat extends Stat implements IStatEffects {
 
-    public static String GUID = "dmg_at_night";
+    public static String GUID = "night_dmg";
 
     private DmgAtNightStat() {
         this.scaling = StatScaling.NONE;

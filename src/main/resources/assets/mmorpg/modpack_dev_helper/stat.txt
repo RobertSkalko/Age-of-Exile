@@ -24,6 +24,7 @@ spell_damage
 all_elemental_damage
 chance_of_static
 burn_bonus_dmg
+night_dmg
 water_penetration
 magic_shield_per_sec
 physical_to_thunder
@@ -59,6 +60,7 @@ mana_on_kill
 health_per_sec
 thunder_weapon_damage
 convert_fire_to_phys
+day_dmg
 wand_damage
 damage_shield
 water_resist

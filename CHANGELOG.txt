@@ -10,6 +10,7 @@ Added a few new unique gears:
 - Gluttony
 - Crown of Ice
 - Crown of Elements
+- Origin of Arcane
 
 Added new stats:
 - dmg at day

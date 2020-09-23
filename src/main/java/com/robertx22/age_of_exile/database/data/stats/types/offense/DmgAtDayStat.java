@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
 public class DmgAtDayStat extends Stat implements IStatEffects {
 
-    public static String GUID = "dmg_at_day";
+    public static String GUID = "day_dmg";
 
     private DmgAtDayStat() {
         this.scaling = StatScaling.NONE;

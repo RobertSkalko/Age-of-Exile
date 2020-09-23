@@ -11,11 +11,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDama
 import com.robertx22.age_of_exile.database.data.stats.types.misc.HealToSpellDmgStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -138,6 +141,19 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(100, 200, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE)
             ))
+            .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.CRYSTAL_WAND,
+            "crystal_wand",
+            "Origin of Arcane",
+            "There is always the first.",
+            BaseGearWeapons.WAND.get(LevelRanges.HIGH))
+            .stats(Arrays.asList(
+                new StatModifier(20, 45, SpellDamage.getInstance(), ModType.FLAT),
+                new StatModifier(10, 20, ReducedManaCost.getInstance(), ModType.FLAT),
+                new StatModifier(10, 30, ReducedCooldownStat.getInstance(), ModType.FLAT),
+                new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)))
             .build();
 
     }

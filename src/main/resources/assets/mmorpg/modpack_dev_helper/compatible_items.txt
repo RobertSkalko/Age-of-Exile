@@ -101,6 +101,7 @@ mmorpg:armor/cloth/pants/cloth_pants0
 mmorpg:armor/plate/boots/plate_boots2
 mmorpg:armor/cloth/pants/cloth_pants1
 mmorpg:armor/plate/boots/plate_boots3
+mmorpg:uniques/weapon/crystal_wand
 mmorpg:armor/cloth/pants/cloth_pants2
 mmorpg:armor/plate/boots/plate_boots4
 mmorpg:uniques/weapon/water_ele_sword

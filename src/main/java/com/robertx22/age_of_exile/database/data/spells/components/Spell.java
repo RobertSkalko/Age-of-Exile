@@ -116,7 +116,15 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         float multi = ctx.spellConfig.getMulti(SpellModEnum.COOLDOWN);
 
-        return (int) ((config.cooldown_ticks * multi) / 20);
+        float ticks = config.cooldown_ticks * multi;
+
+        float sec = ticks / 20F;
+
+        if (sec < 1) {
+            return 1; // cant go lower than 1 second!!!
+        }
+
+        return (int) sec;
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {
