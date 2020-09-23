@@ -21,6 +21,7 @@ Added new stats:
 - added gem and rune loot crates.
 
 Reworks:
+- further tried to optimize login packets. this time caching the packetbytebuf so it should save at least 0.1 sec per login.
 - perks and spell mods now use efficient packets
 - reworked inner code. Might be buggy. Goal: separate my data generation code from actual in game code. Data gen code should never run outside of my dev environment.
 As a result some ring and necklaces changed ids

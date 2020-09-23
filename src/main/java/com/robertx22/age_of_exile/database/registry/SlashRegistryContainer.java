@@ -1,8 +1,16 @@
 package com.robertx22.age_of_exile.database.registry;
 
+import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
+import com.robertx22.age_of_exile.vanilla_mc.packets.registry.RegistryPacket;
+import io.netty.buffer.Unpooled;
+import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,10 +43,38 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     List<C> fromDatapacks = null;
+    PacketByteBuf cachedBuf = null;
+
+    public void sendUpdatePacket(ServerPlayerEntity player) {
+        if (type.ser == null) {
+            return;
+        }
+
+        Preconditions.checkNotNull(cachedBuf);
+
+        if (type.ser instanceof IByteBuf) {
+            ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, EfficientRegistryPacket.ID, cachedBuf);
+        } else {
+            ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, RegistryPacket.ID, cachedBuf);
+        }
+    }
 
     public void onAllDatapacksLoaded() {
         fromDatapacks = null;
         getFromDatapacks();
+
+        if (!fromDatapacks.isEmpty()) {
+            cachedBuf = new PacketByteBuf(Unpooled.buffer());
+            // save the packetbytebuf, this should save at least 0.1 sec for each time anyone logs in.
+            // SUPER important for big mmorpg servers!
+            if (type.ser instanceof IByteBuf) {
+                new EfficientRegistryPacket(type, SlashRegistry.getRegistry(type)
+                    .getFromDatapacks()).saveToData(cachedBuf);
+            } else {
+                new RegistryPacket(type, SlashRegistry.getDataFor(type)).saveToData(cachedBuf);
+            }
+            Preconditions.checkNotNull(cachedBuf);
+        }
     }
 
     public List<C> getFromDatapacks() {

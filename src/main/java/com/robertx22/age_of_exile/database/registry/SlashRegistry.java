@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
@@ -32,13 +31,8 @@ import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
 import com.robertx22.age_of_exile.database.registrators.Stats;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
-import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.registry.RegistryPacket;
-import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.registry.Registry;
@@ -48,7 +42,6 @@ import net.minecraft.world.WorldAccess;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class SlashRegistry {
@@ -227,9 +220,9 @@ public class SlashRegistry {
         }
     }
 
-    static HashMap<SlashRegistryType, List<ListStringData>> cachedRegistryPackets = new HashMap<>();
+    static HashMap<SlashRegistryType, ListStringData> cachedRegistryPackets = new HashMap<>();
 
-    private static List<ListStringData> getDataFor(SlashRegistryType type) {
+    public static ListStringData getDataFor(SlashRegistryType type) {
         if (!cachedRegistryPackets.containsKey(type)) {
 
             SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
@@ -244,28 +237,12 @@ public class SlashRegistry {
                 throw new RuntimeException(type.name() + " Registry is empty on the server when trying to send registry packet!");
             }
 
-            new ListStringData(items
+            ListStringData data = new ListStringData(items
                 .stream()
                 .map(x -> ((ISerializable) x).toJsonString())
                 .collect(Collectors.toList()));
 
-            List<ListStringData> list = new ArrayList<>();
-            // if (items.size() < 100) {
-            list.add(new ListStringData(items
-                .stream()
-                .map(x -> ((ISerializable) x).toJsonString())
-                .collect(Collectors.toList())));
-         /*   } else {
-                for (List<ISerializedRegistryEntry> part : Lists.partition(items, 100)) {
-                    list.add(new ListStringData(part
-                        .stream()
-                        .map(x -> ((ISerializable) x).toJsonString())
-                        .collect(Collectors.toList())));
-                }
-            }
-
-          */
-            cachedRegistryPackets.put(type, list);
+            cachedRegistryPackets.put(type, data);
         }
 
         return cachedRegistryPackets.get(type);
@@ -273,41 +250,9 @@ public class SlashRegistry {
 
     public static void sendPacketsToClient(ServerPlayerEntity player, SyncTime sync) {
 
-        Watch watch = new Watch();
-        watch.unit = TimeUnit.SECONDS;
-        if (MMORPG.RUN_DEV_TOOLS) {
-            watch.min = 1;
-        }
-        Watch mili = null;
-        if (MMORPG.RUN_DEV_TOOLS) {
-            mili = new Watch();
-        }
-
         List<SlashRegistryType> list = SlashRegistryType.getInRegisterOrder(sync);
 
-        list
-            .forEach(x -> {
-                if (x.getLoader() != null && x.ser != null) {
-                    try {
-                        if (x.ser instanceof IByteBuf) {
-                            // player.networkHandler.sendPacket( TODO DO IT LIKE THIS
-                            Packets.sendToClient(player, new EfficientRegistryPacket(x, SlashRegistry.getRegistry(x)
-                                .getFromDatapacks()));
-                        } else {
-                            getDataFor(x).forEach(d -> {
-                                Packets.sendToClient(player, new RegistryPacket(x, d));
-                            });
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-        watch.print("Sending " + sync.name() + " Packets ");
-        if (MMORPG.RUN_DEV_TOOLS) {
-            mili.print("Sending " + sync.name() + " Packets ");
-        }
+        list.forEach(x -> getRegistry(x).sendUpdatePacket(player));
     }
 
     public static void checkGuidValidity() {

@@ -23,7 +23,10 @@ public class OnLogin {
 
     public static void onLoad(ServerPlayerEntity player) {
 
-        Watch total = new Watch();
+        Watch total = null;
+        if (MMORPG.RUN_DEV_TOOLS) {
+            total = new Watch();
+        }
 
         try {
 

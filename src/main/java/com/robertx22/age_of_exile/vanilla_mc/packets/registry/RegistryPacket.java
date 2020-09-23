@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.fabric.api.network.PacketContext;
@@ -19,6 +18,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
 public class RegistryPacket extends MyPacket<RegistryPacket> {
+    public static Identifier ID = new Identifier(Ref.MODID, "reg");
 
     public static final JsonParser PARSER = new JsonParser();
 
@@ -36,7 +36,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
 
     @Override
     public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "reg");
+        return ID;
     }
 
     @Override
@@ -63,14 +63,14 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
     public void saveToData(PacketByteBuf tag) {
 
         try {
-            Watch watch = new Watch();
+            //Watch watch = new Watch();
             tag.writeString(type.name(), 30);
             CompoundTag nbt = new CompoundTag();
 
             LoadSave.Save(data, nbt, "data");
 
             tag.writeCompoundTag(nbt);
-            watch.print("Writing gson packet for " + this.type.name() + " ");
+            // watch.print("Writing gson packet for " + this.type.name() + " ");
         } catch (Exception e) {
             System.out.println("Failed saving " + type.name() + " Age of Exile packet to bufferer.");
             e.printStackTrace();

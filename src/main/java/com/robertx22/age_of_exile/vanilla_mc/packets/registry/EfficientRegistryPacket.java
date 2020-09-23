@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class EfficientRegistryPacket<T extends IByteBuf & ISerializedRegistryEntry> extends MyPacket<EfficientRegistryPacket> {
-
+    public static Identifier ID = new Identifier(Ref.MODID, "eff_reg");
     private List<T> items;
 
     SlashRegistryType type;
@@ -33,7 +33,7 @@ public class EfficientRegistryPacket<T extends IByteBuf & ISerializedRegistryEnt
 
     @Override
     public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "eff_reg");
+        return ID;
     }
 
     @Override

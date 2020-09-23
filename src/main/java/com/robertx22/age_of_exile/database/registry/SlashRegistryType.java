@@ -107,12 +107,6 @@ public enum SlashRegistryType {
 
     }
 
-    public boolean isLastToLoad() {
-        return getAllInRegisterOrder().stream()
-            .max(Comparator.comparingInt(x -> x.order))
-            .get() == this;
-    }
-
     public BaseDataPackLoader getLoader() {
         return new BaseDataPackLoader(this, this.id, x -> this.ser.fromJson((JsonObject) x)) {
             @Override

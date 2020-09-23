@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -7,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -30,7 +30,6 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
     public transient String loc_name = "";
 
-
     @Override
     public RuneWord getFromBuf(PacketByteBuf buf) {
         RuneWord word = new RuneWord();
@@ -52,24 +51,19 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
     @Override
     public void toBuf(PacketByteBuf buf) {
-        try {
-            buf.writeString(identifier, 500);
+        buf.writeString(identifier, 500);
 
-            buf.writeInt(stats.size());
-            stats.forEach(x -> x.toBuf(buf));
-            buf.writeInt(runes_needed.size());
-            runes_needed.forEach(x -> buf.writeString(x, 10));
+        buf.writeInt(stats.size());
+        stats.forEach(x -> x.toBuf(buf));
+        buf.writeInt(runes_needed.size());
+        runes_needed.forEach(x -> buf.writeString(x, 10));
 
-            buf.writeString(family.name(), 500);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.print("Runeword: " + identifier + " error.");
-        }
+        buf.writeString(family.name(), 500);
     }
 
     public boolean containsRune(Rune rune) {
         return this.runes_needed.stream()
-                .anyMatch(x -> x.equals(rune.identifier));
+            .anyMatch(x -> x.equals(rune.identifier));
     }
 
     public boolean HasRuneWord(GearItemData gear) {
@@ -100,11 +94,11 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         }
 
         int minlvl = runes_needed.stream()
-                .map(x -> SlashRegistry.Runes()
-                        .get(x))
-                .min(Comparator.comparingInt(x -> x.getReqLevel()))
-                .get()
-                .getReqLevel();
+            .map(x -> SlashRegistry.Runes()
+                .get(x))
+            .min(Comparator.comparingInt(x -> x.getReqLevel()))
+            .get()
+            .getReqLevel();
 
         if (minlvl > gear.level) {
             return false;
@@ -129,8 +123,8 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         }
 
         return gear.GetBaseGearType()
-                .family()
-                .equals(this.family);
+            .family()
+            .equals(this.family);
     }
 
     public static RuneWord create(String id, String locname, BaseGearType.SlotFamily family, List<StatModifier> stats, List<RuneItem.RuneType> runes_needed) {
@@ -140,8 +134,8 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         word.loc_name = locname;
         word.family = family;
         word.runes_needed = runes_needed.stream()
-                .map(x -> x.id)
-                .collect(Collectors.toList());
+            .map(x -> x.id)
+            .collect(Collectors.toList());
         return word;
     }
 
