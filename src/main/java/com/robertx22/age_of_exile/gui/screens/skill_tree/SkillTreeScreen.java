@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
@@ -222,11 +223,14 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
         school.calcData.perks.entrySet()
             .forEach(e -> {
 
+                Perk perk = SlashRegistry.Perks()
+                    .get(e.getValue());
+
                 try {
                     // centers them if they are smaller than the biggest one
-                    int addx = (PerkButton.BIGGEST) / 2 - e.getValue()
+                    int addx = (PerkButton.BIGGEST) / 2 - perk
                         .getType().width / 2;
-                    int addy = (PerkButton.BIGGEST) / 2 - e.getValue()
+                    int addy = (PerkButton.BIGGEST) / 2 - perk
                         .getType().height / 2;
 
                     int subx = PerkButton.BIGGEST / 2;
@@ -235,7 +239,7 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
                     int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
                     int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
 
-                    this.newButton(new PerkButton(entityPerks, school, e.getKey(), e.getValue(), x, y));
+                    this.newButton(new PerkButton(entityPerks, school, e.getKey(), perk, x, y));
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }

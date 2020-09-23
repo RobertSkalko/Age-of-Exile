@@ -24,7 +24,7 @@ public class SchoolData {
         return map.entrySet()
             .stream()
             .filter(x -> {
-                return x.getValue() && school.calcData.perks.containsKey(x.getKey());
+                return x.getValue() && school.calcData.getPerk(x.getKey()) != null;
             })
             .map(x -> x.getKey())
             .collect(Collectors.toList());

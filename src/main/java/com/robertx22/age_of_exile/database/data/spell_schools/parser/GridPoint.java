@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
-import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.util.Locale;
 
 public class GridPoint {
 
@@ -36,21 +36,8 @@ public class GridPoint {
         return EqualsBuilder.reflectionEquals(this, obj, false);
     }
 
-    public Perk getPerk() {
-        // handle both caps and lowercase
-        String id = getId();
-
-        if (!SlashRegistry.Perks()
-            .isRegistered(id)) {
-            id = id.toLowerCase();
-            if (!SlashRegistry.Perks()
-                .isRegistered(id)) {
-                id = id.toUpperCase();
-            }
-        }
-
-        return SlashRegistry.Perks()
-            .get(id);
+    public String getPerk() {
+        return getId().toLowerCase(Locale.ROOT);
     }
 
     public static String CENTER_ID = "[CENTER]";

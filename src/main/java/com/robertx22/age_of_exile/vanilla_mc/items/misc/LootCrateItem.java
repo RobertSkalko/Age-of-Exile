@@ -21,6 +21,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -51,7 +52,13 @@ public class LootCrateItem extends Item implements IAutoModel {
     }
 
     public enum LootCrateType {
+
         RUNE(new MinMax(2, 5)) {
+            @Override
+            public boolean canUse(PlayerEntity en) {
+                return new RuneLootGen(LootInfo.ofPlayer(en)).condition();
+            }
+
             @Override
             public ItemStack generate(PlayerEntity en) {
                 return new RuneLootGen(LootInfo.ofPlayer(en)).generateOne();
@@ -125,6 +132,10 @@ public class LootCrateItem extends Item implements IAutoModel {
 
         public abstract ItemStack generate(PlayerEntity en);
 
+        public boolean canUse(PlayerEntity en) {
+            return true;
+        }
+
         public MinMax amount;
 
         LootCrateType(MinMax amount) {
@@ -137,17 +148,20 @@ public class LootCrateItem extends Item implements IAutoModel {
 
         if (!world.isClient) {
             try {
-                ItemStack stack = player.getStackInHand(hand);
-                stack.decrement(1);
+                if (this.type.canUse(player)) {
+                    ItemStack stack = player.getStackInHand(hand);
+                    stack.decrement(1);
 
-                int amount = type.amount.random();
+                    int amount = type.amount.random();
 
-                spawnEffects(world, player);
+                    spawnEffects(world, player);
 
-                for (int i = 0; i < amount; i++) {
-                    player.dropItem(type.generate(player), false);
+                    for (int i = 0; i < amount; i++) {
+                        player.dropItem(type.generate(player), false);
+                    }
+                } else {
+                    player.sendMessage(new LiteralText("Level too low to use."), false);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

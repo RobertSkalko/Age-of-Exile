@@ -68,7 +68,7 @@ public class PlayerPerksData {
     }
 
     public void allocate(PlayerEntity player, SpellSchool school, PointData point) {
-        Perk perk = school.calcData.perks.get(point);
+        Perk perk = school.calcData.getPerk(point);
 
         if (SlashRegistry.Spells()
             .isRegistered(perk.spell)) {
@@ -100,7 +100,7 @@ public class PlayerPerksData {
             return false;
         }
 
-        Perk perk = school.calcData.perks.get(point);
+        Perk perk = school.calcData.getPerk(point);
 
         if (perk.lvl_req > data.getLevel()) {
             return false;
@@ -135,7 +135,7 @@ public class PlayerPerksData {
 
         for (PointData con : school.calcData.connections.get(point)) {
             if (getSchool(school).isAllocated(con)) {
-                Perk perk = school.calcData.perks.get(con);
+                Perk perk = school.calcData.getPerk(con);
                 if (perk.is_entry) {
                     continue;
                 }
@@ -159,7 +159,7 @@ public class PlayerPerksData {
         while (!openSet.isEmpty()) {
             PointData current = openSet.poll();
 
-            Perk perk = school.calcData.perks.get(current);
+            Perk perk = school.calcData.getPerk(current);
 
             if (current.equals(toRemove) || !getSchool(school).isAllocated(current)) {
                 continue; // skip exploring this path

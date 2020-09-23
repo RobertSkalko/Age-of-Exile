@@ -1,14 +1,16 @@
 package com.robertx22.age_of_exile.database.data.spell_schools;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.parser.TalentGrid;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAutoGson<SpellSchool> {
@@ -50,6 +52,21 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     }
 
     @Override
+    public boolean isRegistryEntryValid() {
+
+        for (Map.Entry<PointData, String> x : this.calcData.perks.entrySet()) {
+            if (!SlashRegistry.Perks()
+                .isRegistered(x.getValue())) {
+                System.out.print("Perk of id: " + x.getValue() + " doesn't exist, used in spell school: " + this.identifier + " at point: " + x.getKey()
+                    .toString());
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean shouldGenerateJson() {
         return false; // i'll do these manually as its easier to use a program for a grid then to do it in code
     }
@@ -59,7 +76,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         public PointData center;
 
         public transient HashMap<PointData, Set<PointData>> connections = new HashMap<>();
-        public transient HashMap<PointData, Perk> perks = new HashMap<>();
+        public transient HashMap<PointData, String> perks = new HashMap<>();
 
         public boolean isConnected(PointData one, PointData two) {
             return connections.get(one)
@@ -67,7 +84,12 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
                 .contains(one);
         }
 
-        public void addPerk(PointData point, Perk perk) {
+        public Perk getPerk(PointData point) {
+            return SlashRegistry.Perks()
+                .get(perks.get(point));
+        }
+
+        public void addPerk(PointData point, String perk) {
             perks.put(point, perk);
         }
 

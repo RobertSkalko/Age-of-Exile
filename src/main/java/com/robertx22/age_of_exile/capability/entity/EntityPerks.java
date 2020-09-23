@@ -60,7 +60,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
                 .get(x.getKey());
             for (PointData p : x.getValue()
                 .getAllocatedPoints(school)) {
-                perks.add(school.calcData.perks.get(p));
+                perks.add(school.calcData.getPerk(p));
             }
         }
 
@@ -80,7 +80,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         if (isAllocated(school, point)) {
             return PerkStatus.CONNECTED;
         }
-        Perk perk = school.calcData.perks.get(point);
+        Perk perk = school.calcData.getPerk(point);
 
         if (perk.isLockedToPlayer(player)) {
             return PerkStatus.LOCKED_UNDER_ACHIEV;

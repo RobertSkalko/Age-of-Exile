@@ -22,6 +22,11 @@ public class PointData {
     }
 
     @Override
+    public String toString() {
+        return x + "_" + y;
+    }
+
+    @Override
     public int hashCode() {
         long bits = java.lang.Double.doubleToLongBits(x);
         bits ^= java.lang.Double.doubleToLongBits(y) * 31;

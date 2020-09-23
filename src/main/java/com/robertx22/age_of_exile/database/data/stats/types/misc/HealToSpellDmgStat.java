@@ -51,7 +51,7 @@ public class HealToSpellDmgStat extends Stat implements IAffectsStats {
 
     @Override
     public String locNameForLangFile() {
-        return "Increased Healing applies to Spell Damage";
+        return "Heal Power applies to Spell Damage";
     }
 
     @Override
