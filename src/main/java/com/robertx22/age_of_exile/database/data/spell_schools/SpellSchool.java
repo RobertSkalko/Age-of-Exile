@@ -78,12 +78,6 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         public transient HashMap<PointData, Set<PointData>> connections = new HashMap<>();
         public transient HashMap<PointData, String> perks = new HashMap<>();
 
-        public boolean isConnected(PointData one, PointData two) {
-            return connections.get(one)
-                .contains(two) || connections.get(two)
-                .contains(one);
-        }
-
         public Perk getPerk(PointData point) {
             return SlashRegistry.Perks()
                 .get(perks.get(point));

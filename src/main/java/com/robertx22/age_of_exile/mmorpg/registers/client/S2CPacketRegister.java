@@ -24,6 +24,8 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(new SyncCapabilityToClient());
         Packets.registerServerToClient(new TellClientToCastSpellPacket());
 
+        //   ClientSidePacketRegistry.INSTANCE.register(new Identifier(Ref.MODID, "login_reg"), new MyLoginPacket());
+
         ClientSidePacketRegistry.INSTANCE.register(EntityPacket.ID, (ctx, buf) -> {
             EntityPacketOnClient.onPacket(ctx, buf);
         });

@@ -290,6 +290,7 @@ public class SlashRegistry {
                 if (x.getLoader() != null && x.ser != null) {
                     try {
                         if (x.ser instanceof IByteBuf) {
+                            // player.networkHandler.sendPacket( TODO DO IT LIKE THIS
                             Packets.sendToClient(player, new EfficientRegistryPacket(x, SlashRegistry.getRegistry(x)
                                 .getFromDatapacks()));
                         } else {

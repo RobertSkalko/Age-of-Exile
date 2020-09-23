@@ -17,10 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.HealToSpellDmgStat;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
@@ -86,6 +83,9 @@ public class Stats implements ISlashRegistryInit {
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
+
+                    add(DmgAtDayStat.getInstance());
+                    add(DmgAtNightStat.getInstance());
 
                     add(MagicFind.getInstance());
                     add(IncreasedItemQuantity.getInstance());
