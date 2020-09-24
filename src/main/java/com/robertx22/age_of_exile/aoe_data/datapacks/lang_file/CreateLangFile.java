@@ -124,8 +124,10 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.Runewords()
             .getSerializable());
         list.addAll(SlashRegistry.Stats()
-            .getAll()
-            .values());
+            .getList()
+            .stream()
+            .filter(x -> !x.isFromDatapack())
+            .collect(Collectors.toList()));
         list.addAll(SlashRegistry.GearTypes()
             .getSerializable());
         list.addAll(SlashRegistry.ExileEffects()
@@ -136,6 +138,8 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.MobRarities()
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
+        list.addAll(SlashRegistry.Stats()
+            .getSerializable());
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 

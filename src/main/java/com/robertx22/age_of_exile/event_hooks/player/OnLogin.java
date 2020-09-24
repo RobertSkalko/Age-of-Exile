@@ -49,7 +49,6 @@ public class OnLogin {
 
                 UnitData data = Load.Unit(player);
 
-                SlashRegistry.restoreFromBackupifEmpty();
                 data.onLogin(player);
 
                 data.syncToClient(player);

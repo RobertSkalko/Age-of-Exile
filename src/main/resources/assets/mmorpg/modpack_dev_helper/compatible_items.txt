@@ -4,6 +4,7 @@ mmorpg:uniques/weapon/eye_of_zegrath
 mmorpg:uniques/jewelry/birth_miracle
 mmorpg:uniques/armor/gluttony_helmet
 mmorpg:armor/plate/pants/plate_pants0
+mmorpg:uniques/jewelry/touch_of_eternity
 mmorpg:armor/plate/pants/plate_pants2
 mmorpg:armor/plate/pants/plate_pants1
 mmorpg:armor/plate/pants/plate_pants4
@@ -79,6 +80,7 @@ mmorpg:uniques/armor/crown_of_elements
 mmorpg:uniques/weapon/divine_might
 mmorpg:armor/plate/helmet/plate_helmet3
 mmorpg:armor/plate/helmet/plate_helmet4
+mmorpg:uniques/jewelry/solar_ring
 mmorpg:weapon/wand/wand2
 mmorpg:armor/plate/helmet/plate_helmet1
 mmorpg:weapon/wand/wand3
@@ -121,3 +123,4 @@ mmorpg:uniques/jewelry/loop_of_infinity
 mmorpg:uniques/armor/frost_crown
 mmorpg:uniques/armor/ms_armor_chest
 mmorpg:jewelry/ring/mana_reg_ring_low
+mmorpg:uniques/jewelry/lunar_ring

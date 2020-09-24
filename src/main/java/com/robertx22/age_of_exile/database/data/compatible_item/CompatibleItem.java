@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -193,6 +193,13 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         blueprint.rarity.maxRarity = this.max_rarity;
 
         blueprint.isUniquePart.chance = chance_to_become_unique;
+
+        if (SlashRegistry.UniqueGears()
+            .isRegistered(unique_id)) {
+
+            blueprint.uniquePart.set(SlashRegistry.UniqueGears()
+                .get(unique_id));
+        }
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;

@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
 import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
 import com.robertx22.age_of_exile.aoe_data.database.spell_mods.SpellModifiers;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
+import com.robertx22.age_of_exile.aoe_data.database.stats.SpellDependentDatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.database.registrators.Tiers;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -39,7 +40,8 @@ public class GeneratedData {
 
             new Tiers().registerAll();
 
-            new Spells().registerAll(); // some stats are based on spells, so spells go first
+            new Spells().registerAll();
+            new SpellDependentDatapackStatAdder().registerAll();
 
             new Prefixes().registerAll();
             new Suffixes().registerAll();

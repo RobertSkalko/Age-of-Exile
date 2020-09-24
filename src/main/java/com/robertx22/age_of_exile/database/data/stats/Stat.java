@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.database.data.stats;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -26,20 +27,25 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, IAutoLocDesc, ISlashRegistryEntry {
+public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, IAutoLocDesc, ISerializedRegistryEntry<DatapackStat> {
 
     public Stat() {
     }
 
     public float min_val = -1000;
     public float max_val = Integer.MAX_VALUE;
-    public int base_val = 0;
-
-    protected StatScaling scaling = StatScaling.SLOW_SCALING;
+    public float base_val = 0;
+    public boolean is_percent;
+    public boolean uses_second_val = false;
+    public StatScaling scaling = StatScaling.SLOW_SCALING;
 
     public boolean add$To$toTooltip = true;
     public boolean add$plusminus$toTooltip = true;
-    public boolean uses_second_val = false;
+
+    @Override
+    public boolean isFromDatapack() {
+        return false;
+    }
 
     @Override
     public boolean isRegistryEntryValid() {
@@ -159,7 +165,9 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return AutoLocGroup.Stats;
     }
 
-    public abstract boolean IsPercent();
+    public boolean IsPercent() {
+        return is_percent;
+    }
 
     public abstract Elements getElement();
 

@@ -1,8 +1,6 @@
 package com.robertx22.age_of_exile.database.registry;
 
 import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
@@ -31,7 +29,6 @@ import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
 import com.robertx22.age_of_exile.database.registrators.Stats;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
-import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -42,7 +39,6 @@ import net.minecraft.world.WorldAccess;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SlashRegistry {
 
@@ -218,34 +214,6 @@ public class SlashRegistry {
             e.getCause()
                 .printStackTrace();
         }
-    }
-
-    static HashMap<SlashRegistryType, ListStringData> cachedRegistryPackets = new HashMap<>();
-
-    public static ListStringData getDataFor(SlashRegistryType type) {
-        if (!cachedRegistryPackets.containsKey(type)) {
-
-            SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
-
-            if (reg.isEmpty()) {
-                SlashRegistry.restoreBackup();
-            }
-
-            List<ISerializedRegistryEntry> items = reg.getFromDatapacks();
-
-            if (items.isEmpty()) {
-                throw new RuntimeException(type.name() + " Registry is empty on the server when trying to send registry packet!");
-            }
-
-            ListStringData data = new ListStringData(items
-                .stream()
-                .map(x -> ((ISerializable) x).toJsonString())
-                .collect(Collectors.toList()));
-
-            cachedRegistryPackets.put(type, data);
-        }
-
-        return cachedRegistryPackets.get(type);
     }
 
     public static void sendPacketsToClient(ServerPlayerEntity player, SyncTime sync) {

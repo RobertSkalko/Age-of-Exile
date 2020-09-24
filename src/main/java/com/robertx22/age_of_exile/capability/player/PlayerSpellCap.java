@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
-import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.GiveSpellStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -96,15 +96,19 @@ public class PlayerSpellCap {
             }
 
             Set<Spell> list = new HashSet<>();
-            for (Perk x : Load.perks(en)
-                .getAllAllocatedPerks()) {
-                if (x.getSpell() != null && !x.getSpell()
-                    .GUID()
-                    .isEmpty()) {
-                    Spell spell = x.getSpell();
-                    list.add(spell);
-                }
-            }
+
+            Load.Unit(en)
+                .getUnit()
+                .getStats()
+                .entrySet()
+                .forEach(e -> {
+                    if (e.getValue()
+                        .GetStat() instanceof GiveSpellStat) {
+                        GiveSpellStat stat = (GiveSpellStat) e.getValue()
+                            .GetStat();
+                        list.add(stat.getSpell());
+                    }
+                });
 
             SlashRegistry.Spells()
                 .getList()

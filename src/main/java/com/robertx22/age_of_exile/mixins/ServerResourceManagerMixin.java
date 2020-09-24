@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mixins;
 
-import com.robertx22.age_of_exile.mmorpg.DataGeneration;
+import com.robertx22.age_of_exile.mmorpg.DataLoading;
 import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.command.CommandManager;
@@ -16,6 +16,6 @@ public abstract class ServerResourceManagerMixin {
     public void my$onConstruct(CommandManager.RegistrationEnvironment registrationEnvironment, int i, CallbackInfo ci) {
         ServerResourceManager m = (ServerResourceManager) (Object) this;
         ReloadableResourceManager manager = (ReloadableResourceManager) m.getResourceManager();
-        DataGeneration.registerLoaders(manager);
+        DataLoading.registerLoaders(manager);
     }
 }

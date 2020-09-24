@@ -77,6 +77,11 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
             }
         }
 
+        Load.Unit(ctx.getPlayer())
+            .setEquipsChanged(true);
+        Load.Unit(ctx.getPlayer())
+            .tryRecalculateStats(ctx.getPlayer());
+
         Packets.sendToClient(ctx.getPlayer(), new SyncCapabilityToClient(ctx.getPlayer(), PlayerCaps.ENTITY_PERKS));
     }
 

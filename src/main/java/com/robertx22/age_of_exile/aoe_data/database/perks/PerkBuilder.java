@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.GiveSpellStat;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
 
@@ -12,6 +14,7 @@ public class PerkBuilder {
         Perk perk = new Perk();
 
         perk.spell = spell.GUID();
+        perk.stats.add(new OptScaleExactStat(1, new GiveSpellStat(spell), ModType.FLAT));
         perk.type = Perk.PerkType.SPELL;
         perk.identifier = spell.GUID();
         perk.icon = spell.getIconLoc()

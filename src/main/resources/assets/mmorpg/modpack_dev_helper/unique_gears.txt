@@ -14,6 +14,7 @@ birth_miracle
 harbinger
 inca_thunder
 frigid_staff
+lunar_ring
 eye_of_zegrath
 water_ele_sword
 crystal_wand
@@ -21,9 +22,11 @@ obsi_might
 greed_persist
 gluttony_helmet
 angel_prot_necklace
+solar_ring
 worldbearer
 ms_armor_chest
 skull_of_spirits
 beast_blood
 crown_of_elements
 snake_eye
+touch_of_eternity

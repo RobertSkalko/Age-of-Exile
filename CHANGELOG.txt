@@ -13,6 +13,9 @@ Added a "few" new unique gears:
 - Origin of Arcane
 - Gem of the North
 - Worldbearer
+- Solaris
+- Lunaris
+- Touch of Eternity
 
 Added new stats:
 - dmg at day
@@ -31,3 +34,7 @@ As a result some ring and necklaces changed ids
 Reworked my rarities into registries like all my other datapacks, as a result:
 - you can now add as many rarities as you want!
 - mob rarities are now datapacks too!
+
+Some stats are now datapacks!
+- "unlock spell" stats are now datapacks, meaning any spell you add, you can also add the unlock spell stat for it too.
+This also means the perk "spell" field is now useless, as it's a stat now.
