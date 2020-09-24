@@ -9,17 +9,17 @@ import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 
-public class DmgUnderStatusStat extends Stat implements IStatEffects {
+public class DamageUnderPotion extends Stat implements IStatEffects {
 
-    public static DmgUnderStatusStat HUNGER = new DmgUnderStatusStat(StatusEffects.HUNGER, "hunger");
-    public static DmgUnderStatusStat POISON = new DmgUnderStatusStat(StatusEffects.POISON, "poison");
-    public static DmgUnderStatusStat WITHER = new DmgUnderStatusStat(StatusEffects.WITHER, "wither");
+    public static DamageUnderPotion HUNGER = new DamageUnderPotion(StatusEffects.HUNGER, "hunger");
+    public static DamageUnderPotion POISON = new DamageUnderPotion(StatusEffects.POISON, "poison");
+    public static DamageUnderPotion WITHER = new DamageUnderPotion(StatusEffects.WITHER, "wither");
 
     StatusEffect status;
     String id;
     DamageUnderPotionEffect effect;
 
-    private DmgUnderStatusStat(StatusEffect status, String id) {
+    private DamageUnderPotion(StatusEffect status, String id) {
         this.status = status;
         this.id = id;
         this.effect = new DamageUnderPotionEffect(status);

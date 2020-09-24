@@ -6,18 +6,18 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 
-public class ImmuneToEffectStat extends Stat {
+public class EffectImmunity extends Stat {
 
-    public static ImmuneToEffectStat POISON = new ImmuneToEffectStat(StatusEffects.POISON, "poison", "Poison");
-    public static ImmuneToEffectStat WITHER = new ImmuneToEffectStat(StatusEffects.WITHER, "wither", "Wither");
-    public static ImmuneToEffectStat SLOW = new ImmuneToEffectStat(StatusEffects.SLOWNESS, "slow", "Slow");
-    public static ImmuneToEffectStat HUNGER = new ImmuneToEffectStat(StatusEffects.HUNGER, "hunger", "Hunger");
+    public static EffectImmunity POISON = new EffectImmunity(StatusEffects.POISON, "poison", "Poison");
+    public static EffectImmunity WITHER = new EffectImmunity(StatusEffects.WITHER, "wither", "Wither");
+    public static EffectImmunity SLOW = new EffectImmunity(StatusEffects.SLOWNESS, "slow", "Slow");
+    public static EffectImmunity HUNGER = new EffectImmunity(StatusEffects.HUNGER, "hunger", "Hunger");
 
     StatusEffect effect;
     String id;
     String name;
 
-    public ImmuneToEffectStat(StatusEffect effect, String id, String name) {
+    public EffectImmunity(StatusEffect effect, String id, String name) {
         this.effect = effect;
         this.id = id;
         this.name = name;

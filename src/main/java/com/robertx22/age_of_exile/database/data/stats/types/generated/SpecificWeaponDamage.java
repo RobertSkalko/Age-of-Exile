@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.WeaponDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.SpecificWeaponDamageEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -52,7 +52,7 @@ public class SpecificWeaponDamage extends Stat implements IStatEffects, IGenerat
 
     @Override
     public IStatEffect getEffect() {
-        return new WeaponDamageEffect();
+        return new SpecificWeaponDamageEffect();
     }
 
     @Override

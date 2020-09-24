@@ -7,16 +7,16 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class DmgAtNightStat extends Stat implements IStatEffects {
+public class NightDamage extends Stat implements IStatEffects {
 
     public static String GUID = "night_dmg";
 
-    private DmgAtNightStat() {
+    private NightDamage() {
         this.scaling = StatScaling.NONE;
     }
 
-    public static DmgAtNightStat getInstance() {
-        return DmgAtNightStat.SingletonHolder.INSTANCE;
+    public static NightDamage getInstance() {
+        return NightDamage.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -55,6 +55,6 @@ public class DmgAtNightStat extends Stat implements IStatEffects {
     }
 
     private static class SingletonHolder {
-        private static final DmgAtNightStat INSTANCE = new DmgAtNightStat();
+        private static final NightDamage INSTANCE = new NightDamage();
     }
 }

@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWe
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 
-public class WeaponDamageEffect extends BaseDamageEffect {
+public class SpecificWeaponDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {

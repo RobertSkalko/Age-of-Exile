@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DmgAtDayStat;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DayDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
@@ -61,7 +61,7 @@ public class UniqueRings implements ISlashRegistryInit {
             BaseGearJewelry.FIRE_RES_RING.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 20, DmgAtDayStat.getInstance(), ModType.FLAT),
+                new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
@@ -76,7 +76,7 @@ public class UniqueRings implements ISlashRegistryInit {
             BaseGearJewelry.COLD_RES_RING.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(10, 20, DmgAtDayStat.getInstance(), ModType.FLAT),
+                new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)

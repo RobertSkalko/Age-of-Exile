@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.ImmuneToEffectStat;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
@@ -55,7 +55,7 @@ public class PlateUniques implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
                 new StatModifier(1, 1, RegeneratePercentStat.HEALTH, ModType.FLAT),
-                new StatModifier(1, 1, ImmuneToEffectStat.HUNGER, ModType.FLAT),
+                new StatModifier(1, 1, EffectImmunity.HUNGER, ModType.FLAT),
                 new StatModifier(-15, -5, IncreasedItemQuantity.getInstance(), ModType.FLAT),
                 new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
             ))

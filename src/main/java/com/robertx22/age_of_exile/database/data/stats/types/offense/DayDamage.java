@@ -7,16 +7,16 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class DmgAtDayStat extends Stat implements IStatEffects {
+public class DayDamage extends Stat implements IStatEffects {
 
     public static String GUID = "day_dmg";
 
-    private DmgAtDayStat() {
+    private DayDamage() {
         this.scaling = StatScaling.NONE;
     }
 
-    public static DmgAtDayStat getInstance() {
-        return DmgAtDayStat.SingletonHolder.INSTANCE;
+    public static DayDamage getInstance() {
+        return DayDamage.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class DmgAtDayStat extends Stat implements IStatEffects {
     }
 
     private static class SingletonHolder {
-        private static final DmgAtDayStat INSTANCE = new DmgAtDayStat();
+        private static final DayDamage INSTANCE = new DayDamage();
     }
 }
 

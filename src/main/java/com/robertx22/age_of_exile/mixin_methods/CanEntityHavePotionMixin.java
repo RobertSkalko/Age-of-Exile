@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
-import com.robertx22.age_of_exile.database.data.stats.types.defense.ImmuneToEffectStat;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IOneOfATypePotion;
@@ -25,8 +25,8 @@ public class CanEntityHavePotionMixin {
                 .getUnit()
                 .getStats()
                 .values()) {
-                if (statData.GetStat() instanceof ImmuneToEffectStat) {
-                    ImmuneToEffectStat imm = (ImmuneToEffectStat) statData.GetStat();
+                if (statData.GetStat() instanceof EffectImmunity) {
+                    EffectImmunity imm = (EffectImmunity) statData.GetStat();
                     if (statData.getAverageValue() > 0) {
                         if (imm.isImmuneTo(effect)) {
                             return false;

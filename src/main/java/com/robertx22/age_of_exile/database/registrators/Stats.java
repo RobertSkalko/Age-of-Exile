@@ -51,10 +51,10 @@ public class Stats implements ISlashRegistryInit {
                     add(ChangeDmgElementStat.PHYS_TO_FROST);
                     add(ChangeDmgElementStat.PHYS_TO_THUNDER);
 
-                    add(ImmuneToEffectStat.POISON);
-                    add(ImmuneToEffectStat.HUNGER);
-                    add(ImmuneToEffectStat.SLOW);
-                    add(ImmuneToEffectStat.WITHER);
+                    add(EffectImmunity.POISON);
+                    add(EffectImmunity.HUNGER);
+                    add(EffectImmunity.SLOW);
+                    add(EffectImmunity.WITHER);
 
                     add(RegeneratePercentStat.HEALTH);
                     add(RegeneratePercentStat.MAGIC_SHIELD);
@@ -83,12 +83,12 @@ public class Stats implements ISlashRegistryInit {
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
 
-                    add(DmgAtDayStat.getInstance());
-                    add(DmgAtNightStat.getInstance());
+                    add(DayDamage.getInstance());
+                    add(NightDamage.getInstance());
 
-                    add(DmgUnderStatusStat.HUNGER);
-                    add(DmgUnderStatusStat.POISON);
-                    add(DmgUnderStatusStat.WITHER);
+                    add(DamageUnderPotion.HUNGER);
+                    add(DamageUnderPotion.POISON);
+                    add(DamageUnderPotion.WITHER);
 
                     add(MagicFind.getInstance());
                     add(IncreasedItemQuantity.getInstance());
