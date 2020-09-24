@@ -90,9 +90,9 @@ public class UniqueRings implements ISlashRegistryInit {
             "Worn by Kings, Beggars, Barbarians, Queens, Prophets and now ... you.",
             BaseGearJewelry.RING_MANA_REG.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
-                new StatModifier(15, 25, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(15, 25, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(15, 25, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT),
+                new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT),
+                new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
                 new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)

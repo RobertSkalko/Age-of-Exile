@@ -120,6 +120,7 @@ mmorpg:weapon/sword/sword0
 mmorpg:armor/plate/chest/plate_chest2
 mmorpg:uniques/jewelry/snake_eye
 mmorpg:uniques/jewelry/loop_of_infinity
+mmorpg:uniques/armor/kingmaker
 mmorpg:uniques/armor/frost_crown
 mmorpg:uniques/armor/ms_armor_chest
 mmorpg:jewelry/ring/mana_reg_ring_low

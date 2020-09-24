@@ -33,6 +33,7 @@ public class Spells implements ISlashRegistryInit {
     public static String FLOWER_OF_ICE_ID = "flower_of_ice";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
     public static String MAGMA_FLOWER_ID = "magma_flower";
+    public static String BRAVERY_ID = "bravery";
 
     public static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG() {
         return SpellConfiguration.Builder.instant(7, 20);
@@ -373,7 +374,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
             .build();
 
-        SpellBuilder.of("bravery", DIVINE_BUFF_CONFIG(), "Bravery")
+        SpellBuilder.of(BRAVERY_ID, DIVINE_BUFF_CONFIG(), "Bravery")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveToAlliesInRadius(BeneficialEffects.BRAVERY, 4D, 20 * 30D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))

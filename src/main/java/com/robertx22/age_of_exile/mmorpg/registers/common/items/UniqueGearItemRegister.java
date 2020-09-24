@@ -10,6 +10,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item HARBINGER_CHEST = item(new BaseUniqueChest("Leather Chest"), "uniques/armor/harbinger");
     public Item INNFER_CONFLUX_ROBE = item(new BaseUniqueChest("Cloth Chest"), "uniques/armor/inner_conflux");
     public Item MS_REG_ARMOR_CHEST = item(new BaseUniqueChest("Plate chest"), "uniques/armor/ms_armor_chest");
+    public Item KINGMAKER_CHEST = item(new BaseUniqueChest("Plate chest"), "uniques/armor/kingmaker");
 
     public Item FIFTH_RIDER_HELMET = item(new BaseUniqueHelmet("Plate Helmet"), "uniques/armor/fifth_rider");
     public Item GLUTTONY_HELMET = item(new BaseUniqueHelmet("Plate Helmet"), "uniques/armor/gluttony_helmet");

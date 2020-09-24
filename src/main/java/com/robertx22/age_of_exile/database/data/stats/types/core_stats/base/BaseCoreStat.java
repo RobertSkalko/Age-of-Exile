@@ -19,6 +19,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     public BaseCoreStat() {
         this.scaling = StatScaling.LINEAR;
+        this.min_val = 0;
     }
 
     @Override

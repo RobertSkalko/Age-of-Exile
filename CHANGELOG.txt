@@ -16,6 +16,7 @@ Added a "few" new unique gears:
 - Solaris
 - Lunaris
 - Touch of Eternity
+- Kingmaker
 
 Added new stats:
 - dmg at day
