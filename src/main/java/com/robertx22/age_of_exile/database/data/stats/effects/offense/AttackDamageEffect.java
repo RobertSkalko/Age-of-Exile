@@ -2,13 +2,11 @@ package com.robertx22.age_of_exile.database.data.stats.effects.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificElementalWeaponDamage;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData.EffectTypes;
 
-public class EleWepDmgEffect extends BaseDamageEffect {
-
-    public static EleWepDmgEffect INSTANCE = new EleWepDmgEffect();
+public class AttackDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -22,22 +20,15 @@ public class EleWepDmgEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        SpecificElementalWeaponDamage wepStat = (SpecificElementalWeaponDamage) stat;
-
-        if (wepStat.weaponType()
-            .equals(effect.weaponType)) {
-            if (effect.isElemental()) {
-                effect.percentIncrease += data.getAverageValue();
-
-            }
-        }
+        effect.addBonusEleDmg(stat.getElement(), data.getRandomRangeValue());
 
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return stat instanceof SpecificElementalWeaponDamage;
+        return effect.getEffectType()
+            .equals(EffectTypes.BASIC_ATTACK);
     }
 
 }

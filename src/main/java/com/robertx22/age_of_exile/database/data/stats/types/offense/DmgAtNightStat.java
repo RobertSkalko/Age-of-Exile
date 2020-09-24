@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.DmgAtNightEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.NightDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
@@ -51,7 +51,7 @@ public class DmgAtNightStat extends Stat implements IStatEffects {
 
     @Override
     public IStatEffect getEffect() {
-        return DmgAtNightEffect.getInstance();
+        return NightDamageEffect.getInstance();
     }
 
     private static class SingletonHolder {

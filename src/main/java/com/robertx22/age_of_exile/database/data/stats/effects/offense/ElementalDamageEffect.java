@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class AllEleDmgEffectIfElement extends BaseDamageEffect {
+public class ElementalDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -21,14 +21,20 @@ public class AllEleDmgEffectIfElement extends BaseDamageEffect {
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         effect.percentIncrease += data.getAverageValue();
-
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.element.equals(stat.getElement()) && !stat.getElement()
-            .equals(Elements.Elemental);
-    }
+        if (stat.getElement() == Elements.Elemental) {
+            if (effect.element != null && effect.element != Elements.Physical) {
+                return true;
+            }
+        }
+        if (effect.element.equals(stat.getElement())) {
+            return true;
+        }
 
+        return false;
+    }
 }

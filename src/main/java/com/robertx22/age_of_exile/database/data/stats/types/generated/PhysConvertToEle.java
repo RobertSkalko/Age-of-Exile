@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.TurnPhysIntoEleDmgEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.PhysicalToElementDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -61,7 +61,7 @@ public class PhysConvertToEle extends ElementalStat implements IStatEffects {
 
     @Override
     public IStatEffect getEffect() {
-        return new TurnPhysIntoEleDmgEffect();
+        return new PhysicalToElementDamageEffect();
     }
 
     @Override

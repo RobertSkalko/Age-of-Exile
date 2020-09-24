@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class EleSpellDmgEffect extends BaseDamageEffect {
+public class ElementalSpellDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {

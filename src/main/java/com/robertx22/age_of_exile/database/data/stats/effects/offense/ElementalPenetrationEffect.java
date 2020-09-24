@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class ElementalPeneEffect extends BaseAnyEffect {
+public class ElementalPenetrationEffect extends BaseAnyEffect {
 
     @Override
     public int GetPriority() {

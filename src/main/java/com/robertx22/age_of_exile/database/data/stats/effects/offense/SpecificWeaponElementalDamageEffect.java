@@ -2,16 +2,13 @@ package com.robertx22.age_of_exile.database.data.stats.effects.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificElementalWeaponDamage;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 
-public class DmgAtDayEffect extends BaseDamageEffect {
-    private DmgAtDayEffect() {
-    }
+public class SpecificWeaponElementalDamageEffect extends BaseDamageEffect {
 
-    public static DmgAtDayEffect getInstance() {
-        return SingletonHolder.INSTANCE;
-    }
+    public static SpecificWeaponElementalDamageEffect INSTANCE = new SpecificWeaponElementalDamageEffect();
 
     @Override
     public int GetPriority() {
@@ -25,17 +22,21 @@ public class DmgAtDayEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.percentIncrease += data.getAverageValue();
+        SpecificElementalWeaponDamage wepStat = (SpecificElementalWeaponDamage) stat;
+
+        if (wepStat.weaponType()
+            .equals(effect.weaponType)) {
+            if (effect.isElemental()) {
+                effect.percentIncrease += data.getAverageValue();
+            }
+        }
+
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.source.world.isDay();
+        return stat instanceof SpecificElementalWeaponDamage;
     }
 
-    private static class SingletonHolder {
-        private static final DmgAtDayEffect INSTANCE = new DmgAtDayEffect();
-    }
 }
-

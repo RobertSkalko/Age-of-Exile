@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.DmgUnderStatusEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.DamageUnderPotionEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
@@ -17,12 +17,12 @@ public class DmgUnderStatusStat extends Stat implements IStatEffects {
 
     StatusEffect status;
     String id;
-    DmgUnderStatusEffect effect;
+    DamageUnderPotionEffect effect;
 
     private DmgUnderStatusStat(StatusEffect status, String id) {
         this.status = status;
         this.id = id;
-        this.effect = new DmgUnderStatusEffect(status);
+        this.effect = new DamageUnderPotionEffect(status);
         this.is_percent = true;
         this.add$To$toTooltip = false;
     }

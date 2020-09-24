@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.EleSpellDmgEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.ElementalSpellDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -71,7 +71,7 @@ public class ElementalSpellDamage extends ElementalStat implements IStatEffects 
 
     @Override
     public IStatEffect getEffect() {
-        return new EleSpellDmgEffect();
+        return new ElementalSpellDamageEffect();
     }
 }
 

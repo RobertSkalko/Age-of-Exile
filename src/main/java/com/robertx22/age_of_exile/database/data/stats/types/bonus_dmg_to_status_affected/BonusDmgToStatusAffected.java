@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.BonusDmgToAffectedEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.DamageToAffectedEffect;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -59,7 +59,7 @@ public class BonusDmgToStatusAffected extends Stat implements IStatEffects {
 
     @Override
     public IStatEffect getEffect() {
-        return new BonusDmgToAffectedEffect(SlashRegistry.ExileEffects()
+        return new DamageToAffectedEffect(SlashRegistry.ExileEffects()
             .get(effect));
     }
 }

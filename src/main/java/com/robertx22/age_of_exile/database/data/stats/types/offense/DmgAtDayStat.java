@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.DmgAtDayEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.DayDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
@@ -51,7 +51,7 @@ public class DmgAtDayStat extends Stat implements IStatEffects {
 
     @Override
     public IStatEffect getEffect() {
-        return DmgAtDayEffect.getInstance();
+        return DayDamageEffect.getInstance();
     }
 
     private static class SingletonHolder {

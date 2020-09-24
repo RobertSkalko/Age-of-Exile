@@ -6,10 +6,10 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.effect.StatusEffect;
 
-public class DmgUnderStatusEffect extends BaseDamageEffect {
+public class DamageUnderPotionEffect extends BaseDamageEffect {
     StatusEffect status;
 
-    public DmgUnderStatusEffect(StatusEffect status) {
+    public DamageUnderPotionEffect(StatusEffect status) {
         this.status = status;
     }
 

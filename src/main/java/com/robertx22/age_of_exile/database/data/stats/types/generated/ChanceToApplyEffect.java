@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.ChanceToApplyEffectEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.ChanceToApplyPotionEffect;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -57,7 +57,7 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
     @Override
     public IStatEffect getEffect() {
-        return new ChanceToApplyEffectEffect(SlashRegistry.ExileEffects()
+        return new ChanceToApplyPotionEffect(SlashRegistry.ExileEffects()
             .get(effect), EffectData.EffectTypes.BASIC_ATTACK, EffectData.EffectTypes.SPELL);
     }
 }

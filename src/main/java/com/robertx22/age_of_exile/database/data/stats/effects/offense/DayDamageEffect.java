@@ -5,12 +5,11 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEff
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 
-public class DmgAtNightEffect extends BaseDamageEffect {
-
-    private DmgAtNightEffect() {
+public class DayDamageEffect extends BaseDamageEffect {
+    private DayDamageEffect() {
     }
 
-    public static DmgAtNightEffect getInstance() {
+    public static DayDamageEffect getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -32,11 +31,11 @@ public class DmgAtNightEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return !effect.source.world.isDay();
+        return effect.source.world.isDay();
     }
 
     private static class SingletonHolder {
-        private static final DmgAtNightEffect INSTANCE = new DmgAtNightEffect();
+        private static final DayDamageEffect INSTANCE = new DayDamageEffect();
     }
 }
 

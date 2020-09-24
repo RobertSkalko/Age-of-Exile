@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.ElementalPeneEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.ElementalPenetrationEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -72,7 +72,7 @@ public class ElementalPenetration extends ElementalStat implements IStatEffects 
 
     @Override
     public IStatEffect getEffect() {
-        return new ElementalPeneEffect();
+        return new ElementalPenetrationEffect();
     }
 
 }

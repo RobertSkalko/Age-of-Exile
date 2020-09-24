@@ -13,12 +13,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ChanceToApplyEffectEffect extends BaseStatEffect<DamageEffect> {
+public class ChanceToApplyPotionEffect extends BaseStatEffect<DamageEffect> {
 
     ExileEffect statusEffect;
     Set<EffectData.EffectTypes> onEffectType;
 
-    public ChanceToApplyEffectEffect(ExileEffect effect, EffectData.EffectTypes... onEffectType) {
+    public ChanceToApplyPotionEffect(ExileEffect effect, EffectData.EffectTypes... onEffectType) {
         super(DamageEffect.class);
         this.statusEffect = effect;
         this.onEffectType = new HashSet<>(Arrays.asList(onEffectType));

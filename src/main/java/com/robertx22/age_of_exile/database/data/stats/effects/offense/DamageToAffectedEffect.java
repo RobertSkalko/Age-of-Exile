@@ -1,16 +1,23 @@
 package com.robertx22.age_of_exile.database.data.stats.effects.offense;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 
-public class TurnPhysIntoEleDmgEffect extends BaseDamageEffect {
+public class DamageToAffectedEffect extends BaseStatEffect<DamageEffect> {
+
+    ExileEffect eff;
+
+    public DamageToAffectedEffect(ExileEffect effect) {
+        super(DamageEffect.class);
+        this.eff = effect;
+    }
 
     @Override
     public int GetPriority() {
-        return Priority.AlmostLast.priority;
+        return Priority.Second.priority;
     }
 
     @Override
@@ -20,17 +27,13 @@ public class TurnPhysIntoEleDmgEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        float dmg = effect.number * data.getAverageValue() / 100F;
-        effect.addBonusEleDmg(stat.getElement(), dmg);
-        effect.number -= dmg;
-
+        effect.percentIncrease += data.getAverageValue();
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.getEffectType()
-            .equals(EffectData.EffectTypes.BASIC_ATTACK);
+        return effect.target.hasStatusEffect(eff.getStatusEffect());
     }
 
 }

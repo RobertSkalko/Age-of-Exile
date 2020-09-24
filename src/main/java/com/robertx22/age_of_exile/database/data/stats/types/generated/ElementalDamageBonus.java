@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.AllEleDmgEffectIfElement;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.ElementalDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -57,7 +57,7 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
 
     @Override
     public IStatEffect getEffect() {
-        return new AllEleDmgEffectIfElement();
+        return new ElementalDamageEffect();
     }
 
     @Override

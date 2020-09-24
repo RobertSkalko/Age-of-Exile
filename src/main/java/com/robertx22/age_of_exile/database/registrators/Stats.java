@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
-import com.robertx22.age_of_exile.database.data.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
@@ -113,7 +112,6 @@ public class Stats implements ISlashRegistryInit {
                     add(FasterCastRate.getInstance());
 
                     add(AllAttributes.getInstance());
-                    add(new AllEleDmg());
                     add(SpellDamage.getInstance());
 
                     add(Strength.INSTANCE);
