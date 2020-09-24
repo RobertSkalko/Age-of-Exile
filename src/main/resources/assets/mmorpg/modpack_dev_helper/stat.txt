@@ -74,6 +74,7 @@ chance_of_poison
 mana
 unlock_blizzard
 unlock_passive_arcane
+dmg_under_poison
 poison_immunity
 max_nature_resist
 unlock_poison_ball
@@ -106,6 +107,7 @@ static_bonus_dmg
 axe_damage
 magic_find
 ele_trident_damage
+dmg_under_hunger
 physical_weapon_damage
 max_fire_resist
 health_regen
@@ -158,6 +160,7 @@ sword_damage
 dexterity
 convert_nature_to_phys
 magic_steal
+dmg_under_wither
 heal_effect_on_self
 all_attributes
 hunger_immunity

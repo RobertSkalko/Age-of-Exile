@@ -66,6 +66,7 @@ mmorpg:armor/leather/chest/leather_chest4
 mmorpg:armor/leather/boots/leather_boots0
 mmorpg:uniques/weapon/rot_phys
 mmorpg:armor/cloth/chest/cloth_chest0
+mmorpg:uniques/jewelry/hunger_neck
 mmorpg:armor/cloth/chest/cloth_chest3
 mmorpg:uniques/weapon/judgement
 mmorpg:armor/cloth/chest/cloth_chest4

@@ -17,10 +17,12 @@ Added a "few" new unique gears:
 - Lunaris
 - Touch of Eternity
 - Kingmaker
+- Eternal Hunger
 
 Added new stats:
 - dmg at day
 - dmg at night
+- dmg under hunger/poison/wither
 
 - added gem and rune loot crates.
 

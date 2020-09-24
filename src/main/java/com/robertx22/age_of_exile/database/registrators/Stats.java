@@ -87,6 +87,10 @@ public class Stats implements ISlashRegistryInit {
                     add(DmgAtDayStat.getInstance());
                     add(DmgAtNightStat.getInstance());
 
+                    add(DmgUnderStatusStat.HUNGER);
+                    add(DmgUnderStatusStat.POISON);
+                    add(DmgUnderStatusStat.WITHER);
+
                     add(MagicFind.getInstance());
                     add(IncreasedItemQuantity.getInstance());
 

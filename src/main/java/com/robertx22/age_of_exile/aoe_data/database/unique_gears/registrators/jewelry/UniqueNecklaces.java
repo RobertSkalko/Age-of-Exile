@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ImmuneToEffectStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DmgUnderStatusStat;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
@@ -31,8 +32,8 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(3, 8, ChanceToApplyEffect.POISON, ModType.FLAT),
-                new StatModifier(3, 5, Lifesteal.getInstance(), ModType.FLAT),
-                new StatModifier(0.5F, 0.35F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
+                new StatModifier(4, 6, Lifesteal.getInstance(), ModType.FLAT),
+                new StatModifier(0.1F, 0.2F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
             ))
             .build();
 
@@ -77,5 +78,21 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)
             ))
             .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.HUNGER_NECKLACE,
+            "hunger_neck",
+            "Eternal Hunger",
+            "They say the only way to take off this necklace is to rid yourself of your mortal flesh.",
+            BaseGearJewelry.HP_NECKLACE.get(LevelRanges.MID_TO_END))
+            .stats(Arrays.asList(
+                new StatModifier(-100, -100, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(-100, -100, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(15, 25, DmgUnderStatusStat.HUNGER, ModType.FLAT),
+                new StatModifier(15, 50, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(0.3F, 0.45F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+            ))
+            .build();
+
     }
 }

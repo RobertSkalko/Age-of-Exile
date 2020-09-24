@@ -21,6 +21,7 @@ water_ele_sword
 crystal_wand
 obsi_might
 greed_persist
+hunger_neck
 gluttony_helmet
 angel_prot_necklace
 solar_ring
