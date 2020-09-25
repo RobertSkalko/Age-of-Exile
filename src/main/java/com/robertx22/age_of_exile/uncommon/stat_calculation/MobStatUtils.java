@@ -7,11 +7,13 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -19,6 +21,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.stream.Collectors;
@@ -118,19 +121,20 @@ public class MobStatUtils {
         unit.getCreateStat(CriticalHit.GUID)
             .addFlat(5 * rar.DamageMultiplier(), lvl);
         unit.getCreateStat(CriticalDamage.GUID)
-            .addFlat(5 * rar.DamageMultiplier(), lvl);
+            .addFlat(2 * rar.DamageMultiplier(), lvl);
 
         ElementalResist.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
                 .addFlat(5 * rar.StatMultiplier(), lvl));
 
-        ElementalSpellDamage.MAP.getList()
-            .forEach(x -> unit.getCreateStat(x)
-                .addFlat(spelldmg * rar.DamageMultiplier(), lvl));
+        unit.getCreateStat(SpellDamage.getInstance())
+            .addFlat(-25, lvl); // less spell dmg, spells are already kinda strong
 
-        new WeaponDamage(Elements.Water).generateAllPossibleStatVariations()
+        int bonusEleDmg = MathHelper.clamp(5 * lvl, 0, 300);
+
+        new ElementalDamageBonus(Elements.Water).generateAllPossibleStatVariations()
             .forEach(x -> unit.getCreateStat(x)
-                .addPercent(1 * lvl)); // the higher lvls go, the more important elemental resistances would be
+                .addFlat(bonusEleDmg, 1)); // the higher lvls go, the more important elemental resistances would be
 
     }
 
