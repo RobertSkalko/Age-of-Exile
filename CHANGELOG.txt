@@ -1,3 +1,6 @@
+v.1.4.1
+- fix helmet boots
+
 v.1.4.0
 
 Added a "few" new unique gears:

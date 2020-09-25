@@ -90,6 +90,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(-100, -100, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 25, DamageUnderPotion.HUNGER, ModType.FLAT),
                 new StatModifier(15, 50, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(15, 50, MagicSteal.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(0.3F, 0.45F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
             ))
             .build();
