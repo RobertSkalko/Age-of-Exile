@@ -24,7 +24,6 @@ public class ElementalSpellDamage extends ElementalStat implements IStatEffects 
 
     public ElementalSpellDamage(Elements element) {
         super(element);
-
     }
 
     @Override

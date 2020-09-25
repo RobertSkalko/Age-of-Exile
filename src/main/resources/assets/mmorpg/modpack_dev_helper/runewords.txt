@@ -1,13 +1,15 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-venom
+sentinel
 shadow
+starlight
+ele_fury
+scholar
+all_knowing
+momentum
+venom
 dream_of_ice
 blaze_fury
 rock_golem
 infinity
-starlight
-ele_fury
-all_knowing
 dawn_light
-scholar

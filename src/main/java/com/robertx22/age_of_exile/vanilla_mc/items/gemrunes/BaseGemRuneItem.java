@@ -61,7 +61,8 @@ public abstract class BaseGemRuneItem extends Item {
         List<Text> tooltip = new ArrayList<>();
 
         if (SlashRegistry.Runes()
-            .isEmpty()) {
+            .isEmpty() || SlashRegistry.Gems()
+            .isEmpty() || getBaseRuneGem() == null) {
             return tooltip; // datapacks didnt register yet
         }
 

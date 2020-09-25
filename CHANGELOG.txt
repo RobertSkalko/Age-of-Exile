@@ -19,6 +19,13 @@ Added a "few" new unique gears:
 - Kingmaker
 - Eternal Hunger
 
+New runes:
+- YUN
+
+New runewords:
+- Momentum
+- Sentinel
+
 Added new stats:
 - dmg at day
 - dmg at night
@@ -47,3 +54,4 @@ I could use suggestions on how to tell players that they WILL be one shotted if 
 There will be builds that don't focus on resistance maxing, but that would require specific uniques.
 - added max_worn_at_once to gear rarities. This way you can add rarity specific restrictions. You can even go wow like and make a Mega legendary or something and allow only 1 worn per character.
 - mobs now have same gear restrictions as players
+- fix runewords being allowed on all gear types

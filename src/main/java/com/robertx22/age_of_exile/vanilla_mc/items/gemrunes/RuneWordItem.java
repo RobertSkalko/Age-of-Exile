@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -129,7 +129,7 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
             tooltip.add(TooltipUtils.level(word.runes_needed.stream()
                 .map(x -> SlashRegistry.Runes()
                     .get(x))
-                .min(Comparator.comparingInt(y -> y.getReqLevel()))
+                .max(Comparator.comparingInt(y -> y.getReqLevel()))
                 .get()
                 .getReqLevel()));
 

@@ -68,6 +68,10 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
     public boolean HasRuneWord(GearItemData gear) {
 
+        if (!canItemHave(gear)) {
+            return false;
+        }
+
         int index = 0;
         for (SocketData socket : gear.sockets.sockets) {
 

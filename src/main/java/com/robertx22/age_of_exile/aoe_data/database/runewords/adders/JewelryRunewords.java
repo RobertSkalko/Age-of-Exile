@@ -1,0 +1,43 @@
+package com.robertx22.age_of_exile.aoe_data.database.runewords.adders;
+
+import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ManaRegen;
+import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+
+import java.util.Arrays;
+
+import static com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem.RuneType.*;
+
+public class JewelryRunewords implements ISlashRegistryInit {
+
+    @Override
+    public void registerAll() {
+
+        RuneWord.create(
+            "scholar",
+            "Scholar",
+            BaseGearType.SlotFamily.Jewelry,
+            Arrays.asList(
+                new StatModifier(5, 15, BonusExp.getInstance(), ModType.FLAT)
+            ),
+            Arrays.asList(ITA, MOS))
+            .addToSerializables();
+
+        RuneWord.create(
+            "infinity",
+            "Infinity",
+            BaseGearType.SlotFamily.Jewelry,
+            Arrays.asList(
+                new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT),
+                new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            ),
+            Arrays.asList(XER, WIR, ORU))
+            .addToSerializables();
+
+    }
+}

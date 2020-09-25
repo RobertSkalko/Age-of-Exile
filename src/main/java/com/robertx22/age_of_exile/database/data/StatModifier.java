@@ -146,7 +146,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
             if (GetStat().IsPercent() || getModType().isLocalIncrease()) {
                 text = text + "%";
             } else if (getModType().isGlobalIncrease()) {
-                text = text + " global";
+                text = text + " Global";
             }
         }
 
