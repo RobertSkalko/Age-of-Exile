@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
@@ -17,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
@@ -128,9 +128,9 @@ public class MobStatUtils {
             .forEach(x -> unit.getCreateStat(x)
                 .addFlat(spelldmg * rar.DamageMultiplier(), lvl));
 
-        ElementalPenetration.MAP.getList()
+        new WeaponDamage(Elements.Water).generateAllPossibleStatVariations()
             .forEach(x -> unit.getCreateStat(x)
-                .addFlat(4 * rar.DamageMultiplier(), lvl));
+                .addPercent(1 * lvl)); // the higher lvls go, the more important elemental resistances would be
 
     }
 
