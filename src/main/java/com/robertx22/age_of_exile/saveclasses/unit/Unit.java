@@ -394,28 +394,27 @@ public class Unit {
 
                 boolean addstats = true;
 
-                //if (entity instanceof PlayerEntity) {
+                if (entity instanceof PlayerEntity) {
 
-                if (!gear.isIdentified()) {
-                    continue;
-                } else if (data.getLevel() < gear.level) {
-                    continue;
-                } else if (!gear.meetsStatRequirements(data)) {
-                    addstats = false;
-                }
-                if (addstats) {
-                    GearRarity rar = (GearRarity) gear.getRarity();
-                    if (rar.hasMaxWornRestriction()) {
-                        if (rarityMap.get(rar) >= rar.max_worn_at_once) {
-                            addstats = false;
-                            continue;
-                        } else {
-                            rarityMap.put(rar, rarityMap.getOrDefault(rar, 0) + 1);
+                    if (!gear.isIdentified()) {
+                        continue;
+                    } else if (data.getLevel() < gear.level) {
+                        continue;
+                    } else if (!gear.meetsStatRequirements(data)) {
+                        addstats = false;
+                    }
+                    if (addstats) {
+                        GearRarity rar = (GearRarity) gear.getRarity();
+                        if (rar.hasMaxWornRestriction()) {
+                            if (rarityMap.get(rar) >= rar.max_worn_at_once) {
+                                addstats = false;
+                                continue;
+                            } else {
+                                rarityMap.put(rar, rarityMap.getOrDefault(rar, 0) + 1);
+                            }
                         }
                     }
                 }
-
-                //}
 
                 if (addstats) {
                     gear.GetAllStats(true, false)

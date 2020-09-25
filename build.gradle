@@ -60,14 +60,12 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
 	
-	//modApi "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"	
 
 	modImplementation "de.siphalor:nbtcrafting-${nbtcrafting_version}"
 	include "de.siphalor:nbtcrafting-${nbtcrafting_version}"
 
-    compile files("Library-Of-Exile-1.16.2-1.0.4-dev.jar")
-	
+    compile files("Library-Of-Exile-1.16.2-1.0.4-dev.jar")	
 	
 }
 
