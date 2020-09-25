@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
@@ -203,24 +204,6 @@ public class Unit {
         return Mana.getInstance();
     }
 
-    public float getCurrentEffectiveHealth(LivingEntity entity, UnitData data) {
-        float curhp = health().CurrentValue(entity, this);
-        if (data.getResources() != null) {
-            curhp += data.getResources()
-                .getMagicShield();
-        }
-        return curhp;
-
-    }
-
-    public float getMaxEffectiveHealth() {
-        float hp = healthData().getAverageValue();
-        hp += magicShieldData().getAverageValue();
-
-        return hp;
-
-    }
-
     public StatData healthData() {
         try {
             return getCreateStat(Health.GUID);
@@ -284,10 +267,6 @@ public class Unit {
     protected void CalcStats(UnitData data) {
         stats.stats.values()
             .forEach((StatData stat) -> stat.CalcVal());
-    }
-
-    public float getMissingHealth(LivingEntity en) {
-        return healthData().getAverageValue() - health().CurrentValue(en, this);
     }
 
     private static class DirtyCheck {
@@ -401,6 +380,8 @@ public class Unit {
 
         boolean addedAny = true;
 
+        HashMap<GearRarity, Integer> rarityMap = new HashMap<>();
+
         while (!gears.isEmpty()) {
 
             this.CalcStats(data);
@@ -413,17 +394,28 @@ public class Unit {
 
                 boolean addstats = true;
 
-                if (entity instanceof PlayerEntity) {
-                    if (!gear.isIdentified()) {
-                        addstats = false;
-                        continue;
-                    } else if (data.getLevel() < gear.level) {
-                        addstats = false;
-                        continue;
-                    } else if (!gear.meetsStatRequirements(data)) {
-                        addstats = false;
+                //if (entity instanceof PlayerEntity) {
+
+                if (!gear.isIdentified()) {
+                    continue;
+                } else if (data.getLevel() < gear.level) {
+                    continue;
+                } else if (!gear.meetsStatRequirements(data)) {
+                    addstats = false;
+                }
+                if (addstats) {
+                    GearRarity rar = (GearRarity) gear.getRarity();
+                    if (rar.hasMaxWornRestriction()) {
+                        if (rarityMap.get(rar) >= rar.max_worn_at_once) {
+                            addstats = false;
+                            continue;
+                        } else {
+                            rarityMap.put(rar, rarityMap.getOrDefault(rar, 0) + 1);
+                        }
                     }
                 }
+
+                //}
 
                 if (addstats) {
                     gear.GetAllStats(true, false)

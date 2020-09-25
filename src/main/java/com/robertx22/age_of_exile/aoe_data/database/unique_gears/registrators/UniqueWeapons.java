@@ -98,7 +98,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "eye_of_zegrath",
             "Eye of Zegrath",
             "A cultist once so powerful, even his remnant eye inflicts ills on others.",
-            BaseGearWeapons.WAND.get(LevelRanges.MIDDLE))
+            BaseGearWeapons.WAND.get(LevelRanges.STARTER))
             .stats(Arrays.asList(
                 new StatModifier(10, 30, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 10, ChanceToApplyEffect.BURN, ModType.FLAT),
@@ -116,6 +116,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(1, 3, 3, 5, new WeaponDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
+                new StatModifier(5, 15, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(1, 1, HealToSpellDmgStat.getInstance(), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
             ))
@@ -169,7 +170,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
                 new StatModifier(1, 1, 3, 3, new WeaponDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(15, 30, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(15, 25, ProjectileSpeedStat.getInstance(), ModType.FLAT),
-                new StatModifier(3, 3, ManaOnHit.getInstance(), ModType.FLAT),
+                new StatModifier(10, 20, CriticalHit.getInstance(), ModType.FLAT),
+                new StatModifier(1, 3, ManaOnHit.getInstance(), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)))
             .build();
 

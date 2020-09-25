@@ -287,6 +287,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (event != null) {
             ds = event.getSource();
+        } else {
+            ds = DamageSource.GENERIC; // todo unsure.
         }
 
         MyDamageSource dmgsource = new MyDamageSource(ds, source, element, dmg);

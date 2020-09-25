@@ -30,6 +30,12 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public Part affixes;
     public Part sockets;
 
+    public int max_worn_at_once = -1;
+
+    public boolean hasMaxWornRestriction() {
+        return max_worn_at_once > 0;
+    }
+
     public MinMax default_stat_percents = new MinMax(0, 100);
     public MinMax secondaryStatPercents = new MinMax(0, 100);
     public MinMax affix_stat_percents = new MinMax(0, 100);

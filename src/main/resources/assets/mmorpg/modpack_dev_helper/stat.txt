@@ -138,7 +138,6 @@ elemental_penetration
 ele_sword_damage
 crossbow_damage
 nature_penetration
-all_ele_dmg
 fire_focus
 nature_focus
 unlock_arcane_bolt
