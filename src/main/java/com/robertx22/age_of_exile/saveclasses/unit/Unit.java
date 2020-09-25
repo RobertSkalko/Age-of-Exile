@@ -83,10 +83,6 @@ public class Unit {
         return getCreateStat(stat.GUID());
     }
 
-    public boolean hasStat(Stat stat) {
-        return hasStat(stat.GUID());
-    }
-
     public boolean hasStat(String guid) {
         return stats.stats.containsKey(guid);
     }
@@ -188,7 +184,7 @@ public class Unit {
         }
 
         if (obj instanceof Unit) {
-            return ((Unit) obj).GUID == this.GUID;
+            return ((Unit) obj).GUID.equals(this.GUID); // todo this bugfix sounds big, might mess with things!!!
         }
         return false;
     }
