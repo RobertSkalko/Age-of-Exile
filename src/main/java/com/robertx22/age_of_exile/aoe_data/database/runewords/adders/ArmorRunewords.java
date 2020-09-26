@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -28,10 +28,11 @@ public class ArmorRunewords implements ISlashRegistryInit {
             "Sentinel",
             BaseGearType.SlotFamily.Armor,
             Arrays.asList(
-                new StatModifier(3, 6, Health.getInstance(), ModType.GLOBAL_INCREASE),
-                new StatModifier(3, 6, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
-                new StatModifier(3, 6, MagicShield.getInstance(), ModType.GLOBAL_INCREASE),
-                new StatModifier(6, 15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+                new StatModifier(-5, -5, new MaxElementalResist(Elements.Fire), ModType.FLAT),
+                new StatModifier(-5, -5, new MaxElementalResist(Elements.Water), ModType.FLAT),
+                new StatModifier(-5, -5, new MaxElementalResist(Elements.Nature), ModType.FLAT),
+                new StatModifier(-5, -5, new MaxElementalResist(Elements.Thunder), ModType.FLAT),
+                new StatModifier(7, 18, new ElementalResist(Elements.Elemental), ModType.FLAT)
             ),
             Arrays.asList(CEN, DOS, ANO, TOQ))
             .addToSerializables();

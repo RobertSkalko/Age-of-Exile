@@ -51,6 +51,8 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
 
     }
 
+    static String ENABLED = "enabled";
+
     @Override
     protected void apply(Map<Identifier, JsonElement> mapToLoad, ResourceManager manager, Profiler profilerIn) {
 
@@ -60,15 +62,25 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
 
         reg.unregisterAllEntriesFromDatapacks();
 
-        mapToLoad.forEach((loc, json) -> {
+        for (Map.Entry<Identifier, JsonElement> entry : mapToLoad.entrySet()) {
             try {
-                T object = serializer.apply(json.getAsJsonObject());
+                JsonObject json = entry.getValue()
+                    .getAsJsonObject();
+
+                if (json.has(ENABLED)) {
+                    if (!json.get(ENABLED)
+                        .getAsBoolean()) {
+                        continue;
+                    }
+                }
+                T object = serializer.apply(json);
                 object.registerToSlashRegistry();
             } catch (Exception exception) {
-                LOGGER.error("Couldn't parse " + id + " {}", loc, exception);
+                LOGGER.error("Couldn't parse " + id + " {}", entry.getKey()
+                    .toString(), exception);
             }
 
-        });
+        }
 
         if (reg
             .isEmpty()) {
