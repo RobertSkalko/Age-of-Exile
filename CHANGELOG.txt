@@ -1,3 +1,6 @@
+v 1.4.3
+- fix recipes (they were excluded for some reason?)
+
 v.1.4.2
 - added new datapack feature: adding "enabled": false, to base of the json will make it so that json isn't registered. 
 - updated chinese lang
