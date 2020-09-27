@@ -1,5 +1,6 @@
 v.1.4.4
 
+- repair station now works like the modify station, button click!
 - add new datapack stat: "one applies to other". Used with my stat that adds spell damage based on heal power.
 Yes that means you can do stuff like "20% of strength applies to intelligence" 
 - dont sync mob stats to client. They seem to be unneded. This should improve performance. (the only thing that needs to be synced are mob affixes and statuses)

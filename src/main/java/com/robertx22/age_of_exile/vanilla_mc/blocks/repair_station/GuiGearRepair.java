@@ -2,27 +2,29 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.library_of_exile.utils.CLOC;
-import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.FuelSlot;
+import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.library_of_exile.gui.HelpButton;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.tile_bases.TileGui;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
 public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> {
@@ -58,25 +60,10 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
                     .getName()) + ": " + x.getValue()));
             });
 
-        this.addButton(new HelpButton(list, this.x + this.backgroundWidth, this.y));
+        this.addButton(new HelpButton(list, this.x + this.backgroundWidth - 25, this.y + 5));
+        this.addButton(new CraftButton(tile.getPos(), this.x + 58, this.y + 85));
 
     }
-
-    // some [x,y] coordinates of graphical elements
-    final int COOK_BAR_XPOS = 49;
-    final int COOK_BAR_YPOS = 60;
-    final int COOK_BAR_ICON_U = 0; // texture position of white arrow icon
-    final int COOK_BAR_ICON_V = 207;
-    final int COOK_BAR_WIDTH = 80;
-    final int COOK_BAR_HEIGHT = 17;
-
-    final int FLAME_XPOS = 81;// 54;
-    final int FLAME_YPOS = 80;
-    final int FLAME_ICON_U = 176; // texture position of flame icon
-    final int FLAME_ICON_V = 0;
-    final int FLAME_WIDTH = 14;
-    final int FLAME_HEIGHT = 14;
-    final int FLAME_X_SPACING = 18;
 
     @Override
     protected void drawBackground(MatrixStack matrix, float partialTicks, int x, int y) {
@@ -88,19 +75,6 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         drawTexture(matrix, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
-
-        // get cook progress as a double between 0 and 1
-        // draw the cook progress bar
-        drawTexture(matrix, this.x + COOK_BAR_XPOS, this.y + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (tile
-            .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
-
-        // draw the fuel remaining bar for each fuel slot flame
-        for (int i = 0; i < TileGearRepair.FUEL_SLOTS.size(); ++i) {
-            //double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
-
-            int yOffset = (int) ((1 - (float) tile.fuel / tile.MaximumFuel) * FLAME_HEIGHT);
-            drawTexture(matrix, this.x + FLAME_XPOS + FLAME_X_SPACING * i, this.y + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset, FLAME_WIDTH, FLAME_HEIGHT - yOffset);
-        }
 
         this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
@@ -115,28 +89,42 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         font.draw(matrix, CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
             .getRGB());
 
-        List<String> hoveringText = new ArrayList<String>();
+    }
 
-        // If the mouse is over the progress bar add the progress bar hovering text
-        if (GuiUtils.isInRect(x + COOK_BAR_XPOS, y + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
-            hoveringText.add(Words.Progress.translate() + ": ");
-            int cookPercentage = (int) (tile.fractionOfCookTimeComplete() * 100);
-            hoveringText.add(cookPercentage + "%");
+    private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/craftbutton.png");
+    static int BUTTON_SIZE_X = 61;
+    static int BUTTON_SIZE_Y = 20;
+
+    public class CraftButton extends TexturedButtonWidget {
+        BlockPos pos;
+
+        public CraftButton(BlockPos pos, int xPos, int yPos) {
+            super(xPos, yPos, BUTTON_SIZE_X, BUTTON_SIZE_Y, 0, 0, BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
+                Packets.sendToServer(new ModifyItemPacket(pos));
+            });
+            this.pos = pos;
         }
 
-        // If the mouse is over one of the burn time indicator add the burn time
-        // indicator hovering text
-        for (int i = 0; i < TileGearRepair.FUEL_SLOTS.size(); ++i) {
-            if (GuiUtils.isInRect(x + FLAME_XPOS + FLAME_X_SPACING * i, y + FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
-                // hoveringText.add("Fuel Time:");
-                hoveringText.add(Words.Fuel.translate() + ": " + tile.fuel);
+        @Override
+        public void renderToolTip(MatrixStack matrix, int x, int y) {
+            if (isInside(x, y)) {
+
+                try {
+                    List<Text> tooltip = new ArrayList<>();
+
+                    tooltip.add(new LiteralText("Repair Item"));
+
+                    GuiUtils.renderTooltip(matrix,
+                        tooltip, x, y);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         }
-        // If hoveringText is not empty draw the hovering text
-        if (!hoveringText.isEmpty()) {
-            renderTooltip(matrix, hoveringText.stream()
-                .map(x -> new LiteralText(x))
-                .collect(Collectors.toList()), mouseX - x, mouseY - y);
+
+        public boolean isInside(int x, int y) {
+            return GuiUtils.isInRect(this.x, this.y, BUTTON_SIZE_X, BUTTON_SIZE_Y, x, y);
         }
 
     }

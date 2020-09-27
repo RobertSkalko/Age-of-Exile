@@ -14,6 +14,13 @@ import net.minecraft.world.World;
 
 public class LevelUtils {
 
+    public static int getDistanceFromMaxLevel(int lvl) {
+
+        int max = ModConfig.get().Server.MAX_LEVEL;
+
+        return Math.abs(lvl - max);
+    }
+
     public static int getExpRequiredForLevel(int level) {
         return level * level * 20;
     }
