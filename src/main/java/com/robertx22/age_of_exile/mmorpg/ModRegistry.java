@@ -21,9 +21,13 @@ public class ModRegistry {
     public static GearMaterialRegister GEAR_MATERIALS;
     public static PotionRegister POTIONS;
     public static UniqueGearItemRegister UNIQUE_GEARS;
+    public static ModRecipeSerializers RECIPE_SER;
+    public static RepairKitsRegister REPAIR_KITS;
 
     public static void init() {
 
+        REPAIR_KITS = new RepairKitsRegister();
+        RECIPE_SER = new ModRecipeSerializers();
         UNIQUE_GEARS = new UniqueGearItemRegister();
         POTIONS = new PotionRegister();
         BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks

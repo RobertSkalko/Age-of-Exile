@@ -15,6 +15,7 @@ public enum Words implements IAutoLocName {
     Golem("Golem"),
     Spirit("Spirit"),
     Rage("Rage"),
+    Durability("Durability"),
 
     Beads("Beads"),
     Charm("Charm"),
@@ -322,7 +323,8 @@ public enum Words implements IAutoLocName {
     HoldToPreventPickup("Hold in your hand to prevent item pickup."),
 
     AddRarestAffixes("Add Rarest Affixes"),
-
+    RepairKit1("Craft with gear to repair."),
+    RepairKit2("Craft with fuel mat to charge."),
     Requirements("Requirements"),
     RequiresLevel("Requires Level"),
 

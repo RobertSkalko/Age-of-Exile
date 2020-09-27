@@ -1,6 +1,10 @@
 v.1.4.4
 
 - repair station now works like the modify station, button click!
+- added repair kits. They are a way to repair gear on the run. So you dont have to bring a repair station. 
+You power them the same way you powered the repair station before, by filling it with fuel items, though now it's done with crafting screen.
+Then you combine repair kit with your gear, and it repairs it.
+
 - add new datapack stat: "one applies to other". Used with my stat that adds spell damage based on heal power.
 Yes that means you can do stuff like "20% of strength applies to intelligence" 
 - dont sync mob stats to client. They seem to be unneded. This should improve performance. (the only thing that needs to be synced are mob affixes and statuses)
