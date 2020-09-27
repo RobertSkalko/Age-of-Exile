@@ -1,3 +1,7 @@
+v.1.4.4
+
+- add new datapack stat: "one applies to other". Used with my stat that adds spell damage based on heal power.
+
 v 1.4.3
 - fix recipes (they were excluded for some reason?)
 

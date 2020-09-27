@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.lang_file;
 
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -123,11 +124,16 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(SlashRegistry.Runewords()
             .getSerializable());
-        list.addAll(SlashRegistry.Stats()
+
+        List<Stat> stats = SlashRegistry.Stats()
             .getList()
             .stream()
             .filter(x -> !x.isFromDatapack())
-            .collect(Collectors.toList()));
+            .collect(Collectors.toList());
+        list.addAll(SlashRegistry.Stats()
+            .getSerializable());
+        list.addAll(stats);
+
         list.addAll(SlashRegistry.GearTypes()
             .getSerializable());
         list.addAll(SlashRegistry.ExileEffects()
@@ -138,8 +144,6 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.MobRarities()
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
-        list.addAll(SlashRegistry.Stats()
-            .getSerializable());
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 
@@ -174,9 +178,14 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.UniqueGears()
             .getSerializable());
 
+        List<Stat> stats = SlashRegistry.Stats()
+            .getList()
+            .stream()
+            .filter(x -> !x.isFromDatapack())
+            .collect(Collectors.toList());
         list.addAll(SlashRegistry.Stats()
-            .getAll()
-            .values());
+            .getSerializable());
+        list.addAll(stats);
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> map = new HashMap<>();
 

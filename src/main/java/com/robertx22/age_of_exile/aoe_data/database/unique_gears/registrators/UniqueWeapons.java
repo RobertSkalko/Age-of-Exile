@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
@@ -9,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.HealToSpellDmgStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -117,7 +117,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
                 new StatModifier(1, 3, 3, 5, new WeaponDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(5, 15, CriticalHit.getInstance(), ModType.FLAT),
-                new StatModifier(1, 1, HealToSpellDmgStat.getInstance(), ModType.FLAT),
+                new StatModifier(50, 100, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
             ))
             .build();

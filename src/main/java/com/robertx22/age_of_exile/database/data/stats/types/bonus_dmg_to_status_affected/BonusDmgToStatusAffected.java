@@ -29,7 +29,7 @@ public class BonusDmgToStatusAffected extends Stat implements IStatEffects {
     }
 
     public StatNameRegex getStatNameRegex() {
-        return StatNameRegex.STATUS_EFFECT;
+        return StatNameRegex.VALUE_PLUS_NAME;
     }
 
     @Override

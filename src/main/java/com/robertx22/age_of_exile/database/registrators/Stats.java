@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.HealToSpellDmgStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
@@ -44,7 +43,6 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
-                    add(HealToSpellDmgStat.getInstance());
 
                     add(ChangeDmgElementStat.PHYS_TO_POISON);
                     add(ChangeDmgElementStat.PHYS_TO_FIRE);
