@@ -19,7 +19,6 @@ public class FillRepairKitRecipe extends SpecialCraftingRecipe {
 
     @Override
     public boolean matches(CraftingInventory inv, World world) {
-        int count = 0;
         boolean haskit = false;
         boolean hasrepair = false;
 
@@ -27,11 +26,9 @@ public class FillRepairKitRecipe extends SpecialCraftingRecipe {
             ItemStack stack = inv.getStack(i);
             if (stack.getItem() instanceof RepairKitItem) {
                 haskit = true;
-                count++;
                 continue;
             } else if (FuelSlot.FUEL_VALUES.getOrDefault(stack.getItem(), 0) > 0) {
                 hasrepair = true;
-                count++;
                 continue;
             } else {
                 if (!stack.isEmpty()) {

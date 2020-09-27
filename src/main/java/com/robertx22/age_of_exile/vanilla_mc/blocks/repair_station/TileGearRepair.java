@@ -106,7 +106,7 @@ public class TileGearRepair extends BaseModificationStation {
 
                 GearItemData data = Gear.Load(stack);
                 if (data != null) {
-                    float lvlmulti = 1 + LevelUtils.getDistanceFromMaxLevel(data.level) * 0.01F;
+                    float lvlmulti = 1 + LevelUtils.getDistanceFromMaxLevel(data.level) * 0.02F;
 
                     return (int) (restore * lvlmulti);
                 }
