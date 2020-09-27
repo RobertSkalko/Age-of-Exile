@@ -2,8 +2,11 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 public class ExileEffectsManager {
@@ -15,13 +18,16 @@ public class ExileEffectsManager {
             }
             ExileStatusEffect effect = reg.getStatusEffect();
 
-            StatusEffectInstance instance = target.getStatusEffect(effect);
             ExileEffectInstanceData extraData = Load.Unit(target)
                 .getStatusEffectsData()
                 .get(effect);
 
             extraData.stacks -= amount;
             extraData.stacks = MathHelper.clamp(extraData.stacks, 0, 1000);
+
+            if (extraData.stacks < 1) {
+                target.removeStatusEffect(effect);
+            }
 
             Load.Unit(target)
                 .setEquipsChanged(true);
@@ -57,12 +63,21 @@ public class ExileEffectsManager {
 
         target.addStatusEffect(newInstance);
 
+        // sync packets to client
+        EntityStatusEffectS2CPacket packet = new EntityStatusEffectS2CPacket(target.getEntityId(), newInstance);
+        PlayerStream.watching(target.world, target.getBlockPos())
+            .forEach((x) -> {
+                ServerPlayerEntity server = (ServerPlayerEntity) x;
+                server.networkHandler.sendPacket(packet);
+            });
+
         Load.Unit(target)
             .getStatusEffectsData()
             .set(effect, extraData);
-
         Load.Unit(target)
             .setEquipsChanged(true);
+        Load.Unit(target)
+            .trySync(target);
 
     }
 }

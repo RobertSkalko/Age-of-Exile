@@ -50,7 +50,7 @@ public class MobStatUtils {
 
     public static void addAffixStats(UnitData data) {
 
-        data.getUnit()
+        data.getAffixData()
             .getAffixes()
             .forEach(x -> x.applyStats(data));
 

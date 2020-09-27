@@ -40,7 +40,7 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
         StatData add_to = data.getUnit()
             .getCreateStat(stat_to_add_to);
         StatData adder = data.getUnit()
-            .getCreateStat(adder_stat);
+            .peekAtStat(adder_stat);
         StatData thisstat = data.getUnit()
             .peekAtStat(this.GUID());
 

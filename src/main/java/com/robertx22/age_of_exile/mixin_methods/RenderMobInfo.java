@@ -61,7 +61,7 @@ public class RenderMobInfo {
                 Text text = data.getName(entity)
                     .append(lvlcomp);
 
-                List<MobAffix> prefix = data.getUnit()
+                List<MobAffix> affixes = data.getAffixData()
                     .getAffixes();
 
                 float percent = entity.getHealth() / entity.getMaxHealth() * 100F;
@@ -110,13 +110,13 @@ public class RenderMobInfo {
                     0, -1, true, matrix4f,
                     vertexConsumerProvider, false, bgColor, i);
 
-                if (!data.getUnit().affixes.isEmpty()) {
+                if (!affixes.isEmpty()) {
 
                     MutableText affixText = new LiteralText("");
 
                     boolean addedaffix = false;
 
-                    for (MobAffix mobAffix : prefix) {
+                    for (MobAffix mobAffix : affixes) {
                         if (addedaffix) {
                             affixText.append(new LiteralText(", "));
                         }

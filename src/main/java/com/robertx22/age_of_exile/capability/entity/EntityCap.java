@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.unit.MobAffixesData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
@@ -63,10 +64,11 @@ public class EntityCap {
     private static final String NEWBIE_STATUS = "is_a_newbie";
     private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
     private static final String TIER = "TIER";
-    private static final String PREVENT_LOOT = "PREVENT_LOOT";
+    private static final String AFFIXES = "affix";
     private static final String SHOULD_SYNC = "SHOULD_SYNC";
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
+    private static final String STATUSES = "statuses";
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
@@ -175,6 +177,9 @@ public class EntityCap {
         AreaModifier getAreaMod();
 
         void setAreaMod(AreaModifier area);
+
+        MobAffixesData getAffixData();
+
     }
 
     public static class DefaultImpl implements UnitData {
@@ -190,6 +195,9 @@ public class EntityCap {
         int rarity = 0;
         int level = 1;
         int exp = 0;
+        MobAffixesData affixes = new MobAffixesData();
+
+        public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
 
         String area_mod = "";
 
@@ -218,12 +226,10 @@ public class EntityCap {
             nbt.putString(ENTITY_TYPE, this.type.toString());
             nbt.putString("area", area_mod);
 
-            if (unit != null) {
-                // System.out.println(unit.getStats().size()); for testing if mobs get all stats or only ones they need
-
-                UnitNbt.Save(nbt, unit);
+            if (affixes != null) {
+                LoadSave.Save(affixes, nbt, AFFIXES);
             }
-
+            LoadSave.Save(statusEffects, nbt, STATUSES);
         }
 
         @Override
@@ -238,12 +244,16 @@ public class EntityCap {
                 this.type = EntityTypeUtils.EntityClassification.valueOf(typestring);
             } catch (Exception e) {
                 this.type = EntityTypeUtils.EntityClassification.OTHER;
-                //if no nbt, set to default. Then at spawn, set correctly
             }
 
-            this.unit = UnitNbt.Load(nbt);
-            if (this.unit == null) {
-                this.unit = new Unit();
+            this.affixes = LoadSave.Load(MobAffixesData.class, new MobAffixesData(), nbt, AFFIXES);
+            if (affixes == null) {
+                affixes = new MobAffixesData();
+            }
+
+            this.statusEffects = LoadSave.Load(EntityStatusEffectsData.class, new EntityStatusEffectsData(), nbt, STATUSES);
+            if (statusEffects == null) {
+                statusEffects = new EntityStatusEffectsData();
             }
         }
 
@@ -260,6 +270,10 @@ public class EntityCap {
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
             nbt.putBoolean(SHOULD_SYNC, shouldSync);
+
+            if (unit != null) {
+                UnitNbt.Save(nbt, unit);
+            }
 
             if (customExactStats != null) {
                 CustomExactStats.Save(nbt, customExactStats);
@@ -285,6 +299,11 @@ public class EntityCap {
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
+
+            this.unit = UnitNbt.Load(nbt);
+            if (this.unit == null) {
+                this.unit = new Unit();
+            }
 
             try {
                 this.resources = LoadSave.Load(ResourcesData.class, new ResourcesData(), nbt, RESOURCES_LOC);
@@ -336,7 +355,7 @@ public class EntityCap {
 
         @Override
         public EntityStatusEffectsData getStatusEffectsData() {
-            return this.getUnit().statusEffects;
+            return this.statusEffects;
         }
 
         @Override
@@ -714,6 +733,11 @@ public class EntityCap {
             area.effectsOnMobSpawn.forEach(x -> {
                 this.entity.addStatusEffect(x);
             });
+        }
+
+        @Override
+        public MobAffixesData getAffixData() {
+            return affixes;
         }
 
         @Override

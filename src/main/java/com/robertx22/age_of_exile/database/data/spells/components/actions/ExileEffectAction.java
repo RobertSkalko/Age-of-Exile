@@ -76,9 +76,10 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
                     ExileEffectsManager.reduceStacks(potion, ctx.target, count);
                 }
             });
-        } finally {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     public MapHolder create(String id, GiveOrTake action, Double duration) {

@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.api.MineAndSlashEvents;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
-import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -23,7 +22,6 @@ import com.robertx22.age_of_exile.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EfficientMobUnitPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
@@ -47,29 +45,11 @@ import java.util.stream.Collectors;
 public class Unit {
 
     @Store
-    public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
-
-    @Store
     private StatContainer stats = new StatContainer();
 
     @Store
     public String GUID = UUID.randomUUID()
         .toString();
-
-    @Store
-    public String prefix;
-    @Store
-    public String suffix;
-
-    @Store
-    public List<String> affixes = new ArrayList<>();
-
-    public List<MobAffix> getAffixes() {
-        return affixes.stream()
-            .map(x -> SlashRegistry.MobAffixes()
-                .get(x))
-            .collect(Collectors.toList());
-    }
 
     public HashMap<String, StatData> getStats() {
 
@@ -100,19 +80,6 @@ public class Unit {
 
         return stats.stats.getOrDefault(guid, StatData.empty());
 
-    }
-
-    public void randomizeAffixes(MobRarity rarity) {
-
-        int amount = RandomUtils.roll(rarity.oneAffixChance()) ? 1 : 0;
-
-        this.affixes.clear();
-
-        if (amount > 0) {
-            this.affixes.add(SlashRegistry.MobAffixes()
-                .random()
-                .GUID());
-        }
     }
 
     public StatData getCreateStat(String guid) {
@@ -464,17 +431,18 @@ public class Unit {
 
     }
 
-    private static List<EntityType> IGNORED_ENTITIES = null;
+    private static HashMap<EntityType, Boolean> IGNORED_ENTITIES = null;
 
-    public static List<EntityType> getIgnoredEntities() {
+    public static HashMap<EntityType, Boolean> getIgnoredEntities() {
 
         if (IGNORED_ENTITIES == null) {
-            IGNORED_ENTITIES = ModConfig.get().Server.IGNORED_ENTITIES
+            IGNORED_ENTITIES = new HashMap<>();
+            ModConfig.get().Server.IGNORED_ENTITIES
                 .stream()
                 .filter(x -> Registry.ENTITY_TYPE.getOrEmpty(new Identifier(x))
                     .isPresent())
                 .map(x -> Registry.ENTITY_TYPE.get(new Identifier(x)))
-                .collect(Collectors.toList());
+                .forEach(x -> IGNORED_ENTITIES.put(x, true));
         }
 
         return IGNORED_ENTITIES;
@@ -482,24 +450,11 @@ public class Unit {
     }
 
     public static boolean shouldSendUpdatePackets(LivingEntity en) {
-        return getIgnoredEntities().contains(en.getType()) == false;
+        return !getIgnoredEntities().containsKey(en.getType());
     }
 
     public static MyPacket getUpdatePacketFor(LivingEntity en, UnitData data) {
         return new EfficientMobUnitPacket(en, data);
-    }
-
-    private Unit Clone() {
-
-        Unit clone = new Unit();
-        if (this.stats.stats != null) {
-            clone.stats.stats = new HashMap<String, StatData>(stats.stats);
-        } else {
-            clone.stats.stats = new HashMap<String, StatData>();
-        }
-
-        return clone;
-
     }
 
 }
