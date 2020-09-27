@@ -126,7 +126,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         if (tags.contains(SlotTag.pants)) {
             return EquipmentSlot.LEGS;
         }
-        if (tags.contains(SlotTag.pants)) {
+        if (tags.contains(SlotTag.helmet)) {
             return EquipmentSlot.HEAD;
         }
         if (isWeapon()) {

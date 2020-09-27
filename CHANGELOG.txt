@@ -6,6 +6,7 @@ Yes that means you can do stuff like "20% of strength applies to intelligence"
 - dont sync mob stats to client. They seem to be unneded. This should improve performance. (the only thing that needs to be synced are mob affixes and statuses)
 - fix status effects not showing particles
 - turn off gem glint
+- fix auto helmet compat
 
 v 1.4.3
 - fix recipes (they were excluded for some reason?)
