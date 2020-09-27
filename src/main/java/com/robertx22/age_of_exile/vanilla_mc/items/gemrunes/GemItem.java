@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.IGUID;
@@ -22,8 +24,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDama
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -336,11 +336,6 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     @Override
     public String GUID() {
         return "gems/" + gemType.id + "/" + gemRank.num;
-    }
-
-    @Override
-    public boolean hasGlint(ItemStack stack) {
-        return true;
     }
 
     public Gem getGem() {
