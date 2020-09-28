@@ -1,3 +1,8 @@
+v.1.4.5
+
+- fix adderstat not working
+- fix adderstat tooltip
+
 v.1.4.4
 
 - updated station models by Catscythe

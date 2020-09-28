@@ -4,14 +4,13 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.MathHelper;
-
-import java.text.DecimalFormat;
 
 @Storable
 public class StatData {
@@ -174,7 +173,11 @@ public class StatData {
     }
 
     public float getAverageValue() {
-        float val = (getFirstValue() + getSecondValue()) / 2;
+        if (this.v1 == 0 && this.Flat != 0) {
+            MMORPG.devToolsErrorLog("Don't call this method when value isn't calculated!");
+        }
+
+        float val = (getFirstValue() + getSecondValue()) / 2F;
 
         Stat stat = GetStat();
         return MathHelper.clamp(val, stat.min_val, stat.max_val);
@@ -249,26 +252,13 @@ public class StatData {
         v2 = 0;
     }
 
-    public String formattedValue() {
+    public float getMultiplier() {
 
-        float val = this.getAverageValue();
-
-        DecimalFormat format = new DecimalFormat();
-
-        if (Math.abs(val) < 10) {
-            format.setMaximumFractionDigits(1);
-
-            return format.format(val);
-
-        } else {
-            int intval = (int) val;
-            return intval + "";
+        if (this.v1 == 0 && this.Flat != 0) {
+            MMORPG.devToolsErrorLog("Don't call this method when value isn't calculated!");
         }
 
-    }
-
-    public float getMultiplier() {
-        return 1 + getAverageValue() / 100;
+        return 1F + getAverageValue() / 100F;
     }
 
     public float getReverseMultiplier() {
