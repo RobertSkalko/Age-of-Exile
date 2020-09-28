@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -24,6 +25,9 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
         this.stat_to_add_to = stat_to_add_to;
         this.locname = locname;
         this.desc = desc;
+
+        this.min_val = 0;
+        this.scaling = StatScaling.NONE;
     }
 
     public OneAppliesToOtherStat(String id, String adder_stat, String stat_to_add_to) {
@@ -33,6 +37,7 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
         this.adder_stat = adder_stat;
 
         this.min_val = 0;
+        this.scaling = StatScaling.NONE;
     }
 
     @Override

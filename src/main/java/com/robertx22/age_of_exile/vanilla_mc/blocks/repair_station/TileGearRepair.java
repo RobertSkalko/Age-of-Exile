@@ -7,10 +7,12 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.FuelSlot;
 import com.robertx22.library_of_exile.utils.CLOC;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.math.MathHelper;
 
@@ -135,6 +137,8 @@ public class TileGearRepair extends BaseModificationStation {
 
             fuelstack.decrement(1);
             stack.setDamage(dmg);
+
+            SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.8f, 1f);
 
             return true;
 

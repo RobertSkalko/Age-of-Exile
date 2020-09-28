@@ -1,5 +1,6 @@
 v.1.4.4
 
+- updated station models by Catscythe
 - repair station now works like the modify station, button click!
 - repair values in repair station are now much cheaper for low level gear, slowly rising costs as lvl increases
 - added repair kits. They are a way to repair gear on the run. So you dont have to bring a repair station. 

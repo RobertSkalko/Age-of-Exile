@@ -25,6 +25,9 @@ public class FillRepairKitRecipe extends SpecialCraftingRecipe {
         for (int i = 0; i < inv.size(); ++i) {
             ItemStack stack = inv.getStack(i);
             if (stack.getItem() instanceof RepairKitItem) {
+                if (haskit) {
+                    return false; // dont allow 2! that would make 1 disappear
+                }
                 haskit = true;
                 continue;
             } else if (FuelSlot.FUEL_VALUES.getOrDefault(stack.getItem(), 0) > 0) {
