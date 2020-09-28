@@ -12,6 +12,7 @@ public interface IStatSerializer<T extends DatapackStat> {
 
     default void saveBaseStatValues(T obj, JsonObject json) {
 
+        json.addProperty("id", obj.id);
         json.addProperty("min", obj.min_val);
         json.addProperty("max", obj.max_val);
         json.addProperty("base", obj.base_val);
@@ -23,6 +24,8 @@ public interface IStatSerializer<T extends DatapackStat> {
 
     default void loadBaseStatValues(T obj, JsonObject json) {
 
+        obj.id = json.get("id")
+            .getAsString();
         obj.min_val = json.get("min")
             .getAsFloat();
         obj.max_val = json.get("max")

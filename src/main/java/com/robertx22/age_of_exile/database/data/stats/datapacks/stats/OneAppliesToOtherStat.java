@@ -11,7 +11,6 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
 
     public static String SER_ID = "one_to_other";
 
-    String id = "";
     public String adder_stat;
     public String stat_to_add_to;
 
@@ -77,11 +76,6 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
     @Override
     public String locNameForLangFile() {
         return locname;
-    }
-
-    @Override
-    public String GUID() {
-        return id;
     }
 
 }

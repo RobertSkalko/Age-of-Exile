@@ -5,5 +5,5 @@ nature
 fire
 divine
 hunting
-skill_tree
+arcane
 water

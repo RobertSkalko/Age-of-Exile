@@ -36,6 +36,8 @@ public class SpellStatsCalcEffect extends EffectData {
 
     public static class CalculatedSpellConfiguration {
 
+        public int extraProjectiles = 0;
+
         private HashMap<SpellModEnum, Float> map = new HashMap<>();
 
         public CalculatedSpellConfiguration() {

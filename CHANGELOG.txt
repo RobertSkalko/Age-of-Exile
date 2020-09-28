@@ -1,3 +1,8 @@
+v.1.4.6
+
+- added extra projectiles to spell datapack stat (unused currently, open to modpackers)
+- added istargetally condition for spells
+
 v.1.4.5
 
 - fix crash when all but 1 spell trees are disabled with datapacks

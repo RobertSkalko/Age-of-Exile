@@ -144,6 +144,7 @@ unlock_arcane_bolt
 dexterity_flat_stat_req
 unlock_holy_flower
 ele_crossbow_damage
+extra_fireball_projectiles
 fire_weapon_damage
 magic_shield_regen
 physical_to_nature

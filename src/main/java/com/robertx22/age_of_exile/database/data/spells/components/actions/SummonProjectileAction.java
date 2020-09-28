@@ -72,7 +72,8 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
 
         ProjectileCastHelper builder = new ProjectileCastHelper(pos, data, ctx.caster, projectile.get(), ctx.calculatedSpellData);
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
-            .intValue();
+            .intValue() + ctx.calculatedSpellData.config.extraProjectiles;
+
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
             .floatValue();
 

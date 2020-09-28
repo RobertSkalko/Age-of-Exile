@@ -13,6 +13,7 @@ public class GiveSpellStat extends DatapackStat {
         super(SER_ID);
         this.spell = spell.GUID();
         this.spellname = spell.locNameForLangFile();
+        this.id = "unlock_" + spell.GUID();
     }
 
     public GiveSpellStat(String spell) {
@@ -44,8 +45,4 @@ public class GiveSpellStat extends DatapackStat {
         return "Unlocks " + spellname;
     }
 
-    @Override
-    public String GUID() {
-        return "unlock_" + spell;
-    }
 }

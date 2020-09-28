@@ -23,6 +23,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     public static OnExpireCondition ON_ENTITY_EXPIRE;
     public static OnHitCondition ON_HIT;
     public static CasterHasModifierCondition CASTER_HAS_SPELL_MOD;
+    public static IsAllyCondition IS_TARGET_ALLY;
 
     public abstract boolean canActivate(SpellCtx ctx, MapHolder data);
 
@@ -34,6 +35,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     }
 
     public static void init() {
+        IS_TARGET_ALLY = of(new IsAllyCondition());
         EVERY_X_TICKS = of(new OnTickCondition());
         CHANCE = of(new ChanceCondition());
         CASTER_HAS_POTION = of(new CasterHasEffectCondition());

@@ -21,13 +21,10 @@ public abstract class DatapackStat extends Stat implements ISerializable<Datapac
             return "";
         }
 
-        @Override
-        public String GUID() {
-            return "";
-        }
     };
 
     public Elements element = null;
+    public String id = "";
 
     public DatapackStat(String serializer) {
         this.serializer = serializer;
@@ -48,6 +45,11 @@ public abstract class DatapackStat extends Stat implements ISerializable<Datapac
     @Override
     public final boolean isFromDatapack() {
         return true;
+    }
+
+    @Override
+    public final String GUID() {
+        return id;
     }
 
     @Override
