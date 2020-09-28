@@ -1,5 +1,7 @@
 v.1.4.5
 
+- fix crash when all but 1 spell trees are disabled with datapacks
+- remove spell school selection buttons when there's only 1 school.
 - fix adderstat not working
 - fix adderstat tooltip
 

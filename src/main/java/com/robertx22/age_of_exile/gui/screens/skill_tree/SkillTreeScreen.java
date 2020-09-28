@@ -249,27 +249,29 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             .getScaledWidth() / 2 - SpellSchoolButton.XSIZE / 2;
         int sy = 0;
 
-        this.addButton(new SpellSchoolButton(this, school, sx, sy));
+        if (this.schoolsInOrder.size() > 1) {
 
-        int place = this.schoolsInOrder.indexOf(school);
+            this.addButton(new SpellSchoolButton(this, school, sx, sy));
 
-        for (int i = 0; i < 2; i++) {
-            int xadd = SpellSchoolButton.XSIZE * (i + 1) + i + 1;
+            int place = this.schoolsInOrder.indexOf(school);
 
-            int index1 = i + 1;
-            int index2 = -i - 1;
+            for (int i = 0; i < 2; i++) {
+                int xadd = SpellSchoolButton.XSIZE * (i + 1) + i + 1;
 
-            SpellSchool school1 = getSchoolByIndexAllowsOutOfBounds(place + index1);
-            SpellSchool school2 = getSchoolByIndexAllowsOutOfBounds(place + index2);
+                int index1 = i + 1;
+                int index2 = -i - 1;
 
-            this.addButton(new SpellSchoolButton(this, school1, sx + xadd, sy));
-            this.addButton(new SpellSchoolButton(this, school2, sx - xadd, sy));
+                SpellSchool school1 = getSchoolByIndexAllowsOutOfBounds(place + index1);
+                SpellSchool school2 = getSchoolByIndexAllowsOutOfBounds(place + index2);
 
-            if (i == 1) {
-                this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.LEFT, sx - xadd - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
-                this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.RIGHT, sx + xadd + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+                this.addButton(new SpellSchoolButton(this, school1, sx + xadd, sy));
+                this.addButton(new SpellSchoolButton(this, school2, sx - xadd, sy));
+
+                if (i == 1) {
+                    this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.LEFT, sx - xadd - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+                    this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.RIGHT, sx + xadd + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+                }
             }
-
         }
 
         this.addButton(new WholeSpellHotbarButton(this, mc.getWindow()
@@ -379,12 +381,11 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
 
     private void renderPanels(MatrixStack matrix) {
 
-        int SMALL_PANEL_WIDTH = 57;
-
         int BG_HEIGHT = 38;
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
             .bindTexture(BIG_PANEL);
+
         RenderSystem.enableDepthTest();
 
         int BG_WIDTH = 237;
@@ -392,8 +393,10 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             .getScaledWidth() / 2 - BG_WIDTH / 2;
         int yp = 0;
 
-        drawTexture(matrix, xp, yp, 0, 0, BG_WIDTH, 39);
+        if (this.schoolsInOrder.size() > 1) {
 
+            drawTexture(matrix, xp, yp, 0, 0, BG_WIDTH, 39);
+        }
         mc.getTextureManager()
             .bindTexture(SMALL_PANEL);
         RenderSystem.enableDepthTest();

@@ -58,9 +58,11 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         for (Map.Entry<String, SchoolData> x : data.perks.entrySet()) {
             SpellSchool school = SlashRegistry.SpellSchools()
                 .get(x.getKey());
-            for (PointData p : x.getValue()
-                .getAllocatedPoints(school)) {
-                perks.add(school.calcData.getPerk(p));
+            if (school != null) {
+                for (PointData p : x.getValue()
+                    .getAllocatedPoints(school)) {
+                    perks.add(school.calcData.getPerk(p));
+                }
             }
         }
 

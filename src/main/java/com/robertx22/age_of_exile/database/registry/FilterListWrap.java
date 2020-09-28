@@ -124,17 +124,9 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
         if (this.list.isEmpty()) {
             if (errorIfNothingLeft) {
-                try {
-                    throw new Exception("Items filtered too much, no possibility left, returning null!");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                MMORPG.devToolsLog("Items filtered too much, no possibility left, returning null!");
-
+                MMORPG.logError("Items filtered too much, no possibility left, returning null!");
             }
             return null;
-
         }
 
         return RandomUtils.weightedRandom(list);

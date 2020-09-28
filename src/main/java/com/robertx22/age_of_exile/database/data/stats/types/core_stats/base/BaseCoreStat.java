@@ -38,7 +38,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     public float getPercent(StatData data) {
-        return data.getAverageValue() * 100;
+        return data.getFlatAverage() * 100;
     }
 
     public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
