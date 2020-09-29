@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 
@@ -44,6 +45,10 @@ public class SpellStatsCalcEffect extends EffectData {
             for (SpellModEnum value : SpellModEnum.values()) {
                 map.put(value, 100F);
             }
+        }
+
+        public void add(SpellModEnum en, StatData data) {
+            map.put(en, map.get(en) + data.getAverageValue());
         }
 
         public void add(SpellModEnum mod, float val) {
