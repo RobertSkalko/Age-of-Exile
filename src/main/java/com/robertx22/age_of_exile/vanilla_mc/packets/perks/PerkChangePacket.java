@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.perks;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -64,6 +65,11 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
         EntityPerks perks = Load.perks(ctx.getPlayer());
         SpellSchool sc = SlashRegistry.SpellSchools()
             .get(school);
+
+        if (sc == null) {
+            MMORPG.logError("school is null: " + this.school);
+            return;
+        }
 
         PointData point = new PointData(x, y);
         if (action == ACTION.ALLOCATE) {

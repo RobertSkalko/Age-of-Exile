@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
@@ -117,10 +118,18 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
         Affix affix = null;
         try {
-            affix = SlashRegistry.Affixes()
-                .getFilterWrapped(x -> x.type == getAffixType() && gear.canGetAffix(x))
+
+            FilterListWrap<Affix> list = SlashRegistry.Affixes()
+                .getFilterWrapped(x -> x.type == getAffixType() && gear.canGetAffix(x));
+
+            if (list.list.isEmpty()) {
+                System.out.print("Gear Type: " + gear.gear_type + " affixtype: " + this.affixType.name());
+            }
+
+            affix = list
                 .random();
         } catch (Exception e) {
+            System.out.print("Gear Type: " + gear.gear_type + " affixtype: " + this.affixType.name());
             e.printStackTrace();
         }
 

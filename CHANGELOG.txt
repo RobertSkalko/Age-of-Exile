@@ -1,5 +1,6 @@
 v.1.4.6
 
+- added armor tag to plate armors. Fixes error in plate armor generation (nearly all affixes require armor tag)
 - added extra projectiles to spell datapack stat (unused currently, open to modpackers)
 - added istargetally condition for spells
 

@@ -28,30 +28,32 @@ public class BasePlateArmors implements ISlashRegistryInit {
 
         BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "plate_boots", "Footwear", ModRegistry.GEAR_ITEMS.PLATE_BOOTS)
             .req(new StatRequirement().strength(0.5f))
-            .tags(new TagList(SlotTag.plate, SlotTag.boots, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.boots, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(10, 30, Armor.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 
         PANTS = BaseGearBuilder.of(GearSlots.PANTS, "plate_pants", "Greaves", ModRegistry.GEAR_ITEMS.PLATE_PANTS)
             .req(new StatRequirement().strength(0.5f))
-            .tags(new TagList(SlotTag.plate, SlotTag.pants, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.pants, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(20, 60, Armor.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 
         CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "plate_chest", "Chestplate", ModRegistry.GEAR_ITEMS.PLATE_CHESTS)
             .req(new StatRequirement().strength(0.5f))
-            .tags(new TagList(SlotTag.plate, SlotTag.chest, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.chest, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(30, 100, Armor.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 
         HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "plate_helmet", "Helmet", ModRegistry.GEAR_ITEMS.PLATE_HELMETS)
             .req(new StatRequirement().strength(0.5f))
-            .tags(new TagList(SlotTag.plate, SlotTag.helmet, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.helmet, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(15, 35, Armor.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
     }
 }
+
+
