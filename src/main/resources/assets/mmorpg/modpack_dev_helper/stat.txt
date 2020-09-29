@@ -25,8 +25,8 @@ faster_cast_rate
 convert_water_to_phys
 unlock_thunder_spear
 nature_weapon_damage
-unlock_purifying_fires
 unlock_poisoned_weapons
+unlock_purifying_fires
 mana_on_hit
 intelligence
 unlock_arrow_barrage
@@ -78,8 +78,8 @@ dmg_under_poison
 poison_immunity
 max_nature_resist
 unlock_poison_ball
-unlock_frostball
 unlock_throw_flames
+unlock_frostball
 thunder_penetration
 strength
 mana_regen
@@ -99,9 +99,9 @@ critical_damage
 mana_burn
 armor_penetration
 bow_damage
+unlock_passive_fire
 unlock_whirlpool
 unlock_passive_storm
-unlock_passive_fire
 unlock_blazing_inferno
 static_bonus_dmg
 axe_damage
@@ -148,6 +148,7 @@ extra_fireball_projectiles
 fire_weapon_damage
 magic_shield_regen
 physical_to_nature
+unlock_thunder_strikes
 unlock_tidal_wave
 unlock_flower_of_ice
 unlock_thunder_dash

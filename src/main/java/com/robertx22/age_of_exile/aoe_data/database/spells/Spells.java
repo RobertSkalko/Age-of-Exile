@@ -498,5 +498,17 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Elemental, 3D))
             .build();
 
+        SpellBuilder.of("thunder_strikes", SpellConfiguration.Builder.multiCast(15, 20 * 15, 80, 4)
+            .setSwingArm(), "Thunder Strikes")
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
+            .onCast(PartBuilder.swordSweepParticles())
+            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.5F, 1), Elements.Thunder, 2D, 3D)
+                .addPerEntityHit(PartBuilder.cloudParticles(ParticleTypes.CRIT, 5D, 1D, 0.2D))
+                .addPerEntityHit(PartBuilder.cloudParticles(ParticleTypes.CLOUD, 15D, 1D, 0.2D))
+                .addPerEntityHit(PartBuilder.cloudParticles(PARTICLES.THUNDER, 100D, 1D, 0.2D))
+            )
+            .build();
+
     }
 }

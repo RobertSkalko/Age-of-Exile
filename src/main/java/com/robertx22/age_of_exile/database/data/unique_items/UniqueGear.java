@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -165,12 +166,12 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
 
     @Override
     public String locDescLangFileGUID() {
-        return "item." + this.itemID + ".desc";
+        return Ref.MODID + ".unique_gear." + this.GUID() + ".desc";
     }
 
     @Override
     public String locNameLangFileGUID() {
-        return "item." + this.itemID;
+        return Ref.MODID + ".unique_gear." + this.GUID() + ".name";
     }
 
     @Override

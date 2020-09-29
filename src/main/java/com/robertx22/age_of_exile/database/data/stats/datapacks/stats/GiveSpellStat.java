@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 
 public class GiveSpellStat extends DatapackStat {
 
@@ -38,6 +39,11 @@ public class GiveSpellStat extends DatapackStat {
     @Override
     public String locDescForLangFile() {
         return "Unlocks the spell.";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc.unlock_spell";
     }
 
     @Override

@@ -6,6 +6,7 @@ holy_flower_healing
 throw_flames
 awaken_mana_healing
 passive_divine
+thunder_strikes_cooldown
 holy_flower_projectile_speed
 blazing_inferno
 spell_thunder_damage
@@ -14,6 +15,7 @@ thorn_bush_damage
 magma_flower_cast_speed
 purifying_fires_mana_cost
 increase_healing
+thunder_strikes_mana_cost
 trickery_cast_speed
 fireball_damage
 dex
@@ -55,6 +57,7 @@ critical_hit
 thunder_spear_cooldown
 thunder_resist
 fireball_cooldown
+thunder_strikes
 volcano_cast_speed
 throw_flames_cooldown
 throw_flames_projectile_speed
@@ -143,12 +146,14 @@ tidal_wave_projectile_speed
 blizzard_cast_speed
 holy_flower_cleanse
 lightning_totem
+thunder_strikes_healing
 arrow_storm_cast_speed
 arcane_comet_cast_speed
 arcane_bolt_cooldown
 heart_of_ice_cooldown
 passive_nature
 arrow_barrage_mana_cost
+thunder_strikes_projectile_speed
 flower_of_ice
 fire_weapon_damage
 poison_ball_cooldown
@@ -249,6 +254,7 @@ magic_bomb_projectile_speed
 throw_flames_mana_cost
 fire_bombs_projectile_speed
 magma_flower_cooldown
+thunder_strikes_cast_speed
 fire_bombs_damage
 poisoned_weapons
 passive_arcane
@@ -256,6 +262,7 @@ big_dex
 healing_aura_projectile_speed
 heart_of_ice_damage
 thunder_dash_cast_speed
+thunder_strikes_damage
 recoil_shot_healing
 mana_regen
 blazing_inferno_mana_cost

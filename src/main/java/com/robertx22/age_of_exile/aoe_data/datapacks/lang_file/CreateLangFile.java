@@ -145,6 +145,10 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
 
+        SlashRegistry.UniqueGears()
+            .getSerializable()
+            .forEach(x -> list.add(new UniqueName(x)));
+
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 
         for (IAutoLocName.AutoLocGroup autoLocGroup : IAutoLocName.AutoLocGroup.values()) {
