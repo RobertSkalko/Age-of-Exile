@@ -187,7 +187,14 @@ public class Spells implements ISlashRegistryInit {
                 .put(MapField.PROJECTILES_APART, 50D)))
             .onTick(PartBuilder.particleOnTick(1D, PARTICLES.BUBBLE, 15D, 0.15D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.BUBBLE_POP, 15D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 4), Elements.Water))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.2F, 2), Elements.Water))
+
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.1F, 2), Elements.Water)
+                .requiresSpellMod(SpellModifierStats.CHILLING_TIDES))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.1F, 2), Elements.Fire)
+                .requiresSpellMod(SpellModifierStats.BURNING_CURRENTS))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.2F, 0), Elements.Physical)
+                .requiresSpellMod(SpellModifierStats.CRASHING_ROCKS))
             .build();
 
         THUNDER_STORM = SpellBuilder.of("thunder_storm", HIGH_AOE_LONG_CD(), "Thunderstorm")

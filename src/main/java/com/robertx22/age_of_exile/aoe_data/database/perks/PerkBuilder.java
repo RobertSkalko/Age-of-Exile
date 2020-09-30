@@ -20,6 +20,7 @@ public class PerkBuilder {
         b.perk.icon = spell.getIconLoc()
             .toString();
         b.perk.addToSerializables();
+        b.perk.one_of_a_kind = spell.GUID() + "_mod";
         return b;
     }
 

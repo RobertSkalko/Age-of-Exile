@@ -90,11 +90,5 @@ public class Perks implements ISlashRegistryInit {
                 PerkBuilder.spell(spell);
             });
 
-        SlashRegistry.SpellModifiers()
-            .getSerializable()
-            .forEach(x -> {
-                x.createPerkForSerialization();
-            });
-
     }
 }

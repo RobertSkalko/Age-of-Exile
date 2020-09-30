@@ -31,6 +31,7 @@ public interface IBaseAutoLoc extends IGUID {
         Advancement_descriptions,
         Potions,
         Alchemy,
+        OneOfAKind
 
     }
 

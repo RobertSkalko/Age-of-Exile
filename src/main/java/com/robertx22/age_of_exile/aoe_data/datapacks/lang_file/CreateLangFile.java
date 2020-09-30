@@ -120,8 +120,7 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(SlashRegistry.Affixes()
             .getSerializable());
-        list.addAll(SlashRegistry.SpellModifiers()
-            .getSerializable());
+
         list.addAll(SlashRegistry.Runewords()
             .getSerializable());
 
@@ -148,6 +147,10 @@ public class CreateLangFile {
         SlashRegistry.UniqueGears()
             .getSerializable()
             .forEach(x -> list.add(new UniqueName(x)));
+
+        SlashRegistry.Spells()
+            .getSerializable()
+            .forEach(x -> list.add(new OneOfAKindName(x)));
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 
