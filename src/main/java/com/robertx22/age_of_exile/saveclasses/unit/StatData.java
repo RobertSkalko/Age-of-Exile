@@ -77,7 +77,7 @@ public class StatData {
     }
 
     public boolean isNotZero() {
-        return v1 != 0 && v2 != 0;
+        return v1 != 0;
     }
 
     public float getRandomRangeValue() {

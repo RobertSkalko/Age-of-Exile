@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
-import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasModifierCondition;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasStatCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
@@ -132,8 +132,8 @@ public class ComponentPart {
         return this;
     }
 
-    public ComponentPart requiresSpellMod(SpellModifier mod) {
-        return addCondition(EffectCondition.CASTER_HAS_SPELL_MOD.create(mod));
+    public ComponentPart requiresSpellMod(MarkerStat mod) {
+        return addCondition(EffectCondition.CASTER_HAS_STAT.create(mod));
     }
 
     public ComponentPart addCondition(MapHolder map) {
@@ -159,7 +159,7 @@ public class ComponentPart {
 
         for (MapHolder part : ifs) {
             EffectCondition handler = EffectCondition.MAP.get(part.type);
-            if (handler instanceof CasterHasModifierCondition) {
+            if (handler instanceof CasterHasStatCondition) {
                 isSpellModifier = true;
             }
             if (handler instanceof ICMainTooltip) {

@@ -18,7 +18,6 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -180,10 +179,6 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
 
-    public static SlashRegistryContainer<SpellModifier> SpellModifiers() {
-        return getRegistry(SlashRegistryType.SPELL_MODIFIER);
-    }
-
     public static SlashRegistryContainer<EntityConfig> EntityConfigs() {
         return getRegistry(SlashRegistryType.ENTITY_CONFIGS);
     }
@@ -290,7 +285,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNEWORD, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, Spell.SERIALIZER).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PERK, null).setIsDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_MODIFIER, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_SCHOOL, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()

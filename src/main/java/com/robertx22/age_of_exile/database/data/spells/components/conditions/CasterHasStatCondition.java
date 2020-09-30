@@ -1,11 +1,12 @@
 package com.robertx22.age_of_exile.database.data.spells.components.conditions;
 
-import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.text.LiteralText;
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CasterHasModifierCondition extends EffectCondition implements ICMainTooltip {
+public class CasterHasStatCondition extends EffectCondition implements ICMainTooltip {
 
-    public CasterHasModifierCondition() {
+    public CasterHasStatCondition() {
         super(Arrays.asList(MapField.SPELL_MODIFIER));
     }
 
@@ -27,7 +28,7 @@ public class CasterHasModifierCondition extends EffectCondition implements ICMai
         List<MutableText> list = new ArrayList<>();
         MutableText text = new LiteralText("");
 
-        SpellModifier mod = SlashRegistry.SpellModifiers()
+        Stat mod = SlashRegistry.Stats()
             .get(data.get(MapField.SPELL_MODIFIER));
 
         text.append("Spell Modifier: ")
@@ -42,14 +43,17 @@ public class CasterHasModifierCondition extends EffectCondition implements ICMai
 
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
-        SpellModifier mod = SlashRegistry.SpellModifiers()
+        MarkerStat mod = (MarkerStat) SlashRegistry.Stats()
             .get(data.get(MapField.SPELL_MODIFIER));
 
-        return Load.perks(ctx.caster)
-            .hasSpellModifier(mod);
+        return Load.Unit(ctx.caster)
+            .getUnit()
+            .getCalculatedStat(mod)
+            .isNotZero();
+
     }
 
-    public MapHolder create(SpellModifier mod) {
+    public MapHolder create(MarkerStat mod) {
         MapHolder d = new MapHolder();
         d.type = GUID();
         d.put(MapField.SPELL_MODIFIER, mod.GUID());
@@ -58,7 +62,7 @@ public class CasterHasModifierCondition extends EffectCondition implements ICMai
 
     @Override
     public String GUID() {
-        return "caster_has_spell_mod";
+        return "caster_has_stat";
     }
 
 }

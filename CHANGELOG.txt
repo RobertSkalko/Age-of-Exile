@@ -1,5 +1,7 @@
 v.1.4.6
 
+- spell modifier datapacks removed. I realized i can just turn them into stats, that allows for more customization!
+- caster has spellmod condition is now caster has stat
 - added new datapack stats that can do everything spell modifiers did: cooldown, mana cost, damage etc (per spell)
 - changed unique gear datapacks to not use item id for their lang name and desc keys. 
 Now follows same naming theme as my other datapacks: modid.type.identifier

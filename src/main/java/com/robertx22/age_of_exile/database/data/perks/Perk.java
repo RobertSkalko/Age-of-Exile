@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -26,7 +25,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, ITooltipList, IByteBuf<Perk> {
     public static Perk SERIALIZER = new Perk();
@@ -42,7 +40,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public int lvl_req = 1;
 
     public List<OptScaleExactStat> stats = new ArrayList<>();
-    public List<String> spell_mods = new ArrayList<>();
 
     @Override
     public Perk getFromBuf(PacketByteBuf buf) {
@@ -66,10 +63,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         for (int i = 0; i < s; i++) {
             data.stats.add(OptScaleExactStat.SERIALIZER.getFromBuf(buf));
         }
-        int m = buf.readInt();
-        for (int i = 0; i < m; i++) {
-            data.spell_mods.add(buf.readString(100));
-        }
 
         return data;
     }
@@ -89,15 +82,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
         buf.writeInt(stats.size());
         stats.forEach(x -> x.toBuf(buf));
-        buf.writeInt(spell_mods.size());
-        spell_mods.forEach(x -> buf.writeString(x, 100));
-    }
 
-    public List<SpellModifier> getSpellMods() {
-        return spell_mods.stream()
-            .map(x -> SlashRegistry.SpellModifiers()
-                .get(x))
-            .collect(Collectors.toList());
     }
 
     public Identifier getIcon() {
@@ -115,8 +100,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
                 .isEmpty()) {
                 list.addAll(new SpellCastContext(info.player, 0, getSpell()).calcData.GetTooltipString(info));
             }
-
-            getSpellMods().forEach(x -> list.addAll(x.GetTooltipString(info)));
 
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
 

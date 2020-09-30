@@ -4,9 +4,7 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
-import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -22,7 +20,6 @@ import net.minecraft.nbt.CompoundTag;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     LivingEntity entity;
@@ -42,17 +39,6 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         this.data.perks.clear();
     }
 
-    public List<SpellModifier> getAllSpellModifiersFor(Spell spell) {
-        List<SpellModifier> list = new ArrayList<>();
-        getAllAllocatedPerks().stream()
-            .filter(x -> x.type == Perk.PerkType.SPELL_MOD)
-            .forEach(x -> list.addAll(x.getSpellMods()
-                .stream()
-                .filter(e -> e.affectsSpell(spell))
-                .collect(Collectors.toList())));
-        return list;
-    }
-
     public List<Perk> getAllAllocatedPerks() {
         List<Perk> perks = new ArrayList<>();
         for (Map.Entry<String, SchoolData> x : data.perks.entrySet()) {
@@ -67,14 +53,6 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         }
 
         return perks;
-    }
-
-    public Boolean hasSpellModifier(SpellModifier mod) {
-        return getAllAllocatedPerks().stream()
-            .filter(x -> x.type == Perk.PerkType.SPELL_MOD)
-            .anyMatch(e -> e.getSpellMods()
-                .stream()
-                .anyMatch(m -> m.identifier.equals(mod.identifier)));
     }
 
     public PerkStatus getStatus(PlayerEntity player, SpellSchool school, PointData point) {

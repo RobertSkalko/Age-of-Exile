@@ -18,7 +18,6 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModifier;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
@@ -65,7 +64,6 @@ public enum SlashRegistryType {
             return CompatibleItems.getAllForSerialization();
         }
     },
-    SPELL_MODIFIER("spell_modifiers", 16, SpellModifier.SERIALIZER, SyncTime.ON_LOGIN),
     SPELL("spells", 17, Spell.SERIALIZER, SyncTime.ON_LOGIN),
     PERK("perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN),
     SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);
