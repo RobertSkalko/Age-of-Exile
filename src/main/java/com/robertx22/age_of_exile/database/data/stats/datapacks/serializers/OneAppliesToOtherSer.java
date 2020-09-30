@@ -22,9 +22,7 @@ public class OneAppliesToOtherSer implements IStatSerializer<OneAppliesToOtherSt
             .getAsString();
         String addto = json.get("add_to")
             .getAsString();
-        String id = json.get("id")
-            .getAsString();
-        OneAppliesToOtherStat stat = new OneAppliesToOtherStat(id, adder, addto);
+        OneAppliesToOtherStat stat = new OneAppliesToOtherStat(adder, addto);
         this.loadBaseStatValues(stat, json);
         return stat;
     }

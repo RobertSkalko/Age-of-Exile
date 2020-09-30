@@ -267,7 +267,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
                 String str = getStatString(Load.Unit(mc.player)
                     .getUnit()
-                    .getCreateStat(stat), Load.Unit(mc.player));
+                    .getCalculatedStat(stat), Load.Unit(mc.player));
 
                 Identifier res = stat
                     .getIconLocation();
@@ -308,7 +308,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
                     String str = s.translate() + ": " + getStatString(Load.Unit(mc.player)
                         .getUnit()
-                        .getCreateStat(s), Load.Unit(mc.player));
+                        .getCalculatedStat(s), Load.Unit(mc.player));
 
                     tooltip.add(new LiteralText(str));
 
@@ -328,15 +328,20 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         public void renderButton(MatrixStack matrix, int x, int y, float f) {
             if (!(stats instanceof UnknownStat)) {
 
-                StatData data = new StatData(describer);
+                float v1 = 0;
+                float v2 = 0;
 
-                stats.forEach(s -> {
+                for (Stat s : stats) {
                     StatData part = Load.Unit(mc.player)
                         .getUnit()
-                        .getCreateStat(s);
+                        .getCalculatedStat(s);
 
-                    part.addCalcValuesTo(data);
-                });
+                    v1 += part.getFirstValue();
+                    v2 += part.getSecondValue();
+
+                }
+
+                StatData data = new StatData(describer.GUID(), v1, v2);
 
                 String str = getStatString(data, Load.Unit(mc.player));
 
@@ -421,7 +426,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
                 if (stat instanceof BaseCoreStat) {
                     BaseCoreStat core = (BaseCoreStat) stat;
                     tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit()
-                        .getCreateStat(stat)));
+                        .getCalculatedStat(stat)));
                 }
                 GuiUtils.renderTooltip(matrix, tooltip, x, y);
 

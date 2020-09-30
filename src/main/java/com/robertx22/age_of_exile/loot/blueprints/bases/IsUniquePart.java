@@ -25,7 +25,7 @@ public class IsUniquePart extends BlueprintPart<Boolean> {
 
         if (info.playerData != null) {
             chance *= info.playerData.getUnit()
-                .peekAtStat(MagicFind.getInstance())
+                .getCalculatedStat(MagicFind.getInstance())
                 .getMultiplier();
         }
     }

@@ -41,8 +41,8 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     @Override
     public void transferStats(Unit copy, Unit unit, StatData data) {
         for (TransferMethod stat : this.Transfer()) {
-            copy.getCreateStat(stat.converted)
-                .addFullyTo(unit.getCreateStat(stat.statThatBenefits));
+            copy.getStatInCalculation(stat.converted)
+                .addFullyTo(unit.getStatInCalculation(stat.statThatBenefits));
 
         }
     }

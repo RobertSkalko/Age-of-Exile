@@ -85,7 +85,7 @@ public class ValueCalculationData {
         if (attack_scaling > 0) {
             for (Stat stat : new WeaponDamage(Elements.Nature).generateAllPossibleStatVariations()) {
                 amount += data.getUnit()
-                    .peekAtStat(stat.GUID())
+                    .getCalculatedStat(stat.GUID())
                     .getAverageValue() * attack_scaling;
             }
         }

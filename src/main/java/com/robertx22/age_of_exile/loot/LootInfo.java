@@ -137,7 +137,7 @@ public class LootInfo {
         if (victim != null && mobData != null) {
             modifier += SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi - 1F;
             modifier += mobData.getUnit()
-                .peekAtStat(ExtraMobDropsStat.getInstance())
+                .getCalculatedStat(ExtraMobDropsStat.getInstance())
                 .getMultiplier() - 1;
             modifier += SlashRegistry.MobRarities()
                 .get(mobData.getRarity())
@@ -147,7 +147,7 @@ public class LootInfo {
 
         if (this.playerData != null) {
             modifier += playerData.getUnit()
-                .peekAtStat(IncreasedItemQuantity.getInstance())
+                .getCalculatedStat(IncreasedItemQuantity.getInstance())
                 .getMultiplier() - 1F;
         }
 

@@ -39,13 +39,13 @@ public class PlayerStatPointsData implements IApplyableStats {
     @Override
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit()
-            .getCreateStat(Dexterity.INSTANCE)
+            .getStatInCalculation(Dexterity.INSTANCE)
             .addAlreadyScaledFlat(dexterity);
         data.getUnit()
-            .getCreateStat(Intelligence.INSTANCE)
+            .getStatInCalculation(Intelligence.INSTANCE)
             .addAlreadyScaledFlat(intelligence);
         data.getUnit()
-            .getCreateStat(Strength.INSTANCE)
+            .getStatInCalculation(Strength.INSTANCE)
             .addAlreadyScaledFlat(strength);
 
     }

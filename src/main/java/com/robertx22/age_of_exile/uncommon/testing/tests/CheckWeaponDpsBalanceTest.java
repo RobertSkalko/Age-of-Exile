@@ -41,12 +41,11 @@ public class CheckWeaponDpsBalanceTest {
 
                     for (Stat stat : new WeaponDamage(Elements.Physical).generateAllPossibleStatVariations()) {
                         StatData data = StatUtils.turnIntoStatData(stat, stats);
-                        data.CalcVal();
                         totaldmg += data.getAverageValue();
                     }
 
                     StatData atkspeeddata = StatUtils.turnIntoStatData(AttackSpeed.getInstance(), stats);
-                    atkspeeddata.CalcVal();
+                    ;
                     float atkpersec = x.getBaseGearType()
                         .getAttacksPerSecondCalculated(atkspeeddata);
 

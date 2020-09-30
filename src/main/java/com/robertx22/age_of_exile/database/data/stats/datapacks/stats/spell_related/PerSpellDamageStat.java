@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
+package com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related;
 
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -11,20 +11,20 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class SpecificSpellCooldownStat extends DatapackSpellStat implements IStatEffects {
+public class PerSpellDamageStat extends DatapackSpellStat implements IStatEffects {
 
-    public static String SER_ID = "spell_cooldown";
+    public static String SER_ID = "spell_dmg";
 
-    public SpecificSpellCooldownStat(Spell spell) {
+    public PerSpellDamageStat(Spell spell) {
         super(SER_ID);
         this.spell = spell.GUID();
         this.spellname = spell.locNameForLangFile();
 
-        this.id = spell.GUID() + "_cooldown";
+        this.id = "extra_" + spell.GUID() + "_dmg";
         this.is_percent = true;
     }
 
-    public SpecificSpellCooldownStat(String spell) {
+    public PerSpellDamageStat(String spell) {
         super(SER_ID);
         this.spell = spell;
 
@@ -38,12 +38,12 @@ public class SpecificSpellCooldownStat extends DatapackSpellStat implements ISta
 
     @Override
     public String locDescForLangFile() {
-        return "Changes cooldown of spell";
+        return "Increases dmg of spell";
     }
 
     @Override
     public String locNameForLangFile() {
-        return spellname + " Cooldown";
+        return spellname + " Damage";
     }
 
     @Override
@@ -59,7 +59,7 @@ public class SpecificSpellCooldownStat extends DatapackSpellStat implements ISta
             try {
                 DatapackSpellStat es = (DatapackSpellStat) stat;
                 if (es.spell.equals(effect.spell_id)) {
-                    effect.data.add(SpellModEnum.COOLDOWN, data);
+                    effect.data.add(SpellModEnum.DAMAGE, data);
 
                 }
             } catch (Exception e) {
@@ -70,4 +70,3 @@ public class SpecificSpellCooldownStat extends DatapackSpellStat implements ISta
     }
 
 }
-

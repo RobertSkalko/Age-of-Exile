@@ -21,6 +21,20 @@ public class StatContainer implements IHandler<StatContainer> {
     @Store
     public HashMap<String, StatData> stats = new HashMap<>();
 
+    public transient HashMap<String, InCalcStatData> statsInCalc = new HashMap<>();
+
+    public boolean isCalculating() {
+        return !this.statsInCalc.isEmpty();
+    }
+
+    public void calculate() {
+        statsInCalc.values()
+            .forEach(x -> {
+                stats.put(x.id, x.getCalculated());
+            });
+        statsInCalc.clear();
+    }
+
     @Override
     public boolean store(Registry registry, Set<NBTAction> phase, CompoundTag nbt, Type type, String name, StatContainer object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
         CompoundTag tag = new CompoundTag();

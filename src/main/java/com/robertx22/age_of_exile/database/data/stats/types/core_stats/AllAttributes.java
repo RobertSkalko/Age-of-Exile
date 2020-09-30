@@ -58,7 +58,7 @@ public class AllAttributes extends Stat implements IAddToOtherStats {
     public void addToOtherStats(EntityCap.UnitData unit, float v1, float v2) {
         coreStatsThatBenefit().forEach(x -> {
             unit.getUnit()
-                .getCreateStat(x)
+                .getStatInCalculation(x)
                 .addAlreadyScaledFlat(v1, v2);
         });
     }

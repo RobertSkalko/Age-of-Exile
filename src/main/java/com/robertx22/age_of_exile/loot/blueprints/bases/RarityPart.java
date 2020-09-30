@@ -25,7 +25,7 @@ public class RarityPart extends BlueprintPart<Rarity> {
 
         if (info.playerData != null) {
             chanceForHigherRarity += info.playerData.getUnit()
-                .peekAtStat(MagicFind.getInstance())
+                .getCalculatedStat(MagicFind.getInstance())
                 .getAverageValue();
         }
     }

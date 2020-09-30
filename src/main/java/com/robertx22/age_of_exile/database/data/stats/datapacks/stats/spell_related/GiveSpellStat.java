@@ -1,12 +1,11 @@
-package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
+package com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.base.DatapackSpellStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 
-public class GiveSpellStat extends DatapackStat {
+public class GiveSpellStat extends DatapackSpellStat {
 
     public static String SER_ID = "give_spell";
 
@@ -20,15 +19,6 @@ public class GiveSpellStat extends DatapackStat {
     public GiveSpellStat(String spell) {
         super(SER_ID);
         this.spell = spell;
-    }
-
-    String spellname;
-
-    public String spell = "";
-
-    public Spell getSpell() {
-        return SlashRegistry.Spells()
-            .get(spell);
     }
 
     @Override

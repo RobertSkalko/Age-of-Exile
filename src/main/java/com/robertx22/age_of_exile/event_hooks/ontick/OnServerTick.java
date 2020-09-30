@@ -61,9 +61,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         Unit unit = unitdata.getUnit();
 
-                        float manarestored = unit.peekAtStat(ManaRegen.GUID)
+                        float manarestored = unit.getCalculatedStat(ManaRegen.GUID)
                             .getAverageValue();
-                        manarestored += unit.peekAtStat(RegeneratePercentStat.MANA)
+                        manarestored += unit.getCalculatedStat(RegeneratePercentStat.MANA)
                             .getAverageValue() * unit.manaData()
                             .getAverageValue() / 100F;
 
@@ -84,9 +84,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 restored = true;
                             }
 
-                            float healthrestored = unit.peekAtStat(HealthRegen.GUID)
+                            float healthrestored = unit.getCalculatedStat(HealthRegen.GUID)
                                 .getAverageValue();
-                            healthrestored += unit.peekAtStat(RegeneratePercentStat.HEALTH)
+                            healthrestored += unit.getCalculatedStat(RegeneratePercentStat.HEALTH)
                                 .getAverageValue() * player.getMaxHealth() / 100F;
                             ResourcesData.Context hp = new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH,
                                 healthrestored,
@@ -103,9 +103,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 restored = true;
                             }
 
-                            float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID)
+                            float magicshieldrestored = unit.getCalculatedStat(MagicShieldRegen.GUID)
                                 .getAverageValue();
-                            magicshieldrestored += unit.peekAtStat(RegeneratePercentStat.MAGIC_SHIELD)
+                            magicshieldrestored += unit.getCalculatedStat(RegeneratePercentStat.MAGIC_SHIELD)
                                 .getAverageValue() * unit.magicShieldData()
                                 .getAverageValue() / 100F;
                             ResourcesData.Context ms = new ResourcesData.Context(unitdata, player,

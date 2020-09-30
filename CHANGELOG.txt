@@ -1,10 +1,13 @@
 v.1.4.6
 
+- added new datapack stats that can do everything spell modifiers did: cooldown, mana cost, damage etc (per spell)
 - changed unique gear datapacks to not use item id for their lang name and desc keys. 
 Now follows same naming theme as my other datapacks: modid.type.identifier
 - added armor tag to plate armors. Fixes error in plate armor generation (nearly all affixes require armor tag)
 - added extra projectiles to spell datapack stat (unused currently, open to modpackers)
 - added istargetally condition for spells
+- internal code change, statdata split into In Calculation data, and calculated data. Should prevent future bugs as now it's clear what context is given.
+But it probably means short term bugs.
 
 v.1.4.5
 

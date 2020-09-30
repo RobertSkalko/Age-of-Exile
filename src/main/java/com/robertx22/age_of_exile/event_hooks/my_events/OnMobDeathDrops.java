@@ -114,7 +114,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp *= LootUtils.getMobHealthBasedLootMulti(mobData, killer);
 
         exp *= killerData.getUnit()
-            .peekAtStat(BonusExp.getInstance())
+            .getCalculatedStat(BonusExp.getInstance())
             .getMultiplier();
 
         exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;

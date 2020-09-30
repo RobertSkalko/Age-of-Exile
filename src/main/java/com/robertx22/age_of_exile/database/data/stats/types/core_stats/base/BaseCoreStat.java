@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.text.LiteralText;
@@ -37,7 +38,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         return null;
     }
 
-    public float getPercent(StatData data) {
+    public float getPercent(InCalcStatData data) {
         return data.getFlatAverage() * 100;
     }
 
@@ -48,12 +49,14 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         List<Text> list = new ArrayList<>();
         list.add(
             new LiteralText("Stats that benefit: ").formatted(Formatting.GREEN));
-        getMods(data, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        this.statsThatBenefit()
+            .forEach(x -> list.addAll(x.getEstimationTooltip(unitdata.getLevel()))); // todo probably wrong
+
         return list;
 
     }
 
-    public List<ExactStatData> getMods(StatData data, int lvl) {
+    public List<ExactStatData> getMods(InCalcStatData data, int lvl) {
         int perc = (int) getPercent(data);
 
         List<ExactStatData> list = new ArrayList<>();
@@ -68,7 +71,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     @Override
-    public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
+    public void addToOtherStats(EntityCap.UnitData unitdata, InCalcStatData data) {
         getMods(data, unitdata.getLevel()).forEach(x -> x.applyStats(unitdata));
     }
 

@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
+package com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related;
 
 import com.robertx22.age_of_exile.database.data.spell_modifiers.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -11,20 +11,20 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class SpecificSpellManaCostStat extends DatapackSpellStat implements IStatEffects {
+public class PerSpellCooldownStat extends DatapackSpellStat implements IStatEffects {
 
-    public static String SER_ID = "mana_cost";
+    public static String SER_ID = "spell_cooldown";
 
-    public SpecificSpellManaCostStat(Spell spell) {
+    public PerSpellCooldownStat(Spell spell) {
         super(SER_ID);
         this.spell = spell.GUID();
         this.spellname = spell.locNameForLangFile();
 
-        this.id = spell.GUID() + "_mana_cost";
+        this.id = spell.GUID() + "_cooldown";
         this.is_percent = true;
     }
 
-    public SpecificSpellManaCostStat(String spell) {
+    public PerSpellCooldownStat(String spell) {
         super(SER_ID);
         this.spell = spell;
 
@@ -38,12 +38,12 @@ public class SpecificSpellManaCostStat extends DatapackSpellStat implements ISta
 
     @Override
     public String locDescForLangFile() {
-        return "Changes mana cost of spell";
+        return "Changes cooldown of spell";
     }
 
     @Override
     public String locNameForLangFile() {
-        return spellname + " Mana Cost";
+        return spellname + " Cooldown";
     }
 
     @Override
@@ -51,7 +51,7 @@ public class SpecificSpellManaCostStat extends DatapackSpellStat implements ISta
         return EFF;
     }
 
-    static SpecificSpellExtraProjectilesStat.Effect EFF = new SpecificSpellExtraProjectilesStat.Effect();
+    static Effect EFF = new Effect();
 
     private static class Effect extends BaseSpellCalcEffect {
         @Override
@@ -59,7 +59,7 @@ public class SpecificSpellManaCostStat extends DatapackSpellStat implements ISta
             try {
                 DatapackSpellStat es = (DatapackSpellStat) stat;
                 if (es.spell.equals(effect.spell_id)) {
-                    effect.data.add(SpellModEnum.MANA_COST, data);
+                    effect.data.add(SpellModEnum.COOLDOWN, data);
 
                 }
             } catch (Exception e) {
@@ -70,3 +70,4 @@ public class SpecificSpellManaCostStat extends DatapackSpellStat implements ISta
     }
 
 }
+

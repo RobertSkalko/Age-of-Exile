@@ -82,7 +82,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IAdd
             this.generateAllSingleVariations()
                 .forEach(x -> {
                     unit.getUnit()
-                        .getCreateStat(x)
+                        .getStatInCalculation(x)
                         .addAlreadyScaledFlat(v1);
                 });
         }

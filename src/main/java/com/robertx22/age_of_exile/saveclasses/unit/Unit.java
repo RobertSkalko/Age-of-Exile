@@ -60,19 +60,15 @@ public class Unit {
         return stats.stats;
     }
 
-    public StatData getCreateStat(Stat stat) {
-        return getCreateStat(stat.GUID());
+    public StatContainer getStatsContainer() {
+        return stats;
     }
 
-    public boolean hasStat(String guid) {
-        return stats.stats.containsKey(guid);
+    public StatData getCalculatedStat(Stat stat) {
+        return getCalculatedStat(stat.GUID());
     }
 
-    public StatData peekAtStat(Stat stat) {
-        return peekAtStat(stat.GUID());
-    }
-
-    public StatData peekAtStat(String guid) {
+    public StatData getCalculatedStat(String guid) {
 
         if (stats.stats == null) {
             this.initStats();
@@ -82,23 +78,27 @@ public class Unit {
 
     }
 
-    public StatData getCreateStat(String guid) {
+    public InCalcStatData getStatInCalculation(Stat stat) {
+        return getStatInCalculation(stat.GUID());
+    }
+
+    public InCalcStatData getStatInCalculation(String guid) {
 
         if (stats.stats == null) {
             this.initStats();
         }
 
-        StatData data = stats.stats.get(guid);
+        InCalcStatData data = stats.statsInCalc.get(guid);
 
         if (data == null) {
             Stat stat = SlashRegistry.Stats()
                 .get(guid);
             if (stat != null) {
-                stats.stats.put(stat.GUID(), new StatData(stat));
+                stats.statsInCalc.put(stat.GUID(), new InCalcStatData(stat.GUID()));
 
-                return stats.stats.get(stat.GUID());
+                return stats.statsInCalc.get(stat.GUID());
             } else {
-                return new StatData(new UnknownStat());
+                return new InCalcStatData(new UnknownStat().GUID());
             }
         } else {
             return data;
@@ -173,7 +173,7 @@ public class Unit {
 
     public StatData healthData() {
         try {
-            return getCreateStat(Health.GUID);
+            return getCalculatedStat(Health.GUID);
         } catch (Exception e) {
         }
         return StatData.empty();
@@ -181,7 +181,7 @@ public class Unit {
 
     public StatData magicShieldData() {
         try {
-            return getCreateStat(MagicShield.GUID);
+            return getCalculatedStat(MagicShield.GUID);
         } catch (Exception e) {
 
         }
@@ -190,7 +190,7 @@ public class Unit {
 
     public StatData manaData() {
         try {
-            return getCreateStat(Mana.GUID);
+            return getCalculatedStat(Mana.GUID);
         } catch (Exception e) {
 
         }
@@ -198,8 +198,6 @@ public class Unit {
     }
 
     public int randomRarity(LivingEntity entity, UnitData data) {
-
-        double y = entity.getY();
 
         List<MobRarity> rarities = SlashRegistry.MobRarities()
             .getAllRarities()
@@ -218,22 +216,6 @@ public class Unit {
 
         return MathHelper.clamp(finalRarity.Rank(), entityConfig.min_rarity, entityConfig.max_rarity);
 
-    }
-
-    protected void ClearStats() {
-
-        if (stats.stats == null) {
-            this.initStats();
-        }
-
-        for (StatData stat : stats.stats.values()) {
-            stat.Clear();
-        }
-    }
-
-    protected void CalcStats(UnitData data) {
-        stats.stats.values()
-            .forEach((StatData stat) -> stat.CalcVal());
     }
 
     private static class DirtyCheck {
@@ -262,7 +244,7 @@ public class Unit {
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) getCreateStat(Health.GUID).getAverageValue();
+        check.hp = (int) getCalculatedStat(Health.GUID).getAverageValue();
 
         return check;
     }
@@ -284,8 +266,6 @@ public class Unit {
         List<GearItemData> gears = new ArrayList<>();
 
         new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData);
-
-        ClearStats();
 
         CommonStatUtils.addPotionStats(entity);
         CommonStatUtils.addExactCustomStats(data);
@@ -310,7 +290,7 @@ public class Unit {
         CommonStatUtils.CalcTraitsAndCoreStats(
             data); // has to be at end for the conditionals like if crit higher than x
 
-        CalcStats(data);
+        this.stats.calculate();
 
         removeEmptyStats();
 
@@ -350,8 +330,6 @@ public class Unit {
         HashMap<GearRarity, Integer> rarityMap = new HashMap<>();
 
         while (!gears.isEmpty()) {
-
-            this.CalcStats(data);
 
             List<GearItemData> toremove = new ArrayList<>();
 
@@ -413,7 +391,7 @@ public class Unit {
 
     private void addToVanillaHealth(LivingEntity en) {
 
-        float hp = getCreateStat(Health.getInstance()).getAverageValue();
+        float hp = getCalculatedStat(Health.getInstance()).getAverageValue();
 
         EntityAttributeModifier mod = new EntityAttributeModifier(
             hpID,

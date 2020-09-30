@@ -16,7 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.utils.EntityUtils;
@@ -34,7 +34,7 @@ public class MobStatUtils {
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
-        for (StatData data : unit.getStats()
+        for (InCalcStatData data : unit.getStatsContainer().statsInCalc
             .values()
             .stream()
             .filter(x -> {
@@ -57,7 +57,7 @@ public class MobStatUtils {
     }
 
     public static void worldMultiplierStats(World world, Unit unit) {
-        for (StatData stat : unit.getStats()
+        for (InCalcStatData stat : unit.getStatsContainer().statsInCalc
             .values()) {
             stat.multiplyFlat(SlashRegistry.getDimensionConfig(world).mob_strength_multi);
         }
@@ -71,12 +71,12 @@ public class MobStatUtils {
 
         config.stats.stats.forEach(x -> x.applyStats(unitdata));
 
-        for (StatData data : unit.getStats()
+        for (InCalcStatData data : unit.getStatsContainer().statsInCalc
             .values()) {
             Stat stat = data.GetStat();
             if (stat instanceof WeaponDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
                 data.multiplyFlat(config.dmg_multi);
-            } else if (data.getId()
+            } else if (data.id
                 .equals(Health.GUID)) {
                 data.multiplyFlat(config.hp_multi);
             } else {
@@ -112,28 +112,28 @@ public class MobStatUtils {
             hpToAdd = 0;
         }
 
-        unit.getCreateStat(Health.getInstance())
+        unit.getStatInCalculation(Health.getInstance())
             .addFlat(hpToAdd, lvl);
 
-        unit.getCreateStat(Armor.GUID)
+        unit.getStatInCalculation(Armor.GUID)
             .addFlat(Armor.getInstance()
                 .valueNeededToReachMaximumPercentAtLevelOne() / 4 * rar.StatMultiplier(), lvl);
-        unit.getCreateStat(CriticalHit.GUID)
+        unit.getStatInCalculation(CriticalHit.GUID)
             .addFlat(5 * rar.DamageMultiplier(), lvl);
-        unit.getCreateStat(CriticalDamage.GUID)
+        unit.getStatInCalculation(CriticalDamage.GUID)
             .addFlat(2 * rar.DamageMultiplier(), lvl);
 
         ElementalResist.MAP.getList()
-            .forEach(x -> unit.getCreateStat(x)
+            .forEach(x -> unit.getStatInCalculation(x)
                 .addFlat(5 * rar.StatMultiplier(), lvl));
 
-        unit.getCreateStat(SpellDamage.getInstance())
+        unit.getStatInCalculation(SpellDamage.getInstance())
             .addFlat(-25, lvl); // less spell dmg, spells are already kinda strong
 
         int bonusEleDmg = MathHelper.clamp(5 * lvl, 0, 300);
 
         new ElementalDamageBonus(Elements.Water).generateAllPossibleStatVariations()
-            .forEach(x -> unit.getCreateStat(x)
+            .forEach(x -> unit.getStatInCalculation(x)
                 .addFlat(bonusEleDmg, 1)); // the higher lvls go, the more important elemental resistances would be
 
     }

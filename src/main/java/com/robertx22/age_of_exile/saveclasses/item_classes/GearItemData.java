@@ -6,12 +6,10 @@ import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
-import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
-import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
@@ -62,16 +60,6 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
     public int getMaxSockets() {
         return this.getRarity()
             .maxSockets();
-    }
-
-    public StatData getStatTotalOf(Stat stat) {
-
-        StatData data = new StatData();
-
-        this.GetAllStats(true, true)
-            .forEach(x -> data.add(x, null));
-
-        return data;
     }
 
     public boolean canGetAffix(Affix affix) {

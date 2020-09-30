@@ -152,7 +152,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     public final float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
         return getAttacksPerSecondCalculated(data.getUnit()
-            .peekAtStat(AttackSpeed.getInstance()));
+            .getCalculatedStat(AttackSpeed.getInstance()));
     }
 
     public final float getAttacksPerSecondCalculated(StatData stat) {

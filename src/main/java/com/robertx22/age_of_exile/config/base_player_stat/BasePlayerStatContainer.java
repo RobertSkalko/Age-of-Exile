@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.config.base_player_stat;
 
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
+import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 
 import java.util.HashMap;
@@ -48,7 +48,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
         this.BASE_PLAYER_STATS.entrySet()
             .forEach(x -> {
                 data.getUnit()
-                    .getCreateStat(x.getKey())
+                    .getStatInCalculation(x.getKey())
                     .addFlat(x.getValue()
                         .floatValue(), data.getLevel());
             });

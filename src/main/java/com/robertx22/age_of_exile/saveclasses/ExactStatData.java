@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.saveclasses;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -169,7 +169,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     @Override
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit()
-            .getCreateStat(stat_id)
+            .getStatInCalculation(stat_id)
             .add(this, data);
     }
 

@@ -63,19 +63,39 @@ public class FinalizedGearStatReq {
     public boolean passesStatRequirements(EntityCap.UnitData data, GearItemData gear) {
 
         if (data.getUnit()
-            .peekAtStat(Dexterity.INSTANCE)
-            .getAverageValue() < dexterity) {
-            return false;
-        }
-        if (data.getUnit()
-            .peekAtStat(Intelligence.INSTANCE)
-            .getAverageValue() < intelligence) {
-            return false;
-        }
-        if (data.getUnit()
-            .peekAtStat(Strength.INSTANCE)
-            .getAverageValue() < strength) {
-            return false;
+            .getStatsContainer()
+            .isCalculating()) {
+            if (data.getUnit()
+                .getStatInCalculation(Dexterity.INSTANCE)
+                .getFlatAverage() < dexterity) {
+                return false;
+            }
+            if (data.getUnit()
+                .getStatInCalculation(Intelligence.INSTANCE)
+                .getFlatAverage() < intelligence) {
+                return false;
+            }
+            if (data.getUnit()
+                .getStatInCalculation(Strength.INSTANCE)
+                .getFlatAverage() < strength) {
+                return false;
+            }
+        } else {
+            if (data.getUnit()
+                .getCalculatedStat(Dexterity.INSTANCE)
+                .getAverageValue() < dexterity) {
+                return false;
+            }
+            if (data.getUnit()
+                .getCalculatedStat(Intelligence.INSTANCE)
+                .getAverageValue() < intelligence) {
+                return false;
+            }
+            if (data.getUnit()
+                .getCalculatedStat(Strength.INSTANCE)
+                .getAverageValue() < strength) {
+                return false;
+            }
         }
 
         return true;
