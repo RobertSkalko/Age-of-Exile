@@ -34,7 +34,6 @@ public class OceanPerks implements ISlashRegistryInit {
     }
 
     private PerkBuilder of(MarkerStat stat, Spell spell) {
-
         return PerkBuilder.spellModifier(stat, spell);
     }
 

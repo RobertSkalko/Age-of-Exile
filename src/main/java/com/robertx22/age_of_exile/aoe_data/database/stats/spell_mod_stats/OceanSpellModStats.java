@@ -54,23 +54,5 @@ public class OceanSpellModStats implements ISlashRegistryInit {
 
         // added to serialization automatically if used
 
-        /*
-
-        CHILLING_TIDES.addToSerializables();
-        CRASHING_ROCKS.addToSerializables();
-        BURNING_CURRENTS.addToSerializables();
-
-        FAST_FROSTBALL.addToSerializables();
-        TRIPLE_FROSTBALL.addToSerializables();
-        FROSTBALL_EXTRA_DMG.addToSerializables();
-
-        HEART_MAGIC_SHIELD_RESTORE.addToSerializables();
-        HEART_CHILL_ENEMIES.addToSerializables();
-
-        ICE_FLOWER_DMG.addToSerializables();
-        ICE_FLOWER_RESTORE.addToSerializables();
-
-         */
-
     }
 }
