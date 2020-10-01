@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -20,26 +19,24 @@ public class OnItemUseCastSpell {
 
         try {
 
-            if (Gear.has(stack)) {
+            Spell spell = Load.spells(user)
+                .getCurrentRightClickSpell();
+            if (spell != null && !spell.GUID()
+                .isEmpty()) {
+                if (spell.getConfig().castingWeapon.predicate.predicate.test(user)) {
 
-                Spell spell = Load.spells(user)
-                    .getCurrentRightClickSpell();
-                if (spell != null && !spell.GUID()
-                    .isEmpty()) {
-                    if (spell.getConfig().castingWeapon.predicate.predicate.test(user)) {
+                    if (stack.getUseAction() == UseAction.NONE) {
+                        Packets.sendToServer(new TellServerToCastSpellPacket(user));
 
-                        if (stack.getUseAction() == UseAction.NONE) {
+                    } else {
+                        if (Screen.hasShiftDown()) {
                             Packets.sendToServer(new TellServerToCastSpellPacket(user));
-
-                        } else {
-                            if (Screen.hasShiftDown()) {
-                                Packets.sendToServer(new TellServerToCastSpellPacket(user));
-                                ci.setReturnValue(TypedActionResult.success(stack));
-                            }
+                            ci.setReturnValue(TypedActionResult.success(stack));
                         }
                     }
                 }
             }
+
         } catch (CancellationException e) {
             e.printStackTrace();
         }

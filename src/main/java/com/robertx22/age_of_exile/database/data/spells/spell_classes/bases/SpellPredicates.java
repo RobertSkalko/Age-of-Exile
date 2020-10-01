@@ -43,13 +43,7 @@ public class SpellPredicates {
         }
     };
     private static Predicate<LivingEntity> ANY = x -> {
-        try {
-            GearItemData data = Gear.Load(x.getMainHandStack());
-            return data != null && data.GetBaseGearType()
-                .isWeapon();
-        } catch (Exception e) {
-            return false;
-        }
+        return true;
     };
 
     public static SpellPredicate REQUIRE_SHOOTABLE = new SpellPredicate(SHOOTABLE_PRED, new SText(Formatting.GREEN + "Requires Ranged Weapon to use."));
