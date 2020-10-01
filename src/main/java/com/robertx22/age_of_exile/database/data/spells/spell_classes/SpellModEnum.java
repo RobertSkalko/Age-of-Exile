@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.spell_modifiers;
+package com.robertx22.age_of_exile.database.data.spells.spell_classes;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.localization.Words;

@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.aoe_data.database.perks.SpellModifierPerks;
 import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
 import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
+import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.SpellDependentDatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.SpellModifierStats;
@@ -61,6 +62,8 @@ public class GeneratedData {
 
             new Perks().registerAll();
             new SpellModifierPerks().registerAll();
+
+            new AutoDatapackStats().registerAll();
         }
     }
 }

@@ -11,20 +11,20 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class PerSpellManaCostStat extends DatapackSpellStat implements IStatEffects {
+public class PerSpellProjectileSpeedStat extends DatapackSpellStat implements IStatEffects {
 
-    public static String SER_ID = "mana_cost";
+    public static String SER_ID = "spell_proj_speed";
 
-    public PerSpellManaCostStat(Spell spell) {
+    public PerSpellProjectileSpeedStat(Spell spell) {
         super(SER_ID);
         this.spell = spell.GUID();
         this.spellname = spell.locNameForLangFile();
 
-        this.id = spell.GUID() + "_mana_cost";
+        this.id = spell.GUID() + "_proj_speed";
         this.is_percent = true;
     }
 
-    public PerSpellManaCostStat(String spell) {
+    public PerSpellProjectileSpeedStat(String spell) {
         super(SER_ID);
         this.spell = spell;
 
@@ -38,12 +38,12 @@ public class PerSpellManaCostStat extends DatapackSpellStat implements IStatEffe
 
     @Override
     public String locDescForLangFile() {
-        return "Changes mana cost of spell";
+        return "Changes projectile speed of spell";
     }
 
     @Override
     public String locNameForLangFile() {
-        return spellname + " Mana Cost";
+        return spellname + " Projectile Speed";
     }
 
     @Override
@@ -59,7 +59,7 @@ public class PerSpellManaCostStat extends DatapackSpellStat implements IStatEffe
             try {
                 DatapackSpellStat es = (DatapackSpellStat) stat;
                 if (es.spell.equals(effect.spell_id)) {
-                    effect.data.add(SpellModEnum.MANA_COST, data);
+                    effect.data.add(SpellModEnum.PROJECTILE_SPEED, data);
 
                 }
             } catch (Exception e) {
@@ -70,3 +70,4 @@ public class PerSpellManaCostStat extends DatapackSpellStat implements IStatEffe
     }
 
 }
+

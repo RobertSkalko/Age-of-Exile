@@ -8,6 +8,7 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T> {
     default void addToSerializables() {
         SlashRegistry.getRegistry(getSlashRegistryType())
             .addSerializable(this);
+
     }
 
     @Override

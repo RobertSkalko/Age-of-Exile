@@ -290,7 +290,8 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public void addSerializable(C entry) {
         if (serializables.containsKey(entry.GUID())) {
-            System.out.println("Entry already exists as seriazable: " + entry.GUID());
+            System.out.println("Entry of type: " + entry.getSlashRegistryType()
+                .name() + " already exists as seriazable: " + entry.GUID());
         }
         this.serializables.put(entry.GUID(), entry);
 

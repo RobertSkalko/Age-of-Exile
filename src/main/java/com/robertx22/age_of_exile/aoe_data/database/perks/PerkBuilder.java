@@ -19,7 +19,6 @@ public class PerkBuilder {
         b.perk.stats.add(new OptScaleExactStat(1, modStat, ModType.FLAT));
         b.perk.icon = spell.getIconLoc()
             .toString();
-        b.perk.addToSerializables();
         b.perk.one_of_a_kind = spell.GUID() + "_mod";
         return b;
     }

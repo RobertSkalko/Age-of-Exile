@@ -27,6 +27,7 @@ unlock_thunder_spear
 nature_weapon_damage
 unlock_poisoned_weapons
 unlock_purifying_fires
+heart_of_chill
 mana_on_hit
 intelligence
 unlock_arrow_barrage
@@ -34,14 +35,17 @@ cdr
 spell_damage
 all_elemental_damage
 chance_of_static
+ice_flower_restore
 unlock_thunder_storm
 burn_bonus_dmg
 night_dmg
 unlock_thorn_bush
 water_penetration
 magic_shield_per_sec
+crashing_rocks
 physical_to_thunder
 unlock_bravery
+chilling_tides
 critical_hit
 thunder_resist
 unlock_arrow_storm
@@ -59,12 +63,14 @@ unlock_passive_divine
 unlock_awaken_mana
 poison_bonus_dmg
 nature_resist
+heart_of_magic
 unlock_fire_bombs
 mana_cost_red
 spell_elemental_damage
 unlock_lightning_totem
 fire_resist
 magic_shield_on_kill
+ice_flower_dmg
 dodge
 convert_thunder_to_phys
 health
@@ -77,6 +83,7 @@ unlock_passive_arcane
 dmg_under_poison
 poison_immunity
 max_nature_resist
+fast_frostball
 unlock_poison_ball
 unlock_throw_flames
 unlock_frostball
@@ -114,6 +121,7 @@ health_regen
 spell_fire_damage
 ele_hammer_damage
 unlock_magic_bomb
+burning_currents
 unlock_arcane_comet
 physical_to_water
 magic_shield
@@ -124,6 +132,7 @@ armor
 spell_nature_damage
 elemental_resist
 unlock_thorn_armor
+frostball_proj_speed
 unlock_passive_hunting
 unlock_spear_of_judgement
 chance_of_chill
@@ -160,6 +169,7 @@ fire_penetration
 sword_damage
 dexterity
 convert_nature_to_phys
+frostball_chill
 magic_steal
 dmg_under_wither
 heal_effect_on_self

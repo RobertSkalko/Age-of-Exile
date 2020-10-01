@@ -23,6 +23,8 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     public String stat;
     public String type;
 
+    public transient Stat transientstat;
+
     public boolean scaleToLevel = false;
 
     private OptScaleExactStat() {
@@ -50,6 +52,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         this.first = first;
         this.stat = stat.GUID();
         this.type = type.name();
+        this.transientstat = stat;
     }
 
     public OptScaleExactStat(float first, float second, Stat stat, ModType type) {
@@ -57,6 +60,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         this.second = second;
         this.stat = stat.GUID();
         this.type = type.name();
+        this.transientstat = stat;
     }
 
     @Override

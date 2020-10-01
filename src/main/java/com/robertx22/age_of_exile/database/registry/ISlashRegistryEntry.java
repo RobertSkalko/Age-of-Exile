@@ -28,7 +28,8 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
         SlashRegistry.getRegistry(getSlashRegistryType())
             .unRegister(this);
         try {
-            throw new Exception("Registry Entry: " + GUID() + " is invalid! Unregistering");
+            throw new Exception("Registry Entry: " + GUID() + " of type: " + this.getSlashRegistryType()
+                .name() + " is invalid! Unregistering");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasStatCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
@@ -132,7 +133,7 @@ public class ComponentPart {
         return this;
     }
 
-    public ComponentPart requiresSpellMod(MarkerStat mod) {
+    public ComponentPart requiresSpellMod(DataGenKey<MarkerStat> mod) {
         return addCondition(EffectCondition.CASTER_HAS_STAT.create(mod));
     }
 

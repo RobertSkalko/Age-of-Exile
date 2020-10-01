@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 
+import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
+import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
@@ -12,11 +14,14 @@ public class MarkerStat extends DatapackStat {
     transient String locname;
     transient String desc;
 
-    public MarkerStat(String id, Spell spell, String locname) {
+    public MarkerStat(DataGenKey<MarkerStat> id, Spell spell, String locname) {
         super(SER_ID);
         this.locname = spell.locNameForLangFile() + ": " + locname;
         this.desc = "This is a modifier for the spell. You can view the changes in the spell tooltip.";
-        this.id = id;
+        this.id = id.GUID();
+
+        AutoDatapackStats.STATS_TO_ADD_TO_SERIALIZATION.put(GUID(), this);
+
     }
 
     public MarkerStat() {

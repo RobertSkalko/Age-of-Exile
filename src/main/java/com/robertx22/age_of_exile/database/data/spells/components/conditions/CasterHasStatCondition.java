@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components.conditions;
 
+import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
@@ -43,6 +44,7 @@ public class CasterHasStatCondition extends EffectCondition implements ICMainToo
 
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
+
         MarkerStat mod = (MarkerStat) SlashRegistry.Stats()
             .get(data.get(MapField.SPELL_MODIFIER));
 
@@ -53,7 +55,7 @@ public class CasterHasStatCondition extends EffectCondition implements ICMainToo
 
     }
 
-    public MapHolder create(MarkerStat mod) {
+    public MapHolder create(DataGenKey<MarkerStat> mod) {
         MapHolder d = new MapHolder();
         d.type = GUID();
         d.put(MapField.SPELL_MODIFIER, mod.GUID());
