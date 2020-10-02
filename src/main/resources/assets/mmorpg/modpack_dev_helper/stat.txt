@@ -1,7 +1,9 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 
+throw_flames_proj_speed
 unlock_nature_balm
+mod_magma_flower_burn
 unlock_fireball
 unlock_volcano
 lifesteal
@@ -32,6 +34,7 @@ unlock_purifying_fires
 heart_of_chill
 mana_on_hit
 mod_fast_bush
+mod_magma_flower_heal
 intelligence
 unlock_arrow_barrage
 cdr
@@ -79,6 +82,7 @@ mod_thorn_armor_thorns
 dodge
 convert_thunder_to_phys
 health
+mod_throw_flames_burn
 all_nature_damage
 unlock_passive_ocean
 chance_of_poison
@@ -89,6 +93,7 @@ dmg_under_poison
 poison_immunity
 max_nature_resist
 fast_frostball
+mod_throw_flames_lifesteal
 unlock_poison_ball
 unlock_throw_flames
 unlock_frostball
@@ -114,6 +119,7 @@ bow_damage
 unlock_passive_fire
 unlock_whirlpool
 unlock_passive_storm
+mod_throw_flames_fast
 unlock_blazing_inferno
 static_bonus_dmg
 axe_damage
@@ -137,6 +143,7 @@ armor
 spell_nature_damage
 elemental_resist
 unlock_thorn_armor
+extra_throw_flames_dmg
 frostball_proj_speed
 unlock_passive_hunting
 unlock_spear_of_judgement

@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 healing_aura
+mod_magma_flower_burn
 thorn_armor
 throw_flames
 passive_divine
@@ -21,6 +22,7 @@ nature_weapon_damage
 wizardry
 heart_of_chill
 mod_fast_bush
+mod_magma_flower_heal
 str
 imbue
 spear_of_judgement
@@ -53,6 +55,7 @@ heart_of_ice
 passive_storm
 blizzard
 magic_bomb
+mod_throw_flames_burn
 whirlpool
 health
 thorn_bush
@@ -63,6 +66,7 @@ poisoned_weapons
 passive_arcane
 fast_frostball
 big_dex
+mod_throw_flames_lifesteal
 magma_flower
 mana_regen
 thunder_weapon_damage
@@ -72,6 +76,7 @@ water_resist
 holy_flower
 gorgons_gaze
 critical_damage
+mod_throw_flames_fast
 big_armor
 physical_weapon_damage
 health_regen

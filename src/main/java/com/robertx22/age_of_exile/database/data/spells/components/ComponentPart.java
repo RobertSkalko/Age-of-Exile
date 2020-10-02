@@ -201,6 +201,7 @@ public class ComponentPart {
         }
 
         if (isSpellModifier) {
+
             text.formatted(Formatting.DARK_PURPLE);
             text = new LiteralText(" - ").formatted(Formatting.DARK_PURPLE)
                 .append(text);
@@ -210,6 +211,23 @@ public class ComponentPart {
 
         if (hasAction) {
             list.add(text);
+        }
+        if (per_entity_hit != null) {
+
+            List<MutableText> pertxt = new ArrayList<>();
+            pertxt.add(new LiteralText("Per entity hit:"));
+            per_entity_hit.forEach(x -> pertxt.addAll(x.GetTooltipString(info, spell)));
+
+            if (pertxt.size() > 1) {
+
+                if (isSpellModifier) {
+                    pertxt.forEach(x -> x.formatted(Formatting.DARK_PURPLE));
+                } else {
+                    pertxt.forEach(x -> x.formatted(Formatting.GREEN));
+                }
+                list.addAll(pertxt);
+            }
+
         }
 
         return list;

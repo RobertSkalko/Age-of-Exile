@@ -33,11 +33,11 @@ E,,,,,,,,,,,,,,,,,,,,,,,int,,,,str,,,,,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,O,,,,O,,,,,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,int,,,,str,,,,,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,,o,,o,,,,,,,,,,,,,,,,,,,,,,,,,,,,,E
-E,,,,,,,,,,,,,,blazing_inferno_damage,,mana_regen,O,mana,,,,,,,health,,,,throw_flames_burn,,,health,O,health_regen,,magma_flower_mana_cost,,,,,,,,,,,,,,,,,,,E
-E,,,,,,,,,,,,,,O,,O,,,,,,,,,O,,,,O,,,,,O,,O,,,,,,,,,,,,,,,,,,,E
-E,,,,,,,,,,,,,,blazing_inferno_mana_cost,O,blazing_inferno,O,mana_regen,O,O,fire_bombs,O,mana_regen,O,big_health,O,health_regen,O,throw_flames,O,O,health_regen,O,magma_flower,O,magma_flower_damage,O,magma_flower_heal,,,,,,,,,,,,,,,,,E
+E,,,,,,,,,,,,,,mod_throw_flames_burn,O,mana_regen,O,mana,,,,,,,health,,,,,,,health,O,health_regen,O,mod_magma_flower_heal,,,,,,,,,,,,,,,,,,,E
+E,,,,,,,,,,,,,,O,,O,,,,,,,,,O,,,,,,,,,O,,O,,,,,,,,,,,,,,,,,,,E
+E,,,,,,,,,,,,,,mod_throw_flames_fast,O,throw_flames,O,mana_regen,O,O,fire_bombs,O,mana_regen,O,big_health,O,health_regen,O,blazing_inferno,O,O,health_regen,O,magma_flower,O,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,O,,O,,,,,O,,,,,,,,O,,,,,O,,O,,,,,,,,,,,,,,,,,,,E
-E,,,,,,,,,,,,,,blazing_inferno_cooldown,,mana_regen,O,mana,,,O,,,,,,,,O,,,health,O,health_regen,,magma_flower_mana_cost,,,,,,,,,,,,,,,,,,,E
+E,,,,,,,,,,,,,,mod_throw_flames_lifesteal,O,mana_regen,O,mana,,,O,,,,,,,,O,,,health,O,health_regen,O,mod_magma_flower_burn,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,int,O,spell_fire_damage,O,big_crit_dmg,O,fire_weapon_damage,O,str,,,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,O,,,,O,,,,,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,spell_fire_damage,O,big_crit_hit,O,fire_weapon_damage,,,,,,,,,,,,,,,,,,,,,,,,,,,,E

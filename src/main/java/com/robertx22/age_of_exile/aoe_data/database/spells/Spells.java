@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
+import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.FireSpellModStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.NatureSpellModStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.OceanSpellModStats;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -180,9 +181,14 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BLAZE_POWDER, 3D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 50D, false)
                 .put(MapField.PROJECTILES_APART, 45D)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 5D, 0.15D))
-            //        .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.BURN, 1D, 20 * 3D)
-            //           .addCondition(EffectCondition.CHANCE.create(25D))
-            //          .requiresSpellMod(SpellModifiers.THROW_FLAMES_BURN))
+
+            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.BURN, 1D, 20 * 3D)
+                .addCondition(EffectCondition.CHANCE.create(25D))
+                .requiresSpellMod(FireSpellModStats.THROW_FLAMES_BURN_KEY))
+
+            .onHit(PartBuilder.healCaster(ValueCalculationData.base(1))
+                .requiresSpellMod(FireSpellModStats.THROW_FLAMES_LIFESTEAL_KEY))
+
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Fire))
             .build();
 
@@ -256,9 +262,16 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(30D, ParticleTypes.FLAME, 20D, 2D))
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(3), Elements.Fire, 2D))
-            //     .onTick(PartBuilder.healInAoe(ValueCalculationData.base(2), 2D)
-            //        .onTick(30D)
-            //       .requiresSpellMod(SpellModifierStats.))
+
+            .onTick(PartBuilder.healInAoe(ValueCalculationData.base(2), 2D)
+                .onTick(30D)
+                .requiresSpellMod(FireSpellModStats.MAGMA_FLOWER_BURN_KEY))
+
+            .onTick(PartBuilder.damageInAoe(ValueCalculationData.base(0.1F), Elements.Fire, 2D)
+                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(1F)))
+                .onTick(30D)
+                .requiresSpellMod(FireSpellModStats.MAGMA_FLOWER_HEAL_KEY))
+
             .build();
 
         ICE_FLOWER = SpellBuilder.of(FLOWER_OF_ICE_ID, Spells.PLANT_CONFIG(), "Flower of Ice")
