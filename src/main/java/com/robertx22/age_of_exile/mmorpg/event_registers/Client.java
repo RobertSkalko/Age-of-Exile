@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.event_registers;
 
 import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
 import com.robertx22.age_of_exile.event_hooks.player.OnKeyPress;
-import com.robertx22.age_of_exile.gui.overlays.PlayerGuiOverlay;
+import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.RPGPlayerGuiOverlay;
 import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.VanillaOverlay;
 import com.robertx22.age_of_exile.gui.overlays.mob_bar.MobBarScreen;
 import com.robertx22.age_of_exile.gui.overlays.spell_cast_bar.SpellCastBarOverlay;
@@ -21,7 +21,7 @@ public class Client {
         HudRenderCallback.EVENT.register(new SpellHotbarOverlay());
         HudRenderCallback.EVENT.register(new MobBarScreen());
         HudRenderCallback.EVENT.register(new SpellCastBarOverlay());
-        HudRenderCallback.EVENT.register(new PlayerGuiOverlay());
+        HudRenderCallback.EVENT.register(new RPGPlayerGuiOverlay());
 
     }
 }

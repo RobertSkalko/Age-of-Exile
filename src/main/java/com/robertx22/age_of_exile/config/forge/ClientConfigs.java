@@ -21,6 +21,6 @@ public class ClientConfigs {
     public int LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST = 0;
     public int RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST = 0;
 
-    public PlayerGUIs PLAYER_GUI_TYPE = PlayerGUIs.Vanilla;
+    public PlayerGUIs PLAYER_GUI_TYPE = PlayerGUIs.RPG;
 
 }

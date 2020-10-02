@@ -41,6 +41,9 @@ public class OnLogin {
                 .getCastingData()
                 .clearLockedSpells(player);
 
+            Load.perks(player)
+                .syncToClient(player);
+
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);
             }

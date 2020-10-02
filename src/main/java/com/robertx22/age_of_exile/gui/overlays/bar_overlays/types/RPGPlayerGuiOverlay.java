@@ -1,9 +1,11 @@
-package com.robertx22.age_of_exile.gui.overlays;
+package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -12,9 +14,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class PlayerGuiOverlay extends DrawableHelper implements HudRenderCallback {
+public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCallback {
 
-    public PlayerGuiOverlay() {
+    public RPGPlayerGuiOverlay() {
         super();
     }
 
@@ -33,7 +35,11 @@ public class PlayerGuiOverlay extends DrawableHelper implements HudRenderCallbac
         if (mc.player == null) {
             return;
         }
+
         try {
+            if (!ModConfig.get().client.PLAYER_GUI_TYPE.equals(PlayerGUIs.RPG)) {
+                return;
+            }
 
             PlayerEntity en = mc.player;
             UnitData data = Load.Unit(en);
