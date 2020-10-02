@@ -19,6 +19,7 @@ public class PlayerGuiOverlay extends DrawableHelper implements HudRenderCallbac
     }
 
     static int BAR_WIDTH = 116;
+    static int XP_BAR_WIDTH = 38;
 
     Identifier TEX = new Identifier(Ref.MODID, "textures/gui/playergui.png");
 
@@ -72,30 +73,55 @@ public class PlayerGuiOverlay extends DrawableHelper implements HudRenderCallbac
             float manamulti = data.getCurrentMana() / data.getUnit()
                 .manaData()
                 .getAverageValue();
+            float xpmulti = (float) data.getExp() / (float) data.getExpRequiredForLevelUp();
 
             int hpbar = (int) (hpmulti * BAR_WIDTH);
             int manabar = (int) (manamulti * BAR_WIDTH);
+            int xpbar = (int) (xpmulti * XP_BAR_WIDTH);
 
             drawTexture(matrix, x + 42, y + 7, 0, 59, hpbar, 13);
             drawTexture(matrix, x + 42, y + 23, 0, 75, manabar, 13);
+            drawTexture(matrix, x + 2, y + 42, 0, 96, xpbar, 5);
 
-            String name = curhp + "/" + maxhp;
-            int width = mc.textRenderer.getWidth(name);
+            String text = curhp + "/" + maxhp;
+            int width = mc.textRenderer.getWidth(text);
             float hpx = x - width / 2F + 42 + BAR_WIDTH / 2F;
             float hpy = 9 + 11 / 2F;
-            mc.textRenderer.drawWithShadow(matrix, name, hpx, hpy, Formatting.WHITE.getColorValue());
+            mc.textRenderer.drawWithShadow(matrix, text, hpx, hpy, Formatting.WHITE.getColorValue());
 
-            name = (int) data.getCurrentMana() + "/" + (int) data.getUnit()
+            text = (int) data.getCurrentMana() + "/" + (int) data.getUnit()
                 .manaData()
                 .getAverageValue();
-            width = mc.textRenderer.getWidth(name);
+            width = mc.textRenderer.getWidth(text);
             hpx = x - width / 2F + 42 + BAR_WIDTH / 2F;
             hpy = 25 + 11 / 2F;
-            mc.textRenderer.drawWithShadow(matrix, name, hpx, hpy, Formatting.WHITE.getColorValue());
+            mc.textRenderer.drawWithShadow(matrix, text, hpx, hpy, Formatting.WHITE.getColorValue());
+
+            text = data.getLevel() + "";
+            width = mc.textRenderer.getWidth(text);
+            hpx = x + 21 - width / 2F;
+            hpy = y + 27;
+            // mc.textRenderer.drawWithShadow(matrix, text, hpx, hpy, Formatting.GREEN.getColorValue());
+
+            drawPrettyText(text, matrix, hpx, hpy);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void drawPrettyText(String string, MatrixStack matrix, float m, float n) {
+// copied from how vanilla renders the total experience level text
+        mc.textRenderer
+            .draw(matrix, string, (m + 1), n, 0);
+        mc.textRenderer
+            .draw(matrix, string, (m - 1), n, 0);
+        mc.textRenderer
+            .draw(matrix, string, m, (n + 1), 0);
+        mc.textRenderer
+            .draw(matrix, string, m, (n - 1), 0);
+        mc.textRenderer
+            .draw(matrix, string, m, n, 8453920);
     }
 
 }
