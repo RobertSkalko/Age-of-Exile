@@ -38,26 +38,27 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         return null;
     }
 
-    public float getPercent(InCalcStatData data) {
-        return data.getFlatAverage() * 100;
+    public float getPercent(StatData data) {
+        return data.getAverageValue() * 100;
     }
 
     public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
 
         TooltipInfo info = new TooltipInfo(unitdata, null);
 
+        int perc = (int) getPercent(data);
+
         List<Text> list = new ArrayList<>();
         list.add(
             new LiteralText("Stats that benefit: ").formatted(Formatting.GREEN));
-        this.statsThatBenefit()
-            .forEach(x -> list.addAll(x.getEstimationTooltip(unitdata.getLevel()))); // todo probably wrong
+
+        getMods(perc, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 
     }
 
-    public List<ExactStatData> getMods(InCalcStatData data, int lvl) {
-        int perc = (int) getPercent(data);
+    public List<ExactStatData> getMods(int perc, int lvl) {
 
         List<ExactStatData> list = new ArrayList<>();
         for (StatModifier x : this.statsThatBenefit()) {
@@ -72,7 +73,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, InCalcStatData data) {
-        getMods(data, unitdata.getLevel()).forEach(x -> x.applyStats(unitdata));
+        int perc = (int) getPercent(data.getCalculated());
+        getMods(perc, unitdata.getLevel()).forEach(x -> x.applyStats(unitdata));
     }
 
 }
