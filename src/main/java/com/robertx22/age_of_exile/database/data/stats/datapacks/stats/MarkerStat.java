@@ -20,7 +20,7 @@ public class MarkerStat extends DatapackStat {
         this.desc = "This is a modifier for the spell. You can view the changes in the spell tooltip.";
         this.id = id.GUID();
 
-        AutoDatapackStats.STATS_TO_ADD_TO_SERIALIZATION.put(GUID(), this);
+        AutoDatapackStats.STATS_TO_ADD_TO_SERIALIZATION.add(this);
 
     }
 

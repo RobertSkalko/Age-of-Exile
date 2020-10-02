@@ -14,7 +14,7 @@ public abstract class DatapackSpellStat extends DatapackStat {
     public DatapackSpellStat(String serializer) {
         super(serializer);
         if (MMORPG.RUN_DEV_TOOLS) {
-            AutoDatapackStats.STATS_TO_ADD_TO_SERIALIZATION.put(GUID(), this);
+            AutoDatapackStats.STATS_TO_ADD_TO_SERIALIZATION.add(this);
         }
     }
 

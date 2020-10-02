@@ -24,6 +24,7 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
     static int XP_BAR_WIDTH = 38;
 
     Identifier TEX = new Identifier(Ref.MODID, "textures/gui/playergui.png");
+    Identifier NO_SCHOOL_TEX = new Identifier(Ref.MODID, "textures/gui/no_school.png");
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -68,8 +69,11 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
             if (school != null) {
                 mc.getTextureManager()
                     .bindTexture(new Identifier(school.icon));
-                drawTexture(matrix, x + 5, y + 5, 0, 0, 32, 32, 32, 32);
+            } else {
+                mc.getTextureManager()
+                    .bindTexture(NO_SCHOOL_TEX);
             }
+            drawTexture(matrix, x + 5, y + 5, 0, 0, 32, 32, 32, 32);
 
             mc.getTextureManager()
                 .bindTexture(TEX);

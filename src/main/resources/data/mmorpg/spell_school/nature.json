@@ -40,11 +40,11 @@ E,,,,,,,,,,,,spell_nature_damage,,,,O,,O,,,,,,,,,,O,,O,,,,nature_weapon_damage,,
 E,,,,,,,,,,,o,,O,,O,,,,nature_balm_healing,,,,,,,,poisoned_weapons_cooldown,,,,O,,O,,O,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,int,,,,spell_nature_damage,,,,,,,,,,,,,,,,,,nature_weapon_damage,,,,dex,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,O,,,,,O,,,,,,,,,,,,,,,,O,,,,,O,,,,,,,,,,,,,,,,,,,E
-E,,,,,,,,,,O,,,,,,spell_nature_damage,,,,,,,,,,,,,,nature_weapon_damage,,,,,,O,,,,,,,,,,,,,,,,,,,E
-E,,,,,,,thorn_bush_damage,,,O,,,,,O,,,,,,,,,,,,,,,,O,,,,,O,,,thorn_armor_cooldown,,,,,,,,,,,,,,,,E
-E,,,,,,thorn_bush_effect,O,thorn_bush_damage,O,thorn_bush,O,O,O,int,,,,,,,,,,,,,,,,,,dex,O,O,O,thorn_armor,O,thorn_armor_cooldown,O,thorn_armor_mana_cost,,,,,,,,,,,,,,,E
-E,,,,,,,thorn_bush_damage,,,O,,,,,,,,,,,,,,,,,,,,,,,,,,O,,,thorn_armor_cooldown,,,,,,,,,,,,,,,,E
-E,,,,,,,,,,O,,,,,,,O,mana,O,mana_regen,,,,,,health_regen,O,dodge,O,,,,,,,O,,,,,,,,,,,,,,,,,,,E
+E,,,,,,,,mod_slow_bush,,O,,,,,,spell_nature_damage,,,,,,,,,,,,,,nature_weapon_damage,,,,,,O,,,,,,,,,,,,,,,,,,,E
+E,,,,,,,,O,,O,,,,,O,,,,,,,,,,,,,,,,O,,,,,O,,,,,,,,,,,,,,,,,,,E
+E,,,,,,mod_poison_bush,O,spell_nature_damage,O,thorn_bush,O,O,O,int,,,,,,,,,,,,,,,,,,dex,O,O,O,thorn_armor,O,dodge,O,mod_thorn_armor_thorns,,,,,,,,,,,,,,,E
+E,,,,,,,,O,,O,,,,,,,,,,,,,,,,,,,,,,,,,,O,,,,,,,,,,,,,,,,,,,E
+E,,,,,,,,mod_fast_bush,,O,,,,,,,O,mana,O,mana_regen,,,,,,health_regen,O,dodge,O,,,,,,,O,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,mana,O,O,big_mana,O,O,int,,,,,O,O,gorgons_gaze,O,O,,,,,dex,O,O,big_dodge,O,O,dodge,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,O,mana,O,mana_regen,,,O,,,health_regen,O,dodge,O,,,,,,,,,,,,,,,,,,,,,,,,,,E
 E,,,,,,,,,,,,,,,,,,,,,,,O,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,E

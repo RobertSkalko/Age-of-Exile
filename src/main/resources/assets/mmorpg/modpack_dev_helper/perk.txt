@@ -14,11 +14,13 @@ dex
 big_int
 arrow_storm
 big_health
+mod_slow_bush
 big_crit_hit
 water_weapon_damage
 nature_weapon_damage
 wizardry
 heart_of_chill
+mod_fast_bush
 str
 imbue
 spear_of_judgement
@@ -45,6 +47,7 @@ fireball
 fire_resist
 ice_flower_dmg
 arcane_comet
+mod_thorn_armor_thorns
 dodge
 heart_of_ice
 passive_storm
@@ -81,6 +84,7 @@ elemental_resist
 purifying_fires
 chance_of_chill
 spell_water_damage
+mod_poison_bush
 recoil_shot
 poison_ball
 teleport

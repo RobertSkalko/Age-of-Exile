@@ -241,6 +241,13 @@ public class PartBuilder {
         return c;
     }
 
+    public static ComponentPart addEffectToEnemiesInAoe(StatusEffect effect, Double radius, Double duration) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.POTION.createGive(effect, duration));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+        return c;
+    }
+
     public static ComponentPart addExileEffectToEnemiesInFront(String effect, Double distance, Double width, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));

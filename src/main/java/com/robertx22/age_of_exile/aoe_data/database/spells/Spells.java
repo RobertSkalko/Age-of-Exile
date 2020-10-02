@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
+import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.NatureSpellModStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.OceanSpellModStats;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
@@ -276,7 +277,7 @@ public class Spells implements ISlashRegistryInit {
                 .requiresSpellMod(OceanSpellModStats.ICE_FLOWER_RESTORE_KEY))
 
             .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(4), Elements.Water, 2D)
-                .requiresSpellMod(OceanSpellModStats.ICE_FLOWER_RESTORE_KEY))
+                .requiresSpellMod(OceanSpellModStats.ICE_FLOWER_DMG_KEY))
 
             .build();
 
@@ -303,8 +304,15 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(30D, ParticleTypes.WITCH, 15D, 2D))
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH, 1D, 2D))
             .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(1), Elements.Nature, 2D))
-            //   .onTick(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.THORNS, 2D, 20 * 3D)
-            //      .requiresSpellMod(SpellModifiers.THORN_BUSH_EFFECT))
+
+            .onTick(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.THORNS, 2D, 20 * 3D)
+                .requiresSpellMod(NatureSpellModStats.POISON_BUSH_KEY))
+
+            .onTick(PartBuilder.addEffectToEnemiesInAoe(StatusEffects.SLOWNESS, 2D, 20 * 3D)
+                .requiresSpellMod(NatureSpellModStats.SLOW_BUSH_KEY))
+            .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(1), Elements.Physical, 2D)
+                .requiresSpellMod(NatureSpellModStats.SLOW_BUSH_KEY))
+
             .build();
 
         HEART_OF_ICE = SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 160 * 20), "Hear of Ice")
