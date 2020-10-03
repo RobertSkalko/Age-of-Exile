@@ -11,10 +11,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificElementalWeaponDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealthRegen;
@@ -45,7 +42,9 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static String DIVINE_SHIELD = "beneficial/" + 8;
     public static String POISON_WEAPONS = "beneficial/" + 9;
     public static String IMBUE = "beneficial/" + 10;
-    public static String HUNTER_INSTINCTS = "beneficial/" + 11;
+    public static String ARCANE_HUNTER = "beneficial/" + 11;
+    public static String EAGLE_EYE = "beneficial/" + 12;
+    public static String SAVAGE_HUNTER = "beneficial/" + 13;
 
     @Override
     public void registerAll() {
@@ -116,12 +115,25 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(IMBUE, "Imbue", EffectType.BENEFICIAL)
-            .stat(10, new SpecificElementalWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
             .build();
 
-        ExileEffectBuilder.of(HUNTER_INSTINCTS, "Hunter Instinct", EffectType.BENEFICIAL)
-            .stat(10, new SpecificElementalWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
-            .stat(5, CriticalHit.getInstance(), ModType.FLAT)
+        ExileEffectBuilder.of(SAVAGE_HUNTER, "Savage Hunter", EffectType.BENEFICIAL)
+            .stat(3, new SpecificWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
+            .stat(3, new SpecificWeaponDamage(WeaponTypes.CrossBow), ModType.FLAT)
+            .stat(15, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE)
             .build();
+
+        ExileEffectBuilder.of(ARCANE_HUNTER, "Arcane Hunter", EffectType.BENEFICIAL)
+            .stat(15, new SpecificElementalWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
+            .stat(15, new SpecificElementalWeaponDamage(WeaponTypes.CrossBow), ModType.FLAT)
+            .build();
+
+        ExileEffectBuilder.of(EAGLE_EYE, "Eagle Eye", EffectType.BENEFICIAL)
+            .stat(5, new SpecificElementalWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
+            .stat(5, new SpecificElementalWeaponDamage(WeaponTypes.CrossBow), ModType.FLAT)
+            .stat(10, CriticalHit.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(20, CriticalDamage.getInstance(), ModType.LOCAL_INCREASE)
+            .build();
+
     }
 }

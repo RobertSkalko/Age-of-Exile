@@ -2,12 +2,14 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 healing_aura
 mod_magma_flower_burn
+mod_tp_dmg
 thorn_armor
 throw_flames
 passive_divine
 passive_hunting
 blazing_inferno
 spell_thunder_damage
+mod_mana_ele_res
 thunder_dash
 increase_healing
 passive_fire
@@ -15,6 +17,7 @@ dex
 big_int
 arrow_storm
 big_health
+mob_imbue_phys
 mod_slow_bush
 big_crit_hit
 water_weapon_damage
@@ -31,11 +34,13 @@ chance_of_static
 ice_flower_restore
 arcane_bolt
 multi_shot
+mod_tp_ele_res
 crashing_rocks
 chilling_tides
 critical_hit
 thunder_resist
 thunder_strikes
+mod_mana_cd
 big_str
 tidal_wave
 heart_of_magic
@@ -43,6 +48,7 @@ trickery
 nature_resist
 volcano
 big_magic_shield
+mod_tp_fast
 spell_elemental_damage
 arrow_barrage
 fireball
@@ -59,6 +65,7 @@ mod_throw_flames_burn
 whirlpool
 health
 thorn_bush
+mod_imbue_ele
 big_crit_dmg
 chance_of_poison
 mana
@@ -97,6 +104,7 @@ lightning_totem
 passive_nature
 nature_balm
 big_dodge
+mob_imbue_crit
 magic_shield_regen
 flower_of_ice
 fire_weapon_damage
@@ -105,6 +113,7 @@ start
 frostball
 fire_bombs
 int
+mod_mana_magic
 frostball_chill
 awaken_mana
 big_mana

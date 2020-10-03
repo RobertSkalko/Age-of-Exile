@@ -26,8 +26,8 @@ public class ModRegistry {
 
     public static void init() {
 
-        REPAIR_KITS = new RepairKitsRegister();
         RECIPE_SER = new ModRecipeSerializers();
+        REPAIR_KITS = new RepairKitsRegister();
         UNIQUE_GEARS = new UniqueGearItemRegister();
         POTIONS = new PotionRegister();
         BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks

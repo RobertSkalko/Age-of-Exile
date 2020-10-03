@@ -2,9 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.FireSpellModStats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.NatureSpellModStats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.OceanSpellModStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.*;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -35,6 +33,7 @@ public class Spells implements ISlashRegistryInit {
     public static Spell ARCANE_COMET;
     public static Spell TELEPORT;
     public static Spell MAGIC_BOMB;
+    public static Spell IMBUE;
     public static Spell THROW_FLAMES;
     public static Spell FIRE_BOMBS;
     public static Spell INFERNO;
@@ -96,6 +95,13 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(PartBuilder.restoreManaToCaster(ValueCalculationData.base(30)))
+
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST, 20 * 10D)
+                .requiresSpellMod(ArcaneSpellModStats.MANA_ELE_RES_KEY))
+
+            .onCast(PartBuilder.restoreMagicShieldToCaster(ValueCalculationData.base(15))
+                .requiresSpellMod(ArcaneSpellModStats.MANA_MAGIC_SHIELD_KEY))
+
             .build();
 
         ARCANE_BALL = SpellBuilder.of("arcane_bolt", SINGLE_TARGET_PROJ_CONFIG().setIsStarter(), "Arcane Bolt")
@@ -129,9 +135,14 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.TP_CASTER_IN_DIRECTION.create(12D)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Elemental, 2D)
-                .addPerEntityHit(PartBuilder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D)))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST, 20 * 10D))
+
+            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(8), Elements.Elemental, 2D)
+                .addPerEntityHit(PartBuilder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D))
+                .requiresSpellMod(ArcaneSpellModStats.TP_DMG_KEY))
+
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST, 20 * 10D)
+                .requiresSpellMod(ArcaneSpellModStats.TP_ELE_RES_KEY))
+
             .build();
 
         MAGIC_BOMB = SpellBuilder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(15, 20 * 15, 20), "Magic Bomb")
@@ -483,9 +494,19 @@ public class Spells implements ISlashRegistryInit {
                 .addCondition(EffectCondition.CASTER_HAS_POTION.create(POTIONS.getExileEffect(BeneficialEffects.IMBUE))))
             .build();
 
-        SpellBuilder.of("imbue", SpellConfiguration.Builder.instant(15, 200 * 20), "Imbue")
+        IMBUE = SpellBuilder.of("imbue", SpellConfiguration.Builder.instant(15, 200 * 20), "Imbue")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.IMBUE, 20 * 30D))
+
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ARCANE_HUNTER, 20 * 30D)
+                .requiresSpellMod(HunterSpellModStats.IMBUE_CRIT_KEY))
+
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.SAVAGE_HUNTER, 20 * 30D)
+                .requiresSpellMod(HunterSpellModStats.IMBUE_PHYS_KEY))
+
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.EAGLE_EYE, 20 * 30D)
+                .requiresSpellMod(HunterSpellModStats.IMBUE_CRIT_KEY))
+
             .build();
 
         NATURE_BALM = SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 200 * 20), "Nature's Balm")

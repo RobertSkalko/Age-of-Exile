@@ -89,7 +89,10 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
             int manabar = (int) (manamulti * BAR_WIDTH);
             int xpbar = (int) (xpmulti * XP_BAR_WIDTH);
 
-            drawTexture(matrix, x + 42, y + 7, 0, 59, hpbar, 13);
+            int hpYPos = data.getResources()
+                .getMagicShield() > mc.player.getHealth() ? 142 : 59;
+
+            drawTexture(matrix, x + 42, y + 7, 0, hpYPos, hpbar, 13);
             drawTexture(matrix, x + 42, y + 23, 0, 75, manabar, 13);
             drawTexture(matrix, x + 2, y + 42, 0, 96, xpbar, 5);
 
@@ -113,14 +116,14 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
             hpy = y + 27;
             // mc.textRenderer.drawWithShadow(matrix, text, hpx, hpy, Formatting.GREEN.getColorValue());
 
-            drawPrettyText(text, matrix, hpx, hpy);
+            drawPrettyLevelText(text, matrix, hpx, hpy);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void drawPrettyText(String string, MatrixStack matrix, float m, float n) {
+    public void drawPrettyLevelText(String string, MatrixStack matrix, float m, float n) {
 // copied from how vanilla renders the total experience level text
         mc.textRenderer
             .draw(matrix, string, (m + 1), n, 0);
