@@ -26,8 +26,7 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
     }
 
     public static DimensionConfig Nether() {
-        DimensionConfig d = new DimensionConfig(5, "minecraft:the_nether").setMobTier(2);
-        d.mob_lvl_per_distance = 45;
+        DimensionConfig d = new DimensionConfig(10, "minecraft:the_nether").setMobTier(2);
         return d;
     }
 
@@ -38,11 +37,6 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
     public static DimensionConfig DefaultExtra() {
         DimensionConfig config = new DimensionConfig();
         return config;
-    }
-
-    public DimensionConfig setUniqueMulti(float m) {
-        this.unique_gear_drop_multi = m;
-        return this;
     }
 
     public DimensionConfig setMobTier(int t) {

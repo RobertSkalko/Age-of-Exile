@@ -60,9 +60,14 @@ public class LevelUtils {
         double distance = world.getSpawnPos()
             .getManhattanDistance(pos);
 
+        double scale = MathHelper.clamp(world.getDimension()
+            .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);
+
+        distance *= scale;
+
         int lvl = 1;
 
-        lvl = (int) (1 + (distance / config.mob_lvl_per_distance));
+        lvl = (int) (1 + (distance / (config.mob_lvl_per_distance)));
 
         return MathHelper.clamp(lvl, config.min_lvl, config.max_lvl);
 

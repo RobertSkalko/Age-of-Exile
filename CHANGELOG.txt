@@ -4,6 +4,12 @@ v.1.5.0
 Set your PLAYER_GUI_TYPE in client configs to RPG.
 It is now the default gui.
 
+- level per distance now uses cordinate scale. So when you enter nether at lvl 5 in overworld, nether mobs should also be lvl 5. 
+(but nether has minimum lvl by default so might be higher. but at least won't be max level like before)
+In short, you won't meet lvl 50 mobs when you enter nether from lvl 1 locaton. 
+But you will progress MUCH faster in mob lvls while walking in nether! 
+This will work with all modded dimensions that use the vanilla cordinate scale value
+
 - spell modifier datapacks removed. I realized i can just turn them into stats, that allows for more customization!
 - caster has spellmod condition is now caster has stat
 - added new datapack stats that can do everything spell modifiers did: cooldown, mana cost, damage etc (per spell)
