@@ -29,6 +29,7 @@ mod_magma_flower_heal
 str
 imbue
 spear_of_judgement
+mod_holy_flower_rest
 spell_damage
 chance_of_static
 ice_flower_restore
@@ -54,6 +55,7 @@ arrow_barrage
 fireball
 fire_resist
 ice_flower_dmg
+mod_holy_flower_dmg
 arcane_comet
 mod_thorn_armor_thorns
 dodge
@@ -109,6 +111,7 @@ magic_shield_regen
 flower_of_ice
 fire_weapon_damage
 thunder_spear
+mod_holy_flower_cure
 start
 frostball
 fire_bombs

@@ -73,24 +73,4 @@ public class LevelUtils {
 
     }
 
-    public static BlockPos getAreaPosOfLevel(ServerWorld world, int level, DimensionConfig config) {
-
-        if (level == 1) {
-            return world.getSpawnPos();
-        }
-
-        int distance = config.mob_lvl_per_distance * level;
-
-        BlockPos pos = new BlockPos(distance, 0, world.getSpawnPos()
-            .getZ());
-
-        return pos;
-
-    }
-
-    public static int determineLevelPerDistanceFromSpawn(ServerWorld world, BlockPos pos) {
-        return determineLevelPerDistanceFromSpawn(world, pos, SlashRegistry.getDimensionConfig(world));
-
-    }
-
 }

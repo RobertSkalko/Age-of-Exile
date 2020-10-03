@@ -17,6 +17,7 @@ hammer_damage
 unlock_trickery
 convert_water_to_phys
 nature_weapon_damage
+extra_holy_flower_resto
 unlock_poisoned_weapons
 heart_of_chill
 mana_on_hit
@@ -44,6 +45,7 @@ mana_cost_red
 spell_elemental_damage
 unlock_lightning_totem
 ice_flower_dmg
+mod_holy_flower_dmg
 mod_thorn_armor_thorns
 dodge
 convert_thunder_to_phys
@@ -95,6 +97,7 @@ fire_weapon_damage
 mob_imbue_crit
 physical_to_nature
 unlock_thunder_strikes
+mod_holy_flower_cure
 mana_per_sec
 all_fire_damage
 mod_mana_magic
@@ -120,6 +123,7 @@ faster_cast_rate
 unlock_thunder_spear
 unlock_purifying_fires
 intelligence
+mod_holy_flower_rest
 spell_damage
 ice_flower_restore
 burn_bonus_dmg

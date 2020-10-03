@@ -13,6 +13,7 @@ public class SpellModifierPerks implements ISlashRegistryInit {
         new FirePerks().registerAll();
         new ArcanePerks().registerAll();
         new HunterPerks().registerAll();
+        new DivinePerks().registerAll();
 
     }
 }

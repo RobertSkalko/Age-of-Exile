@@ -311,11 +311,16 @@ public class Spells implements ISlashRegistryInit {
             .onExpire("projectile", PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.HORN_CORAL, 160D)))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.MELON_SEEDS, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, true)
                 .put(MapField.ENTITY_NAME, "projectile")))
-            //    .onTick(PartBuilder.onTickCleanseInRadius(30D, StatusEffects.POISON, 2D)
-            //      .requiresSpellMod(SpellModifiers.HOLY_FLOWER_CLEANSE))
             .onTick(PartBuilder.particleOnTick(30D, ParticleTypes.HEART, 20D, 2D))
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.ITEM_CROP_PLANT, 1D, 1D))
             .onTick(PartBuilder.onTickHealInAoe(30D, ValueCalculationData.base(3), 2D))
+
+            .onTick(PartBuilder.onTickRemoveNegativeEffectInRadius(30D, 2D)
+                .requiresSpellMod(DivineSpellModStats.FLOWER_CURE_KEY))
+
+            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(4), Elements.Thunder, 2D)
+                .requiresSpellMod(DivineSpellModStats.FLOWER_DMG_KEY))
+
             .build();
 
         POISON_BUSH = SpellBuilder.of(THORN_BUSH_ID, Spells.PLANT_CONFIG(), "Poison Bush")

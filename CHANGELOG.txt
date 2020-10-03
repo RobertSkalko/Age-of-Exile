@@ -22,3 +22,4 @@ Now follows same naming theme as my other datapacks: modid.type.identifier
 But it probably means short term bugs.
 - datapack validation now runs after all datapacks are loaded, instead of on server start, this means invalid entries will no longer be shown on client
 - "any weapon" spell cast requirement now allows any item to cast the spell. Including non age of exile weapons
+- added remove negative potion effect spell action

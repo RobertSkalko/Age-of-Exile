@@ -18,7 +18,7 @@ import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapFiel
 public class ExileEffectAction extends SpellAction implements ICTextTooltip {
 
     public enum GiveOrTake {
-        GIVE_STACKS, REMOVE_STACKS
+        GIVE_STACKS, REMOVE_STACKS, REMOVE_NEGATIVE
     }
 
     @Override

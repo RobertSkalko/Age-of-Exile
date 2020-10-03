@@ -147,6 +147,19 @@ public class PartBuilder {
         return c;
     }
 
+    public static ComponentPart onTickRemoveNegativeEffectInRadius(Double ticks, Double radius) {
+        ComponentPart c = removeNegativeEffectInRadius(radius);
+        c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+        return c;
+    }
+
+    public static ComponentPart removeNegativeEffectInRadius(Double radius) {
+        ComponentPart c = new ComponentPart();
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+        c.acts.add(SpellAction.POTION.removeNegative(1D));
+        return c;
+    }
+
     public static ComponentPart cleanseInRadius(StatusEffect effect, Double radius) {
         ComponentPart c = new ComponentPart();
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));

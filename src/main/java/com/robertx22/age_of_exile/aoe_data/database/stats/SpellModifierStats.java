@@ -13,6 +13,7 @@ public class SpellModifierStats implements ISlashRegistryInit {
         new FireSpellModStats().registerAll();
         new ArcaneSpellModStats().registerAll();
         new HunterSpellModStats().registerAll();
+        new DivineSpellModStats().registerAll();
 
     }
 }

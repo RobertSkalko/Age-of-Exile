@@ -37,7 +37,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     }
 
     public MinMax default_stat_percents = new MinMax(0, 100);
-    public MinMax secondaryStatPercents = new MinMax(0, 100);
     public MinMax affix_stat_percents = new MinMax(0, 100);
     public MinMax unique_stat_percents = new MinMax(0, 100);
 
