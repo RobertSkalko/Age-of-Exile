@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.OceanS
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.PerSpellManaCostStat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.PerSpellProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -15,9 +16,15 @@ public class OceanPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        of(OceanSpellModStats.CRASHING_ROCKS, Spells.TIDAL_WAVE).build();
-        of(OceanSpellModStats.BURNING_CURRENTS, Spells.TIDAL_WAVE).build();
-        of(OceanSpellModStats.CHILLING_TIDES, Spells.TIDAL_WAVE).build();
+        of(OceanSpellModStats.CRASHING_ROCKS, Spells.TIDAL_WAVE)
+            .addStat(new OptScaleExactStat(25, new PerSpellManaCostStat(Spells.TIDAL_WAVE), ModType.FLAT))
+            .build();
+        of(OceanSpellModStats.BURNING_CURRENTS, Spells.TIDAL_WAVE)
+            .addStat(new OptScaleExactStat(25, new PerSpellManaCostStat(Spells.TIDAL_WAVE), ModType.FLAT))
+            .build();
+        of(OceanSpellModStats.CHILLING_TIDES, Spells.TIDAL_WAVE)
+            .addStat(new OptScaleExactStat(25, new PerSpellManaCostStat(Spells.TIDAL_WAVE), ModType.FLAT))
+            .build();
 
         of(OceanSpellModStats.FROSTBALL_EXTRA_DMG, Spells.FROSTBALL)
             .build();

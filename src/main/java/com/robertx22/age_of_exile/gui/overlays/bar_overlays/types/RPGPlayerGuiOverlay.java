@@ -13,6 +13,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
 public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCallback {
 
@@ -84,6 +85,10 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
                 .manaData()
                 .getAverageValue();
             float xpmulti = (float) data.getExp() / (float) data.getExpRequiredForLevelUp();
+
+            hpmulti = MathHelper.clamp(hpmulti, 0, 1);
+            manamulti = MathHelper.clamp(manamulti, 0, 1);
+            xpmulti = MathHelper.clamp(xpmulti, 0, 1);
 
             int hpbar = (int) (hpmulti * BAR_WIDTH);
             int manabar = (int) (manamulti * BAR_WIDTH);

@@ -203,7 +203,7 @@ public class Spells implements ISlashRegistryInit {
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Fire))
             .build();
 
-        TIDAL_WAVE = SpellBuilder.of("tidal_wave", MULTI_TARGET_PROJ_CONFIG(), "Tidal Wave")
+        TIDAL_WAVE = SpellBuilder.of("tidal_wave", SpellConfiguration.Builder.instant(9, 20), "Tidal Wave")
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 5D, 0.6D, ENTITIES.SIMPLE_PROJECTILE, 40D, true)
