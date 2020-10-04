@@ -47,8 +47,12 @@ public class GenChestLootMethod {
 
         List<Integer> list1 = mygetEmptySlotsRandomized(inventory, new Random());
 
+        if (list1.isEmpty()) {
+            return;
+        }
+
         for (int i = 0; i < items.size(); i++) {
-            if (list1.size() >= i) {
+            if (i < list1.size()) {
                 int emptyslot = list1.get(i);
 
                 inventory.setStack(emptyslot, items.get(i));

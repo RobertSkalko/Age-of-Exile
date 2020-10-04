@@ -45,7 +45,6 @@ public class MapField<T> implements IGUID {
     public static MapField<String> PARTICLE_SHAPE = make("shape");
     public static MapField<String> EXILE_POTION_ID = make("exile_potion_id");
     public static MapField<String> POTION_ID = make("potion_id");
-    public static MapField<String> PERK = make("perk");
     public static MapField<String> POTION_ACTION = make("potion_action");
     public static MapField<String> BLOCK = make("block");
     public static MapField<String> ENTITY_NAME = make("entity_name");
@@ -73,12 +72,10 @@ public class MapField<T> implements IGUID {
         return field;
     }
 
-
     private static <T> MapField<T> make(MapField<T> field) {
         MAP.put(field.GUID(), field);
         return field;
     }
-
 
     @Override
     public String GUID() {
