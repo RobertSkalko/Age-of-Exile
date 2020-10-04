@@ -93,10 +93,6 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
     public boolean canItemHave(GearItemData gear) {
 
-        if (gear.sockets.getEmptySockets() == 0) {
-            return false;
-        }
-
         int minlvl = runes_needed.stream()
             .map(x -> SlashRegistry.Runes()
                 .get(x))
