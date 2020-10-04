@@ -316,7 +316,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     }
                 }
 
-                if (this instanceof SpellDamageEffect == false) {
+                if (false) {
                     // use apply damage so we don't get stack overflow
                     // tell other mods to listen to entity.damage and not entity.applydamage
                     LivingEntityDuck duck = (LivingEntityDuck) target;
