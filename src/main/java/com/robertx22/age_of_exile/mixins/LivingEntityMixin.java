@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.LivingHurtUtils;
+import com.robertx22.age_of_exile.mixin_ducks.LivingEntityDuck;
 import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -18,10 +19,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin {
+public abstract class LivingEntityMixin implements LivingEntityDuck {
 
     @Shadow
     protected abstract void damageArmor(DamageSource source, float amount);
+
+    @Shadow
+    protected abstract void applyDamage(DamageSource source, float amount);
 
     // ENSURE MY SPECIAL DAMAGE ISNT LOWERED BY ARMOR, ENCHANTS ETC
     @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
@@ -68,4 +72,8 @@ public abstract class LivingEntityMixin {
         }
     }
 
+    @Override
+    public void myApplyDamage(DamageSource source, float amount) {
+        this.applyDamage(source, amount);
+    }
 }

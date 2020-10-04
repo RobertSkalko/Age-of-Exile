@@ -7,7 +7,6 @@
     "BlockMixin",
     "ChestMixin",
     "CriteriaAccessor",
-    "DefaultBiomeFeaturesMixin",
     "FallingBlockEntityMixin",
     "FoodComponentMixin",
     "LivingEntityMixin",

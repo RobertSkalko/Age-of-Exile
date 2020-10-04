@@ -1,5 +1,6 @@
 v1.5.1
 - fix runewords not being given unless item had an empty socket
+- changed my damage listener, might be buggy but if works should prevent stack overflow conflicts with other mods
 
 v.1.5.0
 

@@ -64,8 +64,6 @@ public class LivingHurtUtils {
 
             if (event.getSource()
                 .getAttacker() instanceof LivingEntity) {
-                LivingEntity source = (LivingEntity) event.getSource()
-                    .getAttacker();
 
                 onAttack(new DamageEventData(event));
             }

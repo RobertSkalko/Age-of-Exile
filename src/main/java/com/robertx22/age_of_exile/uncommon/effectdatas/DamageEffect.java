@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
+import com.robertx22.age_of_exile.mixin_ducks.LivingEntityDuck;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -303,7 +304,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.targetData.onDamagedBy(source, dmg, target);
 
-            if (event == null || !(event.getSource() instanceof MyDamageSource)) {
+            if (event == null || !(event.getSource() instanceof MyDamageSource)) { // todo wtf
                 //int hurtResistantTime = target.timeUntilRegen;
                 //target.timeUntilRegen = 0;
 
@@ -315,12 +316,20 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     }
                 }
 
-                int saved = target.timeUntilRegen;
-                target.timeUntilRegen = saved;
-                target.damage(dmgsource, dmg);
+                if (this instanceof SpellDamageEffect == false) {
+                    // use apply damage so we don't get stack overflow
+                    // tell other mods to listen to entity.damage and not entity.applydamage
+                    LivingEntityDuck duck = (LivingEntityDuck) target;
+                    duck.myApplyDamage(dmgsource, dmg);
+                } else {
+                    // for spell dmg, we want to use this to apply knockback normally
+                    int saved = target.timeUntilRegen;
+                    target.timeUntilRegen = saved; // wat
+                    target.damage(dmgsource, dmg);
 
-                target.timeUntilRegen = saved;
-                // allow multiple dmg same tick
+                    target.timeUntilRegen = saved;
+                    // allow multiple dmg same tick
+                }
 
                 if (removeKnockback) {
                     if (attri.hasModifier(NO_KNOCKBACK)) {
