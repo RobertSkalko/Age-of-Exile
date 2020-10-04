@@ -33,7 +33,7 @@ public class SummonBlockAction extends SpellAction implements ICMainTooltip {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<MutableText> list = new ArrayList<>();
 
-        list.add(new LiteralText("Summons a block"));
+        list.add(new LiteralText("Summon a block"));
 
         list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME)));
 

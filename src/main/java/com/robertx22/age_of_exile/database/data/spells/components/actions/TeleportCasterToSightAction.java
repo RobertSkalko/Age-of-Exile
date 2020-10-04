@@ -29,7 +29,7 @@ public class TeleportCasterToSightAction extends SpellAction implements ICMainTo
     public List<MutableText> getLines(AttachedSpell spell, MapHolder data) {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<MutableText> list = new ArrayList<>();
-        list.add(new LiteralText("Teleports caster in direction"));
+        list.add(new LiteralText("Teleport caster in direction"));
         return list;
     }
 

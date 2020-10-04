@@ -29,7 +29,7 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
 
         ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
-        text.append("Restores ")
+        text.append("Restore ")
             .append(calc.getShortTooltip(info.unitdata))
             .append(" Mana");
 

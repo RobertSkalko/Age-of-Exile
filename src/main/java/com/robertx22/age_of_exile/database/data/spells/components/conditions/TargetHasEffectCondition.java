@@ -36,7 +36,7 @@ public class TargetHasEffectCondition extends EffectCondition implements ICTextT
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
         StatusEffect potion = Registry.STATUS_EFFECT.get(new Identifier(data.get(MapField.POTION_ID)));
-        return ctx.caster.hasStatusEffect(potion);
+        return ctx.target != null && ctx.target.hasStatusEffect(potion);
     }
 
     public MapHolder create(StatusEffect effect) {

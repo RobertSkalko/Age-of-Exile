@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
@@ -32,7 +32,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
         ValueCalculationData calc = data.get(VALUE_CALCULATION);
         Elements ele = data.getElement();
 
-        text.append("Deals ")
+        text.append("Deal ")
             .append(calc.getShortTooltip(info.unitdata))
             .append(" ")
             .append(ele.dmgName)

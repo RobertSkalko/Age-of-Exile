@@ -31,7 +31,7 @@ public class SummonAtSightAction extends SpellAction implements ICMainTooltip {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<MutableText> list = new ArrayList<>();
 
-        list.add(new LiteralText("Summons in front of caster"));
+        list.add(new LiteralText("Summon in front of caster"));
 
         list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME)));
 

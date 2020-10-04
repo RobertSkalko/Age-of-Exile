@@ -29,7 +29,7 @@ public class RestoreMagicShieldAction extends SpellAction implements ICTextToolt
 
         ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
-        text.append("Restores ")
+        text.append("Restore ")
             .append(calc.getShortTooltip(info.unitdata))
             .append(" Magic Shield");
 

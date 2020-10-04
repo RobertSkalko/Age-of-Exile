@@ -35,17 +35,17 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
 
         if (action == GiveOrTake.GIVE_STACKS) {
             StatusEffect potion = data.getPotion();
-            text.append("Gives ");
+            text.append("Give ");
             text.append(potion.getName());
 
         } else if (action == GiveOrTake.REMOVE_STACKS) {
             StatusEffect potion = data.getPotion();
-            text.append("Removes ");
+            text.append("Remove ");
             text.append(potion.getName());
         } else {
             int count = data.getOrDefault(COUNT, 1D)
                 .intValue();
-            text.append("Removes " + count + " negative effects");
+            text.append("Remove " + count + " negative effects");
         }
 
         return text;

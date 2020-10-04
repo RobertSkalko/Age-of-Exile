@@ -210,7 +210,7 @@ public class Spells implements ISlashRegistryInit {
                 .put(MapField.PROJECTILES_APART, 50D)))
             .onTick(PartBuilder.particleOnTick(1D, PARTICLES.BUBBLE, 15D, 0.15D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.BUBBLE_POP, 15D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.2F, 2), Elements.Water))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.15F, 1), Elements.Water))
 
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.1F, 2), Elements.Water)
                 .requiresSpellMod(OceanSpellModStats.CHILLING_TIDES_KEY))
