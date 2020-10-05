@@ -9,9 +9,11 @@
     "CriteriaAccessor",
     "FallingBlockEntityMixin",
     "FoodComponentMixin",
+    "ItemEntityMixin",
     "LivingEntityMixin",
     "OnCraftMixin",
     "PlayerManagerMixin",
+    "ServerPlayerEntityMixin",
     "ServerResourceManagerMixin",
     "SpawnSettingsMixin",
     "StatusEffectMixin"

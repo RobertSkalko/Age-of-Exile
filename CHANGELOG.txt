@@ -1,3 +1,8 @@
+v.1.5.2
+- armor and hotbar will no longer be dropped on death by default. (SUPER EXPERIMENTAL, PROBABLY BUGGY) 
+I think arpgs where it can take years to get good gear shouldn't allow you to lose it that easily.
+Depending on how stable this feature is, it will either become core or abandoned.
+
 v1.5.1
 - fix runewords not being given unless item had an empty socket
 
