@@ -1,14 +1,15 @@
-v.1.5.2
+## v.1.5.2
 
-- new reward for leveling. Mobs drop extra vanilla experience based on their level.
+- new reward for leveling. Mobs drop extra vanilla experience based on their level. (double at max level mobs)
 - armor and hotbar will no longer be dropped on death by default. (SUPER EXPERIMENTAL, PROBABLY BUGGY) 
 I think arpgs where it can take years to get good gear shouldn't allow you to lose it that easily.
 Depending on how stable this feature is, it will either become core or removed.
+- trying out .md changelogs
 
-v1.5.1
+## v1.5.1
 - fix runewords not being given unless item had an empty socket
 
-v.1.5.0
+# v.1.5.0
 
 - added new rpg like gui overlay! Thanks SattesKrokodil for making the gui parts! 
 Set your PLAYER_GUI_TYPE in client configs to RPG.
