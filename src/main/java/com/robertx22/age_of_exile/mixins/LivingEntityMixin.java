@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -26,6 +27,9 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
 
     @Shadow
     protected abstract void applyDamage(DamageSource source, float amount);
+
+    @Shadow
+    protected abstract int getCurrentExperience(PlayerEntity player);
 
     // ENSURE MY SPECIAL DAMAGE ISNT LOWERED BY ARMOR, ENCHANTS ETC
     @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
@@ -75,5 +79,10 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     @Override
     public void myApplyDamage(DamageSource source, float amount) {
         this.applyDamage(source, amount);
+    }
+
+    @Override
+    public int myGetCurrentExperience(PlayerEntity player) {
+        return this.getCurrentExperience(player);
     }
 }
