@@ -263,7 +263,7 @@ public class Unit {
 
         DirtyCheck old = getDirtyCheck();
 
-        List<GearItemData> gears = new ArrayList<>();
+        List<GearData> gears = new ArrayList<>();
 
         new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData);
 
@@ -311,7 +311,7 @@ public class Unit {
 
     }
 
-    private void addGearStats(List<GearItemData> gears, LivingEntity entity, UnitData data) {
+    private void addGearStats(List<GearData> gears, LivingEntity entity, UnitData data) {
 
         /*
         Add all gear stats that meet requirements
@@ -335,17 +335,13 @@ public class Unit {
 
             for (int i = 0; i < gears.size(); i++) {
 
-                GearItemData gear = gears.get(i);
+                GearItemData gear = gears.get(i).gear;
 
                 boolean addstats = true;
 
                 if (entity instanceof PlayerEntity) {
 
-                    if (!gear.isIdentified()) {
-                        continue;
-                    } else if (data.getLevel() < gear.level) {
-                        continue;
-                    } else if (!gear.meetsStatRequirements(data)) {
+                    if (!gear.meetsStatRequirements(data)) {
                         addstats = false;
                     }
                     if (addstats) {

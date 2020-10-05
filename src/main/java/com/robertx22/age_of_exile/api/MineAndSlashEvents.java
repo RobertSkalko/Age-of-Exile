@@ -1,12 +1,11 @@
 package com.robertx22.age_of_exile.api;
 
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RepairUtils;
+import com.robertx22.age_of_exile.saveclasses.unit.GearData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
@@ -16,50 +15,21 @@ public class MineAndSlashEvents {
     // that isn't compatible with one i use
     public static class CollectGearStacksEvent {
 
-        public List<GearItemData> gears;
+        public List<GearData> gears;
 
         public LivingEntity entity;
         public DamageEventData data;
 
-        public CollectGearStacksEvent(LivingEntity entity, List<GearItemData> gears, DamageEventData data) {
+        public CollectGearStacksEvent(LivingEntity entity, List<GearData> gears, DamageEventData data) {
             this.entity = entity;
             this.gears = gears;
             this.data = data;
 
-            CollectGearEvent.getEquipsExcludingWeapon(entity)
-                .forEach(x -> add(x));
-            CollectGearEvent.addHeldItems(this);
+            EntityCap.UnitData unitdata = Load.Unit(entity);
 
-        }
+            gears.addAll(CollectGearEvent.getAllGear(data, entity, unitdata));
 
-        public void add(GearItemData data) {
-            if (data != null) {
-                gears.add(data);
-            }
-        }
-
-        public void add(ItemStack stack) {
-            if (isStackValidGear(stack)) {
-                GearItemData data = Gear.Load(stack);
-                if (data != null) {
-                    gears.add(data);
-                }
-            }
-        }
-
-        public static boolean isStackValidGear(ItemStack stack) {
-
-            if (stack == null) {
-                return false;
-            }
-
-            if (stack.isDamageable()) {
-                return RepairUtils.isItemBroken(stack) == false;
-            }
-
-            GearItemData gear = Gear.Load(stack);
-
-            return gear != null && gear.isValidItem();
+            gears.removeIf(x -> !x.isUsableBy(unitdata));
 
         }
 

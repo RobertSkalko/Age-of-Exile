@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.uncommon.datasaving;
 
-import com.robertx22.age_of_exile.api.MineAndSlashEvents;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.item.ItemStack;
@@ -27,19 +25,6 @@ public class Gear {
 
         return LoadSave.Load(GearItemData.class, new GearItemData(), stack.getTag(), LOC);
 
-    }
-
-    public static GearItemData loadOnlyValidWeaponData(ItemStack weapon) {
-        if (MineAndSlashEvents.CollectGearStacksEvent.isStackValidGear(weapon)) {
-            GearItemData wep = Gear.Load(weapon);
-            if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
-                .family()
-                .equals(BaseGearType.SlotFamily.Weapon)) {
-                return wep;
-            }
-
-        }
-        return null;
     }
 
     public static void Save(ItemStack stack, GearItemData gear) {

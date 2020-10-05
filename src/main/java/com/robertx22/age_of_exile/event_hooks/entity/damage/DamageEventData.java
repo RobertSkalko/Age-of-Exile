@@ -68,7 +68,7 @@ public class DamageEventData {
     private void setupWeaponData() {
 
         ItemStack stack = source.getMainHandStack();
-        GearItemData gear = Gear.loadOnlyValidWeaponData(stack);
+        GearItemData gear = Gear.Load(stack);
 
         if (gear == null) {
 
@@ -82,7 +82,7 @@ public class DamageEventData {
                     if (ts instanceof LivingEntity) {
 
                         stack = getWeaponStackFromThrownEntity(is);
-                        gear = Gear.loadOnlyValidWeaponData(stack);
+                        gear = Gear.Load(stack);
 
                         if (gear == null) {
                             stack = ItemStack.EMPTY;
