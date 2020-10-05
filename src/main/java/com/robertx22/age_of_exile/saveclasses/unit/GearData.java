@@ -25,11 +25,21 @@ public class GearData {
         calcStatUtilization(data);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof GearData == false) {
+            return false;
+        }
+        GearData other = (GearData) obj;
+
+        return (ItemStack.areEqual(stack, other.stack));
+    }
+
     private void calcStatUtilization(EntityCap.UnitData data) {
         if (slot == EquipmentSlot.OFFHAND) {
             if (gear != null && gear.GetBaseGearType()
                 .isWeapon()) {
-                percentStatUtilization = 15;
+                percentStatUtilization = 15; // TODO
             }
         }
     }
@@ -38,11 +48,13 @@ public class GearData {
         if (stack == null) {
             return false;
         }
-        if (stack.isDamageable()) {
-            return RepairUtils.isItemBroken(stack) == false;
-        }
         if (gear == null) {
             return false;
+        }
+        if (stack.isDamageable()) {
+            if (RepairUtils.isItemBroken(stack)) {
+                return false;
+            }
         }
         if (!gear.isValidItem()) {
             return false;
@@ -56,10 +68,12 @@ public class GearData {
 
         BaseGearType type = gear.GetBaseGearType();
 
-        if (type.isWeapon()) {
+        if (type.isMeleeWeapon()) {
             return slot == EquipmentSlot.MAINHAND || slot == EquipmentSlot.OFFHAND;
         }
-
+        if (type.isWeapon()) {
+            return slot == EquipmentSlot.MAINHAND; // ranged weapon
+        }
         if (type.tags.contains(BaseGearType.SlotTag.chest)) {
             return slot == EquipmentSlot.CHEST;
         }

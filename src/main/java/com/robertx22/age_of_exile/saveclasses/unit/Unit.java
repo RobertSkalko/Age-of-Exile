@@ -340,7 +340,6 @@ public class Unit {
                 boolean addstats = true;
 
                 if (entity instanceof PlayerEntity) {
-
                     if (!gear.meetsStatRequirements(data)) {
                         addstats = false;
                     }
@@ -377,7 +376,7 @@ public class Unit {
                 }
             }
 
-            toremove.forEach(x -> gears.removeIf(g -> g.equals(x)));
+            toremove.forEach(x -> gears.removeIf(g -> g.gear.equals(x)));
             toremove.clear();
         }
 
