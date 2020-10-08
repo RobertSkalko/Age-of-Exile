@@ -106,7 +106,6 @@ public class DamageParticle extends Particle {
 
             RenderSystem.enableDepthTest();
             RenderSystem.depthMask(false);
-            RenderSystem.enableLighting();
             RenderSystem.enableColorMaterial();
 
             RenderSystem.popMatrix();
