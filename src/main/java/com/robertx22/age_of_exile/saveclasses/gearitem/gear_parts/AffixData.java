@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @Storable
 public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer {
 
+    // MAJOR NBT PROBLEM. RENAME ALL THESE
+
     @Store
     public Integer percent = 0;
 
@@ -35,19 +37,12 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     @Store
     public Affix.Type affixType;
 
-    @Store
-    public boolean is_socket = false;
-
     public AffixData(Affix.Type type) {
         this.affixType = type;
     }
 
     @Factory
     private AffixData() {
-    }
-
-    public boolean isSocketAndEmpty() {
-        return this.is_socket && percent < 1;
     }
 
     public boolean isEmpty() {
@@ -94,7 +89,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
             .isRegistered(this.baseAffix)) {
             return Arrays.asList();
         }
-        if (this.isSocketAndEmpty()) {
+        if (this.isEmpty()) {
             return Arrays.asList();
         }
 

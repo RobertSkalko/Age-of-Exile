@@ -21,14 +21,15 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
     @Store
     public Integer percent = 0;
 
+    /*
     @Store
     public String gear_type = "";
+     */
 
     @Override
     public void RerollFully(GearItemData gear) {
 
         percent = getMinMax(gear).random();
-        this.gear_type = gear.gear_type;
 
     }
 

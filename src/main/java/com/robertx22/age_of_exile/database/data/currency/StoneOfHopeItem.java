@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -59,12 +58,8 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
         ItemStack result = ItemStack.EMPTY;
 
-        if (gear.changesItemStack()) {
-            result = GearCreationUtils.CreateStack(newgear);
-        } else {
-            result = stack;
-            Gear.Save(result, newgear);
-        }
+        result = stack;
+        Gear.Save(result, newgear);
 
         return result;
 

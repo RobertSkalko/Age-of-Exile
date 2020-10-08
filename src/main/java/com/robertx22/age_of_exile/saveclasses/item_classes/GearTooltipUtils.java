@@ -229,8 +229,9 @@ public class GearTooltipUtils {
                 .formatted(Formatting.BLUE));
         } else {
             tip.add(Words.Instability.locName()
+                .formatted(Formatting.RED)
                 .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.ALWAYS_SEAL_AT_X_INSTABILITY)
-                .formatted(Formatting.RED));
+            );
         }
 
         List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,

@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -203,14 +202,6 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
-        gear.is_not_my_mod = !Registry.ITEM.getId(stack.getItem())
-            .getNamespace()
-            .equals(Ref.MODID);
-
-        if (!gear.is_not_my_mod) {
-            // todo setting different itemstack doesn't work, idk how else to set the item inside
-            // stack = new ItemStack(gear.getItem(), 1, Optional.of(stack.getTag()));
-        }
 
         Gear.Save(stack, gear);
 

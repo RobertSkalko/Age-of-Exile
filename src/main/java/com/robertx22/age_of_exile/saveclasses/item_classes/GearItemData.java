@@ -35,6 +35,54 @@ import java.util.List;
 @Storable
 public class GearItemData implements ICommonDataItem<IGearRarity> {
 
+    // Stats
+    @Store
+    public BaseStatsData baseStats = new BaseStatsData();
+    @Store
+    public ImplicitStatsData implicitStats = new ImplicitStatsData();
+    @Store
+    public GearAffixesData affixes = new GearAffixesData();
+    @Store
+    public GearSocketsData sockets = new GearSocketsData();
+    @Store
+    public UniqueStatsData uniqueStats;
+
+    // Stats
+
+    // i added rename ideas to comments. As tiny as possible while still allowing people to understand kinda what it is
+    // apparently people had big issues with many storage mods, So i should try minimize the nbt.
+    @Store
+    public boolean is_unique = false; // isuniq
+
+    @Store
+    public String unique_id = ""; // uniq_id
+
+    @Store
+    public int rarity; // rar
+
+    @Store
+    public int rare_prefix = -1; // pre_name
+    @Store
+    public int rare_suffix = -1; // suf_name
+
+    @Store
+    public int level = 1; // lvl
+
+    @Store
+    public String gear_type = "";
+
+    @Store
+    private boolean ided = true;
+
+    @Store
+    private float in = 0;
+
+    @Store
+    public boolean sealed = false;
+
+    @Store
+    public boolean isSalvagable = true;
+
     public boolean meetsStatRequirements(EntityCap.UnitData data) {
 
         if (!getStatRequirements().passesStatRequirements(data, this)) {
@@ -71,38 +119,6 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
         return affix.meetsRequirements(new GearRequestedFor(this));
 
     }
-
-    @Store
-    public boolean is_unique = false;
-
-    @Store
-    public String unique_id = "";
-
-    @Store
-    public int rarity;
-
-    @Store
-    public int rare_prefix = -1;
-    @Store
-    public int rare_suffix = -1;
-
-    @Store
-    public int level = 1;
-
-    @Store
-    public boolean is_not_my_mod = false;
-
-    @Store
-    public String gear_type = "";
-
-    @Store
-    private boolean ided = true;
-
-    @Store
-    private float in = 0;
-
-    @Store
-    public boolean sealed = false;
 
     public float getInstability() {
         return in;
@@ -144,32 +160,11 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
             .get(this.rarity);
     }
 
-    public boolean changesItemStack() {
-        return this.is_not_my_mod == false;
-    }
-
     public Text name(ItemStack stack) {
 
         return stack.getName();
 
     }
-
-    // Stats
-    @Store
-    public BaseStatsData baseStats = new BaseStatsData();
-    @Store
-    public ImplicitStatsData implicitStats = new ImplicitStatsData();
-    @Store
-    public GearAffixesData affixes = new GearAffixesData();
-    @Store
-    public GearSocketsData sockets = new GearSocketsData();
-    @Store
-    public UniqueStatsData uniqueStats;
-
-    // Stats
-
-    @Store
-    public boolean isSalvagable = true;
 
     // used when upgrading item rarity
     public Item getItem() {
@@ -189,20 +184,9 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
 
     }
 
-    public boolean canHaveMoreSockets() {
-        int currentGearSockets = (int) affixes.getAllAffixesAndSockets()
-            .stream()
-            .filter(x -> x.is_socket)
-            .count();
-        int maxGearSockets = getMaxSockets();
-
-        return currentGearSockets < maxGearSockets;
-    }
-
     public void WriteOverDataThatShouldStay(GearItemData newdata) {
 
         newdata.isSalvagable = this.isSalvagable;
-        newdata.is_not_my_mod = this.is_not_my_mod;
 
     }
 
