@@ -21,10 +21,8 @@ public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, I
 
         super(
             new RarityItemTier(), ItemUtils.getDefaultGearProperties()
-                .maxDamageIfAbsent(BaseArmorItem.GetMat(BaseArmorItem.Type.PLATE, false)
-                    .getDurability(EquipmentSlot.MAINHAND)));
+                .maxDamageIfAbsent(500));
         this.locname = locname;
-
     }
 
     String locname;

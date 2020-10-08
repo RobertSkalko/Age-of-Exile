@@ -3,20 +3,17 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGearItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.*;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorTier;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorType;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ModArmorMaterial;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.util.registry.Registry;
 
-public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem {
-
-    public enum Type {
-        CLOTH,
-        LEATHER,
-        PLATE
-    }
+public class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem {
 
     String locname;
+    boolean isUnique;
 
     @Override
     public String locNameLangFileGUID() {
@@ -39,33 +36,15 @@ public abstract class BaseArmorItem extends ArmorItem implements IAutoLocName, I
         return AutoLocGroup.Gear_Items;
     }
 
-    public BaseArmorItem(Type type, String locname, EquipmentSlot slot, boolean isunique) {
-
-        super(GetMat(type, isunique), slot, ItemUtils.getDefaultGearProperties());
+    public BaseArmorItem(ArmorTier tier, ArmorType type, String locname, EquipmentSlot slot, boolean isunique) {
+        super(new ModArmorMaterial(tier, type, isunique), slot, ItemUtils.getDefaultGearProperties());
+        this.isUnique = isunique;
         this.locname = locname;
     }
 
-    public static BaseMat GetMat(Type type, boolean isunique) {
-
-        if (isunique) {
-            return new UniqueMat();
-        }
-
-        if (type.equals(Type.PLATE)) {
-            return new PlateMat();
-
-        }
-        if (type.equals(Type.CLOTH)) {
-            return new ClothMat();
-
-        }
-        if (type.equals(Type.LEATHER)) {
-            return new LeatherMat();
-
-        }
-
-        return null;
-
+    @Override
+    public boolean shouldRegisterLangName() {
+        return this.isUnique;
     }
 
 }
