@@ -55,6 +55,11 @@ public class OrbOfDiscoveryItem extends CurrencyItem implements ICurrencyItemEff
     }
 
     @Override
+    public float getInstability() {
+        return 10;
+    }
+
+    @Override
     public int getRarityRank() {
         return IRarity.Magical;
     }

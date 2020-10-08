@@ -110,6 +110,7 @@ unlock_fireball
 lifesteal
 ele_bow_damage
 heal_to_dmg
+tidal_wave_mana_cost
 mod_mana_ele_res
 unlock_gorgons_gaze
 mob_imbue_phys

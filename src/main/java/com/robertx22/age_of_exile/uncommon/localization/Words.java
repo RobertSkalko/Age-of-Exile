@@ -6,7 +6,8 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
-
+    IsSealed("Is sealed"),
+    Sealed("Sealed"),
     AltDescShiftDetails("[Shift]: Details"),
     SkillTrees("Skill Trees"),
     Miracle("Miracle"),

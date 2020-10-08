@@ -18,12 +18,21 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.ClampedEntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Pair;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeInfo;
+import top.theillusivec4.curios.api.event.DropRulesCallback;
+import top.theillusivec4.curios.api.type.component.ICurio;
+import top.theillusivec4.curios.api.type.component.ICuriosItemHandler;
 
 import java.lang.reflect.Field;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class CommonInit implements ModInitializer {
 
@@ -63,21 +72,17 @@ public class CommonInit implements ModInitializer {
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 
         if (ModConfig.get().Server.SAVE_GEAR_AND_HOTBAR_ON_DEATH) {
-            // TODO THIS DOESNT WORK
 
-            /*
             // dont drop curios on death
             DropRulesCallback.EVENT.register(new DropRulesCallback() {
                 @Override
-                public void dropRules(LivingEntity livingEntity,
-                                      ICuriosItemHandler iCuriosItemHandler,
-                                      DamageSource damageSource,
-                                      int i, boolean b, List<Pair<Predicate<ItemStack>, ICurio.DropRule>> list) {
+                public void dropRules(LivingEntity livingEntity, ICuriosItemHandler iCuriosItemHandler, DamageSource damageSource, int i, boolean b, List<Pair<Predicate<ItemStack>, ICurio.DropRule>> list) {
                     list.add(new Pair<Predicate<ItemStack>, ICurio.DropRule>(x -> true, ICurio.DropRule.ALWAYS_KEEP));
+
                 }
             });
 
-             */
+
 
             /*
             CurioDropsCallback.EVENT.register(new CurioDropsCallback() {

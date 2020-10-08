@@ -1,10 +1,15 @@
 ## v.1.5.2
 
+- new system, item sealing. Modifying items adds instability to them, and increases chance they become sealed.
+What this means for players is that at endgame you can't just dump thousands of currencies on 1 good item. 
+For everyone else, this shouldn't matter at all.
+- added crystal of purification, unseals the item.
 - new reward for leveling. Mobs drop extra vanilla experience based on their level. (double at max level mobs)
 - armor and hotbar will no longer be dropped on death by default. (SUPER EXPERIMENTAL, PROBABLY BUGGY) 
 I think arpgs where it can take years to get good gear shouldn't allow you to lose it that easily.
 Depending on how stable this feature is, it will either become core or removed.
 - trying out .md changelogs
+- updated chinese lang
 
 ## v1.5.1
 - fix runewords not being given unless item had an empty socket

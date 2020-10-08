@@ -15,6 +15,7 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
 
     public CurrencyItem ORB_OF_TRANSMUTATION = of(new OrbOfTransmutationItem());
     public CurrencyItem CROWN_OF_DISCOVERY = of(new OrbOfDiscoveryItem());
+    public CurrencyItem CRYSTAL_OF_PURIFICATION = of(new CrystalOfPurificationItem());
     public CurrencyItem CRYSTAL_OF_TRUTH = of(new CrystalOfTruth());
     public CurrencyItem ORB_OF_DISORDER = of(new OrbOfDisorder());
     public CurrencyItem ORB_OF_TURBULENCE = of(new OrbOfTurbulence());

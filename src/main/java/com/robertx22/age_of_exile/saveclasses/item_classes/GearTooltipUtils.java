@@ -218,12 +218,19 @@ public class GearTooltipUtils {
 
         tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
 
+        if (gear.sealed) {
+            tip.add(Words.Sealed.locName()
+                .formatted(Formatting.RED));
+        }
+
         if (Screen.hasShiftDown() == false) {
-            tooltip
-                .add(
-                    new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
-                    )
-                        .formatted(Formatting.BLUE));
+            tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
+            )
+                .formatted(Formatting.BLUE));
+        } else {
+            tip.add(Words.Instability.locName()
+                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.ALWAYS_SEAL_AT_X_INSTABILITY)
+                .formatted(Formatting.RED));
         }
 
         List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,

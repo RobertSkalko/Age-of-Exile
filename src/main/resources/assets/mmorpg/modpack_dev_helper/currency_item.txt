@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry can't be modified or added to.
+currency/crystal_of_purification
 currency/crystal_of_truth
 currency/randomize_affixes
 currency/number_reroll

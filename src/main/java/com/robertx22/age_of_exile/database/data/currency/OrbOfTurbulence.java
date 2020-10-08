@@ -57,6 +57,11 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
+    public float getInstability() {
+        return 20;
+    }
+
+    @Override
     public int getTier() {
         return 4;
     }

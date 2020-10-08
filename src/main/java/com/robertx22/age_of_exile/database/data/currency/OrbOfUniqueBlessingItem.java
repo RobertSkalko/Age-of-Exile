@@ -60,6 +60,11 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
     }
 
     @Override
+    public float getInstability() {
+        return 50;
+    }
+
+    @Override
     public int getTier() {
         return 4;
     }

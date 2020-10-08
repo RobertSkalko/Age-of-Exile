@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -63,6 +64,14 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
             return false;
         }
 
+        if (context.isGear()) {
+            if (this.getInstability() > 0) {
+                GearItemData gear = (GearItemData) context.data;
+                if (gear.sealed) {
+                    return false;
+                }
+            }
+        }
         for (BaseLocRequirement req : requirements()) {
             if (req.isNotAllowed(context)) {
                 return false;
@@ -110,8 +119,6 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
             this.locDesc()
                 .formatted(Formatting.YELLOW));
 
-        String test = this.locDescLangFileGUID();
-
         tooltip.add(ItemType.getTooltipString(this.itemTypesUsableOn));
 
         TooltipUtils.addEmpty(tooltip);
@@ -119,6 +126,13 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
         tooltip.add(
             Words.Item_modifiable_in_station.locName()
                 .formatted(Formatting.BLUE));
+
+        if (this.getInstability() > 0) {
+            tooltip.add(Words.Instability.locName()
+                .formatted(Formatting.RED)
+                .append(": " + getInstability()));
+
+        }
 
         TooltipUtils.addEmpty(tooltip);
 

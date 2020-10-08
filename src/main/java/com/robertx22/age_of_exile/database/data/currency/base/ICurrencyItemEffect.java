@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.currency.base;
 
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.screen.Screen;
@@ -18,6 +19,10 @@ public interface ICurrencyItemEffect {
 
     public abstract List<BaseLocRequirement> requirements();
 
+    public default float getInstability() {
+        return 0;
+    }
+
     public enum StationType {
         MODIFY, SOCKET
     }
@@ -25,6 +30,13 @@ public interface ICurrencyItemEffect {
     StationType forStation();
 
     default boolean canItemBeModified(LocReqContext context) {
+
+        if (context.isGear()) {
+            GearItemData gear = (GearItemData) context.data;
+            if (gear.sealed) {
+                return false;
+            }
+        }
 
         for (BaseLocRequirement req : requirements()) {
             if (req.isNotAllowed(context)) {

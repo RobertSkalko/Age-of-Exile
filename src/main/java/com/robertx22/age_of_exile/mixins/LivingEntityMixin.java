@@ -34,7 +34,6 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     // ENSURE MY SPECIAL DAMAGE ISNT LOWERED BY ARMOR, ENCHANTS ETC
     @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
     public void hookench(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
-        LivingEntity en = (LivingEntity) (Object) this;
         if (source instanceof MyDamageSource) {
             ci.setReturnValue(amount);
         }

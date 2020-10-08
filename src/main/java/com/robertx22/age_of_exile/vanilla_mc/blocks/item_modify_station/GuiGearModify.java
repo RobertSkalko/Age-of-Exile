@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.library_of_exile.gui.HelpButton;
@@ -102,6 +103,16 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                     LocReqContext context = tile.getLocReqContext();
                     if (context.effect != null && context.hasStack()) {
                         boolean add = true;
+
+                        if (context.isGear()) {
+                            if (context.effect.getInstability() > 0) {
+
+                                GearItemData gear = (GearItemData) context.data;
+                                if (gear.sealed) {
+                                    tooltip.add(new LiteralText("Sealed items can't be modified until they are unsealed.").formatted(Formatting.RED));
+                                }
+                            }
+                        }
 
                         for (BaseLocRequirement req : context.effect.requirements()) {
                             if (req.isNotAllowed(context)) {

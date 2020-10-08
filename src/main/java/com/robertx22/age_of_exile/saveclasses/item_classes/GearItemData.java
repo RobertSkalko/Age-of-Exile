@@ -98,6 +98,20 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
     @Store
     private boolean ided = true;
 
+    @Store
+    private float in = 0;
+
+    @Store
+    public boolean sealed = false;
+
+    public float getInstability() {
+        return in;
+    }
+
+    public void setInstability(float insta) {
+        this.in = insta;
+    }
+
     public boolean isIdentified() {
         return ided;
     }

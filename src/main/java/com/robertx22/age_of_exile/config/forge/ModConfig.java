@@ -18,6 +18,9 @@ public class ModConfig implements ConfigData {
     public ServerContainer Server = new ServerContainer();
 
     @ConfigEntry.Gui.CollapsibleObject
+    public ItemSealingConfig ItemSealing = new ItemSealingConfig();
+
+    @ConfigEntry.Gui.CollapsibleObject
     public DropRatesContainer DropRates = new DropRatesContainer();
 
     @ConfigEntry.Gui.CollapsibleObject

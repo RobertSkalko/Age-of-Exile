@@ -69,6 +69,11 @@ public class OrbOfInfinityItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
+    public float getInstability() {
+        return 20;
+    }
+
+    @Override
     public int getTier() {
         return 5;
     }

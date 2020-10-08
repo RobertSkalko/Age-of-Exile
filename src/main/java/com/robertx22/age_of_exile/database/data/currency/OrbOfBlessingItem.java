@@ -53,7 +53,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
         gear.GetAllRerollable()
             .stream()
             .filter(x -> !(x instanceof BaseStatsData))
-            .forEach(x -> x.RerollFully(gear));
+            .forEach(x -> x.RerollNumbers(gear));
 
         Gear.Save(stack, gear);
 
@@ -63,6 +63,11 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     @Override
     public List<BaseLocRequirement> requirements() {
         return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.REROLL_NUMBERS, SimpleGearLocReq.IS_NOT_UNIQUE);
+    }
+
+    @Override
+    public float getInstability() {
+        return 5;
     }
 
     @Override
