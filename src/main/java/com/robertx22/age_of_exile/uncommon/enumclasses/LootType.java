@@ -6,6 +6,7 @@ public enum LootType implements IGUID {
 
     NormalItem("Normal Item", "normal_item"),
     SkillGem("Skill Gem", "skill_gem"),
+    LevelingRewards("Leveling Rewards", "lvl_rewards"),
     UniqueItem("Unique Item", "unique_item"),
     Currency("Currency", "currency"),
     CompatibleItem("Compatible Item", "compatible_item"),

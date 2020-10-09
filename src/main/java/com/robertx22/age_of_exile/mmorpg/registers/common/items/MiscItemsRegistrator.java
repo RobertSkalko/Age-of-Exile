@@ -25,7 +25,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     LootCrateItem RUNE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.RUNE), "loot_crate/rune");
     LootCrateItem GEM_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.GEM), "loot_crate/gem");
 
-    VanillaExperienceChestItem VANILLA_EXP_CHEST = item(new VanillaExperienceChestItem(), "loot_crate/ench_exp_bag");
+    public VanillaExperienceChestItem VANILLA_EXP_CHEST = item(new VanillaExperienceChestItem(), "loot_crate/ench_exp_bag");
 
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");
     public Item INCRESE_MOB_RARITY = item(new ItemIncreaseRarityNearestEntity(), "increase_rarity_nearest_entity");
@@ -35,8 +35,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item CRYSTALLIZED_ESSENCE = item(new SimpleMatItem(), "mat/crystallized_essence");
     public Item GOLDEN_ORB = item(new SimpleMatItem(), "mat/golden_orb");
     public Item MYTHIC_ESSENCE = item(new SimpleMatItem(), "mat/mythic_essence");
-
-    public Item ICE_BALL_ANIMATED = item(new Item(new Item.Settings()), "spells/ice_ball");
 
     public Item HEART_OF_IMAGINATION = item(new HeartOfImaginationItem(), "mat/modify_part");
 
