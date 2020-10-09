@@ -10,6 +10,7 @@ I think arpgs where it can take years to get good gear shouldn't allow you to lo
 Depending on how stable this feature is, it will either become core or removed.
 - trying out .md changelogs
 - updated chinese lang
+- fix orb of disorder giving infinite affixes
 
 ## v1.5.1
 - fix runewords not being given unless item had an empty socket
