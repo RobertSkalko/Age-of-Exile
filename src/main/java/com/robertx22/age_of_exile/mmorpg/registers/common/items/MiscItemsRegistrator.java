@@ -25,6 +25,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     LootCrateItem RUNE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.RUNE), "loot_crate/rune");
     LootCrateItem GEM_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.GEM), "loot_crate/gem");
 
+    VanillaExperienceChestItem VANILLA_EXP_CHEST = item(new VanillaExperienceChestItem(), "loot_crate/ench_exp_bag");
+
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");
     public Item INCRESE_MOB_RARITY = item(new ItemIncreaseRarityNearestEntity(), "increase_rarity_nearest_entity");
     public Item RUNEWORD = item(new RuneWordItem(), "runeword");

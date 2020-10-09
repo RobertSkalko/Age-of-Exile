@@ -44,7 +44,7 @@ public class BaseArmorItem extends ArmorItem implements IAutoLocName, IGearItem 
 
     @Override
     public boolean shouldRegisterLangName() {
-        return this.isUnique;
+        return !this.isUnique;
     }
 
 }

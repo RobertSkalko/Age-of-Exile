@@ -6,9 +6,9 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
 
 public enum ArmorTier {
-    ZERO(0, ArmorMaterials.LEATHER, LevelRanges.STARTER),
-    ONE(1, ArmorMaterials.GOLD, LevelRanges.LOW),
-    TWO(2, ArmorMaterials.IRON, LevelRanges.MIDDLE),
+    ZERO(0, ArmorMaterials.IRON, LevelRanges.STARTER),
+    ONE(1, ArmorMaterials.IRON, LevelRanges.LOW),
+    TWO(2, ArmorMaterials.DIAMOND, LevelRanges.MIDDLE),
     THREE(3, ArmorMaterials.DIAMOND, LevelRanges.HIGH),
     FOUR(4, ArmorMaterials.NETHERITE, LevelRanges.ENDGAME);
 
