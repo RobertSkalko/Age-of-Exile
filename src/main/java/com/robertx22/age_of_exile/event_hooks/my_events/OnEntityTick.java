@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
-import com.robertx22.library_of_exile.events.base.EventConsumer;
-import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.library_of_exile.events.base.EventConsumer;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,36 +34,14 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
 
         boolean calc = false;
 
-        ItemStack chestnow = entity.getEquippedStack(EquipmentSlot.CHEST);
-        if (gears.my$chest == null || !ItemStack.areEqual(chestnow, gears.my$chest)) {
-            gears.my$chest = chestnow;
-            calc = true;
-        }
-        ItemStack legsnow = entity.getEquippedStack(EquipmentSlot.LEGS);
-        if (gears.my$legs == null || !ItemStack.areEqual(legsnow, gears.my$legs)) {
-            gears.my$legs = legsnow;
-            calc = true;
-        }
-        ItemStack feetnow = entity.getEquippedStack(EquipmentSlot.FEET);
-        if (gears.my$feet == null || !ItemStack.areEqual(feetnow, gears.my$feet)) {
-            gears.my$feet = feetnow;
-            calc = true;
-        }
-        ItemStack headnow = entity.getEquippedStack(EquipmentSlot.HEAD);
-        if (gears.my$head == null || !ItemStack.areEqual(headnow, gears.my$head)) {
-            gears.my$head = headnow;
-            calc = true;
-        }
-        ItemStack weaponnow = entity.getEquippedStack(EquipmentSlot.MAINHAND);
-        if (gears.my$weapon == null || !ItemStack.areEqual(weaponnow, gears.my$weapon)) {
-            gears.my$weapon = weaponnow;
-            calc = true;
-        }
-        ItemStack offhandnow = entity.getEquippedStack(EquipmentSlot.MAINHAND);
-        if (gears.my$offhand == null || !ItemStack.areEqual(offhandnow, gears.my$offhand)) {
-            gears.my$offhand = offhandnow;
-            calc = true;
+        for (EquipmentSlot s : EquipmentSlot.values()) {
+            ItemStack now = entity.getEquippedStack(s);
+            ItemStack before = gears.get(s);
 
+            if (now != before) {
+                calc = true;
+            }
+            gears.put(s, now);
         }
 
         if (calc) {
