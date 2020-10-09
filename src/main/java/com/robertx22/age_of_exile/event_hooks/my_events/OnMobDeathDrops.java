@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
-import com.robertx22.age_of_exile.mixin_ducks.LivingEntityDuck;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -17,7 +16,6 @@ import com.robertx22.library_of_exile.components.EntityInfoComponent;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.main.Packets;
-import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -82,10 +80,6 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                             GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
                         }
 
-                        if (exp_multi > 0) {
-                            dropExtraVanillaExp(mobKilled, mobKilledData, player);
-                        }
-
                     }
                 }
 
@@ -97,21 +91,6 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             e.printStackTrace();
         }
 
-    }
-
-    private static void dropExtraVanillaExp(LivingEntity mob, UnitData data, PlayerEntity player) {
-
-        float lvlmulti = LevelUtils.getMaxLevelMultiplier(data.getLevel());
-
-        LivingEntityDuck duck = (LivingEntityDuck) mob;
-
-        int exp = duck.myGetCurrentExperience(player);
-
-        exp *= lvlmulti;
-
-        if (exp > 0) {
-            mob.world.spawnEntity(new ExperienceOrbEntity(mob.world, mob.getX(), mob.getY(), mob.getZ(), exp));
-        }
     }
 
     private static void GiveExp(LivingEntity victim, PlayerEntity killer, UnitData killerData, UnitData mobData, float multi) {
