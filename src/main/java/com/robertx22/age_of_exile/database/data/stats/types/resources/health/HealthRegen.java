@@ -1,28 +1,30 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.health;
 
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.BaseRegenClass;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class MagicShieldRegen extends BaseRegenClass {
+public class HealthRegen extends BaseRegenClass {
+    public static String GUID = "health_regen";
 
-    public static String GUID = "magic_shield_regen";
-
-    private MagicShieldRegen() {
-        this.scaling = StatScaling.SCALING;
-    }
-
-    public static MagicShieldRegen getInstance() {
+    public static HealthRegen getInstance() {
         return SingletonHolder.INSTANCE;
+
     }
 
     @Override
     public String getIconPath() {
-        return "regen/magic_shield_regen";
+        return "regen/hp_regen";
     }
 
     @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
+    }
+
+    private HealthRegen() {
+        this.min_val = 0.05F;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override
@@ -42,10 +44,10 @@ public class MagicShieldRegen extends BaseRegenClass {
 
     @Override
     public String locNameForLangFile() {
-        return "Magic Shield Regen";
+        return "Health Regeneration";
     }
 
     private static class SingletonHolder {
-        private static final MagicShieldRegen INSTANCE = new MagicShieldRegen();
+        private static final HealthRegen INSTANCE = new HealthRegen();
     }
 }

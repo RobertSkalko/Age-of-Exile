@@ -1,36 +1,37 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.health;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.ManaBurnEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.resource.LifeOnHitEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class ManaBurn extends Stat implements IStatEffects {
-    public static String GUID = "mana_burn";
+public class LifeOnHit extends Stat implements IStatEffects {
 
-    private ManaBurn() {
-        this.scaling = StatScaling.SCALING;
-    }
+    public static String GUID = "life_on_hit";
 
-    public static ManaBurn getInstance() {
-        return ManaBurn.SingletonHolder.INSTANCE;
+    public static LifeOnHit getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public StatGroup statGroup() {
-        return StatGroup.Misc;
+        return StatGroup.Regeneration;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Burns mana on basic attack";
+        return "Gives health on basic attack hit";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new ManaBurnEffect();
+        return new LifeOnHitEffect();
+    }
+
+    private LifeOnHit() {
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override
@@ -50,10 +51,10 @@ public class ManaBurn extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Mana Burn";
+        return "Life on Hit";
     }
 
     private static class SingletonHolder {
-        private static final ManaBurn INSTANCE = new ManaBurn();
+        private static final LifeOnHit INSTANCE = new LifeOnHit();
     }
 }

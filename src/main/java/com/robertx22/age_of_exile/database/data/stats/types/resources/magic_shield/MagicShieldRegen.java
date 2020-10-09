@@ -1,34 +1,29 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield;
 
-import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.BaseRegenClass;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class Mana extends Stat {
-    public static String GUID = "mana";
+public class MagicShieldRegen extends BaseRegenClass {
 
-    public static Mana getInstance() {
+    public static String GUID = "magic_shield_regen";
+
+    private MagicShieldRegen() {
+        this.scaling = StatScaling.SCALING;
+    }
+
+    public static MagicShieldRegen getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String getIconPath() {
-        return "resource/mana";
+        return "regen/magic_shield_regen";
     }
 
     @Override
     public StatGroup statGroup() {
         return StatGroup.Main;
-    }
-
-    @Override
-    public String locDescForLangFile() {
-        return "Mana is used to cast spells";
-    }
-
-    private Mana() {
-        this.min_val = 0;
-        this.scaling = StatScaling.SCALING;
     }
 
     @Override
@@ -48,10 +43,10 @@ public class Mana extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Mana";
+        return "Magic Shield Regen";
     }
 
     private static class SingletonHolder {
-        private static final Mana INSTANCE = new Mana();
+        private static final MagicShieldRegen INSTANCE = new MagicShieldRegen();
     }
 }

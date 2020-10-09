@@ -1,35 +1,36 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.mana;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.resource.MagicStealEffect;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.ManaBurnEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class MagicSteal extends Stat implements IStatEffects {
+public class ManaBurn extends Stat implements IStatEffects {
+    public static String GUID = "mana_burn";
 
-    public static String GUID = "magic_steal";
-
-    private MagicSteal() {
+    private ManaBurn() {
+        this.scaling = StatScaling.SCALING;
     }
 
-    public static MagicSteal getInstance() {
-        return SingletonHolder.INSTANCE;
+    public static ManaBurn getInstance() {
+        return ManaBurn.SingletonHolder.INSTANCE;
     }
 
     @Override
     public StatGroup statGroup() {
-        return StatGroup.Regeneration;
+        return StatGroup.Misc;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Percent of basic attack DMG will restore magic shield.";
+        return "Burns mana on basic attack";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return MagicStealEffect.getInstance();
+        return new ManaBurnEffect();
     }
 
     @Override
@@ -44,15 +45,15 @@ public class MagicSteal extends Stat implements IStatEffects {
 
     @Override
     public boolean IsPercent() {
-        return true;
+        return false;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Magic Steal";
+        return "Mana Burn";
     }
 
     private static class SingletonHolder {
-        private static final MagicSteal INSTANCE = new MagicSteal();
+        private static final ManaBurn INSTANCE = new ManaBurn();
     }
 }

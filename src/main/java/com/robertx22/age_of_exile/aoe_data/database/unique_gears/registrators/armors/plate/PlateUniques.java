@@ -15,9 +15,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWe
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.MagicShieldRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;

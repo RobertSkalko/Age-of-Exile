@@ -1,19 +1,19 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.mana;
 
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class HealthRegen extends BaseRegenClass {
-    public static String GUID = "health_regen";
+public class Mana extends Stat {
+    public static String GUID = "mana";
 
-    public static HealthRegen getInstance() {
+    public static Mana getInstance() {
         return SingletonHolder.INSTANCE;
-
     }
 
     @Override
     public String getIconPath() {
-        return "regen/hp_regen";
+        return "resource/mana";
     }
 
     @Override
@@ -21,8 +21,13 @@ public class HealthRegen extends BaseRegenClass {
         return StatGroup.Main;
     }
 
-    private HealthRegen() {
-        this.min_val = 0.05F;
+    @Override
+    public String locDescForLangFile() {
+        return "Mana is used to cast spells";
+    }
+
+    private Mana() {
+        this.min_val = 0;
         this.scaling = StatScaling.SCALING;
     }
 
@@ -43,10 +48,10 @@ public class HealthRegen extends BaseRegenClass {
 
     @Override
     public String locNameForLangFile() {
-        return "Health Regeneration";
+        return "Mana";
     }
 
     private static class SingletonHolder {
-        private static final HealthRegen INSTANCE = new HealthRegen();
+        private static final Mana INSTANCE = new Mana();
     }
 }

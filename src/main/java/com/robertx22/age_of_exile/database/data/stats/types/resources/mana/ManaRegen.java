@@ -1,6 +1,7 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.mana;
 
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.BaseRegenClass;
 
 public class ManaRegen extends BaseRegenClass {
     public static String GUID = "mana_regen";

@@ -12,7 +12,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToAp
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageUnderPotion;
 import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicSteal;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;

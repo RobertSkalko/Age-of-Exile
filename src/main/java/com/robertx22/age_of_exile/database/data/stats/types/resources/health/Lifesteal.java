@@ -1,20 +1,16 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.health;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.resource.ManaOnHitEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.resource.LifestealEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class ManaOnHit extends Stat implements IStatEffects {
-    public static String GUID = "mana_on_hit";
+public class Lifesteal extends Stat implements IStatEffects {
 
-    private ManaOnHit() {
-        this.scaling = StatScaling.SCALING;
-    }
+    public static String GUID = "lifesteal";
 
-    public static ManaOnHit getInstance() {
+    public static Lifesteal getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -25,12 +21,15 @@ public class ManaOnHit extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Gives mana on basic attack";
+        return "Percent of basic attack DMG added to health";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new ManaOnHitEffect();
+        return new LifestealEffect();
+    }
+
+    private Lifesteal() {
     }
 
     @Override
@@ -45,15 +44,15 @@ public class ManaOnHit extends Stat implements IStatEffects {
 
     @Override
     public boolean IsPercent() {
-        return false;
+        return true;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Mana on Hit";
+        return "Lifesteal";
     }
 
     private static class SingletonHolder {
-        private static final ManaOnHit INSTANCE = new ManaOnHit();
+        private static final Lifesteal INSTANCE = new Lifesteal();
     }
 }

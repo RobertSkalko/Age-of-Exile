@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.LifeOnHit;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import net.minecraft.util.Formatting;
 

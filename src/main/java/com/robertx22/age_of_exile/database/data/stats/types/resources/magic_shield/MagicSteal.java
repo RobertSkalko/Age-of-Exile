@@ -1,16 +1,19 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.resource.LifestealEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.resource.MagicStealEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class Lifesteal extends Stat implements IStatEffects {
+public class MagicSteal extends Stat implements IStatEffects {
 
-    public static String GUID = "lifesteal";
+    public static String GUID = "magic_steal";
 
-    public static Lifesteal getInstance() {
+    private MagicSteal() {
+    }
+
+    public static MagicSteal getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -21,15 +24,12 @@ public class Lifesteal extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Percent of basic attack DMG added to health";
+        return "Percent of basic attack DMG will restore magic shield.";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new LifestealEffect();
-    }
-
-    private Lifesteal() {
+        return MagicStealEffect.getInstance();
     }
 
     @Override
@@ -49,10 +49,10 @@ public class Lifesteal extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Lifesteal";
+        return "Magic Steal";
     }
 
     private static class SingletonHolder {
-        private static final Lifesteal INSTANCE = new Lifesteal();
+        private static final MagicSteal INSTANCE = new MagicSteal();
     }
 }

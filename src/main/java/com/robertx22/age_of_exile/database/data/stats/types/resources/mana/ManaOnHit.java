@@ -1,36 +1,36 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources;
+package com.robertx22.age_of_exile.database.data.stats.types.resources.mana;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.defense.ManaBurnResistanceEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.resource.ManaOnHitEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class ManaBurnResistance extends Stat implements IStatEffects {
-    public static String GUID = "mana_burn_resist";
+public class ManaOnHit extends Stat implements IStatEffects {
+    public static String GUID = "mana_on_hit";
 
-    private ManaBurnResistance() {
-        this.scaling = StatScaling.SLOW_SCALING;
+    private ManaOnHit() {
+        this.scaling = StatScaling.SCALING;
     }
 
-    public static ManaBurnResistance getInstance() {
-        return ManaBurnResistance.SingletonHolder.INSTANCE;
+    public static ManaOnHit getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public StatGroup statGroup() {
-        return StatGroup.Misc;
+        return StatGroup.Regeneration;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Protects against mana burn by x percent";
+        return "Gives mana on basic attack";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new ManaBurnResistanceEffect();
+        return new ManaOnHitEffect();
     }
 
     @Override
@@ -45,16 +45,15 @@ public class ManaBurnResistance extends Stat implements IStatEffects {
 
     @Override
     public boolean IsPercent() {
-        return true;
+        return false;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Mana Burn Resist";
+        return "Mana on Hit";
     }
 
     private static class SingletonHolder {
-        private static final ManaBurnResistance INSTANCE = new ManaBurnResistance();
+        private static final ManaOnHit INSTANCE = new ManaOnHit();
     }
 }
-
