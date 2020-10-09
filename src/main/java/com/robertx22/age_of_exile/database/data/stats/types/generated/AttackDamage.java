@@ -14,7 +14,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalStat {
+public class AttackDamage extends ElementalStat implements IStatEffects, ILocalStat {
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
@@ -30,7 +30,7 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
         return Stat.StatGroup.EleAttackDamage;
     }
 
-    public WeaponDamage(Elements element) {
+    public AttackDamage(Elements element) {
         super(element);
         this.uses_second_val = true;
         this.scaling = StatScaling.SCALING;
@@ -43,7 +43,7 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
 
     @Override
     public Stat newGeneratedInstance(Elements element) {
-        return new WeaponDamage(element);
+        return new AttackDamage(element);
     }
 
     @Override

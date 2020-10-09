@@ -21,9 +21,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
@@ -133,7 +133,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
     public static StatModifier dmg(Elements ele) {
         return new
-            StatModifier(0.5F, 1F, 1F, 2F, new WeaponDamage(ele), ModType.FLAT);
+            StatModifier(0.5F, 1F, 1F, 2F, new AttackDamage(ele), ModType.FLAT);
     }
 
     public enum RuneType {
@@ -161,7 +161,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(1, 3, new WeaponDamage(Elements.Physical), ModType.FLAT));
+                return Arrays.asList(new StatModifier(1, 3, new AttackDamage(Elements.Physical), ModType.FLAT));
             }
 
             @Override
@@ -178,7 +178,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(5, 15, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE));
+                return Arrays.asList(new StatModifier(5, 15, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE));
             }
 
             @Override

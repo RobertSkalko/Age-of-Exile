@@ -10,12 +10,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
@@ -45,14 +43,46 @@ import net.minecraft.util.Identifier;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class StatScreen extends BaseScreen implements INamedScreen {
 
-    static int sizeX = 247;
+    static int sizeX = 228;
     static int sizeY = 166;
 
     MinecraftClient mc = MinecraftClient.getInstance();
+
+    public enum StatType {
+        MAIN, ELEMENTAL
+    }
+
+    boolean isMainScreen = true;
+    StatType statToShow = StatType.MAIN;
+
+    static HashMap<StatType, List<List<Stat>>> STAT_MAP = new HashMap<>();
+
+    static void addTo(StatType type, List<Stat> stats) {
+
+        if (!STAT_MAP.containsKey(type)) {
+            STAT_MAP.put(type, new ArrayList<>());
+        }
+        STAT_MAP.get(type)
+            .add(stats);
+    }
+
+    static {
+
+        addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), MagicShield.getInstance(), Mana.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), MagicShieldRegen.getInstance(), ManaRegen.getInstance()));
+
+        addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.ELEMENTAL, new ElementalSpellDamage(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.ELEMENTAL, new ElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.ELEMENTAL, new ElementalPenetration(Elements.Elemental).generateAllPossibleStatVariations());
+
+    }
 
     public StatScreen() {
         super(sizeX, sizeY);
@@ -91,17 +121,18 @@ public class StatScreen extends BaseScreen implements INamedScreen {
     public void init() {
         super.init();
 
+        this.buttons.clear();
+        this.children.clear();
+
         EntityCap.UnitData data = Load.Unit(mc.player);
         PlayerStatsCap.IPlayerStatPointsData stats = Load.statPoints(mc.player);
 
-        int spacing = 30;
-
-        int XSPACING = 33;
+        int XSPACING = 60;
         int YSPACING = 19;
 
         // CORE STATS
 
-        int xpos = guiLeft + 95 + 55;
+        int xpos = guiLeft + 95;
         int ypos = guiTop + 25;
         buttons.add(new StatButton(Dexterity.INSTANCE, xpos, ypos));
         buttons.add(new IncreaseStatButton(data, stats, Dexterity.INSTANCE, xpos - 19, ypos + 1));
@@ -111,59 +142,24 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         ypos += 20;
         buttons.add(new StatButton(Strength.INSTANCE, xpos, ypos));
         buttons.add(new IncreaseStatButton(data, stats, Strength.INSTANCE, xpos - 19, ypos + 1));
-        // CORE STATS
 
-        // resources
-        xpos = guiLeft + 8;
-        ypos = guiTop + 7;
-
-        buttons.add(new StatButton(Health.getInstance(), xpos, ypos).verticalText());
-        ypos += YSPACING * 3;
-        buttons.add(new StatButton(MagicShield.getInstance(), xpos, ypos).verticalText());
-        ypos += YSPACING * 3;
-        buttons.add(new StatButton(Mana.getInstance(), xpos, ypos).verticalText());
-        // resources
-
-        // resource regen
-        xpos = guiLeft + sizeX - 7 - STAT_BUTTON_SIZE_X;
-        ypos = guiTop + 7;
-
-        buttons.add(new StatButton(HealthRegen.getInstance(), xpos, ypos).verticalText());
-        ypos += YSPACING * 3;
-        buttons.add(new StatButton(MagicShieldRegen.getInstance(), xpos, ypos).verticalText());
-        ypos += YSPACING * 3;
-        buttons.add(new StatButton(ManaRegen.getInstance(), xpos, ypos).verticalText());
-        // resource regen
-
-        // ELE RESISTS
-        xpos = guiLeft + 10 + 30;
-        ypos = guiTop + 85;
-
-        for (Stat x : new ElementalResist(Elements.Water).generateAllSingleVariations()) {
-            buttons.add(new StatButton(x, xpos, ypos));
-            ypos += YSPACING;
+        if (isMainScreen) {
+            xpos = guiLeft + 12;
+            ypos = guiTop + 90;
+        } else {
+            xpos = guiLeft + 12;
+            ypos = guiTop + 12;
         }
-        // ELE RESISTS
 
-        // DAMAGE STATS
-        xpos = guiLeft + 147;
-        ypos = guiTop + 90;
-
-        buttons.add(new CombinedStatsButton(new WeaponDamage(Elements.Physical), new WeaponDamage(Elements.Water).generateAllPossibleStatVariations(), xpos, ypos));
-        ypos += 25;
-        buttons.add(new StatButton(CriticalHit.getInstance(), xpos, ypos));
-        ypos += 25;
-        buttons.add(new StatButton(CriticalDamage.getInstance(), xpos, ypos));
-        // DAMAGE STATS
-
-        // DEFENSE STATS
-        xpos = guiLeft + 95;
-        ypos = guiTop + 95;
-
-        buttons.add(new StatButton(Armor.getInstance(), xpos, ypos));
-        ypos += 30;
-        buttons.add(new StatButton(DodgeRating.getInstance(), xpos, ypos));
-        // DEFENSE STATS
+        int ynum = 0;
+        for (List<Stat> list : STAT_MAP.get(statToShow)) {
+            for (Stat stat : list) {
+                addButton(new StatButton(stat, xpos, ypos + (YSPACING * ynum)));
+                ynum++;
+            }
+            ynum = 0;
+            xpos += XSPACING;
+        }
 
         List<Text> list = new ArrayList<>();
         list.add(new LiteralText("Allocate stats here"));
@@ -174,17 +170,24 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         list.add(new LiteralText(""));
         list.add(new LiteralText("To reset stats, you need to craft:"));
         list.add(new LiteralText(new ResetStatPointsItem().locNameForLangFile()));
-        this.addButton(new HelpButton(list, guiLeft + sizeX - 55, guiTop + 5));
+        this.addButton(new HelpButton(list, guiLeft + sizeX - 30, guiTop + 5));
 
     }
 
     private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/stats.png");
+    private static final Identifier WIDE_BACKGROUND = new Identifier(Ref.MODID, "textures/gui/full_stats_panel.png");
 
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        mc.getTextureManager()
-            .bindTexture(BACKGROUND);
+        if (isMainScreen) {
+            mc.getTextureManager()
+                .bindTexture(BACKGROUND);
+        } else {
+            mc.getTextureManager()
+                .bindTexture(WIDE_BACKGROUND);
+        }
+
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         drawTexture(matrix, mc.getWindow()
@@ -197,21 +200,23 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
-        int xe = guiLeft + 62;
+        int xe = guiLeft + 32;
         int ye = guiTop + 75;
-        InventoryScreen.drawEntity(xe, ye, 30, xe - x, ye - y, mc.player);
 
-        String str = "Level: " + Load.Unit(mc.player)
-            .getLevel();
-        GuiUtils.renderScaledText(matrix, xe, ye - 60, 0.6F, str, Formatting.YELLOW);
+        if (isMainScreen) {
+            InventoryScreen.drawEntity(xe, ye, 30, xe - x, ye - y, mc.player);
 
-        int xpos = guiLeft + 95 + 55;
-        int ypos = guiTop + 15;
+            String str = "Level: " + Load.Unit(mc.player)
+                .getLevel();
+            GuiUtils.renderScaledText(matrix, xe, ye - 60, 0.6F, str, Formatting.YELLOW);
 
-        String points = "Points: " + Load.statPoints(mc.player)
-            .getAvailablePoints(Load.Unit(mc.player));
-        GuiUtils.renderScaledText(matrix, xpos, ypos, 1, points, Formatting.GREEN);
+            int xpos = guiLeft + 95;
+            int ypos = guiTop + 15;
 
+            String points = "Points: " + Load.statPoints(mc.player)
+                .getAvailablePoints(Load.Unit(mc.player));
+            GuiUtils.renderScaledText(matrix, xpos, ypos, 1, points, Formatting.GREEN);
+        }
     }
 
     private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/button.png");
@@ -225,18 +230,12 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
         TextRenderer font = MinecraftClient.getInstance().textRenderer;
         Stat stat;
-        public boolean verticalText = false;
 
         public StatButton(Stat stat, int xPos, int yPos) {
             super(xPos, yPos, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, 0, 0, STAT_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
             });
 
             this.stat = stat;
-        }
-
-        public StatButton verticalText() {
-            this.verticalText = true;
-            return this;
         }
 
         @Override
@@ -270,82 +269,6 @@ public class StatScreen extends BaseScreen implements INamedScreen {
                     .getCalculatedStat(stat), Load.Unit(mc.player));
 
                 Identifier res = stat
-                    .getIconLocation();
-
-                RenderUtils.render16Icon(matrix, res, this.x, this.y);
-
-                if (verticalText) {
-                    StatScreen.this.drawStringWithShadow(matrix, font, str, this.x - font.getWidth(str) / 2 + STAT_BUTTON_SIZE_X / 2, this.y + STAT_BUTTON_SIZE_Y + 2, Formatting.GOLD.getColorValue());
-                } else {
-                    StatScreen.this.drawStringWithShadow(matrix, font, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
-
-                }
-            }
-        }
-
-    }
-
-    public class CombinedStatsButton extends TexturedButtonWidget {
-
-        TextRenderer font = MinecraftClient.getInstance().textRenderer;
-        List<Stat> stats;
-        Stat describer;
-
-        public CombinedStatsButton(Stat describer, List<Stat> stats, int xPos, int yPos) {
-            super(xPos, yPos, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, 0, 0, STAT_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
-            });
-
-            this.stats = stats;
-            this.describer = describer;
-        }
-
-        @Override
-        public void renderToolTip(MatrixStack matrix, int x, int y) {
-            if (isInside(x, y)) {
-                List<Text> tooltip = new ArrayList<>();
-
-                stats.forEach(s -> {
-
-                    String str = s.translate() + ": " + getStatString(Load.Unit(mc.player)
-                        .getUnit()
-                        .getCalculatedStat(s), Load.Unit(mc.player));
-
-                    tooltip.add(new LiteralText(str));
-
-                });
-
-                GuiUtils.renderTooltip(matrix,
-                    tooltip, x, y);
-
-            }
-        }
-
-        public boolean isInside(int x, int y) {
-            return GuiUtils.isInRect(this.x, this.y, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, x, y);
-        }
-
-        @Override
-        public void renderButton(MatrixStack matrix, int x, int y, float f) {
-            if (!(stats instanceof UnknownStat)) {
-
-                float v1 = 0;
-                float v2 = 0;
-
-                for (Stat s : stats) {
-                    StatData part = Load.Unit(mc.player)
-                        .getUnit()
-                        .getCalculatedStat(s);
-
-                    v1 += part.getFirstValue();
-                    v2 += part.getSecondValue();
-
-                }
-
-                StatData data = new StatData(describer.GUID(), v1, v2);
-
-                String str = getStatString(data, Load.Unit(mc.player));
-
-                Identifier res = describer
                     .getIconLocation();
 
                 RenderUtils.render16Icon(matrix, res, this.x, this.y);

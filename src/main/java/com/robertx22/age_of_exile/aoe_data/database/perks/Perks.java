@@ -7,10 +7,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intellige
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -79,7 +79,7 @@ public class Perks implements ISlashRegistryInit {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(4, x, ModType.FLAT));
             });
 
-        new WeaponDamage(Elements.Nature).generateAllPossibleStatVariations()
+        new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.LOCAL_INCREASE));
             });

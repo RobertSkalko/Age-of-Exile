@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics;
 
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData.EffectTypes;
@@ -30,7 +30,7 @@ public abstract class WeaponMechanic implements IGUID {
             .weaponType();
 
         int num = (int) data.sourceData.getUnit()
-            .getCalculatedStat(new WeaponDamage(Elements.Physical))
+            .getCalculatedStat(new AttackDamage(Elements.Physical))
             .getRandomRangeValue();
         DamageEffect dmg = new DamageEffect(
             data.event, data.source, data.target, num, data.sourceData, data.targetData, EffectTypes.BASIC_ATTACK, weptype);

@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -42,8 +42,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Are you worthy, mortal?",
             BaseGearWeapons.AXE.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
-                new StatModifier(1, 3, 3, 3, new WeaponDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(1, 3, 3, 3, new WeaponDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(1, 3, 3, 3, new AttackDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(1, 3, 3, 3, new AttackDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(-30, 30, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(-5, 5, ManaBurn.getInstance(), ModType.FLAT),
                 new StatModifier(0.2F, 0.4F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
@@ -57,7 +57,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "This thirst for blood only seems lower than it's desire to taste burning flesh.",
             BaseGearWeapons.AXE.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(3, 5, 5, 8, new WeaponDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(3, 5, 5, 8, new AttackDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(15, 50, CriticalHit.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(1, 3, PlusResourceOnKill.HEALTH, ModType.FLAT),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.BURN, ModType.FLAT),
@@ -72,7 +72,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "The ability to wield thunder is said to come once in a millennium.",
             BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(1, 1, 10, 15, new WeaponDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(1, 1, 10, 15, new AttackDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 15, ChanceToApplyEffect.STATIC, ModType.FLAT),
                 new StatModifier(-20, 20, CriticalDamage.getInstance(), ModType.FLAT),
                 new StatModifier(-200, -10, new ReducedAllStatReqOnItem(), ModType.FLAT)
@@ -86,8 +86,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Essence lies in water.",
             BaseGearWeapons.SWORD.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
-                new StatModifier(1, 3, 3, 8, new WeaponDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(15, 30, new WeaponDamage(Elements.Water), ModType.LOCAL_INCREASE),
+                new StatModifier(1, 3, 3, 8, new AttackDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(15, 30, new AttackDamage(Elements.Water), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.FROST, ModType.FLAT),
                 new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
             ))
@@ -100,7 +100,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "A cultist once so powerful, even his remnant eye inflicts ills on others.",
             BaseGearWeapons.WAND.get(LevelRanges.STARTER))
             .stats(Arrays.asList(
-                new StatModifier(10, 30, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE),
+                new StatModifier(10, 30, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 10, ChanceToApplyEffect.BURN, ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.CHILL, ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.POISON, ModType.FLAT)
@@ -114,7 +114,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "God might prefer peaceful means, but sometimes peace is not an option.",
             BaseGearWeapons.SCEPTER.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(1, 3, 3, 5, new WeaponDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(1, 3, 3, 5, new AttackDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(5, 15, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(50, 100, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
@@ -129,7 +129,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Everything must be exactly as required.",
             BaseGearWeapons.SCEPTER.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
-                new StatModifier(5, 5, 5, 5, new WeaponDamage(Elements.Nature), ModType.FLAT),
+                new StatModifier(5, 5, 5, 5, new AttackDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(10, 30, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
@@ -143,7 +143,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Strange things you find yourself liking. Like a stick, with a piece of rotten flesh on it.",
             BaseGearWeapons.WAND.get(LevelRanges.LOW))
             .stats(Arrays.asList(
-                new StatModifier(100, 200, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+                new StatModifier(100, 200, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
             ))
             .build();
 
@@ -167,7 +167,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Found in a deep pit of ice. Many wands were shattered in attempts to imbue it.",
             BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(1, 1, 3, 3, new WeaponDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(1, 1, 3, 3, new AttackDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(15, 30, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(15, 25, ProjectileSpeedStat.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, CriticalHit.getInstance(), ModType.FLAT),
@@ -182,7 +182,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "The ability to carry any burden is a heavy one.",
             BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(3, 3, 3, 6, new WeaponDamage(Elements.Nature), ModType.FLAT),
+                new StatModifier(3, 3, 3, 6, new AttackDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(15, 30, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(15, 30, Strength.INSTANCE, ModType.LOCAL_INCREASE),

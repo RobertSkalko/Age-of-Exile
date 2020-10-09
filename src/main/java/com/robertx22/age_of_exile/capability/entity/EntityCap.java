@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
@@ -686,7 +686,7 @@ public class EntityCap {
 
             num *= SlashRegistry.getEntityConfig(data.source, data.sourceData).dmg_multi;
 
-            num = new WeaponDamage(Elements.Physical).scale(num, getLevel());
+            num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
             DamageEffect dmg = new DamageEffect(
                 data, (int) num, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None

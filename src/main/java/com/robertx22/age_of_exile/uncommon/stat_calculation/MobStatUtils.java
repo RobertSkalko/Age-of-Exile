@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -74,7 +74,7 @@ public class MobStatUtils {
         for (InCalcStatData data : unit.getStatsContainer().statsInCalc
             .values()) {
             Stat stat = data.GetStat();
-            if (stat instanceof WeaponDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
+            if (stat instanceof AttackDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
                 data.multiplyFlat(config.dmg_multi);
             } else if (data.id
                 .equals(Health.GUID)) {

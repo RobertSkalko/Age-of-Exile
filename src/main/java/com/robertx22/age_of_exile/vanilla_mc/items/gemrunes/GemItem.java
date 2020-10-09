@@ -17,9 +17,9 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
@@ -159,7 +159,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
         @Override
         public List<StatModifier> onWeapons() {
-            return Arrays.asList(new StatModifier(MIN_WEP_DMG, MAX_WEP_DMG, MIN_WEP_DMG * 2, MAX_WEP_DMG * 2, new WeaponDamage(ele), ModType.FLAT));
+            return Arrays.asList(new StatModifier(MIN_WEP_DMG, MAX_WEP_DMG, MIN_WEP_DMG * 2, MAX_WEP_DMG * 2, new AttackDamage(ele), ModType.FLAT));
         }
     }
 

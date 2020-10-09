@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -83,7 +83,7 @@ public class ValueCalculationData {
 
         float amount = 0;
         if (attack_scaling > 0) {
-            for (Stat stat : new WeaponDamage(Elements.Nature).generateAllPossibleStatVariations()) {
+            for (Stat stat : new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()) {
                 amount += data.getUnit()
                     .getCalculatedStat(stat.GUID())
                     .getAverageValue() * attack_scaling;

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -80,7 +80,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
             String perc = stat.IsPercent() || !exactStatData.getType()
                 .isFlat() ? "%" : "";
 
-            if (stat instanceof WeaponDamage) {
+            if (stat instanceof AttackDamage) {
                 if (stat.getElement() == Elements.Physical) {
                     physdmg = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + NUMBER_COLOR +
                         NumberUtils.format(exactStatData.getFirstValue()) + "-" + NumberUtils.format(exactStatData.getSecondValue()));

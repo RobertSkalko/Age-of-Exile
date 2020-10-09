@@ -111,7 +111,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(POISON_WEAPONS, "Poison Attack", EffectType.BENEFICIAL)
-            .stat(3, new WeaponDamage(Elements.Nature), ModType.FLAT)
+            .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(IMBUE, "Imbue", EffectType.BENEFICIAL)
@@ -120,7 +120,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(SAVAGE_HUNTER, "Savage Hunter", EffectType.BENEFICIAL)
             .stat(3, new SpecificWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
             .stat(3, new SpecificWeaponDamage(WeaponTypes.CrossBow), ModType.FLAT)
-            .stat(15, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+            .stat(15, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
             .build();
 
         ExileEffectBuilder.of(ARCANE_HUNTER, "Arcane Hunter", EffectType.BENEFICIAL)

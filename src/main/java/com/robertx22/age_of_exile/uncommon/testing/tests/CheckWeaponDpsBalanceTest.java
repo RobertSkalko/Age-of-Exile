@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.uncommon.testing.tests;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -39,7 +39,7 @@ public class CheckWeaponDpsBalanceTest {
 
                     float totaldmg = 0;
 
-                    for (Stat stat : new WeaponDamage(Elements.Physical).generateAllPossibleStatVariations()) {
+                    for (Stat stat : new AttackDamage(Elements.Physical).generateAllPossibleStatVariations()) {
                         StatData data = StatUtils.turnIntoStatData(stat, stats);
                         totaldmg += data.getAverageValue();
                     }

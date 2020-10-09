@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.Health;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -37,7 +37,7 @@ public class Strength extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(0.15F, 0.15F, new WeaponDamage(Elements.Physical), ModType.GLOBAL_INCREASE),
+            new StatModifier(0.15F, 0.15F, new AttackDamage(Elements.Physical), ModType.GLOBAL_INCREASE),
             new StatModifier(0.75F, 0.75F, Health.getInstance(), ModType.GLOBAL_INCREASE)
         );
     }

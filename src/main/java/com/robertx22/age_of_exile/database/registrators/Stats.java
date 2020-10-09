@@ -92,7 +92,7 @@ public class Stats implements ISlashRegistryInit {
                     add(IncreasedItemQuantity.getInstance());
 
                     add(new SpecificWeaponDamage(WeaponTypes.None));
-                    add(new WeaponDamage(Elements.Physical));
+                    add(new AttackDamage(Elements.Physical));
                     add(new ElementalDamageBonus(Elements.Physical));
                     add(new ElementalSpellDamage(Elements.Physical));
                     add(new ElementalResist(Elements.Physical));

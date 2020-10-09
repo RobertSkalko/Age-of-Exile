@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.areas.area_modifiers;
 import com.robertx22.age_of_exile.areas.area_modifiers.AreaRequirement.WhitelistType;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.LifeOnHit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -38,7 +38,7 @@ public class AreaModifiers {
         new AreaRequirement().temp(0, 0.3F, WhitelistType.ALLOW_ALSO)
             .whitelist(Category.ICY, Category.TAIGA))
         .addStats(
-            new StatModifier(1, 1, new WeaponDamage(Elements.Water), ModType.FLAT),
+            new StatModifier(1, 1, new AttackDamage(Elements.Water), ModType.FLAT),
             new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
         );
 
@@ -47,7 +47,7 @@ public class AreaModifiers {
         new AreaRequirement().temp(0.8F, Integer.MAX_VALUE, WhitelistType.ALLOW_ALSO)
             .whitelist(Category.DESERT, Category.MESA)
             .blacklist(Category.JUNGLE)).addStats(
-        new StatModifier(1, 1, new WeaponDamage(Elements.Fire), ModType.FLAT),
+        new StatModifier(1, 1, new AttackDamage(Elements.Fire), ModType.FLAT),
         new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
     );
 
@@ -55,7 +55,7 @@ public class AreaModifiers {
         Arrays.asList(ENTITIES.NATURE_SKELETON, ENTITIES.NATURE_CHICKEN, ENTITIES.NATURE_SLIME, ENTITIES.NATURE_SPIDER, ENTITIES.NATURE_ZOMBIE, ENTITIES.NATURE_MAGE),
         new AreaRequirement().whitelist(Category.SWAMP, Category.JUNGLE))
         .addStats(
-            new StatModifier(1, 1, new WeaponDamage(Elements.Nature), ModType.FLAT),
+            new StatModifier(1, 1, new AttackDamage(Elements.Nature), ModType.FLAT),
             new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
         );
 
@@ -63,7 +63,7 @@ public class AreaModifiers {
         Arrays.asList(ENTITIES.THUNDER_SKELETON, ENTITIES.THUNDER_CHICKEN, ENTITIES.THUNDER_SLIME, ENTITIES.THUNDER_SPIDER, ENTITIES.THUNDER_ZOMBIE, ENTITIES.THUNDER_MAGE),
         new AreaRequirement().whitelist(Category.EXTREME_HILLS))
         .addStats(
-            new StatModifier(1, 1, new WeaponDamage(Elements.Thunder), ModType.FLAT),
+            new StatModifier(1, 1, new AttackDamage(Elements.Thunder), ModType.FLAT),
             new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
         );
     public AreaModifier OF_SLIMES = of("of_slimes", 500, Affix.Type.suffix, "Of Slimes",
