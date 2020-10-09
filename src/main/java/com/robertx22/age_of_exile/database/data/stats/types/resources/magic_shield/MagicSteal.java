@@ -11,15 +11,11 @@ public class MagicSteal extends Stat implements IStatEffects {
     public static String GUID = "magic_steal";
 
     private MagicSteal() {
+        this.statGroup = StatGroup.RESTORATION;
     }
 
     public static MagicSteal getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Regeneration;
     }
 
     @Override

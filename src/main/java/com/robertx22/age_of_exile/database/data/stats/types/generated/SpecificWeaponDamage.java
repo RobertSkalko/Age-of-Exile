@@ -18,7 +18,7 @@ public class SpecificWeaponDamage extends Stat implements IStatEffects, IGenerat
 
     public SpecificWeaponDamage(WeaponTypes type) {
         this.weaponType = type;
-
+        this.statGroup = StatGroup.WEAPON;
     }
 
     @Override
@@ -28,11 +28,6 @@ public class SpecificWeaponDamage extends Stat implements IStatEffects, IGenerat
 
     public WeaponTypes weaponType() {
         return this.weaponType;
-    }
-
-    @Override
-    public String getIconPath() {
-        return "wep_dmg/" + weaponType.id;
     }
 
     @Override

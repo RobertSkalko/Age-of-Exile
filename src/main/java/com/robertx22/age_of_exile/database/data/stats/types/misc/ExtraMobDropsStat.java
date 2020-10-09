@@ -11,11 +11,6 @@ public class ExtraMobDropsStat extends Stat {
         return ExtraMobDropsStat.SingletonHolder.INSTANCE;
     }
 
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Misc;
-    }
-
     private ExtraMobDropsStat() {
         this.min_val = -100;
         this.scaling = StatScaling.NONE;

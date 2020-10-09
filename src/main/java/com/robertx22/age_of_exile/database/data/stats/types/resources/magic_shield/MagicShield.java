@@ -14,20 +14,11 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
     private MagicShield() {
         this.min_val = 0;
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     public static MagicShield getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public String getIconPath() {
-        return "resource/magic_shield";
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Main;
     }
 
     @Override

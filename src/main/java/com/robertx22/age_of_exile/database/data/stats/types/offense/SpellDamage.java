@@ -11,6 +11,7 @@ public class SpellDamage extends Stat implements IStatEffects {
 
     private SpellDamage() {
         this.scaling = StatScaling.SLOW_SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     public static String GUID = "spell_damage";
@@ -20,18 +21,8 @@ public class SpellDamage extends Stat implements IStatEffects {
     }
 
     @Override
-    public String getIconPath() {
-        return "spell_dmg";
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Increases DMG of all spells no matter the element";
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.SpellDamage;
     }
 
     @Override

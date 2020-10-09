@@ -16,16 +16,6 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Defenses;
-    }
-
-    @Override
-    public String getIconPath() {
-        return "armor";
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Decreases damage taken by a percent";
     }
@@ -35,6 +25,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
     private Armor() {
         this.min_val = 0;
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     @Override

@@ -23,6 +23,7 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
     public ElementalDamageBonus(Elements element) {
         super(element);
         this.scaling = StatScaling.NONE;
+        this.statGroup = StatGroup.ELEMENTAL;
     }
 
     @Override
@@ -33,11 +34,6 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
     @Override
     public String GUID() {
         return "all_" + this.getElement().guidName + "_damage";
-    }
-
-    @Override
-    public String getIconPath() {
-        return "all_ele_dmg/" + element.guidName;
     }
 
     @Override

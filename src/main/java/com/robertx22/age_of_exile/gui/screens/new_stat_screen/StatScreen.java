@@ -16,6 +16,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
@@ -95,6 +98,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), MagicShield.getInstance(), Mana.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), MagicShieldRegen.getInstance(), ManaRegen.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Armor.getInstance(), DodgeRating.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(SpellDamage.getInstance(), CriticalHit.getInstance(), CriticalDamage.getInstance()));
 
         addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.ELEMENTAL, new ElementalSpellDamage(Elements.Elemental).generateAllPossibleStatVariations());
@@ -124,16 +128,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public boolean mouseReleased(double x, double y, int ticks) {
-/*
-        buttons.forEach(b -> {
-            if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getWidth()),
-                new Point((int) x, (int) y)
-            )) {
-                b.onClick(x, y);
-            }
-        });
 
- */
         return super.mouseReleased(x, y, ticks);
 
     }
@@ -183,6 +178,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         for (List<Stat> list : STAT_MAP.get(statToShow)) {
             for (Stat stat : list) {
                 addButton(new StatButton(stat, xpos, ypos + (YSPACING * ynum)));
+
                 ynum++;
             }
             ynum = 0;
@@ -305,7 +301,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
                     .getCalculatedStat(stat), Load.Unit(mc.player));
 
                 Identifier res = stat
-                    .getIconLocation();
+                    .getIconForRendering();
 
                 RenderUtils.render16Icon(matrix, res, this.x, this.y);
 

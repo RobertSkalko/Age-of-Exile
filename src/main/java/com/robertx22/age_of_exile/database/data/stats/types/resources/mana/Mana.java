@@ -12,16 +12,6 @@ public class Mana extends Stat {
     }
 
     @Override
-    public String getIconPath() {
-        return "resource/mana";
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Main;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Mana is used to cast spells";
     }
@@ -29,6 +19,7 @@ public class Mana extends Stat {
     private Mana() {
         this.min_val = 0;
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     @Override

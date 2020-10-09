@@ -14,7 +14,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -38,6 +38,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public boolean is_percent;
     public boolean uses_second_val = false;
     public StatScaling scaling = StatScaling.SLOW_SCALING;
+
+    public StatGroup statGroup = StatGroup.Misc;
 
     public boolean add$To$toTooltip = true;
     public boolean add$plusminus$toTooltip = true;
@@ -128,17 +130,19 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return SlashRegistryType.STAT;
     }
 
-    public String getIconPath() {
-        return "";
-    }
+    static Identifier DEFAULT_ICON = new Identifier(Ref.MODID, "textures/gui/stat_icons/default.png");
 
     public Identifier getIconLocation() {
-        if (getIconPath().isEmpty()) {
-            return new Identifier(Ref.MODID, "textures/gui/stat_icons/default.png");
-        } else {
-            return new Identifier(Ref.MODID, "textures/gui/stat_icons/" + getIconPath() + ".png");
-        }
+        return new Identifier(Ref.MODID, "textures/gui/stat_icons/" + statGroup.id + "/" + GUID() + ".png");
+    }
 
+    public Identifier getIconForRendering() {
+        Identifier id = getIconLocation();
+        if (ClientTextureUtils.textureExists(id)) {
+            return id;
+        } else {
+            return DEFAULT_ICON;
+        }
     }
 
     @Override
@@ -176,27 +180,23 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return info.tooltipInfo.statTooltipType.impl.getTooltipList(info);
     }
 
-    public StatGroup statGroup() {
-        return StatGroup.Misc;
+    public final StatGroup statGroup() {
+        return statGroup;
     }
 
     public enum StatGroup {
-        Main(Words.Main, 0),
-        Misc(Words.Misc, 8),
-        CoreStat(Words.Core_Stat, 5),
-        SpellDamage(Words.Spell_Damage, 3),
-        EleAttackDamage(Words.Elemental_Attack_Damage, 2),
-        Defenses(Words.Defenses, 4),
-        Penetration(Words.Penetration, 6),
-        Damage(Words.Damage, 1),
-        Regeneration(Words.Regeneration, 7);
+        MAIN("main"),
+        WEAPON("weapon"),
+        CORE("core"),
+        ELEMENTAL("elemental"),
+        RESTORATION("restoration"),
+        Misc("misc");
 
-        StatGroup(Words word, int place) {
-            this.word = word;
+        public String id;
+
+        StatGroup(String id) {
+            this.id = id;
         }
-
-        public Words word;
-
     }
 
 }

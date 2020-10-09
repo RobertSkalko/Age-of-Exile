@@ -24,26 +24,17 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IAdd
         return list;
     }
 
-    @Override
-    public Stat.StatGroup statGroup() {
-        return Stat.StatGroup.Defenses;
-    }
-
     public ElementalResist(Elements element) {
         super(element);
         this.min_val = -300;
 
         this.max_val = 80;
+        this.statGroup = StatGroup.ELEMENTAL;
     }
 
     @Override
     public Stat newGeneratedInstance(Elements element) {
         return new ElementalResist(element);
-    }
-
-    @Override
-    public String getIconPath() {
-        return "ele_res/" + element.guidName;
     }
 
     @Override

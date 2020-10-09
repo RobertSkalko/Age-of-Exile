@@ -20,11 +20,6 @@ public class DayDamage extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Damage;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Increases dmg at day.";
     }

@@ -16,12 +16,7 @@ public class Dexterity extends BaseCoreStat {
     public static final Dexterity INSTANCE = new Dexterity();
 
     private Dexterity() {
-
-    }
-
-    @Override
-    public String getIconPath() {
-        return "core/dex";
+        this.statGroup = StatGroup.CORE;
     }
 
     @Override

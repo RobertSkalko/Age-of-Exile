@@ -12,19 +12,10 @@ public class HealthRegen extends BaseRegenClass {
 
     }
 
-    @Override
-    public String getIconPath() {
-        return "regen/hp_regen";
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Main;
-    }
-
     private HealthRegen() {
         this.min_val = 0.05F;
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     @Override

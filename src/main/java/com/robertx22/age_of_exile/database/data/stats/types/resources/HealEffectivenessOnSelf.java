@@ -11,15 +11,11 @@ public class HealEffectivenessOnSelf extends Stat implements IStatEffects {
 
     private HealEffectivenessOnSelf() {
         this.add$To$toTooltip = false;
+        this.statGroup = StatGroup.RESTORATION;
     }
 
     public static HealEffectivenessOnSelf getInstance() {
         return HealEffectivenessOnSelf.SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Misc;
     }
 
     @Override

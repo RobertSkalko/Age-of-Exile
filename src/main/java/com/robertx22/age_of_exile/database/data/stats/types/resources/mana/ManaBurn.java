@@ -19,11 +19,6 @@ public class ManaBurn extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Misc;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Burns mana on basic attack";
     }

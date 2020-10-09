@@ -15,18 +15,8 @@ public class CriticalDamage extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Damage;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "If Critical, multiply by x";
-    }
-
-    @Override
-    public String getIconPath() {
-        return "crit_dmg";
     }
 
     @Override
@@ -38,6 +28,7 @@ public class CriticalDamage extends Stat implements IStatEffects {
         this.base_val = 20;
         this.min_val = 0;
         this.max_val = 400;
+        this.statGroup = StatGroup.MAIN;
     }
 
     @Override

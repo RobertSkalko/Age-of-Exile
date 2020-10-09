@@ -18,18 +18,8 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Defenses;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Chance to ignore physical damage";
-    }
-
-    @Override
-    public String getIconPath() {
-        return "dodge";
     }
 
     @Override
@@ -40,6 +30,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
     private DodgeRating() {
         this.min_val = 0;
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     @Override

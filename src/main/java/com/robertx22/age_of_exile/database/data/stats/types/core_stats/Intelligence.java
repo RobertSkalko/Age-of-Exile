@@ -13,16 +13,11 @@ import java.util.List;
 public class Intelligence extends BaseCoreStat {
 
     private Intelligence() {
-
+        this.statGroup = StatGroup.CORE;
     }
 
     public static final Intelligence INSTANCE = new Intelligence();
     public static String GUID = "intelligence";
-
-    @Override
-    public String getIconPath() {
-        return "core/int";
-    }
 
     @Override
     public String locDescForLangFile() {

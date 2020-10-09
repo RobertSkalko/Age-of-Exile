@@ -24,16 +24,7 @@ public class ElementalSpellDamage extends ElementalStat implements IStatEffects 
 
     public ElementalSpellDamage(Elements element) {
         super(element);
-    }
-
-    @Override
-    public Stat.StatGroup statGroup() {
-        return Stat.StatGroup.SpellDamage;
-    }
-
-    @Override
-    public String getIconPath() {
-        return "spell_dmg/" + element.guidName;
+        this.statGroup = StatGroup.ELEMENTAL;
     }
 
     @Override

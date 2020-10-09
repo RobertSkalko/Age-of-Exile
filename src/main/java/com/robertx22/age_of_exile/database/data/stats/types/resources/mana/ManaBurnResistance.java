@@ -19,11 +19,6 @@ public class ManaBurnResistance extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Misc;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Protects against mana burn by x percent";
     }

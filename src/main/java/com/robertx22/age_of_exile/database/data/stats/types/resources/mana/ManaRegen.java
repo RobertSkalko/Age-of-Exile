@@ -10,19 +10,10 @@ public class ManaRegen extends BaseRegenClass {
         return SingletonHolder.INSTANCE;
     }
 
-    @Override
-    public String getIconPath() {
-        return "regen/mana_regen";
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Main;
-    }
-
     private ManaRegen() {
         this.min_val = 0;
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     @Override

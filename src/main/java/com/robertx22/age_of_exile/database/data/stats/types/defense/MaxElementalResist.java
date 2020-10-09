@@ -13,11 +13,6 @@ public class MaxElementalResist extends ElementalStat {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Misc;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Modifies maximum resistance number.";
     }

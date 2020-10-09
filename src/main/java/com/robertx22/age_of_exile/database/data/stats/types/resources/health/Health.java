@@ -12,20 +12,12 @@ public class Health extends Stat {
     private Health() {
         this.min_val = 1;
         this.scaling = StatScaling.SCALING;
+
+        this.statGroup = StatGroup.MAIN;
     }
 
     public static Health getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public String getIconPath() {
-        return "resource/hp";
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Main;
     }
 
     @Override

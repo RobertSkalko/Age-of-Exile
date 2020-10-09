@@ -21,11 +21,6 @@ public class AllAttributes extends Stat implements IAddToOtherStats {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.CoreStat;
-    }
-
-    @Override
     public boolean IsPercent() {
         return false;
     }

@@ -23,6 +23,7 @@ public class PlusResourceOnKill extends Stat implements IStatEffects {
     private PlusResourceOnKill(Stat statRestored, ResourceOnKill effect) {
         this.statRestored = statRestored;
         this.effect = effect;
+        this.statGroup = StatGroup.RESTORATION;
     }
 
     @Override

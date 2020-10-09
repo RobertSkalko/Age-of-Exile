@@ -10,20 +10,11 @@ public class MagicShieldRegen extends BaseRegenClass {
 
     private MagicShieldRegen() {
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.MAIN;
     }
 
     public static MagicShieldRegen getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public String getIconPath() {
-        return "regen/magic_shield_regen";
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Main;
     }
 
     @Override

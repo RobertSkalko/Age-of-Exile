@@ -27,16 +27,12 @@ public class SpecificElementalWeaponDamage extends Stat implements IStatEffects,
 
     public SpecificElementalWeaponDamage(WeaponTypes type) {
         this.weaponType = type;
+        this.statGroup = StatGroup.WEAPON;
     }
 
     @Override
     public String locDescForLangFile() {
         return "Increases elemental damage of x weapon";
-    }
-
-    @Override
-    public String getIconPath() {
-        return "ele_wep_dmg/" + weaponType.id;
     }
 
     public WeaponTypes weaponType() {

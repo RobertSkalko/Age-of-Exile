@@ -25,15 +25,12 @@ public class AttackDamage extends ElementalStat implements IStatEffects, ILocalS
         return list;
     }
 
-    @Override
-    public Stat.StatGroup statGroup() {
-        return Stat.StatGroup.EleAttackDamage;
-    }
-
     public AttackDamage(Elements element) {
         super(element);
         this.uses_second_val = true;
         this.scaling = StatScaling.SCALING;
+
+        this.statGroup = StatGroup.ELEMENTAL;
     }
 
     @Override
@@ -44,11 +41,6 @@ public class AttackDamage extends ElementalStat implements IStatEffects, ILocalS
     @Override
     public Stat newGeneratedInstance(Elements element) {
         return new AttackDamage(element);
-    }
-
-    @Override
-    public String getIconPath() {
-        return "ele_atk_dmg/" + element.guidName;
     }
 
     @Override

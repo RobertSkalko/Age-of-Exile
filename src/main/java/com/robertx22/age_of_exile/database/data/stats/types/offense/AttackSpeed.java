@@ -16,18 +16,8 @@ public class AttackSpeed extends Stat {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Damage;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Lowers cooldown of melee attacks.";
-    }
-
-    @Override
-    public String getIconPath() {
-        return "attack_speed";
     }
 
     @Override

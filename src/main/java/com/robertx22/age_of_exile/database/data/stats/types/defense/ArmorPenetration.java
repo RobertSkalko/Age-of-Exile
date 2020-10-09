@@ -13,16 +13,6 @@ public class ArmorPenetration extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Penetration;
-    }
-
-    @Override
-    public String getIconPath() {
-        return "armor";
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Ignores x armor";
     }

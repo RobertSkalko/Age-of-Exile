@@ -20,11 +20,6 @@ public class NightDamage extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Damage;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Increases dmg at night.";
     }

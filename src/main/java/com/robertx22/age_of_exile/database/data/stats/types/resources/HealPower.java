@@ -11,15 +11,11 @@ public class HealPower extends Stat implements IStatEffects {
 
     private HealPower() {
         this.add$To$toTooltip = false;
+        this.statGroup = StatGroup.RESTORATION;
     }
 
     public static HealPower getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Regeneration;
     }
 
     @Override

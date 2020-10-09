@@ -15,11 +15,6 @@ public class Lifesteal extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Regeneration;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Percent of basic attack DMG added to health";
     }
@@ -30,6 +25,7 @@ public class Lifesteal extends Stat implements IStatEffects {
     }
 
     private Lifesteal() {
+        this.statGroup = StatGroup.RESTORATION;
     }
 
     @Override

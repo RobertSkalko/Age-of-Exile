@@ -16,11 +16,6 @@ public class LifeOnHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatGroup statGroup() {
-        return StatGroup.Regeneration;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Gives health on basic attack hit";
     }
@@ -32,6 +27,7 @@ public class LifeOnHit extends Stat implements IStatEffects {
 
     private LifeOnHit() {
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.RESTORATION;
     }
 
     @Override

@@ -12,15 +12,11 @@ public class ManaOnHit extends Stat implements IStatEffects {
 
     private ManaOnHit() {
         this.scaling = StatScaling.SCALING;
+        this.statGroup = StatGroup.RESTORATION;
     }
 
     public static ManaOnHit getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public StatGroup statGroup() {
-        return StatGroup.Regeneration;
     }
 
     @Override

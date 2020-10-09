@@ -22,26 +22,16 @@ public class ElementalPenetration extends ElementalStat implements IStatEffects 
 
     }
 
-    @Override
-    public Stat.StatGroup statGroup() {
-        return Stat.StatGroup.Penetration;
-    }
-
     public ElementalPenetration(Elements element) {
         super(element);
         this.min_val = 0;
-
+        this.statGroup = StatGroup.ELEMENTAL;
     }
 
     @Override
     public Stat newGeneratedInstance(Elements element) {
 
         return new ElementalPenetration(element);
-    }
-
-    @Override
-    public String getIconPath() {
-        return "pene/" + element.guidName;
     }
 
     @Override

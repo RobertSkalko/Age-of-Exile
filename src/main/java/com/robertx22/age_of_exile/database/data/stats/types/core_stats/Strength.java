@@ -16,12 +16,7 @@ public class Strength extends BaseCoreStat {
     public static final Strength INSTANCE = new Strength();
 
     private Strength() {
-
-    }
-
-    @Override
-    public String getIconPath() {
-        return "core/str";
+        this.statGroup = StatGroup.CORE;
     }
 
     @Override

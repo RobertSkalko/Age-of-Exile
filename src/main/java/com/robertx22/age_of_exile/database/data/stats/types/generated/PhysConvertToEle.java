@@ -40,11 +40,6 @@ public class PhysConvertToEle extends ElementalStat implements IStatEffects {
     }
 
     @Override
-    public String getIconPath() {
-        return "all_ele_dmg/" + element.guidName;
-    }
-
-    @Override
     public String locDescForLangFile() {
         return "Turns % of phys atk dmg into ele";
     }
