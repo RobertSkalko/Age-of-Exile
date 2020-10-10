@@ -206,6 +206,11 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
+    protected float getDragInWater() {
+        return 0.99F;
+    }
+
+    @Override
     public final void tick() {
 
         if (this.removeNextTick) {
