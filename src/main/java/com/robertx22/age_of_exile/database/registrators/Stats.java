@@ -26,6 +26,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicSteal;
@@ -133,6 +134,8 @@ public class Stats implements ISlashRegistryInit {
                     add(new UnknownStat());
 
                     // Resources
+                    add(ManaSteal.getInstance());
+                    add(MagicOnHit.getInstance());
                     add(Health.getInstance());
                     add(HealthRegen.getInstance());
                     add(Lifesteal.getInstance());

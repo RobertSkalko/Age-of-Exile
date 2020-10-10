@@ -13,6 +13,7 @@ Depending on how stable this feature is, it will either become core or removed.
 - updated chinese lang
 - fix orb of disorder giving infinite affixes
 - fix shield and armor's stats not removing when de-equipped, only after other gear is changed
+- added mana steal, and magic on hit stats
 
 ## v1.5.1
 - fix runewords not being given unless item had an empty socket
