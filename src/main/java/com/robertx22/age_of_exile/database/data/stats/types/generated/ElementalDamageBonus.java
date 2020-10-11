@@ -53,12 +53,12 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
 
     @Override
     public IStatEffect getEffect() {
-        return new ElementalDamageEffect();
+        return ElementalDamageEffect.getInstance();
     }
 
     @Override
     public String locNameForLangFile() {
-        return this.getElement()
+        return "All " + getElement()
             .dmgName + " Damage";
     }
 

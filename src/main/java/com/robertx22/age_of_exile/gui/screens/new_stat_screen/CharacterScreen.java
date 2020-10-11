@@ -12,10 +12,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -37,6 +35,7 @@ import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
@@ -62,16 +61,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class StatScreen extends BaseScreen implements INamedScreen {
+public class CharacterScreen extends BaseScreen implements INamedScreen {
 
-    static int sizeX = 228;
+    static int sizeX = 256;
     static int sizeY = 166;
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
     public enum StatType {
-        MAIN, ELEMENTAL, REGEN
+        MAIN("main"),
+        ELEMENTAL("elemental"),
+        RESISTS("resists"),
+        RESTORATION("restoration"),
+        WEAPON("weapon");
+
+        String id;
+
+        StatType(String id) {
+            this.id = id;
+        }
+
+        Identifier getIcon() {
+            return new Identifier(Ref.MODID, "textures/gui/stat_groups/" + id + ".png");
+        }
     }
 
     boolean isMainScreen() {
@@ -82,13 +96,17 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
     static HashMap<StatType, List<List<Stat>>> STAT_MAP = new HashMap<>();
 
-    static void addTo(StatType type, List<Stat> stats) {
+    static <T extends Stat> void addTo(StatType type, List<T> stats) {
+
+        List<Stat> list = stats.stream()
+            .map(x -> (Stat) x)
+            .collect(Collectors.toList());
 
         if (!STAT_MAP.containsKey(type)) {
             STAT_MAP.put(type, new ArrayList<>());
         }
         STAT_MAP.get(type)
-            .add(stats);
+            .add(list);
     }
 
     static {
@@ -100,17 +118,23 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
         addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.ELEMENTAL, new ElementalSpellDamage(Elements.Elemental).generateAllPossibleStatVariations());
-        addTo(StatType.ELEMENTAL, new ElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
-        addTo(StatType.ELEMENTAL, new ElementalPenetration(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.ELEMENTAL, new ElementalDamageBonus(Elements.Elemental).generateAllPossibleStatVariations());
 
-        addTo(StatType.REGEN, Arrays.asList(LifeOnHit.getInstance(), Lifesteal.getInstance(), PlusResourceOnKill.HEALTH, RegeneratePercentStat.HEALTH));
-        addTo(StatType.REGEN, Arrays.asList(MagicOnHit.getInstance(), MagicSteal.getInstance(), PlusResourceOnKill.MAGIC_SHIELD, RegeneratePercentStat.MAGIC_SHIELD));
-        addTo(StatType.REGEN, Arrays.asList(ManaOnHit.getInstance(), ManaSteal.getInstance(), PlusResourceOnKill.MANA, RegeneratePercentStat.MANA));
-        addTo(StatType.REGEN, Arrays.asList(HealPower.getInstance(), HealEffectivenessOnSelf.getInstance(), ManaBurnResistance.getInstance()));
+        addTo(StatType.RESISTS, new ElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.RESISTS, new MaxElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.RESISTS, new ElementalPenetration(Elements.Elemental).generateAllPossibleStatVariations());
+
+        addTo(StatType.RESTORATION, Arrays.asList(LifeOnHit.getInstance(), Lifesteal.getInstance(), PlusResourceOnKill.HEALTH, RegeneratePercentStat.HEALTH));
+        addTo(StatType.RESTORATION, Arrays.asList(MagicOnHit.getInstance(), MagicSteal.getInstance(), PlusResourceOnKill.MAGIC_SHIELD, RegeneratePercentStat.MAGIC_SHIELD));
+        addTo(StatType.RESTORATION, Arrays.asList(ManaOnHit.getInstance(), ManaSteal.getInstance(), PlusResourceOnKill.MANA, RegeneratePercentStat.MANA));
+        addTo(StatType.RESTORATION, Arrays.asList(HealPower.getInstance(), HealEffectivenessOnSelf.getInstance(), ManaBurnResistance.getInstance()));
+
+        addTo(StatType.WEAPON, new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations());
+        addTo(StatType.WEAPON, new SpecificElementalWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations());
 
     }
 
-    public StatScreen() {
+    public CharacterScreen() {
         super(sizeX, sizeY);
     }
 
@@ -126,14 +150,12 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public boolean mouseReleased(double x, double y, int ticks) {
-
         return super.mouseReleased(x, y, ticks);
-
     }
 
     @Override
     public Words screenName() {
-        return Words.Stats;
+        return Words.Character;
     }
 
     @Override
@@ -146,7 +168,8 @@ public class StatScreen extends BaseScreen implements INamedScreen {
         EntityCap.UnitData data = Load.Unit(mc.player);
         PlayerStatsCap.IPlayerStatPointsData stats = Load.statPoints(mc.player);
 
-        int XSPACING = 60;
+        int XSPACING = 240 / STAT_MAP.get(statToShow)
+            .size();
         int YSPACING = 19;
 
         // CORE STATS
@@ -303,7 +326,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
                 RenderUtils.render16Icon(matrix, res, this.x, this.y);
 
-                StatScreen.this.drawStringWithShadow(matrix, font, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
+                CharacterScreen.this.drawStringWithShadow(matrix, font, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
 
             }
         }
@@ -400,7 +423,7 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
         StatType page;
 
-        public StatPageButton(StatScreen screen, StatType page, int xPos, int yPos) {
+        public StatPageButton(CharacterScreen screen, StatType page, int xPos, int yPos) {
             super(xPos, yPos, PAGE_BUTTON_SIZE_X, PAGE_BUTTON_SIZE_Y, 0, 0, PAGE_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
                 screen.statToShow = page;
                 screen.init();
@@ -410,16 +433,21 @@ public class StatScreen extends BaseScreen implements INamedScreen {
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            MinecraftClient minecraftClient = MinecraftClient.getInstance();
-            minecraftClient.getTextureManager()
+            MinecraftClient mc = MinecraftClient.getInstance();
+            mc.getTextureManager()
                 .bindTexture(PAGE_BUTTON_TEX);
 
             int i = 0;
-            if (page != StatScreen.this.statToShow) {
+            if (page != CharacterScreen.this.statToShow) {
                 i += 32;
             }
             RenderSystem.enableDepthTest();
             drawTexture(matrices, this.x, this.y, 0, i, this.width, this.height);
+
+            mc.getTextureManager()
+                .bindTexture(page.getIcon());
+            drawTexture(matrices, this.x + 6, this.y + 6, 0, i, 16, 16, 16, 16);
+
         }
 
         @Override

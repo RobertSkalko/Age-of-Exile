@@ -17,7 +17,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
 
     @Override
     public String locDescForLangFile() {
-        return "Decreases damage taken by a percent";
+        return "Decreases physical damage taken by a percent";
     }
 
     public static String GUID = "armor";

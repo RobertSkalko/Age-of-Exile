@@ -8,6 +8,13 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class ElementalDamageEffect extends BaseDamageEffect {
 
+    private ElementalDamageEffect() {
+    }
+
+    public static ElementalDamageEffect getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public int GetPriority() {
         return Priority.Second.priority;
@@ -31,10 +38,14 @@ public class ElementalDamageEffect extends BaseDamageEffect {
                 return true;
             }
         }
-        if (effect.element.equals(stat.getElement())) {
+        if (effect.element == stat.getElement()) {
             return true;
         }
 
         return false;
+    }
+
+    private static class SingletonHolder {
+        private static final ElementalDamageEffect INSTANCE = new ElementalDamageEffect();
     }
 }

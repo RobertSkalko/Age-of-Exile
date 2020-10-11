@@ -492,7 +492,7 @@ public enum Words implements IAutoLocName {
     Spells("Spells"),
 
     Start("Start"),
-
+    Character("Character"),
     Stats("Stats"),
 
     Suffix("Suffix"),

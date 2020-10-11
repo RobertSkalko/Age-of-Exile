@@ -45,6 +45,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public float stat_req_multi;
     public int unidentified_chance;
     public MinMax spawn_durability_hit;
+    public boolean announce_in_chat = false;
 
     @Override
     public MinMax SpawnDurabilityHit() {

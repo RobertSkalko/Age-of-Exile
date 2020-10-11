@@ -112,7 +112,7 @@ public class Spells implements ISlashRegistryInit {
             .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Elemental))
             .build();
 
-        ARCANE_COMET = SpellBuilder.of("arcane_comet", SpellConfiguration.Builder.instant(20, 20 * 30), "Arcane Comet")
+        ARCANE_COMET = SpellBuilder.of("arcane_comet", SpellConfiguration.Builder.instant(18, 20 * 30), "Arcane Comet")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 6D)
@@ -145,7 +145,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        MAGIC_BOMB = SpellBuilder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(15, 20 * 15, 20), "Magic Bomb")
+        MAGIC_BOMB = SpellBuilder.of("magic_bomb", SpellConfiguration.Builder.nonInstant(20, 20 * 15, 20), "Magic Bomb")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITCH_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDERMITE_SPAWN_EGG, 1D, 0.2D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)
                 .put(MapField.EXPIRE_ON_HIT, false)))
@@ -160,11 +160,11 @@ public class Spells implements ISlashRegistryInit {
         FROSTBALL = SpellBuilder.of(FROSTBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Ice Ball")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 1.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water))
+            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Water))
 
-            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water)
+            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Water)
                 .addCondition(EffectCondition.CASTER_HAS_STAT.create(OceanSpellModStats.FROSTBALL_EXTRA_DMG_KEY))
                 .addCondition(EffectCondition.TARGET_HAS_POTION.create(POTIONS.getExileEffect(NegativeEffects.CHILL))))
 
@@ -181,9 +181,9 @@ public class Spells implements ISlashRegistryInit {
         POISONBALL = SpellBuilder.of(POISONBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Poison Ball")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 1.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SLIME, 3D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Nature))
+            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Nature))
             .build();
 
         THROW_FLAMES = SpellBuilder.of(THROW_FLAMES_ID, MULTI_TARGET_PROJ_CONFIG(), "Throw Flames")

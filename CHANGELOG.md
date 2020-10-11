@@ -1,5 +1,6 @@
 ## v.1.6.0
 
+- All armors received new icons and models made by Sattekrokodil! Feedback is welcome, especially from texture artists.
 - new system, item sealing. Modifying items adds instability to them, and increases chance they become sealed.
 What this means for players is that at endgame you can't just dump thousands of currencies on 1 good item. 
 For everyone else, this shouldn't matter at all.
@@ -17,3 +18,6 @@ Depending on how stable this feature is, it will either become core or removed.
 - reworked stat gui.
 - gear now has more durability, armor, etc the higher level it is, and uniques have 20% more.
 - projectile spells now work in water
+- added rarity loot chat announcements. If player finds a unique item, it will be broadcasted to the server.
+It doesn't work for everything currently, if it's crafted it won't be announced, but loot drops should.
+It's configurable per rarity datapacks and a global config

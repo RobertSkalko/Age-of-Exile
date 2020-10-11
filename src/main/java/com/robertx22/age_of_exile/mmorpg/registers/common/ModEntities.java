@@ -124,6 +124,7 @@ public class ModEntities {
                                                         String id, boolean itemRender) {
 
         EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MISC, factory).dimensions(new EntityDimensions(0.5F, 0.5F, true))
+            .trackedUpdateRate(10)
             .build();
 
         Registry.register(Registry.ENTITY_TYPE, new Identifier(Ref.MODID, id), type);

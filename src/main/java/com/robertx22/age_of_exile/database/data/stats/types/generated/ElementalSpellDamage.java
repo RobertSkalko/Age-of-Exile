@@ -56,7 +56,7 @@ public class ElementalSpellDamage extends ElementalStat implements IStatEffects 
 
     @Override
     public String locDescForLangFile() {
-        return "Spell power is used by spells and some other stats";
+        return "Increases damage of spells of that element.";
     }
 
     @Override

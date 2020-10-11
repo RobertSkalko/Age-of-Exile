@@ -26,9 +26,6 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public Integer percent = 0;
 
     @Store
-    public Integer level = 0;
-
-    @Store
     public String baseAffix;
 
     @Store
@@ -96,7 +93,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         return this.BaseAffix()
             .getTierStats(tier)
             .stream()
-            .map(x -> x.ToExactStat(percent, this.level))
+            .map(x -> x.ToExactStat(percent, gear.level))
             .collect(Collectors.toList());
 
     }
@@ -104,7 +101,6 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public void create(GearItemData gear, Affix suffix) {
         baseAffix = suffix.GUID();
         this.tier = RandomUtils.weightedRandom(suffix.tier_map.values()).tier;
-        this.level = gear.level;
         RerollNumbers(gear);
     }
 

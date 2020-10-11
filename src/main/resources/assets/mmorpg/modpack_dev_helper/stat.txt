@@ -14,7 +14,6 @@ magic_on_hit
 all_water_damage
 mod_slow_bush
 teleport_cooldown
-hammer_damage
 unlock_trickery
 convert_water_to_phys
 nature_weapon_damage
@@ -175,7 +174,6 @@ dmg_under_hunger
 physical_weapon_damage
 health_regen
 spell_fire_damage
-ele_hammer_damage
 unlock_magic_bomb
 unlock_wizardry
 renamed_or_deleted_stat

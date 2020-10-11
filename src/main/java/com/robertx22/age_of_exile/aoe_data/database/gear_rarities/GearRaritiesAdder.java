@@ -69,6 +69,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         unique.item_value_multi = 2;
         unique.setUniqueFields();
         unique.addToSerializables();
+        unique.announce_in_chat = true;
 
     }
 }

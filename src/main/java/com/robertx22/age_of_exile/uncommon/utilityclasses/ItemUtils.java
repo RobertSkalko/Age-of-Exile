@@ -1,10 +1,19 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,64 +32,47 @@ public class ItemUtils {
 
     }
 
-    public enum Action {
-        SIMULATE, MERGE
-    }
+    public static void tryAnnounceItem(ItemStack stack, PlayerEntity player) {
 
-    public static boolean mergeItems(List<ItemStack> itemsToMove, List<ItemStack> places, Action action) {
-
-        int moved = 0;
-
-        boolean failed = false;
-
-        while (moved < itemsToMove.size() && !itemsToMove.isEmpty() && !failed) {
-
-            for (int i = 0; i < places.size(); i++) {
-                ItemStack place = places.get(i);
-                ItemStack move = itemsToMove.get(0);
-
-                if (canMergeItems(move, place)) {
-                    if (action == Action.MERGE) {
-                        ItemStack merged = mergeItems(move, place);
-                        places.set(i, merged);
-                        itemsToMove.remove(0);
-                    } else {
-                        moved++;
-                    }
-                    break;
-                } else {
-                    failed = true;
-                }
+        try {
+            if (player == null) {
+                return;
+            }
+            if (!ModConfig.get().Server.ENABLE_LOOT_ANNOUNCEMENTS) {
+                return;
             }
 
+            GearItemData gear = Gear.Load(stack);
+
+            if (gear != null) {
+
+                GearRarity rar = (GearRarity) gear.getRarity();
+
+                if (rar.announce_in_chat) {
+
+                    MutableText name = new LiteralText("").append(player.getName())
+                        .formatted(Formatting.BOLD)
+                        .formatted(Formatting.LIGHT_PURPLE);
+
+                    Text txt = name
+                        .append(" found a ")
+                        .append(rar.locName()
+                            .formatted(rar.textFormatting())
+                            .formatted(Formatting.BOLD))
+                        .append(" item!");
+
+                    player.getServer()
+                        .getPlayerManager()
+                        .getPlayerList()
+                        .forEach(x -> x.sendMessage(txt, false));
+
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return itemsToMove.size() == moved;
-    }
-
-    public static ItemStack mergeItems(ItemStack first, ItemStack second) {
-        ItemStack result = second;
-        if (second.isEmpty()) {
-            result = first;
-        } else {
-            result.setCount(second.getCount() + first.getCount());
-        }
-        return result;
-    }
-
-    public static boolean canMergeItems(ItemStack first, ItemStack second) {
-        if (second.isEmpty()) {
-            return true;
-        }
-        if (first.getItem() != second.getItem()) {
-            return false;
-        } else if (first.getDamage() != second.getDamage()) {
-            return false;
-        } else if (first.getCount() + second.getCount() > first.getMaxCount()) {
-            return false;
-        } else {
-            return ItemStack.areTagsEqual(first, second);
-        }
     }
 
 }

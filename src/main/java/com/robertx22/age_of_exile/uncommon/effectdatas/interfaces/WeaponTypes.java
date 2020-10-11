@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public enum WeaponTypes {
     None(false, "none", false),
     Axe(true, "axe", true),
-    Hammer(true, "hammer", true),
+    //Hammer(true, "hammer", true),
     Trident(true, "trident", false),
     Bow(true, "bow", false),
     Sword(true, "sword", true),
