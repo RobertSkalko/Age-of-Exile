@@ -1,6 +1,11 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
@@ -13,6 +18,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class TooltipUtils {
@@ -22,6 +28,87 @@ public class TooltipUtils {
 
     public static MutableText color(Formatting format, MutableText comp) {
         return new LiteralText(format + "").append(comp);
+    }
+
+    public static void addRequirements(List<Text> tip, GearItemData gear, EntityCap.UnitData data) {
+        Formatting reqColor = Formatting.GRAY;
+        Formatting reqNumberColor = Formatting.WHITE;
+
+        if (!gear.meetsStatRequirements(data) || gear.level > data.getLevel()) {
+            reqColor = Formatting.RED;
+            reqNumberColor = Formatting.RED;
+        }
+
+        FinalizedGearStatReq req = gear.getStatRequirements();
+        String reqtext = reqColor + "(Level " + reqNumberColor + gear.level;
+
+        int dex = req.dexterity;
+        int str = req.strength;
+        int intr = req.intelligence;
+
+        if (str > 0) {
+            reqtext += reqColor + ", STR " + reqNumberColor + "" + str;
+        }
+        if (intr > 0) {
+            reqtext += reqColor + ", INT " + reqNumberColor + "" + intr;
+        }
+        if (dex > 0) {
+            reqtext += reqColor + ", DEX " + reqNumberColor + "" + dex;
+        }
+        reqtext += ")";
+
+        tip.add(new SText(""));
+        tip.add(new SText(reqtext));
+        tip.add(new SText(""));
+    }
+
+    public static void addSocketNamesLine(List<Text> tip, GearItemData gear) {
+        Formatting BR = Formatting.GRAY;
+        String runes = "";
+        for (SocketData x : gear.sockets.sockets) {
+            if (!runes.isEmpty()) {
+                runes += " ";
+            }
+
+            if (x.isRune()) {
+                runes += BR + "[" + Formatting.GOLD + x.rune_id.toUpperCase(Locale.ROOT) + BR + "]";
+
+            }
+            if (x.isGem()) {
+                runes += BR + "[" + x.getGem()
+                    .getFormat() + x.getGem()
+                    .getIcon() + BR + "]";
+            }
+
+        }
+
+        tip.add(new LiteralText(Formatting.GOLD + runes).formatted(Formatting.GOLD));
+    }
+
+    public static void addUniqueDesc(List<Text> tip, UniqueGear uniq, GearItemData gear) {
+        String uniqdesc = CLOC.translate(uniq.locDesc());
+
+        List<String> lores = TooltipUtils.cutIfTooLong(uniqdesc);
+        tip.add(new LiteralText(""));
+
+        int i = 0;
+        for (String desc : lores) {
+
+            MutableText comp = new LiteralText(gear.getRarity()
+                .textFormatting() + "");
+
+            if (i == 0) {
+                comp.append("'");
+            }
+            comp.append(desc);
+
+            if (i == lores.size() - 1) {
+                comp.append("'");
+            }
+            i++;
+            tip.add(comp);
+
+        }
     }
 
     public static void addEmpty(List<Text> tooltip) {

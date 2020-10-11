@@ -5,7 +5,8 @@
 What this means for players is that at endgame you can't just dump thousands of currencies on 1 good item. 
 For everyone else, this shouldn't matter at all.
 - added crystal of purification, unseals the item.
-- new reward for leveling. Mobs drop enchanting experience bags
+- new reward for leveling. Mobs drop enchanting experience bags, this is included in the "leveling rewards droprates"
+No idea what else i can put there.
 - added enchanting experience bag (for modpack makers, it has a single int field "exp", set it to any number)
 - armor and hotbar will no longer be dropped on death by default. (SUPER EXPERIMENTAL, PROBABLY BUGGY) 
 I think arpgs where it can take years to get good gear shouldn't allow you to lose it that easily.

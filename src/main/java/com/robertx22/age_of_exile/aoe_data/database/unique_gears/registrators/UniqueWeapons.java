@@ -155,7 +155,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             BaseGearWeapons.WAND.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
                 new StatModifier(20, 45, SpellDamage.getInstance(), ModType.FLAT),
-                new StatModifier(10, 20, ReducedManaCost.getInstance(), ModType.FLAT),
+                new StatModifier(-10, -20, ReducedManaCost.getInstance(), ModType.FLAT),
                 new StatModifier(10, 30, ReducedCooldownStat.getInstance(), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)))
             .build();
@@ -168,8 +168,9 @@ public class UniqueWeapons implements ISlashRegistryInit {
             BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
                 new StatModifier(1, 1, 3, 3, new AttackDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(15, 30, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(15, 25, ProjectileSpeedStat.getInstance(), ModType.FLAT),
+                new StatModifier(10, 25, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(10, 20, ProjectileSpeedStat.getInstance(), ModType.FLAT),
+                new StatModifier(5, 10, ChanceToApplyEffect.CHILL, ModType.FLAT),
                 new StatModifier(10, 20, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(1, 3, ManaOnHit.getInstance(), ModType.FLAT),
                 new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)))

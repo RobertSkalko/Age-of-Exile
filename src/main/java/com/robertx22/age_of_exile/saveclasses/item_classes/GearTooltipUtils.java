@@ -7,26 +7,21 @@ import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
-import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class GearTooltipUtils {
 
@@ -65,35 +60,7 @@ public class GearTooltipUtils {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
 
-        Formatting reqColor = Formatting.GRAY;
-        Formatting reqNumberColor = Formatting.WHITE;
-
-        if (!gear.meetsStatRequirements(data) || gear.level > data.getLevel()) {
-            reqColor = Formatting.RED;
-            reqNumberColor = Formatting.RED;
-        }
-
-        FinalizedGearStatReq req = gear.getStatRequirements();
-        String reqtext = reqColor + "(Level " + reqNumberColor + gear.level;
-
-        int dex = req.dexterity;
-        int str = req.strength;
-        int intr = req.intelligence;
-
-        if (str > 0) {
-            reqtext += reqColor + ", STR " + reqNumberColor + "" + str;
-        }
-        if (intr > 0) {
-            reqtext += reqColor + ", INT " + reqNumberColor + "" + intr;
-        }
-        if (dex > 0) {
-            reqtext += reqColor + ", DEX " + reqNumberColor + "" + dex;
-        }
-        reqtext += ")";
-
-        tip.add(new SText(""));
-        tip.add(new SText(reqtext));
-        tip.add(new SText(""));
+        TooltipUtils.addRequirements(tip, gear, data);
 
         if (gear.implicitStats != null) {
             tip.addAll(gear.implicitStats.GetTooltipString(info, gear));
@@ -145,30 +112,7 @@ public class GearTooltipUtils {
 
         if (gear.is_unique) {
             UniqueGear unique = gear.uniqueStats.getUnique();
-
-            String uniqdesc = CLOC.translate(unique.locDesc());
-
-            List<String> lores = TooltipUtils.cutIfTooLong(uniqdesc);
-            tip.add(new LiteralText(""));
-
-            int i = 0;
-            for (String desc : lores) {
-
-                MutableText comp = new LiteralText(gear.getRarity()
-                    .textFormatting() + "");
-
-                if (i == 0) {
-                    comp.append("'");
-                }
-                comp.append(desc);
-
-                if (i == lores.size() - 1) {
-                    comp.append("'");
-                }
-                i++;
-                tip.add(comp);
-
-            }
+            TooltipUtils.addUniqueDesc(tip, unique, gear);
         }
 
         tip.add(new SText(""));
@@ -188,28 +132,7 @@ public class GearTooltipUtils {
         int socketed = gear.sockets.sockets.size();
 
         if (socketed > 0) {
-
-            Formatting BR = Formatting.GRAY;
-            String runes = "";
-            for (SocketData x : gear.sockets.sockets) {
-                if (!runes.isEmpty()) {
-                    runes += " ";
-                }
-
-                if (x.isRune()) {
-                    runes += BR + "[" + Formatting.GOLD + x.rune_id.toUpperCase(Locale.ROOT) + BR + "]";
-
-                }
-                if (x.isGem()) {
-                    runes += BR + "[" + x.getGem()
-                        .getFormat() + x.getGem()
-                        .getIcon() + BR + "]";
-                }
-
-            }
-
-            tip.add(new LiteralText(Formatting.GOLD + runes).formatted(Formatting.GOLD));
-
+            TooltipUtils.addSocketNamesLine(tip, gear);
         }
 
         tip.add(new LiteralText(""));
