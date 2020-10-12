@@ -21,9 +21,9 @@ public class HunterSpellModStats implements ISlashRegistryInit {
     public void registerAll() {
 
         // init
-        IMBUE_CRIT = new MarkerStat(IMBUE_CRIT_KEY, Spells.TELEPORT, "Critical");
-        IMBUE_ELE = new MarkerStat(IMBUE_ELE_KEY, Spells.TELEPORT, "Elemental");
-        IMBUE_PHYS = new MarkerStat(IMBUE_PHYS_KEY, Spells.TELEPORT, "Physical");
+        IMBUE_CRIT = new MarkerStat(IMBUE_CRIT_KEY, Spells.IMBUE, "Critical");
+        IMBUE_ELE = new MarkerStat(IMBUE_ELE_KEY, Spells.IMBUE, "Elemental");
+        IMBUE_PHYS = new MarkerStat(IMBUE_PHYS_KEY, Spells.IMBUE, "Physical");
 
         // added to serialization automatically if used
 

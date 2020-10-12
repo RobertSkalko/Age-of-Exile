@@ -504,7 +504,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.IMBUE, 20 * 30D))
 
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ARCANE_HUNTER, 20 * 30D)
-                .requiresSpellMod(HunterSpellModStats.IMBUE_CRIT_KEY))
+                .requiresSpellMod(HunterSpellModStats.IMBUE_ELE_KEY))
 
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.SAVAGE_HUNTER, 20 * 30D)
                 .requiresSpellMod(HunterSpellModStats.IMBUE_PHYS_KEY))

@@ -129,8 +129,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(EAGLE_EYE, "Eagle Eye", EffectType.BENEFICIAL)
-            .stat(5, new SpecificElementalWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
-            .stat(5, new SpecificElementalWeaponDamage(WeaponTypes.CrossBow), ModType.FLAT)
+            .stat(5, new SpecificWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
+            .stat(5, new SpecificWeaponDamage(WeaponTypes.CrossBow), ModType.FLAT)
             .stat(10, CriticalHit.getInstance(), ModType.LOCAL_INCREASE)
             .stat(20, CriticalDamage.getInstance(), ModType.LOCAL_INCREASE)
             .build();
