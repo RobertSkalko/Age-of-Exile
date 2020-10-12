@@ -64,7 +64,7 @@ public class FoodEffectBuilder {
             effect = PotionRegister.FOOD_HP;
         } else {
             effect = PotionRegister.FOOD_MANA;
-            value *= 1.75F;
+            value *= 1.5F;
         }
 
         data.effects_given.add(new StatusEffectData(effect, durationSeconds, (int) value));

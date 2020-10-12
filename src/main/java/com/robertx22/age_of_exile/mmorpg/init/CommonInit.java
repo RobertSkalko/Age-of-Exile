@@ -72,7 +72,6 @@ public class CommonInit implements ModInitializer {
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 
         if (ModConfig.get().Server.SAVE_GEAR_AND_HOTBAR_ON_DEATH) {
-
             // dont drop curios on death
             DropRulesCallback.EVENT.register(new DropRulesCallback() {
                 @Override
@@ -82,17 +81,6 @@ public class CommonInit implements ModInitializer {
                 }
             });
 
-
-
-            /*
-            CurioDropsCallback.EVENT.register(new CurioDropsCallback() {
-                @Override
-                public boolean drop(LivingEntity livingEntity, ICuriosItemHandler handler, DamageSource source, Collection<ItemStack> drops, int lootingLevel, boolean recentlyHit) {
-                    return false;
-                }
-            });
-
-             */
         }
 
         uncapHealth();

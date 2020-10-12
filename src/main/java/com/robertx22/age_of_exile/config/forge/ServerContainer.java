@@ -9,7 +9,7 @@ public class ServerContainer {
     public boolean LOG_REGISTRY_ENTRIES = false;
     public boolean GET_STARTER_ITEMS = true;
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
-    public boolean SAVE_GEAR_AND_HOTBAR_ON_DEATH = true;
+    public boolean SAVE_GEAR_AND_HOTBAR_ON_DEATH = false;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
 
     //public double REPAIR_FUEL_NEEDED_MULTI = 1;
