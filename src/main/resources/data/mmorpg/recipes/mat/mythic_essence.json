@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    " b "
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/rare_magic_essence"
+    },
+    "b": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "mmorpg:mat/mythic_essence"
+  }
+}
