@@ -258,6 +258,8 @@ public class SocketStationBlockEntity extends BaseModificationStation {
 
             return true;
         } else {
+            SoundUtils.playSound(world, pos, SoundEvents.ENTITY_VILLAGER_NO, 1, 1);
+
             return false;
         }
     }

@@ -24,7 +24,7 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         if (ctx.showStatRanges()) {
             txt.append(" ")
-                .append(ctx.mod.getRangeToShow(ctx.gear.level));
+                .append(ctx.mod.getRangeToShow(ctx.level));
         }
 
         list.add(txt);
