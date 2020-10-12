@@ -9,13 +9,10 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,18 +25,11 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     }
 
     @Store
-    public String uniqueGUID;
-    @Store
     public List<Integer> percents = new ArrayList<Integer>();
-
-    public UniqueStatsData(String GUID) {
-        this.uniqueGUID = GUID;
-    }
 
     @Override
     public void RerollFully(GearItemData gear) {
         this.RerollNumbers(gear);
-        this.uniqueGUID = gear.unique_id;
     }
 
     @Override
@@ -55,13 +45,6 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
     }
 
-    public MutableText getHeader() {
-        return Words.Unique_Stats
-            .locName()
-            .append(":")
-            .formatted(Formatting.YELLOW);
-    }
-
     @Override
     public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
@@ -70,7 +53,6 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         List<Text> list = new ArrayList<Text>();
 
         list.add(new SText(""));
-        //list.add(getHeader());
 
         GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
@@ -78,9 +60,9 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
     }
 
-    public UniqueGear getUnique() {
+    public UniqueGear getUnique(GearItemData gear) {
         return SlashRegistry.UniqueGears()
-            .get(this.uniqueGUID);
+            .get(gear.unique_id);
 
     }
 
@@ -96,7 +78,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
         int i = 0;
         for (StatModifier mod : SlashRegistry.UniqueGears()
-            .get(uniqueGUID)
+            .get(gear.unique_id)
             .uniqueStats()) {
             list.add(mod.ToExactStat(percents.get(i), gear.level));
             i++;

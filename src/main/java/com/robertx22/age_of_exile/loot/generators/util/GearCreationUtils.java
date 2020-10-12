@@ -63,7 +63,7 @@ public class GearCreationUtils {
                 data.rarity = IRarity.Unique;
                 data.is_unique = true;
                 data.unique_id = unique.GUID();
-                data.uniqueStats = new UniqueStatsData(unique.GUID());
+                data.uniqueStats = new UniqueStatsData();
                 data.uniqueStats.RerollFully(data);
 
             }

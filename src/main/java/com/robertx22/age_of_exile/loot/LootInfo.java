@@ -153,7 +153,6 @@ public class LootInfo {
 
         if (world != null) {
             modifier += SlashRegistry.getDimensionConfig(world).all_drop_multi - 1F;
-
         }
 
         if (mobData != null && victim != null) {

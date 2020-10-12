@@ -242,7 +242,7 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
         } else {
 
             if (isUnique()) {
-                text.append(this.uniqueStats.getUnique()
+                text.append(this.uniqueStats.getUnique(this)
                     .locName());
             } else if (hasRuneWord()) {
                 text.append(this.sockets.getRuneWord()
@@ -389,7 +389,7 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
 
         if (this.isUnique()) {
             try {
-                return this.uniqueStats.getUnique()
+                return this.uniqueStats.getUnique(this)
                     .getTier();
             } catch (Exception e) {
                 e.printStackTrace();

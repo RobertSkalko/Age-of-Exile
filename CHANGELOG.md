@@ -1,6 +1,7 @@
 ## v.1.6.0
 
 - All armors received new icons and models made by Sattekrokodil! Feedback is welcome, especially from texture artists.
+- fix infused iron and other material recipes not existing
 - new system, item sealing. Modifying items adds instability to them, and increases chance they become sealed.
 What this means for players is that at endgame you can't just dump thousands of currencies on 1 good item. 
 For everyone else, this shouldn't matter at all.

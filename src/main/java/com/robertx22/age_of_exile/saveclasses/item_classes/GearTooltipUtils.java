@@ -80,7 +80,6 @@ public class GearTooltipUtils {
 
         gear.affixes.getAllAffixesAndSockets()
             .forEach(x -> stats.addAll(x.GetAllStats(gear)));
-
         stats.addAll(gear.sockets.GetAllStats(gear));
 
         MergedStats merged = new MergedStats(stats, info);
@@ -111,7 +110,7 @@ public class GearTooltipUtils {
         }
 
         if (gear.is_unique) {
-            UniqueGear unique = gear.uniqueStats.getUnique();
+            UniqueGear unique = gear.uniqueStats.getUnique(gear);
             TooltipUtils.addUniqueDesc(tip, unique, gear);
         }
 

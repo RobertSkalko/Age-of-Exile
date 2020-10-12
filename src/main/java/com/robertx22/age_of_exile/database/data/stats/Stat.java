@@ -130,7 +130,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return SlashRegistryType.STAT;
     }
 
-    static Identifier DEFAULT_ICON = new Identifier(Ref.MODID, "textures/gui/stat_icons/default.png");
+    public static Identifier DEFAULT_ICON = new Identifier(Ref.MODID, "textures/gui/stat_icons/default.png");
 
     public Identifier getIconLocation() {
         return new Identifier(Ref.MODID, "textures/gui/stat_icons/" + statGroup.id + "/" + GUID() + ".png");
