@@ -7,6 +7,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
+import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearTypeSuggestions;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,13 +34,8 @@ public class GiveGear {
                                 )
                                     .then(argument(
                                         "rarity",
-                                        IntegerArgumentType.integer(
-                                            SlashRegistry.GearRarities()
-                                                .lowest()
-                                                .Rank() - 1, SlashRegistry.GearRarities()
-                                                .highest()
-                                                .Rank())
-                                    )
+                                        StringArgumentType.string()
+                                    ).suggests(new GearRaritySuggestions())
                                         .then(argument(
                                             "amount",
                                             IntegerArgumentType
@@ -66,8 +62,8 @@ public class GiveGear {
                                                             e,
                                                             "level"
                                                         ),
-                                                    IntegerArgumentType
-                                                        .getInteger(
+                                                    StringArgumentType
+                                                        .getString(
                                                             e,
                                                             "rarity"
                                                         ),
@@ -81,7 +77,7 @@ public class GiveGear {
     }
 
     private static int execute(ServerCommandSource commandSource, PlayerEntity player, String type, int lvl,
-                               int rarity, int amount) {
+                               String rarity, int amount) {
 
         if (Objects.isNull(player)) {
             try {
@@ -98,8 +94,9 @@ public class GiveGear {
             blueprint.level.set(lvl);
 
             if (SlashRegistry.GearRarities()
-                .has(rarity)) {
-                blueprint.rarity.setSpecificRarity(rarity);
+                .isRegistered(rarity)) {
+                blueprint.rarity.set(SlashRegistry.GearRarities()
+                    .get(rarity));
             }
             if (!type.equals("random")) {
                 blueprint.gearItemSlot.set(type);

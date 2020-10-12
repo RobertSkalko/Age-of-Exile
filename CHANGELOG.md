@@ -1,3 +1,7 @@
+### v.1.6.1
+
+* givegear command now uses identifier of rarities instead of their rank. Making it easier to understand.
+
 ## v.1.6.0
 
 - All armors received new icons and models made by Sattekrokodil! Feedback is welcome, especially from texture artists.

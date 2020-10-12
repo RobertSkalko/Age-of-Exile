@@ -115,8 +115,8 @@ curseforge {
         apiKey = curseProp.getProperty('curseKey')
         id = "${curse_id}"
         releaseType = "${curse_release}"
-        changelogType = 'text'
-        changelog = file('CHANGELOG.txt')
+        changelogType = 'markdown'
+        changelog = file('CHANGELOG.md')
         addGameVersion("${project.minecraft_version}")
         addGameVersion("Fabric")
         addGameVersion("Java 8")
