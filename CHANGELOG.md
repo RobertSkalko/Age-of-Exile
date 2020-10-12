@@ -11,7 +11,7 @@ No idea what else i can put there.
 - added enchanting experience bag (for modpack makers, it has a single int field "exp", set it to any number)
 - armor and hotbar will no longer be dropped on death by default. (SUPER EXPERIMENTAL, PROBABLY BUGGY) 
 I think arpgs where it can take years to get good gear shouldn't allow you to lose it that easily.
-Depending on how stable this feature is, it will either become core or removed.
+Depending on how stable this feature i  s, it will either become core or removed.
 - trying out .md changelogs
 - updated chinese lang
 - fix orb of disorder giving infinite affixes
@@ -23,3 +23,4 @@ Depending on how stable this feature is, it will either become core or removed.
 - added rarity loot chat announcements. If player finds a unique item, it will be broadcasted to the server.
 It doesn't work for everything currently, if it's crafted it won't be announced, but loot drops should.
 It's configurable per rarity datapacks and a global config
+- added back the stat ranges on item tooltips.

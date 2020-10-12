@@ -13,7 +13,7 @@ public class DatapackStatAdder implements ISlashRegistryInit {
             .GUID(),
         SpellDamage.getInstance()
             .GUID(),
-        "of Heal Power added to Spell Damage",
+        "of Heal Power to Spell Damage",
         "Adds % of your increased healing to your total spell damage.");
 
     @Override

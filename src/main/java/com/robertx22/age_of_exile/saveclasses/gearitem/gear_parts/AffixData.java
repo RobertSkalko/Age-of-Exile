@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
@@ -53,7 +55,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     @Override
     public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
         List<Text> list = new ArrayList<Text>();
-        GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getAllStatsWithCtx(gear, info).forEach(x -> list.addAll(x.GetTooltipString(info)));
         return list;
     }
 
@@ -79,14 +81,33 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
             .get(baseAffix);
     }
 
+    public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
+        List<TooltipStatWithContext> list = new ArrayList<>();
+        this.BaseAffix()
+            .getTierStats(tier)
+            .forEach(x -> {
+                ExactStatData exact = x.ToExactStat(percent, gear.level);
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), x, gear));
+            });
+        return list;
+    }
+
+    public boolean isValid() {
+        if (!SlashRegistry.Affixes()
+            .isRegistered(this.baseAffix)) {
+            return false;
+        }
+        if (this.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
-        if (!SlashRegistry.Affixes()
-            .isRegistered(this.baseAffix)) {
-            return Arrays.asList();
-        }
-        if (this.isEmpty()) {
+        if (!isValid()) {
             return Arrays.asList();
         }
 

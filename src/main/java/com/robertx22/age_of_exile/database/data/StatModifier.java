@@ -136,7 +136,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
             fmin = (int) GetStat().scale(first_min, lvl);
             fmax = (int) GetStat().scale(first_max, lvl);
         }
-        String text = fmin + "-" + fmax;
+        String text = fmin + "/" + fmax;
 
         if (GetStat().UsesSecondValue() && getModType().isFlat()) {
             int smin = (int) GetStat().scale(second_min, lvl);
@@ -150,7 +150,9 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
             }
         }
 
-        return new LiteralText(text).formatted(Formatting.GREEN);
+        return new LiteralText("(").formatted(Formatting.GREEN)
+            .append(text)
+            .append(")");
 
     }
 

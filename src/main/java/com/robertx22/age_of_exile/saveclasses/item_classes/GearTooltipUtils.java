@@ -76,14 +76,18 @@ public class GearTooltipUtils {
 
         tip.add(new LiteralText(""));
 
-        List<ExactStatData> stats = new ArrayList<>();
+        if (info.useInDepthStats()) {
+            tip.addAll(gear.affixes.GetTooltipString(info, gear));
+            tip.addAll(gear.sockets.GetTooltipString(info, gear));
+        } else {
+            List<ExactStatData> stats = new ArrayList<>();
+            gear.affixes.getAllAffixesAndSockets()
+                .forEach(x -> stats.addAll(x.GetAllStats(gear)));
+            stats.addAll(gear.sockets.GetAllStats(gear));
 
-        gear.affixes.getAllAffixesAndSockets()
-            .forEach(x -> stats.addAll(x.GetAllStats(gear)));
-        stats.addAll(gear.sockets.GetAllStats(gear));
-
-        MergedStats merged = new MergedStats(stats, info);
-        list.add(merged);
+            MergedStats merged = new MergedStats(stats, info);
+            list.add(merged);
+        }
 
         int n = 0;
         for (IGearPartTooltip part : list) {
@@ -110,8 +114,10 @@ public class GearTooltipUtils {
         }
 
         if (gear.is_unique) {
-            UniqueGear unique = gear.uniqueStats.getUnique(gear);
-            TooltipUtils.addUniqueDesc(tip, unique, gear);
+            if (!info.shouldShowDescriptions()) {
+                UniqueGear unique = gear.uniqueStats.getUnique(gear);
+                TooltipUtils.addUniqueDesc(tip, unique, gear);
+            }
         }
 
         tip.add(new SText(""));

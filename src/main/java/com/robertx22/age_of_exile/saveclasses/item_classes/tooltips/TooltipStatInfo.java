@@ -60,7 +60,7 @@ public class TooltipStatInfo implements ITooltipList {
 
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
-        return stat.getTooltipList(this);
+        return stat.getTooltipList(new TooltipStatWithContext(this, null, null));
     }
 
     public static List<TooltipStatInfo> mergeDuplicates(List<TooltipStatInfo> duplicates) {

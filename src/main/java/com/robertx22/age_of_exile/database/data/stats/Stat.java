@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -176,8 +176,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public abstract Elements getElement();
 
     @Environment(EnvType.CLIENT)
-    public List<Text> getTooltipList(TooltipStatInfo info) {
-        return info.tooltipInfo.statTooltipType.impl.getTooltipList(info);
+    public List<Text> getTooltipList(TooltipStatWithContext info) {
+        return info.statinfo.tooltipInfo.statTooltipType.impl.getTooltipList(info);
     }
 
     public final StatGroup statGroup() {

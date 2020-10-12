@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStat
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
@@ -67,7 +68,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     public List<Text> GetTooltipString(TooltipInfo info) {
         Stat stat = getStat();
         TooltipStatInfo statInfo = new TooltipStatInfo(this, info);
-        return new ArrayList<>(stat.getTooltipList(statInfo));
+        return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
     }
 
     public OptScaleExactStat scale() {

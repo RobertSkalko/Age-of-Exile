@@ -10,6 +10,8 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartToolt
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -38,6 +40,28 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
 
     @Factory
     public SocketData() {
+    }
+
+    public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
+        List<TooltipStatWithContext> list = new ArrayList<>();
+
+        if (isGem()) {
+            getGem()
+                .getFor(this.slot_family)
+                .forEach(x -> {
+                    ExactStatData exact = x.ToExactStat(this.percent, this.level);
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), x, gear));
+                });
+        } else if (isRune()) {
+            getRune()
+                .getFor(this.slot_family)
+                .forEach(x -> {
+                    ExactStatData exact = x.ToExactStat(this.percent, this.level);
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), x, gear));
+                });
+        }
+
+        return list;
     }
 
     public boolean isEmpty() {

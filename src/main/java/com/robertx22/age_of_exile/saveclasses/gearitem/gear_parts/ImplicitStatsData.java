@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -20,11 +22,6 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
 
     @Store
     public Integer percent = 0;
-
-    /*
-    @Store
-    public String gear_type = "";
-     */
 
     @Override
     public void RerollFully(GearItemData gear) {
@@ -48,7 +45,7 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
         if (!stats.isEmpty()) {
             list.add(new SText(""));
 
-            GetAllStats(gear)
+            getAllStatsWithCtx(gear, info)
                 .forEach(x -> list.addAll(x.GetTooltipString(info)));
         }
         return list;
@@ -57,6 +54,17 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
     @Override
     public Part getPart() {
         return Part.IMPLICIT_STATS;
+    }
+
+    public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
+        List<TooltipStatWithContext> list = new ArrayList<>();
+        gear.GetBaseGearType()
+            .implicitStats()
+            .forEach(x -> {
+                ExactStatData exact = x.ToExactStat(percent, gear.level);
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), x, gear));
+            });
+        return list;
     }
 
     @Override

@@ -1,21 +1,39 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearAffixesData {
+public class GearAffixesData implements IGearPartTooltip {
 
     @Store
     public List<AffixData> suffixes = new ArrayList<>();
     @Store
     public List<AffixData> prefixes = new ArrayList<>();
+
+    public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
+        List<TooltipStatWithContext> list = new ArrayList<>();
+        this.suffixes.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
+        this.prefixes.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
+        return list;
+    }
+
+    @Override
+    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+        List<Text> list = new ArrayList<Text>();
+        getAllStatsWithCtx(gear, info).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        return list;
+    }
 
     public int getMaxAffixesPerType(GearItemData gear) {
         int affixes = gear.getRarity()
@@ -124,4 +142,8 @@ public class GearAffixesData {
         return getNumberOfPrefixes() + getNumberOfSuffixes();
     }
 
+    @Override
+    public Part getPart() {
+        return Part.AFFIX;
+    }
 }
