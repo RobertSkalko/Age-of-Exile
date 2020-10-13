@@ -1,6 +1,7 @@
 ### v.1.6.1
 
 * givegear command now uses identifier of rarities instead of their rank. Making it easier to understand.
+* fix allocate stat buttons
 
 ## v.1.6.0
 

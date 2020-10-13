@@ -177,14 +177,14 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         int ypos = guiTop + 25;
 
         if (this.isMainScreen()) {
-            buttons.add(new StatButton(Dexterity.INSTANCE, xpos, ypos));
-            buttons.add(new IncreaseStatButton(data, stats, Dexterity.INSTANCE, xpos - 19, ypos + 1));
+            addButton(new StatButton(Dexterity.INSTANCE, xpos, ypos));
+            addButton(new IncreaseStatButton(data, stats, Dexterity.INSTANCE, xpos - 19, ypos + 1));
             ypos += 20;
-            buttons.add(new StatButton(Intelligence.INSTANCE, xpos, ypos));
-            buttons.add(new IncreaseStatButton(data, stats, Intelligence.INSTANCE, xpos - 19, ypos + 1));
+            addButton(new StatButton(Intelligence.INSTANCE, xpos, ypos));
+            addButton(new IncreaseStatButton(data, stats, Intelligence.INSTANCE, xpos - 19, ypos + 1));
             ypos += 20;
-            buttons.add(new StatButton(Strength.INSTANCE, xpos, ypos));
-            buttons.add(new IncreaseStatButton(data, stats, Strength.INSTANCE, xpos - 19, ypos + 1));
+            addButton(new StatButton(Strength.INSTANCE, xpos, ypos));
+            addButton(new IncreaseStatButton(data, stats, Strength.INSTANCE, xpos - 19, ypos + 1));
         }
 
         if (isMainScreen()) {
