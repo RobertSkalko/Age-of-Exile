@@ -13,8 +13,17 @@ public class ModZombie extends ZombieEntity {
 
     public ModZombie(EntityType<? extends ZombieEntity> entityType, World world) {
         super(entityType, world);
+
     }
 
+    /*
+        @Override
+        protected EntityNavigation createNavigation(World world) {
+            return new GriefNavigator(this, world); // TODO REMOVE
+        }
+
+
+     */
     int angryTicks = 0;
 
     @Override
@@ -24,6 +33,12 @@ public class ModZombie extends ZombieEntity {
         }
         angryTicks--;
         super.tick();
+    }
+
+    @Override
+    protected void initGoals() {
+        //this.goalSelector.add(4, new GriefBlocksGoal(Blocks.TORCH, this, 1.0D, 6)); // TODO REMOVE
+        super.initGoals();
     }
 
     @Override

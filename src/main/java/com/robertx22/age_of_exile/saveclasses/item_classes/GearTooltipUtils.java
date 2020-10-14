@@ -144,7 +144,11 @@ public class GearTooltipUtils {
 
         tip.add(TooltipUtils.rarity(rarity));
 
-        tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+        if (stack.isDamageable()) {
+            tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+        } else {
+            tip.add(new SText(Formatting.GRAY + "Unbreakable"));
+        }
 
         if (gear.sealed) {
             tip.add(Words.Sealed.locName()

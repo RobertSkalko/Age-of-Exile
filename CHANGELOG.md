@@ -1,3 +1,9 @@
+### v.1.6.2
+
++ compatible item datapack customization fields are now optional and have defaults
++ durability tooltip now says unbrekable if item is unbreakable.
++ added more hp to npcs and less to animals
+
 ### v.1.6.1
 
 * givegear command now uses identifier of rarities instead of their rank. Making it easier to understand.

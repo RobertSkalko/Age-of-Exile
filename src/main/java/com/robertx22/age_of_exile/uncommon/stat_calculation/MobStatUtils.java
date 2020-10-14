@@ -7,10 +7,10 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -27,10 +27,6 @@ import net.minecraft.world.World;
 import java.util.stream.Collectors;
 
 public class MobStatUtils {
-
-    // attribute copied from enderman or zombifiedpiglin, idk which attribute it is..
-
-    static int spelldmg = 12;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
@@ -106,7 +102,7 @@ public class MobStatUtils {
 
         float hpToAdd = EntityUtils.getVanillaMaxHealth(en) * rar.ExtraHealthMulti();
 
-        hpToAdd += ModConfig.get().Server.EXTRA_MOB_STATS_PER_LEVEL * hpToAdd;
+        hpToAdd += (ModConfig.get().Server.EXTRA_MOB_STATS_PER_LEVEL * lvl) * hpToAdd;
 
         if (hpToAdd < 0) {
             hpToAdd = 0;
@@ -116,8 +112,8 @@ public class MobStatUtils {
             .addFlat(hpToAdd, lvl);
 
         unit.getStatInCalculation(Armor.GUID)
-            .addFlat(Armor.getInstance()
-                .valueNeededToReachMaximumPercentAtLevelOne() / 4 * rar.StatMultiplier(), lvl);
+            .addFlat((Armor.getInstance()
+                .valueNeededToReachMaximumPercentAtLevelOne() / 4) * rar.StatMultiplier(), lvl);
         unit.getStatInCalculation(CriticalHit.GUID)
             .addFlat(5 * rar.DamageMultiplier(), lvl);
         unit.getStatInCalculation(CriticalDamage.GUID)

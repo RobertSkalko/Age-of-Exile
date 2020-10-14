@@ -23,6 +23,7 @@
     "ItemStackMixin",
     "KeyboardMixin",
     "MobNameTagMixin",
+    "ParticlePacketMixin",
     "PlayerInventoryMixin"
   ],
   "injectors": {

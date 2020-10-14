@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -30,7 +30,6 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(4, 8, CriticalHit.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(2, 4, CriticalHit.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(1, 2F, CriticalHit.getInstance(), ModType.FLAT))
-
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();

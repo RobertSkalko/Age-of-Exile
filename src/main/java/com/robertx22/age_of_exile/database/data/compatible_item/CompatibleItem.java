@@ -131,17 +131,35 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         obj.max_rarity = rarity.get("max_rarity")
             .getAsInt();
 
-        JsonObject misc = json.getAsJsonObject("misc");
-        obj.weight = misc.get("weight")
-            .getAsInt();
-        obj.can_be_salvaged = misc.get("can_be_salvaged")
-            .getAsBoolean();
+        if (json.has("misc")) {
+            JsonObject misc = json.getAsJsonObject("misc");
+            if (misc.has("weight")) {
+                obj.weight = misc.get("weight")
+                    .getAsInt();
+            } else {
+                obj.weight = 1000;
+            }
+            if (misc.has("can_be_salvaged")) {
+                obj.can_be_salvaged = misc.get("can_be_salvaged")
+                    .getAsBoolean();
+            } else {
+                obj.can_be_salvaged = false;
+            }
+        } else {
+            obj.can_be_salvaged = false;
+            obj.weight = 1000;
+        }
 
-        JsonObject unique = json.getAsJsonObject("unique");
-        obj.chance_to_become_unique = unique.get("chance_to_become_unique")
-            .getAsFloat();
-        obj.unique_id = unique.get("unique_id")
-            .getAsString();
+        if (json.has("unique")) {
+            JsonObject unique = json.getAsJsonObject("unique");
+            obj.chance_to_become_unique = unique.get("chance_to_become_unique")
+                .getAsFloat();
+            obj.unique_id = unique.get("unique_id")
+                .getAsString();
+        } else {
+            obj.chance_to_become_unique = 0;
+            obj.unique_id = "";
+        }
 
         return obj;
     }

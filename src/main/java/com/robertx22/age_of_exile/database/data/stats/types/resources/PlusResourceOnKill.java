@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.resource.ResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -24,6 +25,7 @@ public class PlusResourceOnKill extends Stat implements IStatEffects {
         this.statRestored = statRestored;
         this.effect = effect;
         this.statGroup = StatGroup.RESTORATION;
+        this.scaling = StatScaling.SCALING;
     }
 
     @Override
@@ -53,7 +55,7 @@ public class PlusResourceOnKill extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return statRestored.locNameForLangFile() + " Restored on Kill";
+        return statRestored.locNameForLangFile() + " on Kill";
     }
 
     @Override

@@ -106,9 +106,9 @@ public class AreaModifiers {
     public AreaModifier OF_AMBUSHES = of("of_ambushes", 500, Affix.Type.suffix, "Of Ambushes",
         Arrays.asList(ENTITIES.FIRE_CHICKEN, ENTITIES.NATURE_CHICKEN, ENTITIES.WATER_CHICKEN, ENTITIES.THUNDER_CHICKEN), new AreaRequirement().whitelist(Category.FOREST, Category.JUNGLE))
         .addStats(
-            new StatModifier(15, 15, ExtraMobDropsStat.getInstance(), ModType.FLAT)
+            new StatModifier(10, 10, ExtraMobDropsStat.getInstance(), ModType.FLAT)
         )
-        .addEffects(new StatusEffectInstance(StatusEffects.SPEED, Integer.MAX_VALUE, 2));
+        .addEffects(new StatusEffectInstance(StatusEffects.SPEED, 20 * 60 * 5, 1));
 
     AreaModifier of(String id, int weight, Affix.Type affixType, String locName, List<EntityType> mobSpawns, AreaRequirement canUseBiome) {
 
