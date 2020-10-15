@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.MinMax;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 
 public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
     public static GearRarity SERIALIZER = new GearRarity();
@@ -28,7 +29,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     }
 
     public Part affixes;
-    public Part sockets;
+    public Part sockets = new GearRarity.Part(0, 0, 0);
 
     public int max_worn_at_once = -1;
 
@@ -44,7 +45,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public float item_value_multi;
     public float stat_req_multi;
     public int unidentified_chance;
-    public MinMax spawn_durability_hit;
+    public MinMax spawn_durability_hit = new MinMax(60, 80);
     public boolean announce_in_chat = false;
 
     @Override
@@ -117,4 +118,13 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
         return default_stat_percents;
     }
 
+    public boolean hasHigherRarity() {
+        return SlashRegistry.GearRarities()
+            .isRegistered(higher_rar);
+    }
+
+    public GearRarity getHigherRarity() {
+        return SlashRegistry.GearRarities()
+            .get(higher_rar);
+    }
 }

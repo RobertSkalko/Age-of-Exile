@@ -4,8 +4,9 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
@@ -15,6 +16,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
+import com.robertx22.library_of_exile.utils.CLOC;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.fabricmc.api.EnvType;
@@ -33,7 +35,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ICommonDataItem<IGearRarity> {
+public class GearItemData implements ICommonDataItem<GearRarity> {
 
     // Stats
     @Store
@@ -155,7 +157,7 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
     }
 
     @Override
-    public IGearRarity getRarity() {
+    public GearRarity getRarity() {
         return SlashRegistry.GearRarities()
             .get(this.rarity);
     }
@@ -195,75 +197,126 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
             .get(gear_type);
     }
 
-    public MutableText GetDisplayName(ItemStack stack) {
+    public List<MutableText> GetDisplayName(ItemStack stack) {
 
+        try {
+            Formatting format = this.getRarity()
+                .textFormatting();
+
+            if (!isIdentified()) {
+                MutableText text = new SText(format + "")
+                    .append(Words.Unidentified.locName())
+                    .append(" ")
+                    .append(getRarity().locName())
+                    .append(" ")
+                    .append(GetBaseGearType().locName());
+
+                return Arrays.asList(text);
+            }
+
+            if (useFullAffixedName()) {
+                return getFullAffixedName();
+            } else {
+                if (isUnique()) {
+                    return getUniqueName();
+                } else if (hasRuneWord()) {
+                    return getRuneWordName();
+                } else {
+                    return getTooManyAffixesName();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Arrays.asList();
+    }
+
+    private List<MutableText> getFullAffixedName() {
+        List<MutableText> list = new ArrayList<>();
         Formatting format = this.getRarity()
             .textFormatting();
 
-        if (this.hasRuneWord()) {
-            format = Formatting.GOLD;
+        MutableText text = new LiteralText(format + "");
+
+        if (affixes.hasPrefix()) {
+
+            AffixData prefix = affixes.prefixes.get(0);
+
+            text.append(format + "")
+                .append(prefix.BaseAffix()
+                    .locName()
+                    .append(" "));
         }
+        text.append(GetBaseGearType().locName()
+            .formatted(format));
 
-        if (!isIdentified()) {
-            MutableText text = new SText(format + "")
-                .append(Words.Unidentified.locName())
-                .append(" ")
-                .append(getRarity().locName())
-                .append(" ")
-                .append(GetBaseGearType().locName());
+        list.add(text);
 
-            return text;
+        if (affixes.hasSuffix()) {
+            AffixData suffix = affixes.suffixes.get(0);
+            list.add(new LiteralText(format + "").append(suffix.BaseAffix()
+                .locName())
+                .formatted(format));
         }
+        return list;
 
-        MutableText text = new LiteralText(format + "[");
+    }
 
-        if (useAffixedName()) {
+    private List<MutableText> getUniqueName() {
+        List<MutableText> list = new ArrayList<>();
+        Formatting format = this.getRarity()
+            .textFormatting();
 
-            if (affixes.hasPrefix()) {
+        UniqueGear uniq = this.uniqueStats.getUnique(this);
+        list.add(new LiteralText(format + "").append(uniq.locName()));
+        list.add(new LiteralText(format + "").append(GetBaseGearType().locName()
+            .formatted(format)));
+        return list;
+    }
 
-                AffixData prefix = affixes.prefixes.get(0);
+    private List<MutableText> getRuneWordName() {
+        List<MutableText> list = new ArrayList<>();
+        Formatting format = this.getRarity()
+            .textFormatting();
+        list.add(new LiteralText(format + "").append(this.sockets.getRuneWord()
+            .locName()));
+        list.add(new LiteralText(format + "").append(GetBaseGearType().locName()
+            .formatted(format)));
+        return list;
+    }
 
-                text.append(format + "")
-                    .append(prefix.BaseAffix()
-                        .locName()
-                        .append(" "));
-            }
-            text.append(GetBaseGearType().locName()
+    private List<MutableText> getTooManyAffixesName() {
+        List<MutableText> list = new ArrayList<>();
+        Formatting format = this.getRarity()
+            .textFormatting();
+
+        Words prefix = RareItemAffixNames.getPrefix(this);
+        Words suffix = RareItemAffixNames.getSuffix(this);
+
+        if (prefix != null && suffix != null) {
+
+            MutableText txt = new LiteralText(format + "");
+
+            txt.append(new LiteralText(format + "").append(prefix.locName())
+                .append(" "));
+
+            txt.append(new LiteralText(format + "").append(suffix.locName())
                 .formatted(format));
 
-            if (affixes.hasSuffix()) {
-                AffixData suffix = affixes.suffixes.get(0);
+            String translated = CLOC.translate(txt) + GetBaseGearType().translate();
 
-                text.append(format + " ")
-                    .append(suffix.BaseAffix()
-                        .locName())
-                    .append("");
-            }
-        } else {
-
-            if (isUnique()) {
-                text.append(this.uniqueStats.getUnique(this)
-                    .locName());
-            } else if (hasRuneWord()) {
-                text.append(this.sockets.getRuneWord()
-                    .locName());
+            if (translated.length() > 30) {
+                list.add(txt);
+                list.add(new LiteralText(format + " ").append(GetBaseGearType().locName()));
             } else {
-                Words prefix = RareItemAffixNames.getPrefix(this);
-                Words suffix = RareItemAffixNames.getSuffix(this);
-
-                if (prefix != null && suffix != null) {
-                    text.append(prefix.locName())
-                        .append(" ")
-                        .append(suffix.locName());
-                }
+                txt.append(new LiteralText(" ").append(GetBaseGearType().locName()));
+                list.add(txt);
             }
 
-            text.append(" ")
-                .append(GetBaseGearType().locName());
+            return list;
         }
 
-        return text.append("]")
-            .formatted(format);
+        return list;
 
     }
 
@@ -271,7 +324,7 @@ public class GearItemData implements ICommonDataItem<IGearRarity> {
         return sockets.getRuneWord() != null;
     }
 
-    private boolean useAffixedName() {
+    private boolean useFullAffixedName() {
 
         if (isUnique()) {
             return false;

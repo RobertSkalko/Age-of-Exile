@@ -38,7 +38,7 @@ public class GearTooltipUtils {
 
         tip.clear();
 
-        tip.add(gear.GetDisplayName(stack));
+        tip.addAll(gear.GetDisplayName(stack));
 
         if (!gear.isIdentified()) {
 

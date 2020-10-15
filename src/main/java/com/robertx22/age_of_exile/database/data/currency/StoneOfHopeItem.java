@@ -41,7 +41,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public int getWeight() {
-        return 75;
+        return 30;
     }
 
     @Override
@@ -51,7 +51,8 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
         GearBlueprint blueprint = new GearBlueprint(gear.level);
         blueprint.gearItemSlot.set(gear.gear_type);
-        blueprint.rarity.minRarity = gear.rarity + 1;
+        blueprint.rarity.set(gear.getRarity()
+            .getHigherRarity());
 
         GearItemData newgear = blueprint.createData();
         gear.WriteOverDataThatShouldStay(newgear);
@@ -67,7 +68,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_NOT_HIGHEST_RARITY, SimpleGearLocReq.IS_NOT_UNIQUE);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_HIGHER_RARITY, SimpleGearLocReq.IS_NOT_HIGHEST_RARITY, SimpleGearLocReq.IS_NOT_UNIQUE);
     }
 
     @Override
@@ -94,9 +95,9 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(ModRegistry.CURRENCIES.STONE_OF_HOPE)
             .input('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
+            .input('t', ModRegistry.CURRENCIES.CROWN_OF_DISCOVERY)
             .input('v', Items.DIAMOND)
-            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
+            .input('o', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
             .pattern("#o#")
             .pattern("#t#")
             .pattern("vvv")

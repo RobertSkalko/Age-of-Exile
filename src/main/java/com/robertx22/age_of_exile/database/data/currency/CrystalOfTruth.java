@@ -33,9 +33,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
     }
 
     public CrystalOfTruth() {
-
         super(ID);
-
     }
 
     @Override
@@ -45,7 +43,8 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
 
         GearBlueprint gearPrint = new GearBlueprint(gear.level);
         gearPrint.gearItemSlot.set(gear.gear_type);
-        gearPrint.rarity.setSpecificRarity(IRarity.Rare);
+        gearPrint.rarity.minRarity = gear.getRarity()
+            .getHigherRarity().rank;
         gearPrint.level.set(gear.level);
 
         gearPrint.isUniquePart.set(false);
@@ -63,7 +62,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_COMMON);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_HIGHER_RARITY, SimpleGearLocReq.IS_COMMON);
     }
 
     @Override
@@ -83,7 +82,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
 
     @Override
     public String locDescForLangFile() {
-        return "Transform Common Item into a Rare";
+        return "Transform Common Item into random higher rarity.";
     }
 
     @Override

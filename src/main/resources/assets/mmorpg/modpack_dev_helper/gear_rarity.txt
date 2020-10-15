@@ -3,5 +3,9 @@ This registry is modify-able through datapacks.
 magical
 common
 relic
+mythic
+legendary
 rare
 unique
+epic
+antique

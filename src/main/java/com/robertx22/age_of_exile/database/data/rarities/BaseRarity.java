@@ -25,6 +25,7 @@ public abstract class BaseRarity implements Rarity {
     public int rank;
     public int weight;
     public String text_format;
+    public String higher_rar = "";
 
     public transient String loc_name;
     public String guid;
@@ -70,7 +71,7 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public void setCommonFields() {
-        this.guid = "common";
+        this.guid = IRarity.COMMON_ID;
         this.loc_name = "Common";
         this.text_format = Formatting.GRAY.name();
         this.rank = IRarity.Common;
@@ -78,7 +79,7 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public void setMagicalFields() {
-        this.guid = "magical";
+        this.guid = IRarity.MAGICAL_ID;
         this.loc_name = "Magical";
         this.text_format = Formatting.GREEN.name();
 
@@ -87,7 +88,7 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public void setRareFields() {
-        this.guid = "rare";
+        this.guid = IRarity.RARE_ID;
         this.loc_name = "Rare";
         this.text_format = Formatting.YELLOW.name();
 
@@ -96,7 +97,7 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public void setEpicFields() {
-        this.guid = "epic";
+        this.guid = IRarity.EPIC_ID;
         this.loc_name = "Epic";
         this.text_format = Formatting.LIGHT_PURPLE.name();
 
@@ -105,11 +106,20 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public void setLegendaryFields() {
-        this.guid = "legendary";
+        this.guid = IRarity.LEGENDARY_ID;
         this.loc_name = "Legendary";
         this.text_format = Formatting.GOLD.name();
 
         this.rank = IRarity.Legendary;
+        onSetFields();
+    }
+
+    public void setMythicFields() {
+        this.guid = IRarity.MYTHIC_ID;
+        this.loc_name = "Mythic";
+        this.text_format = Formatting.DARK_PURPLE.name();
+
+        this.rank = IRarity.Mythic;
         onSetFields();
     }
 
@@ -126,8 +136,15 @@ public abstract class BaseRarity implements Rarity {
         this.guid = "relic";
         this.loc_name = "Relic";
         this.text_format = Formatting.GOLD.name();
-
         this.rank = IRarity.Relic;
+        onSetFields();
+    }
+
+    public void setAntiqueFields() {
+        this.guid = "antique";
+        this.loc_name = "Antique";
+        this.text_format = Formatting.WHITE.name();
+        this.rank = IRarity.Antique;
         onSetFields();
     }
 

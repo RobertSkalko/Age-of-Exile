@@ -45,7 +45,8 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
         GearBlueprint gearPrint = new GearBlueprint(gear.level);
         gearPrint.gearItemSlot.set(gear.gear_type);
-        gearPrint.rarity.setSpecificRarity(IRarity.Magical);
+        gearPrint.rarity.set(gear.getRarity()
+            .getHigherRarity());
         gearPrint.level.set(gear.level);
 
         gearPrint.isUniquePart.set(false);
@@ -63,7 +64,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_COMMON);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_HIGHER_RARITY, SimpleGearLocReq.IS_COMMON);
     }
 
     @Override
@@ -83,7 +84,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public String locDescForLangFile() {
-        return "Transform Common Item into Magical";
+        return "Transform Common Item into higher rarity";
     }
 
     @Override

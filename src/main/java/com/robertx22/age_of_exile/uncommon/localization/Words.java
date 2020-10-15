@@ -290,7 +290,7 @@ public enum Words implements IAutoLocName {
     LvlLessThanMax("Lvl Less than max lvl"),
 
     NoSuffix("Doesn't have suffix"),
-
+    HasHigherRarity("Has higher rarity"),
     CantGetMoreAffixes("Can't get more affixes."),
 
     HasEmptySockets("Has Empty Sockets"),
