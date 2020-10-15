@@ -16,7 +16,7 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
     RarityRegistryContainer<GearRarity> container;
 
     public List<GearRarity> possible = SlashRegistry.GearRarityGroups()
-        .get(GearRarityGroupAdder.NORMAL_KEY.GUID())
+        .get(GearRarityGroupAdder.NON_UNIQUE_KEY.GUID())
         .getRarities();
 
     public float chanceForHigherRarity = 0;

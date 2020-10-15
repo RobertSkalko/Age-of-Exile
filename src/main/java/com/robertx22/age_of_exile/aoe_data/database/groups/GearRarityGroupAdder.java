@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class GearRarityGroupAdder implements ISlashRegistryInit {
 
-    public static DataGenKey<GearRarityGroup> NORMAL_KEY = new DataGenKey<GearRarityGroup>("normal");
+    public static DataGenKey<GearRarityGroup> NON_UNIQUE_KEY = new DataGenKey<GearRarityGroup>("non_unique");
     public static DataGenKey<GearRarityGroup> LOW_KEY = new DataGenKey<GearRarityGroup>("low");
 
     @Override
@@ -22,7 +22,7 @@ public class GearRarityGroupAdder implements ISlashRegistryInit {
             .stream()
             .filter(x -> !x.isUnique())
             .map(x -> x.GUID())
-            .collect(Collectors.toList()), NORMAL_KEY.GUID());
+            .collect(Collectors.toList()), NON_UNIQUE_KEY.GUID());
         normal.addToSerializables();
 
         GearRarityGroup low = new GearRarityGroup(Arrays.asList(IRarity.COMMON_ID, IRarity.MAGICAL_ID), LOW_KEY.GUID());

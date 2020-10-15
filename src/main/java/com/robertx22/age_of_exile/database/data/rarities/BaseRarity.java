@@ -133,7 +133,7 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public void setRelicFields() {
-        this.guid = "relic";
+        this.guid = IRarity.RELID_ID;
         this.loc_name = "Relic";
         this.text_format = Formatting.GOLD.name();
         this.rank = IRarity.Relic;

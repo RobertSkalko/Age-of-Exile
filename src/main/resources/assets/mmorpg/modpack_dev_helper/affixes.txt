@@ -19,6 +19,7 @@ resolute
 thunder_wep_dmg_jewelry
 valkyrie
 of_brutality
+of_affluence
 water_res
 protective
 agile
@@ -29,6 +30,7 @@ nature_ele_dmg_jewelry
 yetis
 snakes
 of_the_wind
+of_treasure
 water_wep_dmg_jewelry
 of_the_troll
 of_absorption
@@ -48,4 +50,5 @@ virile
 of_good_aim
 fire_res
 drakes
+archeologists
 thunder_res

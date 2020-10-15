@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.config.forge.parts;
 
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -27,7 +26,7 @@ public class AutoCompatibleItemConfig {
     public int MAX_TOTAL_STATS = 200;
 
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TIER_0 = new AutoConfigItemType(0, 0.15F, 10).maxRarity(IRarity.Common)
+    public AutoConfigItemType TIER_0 = new AutoConfigItemType(0, 0.15F, 5)
         .noSalvage();
     @ConfigEntry.Gui.CollapsibleObject
     public AutoConfigItemType TIER_1 = new AutoConfigItemType(0.15F, 0.25F, 10).noSalvage();

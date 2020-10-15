@@ -9,6 +9,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -72,6 +77,54 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(0.05F, 0.1F, AllAttributes.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Weight(50)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_ease")
+            .Named("Of Ease")
+            .tier(1, new StatModifier(20, 30, new ReducedAllStatReqOnItem(), ModType.FLAT))
+            .tier(2, new StatModifier(15, 20, new ReducedAllStatReqOnItem(), ModType.FLAT))
+            .tier(3, new StatModifier(10, 15, new ReducedAllStatReqOnItem(), ModType.FLAT))
+            .includesTags(SlotTag.intelligence, SlotTag.dexterity, SlotTag.strength)
+            .Weight(200)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_the_troll")
+            .Named("Of The Troll")
+            .tier(1, new StatModifier(1, 2, HealthRegen.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.5F, 1, HealthRegen.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.3F, 0.5F, HealthRegen.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.jewelry_family, SlotTag.plate)
+            .Weight(200)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_spirit_markings")
+            .Named("Of Spirit Markings")
+            .tier(1, new StatModifier(1, 2, MagicShieldRegen.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.5F, 1, MagicShieldRegen.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.3F, 0.5F, MagicShieldRegen.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
+            .Weight(200)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_treasure")
+            .Named("Of Treasure")
+            .tier(1, new StatModifier(10, 15F, MagicFind.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(7, 10, MagicFind.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 7, MagicFind.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.jewelry_family)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_affluence")
+            .Named("Of Affluence")
+            .tier(1, new StatModifier(7, 10, IncreasedItemQuantity.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(5, 7, IncreasedItemQuantity.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(3, 5, IncreasedItemQuantity.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();
 

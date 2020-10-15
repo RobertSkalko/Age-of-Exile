@@ -40,7 +40,7 @@ public class CompatibleItems {
                     String id = Registry.ITEM.getId(item)
                         .toString();
 
-                    c.rarities = GearRarityGroupAdder.NORMAL_KEY.GUID();
+                    c.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
 
                     c.guid = id;
                     c.item_id = id;
@@ -68,7 +68,7 @@ public class CompatibleItems {
                     c.item_type = uniq.getBaseGearType()
                         .GUID();
 
-                    c.rarities = GearRarityGroupAdder.NORMAL_KEY.GUID();
+                    c.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
 
                     c.chance_to_become_unique = 100;
                     c.unique_id = uniq.GUID();

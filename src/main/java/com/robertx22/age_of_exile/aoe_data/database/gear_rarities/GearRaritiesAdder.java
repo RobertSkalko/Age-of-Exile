@@ -75,6 +75,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         legendary.item_tier_power = 2F;
         legendary.item_value_multi = 2F;
         legendary.higher_rar = IRarity.MYTHIC_ID;
+        legendary.announce_in_chat = true;
         legendary.setLegendaryFields();
         legendary.addToSerializables();
 
@@ -87,6 +88,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mythic.weight = 30;
         mythic.item_tier_power = 2.5F;
         mythic.item_value_multi = 3F;
+        mythic.announce_in_chat = true;
         mythic.setMythicFields();
         mythic.addToSerializables();
 
@@ -99,6 +101,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         antique.weight = 500;
         antique.item_tier_power = 1.2F;
         antique.item_value_multi = 1.2F;
+        antique.higher_rar = IRarity.RELID_ID;
         antique.setAntiqueFields();
         antique.addToSerializables();
 
@@ -111,6 +114,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         relic.weight = 150;
         relic.item_tier_power = 1.5F;
         relic.item_value_multi = 1.5F;
+        relic.announce_in_chat = true;
         relic.setRelicFields();
         relic.addToSerializables();
 

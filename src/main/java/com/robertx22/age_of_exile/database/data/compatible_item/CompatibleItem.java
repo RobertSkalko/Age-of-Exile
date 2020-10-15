@@ -124,7 +124,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
             obj.rarities = json.get("rarities")
                 .getAsString();
         } else {
-            obj.rarities = GearRarityGroupAdder.NORMAL_KEY.GUID();
+            obj.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
         }
 
         if (json.has("misc")) {

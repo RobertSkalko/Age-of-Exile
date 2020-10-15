@@ -16,9 +16,6 @@ public class AutoConfigItemType {
     public double POWER_REQ_MIN;
     public double POWER_REQ_MAX;
 
-    public int MIN_RARITY = 0; // TODO REWORK THIS
-    public int MAX_RARITY = 100;
-
     public boolean CAN_BE_SALVAGED = true;
 
     public AutoConfigItemType(float reqmin, float req, int maxlvl) {
@@ -29,11 +26,6 @@ public class AutoConfigItemType {
 
     public AutoConfigItemType noSalvage() {
         this.CAN_BE_SALVAGED = false;
-        return this;
-    }
-
-    public AutoConfigItemType maxRarity(int rar) {
-        this.MAX_RARITY = rar;
         return this;
     }
 
@@ -64,7 +56,7 @@ public class AutoConfigItemType {
                         }
 
                         CompatibleItem comp = CompatibleItem.getDefaultAuto(item, x);
-                        comp.rarities = GearRarityGroupAdder.NORMAL_KEY.GUID();
+                        comp.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
                         comp.can_be_salvaged = CAN_BE_SALVAGED;
                         comp.item_type = x.GUID();
 
