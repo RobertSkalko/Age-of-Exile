@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 
-public class UniqueGearPart extends BlueprintPart<UniqueGear> {
+public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
 
     public UniqueGearPart(GearBlueprint blueprint) {
         super(blueprint);

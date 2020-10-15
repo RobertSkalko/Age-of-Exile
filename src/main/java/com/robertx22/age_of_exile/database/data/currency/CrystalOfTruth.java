@@ -43,8 +43,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
 
         GearBlueprint gearPrint = new GearBlueprint(gear.level);
         gearPrint.gearItemSlot.set(gear.gear_type);
-        gearPrint.rarity.minRarity = gear.getRarity()
-            .getHigherRarity().rank;
+        gearPrint.rarity.possible.removeIf(x -> x.equals(gear.getRarity()));
         gearPrint.level.set(gear.level);
 
         gearPrint.isUniquePart.set(false);

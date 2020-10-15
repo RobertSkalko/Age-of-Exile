@@ -1,22 +1,24 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
+import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
-import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class RarityPart extends BlueprintPart<Rarity> {
+public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
 
-    RarityRegistryContainer container;
+    RarityRegistryContainer<GearRarity> container;
 
-    public int minRarity = -1;
-    public int maxRarity = 5;
+    public List<GearRarity> possible = SlashRegistry.GearRarityGroups()
+        .get(GearRarityGroupAdder.NORMAL_KEY.GUID())
+        .getRarities();
+
     public float chanceForHigherRarity = 0;
 
     public void setupChances(LootInfo info) {
@@ -30,27 +32,21 @@ public class RarityPart extends BlueprintPart<Rarity> {
         }
     }
 
-    public RarityPart(ItemBlueprint blueprint) {
+    public GearRarityPart(GearBlueprint blueprint) {
         super(blueprint);
         this.container = blueprint.getRarityContainer();
     }
 
     @Override
-    protected Rarity generateIfNull() {
+    protected GearRarity generateIfNull() {
 
-        List<Rarity> possible = (List<Rarity>) container.getAllRarities()
-            .stream()
-            .filter(x -> {
-                int r = ((Rarity) x).Rank();
-                return r >= minRarity && r <= maxRarity;
-            })
-            .collect(Collectors.toList());
-
-        Rarity rar = RandomUtils.weightedRandom(possible);
+        GearRarity rar = RandomUtils.weightedRandom(possible);
 
         if (rar.Rank() < container.maxNonUnique()
             .Rank() && RandomUtils.roll(chanceForHigherRarity)) {
-            rar = container.getHigherRarity(rar);
+            if (rar.hasHigherRarity() && possible.contains(rar.getHigherRarity())) {
+                rar = rar.getHigherRarity();
+            }
         }
 
         return rar;

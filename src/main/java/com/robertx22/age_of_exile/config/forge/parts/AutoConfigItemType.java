@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.config.forge.parts;
 
+import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -15,7 +16,7 @@ public class AutoConfigItemType {
     public double POWER_REQ_MIN;
     public double POWER_REQ_MAX;
 
-    public int MIN_RARITY = 0;
+    public int MIN_RARITY = 0; // TODO REWORK THIS
     public int MAX_RARITY = 100;
 
     public boolean CAN_BE_SALVAGED = true;
@@ -63,8 +64,7 @@ public class AutoConfigItemType {
                         }
 
                         CompatibleItem comp = CompatibleItem.getDefaultAuto(item, x);
-                        comp.max_rarity = MAX_RARITY;
-                        comp.min_rarity = MIN_RARITY;
+                        comp.rarities = GearRarityGroupAdder.NORMAL_KEY.GUID();
                         comp.can_be_salvaged = CAN_BE_SALVAGED;
                         comp.item_type = x.GUID();
 

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 
-public class TierPart extends BlueprintPart<Integer> {
+public class TierPart extends BlueprintPart<Integer, ItemBlueprint> {
 
     public int number;
     public boolean isRandom = true;

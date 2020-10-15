@@ -3,15 +3,15 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 
-public abstract class BlueprintPart<T> {
+public abstract class BlueprintPart<T, C extends ItemBlueprint> {
 
     private T part;
 
-    ItemBlueprint blueprint;
+    C blueprint;
 
     public boolean canBeNull = false;
 
-    public BlueprintPart(ItemBlueprint blueprint) {
+    public BlueprintPart(C blueprint) {
         this.blueprint = blueprint;
     }
 

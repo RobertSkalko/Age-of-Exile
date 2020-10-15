@@ -3,11 +3,11 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
+import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 
-public class GearItemSlotPart extends BlueprintPart<BaseGearType> {
+public class GearItemSlotPart extends BlueprintPart<BaseGearType, GearBlueprint> {
 
-    public GearItemSlotPart(ItemBlueprint blueprint) {
+    public GearItemSlotPart(GearBlueprint blueprint) {
         super(blueprint);
     }
 

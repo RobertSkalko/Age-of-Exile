@@ -20,27 +20,6 @@ public class RarityRegistryContainer<T extends Rarity> extends SlashRegistryCont
             .containsKey(rar);
     }
 
-    public T getHigherRarity(T rar) {
-
-        for (T check : getAllRarities()) {
-            if (check.Rank() > rar.Rank()) {
-                return check;
-            }
-
-        }
-        return rar;
-
-    }
-
-    public T getLowerRarity(T rar) {
-        for (T check : getAllRarities()) {
-            if (check.Rank() < rar.Rank()) {
-                return check;
-            }
-        }
-        return rar;
-    }
-
     public final HashMap<Integer, T> getMap() {
         HashMap<Integer, T> map = new HashMap<>();
         getList().forEach(x -> map.put(x.Rank(), x));
@@ -53,7 +32,7 @@ public class RarityRegistryContainer<T extends Rarity> extends SlashRegistryCont
     }
 
     public List<T> getAllRarities() {
-        return new ArrayList<>(getMap().values());
+        return new ArrayList<T>(getMap().values());
     }
 
     public T highest() {

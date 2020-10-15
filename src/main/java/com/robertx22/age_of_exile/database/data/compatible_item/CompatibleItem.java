@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.IByteBuf;
@@ -26,8 +27,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
     public String guid = "guid_for_this_entry";
     public String item_id = "item_id";
 
-    public int min_rarity = 0;
-    public int max_rarity = 2;
+    public String rarities;
 
     public int weight = 1000;
 
@@ -43,8 +43,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         c.guid = buf.readString(500);
         c.item_id = buf.readString(500);
 
-        c.min_rarity = buf.readInt();
-        c.max_rarity = buf.readInt();
+        c.rarities = buf.readString(500);
 
         c.weight = buf.readInt();
 
@@ -61,8 +60,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         buf.writeString(guid, 500);
         buf.writeString(item_id, 500);
 
-        buf.writeInt(min_rarity);
-        buf.writeInt(max_rarity);
+        buf.writeString(rarities, 500);
 
         buf.writeInt(weight);
 
@@ -92,10 +90,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         json.addProperty("item_id", item_id);
         json.addProperty("id", guid);
 
-        JsonObject rarity = new JsonObject();
-        rarity.addProperty("min_rarity", min_rarity);
-        rarity.addProperty("max_rarity", max_rarity);
-        json.add("rarity", rarity);
+        json.addProperty("rarities", rarities);
 
         JsonObject Misc = new JsonObject();
         Misc.addProperty("weight", weight);
@@ -125,11 +120,12 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
             .getAsString();
         obj.guid = getGUIDFromJson(json);
 
-        JsonObject rarity = json.getAsJsonObject("rarity");
-        obj.min_rarity = rarity.get("min_rarity")
-            .getAsInt();
-        obj.max_rarity = rarity.get("max_rarity")
-            .getAsInt();
+        if (json.has("rarities")) {
+            obj.rarities = json.get("rarities")
+                .getAsString();
+        } else {
+            obj.rarities = GearRarityGroupAdder.NORMAL_KEY.GUID();
+        }
 
         if (json.has("misc")) {
             JsonObject misc = json.getAsJsonObject("misc");
@@ -206,8 +202,10 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         }
 
         blueprint.level.set(MathHelper.clamp(RandomUtils.RandomRange(min, max), min, cap));
-        blueprint.rarity.minRarity = this.min_rarity;
-        blueprint.rarity.maxRarity = this.max_rarity;
+
+        blueprint.rarity.possible = SlashRegistry.GearRarityGroups()
+            .get(this.rarities)
+            .getRarities();
 
         blueprint.isUniquePart.chance = chance_to_become_unique;
 
@@ -230,20 +228,27 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
     @Override
     public boolean isRegistryEntryValid() {
 
+        boolean valid = true;
+
         if (!SlashRegistry.GearTypes()
             .isRegistered(this.item_type)) {
-            System.out.println("Invalid gear slot: " + item_type);
-            return false;
+            System.out.println("\n Invalid gear slot: " + item_type);
+            valid = false;
         }
         if (!unique_id.isEmpty()) {
             if (!SlashRegistry.UniqueGears()
                 .isRegistered(unique_id)) {
-                System.out.println("Invalid unique gear id: " + unique_id);
-                return false;
+                System.out.println("\n Invalid unique gear id: " + unique_id);
+                valid = false;
             }
         }
+        if (!SlashRegistry.GearRarityGroups()
+            .isRegistered(rarities)) {
+            System.out.print("\n" + rarities + " isn't a valid gear rarity group datapack identifier.");
+            valid = false;
+        }
 
-        return true;
+        return valid;
     }
 
 }

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.loot.blueprints;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.bases.LevelPart;
-import com.robertx22.age_of_exile.loot.blueprints.bases.RarityPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.TierPart;
 import com.robertx22.age_of_exile.loot.generators.stack_changers.IStackAction;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -41,7 +40,6 @@ public abstract class ItemBlueprint {
 
     }
 
-    public RarityPart rarity = new RarityPart(this);
     public TierPart tier = new TierPart(this);
     public LevelPart level = new LevelPart(this);
 

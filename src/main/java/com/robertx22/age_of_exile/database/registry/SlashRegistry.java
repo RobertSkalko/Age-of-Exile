@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
@@ -113,6 +114,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<UniqueGear> UniqueGears() {
         return getRegistry(SlashRegistryType.UNIQUE_GEAR);
+    }
+
+    public static SlashRegistryContainer<GearRarityGroup> GearRarityGroups() {
+        return getRegistry(SlashRegistryType.GEAR_RARITY_GROUP);
     }
 
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
@@ -249,10 +254,11 @@ public class SlashRegistry {
         invalid.forEach(x -> x.unregisterDueToInvalidity());
 
         if (invalid.isEmpty()) {
-            System.out.println("All Mine and Slash registries appear valid.");
+            System.out.println("All Age of Exile registries appear valid.");
         } else {
             System.out.println(invalid.size() + " Age of Exile entries are INVALID!");
         }
+
     }
 
     private static void registerAllNonDatapackEntries() {
@@ -274,6 +280,7 @@ public class SlashRegistry {
         addRegistry(new RarityRegistryContainer<GearRarity>(SlashRegistryType.GEAR_RARITY, null).setIsDatapack());
         addRegistry(new RarityRegistryContainer<MobRarity>(SlashRegistryType.MOB_RARITY, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_RARITY_GROUP, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EXILE_EFFECT, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).setIsDatapack());

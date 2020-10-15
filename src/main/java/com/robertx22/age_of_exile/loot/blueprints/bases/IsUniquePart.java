@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
-public class IsUniquePart extends BlueprintPart<Boolean> {
+public class IsUniquePart extends BlueprintPart<Boolean, GearBlueprint> {
 
     public IsUniquePart(GearBlueprint blueprint) {
         super(blueprint);

@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
-import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
+import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
-public class UnidentifiedPart extends BlueprintPart<Boolean> {
+public class UnidentifiedPart extends BlueprintPart<Boolean, GearBlueprint> {
 
-    public UnidentifiedPart(ItemBlueprint blueprint) {
+    public UnidentifiedPart(GearBlueprint blueprint) {
         super(blueprint);
     }
 

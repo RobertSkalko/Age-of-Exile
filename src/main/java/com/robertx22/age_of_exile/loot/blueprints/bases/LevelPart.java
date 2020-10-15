@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 
-public class LevelPart extends BlueprintPart<Integer> {
+public class LevelPart extends BlueprintPart<Integer, ItemBlueprint> {
 
     public boolean LevelRange = true;
 
