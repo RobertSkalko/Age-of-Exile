@@ -365,11 +365,9 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             });
 
             buttons.forEach(b -> {
-
                 if (b instanceof PickSpellForHotBarButton || b instanceof SpellHotbarButton) {
                     b.render(matrix, x, y, ticks);
                 }
-
             });
 
             this.tick_count++;
@@ -396,9 +394,9 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
         int yp = 0;
 
         if (this.schoolsInOrder.size() > 1) {
-
             drawTexture(matrix, xp, yp, 0, 0, BG_WIDTH, 39);
         }
+
         mc.getTextureManager()
             .bindTexture(SMALL_PANEL);
         RenderSystem.enableDepthTest();

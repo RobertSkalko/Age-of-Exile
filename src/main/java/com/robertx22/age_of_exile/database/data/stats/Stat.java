@@ -136,13 +136,18 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return new Identifier(Ref.MODID, "textures/gui/stat_icons/" + statGroup.id + "/" + GUID() + ".png");
     }
 
+    transient Identifier cachedIcon = null;
+
     public Identifier getIconForRendering() {
-        Identifier id = getIconLocation();
-        if (ClientTextureUtils.textureExists(id)) {
-            return id;
-        } else {
-            return DEFAULT_ICON;
+        if (cachedIcon == null) {
+            Identifier id = getIconLocation();
+            if (ClientTextureUtils.textureExists(id)) {
+                cachedIcon = id;
+            } else {
+                cachedIcon = Stat.DEFAULT_ICON;
+            }
         }
+        return cachedIcon;
     }
 
     @Override

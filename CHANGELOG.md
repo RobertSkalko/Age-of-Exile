@@ -12,3 +12,5 @@ The default if it's not inputted is all rarities besides unique.
 + gear name tooltips are now on 2 lines sometimes to reduce tooltip length
 + new affixes: magic find/item quantity affixes on jewelry and more.
 + spawner blocks now drop loot when mined! Apparently the stick doesn't work good enough, so I'm bringing carrots too.
++ fix talent tree being laggy, especially on datapacks that make bigger trees
++ fix hp gui rendering over F3 text

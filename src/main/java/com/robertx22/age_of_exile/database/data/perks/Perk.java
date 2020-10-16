@@ -87,13 +87,18 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
     }
 
+    transient Identifier cachedIcon = null;
+
     public Identifier getIcon() {
-        Identifier id = new Identifier(icon);
-        if (ClientTextureUtils.textureExists(id)) {
-            return id;
-        } else {
-            return Stat.DEFAULT_ICON;
+        if (cachedIcon == null) {
+            Identifier id = new Identifier(icon);
+            if (ClientTextureUtils.textureExists(id)) {
+                cachedIcon = id;
+            } else {
+                cachedIcon = Stat.DEFAULT_ICON;
+            }
         }
+        return cachedIcon;
     }
 
     @Override

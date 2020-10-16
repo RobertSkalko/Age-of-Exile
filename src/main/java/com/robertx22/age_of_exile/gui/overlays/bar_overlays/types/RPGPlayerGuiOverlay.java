@@ -37,7 +37,9 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
         if (mc.player == null) {
             return;
         }
-
+        if (mc.options.debugEnabled) {
+            return; // dont render on debug screen
+        }
         try {
             if (!ModConfig.get().client.PLAYER_GUI_TYPE.equals(PlayerGUIs.RPG)) {
                 return;

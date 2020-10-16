@@ -19,12 +19,9 @@ import java.util.List;
 public class AddSpawnerExtraLootMethod {
 
     public static void hookLoot(LootContext context, CallbackInfoReturnable<List<ItemStack>> ci) {
+
         try {
             if (!context.hasParameter(LootContextParameters.BLOCK_STATE)) {
-                return;
-            }
-            if (context.get(LootContextParameters.BLOCK_STATE)
-                .getBlock() != Blocks.SPAWNER) {
                 return;
             }
             if (!context.hasParameter(LootContextParameters.TOOL)) {
@@ -39,6 +36,10 @@ public class AddSpawnerExtraLootMethod {
             if (!context.hasParameter(LootContextParameters.THIS_ENTITY)) {
                 return;
             }
+            if (context.get(LootContextParameters.BLOCK_STATE)
+                .getBlock() != Blocks.SPAWNER) {
+                return;
+            }
 
             Entity en = context.get(LootContextParameters.THIS_ENTITY);
 
@@ -51,7 +52,6 @@ public class AddSpawnerExtraLootMethod {
             }
 
             ItemStack stack = context.get(LootContextParameters.TOOL);
-
             if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) != 0) {
                 return;
             }
