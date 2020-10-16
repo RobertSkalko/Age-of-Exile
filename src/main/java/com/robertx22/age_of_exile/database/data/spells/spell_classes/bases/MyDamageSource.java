@@ -19,6 +19,7 @@ public class MyDamageSource extends EntityDamageSource {
         this.setBypassesArmor();
         realDamage = dmg;
         this.source = s;
+
     }
 
     static String source(DamageSource s) {

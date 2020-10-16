@@ -17,6 +17,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonPart;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -106,7 +108,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.zTile = -1;
     }
 
-    public LivingEntity getEntityHit(HitResult result, double radius) {
+    public Entity getEntityHit(HitResult result, double radius) {
 
         EntityHitResult enres = null;
 
@@ -114,14 +116,13 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             enres = (EntityHitResult) result;
         }
 
-        if (enres != null && enres.getEntity() instanceof LivingEntity) {
-            if (!enres.getEntity()
-                .isAlive()) {
-                return null;
-            }
-            if (enres.getEntity() != this.getCaster()) {
+        if (enres == null) {
+            return null;
+        }
 
-                return (LivingEntity) enres.getEntity();
+        if (enres.getEntity() instanceof Entity) {
+            if (enres.getEntity() != this.getCaster()) {
+                return enres.getEntity();
             }
         }
 
@@ -140,10 +141,6 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
                             closest = en;
                         }
                     }
-                }
-
-                if (!closest.isAlive()) {
-
                 }
 
                 return closest;
@@ -258,7 +255,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             this.world, this, pos, posPlusMotion, this.getBoundingBox()
                 .stretch(this.getVelocity())
                 .expand(1D), (e) -> {
-                return !e.isSpectator() && e.collides() && e instanceof LivingEntity && e != this.getCaster() && e != this.ignoreEntity;
+                return !e.isSpectator() && e.collides() && e instanceof Entity && e != this.getCaster() && e != this.ignoreEntity;
             });
 
     }
@@ -296,7 +293,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
     protected void onImpact(HitResult result) {
 
-        LivingEntity entityHit = getEntityHit(result, 0.3D);
+        Entity entityHit = getEntityHit(result, 0.3D);
 
         if (entityHit != null) {
             if (world.isClient) {
@@ -305,12 +302,31 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
             LivingEntity caster = getCaster();
 
+            LivingEntity en = null;
+
+            if (entityHit instanceof LivingEntity == false) {
+                // HARDCODED support for dumb ender dragon non living entity dragon parts
+                if (entityHit instanceof EnderDragonPart) {
+                    EnderDragonPart part = (EnderDragonPart) entityHit;
+                    if (!part.isInvulnerableTo(DamageSource.mob(caster))) {
+                        en = part.owner;
+                    }
+                }
+            } else {
+                en = (LivingEntity) entityHit;
+            }
+
+            if (en == null) {
+                return;
+            }
+
             if (caster != null) {
                 this.getSpellData()
                     .getSpell()
                     .getAttached()
-                    .tryActivate(getEntityName(), SpellCtx.onHit(caster, this, entityHit, getSpellData()));
+                    .tryActivate(getEntityName(), SpellCtx.onHit(caster, this, en, getSpellData()));
             }
+
         } else {
             if (world.isClient) {
                 SoundUtils.playSound(this, SoundEvents.BLOCK_STONE_HIT, 0.7F, 0.9F);

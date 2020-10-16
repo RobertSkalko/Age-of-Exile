@@ -24,6 +24,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.passive.TameableEntity;
@@ -32,6 +34,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -322,12 +325,24 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     LivingEntityDuck duck = (LivingEntityDuck) target;
                     duck.myApplyDamage(dmgsource, dmg);
                 } else {
-                    // for spell dmg, we want to use this to apply knockback normally
-                    int saved = target.timeUntilRegen;
-                    target.timeUntilRegen = saved; // wat
-                    target.damage(dmgsource, dmg);
 
-                    target.timeUntilRegen = saved;
+                    if (target instanceof EnderDragonEntity) {
+                        try {
+                            // Dumb vanilla hardcodings require dumb workarounds
+                            EnderDragonEntity dragon = (EnderDragonEntity) target;
+                            EnderDragonPart part = Arrays.stream(dragon.getBodyParts())
+                                .filter(x -> x.name.equals("body"))
+                                .findFirst()
+                                .get();
+                            dragon.damagePart(part, dmgsource, dmg);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    } else {
+                        target.damage(dmgsource, dmg);
+                    }
+
                     // allow multiple dmg same tick
                 }
 
