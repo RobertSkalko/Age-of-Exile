@@ -74,7 +74,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                         float exp_multi = (float) config.exp_multi;
 
                         if (loot_multi > 0) {
-                            MasterLootGen.genAndDrop(mobKilledData, playerData, mobKilled, player);
+                            MasterLootGen.genAndDrop(mobKilled, player);
                         }
                         if (exp_multi > 0) {
                             GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);

@@ -11,3 +11,4 @@ The default if it's not inputted is all rarities besides unique.
 + added more hp to npcs and less to animals. You don't have to spend so much effort slaughtering cows now.
 + gear name tooltips are now on 2 lines sometimes to reduce tooltip length
 + new affixes: magic find/item quantity affixes on jewelry and more.
++ spawner blocks now drop loot when mined! Apparently the stick doesn't work good enough, so I'm bringing carrots too.

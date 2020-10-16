@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.loot;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.loot.generators.*;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
@@ -38,7 +37,8 @@ public class MasterLootGen {
         }
 
         while (items.size() > info.maxItems) {
-            items.remove(0);
+            ItemStack randomtoremove = RandomUtils.randomFromList(items);
+            items.removeIf(x -> x.equals(randomtoremove));
         }
 
         return items;
@@ -62,8 +62,7 @@ public class MasterLootGen {
             .collect(Collectors.toList());
     }
 
-    public static List<ItemStack> generateLoot(UnitData mob, UnitData player,
-                                               LivingEntity victim, PlayerEntity killer) {
+    public static List<ItemStack> generateLoot(LivingEntity victim, PlayerEntity killer) {
 
         LootInfo info = LootInfo.ofMobKilled(killer, victim);
         List<ItemStack> items = generateLoot(info);
@@ -71,15 +70,11 @@ public class MasterLootGen {
         return items;
     }
 
-    public static void genAndDrop(UnitData mob, UnitData player, LivingEntity victim,
-                                  PlayerEntity killer) {
-
-        List<ItemStack> items = generateLoot(mob, player, victim, killer);
-
+    public static void genAndDrop(LivingEntity victim, PlayerEntity killer) {
+        List<ItemStack> items = generateLoot(victim, killer);
         for (ItemStack stack : items) {
             victim.dropStack(stack, 1F);
         }
-
     }
 
 }

@@ -14,6 +14,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -167,13 +168,9 @@ public class LootInfo {
 
         chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
 
-        if (minItems > 0) {
-            if (chance <= 5) {
-                chance += 5;
-            }
-        }
-
         amount = LootUtils.WhileRoll(chance);
+
+        amount = MathHelper.clamp(amount, minItems, maxItems);
     }
 
 }
