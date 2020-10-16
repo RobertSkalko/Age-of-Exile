@@ -21,14 +21,10 @@ public class OnScreenMessageUtils {
         SoundUtils.ding(player.world, player.getBlockPos());
     }
 
-    public static void sendMessage(PlayerEntity player, MutableText title, MutableText sub) {
-
-        sub.formatted(Formatting.YELLOW, Formatting.BOLD);
-        title.formatted(Formatting.GREEN, Formatting.BOLD);
-
-        ServerPlayerEntity p = (ServerPlayerEntity) player;
-        p.networkHandler.sendPacket(new TitleS2CPacket(TitleS2CPacket.Action.ACTIONBAR, title.append(" ")
-            .append(sub), 5, 15, 8));
+    public static void sendMessage(ServerPlayerEntity p, MutableText title, MutableText sub) {
+        p.networkHandler.sendPacket(new TitleS2CPacket(TitleS2CPacket.Action.TITLE, title
+            , 5, 15, 8));
+        p.networkHandler.sendPacket(new TitleS2CPacket(TitleS2CPacket.Action.SUBTITLE, sub, 5, 15, 8));
 
     }
 

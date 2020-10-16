@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
-import com.robertx22.age_of_exile.areas.AreaData;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
@@ -12,13 +11,15 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Formatting;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 public class OnServerTick implements ServerTickEvents.EndTick {
@@ -28,6 +29,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
     static final int TicksToCompatibleItems = 40;
+    static final int TicksToLevelWarning = 200;
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
@@ -139,6 +141,31 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 if (data.ticksToCompItems > TicksToCompatibleItems) {
                     CompatibleItemUtils.checkAndGenerate(player);
                     data.ticksToCompItems = 0;
+
+                }
+                if (data.ticksToLvlWarning > TicksToLevelWarning) {
+
+                    boolean wasnt = false;
+                    if (!data.isInHighLvlZone) {
+                        wasnt = true;
+                    }
+
+                    int lvl = Load.Unit(player)
+                        .getLevel();
+
+                    if (lvl < 20) {
+                        data.isInHighLvlZone = Math.abs(lvl - LevelUtils.determineLevel(player.world, player.getBlockPos(), player)) > 10;
+
+                        if (wasnt && data.isInHighLvlZone) {
+                            OnScreenMessageUtils.sendMessage(
+                                player,
+                                new LiteralText("YOU ARE ENTERING").formatted(Formatting.RED)
+                                    .formatted(Formatting.BOLD),
+                                new LiteralText("A HIGH LEVEL ZONE").formatted(Formatting.RED)
+                                    .formatted(Formatting.BOLD));
+                        }
+                    }
+                    data.ticksToLvlWarning = 0;
                 }
 
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
@@ -171,9 +198,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         public int ticksToPassMinute = 0;
         public int ticksToSpellCooldowns = 0;
         public int ticksToCompItems = 0;
+        public int ticksToLvlWarning = 0;
 
-        AreaData currentArea = null;
-        Set<String> areasVisitedUUIDS = new HashSet<>();
+        public boolean isInHighLvlZone = false;
 
         public void increment() {
             regenTicks++;
@@ -181,6 +208,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             ticksToPassMinute++;
             ticksToCompItems++;
             ticksToSpellCooldowns++;
+            ticksToLvlWarning++;
         }
 
     }

@@ -14,3 +14,4 @@ The default if it's not inputted is all rarities besides unique.
 + spawner blocks now drop loot when mined! Apparently the stick doesn't work good enough, so I'm bringing carrots too.
 + fix talent tree being laggy, especially on datapacks that make bigger trees
 + fix hp gui rendering over F3 text
++ added high level area warning
