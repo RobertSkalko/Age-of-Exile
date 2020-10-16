@@ -1,0 +1,18 @@
+{
+  "name": "Elemental Mobs",
+  "category": "be_warned",
+  "icon": "minecraft:blaze_powder",
+  "sortnum": 2,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "The Basics",
+		"text": "Enemies usually deal physical damage so your armor or dodge handles that. But, many mobs will deal elemental damage! That damage isn't prevented by armor or dodge, so you need to build elemental resistances! Fire, Water, Nature, Thunder."
+	},  
+	{  
+		"type": "text",   
+		"title": "More info",
+		"text": "There are some special mobs that deal a high % of elemental damage, and mob affixes that give them elemental damage too. Also, mobs recieve extra elemental damage per level. So while it might not be a problem to have 0 resists at lvl 1, be careful at lvl 30 or so."
+	}
+  ]
+}

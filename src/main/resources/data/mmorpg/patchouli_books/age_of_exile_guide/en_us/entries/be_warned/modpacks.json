@@ -1,0 +1,18 @@
+{
+  "name": "Modpacks",
+  "category": "be_warned",
+  "icon": "minecraft:iron_pickaxe",
+  "sortnum": 4,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "What's up with modpacks, huh?",
+		"text": "Here's the deal. This mod is highly customizable and most features are datapacks. Which is why when asking for help, your best bet is to ask the community of the modpack you're playing. They could have changed so much the mod is completely different!"
+	},  
+	{  
+		"type": "text",   
+		"title": "More info",
+		"text": "If you aren't playing a modpack or their community is super tiny, you're of course always welcome to ask on this mod's discord too. But please at least specify which minecraft version you're playing on, as the mod has changed a ton through the versions."
+	}
+  ]
+}
