@@ -86,6 +86,7 @@ armor
 spell_nature_damage
 frostball_proj_speed
 unlock_passive_hunting
+agility
 unlock_recoil_shot
 spell_water_damage
 water_focus

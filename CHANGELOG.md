@@ -1,5 +1,27 @@
 ## v.1.7.0
 
++ Core stat rework!
+Stats like intelligence, strength and dexterity had a problem. They were used as requirements for gear. 
+That means you picked them based on what gear you want to wear, not based on what which ones you wanted.
+There was also a lack of variety so.. I added: Agility, Vitality and Willpower.
+I separated them into 2 and 3 types. Let me explain.
+There's Defense and Attack based core stats, and each of those are split into Melee, Ranger and Caster types.
+So we have:
+
+- Vitality (Melee defense)
+- Strength (Melee attack)
+
+- Willpower (Caster defense)
+- Intelligence (Caster attack)
+
+- Agility (Ranger defense)
+- Dexterity (Ranger attack)
+
+The actual stats they give aren't final but this is the general outline.
+Now they give actual stats instead of multiplying your existing values. 
+In return, I reduced player's base stats, as now your attributes determine that mostly.
+Note, I'll probably have to set up limits or diminishing returns somehow later.
+
 + increased default stat scaling by a ton. Should be closer to mine and slash scaling now.
 + Reverted rarities to mine and slash ones. That means epic, legendary and mythic are back! I also added antique rarity.
 Antiques are basically easier to get but worse relics.

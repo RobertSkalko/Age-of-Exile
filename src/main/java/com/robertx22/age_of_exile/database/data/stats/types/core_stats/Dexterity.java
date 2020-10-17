@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -32,8 +31,7 @@ public class Dexterity extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(1F, 1F, DodgeRating.getInstance(), ModType.FLAT),
-            new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), ModType.FLAT)
+            new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), ModType.FLAT) // TODO
         );
     }
 

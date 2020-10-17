@@ -126,6 +126,7 @@ public class Stats implements ISlashRegistryInit {
                     add(Intelligence.INSTANCE);
                     add(Willpower.INSTANCE);
                     add(Vitality.INSTANCE);
+                    add(Agility.INSTANCE);
 
                     add(ExtraMobDropsStat.getInstance());
                     add(BonusExp.getInstance());
