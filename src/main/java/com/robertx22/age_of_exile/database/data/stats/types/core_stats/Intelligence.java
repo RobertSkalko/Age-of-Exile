@@ -2,9 +2,8 @@ package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
@@ -32,9 +31,8 @@ public class Intelligence extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(1F, 1F, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new StatModifier(0.5F, 0.5F, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new StatModifier(0.5F, 0.5F, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
+            new StatModifier(2, 2, Mana.getInstance(), ModType.FLAT),
+            new StatModifier(1, 1, SpellDamage.getInstance(), ModType.LOCAL_INCREASE)
         );
     }
 

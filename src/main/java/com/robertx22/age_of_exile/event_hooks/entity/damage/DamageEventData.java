@@ -18,7 +18,6 @@ import java.lang.reflect.Field;
 public class DamageEventData {
 
     public DamageEventData(LivingHurtEvent event) {
-
         try {
 
             this.event = event;

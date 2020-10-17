@@ -62,12 +62,14 @@ unlock_throw_flames
 unlock_frostball
 thunder_penetration
 strength
+willpower
 health_per_sec
 convert_fire_to_phys
 mana_steal
 unlock_teleport
 unlock_healing_aura
 water_resist
+vitality
 armor_penetration
 bow_damage
 unlock_whirlpool

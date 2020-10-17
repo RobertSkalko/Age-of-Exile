@@ -25,7 +25,7 @@ public class EntityConfigs implements ISlashRegistryInit {
         new EntityConfig(EntityTypeUtils.EntityClassification.MOB.name()
             .toLowerCase(Locale.ROOT), 1).addToSerializables();
         EntityConfig animal = new EntityConfig(EntityTypeUtils.EntityClassification.ANIMAL.name()
-            .toLowerCase(Locale.ROOT), 0.01F);
+            .toLowerCase(Locale.ROOT), 0);
         animal.hp_multi -= 0.5F;
         animal.addToSerializables();
         EntityConfig npc = new EntityConfig(EntityTypeUtils.EntityClassification.NPC.name()

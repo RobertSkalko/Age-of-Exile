@@ -64,6 +64,9 @@ dependencies {
 
 	modImplementation "de.siphalor:nbtcrafting-${nbtcrafting_version}"
 	include "de.siphalor:nbtcrafting-${nbtcrafting_version}"
+	
+	implementation "org.apache.commons:commons-math3:3.6.1"
+    include "org.apache.commons:commons-math3:3.6.1"
 
     compile files("Library-Of-Exile-1.16.2-1.0.4-dev.jar")	
 	

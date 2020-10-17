@@ -312,7 +312,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
                         en = part.owner;
                     }
                 }
-            } else {
+            } else if (entityHit instanceof LivingEntity) {
                 en = (LivingEntity) entityHit;
             }
 

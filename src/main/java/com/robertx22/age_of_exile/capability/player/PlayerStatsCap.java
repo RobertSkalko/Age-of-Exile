@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.capability.player;
 
-import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
@@ -9,6 +8,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PlayerStatPointsData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
@@ -72,9 +72,7 @@ public class PlayerStatsCap {
 
         @Override
         public void resetStats() {
-            data.dexterity = 0;
-            data.intelligence = 0;
-            data.strength = 0;
+            data.stats.clear();
         }
 
         @Override

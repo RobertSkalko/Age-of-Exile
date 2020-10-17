@@ -29,7 +29,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
         c.base(MagicShieldRegen.getInstance(), 1);
         c.base(CriticalHit.getInstance(), 1);
         c.base(CriticalDamage.getInstance(), 0);
-        c.base(Mana.getInstance(), 40);
+        c.base(Mana.getInstance(), 25);
         c.base(ManaRegen.getInstance(), 1F);
 
         return c;

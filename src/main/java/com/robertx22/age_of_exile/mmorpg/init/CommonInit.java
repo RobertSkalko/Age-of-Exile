@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
@@ -38,7 +37,6 @@ public class CommonInit implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        System.out.println("Starting " + Ref.MOD_NAME);
 
         MapField.init();
         EffectCondition.init();
@@ -70,6 +68,8 @@ public class CommonInit implements ModInitializer {
         ModCriteria.init();
 
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
+
+        // ExponentialConfig.test();
 
         if (ModConfig.get().Server.SAVE_GEAR_AND_HOTBAR_ON_DEATH) {
             // dont drop curios on death

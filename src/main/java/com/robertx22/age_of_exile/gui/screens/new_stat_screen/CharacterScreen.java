@@ -6,9 +6,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -177,14 +175,26 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         int ypos = guiTop + 25;
 
         if (this.isMainScreen()) {
+
+            addButton(new StatButton(Vitality.INSTANCE, xpos, ypos));
+            addButton(new IncreaseStatButton(data, stats, Vitality.INSTANCE, xpos - 19, ypos + 1));
+            ypos += 20;
+            addButton(new StatButton(Willpower.INSTANCE, xpos, ypos));
+            addButton(new IncreaseStatButton(data, stats, Willpower.INSTANCE, xpos - 19, ypos + 1));
+            ypos += 20;
             addButton(new StatButton(Dexterity.INSTANCE, xpos, ypos));
             addButton(new IncreaseStatButton(data, stats, Dexterity.INSTANCE, xpos - 19, ypos + 1));
+
+            //
+            xpos += 65;
+            ypos = guiTop + 25;
+
+            addButton(new StatButton(Strength.INSTANCE, xpos, ypos));
+            addButton(new IncreaseStatButton(data, stats, Strength.INSTANCE, xpos - 19, ypos + 1));
             ypos += 20;
             addButton(new StatButton(Intelligence.INSTANCE, xpos, ypos));
             addButton(new IncreaseStatButton(data, stats, Intelligence.INSTANCE, xpos - 19, ypos + 1));
-            ypos += 20;
-            addButton(new StatButton(Strength.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Strength.INSTANCE, xpos - 19, ypos + 1));
+
         }
 
         if (isMainScreen()) {

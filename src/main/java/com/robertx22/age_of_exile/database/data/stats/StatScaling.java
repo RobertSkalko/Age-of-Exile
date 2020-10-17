@@ -34,5 +34,16 @@ public enum StatScaling {
 
     }
 
+    public static float evaluate(double[] coefficients, float val, int lvl) {
+
+        double finalcoef = coefficients[0];
+
+        for (int i = 1; i < coefficients.length; i++) {
+            finalcoef = lvl * finalcoef + coefficients[i];
+        }
+
+        return (float) finalcoef * val;
+    }
+
     public abstract float scale(float val, int lvl);
 }
