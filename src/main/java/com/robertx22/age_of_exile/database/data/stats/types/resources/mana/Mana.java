@@ -18,7 +18,7 @@ public class Mana extends Stat {
 
     private Mana() {
         this.min_val = 0;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
     }
 

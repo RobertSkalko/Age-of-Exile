@@ -37,7 +37,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public float base_val = 0;
     public boolean is_percent;
     public boolean uses_second_val = false;
-    public StatScaling scaling = StatScaling.SLOW_SCALING;
+    public StatScaling scaling = StatScaling.SLOW;
 
     public StatGroup statGroup = StatGroup.Misc;
 

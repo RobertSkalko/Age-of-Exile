@@ -11,7 +11,7 @@ public class Health extends Stat {
 
     private Health() {
         this.min_val = 1;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
 
         this.statGroup = StatGroup.MAIN;
     }

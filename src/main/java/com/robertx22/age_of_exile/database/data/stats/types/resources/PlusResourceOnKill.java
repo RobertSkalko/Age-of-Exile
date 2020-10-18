@@ -25,7 +25,7 @@ public class PlusResourceOnKill extends Stat implements IStatEffects {
         this.statRestored = statRestored;
         this.effect = effect;
         this.statGroup = StatGroup.RESTORATION;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
 
     private Armor() {
         this.min_val = 0;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
     }
 

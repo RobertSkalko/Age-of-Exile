@@ -96,7 +96,6 @@ alter_req_percent
 elemental_penetration
 ele_sword_damage
 unlock_arcane_bolt
-extra_fireball_projectiles
 fire_weapon_damage
 mob_imbue_crit
 physical_to_nature

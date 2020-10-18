@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 public class SpellDamage extends Stat implements IStatEffects {
 
     private SpellDamage() {
-        this.scaling = StatScaling.SLOW_SCALING;
+        this.scaling = StatScaling.SLOW;
         this.statGroup = StatGroup.MAIN;
     }
 

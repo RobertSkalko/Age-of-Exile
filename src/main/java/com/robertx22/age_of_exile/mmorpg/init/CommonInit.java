@@ -69,8 +69,6 @@ public class CommonInit implements ModInitializer {
 
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 
-        // ExponentialConfig.test();
-
         if (ModConfig.get().Server.SAVE_GEAR_AND_HOTBAR_ON_DEATH) {
             // dont drop curios on death
             DropRulesCallback.EVENT.register(new DropRulesCallback() {

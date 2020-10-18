@@ -26,7 +26,7 @@ public class LifeOnHit extends Stat implements IStatEffects {
     }
 
     private LifeOnHit() {
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.RESTORATION;
     }
 

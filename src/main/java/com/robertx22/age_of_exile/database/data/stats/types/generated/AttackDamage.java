@@ -28,7 +28,7 @@ public class AttackDamage extends ElementalStat implements IStatEffects, ILocalS
     public AttackDamage(Elements element) {
         super(element);
         this.uses_second_val = true;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
 
         this.statGroup = StatGroup.ELEMENTAL;
     }

@@ -13,7 +13,7 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
 
     private MagicShield() {
         this.min_val = 0;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
     }
 

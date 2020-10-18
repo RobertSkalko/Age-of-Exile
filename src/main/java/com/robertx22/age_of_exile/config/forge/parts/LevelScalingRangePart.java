@@ -29,7 +29,7 @@ public class LevelScalingRangePart {
         int min = LevelUtils.getLevelForMultiplier(min_lvl);
         int max = LevelUtils.getLevelForMultiplier(max_lvl);
         int left = lvl - min;
-        float multi = (float) left / (float) max;
+        float multi = (float) left / (float) (max - min);
         return stat_growth_min + (multi * (stat_growth_max - stat_growth_min));
     }
 }

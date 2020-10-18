@@ -29,7 +29,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     private DodgeRating() {
         this.min_val = 0;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
     }
 

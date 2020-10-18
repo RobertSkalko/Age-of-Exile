@@ -10,22 +10,22 @@ import java.util.List;
 public class StatScaleConfigs {
 
     @ConfigEntry.Gui.CollapsibleObject
-    public LevelScalingConfig LINEAR_SCALING;
+    public LevelScalingConfig NORMAL_STAT_SCALING;
     @ConfigEntry.Gui.CollapsibleObject
-    public LevelScalingConfig SLOW_LINEAR_SCALING;
+    public LevelScalingConfig SLOW_STAT_SCALING;
 
     public StatScaleConfigs() {
 
         List<LevelScalingRangePart> linear = new ArrayList<>();
-        linear.add(new LevelScalingRangePart(0F, 0.2F, 0.1F, 0.5F));
+        linear.add(new LevelScalingRangePart(0F, 0.2F, 1.1F, 0.5F));
         linear.add(new LevelScalingRangePart(0.2F, 0.4F, 0.5F, 2F));
-        linear.add(new LevelScalingRangePart(0.4F, 0.8F, 2F, 20F));
-        linear.add(new LevelScalingRangePart(0.8F, 1F, 20, 30));
+        linear.add(new LevelScalingRangePart(0.4F, 0.8F, 2F, 15));
+        linear.add(new LevelScalingRangePart(0.8F, 1F, 15, 30));
 
         List<LevelScalingRangePart> slow = new ArrayList<>();
-        slow.add(new LevelScalingRangePart(0F, 1F, 0.2F, 2F));
+        slow.add(new LevelScalingRangePart(0F, 1F, 1, 2F));
 
-        LINEAR_SCALING = new LevelScalingConfig(linear);
-        SLOW_LINEAR_SCALING = new LevelScalingConfig(slow);
+        NORMAL_STAT_SCALING = new LevelScalingConfig(linear);
+        SLOW_STAT_SCALING = new LevelScalingConfig(slow);
     }
 }

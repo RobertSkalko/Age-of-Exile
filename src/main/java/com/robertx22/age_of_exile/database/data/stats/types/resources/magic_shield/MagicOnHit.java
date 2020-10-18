@@ -26,7 +26,7 @@ public class MagicOnHit extends Stat implements IStatEffects {
     }
 
     private MagicOnHit() {
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.RESTORATION;
     }
 

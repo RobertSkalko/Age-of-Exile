@@ -14,7 +14,7 @@ public class HealthRegen extends BaseRegenClass {
 
     private HealthRegen() {
         this.min_val = 0.05F;
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
     }
 

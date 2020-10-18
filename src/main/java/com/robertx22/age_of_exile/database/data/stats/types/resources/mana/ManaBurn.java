@@ -11,7 +11,7 @@ public class ManaBurn extends Stat implements IStatEffects {
     public static String GUID = "mana_burn";
 
     private ManaBurn() {
-        this.scaling = StatScaling.SCALING;
+        this.scaling = StatScaling.NORMAL;
     }
 
     public static ManaBurn getInstance() {

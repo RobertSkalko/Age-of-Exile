@@ -65,7 +65,7 @@ public class ValueCalculationData {
     public List<ScalingStatCalc> scaling_values = new ArrayList<>();
 
     @Store
-    public StatScaling base_scaling = StatScaling.SCALING;
+    public StatScaling base_scaling = StatScaling.NORMAL;
 
     @Store
     public float attack_scaling = 0;

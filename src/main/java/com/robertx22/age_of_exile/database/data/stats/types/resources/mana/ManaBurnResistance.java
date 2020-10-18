@@ -11,7 +11,7 @@ public class ManaBurnResistance extends Stat implements IStatEffects {
     public static String GUID = "mana_burn_resist";
 
     private ManaBurnResistance() {
-        this.scaling = StatScaling.SLOW_SCALING;
+        this.scaling = StatScaling.SLOW;
     }
 
     public static ManaBurnResistance getInstance() {

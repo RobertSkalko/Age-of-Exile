@@ -36,7 +36,7 @@ public abstract class BaseGemRuneItem extends Item {
         this.getStatModsForSerialization(family)
             .forEach(x -> {
                 if (x.GetStat()
-                    .getScaling() == StatScaling.SCALING) {
+                    .getScaling() == StatScaling.NORMAL) {
                     list.add(x);
                 } else {
                     if (x.GetStat()
