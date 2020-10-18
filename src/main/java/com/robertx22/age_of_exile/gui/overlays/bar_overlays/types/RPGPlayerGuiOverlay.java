@@ -96,8 +96,9 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
             int manabar = (int) (manamulti * BAR_WIDTH);
             int xpbar = (int) (xpmulti * XP_BAR_WIDTH);
 
-            int hpYPos = data.getResources()
-                .getMagicShield() > mc.player.getHealth() ? 142 : 59;
+            int hpYPos = data.getUnit()
+                .magicShieldData()
+                .getAverageValue() > mc.player.getMaxHealth() ? 142 : 59;
 
             drawTexture(matrix, x + 42, y + 7, 0, hpYPos, hpbar, 13);
             drawTexture(matrix, x + 42, y + 23, 0, 75, manabar, 13);

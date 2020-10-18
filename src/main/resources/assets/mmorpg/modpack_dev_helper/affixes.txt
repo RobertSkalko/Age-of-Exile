@@ -10,7 +10,6 @@ of_consumption
 water_ele_dmg_jewelry
 true_hit
 fire_wep_dmg
-of_ease
 azure
 cruel
 fawns

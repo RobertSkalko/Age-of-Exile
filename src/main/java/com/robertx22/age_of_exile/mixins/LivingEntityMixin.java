@@ -1,11 +1,14 @@
 package com.robertx22.age_of_exile.mixins;
 
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.LivingHurtUtils;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityDuck;
 import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -36,6 +39,38 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     public void hookench(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         if (source instanceof MyDamageSource) {
             ci.setReturnValue(amount);
+        }
+        if (LivingHurtUtils.isEnviromentalDmg(source)) {
+            try {
+                LivingEntity en = (LivingEntity) (Object) this;
+
+                if (amount <= 0) {
+                    return;
+                }
+
+                EntityCap.UnitData data = Load.Unit(en);
+
+                float toReduce = MathHelper.clamp(amount, 0, data.getResources()
+                    .getMagicShield());
+
+                if (toReduce <= 0) {
+                    return;
+                }
+                float dmg = amount;
+                dmg -= toReduce;
+
+                ResourcesData.Context ms = new ResourcesData.Context(data, en,
+                    ResourcesData.Type.MAGIC_SHIELD,
+                    toReduce,
+                    ResourcesData.Use.SPEND
+                );
+                data.getResources()
+                    .modify(ms);
+                ci.setReturnValue(dmg);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

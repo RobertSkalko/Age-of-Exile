@@ -19,6 +19,7 @@ public class GiveSpellStat extends DatapackSpellStat {
     public GiveSpellStat(String spell) {
         super(SER_ID);
         this.spell = spell;
+        this.id = "unlock_" + spell;
     }
 
     @Override

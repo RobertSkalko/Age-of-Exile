@@ -29,7 +29,6 @@ minecraft:zombified_piglin
 mmorpg:water_zombie
 mmorpg:arcane_slime
 mmorpg:water_slime
-minecraft:pig
 minecraft:iron_golem
 mmorpg:thunder_skeleton
 mmorpg:fire_zombie

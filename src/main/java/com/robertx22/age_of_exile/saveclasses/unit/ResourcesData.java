@@ -6,9 +6,12 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
+import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 @Storable
@@ -151,17 +154,24 @@ public class ResourcesData {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .manaData()
                 .getAverageValue());
+            sync(ctx);
         } else if (ctx.type == Type.MAGIC_SHIELD) {
             magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .magicShieldData()
                 .getAverageValue());
-
+            sync(ctx);
         } else if (ctx.type == Type.HEALTH) {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {
                 ctx.target.setHealth(getModifiedValue(ctx));
             }
+        }
+    }
+
+    private void sync(Context ctx) {
+        if (ctx.target instanceof PlayerEntity) {
+            Packets.sendToClient((PlayerEntity) ctx.target, new EntityUnitPacket(ctx.target));
         }
     }
 

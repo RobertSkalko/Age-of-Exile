@@ -46,3 +46,6 @@ The default if it's not inputted is all rarities besides unique.
 + fix talent tree being laggy, especially on datapacks that make bigger trees
 + fix hp gui rendering over F3 text
 + added high level area warning
++ environmental damage now scales to level
++ magic shield now reduces environmental damage instead of not reducing and additionally losing itself when target is damaged
+In short, it's a needed buff. 
