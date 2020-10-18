@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Dexterity extends BaseCoreStat {
 
@@ -15,24 +14,14 @@ public class Dexterity extends BaseCoreStat {
     public static final Dexterity INSTANCE = new Dexterity();
 
     private Dexterity() {
-        this.statGroup = StatGroup.CORE;
-    }
-
-    @Override
-    public String locDescForLangFile() {
-        return "Increases Crit Hit and Dodge";
+        super(Arrays.asList(
+            new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), ModType.FLAT) // TODO
+        ));
     }
 
     @Override
     public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public List<StatModifier> statsThatBenefit() {
-        return Arrays.asList(
-            new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), ModType.FLAT) // TODO
-        );
     }
 
     @Override

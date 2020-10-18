@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Strength extends BaseCoreStat {
 
@@ -16,25 +15,15 @@ public class Strength extends BaseCoreStat {
     public static final Strength INSTANCE = new Strength();
 
     private Strength() {
-        this.statGroup = StatGroup.CORE;
-    }
-
-    @Override
-    public String locDescForLangFile() {
-        return "Increases Physical Dmg and health";
+        super(Arrays.asList(
+            new StatModifier(0.5F, 0.5F, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
+            new StatModifier(1, 1, CriticalDamage.getInstance(), ModType.FLAT)
+        ));
     }
 
     @Override
     public String GUID() {
         return GUID;
-    }
-
-    @Override
-    public List<StatModifier> statsThatBenefit() {
-        return Arrays.asList(
-            new StatModifier(0.5F, 0.5F, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
-            new StatModifier(1, 1, CriticalDamage.getInstance(), ModType.FLAT)
-        );
     }
 
     @Override

@@ -18,10 +18,14 @@ import java.util.List;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
-    public BaseCoreStat() {
+    public BaseCoreStat(List<StatModifier> stats) {
         this.scaling = StatScaling.LINEAR;
         this.min_val = 0;
+        this.stats = stats;
+        this.statGroup = StatGroup.CORE;
     }
+
+    List<StatModifier> stats;
 
     @Override
     public boolean IsPercent() {
@@ -31,6 +35,24 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     @Override
     public Elements getElement() {
         return null;
+    }
+
+    @Override
+    public final List<StatModifier> statsThatBenefit() {
+        return stats;
+    }
+
+    @Override
+    public final String locDescForLangFile() {
+        // because i tend to change things and then the damn tooltip becomes outdated.
+        String str = "Determines your total: ";
+        for (StatModifier x : this.statsThatBenefit()) {
+            str += x.GetStat()
+                .translate() + ", ";
+        }
+        str = str.substring(0, str.length() - 2);
+
+        return str;
     }
 
     public float getPercent(StatData data) {
