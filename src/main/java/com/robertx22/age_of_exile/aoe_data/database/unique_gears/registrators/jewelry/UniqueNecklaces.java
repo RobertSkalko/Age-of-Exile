@@ -4,14 +4,10 @@ import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseG
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageUnderPotion;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -38,8 +34,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(3, 8, ChanceToApplyEffect.POISON, ModType.FLAT),
-                new StatModifier(4, 6, Lifesteal.getInstance(), ModType.FLAT),
-                new StatModifier(0.1F, 0.2F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
+                new StatModifier(4, 6, Lifesteal.getInstance(), ModType.FLAT)
             ))
             .build();
 
@@ -52,8 +47,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(50, 100, ManaBurnResistance.getInstance(), ModType.FLAT),
                 new StatModifier(1, 1, EffectImmunity.POISON, ModType.FLAT),
-                new StatModifier(3, 5, PlusResourceOnKill.MANA, ModType.FLAT),
-                new StatModifier(0.4F, 0.55F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(3, 5, PlusResourceOnKill.MANA, ModType.FLAT)
             ))
             .build();
 
@@ -66,8 +60,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(3, 8, Health.getInstance(), ModType.FLAT),
                 new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT),
-                new StatModifier(2, 5, PlusResourceOnKill.HEALTH, ModType.FLAT),
-                new StatModifier(0.3F, 0.45F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+                new StatModifier(2, 5, PlusResourceOnKill.HEALTH, ModType.FLAT)
             ))
             .build();
 
@@ -96,8 +89,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(-100, -100, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 25, DamageUnderPotion.HUNGER, ModType.FLAT),
                 new StatModifier(15, 50, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(15, 50, MagicSteal.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(0.3F, 0.45F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+                new StatModifier(15, 50, MagicSteal.getInstance(), ModType.LOCAL_INCREASE)
             ))
             .build();
 

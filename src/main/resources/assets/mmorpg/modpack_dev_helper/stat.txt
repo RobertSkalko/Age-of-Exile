@@ -35,7 +35,6 @@ thunder_resist
 physical_to_fire
 faster_projectiles
 extra_mob_drops
-intelligence_flat_stat_req
 unlock_heart_of_ice
 unlock_passive_divine
 poison_bonus_dmg
@@ -92,7 +91,6 @@ spell_water_damage
 water_focus
 wither_immunity
 max_thunder_resist
-alter_req_percent
 elemental_penetration
 ele_sword_damage
 unlock_arcane_bolt
@@ -107,7 +105,6 @@ mod_mana_magic
 sword_damage
 all_attributes
 chance_of_burn
-strength_flat_stat_req
 unlock_nature_balm
 unlock_fireball
 lifesteal
@@ -190,7 +187,6 @@ crossbow_damage
 nature_penetration
 fire_focus
 nature_focus
-dexterity_flat_stat_req
 awaken_mana_cooldown
 unlock_holy_flower
 ele_crossbow_damage

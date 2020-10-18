@@ -3,15 +3,11 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.j
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DayDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -53,8 +49,7 @@ public class UniqueRings implements ISlashRegistryInit {
             BaseGearJewelry.RING_MANA_REG.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(5, 10, Mana.getInstance(), ModType.FLAT),
-                new StatModifier(1, 4, RegeneratePercentStat.MANA, ModType.FLAT),
-                new StatModifier(0.2F, 0.35F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(1, 4, RegeneratePercentStat.MANA, ModType.FLAT)
             ))
             .build();
 
@@ -66,10 +61,7 @@ public class UniqueRings implements ISlashRegistryInit {
             BaseGearJewelry.FIRE_RES_RING.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
+                new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT)
             ))
             .build();
 
@@ -81,10 +73,7 @@ public class UniqueRings implements ISlashRegistryInit {
             BaseGearJewelry.COLD_RES_RING.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
+                new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT)
             ))
             .build();
 
@@ -97,10 +86,7 @@ public class UniqueRings implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT),
                 new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT),
-                new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT),
-                new StatModifier(0.15F, 0.15F, new FlatIncreasedReq(Dexterity.INSTANCE), ModType.FLAT)
+                new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT)
             ))
             .build();
 

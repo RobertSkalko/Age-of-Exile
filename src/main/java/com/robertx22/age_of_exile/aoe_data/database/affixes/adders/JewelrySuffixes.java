@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -77,16 +76,6 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(0.05F, 0.1F, AllAttributes.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Weight(50)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_ease")
-            .Named("Of Ease")
-            .tier(1, new StatModifier(20, 30, new ReducedAllStatReqOnItem(), ModType.FLAT))
-            .tier(2, new StatModifier(15, 20, new ReducedAllStatReqOnItem(), ModType.FLAT))
-            .tier(3, new StatModifier(10, 15, new ReducedAllStatReqOnItem(), ModType.FLAT))
-            .includesTags(SlotTag.intelligence, SlotTag.dexterity, SlotTag.strength)
-            .Weight(200)
             .Suffix()
             .Build();
 

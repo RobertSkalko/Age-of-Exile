@@ -3,11 +3,9 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.a
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -28,8 +26,7 @@ public class LeatherUniques implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(5, 15, DodgeRating.getInstance(), ModType.FLAT),
                 new StatModifier(10, 40, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(5, 20, CriticalHit.getInstance(), ModType.FLAT),
-                new StatModifier(0.25F, 0.5F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+                new StatModifier(5, 20, CriticalHit.getInstance(), ModType.FLAT)
             ))
             .build();
 
@@ -42,9 +39,7 @@ public class LeatherUniques implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(10, 100, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 30, CriticalHit.getInstance(), ModType.FLAT),
-                new StatModifier(25, 25, CriticalDamage.getInstance(), ModType.FLAT),
-                new StatModifier(0.15F, 0.2F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
-            ))
+                new StatModifier(25, 25, CriticalDamage.getInstance(), ModType.FLAT)))
             .build();
 
     }

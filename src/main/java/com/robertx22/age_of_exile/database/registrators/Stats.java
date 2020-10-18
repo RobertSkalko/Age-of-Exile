@@ -13,8 +13,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
@@ -80,12 +78,6 @@ public class Stats implements ISlashRegistryInit {
                     add(ChanceToApplyEffect.BURN);
                     add(ChanceToApplyEffect.POISON);
                     add(ChanceToApplyEffect.STATIC);
-
-                    add(new FlatIncreasedReq(Dexterity.INSTANCE));
-                    add(new FlatIncreasedReq(Strength.INSTANCE));
-                    add(new FlatIncreasedReq(Intelligence.INSTANCE));
-
-                    add(new ReducedAllStatReqOnItem());
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.a
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -12,10 +11,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQu
 import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -39,8 +37,7 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(10, 30, MagicShield.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(1, 2, RegeneratePercentStat.MANA, ModType.FLAT),
                 new StatModifier(1, 2, RegeneratePercentStat.MAGIC_SHIELD, ModType.FLAT),
-                new StatModifier(-8, -3, Health.getInstance(), ModType.FLAT),
-                new StatModifier(0.4F, 0.6F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(-8, -3, Health.getInstance(), ModType.FLAT)
             ))
             .build();
 
@@ -54,8 +51,7 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(-15, 15, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(-15, 15, CriticalDamage.getInstance(), ModType.FLAT),
                 new StatModifier(-15, 15, MagicFind.getInstance(), ModType.FLAT),
-                new StatModifier(-15, 15, IncreasedItemQuantity.getInstance(), ModType.FLAT),
-                new StatModifier(0.2F, 0.6F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(-15, 15, IncreasedItemQuantity.getInstance(), ModType.FLAT)
             ))
             .build();
 
@@ -69,8 +65,7 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(25, 50, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalPenetration(Elements.Water), ModType.FLAT),
-                new StatModifier(5, 15, ChanceToApplyEffect.CHILL, ModType.FLAT),
-                new StatModifier(0.2F, 0.3F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(5, 15, ChanceToApplyEffect.CHILL, ModType.FLAT)
             ))
             .build();
 
@@ -84,8 +79,7 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
-                new StatModifier(0.2F, 0.3F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Nature), ModType.FLAT)
             ))
             .build();
 

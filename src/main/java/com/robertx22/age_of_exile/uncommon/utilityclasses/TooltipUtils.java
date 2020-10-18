@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -31,34 +30,16 @@ public class TooltipUtils {
     }
 
     public static void addRequirements(List<Text> tip, GearItemData gear, EntityCap.UnitData data) {
-        Formatting reqColor = Formatting.GRAY;
-        Formatting reqNumberColor = Formatting.WHITE;
 
-        if (!gear.meetsStatRequirements(data) || gear.level > data.getLevel()) {
-            reqColor = Formatting.RED;
+        Formatting reqNumberColor = Formatting.YELLOW;
+
+        if (gear.level > data.getLevel()) {
             reqNumberColor = Formatting.RED;
         }
 
-        FinalizedGearStatReq req = gear.getStatRequirements();
-        String reqtext = reqColor + "(Level " + reqNumberColor + gear.level;
-
-        int dex = req.dexterity;
-        int str = req.strength;
-        int intr = req.intelligence;
-
-        if (str > 0) {
-            reqtext += reqColor + ", STR " + reqNumberColor + "" + str;
-        }
-        if (intr > 0) {
-            reqtext += reqColor + ", INT " + reqNumberColor + "" + intr;
-        }
-        if (dex > 0) {
-            reqtext += reqColor + ", DEX " + reqNumberColor + "" + dex;
-        }
-        reqtext += ")";
-
         tip.add(new SText(""));
-        tip.add(new SText(reqtext));
+        tip.add(new LiteralText(reqNumberColor + "").append(Words.Level.locName())
+            .append(": " + gear.level));
         tip.add(new SText(""));
     }
 
@@ -232,6 +213,7 @@ public class TooltipUtils {
     }
 
     public static MutableText rarity(Rarity rarity) {
+
         return (new LiteralText(rarity.textFormatting() + "")
             .append(rarity.locName()
                 .append(" ")

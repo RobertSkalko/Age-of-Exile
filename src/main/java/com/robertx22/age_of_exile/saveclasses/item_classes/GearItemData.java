@@ -87,10 +87,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean meetsStatRequirements(EntityCap.UnitData data) {
 
-        if (!getStatRequirements().passesStatRequirements(data, this)) {
-            return false;
-        }
-
         return true;
     }
 
@@ -98,13 +94,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         return SlashRegistry.GearTypes()
             .isRegistered(gear_type);
-    }
-
-    public FinalizedGearStatReq getStatRequirements() {
-        FinalizedGearStatReq req = GetBaseGearType().getStatRequirements()
-            .getFinalized(this);
-        req.calculate(this);
-        return req;
     }
 
     public int getMaxSockets() {

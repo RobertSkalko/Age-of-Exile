@@ -6,19 +6,16 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.GiveSpellStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.reduced_req.FlatIncreasedReq;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -41,8 +38,7 @@ public class PlateUniques implements ISlashRegistryInit {
             BasePlateArmors.CHESTS.get(LevelRanges.MIDDLE))
             .stats(Arrays.asList(
                 new StatModifier(20, 100, Armor.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(20, 60, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(0.2F, 0.45F, new FlatIncreasedReq(Intelligence.INSTANCE), ModType.FLAT)
+                new StatModifier(20, 60, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE)
             ))
             .build();
 
@@ -56,8 +52,7 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
                 new StatModifier(1, 1, RegeneratePercentStat.HEALTH, ModType.FLAT),
                 new StatModifier(1, 1, EffectImmunity.HUNGER, ModType.FLAT),
-                new StatModifier(-15, -5, IncreasedItemQuantity.getInstance(), ModType.FLAT),
-                new StatModifier(0.5F, 0.75F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+                new StatModifier(-15, -5, IncreasedItemQuantity.getInstance(), ModType.FLAT)
             ))
             .build();
 
@@ -71,8 +66,7 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(20, 80, Armor.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 25, new SpecificWeaponDamage(WeaponTypes.Sword), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 25, new ElementalPenetration(Elements.Thunder), ModType.FLAT),
-                new StatModifier(0.1F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+                new StatModifier(10, 25, new ElementalPenetration(Elements.Thunder), ModType.FLAT)
             ))
             .build();
 
@@ -84,8 +78,7 @@ public class PlateUniques implements ISlashRegistryInit {
             BasePlateArmors.HELMETS.get(LevelRanges.LOW))
             .stats(Arrays.asList(
                 new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
-                new StatModifier(50, 100, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(0.1F, 0.15F, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+                new StatModifier(50, 100, Lifesteal.getInstance(), ModType.LOCAL_INCREASE)
             ))
             .build();
 
