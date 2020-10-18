@@ -66,6 +66,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
 
         buf.writeString(stat, 100);
         buf.writeString(type, 100);
+
     }
 
     public StatModifier(float firstMin, float firstMax, Stat stat, ModType type) {
