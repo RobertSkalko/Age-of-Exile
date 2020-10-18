@@ -49,3 +49,6 @@ The default if it's not inputted is all rarities besides unique.
 + environmental damage now scales to level
 + magic shield now reduces environmental damage instead of not reducing and additionally losing itself when target is damaged
 In short, it's a needed buff. 
++ sync mana and magic shield better
+
+B: known bug, poison can kill you now.
