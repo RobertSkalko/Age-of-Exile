@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Locale;
 
@@ -19,8 +18,7 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class EntityConfigs implements ISlashRegistryInit {
 
-    @Override
-    public void registerAll() {
+    void setupBroadClasses() {
 
         new EntityConfig(EntityTypeUtils.EntityClassification.MOB.name()
             .toLowerCase(Locale.ROOT), 1).addToSerializables();
@@ -29,28 +27,46 @@ public class EntityConfigs implements ISlashRegistryInit {
         animal.hp_multi -= 0.5F;
         animal.addToSerializables();
         EntityConfig npc = new EntityConfig(EntityTypeUtils.EntityClassification.NPC.name()
-            .toLowerCase(Locale.ROOT), 0.05F);
+            .toLowerCase(Locale.ROOT), 0);
         npc.hp_multi += 0.2F;
         npc.addToSerializables();
         new EntityConfig(EntityTypeUtils.EntityClassification.OTHER.name()
             .toLowerCase(Locale.ROOT), 0).addToSerializables();
         new EntityConfig(EntityTypeUtils.EntityClassification.PLAYER.name()
             .toLowerCase(Locale.ROOT), 0).addToSerializables();
+    }
 
-        new EntityConfig(Registry.ENTITY_TYPE.getId(EntityType.PIG)
-            .toString(), 0).addToSerializables();
+    void setupSpecificMobs() {
 
+        EntityConfig irongolem = new EntityConfig(EntityType.IRON_GOLEM, 0);
+        irongolem.addToSerializables();
+
+        EntityConfig polarbear = new EntityConfig(EntityType.POLAR_BEAR, 0);
+        polarbear.addToSerializables();
+
+        new EntityConfig(EntityType.ZOMBIFIED_PIGLIN, 0.8F).addToSerializables();
+        new EntityConfig(EntityType.BEE, 0.8F).addToSerializables();
+        new EntityConfig(EntityType.WOLF, 0.5F).addToSerializables();
+
+        EntityConfig enderman = new EntityConfig(EntityType.ENDERMAN, 1);
+        enderman.addToSerializables();
+
+        EntityConfig wither = mob(EntityType.WITHER, new SpecialMobStats());
+        wither.max_lvl = 30;
+        wither.min_lvl = 30;
+    }
+
+    void setupWholeMods() {
         new EntityConfig("lycanite_mobs", 1.2F).addToSerializables();
 
+    }
+
+    void setupMyMobs() {
         EntityConfig golem = mob(ModRegistry.ENTITIES.GOLEM_BOSS, new SpecialMobStats());
         golem.max_lvl = 10;
         golem.min_lvl = 10;
         golem.min_rarity = IRarity.Boss;
         golem.max_rarity = IRarity.Boss;
-
-        EntityConfig wither = mob(EntityType.WITHER, new SpecialMobStats());
-        wither.max_lvl = 30;
-        wither.min_lvl = 30;
 
         mob(ENTITIES.FIRE_CHICKEN, fire());
         mob(ENTITIES.WATER_CHICKEN, water());
@@ -90,9 +106,16 @@ public class EntityConfigs implements ISlashRegistryInit {
 
     }
 
+    @Override
+    public void registerAll() {
+        this.setupBroadClasses();
+        this.setupMyMobs();
+        this.setupSpecificMobs();
+        this.setupWholeMods();
+    }
+
     private EntityConfig mob(EntityType type, SpecialMobStats stats) {
-        EntityConfig c = new EntityConfig(Registry.ENTITY_TYPE.getId(type)
-            .toString(), 1);
+        EntityConfig c = new EntityConfig(type, 1);
         c.stats = stats;
         c.addToSerializables();
         return c;

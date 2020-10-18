@@ -22,6 +22,15 @@ Now they give actual stats instead of multiplying your existing values.
 In return, I reduced player's base stats, as now your attributes determine that mostly.
 Note, I'll probably have to set up limits or diminishing returns somehow later.
 
++ Crackdown on mob farming:
+- iron golems and polar bears now dont drop loot
+- npcs and animals now dont drop loot either (they had a very small chance)
+- angerable mobs (those that don't attack you until you attack them, now have reduced loot and exp.)
+All except endermen. Endermen are the only tough angerable mobs in vanilla.
+You really had to farm animals that drop 100 times less loot?? I underestimated you guys.
+- new update coming to Balance of Exile mod: remove ALL exp and loot from mobs spawned by mob spawners.
+For the haters, all these features are configurable with entity config datapacks.
+
 + increased default stat scaling by a ton. Should be closer to mine and slash scaling now.
 + Reverted rarities to mine and slash ones. That means epic, legendary and mythic are back! I also added antique rarity.
 Antiques are basically easier to get but worse relics.

@@ -16,6 +16,8 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStat
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
+import net.minecraft.entity.EntityType;
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +32,13 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
 
     public EntityConfig(String id, float loot) {
         this.identifier = id;
+        this.loot_multi = loot;
+        this.exp_multi = loot;
+    }
+
+    public EntityConfig(EntityType type, float loot) {
+        this.identifier = Registry.ENTITY_TYPE.getId(type)
+            .toString();
         this.loot_multi = loot;
         this.exp_multi = loot;
     }
