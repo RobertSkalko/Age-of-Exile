@@ -22,10 +22,12 @@ public class LevelUtils {
     }
 
     public static float getMaxLevelMultiplier(int lvl) {
-
         float max = ModConfig.get().Server.MAX_LEVEL;
-
         return (float) lvl / max;
+    }
+
+    public static int getLevelForMultiplier(float multi) {
+        return (int) (ModConfig.get().Server.MAX_LEVEL * multi);
     }
 
     public static int getExpRequiredForLevel(int level) {

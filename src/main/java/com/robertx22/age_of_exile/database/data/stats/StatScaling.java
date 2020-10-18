@@ -12,8 +12,7 @@ public enum StatScaling {
     SCALING {
         @Override
         public float scale(float val, int lvl) {
-            return (float) (val + (val * ModConfig.get().statScalings.LINEAR_SCALING.PERCENT_ADDED_PER_LEVEL
-                * lvl));
+            return val + (val * ModConfig.get().statScalings.LINEAR_SCALING.getMultiFor(lvl));
         }
     },
     LINEAR {
@@ -25,24 +24,12 @@ public enum StatScaling {
     SLOW_SCALING {
         @Override
         public float scale(float val, int lvl) {
-            return (float) (val + (val * ModConfig.get().statScalings.SLOW_LINEAR_SCALING.PERCENT_ADDED_PER_LEVEL
-                * lvl));
+            return val + (val * ModConfig.get().statScalings.SLOW_LINEAR_SCALING.getMultiFor(lvl));
         }
     };
 
     StatScaling() {
 
-    }
-
-    public static float evaluate(double[] coefficients, float val, int lvl) {
-
-        double finalcoef = coefficients[0];
-
-        for (int i = 1; i < coefficients.length; i++) {
-            finalcoef = lvl * finalcoef + coefficients[i];
-        }
-
-        return (float) finalcoef * val;
     }
 
     public abstract float scale(float val, int lvl);
