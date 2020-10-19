@@ -33,7 +33,7 @@ public abstract class WeaponMechanic implements IGUID {
             .getCalculatedStat(new AttackDamage(Elements.Physical))
             .getRandomRangeValue();
         DamageEffect dmg = new DamageEffect(
-            data.event, data.source, data.target, num, data.sourceData, data.targetData, EffectTypes.BASIC_ATTACK, weptype);
+            data.event, data.source, data.target, num, EffectTypes.BASIC_ATTACK, weptype, data.weaponData.GetBaseGearType().style);
 
         dmg.setMultiplier(data.multiplier);
 

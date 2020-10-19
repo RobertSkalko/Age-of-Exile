@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import net.minecraft.block.Blocks;
@@ -386,6 +387,7 @@ public class Spells implements ISlashRegistryInit {
 
         SpellBuilder.of("arrow_barrage", SpellConfiguration.Builder.multiCast(10, 20 * 25, 60, 6), "Arrow Barrage")
             .weaponReq(CastingWeapon.RANGED)
+            .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.5F, 2), Elements.Physical))
@@ -398,6 +400,7 @@ public class Spells implements ISlashRegistryInit {
 
         SpellBuilder.of("recoil_shot", SINGLE_TARGET_PROJ_CONFIG(), "Recoil Shot")
             .weaponReq(CastingWeapon.RANGED)
+            .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D, 1.2D, 80D, true)))
             .onHit(PartBuilder.damage(ValueCalculationData.base(4), Elements.Physical))
@@ -412,6 +415,7 @@ public class Spells implements ISlashRegistryInit {
 
         SpellBuilder.of("multi_shot", SINGLE_TARGET_PROJ_CONFIG(), "Multi Shot")
             .weaponReq(CastingWeapon.RANGED)
+            .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(3D, 1.2D, 80D, true)))
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.5F, 3), Elements.Physical))
@@ -441,6 +445,7 @@ public class Spells implements ISlashRegistryInit {
 
         SpellBuilder.of("thunder_dash", SpellConfiguration.Builder.instant(15, 20 * 30), "Thunder Dash")
             .weaponReq(CastingWeapon.ANY_WEAPON)
+            .attackStyle(AttackPlayStyle.MELEE)
             .onCast(PartBuilder.playSound(SOUNDS.DASH, 1D, 1D))
             .onCast(PartBuilder.pushCaster(DashUtils.Way.FORWARDS, DashUtils.Strength.LARGE_DISTANCE))
             .onCast(PartBuilder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
@@ -466,6 +471,7 @@ public class Spells implements ISlashRegistryInit {
 
         SpellBuilder.of("purifying_fires", SpellConfiguration.Builder.instant(7, 20)
             .setSwingArm(), "Purifying Fires")
+            .attackStyle(AttackPlayStyle.MELEE)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
@@ -488,6 +494,7 @@ public class Spells implements ISlashRegistryInit {
 
         SpellBuilder.of("arrow_storm", SpellConfiguration.Builder.multiCast(25, 20 * 160, 60, 6), "Arrow Storm")
             .weaponReq(CastingWeapon.RANGED)
+            .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D, 1.2D, 80D, true)))
             .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Physical))
@@ -594,6 +601,7 @@ public class Spells implements ISlashRegistryInit {
 
         THUNDER_STRIKES = SpellBuilder.of("thunder_strikes", SpellConfiguration.Builder.multiCast(15, 20 * 15, 80, 4)
             .setSwingArm(), "Thunder Strikes")
+            .attackStyle(AttackPlayStyle.MELEE)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())

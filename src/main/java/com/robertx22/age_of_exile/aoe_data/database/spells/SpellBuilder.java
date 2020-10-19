@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.EntityActivati
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -30,6 +31,11 @@ public class SpellBuilder {
         builder.spell.config = new SpellConfiguration();
         builder.spell.locName = "";
         return builder;
+    }
+
+    public SpellBuilder attackStyle(AttackPlayStyle style) {
+        this.spell.config.style = style;
+        return this;
     }
 
     public SpellBuilder weaponReq(CastingWeapon wep) {

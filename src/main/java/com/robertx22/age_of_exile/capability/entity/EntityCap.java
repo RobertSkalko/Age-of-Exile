@@ -25,6 +25,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -671,7 +672,7 @@ public class EntityCap {
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
             DamageEffect dmg = new DamageEffect(
-                data, (int) num, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None
+                data, (int) num, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None, AttackPlayStyle.MELEE
             );
 
             dmg.Activate();

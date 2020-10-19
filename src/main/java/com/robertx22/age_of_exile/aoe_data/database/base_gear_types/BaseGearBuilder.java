@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearCraftEssenceItem;
 import net.minecraft.item.Item;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class BaseGearBuilder {
 
+    private AttackPlayStyle style = AttackPlayStyle.MELEE;
     private String locnamesuffix;
     private String idprefix;
     private DataGenKey<GearSlot> slot;
@@ -42,6 +44,11 @@ public class BaseGearBuilder {
         b.slot = slot;
         b.itemMap = itemMap;
         return b;
+    }
+
+    public BaseGearBuilder attackStyle(AttackPlayStyle style) {
+        this.style = style;
+        return this;
     }
 
     public BaseGearBuilder addLvlRange(LevelRange range, String nameprefix) {
@@ -152,6 +159,7 @@ public class BaseGearBuilder {
             type.base_stats = basestats;
             type.attacksPerSecond = atkspeed;
             type.weight = weight;
+            type.style = style;
             type.essenceItem = essenceItem;
             type.item_id = Registry.ITEM.getId(itemMap.get(x))
                 .toString();

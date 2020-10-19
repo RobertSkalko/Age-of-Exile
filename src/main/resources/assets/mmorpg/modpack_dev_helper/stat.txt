@@ -154,10 +154,13 @@ unlock_passive_arcane
 poison_immunity
 fast_frostball
 mod_throw_flames_lifesteal
+melee_dmg
 mana_regen
 attack_speed
+ranged_dmg
 mana_on_kill
 thunder_weapon_damage
+magic_dmg
 day_dmg
 wand_damage
 damage_shield

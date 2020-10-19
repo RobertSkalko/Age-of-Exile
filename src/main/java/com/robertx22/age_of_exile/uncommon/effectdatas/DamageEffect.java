@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
@@ -44,32 +43,26 @@ import java.util.stream.Collectors;
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable, ICrittable {
 
-    public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg, UnitData sourceData,
-                        UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
-        super(source, target, sourceData, targetData);
-        this.event = event;
-        this.setEffectType(effectType, weptype);
-        this.number = dmg;
-        calcBlock();
-    }
-
-    public DamageEffect(DamageEventData data, int dmg, EffectTypes effectType, WeaponTypes weptype) {
+    public DamageEffect(DamageEventData data, int dmg, EffectTypes effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(data.source, data.target, data.sourceData, data.targetData);
         this.event = data.event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
+        this.style = style;
         calcBlock();
     }
 
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg,
-                        EffectTypes effectType, WeaponTypes weptype) {
+                        EffectTypes effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(source, target, Load.Unit(source), Load.Unit(target));
         this.event = event;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
+        this.style = style;
         calcBlock();
     }
 
+    public AttackPlayStyle style;
     LivingHurtEvent event;
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
@@ -492,9 +485,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEffect bonus = new DamageEffect(event, source, target, entry.getValue(), this.sourceData,
-                    this.targetData, EffectTypes.BONUS_ATTACK, this.weaponType
-                );
+                DamageEffect bonus = new DamageEffect(
+                    event, source, target, entry.getValue(),
+                    EffectTypes.BONUS_ATTACK, this.weaponType, style);
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;
                 bonus.calculateEffects();

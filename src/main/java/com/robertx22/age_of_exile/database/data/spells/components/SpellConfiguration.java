@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TickUtils;
 import net.minecraft.entity.LivingEntity;
 
@@ -13,6 +14,7 @@ public class SpellConfiguration {
     public int cast_time_ticks;
     public int cooldown_ticks;
     public boolean is_starter = false;
+    public AttackPlayStyle style = AttackPlayStyle.MAGIC;
     public PassiveConfig passive_config = new PassiveConfig();
 
     public static class PassiveConfig {

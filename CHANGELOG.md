@@ -22,6 +22,11 @@ Now they give actual stats instead of multiplying your existing values.
 In return, I reduced player's base stats, as now your attributes determine that mostly.
 Note, I'll probably have to set up limits or diminishing returns somehow later.
 
++ Added different damage types, In code I call them Attack Play Style: Melee, Ranged, Magic.
+These work based on weapon type and spells. So a ranger spell that shoots arrows is ranged type.
+Wands are magic type, swords melee type etc.
+Added stats for those Attack play styles too. Primary source: int, dex, str.
+
 + Crackdown on mob farming:
 - iron golems and polar bears now dont drop loot
 - npcs and animals now dont drop loot either (they had a very small chance)
@@ -52,5 +57,8 @@ In short, it's a needed buff.
 + sync mana and magic shield better
 + plate and leather armor now has health as base stat, health affixes reduced
 + dodge max %: 80 > 90
++ balanced gear, core stats and base player stats in a way that hopefully doesn't leave gearless players completely hopeless.
+Specifically as core stats like vitality now give flat health, it means players have a base defense now. 
+Especially magic shield users, as willpower gives flat magic shield.
 
 B: known bug, poison can kill you now.

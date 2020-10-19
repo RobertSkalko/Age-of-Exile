@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -39,6 +40,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .baseStat(new StatModifier(1, 3, 2, 7, new AttackDamage(Elements.Physical), ModType.FLAT))
             .baseStat(new StatModifier(5, 18, CriticalHit.getInstance(), ModType.FLAT))
+            .attackStyle(AttackPlayStyle.RANGED)
             .addHunterLevelRanges()
             .build();
 
@@ -48,6 +50,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .baseStat(new StatModifier(2, 3, 3, 6, new AttackDamage(Elements.Physical), ModType.FLAT))
             .baseStat(new StatModifier(3, 6, CriticalHit.getInstance(), ModType.FLAT))
+            .attackStyle(AttackPlayStyle.RANGED)
             .addHunterLevelRanges()
             .build();
 
@@ -80,6 +83,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .baseStat(new StatModifier(2, 3, 3, 6, new AttackDamage(Elements.Physical), ModType.FLAT))
             .baseStat(new StatModifier(3, 10, CriticalHit.getInstance(), ModType.FLAT))
             .implicitStat(new StatModifier(3, 10, SpellDamage.getInstance(), ModType.FLAT))
+            .attackStyle(AttackPlayStyle.MAGIC)
             .addMageWeaponLevelRanges()
             .build();
 
