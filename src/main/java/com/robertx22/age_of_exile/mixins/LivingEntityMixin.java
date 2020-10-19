@@ -37,12 +37,15 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     // ENSURE MY SPECIAL DAMAGE ISNT LOWERED BY ARMOR, ENCHANTS ETC
     @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
     public void hookench(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
+        LivingEntity en = (LivingEntity) (Object) this;
+
+        LivingHurtUtils.damageCurioItems(en, amount);
+
         if (source instanceof MyDamageSource) {
             ci.setReturnValue(amount);
         }
         if (LivingHurtUtils.isEnviromentalDmg(source)) {
             try {
-                LivingEntity en = (LivingEntity) (Object) this;
 
                 if (amount <= 0) {
                     return;
@@ -78,8 +81,7 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     public void hookarmortodmg(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
         if (source instanceof MyDamageSource) {
-            damageArmor(source, MathHelper.clamp(amount, 2, 10));
-            LivingHurtUtils.damageCurioItems(en, amount);
+            //damageArmor(source, MathHelper.clamp(amount, 2, 10));
             ci.setReturnValue(amount);
         }
     }
