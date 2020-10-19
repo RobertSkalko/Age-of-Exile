@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -26,8 +27,11 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> CHESTS;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HELMETS;
 
-    static float min = 45;
+    static float min = 20;
     static float max = 80;
+
+    static float minHP = 1;
+    static float maxHP = 3;
 
     @Override
     public void registerAll() {
@@ -36,6 +40,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
             .req(new StatRequirement().dexterity(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.boots, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.FEET) * min, multiOf(EquipmentSlot.FEET) * max, DodgeRating.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(multiOf(EquipmentSlot.FEET) * minHP, multiOf(EquipmentSlot.FEET) * maxHP, Health.getInstance(), ModType.FLAT))
             .addHunterLevelRanges()
             .build();
 
@@ -43,6 +48,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
             .req(new StatRequirement().dexterity(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.pants, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * min, multiOf(EquipmentSlot.LEGS) * max, DodgeRating.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * minHP, multiOf(EquipmentSlot.LEGS) * maxHP, Health.getInstance(), ModType.FLAT))
             .addHunterLevelRanges()
             .build();
 
@@ -50,6 +56,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
             .req(new StatRequirement().dexterity(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.chest, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * min, multiOf(EquipmentSlot.CHEST) * max, DodgeRating.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * minHP, multiOf(EquipmentSlot.CHEST) * maxHP, Health.getInstance(), ModType.FLAT))
             .addHunterLevelRanges()
             .build();
 
@@ -57,6 +64,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
             .req(new StatRequirement().dexterity(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.helmet, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * min, multiOf(EquipmentSlot.HEAD) * max, DodgeRating.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * minHP, multiOf(EquipmentSlot.HEAD) * maxHP, Health.getInstance(), ModType.FLAT))
             .addHunterLevelRanges()
             .build();
 

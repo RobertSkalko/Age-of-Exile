@@ -25,9 +25,9 @@ public class ArmorPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("scaled")
             .Named("Scaled")
-            .tier(1, new StatModifier(14, 20, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 3, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(8, 14, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(14, 20, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 1.5F, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(8, 14, Armor.getInstance(), ModType.FLAT), new StatModifier(0.8F, 1F, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, Armor.getInstance(), ModType.FLAT), new StatModifier(0.5F, 0.8F, Health.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.armor_stat)
             .Prefix()
             .Build();
@@ -44,10 +44,10 @@ public class ArmorPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("virile")
             .Named("Virile")
-            .tier(1, new StatModifier(3, 4, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(1.5F, 2, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 1.5F, Health.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(0.5F, 1, Health.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.armor_family, SlotTag.shield, SlotTag.jewelry_family)
             .Prefix()
             .Build();

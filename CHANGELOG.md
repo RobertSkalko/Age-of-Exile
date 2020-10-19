@@ -50,5 +50,7 @@ The default if it's not inputted is all rarities besides unique.
 + magic shield now reduces environmental damage instead of not reducing and additionally losing itself when target is damaged
 In short, it's a needed buff. 
 + sync mana and magic shield better
++ plate and leather armor now has health as base stat, health affixes reduced
++ dodge max %: 80 > 90
 
 B: known bug, poison can kill you now.

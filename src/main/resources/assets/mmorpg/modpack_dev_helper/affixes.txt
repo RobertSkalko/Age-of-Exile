@@ -4,6 +4,7 @@ nature_wep_dmg_jewelry
 scaled
 fire_ele_dmg_jewelry
 nature_res
+of_vitality
 seraphim
 thunder_wep_dmg
 of_consumption
@@ -37,12 +38,14 @@ of_the_sky
 of_speed
 of_vampirism
 water_wep_dmg
+of_will
 tyrannical
 thunder_ele_dmg_jewelry
 of_spirit_markings
 of_the_philosopher
 fire_wep_dmg_jewelry
 of_precision
+of_agility
 of_gluttony
 nature_wep_dmg
 virile

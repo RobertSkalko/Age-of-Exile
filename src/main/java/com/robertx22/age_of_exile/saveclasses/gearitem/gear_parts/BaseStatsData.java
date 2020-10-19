@@ -114,7 +114,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
             }
         }
         if (eleDmgs.length() > 0) {
-            eledmg = new SText(TEXT_COLOR + "Elemental Damage:" + eleDmgs);
+            eledmg = new SText(TEXT_COLOR + "Elemental:" + eleDmgs);
         }
 
         if (physdmg != null) {

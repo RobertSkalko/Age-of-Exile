@@ -25,9 +25,9 @@ public class EvasionPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("fawns")
             .Named("Fawn's")
-            .tier(1, new StatModifier(12, 15, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(8, 12, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(3, 8, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 1, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(12, 15, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1.5F, 2, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(8, 12, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(1, 1.5F, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(3, 8, DodgeRating.getInstance(), ModType.FLAT), new StatModifier(0.5F, 1, Health.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.dodge_stat)
             .Prefix()
             .Build();
