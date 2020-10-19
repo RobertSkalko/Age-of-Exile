@@ -18,9 +18,9 @@ public class StatScaleConfigs {
 
         List<LevelScalingRangePart> linear = new ArrayList<>();
         linear.add(new LevelScalingRangePart(0F, 0.2F, 1.1F, 2F));
-        linear.add(new LevelScalingRangePart(0.2F, 0.4F, 2F, 3F));
-        linear.add(new LevelScalingRangePart(0.4F, 0.8F, 3F, 10));
-        linear.add(new LevelScalingRangePart(0.8F, 1F, 10, 30));
+        linear.add(new LevelScalingRangePart(0.2F, 0.4F, 2F, 10F));
+        linear.add(new LevelScalingRangePart(0.4F, 0.8F, 10F, 40));
+        linear.add(new LevelScalingRangePart(0.8F, 1F, 40, 100));
 
         List<LevelScalingRangePart> slow = new ArrayList<>();
         slow.add(new LevelScalingRangePart(0F, 1F, 1, 2F));

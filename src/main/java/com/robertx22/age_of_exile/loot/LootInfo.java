@@ -136,6 +136,13 @@ public class LootInfo {
         modifier += multi - 1F;
 
         if (victim != null && mobData != null) {
+
+            if (this.playerData != null) {
+                modifier += LootUtils.getLevelDistancePunishmentMulti(mobData, playerData) - 1F;
+            }
+
+            modifier += LootUtils.getMobHealthBasedLootMulti(mobData, victim) - 1F;
+
             modifier += SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi - 1F;
             modifier += mobData.getUnit()
                 .getCalculatedStat(ExtraMobDropsStat.getInstance())
@@ -154,14 +161,6 @@ public class LootInfo {
 
         if (world != null) {
             modifier += SlashRegistry.getDimensionConfig(world).all_drop_multi - 1F;
-        }
-
-        if (mobData != null && victim != null) {
-            modifier += LootUtils.getMobHealthBasedLootMulti(mobData, victim) - 1F;
-
-            if (this.playerData != null) {
-                modifier += LootUtils.getLevelDistancePunishmentMulti(mobData, playerData) - 1F;
-            }
         }
 
         float chance = gen.baseDropChance() * modifier;

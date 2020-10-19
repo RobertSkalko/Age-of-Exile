@@ -7,7 +7,7 @@ public abstract class BaseRegenClass extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Regen happens every few seconds but is also used for other stats or spells";
+        return "Restores this much every few seconds.";
     }
 
     public BaseRegenClass() {

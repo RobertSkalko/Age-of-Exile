@@ -41,7 +41,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
             "all_knowing",
             "All Knowing",
             BaseGearType.SlotFamily.Armor,
-            Arrays.asList(new StatModifier(0.1F, 0.2F, AllAttributes.getInstance())),
+            Arrays.asList(new StatModifier(0.05F, 0.1F, AllAttributes.getInstance())),
             Arrays.asList(ENO, HAR, XER))
             .addToSerializables();
 

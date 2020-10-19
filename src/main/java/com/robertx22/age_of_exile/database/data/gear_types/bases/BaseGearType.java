@@ -579,6 +579,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
             .toString());
         json.addProperty("gear_slot", this.gear_slot);
         json.addProperty("weapon_type", weaponType().toString());
+        json.addProperty("attack_style", style.name());
 
         return json;
     }
@@ -596,6 +597,14 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");
         o.gear_slot = json.get("gear_slot")
             .getAsString();
+
+        try {
+            o.style = AttackPlayStyle.valueOf(json.get("attack_style")
+                .getAsString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         o.item_id = json.get("item_id")
             .getAsString();
 

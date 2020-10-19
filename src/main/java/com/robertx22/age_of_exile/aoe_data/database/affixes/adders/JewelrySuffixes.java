@@ -86,9 +86,9 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_sky")
             .Named("Of the Sky")
-            .tier(1, new StatModifier(0.15F, 0.25F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(0.1F, 0.15F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.05F, 0.1F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(0.5F, 0.8F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.3F, 0.5F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.1F, 0.3F, AllAttributes.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Weight(50)
             .Suffix()

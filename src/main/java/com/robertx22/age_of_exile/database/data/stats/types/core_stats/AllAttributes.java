@@ -36,7 +36,7 @@ public class AllAttributes extends Stat implements IAddToOtherStats {
 
     @Override
     public String locDescForLangFile() {
-        return "Adds to Dexterity, Intelligence and Strength.";
+        return "Adds to DEX, INT STR, VIT, WIL, AGI.";
     }
 
     @Override

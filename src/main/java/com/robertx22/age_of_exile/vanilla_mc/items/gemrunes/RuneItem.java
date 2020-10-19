@@ -302,7 +302,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(0.1F, 0.2F, AllAttributes.getInstance()));
+                return Arrays.asList(new StatModifier(0.05F, 0.1F, AllAttributes.getInstance()));
             }
 
             @Override
