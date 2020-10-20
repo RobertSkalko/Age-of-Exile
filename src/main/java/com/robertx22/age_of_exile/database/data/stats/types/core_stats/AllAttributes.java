@@ -31,7 +31,7 @@ public class AllAttributes extends Stat implements IAddToOtherStats {
     }
 
     public List<BaseCoreStat> coreStatsThatBenefit() {
-        return Arrays.asList(Agility.INSTANCE, Dexterity.INSTANCE, Intelligence.INSTANCE, Strength.INSTANCE, Willpower.INSTANCE, Vitality.INSTANCE);
+        return Arrays.asList(Wisdom.INSTANCE, Dexterity.INSTANCE, Intelligence.INSTANCE, Strength.INSTANCE, Willpower.INSTANCE, Vitality.INSTANCE);
     }
 
     @Override

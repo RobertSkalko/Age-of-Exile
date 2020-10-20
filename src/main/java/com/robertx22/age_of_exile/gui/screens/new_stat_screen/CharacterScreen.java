@@ -182,8 +182,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             addButton(new StatButton(Willpower.INSTANCE, xpos, ypos));
             addButton(new IncreaseStatButton(data, stats, Willpower.INSTANCE, xpos - 19, ypos + 1));
             ypos += 20;
-            addButton(new StatButton(Agility.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Agility.INSTANCE, xpos - 19, ypos + 1));
+            addButton(new StatButton(Wisdom.INSTANCE, xpos, ypos));
+            addButton(new IncreaseStatButton(data, stats, Wisdom.INSTANCE, xpos - 19, ypos + 1));
 
             //
             xpos += 65;
