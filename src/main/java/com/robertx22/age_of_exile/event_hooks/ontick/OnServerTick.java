@@ -183,6 +183,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 }
 
+                UnequipHighLevelGear.onTick(player);
+
                 PlayerTickDatas.put(player.getUuid(), data);
 
             } catch (Exception e) {
@@ -209,6 +211,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             ticksToCompItems++;
             ticksToSpellCooldowns++;
             ticksToLvlWarning++;
+
         }
 
     }

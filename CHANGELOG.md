@@ -60,5 +60,6 @@ In short, it's a needed buff.
 + balanced gear, core stats and base player stats in a way that hopefully doesn't leave gearless players completely hopeless.
 Specifically as core stats like vitality now give flat health, it means players have a base defense now. 
 Especially magic shield users, as willpower gives flat magic shield.
++ gear level requirements now actually stop you from wearing that gear.
 
 B: known bug, poison can kill you now.
