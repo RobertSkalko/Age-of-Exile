@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DayDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -33,8 +33,8 @@ public class UniqueRings implements ISlashRegistryInit {
             "When desire for perfection overtakes your sanity, you too will be blessed.",
             BaseGearJewelry.THUNDER_RES_RING.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
-                new StatModifier(-30, 25, IncreasedItemQuantity.getInstance(), ModType.FLAT),
-                new StatModifier(-30, 25, MagicFind.getInstance(), ModType.FLAT),
+                new StatModifier(-30, 25, TreasureQuantity.getInstance(), ModType.FLAT),
+                new StatModifier(-30, 25, TreasureQuality.getInstance(), ModType.FLAT),
                 new StatModifier(5, 10, new ElementalResist(Elements.Elemental), ModType.FLAT),
                 new StatModifier(-10, -5, Health.getInstance(), ModType.FLAT)
 

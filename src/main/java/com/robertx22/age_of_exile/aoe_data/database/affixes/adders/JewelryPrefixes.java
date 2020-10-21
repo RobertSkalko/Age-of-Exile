@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilde
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -32,9 +32,9 @@ public class JewelryPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("archeologists")
             .Named("Archeologist's")
-            .tier(1, new StatModifier(10, 15F, MagicFind.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(7, 10, MagicFind.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 7, MagicFind.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(10, 15F, TreasureQuality.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(7, 10, TreasureQuality.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 7, TreasureQuality.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Prefix()
             .Build();

@@ -3,12 +3,12 @@ package com.robertx22.age_of_exile.database.data.stats.types.loot;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class IncreasedItemQuantity extends Stat {
+public class TreasureQuality extends Stat {
 
-    private IncreasedItemQuantity() {
+    private TreasureQuality() {
     }
 
-    public static IncreasedItemQuantity getInstance() {
+    public static TreasureQuality getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -24,20 +24,20 @@ public class IncreasedItemQuantity extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Loot Drop amount";
+        return "Adds chance for higher rarity of items found in chests.";
     }
 
     @Override
     public String GUID() {
-        return "increased_quantity";
+        return "magic_find";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Item Quantity";
+        return "Treasure Quality";
     }
 
     private static class SingletonHolder {
-        private static final IncreasedItemQuantity INSTANCE = new IncreasedItemQuantity();
+        private static final TreasureQuality INSTANCE = new TreasureQuality();
     }
 }

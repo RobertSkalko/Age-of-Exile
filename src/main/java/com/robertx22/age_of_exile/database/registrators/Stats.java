@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
@@ -89,8 +89,8 @@ public class Stats implements ISlashRegistryInit {
                     add(DamageUnderPotion.POISON);
                     add(DamageUnderPotion.WITHER);
 
-                    add(MagicFind.getInstance());
-                    add(IncreasedItemQuantity.getInstance());
+                    add(TreasureQuality.getInstance());
+                    add(TreasureQuantity.getInstance());
 
                     add(new SpecificWeaponDamage(WeaponTypes.None));
                     add(new AttackDamage(Elements.Physical));

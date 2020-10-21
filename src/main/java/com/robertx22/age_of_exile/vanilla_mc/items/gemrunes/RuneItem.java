@@ -24,8 +24,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElemental
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -280,7 +280,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         ORU(500, "oru", "Oru", 0.6F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(4, 12, IncreasedItemQuantity.getInstance()));
+                return Arrays.asList(new StatModifier(4, 12, TreasureQuantity.getInstance()));
             }
 
             @Override
@@ -297,7 +297,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         WIR(200, "wir", "Wir", 0.7F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(6, 12, MagicFind.getInstance()));
+                return Arrays.asList(new StatModifier(6, 12, TreasureQuality.getInstance()));
             }
 
             @Override

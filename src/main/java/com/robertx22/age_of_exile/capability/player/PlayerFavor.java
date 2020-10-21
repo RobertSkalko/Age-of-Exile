@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
@@ -23,6 +24,10 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     public FavorRank getRank() {
         try {
+            if (!ModConfig.get().Server.ENABLE_FAVOR_SYSTEM) {
+                return SlashRegistry.FavorRanks()
+                    .get("normal"); // simplest way of disabling everything around the system
+            }
             return SlashRegistry.FavorRanks()
                 .getFiltered(x -> x.min >= this.getFavor())
                 .stream()

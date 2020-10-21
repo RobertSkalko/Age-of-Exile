@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.loot;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.player.PlayerFavor;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
@@ -185,9 +185,11 @@ public class LootInfo {
         }
 
         if (this.playerData != null) {
-            modifier += playerData.getUnit()
-                .getCalculatedStat(IncreasedItemQuantity.getInstance())
-                .getMultiplier() - 1F;
+            if (this.lootOrigin == LootOrigin.CHEST) {
+                modifier += playerData.getUnit()
+                    .getCalculatedStat(TreasureQuantity.getInstance())
+                    .getMultiplier() - 1F;
+            }
         }
 
         if (world != null) {

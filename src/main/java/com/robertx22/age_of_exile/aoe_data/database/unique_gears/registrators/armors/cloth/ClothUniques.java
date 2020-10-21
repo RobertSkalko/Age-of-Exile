@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToAp
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
@@ -50,8 +50,8 @@ public class ClothUniques implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(-15, 15, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(-15, 15, CriticalDamage.getInstance(), ModType.FLAT),
-                new StatModifier(-15, 15, MagicFind.getInstance(), ModType.FLAT),
-                new StatModifier(-15, 15, IncreasedItemQuantity.getInstance(), ModType.FLAT)
+                new StatModifier(-15, 15, TreasureQuality.getInstance(), ModType.FLAT),
+                new StatModifier(-15, 15, TreasureQuantity.getInstance(), ModType.FLAT)
             ))
             .build();
 

@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -52,7 +52,7 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
                 new StatModifier(1, 1, RegeneratePercentStat.HEALTH, ModType.FLAT),
                 new StatModifier(1, 1, EffectImmunity.HUNGER, ModType.FLAT),
-                new StatModifier(-15, -5, IncreasedItemQuantity.getInstance(), ModType.FLAT)
+                new StatModifier(-15, -5, TreasureQuantity.getInstance(), ModType.FLAT)
             ))
             .build();
 

@@ -27,16 +27,16 @@ Added stats for those Attack play styles too. Primary source: int, dex, str.
 
 ### Crackdown on mob farming:
 
-#### Azuna's Favor:
+#### Experimental Feature: Azuna's Favor:
 - you gain favor by opening loot chests in the world
-- you lose favor by looting items from mobs
+- you lose favor by looting items from mobs or crafting them
 - at 0 favor, many penalties apply:
     1) uniques can't drop
     2) Runes, gems, currencies etc can't drop
     3) Mythical and Legendary items can't drop
     4) 0 Exp gain
     5) All gears that do drop can't be salvaged!
-This applies to crafted items too.
+This all applies to crafted items too.
 
 In short, with 0 favor, you will not be given anything besides the base necessities.
 You will be allowed to get some low rarity gear to fight with, that's it.
@@ -45,6 +45,8 @@ This is hopefully my final implementation of an anti mob farm system.
 In essence, there should be zero need to farm mobs, as you should be trying to explore and find chests instead.
 If this system works, that means I can finally work on other things. As mob farms have plagued the mod since inception.
 
+I'll be working on a Dungeon mod update that adds more dungeons with loot chests in the meantime.
+
 Other misc changes:
 - iron golems and polar bears now dont drop loot
 - npcs and animals now dont drop loot either (they had a very small chance)
@@ -52,7 +54,6 @@ Other misc changes:
 All except endermen. Endermen are the only tough angerable mobs in vanilla.
 You really had to farm animals that drop 100 times less loot?? I underestimated you guys.
 - new update coming to Balance of Exile mod: remove ALL exp and loot from mobs spawned by mob spawners.
-For the haters, all these features are configurable with entity config datapacks.
 
 ### Misc:
 + increased default stat scaling by a ton. Should be closer to mine and slash scaling now.

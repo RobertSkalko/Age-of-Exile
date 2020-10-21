@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 
 import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
@@ -26,9 +26,11 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
             .get(this.blueprint.tier.get() + "").chance_for_higher_drop_rarity;
 
         if (info.playerData != null) {
-            chanceForHigherRarity += info.playerData.getUnit()
-                .getCalculatedStat(MagicFind.getInstance())
-                .getAverageValue();
+            if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
+                chanceForHigherRarity += info.playerData.getUnit()
+                    .getCalculatedStat(TreasureQuality.getInstance())
+                    .getAverageValue();
+            }
         }
 
         if (info.favorRank != null) {

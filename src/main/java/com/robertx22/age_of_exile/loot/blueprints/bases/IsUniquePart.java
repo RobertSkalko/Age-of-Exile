@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
@@ -25,9 +25,11 @@ public class IsUniquePart extends BlueprintPart<Boolean, GearBlueprint> {
         }
 
         if (info.playerData != null) {
-            chance *= info.playerData.getUnit()
-                .getCalculatedStat(MagicFind.getInstance())
-                .getMultiplier();
+            if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
+                chance *= info.playerData.getUnit()
+                    .getCalculatedStat(TreasureQuality.getInstance())
+                    .getMultiplier();
+            }
         }
 
         if (info.favorRank != null) {

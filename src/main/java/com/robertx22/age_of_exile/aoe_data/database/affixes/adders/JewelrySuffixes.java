@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -116,18 +116,18 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_treasure")
             .Named("Of Treasure")
-            .tier(1, new StatModifier(10, 15F, MagicFind.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(7, 10, MagicFind.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 7, MagicFind.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(10, 15F, TreasureQuality.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(7, 10, TreasureQuality.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 7, TreasureQuality.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_affluence")
             .Named("Of Affluence")
-            .tier(1, new StatModifier(7, 10, IncreasedItemQuantity.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(5, 7, IncreasedItemQuantity.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(3, 5, IncreasedItemQuantity.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(7, 10, TreasureQuantity.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(5, 7, TreasureQuantity.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(3, 5, TreasureQuantity.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();
