@@ -117,6 +117,9 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             .getCalculatedStat(BonusExp.getInstance())
             .getMultiplier();
 
+        exp *= Load.favor(killer)
+            .getRank().exp_multi;
+
         exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;
 
         if ((int) exp > 0) {

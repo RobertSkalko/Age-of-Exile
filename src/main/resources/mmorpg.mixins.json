@@ -14,6 +14,7 @@
     "LootTableMixin",
     "OnCraftMixin",
     "PlayerEntityMixin",
+    "PlayerInventoryMixin",
     "PlayerManagerMixin",
     "ServerPlayerEntityMixin",
     "ServerResourceManagerMixin",
@@ -21,12 +22,12 @@
     "StatusEffectMixin"
   ],
   "client": [
+    "ClientPlayerInventoryMixin",
     "InGameHudMixin",
     "ItemStackMixin",
     "KeyboardMixin",
     "MobNameTagMixin",
-    "ParticlePacketMixin",
-    "PlayerInventoryMixin"
+    "ParticlePacketMixin"
   ],
   "injectors": {
     "defaultRequire": 1

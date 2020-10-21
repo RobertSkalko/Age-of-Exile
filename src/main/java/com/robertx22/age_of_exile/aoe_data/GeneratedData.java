@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearsReg
 import com.robertx22.age_of_exile.aoe_data.database.dim_configs.DimConfigs;
 import com.robertx22.age_of_exile.aoe_data.database.entity_configs.EntityConfigs;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.ExileEffects;
+import com.robertx22.age_of_exile.aoe_data.database.favor.FavorAdder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_rarities.GearRaritiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.database.gems.Gems;
@@ -66,6 +67,8 @@ public class GeneratedData {
             new SpellModifierPerks().registerAll();
 
             new AutoDatapackStats().registerAll();
+
+            new FavorAdder().registerAll();
         }
     }
 }

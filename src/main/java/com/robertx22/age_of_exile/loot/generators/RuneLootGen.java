@@ -27,6 +27,11 @@ public class RuneLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public boolean condition() {
+        if (info.favorRank != null) {
+            if (!info.favorRank.drop_runes) {
+                return false;
+            }
+        }
         return !SlashRegistry.Runes()
             .getFilterWrapped(x -> this.info.level >= x.getReqLevel()).list.isEmpty();
     }

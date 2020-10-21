@@ -30,11 +30,18 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
                 .getCalculatedStat(MagicFind.getInstance())
                 .getAverageValue();
         }
+
+        if (info.favorRank != null) {
+            possible.removeIf(x -> info.favorRank.excludedRarities.stream()
+                .anyMatch(e -> e.equals(x.GUID())));
+        }
+
     }
 
     public GearRarityPart(GearBlueprint blueprint) {
         super(blueprint);
         this.container = blueprint.getRarityContainer();
+
     }
 
     @Override

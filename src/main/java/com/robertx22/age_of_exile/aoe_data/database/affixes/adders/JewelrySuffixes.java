@@ -76,8 +76,8 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .Suffix()
             .Build();
 
-        AffixBuilder.Normal("of_agility")
-            .Named("Of Agility")
+        AffixBuilder.Normal("of_wis")
+            .Named("Of Wisdom")
             .coreStat(Wisdom.INSTANCE)
             .includesTags(SlotTag.jewelry_family, SlotTag.leather)
             .excludesTags(SlotTag.weapon_family)

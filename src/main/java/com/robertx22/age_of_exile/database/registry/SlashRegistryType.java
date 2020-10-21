@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
+import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
@@ -68,7 +69,8 @@ public enum SlashRegistryType {
     SPELL("spells", 17, Spell.SERIALIZER, SyncTime.ON_LOGIN),
     PERK("perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN),
     SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN),
-    GEAR_RARITY_GROUP("gear_rarity_group", 20, GearRarityGroup.SERIALIZER, SyncTime.ON_LOGIN);
+    GEAR_RARITY_GROUP("gear_rarity_group", 20, GearRarityGroup.SERIALIZER, SyncTime.ON_LOGIN),
+    FAVOR_RANK("favor_rank", 21, FavorRank.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;
     ISerializable ser;

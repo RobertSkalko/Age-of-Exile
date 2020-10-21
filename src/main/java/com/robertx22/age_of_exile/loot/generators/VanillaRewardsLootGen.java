@@ -27,6 +27,11 @@ public class VanillaRewardsLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public boolean condition() {
+        if (info.favorRank != null) {
+            if (!info.favorRank.drop_lvl_rewards) {
+                return false;
+            }
+        }
         return this.info.level > 10;
     }
 

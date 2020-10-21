@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
+import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
@@ -138,6 +139,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<ExileEffect> ExileEffects() {
         return getRegistry(SlashRegistryType.EXILE_EFFECT);
+    }
+
+    public static SlashRegistryContainer<FavorRank> FavorRanks() {
+        return getRegistry(SlashRegistryType.FAVOR_RANK);
     }
 
     public static SlashRegistryContainer<SpellSchool> SpellSchools() {
@@ -293,6 +298,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL, Spell.SERIALIZER).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PERK, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_SCHOOL, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.FAVOR_RANK, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

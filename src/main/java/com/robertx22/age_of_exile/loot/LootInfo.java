@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.player.PlayerFavor;
+import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
@@ -33,6 +35,8 @@ public class LootInfo {
     public int minItems = 0;
     public int maxItems = 50;
     public boolean isMapWorld = false;
+    public FavorRank favorRank;
+    public PlayerFavor favor;
 
     public boolean isChestLoot = false;
 
@@ -96,6 +100,15 @@ public class LootInfo {
         setWorld();
         setTier();
         setLevel();
+        setFavor();
+    }
+
+    private void setFavor() {
+        if (killer != null) {
+            favor = Load.favor(killer);
+            favorRank = favor
+                .getRank();
+        }
     }
 
     private LootInfo setTier() {
@@ -164,6 +177,11 @@ public class LootInfo {
         }
 
         float chance = gen.baseDropChance() * modifier;
+
+        if (killer != null) {
+            chance *= Load.favor(killer)
+                .getRank().loot_multi;
+        }
 
         chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
 

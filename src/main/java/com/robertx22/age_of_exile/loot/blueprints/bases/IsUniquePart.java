@@ -13,6 +13,7 @@ public class IsUniquePart extends BlueprintPart<Boolean, GearBlueprint> {
     }
 
     public float chance = 0.5F;
+    public boolean disabled = false;
 
     public void setupChances(LootInfo info) {
 
@@ -28,10 +29,17 @@ public class IsUniquePart extends BlueprintPart<Boolean, GearBlueprint> {
                 .getCalculatedStat(MagicFind.getInstance())
                 .getMultiplier();
         }
+
+        if (info.favorRank != null) {
+            this.disabled = !info.favorRank.drop_unique_gears;
+        }
     }
 
     @Override
     protected Boolean generateIfNull() {
+        if (disabled) {
+            return false;
+        }
         return RandomUtils.roll(chance);
     }
 }

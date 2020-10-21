@@ -27,6 +27,13 @@ public class GemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public boolean condition() {
+
+        if (info.favorRank != null) {
+            if (!info.favorRank.drop_gems) {
+                return false;
+            }
+        }
+
         return !SlashRegistry.Gems()
             .getFilterWrapped(x -> this.info.level >= x.getReqLevel()).list.isEmpty();
     }

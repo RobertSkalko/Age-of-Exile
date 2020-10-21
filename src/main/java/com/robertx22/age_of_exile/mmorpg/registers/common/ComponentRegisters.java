@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
+import com.robertx22.age_of_exile.capability.player.PlayerFavor;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.capability.world.WorldAreas;
@@ -36,6 +37,12 @@ public class ComponentRegisters {
             PlayerStatsCap.IPlayerStatPointsData.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerStatsCap.DefaultImpl());
 
+    public ComponentType<PlayerFavor> PLAYER_FAVOR =
+        ComponentRegistry.INSTANCE.registerIfAbsent(
+            PlayerFavor.RESOURCE,
+            PlayerFavor.class)
+            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerFavor(x));
+
     public ComponentType<EntityPerks> PERKS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
             new Identifier(Ref.MODID, "perks"),
@@ -52,6 +59,7 @@ public class ComponentRegisters {
         EntityComponents.setRespawnCopyStrategy(PLAYER_SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_STAT_POINTS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PERKS, RespawnCopyStrategy.ALWAYS_COPY);
+        EntityComponents.setRespawnCopyStrategy(PLAYER_FAVOR, RespawnCopyStrategy.ALWAYS_COPY);
 
         WorldComponentCallback.EVENT.register(
             (world, components) -> components.put(

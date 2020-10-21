@@ -3,18 +3,16 @@
 + Core stat rework!
 Stats like intelligence, strength and dexterity had a problem. They were used as requirements for gear. 
 That means you picked them based on what gear you want to wear, not based on what which ones you wanted.
-There was also a lack of variety so.. I added: Agility, Vitality and Willpower.
-I separated them into 2 and 3 types. Let me explain.
-There's Defense and Attack based core stats, and each of those are split into Melee, Ranger and Caster types.
+There was also a lack of variety so.. I added: Wisdom, Vitality and Willpower.
+
 So we have:
 
-- Vitality (Melee defense)
+- Vitality (Health + regen )
+- Willpower (Magic shield + regen)
+- Wisdom (Mana + regen)
+
 - Strength (Melee attack)
-
-- Willpower (Caster defense)
 - Intelligence (Caster attack)
-
-- Agility (Ranger defense)
 - Dexterity (Ranger attack)
 
 The actual stats they give aren't final but this is the general outline.
@@ -61,5 +59,6 @@ In short, it's a needed buff.
 Specifically as core stats like vitality now give flat health, it means players have a base defense now. 
 Especially magic shield users, as willpower gives flat magic shield.
 + gear level requirements now actually stop you from wearing that gear.
++ fix keep gear config not working
 
 B: known bug, poison can kill you now.
