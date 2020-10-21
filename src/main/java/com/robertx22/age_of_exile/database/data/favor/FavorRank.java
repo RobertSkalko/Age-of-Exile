@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson<FavorRank> {
 
-    public static FavorRank SERIALIZER = new FavorRank();
+    public static FavorRank SERIALIZER = new FavorRank("");
 
     String id = "";
 
@@ -27,7 +27,7 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
 
     public boolean can_salvage_loot = true;
 
-    public float favor_drain_per_item = 0.25F;// TODO THIS IS A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
+    public float favor_drain_per_item = 1;// TODO THIS IS A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
 
     /*
     public float extra_gear_chance = 0;
@@ -36,6 +36,10 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
      */
 
     public List<String> excludedRarities = new ArrayList<>();
+
+    public FavorRank(String id) {
+        this.id = id;
+    }
 
     @Override
     public Class<FavorRank> getClassForSerialization() {

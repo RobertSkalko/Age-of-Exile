@@ -11,7 +11,9 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -181,7 +183,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         return guid;
     }
 
-    public ItemStack createStack(int lvl, ItemStack stack) {
+    public ItemStack createStack(PlayerEntity player, int lvl, ItemStack stack) {
 
         GearBlueprint blueprint = new GearBlueprint(lvl);
 
@@ -218,6 +220,11 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
+
+        if (!Load.favor(player)
+            .getRank().can_salvage_loot) {
+            gear.isSalvagable = false;
+        }
 
         Gear.Save(stack, gear);
 

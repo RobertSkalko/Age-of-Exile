@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
@@ -47,18 +46,17 @@ public class PlayerFavor implements ICommonPlayerCap {
         return 5000;
     }
 
-    public void onOpenLootChest() {
+    public void onOpenNewLootChest() {
         this.favor += 50;
     }
 
-    public void onMobKilled(LivingEntity mob) {
-        this.favor--;
-    }
+    public void afterLootingItems(LootInfo info) {
+        if (info.lootOrigin != LootInfo.LootOrigin.CHEST) {
 
-    public void modifyLootIfHighFavor(LootInfo info) {
+            FavorRank rank = getRank();
 
-        if (false) {
-            info.multi += 0.5F; // TODO
+            this.favor -= rank.favor_drain_per_item * info.amount;
+
         }
     }
 

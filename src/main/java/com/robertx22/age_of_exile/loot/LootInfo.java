@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
@@ -41,29 +42,19 @@ public class LootInfo {
     public PlayerEntity player;
     public World world;
     public float multi = 1;
-    public int minItems = 0;
-    public int maxItems = 50;
+    private int minItems = 0;
+    private int maxItems = 50;
     public boolean isMapWorld = false;
     public FavorRank favorRank;
     public PlayerFavor favor;
-
-    public boolean isChestLoot = false;
-
     public BlockPos pos;
 
-    public LootInfo setMaximum(int max) {
-        this.maxItems = max;
-        return this;
+    public int getMinItems() {
+        return minItems;
     }
 
-    public LootInfo setMinimum(int min) {
-        this.minItems = min;
-        return this;
-    }
-
-    public LootInfo setMulti(float multi) {
-        this.multi = multi;
-        return this;
+    public int getMaxItems() {
+        return maxItems;
     }
 
     public static LootInfo ofMobKilled(PlayerEntity player, LivingEntity mob) {
@@ -96,17 +87,19 @@ public class LootInfo {
         info.world = player.world;
         info.pos = pos;
         info.level = LevelUtils.determineLevel(player.world, pos, player);
+        info.minItems = RandomUtils.RandomRange(1, 3);
         info.setupAllFields();
         return info;
     }
 
-    public static LootInfo ofBlockPosition(PlayerEntity player, World world, BlockPos pos) {
+    public static LootInfo ofSpawner(PlayerEntity player, World world, BlockPos pos) {
         LootInfo info = new LootInfo(LootOrigin.OTHER);
         info.world = world;
         info.pos = pos;
         info.player = player;
         info.level = LevelUtils.determineLevel(world, pos, PlayerUtils.nearestPlayer((ServerWorld) world, new Vec3d(pos.getX(), pos.getY(), pos.getZ())));
         info.setupAllFields();
+        info.maxItems = 3;
         return info;
     }
 
@@ -124,6 +117,15 @@ public class LootInfo {
             favor = Load.favor(player);
             favorRank = favor
                 .getRank();
+
+            if (lootOrigin != LootOrigin.CHEST) {
+                if (favorRank.favor_drain_per_item > 0) {
+                    this.maxItems = (int) (favor.getFavor() * favorRank.favor_drain_per_item);
+                    if (minItems > maxItems) {
+                        minItems = maxItems;
+                    }
+                }
+            }
         }
     }
 
@@ -199,6 +201,10 @@ public class LootInfo {
         amount = LootUtils.WhileRoll(chance);
 
         amount = MathHelper.clamp(amount, minItems, maxItems);
+
+        if (favor != null) {
+            favor.afterLootingItems(this);
+        }
     }
 
 }

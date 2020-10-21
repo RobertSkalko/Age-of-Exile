@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.google.common.collect.Lists;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -42,12 +42,12 @@ public class GenChestLootMethod {
                 return;
             }
 
-            MMORPG.mixinLog("Loottable isn't null");
+            if (inventory instanceof ChestBlockEntity) {
+                Load.favor(player)
+                    .onOpenNewLootChest();
+            }
 
             LootInfo info = LootInfo.ofChestLoot(player, pos);
-            info.isChestLoot = true;
-
-            info.minItems = RandomUtils.RandomRange(1, 3);
 
             List<ItemStack> items = MasterLootGen.generateLoot(info);
 

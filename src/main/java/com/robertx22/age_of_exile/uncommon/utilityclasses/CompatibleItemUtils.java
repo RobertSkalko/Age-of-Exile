@@ -158,7 +158,7 @@ public class CompatibleItemUtils {
                 // slow check to make absolutely sure it doesnt have stats
                 GearItemData gear = Gear.Load(stack);
                 if (gear == null) {
-                    ItemStack s = config.createStack(level, stack);
+                    ItemStack s = config.createStack(player, level, stack);
                     Gear.Save(stack, Gear.Load(s));
 
                 }

@@ -11,7 +11,7 @@ public class FavorAdder implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        FavorRank low = new FavorRank();
+        FavorRank low = new FavorRank("low");
         low.min = 0;
         low.rank = 0;
 
@@ -27,7 +27,7 @@ public class FavorAdder implements ISlashRegistryInit {
         low.favor_drain_per_item = 0;
         low.addToSerializables();
 
-        FavorRank normal = new FavorRank();
+        FavorRank normal = new FavorRank("normal");
         normal.min = 1;
         normal.rank = 1;
         normal.addToSerializables();

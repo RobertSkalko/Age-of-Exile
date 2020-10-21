@@ -17,7 +17,7 @@ public class IsUniquePart extends BlueprintPart<Boolean, GearBlueprint> {
 
     public void setupChances(LootInfo info) {
 
-        if (info.isChestLoot) {
+        if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
             chance += 2; // todo make configurable
         }
         if (info.world != null) {

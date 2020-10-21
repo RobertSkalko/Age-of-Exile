@@ -59,9 +59,8 @@ public class AddSpawnerExtraLootMethod {
             Vec3d p = context.get(LootContextParameters.ORIGIN);
             BlockPos pos = new BlockPos(p.x, p.y, p.z);
 
-            LootInfo info = LootInfo.ofBlockPosition(player, context.getWorld(), pos);
+            LootInfo info = LootInfo.ofSpawner(player, context.getWorld(), pos);
             info.multi += 15;
-            info.maxItems = 3;
             List<ItemStack> list = MasterLootGen.generateLoot(info);
 
             // TODO rework exp curve before giving exp here. % of lvl will always be abusable

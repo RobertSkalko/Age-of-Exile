@@ -23,7 +23,7 @@ public class MasterLootGen {
 
         int tries = 0;
 
-        while (items.size() < info.minItems) {
+        while (items.size() < info.getMinItems()) {
 
             tries++;
             if (tries > 20) {
@@ -36,7 +36,7 @@ public class MasterLootGen {
             }
         }
 
-        while (items.size() > info.maxItems) {
+        while (items.size() > info.getMaxItems()) {
             ItemStack randomtoremove = RandomUtils.randomFromList(items);
             items.removeIf(x -> x.equals(randomtoremove));
         }
