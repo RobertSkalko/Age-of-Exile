@@ -55,8 +55,16 @@ public class RenderMobInfo {
 
                 EntityCap.UnitData data = Load.Unit(entity);
 
+                boolean hidelvl = data.getLevel() - 10 > Load.Unit(MinecraftClient.getInstance().player)
+                    .getLevel();
+
                 MutableText lvlcomp =
                     new LiteralText(" [" + data.getLevel() + "]").formatted(Formatting.YELLOW);
+
+                if (hidelvl) {
+                    lvlcomp =
+                        new LiteralText(" [" + "???" + "]").formatted(Formatting.YELLOW);
+                }
 
                 Text text = data.getName(entity)
                     .append(lvlcomp);
