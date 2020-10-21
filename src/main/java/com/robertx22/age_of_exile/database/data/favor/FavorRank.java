@@ -23,13 +23,17 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
     public boolean drop_gems = true;
     public boolean drop_currency = true;
     public boolean drop_lvl_rewards = true;
+    public boolean drop_exp = true;
 
     public boolean can_salvage_loot = true;
 
-    public int extra_favor_drain = 0;
+    public float favor_drain_per_item = 0.25F;// TODO THIS IS A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
 
-    public float loot_multi = 1;
-    public float exp_multi = 1;
+    /*
+    public float extra_gear_chance = 0;
+    public float extra_currency_chance = 0;
+
+     */
 
     public List<String> excludedRarities = new ArrayList<>();
 

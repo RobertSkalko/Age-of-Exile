@@ -95,6 +95,11 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
     private static void GiveExp(LivingEntity victim, PlayerEntity killer, UnitData killerData, UnitData mobData, float multi) {
 
+        if (!Load.favor(killer)
+            .getRank().drop_exp) {
+            return;
+        }
+
         float exp = LevelUtils.getExpDropForLevel(victim, mobData.getLevel());
 
         if (exp < 1) {
@@ -116,9 +121,6 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp *= killerData.getUnit()
             .getCalculatedStat(BonusExp.getInstance())
             .getMultiplier();
-
-        exp *= Load.favor(killer)
-            .getRank().exp_multi;
 
         exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;
 

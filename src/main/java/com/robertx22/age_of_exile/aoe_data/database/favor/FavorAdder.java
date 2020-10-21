@@ -22,7 +22,9 @@ public class FavorAdder implements ISlashRegistryInit {
         low.drop_runes = false;
         low.drop_lvl_rewards = false;
         low.drop_unique_gears = false;
-        low.exp_multi = 0F;
+        low.drop_exp = false;
+
+        low.favor_drain_per_item = 0;
         low.addToSerializables();
 
         FavorRank normal = new FavorRank();
@@ -30,21 +32,26 @@ public class FavorAdder implements ISlashRegistryInit {
         normal.rank = 1;
         normal.addToSerializables();
 
+        /*
         FavorRank high = new FavorRank();
         high.min = 1000;
         high.rank = 2;
         high.extra_favor_drain = 1;
-        high.loot_multi = 2;
-        high.exp_multi = 1.25F;
+        high.extra_gear_chance = 5;
+        high.extra_currency_chance = 5;
+
         high.addToSerializables();
 
         FavorRank veryhigh = new FavorRank();
         veryhigh.min = 2500;
         veryhigh.rank = 2;
         veryhigh.extra_favor_drain = 2;
-        veryhigh.loot_multi = 3;
-        veryhigh.exp_multi = 1.5F;
+        veryhigh.extra_gear_chance = 10;
+        veryhigh.extra_currency_chance = 10;
+
         veryhigh.addToSerializables();
+
+         */
 
     }
 }

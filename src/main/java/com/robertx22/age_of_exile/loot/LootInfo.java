@@ -22,14 +22,23 @@ import net.minecraft.world.World;
 
 public class LootInfo {
 
+    private LootInfo(LootOrigin lootOrigin) {
+        this.lootOrigin = lootOrigin;
+    }
+
+    public enum LootOrigin {
+        CHEST, MOB, PLAYER, OTHER;
+    }
+
     public int amount = 0;
     public int tier = 0;
     public int level = 0;
 
+    public LootOrigin lootOrigin;
     public UnitData mobData;
     public UnitData playerData;
-    public LivingEntity victim;
-    public PlayerEntity killer;
+    public LivingEntity mobKilled;
+    public PlayerEntity player;
     public World world;
     public float multi = 1;
     public int minItems = 0;
@@ -57,19 +66,15 @@ public class LootInfo {
         return this;
     }
 
-    private LootInfo() {
-
-    }
-
     public static LootInfo ofMobKilled(PlayerEntity player, LivingEntity mob) {
 
-        LootInfo info = new LootInfo();
+        LootInfo info = new LootInfo(LootOrigin.MOB);
 
         info.world = mob.world;
         info.mobData = Load.Unit(mob);
         info.playerData = Load.Unit(player);
-        info.victim = mob;
-        info.killer = player;
+        info.mobKilled = mob;
+        info.player = player;
         info.pos = mob.getBlockPos();
         info.level = info.mobData.getLevel();
 
@@ -78,19 +83,30 @@ public class LootInfo {
     }
 
     public static LootInfo ofPlayer(PlayerEntity player) {
-        return ofMobKilled(player, player);
+        LootInfo info = new LootInfo(LootOrigin.PLAYER);
+        info.world = player.world;
+        info.pos = player.getBlockPos();
+        info.level = LevelUtils.determineLevel(player.world, player.getBlockPos(), player);
+        info.setupAllFields();
+        return info;
     }
 
-    public static LootInfo ofBlockPosition(World world, BlockPos pos) {
+    public static LootInfo ofChestLoot(PlayerEntity player, BlockPos pos) {
+        LootInfo info = new LootInfo(LootOrigin.CHEST);
+        info.world = player.world;
+        info.pos = pos;
+        info.level = LevelUtils.determineLevel(player.world, pos, player);
+        info.setupAllFields();
+        return info;
+    }
 
-        LootInfo info = new LootInfo();
-
+    public static LootInfo ofBlockPosition(PlayerEntity player, World world, BlockPos pos) {
+        LootInfo info = new LootInfo(LootOrigin.OTHER);
         info.world = world;
         info.pos = pos;
+        info.player = player;
         info.level = LevelUtils.determineLevel(world, pos, PlayerUtils.nearestPlayer((ServerWorld) world, new Vec3d(pos.getX(), pos.getY(), pos.getZ())));
-
         info.setupAllFields();
-
         return info;
     }
 
@@ -104,8 +120,8 @@ public class LootInfo {
     }
 
     private void setFavor() {
-        if (killer != null) {
-            favor = Load.favor(killer);
+        if (player != null) {
+            favor = Load.favor(player);
             favorRank = favor
                 .getRank();
         }
@@ -126,7 +142,7 @@ public class LootInfo {
         if (mobData != null) {
             level = mobData.getLevel();
         } else {
-            level = LevelUtils.determineLevel(world, pos, killer);
+            level = LevelUtils.determineLevel(world, pos, player);
         }
     }
 
@@ -148,15 +164,15 @@ public class LootInfo {
 
         modifier += multi - 1F;
 
-        if (victim != null && mobData != null) {
+        if (mobKilled != null && mobData != null) {
 
             if (this.playerData != null) {
                 modifier += LootUtils.getLevelDistancePunishmentMulti(mobData, playerData) - 1F;
             }
 
-            modifier += LootUtils.getMobHealthBasedLootMulti(mobData, victim) - 1F;
+            modifier += LootUtils.getMobHealthBasedLootMulti(mobData, mobKilled) - 1F;
 
-            modifier += SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi - 1F;
+            modifier += SlashRegistry.getEntityConfig(mobKilled, this.mobData).loot_multi - 1F;
             modifier += mobData.getUnit()
                 .getCalculatedStat(ExtraMobDropsStat.getInstance())
                 .getMultiplier() - 1;
@@ -178,12 +194,7 @@ public class LootInfo {
 
         float chance = gen.baseDropChance() * modifier;
 
-        if (killer != null) {
-            chance *= Load.favor(killer)
-                .getRank().loot_multi;
-        }
-
-        chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(victim, killer, chance)).lootChance;
+        chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(mobKilled, player, chance)).lootChance;
 
         amount = LootUtils.WhileRoll(chance);
 

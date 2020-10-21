@@ -6,9 +6,11 @@ import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -26,39 +28,43 @@ public class GenChestLootMethod {
         if (inventory instanceof BlockEntity) {
             chest = (BlockEntity) inventory;
         }
-        World world = null;
-        if (chest != null) {
-            world = chest.getWorld();
-            pos = chest.getPos();
-        }
 
-        if (world == null) {
-            return;
-        }
+        if (context.hasParameter(LootContextParameters.THIS_ENTITY) && context.get(LootContextParameters.THIS_ENTITY) instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) context.get(LootContextParameters.THIS_ENTITY);
 
-        MMORPG.mixinLog("Loottable isn't null");
+            World world = null;
+            if (chest != null) {
+                world = chest.getWorld();
+                pos = chest.getPos();
+            }
 
-        LootInfo info = LootInfo.ofBlockPosition(world, pos);
-        info.isChestLoot = true;
+            if (world == null) {
+                return;
+            }
 
-        info.minItems = RandomUtils.RandomRange(1, 3);
+            MMORPG.mixinLog("Loottable isn't null");
 
-        List<ItemStack> items = MasterLootGen.generateLoot(info);
+            LootInfo info = LootInfo.ofChestLoot(player, pos);
+            info.isChestLoot = true;
 
-        List<Integer> list1 = mygetEmptySlotsRandomized(inventory, new Random());
+            info.minItems = RandomUtils.RandomRange(1, 3);
 
-        if (list1.isEmpty()) {
-            return;
-        }
+            List<ItemStack> items = MasterLootGen.generateLoot(info);
 
-        for (int i = 0; i < items.size(); i++) {
-            if (i < list1.size()) {
-                int emptyslot = list1.get(i);
+            List<Integer> list1 = mygetEmptySlotsRandomized(inventory, new Random());
 
-                inventory.setStack(emptyslot, items.get(i));
+            if (list1.isEmpty()) {
+                return;
+            }
+
+            for (int i = 0; i < items.size(); i++) {
+                if (i < list1.size()) {
+                    int emptyslot = list1.get(i);
+
+                    inventory.setStack(emptyslot, items.get(i));
+                }
             }
         }
-
     }
 
     private static List<Integer> mygetEmptySlotsRandomized(Inventory inventory, Random rand) {
