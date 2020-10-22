@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
+import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegister;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -86,11 +86,11 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
         Item resultItem = ModRegistry.GEAR_MATERIALS.MAP.get(type)
             .get(tier);
         Item smallResource = Items.GOLD_NUGGET;
-        Item essence = ModRegistry.MISC_ITEMS.MAGIC_ESSENCE;
-
-        if (tier > 3) {
-            essence = ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE;
-        }
+        Item essence = ModRegistry.MISC_ITEMS.getDusts()
+            .stream()
+            .filter(x -> x.range.equals(this.range))
+            .findAny()
+            .get();
 
         if (type == GearMaterialRegister.TYPE.CLOTH) {
             smallResource = Items.STRING;
@@ -100,18 +100,12 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
 
         ShapedRecipeJsonFactory fac = shaped(resultItem);
 
-        if (tier == 0) {
-
-            if (type == GearMaterialRegister.TYPE.CLOTH) {
-                fac.input('v', ItemTags.WOOL);
-            } else if (type == GearMaterialRegister.TYPE.LEATHER) {
-                fac.input('v', Items.LEATHER);
-            } else {
-                fac.input('v', Items.IRON_INGOT);
-            }
+        if (type == GearMaterialRegister.TYPE.CLOTH) {
+            fac.input('v', ItemTags.WOOL);
+        } else if (type == GearMaterialRegister.TYPE.LEATHER) {
+            fac.input('v', Items.LEATHER);
         } else {
-            fac.input('v', ModRegistry.GEAR_MATERIALS.MAP.get(type)
-                .get(tier - 1));
+            fac.input('v', Items.IRON_INGOT);
         }
 
         fac.input('e', essence)

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
@@ -10,12 +11,22 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
 
-    public MagicEssenceItem MAGIC_ESSENCE = item(new MagicEssenceItem());
-    public RareMagicEssence RARE_MAGIC_ESSENCE = item(new RareMagicEssence());
+    public List<SalvagedDustItem> getDusts() {
+        return Arrays.asList(T0_DUST, T1_DUST, T2_DUST, T3_DUST, T4_DUST);
+    }
+
+    public SalvagedDustItem T0_DUST = item(new SalvagedDustItem("T0 Salvaged Dust", 0, LevelRanges.STARTER));
+    public SalvagedDustItem T1_DUST = item(new SalvagedDustItem("T1 Salvaged Dust", 1, LevelRanges.LOW));
+    public SalvagedDustItem T2_DUST = item(new SalvagedDustItem("T2 Salvaged Dust", 2, LevelRanges.MIDDLE));
+    public SalvagedDustItem T3_DUST = item(new SalvagedDustItem("T3 Salvaged Dust", 3, LevelRanges.HIGH));
+    public SalvagedDustItem T4_DUST = item(new SalvagedDustItem("T4 Salvaged Dust", 4, LevelRanges.ENDGAME));
 
     LootCrateItem COMMON_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.COMMON), "loot_crate/common");
     LootCrateItem MAGIC_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.MAGIC), "loot_crate/magic");

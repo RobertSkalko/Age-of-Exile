@@ -60,7 +60,7 @@ public class AddResetPerkPointsItem extends AutoItem implements IShapedRecipe {
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(ModRegistry.MISC_ITEMS.ADD_RESET_PERK_POINTS)
-            .input('t', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
+            .input('t', ModRegistry.MISC_ITEMS.T0_DUST)
             .input('v', Items.IRON_INGOT)
             .input('b', Items.GLASS_BOTTLE)
             .pattern(" v ")

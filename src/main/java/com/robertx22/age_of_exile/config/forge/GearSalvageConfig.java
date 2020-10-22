@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.config.forge;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 import net.minecraft.item.ItemStack;
@@ -24,8 +24,8 @@ public class GearSalvageConfig {
 
     List<ItemAndPrice> SALVAGE_RESULTS = new ArrayList<ItemAndPrice>() {
         {
-            add(new ItemAndPrice(500, ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 1000));
-            add(new ItemAndPrice(700, ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE, 150));
+            // add(new ItemAndPrice(500, ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, 1000));
+            //add(new ItemAndPrice(700, ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE, 150));
             add(new ItemAndPrice(500, Items.IRON_INGOT, 50));
             add(new ItemAndPrice(75, Items.IRON_NUGGET, 25));
             add(new ItemAndPrice(100, Items.GOLD_NUGGET, 25));
@@ -36,7 +36,17 @@ public class GearSalvageConfig {
     }
 
     public List<ItemStack> getResult(GearItemData gear) {
-        return getResultForValue(getValue(gear));
+
+        ItemStack stack = new ItemStack(ItemUtils.randomDustFor(gear.level));
+        stack.setCount(Math.max(1, (int) gear.getRarity()
+            .valueMulti()));
+
+        List<ItemStack> list = new ArrayList<>();
+        list.add(stack);
+
+        return list;
+
+        //return getResultForValue(getValue(gear)); // todo how to make configurable agian..
     }
 
     private int getValue(GearItemData gear) {

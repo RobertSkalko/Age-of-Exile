@@ -79,7 +79,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
             .input('#', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_BLESSING)
             .input('v', Items.GOLD_INGOT)
-            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
+            .input('o', ModRegistry.MISC_ITEMS.T3_DUST)
             .pattern("#t#")
             .pattern("tvt")
             .pattern("oto")

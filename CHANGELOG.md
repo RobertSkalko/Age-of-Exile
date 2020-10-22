@@ -83,5 +83,11 @@ Especially magic shield users, as willpower gives flat magic shield.
 + gear level requirements now actually stop you from wearing that gear.
 + fix keep gear config not working
 + high lvl mob's levels are now hidden from you
++ added area level to gui
++ magic essences gone. Now replaced with tiered salvaged dusts (name subject to change)
+Based on gear level that was salvaged, you get a dust of that tier.
+Those dusts are now used in crafting the mats needed to craft gear.
+In other words, you need to salvage lvl 30 gear to be able to craft level 30 gear.
 
 B: known bug, poison can kill you now.
+B: salvage config does nothing currently

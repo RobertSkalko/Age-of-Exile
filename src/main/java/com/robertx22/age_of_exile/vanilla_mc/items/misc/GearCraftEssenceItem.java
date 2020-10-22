@@ -1,10 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
-import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.api.EnvType;
@@ -13,6 +12,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -74,7 +74,7 @@ public class GearCraftEssenceItem extends Item implements IAutoLocName, IAutoMod
 
         ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(resultItem, 16);
 
-        return fac.input('e', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
+        return fac.input('e', Items.COAL)
             .input('s', craftItem)
             .pattern("ses")
             .criterion("player_level", trigger());

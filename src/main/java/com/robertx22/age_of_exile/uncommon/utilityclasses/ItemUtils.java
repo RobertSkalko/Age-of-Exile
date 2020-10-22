@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,9 +13,6 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class ItemUtils {
     public static Item.Settings getDefaultGearProperties() {
@@ -26,10 +22,12 @@ public class ItemUtils {
         return prop;
     }
 
-    public static Item randomMagicEssence() {
-        List<IWeighted> list = Arrays.asList((IWeighted) ModRegistry.MISC_ITEMS.MAGIC_ESSENCE, (IWeighted) ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE);
-        return (Item) RandomUtils.weightedRandom(list);
-
+    public static Item randomDustFor(int lvl) {
+        return ModRegistry.MISC_ITEMS.getDusts()
+            .stream()
+            .filter(x -> x.range.isLevelInRange(lvl))
+            .findFirst()
+            .get();
     }
 
     public static void tryAnnounceItem(ItemStack stack, PlayerEntity player) {

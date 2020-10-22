@@ -77,7 +77,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
         return shaped(ModRegistry.CURRENCIES.CRYSTAL_OF_PURIFICATION)
             .input('t', ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
             .input('v', ModRegistry.GEAR_MATERIALS.ARCANA)
-            .input('o', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
+            .input('o', ModRegistry.MISC_ITEMS.T3_DUST)
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
@@ -77,9 +78,9 @@ public class OrbOfDiscoveryItem extends CurrencyItem implements ICurrencyItemEff
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(ModRegistry.CURRENCIES.CROWN_OF_DISCOVERY)
-            .input('t', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
+            .input('t', ModRegistry.MISC_ITEMS.T1_DUST)
             .input('v', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('o', ModRegistry.MISC_ITEMS.RARE_MAGIC_ESSENCE)
+            .input('o', Items.DIAMOND)
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

@@ -85,7 +85,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
             .input('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('v', Items.GOLD_NUGGET)
-            .input('o', ModRegistry.MISC_ITEMS.MAGIC_ESSENCE)
+            .input('o', ModRegistry.MISC_ITEMS.T3_DUST)
             .pattern("o#o")
             .pattern("oto")
             .pattern("vvv")

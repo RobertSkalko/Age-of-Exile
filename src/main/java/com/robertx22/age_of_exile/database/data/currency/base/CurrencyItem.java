@@ -14,11 +14,8 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.ItemDefault;
 import net.fabricmc.api.EnvType;
@@ -31,11 +28,9 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ISalvagable,
-    ICurrencyItemEffect, IWeighted, ITiered, IAutoLocDesc, IAutoLocName, IAutoModel {
+public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocDesc, IAutoLocName, IAutoModel {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 
@@ -152,29 +147,6 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     public Rarity getRarity() {
         return SlashRegistry.MobRarities()
             .get(getRarityRank());
-    }
-
-    @Override
-    public List<ItemStack> getSalvageResult(float salvageBonus) {
-
-        int min = 1;
-        int max = 2;
-
-        min = tryIncreaseAmount(salvageBonus, min);
-        max = tryIncreaseAmount(salvageBonus, max);
-
-        int amount = RandomUtils.RandomRange(min, max);
-
-        Item item = ItemUtils.randomMagicEssence();
-        ItemStack stack = new ItemStack(item);
-        stack.setCount(amount);
-
-        return Arrays.asList(stack);
-    }
-
-    @Override
-    public boolean isSalvagable(SalvageContext context) {
-        return true;
     }
 
 }
