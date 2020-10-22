@@ -82,5 +82,6 @@ Specifically as core stats like vitality now give flat health, it means players 
 Especially magic shield users, as willpower gives flat magic shield.
 + gear level requirements now actually stop you from wearing that gear.
 + fix keep gear config not working
++ high lvl mob's levels are now hidden from you
 
 B: known bug, poison can kill you now.

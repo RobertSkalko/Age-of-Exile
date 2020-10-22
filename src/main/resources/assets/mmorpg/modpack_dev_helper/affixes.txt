@@ -29,6 +29,7 @@ glimmering
 nature_ele_dmg_jewelry
 yetis
 snakes
+of_wis
 of_the_wind
 of_treasure
 water_wep_dmg_jewelry
@@ -45,7 +46,6 @@ of_spirit_markings
 of_the_philosopher
 fire_wep_dmg_jewelry
 of_precision
-of_agility
 of_gluttony
 nature_wep_dmg
 virile

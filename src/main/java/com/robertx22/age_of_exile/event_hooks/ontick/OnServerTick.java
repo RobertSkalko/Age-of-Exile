@@ -13,6 +13,8 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -180,7 +182,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data.playerSyncTick = 0;
 
                     CapSyncUtil.syncAll(player);
-
+                    Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));
                 }
 
                 UnequipHighLevelGear.onTick(player);

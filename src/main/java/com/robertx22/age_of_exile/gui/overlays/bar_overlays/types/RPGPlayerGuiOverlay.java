@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -124,14 +125,50 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
             hpy = y + 27;
             // mc.textRenderer.drawWithShadow(matrix, text, hpx, hpy, Formatting.GREEN.getColorValue());
 
-            drawPrettyLevelText(text, matrix, hpx, hpy);
+            drawPrettyLevelText(text, matrix, hpx, hpy, TextColors.GREEN);
+
+            hpx = x - width / 2F + 42 + BAR_WIDTH / 2F;
+            text = "Area Level: ";
+
+            String lvltext = SyncedToClientValues.areaLevel + "";
+
+            int arealvl = SyncedToClientValues.areaLevel;
+            TextColors color = TextColors.GREEN;
+
+            int playerlvl = Load.Unit(mc.player)
+                .getLevel();
+
+            if (arealvl - 10 > playerlvl) {
+                color = TextColors.RED;
+                lvltext += "!!";
+            } else if (arealvl - 5 > playerlvl) {
+                color = TextColors.YELLOW;
+                lvltext += "!";
+            }
+            text += lvltext;
+
+            width = mc.textRenderer.getWidth(text);
+
+            drawPrettyLevelText(text, matrix, hpx - width / 2F, hpy + 12, color);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void drawPrettyLevelText(String string, MatrixStack matrix, float m, float n) {
+    public enum TextColors {
+        RED(13313553),
+        YELLOW(15252255),
+        GREEN(8453920);
+        int color;
+
+        TextColors(int color) {
+            this.color = color;
+        }
+    }
+
+    public void drawPrettyLevelText(String string, MatrixStack matrix, float m, float n, TextColors color) {
+
 // copied from how vanilla renders the total experience level text
         mc.textRenderer
             .draw(matrix, string, (m + 1), n, 0);
@@ -142,7 +179,7 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
         mc.textRenderer
             .draw(matrix, string, m, (n - 1), 0);
         mc.textRenderer
-            .draw(matrix, string, m, n, 8453920);
+            .draw(matrix, string, m, n, color.color);
     }
 
 }

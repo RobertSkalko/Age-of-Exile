@@ -30,6 +30,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.*;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -38,7 +39,6 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.ResetStatPointsItem;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SpendStatPointsPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
@@ -224,11 +224,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             list.add(new LiteralText("Allocate stats here"));
             list.add(new LiteralText(""));
             list.add(new LiteralText("These stats determine your playstyle."));
-            list.add(new LiteralText("To wear gear that gives Armor, you need strength,"));
-            list.add(new LiteralText("Magic shield > Intelligence, Dodge > Dexterity etc."));
+            list.add(new LiteralText("Points into vitality or willpower are recommended for newbies."));
             list.add(new LiteralText(""));
             list.add(new LiteralText("To reset stats, you need to craft:"));
-            list.add(new LiteralText(new ResetStatPointsItem().locNameForLangFile()));
+            list.add(ModRegistry.MISC_ITEMS.RESET_STATS_POTION.locName());
             this.addButton(new HelpButton(list, guiLeft + sizeX - 30, guiTop + 5));
         }
 

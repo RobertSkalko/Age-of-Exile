@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
+import com.robertx22.age_of_exile.gui.screens.favor.FavorScreen;
 import com.robertx22.age_of_exile.gui.screens.new_stat_screen.CharacterScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -51,6 +52,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         screens.add(new CharacterScreen());
         screens.add(new SkillTreeScreen());
+        screens.add(new FavorScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;
