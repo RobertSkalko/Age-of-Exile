@@ -12,6 +12,7 @@ public class LevelScalingConfig {
     @ConfigEntry.Gui.CollapsibleObject
     List<LevelScalingRangePart> LEVEL_AND_STAT_GROWTH = new ArrayList<>();
 
+    @ConfigEntry.Gui.Excluded
     transient private HashMap<Integer, Float> cachedMultipliers = new HashMap<>();
 
     public LevelScalingConfig(List<LevelScalingRangePart> LEVEL_AND_STAT_GROWTH) {

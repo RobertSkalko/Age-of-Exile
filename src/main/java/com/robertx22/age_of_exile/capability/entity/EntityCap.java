@@ -539,6 +539,9 @@ public class EntityCap {
                 if (isNewbie()) {
                     setNewbieStatus(false);
 
+                    Load.favor(player)
+                        .setFavor(1000); // newbie starting favor
+
                     SlashRegistry.Spells()
                         .getFiltered(x -> x.getConfig().is_starter)
                         .forEach(x -> Load.perks(player).data.putOnFirstEmptyHotbarSlot(player, x));

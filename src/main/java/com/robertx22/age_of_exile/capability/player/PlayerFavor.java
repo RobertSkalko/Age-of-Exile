@@ -9,6 +9,8 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.Comparator;
@@ -20,7 +22,7 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     PlayerEntity player;
 
-    int favor = 0;
+    float favor = 0;
 
     public FavorRank getRank() {
         try {
@@ -29,7 +31,7 @@ public class PlayerFavor implements ICommonPlayerCap {
                     .get("normal"); // simplest way of disabling everything around the system
             }
             return SlashRegistry.FavorRanks()
-                .getFiltered(x -> x.min >= this.getFavor())
+                .getFiltered(x -> this.getFavor() >= x.min)
                 .stream()
                 .max(Comparator.comparingInt(x -> x.rank))
                 .get();
@@ -39,16 +41,20 @@ public class PlayerFavor implements ICommonPlayerCap {
         }
     }
 
+    public void setFavor(float favor) {
+        this.favor = favor;
+    }
+
     public PlayerFavor(PlayerEntity player) {
         this.player = player;
     }
 
-    public int getFavor() {
-        return 3000; // TODO TEST return favor;
+    public float getFavor() {
+        return favor; // TODO TEST return favor;
     }
 
-    public int getMaxPossibleFavor() {
-        return 5000;
+    public float getMaxPossibleFavor() {
+        return 1000000;
     }
 
     public void onOpenNewLootChest() {
@@ -60,14 +66,23 @@ public class PlayerFavor implements ICommonPlayerCap {
 
             FavorRank rank = getRank();
 
-            this.favor -= rank.favor_drain_per_item * info.amount;
+            if (rank.favor_drain_per_item > 0) {
+                this.favor -= rank.favor_drain_per_item * info.amount;
 
+                onFavorChanged();
+            }
+        }
+    }
+
+    private void onFavorChanged() {
+        if (this.favor <= 2) {
+            this.player.sendMessage(new LiteralText("You are very low on favor.").formatted(Formatting.RED), false);
         }
     }
 
     @Override
     public CompoundTag toTag(CompoundTag nbt) {
-        nbt.putInt(LOC, favor);
+        nbt.putFloat(LOC, favor);
         return nbt;
     }
 
@@ -78,7 +93,7 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     @Override
     public void fromTag(CompoundTag nbt) {
-        this.favor = nbt.getInt(LOC);
+        this.favor = nbt.getFloat(LOC);
     }
 
 }

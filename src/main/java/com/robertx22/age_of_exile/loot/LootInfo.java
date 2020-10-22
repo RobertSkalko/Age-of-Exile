@@ -84,10 +84,11 @@ public class LootInfo {
 
     public static LootInfo ofChestLoot(PlayerEntity player, BlockPos pos) {
         LootInfo info = new LootInfo(LootOrigin.CHEST);
+        info.player = player;
         info.world = player.world;
         info.pos = pos;
         info.level = LevelUtils.determineLevel(player.world, pos, player);
-        info.minItems = RandomUtils.RandomRange(1, 3);
+        info.minItems = RandomUtils.RandomRange(1, 2);
         info.setupAllFields();
         return info;
     }

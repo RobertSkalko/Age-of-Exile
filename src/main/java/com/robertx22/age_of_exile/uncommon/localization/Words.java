@@ -7,6 +7,7 @@ import java.util.Locale;
 
 public enum Words implements IAutoLocName {
     CreatedInSalvageStation("Created in Salvage Station."),
+    Favor("Favor"),
     AzunasFavor("Azuna's Favor"),
     IsSealed("Is sealed"),
     Sealed("Sealed"),

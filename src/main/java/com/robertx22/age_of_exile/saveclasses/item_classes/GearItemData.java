@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.library_of_exile.utils.CLOC;
 import info.loenwind.autosave.annotations.Storable;
@@ -403,9 +404,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public List<ItemStack> getSalvageResult(float salvageBonus) {
         if (this.isSalvagable) {
 
-            SalvageOutput sal = SlashRegistry.SalvageOutputs()
+            SalvageOutput sal = RandomUtils.weightedRandom(SlashRegistry.SalvageOutputs()
                 .getFiltered(x -> x.isForItem(this))
-                .get(0);
+            );
 
             return sal.getResult(this);
 

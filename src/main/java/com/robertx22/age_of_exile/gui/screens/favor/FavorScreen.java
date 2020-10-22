@@ -46,7 +46,7 @@ public class FavorScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public Words screenName() {
-        return Words.AzunasFavor;
+        return Words.Favor;
     }
 
     private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/favor.png");
@@ -81,9 +81,9 @@ public class FavorScreen extends BaseScreen implements INamedScreen {
         @Override
         public void renderButton(MatrixStack matrix, int x, int y, float f) {
 
-            int current = Load.favor(mc.player)
+            int current = (int) Load.favor(mc.player)
                 .getFavor();
-            int max = Load.favor(mc.player)
+            int max = (int) Load.favor(mc.player)
                 .getMaxPossibleFavor();
 
             String str = current + "/" + max;

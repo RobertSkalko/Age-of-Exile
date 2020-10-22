@@ -17,6 +17,7 @@ public class SalvageOutput implements ISerializedRegistryEntry<SalvageOutput>, I
     LevelRange levelRange;
     List<WeightedItem> outputs = new ArrayList<>();
     String id = "";
+    int weight = 1000;
 
     public boolean isForItem(GearItemData gear) {
         return levelRange.isLevelInRange(gear.level);
@@ -47,6 +48,11 @@ public class SalvageOutput implements ISerializedRegistryEntry<SalvageOutput>, I
     @Override
     public Class<SalvageOutput> getClassForSerialization() {
         return SalvageOutput.class;
+    }
+
+    @Override
+    public int Weight() {
+        return weight;
     }
 
     @Override
