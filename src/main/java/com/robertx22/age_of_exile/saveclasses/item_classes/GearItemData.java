@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
+import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -403,7 +403,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public List<ItemStack> getSalvageResult(float salvageBonus) {
         if (this.isSalvagable) {
 
-            return ModConfig.get().Salvaging.getResult(this);
+            SalvageOutput sal = SlashRegistry.SalvageOutputs()
+                .getFiltered(x -> x.isForItem(this))
+                .get(0);
+
+            return sal.getResult(this);
 
         } else
             return Arrays.asList(ItemStack.EMPTY);

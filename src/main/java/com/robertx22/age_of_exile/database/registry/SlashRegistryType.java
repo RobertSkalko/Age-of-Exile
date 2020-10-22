@@ -20,6 +20,7 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
@@ -70,6 +71,7 @@ public enum SlashRegistryType {
     PERK("perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN),
     SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_RARITY_GROUP("gear_rarity_group", 20, GearRarityGroup.SERIALIZER, SyncTime.ON_LOGIN),
+    SALVAGE_OUTPUT("salvage_output", 22, SalvageOutput.SERIALIZER, SyncTime.ON_LOGIN),
     FAVOR_RANK("favor_rank", 21, FavorRank.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;

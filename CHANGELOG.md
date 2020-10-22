@@ -88,6 +88,6 @@ Especially magic shield users, as willpower gives flat magic shield.
 Based on gear level that was salvaged, you get a dust of that tier.
 Those dusts are now used in crafting the mats needed to craft gear.
 In other words, you need to salvage lvl 30 gear to be able to craft level 30 gear.
++ removed salvage config, now uses salvage output datapacks
 
 B: known bug, poison can kill you now.
-B: salvage config does nothing currently
