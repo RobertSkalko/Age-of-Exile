@@ -1,0 +1,18 @@
+{
+  "name": "Azuna's Favor",
+  "category": "getting_started",
+  "icon": "minecraft:feather",
+  "sortnum": 5,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "Simplifed Explanation",
+		"text": "Favor is a resource that allows you to gain loot and experience from mobs you kill. You gain favor by looting chests in the world, and lose it by killing mobs. Use the main hub [H] > Favor to access your current favor."
+	},  
+	{  
+		"type": "text",   
+		"title": "In depth",
+		"text": "In essence it's an anti mob farm system. Or at least, limiter. As you need to go adventure and loot chests to replenish it. At 0 favor, many penalties apply and you can check them all in the favor menu. The important thing to know is that you can't level or gain any great loot while on 0 favor."
+	}
+  ]
+}

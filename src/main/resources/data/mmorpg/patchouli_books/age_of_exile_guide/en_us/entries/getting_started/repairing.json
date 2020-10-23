@@ -7,7 +7,7 @@
 	{  
 		"type": "text",   
 		"title": "The Repair Station",
-		"text": "After getting some materials from the Salvage Station, you can use them to fuel this station. It will repair your gear."
+		"text": "With this station you can use many different materials (iron, gold, diamonds etc) to repair your gear."
 	},  
     {
 		"type": "crafting",

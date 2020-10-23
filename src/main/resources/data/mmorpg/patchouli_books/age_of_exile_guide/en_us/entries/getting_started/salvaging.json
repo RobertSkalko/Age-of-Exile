@@ -7,12 +7,12 @@
 	{  
 		"type": "text",   
 		"title": "The Salvage Station",
-		"text": "The salvage station is the first thing you'll want to craft. It allows you to salvage rare materials from exile gear that drops. Those materials will be primarily used to repair your gear in the Repair Station, but they can also be used for other purposes, like crafting."
+		"text": "The salvage station is the first thing you'll want to craft. It allows you to salvage uneeded gear. Those materials can be used to craft gear, or create currencies (items that modify or upgrade existing gear). Salvage output is dependent on item's level."
 	},  
     {
 		"type": "crafting",
 		"recipe": "mmorpg:salvage_station",
-		"text": "Note, if the salvage station's output slots are not all empty, it will throw items on the ground. So be sure to automate it with hoppers!"
+		"text": "Note, if the salvage station's output slots are not all empty, it will throw items on the ground. So be sure to automate it with hoppers! Also, some gear may be unsalvagable."
     }
   ]
 }

@@ -11,7 +11,7 @@
 	},  
     {
 		"type": "crafting",
-		"recipe": "mmorpg:socket_station"   
+		"recipe": "mmorpg:socket_station"		
     }
   ]
 }

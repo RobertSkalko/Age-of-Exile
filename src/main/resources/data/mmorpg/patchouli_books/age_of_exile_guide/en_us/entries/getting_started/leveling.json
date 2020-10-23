@@ -12,7 +12,7 @@
 	{  
 		"type": "text",   
 		"title": "More info",
-		"text": "Try kill mobs that are close to your level. There is a small loot and exp penalty for killing mobs that are much lower or higher level than you. Not to mention, you'll need to wait a long time to use high level gear. So it's absolutely not worth killing high level mobs as a newbie."
+		"text": "Mob level is based on distance per spawn. To get optimal experience, kill mobs close to your level."
 	}
   ]
 }
