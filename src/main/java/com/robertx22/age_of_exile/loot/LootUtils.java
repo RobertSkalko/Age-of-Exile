@@ -54,7 +54,7 @@ public class LootUtils {
 
         float hp = EntityUtils.getVanillaMaxHealth(entity);
 
-        multi += (1 + hp / 20F) - 1;
+        multi += (1 + hp / 40F) - 1;
 
         if (entity instanceof SlimeEntity) {
             multi *= 0.1F;

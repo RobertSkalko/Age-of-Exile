@@ -4,8 +4,6 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.library_of_exile.utils.EntityUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -31,13 +29,11 @@ public class LevelUtils {
     }
 
     public static int getExpRequiredForLevel(int level) {
-        return level * level * 20;
+        return (int) (Math.pow(5F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2F));
     }
 
-    // dirty hack, let's see how useful you are.
-    public static float getExpDropForLevel(LivingEntity entity, int level) {
-        float hp = EntityUtils.getVanillaMaxHealth(entity);
-        return (float) (hp + (hp * 0.075 * level));
+    public static int getBaseExpMobReward(int level) {
+        return 5 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.2F));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {

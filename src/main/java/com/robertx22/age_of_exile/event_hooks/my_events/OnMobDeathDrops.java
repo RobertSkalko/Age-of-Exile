@@ -7,19 +7,20 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
-import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.library_of_exile.components.EntityInfoComponent;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
-import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.util.Formatting;
 
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             return;
         }
 
-        float exp = LevelUtils.getExpDropForLevel(victim, mobData.getLevel());
+        float exp = LevelUtils.getBaseExpMobReward(mobData.getLevel());
 
         if (exp < 1) {
             exp++;
@@ -131,12 +132,11 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             exp /= list.size();
 
             if (exp > 0) {
-                DmgNumPacket packet = new DmgNumPacket(
-                    victim, Elements.Nature, "+" + NumberUtils.format(exp) + " Exp!", exp);
-                packet.isExp = true;
-                Packets.sendToClient(killer, packet);
+
+                MutableText txt = new LiteralText("+" + (int) exp + " Experience").formatted(Formatting.GREEN);
 
                 for (PlayerEntity x : list) {
+                    OnScreenMessageUtils.sendMessage((ServerPlayerEntity) x, txt, TitleS2CPacket.Action.ACTIONBAR);
                     Load.Unit(x)
                         .GiveExp(x, (int) exp);
                 }

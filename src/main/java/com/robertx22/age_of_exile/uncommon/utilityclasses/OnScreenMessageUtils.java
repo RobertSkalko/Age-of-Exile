@@ -28,4 +28,9 @@ public class OnScreenMessageUtils {
 
     }
 
+    public static void sendMessage(ServerPlayerEntity p, MutableText title, TitleS2CPacket.Action act) {
+        p.networkHandler.sendPacket(new TitleS2CPacket(act, title
+            , 5, 15, 8));
+    }
+
 }

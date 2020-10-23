@@ -89,5 +89,7 @@ Based on gear level that was salvaged, you get a dust of that tier.
 Those dusts are now used in crafting the mats needed to craft gear.
 In other words, you need to salvage lvl 30 gear to be able to craft level 30 gear.
 + removed salvage config, now uses salvage output datapacks
++ tweaked level and xp formula. should be harder now
++ xp gain now shown on actionbar instead of chat message
 
 B: known bug, poison can kill you now.

@@ -11,21 +11,32 @@ public class StatScaleConfigs {
 
     @ConfigEntry.Gui.CollapsibleObject
     public LevelScalingConfig NORMAL_STAT_SCALING;
+
     @ConfigEntry.Gui.CollapsibleObject
     public LevelScalingConfig SLOW_STAT_SCALING;
 
+    @ConfigEntry.Gui.CollapsibleObject
+    public LevelScalingConfig KILLS_NEEDED_PER_LEVEL;
+
     public StatScaleConfigs() {
 
-        List<LevelScalingRangePart> linear = new ArrayList<>();
-        linear.add(new LevelScalingRangePart(0F, 0.2F, 1.1F, 2F));
-        linear.add(new LevelScalingRangePart(0.2F, 0.4F, 2F, 10F));
-        linear.add(new LevelScalingRangePart(0.4F, 0.8F, 10F, 40));
-        linear.add(new LevelScalingRangePart(0.8F, 1F, 40, 100));
+        List<LevelScalingRangePart> normal = new ArrayList<>();
+        normal.add(new LevelScalingRangePart(0F, 0.2F, 1.1F, 2F));
+        normal.add(new LevelScalingRangePart(0.2F, 0.4F, 2F, 10F));
+        normal.add(new LevelScalingRangePart(0.4F, 0.8F, 10F, 40));
+        normal.add(new LevelScalingRangePart(0.8F, 1F, 40, 100));
+
+        List<LevelScalingRangePart> kills = new ArrayList<>();
+        kills.add(new LevelScalingRangePart(0F, 0.2F, 2, 15));
+        kills.add(new LevelScalingRangePart(0.2F, 0.4F, 15, 40));
+        kills.add(new LevelScalingRangePart(0.4F, 0.8F, 40, 100));
+        kills.add(new LevelScalingRangePart(0.8F, 1F, 100, 2500));
 
         List<LevelScalingRangePart> slow = new ArrayList<>();
         slow.add(new LevelScalingRangePart(0F, 1F, 1, 2F));
 
-        NORMAL_STAT_SCALING = new LevelScalingConfig(linear);
+        NORMAL_STAT_SCALING = new LevelScalingConfig(normal);
+        KILLS_NEEDED_PER_LEVEL = new LevelScalingConfig(kills);
         SLOW_STAT_SCALING = new LevelScalingConfig(slow);
     }
 }
