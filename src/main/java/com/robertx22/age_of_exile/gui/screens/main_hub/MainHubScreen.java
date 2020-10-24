@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
-import com.robertx22.age_of_exile.gui.screens.favor.FavorScreen;
-import com.robertx22.age_of_exile.gui.screens.new_stat_screen.CharacterScreen;
+import com.robertx22.age_of_exile.gui.buttons.FavorButton;
+import com.robertx22.age_of_exile.gui.screens.character_screen.CharacterScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -52,7 +52,6 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         screens.add(new CharacterScreen());
         screens.add(new SkillTreeScreen());
-        screens.add(new FavorScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;
@@ -75,6 +74,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         }
 
+        addButton(new FavorButton(guiLeft + MainHubScreen.x / 2 - FavorButton.FAVOR_BUTTON_SIZE_X / 2, guiTop + MainHubScreen.y - 80));
     }
 
     @Override
@@ -87,6 +87,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         renderTitle(matrix);
         renderLevelExp(matrix);
 
+        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
     }
 
     private void renderTitle(MatrixStack matrix) {

@@ -75,7 +75,7 @@ public class PlayerFavor implements ICommonPlayerCap {
     }
 
     private void onFavorChanged() {
-        if (this.favor <= 2) {
+        if (this.favor <= 5) {
             this.player.sendMessage(new LiteralText("You are very low on favor.").formatted(Formatting.RED), false);
         }
     }

@@ -11,6 +11,7 @@ public class CapSyncUtil {
         syncEntityCap(player);
         syncSpells(player);
         syncStatPoints(player);
+        syncFavor(player);
     }
 
     public static void syncSpells(PlayerEntity player) {
@@ -25,6 +26,11 @@ public class CapSyncUtil {
 
     public static void syncStatPoints(PlayerEntity player) {
         Load.statPoints(player)
+            .syncToClient(player);
+    }
+
+    public static void syncFavor(PlayerEntity player) {
+        Load.favor(player)
             .syncToClient(player);
     }
 

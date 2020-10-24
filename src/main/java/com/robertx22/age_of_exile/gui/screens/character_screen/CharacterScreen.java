@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.gui.screens.new_stat_screen;
+package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
@@ -30,6 +30,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.*;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
+import com.robertx22.age_of_exile.gui.buttons.FavorButton;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -229,6 +230,9 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             list.add(new LiteralText("To reset stats, you need to craft:"));
             list.add(ModRegistry.MISC_ITEMS.RESET_STATS_POTION.locName());
             this.addButton(new HelpButton(list, guiLeft + sizeX - 30, guiTop + 5));
+
+            addButton(new FavorButton(guiLeft + sizeX - 45, guiTop + 40));
+
         }
 
         int i = 0;
@@ -281,6 +285,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             String points = "Points: " + Load.statPoints(mc.player)
                 .getAvailablePoints(Load.Unit(mc.player));
             GuiUtils.renderScaledText(matrix, xpos, ypos, 1, points, Formatting.GREEN);
+
         }
     }
 
