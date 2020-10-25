@@ -28,6 +28,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public SalvagedDustItem T3_DUST = item(new SalvagedDustItem("T3 Salvaged Dust", 3, LevelRanges.HIGH));
     public SalvagedDustItem T4_DUST = item(new SalvagedDustItem("T4 Salvaged Dust", 4, LevelRanges.ENDGAME));
 
+    CustomLootCrateItem CUSTOM_CRATE = item(new CustomLootCrateItem(), "custom_crate");
+
     LootCrateItem COMMON_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.COMMON), "loot_crate/common");
     LootCrateItem MAGIC_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.MAGIC), "loot_crate/magic");
     LootCrateItem RARE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.RARE), "loot_crate/rare");

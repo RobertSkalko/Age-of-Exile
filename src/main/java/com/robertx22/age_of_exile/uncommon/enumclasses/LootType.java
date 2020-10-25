@@ -4,18 +4,25 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 
 public enum LootType implements IGUID {
 
-    NormalItem("Normal Item", "normal_item"),
-    SkillGem("Skill Gem", "skill_gem"),
+    Gear("Gear", "gear"),
+    Gem("Gem", "gem"),
     LevelingRewards("Leveling Rewards", "lvl_rewards"),
-    UniqueItem("Unique Item", "unique_item"),
+    Rune("Rune", "rune"),
     Currency("Currency", "currency"),
-    CompatibleItem("Compatible Item", "compatible_item"),
-    All("All", "all"),
-    Blueprint("Blueprint", "blueprint");
+    All("All", "all");
 
     private LootType(String name, String id) {
         this.thename = name;
         this.id = id;
+    }
+
+    public static LootType of(String str) {
+        for (LootType type : values()) {
+            if (type.id.equals(str)) {
+                return type;
+            }
+        }
+        return null;
     }
 
     String id;

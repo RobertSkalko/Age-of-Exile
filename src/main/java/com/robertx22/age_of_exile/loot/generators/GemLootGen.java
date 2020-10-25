@@ -22,7 +22,7 @@ public class GemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public LootType lootType() {
-        return LootType.NormalItem;
+        return LootType.Gem;
     }
 
     @Override

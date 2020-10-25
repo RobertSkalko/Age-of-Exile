@@ -25,7 +25,7 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public LootType lootType() {
-        return LootType.NormalItem;
+        return LootType.Gear;
     }
 
     @Override
