@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 
-public interface IAddToOtherStats extends IGUID {
+public interface ITransferToOtherStats extends IGUID {
 
-    void addToOtherStats(EntityCap.UnitData unit, InCalcStatData thisstat);
+    void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat);
 
 }

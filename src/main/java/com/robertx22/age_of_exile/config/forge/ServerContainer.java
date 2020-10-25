@@ -11,7 +11,6 @@ public class ServerContainer {
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
     public boolean SAVE_GEAR_AND_HOTBAR_ON_DEATH = false;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
-    public boolean ENABLE_FAVOR_SYSTEM = true;
 
     //public double REPAIR_FUEL_NEEDED_MULTI = 1;
     public double REGEN_HUNGER_COST = 10;

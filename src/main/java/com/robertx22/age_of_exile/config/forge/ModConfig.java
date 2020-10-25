@@ -18,6 +18,9 @@ public class ModConfig implements ConfigData {
     public ServerContainer Server = new ServerContainer();
 
     @ConfigEntry.Gui.CollapsibleObject
+    public FavorConfig Favor = new FavorConfig();
+
+    @ConfigEntry.Gui.CollapsibleObject
     public ItemSealingConfig ItemSealing = new ItemSealingConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
@@ -31,9 +34,6 @@ public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.CollapsibleObject
     public FoodEffectsConfig foodEffects = new FoodEffectsConfig();
-
-    @ConfigEntry.Gui.CollapsibleObject
-    public GearSalvageConfig Salvaging = new GearSalvageConfig();
 
     public static ModConfig get() {
         return AutoConfig.getConfigHolder(ModConfig.class)

@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
@@ -88,7 +87,7 @@ public class LootInfo {
         info.world = player.world;
         info.pos = pos;
         info.level = LevelUtils.determineLevel(player.world, pos, player);
-        info.minItems = RandomUtils.RandomRange(1, 2);
+        info.multi = 2;
         info.setupAllFields();
         return info;
     }

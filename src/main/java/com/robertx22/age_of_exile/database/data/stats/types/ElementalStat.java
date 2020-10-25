@@ -1,25 +1,23 @@
 package com.robertx22.age_of_exile.database.data.stats.types;
 
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.TransferMethod;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
+import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IElementalGenerated;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatTransfer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public abstract class ElementalStat extends Stat implements IElementalGenerated<Stat>, IStatTransfer {
+public abstract class ElementalStat extends Stat implements IElementalGenerated<Stat>, ITransferToOtherStats {
 
     public Elements element;
 
     public ElementalStat(Elements element) {
         this.element = element;
 
+        this.isShown = element != Elements.Elemental;
     }
 
     @Override
@@ -39,28 +37,14 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     }
 
     @Override
-    public void transferStats(Unit copy, Unit unit, StatData data) {
-        for (TransferMethod stat : this.Transfer()) {
-            copy.getStatInCalculation(stat.converted)
-                .addFullyTo(unit.getStatInCalculation(stat.statThatBenefits));
-
+    public void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat) {
+        if (this.element == Elements.Elemental) {
+            for (Elements ele : Elements.getAllSingleElementals()) {
+                thisstat.addFullyTo(unit.getUnit()
+                    .getStatInCalculation(newGeneratedInstance(ele)));
+            }
+            thisstat.clear();
         }
-    }
-
-    @Override
-    public List<TransferMethod> Transfer() {
-
-        if (this.getElement()
-            .equals(Elements.Elemental)) {
-            return Arrays.asList(
-                new TransferMethod(new ElementalResist(Elements.Elemental), newGeneratedInstance(Elements.Nature)),
-                new TransferMethod(new ElementalResist(Elements.Elemental), newGeneratedInstance(Elements.Fire)),
-                new TransferMethod(new ElementalResist(Elements.Elemental), newGeneratedInstance(Elements.Thunder)),
-                new TransferMethod(new ElementalResist(Elements.Elemental), newGeneratedInstance(Elements.Water))
-            );
-        }
-
-        return Arrays.asList();
     }
 
 }

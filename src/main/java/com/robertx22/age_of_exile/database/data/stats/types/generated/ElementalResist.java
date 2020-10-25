@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.defense.ElementalResistEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
@@ -13,7 +11,7 @@ import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class ElementalResist extends ElementalStat implements IStatEffects, IAddToOtherStats {
+public class ElementalResist extends ElementalStat implements IStatEffects {
 
     public static MapWrapper<Elements, ElementalResist> MAP = new MapWrapper();
 
@@ -67,16 +65,5 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IAdd
         return this.getElement().dmgName + " Resist";
     }
 
-    @Override
-    public void addToOtherStats(EntityCap.UnitData unit, float v1, float v2) {
-        if (this.element == Elements.Elemental) {
-            this.generateAllSingleVariations()
-                .forEach(x -> {
-                    unit.getUnit()
-                        .getStatInCalculation(x)
-                        .addAlreadyScaledFlat(v1);
-                });
-        }
-    }
 }
 

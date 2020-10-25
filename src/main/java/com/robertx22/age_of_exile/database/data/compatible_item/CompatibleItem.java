@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
@@ -126,7 +126,8 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
             obj.rarities = json.get("rarities")
                 .getAsString();
         } else {
-            obj.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
+
+            obj.rarities = GearRarityGroups.NON_UNIQUE_ID;
         }
 
         if (json.has("misc")) {

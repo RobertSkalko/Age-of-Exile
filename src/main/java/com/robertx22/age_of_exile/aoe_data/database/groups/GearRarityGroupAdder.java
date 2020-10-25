@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.groups;
 
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -11,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class GearRarityGroupAdder implements ISlashRegistryInit {
 
-    public static DataGenKey<GearRarityGroup> NON_UNIQUE_KEY = new DataGenKey<GearRarityGroup>("non_unique");
-    public static DataGenKey<GearRarityGroup> LOW_KEY = new DataGenKey<GearRarityGroup>("low");
+    static DataGenKey<GearRarityGroup> NON_UNIQUE_KEY = new DataGenKey<GearRarityGroup>(GearRarityGroups.NON_UNIQUE_ID);
+    static DataGenKey<GearRarityGroup> LOW_KEY = new DataGenKey<GearRarityGroup>(GearRarityGroups.LOW_ID);
 
     @Override
     public void registerAll() {

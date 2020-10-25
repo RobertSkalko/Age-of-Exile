@@ -4,13 +4,14 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
+import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AllAttributes extends Stat implements IAddToOtherStats {
+public class AllAttributes extends Stat implements ITransferToOtherStats {
 
     private AllAttributes() {
         this.scaling = StatScaling.LINEAR;
@@ -50,12 +51,12 @@ public class AllAttributes extends Stat implements IAddToOtherStats {
     }
 
     @Override
-    public void addToOtherStats(EntityCap.UnitData unit, float v1, float v2) {
-        coreStatsThatBenefit().forEach(x -> {
-            unit.getUnit()
-                .getStatInCalculation(x)
-                .addAlreadyScaledFlat(v1, v2);
-        });
+    public void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat) {
+        for (BaseCoreStat ele : coreStatsThatBenefit()) {
+            thisstat.addFullyTo(unit.getUnit()
+                .getStatInCalculation(ele));
+        }
+        thisstat.clear();
     }
 
     private static class SingletonHolder {

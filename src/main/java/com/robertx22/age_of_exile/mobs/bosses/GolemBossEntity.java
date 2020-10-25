@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.mobs.bosses.bases.BossData;
 import com.robertx22.age_of_exile.mobs.bosses.bases.IBossMob;
 import com.robertx22.age_of_exile.mobs.bosses.channels.AngerChannel;
 import com.robertx22.age_of_exile.mobs.bosses.channels.HealIfHitChannel;
-import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
+import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.pattern.BlockPattern;

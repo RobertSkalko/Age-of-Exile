@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -29,6 +28,13 @@ public class InCalcStatData {
 
     public InCalcStatData(String id) {
         this.id = id;
+    }
+
+    public void clear() {
+        this.Flat = 0;
+        this.Flat2 = 0;
+        this.Percent = 0;
+        this.Multi = 0;
     }
 
     private float calcFirstValue() {
@@ -149,12 +155,6 @@ public class InCalcStatData {
             Percent += v;
         } else if (type == ModType.GLOBAL_INCREASE) {
             Multi += v;
-        }
-
-        if (data != null && GetStat() instanceof IAddToOtherStats) {
-            IAddToOtherStats add = (IAddToOtherStats) GetStat();
-            add.addToOtherStats(data, v1, v2);
-            // good reason why this is here. stat requirements..
         }
 
     }

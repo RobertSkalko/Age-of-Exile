@@ -8,6 +8,8 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -263,6 +265,9 @@ public class Unit {
 
         DirtyCheck old = getDirtyCheck();
 
+        this.stats.statsInCalc.clear();
+        this.stats.stats.clear();
+
         List<GearData> gears = new ArrayList<>();
 
         new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData);
@@ -289,6 +294,21 @@ public class Unit {
 
         CommonStatUtils.CalcTraitsAndCoreStats(
             data); // has to be at end for the conditionals like if crit higher than x
+
+        new HashMap<>(stats.statsInCalc).entrySet()
+            .forEach(x -> {
+                InCalcStatData statdata = x.getValue();
+                Stat stat = x.getValue()
+                    .GetStat();
+                if (statdata != null && stat instanceof IAddToOtherStats) {
+                    IAddToOtherStats add = (IAddToOtherStats) stat;
+                    add.addToOtherStats(data, statdata);
+                }
+                if (statdata != null && stat instanceof ITransferToOtherStats) {
+                    ITransferToOtherStats add = (ITransferToOtherStats) stat;
+                    add.transferStats(data, statdata);
+                }
+            });
 
         this.stats.calculate();
 

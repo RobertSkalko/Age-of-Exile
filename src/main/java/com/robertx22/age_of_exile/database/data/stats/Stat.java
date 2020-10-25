@@ -32,6 +32,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public Stat() {
     }
 
+    public boolean isShown = true;
+
     public float min_val = -1000;
     public float max_val = Integer.MAX_VALUE;
     public float base_val = 0;

@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.config.forge.parts;
 
-import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import net.minecraft.item.Item;
 
@@ -56,7 +56,7 @@ public class AutoConfigItemType {
                         }
 
                         CompatibleItem comp = CompatibleItem.getDefaultAuto(item, x);
-                        comp.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
+                        comp.rarities = GearRarityGroups.NON_UNIQUE_ID;
                         comp.can_be_salvaged = CAN_BE_SALVAGED;
                         comp.item_type = x.GUID();
 

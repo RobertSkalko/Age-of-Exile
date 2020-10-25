@@ -26,7 +26,7 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     public FavorRank getRank() {
         try {
-            if (!ModConfig.get().Server.ENABLE_FAVOR_SYSTEM) {
+            if (!ModConfig.get().Favor.ENABLE_FAVOR_SYSTEM) {
                 return SlashRegistry.FavorRanks()
                     .get("normal"); // simplest way of disabling everything around the system
             }
@@ -58,7 +58,7 @@ public class PlayerFavor implements ICommonPlayerCap {
     }
 
     public void onOpenNewLootChest() {
-        this.favor += 50;
+        this.favor += ModConfig.get().Favor.FAVOR_GAIN_PER_CHEST_LOOTED;
     }
 
     public void afterLootingItems(LootInfo info) {

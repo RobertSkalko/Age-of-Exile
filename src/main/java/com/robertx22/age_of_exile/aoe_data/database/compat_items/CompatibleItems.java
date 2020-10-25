@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.compat_items;
 
-import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -40,7 +40,7 @@ public class CompatibleItems {
                     String id = Registry.ITEM.getId(item)
                         .toString();
 
-                    c.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
+                    c.rarities = GearRarityGroups.NON_UNIQUE_ID;
 
                     c.guid = id;
                     c.item_id = id;
@@ -68,7 +68,7 @@ public class CompatibleItems {
                     c.item_type = uniq.getBaseGearType()
                         .GUID();
 
-                    c.rarities = GearRarityGroupAdder.NON_UNIQUE_KEY.GUID();
+                    c.rarities = GearRarityGroups.NON_UNIQUE_ID;
 
                     c.chance_to_become_unique = 100;
                     c.unique_id = uniq.GUID();

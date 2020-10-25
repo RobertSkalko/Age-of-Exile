@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mobs.zombies;
 
 import com.robertx22.age_of_exile.mobs.OnTickRandomSpeedBoost;
-import com.robertx22.age_of_exile.vanilla_mc.packets.EntityPacket;
+import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.ZombieEntity;

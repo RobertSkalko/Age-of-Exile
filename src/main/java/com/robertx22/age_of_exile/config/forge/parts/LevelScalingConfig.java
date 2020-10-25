@@ -1,7 +1,9 @@
 package com.robertx22.age_of_exile.config.forge.parts;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +25,8 @@ public class LevelScalingConfig {
     }
 
     public float getMultiFor(int lvl) {
+        lvl = MathHelper.clamp(lvl, 1, ModConfig.get().Server.MAX_LEVEL);
+
         // todo this is probably a bad idea for those crazy people that set infinite level caps.
         if (!cachedMultipliers.containsKey(lvl)) {
             for (LevelScalingRangePart x : LEVEL_AND_STAT_GROWTH) {

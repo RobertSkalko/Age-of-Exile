@@ -85,7 +85,6 @@ public class StatData {
     }
 
     public float getMultiplier() {
-
         return 1F + getAverageValue() / 100F;
     }
 

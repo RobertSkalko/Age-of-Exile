@@ -63,5 +63,6 @@ public class ElementalSpellDamage extends ElementalStat implements IStatEffects 
     public IStatEffect getEffect() {
         return new ElementalSpellDamageEffect();
     }
+
 }
 
