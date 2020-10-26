@@ -49,6 +49,7 @@
 "item.mmorpg.teleport_scroll": "Teleport Back Scroll",
 "item.mmorpg.prefix": "Prefix",
 "item.mmorpg.suffix": "Suffix",
+"item.mmorpg.custom_crate": "Crate",
 "_comment": "SPELL TOOLTIPS",
 "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
 "mmorpg.tooltip.single_target_spell_bolt": "Casts a Single Target elemental projectile.",

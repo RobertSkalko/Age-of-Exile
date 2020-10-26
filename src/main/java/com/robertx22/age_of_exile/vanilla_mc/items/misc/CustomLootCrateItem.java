@@ -42,7 +42,27 @@ public class CustomLootCrateItem extends Item implements IAutoModel {
 
     @Override
     public Text getName(ItemStack stack) {
-        return new TranslatableText(this.getTranslationKey()).formatted(Formatting.LIGHT_PURPLE);
+
+        try {
+            CrateInfo info = new CrateInfo(stack, null);
+
+            MutableText size = null;
+
+            if (info.amount < 3) {
+                size = Words.Small.locName();
+            } else {
+                size = Words.Big.locName();
+            }
+
+            return size.append(" ")
+                .append(info.lootType.word.locName())
+                .append(" ")
+                .append(new TranslatableText(this.getTranslationKey()))
+                .formatted(Formatting.LIGHT_PURPLE);
+
+        } catch (Exception e) {
+            return new TranslatableText(this.getTranslationKey()).formatted(Formatting.LIGHT_PURPLE);
+        }
     }
 
     @Override
@@ -73,8 +93,10 @@ public class CustomLootCrateItem extends Item implements IAutoModel {
                 this.level = stack.getTag()
                     .getInt("level");
             } else {
-                this.level = Load.Unit(player)
-                    .getLevel();
+                if (player != null) {
+                    this.level = Load.Unit(player)
+                        .getLevel();
+                }
             }
             if (rar != null) {
                 if (SlashRegistry.GearRarities()
@@ -86,7 +108,7 @@ public class CustomLootCrateItem extends Item implements IAutoModel {
 
         }
 
-        public Integer level;
+        public Integer level = 1;
         public LootType lootType;
         public int amount;
 

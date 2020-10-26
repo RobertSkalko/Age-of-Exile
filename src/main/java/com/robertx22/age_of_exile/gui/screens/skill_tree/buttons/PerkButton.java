@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -32,6 +33,13 @@ public class PerkButton extends TexturedButtonWidget {
     public PointData point;
     public SpellSchool school;
     public EntityPerks enperks;
+    SkillTreeScreen screen;
+
+    public int originalWidth;
+    public int originalHeight;
+
+    public int origX;
+    public int origY;
 
     public PerkButton(EntityPerks enperks, SpellSchool school, PointData point, Perk perk, int x, int y) {
         super(x, y, perk.getType().width, perk.getType().height, 0, 0, 1, ID, (action) -> {
@@ -40,6 +48,12 @@ public class PerkButton extends TexturedButtonWidget {
         this.point = point;
         this.school = school;
         this.enperks = enperks;
+
+        this.origX = x;
+        this.origY = y;
+        this.originalWidth = this.width;
+        this.originalHeight = this.height;
+
     }
 
     public boolean isInside(int x, int y) {

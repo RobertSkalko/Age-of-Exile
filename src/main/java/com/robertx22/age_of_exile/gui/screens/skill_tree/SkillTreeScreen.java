@@ -318,6 +318,64 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
         }
     }
 
+    float scale = 1;
+
+    int zoomedOutTimes = 0;
+
+    Double scaleFactorSaved;
+
+    @Override
+    public void onClose() {
+        super.onClose();
+
+        if (scaleFactorSaved != null) {
+            mc.getWindow()
+                .setScaleFactor(scaleFactorSaved);
+            resize(mc, mc.getWindow()
+                .getScaledWidth(), mc.getWindow()
+                .getScaledHeight());
+        }
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
+        if (scroll < 0) {
+            this.scale -= 0.075F;
+            zoomedOutTimes++;
+        }
+        if (scroll > 0) {
+            this.scale += 0.075F;
+            zoomedOutTimes--;
+        }
+        this.scale = MathHelper.clamp(scale, 0.25F, 1);
+
+        this.zoomedOutTimes = MathHelper.clamp(zoomedOutTimes, 0, 10);
+
+        if (scaleFactorSaved == null) {
+            scaleFactorSaved = mc.getWindow()
+                .getScaleFactor();
+        }
+
+        SpellSchool savedschool = this.school;
+
+        int SscrollX = this.scrollX;
+        int SscrollY = this.scrollY;
+
+        mc.getWindow()
+            .setScaleFactor(scaleFactorSaved - zoomedOutTimes * 0.1F);
+        resize(mc, mc.getWindow()
+            .getScaledWidth(), mc.getWindow()
+            .getScaledHeight());
+
+        this.school = savedschool;
+        this.refreshButtons();
+
+        this.scrollX = SscrollX;
+        this.scrollY = SscrollY;
+
+        return true;
+    }
+
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
         this.scrollX += deltaX;
@@ -332,6 +390,7 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         try {
+
             this.buttons.forEach(b -> {
                 if (originalButtonLocMap.containsKey(b)) {
                     b.x = (int) (this.originalButtonLocMap.get(b).
@@ -373,6 +432,7 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             this.tick_count++;
 
             buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+
         } catch (Exception e) {
             e.printStackTrace();
         }

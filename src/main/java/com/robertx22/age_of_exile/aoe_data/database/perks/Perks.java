@@ -2,9 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -40,19 +38,26 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat("int", new OptScaleExactStat(1, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.stat("dex", new OptScaleExactStat(1, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.stat("str", new OptScaleExactStat(1, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("wis", new OptScaleExactStat(1, Wisdom.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("vit", new OptScaleExactStat(1, Vitality.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("wil", new OptScaleExactStat(1, Willpower.INSTANCE, ModType.FLAT));
 
         PerkBuilder.bigStat("big_int", new OptScaleExactStat(3, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_dex", new OptScaleExactStat(3, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_str", new OptScaleExactStat(3, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_wis", new OptScaleExactStat(3, Wisdom.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_vit", new OptScaleExactStat(3, Vitality.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_wil", new OptScaleExactStat(3, Willpower.INSTANCE, ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, CriticalHit.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(4, HealPower.getInstance(), ModType.FLAT));
+        PerkBuilder.bigStat("big_crit_dmg", new OptScaleExactStat(5, CriticalDamage.getInstance(), ModType.FLAT));
+        PerkBuilder.bigStat("big_crit_hit", new OptScaleExactStat(2, CriticalHit.getInstance(), ModType.FLAT));
 
-        PerkBuilder.bigStat("big_crit_dmg", new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT));
-        PerkBuilder.bigStat("big_crit_hit", new OptScaleExactStat(1, CriticalHit.getInstance(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
+        PerkBuilder.bigStat("spell_damage_big", new OptScaleExactStat(6, SpellDamage.getInstance(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(4, HealPower.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));

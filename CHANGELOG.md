@@ -91,5 +91,8 @@ In other words, you need to salvage lvl 30 gear to be able to craft level 30 gea
 + removed salvage config, now uses salvage output datapacks
 + tweaked level and xp formula. should be harder now
 + xp gain now shown on actionbar instead of chat message
++ added custom crate item. This is replacement for the old rarity loot crates. 
+Now you can choose any rarity you want, even those added with datapacks.
++ added experimental zoom functionality to talent screen
 
 B: known bug, poison can kill you now.

@@ -6,4 +6,5 @@ fire
 divine
 hunting
 arcane
+talents
 water
