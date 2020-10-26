@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool.SchoolType;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
@@ -17,7 +18,6 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.pick
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.library_of_exile.main.Packets;
@@ -38,19 +38,22 @@ import java.awt.*;
 import java.util.List;
 import java.util.*;
 
-public class SkillTreeScreen extends BaseScreen implements INamedScreen {
+public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen {
     static Identifier BIG_PANEL = new Identifier(Ref.MODID, "textures/gui/skill_tree/background.png");
     static Identifier SMALL_PANEL = new Identifier(Ref.MODID, "textures/gui/skill_tree/small_panel.png");
+
+    public SchoolType schoolType;
 
     Identifier BACKGROUND_TEXTURE = new Identifier(
         Ref.MODID, "textures/gui/skill_tree/water.png");
 
-    public SkillTreeScreen() {
+    public SkillTreeScreen(SchoolType type) {
         super(MinecraftClient.getInstance()
             .getWindow()
             .getScaledWidth(), MinecraftClient.getInstance()
             .getWindow()
             .getScaledHeight());
+        this.schoolType = type;
 
     }
 
@@ -138,7 +141,7 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
 
             schoolsInOrder = SlashRegistry.SpellSchools()
-                .getList();
+                .getFiltered(x -> x.type == this.schoolType);
             schoolsInOrder.sort(Comparator.comparingInt(x -> x.order));
 
             this.school = schoolsInOrder.get(0);
@@ -276,9 +279,11 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
             }
         }
 
-        this.addButton(new WholeSpellHotbarButton(this, mc.getWindow()
-            .getScaledWidth() / 2 - WholeSpellHotbarButton.XSIZE / 2, mc.getWindow()
-            .getScaledHeight() - WholeSpellHotbarButton.YSIZE));
+        if (this.schoolType == SchoolType.SPELLS) {
+            this.addButton(new WholeSpellHotbarButton(this, mc.getWindow()
+                .getScaledWidth() / 2 - WholeSpellHotbarButton.XSIZE / 2, mc.getWindow()
+                .getScaledHeight() - WholeSpellHotbarButton.YSIZE));
+        }
 
         addConnections();
 
@@ -512,13 +517,4 @@ public class SkillTreeScreen extends BaseScreen implements INamedScreen {
         tessellator.draw();
     }
 
-    @Override
-    public Identifier iconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/skill_tree.png");
-    }
-
-    @Override
-    public Words screenName() {
-        return Words.SkillTrees;
-    }
 }

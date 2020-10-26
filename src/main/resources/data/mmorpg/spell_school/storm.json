@@ -1,6 +1,7 @@
 {
 "text_format": "RED",
 "identifier": "storm",
+"type": "SPELLS",
 "icon": "mmorpg:textures/gui/skill_tree/schools/storm.png",
 "order":2,
 

@@ -21,7 +21,12 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     public int order = 0;
     public String text_format;
     public String identifier;
+    public SchoolType type;
     public String icon;
+
+    public enum SchoolType {
+        SPELLS, TALENTS
+    }
 
     // 2d grid with whitespace
     public String perks = "";

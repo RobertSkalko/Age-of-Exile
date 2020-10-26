@@ -1,6 +1,7 @@
 {
 "text_format": "RED",
 "identifier": "nature",
+"type": "SPELLS",
 "icon": "mmorpg:textures/gui/skill_tree/schools/nature.png",
 "order":1,
 

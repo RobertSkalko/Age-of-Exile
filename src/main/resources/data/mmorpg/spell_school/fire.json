@@ -1,6 +1,7 @@
 {
 "text_format": "RED",
 "identifier": "fire",
+"type": "SPELLS",
 "icon": "mmorpg:textures/gui/skill_tree/schools/fire.png",
 "order":0,
 

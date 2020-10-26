@@ -132,8 +132,11 @@ public class PerkButton extends TexturedButtonWidget {
 
         } else if (perk.getType() == Perk.PerkType.START) {
             offset = 3;
-            RenderUtils.render16Icon(matrices, new Identifier(school.icon), this.x + offset, this.y + offset);
-
+            if (perk.icon == null || perk.icon.isEmpty()) {
+                RenderUtils.render16Icon(matrices, new Identifier(school.icon), this.x + offset, this.y + offset);
+            } else {
+                RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + offset, this.y + offset);
+            }
         } else if (perk.getType() == Perk.PerkType.SPECIAL) {
             // icon
             mc.getTextureManager()

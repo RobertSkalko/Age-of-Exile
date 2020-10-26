@@ -1,6 +1,7 @@
 {
 "text_format": "LIGHT_PURPLE",
 "identifier": "arcane",
+"type": "SPELLS",
 "icon": "mmorpg:textures/gui/skill_tree/schools/arcane.png",
 "order":6,
 

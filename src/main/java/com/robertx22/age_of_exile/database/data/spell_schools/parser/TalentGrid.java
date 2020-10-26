@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 
 import java.util.*;
 
@@ -66,7 +65,8 @@ public class TalentGrid {
 
         Objects.requireNonNull(school.calcData.center, "Tree needs a center!");
 
-        Watch conwatch = new Watch();
+        //  Watch conwatch = new Watch();
+        // this can take a long time if the "hasPath" checks aren't minimized
         for (GridPoint one : perks) {
             for (GridPoint two : perks) {
                 if (one.isInDistanceOf(two)) {
@@ -76,10 +76,11 @@ public class TalentGrid {
                 }
             }
         }
-        conwatch.print(" connecting tree");
+        // conwatch.print(" connecting tree");
 
     }
 
+    // this is very resource intensive
     private boolean hasPath(GridPoint start, GridPoint end) {
         Queue<GridPoint> openSet = new ArrayDeque<>();
         openSet.add(start);

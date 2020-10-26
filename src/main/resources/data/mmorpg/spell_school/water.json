@@ -1,6 +1,7 @@
 {
 "text_format": "RED",
 "identifier": "water",
+"type": "SPELLS",
 "icon": "mmorpg:textures/gui/skill_tree/schools/ocean.png",
 "order":3,
 

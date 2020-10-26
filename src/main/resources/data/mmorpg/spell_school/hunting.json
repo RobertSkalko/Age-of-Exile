@@ -1,6 +1,7 @@
 {
 "text_format": "RED",
 "identifier": "hunting",
+"type": "SPELLS",
 "icon": "mmorpg:textures/gui/skill_tree/schools/hunting.png",
 "order":5,
 

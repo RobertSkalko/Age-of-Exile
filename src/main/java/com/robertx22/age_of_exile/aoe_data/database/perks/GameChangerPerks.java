@@ -49,7 +49,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("overflowing_vitality",
-            new OptScaleExactStat(1F, DatapackStatAdder.CONVERT_HEALTH_TO_PHYS_DMG, ModType.FLAT),
+            new OptScaleExactStat(0.2F, DatapackStatAdder.CONVERT_HEALTH_TO_PHYS_DMG, ModType.FLAT),
             new OptScaleExactStat(-10, Health.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
