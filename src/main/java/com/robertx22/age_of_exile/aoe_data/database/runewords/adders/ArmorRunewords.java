@@ -50,7 +50,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
             "Starlight",
             BaseGearType.SlotFamily.Armor,
             Arrays.asList(
-                new StatModifier(2, 6, MagicShield.getInstance(), ModType.FLAT),
+                new StatModifier(2, 5, MagicShield.getInstance(), ModType.FLAT),
                 new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT)
             ),
             Arrays.asList(XER, CEN, ORU, NOS))
@@ -61,7 +61,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
             "Shadow",
             BaseGearType.SlotFamily.Armor,
             Arrays.asList(
-                new StatModifier(10, 20, DodgeRating.getInstance(), ModType.FLAT),
+                new StatModifier(2, 6, DodgeRating.getInstance(), ModType.FLAT),
                 new StatModifier(20, 60, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
             ),
             Arrays.asList(XER, CEN, ORU, MOS))
@@ -72,7 +72,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
             "Rock Golem",
             BaseGearType.SlotFamily.Armor,
             Arrays.asList(
-                new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT),
+                new StatModifier(2, 6, Armor.getInstance(), ModType.FLAT),
                 new StatModifier(20, 60, Armor.getInstance(), ModType.LOCAL_INCREASE)
             ),
             Arrays.asList(XER, CEN, ORU, ITA))

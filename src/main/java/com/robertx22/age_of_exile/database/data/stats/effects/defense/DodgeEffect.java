@@ -23,7 +23,7 @@ public class DodgeEffect extends BaseDamageEffect {
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         DodgeRating dodge = (DodgeRating) stat;
 
-        float chance = dodge.getUsableValue((int) data.getAverageValue(), effect.targetData.getLevel()) * 100;
+        float chance = dodge.getUsableValue((int) data.getAverageValue(), effect.sourceData.getLevel()) * 100;
 
         if (RandomUtils.roll(chance)) {
             DamageEffect dmgeffect = (DamageEffect) effect;

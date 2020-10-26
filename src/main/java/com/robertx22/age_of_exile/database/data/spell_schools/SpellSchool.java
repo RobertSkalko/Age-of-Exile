@@ -21,11 +21,20 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     public int order = 0;
     public String text_format;
     public String identifier;
-    public SchoolType type;
+    public String school_type;
     public String icon;
 
     public enum SchoolType {
         SPELLS, TALENTS
+    }
+
+    public SchoolType getSchool_type() {
+        try {
+            return SchoolType.valueOf(school_type);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return SchoolType.SPELLS;
+        }
     }
 
     // 2d grid with whitespace

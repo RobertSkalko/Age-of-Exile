@@ -21,7 +21,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.stream.Collectors;
@@ -126,7 +125,7 @@ public class MobStatUtils {
         unit.getStatInCalculation(SpellDamage.getInstance())
             .addFlat(-25, lvl); // less spell dmg, spells are already kinda strong
 
-        int bonusEleDmg = MathHelper.clamp(5 * lvl, 0, 300);
+        float bonusEleDmg = 300F / ModConfig.get().Server.MAX_LEVEL * lvl;
 
         new ElementalDamageBonus(Elements.Water).generateAllPossibleStatVariations()
             .forEach(x -> unit.getStatInCalculation(x)

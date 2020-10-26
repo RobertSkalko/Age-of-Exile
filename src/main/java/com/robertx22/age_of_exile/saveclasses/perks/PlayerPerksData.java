@@ -108,7 +108,8 @@ public class PlayerPerksData {
 
         if (!perk.is_entry) {
             Set<PointData> con = school.calcData.connections.get(point);
-            if (!con.stream()
+
+            if (con == null || !con.stream()
                 .anyMatch(x -> getSchool(school)
                     .isAllocated(x))) {
                 return false;

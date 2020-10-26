@@ -37,7 +37,7 @@ public class ArmorEffect extends BaseStatEffect<DamageEffect> {
 
         IUsableStat armor = (IUsableStat) stat;
 
-        float EffectiveArmor = armor.getUsableValue((int) (data.getAverageValue() - pene), effect.targetData.getLevel());
+        float EffectiveArmor = armor.getUsableValue((int) (data.getAverageValue() - pene), effect.sourceData.getLevel());
 
         EffectiveArmor = MathHelper.clamp(EffectiveArmor, 0, 1);
 

@@ -1,7 +1,7 @@
 {
 "text_format": "RED",
 "identifier": "divine",
-"type": "SPELLS",
+"school_type": "SPELLS",
 "icon": "mmorpg:textures/gui/skill_tree/schools/divine.png",
 "order":4,
 

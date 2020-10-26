@@ -98,5 +98,10 @@ Now you can choose any rarity you want, even those added with datapacks.
 + added non crit damage stat
 + added converter datapack stat (used in "% of magic shield converted to health" stat)
 + improved talent tree load time by about 50 times
++ armor and dodge now use a diminishing return formula
++ armor and dodge are now based on attacking enemy level. 
+In short, 90% dodge chance against a higher level enemy is less than 90% dodge chance.
+If it's high enough level, it could be 5% instead.
+This not being the case already is what probably made it possible to battle high level mobs before.
 
 B: known bug, poison can kill you now.

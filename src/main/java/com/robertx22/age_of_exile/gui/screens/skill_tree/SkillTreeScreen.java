@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
+import com.google.common.collect.Sets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -56,6 +57,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         this.schoolType = type;
 
     }
+
+    public static double SAVED_SCALE_FACTOR = -1;
 
     public void removeRemovableButtons() {
         boolean did = false;
@@ -141,7 +144,9 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
 
             schoolsInOrder = SlashRegistry.SpellSchools()
-                .getFiltered(x -> x.type == this.schoolType);
+                .getFiltered(x -> {
+                    return x.getSchool_type() == this.schoolType;
+                });
             schoolsInOrder.sort(Comparator.comparingInt(x -> x.order));
 
             this.school = schoolsInOrder.get(0);
@@ -161,7 +166,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     private void addConnections() {
 
-        Set<List<PointData>> cons = new HashSet<>();
+        Set<Set<PointData>> cons = new HashSet<>();
 
         new ArrayList<>(buttons).forEach(b -> {
             if (b instanceof PerkButton) {
@@ -184,7 +189,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                         continue;
                     }
 
-                    cons.add(Arrays.asList(p, pb.point));
+                    cons.add(Sets.newHashSet(p, pb.point));
 
                     PerkButton sb = this.pointPerkButtonMap.get(p);
 
@@ -327,18 +332,36 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     int zoomedOutTimes = 0;
 
-    Double scaleFactorSaved;
+    public static boolean RETURN_ZOOM = false;
 
     @Override
     public void onClose() {
+
         super.onClose();
 
-        if (scaleFactorSaved != null) {
+        resetZoom();
+
+    }
+
+    @Override
+    public void removed() {
+        super.removed();
+
+        resetZoom();
+
+    }
+
+    private void resetZoom() {
+        if (SAVED_SCALE_FACTOR > 0) {
             mc.getWindow()
-                .setScaleFactor(scaleFactorSaved);
-            resize(mc, mc.getWindow()
-                .getScaledWidth(), mc.getWindow()
-                .getScaledHeight());
+                .setScaleFactor(SkillTreeScreen.SAVED_SCALE_FACTOR);
+            if (mc.currentScreen != null) {
+                mc.currentScreen.resize(mc, mc.getWindow()
+                    .getScaledWidth(), mc.getWindow()
+                    .getScaledHeight());
+            }
+            mc.onResolutionChanged();
+            SkillTreeScreen.RETURN_ZOOM = false;
         }
     }
 
@@ -354,29 +377,33 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
         this.scale = MathHelper.clamp(scale, 0.25F, 1);
 
-        this.zoomedOutTimes = MathHelper.clamp(zoomedOutTimes, 0, 10);
-
-        if (scaleFactorSaved == null) {
-            scaleFactorSaved = mc.getWindow()
-                .getScaleFactor();
-        }
+        this.zoomedOutTimes = MathHelper.clamp(zoomedOutTimes, 0, 25);
 
         SpellSchool savedschool = this.school;
 
         int SscrollX = this.scrollX;
         int SscrollY = this.scrollY;
 
-        mc.getWindow()
-            .setScaleFactor(scaleFactorSaved - zoomedOutTimes * 0.1F);
-        resize(mc, mc.getWindow()
-            .getScaledWidth(), mc.getWindow()
-            .getScaledHeight());
+        if (SAVED_SCALE_FACTOR < 0) {
+            SAVED_SCALE_FACTOR = mc.getWindow()
+                .getScaleFactor();
+        }
 
-        this.school = savedschool;
-        this.refreshButtons();
+        if (this.zoomedOutTimes % 2 == 0) {
+            mc.getWindow()
+                .setScaleFactor(MathHelper.clamp(SAVED_SCALE_FACTOR - zoomedOutTimes * 0.1F, 0.3F, 500));
+            resize(mc, mc.getWindow()
+                .getScaledWidth(), mc.getWindow()
+                .getScaledHeight());
 
-        this.scrollX = SscrollX;
-        this.scrollY = SscrollY;
+            this.school = savedschool;
+            if (this.schoolsInOrder.size() > 1) {
+                this.refreshButtons();
+            }
+
+            this.scrollX = SscrollX;
+            this.scrollY = SscrollY;
+        }
 
         return true;
     }
