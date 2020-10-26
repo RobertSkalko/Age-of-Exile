@@ -102,6 +102,7 @@ mob_imbue_crit
 physical_to_nature
 unlock_thunder_strikes
 mod_holy_flower_cure
+mana_shield
 mana_per_sec
 all_fire_damage
 mod_mana_magic

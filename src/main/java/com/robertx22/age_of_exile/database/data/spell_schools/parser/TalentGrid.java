@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 
 import java.util.*;
 
@@ -40,11 +41,13 @@ public class TalentGrid {
 
     public void loadIntoTree() {
 
-        List<GridPoint> perks = new ArrayList<>();
+        Watch watch = new Watch();
+
+        Set<GridPoint> perks = new HashSet<>();
 
         for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {
-                if (point.isTalent()) {
+                if (point.isTalent) {
 
                     try {
                         String perk = point.getPerk();
@@ -65,6 +68,9 @@ public class TalentGrid {
 
         Objects.requireNonNull(school.calcData.center, "Tree needs a center!");
 
+        watch.print(" loading tree");
+
+        Watch conwatch = new Watch();
         for (GridPoint one : perks) {
             for (GridPoint two : perks) {
                 if (hasPath(one, two)) {
@@ -72,6 +78,7 @@ public class TalentGrid {
                 }
             }
         }
+        conwatch.print(" connecting tree");
 
     }
 
@@ -92,7 +99,7 @@ public class TalentGrid {
                 continue; // we already visited it
             }
 
-            if (current.isTalent() && current != start) {
+            if (current.isTalent && current != start) {
                 continue; // skip exploring this path
             }
 
@@ -102,9 +109,9 @@ public class TalentGrid {
         return false;
     }
 
-    public List<GridPoint> getEligibleSurroundingPoints(GridPoint p) {
+    public Set<GridPoint> getEligibleSurroundingPoints(GridPoint p) {
 
-        List<GridPoint> list = new ArrayList<>();
+        Set<GridPoint> set = new HashSet<>();
         int x = p.x;
         int y = p.y;
 
@@ -117,19 +124,19 @@ public class TalentGrid {
                     GridPoint point = get(x + dx, y + dy);
 
                     if (Math.abs(dx) == 1 && Math.abs(dy) == 1) { // we are discovering a diagonal
-                        if (get(x + dx, y).isTalent() || get(x, y + dy).isTalent()) {
+                        if (get(x + dx, y).isTalent || get(x, y + dy).isTalent) {
                             continue; // skip this diagonal, it crosses a talent
                         }
                     }
 
-                    if (point.isTalent() || point.isConnector()) {
-                        list.add(point);
+                    if (point.isTalent || point.isConnector) {
+                        set.add(point);
                     }
                 }
             }
         }
 
-        return list;
+        return set;
     }
 
     public boolean isInRange(int x, int y) {

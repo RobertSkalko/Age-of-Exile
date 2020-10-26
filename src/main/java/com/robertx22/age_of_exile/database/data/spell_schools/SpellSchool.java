@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spell_schools;
 
+import com.google.common.collect.Sets;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -83,6 +84,11 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         public Perk getPerk(PointData point) {
             return SlashRegistry.Perks()
                 .get(perks.get(point));
+        }
+
+        public boolean isConnected(PointData one, PointData two) {
+            return connections.getOrDefault(one, Sets.newHashSet())
+                .contains(two);
         }
 
         public void addPerk(PointData point, String perk) {

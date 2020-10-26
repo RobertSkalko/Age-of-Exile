@@ -1,8 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
+import com.google.common.hash.HashCode;
 import com.robertx22.age_of_exile.saveclasses.PointData;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.Locale;
 
@@ -12,6 +11,9 @@ public class GridPoint {
     public int y;
     private String id;
 
+    boolean isTalent = false;
+    boolean isConnector = false;
+
     public String getId() {
         return id.toLowerCase();
     }
@@ -20,6 +22,9 @@ public class GridPoint {
         this.x = x;
         this.y = y;
         this.id = str;
+
+        this.isTalent = isTalent();
+        this.isConnector = isConnector();
     }
 
     public PointData getPoint() {
@@ -28,12 +33,18 @@ public class GridPoint {
 
     @Override
     public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, false);
+        return HashCode.fromInt(x)
+            .hashCode() + HashCode.fromInt(y)
+            .hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj, false);
+        if (obj instanceof GridPoint) {
+            GridPoint other = (GridPoint) obj;
+            return other.x == x && other.y == y;
+        }
+        return false;
     }
 
     public String getPerk() {
@@ -42,16 +53,18 @@ public class GridPoint {
 
     public static String CENTER_ID = "[CENTER]";
 
-    public boolean isTalent() {
-        return !id.isEmpty() && id.length() > 2 && !isCenter();
+    private boolean isTalent() {
+        return id.length() > 2 && !isCenter();
     }
 
     public boolean isCenter() {
         return id.equalsIgnoreCase(CENTER_ID);
     }
 
-    public boolean isConnector() {
-        return id.equals("O") || id.equals("o");
+    static String CONNECTOR_ID = "o";
+
+    private boolean isConnector() {
+        return id.equalsIgnoreCase(CONNECTOR_ID);
     }
 
 }

@@ -62,6 +62,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public void onAllDatapacksLoaded() {
+
         fromDatapacks = null;
         getFromDatapacks();
 
