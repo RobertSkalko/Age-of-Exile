@@ -97,6 +97,6 @@ Now you can choose any rarity you want, even those added with datapacks.
 + added total damage stat
 + added non crit damage stat
 + added converter datapack stat (used in "% of magic shield converted to health" stat)
-
++ improved talent tree load time by about 50 times
 
 B: known bug, poison can kill you now.

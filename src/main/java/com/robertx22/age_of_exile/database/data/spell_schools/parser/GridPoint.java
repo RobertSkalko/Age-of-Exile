@@ -27,6 +27,10 @@ public class GridPoint {
         this.isConnector = isConnector();
     }
 
+    public boolean isInDistanceOf(GridPoint other) {
+        return Math.abs(x - other.x) < 10 && Math.abs(y - other.y) < 10;
+    }
+
     public PointData getPoint() {
         return new PointData(x, y);
     }

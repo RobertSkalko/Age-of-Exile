@@ -41,8 +41,6 @@ public class TalentGrid {
 
     public void loadIntoTree() {
 
-        Watch watch = new Watch();
-
         Set<GridPoint> perks = new HashSet<>();
 
         for (List<GridPoint> list : grid) {
@@ -68,13 +66,13 @@ public class TalentGrid {
 
         Objects.requireNonNull(school.calcData.center, "Tree needs a center!");
 
-        watch.print(" loading tree");
-
         Watch conwatch = new Watch();
         for (GridPoint one : perks) {
             for (GridPoint two : perks) {
-                if (hasPath(one, two)) {
-                    this.school.calcData.addConnection(one.getPoint(), two.getPoint());
+                if (one.isInDistanceOf(two)) {
+                    if (hasPath(one, two)) {
+                        this.school.calcData.addConnection(one.getPoint(), two.getPoint());
+                    }
                 }
             }
         }
