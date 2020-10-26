@@ -10,7 +10,8 @@ public class CriticalDamageEffect extends BaseAnyEffect {
 
     @Override
     public int GetPriority() {
-        return Priority.afterThis(new CriticalHitEffect().GetPriority());
+        return Priority.afterThis(CriticalHitEffect.getInstance()
+            .GetPriority());
     }
 
     @Override

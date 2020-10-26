@@ -118,6 +118,10 @@ public class ResourcesData {
         return mana;
     }
 
+    public float getBlood() {
+        return blood;
+    }
+
     public float getMagicShield() {
         return magicShield;
     }

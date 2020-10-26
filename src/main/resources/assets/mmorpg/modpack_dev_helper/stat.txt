@@ -18,6 +18,7 @@ convert_water_to_phys
 nature_weapon_damage
 extra_holy_flower_resto
 unlock_poisoned_weapons
+heal_to_ms
 heart_of_chill
 mana_on_hit
 mod_fast_bush
@@ -27,6 +28,7 @@ cdr
 all_elemental_damage
 chance_of_static
 unlock_thunder_storm
+all_physical_damage
 physical_to_thunder
 unlock_bravery
 critical_hit
@@ -62,6 +64,7 @@ unlock_frostball
 thunder_penetration
 strength
 willpower
+non_crit_damage
 health_per_sec
 convert_fire_to_phys
 mana_steal
@@ -105,6 +108,7 @@ mod_mana_magic
 sword_damage
 all_attributes
 chance_of_burn
+convert_hp_to_phys_dmg
 hp_resto_to_blood
 unlock_nature_balm
 unlock_fireball
@@ -180,6 +184,8 @@ physical_weapon_damage
 health_regen
 spell_fire_damage
 unlock_magic_bomb
+convert_ms_to_hp
+total_damage
 unlock_wizardry
 renamed_or_deleted_stat
 elemental_resist

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -68,6 +69,12 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
                 .magicShieldData()
                 .getAverageValue());
 
+            int curMana = (int) data.getResources()
+                .getMana();
+            int maxMana = (int) data.getUnit()
+                .manaData()
+                .getAverageValue();
+
             SpellSchool school = Load.perks(mc.player)
                 .getMainSpellSchool();
             if (school != null) {
@@ -84,9 +91,19 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
             drawTexture(matrix, x, y, 0, 0, 158, 49);
 
             float hpmulti = (float) curhp / (float) maxhp;
-            float manamulti = data.getCurrentMana() / data.getUnit()
+            float manamulti = (float) curMana / (float) maxMana;
+
+            if (data.getUnit()
+                .getCalculatedStat(Blood.getInstance())
+                .getAverageValue() > data.getUnit()
                 .manaData()
-                .getAverageValue();
+                .getAverageValue()) {
+                manamulti = data.getResources()
+                    .getBlood() / data.getUnit()
+                    .getCalculatedStat(Blood.getInstance())
+                    .getAverageValue();
+            }
+
             float xpmulti = (float) data.getExp() / (float) data.getExpRequiredForLevelUp();
 
             hpmulti = MathHelper.clamp(hpmulti, 0, 1);
@@ -111,9 +128,7 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
             float hpy = 9 + 11 / 2F;
             mc.textRenderer.drawWithShadow(matrix, text, hpx, hpy, Formatting.WHITE.getColorValue());
 
-            text = (int) data.getCurrentMana() + "/" + (int) data.getUnit()
-                .manaData()
-                .getAverageValue();
+            text = curMana + "/" + (int) maxMana;
             width = mc.textRenderer.getWidth(text);
             hpx = x - width / 2F + 42 + BAR_WIDTH / 2F;
             hpy = 25 + 11 / 2F;

@@ -13,10 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
@@ -128,7 +125,12 @@ public class Stats implements ISlashRegistryInit {
 
                     add(new UnknownStat());
 
+                    add(TotalDamage.getInstance());
+                    add(NonCritDamage.getInstance());
+
                     // Resources
+                    add(DamageAbsorbedByMana.getInstance());
+                    add(HealToMagicShield.getInstance());
                     add(HealthRestorationToBlood.getInstance());
                     add(Blood.getInstance());
                     add(BloodUser.getInstance());

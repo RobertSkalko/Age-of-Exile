@@ -16,6 +16,7 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
+        list.add(newGeneratedInstance(Elements.Physical));
         return list;
 
     }

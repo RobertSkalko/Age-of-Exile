@@ -22,7 +22,7 @@ public class CriticalHit extends Stat implements IStatEffects, ILocalStat {
 
     @Override
     public IStatEffect getEffect() {
-        return new CriticalHitEffect();
+        return CriticalHitEffect.getInstance();
     }
 
     private CriticalHit() {

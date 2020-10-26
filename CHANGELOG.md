@@ -94,5 +94,9 @@ In other words, you need to salvage lvl 30 gear to be able to craft level 30 gea
 + added custom crate item. This is replacement for the old rarity loot crates. 
 Now you can choose any rarity you want, even those added with datapacks.
 + added experimental zoom functionality to talent screen
++ added total damage stat
++ added non crit damage stat
++ added converter datapack stat (used in "% of magic shield converted to health" stat)
+
 
 B: known bug, poison can kill you now.

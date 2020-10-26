@@ -9,6 +9,13 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
 public class CriticalHitEffect extends BaseAnyEffect {
 
+    private CriticalHitEffect() {
+    }
+
+    public static CriticalHitEffect getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public int GetPriority() {
         return Priority.First.priority;
@@ -31,4 +38,7 @@ public class CriticalHitEffect extends BaseAnyEffect {
         return effect instanceof ICrittable && RandomUtils.roll(data.getAverageValue());
     }
 
+    private static class SingletonHolder {
+        private static final CriticalHitEffect INSTANCE = new CriticalHitEffect();
+    }
 }
