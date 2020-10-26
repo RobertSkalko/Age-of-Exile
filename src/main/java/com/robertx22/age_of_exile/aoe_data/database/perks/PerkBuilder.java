@@ -5,8 +5,11 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.GiveSpellStat;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PerkBuilder {
@@ -38,7 +41,7 @@ public class PerkBuilder {
 
         perk.spell = spell.GUID();
         perk.stats.add(new OptScaleExactStat(1, new GiveSpellStat(spell), ModType.FLAT));
-        perk.type = Perk.PerkType.SPELL;
+        perk.type = Perk.PerkType.MAJOR;
         perk.identifier = spell.GUID();
         perk.icon = spell.getIconLoc()
             .toString();
@@ -59,6 +62,22 @@ public class PerkBuilder {
         perk.identifier = id;
         perk.icon = stat.getStat()
             .getIconLocation()
+            .toString();
+        perk.addToSerializables();
+        return perk;
+    }
+
+    public static Perk gameChanger(String id, OptScaleExactStat... stats) {
+        Perk perk = new Perk();
+
+        perk.stats = new ArrayList<>();
+
+        for (OptScaleExactStat stat : stats) {
+            perk.stats.add(stat);
+        }
+        perk.type = Perk.PerkType.MAJOR;
+        perk.identifier = id;
+        perk.icon = new Identifier(Ref.MODID, "textures/gui/stat_icons/game_changers/" + id + ".png")
             .toString();
         perk.addToSerializables();
         return perk;

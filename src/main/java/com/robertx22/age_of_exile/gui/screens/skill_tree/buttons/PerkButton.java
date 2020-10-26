@@ -62,9 +62,8 @@ public class PerkButton extends TexturedButtonWidget {
 
     @Override
     public void renderToolTip(MatrixStack matrices, int mouseX, int mouseY) {
-        List<Text> tooltip = perk.GetTooltipString(new TooltipInfo(MinecraftClient.getInstance().player));
         if (this.isInside(mouseX, mouseY)) {
-
+            List<Text> tooltip = perk.GetTooltipString(new TooltipInfo(MinecraftClient.getInstance().player));
             GuiUtils.renderTooltip(matrices, tooltip, mouseX, mouseY);
         }
     }
@@ -118,7 +117,7 @@ public class PerkButton extends TexturedButtonWidget {
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
             drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
-        } else if (this.perk.getType() == Perk.PerkType.SPELL) {
+        } else if (this.perk.getType() == Perk.PerkType.MAJOR) {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());

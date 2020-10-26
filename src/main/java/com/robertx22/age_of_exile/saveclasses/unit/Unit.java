@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -181,11 +182,18 @@ public class Unit {
         return StatData.empty();
     }
 
+    public StatData bloodData() {
+        try {
+            return getCalculatedStat(Blood.GUID);
+        } catch (Exception e) {
+        }
+        return StatData.empty();
+    }
+
     public StatData magicShieldData() {
         try {
             return getCalculatedStat(MagicShield.GUID);
         } catch (Exception e) {
-
         }
         return StatData.empty();
     }

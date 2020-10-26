@@ -17,6 +17,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffect
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
@@ -126,6 +129,9 @@ public class Stats implements ISlashRegistryInit {
                     add(new UnknownStat());
 
                     // Resources
+                    add(HealthRestorationToBlood.getInstance());
+                    add(Blood.getInstance());
+                    add(BloodUser.getInstance());
                     add(ManaSteal.getInstance());
                     add(MagicOnHit.getInstance());
                     add(Health.getInstance());

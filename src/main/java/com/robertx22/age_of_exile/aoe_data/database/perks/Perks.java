@@ -5,10 +5,8 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -21,6 +19,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -34,6 +33,13 @@ public class Perks implements ISlashRegistryInit {
         start.identifier = "start";
         start.type = Perk.PerkType.START;
         start.addToSerializables();
+
+        Perk start2 = new Perk();
+        start2.is_entry = true;
+        start2.identifier = "talent_start";
+        start2.type = Perk.PerkType.START;
+        start2.one_of_a_kind = "start";
+        start2.addToSerializables();
 
         PerkBuilder.stat("int", new OptScaleExactStat(1, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.stat("dex", new OptScaleExactStat(1, Dexterity.INSTANCE, ModType.FLAT));
@@ -74,25 +80,58 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, Mana.getInstance(), ModType.LOCAL_INCREASE));
 
+        PerkBuilder.stat(new OptScaleExactStat(1, AttackStyleDamage.MAGIC, ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(1, AttackStyleDamage.MELEE, ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(1, AttackStyleDamage.RANGED, ModType.FLAT));
+
         PerkBuilder.bigStat("big_dodge", new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.bigStat("big_armor", new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.bigStat("big_magic_shield", new OptScaleExactStat(10, MagicShield.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.bigStat("big_health", new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.bigStat("big_mana", new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE));
 
+        PerkBuilder.bigStat("big_magic_shield_regen", new OptScaleExactStat(10, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE));
+        PerkBuilder.bigStat("big_health_regen", new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));
+        PerkBuilder.bigStat("big_mana_regen", new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
+
         new ElementalSpellDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
             });
 
+        new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()
+            .forEach(x -> {
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
+                PerkBuilder.bigStat(x.GUID() + "_big", new OptScaleExactStat(4, x, ModType.FLAT));
+            });
+
+        new SpecificElementalWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()
+            .forEach(x -> {
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
+                PerkBuilder.bigStat(x.GUID() + "_big", new OptScaleExactStat(5, x, ModType.FLAT));
+            });
+
+        new ElementalDamageBonus(Elements.Nature).generateAllPossibleStatVariations()
+            .forEach(x -> {
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
+                PerkBuilder.stat(x.GUID() + "_big", new OptScaleExactStat(5, x, ModType.FLAT));
+            });
+
         new ElementalResist(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(4, x, ModType.FLAT));
+                PerkBuilder.bigStat(x.GUID() + "_big", new OptScaleExactStat(8, x, ModType.FLAT));
+            });
+
+        new ElementalPenetration(Elements.Nature).generateAllPossibleStatVariations()
+            .forEach(x -> {
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(5, x, ModType.FLAT));
             });
 
         new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.LOCAL_INCREASE));
+                PerkBuilder.bigStat(x.GUID() + "_big", new OptScaleExactStat(5, x, ModType.LOCAL_INCREASE));
             });
 
         SlashRegistry.Spells()

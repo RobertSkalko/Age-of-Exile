@@ -49,6 +49,7 @@ dodge
 convert_thunder_to_phys
 mod_throw_flames_burn
 all_nature_damage
+blood
 mod_imbue_ele
 chance_of_poison
 mana
@@ -104,6 +105,7 @@ mod_mana_magic
 sword_damage
 all_attributes
 chance_of_burn
+hp_resto_to_blood
 unlock_nature_balm
 unlock_fireball
 lifesteal
@@ -149,7 +151,9 @@ fire_resist
 magic_shield_on_kill
 health
 unlock_passive_ocean
+hp_to_blood
 unlock_passive_arcane
+blood_user
 poison_immunity
 fast_frostball
 mod_throw_flames_lifesteal
