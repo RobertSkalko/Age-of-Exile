@@ -192,10 +192,14 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
         if (one_of_a_kind != null) {
             if (!one_of_a_kind.isEmpty()) {
+
                 if (Load.perks(player)
                     .getAllAllocatedPerks()
                     .stream()
-                    .anyMatch(x -> !x.identifier.equals(this.identifier) && this.one_of_a_kind.equals(x.one_of_a_kind))) {
+                    .filter(x -> {
+                        return this.one_of_a_kind.equals(x.one_of_a_kind);
+                    })
+                    .count() > 0) {
                     return true;
                 }
             }

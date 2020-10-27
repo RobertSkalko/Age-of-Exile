@@ -77,7 +77,7 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
                 perks.data.allocate(ctx.getPlayer(), sc, new PointData(x, y));
             }
         } else if (action == ACTION.REMOVE) {
-            if (perks.data.canRemove(sc, point, ctx.getPlayer())) {
+            if (perks.data.canRemove(sc, point)) {
                 perks.data.remove(sc, new PointData(x, y));
                 perks.data.reset_points--;
             }

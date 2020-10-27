@@ -3,6 +3,7 @@
 ### Talents rework:
 In short, I brought back the big talent tree instead of separating it per spell schools.
 Also, spell and talent points are now separate.
+Added back nearly all the "game changer" perks like blood mage etc. 
 
 ### Core stat rework!
 Stats like intelligence, strength and dexterity had a problem. They were used as requirements for gear. 
@@ -109,5 +110,7 @@ If it's high enough level, it could be 5% instead.
 This not being the case already is what probably made it possible to battle high level mobs before.
 + added elemental dodge stat
 + fix dodge not having sound effect
++ added spell points per lvl config
++ spell and talent points configs are now based on total per max lvl instead of per lvl.
 
 B: known bug, poison can kill you now.

@@ -53,6 +53,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public ResetStatPointsItem RESET_STATS_POTION = item(new ResetStatPointsItem());
     public ResetAllPerksItem RESET_ALL_PERKS = item(new ResetAllPerksItem());
+    public ResetAllSpellsItem RESET_ALL_SPELLS = item(new ResetAllSpellsItem());
     public AddResetPerkPointsItem ADD_RESET_PERK_POINTS = item(new AddResetPerkPointsItem());
 
     public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);

@@ -500,7 +500,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         xp = savedx;
         yp = savedy;
 
-        String text = "Points: " + entityPerks.data.getFreePoints(Load.Unit(mc.player));
+        String text = "Points: " + entityPerks.data.getFreePoints(Load.Unit(mc.player), this.schoolType);
 
         int tx = xp - mc.textRenderer.getWidth(text) - 10;
         int yx = yp + BG_HEIGHT / 2 - mc.textRenderer.fontHeight / 2;

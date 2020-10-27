@@ -17,9 +17,13 @@ public class ServerContainer {
     public double EXP_LOSS_ON_DEATH = 0.05F;
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.02F;
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.01F;
+
     public double STAT_POINTS_PER_LVL = 1;
-    public double TALENT_POINTS_PER_LVL = 1;
+    public double TALENT_POINTS_AT_MAX_LEVEL = 100;
     public double STARTING_TALENT_POINTS = 1;
+    public double SPELL_POINTS_AT_MAX_LEVEL = 20;
+    public double STARTING_SPELL_POINTS = 2;
+
     public double VANILLA_MOB_DMG_AS_EXILE_DMG = 0.5F;
     public double PVP_DMG_MULTI = 1F;
 

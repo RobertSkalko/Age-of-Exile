@@ -14,16 +14,16 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
-public class ResetAllPerksItem extends AutoItem implements IShapedRecipe {
+public class ResetAllSpellsItem extends AutoItem implements IShapedRecipe {
 
-    public ResetAllPerksItem() {
+    public ResetAllSpellsItem() {
         super(new Settings().group(CreativeTabs.MyModTab)
             .maxCount(10));
     }
 
     @Override
     public String GUID() {
-        return "potions/reset_all_perks";
+        return "potions/reset_all_spells";
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ResetAllPerksItem extends AutoItem implements IShapedRecipe {
         if (player instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) player;
             Load.perks(p)
-                .clearAllTalents();
+                .clearAllSpells();
             p.giveItemStack(new ItemStack(Items.GLASS_BOTTLE));
         }
 
@@ -64,7 +64,7 @@ public class ResetAllPerksItem extends AutoItem implements IShapedRecipe {
             .input('t', ModRegistry.MISC_ITEMS.T0_DUST)
             .input('v', Items.GOLD_INGOT)
             .input('b', Items.GLASS_BOTTLE)
-            .input('c', Items.IRON_INGOT)
+            .input('c', Items.IRON_NUGGET)
             .pattern("cvc")
             .pattern("vtv")
             .pattern("cbc")
@@ -73,6 +73,6 @@ public class ResetAllPerksItem extends AutoItem implements IShapedRecipe {
 
     @Override
     public String locNameForLangFile() {
-        return "Reset All Talents Potion";
+        return "Reset All Spells Potion";
     }
 }

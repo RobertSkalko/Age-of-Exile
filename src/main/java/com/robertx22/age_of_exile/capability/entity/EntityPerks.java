@@ -35,23 +35,32 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         return PlayerCaps.ENTITY_PERKS;
     }
 
-    public void clearAllPerks() {
-        this.data.perks.clear();
+    public void clearAllTalents() {
+        this.data.getPerks(SpellSchool.SchoolType.TALENTS)
+            .clear();
+
+    }
+
+    public void clearAllSpells() {
+        this.data.getPerks(SpellSchool.SchoolType.SPELLS)
+            .clear();
     }
 
     public List<Perk> getAllAllocatedPerks() {
         List<Perk> perks = new ArrayList<>();
-        for (Map.Entry<String, SchoolData> x : data.perks.entrySet()) {
-            SpellSchool school = SlashRegistry.SpellSchools()
-                .get(x.getKey());
-            if (school != null) {
-                for (PointData p : x.getValue()
-                    .getAllocatedPoints(school)) {
-                    perks.add(school.calcData.getPerk(p));
+        for (SpellSchool.SchoolType type : SpellSchool.SchoolType.values()) {
+            for (Map.Entry<String, SchoolData> x : data.getPerks(type)
+                .entrySet()) {
+                SpellSchool school = SlashRegistry.SpellSchools()
+                    .get(x.getKey());
+                if (school != null) {
+                    for (PointData p : x.getValue()
+                        .getAllocatedPoints(school)) {
+                        perks.add(school.calcData.getPerk(p));
+                    }
                 }
             }
         }
-
         return perks;
     }
 
