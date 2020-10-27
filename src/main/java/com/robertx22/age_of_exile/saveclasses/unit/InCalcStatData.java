@@ -142,16 +142,15 @@ public class InCalcStatData {
     public void add(ExactStatData modData, EntityCap.UnitData data) {
         ModType type = modData.getType();
 
-        Float v1 = modData.getFirstValue();
-        Float v2 = modData.getSecondValue();
+        float v1 = modData.getFirstValue();
+        float v2 = modData.getSecondValue();
 
-        Float v = (v1 + v2) / 2;
+        float v = (v1 + v2) / 2F;
 
         if (type == ModType.FLAT) {
             Flat += v1;
             Flat2 += v2;
-        } else if (type == ModType.LOCAL_INCREASE && !this.GetStat()
-            .isLocal()) {
+        } else if (type == ModType.LOCAL_INCREASE) {
             Percent += v;
         } else if (type == ModType.GLOBAL_INCREASE) {
             Multi += v;
