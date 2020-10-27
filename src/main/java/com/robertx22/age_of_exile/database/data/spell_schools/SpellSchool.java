@@ -74,7 +74,8 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         for (Map.Entry<PointData, String> x : this.calcData.perks.entrySet()) {
             if (!SlashRegistry.Perks()
                 .isRegistered(x.getValue())) {
-                System.out.print("\n Perk of id: " + x.getValue() + " doesn't exist, used in spell school: " + this.identifier + " at point: " + x.getKey()
+                System.out.print("\n Perk of id: " + x.getValue()
+                    .replaceAll("\r", "[NEWLINE]") + " doesn't exist, used in spell school: " + this.identifier + " at point: " + x.getKey()
                     .toString());
                 //isvalid = false; dont unregister whole spell trees if 1 perk doesnt work. Just notify
             }

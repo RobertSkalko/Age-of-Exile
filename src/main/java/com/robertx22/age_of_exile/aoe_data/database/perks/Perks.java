@@ -97,6 +97,7 @@ public class Perks implements ISlashRegistryInit {
         new ElementalSpellDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
+                PerkBuilder.bigStat(x.GUID() + "_big", new OptScaleExactStat(5, x, ModType.FLAT));
             });
 
         new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()

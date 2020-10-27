@@ -48,6 +48,7 @@ thorn_bush
 all_nature_damage
 mod_imbue_ele
 big_crit_dmg
+spell_nature_damage_big
 chance_of_poison
 mana
 all_nature_damage_big
@@ -114,12 +115,15 @@ all_thunder_damage
 big_mana_regen
 wizardry
 all_water_damage_big
+spell_thunder_damage_big
+spell_water_damage_big
 imbue
 spear_of_judgement
 mod_holy_flower_rest
 fire_weapon_damage_big
 spell_damage
 ice_flower_restore
+spell_fire_damage_big
 big_wil
 water_penetration
 mod_tp_ele_res
@@ -190,6 +194,7 @@ water_weapon_damage_big
 wis
 thunder_spear
 ele_sword_damage_big
+spell_elemental_damage_big
 int
 fire_penetration
 big_magic_shield_regen
