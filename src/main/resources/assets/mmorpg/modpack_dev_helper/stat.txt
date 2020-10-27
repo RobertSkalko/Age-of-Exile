@@ -4,6 +4,7 @@ throw_flames_proj_speed
 mod_magma_flower_burn
 mod_tp_dmg
 unlock_volcano
+dodge_to_ele_doddge
 spell_thunder_damage
 unlock_passive_nature
 trident_damage
@@ -36,6 +37,7 @@ thunder_resist
 physical_to_fire
 faster_projectiles
 extra_mob_drops
+ele_dodge
 unlock_heart_of_ice
 unlock_passive_divine
 poison_bonus_dmg

@@ -2,18 +2,18 @@ package com.robertx22.age_of_exile.database.data.stats.effects.defense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.ElementalDodge;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
-public class DodgeEffect extends BaseDamageEffect {
+public class ElementalDodgeEffect extends BaseDamageEffect {
 
-    private DodgeEffect() {
+    private ElementalDodgeEffect() {
     }
 
-    public static DodgeEffect getInstance() {
-        return SingletonHolder.INSTANCE;
+    public static ElementalDodgeEffect getInstance() {
+        return ElementalDodgeEffect.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class DodgeEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        DodgeRating dodge = (DodgeRating) stat;
+        ElementalDodge dodge = (ElementalDodge) stat;
 
         float chance = dodge.getUsableValue((int) data.getAverageValue(), effect.sourceData.getLevel()) * 100;
 
@@ -44,10 +44,10 @@ public class DodgeEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.element.isPhysical();
+        return !effect.element.isPhysical();
     }
 
     private static class SingletonHolder {
-        private static final DodgeEffect INSTANCE = new DodgeEffect();
+        private static final ElementalDodgeEffect INSTANCE = new ElementalDodgeEffect();
     }
 }

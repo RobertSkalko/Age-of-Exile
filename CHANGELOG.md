@@ -1,5 +1,9 @@
 ## v.1.7.0
 
+### Talents rework:
+In short, I brought back the big talent tree instead of separating it per spell schools.
+Also, spell and talent points are now separate.
+
 ### Core stat rework!
 Stats like intelligence, strength and dexterity had a problem. They were used as requirements for gear. 
 That means you picked them based on what gear you want to wear, not based on what which ones you wanted.
@@ -103,5 +107,7 @@ Now you can choose any rarity you want, even those added with datapacks.
 In short, 90% dodge chance against a higher level enemy is less than 90% dodge chance.
 If it's high enough level, it could be 5% instead.
 This not being the case already is what probably made it possible to battle high level mobs before.
++ added elemental dodge stat
++ fix dodge not having sound effect
 
 B: known bug, poison can kill you now.

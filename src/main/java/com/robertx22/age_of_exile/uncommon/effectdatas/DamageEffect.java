@@ -267,6 +267,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (ifPlayersShouldNotDamageEachOther()) {
             return;
         }
+        if (isDodged) {
+            cancelDamage();
+            SoundUtils.playSound(target, SoundEvents.ITEM_SHIELD_BLOCK, 1, 1.5F);
+            return;
+        }
 
         if (!this.isDmgAllowed()) {
             cancelDamage();
@@ -290,95 +295,88 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         MyDamageSource dmgsource = new MyDamageSource(ds, source, element, dmg);
 
-        if (isDodged) {
-            cancelDamage();
-            SoundUtils.playSound(target, SoundEvents.ITEM_SHIELD_BLOCK, 1, 1.5F);
+        this.sourceData.onAttackEntity(source, target);
 
-        } else {
+        this.targetData.onDamagedBy(source, dmg, target);
 
-            this.sourceData.onAttackEntity(source, target);
+        if (event == null || !(event.getSource() instanceof MyDamageSource)) { // todo wtf
+            //int hurtResistantTime = target.timeUntilRegen;
+            //target.timeUntilRegen = 0;
 
-            this.targetData.onDamagedBy(source, dmg, target);
+            EntityAttributeInstance attri = target.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
 
-            if (event == null || !(event.getSource() instanceof MyDamageSource)) { // todo wtf
-                //int hurtResistantTime = target.timeUntilRegen;
-                //target.timeUntilRegen = 0;
-
-                EntityAttributeInstance attri = target.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
-
-                if (removeKnockback || this.effectType == EffectTypes.DOT_DMG) {
-                    if (!attri.hasModifier(NO_KNOCKBACK)) {
-                        attri.addPersistentModifier(NO_KNOCKBACK);
-                    }
+            if (removeKnockback || this.effectType == EffectTypes.DOT_DMG) {
+                if (!attri.hasModifier(NO_KNOCKBACK)) {
+                    attri.addPersistentModifier(NO_KNOCKBACK);
                 }
+            }
 
-                if (false) {
-                    // use apply damage so we don't get stack overflow
-                    // tell other mods to listen to entity.damage and not entity.applydamage
-                    LivingEntityDuck duck = (LivingEntityDuck) target;
-                    duck.myApplyDamage(dmgsource, dmg);
+            if (false) {
+                // use apply damage so we don't get stack overflow
+                // tell other mods to listen to entity.damage and not entity.applydamage
+                LivingEntityDuck duck = (LivingEntityDuck) target;
+                duck.myApplyDamage(dmgsource, dmg);
+            } else {
+
+                if (target instanceof EnderDragonEntity) {
+                    try {
+                        // Dumb vanilla hardcodings require dumb workarounds
+                        EnderDragonEntity dragon = (EnderDragonEntity) target;
+                        EnderDragonPart part = Arrays.stream(dragon.getBodyParts())
+                            .filter(x -> x.name.equals("body"))
+                            .findFirst()
+                            .get();
+                        dragon.damagePart(part, dmgsource, dmg);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 } else {
+                    target.damage(dmgsource, dmg);
+                }
 
-                    if (target instanceof EnderDragonEntity) {
-                        try {
-                            // Dumb vanilla hardcodings require dumb workarounds
-                            EnderDragonEntity dragon = (EnderDragonEntity) target;
-                            EnderDragonPart part = Arrays.stream(dragon.getBodyParts())
-                                .filter(x -> x.name.equals("body"))
-                                .findFirst()
-                                .get();
-                            dragon.damagePart(part, dmgsource, dmg);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                // allow multiple dmg same tick
+            }
+
+            if (removeKnockback) {
+                if (attri.hasModifier(NO_KNOCKBACK)) {
+                    attri.removeModifier(NO_KNOCKBACK);
+                }
+            }
+
+        }
+
+        Heal(healthHealed);
+        RestoreMana(manaRestored);
+        restoreMagicShield(magicShieldRestored);
+
+        doManaBurn();
+
+        if (!target.isAlive()) {
+            Heal(healthHealedOnKill);
+            RestoreMana(manaRestoredOnKill);
+            restoreMagicShield(magicShieldRestoredOnKill);
+        }
+
+        if (dmg > 0) {
+
+            onEventPotions();
+
+            if (source instanceof ServerPlayerEntity) {
+
+                info.dmgmap.entrySet()
+                    .forEach(x -> {
+                        if (x.getValue()
+                            .intValue() > 0) {
+                            ServerPlayerEntity player = (ServerPlayerEntity) source;
+
+                            String str = NumberUtils.formatDamageNumber(this, x.getValue()
+                                .intValue());
+                            DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str, x.getValue());
+                            Packets.sendToClient(player, packet);
                         }
+                    });
 
-                    } else {
-                        target.damage(dmgsource, dmg);
-                    }
-
-                    // allow multiple dmg same tick
-                }
-
-                if (removeKnockback) {
-                    if (attri.hasModifier(NO_KNOCKBACK)) {
-                        attri.removeModifier(NO_KNOCKBACK);
-                    }
-                }
-
-            }
-
-            Heal(healthHealed);
-            RestoreMana(manaRestored);
-            restoreMagicShield(magicShieldRestored);
-
-            doManaBurn();
-
-            if (!target.isAlive()) {
-                Heal(healthHealedOnKill);
-                RestoreMana(manaRestoredOnKill);
-                restoreMagicShield(magicShieldRestoredOnKill);
-            }
-
-            if (dmg > 0) {
-
-                onEventPotions();
-
-                if (source instanceof ServerPlayerEntity) {
-
-                    info.dmgmap.entrySet()
-                        .forEach(x -> {
-                            if (x.getValue()
-                                .intValue() > 0) {
-                                ServerPlayerEntity player = (ServerPlayerEntity) source;
-
-                                String str = NumberUtils.formatDamageNumber(this, x.getValue()
-                                    .intValue());
-                                DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str, x.getValue());
-                                Packets.sendToClient(player, packet);
-                            }
-                        });
-
-                }
             }
         }
 

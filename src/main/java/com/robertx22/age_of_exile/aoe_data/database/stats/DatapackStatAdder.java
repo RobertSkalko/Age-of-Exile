@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.database.stats;
 
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.ConvertFromOneToOtherStat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.OneAppliesToOtherStat;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.ElementalDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
@@ -31,6 +33,15 @@ public class DatapackStatAdder implements ISlashRegistryInit {
         "of Health to Blood",
         "Adds % of health to total blood pool.");
 
+    public static OneAppliesToOtherStat DODGE_TO_ELE_DODGE = new OneAppliesToOtherStat(
+        "dodge_to_ele_doddge",
+        DodgeRating.getInstance()
+            .GUID(),
+        ElementalDodge.getInstance()
+            .GUID(),
+        "of Dodge to Elemental Dodge",
+        "Adds % of dodge rating to elemental dodge. Elemental dodge is able to dodge elemental attacks.");
+
     public static ConvertFromOneToOtherStat CONVERT_HEALTH_TO_PHYS_DMG = new ConvertFromOneToOtherStat(
         "convert_hp_to_phys_dmg",
         Health.getInstance()
@@ -51,10 +62,12 @@ public class DatapackStatAdder implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
         HEAL_TO_SPELL_DMG.addToSerializables();
         HEALTH_TO_BLOOD.addToSerializables();
         CONVERT_HEALTH_TO_PHYS_DMG.addToSerializables();
         CONVERT_MAGIC_SHIELD_TO_HEALTH.addToSerializables();
+        DODGE_TO_ELE_DODGE.addToSerializables();
 
     }
 }

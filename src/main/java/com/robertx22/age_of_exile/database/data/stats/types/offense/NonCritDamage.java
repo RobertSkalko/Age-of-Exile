@@ -47,7 +47,7 @@ public class NonCritDamage extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Total Damage";
+        return "Non Critical Damage";
     }
 
     private static class SingletonHolder {

@@ -24,10 +24,10 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     @Override
     public IStatEffect getEffect() {
-        return new DodgeEffect();
+        return DodgeEffect.getInstance();
     }
 
-    private DodgeRating() {
+    protected DodgeRating() {
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;

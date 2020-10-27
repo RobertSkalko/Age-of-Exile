@@ -41,6 +41,7 @@ mod_holy_flower_dmg
 mod_thorn_armor_thorns
 dodge
 blizzard
+familiar_instincts
 magic_bomb
 mod_throw_flames_burn
 thorn_bush
