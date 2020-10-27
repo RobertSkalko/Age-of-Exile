@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
@@ -39,6 +40,8 @@ public class CommonInit implements ModInitializer {
     @Override
     public void onInitialize() {
 
+        Watch watch = new Watch();
+
         MapField.init();
         EffectCondition.init();
 
@@ -48,7 +51,6 @@ public class CommonInit implements ModInitializer {
         SlashRegistry.initRegistries();
         SlashRegistry.registerAllItems(); // after config registerAll
         GeneratedData.addAllObjectsToGenerate();
-        SlashRegistry.checkGuidValidity();
 
         BaseAreas.INSTANCE = new BaseAreas();
         AreaModifiers.INSTANCE = new AreaModifiers();
@@ -94,6 +96,8 @@ h
         // testLevelCurve();
 
         uncapHealth();
+
+        watch.print("Age of Exile common init ");
 
     }
 

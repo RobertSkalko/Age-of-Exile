@@ -1,3 +1,6 @@
+### v.1.7.3
++ improved auto compat setup time by about 2 or 3 times
+
 ### v1.7.2
 + fix total spell/talent points calculation
 

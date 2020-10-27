@@ -89,7 +89,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         SpellSchool school = null;
 
         for (SpellSchool x : SlashRegistry.SpellSchools()
-            .getList()) {
+            .getFiltered(x -> x.getSchool_type() == SpellSchool.SchoolType.SPELLS)) {
             int alo = data.getSchool(x)
                 .getAllocatedPointsInSchool();
             if (alo > highestnum) {

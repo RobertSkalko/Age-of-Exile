@@ -31,8 +31,12 @@ public class StatusEffectData implements ITooltipList {
     }
 
     public void apply(LivingEntity en) {
-        StatusEffectInstance in = new StatusEffectInstance(getEffect(), duration_in_seconds * 20, amplifier);
-        en.addStatusEffect(in);
+        try {
+            StatusEffectInstance in = new StatusEffectInstance(getEffect(), duration_in_seconds * 20, amplifier);
+            en.addStatusEffect(in);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public StatusEffect getEffect() {
@@ -41,17 +45,22 @@ public class StatusEffectData implements ITooltipList {
 
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+        List<Text> list = null;
+        try {
+            list = new ArrayList<>();
 
-        StatusEffect eff = getEffect();
+            StatusEffect eff = getEffect();
 
-        if (eff instanceof FoodEffectPotion) {
-            FoodEffectPotion food = (FoodEffectPotion) eff;
-            list.addAll(food.GetTooltipString(info, duration_in_seconds * 20, amplifier));
+            if (eff instanceof FoodEffectPotion) {
+                FoodEffectPotion food = (FoodEffectPotion) eff;
+                list.addAll(food.GetTooltipString(info, duration_in_seconds * 20, amplifier));
 
-        } else {
-            list.add(new LiteralText("Effect: ").append(getEffect().getName())
-                .append(new LiteralText(", " + duration_in_seconds + "s, Strength: " + amplifier)));
+            } else {
+                list.add(new LiteralText("Effect: ").append(getEffect().getName())
+                    .append(new LiteralText(", " + duration_in_seconds + "s, Strength: " + amplifier)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return list;
     }

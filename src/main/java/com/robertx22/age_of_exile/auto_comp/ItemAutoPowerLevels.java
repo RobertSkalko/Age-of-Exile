@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
@@ -96,18 +97,17 @@ public class ItemAutoPowerLevels {
         AutoConfigItemType type = null;
 
         if (config.TIER_5.isInRange(val)) {
-            type = ModConfig.get().autoCompatibleItems.TIER_5;
+            type = config.TIER_5;
         } else if (config.TIER_4.isInRange(val)) {
-            type = ModConfig.get().autoCompatibleItems.TIER_4;
+            type = config.TIER_4;
         } else if (config.TIER_3.isInRange(val)) {
-            type = ModConfig.get().autoCompatibleItems.TIER_3;
+            type = config.TIER_3;
         } else if (config.TIER_2.isInRange(val)) {
-            type = ModConfig.get().autoCompatibleItems.TIER_2;
+            type = config.TIER_2;
         } else if (config.TIER_1.isInRange(val)) {
-            type = ModConfig.get().autoCompatibleItems.TIER_1;
+            type = config.TIER_1;
         } else {
-            type = ModConfig.get().autoCompatibleItems.TIER_0;
-
+            type = config.TIER_0;
         }
 
         return type;
@@ -144,35 +144,37 @@ public class ItemAutoPowerLevels {
 
     public static void setupHashMaps() {
 
-        Watch watch = new Watch();
-
         Set<BaseGearType> types = new HashSet<>(SlashRegistry.GearTypes()
             .getList());
 
+        Watch watch = new Watch();
+
         Registry.ITEM
             .stream()
-            .filter(x -> !Ref.MODID.equals(Registry.ITEM.getId(x)
-                .getNamespace()))
+            .filter(x -> {
+                return !Ref.MODID.equals(Registry.ITEM.getId(x)
+                    .getNamespace()) && !(x instanceof BlockItem);
+            })
             .forEach(item -> {
                 try {
 
-                    types
-                        .forEach(slot -> {
-                            if (BaseGearType.isGearOfThisType(slot, item)) {
+                    for (BaseGearType slot : types) {
+                        if (BaseGearType.isGearOfThisType(slot, item)) {
 
-                                ItemAutoPowerLevels current = new ItemAutoPowerLevels(item, slot);
+                            ItemAutoPowerLevels current = new ItemAutoPowerLevels(item, slot);
 
-                                ItemAutoPowerLevels strongest = STRONGEST.getOrDefault(slot.GUID(), current);
+                            ItemAutoPowerLevels strongest = STRONGEST.getOrDefault(slot.GUID(), current);
 
-                                if (current.isStrongerThan(strongest)) {
-                                    strongest = current;
-                                }
-
-                                STRONGEST.put(slot.getGearSlot()
-                                    .GUID(), strongest);
-
+                            if (current.isStrongerThan(strongest)) {
+                                strongest = current;
                             }
-                        });
+
+                            STRONGEST.put(slot.getGearSlot()
+                                .GUID(), strongest);
+
+                            break;
+                        }
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
