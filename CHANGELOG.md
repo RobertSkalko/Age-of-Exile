@@ -1,3 +1,10 @@
+### v1.7.2
++ fix total spell/talent points calculation
+
+### v.1.7.1
++ forgot to remove unused library
++ downgraded cardinal version to 2.6.0. as curios doesn't seem to work with 2.7.0 of cardinal.
+
 ## v.1.7.0
 
 ### Talents rework:

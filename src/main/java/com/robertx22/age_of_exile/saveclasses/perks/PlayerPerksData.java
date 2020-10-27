@@ -52,11 +52,11 @@ public class PlayerPerksData {
         int num = 0;
         if (type == SpellSchool.SchoolType.SPELLS) {
             num = (int) ModConfig.get().Server.STARTING_SPELL_POINTS;
-            num += ModConfig.get().Server.SPELL_POINTS_AT_MAX_LEVEL / LevelUtils.getMaxLevelMultiplier(data.getLevel());
+            num += ModConfig.get().Server.SPELL_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
 
         } else {
             num = (int) ModConfig.get().Server.STARTING_TALENT_POINTS;
-            num += ModConfig.get().Server.TALENT_POINTS_AT_MAX_LEVEL / LevelUtils.getMaxLevelMultiplier(data.getLevel());
+            num += ModConfig.get().Server.TALENT_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
         }
         num -= this.getAllocatedPoints(type);
         return num;
