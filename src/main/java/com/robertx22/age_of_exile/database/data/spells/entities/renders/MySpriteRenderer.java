@@ -42,7 +42,8 @@ public class MySpriteRenderer<T extends Entity> extends EntityRenderer<T> {
         super.render(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);
     }
 
+    @Override
     public Identifier getTexture(Entity p_110775_1_) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEX;
+        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
     }
 }

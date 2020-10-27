@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mmorpg",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "name": "Age of Exile",
   "description": "Diablo in Minecraft!",
   "authors": [
@@ -35,10 +35,10 @@
 	"cloth-config2": "*",
 	"autoconfig1u": "*",
 	"patchouli": "*",
-	"cardinal-components-base": ">=2.5.0",
-	"cardinal-components-entity": ">=2.5.0",
-	"cardinal-components-chunk": ">=2.5.0",
-	"cardinal-components-world": ">=2.5.0"
+	"cardinal-components-base": ">=2.7.0",
+	"cardinal-components-entity": ">=2.7.0",
+	"cardinal-components-chunk": ">=2.7.0",
+	"cardinal-components-world": ">=2.7.0"
   },
   "suggests": {
     "balance_of_exile": "*"

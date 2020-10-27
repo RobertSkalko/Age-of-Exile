@@ -521,7 +521,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         this.client.getTextureManager()
-            .bindTexture(Screen.BACKGROUND_TEXTURE);
+            .bindTexture(Screen.OPTIONS_BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         float f = 32.0F;
         bufferBuilder.begin(7, VertexFormats.POSITION_TEXTURE_COLOR);

@@ -29,11 +29,11 @@ public class LevelUtils {
     }
 
     public static int getExpRequiredForLevel(int level) {
-        return (int) (Math.pow(5F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2F));
+        return (int) (Math.pow(6F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2F));
     }
 
     public static int getBaseExpMobReward(int level) {
-        return 5 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.2F));
+        return 4 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.3F));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {

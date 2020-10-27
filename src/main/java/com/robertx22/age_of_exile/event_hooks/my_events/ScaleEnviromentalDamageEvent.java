@@ -14,6 +14,7 @@ public class ScaleEnviromentalDamageEvent extends EventConsumer<ExileEvents.OnDa
     public void accept(ExileEvents.OnDamageEntity event) {
 
         if (LivingHurtUtils.isEnviromentalDmg(event.source)) {
+
             LivingEntity target = event.mob;
             EntityCap.UnitData data = Load.Unit(event.mob);
             int lvl = data

@@ -62,6 +62,9 @@ public class PlayerFavor implements ICommonPlayerCap {
     }
 
     public void afterLootingItems(LootInfo info) {
+
+        boolean lowfavor = false;
+
         if (info.lootOrigin != LootInfo.LootOrigin.CHEST) {
 
             FavorRank rank = getRank();
@@ -69,13 +72,20 @@ public class PlayerFavor implements ICommonPlayerCap {
             if (rank.favor_drain_per_item > 0) {
                 this.favor -= rank.favor_drain_per_item * info.amount;
 
-                onFavorChanged();
+                if (this.favor < 5) {
+                    lowfavor = true;
+                }
+
             }
+        }
+
+        if (lowfavor) {
+            onLowFavor();
         }
     }
 
-    private void onFavorChanged() {
-        if (this.favor <= 5) {
+    private void onLowFavor() {
+        if (ModConfig.get().Favor.ENABLE_FAVOR_SYSTEM) {
             this.player.sendMessage(new LiteralText("You are very low on favor.").formatted(Formatting.RED), false);
         }
     }
