@@ -169,7 +169,7 @@ public class LootInfo {
         if (mobKilled != null && mobData != null) {
 
             if (this.playerData != null) {
-                modifier += LootUtils.getLevelDistancePunishmentMulti(mobData, playerData) - 1F;
+                modifier += LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), playerData.getLevel()) - 1F;
             }
 
             modifier += LootUtils.getMobHealthBasedLootMulti(mobData, mobKilled) - 1F;

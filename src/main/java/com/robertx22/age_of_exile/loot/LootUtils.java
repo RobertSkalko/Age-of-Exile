@@ -13,24 +13,19 @@ import net.minecraft.util.math.MathHelper;
 public class LootUtils {
 
     // prevents lvl 50 players farming lvl 1 mobs
-    public static float getLevelDistancePunishmentMulti(UnitData mob, UnitData player) {
+    public static float getLevelDistancePunishmentMulti(int level, int playerLevel) {
 
-        int diff = Math.abs(mob.getLevel() - player.getLevel());
+        int diff = Math.abs(level - playerLevel);
 
-        float multi = 1;
+        int num = diff - ModConfig.get().Server.LEVELS_NEEDED_TO_START_LVL_PENALTY;
 
-        if (diff < 5) {
-            return multi;
-        } else {
-            int num = diff - 5;
-            multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_LVL);
+        if (num < 0) {
+            num = 0;
         }
 
-        if (multi < 0) {
-            return 0;
-        }
-        return multi;
+        float multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_LVL);
 
+        return (float) MathHelper.clamp(multi, 0F, ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MAX);
     }
 
     public static ItemStack RandomDamagedGear(ItemStack stack, IGearRarity rar) {

@@ -23,6 +23,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -149,61 +150,68 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
-        List<ExactStatData> local = new ArrayList<>();
-        List<ExactStatData> all = gear.GetAllStats(false, true);
+        try {
+            List<ExactStatData> local = new ArrayList<>();
+            List<ExactStatData> all = gear.GetAllStats(false, true);
 
-        int i = 0;
+            int i = 0;
 
-        for (StatModifier mod : SlashRegistry.GearTypes()
-            .get(gear_type)
-            .baseStats()) {
-            local.add(mod.ToExactStat(percents.get(i), gear.level));
-            i++;
-        }
-
-        // add up flats first
-        all.forEach(x -> {
-
-            if (x.shouldBeAddedToLocalStats(gear) && x.getType()
-                .isFlat()) {
-
-                Optional<ExactStatData> opt = local.stream()
-                    .filter(t -> t.getStat() == x.getStat())
-                    .findFirst();
-
-                if (opt.isPresent()) {
-                    opt.get()
-                        .add(x);
-                } else {
-                    local.add(x);
+            for (StatModifier mod : SlashRegistry.GearTypes()
+                .get(gear_type)
+                .baseStats()) {
+                if (percents.size() > i) {
+                    local.add(mod.ToExactStat(percents.get(i), gear.level));
                 }
+                i++;
             }
-        });
 
-        // now increase all flats by local increases
-        all.stream()
-            .filter(x ->
-                x.shouldBeAddedToLocalStats(gear) && x.getType()
-                    == ModType.LOCAL_INCREASE)
-            .forEach(s -> {
+            // add up flats first
+            all.forEach(x -> {
 
-                Optional<ExactStatData> opt = local.stream()
-                    .filter(x -> x.getStat()
-                        .GUID()
-                        .equals(s.getStat()
-                            .GUID()))
-                    .findFirst();
+                if (x.shouldBeAddedToLocalStats(gear) && x.getType()
+                    .isFlat()) {
 
-                if (opt.isPresent()) {
-                    opt.get().percentIncrease += s.getFirstValue();
+                    Optional<ExactStatData> opt = local.stream()
+                        .filter(t -> t.getStat() == x.getStat())
+                        .findFirst();
+
+                    if (opt.isPresent()) {
+                        opt.get()
+                            .add(x);
+                    } else {
+                        local.add(x);
+                    }
                 }
-
             });
 
-        local.forEach(x -> x.increaseByAddedPercent());
+            // now increase all flats by local increases
+            all.stream()
+                .filter(x ->
+                    x.shouldBeAddedToLocalStats(gear) && x.getType()
+                        == ModType.LOCAL_INCREASE)
+                .forEach(s -> {
 
-        return local;
+                    Optional<ExactStatData> opt = local.stream()
+                        .filter(x -> x.getStat()
+                            .GUID()
+                            .equals(s.getStat()
+                                .GUID()))
+                        .findFirst();
 
+                    if (opt.isPresent()) {
+                        opt.get().percentIncrease += s.getFirstValue();
+                    }
+
+                });
+
+            local.forEach(x -> x.increaseByAddedPercent());
+
+            return local;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Arrays.asList();
     }
 
     @Override

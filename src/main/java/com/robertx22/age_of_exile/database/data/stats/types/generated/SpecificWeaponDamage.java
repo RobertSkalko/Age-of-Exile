@@ -47,7 +47,7 @@ public class SpecificWeaponDamage extends Stat implements IStatEffects, IGenerat
 
     @Override
     public IStatEffect getEffect() {
-        return new SpecificWeaponDamageEffect();
+        return SpecificWeaponDamageEffect.getInstance();
     }
 
     @Override

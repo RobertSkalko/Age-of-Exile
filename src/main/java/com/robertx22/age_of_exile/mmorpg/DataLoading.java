@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.resource.ResourceManager;
@@ -26,6 +27,8 @@ public class DataLoading {
         manager.registerListener(new JsonDataLoader(new Gson(), "nothing") {
             @Override
             protected void apply(Map<Identifier, JsonElement> loader, ResourceManager manager, Profiler profiler) {
+
+                Cached.reset();
 
                 SlashRegistry.backup();
 

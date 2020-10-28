@@ -5,7 +5,9 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
+import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -50,15 +52,15 @@ public class PlayerFavor implements ICommonPlayerCap {
     }
 
     public float getFavor() {
-        return favor; // TODO TEST return favor;
+        return favor;
     }
 
-    public float getMaxPossibleFavor() {
-        return 1000000;
-    }
+    public void onOpenNewLootChest(LootInfo info) {
 
-    public void onOpenNewLootChest() {
-        this.favor += ModConfig.get().Favor.FAVOR_GAIN_PER_CHEST_LOOTED;
+        float lvlpenalty = LootUtils.getLevelDistancePunishmentMulti(info.level, Load.Unit(player)
+            .getLevel());
+
+        this.favor += ModConfig.get().Favor.FAVOR_GAIN_PER_CHEST_LOOTED * lvlpenalty;
     }
 
     public void afterLootingItems(LootInfo info) {

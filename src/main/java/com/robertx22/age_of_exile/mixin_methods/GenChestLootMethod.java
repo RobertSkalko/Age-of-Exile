@@ -42,12 +42,12 @@ public class GenChestLootMethod {
                 return;
             }
 
+            LootInfo info = LootInfo.ofChestLoot(player, pos);
+
             if (inventory instanceof ChestBlockEntity) {
                 Load.favor(player)
-                    .onOpenNewLootChest();
+                    .onOpenNewLootChest(info);
             }
-
-            LootInfo info = LootInfo.ofChestLoot(player, pos);
 
             List<ItemStack> items = MasterLootGen.generateLoot(info);
 

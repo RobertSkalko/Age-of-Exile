@@ -15,7 +15,6 @@ public class Cached {
         maxTier = null;
 
         COMPATIBLE_ITEMS.clear();
-
     }
 
 }

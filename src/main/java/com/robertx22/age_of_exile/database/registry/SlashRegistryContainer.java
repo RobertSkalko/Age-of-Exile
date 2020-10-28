@@ -194,12 +194,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public void unregisterAllEntriesFromDatapacks() {
-        new HashMap<>(map).forEach((key, value) -> {
-            if (value
-                .isFromDatapack()) {
-                map.remove(key);
-            }
-        });
+        map.entrySet()
+            .removeIf(x -> x.getValue()
+                .isFromDatapack());
     }
 
     public C getFromSerializables(DataGenKey<C> key) {

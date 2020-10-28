@@ -8,6 +8,13 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 
 public class SpecificWeaponDamageEffect extends BaseDamageEffect {
 
+    private SpecificWeaponDamageEffect() {
+    }
+
+    public static SpecificWeaponDamageEffect getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public int GetPriority() {
         return Priority.First.priority;
@@ -20,7 +27,7 @@ public class SpecificWeaponDamageEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.number *= data.getMultiplier();
+        effect.percentIncrease += data.getAverageValue();
         return effect;
     }
 
@@ -34,4 +41,7 @@ public class SpecificWeaponDamageEffect extends BaseDamageEffect {
         return false;
     }
 
+    private static class SingletonHolder {
+        private static final SpecificWeaponDamageEffect INSTANCE = new SpecificWeaponDamageEffect();
+    }
 }

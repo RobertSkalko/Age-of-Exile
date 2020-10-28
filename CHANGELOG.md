@@ -1,5 +1,8 @@
 ### v.1.7.3
 + improved auto compat setup time by about 2 or 3 times
++ favor gained on chest loot is now affected by level distance penalties
++ increased default lvl distance penalty
++ added more level penalty configs
 
 ### v1.7.2
 + fix total spell/talent points calculation

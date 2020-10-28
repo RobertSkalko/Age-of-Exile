@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
@@ -56,31 +56,29 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
     @Override
     protected void apply(Map<Identifier, JsonElement> mapToLoad, ResourceManager manager, Profiler profilerIn) {
 
-        Cached.reset();
-
         SlashRegistryContainer reg = SlashRegistry.getRegistry(registryType);
 
+        Watch normal = new Watch();
+        normal.min = 15000;
         reg.unregisterAllEntriesFromDatapacks();
 
-        for (Map.Entry<Identifier, JsonElement> entry : mapToLoad.entrySet()) {
+        mapToLoad.forEach((key, value) -> {
             try {
-                JsonObject json = entry.getValue()
+                JsonObject json = value
                     .getAsJsonObject();
 
-                if (json.has(ENABLED)) {
-                    if (!json.get(ENABLED)
-                        .getAsBoolean()) {
-                        continue;
-                    }
+                if (!json.has(ENABLED) || json.get(ENABLED)
+                    .getAsBoolean()) {
+                    T object = serializer.apply(json);
+                    object.registerToSlashRegistry();
                 }
-                T object = serializer.apply(json);
-                object.registerToSlashRegistry();
             } catch (Exception exception) {
-                LOGGER.error("Couldn't parse " + id + " {}", entry.getKey()
+                LOGGER.error("Couldn't parse " + id + " {}", key
                     .toString(), exception);
             }
+        });
 
-        }
+        normal.print("Loading " + registryType.name() + " jsons");
 
         if (reg
             .isEmpty()) {
