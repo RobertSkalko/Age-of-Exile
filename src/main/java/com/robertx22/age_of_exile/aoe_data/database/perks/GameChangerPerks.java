@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Heal
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -29,7 +30,8 @@ public class GameChangerPerks implements ISlashRegistryInit {
         PerkBuilder.gameChanger("blood_mage",
             new OptScaleExactStat(1, BloodUser.getInstance(), ModType.FLAT),
             new OptScaleExactStat(50, HealthRestorationToBlood.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(25, DatapackStatAdder.HEALTH_TO_BLOOD, ModType.FLAT)
+            new OptScaleExactStat(25, DatapackStatAdder.HEALTH_TO_BLOOD, ModType.FLAT),
+            new OptScaleExactStat(-100, Mana.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("arcane_devotion",

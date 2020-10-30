@@ -157,7 +157,13 @@ public class ResourcesData {
 
     }
 
+    static boolean check = false;
+
     private void modifyBy(Context ctx) {
+
+        if (ctx.amount == 0) {
+            return;
+        }
 
         if (ctx.type == Type.MANA) {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()

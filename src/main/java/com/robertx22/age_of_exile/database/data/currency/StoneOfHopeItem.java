@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IRenamed;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
@@ -73,7 +72,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public int getRarityRank() {
-        return IRarity.Legendary;
+        return IRarity.Mythic;
     }
 
     @Override
@@ -96,7 +95,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
         return shaped(ModRegistry.CURRENCIES.STONE_OF_HOPE)
             .input('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
             .input('t', ModRegistry.CURRENCIES.CROWN_OF_DISCOVERY)
-            .input('v', Items.DIAMOND)
+            .input('v', ModRegistry.CURRENCIES.ORB_OF_UNIQUE_BLESSING)
             .input('o', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
             .pattern("#o#")
             .pattern("#t#")

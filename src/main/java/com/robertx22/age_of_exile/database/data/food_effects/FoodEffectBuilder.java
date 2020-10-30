@@ -34,6 +34,10 @@ public class FoodEffectBuilder {
 
         total = MathHelper.clamp(total, 1, 30);
 
+        total *= durationSeconds;
+
+        total /= 12F;
+
         float effectMod = 1;
 
         for (Pair<StatusEffectInstance, Float> x : foodcomponent.getStatusEffects()) {
@@ -50,21 +54,19 @@ public class FoodEffectBuilder {
         if (effectMod < 0) {
             effectMod = 0;
         }
-        float value = total * 1.8F * effectMod;
-
-        if (value < 3) {
-            value = 3;
-        }
+        float value = total * effectMod;
 
         Identifier effect = null;
 
         if (ItemTags.FISHES.contains(food)) {
             effect = PotionRegister.FOOD_MAGIC_REGEN;
+            value *= 1F;
         } else if (foodcomponent.isMeat()) {
             effect = PotionRegister.FOOD_HP;
+            value *= 0.75F;
         } else {
             effect = PotionRegister.FOOD_MANA;
-            value *= 1.5F;
+            value *= 1;
         }
 
         data.effects_given.add(new StatusEffectData(effect, durationSeconds, (int) value));

@@ -57,6 +57,8 @@ public class LevelUtils {
 
         lvl = MathHelper.clamp(dimConfig.min_lvl + lvl, dimConfig.min_lvl, dimConfig.max_lvl);
 
+        lvl = MathHelper.clamp(lvl, 1, ModConfig.get().Server.MAX_LEVEL);
+
         return lvl;
     }
 

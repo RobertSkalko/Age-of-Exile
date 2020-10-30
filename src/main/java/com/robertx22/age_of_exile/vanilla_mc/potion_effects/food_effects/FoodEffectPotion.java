@@ -29,10 +29,9 @@ public abstract class FoodEffectPotion extends StatusEffect {
     }
 
     public float getValueRestoredPerRegen(EntityCap.UnitData data, int amplifier, int duration) {
+        float total = getTotalRestored(data, amplifier);
 
-        int timestoregen = duration / 20;
-
-        return getTotalRestored(data, amplifier) / timestoregen;
+        return total / 30F;
 
     }
 

@@ -1,3 +1,11 @@
+### v.1.7.4
++ relic rarity now can't drop on 0 favor either.
++ enabled xp on low favor
++ fix blood mage not showing correct mana
++ blood mages now have 0 mana
++ fix 0 cast time spells spending twice the mana they need
++ fix foods healing WAY more than they should
+
 ### v.1.7.3
 + improved auto compat setup time by about 2 or 3 times
 + favor gained on chest loot is now affected by level distance penalties

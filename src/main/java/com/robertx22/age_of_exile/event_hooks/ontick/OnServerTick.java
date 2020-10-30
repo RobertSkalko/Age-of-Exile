@@ -156,7 +156,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                         .getLevel();
 
                     if (lvl < 20) {
-                        data.isInHighLvlZone = Math.abs(lvl - LevelUtils.determineLevel(player.world, player.getBlockPos(), player)) > 10;
+                        data.isInHighLvlZone = LevelUtils.determineLevel(player.world, player.getBlockPos(), player) - lvl > 10;
 
                         if (wasnt && data.isInHighLvlZone) {
                             OnScreenMessageUtils.sendMessage(

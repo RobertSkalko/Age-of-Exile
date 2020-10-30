@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -75,6 +76,17 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
                 .manaData()
                 .getAverageValue();
 
+            if (data.getUnit()
+                .getCalculatedStat(BloodUser.getInstance())
+                .getAverageValue() > 0) {
+                curMana = (int) data.getResources()
+                    .getBlood();
+                maxMana = (int) data.getUnit()
+                    .getCalculatedStat(Blood.getInstance())
+                    .getAverageValue();
+
+            }
+
             SpellSchool school = Load.perks(mc.player)
                 .getMainSpellSchool();
             if (school != null) {
@@ -92,17 +104,6 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
 
             float hpmulti = (float) curhp / (float) maxhp;
             float manamulti = (float) curMana / (float) maxMana;
-
-            if (data.getUnit()
-                .getCalculatedStat(Blood.getInstance())
-                .getAverageValue() > data.getUnit()
-                .manaData()
-                .getAverageValue()) {
-                manamulti = data.getResources()
-                    .getBlood() / data.getUnit()
-                    .getCalculatedStat(Blood.getInstance())
-                    .getAverageValue();
-            }
 
             float xpmulti = (float) data.getExp() / (float) data.getExpRequiredForLevelUp();
 
