@@ -31,6 +31,9 @@ public class SpellCastingData {
     public String spellBeingCast = "";
 
     @Store
+    public Boolean casting = false;
+
+    @Store
     private HashMap<Integer, String> bar = new HashMap<>();
 
     public HashMap<Integer, String> getBar() {
@@ -72,6 +75,7 @@ public class SpellCastingData {
             castingTicksLeft = 0;
             lastSpellCastTimeInTicks = 0;
             castingTicksDone = 0;
+            this.casting = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,7 +91,8 @@ public class SpellCastingData {
     }
 
     public boolean isCasting() {
-        return castingTicksLeft > 0 && SlashRegistry.Spells()
+
+        return casting && SlashRegistry.Spells()
             .isRegistered(spellBeingCast);
     }
 
@@ -143,6 +148,7 @@ public class SpellCastingData {
         this.castingTicksLeft = ctx.spell.getConfig().cast_time_ticks;
         this.lastSpellCastTimeInTicks = ctx.spell.getConfig().cast_time_ticks;
         this.castingTicksDone = 0;
+        this.casting = true;
     }
 
     private void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, SpellCastContext ctx) {
@@ -206,6 +212,7 @@ public class SpellCastingData {
         data.setCooldown(cd);
 
         spellDatas.put(ctx.spell.GUID(), data);
+        this.casting = false;
     }
 
     public SpellData getDataBySpell(Spell spell) {
