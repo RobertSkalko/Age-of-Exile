@@ -1,3 +1,13 @@
+### v.1.7.6
+* hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default
+(I'll fix it for real in a bit, but this fix is urgent)
+* updated curios and cardinal
+* mainhand weapon now also dropped if too low level
+(i thought this would be annoying so i didn't do it, but i saw many players thinking they are able to use the high lvl weapon, and i can't have that)
+
+### v1.7.5
+* emergency bandaid crash fix
+
 ### v.1.7.4
 + relic rarity now can't drop on 0 favor either.
 + enabled xp on low favor

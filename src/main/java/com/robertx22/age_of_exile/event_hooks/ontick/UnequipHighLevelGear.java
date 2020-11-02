@@ -16,9 +16,9 @@ import java.util.List;
 
 public class UnequipHighLevelGear {
 
-    public static void onTick(PlayerEntity player) {
+    public static List<EquipmentSlot> SLOTS = Arrays.asList(EquipmentSlot.MAINHAND, EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD, EquipmentSlot.OFFHAND);
 
-        List<EquipmentSlot> SLOTS = Arrays.asList(EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD, EquipmentSlot.OFFHAND);
+    public static void onTick(PlayerEntity player) {
 
         int lvl = Load.Unit(player)
             .getLevel();

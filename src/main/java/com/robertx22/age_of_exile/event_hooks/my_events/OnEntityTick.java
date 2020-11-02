@@ -19,6 +19,12 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
         if (entity.world.isClient) {
             return;
         }
+        if (entity instanceof PlayerEntity == false) {
+            if (entity.age % 40 != 0) {
+                return; // dont check gear of mobs as often as players
+            }
+        }
+
         checkGearChanged(entity);
     }
 

@@ -58,7 +58,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         epic.default_stat_percents = new MinMax(20, 100);
         epic.affix_stat_percents = new MinMax(20, 100);
         epic.affixes = new GearRarity.Part(3, 4, 15);
-        epic.weight = 500;
+        epic.weight = 450;
         epic.item_tier_power = 1.7F;
         epic.item_value_multi = 1.7F;
         epic.higher_rar = IRarity.LEGENDARY_ID;
@@ -71,7 +71,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         legendary.default_stat_percents = new MinMax(30, 100);
         legendary.affix_stat_percents = new MinMax(30, 100);
         legendary.affixes = new GearRarity.Part(4, 5, 15);
-        legendary.weight = 150;
+        legendary.weight = 120;
         legendary.item_tier_power = 2F;
         legendary.item_value_multi = 2F;
         legendary.higher_rar = IRarity.MYTHIC_ID;
@@ -85,7 +85,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mythic.default_stat_percents = new MinMax(40, 100);
         mythic.affix_stat_percents = new MinMax(40, 100);
         mythic.affixes = new GearRarity.Part(5, 6, 15);
-        mythic.weight = 30;
+        mythic.weight = 25;
         mythic.item_tier_power = 2.5F;
         mythic.item_value_multi = 3F;
         mythic.announce_in_chat = true;
@@ -111,7 +111,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         relic.spawn_durability_hit = new MinMax(60, 80);
         relic.affixes = new GearRarity.Part(0, 0, 0);
         relic.sockets = new GearRarity.Part(3, 5, 20);
-        relic.weight = 150;
+        relic.weight = 120;
         relic.item_tier_power = 1.5F;
         relic.item_value_multi = 1.5F;
         relic.announce_in_chat = true;

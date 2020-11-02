@@ -41,22 +41,26 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        if (!ctx.world.isClient) {
-            ValueCalculationData calc = data.get(VALUE_CALCULATION);
+        try {
+            if (!ctx.world.isClient) {
+                ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster);
+                int value = calc.getCalculatedValue(ctx.caster);
 
-            value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.HEALING);
+                value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.HEALING);
 
-            ResourcesData.Context hctx = new ResourcesData.Context(Load.Unit(ctx.caster), ctx.caster, ResourcesData.Type.HEALTH,
-                value, ResourcesData.Use.RESTORE,
-                ctx.calculatedSpellData.getSpell()
-            );
+                ResourcesData.Context hctx = new ResourcesData.Context(Load.Unit(ctx.caster), ctx.caster, ResourcesData.Type.HEALTH,
+                    value, ResourcesData.Use.RESTORE,
+                    ctx.calculatedSpellData.getSpell()
+                );
 
-            targets.forEach(t -> {
-                SpellHealEffect dmg = new SpellHealEffect(hctx);
-                dmg.Activate();
-            });
+                targets.forEach(t -> {
+                    SpellHealEffect dmg = new SpellHealEffect(hctx);
+                    dmg.Activate();
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

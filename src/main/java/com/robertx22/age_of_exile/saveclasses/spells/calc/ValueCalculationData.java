@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -76,6 +77,12 @@ public class ValueCalculationData {
     public float base_val = 0;
 
     public int getCalculatedBaseValue(int lvl) {
+
+        if (base_scaling == null) {
+            MMORPG.logError("base scaling null");
+            return 0;
+        }
+
         return (int) base_scaling.scale(base_val, lvl);
     }
 
