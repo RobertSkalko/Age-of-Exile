@@ -17,6 +17,7 @@ import java.util.Arrays;
 import static com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem.RuneType.*;
 
 public class WeaponRunewords implements ISlashRegistryInit {
+
     @Override
     public void registerAll() {
         RuneWord.create(
@@ -24,10 +25,10 @@ public class WeaponRunewords implements ISlashRegistryInit {
             "Elemental Fury",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(0.2F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(0.2F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(0.2F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(0.2F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Nature), ModType.FLAT)
+                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Nature), ModType.FLAT)
             ),
             Arrays.asList(CEN, DOS, ANO, TOQ))
             .addToSerializables();
@@ -82,10 +83,10 @@ public class WeaponRunewords implements ISlashRegistryInit {
             "Momentum",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(1, 2, 2, 3, new AttackDamage(Elements.Physical), ModType.FLAT),
+                new StatModifier(1, 1.5F, 1.5F, 2.5F, new AttackDamage(Elements.Physical), ModType.FLAT),
                 new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
                 new StatModifier(2, 13, CriticalHit.getInstance(), ModType.FLAT),
-                new StatModifier(10, 35, CriticalDamage.getInstance(), ModType.FLAT)
+                new StatModifier(5, 25, CriticalDamage.getInstance(), ModType.FLAT)
             ),
             Arrays.asList(YUN, MOS, NOS, XER))
             .addToSerializables();

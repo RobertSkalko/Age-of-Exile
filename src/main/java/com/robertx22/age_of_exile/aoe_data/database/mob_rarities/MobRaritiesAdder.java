@@ -10,10 +10,10 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
 
         MobRarity common = new MobRarity();
         common.affix_chance = 5;
-        common.stat_multi = 0.9F;
+        common.stat_multi = 1;
         common.min_lvl = 0;
         common.dmg_multi = 1;
-        common.extra_hp_multi = 0.3f;
+        common.extra_hp_multi = 0.8f;
         common.exp_multi = 1;
         common.loot_multi = 1;
         common.weight = 1000;
@@ -25,7 +25,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         uncommon.stat_multi = 1.4F;
         uncommon.min_lvl = 5;
         uncommon.dmg_multi = 1.3F;
-        uncommon.extra_hp_multi = 0.5f;
+        uncommon.extra_hp_multi = 1F;
         uncommon.exp_multi = 1.2F;
         uncommon.loot_multi = 1.2F;
         uncommon.weight = 500;
@@ -37,10 +37,10 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         rare.stat_multi = 2F;
         rare.min_lvl = 10;
         rare.dmg_multi = 2F;
-        rare.extra_hp_multi = 1f;
+        rare.extra_hp_multi = 1.5f;
         rare.exp_multi = 2F;
         rare.loot_multi = 2F;
-        rare.weight = 250;
+        rare.weight = 400;
         rare.setRareFields();
         rare.addToSerializables();
 
@@ -49,10 +49,10 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         epic.stat_multi = 3;
         epic.min_lvl = 15;
         epic.dmg_multi = 2.2F;
-        epic.extra_hp_multi = 2f;
+        epic.extra_hp_multi = 2.5f;
         epic.exp_multi = 3F;
         epic.loot_multi = 3F;
-        epic.weight = 200;
+        epic.weight = 250;
         epic.setEpicFields();
         epic.addToSerializables();
 
@@ -61,10 +61,10 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         legendary.stat_multi = 3.5F;
         legendary.min_lvl = 20;
         legendary.dmg_multi = 2.3F;
-        legendary.extra_hp_multi = 4f;
+        legendary.extra_hp_multi = 5f;
         legendary.exp_multi = 4F;
         legendary.loot_multi = 4F;
-        legendary.weight = 50;
+        legendary.weight = 100;
         legendary.setLegendaryFields();
         legendary.addToSerializables();
 
@@ -74,7 +74,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         boss.stat_multi = 3.75F;
         boss.min_lvl = 20;
         boss.dmg_multi = 2.4F;
-        boss.extra_hp_multi = 5f;
+        boss.extra_hp_multi = 10f;
         boss.exp_multi = 6F;
         boss.loot_multi = 6F;
         boss.weight = 10;

@@ -12,8 +12,10 @@ public class DamageAbsorbedByMana extends Stat implements IStatEffects {
 
     private DamageAbsorbedByMana() {
         this.min_val = 0;
-        this.scaling = StatScaling.NORMAL;
+        this.scaling = StatScaling.NONE;
         this.statGroup = StatGroup.MAIN;
+
+        this.add$To$toTooltip = false;
     }
 
     public static DamageAbsorbedByMana getInstance() {
@@ -37,7 +39,7 @@ public class DamageAbsorbedByMana extends Stat implements IStatEffects {
 
     @Override
     public boolean IsPercent() {
-        return false;
+        return true;
     }
 
     @Override

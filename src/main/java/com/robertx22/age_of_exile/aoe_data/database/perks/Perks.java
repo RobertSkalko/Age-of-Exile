@@ -131,7 +131,7 @@ public class Perks implements ISlashRegistryInit {
 
         new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
-                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.LOCAL_INCREASE));
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.LOCAL_INCREASE));
                 PerkBuilder.bigStat(x.GUID() + "_big", new OptScaleExactStat(5, x, ModType.LOCAL_INCREASE));
             });
 

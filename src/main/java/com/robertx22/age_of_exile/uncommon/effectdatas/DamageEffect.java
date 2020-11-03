@@ -129,7 +129,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return 0;
         }
 
-        float percentMulti = 1 + this.percentIncrease / 100;
+        float percentMulti = 1F + this.percentIncrease / 100F;
 
         if (source instanceof PlayerEntity) {
             dmg = modifyByAttackSpeedIfMelee(dmg);

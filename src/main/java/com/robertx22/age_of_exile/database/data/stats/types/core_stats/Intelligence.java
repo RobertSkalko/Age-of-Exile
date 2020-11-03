@@ -14,7 +14,7 @@ public class Intelligence extends BaseCoreStat {
     private Intelligence() {
         super(Arrays.asList(
             new StatModifier(0.5F, 0.5F, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT),
-            new StatModifier(1, 1, AttackStyleDamage.MAGIC, ModType.FLAT)
+            new StatModifier(0.5F, 0.5F, AttackStyleDamage.MAGIC, ModType.FLAT)
         ));
         this.statGroup = StatGroup.CORE;
     }

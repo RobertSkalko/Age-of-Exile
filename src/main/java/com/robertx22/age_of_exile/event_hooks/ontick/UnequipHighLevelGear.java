@@ -16,7 +16,9 @@ import java.util.List;
 
 public class UnequipHighLevelGear {
 
-    public static List<EquipmentSlot> SLOTS = Arrays.asList(EquipmentSlot.MAINHAND, EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD, EquipmentSlot.OFFHAND);
+    // dont drop weapons becasuse then newbies can't use stuff like axes at low level!
+
+    public static List<EquipmentSlot> SLOTS = Arrays.asList(EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD, EquipmentSlot.OFFHAND);
 
     public static void onTick(PlayerEntity player) {
 

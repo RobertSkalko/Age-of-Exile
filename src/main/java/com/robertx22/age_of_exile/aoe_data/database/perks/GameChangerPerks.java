@@ -30,7 +30,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         PerkBuilder.gameChanger("blood_mage",
             new OptScaleExactStat(1, BloodUser.getInstance(), ModType.FLAT),
             new OptScaleExactStat(50, HealthRestorationToBlood.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(25, DatapackStatAdder.HEALTH_TO_BLOOD, ModType.FLAT),
+            new OptScaleExactStat(50, DatapackStatAdder.HEALTH_TO_BLOOD, ModType.FLAT),
             new OptScaleExactStat(-100, Mana.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
@@ -52,7 +52,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("overflowing_vitality",
-            new OptScaleExactStat(0.2F, DatapackStatAdder.CONVERT_HEALTH_TO_PHYS_DMG, ModType.FLAT),
+            new OptScaleExactStat(0.5F, DatapackStatAdder.CONVERT_HEALTH_TO_PHYS_DMG, ModType.FLAT),
             new OptScaleExactStat(-10, Health.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
@@ -83,7 +83,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("familiar_instincts",
-            new OptScaleExactStat(50, DatapackStatAdder.DODGE_TO_ELE_DODGE, ModType.FLAT),
+            new OptScaleExactStat(25, DatapackStatAdder.DODGE_TO_ELE_DODGE, ModType.FLAT),
             new OptScaleExactStat(-25, Armor.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-25, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );

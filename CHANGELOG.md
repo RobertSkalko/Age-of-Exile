@@ -1,3 +1,7 @@
+### v1.7.7
+
+* increased mob hp
+
 ### v.1.7.6
 * hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default
 (I'll fix it for real in a bit, but this fix is urgent)

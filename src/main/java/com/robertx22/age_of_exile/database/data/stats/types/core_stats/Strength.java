@@ -16,7 +16,7 @@ public class Strength extends BaseCoreStat {
     private Strength() {
         super(Arrays.asList(
             new StatModifier(1, 1, CriticalDamage.getInstance(), ModType.FLAT),
-            new StatModifier(1, 1, AttackStyleDamage.MELEE, ModType.FLAT)
+            new StatModifier(0.5F, 0.5F, AttackStyleDamage.MELEE, ModType.FLAT)
         ));
     }
 

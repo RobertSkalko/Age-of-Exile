@@ -17,7 +17,7 @@ public class Dexterity extends BaseCoreStat {
     private Dexterity() {
         super(Arrays.asList(
             new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), ModType.FLAT),
-            new StatModifier(1, 1, AttackStyleDamage.RANGED, ModType.FLAT)
+            new StatModifier(0.5F, 0.5F, AttackStyleDamage.RANGED, ModType.FLAT)
         ));
     }
 
