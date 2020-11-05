@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 minecraft:overworld
+world_of_exile:abyss
 minecraft:the_nether
 minecraft:the_end

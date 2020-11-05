@@ -1,6 +1,11 @@
 package com.robertx22.age_of_exile.config.forge;
 
+import com.robertx22.age_of_exile.config.GuiPartConfig;
+import com.robertx22.age_of_exile.config.OverlayGuiConfig;
 import com.robertx22.age_of_exile.config.forge.parts.DmgParticleConfig;
+import com.robertx22.age_of_exile.gui.overlays.BarGuiType;
+import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.HealthReplaceGuiOverlay;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 
@@ -8,6 +13,9 @@ public class ClientConfigs {
 
     @ConfigEntry.Gui.CollapsibleObject
     public DmgParticleConfig dmgParticleConfig = new DmgParticleConfig();
+
+    @ConfigEntry.Gui.CollapsibleObject
+    public OverlayGuiConfig OVERLAY_GUI = new OverlayGuiConfig();
 
     public boolean RENDER_MOB_HEALTH_GUI = true;
     public boolean ONLY_RENDER_MOB_LOOKED_AT = true;
@@ -23,4 +31,21 @@ public class ClientConfigs {
 
     public PlayerGUIs PLAYER_GUI_TYPE = PlayerGUIs.RPG;
 
+    public ClientConfigs() {
+
+        if (OVERLAY_GUI.parts.isEmpty()) {
+
+            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.COMBINED_HEALTH, new PointData(-91, -39)));
+            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.MANA, new PointData(-91, -49)));
+
+            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.EXP,
+                new PointData(91 - HealthReplaceGuiOverlay.BAR_WIDTH, -39)));
+            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.HUNGER,
+                new PointData(91 - HealthReplaceGuiOverlay.BAR_WIDTH, -49)));
+            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.AIR,
+                new PointData(91 - HealthReplaceGuiOverlay.BAR_WIDTH, -59)));
+
+        }
+
+    }
 }

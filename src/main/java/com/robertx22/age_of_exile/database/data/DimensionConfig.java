@@ -21,7 +21,7 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
     public static DimensionConfig Overworld() {
         DimensionConfig c = new DimensionConfig(1, "minecraft:overworld");
-        c.max_lvl = 40;
+        c.max_lvl = 45;
         return c;
     }
 
@@ -56,7 +56,7 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
     public int min_lvl = 1;
     public int max_lvl = Integer.MAX_VALUE;
-    public int mob_lvl_per_distance = 50;
+    public int mob_lvl_per_distance = 100;
     public boolean scale_to_nearest_player = false;
 
     @Override

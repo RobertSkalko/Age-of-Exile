@@ -35,6 +35,7 @@ public class LookUtils {
             .getOtherEntities(e, e.getBoundingBox()
                 .expand(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
                 .stretch(1F, 1F, 1F));
+
         double minDistance = distance;
 
         for (Entity entity : entitiesInBoundingBox) {

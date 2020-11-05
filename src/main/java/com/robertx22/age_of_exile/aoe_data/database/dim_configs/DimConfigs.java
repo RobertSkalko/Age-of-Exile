@@ -13,5 +13,10 @@ public class DimConfigs implements ISlashRegistryInit {
             .addToSerializables();
         DimensionConfig.End()
             .addToSerializables();
+
+        DimensionConfig abyss = new DimensionConfig(1, "world_of_exile:abyss").setMobTier(3);
+        abyss.scale_to_nearest_player = true;
+        abyss.addToSerializables();
+
     }
 }

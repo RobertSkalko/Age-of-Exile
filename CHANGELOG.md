@@ -1,6 +1,7 @@
 ### v1.7.7
 
 * increased mob hp
+* mob lvl is slower per distance now
 
 ### v.1.7.6
 * hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default
