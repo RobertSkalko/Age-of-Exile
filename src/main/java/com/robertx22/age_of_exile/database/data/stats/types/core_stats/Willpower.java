@@ -15,8 +15,8 @@ public class Willpower extends BaseCoreStat {
 
     private Willpower() {
         super(Arrays.asList(
-            new StatModifier(0.5F, 0.5F, MagicShield.getInstance(), ModType.FLAT),
-            new StatModifier(0.15F, 0.15F, MagicShieldRegen.getInstance(), ModType.FLAT)
+            new StatModifier(0.75F, 0.75F, MagicShield.getInstance(), ModType.FLAT),
+            new StatModifier(0.1F, 0.1F, MagicShieldRegen.getInstance(), ModType.FLAT)
         ));
     }
 

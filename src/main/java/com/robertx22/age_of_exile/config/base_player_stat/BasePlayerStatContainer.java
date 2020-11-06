@@ -24,22 +24,28 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
 
         //base ones
 
-        c.base(Health.getInstance(), 5);
-        c.base(HealthRegen.getInstance(), 1);
-        c.base(MagicShieldRegen.getInstance(), 1);
-        c.base(CriticalHit.getInstance(), 1);
-        c.base(CriticalDamage.getInstance(), 0);
-        c.base(Mana.getInstance(), 20);
-        c.base(ManaRegen.getInstance(), 1F);
+        c.nonScaled(Health.getInstance(), 5);
+        c.nonScaled(HealthRegen.getInstance(), 1);
+        c.nonScaled(MagicShieldRegen.getInstance(), 1);
+        c.nonScaled(CriticalHit.getInstance(), 1);
+        c.nonScaled(CriticalDamage.getInstance(), 0);
+
+        c.scaled(Mana.getInstance(), 20);
+        c.scaled(ManaRegen.getInstance(), 1F);
 
         return c;
 
     }
 
-    public HashMap<String, Double> BASE_PLAYER_STATS = new HashMap<>();
+    public HashMap<String, Double> NON_SCALED = new HashMap<>();
+    public HashMap<String, Double> SCALED_TO_LVL = new HashMap<>();
 
-    public void base(Stat stat, double val) {
-        BASE_PLAYER_STATS.put(stat.GUID(), val);
+    public void scaled(Stat stat, double val) {
+        SCALED_TO_LVL.put(stat.GUID(), val);
+    }
+
+    public void nonScaled(Stat stat, double val) {
+        NON_SCALED.put(stat.GUID(), val);
     }
 
     @Override
@@ -49,12 +55,21 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
-        this.BASE_PLAYER_STATS.entrySet()
+
+        this.SCALED_TO_LVL.entrySet()
             .forEach(x -> {
                 data.getUnit()
                     .getStatInCalculation(x.getKey())
                     .addFlat(x.getValue()
                         .floatValue(), data.getLevel());
+            });
+        this.NON_SCALED.entrySet()
+            .forEach(x -> {
+                data.getUnit()
+                    .getStatInCalculation(x.getKey())
+                    .addAlreadyScaledFlat(x.getValue()
+                        .floatValue(), x.getValue()
+                        .floatValue());
             });
 
     }

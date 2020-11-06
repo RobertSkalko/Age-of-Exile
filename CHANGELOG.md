@@ -8,6 +8,8 @@ It's fully configurable unlike the other guis.
 * nerfed ranged weapon base damage
 * mob lvl is slower per distance now
 * need bit more exp per lvl
+* more hp, less regen
+* fix restoration to magic shield stat not working on spell effects
 
 ### v.1.7.6
 * hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default

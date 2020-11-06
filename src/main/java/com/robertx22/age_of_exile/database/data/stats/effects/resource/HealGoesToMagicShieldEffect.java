@@ -48,9 +48,7 @@ public class HealGoesToMagicShieldEffect extends BaseStatEffect<ModifyResourceEf
         if (effect.ctx.use == ResourcesData.Use.RESTORE) {
             if (effect.ctx.amount > 0) {
                 if (effect.ctx.type == ResourcesData.Type.HEALTH) {
-                    if (effect.ctx.spell == null) {
-                        return true;
-                    }
+                    return true;
                 }
             }
         }

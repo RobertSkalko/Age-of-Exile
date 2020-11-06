@@ -3,8 +3,8 @@ package com.robertx22.age_of_exile.config.base_player_stat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.age_of_exile.config.base.ISerializedConfig;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SerializationUtils;
 
 import java.util.HashSet;
@@ -34,17 +34,17 @@ public class BasePlayerStatSerial implements ISerializedConfig<BasePlayerStatCon
 
         BasePlayerStatContainer defaultConfig = getDefaultObject();
 
-        new HashSet<>(currentConfig.BASE_PLAYER_STATS.entrySet()).stream()
+        new HashSet<>(currentConfig.NON_SCALED.entrySet()).stream()
             .filter(x -> !SlashRegistry.Stats()
                 .isRegistered(x.getKey()))
             .forEach(p -> {
-                currentConfig.BASE_PLAYER_STATS.remove(p.getKey());
+                currentConfig.NON_SCALED.remove(p.getKey());
             });
 
-        defaultConfig.BASE_PLAYER_STATS.entrySet()
+        defaultConfig.NON_SCALED.entrySet()
             .forEach(x -> {
-                if (!currentConfig.BASE_PLAYER_STATS.containsKey(x.getKey())) {
-                    currentConfig.BASE_PLAYER_STATS.put(x.getKey(), x.getValue());
+                if (!currentConfig.NON_SCALED.containsKey(x.getKey())) {
+                    currentConfig.NON_SCALED.put(x.getKey(), x.getValue());
                 }
             });
 
