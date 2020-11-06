@@ -2,9 +2,12 @@ package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.config.GuiPartConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.gui.overlays.AreaLevelIndicator;
 import com.robertx22.age_of_exile.gui.overlays.BarGuiType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
@@ -17,6 +20,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRenderCallback {
+
+    static Identifier BASETEX = new Identifier(Ref.MODID, "textures/gui/overlay/base.png");
 
     public HealthReplaceGuiOverlay() {
         super();
@@ -31,6 +36,9 @@ public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRender
     MinecraftClient mc = MinecraftClient.getInstance();
 
     int ticks = 0;
+
+    int areaLvlTicks = 0;
+    int currentAreaLvl = 0;
 
     @Override
     public void onHudRender(MatrixStack matrix, float v) {
@@ -56,10 +64,15 @@ public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRender
 
             ticks++;
 
+            if (currentAreaLvl != SyncedToClientValues.areaLevel) {
+                currentAreaLvl = SyncedToClientValues.areaLevel;
+                areaLvlTicks = 200;
+            }
+
             ModConfig.get().client.OVERLAY_GUI.parts.forEach(c -> {
 
                 if (c.type.shouldRender(data, mc.player)) {
-                    renderBar(c.type,
+                    renderBar(c, c.type,
                         matrix,
                         c.getPosition(),
                         c.type.getText(data, mc.player),
@@ -69,7 +82,7 @@ public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRender
 
             ModConfig.get().client.OVERLAY_GUI.parts.forEach(c -> {
                 if (c.type.shouldRender(data, mc.player)) {
-                    renderBar(c.type,
+                    renderBar(c, c.type,
                         matrix,
                         c.getPosition(),
                         c.type.getText(data, mc.player),
@@ -77,14 +90,26 @@ public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRender
                 }
             });
 
+            GuiPartConfig c = ModConfig.get().client.AREA_LVL_OVERLAY;
+
+            if (c.enabled) {
+                if (areaLvlTicks > 0) {
+                    areaLvlTicks--;
+                    AreaLevelIndicator.draw(
+                        matrix,
+                        c.getPosition().x,
+                        c.getPosition().y,
+                        SyncedToClientValues.areaLevel
+                    );
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    static Identifier BASETEX = new Identifier(Ref.MODID, "textures/gui/overlay/base.png");
-
-    void renderBar(BarGuiType type, MatrixStack matrix, PointData point, String text, boolean drawText) {
+    void renderBar(GuiPartConfig config, BarGuiType type, MatrixStack matrix, PointData point, String text, boolean drawText) {
 
         if (!drawText) {
             mc.getTextureManager()
@@ -95,6 +120,16 @@ public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRender
             mc.getTextureManager()
                 .bindTexture(type.getTexture(Load.Unit(mc.player), mc.player));
             drawTexture(matrix, point.x + 2, point.y + 2, bar, INNER_BAR_HEIGHT, 0, 0, INNER_BAR_WIDTH, INNER_BAR_HEIGHT, INNER_BAR_WIDTH, INNER_BAR_HEIGHT);
+
+            if (config.icon_renderer == GuiPartConfig.IconRenderer.LEFT) {
+                mc.getTextureManager()
+                    .bindTexture(type.getIcon(Load.Unit(mc.player), mc.player));
+                drawTexture(matrix, point.x - 10, point.y, 9, 9, 0, 0, 9, 9, 9, 9); // draw icon
+            } else if (config.icon_renderer == GuiPartConfig.IconRenderer.RIGHT) {
+                mc.getTextureManager()
+                    .bindTexture(type.getIcon(Load.Unit(mc.player), mc.player));
+                drawTexture(matrix, point.x + BAR_WIDTH + 1, point.y, 9, 9, 0, 0, 9, 9, 9, 9); // draw icon
+            }
         }
 
         if (drawText) {

@@ -1,7 +1,13 @@
 ### v1.7.7
 
+* new overlay gui. I think this one will become the main one. 
+Basically like hack slash mine's gui, just less textured.
+It's fully configurable unlike the other guis.
+* nerfed salvaging a bit
 * increased mob hp
+* nerfed ranged weapon base damage
 * mob lvl is slower per distance now
+* need bit more exp per lvl
 
 ### v.1.7.6
 * hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default

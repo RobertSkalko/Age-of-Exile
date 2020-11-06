@@ -20,7 +20,7 @@ public class SalvageOutput implements ISerializedRegistryEntry<SalvageOutput>, I
     int weight = 1000;
 
     public boolean isForItem(GearItemData gear) {
-        return levelRange.isLevelInRange(gear.level);
+        return gear.level >= levelRange.getMinLevel();
     }
 
     public List<ItemStack> getResult(GearItemData gear) {

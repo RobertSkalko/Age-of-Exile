@@ -7,7 +7,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 public enum BarGuiType {
+    NONE {
+        @Override
+        public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
+            return 0;
+        }
 
+        @Override
+        public float getMax(EntityCap.UnitData data, PlayerEntity en) {
+            return 0;
+        }
+
+        @Override
+        public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
+            return Ref.id("empty");
+        }
+    },
     EXP {
         @Override
         public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
@@ -138,6 +153,12 @@ public enum BarGuiType {
             return Ref.id("textures/gui/overlay/hunger.png");
         }
 
+        @Override
+        public String getText(EntityCap.UnitData data, PlayerEntity en) {
+            return "H: " + (int) getCurrent(data, en) + " S: " + en.getHungerManager()
+                .getSaturationLevel();
+        }
+
     },
     AIR {
         @Override
@@ -167,6 +188,11 @@ public enum BarGuiType {
 
     public String getText(EntityCap.UnitData data, PlayerEntity en) {
         return (int) getCurrent(data, en) + "/" + (int) getMax(data, en);
+    }
+
+    public Identifier getIcon(EntityCap.UnitData data, PlayerEntity en) {
+        return new Identifier(getTexture(data, en).toString()
+            .replaceAll(".png", "_icon.png"));
     }
 
     public boolean shouldRender(EntityCap.UnitData data, PlayerEntity en) {

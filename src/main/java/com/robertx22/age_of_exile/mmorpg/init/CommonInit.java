@@ -84,6 +84,8 @@ public class CommonInit implements ModInitializer {
 
         }
 
+        testLevelCurve();
+
         /*
         Armor.getInstance()
             .logUsableAmountTests();

@@ -12,16 +12,23 @@ public class GuiPartConfig {
     GuiPosition position = GuiPosition.BOTTOM_CENTER;
     @ConfigEntry.Gui.CollapsibleObject
     PointData position_offset = new PointData(0, 0);
+    public boolean enabled = true;
+    public IconRenderer icon_renderer = IconRenderer.LEFT;
 
     public PointData getPosition() {
         return new PointData(position.getPos().x + position_offset.x, position.getPos().y + position_offset.y);
     }
 
-    public GuiPartConfig(BarGuiType type, PointData position_offset) {
+    public GuiPartConfig(BarGuiType type, PointData position_offset, IconRenderer iconRenderer) {
         this.type = type;
         this.position_offset = position_offset;
+        this.icon_renderer = iconRenderer;
     }
 
     public GuiPartConfig() {
+    }
+
+    public enum IconRenderer {
+        NONE, LEFT, RIGHT
     }
 }

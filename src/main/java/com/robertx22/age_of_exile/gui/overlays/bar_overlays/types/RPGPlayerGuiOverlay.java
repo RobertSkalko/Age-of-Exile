@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
+import com.robertx22.age_of_exile.gui.overlays.AreaLevelIndicator.TextColors;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -172,19 +173,7 @@ public class RPGPlayerGuiOverlay extends DrawableHelper implements HudRenderCall
         }
     }
 
-    public enum TextColors {
-        RED(13313553),
-        YELLOW(15252255),
-        GREEN(8453920);
-        int color;
-
-        TextColors(int color) {
-            this.color = color;
-        }
-    }
-
     public void drawPrettyLevelText(String string, MatrixStack matrix, float m, float n, TextColors color) {
-
 // copied from how vanilla renders the total experience level text
         mc.textRenderer
             .draw(matrix, string, (m + 1), n, 0);
