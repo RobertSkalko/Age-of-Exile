@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
+import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -60,15 +61,31 @@ public class LootInfo {
 
         LootInfo info = new LootInfo(LootOrigin.MOB);
 
-        info.world = mob.world;
-        info.mobData = Load.Unit(mob);
-        info.playerData = Load.Unit(player);
-        info.mobKilled = mob;
-        info.player = player;
-        info.pos = mob.getBlockPos();
-        info.level = info.mobData.getLevel();
+        try {
+            info.world = mob.world;
+            info.mobData = Load.Unit(mob);
+            info.playerData = Load.Unit(player);
+            info.mobKilled = mob;
+            info.player = player;
+            info.pos = mob.getBlockPos();
+            info.level = info.mobData.getLevel();
 
-        info.setupAllFields();
+            info.setupAllFields();
+
+            if (SlashRegistry.MobRarities()
+                .get(info.mobData.getRarity()).extra_hp_multi > 5 || EntityUtils.getVanillaMaxHealth(mob) > 100) {
+                // is boss basically
+                if (info.favorRank != null) {
+                    info.minItems += info.favorRank.extra_items_per_boss;
+                    info.maxItems += info.favorRank.extra_items_per_boss;
+                    float cost = info.favorRank.extra_items_per_boss * (info.favorRank.extra_item_favor_cost - info.favorRank.favor_drain_per_item);
+                    info.favor.setFavor(info.favor.getFavor() - cost);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return info;
     }
 
@@ -89,6 +106,14 @@ public class LootInfo {
         info.level = LevelUtils.determineLevel(player.world, pos, player);
         info.multi = 2;
         info.setupAllFields();
+
+        if (info.favorRank != null) {
+            info.minItems += info.favorRank.extra_items_per_chest;
+            info.maxItems += info.favorRank.extra_items_per_chest;
+            float cost = info.favorRank.extra_items_per_chest * (info.favorRank.extra_item_favor_cost - info.favorRank.favor_drain_per_item);
+            info.favor.setFavor(info.favor.getFavor() - cost);
+        }
+
         return info;
     }
 
@@ -204,9 +229,6 @@ public class LootInfo {
 
         amount = MathHelper.clamp(amount, minItems, maxItems);
 
-        if (favor != null) {
-            favor.afterLootingItems(this);
-        }
     }
 
 }

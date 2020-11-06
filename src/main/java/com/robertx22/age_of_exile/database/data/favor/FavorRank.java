@@ -29,6 +29,10 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
     public boolean drop_lvl_rewards = true;
     public boolean drop_exp = true;
 
+    public float extra_item_favor_cost = 1;
+    public int extra_items_per_boss = 0;
+    public int extra_items_per_chest = 0;
+
     public boolean can_salvage_loot = true;
 
     public float favor_drain_per_item = 1;// TODO THIS IS A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!

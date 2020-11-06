@@ -4,6 +4,6 @@ public class FavorConfig {
 
     public boolean ENABLE_FAVOR_SYSTEM = true;
 
-    public float FAVOR_GAIN_PER_CHEST_LOOTED = 30;
+    public float FAVOR_GAIN_PER_CHEST_LOOTED = 25;
 
 }

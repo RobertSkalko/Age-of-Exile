@@ -32,6 +32,30 @@ public class FavorAdder implements ISlashRegistryInit {
         normal.rank = 1;
         normal.addToSerializables();
 
+        FavorRank high = new FavorRank("high");
+        high.min = 1000;
+        high.rank = 2;
+        high.extra_item_favor_cost = 1.05F;
+        high.extra_items_per_boss = 3;
+        high.extra_items_per_chest = 2;
+        high.addToSerializables();
+
+        FavorRank veryhigh = new FavorRank("very_high");
+        veryhigh.min = 2000;
+        veryhigh.rank = 3;
+        veryhigh.extra_item_favor_cost = 1.1F;
+        veryhigh.extra_items_per_boss = 5;
+        veryhigh.extra_items_per_chest = 3;
+        veryhigh.addToSerializables();
+
+        FavorRank favored = new FavorRank("favored");
+        favored.min = 5000;
+        favored.rank = 4;
+        favored.extra_item_favor_cost = 1.5F;
+        favored.extra_items_per_boss = 10;
+        favored.extra_items_per_chest = 5;
+        favored.addToSerializables();
+
         /*
         FavorRank high = new FavorRank();
         high.min = 1000;

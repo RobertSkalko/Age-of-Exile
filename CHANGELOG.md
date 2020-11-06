@@ -15,6 +15,11 @@ It's fully configurable unlike the other guis.
 * newbie gear drops now drop with much more durability
 * newbie gear bag now costs much less
 * jewelry should no longer drop as super high level when killing low level mobs. Same with all types of gear really but jewelry had the highest level variance and problem
+* on high favor bosses and chests now drop extra loot but cost extra favor per item (think of it as faster to get loot, but with a higher favor cost)
+if I'm correct, this will make it much harder to have too much favor but still rewarding enough so players don't resort to mob farms.
+* player is now fully restored on level up
+* added 2 items, empty and full favor bottle. Contains 1000 favor. 
+Possible uses: modpacker way to give favor, players can save their favor if they don't want to spend it. etc.
 
 ### v.1.7.6
 * hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default

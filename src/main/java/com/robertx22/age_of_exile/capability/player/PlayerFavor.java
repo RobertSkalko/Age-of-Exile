@@ -63,16 +63,14 @@ public class PlayerFavor implements ICommonPlayerCap {
         this.favor += ModConfig.get().Favor.FAVOR_GAIN_PER_CHEST_LOOTED * lvlpenalty;
     }
 
-    public void afterLootingItems(LootInfo info) {
+    public void afterLootingItems(float favorCost, LootInfo info, int amount) {
 
         boolean lowfavor = false;
 
         if (info.lootOrigin != LootInfo.LootOrigin.CHEST) {
 
-            FavorRank rank = getRank();
-
-            if (rank.favor_drain_per_item > 0) {
-                this.favor -= rank.favor_drain_per_item * info.amount;
+            if (favorCost > 0) {
+                this.favor -= favorCost * amount;
 
                 if (this.favor < 5) {
                     lowfavor = true;

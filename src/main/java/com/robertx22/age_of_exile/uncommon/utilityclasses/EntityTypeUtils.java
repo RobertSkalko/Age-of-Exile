@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Npc;
 import net.minecraft.entity.mob.Angerable;
@@ -53,6 +55,12 @@ public class EntityTypeUtils {
             .isPeaceful()) {
             return true;
         }
+        if (EntityType.getId(en.getType())
+            .getNamespace()
+            .equals(Ref.WORLD_OF_EXILE_ID)) {
+            return true; // all my mobs are supposed to be rewarding
+        }
+
         return false;
     }
 

@@ -797,6 +797,30 @@ public class EntityCap {
                     ModCriteria.PLAYER_LEVEL.trigger((ServerPlayerEntity) player);
                 }
 
+                // fully restore on lvlup
+                getResources()
+                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.MANA,
+                        Integer.MAX_VALUE,
+                        ResourcesData.Use.RESTORE
+                    ));
+                getResources()
+                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.HEALTH,
+                        Integer.MAX_VALUE,
+                        ResourcesData.Use.RESTORE
+                    ));
+                getResources()
+                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.BLOOD,
+                        Integer.MAX_VALUE,
+                        ResourcesData.Use.RESTORE
+                    ));
+                getResources()
+                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.MAGIC_SHIELD,
+                        Integer.MAX_VALUE,
+                        ResourcesData.Use.RESTORE
+                    ))
+                // fully restore on lvlup
+                ;
+
                 this.setLevel(level + 1, player);
                 setExp(getRemainingExp());
 

@@ -4,6 +4,8 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
 import net.minecraft.block.Block;
@@ -27,6 +29,9 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public SalvagedDustItem T2_DUST = item(new SalvagedDustItem("T2 Salvaged Dust", 2, LevelRanges.MIDDLE));
     public SalvagedDustItem T3_DUST = item(new SalvagedDustItem("T3 Salvaged Dust", 3, LevelRanges.HIGH));
     public SalvagedDustItem T4_DUST = item(new SalvagedDustItem("T4 Salvaged Dust", 4, LevelRanges.ENDGAME));
+
+    public FullFavorItem FULL_FAVOR = item(new FullFavorItem(), "full_favor");
+    public EmptyFavorItem EMPTY_FAVOR = item(new EmptyFavorItem(), "empty_favor");
 
     CustomLootCrateItem CUSTOM_CRATE = item(new CustomLootCrateItem(), "custom_crate");
 

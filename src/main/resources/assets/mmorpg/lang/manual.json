@@ -118,5 +118,8 @@
 "item.mmorpg.loot_crate.gem": "Gem Loot Crate",
 "item.mmorpg.loot_crate.rune": "Rune Loot Crate",
 
+"item.mmorpg.full_favor": "Full Favor Bottle",
+"item.mmorpg.empty_favor": "Empty Favor Bottle",
+
 "mmorpg.one_of_a_kind.passive_spell": "Passive Spell",
 "mmorpg.one_of_a_kind.start": "Start",

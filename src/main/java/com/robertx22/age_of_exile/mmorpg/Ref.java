@@ -9,8 +9,7 @@ public class Ref {
     }
 
     public static final String MODID = "mmorpg";
-    public static final String VERSION = "1.0.0";
     public static final String MOD_NAME = "Age of Exile";
-    public static final String DESC = "Turn Minecraft into a hack and slash looter!";
 
+    public static String WORLD_OF_EXILE_ID = "world_of_exile";
 }

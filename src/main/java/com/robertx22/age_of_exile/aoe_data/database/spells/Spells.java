@@ -333,9 +333,9 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(30D, ParticleTypes.ITEM_SLIME, 60D, 2D))
             .onTick(PartBuilder.particleOnTick(30D, ParticleTypes.WITCH, 15D, 2D))
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH, 1D, 2D))
-            .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(1), Elements.Nature, 2D))
+            .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(2), Elements.Nature, 2D))
 
-            .onTick(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.THORNS, 2D, 20 * 3D)
+            .onTick(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.THORNS, 2D, 20 * 6D)
                 .requiresSpellMod(NatureSpellModStats.POISON_BUSH_KEY))
 
             .onTick(PartBuilder.addEffectToEnemiesInAoe(StatusEffects.SLOWNESS, 2D, 20 * 3D)
@@ -362,7 +362,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_HOE_TILL, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
-            .onCast(PartBuilder.healInAoe(ValueCalculationData.base(2), 2D))
+            .onCast(PartBuilder.healInAoe(ValueCalculationData.base(3), 2D))
             .build();
 
         INFERNO = SpellBuilder.of("blazing_inferno", SpellConfiguration.Builder.multiCast(20, 20 * 30, 60, 3), "Ring of Fire")

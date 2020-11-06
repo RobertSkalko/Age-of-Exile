@@ -41,6 +41,36 @@ public class MasterLootGen {
             items.removeIf(x -> x.equals(randomtoremove));
         }
 
+        if (info.favor != null && info.favorRank != null) {
+            info.favor.afterLootingItems(info.favorRank.favor_drain_per_item, info, items.size());
+
+            List<ItemStack> extraFavorItems = new ArrayList<ItemStack>();
+
+            int extraTries = 0;
+
+            while (extraFavorItems.size() < info.getMinItems()) {
+
+                extraTries++;
+                if (extraTries > 20) {
+                    System.out.println("Tried to generate loot many times but failed! " + info.toString());
+                    break;
+                }
+                List<ItemStack> extra = populateOnce(info);
+                if (!extra.isEmpty()) {
+                    extraFavorItems.add(RandomUtils.randomFromList(extra));
+                }
+            }
+
+            while (extraFavorItems.size() > info.getMaxItems()) {
+                ItemStack randomtoremove = RandomUtils.randomFromList(extraFavorItems);
+                extraFavorItems.removeIf(x -> x.equals(randomtoremove));
+            }
+            info.favor.afterLootingItems(info.favorRank.extra_item_favor_cost, info, extraFavorItems.size());
+
+            items.addAll(extraFavorItems);
+
+        }
+
         return items;
     }
 
