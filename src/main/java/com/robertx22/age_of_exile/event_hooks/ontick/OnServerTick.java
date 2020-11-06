@@ -185,7 +185,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));
                 }
 
-                UnequipHighLevelGear.onTick(player);
+                UnequipGear.onTick(player);
 
                 PlayerTickDatas.put(player.getUuid(), data);
 

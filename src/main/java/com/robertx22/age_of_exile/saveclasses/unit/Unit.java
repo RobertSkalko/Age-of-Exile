@@ -368,9 +368,11 @@ public class Unit {
                 boolean addstats = true;
 
                 if (entity instanceof PlayerEntity) {
+
                     if (!gear.meetsStatRequirements(data)) {
                         addstats = false;
                     }
+
                     if (addstats) {
                         GearRarity rar = (GearRarity) gear.getRarity();
                         if (rar.hasMaxWornRestriction()) {
@@ -385,6 +387,7 @@ public class Unit {
                 }
 
                 if (addstats) {
+
                     gear.GetAllStats(true, false)
                         .forEach(x -> {
                             x.applyStats(data);

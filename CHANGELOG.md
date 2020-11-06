@@ -8,8 +8,10 @@ It's fully configurable unlike the other guis.
 * nerfed ranged weapon base damage
 * mob lvl is slower per distance now
 * need bit more exp per lvl
-* more hp, less regen
+* more hp, less regen (I hear there's too many one shot deaths, I want less of that)
 * fix restoration to magic shield stat not working on spell effects
+* added max wear cap for uniques and runeword gear back in (I had that in mine and slash but thought i could balance things perfectly this time, yeah that wasn't possible, everyone just wore runed gear)
+* added new healer talents
 
 ### v.1.7.6
 * hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default

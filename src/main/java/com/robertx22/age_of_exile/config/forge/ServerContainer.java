@@ -19,6 +19,10 @@ public class ServerContainer {
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.1F;
     public double LEVEL_DISTANCE_PENALTY_MAX = 0.95F;
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
+
+    public int MAX_RUNEWORD_GEARS_ON_PLAYER = 2;
+    public int MAX_UNIQUE_GEARS_ON_PLAYER = 2;
+
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;
 
     public double STAT_POINTS_PER_LVL = 1;

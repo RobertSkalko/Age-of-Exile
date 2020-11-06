@@ -63,7 +63,9 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
         PerkBuilder.bigStat("spell_damage_big", new OptScaleExactStat(6, SpellDamage.getInstance(), ModType.FLAT));
+
         PerkBuilder.stat(new OptScaleExactStat(4, HealPower.getInstance(), ModType.FLAT));
+        PerkBuilder.stat("big_increase_healing", new OptScaleExactStat(8, HealPower.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));

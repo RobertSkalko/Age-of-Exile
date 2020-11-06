@@ -88,6 +88,11 @@ public class GameChangerPerks implements ISlashRegistryInit {
             new OptScaleExactStat(-25, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
+        PerkBuilder.gameChanger("divinity",
+            new OptScaleExactStat(25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
+            new OptScaleExactStat(-50, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE)
+        );
+
     }
 
 }

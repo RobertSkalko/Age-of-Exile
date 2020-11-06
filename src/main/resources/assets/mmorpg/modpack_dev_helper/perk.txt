@@ -73,6 +73,7 @@ armor
 ele_wand_damage
 spell_nature_damage
 spell_water_damage
+divinity
 ele_sword_damage
 elemental_penetration
 lightning_totem
@@ -191,6 +192,7 @@ big_dodge
 magic_shield_regen
 wil
 water_weapon_damage_big
+big_increase_healing
 wis
 thunder_spear
 ele_sword_damage_big
