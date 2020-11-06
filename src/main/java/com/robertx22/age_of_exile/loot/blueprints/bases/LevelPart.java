@@ -25,16 +25,19 @@ public class LevelPart extends BlueprintPart<Integer, ItemBlueprint> {
     @Override
     protected Integer generateIfNull() {
 
+        int finalLvl = number;
+
         if (blueprint instanceof GearBlueprint) {
             GearBlueprint gearb = (GearBlueprint) blueprint;
-            return RandomUtils.RandomRange(gearb.gearItemSlot.get()
-                .getLevelRange()
-                .getMinLevel(), gearb.gearItemSlot.get()
-                .getLevelRange()
-                .getMaxLevel());
-        }
 
-        int finalLvl = number;
+            minLevel = gearb.gearItemSlot.get()
+                .getLevelRange()
+                .getMinLevel();
+
+            maxLevel = gearb.gearItemSlot.get()
+                .getLevelRange()
+                .getMaxLevel();
+        }
 
         if (LevelRange) {
             finalLvl = RandomUtils.RandomRange(number - LevelVariance, number + LevelVariance);

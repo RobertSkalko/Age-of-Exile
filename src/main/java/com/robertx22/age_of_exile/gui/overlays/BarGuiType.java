@@ -155,7 +155,7 @@ public enum BarGuiType {
 
         @Override
         public String getText(EntityCap.UnitData data, PlayerEntity en) {
-            return "H: " + (int) getCurrent(data, en) + " S: " + en.getHungerManager()
+            return "H: " + (int) getCurrent(data, en) + " S: " + (int) en.getHungerManager()
                 .getSaturationLevel();
         }
 

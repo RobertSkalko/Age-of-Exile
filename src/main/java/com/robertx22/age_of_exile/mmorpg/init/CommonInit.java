@@ -72,19 +72,18 @@ public class CommonInit implements ModInitializer {
 
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 
-        if (ModConfig.get().Server.SAVE_GEAR_AND_HOTBAR_ON_DEATH) {
-            // dont drop curios on death
-            DropRulesCallback.EVENT.register(new DropRulesCallback() {
-                @Override
-                public void dropRules(LivingEntity livingEntity, ICuriosItemHandler iCuriosItemHandler, DamageSource damageSource, int i, boolean b, List<Pair<Predicate<ItemStack>, ICurio.DropRule>> list) {
+        // dont drop curios on death
+        DropRulesCallback.EVENT.register(new DropRulesCallback() {
+            @Override
+            public void dropRules(LivingEntity livingEntity, ICuriosItemHandler iCuriosItemHandler, DamageSource damageSource, int i, boolean b, List<Pair<Predicate<ItemStack>, ICurio.DropRule>> list) {
+
+                if (ModConfig.get().Server.SAVE_GEAR_AND_HOTBAR_ON_DEATH) {
                     list.add(new Pair<Predicate<ItemStack>, ICurio.DropRule>(x -> true, ICurio.DropRule.ALWAYS_KEEP));
-
                 }
-            });
+            }
+        });
 
-        }
-
-        testLevelCurve();
+        //testLevelCurve();
 
         /*
         Armor.getInstance()

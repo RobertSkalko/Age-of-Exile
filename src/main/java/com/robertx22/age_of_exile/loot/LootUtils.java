@@ -3,6 +3,9 @@ package com.robertx22.age_of_exile.loot;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
@@ -29,10 +32,23 @@ public class LootUtils {
     }
 
     public static ItemStack RandomDamagedGear(ItemStack stack, IGearRarity rar) {
+
         if (stack.isDamageable()) {
+
+            GearItemData gear = Gear.Load(stack);
+
+            if (gear == null) {
+                return stack;
+            }
+
+            boolean isnewbie = LevelUtils.getMaxLevelMultiplier(gear.level) < 0.2F;
 
             float dmgMulti = (float) RandomUtils.RandomRange(
                 rar.SpawnDurabilityHit().min, rar.SpawnDurabilityHit().max) / (float) 100;
+
+            if (isnewbie) {
+                dmgMulti -= 0.5F;
+            }
 
             dmgMulti = MathHelper.clamp(dmgMulti, 0, 0.95F);
 

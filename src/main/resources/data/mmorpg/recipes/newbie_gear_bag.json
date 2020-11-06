@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCC",
-    "CAC",
-    "BBB"
+    "C",
+    "A",
+    "B"
   ],
   "key": {  
 	"C": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:coal"
     }, 
 	"A": {
       "item": "minecraft:wheat_seeds"
     }, 
 	"B": {
-      "item": "minecraft:furnace"
+      "item": "minecraft:stick"
     }
   },
   "result": {
