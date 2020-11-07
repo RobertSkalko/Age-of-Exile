@@ -21,7 +21,7 @@ public class ModArmorMaterial implements ArmorMaterial {
 
     @Override
     public int getDurability(EquipmentSlot slotIn) {
-        return (int) (this.tier.vanillaMat.getDurability(slotIn) * getExtraMulti());
+        return 100 + (int) (this.tier.vanillaMat.getDurability(slotIn) * getExtraMulti());
     }
 
     @Override

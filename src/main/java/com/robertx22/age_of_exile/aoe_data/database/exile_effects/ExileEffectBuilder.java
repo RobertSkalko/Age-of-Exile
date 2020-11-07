@@ -38,7 +38,7 @@ public class ExileEffectBuilder {
 
     public ExileEffectBuilder stat(float first, Stat stat, ModType type) {
         OptScaleExactStat data = new OptScaleExactStat(first, first, stat, type);
-        data.scaleToLevel = stat.getScaling() == StatScaling.LINEAR;
+        data.scaleToLevel = stat.getScaling() == StatScaling.NORMAL;
         this.effect.stats.add(data);
         return this;
     }

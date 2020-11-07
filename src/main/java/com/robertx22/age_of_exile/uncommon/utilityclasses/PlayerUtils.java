@@ -1,5 +1,8 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
+import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -8,10 +11,26 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 
 public class PlayerUtils {
+
+    public static List<ItemStack> getEquippedStacksOf(PlayerEntity player, BaseGearType type) {
+
+        if (type.getVanillaSlotType() == null) {
+            List<ItemStack> list = new ArrayList<>();
+            if (type.gear_slot.equals(RefCurio.RING)) {
+                list.addAll(MyCurioUtils.getAllSlots(Arrays.asList(RefCurio.RING), player));
+            }
+            if (type.gear_slot.equals(RefCurio.NECKLACE)) {
+                list.addAll(MyCurioUtils.getAllSlots(Arrays.asList(RefCurio.NECKLACE), player));
+            }
+            return list;
+        } else {
+            return Arrays.asList(player.getEquippedStack(type.getVanillaSlotType()));
+        }
+
+    }
 
     public static void giveItem(ItemStack stack, PlayerEntity player) {
         if (player.giveItemStack(stack) == false) {

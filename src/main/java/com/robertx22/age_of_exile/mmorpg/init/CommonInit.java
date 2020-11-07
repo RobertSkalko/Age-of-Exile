@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.init;
 
+import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.aoe_data.GeneratedData;
 import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
@@ -67,6 +68,8 @@ public class CommonInit implements ModInitializer {
             .build());
         CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, new SlotTypeInfo.Builder("necklace").size(1)
             .build());
+        CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, new SlotTypeInfo.Builder(RefCurio.SALVAGE_BAG).size(1)
+            .build());
 
         ModCriteria.init();
 
@@ -77,7 +80,7 @@ public class CommonInit implements ModInitializer {
             @Override
             public void dropRules(LivingEntity livingEntity, ICuriosItemHandler iCuriosItemHandler, DamageSource damageSource, int i, boolean b, List<Pair<Predicate<ItemStack>, ICurio.DropRule>> list) {
 
-                if (ModConfig.get().Server.SAVE_GEAR_AND_HOTBAR_ON_DEATH) {
+                if (ModConfig.get().Server.KEEP_INVENTORY_ON_DEATH) {
                     list.add(new Pair<Predicate<ItemStack>, ICurio.DropRule>(x -> true, ICurio.DropRule.ALWAYS_KEEP));
                 }
             }

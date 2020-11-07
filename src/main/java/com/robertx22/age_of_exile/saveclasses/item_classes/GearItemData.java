@@ -153,9 +153,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public Text name(ItemStack stack) {
-
         return stack.getName();
-
     }
 
     // used when upgrading item rarity
@@ -444,6 +442,15 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         }
 
         return 0;
+    }
+
+    public boolean isBetterThan(GearItemData other) {
+
+        if (other.level > level + 10) {
+            return false;
+        }
+        return getRarity()
+            .isHigherThan(other.getRarity());
     }
 
 }

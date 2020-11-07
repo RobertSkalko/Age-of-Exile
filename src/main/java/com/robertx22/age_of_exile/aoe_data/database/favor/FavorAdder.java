@@ -27,7 +27,7 @@ public class FavorAdder implements ISlashRegistryInit {
         none.favor_drain_per_item = 0;
 
         none.locname = "Empty";
-        none.text_format = Formatting.RED;
+        none.text_format = Formatting.RED.getName();
 
         none.addToSerializables();
 
@@ -36,7 +36,7 @@ public class FavorAdder implements ISlashRegistryInit {
         low.rank = 1;
 
         low.locname = "Low";
-        low.text_format = Formatting.YELLOW;
+        low.text_format = Formatting.YELLOW.getName();
 
         low.addToSerializables();
 
@@ -45,7 +45,7 @@ public class FavorAdder implements ISlashRegistryInit {
         normal.rank = 2;
 
         normal.locname = "Normal";
-        normal.text_format = Formatting.GREEN;
+        normal.text_format = Formatting.GREEN.getName();
 
         normal.addToSerializables();
 
@@ -57,7 +57,7 @@ public class FavorAdder implements ISlashRegistryInit {
         high.extra_items_per_chest = 2;
 
         high.locname = "High";
-        high.text_format = Formatting.AQUA;
+        high.text_format = Formatting.AQUA.getName();
 
         high.addToSerializables();
 
@@ -69,7 +69,7 @@ public class FavorAdder implements ISlashRegistryInit {
         veryhigh.extra_items_per_chest = 3;
 
         veryhigh.locname = "Very High";
-        veryhigh.text_format = Formatting.BLUE;
+        veryhigh.text_format = Formatting.BLUE.getName();
 
         veryhigh.addToSerializables();
 
@@ -81,7 +81,7 @@ public class FavorAdder implements ISlashRegistryInit {
         favored.extra_items_per_chest = 5;
 
         favored.locname = "Favored";
-        favored.text_format = Formatting.LIGHT_PURPLE;
+        favored.text_format = Formatting.LIGHT_PURPLE.getName();
 
         favored.addToSerializables();
 

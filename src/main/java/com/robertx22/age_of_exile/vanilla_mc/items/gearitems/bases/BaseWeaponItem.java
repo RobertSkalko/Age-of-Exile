@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.interfaces.IGearItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
 import net.minecraft.entity.EquipmentSlot;
@@ -15,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
 import net.minecraft.util.registry.Registry;
 
-public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName, IGearItem {
+public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName {
 
     public BaseWeaponItem(String locname) {
 

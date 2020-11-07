@@ -40,7 +40,7 @@ public class ItemNewbieGearBag extends Item {
                 list.add(SlashRegistry.GearTypes()
                     .get("wand0")); // todo, how many times do i have to hard link to specific things?
                 list.add(SlashRegistry.GearTypes()
-                    .get("mana_reg_ring")); // todo, how many times do i have to hard link to specific things?
+                    .get("mana_reg_ring_low")); // todo, how many times do i have to hard link to specific things?
 
                 list.forEach(x -> {
                     GearItemData data = getBlueprint(x).createData();

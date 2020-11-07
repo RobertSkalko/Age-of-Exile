@@ -3,13 +3,12 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.offhands;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.interfaces.IGearItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem {
+public class NormalShield extends ShieldItem implements IAutoLocName {
 
     public Identifier resource = new Identifier("");
 

@@ -20,6 +20,13 @@ if I'm correct, this will make it much harder to have too much favor but still r
 * player is now fully restored on level up
 * added 2 items, empty and full favor bottle. Contains 1000 favor. 
 Possible uses: modpacker way to give favor, players can save their favor if they don't want to spend it. etc.
+* enabled keepinventory gamerule by default, instead of just hotbar and armor.
+Reason: I upped difficulty, going back to spawn should be punishment enough.
+ If not, you can disable it, or wait till I get an idea for a fair death peanlty in a mod where your gear is 90% of your strength.
+* if item too high lvl, item is tried to put in inventory instead of dropping
+* gear has more durability now
+* added salvage bag item back in. 
+Salvage bag now has a nifty feature, if you currently have a lower rarity gear equipped, it won't salvage that rarity or lower!
 
 ### v.1.7.6
 * hotfix stuff like lava dmg breaking whole armor on lvl 50 because of enviro damage scaling by disabling enviro damage scaling by default

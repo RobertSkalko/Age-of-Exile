@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -29,7 +30,7 @@ public class UnequipGear {
 
         if (player.getEquippedStack(slot)
             .isEmpty()) {
-            player.dropItem(copy, false);
+            PlayerUtils.giveItem(copy, player);
             player.sendMessage(txt
                 , false);
         } else {
@@ -43,7 +44,7 @@ public class UnequipGear {
         ItemStack copy = stack.copy();
         handler.getStacks()
             .setStack(number, ItemStack.EMPTY);
-        player.dropItem(copy, false);
+        PlayerUtils.giveItem(copy, player);
         player.sendMessage(txt, false);
     }
 

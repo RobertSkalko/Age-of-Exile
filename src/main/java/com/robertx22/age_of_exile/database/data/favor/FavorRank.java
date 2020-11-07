@@ -41,9 +41,18 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
 
     public float favor_drain_per_item = 1;// TODO THIS IS A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
 
-    public Formatting text_format = Formatting.GREEN;
+    public String text_format = Formatting.GREEN.getName();
 
     public transient String locname = "";
+
+    public Formatting textFormatting() {
+        try {
+            return Formatting.byName(text_format);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Formatting.GRAY;
+    }
 
     public Identifier getTexture() {
         return new Identifier(Ref.MODID, "textures/gui/favor/" + GUID() + ".png");
@@ -53,9 +62,9 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
         List<MutableText> list = new ArrayList<>();
 
         list.add(Words.Favor.locName()
-            .formatted(text_format)
+            .formatted(textFormatting())
             .append(": ")
-            .append(locName().formatted(text_format)));
+            .append(locName().formatted(textFormatting())));
 
         list.add(new LiteralText(""));
 
