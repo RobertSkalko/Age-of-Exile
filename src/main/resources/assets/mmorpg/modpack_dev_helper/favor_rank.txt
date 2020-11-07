@@ -5,3 +5,4 @@ high
 low
 very_high
 favored
+none

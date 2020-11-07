@@ -44,6 +44,7 @@ public class LootInfo {
     public float multi = 1;
     private int minItems = 0;
     private int maxItems = 50;
+    private int extraFavorItems = 0;
     public boolean isMapWorld = false;
     public FavorRank favorRank;
     public PlayerFavor favor;
@@ -51,6 +52,11 @@ public class LootInfo {
 
     public int getMinItems() {
         return minItems;
+
+    }
+
+    public int getExtraFavorItems() {
+        return extraFavorItems;
     }
 
     public int getMaxItems() {
@@ -76,10 +82,7 @@ public class LootInfo {
                 .get(info.mobData.getRarity()).extra_hp_multi > 5 || EntityUtils.getVanillaMaxHealth(mob) > 100) {
                 // is boss basically
                 if (info.favorRank != null) {
-                    info.minItems += info.favorRank.extra_items_per_boss;
-                    info.maxItems += info.favorRank.extra_items_per_boss;
-                    float cost = info.favorRank.extra_items_per_boss * (info.favorRank.extra_item_favor_cost - info.favorRank.favor_drain_per_item);
-                    info.favor.setFavor(info.favor.getFavor() - cost);
+                    info.extraFavorItems = info.favorRank.extra_items_per_boss;
                 }
             }
         } catch (Exception e) {
@@ -108,10 +111,7 @@ public class LootInfo {
         info.setupAllFields();
 
         if (info.favorRank != null) {
-            info.minItems += info.favorRank.extra_items_per_chest;
-            info.maxItems += info.favorRank.extra_items_per_chest;
-            float cost = info.favorRank.extra_items_per_chest * (info.favorRank.extra_item_favor_cost - info.favorRank.favor_drain_per_item);
-            info.favor.setFavor(info.favor.getFavor() - cost);
+            info.extraFavorItems = info.favorRank.extra_items_per_chest;
         }
 
         return info;

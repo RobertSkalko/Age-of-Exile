@@ -48,7 +48,7 @@ public class MasterLootGen {
 
             int extraTries = 0;
 
-            while (extraFavorItems.size() < info.getMinItems()) {
+            while (extraFavorItems.size() < info.getExtraFavorItems()) {
 
                 extraTries++;
                 if (extraTries > 20) {
@@ -61,10 +61,6 @@ public class MasterLootGen {
                 }
             }
 
-            while (extraFavorItems.size() > info.getMaxItems()) {
-                ItemStack randomtoremove = RandomUtils.randomFromList(extraFavorItems);
-                extraFavorItems.removeIf(x -> x.equals(randomtoremove));
-            }
             info.favor.afterLootingItems(info.favorRank.extra_item_favor_cost, info, extraFavorItems.size());
 
             items.addAll(extraFavorItems);

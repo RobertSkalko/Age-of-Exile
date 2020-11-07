@@ -129,8 +129,6 @@ public class EntityCap {
 
         void onLogin(PlayerEntity player);
 
-        boolean decreaseRarity(LivingEntity entity);
-
         boolean isWeapon(GearItemData gear);
 
         void setTier(int tier);
@@ -560,29 +558,17 @@ public class EntityCap {
         @Override
         public boolean increaseRarity(LivingEntity entity) {
 
-            if (rarity >= SlashRegistry.MobRarities()
-                .highest()
-                .Rank()) {
-                return false;
-            } else {
-                rarity = rarity + 1;
+            MobRarity rar = SlashRegistry.MobRarities()
+                .get(rarity);
+
+            if (rar.hasHigherRarity()) {
+                rarity = rar.getHigherRarity().rank;
                 this.equipsChanged = true;
                 this.shouldSync = true;
+                this.forceRecalculateStats(entity);
                 return true;
-
-            }
-        }
-
-        @Override
-        public boolean decreaseRarity(LivingEntity entity) {
-
-            if (rarity - 1 < 0) {
-                return false;
             } else {
-                rarity = rarity - 1;
-                this.shouldSync = true;
-                return true;
-
+                return false;
             }
         }
 

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.data.IAutoGson;
+import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -47,6 +48,16 @@ public final class MobRarity extends BaseRarity implements Rarity, IAutoGson<Mob
 
     public float oneAffixChance() {
         return affix_chance;
+    }
+
+    public boolean hasHigherRarity() {
+        return SlashRegistry.MobRarities()
+            .isRegistered(higher_rar);
+    }
+
+    public MobRarity getHigherRarity() {
+        return SlashRegistry.MobRarities()
+            .get(higher_rar);
     }
 
     @Override

@@ -124,7 +124,7 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public void setBossFields() {
-        this.guid = "boss";
+        this.guid = IRarity.BOSS_ID;
         this.loc_name = "Boss";
         this.text_format = Formatting.RED.name();
 

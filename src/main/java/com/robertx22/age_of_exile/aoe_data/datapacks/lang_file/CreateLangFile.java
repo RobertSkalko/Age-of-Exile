@@ -120,7 +120,8 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(SlashRegistry.Affixes()
             .getSerializable());
-
+        list.addAll(SlashRegistry.FavorRanks()
+            .getSerializable());
         list.addAll(SlashRegistry.Runewords()
             .getSerializable());
 

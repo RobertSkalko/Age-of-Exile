@@ -66,7 +66,7 @@ public class RarityRegistryContainer<T extends Rarity> extends SlashRegistryCont
 
             return map.get(i);
         } else {
-            System.out.print("Rarity : " + i + " not found in: " + this.getType().id + " registry ");
+            System.out.print("\n Rarity : " + i + " not found in: " + this.getType().id + " registry \n");
             return lowest();
         }
 

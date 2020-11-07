@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.favor;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
@@ -11,71 +12,78 @@ public class FavorAdder implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        FavorRank none = new FavorRank("none");
+        none.min = 0;
+        none.rank = 0;
+
+        none.can_salvage_loot = false;
+        none.excludedRarities = Arrays.asList(IRarity.MYTHIC_ID, IRarity.LEGENDARY_ID, IRarity.RELID_ID);
+        none.drop_currency = false;
+        none.drop_gems = false;
+        none.drop_runes = false;
+        none.drop_lvl_rewards = false;
+        none.drop_unique_gears = false;
+        none.drop_exp = true;
+        none.favor_drain_per_item = 0;
+
+        none.locname = "Empty";
+        none.text_format = Formatting.RED;
+
+        none.addToSerializables();
+
         FavorRank low = new FavorRank("low");
-        low.min = 0;
-        low.rank = 0;
+        low.min = 250;
+        low.rank = 1;
 
-        low.can_salvage_loot = false;
-        low.excludedRarities = Arrays.asList(IRarity.MYTHIC_ID, IRarity.LEGENDARY_ID, IRarity.RELID_ID);
-        low.drop_currency = false;
-        low.drop_gems = false;
-        low.drop_runes = false;
-        low.drop_lvl_rewards = false;
-        low.drop_unique_gears = false;
-        low.drop_exp = true;
+        low.locname = "Low";
+        low.text_format = Formatting.YELLOW;
 
-        low.favor_drain_per_item = 0;
         low.addToSerializables();
 
         FavorRank normal = new FavorRank("normal");
         normal.min = 1;
-        normal.rank = 1;
+        normal.rank = 2;
+
+        normal.locname = "Normal";
+        normal.text_format = Formatting.GREEN;
+
         normal.addToSerializables();
 
         FavorRank high = new FavorRank("high");
         high.min = 1000;
-        high.rank = 2;
+        high.rank = 3;
         high.extra_item_favor_cost = 1.05F;
         high.extra_items_per_boss = 3;
         high.extra_items_per_chest = 2;
+
+        high.locname = "High";
+        high.text_format = Formatting.AQUA;
+
         high.addToSerializables();
 
         FavorRank veryhigh = new FavorRank("very_high");
         veryhigh.min = 2000;
-        veryhigh.rank = 3;
+        veryhigh.rank = 4;
         veryhigh.extra_item_favor_cost = 1.1F;
         veryhigh.extra_items_per_boss = 5;
         veryhigh.extra_items_per_chest = 3;
+
+        veryhigh.locname = "Very High";
+        veryhigh.text_format = Formatting.BLUE;
+
         veryhigh.addToSerializables();
 
         FavorRank favored = new FavorRank("favored");
         favored.min = 5000;
-        favored.rank = 4;
+        favored.rank = 5;
         favored.extra_item_favor_cost = 1.5F;
         favored.extra_items_per_boss = 10;
         favored.extra_items_per_chest = 5;
+
+        favored.locname = "Favored";
+        favored.text_format = Formatting.LIGHT_PURPLE;
+
         favored.addToSerializables();
-
-        /*
-        FavorRank high = new FavorRank();
-        high.min = 1000;
-        high.rank = 2;
-        high.extra_favor_drain = 1;
-        high.extra_gear_chance = 5;
-        high.extra_currency_chance = 5;
-
-        high.addToSerializables();
-
-        FavorRank veryhigh = new FavorRank();
-        veryhigh.min = 2500;
-        veryhigh.rank = 2;
-        veryhigh.extra_favor_drain = 2;
-        veryhigh.extra_gear_chance = 10;
-        veryhigh.extra_currency_chance = 10;
-
-        veryhigh.addToSerializables();
-
-         */
 
     }
 }

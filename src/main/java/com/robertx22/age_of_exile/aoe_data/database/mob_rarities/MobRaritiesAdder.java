@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.mob_rarities;
 
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 
 public class MobRaritiesAdder implements ISlashRegistryInit {
 
@@ -13,10 +14,11 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         common.stat_multi = 1;
         common.min_lvl = 0;
         common.dmg_multi = 1;
-        common.extra_hp_multi = 0.8f;
+        common.extra_hp_multi = 0.75f;
         common.exp_multi = 1;
         common.loot_multi = 1;
         common.weight = 1000;
+        common.higher_rar = IRarity.MAGICAL_ID;
         common.setCommonFields();
         common.addToSerializables();
 
@@ -29,6 +31,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         uncommon.exp_multi = 1.2F;
         uncommon.loot_multi = 1.2F;
         uncommon.weight = 500;
+        uncommon.higher_rar = IRarity.RARE_ID;
         uncommon.setMagicalFields();
         uncommon.addToSerializables();
 
@@ -41,6 +44,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         rare.exp_multi = 2F;
         rare.loot_multi = 2F;
         rare.weight = 400;
+        rare.higher_rar = IRarity.EPIC_ID;
         rare.setRareFields();
         rare.addToSerializables();
 
@@ -53,6 +57,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         epic.exp_multi = 3F;
         epic.loot_multi = 3F;
         epic.weight = 250;
+        epic.higher_rar = IRarity.LEGENDARY_ID;
         epic.setEpicFields();
         epic.addToSerializables();
 
@@ -65,6 +70,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         legendary.exp_multi = 4F;
         legendary.loot_multi = 4F;
         legendary.weight = 100;
+        legendary.higher_rar = IRarity.BOSS_ID;
         legendary.setLegendaryFields();
         legendary.addToSerializables();
 

@@ -4,14 +4,18 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson<FavorRank> {
+public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson<FavorRank>, IAutoLocName {
 
     public static FavorRank SERIALIZER = new FavorRank("");
 
@@ -37,8 +41,23 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
 
     public float favor_drain_per_item = 1;// TODO THIS IS A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
 
+    public Formatting text_format = Formatting.GREEN;
+
+    public transient String locname = "";
+
+    public Identifier getTexture() {
+        return new Identifier(Ref.MODID, "textures/gui/favor/" + GUID() + ".png");
+    }
+
     public List<MutableText> getTooltip() {
         List<MutableText> list = new ArrayList<>();
+
+        list.add(Words.Favor.locName()
+            .formatted(text_format)
+            .append(": ")
+            .append(locName().formatted(text_format)));
+
+        list.add(new LiteralText(""));
 
         boolean hasBad = false;
 
@@ -85,8 +104,17 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
             list.add(new LiteralText("You are blessed by Azuna").formatted(Formatting.GREEN));
         } else {
             list.add(new LiteralText(""));
-            list.add(new LiteralText("Azuna is disappointed in you.").formatted(Formatting.LIGHT_PURPLE));
+            list.add(new LiteralText("Azuna is disappointed in you.").formatted(Formatting.RED));
         }
+
+        if (extra_items_per_boss > 0) {
+            list.add(new LiteralText(""));
+            list.add(new LiteralText("Bosses Drop extra items.").formatted(Formatting.LIGHT_PURPLE));
+        }
+        if (extra_items_per_chest > 0) {
+            list.add(new LiteralText("Loot Chests Drop extra items.").formatted(Formatting.LIGHT_PURPLE));
+        }
+
         list.add(new LiteralText(""));
         list.add(new LiteralText("Restore favor by looting chests found in the world.").formatted(Formatting.BLUE));
 
@@ -113,5 +141,20 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
     @Override
     public String GUID() {
         return id;
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Misc;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".favor." + GUID();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return locname;
     }
 }
