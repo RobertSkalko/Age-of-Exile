@@ -19,6 +19,7 @@ public class ClientConfigs {
     @ConfigEntry.Gui.CollapsibleObject
     public OverlayGuiConfig OVERLAY_GUI = new OverlayGuiConfig();
 
+    @ConfigEntry.Gui.CollapsibleObject
     public GuiPartConfig AREA_LVL_OVERLAY = new GuiPartConfig();
 
     public boolean RENDER_MOB_HEALTH_GUI = true;

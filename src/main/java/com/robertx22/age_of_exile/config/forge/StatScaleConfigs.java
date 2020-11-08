@@ -15,9 +15,6 @@ public class StatScaleConfigs {
     @ConfigEntry.Gui.CollapsibleObject
     public LevelScalingConfig SLOW_STAT_SCALING;
 
-    @ConfigEntry.Gui.CollapsibleObject
-    public LevelScalingConfig KILLS_NEEDED_PER_LEVEL;
-
     public StatScaleConfigs() {
 
         List<LevelScalingRangePart> normal = new ArrayList<>();
@@ -36,7 +33,6 @@ public class StatScaleConfigs {
         slow.add(new LevelScalingRangePart(0F, 1F, 1, 2F));
 
         NORMAL_STAT_SCALING = new LevelScalingConfig(normal);
-        KILLS_NEEDED_PER_LEVEL = new LevelScalingConfig(kills);
         SLOW_STAT_SCALING = new LevelScalingConfig(slow);
     }
 }

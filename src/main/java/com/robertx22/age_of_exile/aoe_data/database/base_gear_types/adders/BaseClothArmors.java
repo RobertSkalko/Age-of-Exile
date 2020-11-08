@@ -27,8 +27,8 @@ public class BaseClothArmors implements ISlashRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> CHESTS;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HELMETS;
 
-    static float min = 4;
-    static float max = 8;
+    static float min = 5;
+    static float max = 10;
 
     @Override
     public void registerAll() {

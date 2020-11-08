@@ -8,6 +8,9 @@ import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
+import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer0;
+import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer1;
+import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer2;
 import com.robertx22.age_of_exile.vanilla_mc.items.salvage_bag.CommonSalvageBagItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -30,6 +33,10 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public SalvagedDustItem T2_DUST = item(new SalvagedDustItem("T2 Salvaged Dust", 2, LevelRanges.MIDDLE));
     public SalvagedDustItem T3_DUST = item(new SalvagedDustItem("T3 Salvaged Dust", 3, LevelRanges.HIGH));
     public SalvagedDustItem T4_DUST = item(new SalvagedDustItem("T4 Salvaged Dust", 4, LevelRanges.ENDGAME));
+
+    public RepairHammer0 REPAIR_HAMMER_0 = item(new RepairHammer0(1000), "repair_hammers/0");
+    public RepairHammer1 REPAIR_HAMMER_1 = item(new RepairHammer1(3000), "repair_hammers/1");
+    public RepairHammer2 REPAIR_HAMMER_2 = item(new RepairHammer2(9000), "repair_hammers/2");
 
     public CommonSalvageBagItem COMMON_SALVAGE_BAG = item(new CommonSalvageBagItem(), "salvage_bag/0");
 

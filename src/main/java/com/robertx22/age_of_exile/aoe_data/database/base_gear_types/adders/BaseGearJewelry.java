@@ -31,8 +31,8 @@ public class BaseGearJewelry implements ISlashRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> ALL_RES_NECKLACE;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HP_NECKLACE;
 
-    static int minResist = 7;
-    static int maxResist = 15;
+    static int minResist = 15;
+    static int maxResist = 40;
 
     @Override
     public void registerAll() {

@@ -60,7 +60,7 @@ public class ResetAllSpellsItem extends AutoItem implements IShapedRecipe {
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.MISC_ITEMS.RESET_ALL_PERKS)
+        return shaped(this)
             .input('t', ModRegistry.MISC_ITEMS.T0_DUST)
             .input('v', Items.GOLD_INGOT)
             .input('b', Items.GLASS_BOTTLE)

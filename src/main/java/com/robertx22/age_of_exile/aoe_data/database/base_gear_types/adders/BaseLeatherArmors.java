@@ -27,11 +27,11 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> CHESTS;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HELMETS;
 
-    static float min = 30;
+    static float min = 50;
     static float max = 100;
 
-    static float minHP = 1;
-    static float maxHP = 3;
+    static float minHP = 2;
+    static float maxHP = 4;
 
     @Override
     public void registerAll() {

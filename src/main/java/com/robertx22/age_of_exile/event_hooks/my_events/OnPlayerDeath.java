@@ -9,8 +9,13 @@ public class OnPlayerDeath extends EventConsumer<ExileEvents.OnPlayerDeath> {
     @Override
     public void accept(ExileEvents.OnPlayerDeath event) {
         try {
+
+            Load.Unit(event.player)
+                .onDeath(event.player);
+
             Load.Unit(event.player)
                 .setEquipsChanged(true);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

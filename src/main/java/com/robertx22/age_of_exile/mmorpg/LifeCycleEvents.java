@@ -40,7 +40,7 @@ public class LifeCycleEvents {
                 .set(false, server);
 
             server.getGameRules()
-                .get(GameRules.NATURAL_REGENERATION)
+                .get(GameRules.KEEP_INVENTORY)
                 .set(ModConfig.get().Server.KEEP_INVENTORY_ON_DEATH, server);
 
             if (MMORPG.RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
@@ -50,9 +50,13 @@ public class LifeCycleEvents {
         });
 
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
+
             server.getGameRules()
                 .get(GameRules.NATURAL_REGENERATION)
                 .set(regenDefault, server);
+            server.getGameRules()
+                .get(GameRules.KEEP_INVENTORY)
+                .set(keepInvDefault, server);
         });
 
     }
