@@ -38,6 +38,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public RepairHammer1 REPAIR_HAMMER_1 = item(new RepairHammer1(3000), "repair_hammers/1");
     public RepairHammer2 REPAIR_HAMMER_2 = item(new RepairHammer2(9000), "repair_hammers/2");
 
+    public LootTableItem LOOT_TABLE_ITEM = item(new LootTableItem(), "loot_table_chest");
+
     public CommonSalvageBagItem COMMON_SALVAGE_BAG = item(new CommonSalvageBagItem(), "salvage_bag/0");
 
     public FullFavorItem FULL_FAVOR = item(new FullFavorItem(), "full_favor");

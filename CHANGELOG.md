@@ -30,3 +30,8 @@ Salvage bag now has a nifty feature, if you currently have a lower rarity gear e
 * buffed gear base defense values
 * added death xp penalty back in (i accidentally disabled it)
 * added repair hammers! Craftable with aoe gems like a pickaxe. These hammers when used repair all your gear by a certain amount!
+* added level up reward bags
+* added level up reward configs, works based on loot tables.
+You lvl up, get the reward bag, click it, it gives you items based on the configured loot table.
+This bag item can be used for more than level up rewards if modpackers wish.
+* leveling now has milestone rewards! Get useful materials to progress as you level up!

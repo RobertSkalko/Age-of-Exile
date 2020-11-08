@@ -1,4 +1,4 @@
 {
   "replace": "false",
-  "values": ["mmorpg:repair_hammers/0","mmorpg:repair_hammers/1","mmorpg:repair_hammers/2","mmorpg:salvage_bag/0"]
+  "values": ["mmorpg:salvage_bag/0"]
 }

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers;
 
-import com.robertx22.age_of_exile.a_libraries.curios.interfaces.ISalvageBag;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
@@ -31,7 +30,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class RepairHammerItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe, ISalvageBag {
+public abstract class RepairHammerItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
 
     int totalRepair;
 
@@ -111,6 +110,9 @@ public abstract class RepairHammerItem extends Item implements IAutoLocName, IAu
                     }
 
                 }
+
+                player.getStackInHand(hand)
+                    .decrement(1);
 
                 SoundUtils.playSound(world, player.getBlockPos(), SoundEvents.BLOCK_ANVIL_USE, 0.8f, 1f);
 
