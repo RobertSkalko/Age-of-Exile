@@ -21,7 +21,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName {
 
         super(ItemUtils.getDefaultGearProperties()
             .maxCount(1)
-            .maxDamage((int) (ArmorMaterials.DIAMOND.getDurability(EquipmentSlot.CHEST) * 1.25F)));
+            .maxDamage((int) (ArmorMaterials.DIAMOND.getDurability(EquipmentSlot.CHEST) * 1.5F)));
         this.locname = locname;
     }
 

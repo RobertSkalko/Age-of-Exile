@@ -5,7 +5,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mmorpg:repair_hammers/1"
+          "name": "mmorpg:repair_hammers/2"
         }
       ]
     },
@@ -14,7 +14,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:apple",
+          "name": "mmorpg:identify_tome",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -30,11 +30,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_ingot",
+          "name": "minecraft:diamond",
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 10
+              "count": 4
             }
           ]
         }

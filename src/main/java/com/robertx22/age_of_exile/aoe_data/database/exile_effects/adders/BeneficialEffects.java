@@ -111,7 +111,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(POISON_WEAPONS, "Poison Attack", EffectType.BENEFICIAL)
-            .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
+            .stat(4, new AttackDamage(Elements.Nature), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(IMBUE, "Imbue", EffectType.BENEFICIAL)

@@ -26,6 +26,7 @@ public class ClientConfigs {
     public boolean ONLY_RENDER_MOB_LOOKED_AT = true;
 
     public boolean SHOW_LOW_ENERGY_MANA_WARNING = true;
+    public boolean USE_RIGHT_CLICK_FOR_SPELL_CASTING = false;
     public boolean RENDER_SIMPLE_MOB_BAR = true;
 
     public int REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES = 32;

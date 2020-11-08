@@ -35,3 +35,4 @@ Salvage bag now has a nifty feature, if you currently have a lower rarity gear e
 You lvl up, get the reward bag, click it, it gives you items based on the configured loot table.
 This bag item can be used for more than level up rewards if modpackers wish.
 * leveling now has milestone rewards! Get useful materials to progress as you level up!
+* added spell cast hotkey! Retained right click cast as a config

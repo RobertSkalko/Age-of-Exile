@@ -57,6 +57,10 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
             return;
         }
 
+        if (player.isBlocking()) {
+            return;
+        }
+
         Spell spell = SlashRegistry.Spells()
             .get(this.spellid);
 

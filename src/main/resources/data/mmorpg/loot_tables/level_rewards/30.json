@@ -30,11 +30,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_ingot",
+          "name": "minecraft:diamond",
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 10
+              "count": 3
             }
           ]
         }

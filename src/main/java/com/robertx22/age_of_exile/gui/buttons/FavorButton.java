@@ -37,7 +37,7 @@ public class FavorButton extends TexturedButtonWidget {
                 .getRank();
 
             tooltip.add(Words.Favor.locName()
-                .append(": " + Load.favor(mc.player)
+                .append(": " + (int) Load.favor(mc.player)
                     .getFavor())
                 .formatted(Formatting.WHITE)
                 .formatted(Formatting.BOLD));

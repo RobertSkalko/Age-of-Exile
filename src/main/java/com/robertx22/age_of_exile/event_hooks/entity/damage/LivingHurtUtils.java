@@ -35,7 +35,7 @@ public class LivingHurtUtils {
 
             List<ItemStack> curios = MyCurioUtils.getAllSlots(player);
 
-            curios.forEach(x -> x.damage(getItemDamage(dmg) * 2, player, (entity) -> {
+            curios.forEach(x -> x.damage(getItemDamage(dmg), player, (entity) -> {
                 entity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
             }));
 

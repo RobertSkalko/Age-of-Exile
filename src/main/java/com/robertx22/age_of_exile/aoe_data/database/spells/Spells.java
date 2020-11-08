@@ -163,9 +163,9 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 1.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Water))
+            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water))
 
-            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Water)
+            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water)
                 .addCondition(EffectCondition.CASTER_HAS_STAT.create(OceanSpellModStats.FROSTBALL_EXTRA_DMG_KEY))
                 .addCondition(EffectCondition.TARGET_HAS_POTION.create(POTIONS.getExileEffect(NegativeEffects.CHILL))))
 
@@ -176,7 +176,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.FIRE_CHARGE, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 3D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Fire))
+            .onHit(PartBuilder.damage(ValueCalculationData.base(11), Elements.Fire))
             .build();
 
         POISONBALL = SpellBuilder.of(POISONBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Poison Ball")
@@ -184,7 +184,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 1.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SLIME, 3D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Nature))
+            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Nature))
             .build();
 
         THROW_FLAMES = SpellBuilder.of(THROW_FLAMES_ID, MULTI_TARGET_PROJ_CONFIG(), "Throw Flames")
@@ -195,7 +195,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 5D, 0.15D))
 
             .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.BURN, 1D, 20 * 3D)
-                .addCondition(EffectCondition.CHANCE.create(25D))
+                .addCondition(EffectCondition.CHANCE.create(33D))
                 .requiresSpellMod(FireSpellModStats.THROW_FLAMES_BURN_KEY))
 
             .onHit(PartBuilder.healCaster(ValueCalculationData.base(1))
@@ -275,14 +275,14 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(3), Elements.Fire, 2D))
 
-            .onTick(PartBuilder.healInAoe(ValueCalculationData.base(2), 2D)
-                .onTick(30D)
-                .requiresSpellMod(FireSpellModStats.MAGMA_FLOWER_BURN_KEY))
-
-            .onTick(PartBuilder.damageInAoe(ValueCalculationData.base(0.1F), Elements.Fire, 2D)
-                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(1F)))
+            .onTick(PartBuilder.healInAoe(ValueCalculationData.base(3), 2D)
                 .onTick(30D)
                 .requiresSpellMod(FireSpellModStats.MAGMA_FLOWER_HEAL_KEY))
+
+            .onTick(PartBuilder.damageInAoe(ValueCalculationData.base(1), Elements.Fire, 2D)
+                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(2F)))
+                .onTick(30D)
+                .requiresSpellMod(FireSpellModStats.MAGMA_FLOWER_BURN_KEY))
 
             .build();
 
@@ -297,7 +297,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.ENTITY_GENERIC_SPLASH, 1D, 1D))
             .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(2), Elements.Water, 2D))
 
-            .onTick(PartBuilder.restoreManaInRadius(ValueCalculationData.base(4), 2D)
+            .onTick(PartBuilder.restoreManaInRadius(ValueCalculationData.base(8), 2D)
                 .onTick(30D)
                 .requiresSpellMod(OceanSpellModStats.ICE_FLOWER_RESTORE_KEY))
 
@@ -314,7 +314,7 @@ public class Spells implements ISlashRegistryInit {
                 .put(MapField.ENTITY_NAME, "projectile")))
             .onTick(PartBuilder.particleOnTick(30D, ParticleTypes.HEART, 20D, 2D))
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.ITEM_CROP_PLANT, 1D, 1D))
-            .onTick(PartBuilder.onTickHealInAoe(30D, ValueCalculationData.base(3), 2D))
+            .onTick(PartBuilder.onTickHealInAoe(30D, ValueCalculationData.base(5), 2D))
 
             .onTick(PartBuilder.onTickRemoveNegativeEffectInRadius(30D, 2D)
                 .requiresSpellMod(DivineSpellModStats.FLOWER_CURE_KEY))
@@ -335,7 +335,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.playSoundEveryTicks(30D, SoundEvents.ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH, 1D, 2D))
             .onTick(PartBuilder.onTickDamageInAoe(30D, ValueCalculationData.base(2), Elements.Nature, 2D))
 
-            .onTick(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.THORNS, 2D, 20 * 6D)
+            .onTick(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.THORNS, 2D, 20 * 10D)
                 .requiresSpellMod(NatureSpellModStats.POISON_BUSH_KEY))
 
             .onTick(PartBuilder.addEffectToEnemiesInAoe(StatusEffects.SLOWNESS, 2D, 20 * 3D)
@@ -350,8 +350,8 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SOUNDS.FREEZE, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.healCaster(ValueCalculationData.base(10)))
-            .onCast(PartBuilder.restoreMagicShieldToCaster(ValueCalculationData.base(10))
+            .onCast(PartBuilder.healCaster(ValueCalculationData.base(15)))
+            .onCast(PartBuilder.restoreMagicShieldToCaster(ValueCalculationData.base(20))
                 .requiresSpellMod(OceanSpellModStats.HEART_MAGIC_SHIELD_RESTORE_KEY))
             .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.CHILL, 5D, 20D * 10D)
                 .requiresSpellMod(OceanSpellModStats.HEART_CHILL_ENEMIES_KEY))
@@ -362,7 +362,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_HOE_TILL, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
-            .onCast(PartBuilder.healInAoe(ValueCalculationData.base(3), 2D))
+            .onCast(PartBuilder.healInAoe(ValueCalculationData.base(4), 2D))
             .build();
 
         INFERNO = SpellBuilder.of("blazing_inferno", SpellConfiguration.Builder.multiCast(20, 20 * 30, 60, 3), "Ring of Fire")
@@ -489,7 +489,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COAL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 45D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculationData.base(10), Elements.Fire, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculationData.base(9), Elements.Fire, 2D))
             .build();
 
         SpellBuilder.of("arrow_storm", SpellConfiguration.Builder.multiCast(25, 20 * 160, 60, 6), "Arrow Storm")
@@ -521,7 +521,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        NATURE_BALM = SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 200 * 20), "Nature's Balm")
+        NATURE_BALM = SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 60 * 20), "Nature's Balm")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE, 20 * 15D))
             .build();
@@ -533,7 +533,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.SMOKE, 10D, 3.5D, 0.5D))
             .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.LAVA, 10D, 3.5D, 0.5D))
             .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.FALLING_LAVA, 10D, 3.5D, 0.5D))
-            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Fire, 3.5D))
+            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Fire, 3.5D))
             .build();
 
         SpellBuilder.of("passive_fire", SpellConfiguration.Builder.passive(), "Burning Rage")

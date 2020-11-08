@@ -39,7 +39,9 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     public void hookench(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
 
-        LivingHurtUtils.damageCurioItems(en, amount);
+        if (!source.isUnblockable()) {
+            LivingHurtUtils.damageCurioItems(en, amount);
+        }
 
         if (source instanceof MyDamageSource) {
             ci.setReturnValue(amount);

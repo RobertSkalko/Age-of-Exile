@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpellPacket;
@@ -15,23 +16,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.CancellationException;
 
 public class OnItemUseCastSpell {
+
     public static void onItemUse(ItemStack stack, World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> ci) {
 
         try {
 
-            Spell spell = Load.spells(user)
-                .getCurrentRightClickSpell();
-            if (spell != null && !spell.GUID()
-                .isEmpty()) {
-                if (spell.getConfig().castingWeapon.predicate.predicate.test(user)) {
+            if (ModConfig.get().client.USE_RIGHT_CLICK_FOR_SPELL_CASTING) {
+                Spell spell = Load.spells(user)
+                    .getCurrentRightClickSpell();
+                if (spell != null && !spell.GUID()
+                    .isEmpty()) {
+                    if (spell.getConfig().castingWeapon.predicate.predicate.test(user)) {
 
-                    if (stack.getUseAction() == UseAction.NONE) {
-                        Packets.sendToServer(new TellServerToCastSpellPacket(user));
-
-                    } else {
-                        if (Screen.hasShiftDown()) {
+                        if (stack.getUseAction() == UseAction.NONE) {
                             Packets.sendToServer(new TellServerToCastSpellPacket(user));
-                            ci.setReturnValue(TypedActionResult.success(stack));
+
+                        } else {
+                            if (Screen.hasShiftDown()) {
+                                Packets.sendToServer(new TellServerToCastSpellPacket(user));
+                                ci.setReturnValue(TypedActionResult.success(stack));
+                            }
                         }
                     }
                 }
