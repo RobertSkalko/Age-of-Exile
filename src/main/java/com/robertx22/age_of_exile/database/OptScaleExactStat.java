@@ -49,6 +49,10 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         buf.writeString(type, 50);
     }
 
+    public OptScaleExactStat(float first, Stat stat) {
+        this(first, stat, ModType.FLAT);
+    }
+
     public OptScaleExactStat(float first, Stat stat, ModType type) {
         this.first = first;
         this.stat = stat.GUID();
