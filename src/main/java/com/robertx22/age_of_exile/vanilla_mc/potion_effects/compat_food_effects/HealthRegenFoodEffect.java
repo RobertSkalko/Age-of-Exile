@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects;
+package com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects;
 
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
@@ -9,24 +9,24 @@ import net.minecraft.util.Formatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagicShieldFoodEffect extends FoodEffectPotion {
+public class HealthRegenFoodEffect extends FoodEffectPotion {
 
-    public static MagicShieldFoodEffect INSTANCE = new MagicShieldFoodEffect(13458603);
+    public static HealthRegenFoodEffect INSTANCE = new HealthRegenFoodEffect(14981690);
 
-    protected MagicShieldFoodEffect(int color) {
+    protected HealthRegenFoodEffect(int color) {
         super(color);
     }
 
     @Override
     public ResourcesData.Type resourceType() {
-        return ResourcesData.Type.MAGIC_SHIELD;
+        return ResourcesData.Type.HEALTH;
     }
 
     @Override
     public List<Text> GetTooltipString(TooltipInfo info, int duration, int amplifier) {
         List<Text> list = new ArrayList<>();
         int val = (int) getTotalRestored(info.unitdata, amplifier);
-        list.add(new LiteralText("Restores " + val + " Magic Shield over " + duration / 20 + "s").formatted(Formatting.DARK_PURPLE));
+        list.add(new LiteralText("Restores " + val + " Health over " + duration / 20 + "s").formatted(Formatting.RED));
         return list;
     }
 }

@@ -16,6 +16,8 @@ public class ModelHelper {
     Type type;
     String tex;
 
+    public String modelPath = "";
+
     public ModelHelper(Item item, Type type) {
         this.item = item;
         this.type = type;
@@ -51,6 +53,7 @@ public class ModelHelper {
         String reg = "assets/" + Ref.MODID + "/models/item/" + Registry.ITEM.getId(item)
             .getPath()
             + ".json";
+
         path = path.resolve(reg);
 
         int index = path.toString()
@@ -58,9 +61,6 @@ public class ModelHelper {
 
         String withoutname = path.toString()
             .substring(0, index + 1);
-
-        String name = path.toString()
-            .substring(index + 1);
 
         try {
             new File(withoutname).mkdirs();
@@ -77,9 +77,18 @@ public class ModelHelper {
     }
 
     private String getTextureString() {
-        return Registry.ITEM.getId(item)
-            .toString()
+
+        String id = Registry.ITEM.getId(item)
+            .toString();
+
+        if (!modelPath.isEmpty()) {
+            id = Ref.MODID + ":" + modelPath;
+        }
+
+        String tex = id
             .replace(Ref.MODID + ":", Ref.MODID + ":items/");
+
+        return tex;
     }
 
     private String getBaseJsonString() {

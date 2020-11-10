@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
 public class CreativeTabs {
@@ -31,5 +32,10 @@ public class CreativeTabs {
         new Identifier(Ref.MODID, "runeword_group")
         ,
         () -> new ItemStack(ModRegistry.MISC_ITEMS.RUNEWORD));
+
+    public static ItemGroup Foods = FabricItemGroupBuilder.build(
+        new Identifier(Ref.MODID, "foods_group")
+        ,
+        () -> new ItemStack(Items.HONEYCOMB));
 
 }

@@ -2,12 +2,14 @@ package com.robertx22.age_of_exile.database.data.food_effects;
 
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.FoodEffectPotion;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.FoodExileStatusEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.FoodEffectPotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -54,10 +56,15 @@ public class StatusEffectData implements ITooltipList {
             if (eff instanceof FoodEffectPotion) {
                 FoodEffectPotion food = (FoodEffectPotion) eff;
                 list.addAll(food.GetTooltipString(info, duration_in_seconds * 20, amplifier));
+            } else if (eff instanceof FoodExileStatusEffect) {
+                FoodExileStatusEffect food = (FoodExileStatusEffect) eff;
+                list.addAll(food.GetTooltipString(info, duration_in_seconds * 20, amplifier));
 
             } else {
-                list.add(new LiteralText("Effect: ").append(getEffect().getName())
-                    .append(new LiteralText(", " + duration_in_seconds + "s, Strength: " + amplifier)));
+                list.add(new LiteralText("Gives Effect: ").append(getEffect().getName())
+                    .formatted(Formatting.GOLD));
+                list.add(new LiteralText("Duration: " + duration_in_seconds + "s").formatted(Formatting.AQUA));
+                list.add(new LiteralText("Strength: " + amplifier).formatted(Formatting.RED));
             }
         } catch (Exception e) {
             e.printStackTrace();

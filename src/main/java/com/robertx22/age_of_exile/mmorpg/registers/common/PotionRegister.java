@@ -3,10 +3,12 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodExileEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.FoodExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.HealthRegenFoodEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.MagicShieldFoodEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects.ManaRegenFoodEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.HealthRegenFoodEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.MagicShieldFoodEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.ManaRegenFoodEffect;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -17,6 +19,8 @@ import net.minecraft.util.registry.Registry;
 import java.util.HashMap;
 
 public class PotionRegister {
+
+    public HashMap<FoodExileEffect, StatusEffect> FOOD_EFFECT_MAP = new HashMap<>();
 
     public static Identifier FOOD_HP = new Identifier(Ref.MODID, "food_health_regen");
     public static Identifier FOOD_MANA = new Identifier(Ref.MODID, "food_mana_regen");
@@ -33,6 +37,12 @@ public class PotionRegister {
     }
 
     public PotionRegister() {
+
+        for (FoodExileEffect exileEffect : FoodExileEffect.values()) {
+            FoodExileStatusEffect statusEffect = new FoodExileStatusEffect(exileEffect);
+            Registry.register(Registry.STATUS_EFFECT, Ref.id("foods/" + exileEffect.id), statusEffect);
+            FOOD_EFFECT_MAP.put(exileEffect, statusEffect);
+        }
 
         for (int i = 0; i < 20; i++) {
             String key = ExileStatusEffect.getIdPath(StatusEffectType.NEUTRAL, i);

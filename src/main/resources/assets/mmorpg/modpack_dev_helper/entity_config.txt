@@ -35,6 +35,8 @@ mmorpg:fire_zombie
 mmorpg:water_skeleton
 mmorpg:fire_spider
 minecraft:enderman
+minecraft:zombie
+minecraft:drowned
 mmorpg:fire_slime
 animal
 minecraft:wolf

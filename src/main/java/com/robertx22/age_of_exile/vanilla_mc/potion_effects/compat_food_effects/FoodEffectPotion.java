@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.potion_effects.food_effects;
+package com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;

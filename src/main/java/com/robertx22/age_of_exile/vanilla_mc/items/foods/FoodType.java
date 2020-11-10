@@ -7,20 +7,25 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
 public enum FoodType {
-    APPLE("Apple", StatusEffects.WATER_BREATHING, Items.APPLE),
-    BEER("Beer", ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, Items.HAY_BLOCK),
-    JAM("Jam", StatusEffects.FIRE_RESISTANCE, Items.HONEY_BOTTLE),
-    PIE("Pie", StatusEffects.HASTE, Items.PUMPKIN_PIE),
-    COOKIE("Cookie", StatusEffects.SPEED, Items.COOKIE),
-    BREW("Brew", StatusEffects.NIGHT_VISION, Items.MUSHROOM_STEM);
+    APPLE("Apple", "apple", StatusEffects.WATER_BREATHING, Items.APPLE, Items.COOKED_SALMON),
+    BEER("Beer", "beer", ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, Items.HAY_BLOCK, Items.COOKED_BEEF),
+    JAM("Jam", "jam", StatusEffects.FIRE_RESISTANCE, Items.HONEY_BOTTLE, Items.COOKED_SALMON),
+    PIE("Pie", "pie", StatusEffects.HASTE, Items.PUMPKIN_PIE, Items.PUMPKIN_PIE),
+    COOKIE("Cookie", "cookie", StatusEffects.SPEED, Items.COOKIE, Items.COOKED_CHICKEN),
+    BREW("Brew", "brew", StatusEffects.NIGHT_VISION, Items.MUSHROOM_STEM, Items.COOKED_SALMON);
 
     public String word;
+    public String id;
     public StatusEffect effect;
     public Item vanillaCraftingItem;
 
-    FoodType(String word, StatusEffect effect, Item vanillaCraftingItem) {
+    public Item foodValueItem;
+
+    FoodType(String word, String id, StatusEffect effect, Item vanillaCraftingItem, Item foodValueItem) {
         this.word = word;
+        this.id = id;
         this.effect = effect;
+        this.foodValueItem = foodValueItem;
         this.vanillaCraftingItem = vanillaCraftingItem;
     }
 }

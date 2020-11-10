@@ -44,7 +44,9 @@ public class EntityConfigs implements ISlashRegistryInit {
         EntityConfig polarbear = new EntityConfig(EntityType.POLAR_BEAR, 0);
         polarbear.addToSerializables();
 
-        new EntityConfig(EntityType.ZOMBIFIED_PIGLIN, 0.8F).addToSerializables();
+        new EntityConfig(EntityType.ZOMBIFIED_PIGLIN, 0.5F).addToSerializables();
+        new EntityConfig(EntityType.ZOMBIE, 0.75F).addToSerializables();
+        new EntityConfig(EntityType.DROWNED, 0.75F).addToSerializables();
         new EntityConfig(EntityType.BEE, 0.8F).addToSerializables();
         new EntityConfig(EntityType.WOLF, 0.5F).addToSerializables();
 
@@ -52,7 +54,6 @@ public class EntityConfigs implements ISlashRegistryInit {
         enderman.addToSerializables();
 
         EntityConfig wither = mob(EntityType.WITHER, new SpecialMobStats());
-        wither.max_lvl = 30;
         wither.min_lvl = 30;
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 public interface IBaseAutoLoc extends IGUID {
 
     enum AutoLocGroup {
+        Foods,
         Runes,
         StatusEffects,
         Unique_Items,

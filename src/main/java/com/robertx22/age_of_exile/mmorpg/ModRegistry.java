@@ -9,6 +9,7 @@ public class ModRegistry {
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
+    public static FoodItemRegister FOOD_ITEMS;
     public static GemItemRegister GEMS;
     public static RuneItemRegister RUNES;
     public static ModBlocks BLOCKS;
@@ -43,6 +44,7 @@ public class ModRegistry {
         GEMS = new GemItemRegister();
         RUNES = new RuneItemRegister();
         GEAR_ITEMS = new BaseGearTypeItemRegister();
+        FOOD_ITEMS = new FoodItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }

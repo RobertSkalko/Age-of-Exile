@@ -272,11 +272,11 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public enum GemRank {
-        CHIPPED("Chipped", 0, 0, 1),
-        FLAWED("Flawed", 1, 0.1F, 1.2F),
-        REGULAR("Regular", 2, 0.25F, 1.4F),
-        FLAWLESS("Flawless", 3, 0.5F, 1.6F),
-        PERFECT("Perfect", 4, 0.8F, 1.8F);
+        CHIPPED("Chipped", 0, 0.2F, 1),
+        FLAWED("Flawed", 1, 0.4F, 1.2F),
+        REGULAR("Regular", 2, 0.6F, 1.4F),
+        FLAWLESS("Flawless", 3, 8F, 1.6F),
+        PERFECT("Perfect", 4, 1F, 1.8F);
 
         public String locName;
         public int num;
