@@ -24,6 +24,7 @@ public class ModRegistry {
     public static UniqueGearItemRegister UNIQUE_GEARS;
     public static ModRecipeSerializers RECIPE_SER;
     public static RepairKitsRegister REPAIR_KITS;
+    public static TabletItemRegister TABLETS;
 
     public static void init() {
 
@@ -45,6 +46,7 @@ public class ModRegistry {
         RUNES = new RuneItemRegister();
         GEAR_ITEMS = new BaseGearTypeItemRegister();
         FOOD_ITEMS = new FoodItemRegister();
+        TABLETS = new TabletItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }

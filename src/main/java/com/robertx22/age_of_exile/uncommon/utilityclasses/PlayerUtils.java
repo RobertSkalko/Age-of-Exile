@@ -3,6 +3,9 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
+import com.robertx22.age_of_exile.saveclasses.unit.GearData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -28,6 +31,22 @@ public class PlayerUtils {
             return list;
         } else {
             return Arrays.asList(player.getEquippedStack(type.getVanillaSlotType()));
+        }
+
+    }
+
+    public static ItemStack lowestDurabilityWornGear(PlayerEntity player) {
+        List<GearData> stacks = CollectGearEvent.getAllGear(null, player, Load.Unit(player));
+
+        Optional<GearData> opt = stacks.stream()
+            .filter(x -> !x.stack.isEmpty())
+            .sorted(Comparator.comparingInt(x -> x.stack.getMaxDamage() - x.stack.getDamage()))
+            .findFirst();
+
+        if (opt.isPresent()) {
+            return opt.get().stack;
+        } else {
+            return ItemStack.EMPTY;
         }
 
     }

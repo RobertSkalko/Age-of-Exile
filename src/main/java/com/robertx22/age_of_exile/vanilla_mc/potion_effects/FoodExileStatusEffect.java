@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodExileEffect;
 import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodTier;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
@@ -38,6 +39,30 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPot
         tooltip.add(new LiteralText("Exile Stats:").formatted(Formatting.AQUA));
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;
+    }
+
+    @Override
+    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+
+        Load.Unit(entity)
+            .forceRecalculateStats(entity);
+
+        super.onApplied(entity, attributes, amplifier);
+
+    }
+
+    @Override
+    public void onRemoved(LivingEntity target, AttributeContainer attributes,
+                          int amplifier) {
+
+        try {
+            Load.Unit(target)
+                .forceRecalculateStats(target);
+
+            super.onRemoved(target, attributes, amplifier);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
