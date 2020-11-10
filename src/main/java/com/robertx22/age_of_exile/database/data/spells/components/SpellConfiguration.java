@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TickUtils;
 import net.minecraft.entity.LivingEntity;
 
@@ -22,7 +23,7 @@ public class SpellConfiguration {
         public float cast_when_hp_bellow = 0.3F;
 
         public boolean canCastNow(LivingEntity en) {
-            return en.getHealth() <= en.getMaxHealth() * cast_when_hp_bellow;
+            return HealthUtils.getCombinedHealthMulti(en) < cast_when_hp_bellow;
         }
     }
 

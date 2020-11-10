@@ -14,11 +14,25 @@ public class ProtectionTabletUtils {
 
         List<StackAndTablet> list = new ArrayList<>();
 
-        for (ItemStack stack : player.inventory.main) {
-            if (stack.getItem() instanceof ProtectionTabletItem) {
-                ProtectionTabletItem tablet = (ProtectionTabletItem) stack.getItem();
-                list.add(new StackAndTablet(stack, tablet));
+        List<ItemStack> items = new ArrayList<>();
+
+        try {
+            items.addAll(player.inventory.main);
+
+            for (int i = 0; i < player.getEnderChestInventory()
+                .size(); i++) {
+                items.add(player.getEnderChestInventory()
+                    .getStack(i));
             }
+
+            for (ItemStack stack : items) {
+                if (stack.getItem() instanceof ProtectionTabletItem) {
+                    ProtectionTabletItem tablet = (ProtectionTabletItem) stack.getItem();
+                    list.add(new StackAndTablet(stack, tablet));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return list;
