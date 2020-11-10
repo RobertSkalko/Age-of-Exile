@@ -38,6 +38,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         data.second = buf.readFloat();
         data.stat = buf.readString(100);
         data.type = buf.readString(50);
+        data.scaleToLevel = buf.readBoolean();
         return data;
     }
 
@@ -47,6 +48,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         buf.writeFloat(second);
         buf.writeString(stat, 100);
         buf.writeString(type, 50);
+        buf.writeBoolean(scaleToLevel);
     }
 
     public OptScaleExactStat(float first, Stat stat) {

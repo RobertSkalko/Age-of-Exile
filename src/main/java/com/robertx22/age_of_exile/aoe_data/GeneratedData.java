@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdde
 import com.robertx22.age_of_exile.aoe_data.database.perks.GameChangerPerks;
 import com.robertx22.age_of_exile.aoe_data.database.perks.Perks;
 import com.robertx22.age_of_exile.aoe_data.database.perks.SpellModifierPerks;
+import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
 import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_outputs.SalvageOutputsAdder;
@@ -73,6 +74,7 @@ public class GeneratedData {
 
             new FavorAdder().registerAll();
             new SalvageOutputsAdder().registerAll();
+            new PlayerSkillsAdder().registerAll();
         }
     }
 }
