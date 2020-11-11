@@ -6,8 +6,6 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -17,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-public class OnBlockDropMining {
+public class OnBlockDropFarming {
 
     public static void run(LootContext ctx, CallbackInfoReturnable<List<ItemStack>> ci) {
 
@@ -25,17 +23,11 @@ public class OnBlockDropMining {
             if (!ctx.hasParameter(LootContextParameters.BLOCK_STATE)) {
                 return;
             }
-            if (!ctx.hasParameter(LootContextParameters.TOOL)) {
-                return;
-            }
+
             if (!ctx.hasParameter(LootContextParameters.ORIGIN)) {
                 return;
             }
             if (!ctx.hasParameter(LootContextParameters.THIS_ENTITY)) {
-                return;
-            }
-            ItemStack stack = ctx.get(LootContextParameters.TOOL);
-            if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) != 0) {
                 return;
             }
             Block block = ctx.get(LootContextParameters.BLOCK_STATE)
@@ -57,8 +49,9 @@ public class OnBlockDropMining {
             if (player.world.isClient) {
                 return;
             }
+
             PlayerSkill skill = SlashRegistry.PlayerSkills()
-                .get(PlayerSkillEnum.MINING.id);
+                .get(PlayerSkillEnum.FARMING.id);
 
             PlayerSkills skills = Load.playerSkills(player);
 
@@ -75,3 +68,5 @@ public class OnBlockDropMining {
         }
     }
 }
+
+

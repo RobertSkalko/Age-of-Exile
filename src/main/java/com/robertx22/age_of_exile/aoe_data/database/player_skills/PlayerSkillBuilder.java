@@ -5,10 +5,9 @@ import com.robertx22.age_of_exile.database.data.player_skills.BlockBreakExp;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillStatReward;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.block.Block;
-
-import java.util.Arrays;
 
 public class PlayerSkillBuilder {
 
@@ -21,24 +20,28 @@ public class PlayerSkillBuilder {
         return b;
     }
 
-    public PlayerSkillBuilder dropReward(int level, SkillDropReward reward) {
-        if (skill.drop_rewards.containsKey(level)) {
-            throw new RuntimeException("Duplicate level value");
-        }
-        skill.drop_rewards.put(level, reward);
+    public PlayerSkillBuilder dropReward(SkillDropReward reward) {
+        skill.drop_rewards.add(reward);
         return this;
     }
 
-    public PlayerSkillBuilder stat(int level, OptScaleExactStat... stats) {
-        if (skill.stat_rewards.containsKey(level)) {
-            throw new RuntimeException("Duplicate level value");
-        }
-        skill.stat_rewards.put(level, new SkillStatReward(Arrays.asList(stats)));
+    public PlayerSkillBuilder stat(SkillStatReward stat) {
+        skill.stat_rewards.add(stat);
         return this;
     }
 
     public PlayerSkillBuilder blockExp(Block block, float exp) {
         skill.block_break_exp.add(new BlockBreakExp(exp, block));
+        return this;
+
+    }
+
+    public PlayerSkillBuilder addDefaultBonusExpRewards() {
+        stat(new SkillStatReward(5, new OptScaleExactStat(2, BonusExp.getInstance())));
+        stat(new SkillStatReward(15, new OptScaleExactStat(2, BonusExp.getInstance())));
+        stat(new SkillStatReward(25, new OptScaleExactStat(5, BonusExp.getInstance())));
+        stat(new SkillStatReward(35, new OptScaleExactStat(5, BonusExp.getInstance())));
+        stat(new SkillStatReward(45, new OptScaleExactStat(10, BonusExp.getInstance())));
         return this;
     }
 

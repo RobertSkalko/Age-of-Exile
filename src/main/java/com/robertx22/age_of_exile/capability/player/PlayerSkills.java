@@ -1,7 +1,9 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillsData;
@@ -12,7 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
 
-public class PlayerSkills implements ICommonPlayerCap {
+public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
 
     public static final Identifier RESOURCE = new Identifier(Ref.MODID, "player_skills");
     private static final String LOC = "data";
@@ -63,4 +65,8 @@ public class PlayerSkills implements ICommonPlayerCap {
         return PlayerCaps.PLAYER_SKILLS;
     }
 
+    @Override
+    public void applyStats(EntityCap.UnitData data) {
+        this.data.applyStats(data);
+    }
 }

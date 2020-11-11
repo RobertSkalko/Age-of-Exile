@@ -289,6 +289,8 @@ public class Unit {
                 .applyStats(data);
             Load.statPoints((PlayerEntity) entity)
                 .applyStats(data);
+            Load.playerSkills((PlayerEntity) entity)
+                .applyStats(data);
         } else {
             MobStatUtils.AddMobcStats(data, entity);
             MobStatUtils.addAffixStats(data);

@@ -39,7 +39,7 @@ public class CreativeTabs {
     public static ItemGroup Foods = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "food_group")
         ,
-        () -> new ItemStack(ModRegistry.FOOD_ITEMS.MAP.get(Triple.of(FoodType.BEER, FoodExileEffect.EffectColor.RED, FoodTier.Divine))));
+        () -> new ItemStack(ModRegistry.FOOD_ITEMS.MAP.get(Triple.of(FoodType.BEER, FoodExileEffect.EffectColor.RED, FoodTier.DIVINE))));
 
     public static ItemGroup Tablets = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "tablet_group")

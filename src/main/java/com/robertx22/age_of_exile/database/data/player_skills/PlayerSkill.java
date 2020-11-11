@@ -10,7 +10,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,8 +23,8 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
     public float loot_chance_per_action_exp = 0.1F;
 
-    public HashMap<Integer, SkillDropReward> drop_rewards = new HashMap<>();
-    public HashMap<Integer, SkillStatReward> stat_rewards = new HashMap<>();
+    public List<SkillDropReward> drop_rewards = new ArrayList<>();
+    public List<SkillStatReward> stat_rewards = new ArrayList<>();
 
     public List<BlockBreakExp> block_break_exp = new ArrayList<>();
 
@@ -50,10 +49,9 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
         float chance = loot_chance_per_action_exp * expForAction;
 
         if (RandomUtils.roll(chance)) {
-            List<SkillDropReward> possible = drop_rewards.entrySet()
+            List<SkillDropReward> possible = drop_rewards
                 .stream()
-                .filter(x -> skills.getLevel(type_enum) >= x.getKey())
-                .map(x -> x.getValue())
+                .filter(x -> skills.getLevel(type_enum) >= x.lvl_req)
                 .collect(Collectors.toList());
 
             if (!possible.isEmpty()) {
@@ -80,4 +78,5 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     public Class<PlayerSkill> getClassForSerialization() {
         return PlayerSkill.class;
     }
+
 }

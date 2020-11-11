@@ -9,11 +9,13 @@ import net.minecraft.util.registry.Registry;
 
 public class SkillDropReward implements IWeighted {
 
+    public int lvl_req = 1;
     public int weight = 1000;
     public String item_id = "";
     public MinMax count = new MinMax(1, 1);
 
-    public SkillDropReward(int weight, Item item, MinMax count) {
+    public SkillDropReward(int lvlreq, int weight, Item item, MinMax count) {
+        this.lvl_req = lvlreq;
         this.weight = weight;
         this.item_id = Registry.ITEM.getId(item)
             .toString();

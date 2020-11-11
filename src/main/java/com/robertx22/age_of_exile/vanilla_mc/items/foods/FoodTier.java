@@ -10,7 +10,7 @@ public enum FoodTier {
     CELESTIAL("Celestial", 1, 1.25F, Formatting.AQUA, 60 * 3),
     EMPYREAN("Empyrean", 2, 1.5F, Formatting.GOLD, 60 * 5),
     ANGELIC("Angelic", 3, 1.75F, Formatting.LIGHT_PURPLE, 60 * 7),
-    Divine("Divine", 4, 2, Formatting.DARK_PURPLE, 60 * 10);
+    DIVINE("Divine", 4, 2, Formatting.DARK_PURPLE, 60 * 10);
 
     public String word;
 
