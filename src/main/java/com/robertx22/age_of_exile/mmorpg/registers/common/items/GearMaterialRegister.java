@@ -33,13 +33,14 @@ public class GearMaterialRegister extends BaseItemRegistrator {
     public GearMaterialItem ORE_3 = of(TYPE.ORE, 3, LevelRanges.HIGH);
     public GearMaterialItem ORE_4 = of(TYPE.ORE, 4, LevelRanges.ENDGAME);
 
-    public GearCraftEssenceItem ARCANA = item(new GearCraftEssenceItem("arcana", Items.PHANTOM_MEMBRANE, "Essence of Arcana"));
-    public GearCraftEssenceItem ELEMENTAL = item(new GearCraftEssenceItem("elemental", Items.EMERALD, "Essence of Elements"));
-    public GearCraftEssenceItem LIFE = item(new GearCraftEssenceItem("life", Items.GLISTERING_MELON_SLICE, "Essence of Life"));
-    public GearCraftEssenceItem WATER = item(new GearCraftEssenceItem("water", Items.LAPIS_LAZULI, "Essence of Water"));
-    public GearCraftEssenceItem NATURE = item(new GearCraftEssenceItem("nature", Items.BREAD, "Essence of Nature"));
-    public GearCraftEssenceItem FIRE = item(new GearCraftEssenceItem("fire", Items.BLAZE_POWDER, "Essence of Fire"));
-    public GearCraftEssenceItem THUNDER = item(new GearCraftEssenceItem("thunder", Items.GLOWSTONE_DUST, "Essence of Thunder"));
+    public GearCraftEssenceItem ARCANA = item(new GearCraftEssenceItem("arcana", Items.PURPLE_DYE, "Essence of Arcana"));
+    public GearCraftEssenceItem MANA = item(new GearCraftEssenceItem("mana", Items.LAPIS_LAZULI, "Essence of Mana"));
+    public GearCraftEssenceItem ELEMENTAL = item(new GearCraftEssenceItem("elemental", Items.WHITE_DYE, "Essence of Elements"));
+    public GearCraftEssenceItem LIFE = item(new GearCraftEssenceItem("life", Items.RED_DYE, "Essence of Life"));
+    public GearCraftEssenceItem WATER = item(new GearCraftEssenceItem("water", Items.CYAN_DYE, "Essence of Water"));
+    public GearCraftEssenceItem NATURE = item(new GearCraftEssenceItem("nature", Items.GREEN_DYE, "Essence of Nature"));
+    public GearCraftEssenceItem FIRE = item(new GearCraftEssenceItem("fire", Items.RED_DYE, "Essence of Fire"));
+    public GearCraftEssenceItem THUNDER = item(new GearCraftEssenceItem("thunder", Items.YELLOW_DYE, "Essence of Thunder"));
 
     public GearMaterialItem of(TYPE type, int tier, LevelRange range) {
 

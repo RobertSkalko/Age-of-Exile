@@ -37,4 +37,5 @@ This bag item can be used for more than level up rewards if modpackers wish.
 * leveling now has milestone rewards! Get useful materials to progress as you level up!
 * gem lvl req now higher, max tier is max lvl
 * choose spell is now V, use spell is R hotkey. I think that's easier.
+* essence items are now crafted with dyes instead
 * added spell cast hotkey! Retained right click cast as a config

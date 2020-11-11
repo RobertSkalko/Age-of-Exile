@@ -1,10 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.player_skills.BlockBreakExp;
-import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
-import com.robertx22.age_of_exile.database.data.player_skills.SkillStatReward;
+import com.robertx22.age_of_exile.database.data.player_skills.*;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -14,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
 public class PlayerSkillBuilder {
 
@@ -56,7 +54,11 @@ public class PlayerSkillBuilder {
     public PlayerSkillBuilder blockExp(Block block, float exp) {
         skill.block_break_exp.add(new BlockBreakExp(exp, block));
         return this;
+    }
 
+    public PlayerSkillBuilder itemCraftExp(Item block, float exp) {
+        skill.item_craft_exp.add(new ItemCraftExp(exp, block));
+        return this;
     }
 
     public PlayerSkillBuilder addDefaultBonusExpRewards() {
