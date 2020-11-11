@@ -1,19 +1,27 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.foods;
+package com.robertx22.age_of_exile.player_skills.items.foods;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.registry.Registry;
 
-public class FoodExtractItem extends Item implements IAutoLocName, IAutoModel {
+public class MysteriousSpiceItem extends Item implements IAutoLocName, IAutoModel {
 
-    FoodExileEffect.EffectColor color;
+    SkillItemTier tier;
 
-    public FoodExtractItem(FoodExileEffect.EffectColor color) {
+    public MysteriousSpiceItem(SkillItemTier tier) {
         super(new Settings().group(CreativeTabs.Foods));
-        this.color = color;
+        this.tier = tier;
+    }
+
+    @Override
+    public Text getName(ItemStack stack) {
+        return new TranslatableText(this.getTranslationKey()).formatted(tier.format);
     }
 
     @Override
@@ -34,12 +42,12 @@ public class FoodExtractItem extends Item implements IAutoLocName, IAutoModel {
 
     @Override
     public String locNameForLangFile() {
-        return color.word + " Extract";
+        return "Mysterious " + tier.word + " Spice";
     }
 
     @Override
     public String GUID() {
-        return "food/extract/" + color.id;
+        return "food/material/" + tier.tier;
     }
 
 }

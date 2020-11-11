@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.foods;
+package com.robertx22.age_of_exile.player_skills.items.foods;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
@@ -12,11 +12,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 public enum FoodExileEffect {
 
@@ -50,18 +53,20 @@ public enum FoodExileEffect {
     }
 
     public enum EffectColor {
-        RED("red", "Red"),
-        GREEN("green", "Green"),
-        BLUE("blue", "Blue"),
-        PURPLE("purple", "Purple"),
-        YELLOW("yellow", "Yellow");
+        RED("red", "Red", () -> ModRegistry.GEAR_MATERIALS.FIRE),
+        GREEN("green", "Green", () -> ModRegistry.GEAR_MATERIALS.NATURE),
+        BLUE("blue", "Blue", () -> ModRegistry.GEAR_MATERIALS.WATER),
+        PURPLE("purple", "Purple", () -> ModRegistry.GEAR_MATERIALS.ARCANA),
+        YELLOW("yellow", "Yellow", () -> ModRegistry.GEAR_MATERIALS.THUNDER);
 
         public String id;
         public String word;
+        public Supplier<CraftEssenceItem> essenceItem;
 
-        EffectColor(String id, String word) {
+        EffectColor(String id, String word, Supplier<CraftEssenceItem> essence) {
             this.id = id;
             this.word = word;
+            this.essenceItem = essence;
         }
     }
 }

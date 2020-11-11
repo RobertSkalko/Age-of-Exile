@@ -25,6 +25,7 @@ public class ModRegistry {
     public static ModRecipeSerializers RECIPE_SER;
     public static RepairKitsRegister REPAIR_KITS;
     public static TabletItemRegister TABLETS;
+    public static AlchemyItemRegister ALCHEMY;
 
     public static void init() {
 
@@ -47,6 +48,7 @@ public class ModRegistry {
         GEAR_ITEMS = new BaseGearTypeItemRegister();
         FOOD_ITEMS = new FoodItemRegister();
         TABLETS = new TabletItemRegister();
+        ALCHEMY = new AlchemyItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }

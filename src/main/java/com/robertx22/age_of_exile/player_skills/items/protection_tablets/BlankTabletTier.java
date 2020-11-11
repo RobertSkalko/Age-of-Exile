@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.protection_tablets;
+package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 
 public enum BlankTabletTier {
 

@@ -12,6 +12,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 @Storable
@@ -99,7 +100,6 @@ public class ResourcesData {
         MANA,
         BLOOD,
         MAGIC_SHIELD
-
     }
 
     public enum Use {
@@ -141,20 +141,46 @@ public class ResourcesData {
 
     }
 
-    private float get(Context ctx) {
-        if (ctx.type == Type.MANA) {
+    public float get(LivingEntity en, Type type) {
+        if (type == Type.MANA) {
             return mana;
-        } else if (ctx.type == Type.MAGIC_SHIELD) {
+        } else if (type == Type.MAGIC_SHIELD) {
             return magicShield;
-        } else if (ctx.type == Type.BLOOD) {
+        } else if (type == Type.BLOOD) {
             return blood;
-        } else if (ctx.type == Type.HEALTH) {
-            return ctx.targetData.getUnit()
+        } else if (type == Type.HEALTH) {
+            UnitData targetData = Load.Unit(en);
+            return targetData.getUnit()
                 .health()
-                .CurrentValue(ctx.target, ctx.targetData.getUnit());
+                .CurrentValue(en, targetData.getUnit());
         }
         return 0;
 
+    }
+
+    public float getMax(LivingEntity en, Type type) {
+        UnitData data = Load.Unit(en);
+        if (type == Type.MANA) {
+            return data.getUnit()
+                .manaData()
+                .getAverageValue();
+        } else if (type == Type.MAGIC_SHIELD) {
+            return data.getUnit()
+                .magicShieldData()
+                .getAverageValue();
+        } else if (type == Type.BLOOD) {
+            return data.getUnit()
+                .bloodData()
+                .getAverageValue();
+        } else if (type == Type.HEALTH) {
+            return en.getMaxHealth();
+        }
+        return 0;
+
+    }
+
+    private float get(Context ctx) {
+        return get(ctx.target, ctx.type);
     }
 
     static boolean check = false;
@@ -191,7 +217,7 @@ public class ResourcesData {
     }
 
     private void sync(Context ctx) {
-        if (ctx.target instanceof PlayerEntity) {
+        if (ctx.target instanceof ServerPlayerEntity) {
             Packets.sendToClient((PlayerEntity) ctx.target, new EntityUnitPacket(ctx.target));
         }
     }

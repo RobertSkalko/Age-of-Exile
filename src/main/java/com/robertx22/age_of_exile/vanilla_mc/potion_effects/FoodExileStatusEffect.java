@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodExileEffect;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodTier;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
@@ -74,7 +74,7 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPot
     }
 
     public List<OptScaleExactStat> getStats(int amplifier) {
-        FoodTier tier = FoodTier.of(amplifier);
+        SkillItemTier tier = SkillItemTier.of(amplifier);
 
         List<OptScaleExactStat> list = effect.stats.stream()
             .map(x -> new OptScaleExactStat(x.first * tier.statMulti, x.getStat(), x.getModType()))

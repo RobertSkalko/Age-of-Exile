@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
 public class AlchemyAdder {
+
     public static PlayerSkill createSkill() {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(PlayerSkillEnum.ALCHEMY);
@@ -13,6 +14,9 @@ public class AlchemyAdder {
         b.skill.loot_chance_per_action_exp *= 3;
 
         ModRegistry.TABLETS.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20));
+
+        ModRegistry.ALCHEMY.POTIONS_MAP.values()
+            .forEach(x -> b.itemCraftExp(x, 2 + ((x.tier.tier + 1) * 2)));
 
         return b.build();
     }

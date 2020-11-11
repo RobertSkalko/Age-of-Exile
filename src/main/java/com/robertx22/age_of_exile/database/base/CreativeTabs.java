@@ -3,14 +3,16 @@ package com.robertx22.age_of_exile.database.base;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodExileEffect;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodTier;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodType;
+import com.robertx22.age_of_exile.player_skills.items.alchemy.PotionType;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodType;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Triple;
 
 public class CreativeTabs {
@@ -39,7 +41,12 @@ public class CreativeTabs {
     public static ItemGroup Foods = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "food_group")
         ,
-        () -> new ItemStack(ModRegistry.FOOD_ITEMS.MAP.get(Triple.of(FoodType.BEER, FoodExileEffect.EffectColor.RED, FoodTier.DIVINE))));
+        () -> new ItemStack(ModRegistry.FOOD_ITEMS.MAP.get(Triple.of(FoodType.BEER, FoodExileEffect.EffectColor.RED, SkillItemTier.DIVINE))));
+
+    public static ItemGroup Alchemy = FabricItemGroupBuilder.build(
+        new Identifier(Ref.MODID, "alchemy_group")
+        ,
+        () -> new ItemStack(ModRegistry.ALCHEMY.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.DIVINE, PotionType.HEALTH))));
 
     public static ItemGroup Tablets = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "tablet_group")

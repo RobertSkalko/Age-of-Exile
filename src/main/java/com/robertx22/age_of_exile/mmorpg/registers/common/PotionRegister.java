@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodExileEffect;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.FoodExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.HealthRegenFoodEffect;

@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.protection_tablets;
+package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;

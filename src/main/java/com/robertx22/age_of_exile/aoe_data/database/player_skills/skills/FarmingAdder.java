@@ -4,11 +4,12 @@ import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBui
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodTier;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ALCHEMY;
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.FOOD_ITEMS;
 
 public class FarmingAdder {
@@ -31,11 +32,17 @@ public class FarmingAdder {
         b.regens(40, 8);
         b.regens(50, 10);
 
-        b.dropReward(new SkillDropReward(10, 100, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.SPIRITUAL), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(20, 75, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.CELESTIAL), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(30, 50, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.EMPYREAN), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(40, 25, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.ANGELIC), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(50, 10, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.DIVINE), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(10, 100, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(20, 75, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(30, 50, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(40, 25, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(50, 10, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
+
+        b.dropReward(new SkillDropReward(10, 100, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(20, 75, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(30, 50, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(40, 25, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(50, 10, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
 
         b.dropReward(new SkillDropReward(5, 10, Items.BONE_MEAL, new MinMax(1, 2)));
         b.dropReward(new SkillDropReward(15, 2, Items.GOLDEN_APPLE, new MinMax(1, 1)));

@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.foods;
+package com.robertx22.age_of_exile.player_skills.items.foods;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.effect.StatusEffect;

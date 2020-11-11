@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.foods;
+package com.robertx22.age_of_exile.player_skills.items.foods;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
@@ -27,9 +27,9 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
 
     public FoodType type;
     public FoodExileEffect exileEffect;
-    public FoodTier tier;
+    public SkillItemTier tier;
 
-    public FarmingFoodItem(FoodType type, FoodExileEffect exileEffect, FoodTier tier) {
+    public FarmingFoodItem(FoodType type, FoodExileEffect exileEffect, SkillItemTier tier) {
         super(new Settings().group(CreativeTabs.Foods)
             .food(type.foodValueItem.getFoodComponent()));
 

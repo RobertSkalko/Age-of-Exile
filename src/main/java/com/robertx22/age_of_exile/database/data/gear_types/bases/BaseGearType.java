@@ -26,7 +26,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearCraftEssenceItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
@@ -55,7 +55,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public StatRequirement stat_reqs = new StatRequirement();
     public TagList tags = new TagList();
 
-    public transient GearCraftEssenceItem essenceItem = null;
+    public transient CraftEssenceItem essenceItem = null;
     protected transient String locname;
 
     public BaseGearType(DataGenKey<GearSlot> slot, String guid, LevelRange levelRange, String locname) {
@@ -142,7 +142,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         return weight;
     }
 
-    public GearCraftEssenceItem getEssenceItem() {
+    public CraftEssenceItem getEssenceItem() {
         return this.essenceItem;
     }
 

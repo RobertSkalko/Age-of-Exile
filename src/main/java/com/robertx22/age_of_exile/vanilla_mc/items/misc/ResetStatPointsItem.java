@@ -44,8 +44,8 @@ public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLoc
     public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemStack = player.getStackInHand(handIn);
         player.setCurrentHand(handIn);
+        
         return TypedActionResult.success(itemStack);
-
     }
 
     @Override

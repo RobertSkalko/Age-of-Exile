@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.vanilla_mc.items.protection_tablets.BlankTabletItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.protection_tablets.BlankTabletTier;
-import com.robertx22.age_of_exile.vanilla_mc.items.protection_tablets.ProtectionTabletItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.protection_tablets.TabletTypes;
+import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTabletItem;
+import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTabletTier;
+import com.robertx22.age_of_exile.player_skills.items.protection_tablets.ProtectionTabletItem;
+import com.robertx22.age_of_exile.player_skills.items.protection_tablets.TabletTypes;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.foods;
+package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
@@ -7,12 +7,11 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
-public class FoodMaterialTierItem extends Item implements IAutoLocName, IAutoModel {
+public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel {
+    BlankTabletTier tier;
 
-    FoodTier tier;
-
-    public FoodMaterialTierItem(FoodTier tier) {
-        super(new Settings().group(CreativeTabs.Foods));
+    public BlankTabletItem(BlankTabletTier tier) {
+        super(new Settings().group(CreativeTabs.Tablets));
         this.tier = tier;
     }
 
@@ -34,11 +33,12 @@ public class FoodMaterialTierItem extends Item implements IAutoLocName, IAutoMod
 
     @Override
     public String locNameForLangFile() {
-        return tier.word + " Food Essence";
+
+        return tier.prefixName + "Blank Tablet";
     }
 
     @Override
     public String GUID() {
-        return "food/material/" + tier.tier;
+        return "";
     }
 }

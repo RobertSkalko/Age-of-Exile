@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearCraftEssenceItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearMaterialItem;
 import net.minecraft.item.Items;
 
@@ -33,14 +33,15 @@ public class GearMaterialRegister extends BaseItemRegistrator {
     public GearMaterialItem ORE_3 = of(TYPE.ORE, 3, LevelRanges.HIGH);
     public GearMaterialItem ORE_4 = of(TYPE.ORE, 4, LevelRanges.ENDGAME);
 
-    public GearCraftEssenceItem ARCANA = item(new GearCraftEssenceItem("arcana", Items.PURPLE_DYE, "Essence of Arcana"));
-    public GearCraftEssenceItem MANA = item(new GearCraftEssenceItem("mana", Items.LAPIS_LAZULI, "Essence of Mana"));
-    public GearCraftEssenceItem ELEMENTAL = item(new GearCraftEssenceItem("elemental", Items.WHITE_DYE, "Essence of Elements"));
-    public GearCraftEssenceItem LIFE = item(new GearCraftEssenceItem("life", Items.RED_DYE, "Essence of Life"));
-    public GearCraftEssenceItem WATER = item(new GearCraftEssenceItem("water", Items.CYAN_DYE, "Essence of Water"));
-    public GearCraftEssenceItem NATURE = item(new GearCraftEssenceItem("nature", Items.GREEN_DYE, "Essence of Nature"));
-    public GearCraftEssenceItem FIRE = item(new GearCraftEssenceItem("fire", Items.RED_DYE, "Essence of Fire"));
-    public GearCraftEssenceItem THUNDER = item(new GearCraftEssenceItem("thunder", Items.YELLOW_DYE, "Essence of Thunder"));
+    public CraftEssenceItem ARCANA = item(new CraftEssenceItem("arcana", Items.PURPLE_DYE, "Essence of Arcana"));
+    public CraftEssenceItem MANA = item(new CraftEssenceItem("mana", Items.LAPIS_LAZULI, "Essence of Mana"));
+    public CraftEssenceItem ELEMENTAL = item(new CraftEssenceItem("elemental", Items.WHITE_DYE, "Essence of Elements"));
+    public CraftEssenceItem LIFE = item(new CraftEssenceItem("life", Items.RED_DYE, "Essence of Life"));
+    public CraftEssenceItem WATER = item(new CraftEssenceItem("water", Items.CYAN_DYE, "Essence of Water"));
+    public CraftEssenceItem NATURE = item(new CraftEssenceItem("nature", Items.GREEN_DYE, "Essence of Nature"));
+    public CraftEssenceItem FIRE = item(new CraftEssenceItem("fire", Items.RED_DYE, "Essence of Fire"));
+    public CraftEssenceItem THUNDER = item(new CraftEssenceItem("thunder", Items.YELLOW_DYE, "Essence of Thunder"));
+    public CraftEssenceItem PHYSICAL = item(new CraftEssenceItem("physical", Items.BLACK_DYE, "Essence of Thunder"));
 
     public GearMaterialItem of(TYPE type, int tier, LevelRange range) {
 

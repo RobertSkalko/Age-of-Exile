@@ -21,14 +21,14 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class GearCraftEssenceItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
+public class CraftEssenceItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
 
     String id;
 
     Item craftItem;
     String locname;
 
-    public GearCraftEssenceItem(String id, Item craftItem, String locname) {
+    public CraftEssenceItem(String id, Item craftItem, String locname) {
         super(new Settings().group(CreativeTabs.MyModTab));
         this.id = id;
         this.craftItem = craftItem;

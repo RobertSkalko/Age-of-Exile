@@ -31,7 +31,7 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
     public void addExp(PlayerSkillEnum skill, int exp) {
         PlayerSkillData sd = data.getDataFor(skill);
 
-        if (sd.addExp(exp)) {
+        if (sd.addExp(player, exp)) {
             onLevelUp(skill);
         }
     }
