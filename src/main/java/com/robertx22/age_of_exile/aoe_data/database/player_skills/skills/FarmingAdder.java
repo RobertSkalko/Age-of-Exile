@@ -17,6 +17,7 @@ public class FarmingAdder {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(PlayerSkillEnum.FARMING);
         b.addDefaultBonusExpRewards();
+        b.skill.loot_chance_per_action_exp *= 2;
 
         b.blockExp(Blocks.MELON, 15);
         b.blockExp(Blocks.WHEAT, 5);
@@ -24,16 +25,22 @@ public class FarmingAdder {
         b.blockExp(Blocks.CARROTS, 5);
         b.blockExp(Blocks.BEETROOTS, 5);
 
-        b.dropReward(new SkillDropReward(10, 100, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.SPIRITUAL), new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(20, 75, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.CELESTIAL), new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(30, 50, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.EMPYREAN), new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(40, 25, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.ANGELIC), new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(50, 10, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.DIVINE), new MinMax(1, 1)));
+        b.regens(10, 2);
+        b.regens(20, 4);
+        b.regens(30, 6);
+        b.regens(40, 8);
+        b.regens(50, 10);
+
+        b.dropReward(new SkillDropReward(10, 100, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.SPIRITUAL), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(20, 75, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.CELESTIAL), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(30, 50, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.EMPYREAN), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(40, 25, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.ANGELIC), new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(50, 10, FOOD_ITEMS.MAT_TIER_MAP.get(FoodTier.DIVINE), new MinMax(1, 3)));
 
         b.dropReward(new SkillDropReward(5, 10, Items.BONE_MEAL, new MinMax(1, 2)));
         b.dropReward(new SkillDropReward(15, 2, Items.GOLDEN_APPLE, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(25, 1, Items.EMERALD, new MinMax(1, 2)));
-        b.dropReward(new SkillDropReward(35, 2, Items.EMERALD, new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(25, 1, Items.EMERALD, new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(35, 2, Items.EMERALD, new MinMax(2, 5)));
         b.dropReward(new SkillDropReward(45, 1, Items.ENCHANTED_GOLDEN_APPLE, new MinMax(1, 1)));
 
         return b.build();

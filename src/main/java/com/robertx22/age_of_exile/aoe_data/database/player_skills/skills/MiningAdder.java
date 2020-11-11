@@ -26,6 +26,12 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_GOLD_ORE, 1);
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
 
+        b.hpAndMagicShield(10, 1);
+        b.hpAndMagicShield(20, 2);
+        b.hpAndMagicShield(30, 3);
+        b.hpAndMagicShield(40, 4);
+        b.hpAndMagicShield(50, 5);
+
         b.dropReward(new SkillDropReward(4, 1, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 1)));
         b.dropReward(new SkillDropReward(9, 2, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 1)));
         b.dropReward(new SkillDropReward(14, 3, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 1)));
