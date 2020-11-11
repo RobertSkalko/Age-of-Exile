@@ -1,9 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FarmingFoodItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodExileEffect;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodTier;
-import com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodType;
+import com.robertx22.age_of_exile.vanilla_mc.items.foods.*;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.ArrayList;
@@ -15,9 +12,19 @@ import static com.robertx22.age_of_exile.vanilla_mc.items.foods.FoodExileEffect.
 
 public class FoodItemRegister extends BaseItemRegistrator {
 
+    public HashMap<FoodTier, FoodMaterialTierItem> MAT_TIER_MAP = new HashMap<>();
+    public HashMap<EffectColor, FoodExtractItem> EXTRACT_MAP = new HashMap<>();
+
     public HashMap<Triple<FoodType, EffectColor, FoodTier>, FarmingFoodItem> MAP = new HashMap<>();
 
     public FoodItemRegister() {
+
+        for (FoodTier tier : FoodTier.values()) {
+            MAT_TIER_MAP.put(tier, item(new FoodMaterialTierItem(tier)));
+        }
+        for (EffectColor color : EffectColor.values()) {
+            EXTRACT_MAP.put(color, item(new FoodExtractItem(color)));
+        }
 
         reg(FoodType.APPLE, Arrays.asList(MANA_REGEN, HEALTH_REGEN, MAGIC_SHIELD_REGEN));
         reg(FoodType.COOKIE, Arrays.asList(TREASURE_QUALITY, HEALTH_REGEN, MAGIC_SHIELD_REGEN));

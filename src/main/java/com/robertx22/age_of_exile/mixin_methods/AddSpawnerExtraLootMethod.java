@@ -30,9 +30,6 @@ public class AddSpawnerExtraLootMethod {
             if (!context.hasParameter(LootContextParameters.ORIGIN)) {
                 return;
             }
-            if (!context.hasParameter(LootContextParameters.TOOL)) {
-                return;
-            }
             if (!context.hasParameter(LootContextParameters.THIS_ENTITY)) {
                 return;
             }
@@ -62,16 +59,6 @@ public class AddSpawnerExtraLootMethod {
             LootInfo info = LootInfo.ofSpawner(player, context.getWorld(), pos);
             info.multi += 15;
             List<ItemStack> list = MasterLootGen.generateLoot(info);
-
-            // TODO rework exp curve before giving exp here. % of lvl will always be abusable
-            /*
-            int lvl = LevelUtils.determineLevel(context.getWorld(), pos, null);
-            int exp = LevelUtils.getExpRequiredForLevel(MathHelper.clamp(lvl, lvl, Load.Unit(player)
-                .getLevel())) / 10;
-            Load.Unit(player)
-                .GiveExp(player, exp);
-
-             */
 
             ci.getReturnValue()
                 .addAll(list);

@@ -6,6 +6,9 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+    Mining("Mining"),
+    Farming("Farming"),
+
     Gear("Gear"),
     All("All"),
     Rune("Rune"),

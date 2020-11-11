@@ -11,4 +11,12 @@ public class PlayerSkillsData {
     @Store
     private HashMap<PlayerSkillEnum, PlayerSkillData> map = new HashMap<>();
 
+    public PlayerSkillData getDataFor(PlayerSkillEnum skill) {
+
+        if (!map.containsKey(skill)) {
+            map.put(skill, new PlayerSkillData());
+        }
+
+        return map.get(skill);
+    }
 }

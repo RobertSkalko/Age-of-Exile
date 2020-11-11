@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ModelHelper;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -11,6 +12,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
@@ -21,7 +23,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel {
+public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
     public FoodType type;
     public FoodExileEffect exileEffect;
@@ -93,5 +95,14 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public ShapelessRecipeJsonFactory getRecipe() {
+        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
+        fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
+        fac.input(ModRegistry.FOOD_ITEMS.MAT_TIER_MAP.get(this.tier));
+        fac.input(type.vanillaCraftingItem);
+        return fac.criterion("player_level", trigger());
     }
 }

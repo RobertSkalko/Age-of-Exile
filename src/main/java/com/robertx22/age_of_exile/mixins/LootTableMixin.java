@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mixins;
 
 import com.robertx22.age_of_exile.mixin_methods.AddSpawnerExtraLootMethod;
+import com.robertx22.age_of_exile.player_skills.OnBlockDropMining;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContext;
@@ -17,6 +18,7 @@ public class LootTableMixin {
     @Inject(method = "generateLoot(Lnet/minecraft/loot/context/LootContext;)Ljava/util/List;", at = @At(value = "RETURN"))
     public void hookLoot(LootContext context, CallbackInfoReturnable<List<ItemStack>> ci) {
         AddSpawnerExtraLootMethod.hookLoot(context, ci);
+        OnBlockDropMining.run(context, ci);
     }
 
 }

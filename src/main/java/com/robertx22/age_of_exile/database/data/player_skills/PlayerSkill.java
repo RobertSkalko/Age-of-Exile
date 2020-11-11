@@ -1,13 +1,19 @@
 package com.robertx22.age_of_exile.database.data.player_skills;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAutoGson<PlayerSkill> {
     public static PlayerSkill SERIALIZER = new PlayerSkill();
@@ -16,10 +22,49 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     public String id;
     public int exp_per_action = 0;
 
+    public float loot_chance_per_action_exp = 0.1F;
+
     public HashMap<Integer, SkillDropReward> drop_rewards = new HashMap<>();
     public HashMap<Integer, SkillStatReward> stat_rewards = new HashMap<>();
 
     public List<BlockBreakExp> block_break_exp = new ArrayList<>();
+
+    public int getExpForBlockBroken(Block block) {
+
+        Optional<BlockBreakExp> opt = block_break_exp.stream()
+            .filter(x -> x.getBlock() == block)
+            .findFirst();
+
+        if (opt.isPresent()) {
+            return (int) opt.get().exp;
+        } else {
+            return 0;
+        }
+
+    }
+
+    public List<ItemStack> getExtraDropsFor(PlayerSkills skills, int expForAction) {
+
+        List<ItemStack> list = new ArrayList<>();
+
+        float chance = loot_chance_per_action_exp * expForAction;
+
+        if (RandomUtils.roll(chance)) {
+            List<SkillDropReward> possible = drop_rewards.entrySet()
+                .stream()
+                .filter(x -> skills.getLevel(type_enum) >= x.getKey())
+                .map(x -> x.getValue())
+                .collect(Collectors.toList());
+
+            if (!possible.isEmpty()) {
+                list.add(RandomUtils.weightedRandom(possible)
+                    .getRewardStack());
+            }
+        }
+
+        return list;
+
+    }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {

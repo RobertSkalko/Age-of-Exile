@@ -50,12 +50,18 @@ public enum FoodExileEffect {
     }
 
     public enum EffectColor {
-        RED("red"), GREEN("green"), BLUE("blue"), PURPLE("purple"), YELLOW("yellow");
+        RED("red", "Red"),
+        GREEN("green", "Green"),
+        BLUE("blue", "Blue"),
+        PURPLE("purple", "Purple"),
+        YELLOW("yellow", "Yellow");
 
         public String id;
+        public String word;
 
-        EffectColor(String id) {
+        EffectColor(String id, String word) {
             this.id = id;
+            this.word = word;
         }
     }
 }

@@ -14,9 +14,9 @@ public class PlayerSkillBuilder {
 
     PlayerSkill skill = new PlayerSkill();
 
-    public static PlayerSkillBuilder of(PlayerSkillEnum se, String id) {
+    public static PlayerSkillBuilder of(PlayerSkillEnum se) {
         PlayerSkillBuilder b = new PlayerSkillBuilder();
-        b.skill.id = id;
+        b.skill.id = se.id;
         b.skill.type_enum = se;
         return b;
     }
