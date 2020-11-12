@@ -32,12 +32,12 @@ public class MiningAdder {
         b.hpAndMagicShield(40, 4);
         b.hpAndMagicShield(50, 5);
 
-        b.dropReward(new SkillDropReward(4, 1, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(9, 2, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(14, 3, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(19, 3, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 2)));
-        b.dropReward(new SkillDropReward(24, 4, ModRegistry.TABLETS.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(29, 2, ModRegistry.TABLETS.RARE_BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(4, 1, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(9, 2, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(14, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(19, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 2)));
+        b.dropReward(new SkillDropReward(24, 4, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(29, 2, ModRegistry.INSCRIBING.RARE_BLANK_TABLET, new MinMax(1, 1)));
 
         b.dropReward(new SkillDropReward(5, 10, Items.COAL, new MinMax(1, 3)));
         b.dropReward(new SkillDropReward(10, 10, Items.IRON_NUGGET, new MinMax(1, 3)));

@@ -12,7 +12,10 @@ public class InscribingAdder {
         PlayerSkillBuilder b = PlayerSkillBuilder.of(6, PlayerSkillEnum.INSCRIBING);
         b.addDefaultBonusExpRewards();
 
-        ModRegistry.TABLETS.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20));
+        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20));
+
+        ModRegistry.INSCRIBING.ENCHANT_SCROLL_MAP.values()
+            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 10));
 
         return b.build();
     }

@@ -25,7 +25,7 @@ public class ModRegistry {
     public static UniqueGearItemRegister UNIQUE_GEARS;
     public static ModRecipeSerializers RECIPE_SER;
     public static RepairKitsRegister REPAIR_KITS;
-    public static InscribingItemRegister TABLETS;
+    public static InscribingItemRegister INSCRIBING;
     public static AlchemyItemRegister ALCHEMY;
 
     public static void init() {
@@ -48,7 +48,7 @@ public class ModRegistry {
         RUNES = new RuneItemRegister();
         GEAR_ITEMS = new BaseGearTypeItemRegister();
         FOOD_ITEMS = new FoodItemRegister();
-        TABLETS = new InscribingItemRegister();
+        INSCRIBING = new InscribingItemRegister();
         ALCHEMY = new AlchemyItemRegister();
         ENCHANTS = new ModEnchants();
 

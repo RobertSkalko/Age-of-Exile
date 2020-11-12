@@ -20,7 +20,7 @@ public enum TabletTypes {
     ANTI_FIRE("Anti Fire", "anti_fire") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.BLAZE_POWDER, ModRegistry.TABLETS.BLANK_TABLET);
+            return Arrays.asList(Items.BLAZE_POWDER, ModRegistry.INSCRIBING.BLANK_TABLET);
         }
 
         @Override
@@ -36,7 +36,7 @@ public enum TabletTypes {
     ANTI_DEATH("Anti Death", "anti_death") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.ENCHANTED_GOLDEN_APPLE, ModRegistry.TABLETS.RARE_BLANK_TABLET);
+            return Arrays.asList(Items.ENCHANTED_GOLDEN_APPLE, ModRegistry.INSCRIBING.RARE_BLANK_TABLET);
         }
 
         @Override
@@ -52,7 +52,7 @@ public enum TabletTypes {
     ANTI_GEAR_BREAK("Anti Gear Break", "anti_gear_break") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.IRON_INGOT, ModRegistry.TABLETS.BLANK_TABLET);
+            return Arrays.asList(Items.IRON_INGOT, ModRegistry.INSCRIBING.BLANK_TABLET);
         }
 
         @Override
@@ -81,7 +81,7 @@ public enum TabletTypes {
     ANTI_HUNGER("Anti Hunger", "anti_hunger") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.BREAD, ModRegistry.TABLETS.BLANK_TABLET);
+            return Arrays.asList(Items.BREAD, ModRegistry.INSCRIBING.BLANK_TABLET);
         }
 
         @Override

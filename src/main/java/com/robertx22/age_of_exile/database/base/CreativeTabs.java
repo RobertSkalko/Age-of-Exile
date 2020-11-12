@@ -51,6 +51,6 @@ public class CreativeTabs {
     public static ItemGroup Inscribing = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "inscribing_group")
         ,
-        () -> new ItemStack(ModRegistry.TABLETS.ANTI_FIRE));
+        () -> new ItemStack(ModRegistry.INSCRIBING.ANTI_FIRE));
 
 }
