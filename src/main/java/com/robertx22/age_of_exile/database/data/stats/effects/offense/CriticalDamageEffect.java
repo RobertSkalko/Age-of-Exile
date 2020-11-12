@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.stats.effects.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseAnyEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.ICrittable;
 
-public class CriticalDamageEffect extends BaseAnyEffect {
+public class CriticalDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -20,14 +20,13 @@ public class CriticalDamageEffect extends BaseAnyEffect {
     }
 
     @Override
-    public EffectData activate(EffectData effect, StatData data, Stat stat) {
-        effect.number *= data.getMultiplier();
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        effect.percentIncrease += data.getAverageValue();
         return effect;
     }
 
     @Override
-    public boolean canActivate(EffectData effect, StatData data, Stat stat) {
-        return effect instanceof ICrittable && ((ICrittable) effect).isCriticalHit();
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return ((ICrittable) effect).isCriticalHit();
     }
-
 }

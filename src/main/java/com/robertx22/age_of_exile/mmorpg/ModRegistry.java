@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 
 public class ModRegistry {
 
+    public static ModEnchants ENCHANTS;
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
@@ -24,7 +25,7 @@ public class ModRegistry {
     public static UniqueGearItemRegister UNIQUE_GEARS;
     public static ModRecipeSerializers RECIPE_SER;
     public static RepairKitsRegister REPAIR_KITS;
-    public static TabletItemRegister TABLETS;
+    public static InscribingItemRegister TABLETS;
     public static AlchemyItemRegister ALCHEMY;
 
     public static void init() {
@@ -47,8 +48,9 @@ public class ModRegistry {
         RUNES = new RuneItemRegister();
         GEAR_ITEMS = new BaseGearTypeItemRegister();
         FOOD_ITEMS = new FoodItemRegister();
-        TABLETS = new TabletItemRegister();
+        TABLETS = new InscribingItemRegister();
         ALCHEMY = new AlchemyItemRegister();
+        ENCHANTS = new ModEnchants();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }

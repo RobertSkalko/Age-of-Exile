@@ -109,8 +109,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(1, 3, 3, 5, new AttackDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
-                new StatModifier(5, 15, CriticalHit.getInstance(), ModType.FLAT),
-                new StatModifier(50, 100, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT)
+                new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),
+                new StatModifier(10, 25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT)
             ))
             .build();
 

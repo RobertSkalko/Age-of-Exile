@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.player_skills.enchants.BonusSkillLootEnchant;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.block.Block;
@@ -56,6 +57,10 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
         List<ItemStack> list = new ArrayList<>();
 
         float chance = loot_chance_per_action_exp * expForAction;
+
+        float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
+
+        chance *= chanceMulti;
 
         if (RandomUtils.roll(chance)) {
             List<SkillDropReward> possible = drop_rewards

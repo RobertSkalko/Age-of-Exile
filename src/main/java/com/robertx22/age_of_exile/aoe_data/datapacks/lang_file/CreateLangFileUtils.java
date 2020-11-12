@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IBaseAutoLoc;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -47,6 +48,11 @@ public class CreateLangFileUtils {
         for (Item item : Registry.ITEM) {
             if (matches(Registry.ITEM.getId(item)) && theclass.isAssignableFrom(item.getClass())) {
                 list.add((T) item);
+            }
+        }
+        for (Enchantment ench : Registry.ENCHANTMENT) {
+            if (matches(Registry.ENCHANTMENT.getId(ench)) && theclass.isAssignableFrom(ench.getClass())) {
+                list.add((T) ench);
             }
         }
         for (Block item : Registry.BLOCK) {

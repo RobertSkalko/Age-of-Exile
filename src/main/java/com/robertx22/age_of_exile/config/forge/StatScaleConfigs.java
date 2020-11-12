@@ -30,7 +30,7 @@ public class StatScaleConfigs {
         kills.add(new LevelScalingRangePart(0.8F, 1F, 100, 2500));
 
         List<LevelScalingRangePart> slow = new ArrayList<>();
-        slow.add(new LevelScalingRangePart(0F, 1F, 1, 2F));
+        slow.add(new LevelScalingRangePart(0F, 1F, 1, 1.25F));
 
         NORMAL_STAT_SCALING = new LevelScalingConfig(normal);
         SLOW_STAT_SCALING = new LevelScalingConfig(slow);

@@ -38,7 +38,7 @@ public class LeatherUniques implements ISlashRegistryInit {
             BaseLeatherArmors.CHESTS.get(LevelRanges.MIDDLE))
             .stats(Arrays.asList(
                 new StatModifier(10, 100, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(15, 30, CriticalHit.getInstance(), ModType.FLAT),
+                new StatModifier(2, 10, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(25, 25, CriticalDamage.getInstance(), ModType.FLAT)))
             .build();
 

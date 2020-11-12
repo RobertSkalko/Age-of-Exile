@@ -38,4 +38,10 @@ This bag item can be used for more than level up rewards if modpackers wish.
 * gem lvl req now higher, max tier is max lvl
 * choose spell is now V, use spell is R hotkey. I think that's easier.
 * essence items are now crafted with dyes instead
+* critical damage now isn't a total multiplier and instead works like all other damage additions. Additive percent calculated at the end.
+* reduced slow stat scaling from 100% more at max level, to 25% more.
+This is for stats like critical damage that on a lvl 1 item give 10% crit but on lvl 50 item give 20% crit.
+This scaling is supposed to be small and only there so lvl 1 items never get to be better than lvl 50 items. (in case they have no scaling stats)
+High level players should feel less overpowered now.
 * added spell cast hotkey! Retained right click cast as a config
+

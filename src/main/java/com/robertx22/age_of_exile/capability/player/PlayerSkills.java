@@ -24,7 +24,7 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
     public static final Identifier RESOURCE = new Identifier(Ref.MODID, "player_skills");
     private static final String LOC = "data";
 
-    PlayerEntity player;
+    public PlayerEntity player;
 
     PlayerSkillsData data = new PlayerSkillsData();
 

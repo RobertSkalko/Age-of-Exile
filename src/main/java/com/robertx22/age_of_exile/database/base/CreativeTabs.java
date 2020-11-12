@@ -48,8 +48,8 @@ public class CreativeTabs {
         ,
         () -> new ItemStack(ModRegistry.ALCHEMY.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.DIVINE, PotionType.HEALTH))));
 
-    public static ItemGroup Tablets = FabricItemGroupBuilder.build(
-        new Identifier(Ref.MODID, "tablet_group")
+    public static ItemGroup Inscribing = FabricItemGroupBuilder.build(
+        new Identifier(Ref.MODID, "inscribing_group")
         ,
         () -> new ItemStack(ModRegistry.TABLETS.ANTI_FIRE));
 
