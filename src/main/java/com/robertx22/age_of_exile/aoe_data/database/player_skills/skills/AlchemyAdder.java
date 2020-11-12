@@ -13,8 +13,6 @@ public class AlchemyAdder {
         b.addDefaultBonusExpRewards();
         b.skill.loot_chance_per_action_exp *= 3;
 
-        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20));
-
         ModRegistry.ALCHEMY.POTIONS_MAP.values()
             .forEach(x -> b.itemCraftExp(x, 2 + ((x.tier.tier + 1) * 2)));
 

@@ -64,6 +64,6 @@ This scaling is supposed to be small and only there so lvl 1 items never get to 
 High level players should feel less overpowered now.
 * added spell cast hotkey! Retained right click cast as a config
 * items from craftable utilities mod have been transfered to this mod and are now part of inscribing skill
-
+* fix items not being enchantable at anvil
 
 

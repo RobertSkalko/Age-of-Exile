@@ -8,11 +8,14 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
@@ -21,15 +24,20 @@ import net.minecraft.world.chunk.Chunk;
 public class RandomPlayerLevelTeleportItem extends BaseTpItem {
 
     @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (world.getDimension()
+            .hasCeiling()) {
+            user.sendMessage(new LiteralText("Can't be used in dimensions with a ceiling"), false);
+            return TypedActionResult.fail(user.getStackInHand(hand));
+        }
+
+        return super.use(world, user, hand);
+    }
+
+    @Override
     public ItemStack onDoneUsing(ItemStack stack, World world, ServerPlayerEntity user) {
 
         try {
-
-            if (world.getDimension()
-                .hasCeiling()) {
-                user.sendMessage(new LiteralText("Can't be used in dimensions with a ceiling"), false);
-                return stack;
-            }
 
             BlockPos pos = getRandomZoneForLevel(world, Load.Unit(user)
                 .getLevel());

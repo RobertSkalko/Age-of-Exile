@@ -95,8 +95,8 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
     }
 
-    static int BUTTON_SIZE_X = 30;
-    static int BUTTON_SIZE_Y = 30;
+    public static int BUTTON_SIZE_X = 30;
+    public static int BUTTON_SIZE_Y = 30;
 
     public static void renderIconFor(MatrixStack matrix, PlayerSkillEnum skill, int x, int y, boolean renderText) {
         // this is separated because it's used in 2 different places. The screen, and overlay

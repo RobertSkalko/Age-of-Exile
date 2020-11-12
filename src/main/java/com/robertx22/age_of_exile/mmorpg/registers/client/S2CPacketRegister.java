@@ -23,6 +23,7 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(new SyncCapabilityToClient());
         Packets.registerServerToClient(new TellClientToCastSpellPacket());
         Packets.registerServerToClient(new SyncAreaLevelPacket());
+        Packets.registerServerToClient(new SkillLevelUpToClient());
 
     }
 }

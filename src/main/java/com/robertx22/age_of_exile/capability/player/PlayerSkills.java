@@ -8,7 +8,9 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillsData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.SkillLevelUpToClient;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -65,6 +67,8 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
         player.sendMessage(skill.word.locName()
             .append(" leveled up!")
             .formatted(skill.format), false);
+
+        Packets.sendToClient(player, new SkillLevelUpToClient(skill));
     }
 
     public PlayerSkills(PlayerEntity player) {

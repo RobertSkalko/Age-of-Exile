@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.config.GuiPartConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.gui.overlays.AreaLevelIndicator;
 import com.robertx22.age_of_exile.gui.overlays.BarGuiType;
+import com.robertx22.age_of_exile.gui.screens.player_skills.PlayerSkillsScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.saveclasses.PointData;
@@ -53,6 +54,14 @@ public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRender
 
             if (!ModConfig.get().client.PLAYER_GUI_TYPE.equals(PlayerGUIs.REPLACE_VANILLA)) {
                 return;
+            }
+
+            if (SyncedToClientValues.skillJustLeveled != null) {
+                if (SyncedToClientValues.ticksToShowSkillLvled > 0) {
+                    SyncedToClientValues.ticksToShowSkillLvled--;
+                    PlayerSkillsScreen.renderIconFor(matrix, SyncedToClientValues.skillJustLeveled, mc.getWindow()
+                        .getScaledWidth() / 2 - PlayerSkillsScreen.BUTTON_SIZE_X / 2, 0, false);
+                }
             }
 
             PlayerEntity en = mc.player;
