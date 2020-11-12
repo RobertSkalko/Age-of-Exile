@@ -4,6 +4,8 @@ import com.robertx22.age_of_exile.player_skills.enchants.EnchantsEnum;
 import com.robertx22.age_of_exile.player_skills.items.fishing.ScribeInkItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EnchantmentScrollItem;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.DeathTeleportItem;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.SpawnTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTabletItem;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTabletTier;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.ProtectionTabletItem;
@@ -30,6 +32,9 @@ public class InscribingItemRegister extends BaseItemRegistrator {
     public ProtectionTabletItem ANTI_HUNGER = tablet(new ProtectionTabletItem(SkillItemTier.CELESTIAL, TabletTypes.ANTI_HUNGER));
     public ProtectionTabletItem ANTI_GEAR_BREAK = tablet(new ProtectionTabletItem(SkillItemTier.EMPYREAN, TabletTypes.ANTI_GEAR_BREAK));
     public ProtectionTabletItem ANTI_DEATH = tablet(new ProtectionTabletItem(SkillItemTier.DIVINE, TabletTypes.ANTI_DEATH));
+
+    public DeathTeleportItem DEATH_TELEPORT = item(new DeathTeleportItem(), "scroll/death_teleport");
+    public SpawnTeleportItem SPAWN_TELEPORT = item(new SpawnTeleportItem(), "scroll/spawn_teleport");
 
     public InscribingItemRegister() {
         for (SkillItemTier tier : SkillItemTier.values()) {

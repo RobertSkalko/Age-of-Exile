@@ -8,11 +8,14 @@ import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.event_hooks.ontick.WorldTickEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnDamagePlayerActivateTablets;
 import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import nerdhub.cardinal.components.api.event.TrackingStartCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.minecraft.server.network.ServerPlayerEntity;
 import top.theillusivec4.curios.api.event.CurioChangeCallback;
 
 public class CommonEvents {
@@ -40,6 +43,23 @@ public class CommonEvents {
         ExileEvents.PLAYER_DEATH.register(new OnPlayerDeath());
 
         ServerTickEvents.END_WORLD_TICK.register(new WorldTickEvent());
+
+        ExileEvents.PLAYER_DEATH.register(new EventConsumer<ExileEvents.OnPlayerDeath>() {
+            @Override
+            public void accept(ExileEvents.OnPlayerDeath event) {
+                if (event.player instanceof ServerPlayerEntity) {
+                    try {
+                        ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(event.player).deathPos = event.player.getBlockPos();
+                        ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(event.player).deathDim = event.player.world.getRegistryKey()
+                            .getValue()
+                            .toString();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
     }
 
 }

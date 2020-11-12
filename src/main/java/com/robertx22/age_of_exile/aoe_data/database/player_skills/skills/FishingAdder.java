@@ -15,6 +15,7 @@ public class FishingAdder {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(3, PlayerSkillEnum.FISHING);
         b.addDefaultBonusExpRewards();
+        b.addFoodDrops();
         b.skill.exp_per_action = 50;
         b.skill.loot_chance_per_action_exp *= 3;
 

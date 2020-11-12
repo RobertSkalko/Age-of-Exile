@@ -1,5 +1,19 @@
 ## v1.8.0
 
+
+Skills Update! No, not the spells, but skills/professions!
+
+Added many gathering skills: Mining, Farming and Fishing.
+These skills level up as you mine ores, gather crops or fish. 
+
+Added crafting skills: Alchemy, Cooking and Inscribing.
+These skills use ingredients from the gathering skills to craft useful items to aid you in your adventuring, like:
+- instant hp potions from alchemy
+- long lasting food buffs from cooking
+- protection tablets and various teleportation scrolls from inscribing
+
+Leveling up any of these skills gives various buffs to your stats and experience gain too!
+
 * new overlay gui. I think this one will become the main one. 
 Basically like hack slash mine's gui, just less textured.
 It's fully configurable unlike the other guis.
@@ -44,4 +58,7 @@ This is for stats like critical damage that on a lvl 1 item give 10% crit but on
 This scaling is supposed to be small and only there so lvl 1 items never get to be better than lvl 50 items. (in case they have no scaling stats)
 High level players should feel less overpowered now.
 * added spell cast hotkey! Retained right click cast as a config
+* items from craftable utilities mod have been transfered to this mod and are now part of inscribing skill
+
+
 
