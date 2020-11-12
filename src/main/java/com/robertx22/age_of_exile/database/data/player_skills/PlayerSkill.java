@@ -22,6 +22,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     public PlayerSkillEnum type_enum = PlayerSkillEnum.MINING;
     public String id;
     public int exp_per_action = 0;
+    public int order = 0;
 
     public float loot_chance_per_action_exp = 0.1F;
 

@@ -5,18 +5,14 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
-public class AlchemyAdder {
+public class InscribingAdder {
 
     public static PlayerSkill createSkill() {
 
-        PlayerSkillBuilder b = PlayerSkillBuilder.of(4, PlayerSkillEnum.ALCHEMY);
+        PlayerSkillBuilder b = PlayerSkillBuilder.of(6, PlayerSkillEnum.INSCRIBING);
         b.addDefaultBonusExpRewards();
-        b.skill.loot_chance_per_action_exp *= 3;
 
         ModRegistry.TABLETS.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20));
-
-        ModRegistry.ALCHEMY.POTIONS_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 2 + ((x.tier.tier + 1) * 2)));
 
         return b.build();
     }

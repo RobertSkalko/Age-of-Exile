@@ -16,7 +16,7 @@ public class FarmingAdder {
 
     public static PlayerSkill createSkill() {
 
-        PlayerSkillBuilder b = PlayerSkillBuilder.of(PlayerSkillEnum.FARMING);
+        PlayerSkillBuilder b = PlayerSkillBuilder.of(2, PlayerSkillEnum.FARMING);
         b.addDefaultBonusExpRewards();
         b.skill.loot_chance_per_action_exp *= 2;
 

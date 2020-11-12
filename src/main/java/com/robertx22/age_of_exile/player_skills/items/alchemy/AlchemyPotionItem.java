@@ -1,12 +1,15 @@
 package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
+import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -29,7 +32,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
+public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe, IReqSkillLevel {
 
     public SkillItemTier tier;
     PotionType type;
@@ -42,7 +45,13 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand handIn) {
+
         ItemStack stack = player.getStackInHand(handIn);
+
+        if (!IsSkillItemUsableUtil.canUseItem(player, stack, true)) {
+            return TypedActionResult.fail(stack);
+        }
+
         stack.decrement(1);
 
         if (!world.isClient) {
@@ -107,5 +116,15 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
     @Override
     public String GUID() {
         return "alchemy/potion/" + type.id + "/" + tier.tier;
+    }
+
+    @Override
+    public PlayerSkillEnum getSkillTypeToCraft() {
+        return PlayerSkillEnum.ALCHEMY;
+    }
+
+    @Override
+    public float getSkillLevelMultiNeeded() {
+        return tier.lvl_req;
     }
 }

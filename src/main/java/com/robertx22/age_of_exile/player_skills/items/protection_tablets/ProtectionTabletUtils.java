@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 
+import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,6 +36,8 @@ public class ProtectionTabletUtils {
             e.printStackTrace();
         }
 
+        list.removeIf(x -> IsSkillItemUsableUtil.canUseItem(player, x.stack, false));
+
         return list;
 
     }
@@ -58,4 +61,5 @@ public class ProtectionTabletUtils {
         }
 
     }
+
 }

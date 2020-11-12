@@ -6,19 +6,20 @@ import java.util.Arrays;
 
 public enum SkillItemTier {
 
-    SPIRITUAL("Spiritual", 0, 1, Formatting.YELLOW, 60 * 2, 20),
-    CELESTIAL("Celestial", 1, 1.25F, Formatting.AQUA, 60 * 3, 25),
-    EMPYREAN("Empyrean", 2, 1.5F, Formatting.GOLD, 60 * 5, 30),
-    ANGELIC("Angelic", 3, 1.75F, Formatting.LIGHT_PURPLE, 60 * 7, 40),
-    DIVINE("Divine", 4, 2, Formatting.DARK_PURPLE, 60 * 10, 50);
+    SPIRITUAL("Spiritual", 0, 0, 1, Formatting.YELLOW, 60 * 2, 20),
+    CELESTIAL("Celestial", 0.2F, 1, 1.25F, Formatting.AQUA, 60 * 3, 25),
+    EMPYREAN("Empyrean", 0.4F, 2, 1.5F, Formatting.GOLD, 60 * 5, 30),
+    ANGELIC("Angelic", 0.6F, 3, 1.75F, Formatting.LIGHT_PURPLE, 60 * 7, 40),
+    DIVINE("Divine", 0.8F, 4, 2, Formatting.DARK_PURPLE, 60 * 10, 50);
 
-    SkillItemTier(String word, int tier, float statMulti, Formatting format, int durationseconds, float percent_healed) {
+    SkillItemTier(String word, float lvl_req, int tier, float statMulti, Formatting format, int durationseconds, float percent_healed) {
         this.word = word;
         this.tier = tier;
         this.statMulti = statMulti;
         this.format = format;
         this.percent_healed = percent_healed;
         this.durationSeconds = durationseconds;
+        this.lvl_req = lvl_req;
     }
 
     public static SkillItemTier of(int amplifier) {
@@ -28,6 +29,7 @@ public enum SkillItemTier {
             .orElse(SkillItemTier.SPIRITUAL);
     }
 
+    public float lvl_req;
     public String word;
     public int tier;
     public float statMulti;

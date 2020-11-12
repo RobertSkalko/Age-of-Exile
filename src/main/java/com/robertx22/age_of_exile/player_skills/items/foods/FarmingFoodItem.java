@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.foods;
 
+import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ModelHelper;
@@ -8,22 +9,27 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
+import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
+public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe, IReqSkillLevel {
 
     public FoodType type;
     public FoodExileEffect exileEffect;
@@ -36,6 +42,18 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
         this.type = type;
         this.exileEffect = exileEffect;
         this.tier = tier;
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+
+        ItemStack stack = user.getStackInHand(hand);
+        if (!IsSkillItemUsableUtil.canUseItem(user, stack, true)) {
+            return TypedActionResult.fail(stack);
+        }
+
+        return super.use(world, user, hand);
+
     }
 
     public FoodEffect getFoodEffect() {
@@ -104,5 +122,15 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
         fac.input(ModRegistry.FOOD_ITEMS.MAT_TIER_MAP.get(this.tier));
         fac.input(type.vanillaCraftingItem);
         return fac.criterion("player_level", trigger());
+    }
+
+    @Override
+    public PlayerSkillEnum getSkillTypeToCraft() {
+        return PlayerSkillEnum.COOKING;
+    }
+
+    @Override
+    public float getSkillLevelMultiNeeded() {
+        return tier.lvl_req;
     }
 }

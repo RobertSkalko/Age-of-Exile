@@ -17,10 +17,11 @@ public class PlayerSkillBuilder {
 
     public PlayerSkill skill = new PlayerSkill();
 
-    public static PlayerSkillBuilder of(PlayerSkillEnum se) {
+    public static PlayerSkillBuilder of(int order, PlayerSkillEnum se) {
         PlayerSkillBuilder b = new PlayerSkillBuilder();
         b.skill.id = se.id;
         b.skill.type_enum = se;
+        b.skill.order = order;
         return b;
     }
 

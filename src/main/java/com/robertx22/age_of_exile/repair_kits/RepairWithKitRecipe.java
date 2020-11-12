@@ -20,6 +20,7 @@ public class RepairWithKitRecipe extends SpecialCraftingRecipe {
 
     @Override
     public boolean matches(CraftingInventory inv, World world) {
+
         int count = 0;
         boolean haskit = false;
         boolean hasgear = false;

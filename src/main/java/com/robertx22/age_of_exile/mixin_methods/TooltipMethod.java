@@ -5,12 +5,14 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
@@ -24,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Comparator;
@@ -134,6 +137,14 @@ public class TooltipMethod {
                 ICurrencyItemEffect currency = (ICurrencyItemEffect) stack
                     .getItem();
                 currency.addToTooltip(tooltip);
+            }
+
+            if (stack.getItem() instanceof IReqSkillLevel) {
+                IReqSkillLevel req = (IReqSkillLevel) stack.getItem();
+                tooltip.add(Words.RequiresLevel.locName()
+                    .append(": " + req.getSkillLevelToCraft() + " ")
+                    .append(req.getSkillTypeToCraft().word.locName())
+                    .formatted(Formatting.RED));
             }
 
         } catch (Exception e) {

@@ -30,8 +30,8 @@ public class BasePlateArmors implements ISlashRegistryInit {
     static float min = 40;
     static float max = 90;
 
-    static float minHP = 3;
-    static float maxHP = 5;
+    static float minHP = 4;
+    static float maxHP = 6;
 
     @Override
     public void registerAll() {

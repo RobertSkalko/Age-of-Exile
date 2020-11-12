@@ -13,7 +13,7 @@ public class MiningAdder {
 
     public static PlayerSkill createSkill() {
 
-        PlayerSkillBuilder b = PlayerSkillBuilder.of(PlayerSkillEnum.MINING);
+        PlayerSkillBuilder b = PlayerSkillBuilder.of(1, PlayerSkillEnum.MINING);
         b.addDefaultBonusExpRewards();
 
         b.blockExp(Blocks.DIAMOND_ORE, 50);

@@ -8,6 +8,9 @@ public enum PlayerSkillEnum {
     MINING("mining", Words.Mining, Formatting.GRAY),
     FARMING("farming", Words.Farming, Formatting.YELLOW),
     ALCHEMY("alchemy", Words.Alchemy, Formatting.LIGHT_PURPLE),
+    INSCRIBING("inscribing", Words.Inscribing, Formatting.AQUA),
+    COOKING("cooking", Words.Cooking, Formatting.RED),
+    FISHING("fishing", Words.Fishing, Formatting.BLUE),
     NONE("none", Words.Elemental_Attack_Damage, Formatting.BLACK);
 
     public String id;

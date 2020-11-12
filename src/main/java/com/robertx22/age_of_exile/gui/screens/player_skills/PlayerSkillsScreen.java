@@ -24,6 +24,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
@@ -58,15 +59,15 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
         int x = guiLeft + 20;
         int y = guiTop + 50;
 
-        for (PlayerSkill skill : SlashRegistry.PlayerSkills()
-            .getList()) {
+        List<PlayerSkill> all = SlashRegistry.PlayerSkills()
+            .getList();
+        all.sort(Comparator.comparingInt(s -> s.order));
 
+        for (PlayerSkill skill : all) {
             addButton(new SkillButton(skill.type_enum,
                 (int) (x + (num % 3) * BUTTON_SIZE_X * 1.75F),
-                (int) (y + num / 3 * BUTTON_SIZE_Y * 1.75F)));
-
+                (int) (y + num / 3 * BUTTON_SIZE_Y * 2)));
             num++;
-
         }
 
     }
@@ -121,7 +122,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
             String xptext = exp + "/" + needed;
             String nametext = CLOC.translate(skill.word.locName());
 
-            TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 10, Formatting.GOLD);
+            TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 5, Formatting.GOLD);
             TextUtils.renderText(matrix, 0.8, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.2F), Formatting.YELLOW);
             TextUtils.renderText(matrix, 0.75, xptext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.5F), Formatting.GREEN);
         }
