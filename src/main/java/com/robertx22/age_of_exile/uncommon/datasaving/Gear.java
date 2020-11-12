@@ -37,7 +37,6 @@ public class Gear {
         }
         if (gear != null) {
             LoadSave.Save(gear, stack.getTag(), LOC);
-            stack.setRepairCost(Integer.MAX_VALUE);// no grindstone repair
         }
 
     }
