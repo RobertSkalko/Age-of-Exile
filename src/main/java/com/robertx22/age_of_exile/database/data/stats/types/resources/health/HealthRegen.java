@@ -35,7 +35,7 @@ public class HealthRegen extends BaseRegenClass {
 
     @Override
     public String locNameForLangFile() {
-        return "Health Regeneration";
+        return "Health Regen";
     }
 
     private static class SingletonHolder {

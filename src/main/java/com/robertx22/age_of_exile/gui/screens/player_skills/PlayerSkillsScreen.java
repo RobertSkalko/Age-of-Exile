@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -88,6 +89,10 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
+        String nametext = CLOC.translate(Words.Skills.locName());
+
+        TextUtils.renderText(matrix, 1.5F, nametext, guiLeft + sizeX / 2, guiTop + 20, Formatting.GREEN);
+
     }
 
     static int BUTTON_SIZE_X = 30;
@@ -154,6 +159,12 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
             if (isInside(x, y)) {
 
                 List<Text> tooltip = new ArrayList<>();
+
+                TooltipInfo info = new TooltipInfo(mc.player);
+
+                tooltip.addAll(SlashRegistry.PlayerSkills()
+                    .get(skill.id)
+                    .GetTooltipString(info));
 
                 GuiUtils.renderTooltip(matrix, tooltip, x, y);
 

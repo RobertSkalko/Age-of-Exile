@@ -2,22 +2,30 @@ package com.robertx22.age_of_exile.database.data.player_skills;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.enchants.BonusSkillLootEnchant;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAutoGson<PlayerSkill> {
+public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAutoGson<PlayerSkill>, ITooltipList {
     public static PlayerSkill SERIALIZER = new PlayerSkill();
 
     public PlayerSkillEnum type_enum = PlayerSkillEnum.MINING;
@@ -36,6 +44,12 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
     public Identifier getIcon() {
         return Ref.id("textures/gui/skills/icons/" + id + ".png");
+    }
+
+    public List<SkillStatReward> getClaimedStats(int lvl) {
+        return stat_rewards.stream()
+            .filter(r -> lvl >= r.lvl_req)
+            .collect(Collectors.toList());
     }
 
     public int getExpForBlockBroken(Block block) {
@@ -93,4 +107,47 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
         return PlayerSkill.class;
     }
 
+    @Override
+    public List<Text> GetTooltipString(TooltipInfo info) {
+
+        List<Text> list = new ArrayList<>();
+
+        int lvl = Load.playerSkills(info.player)
+            .getLevel(type_enum);
+
+        list.add(this.type_enum.word.locName()
+            .formatted(type_enum.format));
+
+        list.add(new LiteralText(""));
+
+        List<OptScaleExactStat> stats = new ArrayList<>();
+
+        for (SkillStatReward x : getClaimedStats(lvl)) {
+            stats.addAll(x.stats);
+        }
+        OptScaleExactStat.combine(stats);
+
+        if (!stats.isEmpty()) {
+            list.add(Words.Stats.locName()
+                .append(": "));
+            stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+        }
+
+        List<OptScaleExactStat> nextstats = new ArrayList<>();
+
+        Optional<SkillStatReward> opt = stat_rewards.stream()
+            .filter(x -> x.lvl_req > lvl)
+            .sorted(Comparator.comparingInt(x -> x.lvl_req))
+            .findFirst();
+
+        if (opt.isPresent()) {
+            list.add(new LiteralText(""));
+            nextstats.addAll(opt.get().stats);
+            OptScaleExactStat.combine(stats);
+            list.add(new LiteralText("Level " + opt.get().lvl_req + " unlocks:"));
+            nextstats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+        }
+
+        return list;
+    }
 }

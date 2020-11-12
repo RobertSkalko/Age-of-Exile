@@ -67,11 +67,11 @@ public class PlayerSkillBuilder {
     }
 
     public PlayerSkillBuilder addDefaultBonusExpRewards() {
-        stat(new SkillStatReward(5, new OptScaleExactStat(2, BonusExp.getInstance())));
-        stat(new SkillStatReward(15, new OptScaleExactStat(2, BonusExp.getInstance())));
-        stat(new SkillStatReward(25, new OptScaleExactStat(5, BonusExp.getInstance())));
-        stat(new SkillStatReward(35, new OptScaleExactStat(5, BonusExp.getInstance())));
-        stat(new SkillStatReward(45, new OptScaleExactStat(10, BonusExp.getInstance())));
+        stat(new SkillStatReward(5, new OptScaleExactStat(5, BonusExp.getInstance())));
+        stat(new SkillStatReward(15, new OptScaleExactStat(10, BonusExp.getInstance())));
+        stat(new SkillStatReward(25, new OptScaleExactStat(10, BonusExp.getInstance())));
+        stat(new SkillStatReward(35, new OptScaleExactStat(15, BonusExp.getInstance())));
+        stat(new SkillStatReward(45, new OptScaleExactStat(15, BonusExp.getInstance())));
         return this;
     }
 

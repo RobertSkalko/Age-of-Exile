@@ -26,22 +26,22 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_GOLD_ORE, 1);
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
 
-        b.hpAndMagicShield(10, 1);
-        b.hpAndMagicShield(20, 2);
-        b.hpAndMagicShield(30, 3);
-        b.hpAndMagicShield(40, 4);
-        b.hpAndMagicShield(50, 5);
+        b.hpAndMagicShield(10, 2);
+        b.hpAndMagicShield(20, 3);
+        b.hpAndMagicShield(30, 4);
+        b.hpAndMagicShield(40, 5);
+        b.hpAndMagicShield(50, 10);
 
-        b.dropReward(new SkillDropReward(4, 1, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(9, 2, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(14, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(19, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 2)));
-        b.dropReward(new SkillDropReward(24, 4, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        b.dropReward(new SkillDropReward(29, 2, ModRegistry.INSCRIBING.RARE_BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(4, 2, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(9, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(14, 4, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(19, 4, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 2)));
+        b.dropReward(new SkillDropReward(24, 5, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(29, 3, ModRegistry.INSCRIBING.RARE_BLANK_TABLET, new MinMax(1, 1)));
 
         b.dropReward(new SkillDropReward(5, 10, Items.COAL, new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(10, 10, Items.IRON_NUGGET, new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(15, 10, Items.GOLD_NUGGET, new MinMax(1, 3)));
+        b.dropReward(new SkillDropReward(10, 10, Items.IRON_INGOT, new MinMax(1, 1)));
+        b.dropReward(new SkillDropReward(15, 10, Items.GOLD_INGOT, new MinMax(1, 1)));
         b.dropReward(new SkillDropReward(20, 10, Items.ENDER_PEARL, new MinMax(1, 2)));
         b.dropReward(new SkillDropReward(25, 2, Items.DIAMOND, new MinMax(1, 1)));
         b.dropReward(new SkillDropReward(30, 2, Items.IRON_INGOT, new MinMax(1, 3)));

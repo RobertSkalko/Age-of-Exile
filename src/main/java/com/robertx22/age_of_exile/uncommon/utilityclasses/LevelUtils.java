@@ -29,11 +29,11 @@ public class LevelUtils {
     }
 
     public static int getExpRequiredForLevel(int level) {
-        return (int) (Math.pow(6F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2.25F));
+        return (int) (Math.pow(6F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2.35F));
     }
 
     public static int getBaseExpMobReward(int level) {
-        return 4 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.3F));
+        return 4 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.2F));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
@@ -78,6 +78,15 @@ public class LevelUtils {
 
         return MathHelper.clamp(lvl, config.min_lvl, config.max_lvl);
 
+    }
+
+    public static double getBlocksForEachLevelDistance(ServerWorld world) {
+        DimensionConfig config = SlashRegistry.getDimensionConfig(world);
+
+        double scale = MathHelper.clamp(world.getDimension()
+            .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);
+
+        return config.mob_lvl_per_distance / scale;
     }
 
 }

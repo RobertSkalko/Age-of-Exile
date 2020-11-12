@@ -5,14 +5,19 @@ Skills Update! No, not the spells, but skills/professions!
 
 Added many gathering skills: Mining, Farming and Fishing.
 These skills level up as you mine ores, gather crops or fish. 
+You will gain extra random drops as your skill level increases.
 
 Added crafting skills: Alchemy, Cooking and Inscribing.
-These skills use ingredients from the gathering skills to craft useful items to aid you in your adventuring, like:
+These skills use ingredients from the gathering skills to craft useful items to aid you in your adventuring:
 - instant hp potions from alchemy
-- long lasting food buffs from cooking
-- protection tablets and various teleportation scrolls from inscribing
+- long-lasting food buffs from cooking
+- protection tablets, enchanting scrolls and various teleportation scrolls from inscribing
 
 Leveling up any of these skills gives various buffs to your stats and experience gain too!
+In fact, leveling your combat level is now harder, and bonus exp given by leveling skills should compensate for that.
+
+These skills were added to provide a reason and rewards for doing things besides killing mobs and exploring.
+They will provide you useful items to aid in combat, and ways to teleport to adventure and back!
 
 * new overlay gui. I think this one will become the main one. 
 Basically like hack slash mine's gui, just less textured.

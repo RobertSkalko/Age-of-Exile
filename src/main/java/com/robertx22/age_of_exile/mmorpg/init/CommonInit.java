@@ -84,7 +84,8 @@ public class CommonInit implements ModInitializer {
             }
         });
 
-        //testLevelCurve();
+        testLevelCurve();
+
 
         /*
         Armor.getInstance()

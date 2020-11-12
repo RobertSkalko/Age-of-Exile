@@ -118,4 +118,37 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         }
     }
 
+    public static void combine(List<OptScaleExactStat> list) {
+
+        List<OptScaleExactStat> combined = new ArrayList<>();
+
+        while (!list.isEmpty()) {
+
+            OptScaleExactStat current = null;
+
+            for (OptScaleExactStat stat : list) {
+
+                if (current == null) {
+                    current = stat;
+                    continue;
+                }
+                if (current.stat.equals(stat.stat)) {
+                    if (current.type.equals(stat.type)) {
+                        if (current.scaleToLevel == stat.scaleToLevel) {
+                            current.first += stat.first;
+                            current.second += stat.second;
+                        }
+                    }
+                }
+            }
+            combined.add(current);
+
+            list.remove(0);
+
+        }
+
+        list.addAll(combined);
+
+    }
+
 }
