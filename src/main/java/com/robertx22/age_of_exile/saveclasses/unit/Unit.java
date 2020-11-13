@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.IAddToOtherStats;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.MobStatUtils;
@@ -310,13 +311,31 @@ public class Unit {
                 InCalcStatData statdata = x.getValue();
                 Stat stat = x.getValue()
                     .GetStat();
-                if (statdata != null && stat instanceof IAddToOtherStats) {
-                    IAddToOtherStats add = (IAddToOtherStats) stat;
-                    add.addToOtherStats(data, statdata);
-                }
                 if (statdata != null && stat instanceof ITransferToOtherStats) {
                     ITransferToOtherStats add = (ITransferToOtherStats) stat;
                     add.transferStats(data, statdata);
+                }
+            });
+
+        new HashMap<>(stats.statsInCalc).entrySet()
+            .forEach(x -> {
+                InCalcStatData statdata = x.getValue();
+                Stat stat = x.getValue()
+                    .GetStat();
+                if (statdata != null && stat instanceof ICoreStat) {
+                    ICoreStat add = (ICoreStat) stat;
+                    add.addToOtherStats(data, statdata);
+                }
+            });
+
+        new HashMap<>(stats.statsInCalc).entrySet()
+            .forEach(x -> {
+                InCalcStatData statdata = x.getValue();
+                Stat stat = x.getValue()
+                    .GetStat();
+                if (statdata != null && stat instanceof IAffectsStats) {
+                    IAffectsStats add = (IAffectsStats) stat;
+                    add.affectStats(data, statdata);
                 }
             });
 

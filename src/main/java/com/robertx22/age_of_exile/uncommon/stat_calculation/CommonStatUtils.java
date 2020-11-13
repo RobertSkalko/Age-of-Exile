@@ -1,11 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
-import com.robertx22.age_of_exile.database.registrators.Stats;
-import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IApplyStatPotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -35,23 +31,6 @@ public class CommonStatUtils {
 
         Unit theunit = unit.getUnit();
 
-        for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
-
-            InCalcStatData statdata = theunit.getStatInCalculation(core.GUID());
-            if (statdata.isMoreThanZero()) {
-                core.addToOtherStats(unit, statdata);
-            }
-
-        }
-
-        for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
-
-            InCalcStatData statdata = theunit.getStatInCalculation(trait.GUID());
-            if (statdata.isMoreThanZero()) {
-                trait.affectStats(unit, statdata);
-            }
-
-        }
     }
 
 }

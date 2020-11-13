@@ -154,7 +154,8 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
             .getLevel()) {
             if (lvl < ModConfig.get().Server.MAX_LEVEL) {
                 list.add(new LiteralText(""));
-                list.add(new LiteralText("Capped to combat level.").formatted(Formatting.RED));
+                list.add(new LiteralText("Skill level Capped to Combat level.").formatted(Formatting.RED));
+                list.add(new LiteralText("Level your Combat level to progress further.").formatted(Formatting.RED));
             }
         }
 
