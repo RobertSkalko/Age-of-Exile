@@ -46,8 +46,13 @@ public class LevelUtils {
 
         if (ModConfig.get().Server.ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER || dimConfig.scale_to_nearest_player) {
             if (nearestPlayer != null) {
-                lvl = Load.Unit(nearestPlayer)
-                    .getLevel();
+
+                if (isInMinLevelArea(sw, pos, dimConfig)) {
+                    lvl = dimConfig.min_lvl;
+                } else {
+                    lvl = Load.Unit(nearestPlayer)
+                        .getLevel();
+                }
             } else {
                 lvl = determineLevelPerDistanceFromSpawn(sw, pos, dimConfig);
             }
@@ -62,6 +67,21 @@ public class LevelUtils {
         return lvl;
     }
 
+    public static boolean isInMinLevelArea(ServerWorld world, BlockPos pos, DimensionConfig config) {
+        double distance = world.getSpawnPos()
+            .getManhattanDistance(pos);
+
+        double scale = MathHelper.clamp(world.getDimension()
+            .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);
+
+        distance *= scale;
+
+        if (distance < config.min_lvl_area) {
+            return true;
+        }
+        return false;
+    }
+
     public static int determineLevelPerDistanceFromSpawn(ServerWorld world, BlockPos pos, DimensionConfig config) {
 
         double distance = world.getSpawnPos()
@@ -71,6 +91,10 @@ public class LevelUtils {
             .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);
 
         distance *= scale;
+
+        if (distance < config.min_lvl_area) {
+            return config.min_lvl;
+        }
 
         int lvl = 1;
 

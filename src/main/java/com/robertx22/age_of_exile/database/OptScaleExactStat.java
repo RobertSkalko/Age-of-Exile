@@ -122,28 +122,40 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
 
         List<OptScaleExactStat> combined = new ArrayList<>();
 
+        OptScaleExactStat current = null;
+
+        int i = 0;
+
         while (!list.isEmpty()) {
 
-            OptScaleExactStat current = null;
+            List<OptScaleExactStat> toRemove = new ArrayList<>();
 
             for (OptScaleExactStat stat : list) {
 
-                if (current == null) {
-                    current = stat;
+                if (i == 0) {
+                    toRemove.add(stat);
+                    current = new OptScaleExactStat(stat.first, stat.second, stat.getStat(), stat.getModType());
+                    i++;
                     continue;
                 }
+
                 if (current.stat.equals(stat.stat)) {
                     if (current.type.equals(stat.type)) {
                         if (current.scaleToLevel == stat.scaleToLevel) {
                             current.first += stat.first;
                             current.second += stat.second;
+                            toRemove.add(stat);
                         }
                     }
                 }
-            }
-            combined.add(current);
 
-            list.remove(0);
+                i++;
+
+            }
+
+            i = 0;
+            combined.add(current);
+            toRemove.forEach(n -> list.removeAll(toRemove));
 
         }
 

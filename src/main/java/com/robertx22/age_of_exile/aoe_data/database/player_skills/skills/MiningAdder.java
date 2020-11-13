@@ -16,6 +16,12 @@ public class MiningAdder {
         PlayerSkillBuilder b = PlayerSkillBuilder.of(1, PlayerSkillEnum.MINING);
         b.addDefaultBonusExpRewards();
 
+        b.totalDamage(10, 1);
+        b.totalDamage(20, 2);
+        b.totalDamage(30, 3);
+        b.totalDamage(40, 4);
+        b.totalDamage(50, 5);
+
         b.blockExp(Blocks.DIAMOND_ORE, 50);
         b.blockExp(Blocks.GOLD_ORE, 15);
         b.blockExp(Blocks.IRON_ORE, 10);
@@ -25,12 +31,6 @@ public class MiningAdder {
         b.blockExp(Blocks.COAL_ORE, 1);
         b.blockExp(Blocks.NETHER_GOLD_ORE, 1);
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
-
-        b.hpAndMagicShield(10, 2);
-        b.hpAndMagicShield(20, 3);
-        b.hpAndMagicShield(30, 4);
-        b.hpAndMagicShield(40, 5);
-        b.hpAndMagicShield(50, 10);
 
         b.dropReward(new SkillDropReward(4, 2, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
         b.dropReward(new SkillDropReward(9, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));

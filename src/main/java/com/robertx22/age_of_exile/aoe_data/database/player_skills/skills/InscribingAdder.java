@@ -11,11 +11,13 @@ public class InscribingAdder {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(6, PlayerSkillEnum.INSCRIBING);
         b.addDefaultBonusExpRewards();
+        b.addDefaultHpMsMana();
 
         ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20));
 
         b.itemCraftExp(ModRegistry.INSCRIBING.SPAWN_TELEPORT, 2);
         b.itemCraftExp(ModRegistry.INSCRIBING.DEATH_TELEPORT, 2);
+        b.itemCraftExp(ModRegistry.INSCRIBING.RANDOM_TELEPORT, 2);
 
         ModRegistry.INSCRIBING.ENCHANT_SCROLL_MAP.values()
             .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 10));

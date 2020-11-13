@@ -4,10 +4,12 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.*;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -39,10 +41,19 @@ public class PlayerSkillBuilder {
         return this;
     }
 
-    public PlayerSkillBuilder hpAndMagicShield(int lvl, float num) {
+    public PlayerSkillBuilder totalDamage(int lvl, float num) {
+        stat(new SkillStatReward(lvl,
+            new OptScaleExactStat(num, TotalDamage.getInstance(), ModType.FLAT)
+        ));
+        return this;
+    }
+
+    public PlayerSkillBuilder hpMsMana(int lvl, float num) {
         stat(new SkillStatReward(lvl,
             new OptScaleExactStat(num, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(num, MagicShield.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(num, MagicShield.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(num, Mana.getInstance(), ModType.LOCAL_INCREASE)
+
         ));
         return this;
     }
@@ -63,6 +74,15 @@ public class PlayerSkillBuilder {
 
     public PlayerSkillBuilder itemCraftExp(Item block, float exp) {
         skill.item_craft_exp.add(new ItemCraftExp(exp, block));
+        return this;
+    }
+
+    public PlayerSkillBuilder addDefaultHpMsMana() {
+        hpMsMana(10, 2);
+        hpMsMana(20, 3);
+        hpMsMana(30, 4);
+        hpMsMana(40, 5);
+        hpMsMana(50, 10);
         return this;
     }
 

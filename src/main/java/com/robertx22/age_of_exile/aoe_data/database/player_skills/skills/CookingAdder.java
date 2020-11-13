@@ -11,6 +11,7 @@ public class CookingAdder {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(5, PlayerSkillEnum.COOKING);
         b.addDefaultBonusExpRewards();
+        b.addDefaultHpMsMana();
 
         ModRegistry.FOOD_ITEMS.MAP.values()
             .forEach(x -> b.itemCraftExp(x, 20));
