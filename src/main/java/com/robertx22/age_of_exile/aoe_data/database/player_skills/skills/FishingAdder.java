@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills;
 
+import com.robertx22.age_of_exile.aoe_data.database.player_skills.DropRewardsBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
@@ -16,15 +17,17 @@ public class FishingAdder {
         PlayerSkillBuilder b = PlayerSkillBuilder.of(3, PlayerSkillEnum.FISHING);
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
-        b.addFoodDrops();
-        b.skill.exp_per_action = 50;
-        b.skill.loot_chance_per_action_exp *= 3;
+        b.skill.exp_per_action = 25;
 
-        b.dropReward(new SkillDropReward(1, 100, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(10, 75, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(20, 50, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(30, 25, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
-        b.dropReward(new SkillDropReward(40, 10, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
+        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(1);
+        skillDrops.addFoodDrops();
+        skillDrops.dropReward(new SkillDropReward(1, 100, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(10, 75, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(20, 50, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(30, 25, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(40, 10, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
+
+        b.skill.dropTables.add(skillDrops.build());
 
         return b.build();
     }

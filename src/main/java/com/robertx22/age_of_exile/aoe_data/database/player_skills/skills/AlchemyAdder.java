@@ -12,7 +12,6 @@ public class AlchemyAdder {
         PlayerSkillBuilder b = PlayerSkillBuilder.of(4, PlayerSkillEnum.ALCHEMY);
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
-        b.skill.loot_chance_per_action_exp *= 3;
 
         ModRegistry.ALCHEMY.POTIONS_MAP.values()
             .forEach(x -> b.itemCraftExp(x, 2 + ((x.tier.tier + 1) * 2)));

@@ -2,12 +2,13 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.game_changers.ManaBatteryEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
+import net.minecraft.util.math.MathHelper;
 
-public class DamageAbsorbedByMana extends Stat implements IStatEffects {
+public class DamageAbsorbedByMana extends Stat {
     public static String GUID = "mana_shield";
 
     private DamageAbsorbedByMana() {
@@ -47,9 +48,44 @@ public class DamageAbsorbedByMana extends Stat implements IStatEffects {
         return "Of Damage Absorbed By Mana";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return ManaBatteryEffect.INSTANCE;
+    public static float modifyEntityDamage(DamageEffect effect, float dmg) {
+
+        StatData data = effect.targetData.getUnit()
+            .getCalculatedStat(DamageAbsorbedByMana.getInstance());
+
+        if (data.getAverageValue() <= 0) {
+            return dmg;
+        }
+
+        float currentMana = effect.targetData.getResources()
+            .getMana();
+
+        if (currentMana / effect.targetData.getUnit()
+            .manaData()
+            .getAverageValue() > 0.5F) {
+
+            float maxMana = effect.targetData.getUnit()
+                .manaData()
+                .getAverageValue();
+
+            float dmgReduced = MathHelper.clamp(dmg * data.getAverageValue() / 100F, 0, currentMana - (maxMana * 0.5F));
+
+            if (dmgReduced > 0) {
+
+                ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
+                    ResourcesData.Type.MANA, dmgReduced,
+                    ResourcesData.Use.SPEND
+                );
+
+                effect.targetData.getResources()
+                    .modify(ctx);
+
+                return dmg - dmgReduced;
+
+            }
+
+        }
+        return dmg;
     }
 
     private static class SingletonHolder {

@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.MinMax;
-import com.robertx22.age_of_exile.database.data.player_skills.*;
+import com.robertx22.age_of_exile.database.data.player_skills.BlockBreakExp;
+import com.robertx22.age_of_exile.database.data.player_skills.ItemCraftExp;
+import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
+import com.robertx22.age_of_exile.database.data.player_skills.SkillStatReward;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -11,13 +13,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.FOOD_ITEMS;
 
 public class PlayerSkillBuilder {
 
@@ -29,11 +28,6 @@ public class PlayerSkillBuilder {
         b.skill.type_enum = se;
         b.skill.order = order;
         return b;
-    }
-
-    public PlayerSkillBuilder dropReward(SkillDropReward reward) {
-        skill.drop_rewards.add(reward);
-        return this;
     }
 
     public PlayerSkillBuilder stat(SkillStatReward stat) {
@@ -92,15 +86,6 @@ public class PlayerSkillBuilder {
         stat(new SkillStatReward(25, new OptScaleExactStat(10, BonusExp.getInstance())));
         stat(new SkillStatReward(35, new OptScaleExactStat(15, BonusExp.getInstance())));
         stat(new SkillStatReward(45, new OptScaleExactStat(15, BonusExp.getInstance())));
-        return this;
-    }
-
-    public PlayerSkillBuilder addFoodDrops() {
-        dropReward(new SkillDropReward(10, 100, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(20, 75, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(30, 50, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(40, 25, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(50, 10, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
         return this;
     }
 

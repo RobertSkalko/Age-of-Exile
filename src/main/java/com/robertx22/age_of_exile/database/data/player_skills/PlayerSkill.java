@@ -35,9 +35,8 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     public int exp_per_action = 0;
     public int order = 0;
 
-    public float loot_chance_per_action_exp = 0.1F;
+    public List<SkillDropTable> dropTables = new ArrayList<>();
 
-    public List<SkillDropReward> drop_rewards = new ArrayList<>();
     public List<SkillStatReward> stat_rewards = new ArrayList<>();
 
     public List<BlockBreakExp> block_break_exp = new ArrayList<>();
@@ -72,24 +71,27 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
         List<ItemStack> list = new ArrayList<>();
 
-        float chance = loot_chance_per_action_exp * expForAction;
+        for (SkillDropTable dropTable : dropTables) {
 
-        float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
+            float chance = dropTable.loot_chance_per_action_exp * expForAction;
 
-        chance *= chanceMulti;
+            float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
 
-        if (RandomUtils.roll(chance)) {
-            List<SkillDropReward> possible = drop_rewards
-                .stream()
-                .filter(x -> skills.getLevel(type_enum) >= x.lvl_req)
-                .collect(Collectors.toList());
+            chance *= chanceMulti;
 
-            if (!possible.isEmpty()) {
-                list.add(RandomUtils.weightedRandom(possible)
-                    .getRewardStack());
+            if (RandomUtils.roll(chance)) {
+                List<SkillDropReward> possible = dropTable.drop_rewards
+                    .stream()
+                    .filter(x -> skills.getLevel(type_enum) >= x.lvl_req)
+                    .collect(Collectors.toList());
+
+                if (!possible.isEmpty()) {
+                    list.add(RandomUtils.weightedRandom(possible)
+                        .getRewardStack());
+                }
             }
-        }
 
+        }
         return list;
 
     }

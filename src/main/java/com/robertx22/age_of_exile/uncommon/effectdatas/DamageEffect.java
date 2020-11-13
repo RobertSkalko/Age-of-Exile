@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
@@ -144,7 +145,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         dmg = dmg * percentMulti;
 
-        dmg = MagicShield.modifyEntityDamage(this, dmg);
+        if (target instanceof PlayerEntity) {
+            dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
+            dmg = MagicShield.modifyEntityDamage(this, dmg);
+        }
 
         return dmg;
     }

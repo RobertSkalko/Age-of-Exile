@@ -14,7 +14,7 @@ public class CookingAdder {
         b.addDefaultHpMsMana();
 
         ModRegistry.FOOD_ITEMS.MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 20));
+            .forEach(x -> b.itemCraftExp(x, 25));
 
         return b.build();
     }

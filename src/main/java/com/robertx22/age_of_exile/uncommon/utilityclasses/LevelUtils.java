@@ -33,7 +33,7 @@ public class LevelUtils {
     }
 
     public static int getBaseExpMobReward(int level) {
-        return 4 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.2F));
+        return 6 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.2F));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
