@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.player_skills.enchants.EnchantsEnum;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -59,8 +58,10 @@ public class EnchantmentScrollItem extends Item implements IAutoLocName, IAutoMo
             Enchantment ench = ModRegistry.ENCHANTS.MAP.get(ImmutablePair.of(skill, enchant));
 
             stack.decrement(1);
+
             ItemStack book = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(ench, tier.tier + 1));
-            PlayerUtils.giveItem(book, user);
+
+            user.dropItem(book, false);
 
             return TypedActionResult.success(stack);
         } catch (Exception e) {

@@ -60,7 +60,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                 if (SyncedToClientValues.ticksToShowSkillLvled > 0) {
                     SyncedToClientValues.ticksToShowSkillLvled--;
                     PlayerSkillsScreen.renderIconFor(matrix, SyncedToClientValues.skillJustLeveled, mc.getWindow()
-                        .getScaledWidth() / 2 - PlayerSkillsScreen.BUTTON_SIZE_X / 2, 0, false);
+                        .getScaledWidth() / 2 - PlayerSkillsScreen.BUTTON_SIZE_X / 2, 0, PlayerSkillsScreen.IconRenderType.OVERLAY);
                 }
             }
 

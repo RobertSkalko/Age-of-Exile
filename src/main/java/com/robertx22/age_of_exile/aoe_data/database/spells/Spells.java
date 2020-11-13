@@ -345,7 +345,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        HEART_OF_ICE = SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 160 * 20), "Hear of Ice")
+        HEART_OF_ICE = SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 160 * 20), "Heart of Ice")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SOUNDS.FREEZE, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))

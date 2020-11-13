@@ -98,7 +98,11 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
     public static int BUTTON_SIZE_X = 30;
     public static int BUTTON_SIZE_Y = 30;
 
-    public static void renderIconFor(MatrixStack matrix, PlayerSkillEnum skill, int x, int y, boolean renderText) {
+    public enum IconRenderType {
+        SCREEN, OVERLAY;
+    }
+
+    public static void renderIconFor(MatrixStack matrix, PlayerSkillEnum skill, int x, int y, IconRenderType render) {
         // this is separated because it's used in 2 different places. The screen, and overlay
 
         MinecraftClient mc = MinecraftClient.getInstance();
@@ -118,18 +122,22 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         drawTexture(matrix, x + 7, y + 7, 16, 16, 16, 16, 16, 16);
 
-        if (renderText) {
+        if (render == IconRenderType.OVERLAY || render == IconRenderType.SCREEN) {
             int lvl = data.getLvl();
+            String lvltext = "Lvl: " + lvl;
+            TextUtils.renderText(matrix, 0.8, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.2F), Formatting.YELLOW);
+        }
+
+        if (render == IconRenderType.SCREEN) {
             int exp = data.getExp();
             int needed = data.getExpNeededToLevel();
 
-            String lvltext = "Lvl: " + lvl;
             String xptext = exp + "/" + needed;
             String nametext = CLOC.translate(skill.word.locName());
 
             TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 5, Formatting.GOLD);
-            TextUtils.renderText(matrix, 0.8, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.2F), Formatting.YELLOW);
             TextUtils.renderText(matrix, 0.75, xptext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.5F), Formatting.GREEN);
+
         }
     }
 
@@ -151,7 +159,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
         @Override
         public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-            renderIconFor(matrix, skill, x, y, true);
+            renderIconFor(matrix, skill, x, y, IconRenderType.SCREEN);
         }
 
         @Override

@@ -23,11 +23,11 @@ public class DropRewardsBuilder {
     }
 
     public DropRewardsBuilder addFoodDrops() {
-        dropReward(new SkillDropReward(5, 100, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(15, 75, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(25, 50, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(35, 25, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
-        dropReward(new SkillDropReward(45, 10, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
+        dropReward(new SkillDropReward(1, 100, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
+        dropReward(new SkillDropReward(10, 75, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
+        dropReward(new SkillDropReward(20, 50, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
+        dropReward(new SkillDropReward(30, 25, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
+        dropReward(new SkillDropReward(40, 10, FOOD_ITEMS.MAT_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
         return this;
     }
 

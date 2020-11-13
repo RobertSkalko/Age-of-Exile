@@ -12,7 +12,7 @@ public enum FoodType {
     JAM("Jam", "jam", StatusEffects.FIRE_RESISTANCE, Items.HONEY_BOTTLE, Items.COOKED_SALMON),
     PIE("Pie", "pie", StatusEffects.HASTE, Items.PUMPKIN_PIE, Items.PUMPKIN_PIE),
     COOKIE("Cookie", "cookie", StatusEffects.SPEED, Items.COOKIE, Items.COOKED_CHICKEN),
-    BREW("Brew", "brew", StatusEffects.NIGHT_VISION, Items.MUSHROOM_STEM, Items.COOKED_SALMON);
+    BREW("Brew", "brew", StatusEffects.NIGHT_VISION, Items.MUSHROOM_STEW, Items.COOKED_SALMON);
 
     public String word;
     public String id;

@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillsData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SkillLevelUpToClient;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.SoundUtils;
@@ -61,6 +62,8 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
     }
 
     public void onLevelUp(PlayerSkillEnum skill) {
+
+        Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.PLAYER_SKILLS));
 
         SoundUtils.ding(player.world, player.getBlockPos());
 
