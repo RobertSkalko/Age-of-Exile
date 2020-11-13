@@ -25,12 +25,47 @@ public enum TabletTypes {
 
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
-            return healthIsBellowTresh(en) && source.isFire();
+            return healthIsBellowTresh(en) && source.isFire()
+                && !en.hasStatusEffect(StatusEffects.FIRE_RESISTANCE);
         }
 
         @Override
         public void onActivate(PlayerEntity en) {
             en.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, DUR, 1));
+        }
+    },
+    ANTI_POISON("Anti Poison", "anti_poison") {
+        @Override
+        public List<Item> getRecipeItems() {
+            return Arrays.asList(Items.SPIDER_EYE, ModRegistry.INSCRIBING.BLANK_TABLET);
+        }
+
+        @Override
+        public boolean shouldActivate(PlayerEntity en, DamageSource source) {
+            return healthIsBellowTresh(en) && en.hasStatusEffect(StatusEffects.POISON)
+                && !en.hasStatusEffect(ModRegistry.POTIONS.ANTI_POISON);
+        }
+
+        @Override
+        public void onActivate(PlayerEntity en) {
+            en.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.ANTI_POISON, DUR, 1));
+        }
+    },
+    ANTI_WITHER("Anti Wither", "anti_wither") {
+        @Override
+        public List<Item> getRecipeItems() {
+            return Arrays.asList(Items.BLACK_DYE, ModRegistry.INSCRIBING.BLANK_TABLET);
+        }
+
+        @Override
+        public boolean shouldActivate(PlayerEntity en, DamageSource source) {
+            return healthIsBellowTresh(en) && en.hasStatusEffect(StatusEffects.WITHER)
+                && !en.hasStatusEffect(ModRegistry.POTIONS.ANTI_WITHER);
+        }
+
+        @Override
+        public void onActivate(PlayerEntity en) {
+            en.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.ANTI_WITHER, DUR, 1));
         }
     },
     ANTI_DEATH("Anti Death", "anti_death") {
@@ -78,6 +113,35 @@ public enum TabletTypes {
             en.sendMessage(new LiteralText("A piece of gear that almost broke was saved!"), false);
         }
     },
+    GEAR_REPAIR("Gear Repair", "gear_repair") {
+        @Override
+        public List<Item> getRecipeItems() {
+            return Arrays.asList(Items.IRON_INGOT, ModRegistry.INSCRIBING.RARE_BLANK_TABLET);
+        }
+
+        @Override
+        public boolean shouldActivate(PlayerEntity en, DamageSource source) {
+
+            ItemStack stack = PlayerUtils.lowestDurabilityWornGear(en);
+
+            if (stack.isEmpty()) {
+                return false;
+            }
+
+            int left = stack.getMaxDamage() - stack.getDamage();
+            return left < 30;
+        }
+
+        @Override
+        public void onActivate(PlayerEntity en) {
+            ItemStack stack = PlayerUtils.lowestDurabilityWornGear(en);
+            if (stack.isEmpty()) {
+                return;
+            }
+            stack.setDamage(0);
+            en.sendMessage(new LiteralText("A piece of gear was fully repaired."), false);
+        }
+    },
     ANTI_HUNGER("Anti Hunger", "anti_hunger") {
         @Override
         public List<Item> getRecipeItems() {
@@ -86,7 +150,7 @@ public enum TabletTypes {
 
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
-            return healthIsBellowTresh(en);
+            return healthIsBellowTresh(en) && !en.hasStatusEffect(StatusEffects.SATURATION);
         }
 
         @Override

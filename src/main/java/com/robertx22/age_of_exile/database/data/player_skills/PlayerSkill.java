@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.player_skills;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -17,6 +18,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -146,6 +148,14 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
             OptScaleExactStat.combine(stats);
             list.add(new LiteralText("Level " + opt.get().lvl_req + " unlocks:"));
             nextstats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+        }
+
+        if (lvl >= Load.Unit(info.player)
+            .getLevel()) {
+            if (lvl < ModConfig.get().Server.MAX_LEVEL) {
+                list.add(new LiteralText(""));
+                list.add(new LiteralText("Capped to combat level.").formatted(Formatting.RED));
+            }
         }
 
         return list;

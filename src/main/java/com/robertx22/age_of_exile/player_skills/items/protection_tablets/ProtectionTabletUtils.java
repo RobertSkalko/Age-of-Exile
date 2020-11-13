@@ -36,7 +36,7 @@ public class ProtectionTabletUtils {
             e.printStackTrace();
         }
 
-        list.removeIf(x -> IsSkillItemUsableUtil.canUseItem(player, x.stack, false));
+        list.removeIf(x -> !IsSkillItemUsableUtil.canUseItem(player, x.stack, false));
 
         return list;
 

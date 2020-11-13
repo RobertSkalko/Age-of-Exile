@@ -107,6 +107,8 @@
 "effect.mmorpg.food_mana_regen": "Mana Regen",
 "effect.mmorpg.food_magic_shield_regen": "Magic Regen",
 "effect.mmorpg.knockback_resist": "Knockback Res",
+"effect.mmorpg.anti_wither": "Anti Wither",
+"effect.mmorpg.anti_poison": "Anti Poison",
 
 "item.patchouli.age_of_exile_guide.name": "Age of Exile Guidebook",
 "item.patchouli.age_of_exile_guide.landing": "The Adventurer's Guide",

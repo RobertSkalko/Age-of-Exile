@@ -30,9 +30,12 @@ public class InscribingItemRegister extends BaseItemRegistrator {
     public BlankTabletItem RARE_BLANK_TABLET = item(new BlankTabletItem(BlankTabletTier.SUPREME), "tablet/blank_tablet1");
 
     public ProtectionTabletItem ANTI_FIRE = tablet(new ProtectionTabletItem(SkillItemTier.SPIRITUAL, TabletTypes.ANTI_FIRE));
+    public ProtectionTabletItem ANTI_POISON = tablet(new ProtectionTabletItem(SkillItemTier.SPIRITUAL, TabletTypes.ANTI_POISON));
     public ProtectionTabletItem ANTI_HUNGER = tablet(new ProtectionTabletItem(SkillItemTier.CELESTIAL, TabletTypes.ANTI_HUNGER));
+    public ProtectionTabletItem ANTI_WITHER = tablet(new ProtectionTabletItem(SkillItemTier.CELESTIAL, TabletTypes.ANTI_WITHER));
     public ProtectionTabletItem ANTI_GEAR_BREAK = tablet(new ProtectionTabletItem(SkillItemTier.EMPYREAN, TabletTypes.ANTI_GEAR_BREAK));
     public ProtectionTabletItem ANTI_DEATH = tablet(new ProtectionTabletItem(SkillItemTier.DIVINE, TabletTypes.ANTI_DEATH));
+    public ProtectionTabletItem GEAR_REPAIR = tablet(new ProtectionTabletItem(SkillItemTier.DIVINE, TabletTypes.GEAR_REPAIR));
 
     public DeathTeleportItem DEATH_TELEPORT = item(new DeathTeleportItem(), "scroll/death_teleport");
     public SpawnTeleportItem SPAWN_TELEPORT = item(new SpawnTeleportItem(), "scroll/spawn_teleport");

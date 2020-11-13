@@ -8,9 +8,18 @@ import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe, IReqSkillLevel {
 
@@ -67,5 +76,19 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
     @Override
     public float getSkillLevelMultiNeeded() {
         return tier.lvl_req;
+    }
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+
+        try {
+            tooltip.add(new LiteralText("Keep in inventory or ender chest."));
+            tooltip.add(new LiteralText("Activates automatically to save you."));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

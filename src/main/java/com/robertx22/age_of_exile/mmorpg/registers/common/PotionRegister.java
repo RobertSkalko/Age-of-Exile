@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
+import com.robertx22.age_of_exile.player_skills.items.protection_tablets.effects.AntiPotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.FoodExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.HealthRegenFoodEffect;
@@ -13,6 +14,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -26,7 +28,10 @@ public class PotionRegister {
     public static Identifier FOOD_MANA = new Identifier(Ref.MODID, "food_mana_regen");
     public static Identifier FOOD_MAGIC_REGEN = new Identifier(Ref.MODID, "food_magic_shield_regen");
 
-    public static StatusEffect KNOCKBACK_RESISTANCE = new ModStatusEffect(StatusEffectType.BENEFICIAL, 1)
+    public AntiPotionEffect ANTI_WITHER = new AntiPotionEffect(StatusEffects.WITHER);
+    public AntiPotionEffect ANTI_POISON = new AntiPotionEffect(StatusEffects.POISON);
+
+    public StatusEffect KNOCKBACK_RESISTANCE = new ModStatusEffect(StatusEffectType.BENEFICIAL, 1)
         .addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "648D7564-6A60-4F59-8ABE-C2C27A6DD7A9", 50, EntityAttributeModifier.Operation.ADDITION);
 
     HashMap<String, ExileStatusEffect> exileEffectsMap = new HashMap<>();
@@ -63,6 +68,8 @@ public class PotionRegister {
         }
 
         Registry.register(Registry.STATUS_EFFECT, Ref.id("knockback_resist"), KNOCKBACK_RESISTANCE);
+        Registry.register(Registry.STATUS_EFFECT, Ref.id("anti_wither"), ANTI_WITHER);
+        Registry.register(Registry.STATUS_EFFECT, Ref.id("anti_poison"), ANTI_POISON);
 
         Registry.register(Registry.STATUS_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
         Registry.register(Registry.STATUS_EFFECT, FOOD_MANA, ManaRegenFoodEffect.INSTANCE);
