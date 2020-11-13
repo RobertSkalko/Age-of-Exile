@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 
 public class HealEffect extends EffectData {
 
@@ -22,9 +23,7 @@ public class HealEffect extends EffectData {
         if (target.isAlive()) {
             this.calculateEffects();
 
-            //this.targetData.getResources().modify(this.healData);
-
-            this.target.heal(getNumber());
+            HealthUtils.heal(target, getNumber());
         }
     }
 

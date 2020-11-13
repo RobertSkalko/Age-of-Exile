@@ -16,7 +16,7 @@ public class Vitality extends BaseCoreStat {
     private Vitality() {
         super(Arrays.asList(
             new StatModifier(2, 2, Health.getInstance(), ModType.FLAT),
-            new StatModifier(0.1F, 0.1F, HealthRegen.getInstance(), ModType.FLAT)
+            new StatModifier(0.15F, 0.15F, HealthRegen.getInstance(), ModType.FLAT)
         ));
     }
 

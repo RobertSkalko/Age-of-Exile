@@ -125,7 +125,7 @@ public class MobStatUtils {
         unit.getStatInCalculation(SpellDamage.getInstance())
             .addFlat(-25, lvl); // less spell dmg, spells are already kinda strong
 
-        float bonusEleDmg = 300F / ModConfig.get().Server.MAX_LEVEL * lvl;
+        float bonusEleDmg = 200F / ModConfig.get().Server.MAX_LEVEL * lvl;
 
         new ElementalDamageBonus(Elements.Water).generateAllPossibleStatVariations()
             .forEach(x -> unit.getStatInCalculation(x)

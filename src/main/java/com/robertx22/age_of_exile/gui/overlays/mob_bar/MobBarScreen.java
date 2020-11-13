@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -64,7 +65,7 @@ public class MobBarScreen extends DrawableHelper implements HudRenderCallback {
 
                 if (data != null && data.getUnit() != null) {
                     int currentHp = (int) en.getHealth();
-                    int maxHP = (int) en.getMaxHealth();
+                    int maxHP = (int) HealthUtils.getMaxHealth(en);
                     int percent = Math.round((float) currentHp / (float) maxHP * 100);
 
                     int height = mc.getWindow()

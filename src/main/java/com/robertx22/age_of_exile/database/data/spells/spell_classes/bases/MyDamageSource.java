@@ -25,7 +25,6 @@ public class MyDamageSource extends EntityDamageSource {
     static String source(DamageSource s) {
         if (s == null) {
             return DamageEffect.dmgSourceName;
-
         }
         return s.name;
     }

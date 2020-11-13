@@ -20,11 +20,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRenderCallback {
+public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
 
     static Identifier BASETEX = new Identifier(Ref.MODID, "textures/gui/overlay/base.png");
 
-    public HealthReplaceGuiOverlay() {
+    public RPGGuiOverlay() {
         super();
     }
 
@@ -52,7 +52,7 @@ public class HealthReplaceGuiOverlay extends DrawableHelper implements HudRender
                 return;
             }
 
-            if (!ModConfig.get().client.PLAYER_GUI_TYPE.equals(PlayerGUIs.REPLACE_VANILLA)) {
+            if (ModConfig.get().client.PLAYER_GUI_TYPE == PlayerGUIs.NONE) {
                 return;
             }
 

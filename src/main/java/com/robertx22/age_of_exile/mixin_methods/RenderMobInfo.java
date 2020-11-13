@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -72,7 +73,7 @@ public class RenderMobInfo {
                 List<MobAffix> affixes = data.getAffixData()
                     .getAffixes();
 
-                float percent = entity.getHealth() / entity.getMaxHealth() * 100F;
+                float percent = HealthUtils.getCurrentHealth(entity) / HealthUtils.getMaxHealth(entity) * 100F;
 
                 MutableText hpText = new LiteralText("[").formatted(Formatting.DARK_RED);
                 int times = 0;
@@ -91,11 +92,12 @@ public class RenderMobInfo {
                     }
 
                     if (times == 5) {
-                        hpText.append(new LiteralText((int) entity.getHealth() + "").formatted(Formatting.GOLD));
+                        hpText.append(new LiteralText((int) HealthUtils.getCurrentHealth(entity) + "").formatted(Formatting.GOLD));
                     }
                     percent -= 10;
 
                 }
+
                 hpText.append(new LiteralText("]").formatted(Formatting.DARK_RED));
 
                 matrixStack.push();

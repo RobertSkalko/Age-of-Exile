@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
@@ -123,7 +124,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                             if (restored) {
                                 unitdata.syncToClient(player);
 
-                                float percentHealed = healthrestored / player.getMaxHealth();
+                                float percentHealed = healthrestored / HealthUtils.getMaxHealth(player);
 
                                 float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
 

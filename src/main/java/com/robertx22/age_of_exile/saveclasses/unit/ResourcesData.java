@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
@@ -126,12 +127,6 @@ public class ResourcesData {
         return magicShield;
     }
 
-    public float getHealth(UnitData data, LivingEntity entity) {
-        return data.getUnit()
-            .health()
-            .CurrentValue(entity, data.getUnit());
-    }
-
     public float getModifiedValue(Context ctx) {
         if (ctx.use == Use.RESTORE) {
             return get(ctx) + ctx.amount;
@@ -149,10 +144,7 @@ public class ResourcesData {
         } else if (type == Type.BLOOD) {
             return blood;
         } else if (type == Type.HEALTH) {
-            UnitData targetData = Load.Unit(en);
-            return targetData.getUnit()
-                .health()
-                .CurrentValue(en, targetData.getUnit());
+            return HealthUtils.getCurrentHealth(en);
         }
         return 0;
 
@@ -173,7 +165,7 @@ public class ResourcesData {
                 .bloodData()
                 .getAverageValue();
         } else if (type == Type.HEALTH) {
-            return en.getMaxHealth();
+            return HealthUtils.getMaxHealth(en);
         }
         return 0;
 

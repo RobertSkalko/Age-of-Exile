@@ -17,7 +17,6 @@
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PlayerManagerMixin",
-    "ServerPlayerEntityMixin",
     "ServerResourceManagerMixin",
     "SpawnSettingsMixin",
     "StatusEffectMixin"
@@ -27,8 +26,7 @@
     "InGameHudMixin",
     "ItemStackMixin",
     "KeyboardMixin",
-    "MobNameTagMixin",
-    "ParticlePacketMixin"
+    "MobNameTagMixin"
   ],
   "injectors": {
     "defaultRequire": 1

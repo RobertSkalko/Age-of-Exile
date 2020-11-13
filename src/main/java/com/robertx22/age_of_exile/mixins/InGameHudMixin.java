@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mixins;
 
 import com.robertx22.age_of_exile.mixin_methods.OnKeyMethod;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
@@ -26,7 +27,7 @@ public abstract class InGameHudMixin {
 
     @Redirect(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getHealth()F"))
     public float on$getHealth(PlayerEntity entity) {
-        float multi = entity.getHealth() / entity.getMaxHealth();
+        float multi = HealthUtils.getCurrentHealth(entity) / HealthUtils.getMaxHealth(entity);
         return 20F * multi;
     }
 

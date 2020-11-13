@@ -1,14 +1,19 @@
 package com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield;
 
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.defense.MagicShieldEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.MathHelper;
 
-public class MagicShield extends Stat implements IStatEffects, ILocalStat {
+public class MagicShield extends Stat implements ILocalStat {
     public static String GUID = "magic_shield";
 
     private MagicShield() {
@@ -46,12 +51,61 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
         return "Magic Shield";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return MagicShieldEffect.INSTANCE;
-    }
-
     private static class SingletonHolder {
         private static final MagicShield INSTANCE = new MagicShield();
     }
+
+    public static float modifyEnviroDamage(LivingEntity en, float amount) {
+
+        if (en instanceof PlayerEntity == false) {
+            return amount;
+        }
+
+        EntityCap.UnitData data = Load.Unit(en);
+
+        float toReduce = MathHelper.clamp(HealthUtils.vanillaToReal(en, amount), 0, data.getResources()
+            .getMagicShield());
+
+        if (toReduce <= 0) {
+            return amount;
+        }
+
+        float dmg = amount;
+        dmg -= HealthUtils.realToVanilla(en, toReduce);
+
+        ResourcesData.Context ms = new ResourcesData.Context(data, en,
+            ResourcesData.Type.MAGIC_SHIELD,
+            toReduce,
+            ResourcesData.Use.SPEND
+        );
+        data.getResources()
+            .modify(ms);
+
+        return dmg;
+    }
+
+    public static float modifyEntityDamage(DamageEffect effect, float dmg) {
+
+        float dmgReduced = MathHelper.clamp(dmg, 0, effect.targetData.getResources()
+            .getMagicShield());
+
+        float finaldmg = dmg;
+
+        if (dmgReduced > 0) {
+
+            finaldmg -= dmgReduced;
+
+            ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
+                ResourcesData.Type.MAGIC_SHIELD, dmgReduced,
+                ResourcesData.Use.SPEND
+            );
+
+            effect.targetData.getResources()
+                .modify(ctx);
+
+        }
+
+        return finaldmg;
+    }
+
 }

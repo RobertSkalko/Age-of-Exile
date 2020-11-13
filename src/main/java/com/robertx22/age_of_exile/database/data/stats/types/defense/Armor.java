@@ -50,7 +50,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
 
     @Override
     public float valueNeededToReachMaximumPercentAtLevelOne() {
-        return 125;
+        return 100;
     }
 
     @Override

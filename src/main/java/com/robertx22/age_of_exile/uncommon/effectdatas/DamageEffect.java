@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
-import com.robertx22.age_of_exile.mixin_ducks.LivingEntityDuck;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.*;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
@@ -141,7 +142,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             dmg *= ModConfig.get().Server.PVP_DMG_MULTI;
         }
 
-        return dmg * percentMulti;
+        dmg = dmg * percentMulti;
+
+        dmg = MagicShield.modifyEntityDamage(this, dmg);
+
+        return dmg;
     }
 
     private float modifyByAttackSpeedIfMelee(float dmg) {
@@ -280,6 +285,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         DmgByElement info = getDmgByElement();
         float dmg = info.totalDmg;
+        float vanillaDamage = HealthUtils.realToVanilla(target, dmg);
 
         if (this.canceled) {
             cancelDamage();
@@ -297,7 +303,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         this.sourceData.onAttackEntity(source, target);
 
-        this.targetData.onDamagedBy(source, dmg, target);
+        this.targetData.onDamagedBy(source, vanillaDamage, target);
 
         if (event == null || !(event.getSource() instanceof MyDamageSource)) { // todo wtf
             //int hurtResistantTime = target.timeUntilRegen;
@@ -311,32 +317,24 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 }
             }
 
-            if (false) {
-                // use apply damage so we don't get stack overflow
-                // tell other mods to listen to entity.damage and not entity.applydamage
-                LivingEntityDuck duck = (LivingEntityDuck) target;
-                duck.myApplyDamage(dmgsource, dmg);
-            } else {
-
-                if (target instanceof EnderDragonEntity) {
-                    try {
-                        // Dumb vanilla hardcodings require dumb workarounds
-                        EnderDragonEntity dragon = (EnderDragonEntity) target;
-                        EnderDragonPart part = Arrays.stream(dragon.getBodyParts())
-                            .filter(x -> x.name.equals("body"))
-                            .findFirst()
-                            .get();
-                        dragon.damagePart(part, dmgsource, dmg);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                } else {
-                    target.damage(dmgsource, dmg);
+            if (target instanceof EnderDragonEntity) {
+                try {
+                    // Dumb vanilla hardcodings require dumb workarounds
+                    EnderDragonEntity dragon = (EnderDragonEntity) target;
+                    EnderDragonPart part = Arrays.stream(dragon.getBodyParts())
+                        .filter(x -> x.name.equals("body"))
+                        .findFirst()
+                        .get();
+                    dragon.damagePart(part, dmgsource, vanillaDamage);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-                // allow multiple dmg same tick
+            } else {
+                target.damage(dmgsource, vanillaDamage);
             }
+
+            // allow multiple dmg same tick
 
             if (removeKnockback) {
                 if (attri.hasModifier(NO_KNOCKBACK)) {

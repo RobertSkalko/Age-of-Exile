@@ -450,10 +450,10 @@ public class Unit {
         EntityAttributeInstance atri = en.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 
         if (atri.hasModifier(mod)) {
-            atri.removeModifier(mod);
+            atri.removeModifier(mod); // KEEP THIS OR UPDATE WONT MAKE HP CORRECT!!!
         }
-        atri.addPersistentModifier(mod);
 
+        // DELETE AFTER A FEW UPDATES
     }
 
     private static HashMap<EntityType, Boolean> IGNORED_ENTITIES = null;

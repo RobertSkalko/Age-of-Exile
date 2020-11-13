@@ -1,25 +1,24 @@
 package com.robertx22.age_of_exile.mixins;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.LivingHurtUtils;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityDuck;
 import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
@@ -31,6 +30,15 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     @Shadow
     protected abstract void applyDamage(DamageSource source, float amount);
 
+    @ModifyVariable(method = "heal(F)V", at = @At(value = "HEAD"), argsOnly = true, ordinal = 0)
+    public float reduceHealPerLevel(float amount, float arg) {
+        LivingEntity en = (LivingEntity) (Object) this;
+        if (en instanceof PlayerEntity) {
+            return HealthUtils.realToVanilla(en, amount);
+        }
+        return amount;
+    }
+
     @Shadow
     protected abstract int getCurrentExperience(PlayerEntity player);
 
@@ -38,45 +46,33 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
     @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
     public void hookench(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
+        if (source instanceof MyDamageSource) {
+            ci.setReturnValue(amount);
+        }
+    }
+
+    @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "RETURN"), cancellable = true)
+    public void hookenchreturn(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
+        LivingEntity en = (LivingEntity) (Object) this;
 
         if (!source.isUnblockable()) {
             LivingHurtUtils.damageCurioItems(en, amount);
         }
-
         if (source instanceof MyDamageSource) {
             ci.setReturnValue(amount);
         }
-        if (LivingHurtUtils.isEnviromentalDmg(source)) {
-            try {
-
-                if (amount <= 0) {
-                    return;
-                }
-
-                EntityCap.UnitData data = Load.Unit(en);
-
-                float toReduce = MathHelper.clamp(amount, 0, data.getResources()
-                    .getMagicShield());
-
-                if (toReduce <= 0) {
-                    return;
-                }
-                float dmg = amount;
-                dmg -= toReduce;
-
-                ResourcesData.Context ms = new ResourcesData.Context(data, en,
-                    ResourcesData.Type.MAGIC_SHIELD,
-                    toReduce,
-                    ResourcesData.Use.SPEND
-                );
-                data.getResources()
-                    .modify(ms);
-                ci.setReturnValue(dmg);
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            if (amount <= 0) {
+                return;
             }
+            float afterReduction = MagicShield.modifyEnviroDamage(en, amount);
+            if (afterReduction != amount) {
+                ci.setReturnValue(afterReduction);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     @Inject(method = "applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)

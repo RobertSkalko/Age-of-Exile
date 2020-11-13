@@ -34,7 +34,8 @@ public class CommonEvents {
 
         ExileEvents.DAMAGE_BEFORE_CALC.register(new OnNonPlayerDamageEntityEvent());
 
-        ExileEvents.DAMAGE_BEFORE_CALC.register(new ScaleEnviromentalDamageEvent());
+        ExileEvents.DAMAGE_BEFORE_CALC.register(new ScaleVanillaMobDamage());
+        ExileEvents.DAMAGE_BEFORE_CALC.register(new ScaleVanillaPlayerDamage());
 
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnPlayerDamageEntityEvent());
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnDamageTryActivatePassiveSpells());

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.overlays;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
@@ -81,12 +82,12 @@ public enum BarGuiType {
     HEALTH {
         @Override
         public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
-            return en.getHealth();
+            return HealthUtils.getCurrentHealth(en);
         }
 
         @Override
         public float getMax(EntityCap.UnitData data, PlayerEntity en) {
-            return en.getMaxHealth();
+            return HealthUtils.getMaxHealth(en);
         }
 
         @Override

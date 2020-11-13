@@ -2,9 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.health;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.entity.LivingEntity;
 
 public class Health extends Stat {
     public static String GUID = "health";
@@ -38,12 +36,6 @@ public class Health extends Stat {
     @Override
     public boolean IsPercent() {
         return false;
-    }
-
-    public int CurrentValue(LivingEntity entity, Unit unit) {
-
-        return (int) entity.getHealth();
-
     }
 
     @Override

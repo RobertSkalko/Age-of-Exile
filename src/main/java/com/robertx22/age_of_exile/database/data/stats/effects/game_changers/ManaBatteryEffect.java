@@ -2,19 +2,19 @@ package com.robertx22.age_of_exile.database.data.stats.effects.game_changers;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.database.data.stats.effects.defense.MagicShieldEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import net.minecraft.util.math.MathHelper;
 
+// TODO REWORK SAME LIKE MAGIC SHIELD
 public class ManaBatteryEffect extends BaseDamageEffect {
 
     public static final ManaBatteryEffect INSTANCE = new ManaBatteryEffect();
 
     @Override
     public int GetPriority() {
-        return Priority.afterThis(MagicShieldEffect.INSTANCE.GetPriority());
+        return Priority.Last.priority;
     }
 
     @Override
