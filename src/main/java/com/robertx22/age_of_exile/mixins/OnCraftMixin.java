@@ -1,8 +1,7 @@
 package com.robertx22.age_of_exile.mixins;
 
 import com.robertx22.age_of_exile.mixin_methods.OnItemCrafted;
-import com.robertx22.age_of_exile.player_skills.OnCraftGiveSkillExp;
-import com.robertx22.age_of_exile.player_skills.OnItemWithSkillLvlRestrictionCrafted;
+import com.robertx22.age_of_exile.player_skills.events.OnCraftGiveSkillExp;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -22,7 +21,6 @@ public class OnCraftMixin {
             }
             ItemStack stack = (ItemStack) (Object) this;
 
-            OnItemWithSkillLvlRestrictionCrafted.onCraft(stack, world, player, amount, ci);
             OnItemCrafted.onCraft(stack, world, player, amount, ci);
             OnCraftGiveSkillExp.onCraft(stack, world, player, amount, ci);
 

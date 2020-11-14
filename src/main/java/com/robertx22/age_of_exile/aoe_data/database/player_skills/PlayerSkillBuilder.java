@@ -61,12 +61,17 @@ public class PlayerSkillBuilder {
         return this;
     }
 
-    public PlayerSkillBuilder blockExp(Block block, float exp) {
+    public PlayerSkillBuilder blockExp(Block block, int exp) {
         skill.block_break_exp.add(new BlockBreakExp(exp, block));
         return this;
     }
 
-    public PlayerSkillBuilder itemCraftExp(Item block, float exp) {
+    public PlayerSkillBuilder smeltExp(Item item, int exp) {
+        skill.item_smelt_exp.add(new ItemCraftExp(exp, item));
+        return this;
+    }
+
+    public PlayerSkillBuilder itemCraftExp(Item block, int exp) {
         skill.item_craft_exp.add(new ItemCraftExp(exp, block));
         return this;
     }

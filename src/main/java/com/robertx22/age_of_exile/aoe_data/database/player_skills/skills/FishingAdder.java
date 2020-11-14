@@ -19,13 +19,13 @@ public class FishingAdder {
         b.addDefaultHpMsMana();
         b.skill.exp_per_action = 25;
 
-        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(1);
+        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(1.5F);
         skillDrops.addFoodDrops();
-        skillDrops.dropReward(new SkillDropReward(1, 100, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(10, 75, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(20, 50, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(30, 25, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(40, 10, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(1, 150, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(10, 100, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(20, 75, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(30, 50, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(40, 25, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
 
         b.skill.dropTables.add(skillDrops.build());
 

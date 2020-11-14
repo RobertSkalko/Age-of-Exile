@@ -23,9 +23,10 @@ public class MiningAdder {
         b.totalDamage(40, 4);
         b.totalDamage(50, 5);
 
+        b.smeltExp(Items.GOLD_INGOT, 15);
+        b.smeltExp(Items.IRON_INGOT, 10);
+
         b.blockExp(Blocks.DIAMOND_ORE, 50);
-        b.blockExp(Blocks.GOLD_ORE, 15);
-        b.blockExp(Blocks.IRON_ORE, 10);
         b.blockExp(Blocks.EMERALD_ORE, 50);
         b.blockExp(Blocks.LAPIS_ORE, 5);
         b.blockExp(Blocks.REDSTONE_ORE, 2);
@@ -33,7 +34,7 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_GOLD_ORE, 1);
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
 
-        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(1);
+        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(0.75F);
         skillDrops.dropReward(new SkillDropReward(4, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
         skillDrops.dropReward(new SkillDropReward(9, 4, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
         skillDrops.dropReward(new SkillDropReward(14, 5, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));

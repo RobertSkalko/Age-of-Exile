@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.player_skills;
+package com.robertx22.age_of_exile.player_skills.events;
 
 import com.robertx22.age_of_exile.database.data.player_skills.ItemCraftExp;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;

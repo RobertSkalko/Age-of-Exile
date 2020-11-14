@@ -13,14 +13,14 @@ public class InscribingAdder {
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
 
-        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 50));
+        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 75));
 
-        b.itemCraftExp(ModRegistry.INSCRIBING.SPAWN_TELEPORT, 5);
-        b.itemCraftExp(ModRegistry.INSCRIBING.DEATH_TELEPORT, 5);
-        b.itemCraftExp(ModRegistry.INSCRIBING.RANDOM_TELEPORT, 5);
+        b.itemCraftExp(ModRegistry.INSCRIBING.SPAWN_TELEPORT, 25);
+        b.itemCraftExp(ModRegistry.INSCRIBING.DEATH_TELEPORT, 25);
+        b.itemCraftExp(ModRegistry.INSCRIBING.RANDOM_TELEPORT, 25);
 
         ModRegistry.INSCRIBING.ENCHANT_SCROLL_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 15));
+            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 25));
 
         return b.build();
     }

@@ -10,6 +10,7 @@
     "CriteriaAccessor",
     "FallingBlockEntityMixin",
     "FoodComponentMixin",
+    "FurnaceMixin",
     "ItemEntityMixin",
     "LivingEntityMixin",
     "LootTableMixin",

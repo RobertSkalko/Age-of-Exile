@@ -32,7 +32,7 @@ public class PotionRegister {
     public AntiPotionEffect ANTI_POISON = new AntiPotionEffect(StatusEffects.POISON);
 
     public StatusEffect KNOCKBACK_RESISTANCE = new ModStatusEffect(StatusEffectType.BENEFICIAL, 1)
-        .addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "648D7564-6A60-4F59-8ABE-C2C27A6DD7A9", 50, EntityAttributeModifier.Operation.ADDITION);
+        .addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "648D7564-6A60-4F59-8ABE-C2C27A6DD7A9", 0.75F, EntityAttributeModifier.Operation.ADDITION);
 
     HashMap<String, ExileStatusEffect> exileEffectsMap = new HashMap<>();
 

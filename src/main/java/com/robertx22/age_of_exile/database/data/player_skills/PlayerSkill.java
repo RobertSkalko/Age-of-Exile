@@ -42,6 +42,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     public List<BlockBreakExp> block_break_exp = new ArrayList<>();
 
     public List<ItemCraftExp> item_craft_exp = new ArrayList<>();
+    public List<ItemCraftExp> item_smelt_exp = new ArrayList<>();
 
     public Identifier getIcon() {
         return Ref.id("textures/gui/skills/icons/" + id + ".png");

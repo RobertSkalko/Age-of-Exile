@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -21,12 +22,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
@@ -41,6 +44,11 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
         super(new Settings().group(CreativeTabs.Alchemy));
         this.tier = tier;
         this.type = type;
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.NONE;
     }
 
     @Override
@@ -66,6 +74,8 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
             );
             unitdata.getResources()
                 .modify(ctx);
+
+            SoundUtils.playSound(player, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
         }
 
         player.setCurrentHand(handIn);

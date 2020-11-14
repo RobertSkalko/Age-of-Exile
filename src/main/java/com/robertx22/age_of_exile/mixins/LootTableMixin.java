@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.mixins;
 
 import com.robertx22.age_of_exile.mixin_methods.AddSpawnerExtraLootMethod;
-import com.robertx22.age_of_exile.player_skills.OnBlockDropFarming;
-import com.robertx22.age_of_exile.player_skills.OnBlockDropMining;
-import com.robertx22.age_of_exile.player_skills.OnFishing;
+import com.robertx22.age_of_exile.player_skills.events.OnBlockDropFarming;
+import com.robertx22.age_of_exile.player_skills.events.OnBlockDropMining;
+import com.robertx22.age_of_exile.player_skills.items.fishing.OnFishing;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContext;

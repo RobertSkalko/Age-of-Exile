@@ -19,7 +19,7 @@ public class FarmingAdder {
         PlayerSkillBuilder b = PlayerSkillBuilder.of(2, PlayerSkillEnum.FARMING);
         b.addDefaultBonusExpRewards();
 
-        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(4);
+        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(2);
         skillDrops.addFoodDrops();
 
         skillDrops.dropReward(new SkillDropReward(1, 100, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));

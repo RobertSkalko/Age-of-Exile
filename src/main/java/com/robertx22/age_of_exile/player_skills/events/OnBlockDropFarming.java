@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.player_skills;
+package com.robertx22.age_of_exile.player_skills.events;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
@@ -6,6 +6,9 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.CropBlock;
+import net.minecraft.block.GourdBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -23,19 +26,27 @@ public class OnBlockDropFarming {
             if (!ctx.hasParameter(LootContextParameters.BLOCK_STATE)) {
                 return;
             }
-
             if (!ctx.hasParameter(LootContextParameters.ORIGIN)) {
                 return;
             }
             if (!ctx.hasParameter(LootContextParameters.THIS_ENTITY)) {
                 return;
             }
-            Block block = ctx.get(LootContextParameters.BLOCK_STATE)
+
+            BlockState state = ctx.get(LootContextParameters.BLOCK_STATE);
+
+            Block block = state
                 .getBlock();
 
-            if (ci.getReturnValue()
-                .contains(block.asItem())) {
-                return; // if a diamond ore is broken and drops diamond ore, don't give exp and loot
+            if (block instanceof CropBlock) {
+                CropBlock crop = (CropBlock) block;
+                if (!crop.isMature(state)) {
+                    return;
+                }
+            } else if (block instanceof GourdBlock) {
+
+            } else {
+                return;
             }
 
             Entity en = ctx.get(LootContextParameters.THIS_ENTITY);
@@ -56,9 +67,7 @@ public class OnBlockDropFarming {
             PlayerSkills skills = Load.playerSkills(player);
 
             int exp = skill.getExpForBlockBroken(block);
-
             skills.addExp(skill.type_enum, exp);
-
             List<ItemStack> list = skill.getExtraDropsFor(skills, exp);
 
             ci.getReturnValue()

@@ -6,10 +6,10 @@ import net.minecraft.util.registry.Registry;
 
 public class ItemCraftExp {
 
-    public float exp = 0;
+    public int exp = 0;
     public String item_id = "";
 
-    public ItemCraftExp(float exp, Item item) {
+    public ItemCraftExp(int exp, Item item) {
         this.exp = exp;
         this.item_id = Registry.ITEM.getId(item)
             .toString();

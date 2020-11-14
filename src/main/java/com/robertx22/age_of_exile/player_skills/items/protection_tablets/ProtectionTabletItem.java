@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -64,6 +65,7 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
 
         this.type.getRecipeItems()
             .forEach(x -> fac.input(x));
+        fac.input(ModRegistry.INSCRIBING.INK_TIER_MAP.get(tier));
 
         return fac.criterion("player_level", trigger());
     }
@@ -83,7 +85,7 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 
         try {
-            tooltip.add(new LiteralText("Keep in inventory or ender chest."));
+            tooltip.add(new LiteralText("Keep in Inventory or Ender chest."));
             tooltip.add(new LiteralText("Activates automatically to save you."));
 
         } catch (Exception e) {
