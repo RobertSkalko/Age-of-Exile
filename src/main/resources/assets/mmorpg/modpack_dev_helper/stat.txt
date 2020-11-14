@@ -10,6 +10,7 @@ unlock_passive_nature
 trident_damage
 increase_healing
 bonus_exp
+bonus_favor
 magic_on_hit
 all_water_damage
 mod_slow_bush

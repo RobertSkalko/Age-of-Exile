@@ -3,8 +3,8 @@
 
 Skills Update! No, not the spells, but skills/professions!
 
-Added many gathering skills: Mining, Farming and Fishing.
-These skills level up as you mine ores, gather crops or fish. 
+Added many gathering skills: Mining, Farming, Exploring, and Fishing.
+These skills level up as you mine ores, gather crops, loot chests or fish. 
 You will gain extra random drops as your skill level increases.
 
 Added crafting skills: Alchemy, Cooking and Inscribing.
@@ -66,5 +66,5 @@ High level players should feel less overpowered now.
 * items from craftable utilities mod have been transfered to this mod and are now part of inscribing skill
 * fix items not being enchantable at anvil
 * removed other gui overlay types as this one is configurable enough that it can replace them. 
-
+* added bonus favor stat (used in exploration skill)
 

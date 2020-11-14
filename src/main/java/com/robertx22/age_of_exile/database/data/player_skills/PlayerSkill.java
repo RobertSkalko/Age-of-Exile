@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
@@ -138,19 +139,27 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
         }
 
-        List<OptScaleExactStat> nextstats = new ArrayList<>();
-
         Optional<SkillStatReward> opt = stat_rewards.stream()
             .filter(x -> x.lvl_req > lvl)
             .sorted(Comparator.comparingInt(x -> x.lvl_req))
             .findFirst();
 
         if (opt.isPresent()) {
+
+            List<SkillStatReward> nextstatrewards = new ArrayList<>();
+
+            for (SkillStatReward next : stat_rewards) {
+                if (next.lvl_req == opt.get().lvl_req) {
+                    nextstatrewards.add(next);
+                }
+            }
+            List<OptScaleExactStat> nextStats = new ArrayList<>();
+            nextstatrewards.forEach(x -> nextStats.addAll(x.stats));
+            OptScaleExactStat.combine(nextStats);
+
             list.add(new LiteralText(""));
-            nextstats.addAll(opt.get().stats);
-            OptScaleExactStat.combine(stats);
             list.add(new LiteralText("Level " + opt.get().lvl_req + " unlocks:"));
-            nextstats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+            nextStats.forEach(x -> list.addAll(x.GetTooltipString(info)));
         }
 
         if (lvl >= Load.Unit(info.player)
@@ -162,6 +171,9 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
             }
         }
 
+        TooltipUtils.removeDoubleBlankLines(list);
+
         return list;
+
     }
 }

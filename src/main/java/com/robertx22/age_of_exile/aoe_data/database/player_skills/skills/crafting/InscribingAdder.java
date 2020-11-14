@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills;
+package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.crafting;
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
@@ -9,7 +9,7 @@ public class InscribingAdder {
 
     public static PlayerSkill createSkill() {
 
-        PlayerSkillBuilder b = PlayerSkillBuilder.of(6, PlayerSkillEnum.INSCRIBING);
+        PlayerSkillBuilder b = PlayerSkillBuilder.of(7, PlayerSkillEnum.INSCRIBING);
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
 

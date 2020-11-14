@@ -31,7 +31,7 @@ import java.util.List;
 public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
     private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/skills/skills_background.png");
 
-    static int sizeX = 176;
+    static int sizeX = 256;
     static int sizeY = 207;
 
     MinecraftClient mc = MinecraftClient.getInstance();
@@ -57,7 +57,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
         int num = 0;
 
-        int x = guiLeft + 20;
+        int x = guiLeft + 25;
         int y = guiTop + 50;
 
         List<PlayerSkill> all = SlashRegistry.PlayerSkills()
@@ -66,8 +66,8 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
         for (PlayerSkill skill : all) {
             addButton(new SkillButton(skill.type_enum,
-                (int) (x + (num % 3) * BUTTON_SIZE_X * 1.75F),
-                (int) (y + num / 3 * BUTTON_SIZE_Y * 2)));
+                (int) (x + (num % 4) * BUTTON_SIZE_X * 2),
+                (int) (y + num / 4 * BUTTON_SIZE_Y * 2.25F)));
             num++;
         }
 
@@ -125,7 +125,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
         if (render == IconRenderType.OVERLAY || render == IconRenderType.SCREEN) {
             int lvl = data.getLvl();
             String lvltext = "Lvl: " + lvl;
-            TextUtils.renderText(matrix, 0.8, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.2F), Formatting.YELLOW);
+            TextUtils.renderText(matrix, 1, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.2F), Formatting.YELLOW);
         }
 
         if (render == IconRenderType.SCREEN) {
@@ -136,7 +136,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
             String nametext = CLOC.translate(skill.word.locName());
 
             TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 5, Formatting.GOLD);
-            TextUtils.renderText(matrix, 0.75, xptext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.5F), Formatting.GREEN);
+            TextUtils.renderText(matrix, 1, xptext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.55F), Formatting.GREEN);
 
         }
     }

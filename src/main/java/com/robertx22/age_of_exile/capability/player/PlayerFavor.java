@@ -3,11 +3,12 @@ package com.robertx22.age_of_exile.capability.player;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.player_skills.events.OnChestFavorGainedExploration;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -57,10 +58,19 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     public void onOpenNewLootChest(LootInfo info) {
 
-        float lvlpenalty = LootUtils.getLevelDistancePunishmentMulti(info.level, Load.Unit(player)
+        float lvlpenalty = LootUtils.getLevelDistancePunishmentMulti(info.level, info.playerData
             .getLevel());
 
-        this.favor += ModConfig.get().Favor.FAVOR_GAIN_PER_CHEST_LOOTED * lvlpenalty;
+        float favorGained = ModConfig.get().Favor.FAVOR_GAIN_PER_CHEST_LOOTED * lvlpenalty;
+
+        favorGained *= info.playerData.getUnit()
+            .getCalculatedStat(BonusFavor.getInstance())
+            .getMultiplier();
+
+        OnChestFavorGainedExploration.run(info.player, (int) favorGained);
+
+        this.favor += favorGained;
+
     }
 
     public void afterLootingItems(float favorCost, LootInfo info, int amount) {

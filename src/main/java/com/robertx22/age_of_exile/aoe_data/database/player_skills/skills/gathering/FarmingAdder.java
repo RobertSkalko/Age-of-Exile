@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills;
+package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gathering;
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.DropRewardsBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;

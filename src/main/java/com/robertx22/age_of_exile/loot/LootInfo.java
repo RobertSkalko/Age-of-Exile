@@ -135,6 +135,10 @@ public class LootInfo {
         setTier();
         setLevel();
         setFavor();
+
+        if (player != null) {
+            playerData = Load.Unit(player);
+        }
     }
 
     private void setFavor() {
