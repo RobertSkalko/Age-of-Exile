@@ -117,6 +117,19 @@ public class LootInfo {
         return info;
     }
 
+    public static LootInfo ofLockedChestItem(PlayerEntity player, int level) {
+        LootInfo info = new LootInfo(LootOrigin.CHEST);
+        info.player = player;
+        info.world = player.world;
+        info.pos = player.getBlockPos();
+        info.level = level;
+        info.multi = 1;
+        info.minItems = 2;
+        info.maxItems = 6;
+        info.setupAllFields();
+        return info;
+    }
+
     public static LootInfo ofSpawner(PlayerEntity player, World world, BlockPos pos) {
         LootInfo info = new LootInfo(LootOrigin.OTHER);
         info.world = world;
@@ -170,10 +183,12 @@ public class LootInfo {
     }
 
     private void setLevel() {
-        if (mobData != null) {
-            level = mobData.getLevel();
-        } else {
-            level = LevelUtils.determineLevel(world, pos, player);
+        if (level <= 0) {
+            if (mobData != null) {
+                level = mobData.getLevel();
+            } else {
+                level = LevelUtils.determineLevel(world, pos, player);
+            }
         }
     }
 

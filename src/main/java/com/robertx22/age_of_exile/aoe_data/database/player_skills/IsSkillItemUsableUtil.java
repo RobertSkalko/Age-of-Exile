@@ -24,7 +24,7 @@ public class IsSkillItemUsableUtil {
 
             IReqSkillLevel req = (IReqSkillLevel) stack.getItem();
             if (Load.playerSkills(player)
-                .getLevel(req.getSkillTypeToCraft()) >= req.getSkillLevelToCraft()) {
+                .getLevel(req.getItemSkillType()) >= req.getSkillLevelRequired()) {
                 return true;
             } else {
 

@@ -26,7 +26,6 @@ public class FishingAdder {
         skillDrops.dropReward(new SkillDropReward(20, 75, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(30, 50, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(40, 25, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
-
         b.skill.dropTables.add(skillDrops.build());
 
         return b.build();

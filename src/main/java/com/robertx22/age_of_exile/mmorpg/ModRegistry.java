@@ -27,6 +27,7 @@ public class ModRegistry {
     public static RepairKitsRegister REPAIR_KITS;
     public static InscribingItemRegister INSCRIBING;
     public static AlchemyItemRegister ALCHEMY;
+    public static TinkeringItemRegister TINKERING;
 
     public static void init() {
 
@@ -51,6 +52,7 @@ public class ModRegistry {
         INSCRIBING = new InscribingItemRegister();
         ALCHEMY = new AlchemyItemRegister();
         ENCHANTS = new ModEnchants();
+        TINKERING = new TinkeringItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }

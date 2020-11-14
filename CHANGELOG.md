@@ -7,11 +7,12 @@ Added many gathering skills: Mining, Farming, Exploring, and Fishing.
 These skills level up as you mine ores, gather crops, loot chests or fish. 
 You will gain extra random drops as your skill level increases.
 
-Added crafting skills: Alchemy, Cooking and Inscribing.
+Added crafting skills: Alchemy, Cooking, Tinkering and Inscribing.
 These skills use ingredients from the gathering skills to craft useful items to aid you in your adventuring:
 - instant hp potions from alchemy
 - long-lasting food buffs from cooking
 - protection tablets, enchanting scrolls and various teleportation scrolls from inscribing
+- keys that unlock locked chests gained from exploration
 
 Leveling up any of these skills gives various buffs to your stats and experience gain too!
 In fact, leveling your combat level is now harder, and bonus exp given by leveling skills should compensate for that.

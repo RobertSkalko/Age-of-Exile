@@ -142,8 +142,8 @@ public class TooltipMethod {
             if (stack.getItem() instanceof IReqSkillLevel) {
                 IReqSkillLevel req = (IReqSkillLevel) stack.getItem();
                 tooltip.add(Words.RequiresLevel.locName()
-                    .append(": " + req.getSkillLevelToCraft() + " ")
-                    .append(req.getSkillTypeToCraft().word.locName())
+                    .append(": " + req.getSkillLevelRequired() + " ")
+                    .append(req.getItemSkillType().word.locName())
                     .formatted(Formatting.RED));
             }
 

@@ -67,6 +67,11 @@ public class GearMaterialRegister extends BaseItemRegistrator {
 
         String first = typeid.substring(0, 1);
         String afterfirst = typeid.substring(1);
+
+        if (type == TYPE.ORE) {
+            afterfirst = "Ingot";
+        }
+
         String name = first.toUpperCase() + afterfirst + " " + suffix;
 
         String lowercase = type.name()

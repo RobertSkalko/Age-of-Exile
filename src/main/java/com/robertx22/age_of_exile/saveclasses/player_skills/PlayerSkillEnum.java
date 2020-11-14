@@ -19,7 +19,8 @@ public enum PlayerSkillEnum {
     INSCRIBING("inscribing", Words.Inscribing, Formatting.AQUA, null, () -> Items.INK_SAC),
     COOKING("cooking", Words.Cooking, Formatting.RED, null, () -> Items.BREAD),
     FISHING("fishing", Words.Fishing, Formatting.BLUE, EnchantmentTarget.FISHING_ROD, () -> Items.FISHING_ROD),
-    EXPLORATION("exploration", Words.Exploration, Formatting.GOLD, EnchantmentTarget.ARMOR_HEAD, () -> Items.CHEST),
+    EXPLORATION("exploration", Words.Exploration, Formatting.GOLD, null, () -> Items.CHEST),
+    TINKERING("tinkering", Words.Tinkering, Formatting.GREEN, null, () -> Items.CRAFTING_TABLE),
     NONE("none", Words.Elemental_Attack_Damage, Formatting.BLACK, null, () -> Items.BEDROCK);
 
     public String id;

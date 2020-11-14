@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.player_skills.items.fishing;
+package com.robertx22.age_of_exile.player_skills.events;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;

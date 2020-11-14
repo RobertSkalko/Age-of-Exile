@@ -130,7 +130,7 @@ public class EnchantmentScrollItem extends Item implements IAutoLocName, IAutoMo
     }
 
     @Override
-    public PlayerSkillEnum getSkillTypeToCraft() {
+    public PlayerSkillEnum getItemSkillType() {
         return PlayerSkillEnum.INSCRIBING;
     }
 

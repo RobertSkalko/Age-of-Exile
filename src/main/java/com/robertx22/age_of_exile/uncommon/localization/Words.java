@@ -7,6 +7,7 @@ import java.util.Locale;
 
 public enum Words implements IAutoLocName {
     Exploration("Exploration"),
+    Tinkering("Tinkering"),
     Fishing("Fishing"),
     Inscribing("Inscribing"),
     Cooking("Cooking"),

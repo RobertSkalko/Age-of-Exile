@@ -125,7 +125,7 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
     }
 
     @Override
-    public PlayerSkillEnum getSkillTypeToCraft() {
+    public PlayerSkillEnum getItemSkillType() {
         return PlayerSkillEnum.COOKING;
     }
 

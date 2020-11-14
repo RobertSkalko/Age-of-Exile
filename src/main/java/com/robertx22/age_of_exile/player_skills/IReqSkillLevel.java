@@ -21,11 +21,11 @@ public interface IReqSkillLevel {
 
     }
 
-    public PlayerSkillEnum getSkillTypeToCraft();
+    public PlayerSkillEnum getItemSkillType();
 
     float getSkillLevelMultiNeeded();
 
-    public default int getSkillLevelToCraft() {
+    public default int getSkillLevelRequired() {
         return (int) (ModConfig.get().Server.MAX_LEVEL * getSkillLevelMultiNeeded());
     }
 }

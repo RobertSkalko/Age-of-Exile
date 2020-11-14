@@ -129,7 +129,7 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
     }
 
     @Override
-    public PlayerSkillEnum getSkillTypeToCraft() {
+    public PlayerSkillEnum getItemSkillType() {
         return PlayerSkillEnum.ALCHEMY;
     }
 
