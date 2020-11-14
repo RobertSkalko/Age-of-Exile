@@ -107,7 +107,7 @@ public class LootInfo {
         info.world = player.world;
         info.pos = pos;
         info.level = LevelUtils.determineLevel(player.world, pos, player);
-        info.multi = 2;
+        info.multi = 1.5F;
         info.setupAllFields();
 
         if (info.favorRank != null) {

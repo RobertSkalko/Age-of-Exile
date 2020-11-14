@@ -12,7 +12,7 @@ public class TinkeringAdder {
         b.addDefaultBonusExpRewards();
 
         ModRegistry.TINKERING.KEY_TIER_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 25));
+            .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 50));
 
         return b.build();
     }
