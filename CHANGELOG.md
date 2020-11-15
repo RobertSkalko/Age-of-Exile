@@ -13,7 +13,7 @@ These skills use ingredients from the gathering skills to craft useful items to 
 - long-lasting food buffs from cooking
 - protection tablets, enchanting scrolls and various teleportation scrolls from inscribing
 - keys that unlock locked chests gained from exploration
-
+- auto pickup backpacks that can store your skill materials or valuables
 Leveling up any of these skills gives various buffs to your stats and experience gain too!
 In fact, leveling your combat level is now harder, and bonus exp given by leveling skills should compensate for that.
 

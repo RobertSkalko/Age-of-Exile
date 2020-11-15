@@ -32,6 +32,16 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     }
 
+    public static ExactStatData of(float first, float second, Stat stat, ModType type, int lvl) {
+        ExactStatData data = new ExactStatData();
+        data.first_val = first;
+        data.second_val = second;
+        data.stat_id = stat.GUID();
+        data.type = type;
+        data.scaleToLevel(lvl);
+        return data;
+    }
+
     public static ExactStatData fromStatModifier(StatModifier mod, int percent, int lvl) {
         ExactStatData data = new ExactStatData();
 

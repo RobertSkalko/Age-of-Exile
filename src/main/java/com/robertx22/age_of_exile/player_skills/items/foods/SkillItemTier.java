@@ -25,11 +25,53 @@ public enum SkillItemTier {
         this.levelRange = levelRange;
     }
 
-    public static SkillItemTier of(int amplifier) {
+    public static SkillItemTier of(int tier) {
         return Arrays.stream(SkillItemTier.values())
-            .filter(x -> x.tier == amplifier - 1)
+            .filter(x -> x.tier == tier)
             .findAny()
             .orElse(SkillItemTier.SPIRITUAL);
+    }
+
+    public SkillItemTier lowerTier() {
+
+        if (this == SPIRITUAL) {
+            return null;
+        }
+        if (this == CELESTIAL) {
+            return SPIRITUAL;
+        }
+        if (this == EMPYREAN) {
+            return CELESTIAL;
+        }
+        if (this == ANGELIC) {
+            return EMPYREAN;
+        }
+        if (this == DIVINE) {
+            return ANGELIC;
+        }
+        return null;
+
+    }
+
+    public SkillItemTier higherTier() {
+
+        if (this == SPIRITUAL) {
+            return CELESTIAL;
+        }
+        if (this == CELESTIAL) {
+            return EMPYREAN;
+        }
+        if (this == EMPYREAN) {
+            return ANGELIC;
+        }
+        if (this == ANGELIC) {
+            return DIVINE;
+        }
+        if (this == DIVINE) {
+            return null;
+        }
+        return null;
+
     }
 
     public LevelRange levelRange;

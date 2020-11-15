@@ -15,15 +15,21 @@ public class TryAutoInsert {
             if (inv.getStack(i)
                 .getItem() instanceof BackpackItem) {
 
-                if (inv.getStack(i)
+                ItemStack backpack = inv.getStack(i);
+
+                if (backpack
                     .equals(inv.player.getMainHandStack())) {
                     continue; // if holding, dont put
                 }
-                BackpackItem pack = (BackpackItem) inv.getStack(i)
+                BackpackItem pack = (BackpackItem) backpack
                     .getItem();
 
+                if (!pack.type.autoPicksUp()) {
+                    continue;
+                }
+
                 if (pack.type.canAcceptStack(stack)) {
-                    BackpackInventory binv = new BackpackInventory(inv.getStack(i));
+                    BackpackInventory binv = new BackpackInventory(backpack);
                     if (binv.canInsert(stack)) {
                         binv.addStack(stack);
                         stack.setCount(0);

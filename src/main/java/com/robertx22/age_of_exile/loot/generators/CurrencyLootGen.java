@@ -33,7 +33,7 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
                 return false;
             }
         }
-        return info.level > 5;
+        return info.level > 10;
     }
 
     @Override

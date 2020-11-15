@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -23,10 +23,9 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     public float second = 0;
     public String stat;
     public String type;
+    public boolean scaleToLevel = false;
 
     public transient Stat transientstat;
-
-    public boolean scaleToLevel = false;
 
     private OptScaleExactStat() {
     }
@@ -73,7 +72,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         Stat stat = getStat();
-        TooltipStatInfo statInfo = new TooltipStatInfo(this, info);
+        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(info.unitdata.getLevel()), info);
         return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
     }
 
@@ -91,31 +90,23 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         return ModType.fromString(type);
     }
 
-    public StatModifier toStatModifier() {
+    public ExactStatData toExactStat(int lvl) {
         Stat stat = SlashRegistry.Stats()
             .get(this.stat);
-        if (stat.UsesSecondValue()) {
-            return new StatModifier(first, first, second, second, stat, getModType());
-        } else {
-            return new StatModifier(first, first, stat, getModType());
-        }
+
+        return ExactStatData.of(first, second, stat, getModType(), lvl);
 
     }
 
     public void applyStats(EntityCap.UnitData data, int lvl) {
-        toStatModifier().ToExactStat(100, scaleToLevel ? lvl : 1)
+        toExactStat(scaleToLevel ? lvl : 1)
             .applyStats(data);
     }
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
-        if (scaleToLevel) {
-            toStatModifier().ToExactStat(100, data.getLevel())
-                .applyStats(data);
-        } else {
-            toStatModifier().ToExactStat(100, 1)
-                .applyStats(data);
-        }
+        toExactStat(scaleToLevel ? data.getLevel() : 1)
+            .applyStats(data);
     }
 
     public static void combine(List<OptScaleExactStat> list) {

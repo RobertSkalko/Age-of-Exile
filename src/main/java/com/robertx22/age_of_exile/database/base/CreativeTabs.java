@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Triple;
@@ -57,6 +56,6 @@ public class CreativeTabs {
     public static ItemGroup Tinkering = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "tinkering_group")
         ,
-        () -> new ItemStack(Items.CRAFTING_TABLE));
+        () -> new ItemStack(ModRegistry.TINKERING.MAT_BACKPACKS_TIER_MAP.get(SkillItemTier.DIVINE)));
 
 }

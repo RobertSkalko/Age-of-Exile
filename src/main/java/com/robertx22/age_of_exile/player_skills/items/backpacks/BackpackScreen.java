@@ -11,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class BackpackScreen extends HandledScreen<BackpackContainer> {
-    private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/backpack/background.png");
+    private Identifier texture = new Identifier(Ref.MODID, "textures/gui/backpack/background.png");
 
     public BackpackScreen(BackpackContainer handler, PlayerInventory inventory, Text text) {
         super(handler, inventory, new LiteralText(""));
@@ -19,6 +19,7 @@ public class BackpackScreen extends HandledScreen<BackpackContainer> {
         backgroundWidth = 176;
         backgroundHeight = 207;
 
+        this.texture = new Identifier(Ref.MODID, "textures/gui/backpack/" + handler.tier.tier + ".png");
     }
 
     @Override

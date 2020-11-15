@@ -74,10 +74,15 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPot
     }
 
     public List<OptScaleExactStat> getStats(int amplifier) {
-        SkillItemTier tier = SkillItemTier.of(amplifier);
+        SkillItemTier tier = SkillItemTier.of(amplifier - 1);
 
         List<OptScaleExactStat> list = effect.stats.stream()
-            .map(x -> new OptScaleExactStat(x.first * tier.statMulti, x.getStat(), x.getModType()))
+            .map(x -> {
+                OptScaleExactStat stat = new OptScaleExactStat(x.first * tier.statMulti, x.getStat(), x.getModType());
+                stat.scaleToLevel = x.scaleToLevel;
+                return stat;
+
+            })
             .collect(Collectors.toList());
 
         return list;

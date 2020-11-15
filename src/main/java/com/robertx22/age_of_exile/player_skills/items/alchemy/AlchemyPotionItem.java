@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -61,6 +62,7 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
         }
 
         stack.decrement(1);
+        PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), player);
 
         if (!world.isClient) {
             EntityCap.UnitData unitdata = Load.Unit(player);

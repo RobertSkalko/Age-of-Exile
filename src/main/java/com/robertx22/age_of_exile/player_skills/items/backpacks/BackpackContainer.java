@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.library_of_exile.tile_bases.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,6 +18,7 @@ public class BackpackContainer extends BaseTileContainer {
     ItemStack stack;
     BackpackInventory backpackInv;
     PlayerEntity player;
+    SkillItemTier tier;
 
     public BackpackContainer(int syncid, PlayerInventory playerinv, PacketByteBuf buf) {
         this(playerinv.player.getMainHandStack(), syncid, playerinv);
@@ -39,6 +41,8 @@ public class BackpackContainer extends BaseTileContainer {
             this.stack = stack.copy(); // copy so i can later check if its same stack
 
             BackpackItem backpack = (BackpackItem) stack.getItem();
+
+            this.tier = backpack.tier;
 
             this.backpackInv = new BackpackInventory(stack);
 

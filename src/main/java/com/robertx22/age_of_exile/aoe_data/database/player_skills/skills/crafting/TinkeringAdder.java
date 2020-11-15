@@ -10,9 +10,19 @@ public class TinkeringAdder {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(8, PlayerSkillEnum.TINKERING);
         b.addDefaultBonusExpRewards();
+        b.addDefaultHpMsMana();
 
         ModRegistry.TINKERING.KEY_TIER_MAP.values()
             .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 50));
+
+        ModRegistry.TINKERING.LEATHER_TIER_MAP.values()
+            .forEach(x -> b.itemCraftExp(x, 20 + x.tier.tier * 10));
+
+        ModRegistry.TINKERING.MAT_BACKPACKS_TIER_MAP.values()
+            .forEach(x -> b.itemCraftExp(x, 50 + x.tier.tier * 25));
+
+        ModRegistry.TINKERING.VALUABLES_BACKPACKS_TIER_MAP.values()
+            .forEach(x -> b.itemCraftExp(x, 50 + x.tier.tier * 25));
 
         return b.build();
     }

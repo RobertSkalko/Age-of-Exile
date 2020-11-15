@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.player_skills.items.fishing;
+package com.robertx22.age_of_exile.player_skills.items.tinkering;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
@@ -11,16 +11,17 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.registry.Registry;
 
-public class ScribeInkItem extends Item implements IAutoLocName, IAutoModel, IGatheringMat, IShapelessRecipe {
+public class MysteriousLeatherItem extends Item implements IAutoLocName, IAutoModel, IGatheringMat, IShapelessRecipe {
 
-    SkillItemTier tier;
+    public SkillItemTier tier;
 
-    public ScribeInkItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Inscribing));
+    public MysteriousLeatherItem(SkillItemTier tier) {
+        super(new Settings().group(CreativeTabs.Tinkering));
         this.tier = tier;
     }
 
@@ -47,22 +48,19 @@ public class ScribeInkItem extends Item implements IAutoLocName, IAutoModel, IGa
 
     @Override
     public String locNameForLangFile() {
-        return tier.word + " Ink";
+        return tier.word + " Leather";
     }
 
     @Override
     public String GUID() {
-        return "ink/" + tier.tier;
+        return "leather/" + tier.tier;
     }
 
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
-        if (this.tier.higherTier() == null) {
-            return null;
-        }
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 2);
-        fac.input(ModRegistry.INSCRIBING.INK_TIER_MAP.get(tier.higherTier()), 1);
+        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
+        fac.input(ModRegistry.INSCRIBING.INK_TIER_MAP.get(this.tier));
+        fac.input(Items.LEATHER);
         return fac.criterion("player_level", trigger());
     }
 }
-

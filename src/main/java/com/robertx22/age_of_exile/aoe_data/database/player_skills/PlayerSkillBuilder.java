@@ -81,7 +81,7 @@ public class PlayerSkillBuilder {
         hpMsMana(20, 3);
         hpMsMana(30, 4);
         hpMsMana(40, 5);
-        hpMsMana(50, 10);
+        hpMsMana(50, 5);
         return this;
     }
 
