@@ -18,8 +18,6 @@ import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.ClampedEntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Pair;
@@ -29,7 +27,6 @@ import top.theillusivec4.curios.api.event.DropRulesCallback;
 import top.theillusivec4.curios.api.type.component.ICurio;
 import top.theillusivec4.curios.api.type.component.ICuriosItemHandler;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -84,7 +81,9 @@ public class CommonInit implements ModInitializer {
             }
         });
 
-        testLevelCurve();
+        testSkillLevelCurve();
+
+        // testLevelCurve();
 
 
         /*
@@ -97,8 +96,6 @@ h
 
          */
         // testLevelCurve();
-
-        uncapHealth();
 
         watch.print("Age of Exile common init ");
 
@@ -117,33 +114,17 @@ h
         }
     }
 
-    static void uncapHealth() {
+    public static void testSkillLevelCurve() {
+        for (int i = 1; i < ModConfig.get().Server.MAX_LEVEL + 1; i++) {
 
-        boolean succeded = false;
+            int needed = LevelUtils.getExpNeededForSkillLevel(i);
+            System.out.print("\nExp needed for lvl: " + i + " is " + needed);
+            System.out.print("\n");
 
-        ClampedEntityAttribute hp = (ClampedEntityAttribute) EntityAttributes.GENERIC_MAX_HEALTH;
-        for (Field field : hp.getClass()
-            .getDeclaredFields()
-        ) {
+            int old = (int) (LevelUtils.getExpRequiredForLevel(i) / 0.25F);
+            System.out.print("\nOLD Exp needed for lvl: " + i + " is " + old);
 
-            try {
-                field.setAccessible(true);
-                double num = field.getDouble(hp);
-
-                if (num > 1000) {
-                    field.set(hp, Double.MAX_VALUE);
-                    succeded = true;
-                }
-
-            } catch (IllegalArgumentException e) {
-                //e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (!succeded) {
-            System.out.println("Uncapping max health failed! Contact mcrobertx22/Age of Exile dev!");
         }
     }
+
 }

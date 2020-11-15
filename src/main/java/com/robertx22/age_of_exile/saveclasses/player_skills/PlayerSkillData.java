@@ -43,6 +43,6 @@ public class PlayerSkillData {
     }
 
     public int getExpNeededToLevel() {
-        return (int) (LevelUtils.getExpRequiredForLevel(lvl + 1) * 0.25F);
+        return (LevelUtils.getExpNeededForSkillLevel(lvl + 1));
     }
 }

@@ -20,7 +20,7 @@ public class FishingAdder {
         b.skill.exp_per_action = 25;
 
         DropRewardsBuilder skillDrops = DropRewardsBuilder.of(1.5F);
-        skillDrops.addFoodDrops();
+        //skillDrops.addFoodDrops();
         skillDrops.dropReward(new SkillDropReward(1, 200, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(10, 150, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(20, 100, INSCRIBING.INK_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));

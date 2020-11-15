@@ -31,15 +31,15 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
     public boolean drop_gems = true;
     public boolean drop_currency = true;
     public boolean drop_lvl_rewards = true;
-    public boolean drop_exp = true;
 
     public float extra_item_favor_cost = 1;
     public int extra_items_per_boss = 0;
     public int extra_items_per_chest = 0;
 
     public boolean can_salvage_loot = true;
+    public float exp_multi = 1;
 
-    public float favor_drain_per_item = 1;// TODO THIS IS A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
+    public float favor_drain_per_item = 1;// THIS CAN A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
 
     public String text_format = Formatting.GREEN.getName();
 
@@ -75,10 +75,13 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
                 .formatted(Formatting.BOLD));
             hasBad = true;
         }
-        if (!can_salvage_loot) {
-            list.add(new LiteralText("You can't gain experience").formatted(Formatting.RED)
+        if (exp_multi < 1) {
+            list.add(new LiteralText("You gain reduced experience.").formatted(Formatting.RED)
                 .formatted(Formatting.BOLD));
             hasBad = true;
+        } else if (exp_multi > 1) {
+            list.add(new LiteralText("You gain increased experience.").formatted(Formatting.AQUA)
+                .formatted(Formatting.BOLD));
         }
 
         if (!drop_unique_gears) {

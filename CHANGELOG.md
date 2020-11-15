@@ -68,4 +68,5 @@ High level players should feel less overpowered now.
 * fix items not being enchantable at anvil
 * removed other gui overlay types as this one is configurable enough that it can replace them. 
 * added bonus favor stat (used in exploration skill)
-
+* when on 0 favor, exp is reduced by 4 times
+* you gain increased exp gain on high favor

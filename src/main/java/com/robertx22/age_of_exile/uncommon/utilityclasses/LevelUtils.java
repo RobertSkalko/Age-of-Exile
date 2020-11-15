@@ -13,9 +13,7 @@ import net.minecraft.world.World;
 public class LevelUtils {
 
     public static int getDistanceFromMaxLevel(int lvl) {
-
         int max = ModConfig.get().Server.MAX_LEVEL;
-
         return Math.abs(lvl - max);
     }
 
@@ -30,6 +28,11 @@ public class LevelUtils {
 
     public static int getExpRequiredForLevel(int level) {
         return (int) (Math.pow(6F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2.35F));
+    }
+
+    public static int getExpNeededForSkillLevel(int level) {
+        float exponent = 0.5F * (float) level / (float) ModConfig.get().Server.MAX_LEVEL;
+        return (int) Math.pow(100 + (level * 25), 1 + exponent);
     }
 
     public static int getBaseExpMobReward(int level) {
