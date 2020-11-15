@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mixins;
 
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
+import com.robertx22.age_of_exile.player_skills.items.backpacks.TryAutoInsert;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -21,7 +22,7 @@ import java.util.List;
 public class PlayerInventoryMixin {
 
     @Inject(method = "insertStack(Lnet/minecraft/item/ItemStack;)Z", at = @At(value = "HEAD"))
-    private void salvageGear(ItemStack stack, CallbackInfoReturnable<Boolean> ci) {
+    private void hookonStackInserted(ItemStack stack, CallbackInfoReturnable<Boolean> ci) {
         try {
             PlayerInventory inv = (PlayerInventory) (Object) this;
 
@@ -53,9 +54,14 @@ public class PlayerInventoryMixin {
 
                         }
                     }
-                }
 
+                }
             }
+
+            if (!stack.isEmpty()) {
+                TryAutoInsert.run(inv, stack);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

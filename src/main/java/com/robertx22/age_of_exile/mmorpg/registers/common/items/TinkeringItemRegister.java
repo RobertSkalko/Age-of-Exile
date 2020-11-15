@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
+import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackType;
 import com.robertx22.age_of_exile.player_skills.items.exploration.LockedChestItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.mining.MiningStoneItem;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 
 public class TinkeringItemRegister extends BaseItemRegistrator {
 
-    public BackpackItem TEST_BACKPACK = item(new BackpackItem(), "test");
+    public BackpackItem VALUABLES_BACKPACK0 = item(new BackpackItem(BackpackType.VALUABLES, SkillItemTier.SPIRITUAL), "backpack/valuables/0");
 
     public HashMap<SkillItemTier, ChestKeyItem> KEY_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, MiningStoneItem> STONE_TIER_MAP = new HashMap<>();

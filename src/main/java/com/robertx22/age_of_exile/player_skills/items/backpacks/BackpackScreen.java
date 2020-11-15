@@ -32,6 +32,12 @@ public class BackpackScreen extends HandledScreen<BackpackContainer> {
     }
 
     @Override
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        super.render(matrices, mouseX, mouseY, delta);
+        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+    }
+
+    @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         // dont draw the damn name
     }

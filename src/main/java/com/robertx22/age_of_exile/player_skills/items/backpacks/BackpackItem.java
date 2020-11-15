@@ -18,12 +18,13 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class BackpackItem extends Item {
-    BackpackType type;
-    SkillItemTier tier;
+    public BackpackType type;
+    public SkillItemTier tier;
 
     public BackpackItem(BackpackType type, SkillItemTier tier) {
         super(new Settings().group(CreativeTabs.Tinkering)
-            .fireproof());
+            .fireproof()
+            .maxCount(1));
         this.type = type;
         this.tier = tier;
     }
