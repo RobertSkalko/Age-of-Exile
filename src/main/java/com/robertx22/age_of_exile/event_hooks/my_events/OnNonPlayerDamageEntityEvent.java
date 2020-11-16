@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
-import com.robertx22.library_of_exile.events.base.EventConsumer;
-import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.mixin_methods.OnHurtEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.LivingHurtEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
+import com.robertx22.library_of_exile.events.base.EventConsumer;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class OnNonPlayerDamageEntityEvent extends EventConsumer<ExileEvents.OnDamageEntity> {
@@ -18,7 +18,7 @@ public class OnNonPlayerDamageEntityEvent extends EventConsumer<ExileEvents.OnDa
             return;
         }
         if (!(event.source.getAttacker() instanceof PlayerEntity)) {
-            OnHurtEvent.onHurtEvent(new LivingHurtEvent(event.mob, event.source, event.damage));
+            OnHurtEvent.onHurtEvent(new AttackInformation(AttackInformation.Mitigation.PRE, event.mob, event.source, event.damage));
         }
     }
 }

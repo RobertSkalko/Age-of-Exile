@@ -44,7 +44,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
                     .removeUnregisteredStats();
             }
 
-            endata.setType(entity);
+            endata.setType();
 
             PlayerEntity nearestPlayer = null;
 
@@ -55,12 +55,12 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
             } else {
                 if (endata.getUnit() == null) {
-                    endata.setUnit(new Unit(), entity);
+                    endata.setUnit(new Unit());
                 }
 
                 endata.getUnit()
                     .initStats(); // give new stats to mob on spawn
-                endata.forceRecalculateStats(entity);
+                endata.forceRecalculateStats();
             }
 
             entity.heal(Integer.MAX_VALUE);
@@ -75,7 +75,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
         Unit mob = new Unit();
         mob.initStats();
 
-        endata.SetMobLevelAtSpawn(entity, nearestPlayer);
+        endata.SetMobLevelAtSpawn(nearestPlayer);
 
         int rar = mob.randomRarity(entity, endata);
         endata.setRarity(rar);
@@ -85,13 +85,13 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
         endata.getAffixData()
             .randomizeAffixes(rarity);
 
-        endata.setUnit(mob, entity);
+        endata.setUnit(mob);
 
         endata.setAreaMod(WorldAreas.getArea(entity.world, entity.getBlockPos())
             .getAreaModifier());
 
         endata.mobStatsAreSet();
-        endata.forceRecalculateStats(entity);
+        endata.forceRecalculateStats();
 
         return mob;
 

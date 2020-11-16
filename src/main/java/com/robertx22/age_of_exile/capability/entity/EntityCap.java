@@ -8,12 +8,10 @@ import com.robertx22.age_of_exile.capability.bases.INeededForClient;
 import com.robertx22.age_of_exile.config.LevelRewardConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
@@ -26,6 +24,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
@@ -77,23 +76,19 @@ public class EntityCap {
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
-        void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
-
         EntityStatusEffectsData getStatusEffectsData();
 
         void modifyResource(ResourcesData.Context ctx);
 
-        void onDeath(LivingEntity en);
+        void onDeath();
 
-        void setType(LivingEntity en);
+        void setType();
 
         EntityTypeUtils.EntityClassification getType();
 
-        void trySync(LivingEntity entity);
+        void trySync();
 
-        void onAttackEntity(LivingEntity attacker, LivingEntity victim);
-
-        GearItemData setupWeaponData(LivingEntity entity);
+        GearItemData setupWeaponData();
 
         void setEquipsChanged(boolean bool);
 
@@ -103,11 +98,11 @@ public class EntityCap {
 
         boolean needsToBeGivenStats();
 
-        boolean increaseRarity(LivingEntity entity);
+        boolean increaseRarity();
 
         Unit getUnit();
 
-        void setUnit(Unit unit, LivingEntity entity);
+        void setUnit(Unit unit);
 
         void setRarity(int rarity);
 
@@ -117,23 +112,19 @@ public class EntityCap {
 
         void setUUID(UUID id);
 
-        MutableText getName(LivingEntity entity);
+        MutableText getName();
 
-        void tryRecalculateStats(LivingEntity entity);
+        void tryRecalculateStats();
 
-        void forceRecalculateStats(LivingEntity entity, DamageEventData data);
+        void forceRecalculateStats(AttackInformation data);
 
-        void forceRecalculateStats(LivingEntity entity);
+        void forceRecalculateStats();
 
         void forceSetUnit(Unit unit);
 
-        boolean tryUseWeapon(GearItemData gear, LivingEntity entity);
-
-        boolean tryUseWeapon(GearItemData gear, LivingEntity entity, float multi);
+        boolean canUseWeapon(GearItemData gear);
 
         void onLogin(PlayerEntity player);
-
-        boolean isWeapon(GearItemData gear);
 
         void setTier(int tier);
 
@@ -149,15 +140,13 @@ public class EntityCap {
 
         void mobStatsAreSet();
 
-        void attackWithWeapon(DamageEventData data);
+        void attackWithWeapon(AttackInformation data);
 
-        void unarmedAttack(DamageEventData data);
-
-        void mobBasicAttack(DamageEventData data);
+        void mobBasicAttack(AttackInformation data);
 
         int getLevel();
 
-        void setLevel(int lvl, LivingEntity entity);
+        void setLevel(int lvl);
 
         boolean CheckIfCanLevelUp();
 
@@ -165,7 +154,7 @@ public class EntityCap {
 
         boolean CheckLevelCap();
 
-        void SetMobLevelAtSpawn(LivingEntity entity, PlayerEntity player);
+        void SetMobLevelAtSpawn(PlayerEntity player);
 
         int getExp();
 
@@ -330,16 +319,6 @@ public class EntityCap {
         }
 
         @Override
-        public void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self) {
-
-        }
-
-        @Override
-        public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
-
-        }
-
-        @Override
         public EntityStatusEffectsData getStatusEffectsData() {
             return this.statusEffects;
         }
@@ -350,7 +329,7 @@ public class EntityCap {
         }
 
         @Override
-        public void onDeath(LivingEntity en) {
+        public void onDeath() {
 
             int expLoss = (int) (exp * ModConfig.get().Server.EXP_LOSS_ON_DEATH);
 
@@ -360,8 +339,8 @@ public class EntityCap {
         }
 
         @Override
-        public void setType(LivingEntity en) {
-            this.type = EntityTypeUtils.getType(en);
+        public void setType() {
+            this.type = EntityTypeUtils.getType(entity);
         }
 
         @Override
@@ -370,11 +349,11 @@ public class EntityCap {
         }
 
         @Override
-        public void trySync(LivingEntity entity) {
+        public void trySync() {
             if (this.shouldSync) {
                 this.shouldSync = false;
 
-                if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
+                if (!Unit.shouldSendUpdatePackets(entity)) {
                     return;
                 }
                 Packets.sendToTracking(Unit.getUpdatePacketFor(entity, this), entity);
@@ -393,7 +372,7 @@ public class EntityCap {
         }
 
         @Override
-        public void setUnit(Unit unit, LivingEntity entity) {
+        public void setUnit(Unit unit) {
             this.unit = unit;
         }
 
@@ -428,7 +407,7 @@ public class EntityCap {
         }
 
         @Override
-        public MutableText getName(LivingEntity entity) {
+        public MutableText getName() {
 
             if (entity instanceof PlayerEntity) {
                 return new LiteralText("")
@@ -464,7 +443,7 @@ public class EntityCap {
         }
 
         @Override
-        public void tryRecalculateStats(LivingEntity entity) {
+        public void tryRecalculateStats() {
 
             if (unit == null) {
                 unit = new Unit();
@@ -477,12 +456,12 @@ public class EntityCap {
         }
 
         @Override
-        public void forceRecalculateStats(LivingEntity entity, DamageEventData data) {
+        public void forceRecalculateStats(AttackInformation data) {
             unit.recalculateStats(entity, this, data);
         }
 
         @Override
-        public void forceRecalculateStats(LivingEntity entity) {
+        public void forceRecalculateStats() {
 
             if (unit == null) {
                 unit = new Unit();
@@ -501,30 +480,13 @@ public class EntityCap {
         }
 
         @Override
-        public GearItemData setupWeaponData(LivingEntity entity) {
+        public GearItemData setupWeaponData() {
             return Gear.Load(entity.getMainHandStack());
         }
 
         @Override
-        public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source) {
-            return tryUseWeapon(weaponData, source, 1);
-        }
-
-        @Override
-        public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source, float multi) {
-
-            try {
-
-                if (weaponData != null) {
-
-                    return true;
-
-                }
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
-            return false;
+        public boolean canUseWeapon(GearItemData weaponData) {
+            return weaponData != null;
         }
 
         @Override
@@ -560,7 +522,7 @@ public class EntityCap {
         }
 
         @Override
-        public boolean increaseRarity(LivingEntity entity) {
+        public boolean increaseRarity() {
 
             MobRarity rar = SlashRegistry.MobRarities()
                 .get(rarity);
@@ -569,29 +531,11 @@ public class EntityCap {
                 rarity = rar.getHigherRarity().rank;
                 this.equipsChanged = true;
                 this.shouldSync = true;
-                this.forceRecalculateStats(entity);
+                this.forceRecalculateStats();
                 return true;
             } else {
                 return false;
             }
-        }
-
-        @Override
-        public boolean isWeapon(GearItemData gear) {
-            try {
-
-                if (gear == null) {
-                    return false;
-                }
-                if (gear.GetBaseGearType()
-                    .family()
-                    .equals(BaseGearType.SlotFamily.Weapon)) {
-                    return true;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return false;
         }
 
         @Override
@@ -631,7 +575,8 @@ public class EntityCap {
         }
 
         @Override
-        public void attackWithWeapon(DamageEventData data) {
+        public void attackWithWeapon(AttackInformation data) {
+
             if (data.weaponData.GetBaseGearType()
                 .getWeaponMechanic() != null) {
 
@@ -647,20 +592,16 @@ public class EntityCap {
         }
 
         @Override
-        public void unarmedAttack(DamageEventData data) {
-
-        }
-
-        @Override
-        public void mobBasicAttack(DamageEventData data) {
+        public void mobBasicAttack(AttackInformation data) {
             MobRarity rar = SlashRegistry.MobRarities()
-                .get(data.sourceData.getRarity());
+                .get(data.getAttackerEntityData()
+                    .getRarity());
 
-            float vanilla = data.getEventDamage() * (float) ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG;
+            float vanilla = data.getAmount() * (float) ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG;
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
-            num *= SlashRegistry.getEntityConfig(data.source, data.sourceData).dmg_multi;
+            num *= SlashRegistry.getEntityConfig(data.getAttackerEntity(), data.getAttackerEntityData()).dmg_multi;
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
@@ -717,8 +658,7 @@ public class EntityCap {
         }
 
         @Override
-        public void SetMobLevelAtSpawn(LivingEntity entity,
-                                       PlayerEntity nearestPlayer) {
+        public void SetMobLevelAtSpawn(PlayerEntity nearestPlayer) {
             this.setMobStats = true;
 
             setMobLvlNormally(entity, nearestPlayer);
@@ -732,7 +672,7 @@ public class EntityCap {
                 nearestPlayer
             );
 
-            setLevel(MathHelper.clamp(lvl, entityConfig.min_lvl, entityConfig.max_lvl), entity);
+            setLevel(MathHelper.clamp(lvl, entityConfig.min_lvl, entityConfig.max_lvl));
         }
 
         @Override
@@ -811,7 +751,7 @@ public class EntityCap {
                 // fully restore on lvlup
                 ;
 
-                this.setLevel(level + 1, player);
+                this.setLevel(level + 1);
                 setExp(getRemainingExp());
 
                 Optional<LevelRewardConfig> opt = ModConfig.get().LevelRewards.levelRewards.stream()
@@ -837,7 +777,7 @@ public class EntityCap {
         }
 
         @Override
-        public void setLevel(int lvl, LivingEntity entity) {
+        public void setLevel(int lvl) {
 
             level = MathHelper.clamp(lvl, 1, ModConfig.get().Server.MAX_LEVEL);
 

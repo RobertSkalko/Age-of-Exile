@@ -15,9 +15,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
-import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
@@ -260,7 +260,7 @@ public class Unit {
         return check;
     }
 
-    public void recalculateStats(LivingEntity entity, UnitData data, DamageEventData dmgData) {
+    public void recalculateStats(LivingEntity entity, UnitData data, AttackInformation dmgData) {
 
         if (entity.world.isClient) {
             return;
@@ -269,7 +269,7 @@ public class Unit {
         data.setEquipsChanged(false);
 
         if (data.getUnit() == null) {
-            data.setUnit(this, entity);
+            data.setUnit(this);
         }
 
         DirtyCheck old = getDirtyCheck();

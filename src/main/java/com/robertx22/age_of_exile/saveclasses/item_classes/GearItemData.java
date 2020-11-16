@@ -444,6 +444,19 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return 0;
     }
 
+    public boolean isWeapon() {
+        try {
+            if (GetBaseGearType()
+                .family()
+                .equals(BaseGearType.SlotFamily.Weapon)) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean isBetterThan(GearItemData other) {
 
         if (other.level > level + 10) {

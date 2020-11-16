@@ -85,7 +85,7 @@ public class PlayerStatsCap {
             if (this.hasAvailablePoints(data)) {
                 getData().addPoint(stat);
                 data.setEquipsChanged(true);
-                data.tryRecalculateStats(player);
+                data.tryRecalculateStats();
                 data.syncToClient(player);
             }
         }

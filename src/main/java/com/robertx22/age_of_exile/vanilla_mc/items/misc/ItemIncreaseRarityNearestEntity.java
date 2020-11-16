@@ -38,12 +38,12 @@ public class ItemIncreaseRarityNearestEntity extends Item {
 
                         UnitData data = Load.Unit(en);
 
-                        if (data.increaseRarity(en)) {
+                        if (data.increaseRarity()) {
 
                             player.getStackInHand(hand)
                                 .decrement(1);
 
-                            data.trySync(en);
+                            data.trySync();
 
                             return new TypedActionResult<ItemStack>(ActionResult.PASS, player
                                 .getStackInHand(hand));

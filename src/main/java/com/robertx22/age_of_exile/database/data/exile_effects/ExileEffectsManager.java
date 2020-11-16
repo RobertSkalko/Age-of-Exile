@@ -77,7 +77,7 @@ public class ExileEffectsManager {
         Load.Unit(target)
             .setEquipsChanged(true);
         Load.Unit(target)
-            .trySync(target);
+            .trySync();
 
     }
 }

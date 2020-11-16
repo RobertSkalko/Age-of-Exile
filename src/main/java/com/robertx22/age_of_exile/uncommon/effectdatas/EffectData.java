@@ -51,14 +51,14 @@ public abstract class EffectData {
                 sourceUnit = sourceData.getUnit();
 
                 if (sourceUnit != null) {
-                    sourceData.tryRecalculateStats(source);
+                    sourceData.tryRecalculateStats();
 
                 } else {
                     this.canceled = true;
                 }
                 if (targetUnit != null) {
 
-                    targetData.tryRecalculateStats(target);
+                    targetData.tryRecalculateStats();
 
                 }
 

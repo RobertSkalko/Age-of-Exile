@@ -1,92 +1,48 @@
 package com.robertx22.age_of_exile.event_hooks.entity.damage;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.LivingHurtEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 
 import java.lang.reflect.Field;
 
-public class DamageEventData {
+public class WeaponFinderUtil {
 
-    public DamageEventData(LivingHurtEvent event) {
-        try {
+    public static ItemStack getWeapon(DamageSource source) {
 
-            this.event = event;
-
-            this.source = (LivingEntity) event.getSource()
-                .getAttacker();
-            this.target = event.getEntityLiving();
-
-            this.sourceData = Load.Unit(source);
-            this.targetData = Load.Unit(target);
-
-            setupWeaponData();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (source.getAttacker() instanceof LivingEntity == false) {
+            return ItemStack.EMPTY;
         }
 
-    }
-
-    public static boolean isValidEntityDamage(LivingHurtEvent event) {
-
-        if (event.getSource() != null && event.getSource()
-            .getAttacker() instanceof LivingEntity) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public LivingHurtEvent event;
-
-    public ItemStack weapon;
-    public GearItemData weaponData;
-
-    public LivingEntity source;
-    public LivingEntity target;
-
-    public UnitData sourceData;
-    public UnitData targetData;
-
-    public float multiplier = 1;
-
-    public float getEventDamage() {
-        return event.getAmount();
-    }
-
-    private void setupWeaponData() {
-
-        ItemStack stack = source.getMainHandStack();
+        ItemStack stack = ((LivingEntity) source.getAttacker()).getMainHandStack();
         GearItemData gear = Gear.Load(stack);
 
         if (gear == null) {
 
             try {
-                Entity is = event.getSource()
+                Entity sourceEntity = source
                     .getSource();
-                Entity ts = event.getSource()
+                Entity attacker = source
                     .getAttacker();
 
-                if (is != null && is instanceof PlayerEntity == false && is instanceof LivingEntity == false) {
-                    if (ts instanceof LivingEntity) {
+                if (sourceEntity != null && !(sourceEntity instanceof LivingEntity)) {
+                    if (attacker instanceof LivingEntity) {
 
-                        stack = getWeaponStackFromThrownEntity(is);
+                        stack = getWeaponStackFromThrownEntity(sourceEntity);
                         gear = Gear.Load(stack);
 
                         if (gear == null) {
                             stack = ItemStack.EMPTY;
                         } else {
-                            sourceData.setEquipsChanged(true);
+                            Load.Unit(attacker)
+                                .setEquipsChanged(true);
                         }
 
                     }
@@ -95,19 +51,14 @@ public class DamageEventData {
                 e.printStackTrace();
             }
         }
-
         if (gear != null) {
-            weaponData = gear;
-            weapon = stack;
+            return stack;
+        } else {
+            return ItemStack.EMPTY;
         }
-
-        if (weapon == null) {
-            weapon = ItemStack.EMPTY;
-        }
-
     }
 
-    public static ItemStack getWeaponStackFromThrownEntity(Entity en) {
+    private static ItemStack getWeaponStackFromThrownEntity(Entity en) {
 
         for (Field field : en.getClass()
             .getFields()) {

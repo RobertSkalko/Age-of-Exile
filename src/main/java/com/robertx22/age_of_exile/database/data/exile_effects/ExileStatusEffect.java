@@ -57,7 +57,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
         exect.mc_stats.forEach(x -> x.apply(entity)); // todo is this needed?
 
         Load.Unit(entity)
-            .forceRecalculateStats(entity);
+            .forceRecalculateStats();
 
         super.onApplied(entity, attributes, amplifier);
 

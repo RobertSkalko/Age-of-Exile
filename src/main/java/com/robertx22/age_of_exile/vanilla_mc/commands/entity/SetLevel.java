@@ -42,7 +42,7 @@ public class SetLevel {
 
         EntityCap.UnitData data = Load.Unit(player);
 
-        data.setLevel(lvl, player);
+        data.setLevel(lvl);
         data.setExp(0);
 
         return 0;

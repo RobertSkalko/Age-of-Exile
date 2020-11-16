@@ -16,7 +16,7 @@ public class OnPlayerDeath extends EventConsumer<ExileEvents.OnPlayerDeath> {
         try {
 
             Load.Unit(event.player)
-                .onDeath(event.player);
+                .onDeath();
 
             Load.Unit(event.player)
                 .setEquipsChanged(true);

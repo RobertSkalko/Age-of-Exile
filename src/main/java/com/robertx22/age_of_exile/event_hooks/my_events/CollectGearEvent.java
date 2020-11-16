@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.event_hooks.my_events;
 
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.saveclasses.unit.GearData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CollectGearEvent {
 
-    public static List<GearData> getAllGear(DamageEventData event, LivingEntity entity, EntityCap.UnitData unitdata) {
+    public static List<GearData> getAllGear(AttackInformation event, LivingEntity entity, EntityCap.UnitData unitdata) {
         List<GearData> list = new ArrayList<>();
 
         Boolean hasWeapon = false;

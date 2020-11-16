@@ -17,7 +17,7 @@ public class OnCurioChangeEvent implements CurioChangeCallback {
                 EntityCap.UnitData data = Load.Unit(entity);
                 if (data != null) {
                     data.setEquipsChanged(true);
-                    data.tryRecalculateStats(entity);
+                    data.tryRecalculateStats();
 
                     if (entity instanceof ServerPlayerEntity) {
                         data.syncToClient((ServerPlayerEntity) entity);

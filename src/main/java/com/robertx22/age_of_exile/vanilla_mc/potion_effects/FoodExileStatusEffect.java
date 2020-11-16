@@ -45,7 +45,7 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPot
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 
         Load.Unit(entity)
-            .forceRecalculateStats(entity);
+            .forceRecalculateStats();
 
         super.onApplied(entity, attributes, amplifier);
 
@@ -57,7 +57,7 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPot
 
         try {
             Load.Unit(target)
-                .forceRecalculateStats(target);
+                .forceRecalculateStats();
 
             super.onRemoved(target, attributes, amplifier);
         } catch (Exception e) {

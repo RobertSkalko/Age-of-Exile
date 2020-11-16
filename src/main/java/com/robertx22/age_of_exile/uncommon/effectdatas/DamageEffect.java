@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -47,19 +46,19 @@ import java.util.stream.Collectors;
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable, ICrittable {
 
-    public DamageEffect(DamageEventData data, int dmg, EffectTypes effectType, WeaponTypes weptype, AttackPlayStyle style) {
-        super(data.source, data.target, data.sourceData, data.targetData);
-        this.event = data.event;
+    public DamageEffect(AttackInformation data, int dmg, EffectTypes effectType, WeaponTypes weptype, AttackPlayStyle style) {
+        super(data.getAttackerEntity(), data.getTargetEntity(), data.getAttackerEntityData(), data.getTargetEntityData());
+        this.attackInfo = data;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
         this.style = style;
         calcBlock();
     }
 
-    public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg,
+    public DamageEffect(AttackInformation attackInfo, LivingEntity source, LivingEntity target, int dmg,
                         EffectTypes effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(source, target, Load.Unit(source), Load.Unit(target));
-        this.event = event;
+        this.attackInfo = attackInfo;
         this.setEffectType(effectType, weptype);
         this.number = dmg;
         this.style = style;
@@ -67,7 +66,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public AttackPlayStyle style;
-    LivingHurtEvent event;
+    AttackInformation attackInfo;
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
 
@@ -86,8 +85,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private void calcBlock() {
         // blocking check
-        if (target.isBlocking() && event != null) {
-            Vec3d vec3d = event.getSource()
+        if (target.isBlocking() && attackInfo != null) {
+            Vec3d vec3d = attackInfo.getSource()
                 .getPosition();
             if (vec3d != null) {
                 Vec3d vec3d2 = target.getRotationVec(1.0F);
@@ -188,13 +187,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     private float modifyIfArrowDamage(float dmg) {
-        if (event != null && event.getSource() != null) {
-            if (event.getSource()
+        if (attackInfo != null && attackInfo.getSource() != null) {
+            if (attackInfo.getSource()
                 .getSource() instanceof ProjectileEntityDuck) {
                 if (weaponType == WeaponTypes.Bow) {
                     // don't use this for crossbows, only bows need to be charged fully
 
-                    ProjectileEntityDuck duck = (ProjectileEntityDuck) event.getSource()
+                    ProjectileEntityDuck duck = (ProjectileEntityDuck) attackInfo.getSource()
                         .getSource();
 
                     float arrowmulti = duck.my$getDmgMulti();
@@ -224,9 +223,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     public void cancelDamage() {
         this.canceled = true;
-        if (event != null) {
-            event.setAmount(0);
-            event.setCanceled(true);
+        if (attackInfo != null) {
+            attackInfo.setAmount(0);
+            attackInfo.setCanceled(true);
         }
         return;
     }
@@ -301,8 +300,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
         DamageSource ds = null;
 
-        if (event != null) {
-            ds = event.getSource();
+        if (attackInfo != null) {
+            ds = attackInfo.getSource();
         } else {
             ds = DamageSource.GENERIC; // todo unsure.
         }
@@ -314,11 +313,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         MyDamageSource dmgsource = new MyDamageSource(ds, source, element, dmg);
 
-        this.sourceData.onAttackEntity(source, target);
-
-        this.targetData.onDamagedBy(source, vanillaDamage, target);
-
-        if (event == null || !(event.getSource() instanceof MyDamageSource)) { // todo wtf
+        if (attackInfo == null || !(attackInfo.getSource() instanceof MyDamageSource)) { // todo wtf
             //int hurtResistantTime = target.timeUntilRegen;
             //target.timeUntilRegen = 0;
 
@@ -495,7 +490,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(
-                    event, source, target, entry.getValue(),
+                    attackInfo, source, target, entry.getValue(),
                     EffectTypes.BONUS_ATTACK, this.weaponType, style);
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;

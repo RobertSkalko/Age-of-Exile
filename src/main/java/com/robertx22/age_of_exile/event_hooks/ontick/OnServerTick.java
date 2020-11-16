@@ -58,11 +58,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
 
-                        unitdata.tryRecalculateStats(player);
-                        // has to do
-                        // this cus curios doesnt call
-                        // equipsChanged event - actually
-                        // there's one, but i fear  bugs
+                        unitdata.tryRecalculateStats();
 
                         Unit unit = unitdata.getUnit();
 

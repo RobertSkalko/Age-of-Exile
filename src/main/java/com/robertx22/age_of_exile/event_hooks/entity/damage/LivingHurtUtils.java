@@ -1,21 +1,12 @@
 package com.robertx22.age_of_exile.event_hooks.entity.damage;
 
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.LivingHurtEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.ProjectileDamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.TridentEntity;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
@@ -42,9 +33,9 @@ public class LivingHurtUtils {
         }
     }
 
-    public static void onAttack(LivingHurtEvent event) {
+    public static void tryAttack(AttackInformation event) {
 
-        LivingEntity target = event.getEntityLiving();
+        LivingEntity target = event.getTargetEntity();
 
         if (target.world.isClient) {
             return;
@@ -52,56 +43,58 @@ public class LivingHurtUtils {
 
         if (event.getSource() != null) {
 
-            if (isForbiddenAttack(event)) {
+            if (!RangedDamageUtil.isValidAttack(event)) {
                 return;
             }
-
-            if (event.getSource() instanceof MyDamageSource || event.getSource()
-                .getName()
-                .equals(DamageEffect.dmgSourceName)) {
+            if (DmgSourceUtils.isMyDmgSource(event.getSource())) {
                 return;
             }
-
             if (event.getSource()
                 .getAttacker() instanceof LivingEntity) {
-
-                onAttack(new DamageEventData(event));
+                onAttack(event);
             }
 
         }
 
     }
 
-    public static void onAttack(DamageEventData data) {
+    private static void onAttack(AttackInformation data) {
 
         try {
 
-            if (data.target.isAlive() == false) {
+            if (data.getTargetEntity()
+                .isAlive() == false) {
                 return; // stops attacking dead mobs
             }
 
             GearItemData weapondata = data.weaponData;
 
-            data.targetData.tryRecalculateStats(data.target);
-            data.sourceData.tryRecalculateStats(data.source);
+            data.getTargetEntityData()
+                .tryRecalculateStats();
+            data.getAttackerEntityData()
+                .tryRecalculateStats();
 
-            if (data.source instanceof PlayerEntity) {
+            if (data.getAttackerEntity() instanceof PlayerEntity) {
 
                 if (weapondata == null) {
                     return;
                 }
 
-                if (data.sourceData.isWeapon(weapondata)) {
-                    if (data.sourceData.tryUseWeapon(weapondata, data.source)) {
-                        data.sourceData.attackWithWeapon(data);
+                if (weapondata != null && weapondata.isWeapon()) {
+                    if (data.getAttackerEntityData()
+                        .canUseWeapon(weapondata)) {
+                        data.getAttackerEntityData()
+                            .attackWithWeapon(data);
                     }
 
                 } else {
-                    data.sourceData.unarmedAttack(data);
+                    // data.getAttackerEntityData()
+                    //   .unarmedAttack(data);
                 }
 
             } else { // if its a mob
-                data.sourceData.mobBasicAttack(data);
+                data.getAttackerEntityData()
+                    .mobBasicAttack(data);
             }
 
         } catch (Exception e) {
@@ -110,77 +103,8 @@ public class LivingHurtUtils {
 
     }
 
-    public static boolean isForbiddenAttack(LivingHurtEvent event) {
-
-        if (event.getSource()
-            .getAttacker() instanceof LivingEntity) {
-            LivingEntity en = (LivingEntity) event.getSource()
-                .getAttacker();
-            DamageSource source = event.getSource();
-
-            Item item = en.getMainHandStack()
-                .getItem();
-
-            if (item instanceof BowItem || item instanceof CrossbowItem) {
-                if (source.name.contains("arrow")) {
-                    return false;
-                }
-                if (source.name.contains("bolt")) {
-                    return false;
-                }
-                if (source.name.contains("ammo")) {
-                    return false;
-                }
-                if (source.name.contains("bullet")) {
-                    return false;
-                }
-                if (source.name.contains("firework")) {
-                    return false;
-                }
-                if (source.name.contains("dart")) {
-                    return false;
-                }
-                if (source.name.contains("missile")) {
-                    return false;
-                }
-                return true;
-
-            } else {
-                if (source instanceof ProjectileDamageSource) {
-                    ProjectileDamageSource indi = (ProjectileDamageSource) source;
-
-                    if (indi.getSource() instanceof TridentEntity) {
-                        return false;
-                    }
-
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
     public static boolean isEnviromentalDmg(DamageSource source) {
         return source.getAttacker() instanceof LivingEntity == false;
-    }
-
-    public static void onHurtRecordNonPlayerDmg(LivingHurtEvent event) {
-
-        LivingEntity defender = event.getEntityLiving();
-
-        UnitData data = Load.Unit(defender);
-
-        if (event.getSource() != null && event.getSource()
-            .getAttacker() instanceof LivingEntity) {
-            LivingEntity attacker = (LivingEntity) event.getSource()
-                .getAttacker();
-            data.onDamagedBy(attacker, event.getAmount(), defender);
-
-        } else {
-            data.onDamagedBy(null, event.getAmount(), defender);
-        }
-
     }
 
 }

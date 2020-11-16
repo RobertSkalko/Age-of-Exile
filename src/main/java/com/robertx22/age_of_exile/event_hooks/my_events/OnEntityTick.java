@@ -61,7 +61,7 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
 
             EntityCap.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
-            data.tryRecalculateStats(entity);
+            data.tryRecalculateStats();
 
             if (entity instanceof PlayerEntity) {
                 data.syncToClient((PlayerEntity) entity);

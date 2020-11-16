@@ -67,7 +67,7 @@ public class RenderMobInfo {
                         new LiteralText(" [" + "???" + "]").formatted(Formatting.YELLOW);
                 }
 
-                Text text = data.getName(entity)
+                Text text = data.getName()
                     .append(lvlcomp);
 
                 List<MobAffix> affixes = data.getAffixData()
