@@ -1,11 +1,13 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
+import com.robertx22.age_of_exile.capability.player.PlayerDeathData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
@@ -303,6 +305,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             ds = DamageSource.GENERIC; // todo unsure.
         }
 
+        if (target instanceof PlayerEntity) {
+            PlayerDeathData data = ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(target);
+            info.dmgmap.forEach((key, value) -> data.deathStats.record(key, value));
+        }
+
         MyDamageSource dmgsource = new MyDamageSource(ds, source, element, dmg);
 
         this.sourceData.onAttackEntity(source, target);
@@ -531,7 +538,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     @Override
     public void SetArmorPenetration(int val) {
         this.armorPene = val;
-
     }
 
     @Override

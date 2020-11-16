@@ -15,10 +15,10 @@ public class ScaleVanillaMobDamage extends EventConsumer<ExileEvents.OnDamageEnt
         if (event.mob.world.isClient) {
             return;
         }
-        if (event.source instanceof MyDamageSource) {
+        if (LivingHurtUtils.isEnviromentalDmg(event.source)) {
             return;
         }
-        if (LivingHurtUtils.isEnviromentalDmg(event.source)) {
+        if (event.source instanceof MyDamageSource) {
             return;
         }
         if (event.source.getAttacker() instanceof LivingEntity) {

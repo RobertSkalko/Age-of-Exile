@@ -11,7 +11,7 @@ public class ServerContainer {
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
     public boolean KEEP_INVENTORY_ON_DEATH = true;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
-    public boolean SCALE_ENVIRO_DMG_TO_LEVEL = false;
+    public boolean ENABLE_MOD_COMPAT_WARNINGS = true;
 
     //public double REPAIR_FUEL_NEEDED_MULTI = 1;
     public double REGEN_HUNGER_COST = 10;

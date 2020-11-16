@@ -17,6 +17,8 @@ public class AutoCompatibleItemConfig {
     public List<String> WHITELISTED_MODS_FROM_AUTO_CONFIG = new ArrayList<>();
     public boolean REQUIRE_WHITELIST = false;
 
+    public boolean ENABLE_MANUAL_TWEAKS = true;
+
     public boolean isValid(Item item) {
         Identifier id = Registry.ITEM.getId(item);
 

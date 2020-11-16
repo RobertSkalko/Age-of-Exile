@@ -72,3 +72,7 @@ High level players should feel less overpowered now.
 * you gain increased exp gain on high favor
 * added auto compat mod whitelist config. 
 Now you can enable compat only for certain mods.
+* added death statistics overlay when dead. 
+Now you can see what damage types you died to. 
+So if you die to mostly fire damage for example, you should know to up your resist.
+* added chat warning if you have immersive portals installed (configurable)

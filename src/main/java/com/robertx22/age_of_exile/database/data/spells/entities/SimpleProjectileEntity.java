@@ -181,6 +181,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     public void onTick() {
+
         this.getSpellData()
             .getSpell()
             .getAttached()

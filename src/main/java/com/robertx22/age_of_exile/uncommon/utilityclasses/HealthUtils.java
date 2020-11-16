@@ -18,16 +18,26 @@ public class HealthUtils {
     }
 
     public static float vanillaToReal(LivingEntity en, float dmg) {
+
         return Health.getInstance()
             .scale(dmg, Load.Unit(en)
                 .getLevel());
     }
 
     public static float realToVanilla(LivingEntity en, float dmg) {
+
+        float multi = dmg / getCombinedMaxHealth(en);
+
+        float total = multi * en.getMaxHealth();
+
+        return total;
+        /*
         float antiScaling = 1F / Health.getInstance()
             .scale(1F, Load.Unit(en)
                 .getLevel());
-        return antiScaling * dmg;
+        return antiScaling / dmg;
+
+         */
     }
 
     public static float getCombinedHealthMulti(LivingEntity en) {
