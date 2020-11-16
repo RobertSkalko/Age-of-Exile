@@ -14,12 +14,23 @@ public class AutoCompatibleItemConfig {
 
     public List<String> BLACKLISTED_MODS_FROM_AUTO_CONFIG = new ArrayList<>();
     public List<String> BLACKLISTED_ITEMS_FROM_AUTO_CONFIG = new ArrayList<>();
+    public List<String> WHITELISTED_MODS_FROM_AUTO_CONFIG = new ArrayList<>();
+    public boolean REQUIRE_WHITELIST = false;
 
-    public boolean isBlacklisted(Item item) {
+    public boolean isValid(Item item) {
         Identifier id = Registry.ITEM.getId(item);
 
-        return BLACKLISTED_MODS_FROM_AUTO_CONFIG.contains(id.getNamespace())
-            || BLACKLISTED_ITEMS_FROM_AUTO_CONFIG.contains(id.toString());
+        if (BLACKLISTED_MODS_FROM_AUTO_CONFIG.contains(id.getNamespace())) {
+            return false;
+        }
+        if (BLACKLISTED_ITEMS_FROM_AUTO_CONFIG.contains(id.toString())) {
+            return false;
+        }
+        if (REQUIRE_WHITELIST) {
+            return WHITELISTED_MODS_FROM_AUTO_CONFIG.contains(id.getNamespace());
+        } else {
+            return true;
+        }
     }
 
     public int MAX_SINGLE_STAT_VALUE = 50;

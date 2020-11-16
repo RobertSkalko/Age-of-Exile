@@ -72,7 +72,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         Stat stat = getStat();
-        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(info.unitdata.getLevel()), info);
+        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(this.scaleToLevel ? info.unitdata.getLevel() : 1), info);
         return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
     }
 

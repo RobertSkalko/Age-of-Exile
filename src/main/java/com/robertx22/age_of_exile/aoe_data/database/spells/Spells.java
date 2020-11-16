@@ -453,19 +453,19 @@ public class Spells implements ISlashRegistryInit {
 
         SpellBuilder.of("wizardry", DIVINE_BUFF_CONFIG(), "Wizardry")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveToAlliesInRadius(BeneficialEffects.WIZARDRY, 4D, 20 * 30D))
+            .onCast(PartBuilder.giveToAlliesInRadius(BeneficialEffects.WIZARDRY, 4D, 20 * 60D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
             .build();
 
         SpellBuilder.of("trickery", DIVINE_BUFF_CONFIG(), "Trickery")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveToAlliesInRadius(BeneficialEffects.TRICKERY, 4D, 20 * 30D))
+            .onCast(PartBuilder.giveToAlliesInRadius(BeneficialEffects.TRICKERY, 4D, 20 * 60D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
             .build();
 
         SpellBuilder.of(BRAVERY_ID, DIVINE_BUFF_CONFIG(), "Bravery")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveToAlliesInRadius(BeneficialEffects.BRAVERY, 4D, 20 * 30D))
+            .onCast(PartBuilder.giveToAlliesInRadius(BeneficialEffects.BRAVERY, 4D, 20 * 60D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
             .build();
 

@@ -81,7 +81,7 @@ public class CommonInit implements ModInitializer {
             }
         });
 
-        testSkillLevelCurve();
+        //testSkillLevelCurve();
 
         // testLevelCurve();
 
@@ -89,13 +89,9 @@ public class CommonInit implements ModInitializer {
         /*
         Armor.getInstance()
             .logUsableAmountTests();
-
         DodgeRating.getInstance()
-            .logUsableAmountTests();
-h
-
+            .logUsableAmountTests();h
          */
-        // testLevelCurve();
 
         watch.print("Age of Exile common init ");
 

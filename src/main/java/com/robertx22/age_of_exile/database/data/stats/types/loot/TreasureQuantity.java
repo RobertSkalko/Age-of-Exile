@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 public class TreasureQuantity extends Stat {
 
     private TreasureQuantity() {
+        this.statGroup = StatGroup.Misc;
     }
 
     public static TreasureQuantity getInstance() {

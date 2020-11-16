@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -47,6 +48,19 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
     public Identifier getIcon() {
         return Ref.id("textures/gui/skills/icons/" + id + ".png");
+    }
+
+    public int getExpForAction(PlayerEntity player) {
+
+        int exp = exp_per_action;
+
+        if (this.type_enum == PlayerSkillEnum.FISHING) {
+            if (player.world.isRaining()) {
+                exp *= 1.25F;
+            }
+        }
+        return exp;
+
     }
 
     public List<SkillStatReward> getClaimedStats(int lvl) {

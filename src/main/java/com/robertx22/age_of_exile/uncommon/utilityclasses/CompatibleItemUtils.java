@@ -54,7 +54,7 @@ public class CompatibleItemUtils {
                 .getFilterWrapped(x -> x.item_id.equals(reg)).list);
 
             if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
-                if (!ModConfig.get().autoCompatibleItems.isBlacklisted(item)) {
+                if (ModConfig.get().autoCompatibleItems.isValid(item)) {
                     if (all.isEmpty()) {
 
                         Set<GearSlot> slots = new HashSet<>();

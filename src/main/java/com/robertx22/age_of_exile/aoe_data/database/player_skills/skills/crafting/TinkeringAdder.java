@@ -16,13 +16,14 @@ public class TinkeringAdder {
             .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 50));
 
         ModRegistry.TINKERING.LEATHER_TIER_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 20 + x.tier.tier * 10));
+            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 15));
 
         ModRegistry.TINKERING.MAT_BACKPACKS_TIER_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 50 + x.tier.tier * 25));
-
+            .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 50));
         ModRegistry.TINKERING.VALUABLES_BACKPACKS_TIER_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 50 + x.tier.tier * 25));
+            .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 50));
+        ModRegistry.TINKERING.NORMAL_BACKPACKS_TIER_MAP.values()
+            .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 50));
 
         return b.build();
     }

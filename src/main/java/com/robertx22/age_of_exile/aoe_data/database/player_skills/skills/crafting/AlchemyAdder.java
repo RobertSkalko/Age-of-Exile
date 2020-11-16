@@ -14,7 +14,7 @@ public class AlchemyAdder {
         b.addDefaultHpMsMana();
 
         ModRegistry.ALCHEMY.POTIONS_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 15));
+            .forEach(x -> b.itemCraftExp(x, 50 + x.tier.tier * 25));
 
         return b.build();
     }

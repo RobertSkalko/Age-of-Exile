@@ -70,3 +70,5 @@ High level players should feel less overpowered now.
 * added bonus favor stat (used in exploration skill)
 * when on 0 favor, exp is reduced by 4 times
 * you gain increased exp gain on high favor
+* added auto compat mod whitelist config. 
+Now you can enable compat only for certain mods.

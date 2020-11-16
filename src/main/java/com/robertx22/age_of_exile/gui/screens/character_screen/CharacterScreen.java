@@ -12,6 +12,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -65,7 +68,7 @@ import java.util.stream.Collectors;
 public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     static int sizeX = 256;
-    static int sizeY = 166;
+    static int sizeY = 178;
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -74,7 +77,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         ELEMENTAL("elemental"),
         RESISTS("resists"),
         RESTORATION("restoration"),
-        WEAPON("weapon");
+        WEAPON("weapon"),
+        MISC("misc");
 
         String id;
 
@@ -130,6 +134,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         addTo(StatType.WEAPON, new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations());
         addTo(StatType.WEAPON, new SpecificElementalWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations());
+
+        addTo(StatType.MISC, Arrays.asList(BonusExp.getInstance(), TreasureQuality.getInstance(), TreasureQuantity.getInstance()));
 
     }
 

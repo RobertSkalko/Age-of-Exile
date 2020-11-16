@@ -47,7 +47,7 @@ public class OnFishing {
 
             PlayerSkills skills = Load.playerSkills(player);
 
-            int exp = skill.exp_per_action;
+            int exp = skill.getExpForAction(player);
 
             skills.addExp(skill.type_enum, exp);
 
