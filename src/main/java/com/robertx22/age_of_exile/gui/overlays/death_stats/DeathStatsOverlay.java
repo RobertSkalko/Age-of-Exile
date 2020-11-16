@@ -48,9 +48,16 @@ public class DeathStatsOverlay extends DrawableHelper implements HudRenderCallba
 
                 TextUtils.renderText(matrix, 1, "Damage Taken:", x, y, Formatting.WHITE);
 
+                int totaldmg = stats.dmg.values()
+                    .stream()
+                    .mapToInt(i -> i.intValue())
+                    .sum();
+
                 for (Map.Entry<Elements, Float> entry : stats.dmg.entrySet()) {
+
+                    int percent = (int) (entry.getValue() / totaldmg * 100);
                     String text = entry.getKey().dmgName + ": " + entry.getValue()
-                        .intValue();
+                        .intValue() + " (" + percent + "%)";
                     y += 12;
                     TextUtils.renderText(matrix, 1, text, x, y, entry.getKey().format);
                 }

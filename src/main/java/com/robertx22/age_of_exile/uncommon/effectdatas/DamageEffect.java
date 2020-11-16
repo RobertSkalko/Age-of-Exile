@@ -149,7 +149,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (target instanceof PlayerEntity) {
             dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
+
             dmg = MagicShield.modifyEntityDamage(this, dmg);
+
         }
 
         return dmg;

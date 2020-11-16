@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
+import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
@@ -92,6 +93,8 @@ public class MagicShield extends Stat implements ILocalStat {
         float finaldmg = dmg;
 
         if (dmgReduced > 0) {
+
+            PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.element, dmgReduced);
 
             finaldmg -= dmgReduced;
 
