@@ -1,8 +1,9 @@
-package com.robertx22.age_of_exile.event_hooks.entity.damage;
+package com.robertx22.age_of_exile.damage_hooks;
 
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
+import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
+import com.robertx22.age_of_exile.damage_hooks.util.DmgSourceUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

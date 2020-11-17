@@ -1,8 +1,7 @@
-package com.robertx22.age_of_exile.uncommon.effectdatas;
+package com.robertx22.age_of_exile.damage_hooks.util;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.event_hooks.entity.damage.WeaponFinderUtil;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;

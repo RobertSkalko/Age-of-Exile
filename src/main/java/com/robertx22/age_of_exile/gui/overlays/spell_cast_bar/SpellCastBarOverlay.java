@@ -25,7 +25,7 @@ public class SpellCastBarOverlay extends DrawableHelper implements HudRenderCall
         PlayerSpellCap.ISpellsCap data = Load.spells(mc.player);
 
         if (data.getCastingData()
-            .isCasting()) {
+            .isCasting() && data.getCastingData().castingTicksLeft > 0) {
 
             int x = mc.getWindow()
                 .getScaledWidth() / 2 - WIDTH / 2;

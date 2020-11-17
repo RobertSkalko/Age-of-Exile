@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
-import com.robertx22.age_of_exile.event_hooks.entity.damage.LivingHurtUtils;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
+import com.robertx22.age_of_exile.damage_hooks.LivingHurtUtils;
+import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 
 public class OnHurtEvent {
 

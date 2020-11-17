@@ -1,7 +1,6 @@
-package com.robertx22.age_of_exile.event_hooks.my_events;
+package com.robertx22.age_of_exile.damage_hooks;
 
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
-import com.robertx22.age_of_exile.event_hooks.entity.damage.LivingHurtUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;

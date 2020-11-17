@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.player.PlayerDeathData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
@@ -322,6 +323,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (removeKnockback || this.effectType == EffectTypes.DOT_DMG) {
                 if (!attri.hasModifier(NO_KNOCKBACK)) {
                     attri.addPersistentModifier(NO_KNOCKBACK);
+                }
+            }
+
+            if (vanillaDamage > 0) {
+                if (this instanceof SpellDamageEffect) {
+                    if (target instanceof PlayerEntity) {
+                        target.playSound(SoundEvents.ENTITY_PLAYER_HURT, 1.0F, 1.2F / (target.getRandom()
+                            .nextFloat() * 0.2F + 0.9F));
+                    } else {
+                        target.playSound(SoundEvents.ENTITY_GENERIC_HURT, 1.0F, 1.2F / (target.getRandom()
+                            .nextFloat() * 0.2F + 0.9F));
+                    }
                 }
             }
 

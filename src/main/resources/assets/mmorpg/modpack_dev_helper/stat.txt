@@ -31,11 +31,9 @@ all_elemental_damage
 chance_of_static
 unlock_thunder_storm
 all_physical_damage
-physical_to_thunder
 unlock_bravery
 critical_hit
 thunder_resist
-physical_to_fire
 faster_projectiles
 extra_mob_drops
 ele_dodge
@@ -84,7 +82,6 @@ magic_find
 max_fire_resist
 burning_currents
 unlock_arcane_comet
-physical_to_water
 magic_shield
 ele_wand_damage
 armor
@@ -102,7 +99,6 @@ wisdom
 unlock_arcane_bolt
 fire_weapon_damage
 mob_imbue_crit
-physical_to_nature
 unlock_thunder_strikes
 mod_holy_flower_cure
 mana_shield

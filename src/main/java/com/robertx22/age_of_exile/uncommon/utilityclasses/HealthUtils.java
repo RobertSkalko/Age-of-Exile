@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.MathHelper;
 
 public class HealthUtils {
 
@@ -25,19 +24,9 @@ public class HealthUtils {
     }
 
     public static float realToVanilla(LivingEntity en, float dmg) {
-
         float multi = dmg / getCombinedMaxHealth(en);
-
         float total = multi * en.getMaxHealth();
-
         return total;
-        /*
-        float antiScaling = 1F / Health.getInstance()
-            .scale(1F, Load.Unit(en)
-                .getLevel());
-        return antiScaling / dmg;
-
-         */
     }
 
     public static float getCombinedHealthMulti(LivingEntity en) {
@@ -47,15 +36,13 @@ public class HealthUtils {
     public static float getMaxHealth(LivingEntity en) {
         EntityCap.UnitData data = Load.Unit(en);
 
-        float maxhp = MathHelper.clamp(en.getMaxHealth(), 0, 40);
-        // all increases after this would just reduce enviro damage
-
-        float scaledhp = Health.getInstance()
-            .scale(maxhp, data.getLevel());
+        if (en.world.isClient) {
+            return data.getSyncedMaxHealth(); // for client, health needs to be synced
+        }
 
         return data.getUnit()
             .healthData()
-            .getAverageValue() + scaledhp;
+            .getAverageValue();
 
     }
 

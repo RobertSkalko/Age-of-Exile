@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 import com.robertx22.age_of_exile.api.MineAndSlashEvents;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -17,7 +18,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
@@ -303,6 +303,8 @@ public class Unit {
 
         addGearStats(gears, entity, data);
 
+        addVanillaHpToStats(entity, data);
+
         CommonStatUtils.CalcTraitsAndCoreStats(
             data); // has to be at end for the conditionals like if crit higher than x
 
@@ -358,6 +360,21 @@ public class Unit {
             Packets.sendToClient((PlayerEntity) entity, new EntityUnitPacket(entity));
         }
 
+    }
+
+    private void addVanillaHpToStats(LivingEntity entity, UnitData data) {
+
+        float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 40);
+        // all increases after this would just reduce enviro damage
+
+        if (getStatInCalculation(Health.getInstance()).getFlatAverage() > getStatInCalculation(MagicShield.getInstance()).getFlatAverage()) {
+            this.getStatInCalculation(Health.getInstance())
+                .addFlat(maxhp, data.getLevel());
+        } else {
+            this.getStatInCalculation(MagicShield.getInstance())
+                .addFlat(maxhp, data.getLevel());
+        }
+        // add vanila hp to extra hp
     }
 
     private void addGearStats(List<GearData> gears, LivingEntity entity, UnitData data) {

@@ -59,7 +59,6 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
                     dmg.effectType = data.getDmgEffectType();
                 }
                 dmg.element = ele;
-
                 dmg.Activate();
             }
         }

@@ -1,6 +1,6 @@
-package com.robertx22.age_of_exile.event_hooks.entity.damage;
+package com.robertx22.age_of_exile.damage_hooks;
 
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
+import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.ProjectileDamageSource;

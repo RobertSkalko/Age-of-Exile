@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.registrators;
 
-import com.robertx22.age_of_exile.database.base.AllPreGenMapStats;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
@@ -11,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.ChangeDmgElementStat;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
@@ -41,8 +39,6 @@ import java.util.List;
 
 public class Stats implements ISlashRegistryInit {
 
-    public static AllPreGenMapStats allPreGenMapStatLists = new AllPreGenMapStats();
-
     @Override
     public void registerAll() {
 
@@ -51,11 +47,6 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
-
-                    add(ChangeDmgElementStat.PHYS_TO_POISON);
-                    add(ChangeDmgElementStat.PHYS_TO_FIRE);
-                    add(ChangeDmgElementStat.PHYS_TO_FROST);
-                    add(ChangeDmgElementStat.PHYS_TO_THUNDER);
 
                     add(EffectImmunity.POISON);
                     add(EffectImmunity.HUNGER);

@@ -1,9 +1,16 @@
 package com.robertx22.age_of_exile.mmorpg.event_registers;
 
 import com.robertx22.age_of_exile.a_libraries.curios.OnCurioChangeEvent;
+import com.robertx22.age_of_exile.damage_hooks.OnNonPlayerDamageEntityEvent;
+import com.robertx22.age_of_exile.damage_hooks.OnPlayerDamageEntityEvent;
+import com.robertx22.age_of_exile.damage_hooks.ScaleVanillaMobDamage;
+import com.robertx22.age_of_exile.damage_hooks.ScaleVanillaPlayerDamage;
 import com.robertx22.age_of_exile.event_hooks.entity.OnMobSpawn;
 import com.robertx22.age_of_exile.event_hooks.entity.OnTrackEntity;
-import com.robertx22.age_of_exile.event_hooks.my_events.*;
+import com.robertx22.age_of_exile.event_hooks.my_events.OnDamageTryActivatePassiveSpells;
+import com.robertx22.age_of_exile.event_hooks.my_events.OnEntityTick;
+import com.robertx22.age_of_exile.event_hooks.my_events.OnMobDeathDrops;
+import com.robertx22.age_of_exile.event_hooks.my_events.OnPlayerDeath;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.event_hooks.ontick.WorldTickEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnDamagePlayerActivateTablets;

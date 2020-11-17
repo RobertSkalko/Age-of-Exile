@@ -7,13 +7,14 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
 import com.robertx22.age_of_exile.config.LevelRewardConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -24,7 +25,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackInformation;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
@@ -57,11 +57,10 @@ import java.util.UUID;
 
 public class EntityCap {
 
-    public static final Identifier RESOURCE = new Identifier(Ref.MODID, "entitydata");
-
     private static final String RARITY = "rarity";
     private static final String LEVEL = "level";
     private static final String EXP = "exp";
+    private static final String HP = "hp";
     private static final String UUID = "uuid";
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
     private static final String SET_MOB_STATS = "set_mob_stats";
@@ -130,6 +129,8 @@ public class EntityCap {
 
         int getTier();
 
+        int getSyncedMaxHealth();
+
         Tier getMapTier();
 
         CustomExactStatsData getCustomExactStats();
@@ -187,6 +188,7 @@ public class EntityCap {
         int rarity = 0;
         int level = 1;
         int exp = 0;
+        int maxHealth = 0;
         MobAffixesData affixes = new MobAffixesData();
 
         public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
@@ -215,6 +217,8 @@ public class EntityCap {
 
             nbt.putInt(LEVEL, level);
             nbt.putInt(RARITY, rarity);
+            nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
+                .getAverageValue());
             nbt.putString(ENTITY_TYPE, this.type.toString());
             nbt.putString("area", area_mod);
 
@@ -229,6 +233,7 @@ public class EntityCap {
 
             this.rarity = nbt.getInt(RARITY);
             this.level = nbt.getInt(LEVEL);
+            this.maxHealth = nbt.getInt(HP);
             this.area_mod = nbt.getString("area");
 
             try {
@@ -546,6 +551,11 @@ public class EntityCap {
         @Override
         public int getTier() {
             return tier;
+        }
+
+        @Override
+        public int getSyncedMaxHealth() {
+            return this.maxHealth;
         }
 
         @Override

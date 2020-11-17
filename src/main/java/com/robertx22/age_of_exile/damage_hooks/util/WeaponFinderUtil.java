@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.event_hooks.entity.damage;
+package com.robertx22.age_of_exile.damage_hooks.util;
 
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
