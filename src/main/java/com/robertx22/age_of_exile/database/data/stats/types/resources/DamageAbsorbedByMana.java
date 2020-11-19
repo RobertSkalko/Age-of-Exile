@@ -74,8 +74,9 @@ public class DamageAbsorbedByMana extends Stat {
 
             if (dmgReduced > 0) {
 
-                PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.element, dmgReduced);
-
+                if (effect.target instanceof PlayerEntity) {
+                    PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.element, dmgReduced);
+                }
                 ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
                     ResourcesData.Type.MANA, dmgReduced,
                     ResourcesData.Use.SPEND

@@ -83,7 +83,7 @@ public class MobBarScreen extends DrawableHelper implements HudRenderCallback {
 
                     drawTexture(matrix, x, y, 0, ySize, (int) ((float) xSize * percent / 100F), ySize); // inner fill texture
 
-                    String name = CLOC.translate(data.getName(en));
+                    String name = CLOC.translate(data.getName());
 
                     mc.textRenderer.drawWithShadow(matrix, name, width / 2 - mc.textRenderer.getWidth(name) / 2,
                         y - 10, Formatting.WHITE.getColorValue()

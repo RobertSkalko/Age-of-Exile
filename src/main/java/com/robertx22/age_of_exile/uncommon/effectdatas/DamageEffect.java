@@ -1,20 +1,21 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.capability.player.PlayerDeathData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
+import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.*;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
@@ -34,6 +35,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
@@ -209,11 +211,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     }
 
-    boolean removeKnockback = false;
-
-    public void removeKnockback() {
-        removeKnockback = true;
-    }
+    public boolean knockback = true;
 
     public boolean areBothPlayers() {
         if (source instanceof ServerPlayerEntity && target instanceof ServerPlayerEntity) {
@@ -308,8 +306,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         if (target instanceof PlayerEntity) {
-            PlayerDeathData data = ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(target);
-            info.dmgmap.forEach((key, value) -> data.deathStats.record(key, value));
+            info.dmgmap.forEach((key, value) -> {
+                PlayerDeathStatistics.record((PlayerEntity) target, key, value);
+            });
         }
 
         MyDamageSource dmgsource = new MyDamageSource(ds, source, element, dmg);
@@ -320,22 +319,24 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             EntityAttributeInstance attri = target.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
 
-            if (removeKnockback || this.effectType == EffectTypes.DOT_DMG) {
+            if (!knockback || this.effectType == EffectTypes.DOT_DMG) {
                 if (!attri.hasModifier(NO_KNOCKBACK)) {
                     attri.addPersistentModifier(NO_KNOCKBACK);
                 }
             }
 
-            if (vanillaDamage > 0) {
-                if (this instanceof SpellDamageEffect) {
-                    if (target instanceof PlayerEntity) {
-                        target.playSound(SoundEvents.ENTITY_PLAYER_HURT, 1.0F, 1.2F / (target.getRandom()
-                            .nextFloat() * 0.2F + 0.9F));
-                    } else {
-                        target.playSound(SoundEvents.ENTITY_GENERIC_HURT, 1.0F, 1.2F / (target.getRandom()
-                            .nextFloat() * 0.2F + 0.9F));
-                    }
+            if (this instanceof SpellDamageEffect) {
+                if (knockback && dmg <= 0 && !isDodged) {
+                    // if magic shield absorbed the damage, still do knockback
+                    DashUtils.knockback(source, target);
                 }
+
+                // play spell hurt sounds or else spells will feel like they do nothing
+                LivingEntityAccesor duck = (LivingEntityAccesor) target;
+                SoundEvent sound = duck.myGetHurtSound(ds);
+                float volume = duck.myGetHurtVolume();
+                float pitch = duck.myGetHurtPitch();
+                SoundUtils.playSound(target, sound, volume, pitch);
             }
 
             if (target instanceof EnderDragonEntity) {
@@ -357,10 +358,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             // allow multiple dmg same tick
 
-            if (removeKnockback) {
-                if (attri.hasModifier(NO_KNOCKBACK)) {
-                    attri.removeModifier(NO_KNOCKBACK);
-                }
+            if (attri.hasModifier(NO_KNOCKBACK)) {
+                attri.removeModifier(NO_KNOCKBACK);
             }
 
         }

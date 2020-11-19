@@ -22,9 +22,17 @@ public class DashUtils {
 
     }
 
-    public static void dash(LivingEntity entity, float str, Way way) {
+    public static void knockback(LivingEntity source, LivingEntity target) {
 
-        //entity.setVelocity(new Vec3d(0, 0, 0));
+        target.takeKnockback(0.5F, source.getX() - target.getX(), source.getZ() - target.getZ());
+
+        if (target instanceof ServerPlayerEntity) {
+            ((ServerPlayerEntity) target).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(target));
+            target.velocityModified = false;
+        }
+    }
+
+    public static void dash(LivingEntity entity, float str, Way way) {
 
         double x;
         double z;

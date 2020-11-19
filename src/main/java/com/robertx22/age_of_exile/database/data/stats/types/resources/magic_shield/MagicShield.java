@@ -62,17 +62,17 @@ public class MagicShield extends Stat implements ILocalStat {
             return amount;
         }
 
+        float realdmg = HealthUtils.vanillaToReal(en, amount);
         EntityCap.UnitData data = Load.Unit(en);
 
-        float toReduce = MathHelper.clamp(HealthUtils.vanillaToReal(en, amount), 0, data.getResources()
+        float toReduce = MathHelper.clamp(realdmg, 0, data.getResources()
             .getMagicShield());
 
         if (toReduce <= 0) {
             return amount;
         }
 
-        float dmg = amount;
-        dmg -= HealthUtils.realToVanilla(en, toReduce);
+        realdmg -= toReduce;
 
         ResourcesData.Context ms = new ResourcesData.Context(data, en,
             ResourcesData.Type.MAGIC_SHIELD,
@@ -82,7 +82,9 @@ public class MagicShield extends Stat implements ILocalStat {
         data.getResources()
             .modify(ms);
 
-        return dmg;
+        float vanilladmg = realdmg / HealthUtils.getCombinedMaxHealth(en) * en.getMaxHealth();
+
+        return vanilladmg;
     }
 
     public static float modifyEntityDamage(DamageEffect effect, float dmg) {
@@ -94,7 +96,9 @@ public class MagicShield extends Stat implements ILocalStat {
 
         if (dmgReduced > 0) {
 
-            PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.element, dmgReduced);
+            if (effect.target instanceof PlayerEntity) {
+                PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.element, dmgReduced);
+            }
 
             finaldmg -= dmgReduced;
 

@@ -23,7 +23,10 @@ public class PlayerDeathData implements Component, ICommonPlayerCap {
             this.deathStats = LoadSave.Load(PlayerDeathStatistics.class, new PlayerDeathStatistics(), nbt, "stats");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if (this.deathStats == null) {
             this.deathStats = new PlayerDeathStatistics();
+
         }
     }
 

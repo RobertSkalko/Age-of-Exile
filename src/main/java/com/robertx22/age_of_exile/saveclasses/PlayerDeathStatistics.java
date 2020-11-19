@@ -20,10 +20,11 @@ public class PlayerDeathStatistics {
 
     public static void record(PlayerEntity player, Elements ele, float amount) {
         PlayerDeathData stats = ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(player);
-        stats.deathStats.record(ele, amount);
+        Elements element = ele == null ? Elements.Physical : ele;
+        stats.deathStats.record(element, amount);
     }
 
-    public void record(Elements ele, float amount) {
+    private void record(Elements ele, float amount) {
 
         if (died) {
             clear();

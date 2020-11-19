@@ -65,7 +65,7 @@ This scaling is supposed to be small and only there so lvl 1 items never get to 
 High level players should feel less overpowered now.
 * added spell cast hotkey! Retained right click cast as a config
 * items from craftable utilities mod have been transfered to this mod and are now part of inscribing skill
-* fix items not being enchantable at anvil
+* fix items not being enchantable at anvil (this might not fix existing items)
 * removed other gui overlay types as this one is configurable enough that it can replace them. 
 * added bonus favor stat (used in exploration skill)
 * when on 0 favor, exp is reduced by 4 times
@@ -76,4 +76,5 @@ Now you can enable compat only for certain mods.
 Now you can see what damage types you died to. 
 So if you die to mostly fire damage for example, you should know to up your resist.
 * added hurt sounds to spells
+* magic shield users are now knocked back by spells
 * added chat warning if you have immersive portals installed (configurable)

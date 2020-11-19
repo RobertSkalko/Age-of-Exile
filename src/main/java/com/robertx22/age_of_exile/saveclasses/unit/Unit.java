@@ -363,18 +363,20 @@ public class Unit {
     }
 
     private void addVanillaHpToStats(LivingEntity entity, UnitData data) {
+        if (entity instanceof PlayerEntity) {
 
-        float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 40);
-        // all increases after this would just reduce enviro damage
+            float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 40);
+            // all increases after this would just reduce enviro damage
 
-        if (getStatInCalculation(Health.getInstance()).getFlatAverage() > getStatInCalculation(MagicShield.getInstance()).getFlatAverage()) {
-            this.getStatInCalculation(Health.getInstance())
-                .addFlat(maxhp, data.getLevel());
-        } else {
-            this.getStatInCalculation(MagicShield.getInstance())
-                .addFlat(maxhp, data.getLevel());
+            if (getStatInCalculation(Health.getInstance()).getFlatAverage() > getStatInCalculation(MagicShield.getInstance()).getFlatAverage()) {
+                this.getStatInCalculation(Health.getInstance())
+                    .addFlat(maxhp, data.getLevel());
+            } else {
+                this.getStatInCalculation(MagicShield.getInstance())
+                    .addFlat(maxhp, data.getLevel());
+            }
+            // add vanila hp to extra hp
         }
-        // add vanila hp to extra hp
     }
 
     private void addGearStats(List<GearData> gears, LivingEntity entity, UnitData data) {

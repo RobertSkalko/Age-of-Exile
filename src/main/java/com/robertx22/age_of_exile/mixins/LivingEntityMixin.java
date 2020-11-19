@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.mixin_ducks.LivingEntityDuck;
+import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.LivingEntity;
@@ -13,16 +13,34 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin implements LivingEntityDuck {
+public abstract class LivingEntityMixin implements LivingEntityAccesor {
+
+    @Override
+    @Invoker("knockback")
+    public abstract void myknockback(LivingEntity target);
+
+    @Override
+    @Invoker("getHurtSound")
+    public abstract SoundEvent myGetHurtSound(DamageSource source);
+
+    @Override
+    @Invoker("getSoundVolume")
+    public abstract float myGetHurtVolume();
+
+    @Override
+    @Invoker("getSoundPitch")
+    public abstract float myGetHurtPitch();
 
     @Shadow
     protected abstract void damageArmor(DamageSource source, float amount);
@@ -110,13 +128,4 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
         }
     }
 
-    @Override
-    public void myApplyDamage(DamageSource source, float amount) {
-        this.applyDamage(source, amount);
-    }
-
-    @Override
-    public int myGetCurrentExperience(PlayerEntity player) {
-        return this.getCurrentExperience(player);
-    }
 }
