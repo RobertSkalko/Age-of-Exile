@@ -7,13 +7,11 @@ import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.particle.ParticleTypes;
@@ -38,7 +36,8 @@ public class NegativeEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         ExileEffectBuilder.of(STATIC, "Static", EffectType.HARMFUL)
-            .stat(-20, new ElementalResist(Elements.Thunder), ModType.FLAT)
+            .maxStacks(5)
+            .stat(-5, new ElementalResist(Elements.Thunder), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.THUNDER, 20D, 1D)
                     .onTick(10D))
@@ -50,8 +49,9 @@ public class NegativeEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(CHILL, "Chill", EffectType.HARMFUL)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.05F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
-            .stat(-15, new ElementalResist(Elements.Water), ModType.FLAT)
+            .maxStacks(5)
+            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
+            .stat(-4, new ElementalResist(Elements.Water), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
                     .onTick(10D))
@@ -60,10 +60,10 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(THORNS, "Thorns", EffectType.HARMFUL)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(2), Elements.Nature)
-                    .put(MapField.DMG_EFFECT_TYPE, EffectData.EffectTypes.DOT_DMG.name()))
-                    .setTarget(TargetSelector.TARGET.create())
+
+                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Nature)
                     .onTick(20D))
+
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 15D, 1D)
                     .onTick(20D))
                 .onTick(PartBuilder.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 0.5D, 0.5D)
@@ -77,10 +77,10 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(BURN, "Burn", EffectType.HARMFUL)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(2), Elements.Fire)
-                    .put(MapField.DMG_EFFECT_TYPE, EffectData.EffectTypes.DOT_DMG.name()))
-                    .setTarget(TargetSelector.TARGET.create())
+
+                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Fire)
                     .onTick(20D))
+
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
                     .onTick(20D))
                 .onTick(PartBuilder.playSound(SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5D, 1D)

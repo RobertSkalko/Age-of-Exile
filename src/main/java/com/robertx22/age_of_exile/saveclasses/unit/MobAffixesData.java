@@ -8,6 +8,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,10 +19,19 @@ public class MobAffixesData {
     public List<String> affixes = new ArrayList<>();
 
     public List<MobAffix> getAffixes() {
-        return affixes.stream()
-            .map(x -> SlashRegistry.MobAffixes()
-                .get(x))
-            .collect(Collectors.toList());
+        try {
+            return affixes.stream()
+                .filter(x -> SlashRegistry.MobAffixes()
+                    .isRegistered(x))
+                .map(x -> {
+                    return SlashRegistry.MobAffixes()
+                        .get(x);
+                })
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Arrays.asList();
     }
 
     public void randomizeAffixes(MobRarity rarity) {

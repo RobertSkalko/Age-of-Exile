@@ -74,36 +74,12 @@ public class EntityConfigs implements ISlashRegistryInit {
         mob(ENTITIES.NATURE_CHICKEN, nature());
         mob(ENTITIES.THUNDER_CHICKEN, thunder());
 
-        mob(ENTITIES.FIRE_SLIME, fire());
-        mob(ENTITIES.WATER_SLIME, water());
-        mob(ENTITIES.NATURE_SLIME, nature());
-        mob(ENTITIES.THUNDER_SLIME, thunder());
-        mob(ENTITIES.ARCANE_SLIME, MANA_BURN);
-
-        mob(ENTITIES.FIRE_SPIDER, fire());
-        mob(ENTITIES.WATER_SPIDER, water());
-        mob(ENTITIES.NATURE_SPIDER, nature());
-        mob(ENTITIES.THUNDER_SPIDER, thunder());
-
-        mob(ENTITIES.ARCANE_SPIDER, MANA_BURN);
-
         mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.BURN)))));
         mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.CHILL)))));
         mob(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.POISON)))));
         mob(ENTITIES.THUNDER_MAGE, new SpecialMobStats(thunder(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.STATIC)))));
 
-        mob(ENTITIES.FIRE_SKELETON, fire());
-        mob(ENTITIES.WATER_SKELETON, water());
-        mob(ENTITIES.NATURE_SKELETON, nature());
-        mob(ENTITIES.THUNDER_SKELETON, thunder());
-
         mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new MobStatData(new StatModifier(-90, -90, HealEffectivenessOnSelf.getInstance()))));
-
-        mob(ENTITIES.FIRE_ZOMBIE, new SpecialMobStats(fire(), LESS_DROPS));
-        mob(ENTITIES.WATER_ZOMBIE, new SpecialMobStats(water(), LESS_DROPS));
-        mob(ENTITIES.NATURE_ZOMBIE, new SpecialMobStats(nature(), LESS_DROPS));
-        mob(ENTITIES.THUNDER_ZOMBIE, new SpecialMobStats(thunder(), LESS_DROPS));
-        mob(ENTITIES.ARCANE_ZOMBIE, new SpecialMobStats(MANA_BURN, LESS_DROPS));
 
     }
 

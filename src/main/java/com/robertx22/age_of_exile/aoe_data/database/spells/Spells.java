@@ -166,9 +166,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water))
 
-            .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water)
-                .addCondition(EffectCondition.CASTER_HAS_STAT.create(OceanSpellModStats.FROSTBALL_EXTRA_DMG_KEY))
-                .addCondition(EffectCondition.TARGET_HAS_POTION.create(POTIONS.getExileEffect(NegativeEffects.CHILL))))
+            .onHit(PartBuilder.exileEffect(NegativeEffects.CHILL, 20 * 10D))
 
             .build();
 
@@ -213,13 +211,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(1D, PARTICLES.BUBBLE, 15D, 0.15D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.BUBBLE_POP, 15D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.15F, 1), Elements.Water))
-
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.1F, 2), Elements.Water)
-                .requiresSpellMod(OceanSpellModStats.CHILLING_TIDES_KEY))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.1F, 2), Elements.Fire)
-                .requiresSpellMod(OceanSpellModStats.BURNING_CURRENTS_KEY))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.2F, 0), Elements.Physical)
-                .requiresSpellMod(OceanSpellModStats.CRASHING_ROCKS_KEY))
+            .onHit(PartBuilder.exileEffect(NegativeEffects.CHILL, 20 * 10D))
             .build();
 
         THUNDER_STORM = SpellBuilder.of("thunder_storm", HIGH_AOE_LONG_CD(), "Thunderstorm")
@@ -234,16 +226,13 @@ public class Spells implements ISlashRegistryInit {
                     .addCondition(EffectCondition.CHANCE.create(20D))))
             .build();
 
-        WHIRLPOOL = SpellBuilder.of("whirlpool", HIGH_AOE_LONG_CD(), "Whirlpool")
+        WHIRLPOOL = SpellBuilder.of("whirlpool", SpellConfiguration.Builder.multiCast(30, 120 * 20, 60, 6), "Whirlpool")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 100D, 0.5D)
-                .put(MapField.EXPIRE_ON_HIT, false)
-                .put(MapField.GRAVITY, true)))
-            .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.BUBBLE, 25D, 3.5D, 0.5D))
-            .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.BUBBLE_POP, 75D, 3.5D, 0.5D))
-            .onTick(PartBuilder.playSoundEveryTicks(20D, SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
-            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Water, 3.5D)
+            .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE, 100D, 3.5D, 0.5D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 125D, 3.5D, 0.5D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
+            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(3), Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
             .build();
 

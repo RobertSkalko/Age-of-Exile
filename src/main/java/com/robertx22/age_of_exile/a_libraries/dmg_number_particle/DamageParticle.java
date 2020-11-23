@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.a_libraries.dmg_number_particle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 
 public class DamageParticle {
@@ -41,7 +40,7 @@ public class DamageParticle {
         Vec3d pos = entityLocation.add(offset);
 
         age = 0;
-        this.str = element.format + element.icon + Formatting.GRAY + str;
+        this.str = str;
         this.element = element;
 
         vx = mc.world.random.nextGaussian() * 0.01;

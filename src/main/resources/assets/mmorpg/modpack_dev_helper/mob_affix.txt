@@ -1,10 +1,12 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 lightning
-vit
+thunder_lord
 flaming
+fire_lord
 venom
-haunted
+phys_lord
 vampire
+winter
 cold
-ruin
+nature_lord

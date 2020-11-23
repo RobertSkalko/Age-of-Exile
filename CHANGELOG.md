@@ -80,3 +80,12 @@ So if you die to mostly fire damage for example, you should know to up your resi
 * added chat warning if you have immersive portals installed (configurable)
 * fixed projectile spells feeling laggy
 * updated damage particle
+* removed most elemental mobs. They weren't special enough to warrant being separate mobs. 
+I will just increase the elemental affixes for existing mobs to compensate for the elemental damage loss.
+More mobs will be coming in my World of Exile mod!
+* mob affixes are now more meaningful
+
+Spell adjustements:
+* whirlpool is now at caster, not a projectile
+* fire/frost etc balls now have about 4 times less cooldown, in other words, pew pew pew
+* many more!

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.registry;
 
-import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
@@ -35,6 +34,7 @@ import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -300,7 +300,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EXILE_EFFECT, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).setIsDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, new MobAffix("empty", "empty", Formatting.AQUA)).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.UNIQUE_GEAR, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEM, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RUNE, null).setIsDatapack());

@@ -31,6 +31,11 @@ public class ExileEffectBuilder {
         return this;
     }
 
+    public ExileEffectBuilder maxStacks(int stacks) {
+        this.effect.max_stacks = stacks;
+        return this;
+    }
+
     public ExileEffectBuilder spell(Spell stat) {
         this.effect.spell = stat.getAttached();
         return this;

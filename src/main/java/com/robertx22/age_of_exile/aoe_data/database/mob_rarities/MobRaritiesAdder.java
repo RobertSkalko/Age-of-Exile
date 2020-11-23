@@ -10,7 +10,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
     public void registerAll() {
 
         MobRarity common = new MobRarity();
-        common.affix_chance = 5;
+        common.affix_chance = 0;
         common.stat_multi = 1;
         common.min_lvl = 0;
         common.dmg_multi = 1;
@@ -23,7 +23,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         common.addToSerializables();
 
         MobRarity uncommon = new MobRarity();
-        uncommon.affix_chance = 25;
+        uncommon.affix_chance = 20;
         uncommon.stat_multi = 1.4F;
         uncommon.min_lvl = 5;
         uncommon.dmg_multi = 1.3F;
@@ -49,7 +49,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         rare.addToSerializables();
 
         MobRarity epic = new MobRarity();
-        epic.affix_chance = 50;
+        epic.affix_chance = 75;
         epic.stat_multi = 3;
         epic.min_lvl = 15;
         epic.dmg_multi = 2.2F;
@@ -62,7 +62,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         epic.addToSerializables();
 
         MobRarity legendary = new MobRarity();
-        legendary.affix_chance = 75;
+        legendary.affix_chance = 100;
         legendary.stat_multi = 3.5F;
         legendary.min_lvl = 20;
         legendary.dmg_multi = 2.3F;
@@ -76,7 +76,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
 
         MobRarity boss = new MobRarity();
         boss.name_add = "\u2620"; // skull
-        boss.affix_chance = 100;
+        boss.affix_chance = 0;
         boss.stat_multi = 3.75F;
         boss.min_lvl = 20;
         boss.dmg_multi = 2.4F;
