@@ -37,7 +37,7 @@ public class ChanceToApplyPotionEffect extends BaseStatEffect<DamageEffect> {
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         if (RandomUtils.roll(data.getAverageValue())) {
-            ExileEffectsManager.apply(this.statusEffect, effect.source, effect.target, 1);
+            ExileEffectsManager.apply(this.statusEffect, effect.source, effect.target, 20 * 10);
         }
         return effect;
     }

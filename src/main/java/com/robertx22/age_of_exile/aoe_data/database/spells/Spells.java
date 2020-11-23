@@ -176,6 +176,10 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.FIRE_CHARGE, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(11), Elements.Fire))
+
+            .onHit(PartBuilder.exileEffect(NegativeEffects.BURN, 20 * 10D)
+                .addCondition(EffectCondition.CHANCE.create(20D)))
+
             .build();
 
         POISONBALL = SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Poison Ball")
@@ -184,6 +188,10 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SLIME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Nature))
+
+            .onHit(PartBuilder.exileEffect(NegativeEffects.THORNS, 20 * 10D)
+                .addCondition(EffectCondition.CHANCE.create(20D)))
+
             .build();
 
         THROW_FLAMES = SpellBuilder.of(THROW_FLAMES_ID, SpellConfiguration.Builder.instant(10, 18), "Throw Flames")
@@ -229,8 +237,8 @@ public class Spells implements ISlashRegistryInit {
         WHIRLPOOL = SpellBuilder.of("whirlpool", SpellConfiguration.Builder.multiCast(30, 120 * 20, 60, 6), "Whirlpool")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE, 100D, 3.5D, 0.5D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 125D, 3.5D, 0.5D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE, 200D, 3.5D, 0.5D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 250D, 3.5D, 0.5D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
             .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(3), Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
@@ -467,6 +475,19 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.swordSweepParticles())
             .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.5F, 1), Elements.Fire, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
+            .build();
+
+        SpellBuilder.of("tidal_strike", SpellConfiguration.Builder.instant(8, 12)
+            .setSwingArm(), "Tidal Strike")
+            .attackStyle(AttackPlayStyle.MELEE)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
+            .onCast(PartBuilder.swordSweepParticles())
+            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.5F, 1), Elements.Water, 2D, 3D)
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.RAIN, 75D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SPLASH, 50D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(PARTICLES.BUBBLE, 100D, 1D, 0.1D))
+            )
             .build();
 
         GORGON_GAZE = SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 200 * 20), "Gorgon's Gaze")

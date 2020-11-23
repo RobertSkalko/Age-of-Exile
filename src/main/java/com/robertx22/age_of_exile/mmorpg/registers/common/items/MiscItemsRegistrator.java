@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer0;
 import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer1;
-import com.robertx22.age_of_exile.vanilla_mc.items.salvage_bag.CommonSalvageBagItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.salvage_bag.CommonAutoSalvageBagItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -38,7 +38,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public LootTableItem LOOT_TABLE_ITEM = item(new LootTableItem(), "loot_table_chest");
 
-    public CommonSalvageBagItem COMMON_SALVAGE_BAG = item(new CommonSalvageBagItem(), "salvage_bag/0");
+    public CommonAutoSalvageBagItem COMMON_SALVAGE_BAG = item(new CommonAutoSalvageBagItem(), "salvage_bag/0");
 
     public FullFavorItem FULL_FAVOR = item(new FullFavorItem(), "full_favor");
     public EmptyFavorItem EMPTY_FAVOR = item(new EmptyFavorItem(), "empty_favor");

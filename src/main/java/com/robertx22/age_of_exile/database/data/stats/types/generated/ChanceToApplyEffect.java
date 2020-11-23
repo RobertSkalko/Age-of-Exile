@@ -42,7 +42,7 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Chance to apply effect on weapon or spell hits.";
+        return "Chance to apply effect on weapon hits.";
     }
 
     @Override
@@ -58,6 +58,6 @@ public class ChanceToApplyEffect extends Stat implements IStatEffects {
     @Override
     public IStatEffect getEffect() {
         return new ChanceToApplyPotionEffect(SlashRegistry.ExileEffects()
-            .get(effect), EffectData.EffectTypes.BASIC_ATTACK, EffectData.EffectTypes.SPELL);
+            .get(effect), EffectData.EffectTypes.BASIC_ATTACK);
     }
 }

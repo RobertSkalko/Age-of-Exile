@@ -8,7 +8,7 @@ import net.minecraft.item.Items;
 import java.util.Arrays;
 import java.util.List;
 
-public class CommonSalvageBagItem extends SalvageBagItem {
+public class CommonAutoSalvageBagItem extends AutoSalvageBagItem {
 
     @Override
     public List<String> salvagableRaritiesInternal() {

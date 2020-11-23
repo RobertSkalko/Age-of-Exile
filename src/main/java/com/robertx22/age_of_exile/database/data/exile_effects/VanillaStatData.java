@@ -30,10 +30,12 @@ public class VanillaStatData {
         return Registry.ATTRIBUTE.get(new Identifier(id));
     }
 
-    public void apply(LivingEntity en) {
+    public void applyVanillaStats(LivingEntity en, int stacks) {
 
-        EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString(uuid), "", val, type.operation);
+        EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString(uuid), "", val * stacks, type.operation);
         EntityAttribute attri = getAttribute();
+
+        this.removeVanillaStats(en);
 
         if (!en.getAttributeInstance(attri)
             .hasModifier(mod)) {
@@ -43,7 +45,7 @@ public class VanillaStatData {
 
     }
 
-    public void remove(LivingEntity en) {
+    public void removeVanillaStats(LivingEntity en) {
         EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString(uuid), "", val, type.operation);
         EntityAttribute attri = getAttribute();
 

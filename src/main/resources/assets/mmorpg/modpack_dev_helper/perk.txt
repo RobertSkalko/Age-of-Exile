@@ -72,6 +72,7 @@ magic_shield
 armor
 ele_wand_damage
 spell_nature_damage
+tidal_strike
 spell_water_damage
 divinity
 ele_sword_damage

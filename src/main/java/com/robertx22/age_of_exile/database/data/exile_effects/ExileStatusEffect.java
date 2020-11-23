@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.exile_effects;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
@@ -54,7 +55,11 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 
         ExileEffect exect = getExileEffect();
-        exect.mc_stats.forEach(x -> x.apply(entity)); // todo is this needed?
+        ExileEffectInstanceData data = getSavedData(entity);
+
+        int stacks = data.stacks;
+
+        exect.mc_stats.forEach(x -> x.applyVanillaStats(entity, stacks));
 
         Load.Unit(entity)
             .forceRecalculateStats();
@@ -70,7 +75,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
         try {
 
             ExileEffect exect = getExileEffect();
-            exect.mc_stats.forEach(x -> x.remove(target));
+            exect.mc_stats.forEach(x -> x.removeVanillaStats(target));
 
             ExileEffectInstanceData data = getSavedData(target);
 
@@ -131,10 +136,15 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
     public void applyStats(World world, StatusEffectInstance instance, LivingEntity target) {
         ExileEffectInstanceData data = getSavedData(target);
 
+        ExileEffect exect = getExileEffect();
+        int stacks = data.stacks;
+
         if (data != null && data.spellData != null && data.spellData.getCaster(world) != null) {
             int casterlvl = Load.Unit(data.spellData.getCaster(world))
                 .getLevel();
-            getExileEffect().stats.forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
+            getExileEffect().stats.stream()
+                .map(x -> new OptScaleExactStat(x.first * stacks, x.second * stacks, x.getStat(), x.getModType()))
+                .forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
         }
     }
 

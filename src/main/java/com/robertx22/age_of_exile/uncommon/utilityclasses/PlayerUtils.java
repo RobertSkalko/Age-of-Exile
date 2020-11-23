@@ -32,7 +32,6 @@ public class PlayerUtils {
         } else {
             return Arrays.asList(player.getEquippedStack(type.getVanillaSlotType()));
         }
-
     }
 
     public static ItemStack lowestDurabilityWornGear(PlayerEntity player) {

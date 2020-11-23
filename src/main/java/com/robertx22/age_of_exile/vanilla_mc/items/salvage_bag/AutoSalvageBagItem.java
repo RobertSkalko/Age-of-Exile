@@ -19,9 +19,9 @@ import net.minecraft.util.registry.Registry;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class SalvageBagItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe, ISalvageBag {
+public abstract class AutoSalvageBagItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe, ISalvageBag {
 
-    public SalvageBagItem() {
+    public AutoSalvageBagItem() {
         super(new Settings().group(CreativeTabs.MyModTab)
             .maxCount(1));
     }

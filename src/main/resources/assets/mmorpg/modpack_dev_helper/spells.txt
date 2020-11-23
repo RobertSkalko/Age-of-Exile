@@ -42,6 +42,7 @@ awaken_mana
 imbue
 spear_of_judgement
 purifying_fires
+tidal_strike
 arcane_bolt
 multi_shot
 passive_arcane

@@ -84,6 +84,7 @@ So if you die to mostly fire damage for example, you should know to up your resi
 I will just increase the elemental affixes for existing mobs to compensate for the elemental damage loss.
 More mobs will be coming in my World of Exile mod!
 * mob affixes are now more meaningful
+* fix chance to apply effect stats not working (they applied effect for 1 tick actually)
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

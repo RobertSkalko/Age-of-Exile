@@ -52,6 +52,9 @@ public class ExileEffectsManager {
                 .get(effect);
             if (extraData == null) {
                 extraData = new ExileEffectInstanceData();
+            } else {
+                extraData.stacks++;
+                extraData.stacks = MathHelper.clamp(extraData.stacks, 1, reg.max_stacks);
             }
         } else {
             extraData = new ExileEffectInstanceData();
@@ -61,6 +64,9 @@ public class ExileEffectsManager {
 
         StatusEffectInstance newInstance = new StatusEffectInstance(effect, duration, 1, false, false, true);
 
+        Load.Unit(target)
+            .getStatusEffectsData()
+            .set(effect, extraData);
         target.addStatusEffect(newInstance);
 
         // sync packets to client

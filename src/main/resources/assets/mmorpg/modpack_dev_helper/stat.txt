@@ -45,6 +45,7 @@ unlock_fire_bombs
 mana_cost_red
 spell_elemental_damage
 unlock_lightning_totem
+unlock_tidal_strike
 ice_flower_dmg
 mod_holy_flower_dmg
 mod_thorn_armor_thorns

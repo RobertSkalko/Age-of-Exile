@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDama
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
@@ -41,9 +42,9 @@ public enum FoodExileEffect {
 
     ELEMENTAL_RESISTANCE("Resistant", "elemental_resist", EffectColor.PURPLE, new OptScaleExactStat(10, new ElementalResist(Elements.Elemental))),
 
-    MAGIC_SHIELD_REGEN("Magicka", "magic_shield_regen", EffectColor.PURPLE, new OptScaleExactStat(1, MagicShieldRegen.getInstance()).scale(), new OptScaleExactStat(15, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE)),
-    MANA_REGEN("Arcana", "mana_regen", EffectColor.BLUE, new OptScaleExactStat(1, ManaRegen.getInstance()).scale(), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
-    HEALTH_REGEN("Vitala", "health_regen", EffectColor.RED, new OptScaleExactStat(1, HealthRegen.getInstance()).scale(), new OptScaleExactStat(15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)),
+    MAGIC_SHIELD_REGEN("Magicka", "magic_shield_regen", EffectColor.PURPLE, new OptScaleExactStat(1, RegeneratePercentStat.MAGIC_SHIELD), new OptScaleExactStat(15, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE)),
+    MANA_REGEN("Arcana", "mana_regen", EffectColor.BLUE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
+    HEALTH_REGEN("Vitala", "health_regen", EffectColor.RED, new OptScaleExactStat(1, RegeneratePercentStat.HEALTH), new OptScaleExactStat(15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)),
 
     HEALING("Holy", "healing", EffectColor.YELLOW, new OptScaleExactStat(20, HealPower.getInstance())),
     SPELL_DAMAGE("Enigma", "spell_damage", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance())),

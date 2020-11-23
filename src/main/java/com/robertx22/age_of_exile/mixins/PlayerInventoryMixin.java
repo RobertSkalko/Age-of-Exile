@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.salvage_bag.SalvageBagItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.salvage_bag.AutoSalvageBagItem;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -31,8 +31,8 @@ public class PlayerInventoryMixin {
             if (!list.isEmpty()) {
 
                 ItemStack bagstack = list.get(0);
-                if (bagstack.getItem() instanceof SalvageBagItem) {
-                    SalvageBagItem bag = (SalvageBagItem) bagstack.getItem();
+                if (bagstack.getItem() instanceof AutoSalvageBagItem) {
+                    AutoSalvageBagItem bag = (AutoSalvageBagItem) bagstack.getItem();
 
                     GearItemData gear = Gear.Load(stack);
                     if (gear != null) {
