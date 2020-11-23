@@ -27,7 +27,8 @@
     "InGameHudMixin",
     "ItemStackMixin",
     "KeyboardMixin",
-    "MobNameTagMixin"
+    "MobNameTagMixin",
+    "WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

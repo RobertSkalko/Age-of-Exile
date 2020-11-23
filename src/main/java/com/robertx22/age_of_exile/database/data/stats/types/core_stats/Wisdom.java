@@ -16,7 +16,7 @@ public class Wisdom extends BaseCoreStat {
 
     private Wisdom() {
         super(Arrays.asList(
-            new StatModifier(1.5F, 1.5F, Mana.getInstance(), ModType.FLAT),
+            new StatModifier(3F, 3F, Mana.getInstance(), ModType.FLAT),
             new StatModifier(0.1F, 0.1F, ManaRegen.getInstance(), ModType.FLAT)
         ));
     }

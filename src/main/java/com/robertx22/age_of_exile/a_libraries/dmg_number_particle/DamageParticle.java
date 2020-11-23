@@ -1,160 +1,73 @@
 package com.robertx22.age_of_exile.a_libraries.dmg_number_particle;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleTextureSheet;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 
-@Environment(EnvType.CLIENT)
-public class DamageParticle extends Particle {
+public class DamageParticle {
+    public String str;
 
-    protected String text;
-    protected float scale = 0.7F;
-    Elements element;
-    public boolean grow = true;
+    public double x = 0;
+    public double y = 0;
+    public double z = 0;
+    public double xPrev = 0;
+    public double yPrev = 0;
+    public double zPrev = 0;
 
-    float locX;
-    float locY;
-    float locZ;
+    public int age = 0;
 
-    boolean positionNeedsSetting = true;
+    public double ax = 0.00;
+    public double ay = -0.005;
+    public double az = 0.00;
 
-    public DamageParticle(Elements element, String str, World world, double parX, double parY, double parZ,
-                          double parMotionX, double parMotionY, double parMotionZ) {
-        super((ClientWorld) world, parX, parY, parZ, parMotionX, parMotionY, parMotionZ);
+    public double vx = 0;
+    public double vy = 0;
+    public double vz = 0;
 
-        gravityStrength = (float) ModConfig.get().client.dmgParticleConfig.GRAVITY;
+    public Elements element;
 
-        scale = (float) ModConfig.get().client.dmgParticleConfig.START_SIZE;
-
-        this.maxAge = (int) ModConfig.get().client.dmgParticleConfig.LIFESPAN;
-
-        this.text = element.format + element.icon + Formatting.GRAY + str;
-        this.element = element;
-    }
-
-    public void setupPosition(Camera info) {
+    public DamageParticle(Entity entity, Elements element, String str) {
         MinecraftClient mc = MinecraftClient.getInstance();
+        Vec3d entityLocation = entity.getPos()
+            .add(0, entity.getHeight(), 0);
+        Vec3d cameraLocation = mc.gameRenderer.getCamera()
+            .getPos();
+        double offsetBy = entity.getWidth();
+        Vec3d offset = cameraLocation.subtract(entityLocation)
+            .normalize()
+            .multiply(offsetBy);
+        Vec3d pos = entityLocation.add(offset);
 
-        float speed = (float) ModConfig.get().client.dmgParticleConfig.SPEED;
+        age = 0;
+        this.str = element.format + element.icon + Formatting.GRAY + str;
+        this.element = element;
 
-        PlayerEntity p = mc.player;
+        vx = mc.world.random.nextGaussian() * 0.01;
+        vy = 0.05 + (mc.world.random.nextGaussian() * 0.01);
+        vz = mc.world.random.nextGaussian() * 0.01;
 
-        Vec3d view = info.getPos();
+        x = pos.x;
+        y = pos.y;
+        z = pos.z;
 
-        locX = ((float) (this.prevPosX + (this.x - this.prevPosX) * x - view.getX())) * speed;
-        locY = ((float) (this.prevPosY + (this.y - this.prevPosY) * y - view.getY())) * speed;
-        locZ = ((float) (this.prevPosZ + (this.z - this.prevPosZ) * z - view.getZ())) * speed;
-
-        positionNeedsSetting = false;
-
+        xPrev = x;
+        yPrev = y;
+        zPrev = z;
     }
 
-    @Override
-    public void buildGeometry(VertexConsumer vertex, Camera info, float partialTicks) {
-
-        try {
-
-            float rotationYaw = (-MinecraftClient.getInstance().player.yaw);
-            float rotationPitch = MinecraftClient.getInstance().player.pitch;
-            Vec3d view = info.getPos();
-            float posX = (float) (MathHelper.lerp((double) partialTicks, this.prevPosX, this.x) - view.getX());
-            float posY = (float) (MathHelper.lerp((double) partialTicks, this.prevPosY, this.y) - view.getY());
-            float posZ = (float) (MathHelper.lerp((double) partialTicks, this.prevPosZ, this.z) - view.getZ());
-
-            RenderSystem.pushMatrix();
-
-            GL11.glTranslated(posX, posY - 0.5F, posZ);
-            GL11.glRotatef(rotationYaw, 0.0F, 1.0F, 0.0F);
-            GL11.glRotatef(rotationPitch, 1.0F, 0.0F, 0.0F);
-
-            GL11.glScaled(-1.0, -1.0, 1.0);
-            GL11.glScaled(this.getBoundingBox()
-                    .getXLength() * 0.04D, this.getBoundingBox()
-                    .getYLength() * 0.04D,
-                this.getBoundingBox()
-                    .getZLength() * 0.04D
-            );
-            GL11.glScaled(1.0, 1.0, 1.0);
-
-            RenderSystem.scaled(this.scale, this.scale, this.scale);
-
-            TextRenderer fontRenderer = MinecraftClient.getInstance().textRenderer;
-
-            RenderSystem.disableColorMaterial();
-            RenderSystem.disableLighting();
-            RenderSystem.depthMask(false);
-            RenderSystem.disableDepthTest();
-
-            // idk todo
-            fontRenderer.drawWithShadow(new MatrixStack(), this.text, 0, 0, element.format.getColorValue());
-
-            RenderSystem.enableDepthTest();
-            RenderSystem.depthMask(false);
-            RenderSystem.enableColorMaterial();
-
-            RenderSystem.popMatrix();
-
-            this.setBoundingBoxSpacing(1.0F, 1.0F);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void tick() {
-        if (ModConfig.get().client.dmgParticleConfig.GROWS) {
-            if (this.grow) {
-                this.scale *= 1.05F;
-                if (this.scale > ModConfig.get().client.dmgParticleConfig.MAX_SIZE) {
-                    this.grow = false;
-                }
-            } else {
-                this.scale *= 0.97F;
-            }
-        }
-        this.prevPosX = this.x;
-        this.prevPosY = this.y;
-        this.prevPosZ = this.z;
-        if (this.age++ >= this.maxAge) {
-            this.markDead();
-        }
-
-        this.prevAngle = this.angle;
-        this.angle += (float) Math.PI * 0.2 * 2.0F;
-        if (this.onGround) {
-            this.prevAngle = this.angle = 0.0F;
-        }
-
-        this.move(this.velocityX, this.velocityY, this.velocityZ);
-
-        double speed = ModConfig.get().client.dmgParticleConfig.SPEED;
-
-        this.velocityY -= speed;
-        this.velocityX += speed * world.random.nextDouble();
-        this.velocityZ += speed * world.random.nextDouble();
-
-        this.velocityY = Math.max(this.velocityY, -0.14D);
+        xPrev = x;
+        yPrev = y;
+        zPrev = z;
+        age++;
+        x += vx;
+        y += vy;
+        z += vz;
+        vx += ax;
+        vy += ay;
+        vz += az;
     }
 
-    @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.CUSTOM;
-    }
 }

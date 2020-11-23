@@ -105,7 +105,8 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        ARCANE_BALL = SpellBuilder.of("arcane_bolt", SINGLE_TARGET_PROJ_CONFIG().setIsStarter(), "Arcane Bolt")
+        ARCANE_BALL = SpellBuilder.of("arcane_bolt", SpellConfiguration.Builder.instant(7, 6)
+            .setIsStarter(), "Arcane Bolt")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDER_PEARL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
@@ -158,10 +159,10 @@ public class Spells implements ISlashRegistryInit {
             .onExpire(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
             .build();
 
-        FROSTBALL = SpellBuilder.of(FROSTBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Ice Ball")
+        FROSTBALL = SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Ice Ball")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 1.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water))
 
@@ -171,23 +172,23 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        FIREBALL = SpellBuilder.of(FIREBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Fire Ball")
+        FIREBALL = SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Fire Ball")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.FIRE_CHARGE, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.FIRE_CHARGE, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(11), Elements.Fire))
             .build();
 
-        POISONBALL = SpellBuilder.of(POISONBALL_ID, SINGLE_TARGET_PROJ_CONFIG(), "Poison Ball")
+        POISONBALL = SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Poison Ball")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 1.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SLIME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Nature))
             .build();
 
-        THROW_FLAMES = SpellBuilder.of(THROW_FLAMES_ID, MULTI_TARGET_PROJ_CONFIG(), "Throw Flames")
+        THROW_FLAMES = SpellBuilder.of(THROW_FLAMES_ID, SpellConfiguration.Builder.instant(10, 18), "Throw Flames")
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BLAZE_POWDER, 3D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 50D, false)
@@ -204,7 +205,7 @@ public class Spells implements ISlashRegistryInit {
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Fire))
             .build();
 
-        TIDAL_WAVE = SpellBuilder.of("tidal_wave", SpellConfiguration.Builder.instant(9, 20), "Tidal Wave")
+        TIDAL_WAVE = SpellBuilder.of("tidal_wave", SpellConfiguration.Builder.instant(9, 16), "Tidal Wave")
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 5D, 0.6D, ENTITIES.SIMPLE_PROJECTILE, 40D, true)
@@ -469,13 +470,13 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 4D, 0.2D))
             .build();
 
-        SpellBuilder.of("purifying_fires", SpellConfiguration.Builder.instant(7, 20)
+        SpellBuilder.of("purifying_fires", SpellConfiguration.Builder.instant(8, 15)
             .setSwingArm(), "Purifying Fires")
             .attackStyle(AttackPlayStyle.MELEE)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.75F, 2), Elements.Fire, 2D, 3D)
+            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.5F, 1), Elements.Fire, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
             .build();
 

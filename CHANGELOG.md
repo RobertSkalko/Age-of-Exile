@@ -78,3 +78,5 @@ So if you die to mostly fire damage for example, you should know to up your resi
 * added hurt sounds to spells
 * magic shield users are now knocked back by spells
 * added chat warning if you have immersive portals installed (configurable)
+* fixed projectile spells feeling laggy
+* updated damage particle

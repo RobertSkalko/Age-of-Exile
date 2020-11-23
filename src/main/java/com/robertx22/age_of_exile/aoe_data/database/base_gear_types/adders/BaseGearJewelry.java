@@ -40,7 +40,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
         RING_MANA_REG = BaseGearBuilder.of(GearSlots.RING, "mana_reg_ring", "Ring", ModRegistry.GEAR_ITEMS.MANA_REG_RINGS)
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
-            .baseStat(new StatModifier(1, 2, ManaRegen.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(0.5F, 1, ManaRegen.getInstance(), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Occult")
             .addLvlRange(LevelRanges.MID_TO_END, "Arcana")
             .build();

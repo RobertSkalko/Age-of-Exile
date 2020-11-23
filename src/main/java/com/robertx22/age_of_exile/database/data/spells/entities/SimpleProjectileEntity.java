@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -35,7 +33,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -149,35 +146,6 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
         return null;
 
-    }
-
-    @Override
-    @Environment(EnvType.CLIENT)
-    public boolean shouldRender(double distance) {
-        double d0 = this.getBoundingBox()
-            .getAverageSideLength() * 4.0D;
-        if (Double.isNaN(d0)) {
-            d0 = 4.0D;
-        }
-
-        d0 = d0 * 64.0D;
-        return distance < d0 * d0;
-    }
-
-    /**
-     * Updates the entity motion clientside, called by packets from the server
-     */
-    @Environment(EnvType.CLIENT)
-    public void setVelocityClient(double x, double y, double z) {
-        this.setVelocity(new Vec3d(x, y, z));
-
-        if (this.prevPitch == 0.0F && this.prevYaw == 0.0F) {
-            float f = MathHelper.sqrt(x * x + z * z);
-            this.yaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-            this.pitch = (float) (MathHelper.atan2(y, (double) f) * (180D / Math.PI));
-            this.prevYaw = this.yaw;
-            this.prevPitch = this.pitch;
-        }
     }
 
     public void onTick() {

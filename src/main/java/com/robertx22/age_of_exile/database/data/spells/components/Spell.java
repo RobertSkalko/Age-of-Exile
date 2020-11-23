@@ -112,19 +112,17 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         attached.onCast(SpellCtx.onCast(caster, data));
     }
 
-    public final int getCooldownInSeconds(SpellCastContext ctx) {
+    public final int getCooldownTicks(SpellCastContext ctx) {
 
         float multi = ctx.spellConfig.getMulti(SpellModEnum.COOLDOWN);
 
         float ticks = config.cooldown_ticks * multi;
 
-        float sec = ticks / 20F;
-
-        if (sec < 1) {
-            return 1; // cant go lower than 1 second!!!
+        if (ticks < 1) {
+            return 1; // cant go lower than 1 tick!!!
         }
 
-        return (int) sec;
+        return (int) ticks;
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {
@@ -234,7 +232,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         if (!isPassive()) {
             list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
         }
-        list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + getCooldownInSeconds(ctx) + "s"));
+        list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
         if (!isPassive()) {
             list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s"));
         }

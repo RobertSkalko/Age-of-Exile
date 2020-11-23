@@ -16,14 +16,6 @@ public class ModZombie extends ZombieEntity {
 
     }
 
-    /*
-        @Override
-        protected EntityNavigation createNavigation(World world) {
-            return new GriefNavigator(this, world); // TODO REMOVE
-        }
-
-
-     */
     int angryTicks = 0;
 
     @Override

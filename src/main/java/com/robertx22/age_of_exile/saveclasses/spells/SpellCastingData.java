@@ -67,7 +67,7 @@ public class SpellCastingData {
             if (spell != null) {
                 SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-                int cd = ctx.spell.getCooldownInSeconds(ctx) * 20;
+                int cd = ctx.spell.getCooldownTicks(ctx);
                 data.setCooldown(cd);
             }
 
@@ -208,7 +208,7 @@ public class SpellCastingData {
     public void onSpellCast(SpellCastContext ctx) {
         SpellData data = spellDatas.getOrDefault(ctx.spell.GUID(), new SpellData());
 
-        int cd = ctx.spell.getCooldownInSeconds(ctx) * 20;
+        int cd = ctx.spell.getCooldownTicks(ctx);
         data.setCooldown(cd);
 
         spellDatas.put(ctx.spell.GUID(), data);
