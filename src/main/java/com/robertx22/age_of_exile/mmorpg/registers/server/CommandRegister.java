@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.vanilla_mc.commands.entity.SetEntityRarity;
 import com.robertx22.age_of_exile.vanilla_mc.commands.entity.SetLevel;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveExactUnique;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveGear;
-import com.robertx22.age_of_exile.vanilla_mc.commands.misc.ReloadConfigs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.open_gui.OpenHub;
 import com.robertx22.age_of_exile.vanilla_mc.commands.reset.ResetSpellCooldowns;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.ClearStats;
@@ -37,7 +36,6 @@ public class CommandRegister {
         ClearStats.register(dispatcher);
         ListStats.register(dispatcher);
 
-        ReloadConfigs.register(dispatcher);
         OpenHub.register(dispatcher);
 
     }

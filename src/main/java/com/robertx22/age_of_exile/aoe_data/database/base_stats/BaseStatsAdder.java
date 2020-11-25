@@ -1,8 +1,6 @@
-package com.robertx22.age_of_exile.config.base_player_stat;
+package com.robertx22.age_of_exile.aoe_data.database.base_stats;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
@@ -14,22 +12,22 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
-import java.util.HashSet;
-import java.util.Set;
+public class BaseStatsAdder implements ISlashRegistryInit {
 
-public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableStats {
+    public static String PLAYER = "player";
 
-    public static BasePlayerStatContainer INSTANCE = new BasePlayerStatContainer();
+    @Override
+    public void registerAll() {
+        playerStats().addToSerializables();
+    }
 
-    public static BasePlayerStatContainer defaultStats() {
+    public static BaseStatsConfig playerStats() {
 
-        BasePlayerStatContainer c = new BasePlayerStatContainer();
+        BaseStatsConfig c = new BaseStatsConfig();
 
-        //base ones
+        c.id = PLAYER;
 
         c.nonScaled(Health.getInstance(), 20);
         c.nonScaled(Mana.getInstance(), 40);
@@ -46,27 +44,6 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
         c.scaled(new AttackDamage(Elements.Physical), 1);
 
         return c;
-
-    }
-
-    Set<OptScaleExactStat> base_stats = new HashSet<>();
-
-    public void scaled(Stat stat, float val) {
-        base_stats.add(new OptScaleExactStat(val, val, stat, ModType.FLAT).scale());
-    }
-
-    public void nonScaled(Stat stat, float val) {
-        base_stats.add(new OptScaleExactStat(val, val, stat, ModType.FLAT));
-    }
-
-    @Override
-    public void registerAll() {
-        INSTANCE = this;
-    }
-
-    @Override
-    public void applyStats(EntityCap.UnitData data) {
-        base_stats.forEach(x -> x.applyStats(data));
 
     }
 

@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
@@ -207,6 +208,10 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.STAT);
     }
 
+    public static SlashRegistryContainer<BaseStatsConfig> BaseStats() {
+        return getRegistry(SlashRegistryType.BASE_STATS);
+    }
+
     public static List<SlashRegistryContainer> getAllRegistries() {
         return new ArrayList<>(SERVER.values());
     }
@@ -311,6 +316,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.FAVOR_RANK, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SALVAGE_OUTPUT, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PLAYER_SKILLS, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.BASE_STATS, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

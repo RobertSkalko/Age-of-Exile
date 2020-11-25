@@ -100,6 +100,10 @@ This should encourage the killing of high rarity mobs a bit, especially for endg
 For now they are used to allow mobs to dodge spells from low level players, same as they dodge the attacks.
 They could be used in something else in the future, like bosses that avoid spells etc.
 You shouldn't notice your spells missing at all as long as you aren't fighting mobs too high level.
+* player base stats are now a datapack instead of a config 
+Reason: too many times did I change the base stats and players with old configs had completely screwed games, 
+because they already had a generated config that didn't change with update. 
+Now as a datapack, that will only happen if the player actually changes something. 
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

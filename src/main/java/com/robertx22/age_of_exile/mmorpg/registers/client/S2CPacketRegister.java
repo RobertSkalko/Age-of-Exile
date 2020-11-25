@@ -19,7 +19,6 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(new OpenGuiPacket());
         Packets.registerServerToClient(new RegistryPacket());
         Packets.registerServerToClient(new EfficientRegistryPacket());
-        Packets.registerServerToClient(new SyncConfigToClientPacket());
         Packets.registerServerToClient(new SyncCapabilityToClient());
         Packets.registerServerToClient(new TellClientToCastSpellPacket());
         Packets.registerServerToClient(new SyncAreaLevelPacket());

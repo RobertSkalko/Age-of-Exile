@@ -38,6 +38,7 @@ of_absorption
 of_the_sky
 of_speed
 of_vampirism
+of_steadiness
 water_wep_dmg
 of_will
 tyrannical
