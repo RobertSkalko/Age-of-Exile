@@ -105,6 +105,7 @@ unlock_thunder_strikes
 mod_holy_flower_cure
 mana_shield
 unlock_frost_armor
+spell_accuracy
 mana_per_sec
 all_fire_damage
 mod_mana_magic
@@ -198,6 +199,7 @@ unlock_spear_of_judgement
 chance_of_chill
 mod_poison_bush
 chill_bonus_dmg
+spell_dodge
 crossbow_damage
 nature_penetration
 fire_focus

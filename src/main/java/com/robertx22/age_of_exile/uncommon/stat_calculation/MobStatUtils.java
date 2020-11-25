@@ -9,10 +9,12 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ElementalDodge;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.SpellDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -116,14 +118,15 @@ public class MobStatUtils {
             .addFlat(50, lvl);
         unit.getStatInCalculation(ElementalDodge.getInstance())
             .addFlat(50, lvl);
+        unit.getStatInCalculation(SpellDodge.getInstance())
+            .addFlat(9, lvl);
+        unit.getStatInCalculation(Accuracy.getInstance())
+            .addFlat(2, lvl);
 
         unit.getStatInCalculation(Armor.GUID)
-            .addFlat((Armor.getInstance()
-                .valueNeededToReachMaximumPercentAtLevelOne() / 4) * rar.StatMultiplier(), lvl);
+            .addFlat(20 * rar.StatMultiplier(), lvl);
         unit.getStatInCalculation(CriticalHit.GUID)
             .addFlat(5 * rar.DamageMultiplier(), lvl);
-        unit.getStatInCalculation(CriticalDamage.GUID)
-            .addFlat(2 * rar.DamageMultiplier(), lvl);
 
         ElementalResist.MAP.getList()
             .forEach(x -> unit.getStatInCalculation(x)

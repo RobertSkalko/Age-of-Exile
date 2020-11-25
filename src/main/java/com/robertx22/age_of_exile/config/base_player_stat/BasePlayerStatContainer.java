@@ -1,11 +1,13 @@
 package com.robertx22.age_of_exile.config.base_player_stat;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellAccuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
@@ -14,8 +16,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableStats {
 
@@ -32,6 +36,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
         c.nonScaled(CriticalHit.getInstance(), 1);
         c.nonScaled(CriticalDamage.getInstance(), 0);
 
+        c.scaled(SpellAccuracy.getInstance(), 10);
         c.scaled(Accuracy.getInstance(), 20);
         c.scaled(Health.getInstance(), 10);
         c.scaled(Mana.getInstance(), 10);
@@ -44,15 +49,14 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
 
     }
 
-    public HashMap<String, Double> NON_SCALED = new HashMap<>();
-    public HashMap<String, Double> SCALED_TO_LVL = new HashMap<>();
+    Set<OptScaleExactStat> base_stats = new HashSet<>();
 
-    public void scaled(Stat stat, double val) {
-        SCALED_TO_LVL.put(stat.GUID(), val);
+    public void scaled(Stat stat, float val) {
+        base_stats.add(new OptScaleExactStat(val, val, stat, ModType.FLAT).scale());
     }
 
-    public void nonScaled(Stat stat, double val) {
-        NON_SCALED.put(stat.GUID(), val);
+    public void nonScaled(Stat stat, float val) {
+        base_stats.add(new OptScaleExactStat(val, val, stat, ModType.FLAT));
     }
 
     @Override
@@ -62,22 +66,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
-
-        this.SCALED_TO_LVL.entrySet()
-            .forEach(x -> {
-                data.getUnit()
-                    .getStatInCalculation(x.getKey())
-                    .addFlat(x.getValue()
-                        .floatValue(), data.getLevel());
-            });
-        this.NON_SCALED.entrySet()
-            .forEach(x -> {
-                data.getUnit()
-                    .getStatInCalculation(x.getKey())
-                    .addAlreadyScaledFlat(x.getValue()
-                        .floatValue(), x.getValue()
-                        .floatValue());
-            });
+        base_stats.forEach(x -> x.applyStats(data));
 
     }
 

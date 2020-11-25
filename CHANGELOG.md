@@ -94,7 +94,12 @@ The stat points you receive though are multiplied by the scaling.
 but battling high level mobs should be a bigger problem due to it.
 * if dodge fails, it rolls a second time to try to fail the crit.
 * melee and ranged spells are now affected by accuracy and dodge
-
+* high rarity mobs now drop higher level loot. Legendary for example drop loot 2 levels higher.
+This should encourage the killing of high rarity mobs a bit, especially for endgame players searching max level loot.
+* added spell dodge and spell accuracy. These are "invisible" stats. 
+For now they are used to allow mobs to dodge spells from low level players, same as they dodge the attacks.
+They could be used in something else in the future, like bosses that avoid spells etc.
+You shouldn't notice your spells missing at all as long as you aren't fighting mobs too high level.
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

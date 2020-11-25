@@ -1,85 +1,71 @@
 ﻿{
 	"block.mmorpg.egg_loot_crate": "전리품 상자",
-
-    "block.mmorpg.ore_block0": "일반 광석 블록",
-    "block.mmorpg.ore_block1": "고급 광석 블록",
-    "block.mmorpg.ore_block2": "희귀 광석 블록",
-    "block.mmorpg.ore_block3": "영웅 광석 블록",
-    "block.mmorpg.ore_block4": "전설 광석 블록",
-    "block.mmorpg.ore_block5": "신화 광석 블록",
-
-    "_comment": "# 크리에이티브 탭",
-    "itemGroup.mmorpg_main": "마인 앤 슬래시",
-    "itemGroup.mmorpg_uniques": "특수 장비",
-    "itemGroup.mmorpg_currency": "아이템 제작",
-    "itemGroup.mmorpg_lootboxes": "전리품 상자",
+	"block.mmorpg.ore_block0": "일반 광석 블록",
+	"block.mmorpg.ore_block1": "고급 광석 블록",
+	"block.mmorpg.ore_block2": "희귀 광석 블록",
+	"block.mmorpg.ore_block3": "영웅 광석 블록",
+	"block.mmorpg.ore_block4": "전설 광석 블록",
+	"block.mmorpg.ore_block5": "신화 광석 블록",
+	"_comment": "# 크리에이티브 탭",
+	"itemGroup.mmorpg_main": "마인 앤 슬래시",
+	"itemGroup.mmorpg_uniques": "특수 장비",
+	"itemGroup.mmorpg_currency": "아이템 제작",
+	"itemGroup.mmorpg_lootboxes": "전리품 상자",
 	"itemGroup.mmorpg_alchemy": "연금술",
-
-    "_comment": "장치",
-    "block.mmorpg.modify_station": "장비 개조기",
-    "block.mmorpg.repair_station": "장비 수리기",
-    "block.mmorpg.gear_factory_station": "장비 제조기",
-    "block.mmorpg.salvage_station": "장비 분해기",
-    "block.mmorpg.map_device": "지도 장치",
+	"_comment": "장치",
+	"block.mmorpg.modify_station": "장비 개조기",
+	"block.mmorpg.repair_station": "장비 수리기",
+	"block.mmorpg.gear_factory_station": "장비 제조기",
+	"block.mmorpg.salvage_station": "장비 분해기",
+	"block.mmorpg.map_device": "지도 장치",
 	"block.mmorpg.alchemy_station": "약품 제작소",
 	"block.mmorpg.tinkering_station": "땜장이 제작대",
-
-    "_comment": "아이템 설명",
+	"_comment": "아이템 설명",
 	"mmorpg.tooltip.item_modifiable_in_station": "장비 개조기에서 사용할 수 있습니다.",
-	"mmorpg.tooltip.lootbox": "이 안에는 무엇이 들었을까?",   
-    "mmorpg.tooltip.player_levelup": "경험치 바가 가득 찼다면, 이 아이템을 사용해 레벨을 올리세요!",
-    "mmorpg.tooltip.newbie_gear_bag": "레벨 1 장비 꾸러미를 생성합니다.",
-    "mmorpg.lore.newbie_gear_bag1": "화로 3개를 아래에 두고, 강철의 의지 5개를 위에 두른 뒤,",
-    "mmorpg.lore.newbie_gear_bag2": "씨앗을 가운데에 넣고, 희망을 현실화 하세요!",
-    "mmorpg.tooltip.capacitor": "장비 수리기 안에 넣어서 연료 소비량을 줄일 수 있습니다.",
-    "mmorpg.tooltip.capacitor2": "연료 배율",
-    "mmorpg.tooltip.socketable_item": "이 보석은 보석 홈에 끼울 수 있습니다.",
-
-    "_comment": "장비 희귀도",
-	
-    "_comment": "기타 아이템",
-    "item.mmorpg.player_levelup": "플레이어 레벨업 토큰",
-    "item.mmorpg.loot_bag": "장비 가방",
-    "item.mmorpg.map_bag": "지도 가방",
-    "item.mmorpg.currency_bag": "재화 가방",
-    "item.mmorpg.newbie_gear_bag": "초심자 장비 가방",
-    "item.mmorpg.tutorial_book": "마인 앤 슬래시 튜토리얼",
-    "item.mmorpg.map_back_portal": "맵 탈출 진주",
-    "item.mmorpg.level_nearest_entity": "비슷한 레벨 대의 엔티티",
-    "item.mmorpg.increase_rarity_nearest_entity": "주변 엔티티 레어도 증가",
-    "item.mmorpg.awaken_runeword": "발현된 룬 단어",   
-
-    "_comment": "주문 설명",
-    "mmorpg.tooltip.aoe_spell_explosion": "광역 피해를 주는 속성 투사체를 발사합니다.",
-    "mmorpg.tooltip.single_target_spell_bolt": "단일 대상을 공격하는 속성 투사체를 발사합니다.",
-    "mmorpg.tooltip.spell_instant_heal": "시전자를 즉시 회복시킵니다.",
-    "mmorpg.tooltip.aoe_bomb_spell": "잠시 후 폭발해 광역 피해를 주는 폭탄을 남깁니다.",
-    "mmorpg.tooltip.spell_self_regen": "시전자의 체력을 지속적으로 회복시킵니다.",
-    "mmorpg.tooltip.aoe_spell_nova": "주변 모든 적에게 피해를 줍니다.",
-	"mmorpg.tooltip.ele_bonus_atk_dmg_spell": "마나를 사용해 피해량을 증폭시키는 버프를 시전합니다.",	
-
-    "_comment": "장비핵",
-    "item.mmorpg.capacitor0": "일반 장비핵",
-    "item.mmorpg.capacitor1": "고급 장비핵",
-    "item.mmorpg.capacitor2": "희귀 장비핵",
-    "item.mmorpg.capacitor3": "영웅 장비핵",
-    "item.mmorpg.capacitor4": "전설 장비핵",
-    "item.mmorpg.capacitor5": "신화 장비핵",
-
-    "_comment": "아이템 설명",
-    
-    "_comment": "지도",
-    "mmorpg.name.map": "탐험 지도",
-    "mmorpg.tooltip.put_in_mapdevice": "지도 장치에 넣어 사용할 수 있습니다.",
-
-    "mmorpg.tooltip.press_shift_more_info": "[Shift]: 아이템 정보, [Ctrl]: 마법부여 정보",
-    "mmorpg.tooltip.affix_rarity_lootbonus": "희귀 접사 전리품 보너스",
-	
+	"mmorpg.tooltip.lootbox": "이 안에는 무엇이 들었을까?",
+	"mmorpg.tooltip.player_levelup": "경험치 바가 가득 찼다면, 이 아이템을 사용해 레벨을 올리세요!",
+	"mmorpg.tooltip.newbie_gear_bag": "레벨 1 장비 꾸러미를 생성합니다.",
+	"mmorpg.lore.newbie_gear_bag1": "화로 3개를 아래에 두고, 강철의 의지 5개를 위에 두른 뒤,",
+	"mmorpg.lore.newbie_gear_bag2": "씨앗을 가운데에 넣고, 희망을 현실화 하세요!",
+	"mmorpg.tooltip.capacitor": "장비 수리기 안에 넣어서 연료 소비량을 줄일 수 있습니다.",
+	"mmorpg.tooltip.capacitor2": "연료 배율",
+	"mmorpg.tooltip.socketable_item": "이 보석은 보석 홈에 끼울 수 있습니다.",
+	"_comment": "장비 희귀도",
+	"_comment": "기타 아이템",
+	"item.mmorpg.player_levelup": "플레이어 레벨업 토큰",
+	"item.mmorpg.loot_bag": "장비 가방",
+	"item.mmorpg.map_bag": "지도 가방",
+	"item.mmorpg.currency_bag": "재화 가방",
+	"item.mmorpg.newbie_gear_bag": "초심자 장비 가방",
+	"item.mmorpg.tutorial_book": "마인 앤 슬래시 튜토리얼",
+	"item.mmorpg.map_back_portal": "맵 탈출 진주",
+	"item.mmorpg.level_nearest_entity": "비슷한 레벨 대의 엔티티",
+	"item.mmorpg.increase_rarity_nearest_entity": "주변 엔티티 레어도 증가",
+	"item.mmorpg.awaken_runeword": "발현된 룬 단어",
+	"_comment": "주문 설명",
+	"mmorpg.tooltip.aoe_spell_explosion": "광역 피해를 주는 속성 투사체를 발사합니다.",
+	"mmorpg.tooltip.single_target_spell_bolt": "단일 대상을 공격하는 속성 투사체를 발사합니다.",
+	"mmorpg.tooltip.spell_instant_heal": "시전자를 즉시 회복시킵니다.",
+	"mmorpg.tooltip.aoe_bomb_spell": "잠시 후 폭발해 광역 피해를 주는 폭탄을 남깁니다.",
+	"mmorpg.tooltip.spell_self_regen": "시전자의 체력을 지속적으로 회복시킵니다.",
+	"mmorpg.tooltip.aoe_spell_nova": "주변 모든 적에게 피해를 줍니다.",
+	"mmorpg.tooltip.ele_bonus_atk_dmg_spell": "마나를 사용해 피해량을 증폭시키는 버프를 시전합니다.",
+	"_comment": "장비핵",
+	"item.mmorpg.capacitor0": "일반 장비핵",
+	"item.mmorpg.capacitor1": "고급 장비핵",
+	"item.mmorpg.capacitor2": "희귀 장비핵",
+	"item.mmorpg.capacitor3": "영웅 장비핵",
+	"item.mmorpg.capacitor4": "전설 장비핵",
+	"item.mmorpg.capacitor5": "신화 장비핵",
+	"_comment": "아이템 설명",
+	"_comment": "지도",
+	"mmorpg.name.map": "탐험 지도",
+	"mmorpg.tooltip.put_in_mapdevice": "지도 장치에 넣어 사용할 수 있습니다.",
+	"mmorpg.tooltip.press_shift_more_info": "[Shift]: 아이템 정보, [Ctrl]: 마법부여 정보",
+	"mmorpg.tooltip.affix_rarity_lootbonus": "희귀 접사 전리품 보너스",
 	"curios.identifier.salvage_bag": "분해 가방",
 	"curios.identifier.bracelet": "팔찌",
-	
-"_comment": " [분류]: 기타 아이템 - 이름",
-
+	"_comment": " [분류]: 기타 아이템 - 이름",
 	"item.mmorpg.auto_salvage_bag0": "§7자동 분해 가방",
 	"item.mmorpg.auto_salvage_bag1": "§a자동 분해 가방",
 	"item.mmorpg.auto_salvage_bag2": "§e자동 분해 가방",
@@ -93,12 +79,8 @@
 	"item.mmorpg.ore3": "§9영웅 광석",
 	"item.mmorpg.ore4": "§6전설 광석",
 	"item.mmorpg.ore5": "§d신화 광석",
-
-"_comment": " [분류]: 기타 아이템 - 이름",
-
-
-"_comment": " [분류]: 주문 - 이름",
-
+	"_comment": " [분류]: 기타 아이템 - 이름",
+	"_comment": " [분류]: 주문 - 이름",
 	"item.mmorpg.spell_acid_bomb": "§c맹독 폭탄",
 	"item.mmorpg.spell_acidbolt": "§c맹독 화살",
 	"item.mmorpg.spell_acidexplosion": "§c맹독 폭발",
@@ -121,12 +103,8 @@
 	"item.mmorpg.spells.extra_frost_dmg": "§c추가 서리 피해",
 	"item.mmorpg.spells.extra_lightning_dmg": "§c추가 번개 피해",
 	"item.mmorpg.spells.extra_venom_dmg": "§c추가 맹독 피해",
-
-"_comment": " [분류]: 주문 - 이름",
-
-
-"_comment": " [분류]: 연금술 - 이름",
-
+	"_comment": " [분류]: 주문 - 이름",
+	"_comment": " [분류]: 연금술 - 이름",
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "§7초소형 기력 재생 버프 물약 ",
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_10": "§a소형 기력 재생 버프 물약 ",
 	"item.mmorpg.alchemy.buff.ene_regen.potion_lvl_100": "§d신화급 기력 재생 버프 물약 ",
@@ -173,12 +151,8 @@
 	"item.mmorpg.alchemy.instant.misc.regret10": "§a소형 후회의 물약",
 	"item.mmorpg.alchemy.instant.misc.remove_talent": "§7 단일 재능 제거의 물약",
 	"item.mmorpg.alchemy.instant.misc.reset_talents": "§7재능 초기화의 소형 물약",
-
-"_comment": " [분류]: 연금술 - 이름",
-
-
-"_comment": " [분류]: 세트 아이템 - 이름",
-
+	"_comment": " [분류]: 연금술 - 이름",
+	"_comment": " [분류]: 세트 아이템 - 이름",
 	"mmorpg.set.archemage_vestments": "마법사의 로브",
 	"mmorpg.set.archmage_armor": "대마법사의 의복",
 	"mmorpg.set.armor_of_the_elements": "원소의 갑옷",
@@ -209,12 +183,8 @@
 	"mmorpg.set.tree_of_life": "생명의 나무",
 	"mmorpg.set.will_of_lightning": "빛의 의지",
 	"mmorpg.set.wisdom_of_the_elders": "장로의 지혜",
-
-"_comment": " [분류]: 세트 아이템 - 이름",
-
-
-"_comment": " [분류]: 전리품 상자 이름",
-
+	"_comment": " [분류]: 세트 아이템 - 이름",
+	"_comment": " [분류]: 전리품 상자 이름",
 	"item.mmorpg.lootbox.big_currency_lootbox_0": "§7일반 대형 재화 보물상자",
 	"item.mmorpg.lootbox.big_currency_lootbox_1": "§a고급 대형 재화 보물상자",
 	"item.mmorpg.lootbox.big_currency_lootbox_2": "§e희귀 대형 재화 보물상자",
@@ -269,12 +239,8 @@
 	"item.mmorpg.lootbox.small_spell_lootbox_3": "§9영웅 소형 주문 보물상자",
 	"item.mmorpg.lootbox.small_spell_lootbox_4": "§6전설 소형 주문 보물상자",
 	"item.mmorpg.lootbox.small_spell_lootbox_5": "§d신화 소형 주문 보물상자",
-
-"_comment": " [분류]: 전리품 상자 - 이름",
-
-
-"_comment": " [분류]: 발전 과제 제목 - 이름",
-
+	"_comment": " [분류]: 전리품 상자 - 이름",
+	"_comment": " [분류]: 발전 과제 제목 - 이름",
 	"mmorpg.advancement.title.addaffix": "수식어 붙이기",
 	"mmorpg.advancement.title.currencybag": "재화 가방",
 	"mmorpg.advancement.title.factorystation": "장비 공장",
@@ -289,12 +255,8 @@
 	"mmorpg.advancement.title.repairstation": "수리 장치",
 	"mmorpg.advancement.title.salvagestation": "분해 장치",
 	"mmorpg.advancement.title.welcomemineandslash": "마인 앤 슬래시에 온 것을 환영합니다! 번역자 - 버레(M_H_Berre)",
-
-"_comment": " [분류]: 발전 과제 제목 - 이름",
-
-
-"_comment": " [분류]: 룬 단어 - 이름",
-
+	"_comment": " [분류]: 발전 과제 제목 - 이름",
+	"_comment": " [분류]: 룬 단어 - 이름",
 	"mmorpg.word.attuned": "조율",
 	"mmorpg.word.bloom": "만개",
 	"mmorpg.word.follower": "추종자",
@@ -318,12 +280,8 @@
 	"mmorpg.word.undying_magic": "꺼지지 않는 마법",
 	"mmorpg.word.zeal": "전투의 열광",
 	"mmorpg.word.zephyr": "서풍",
-
-"_comment": " [분류]: 룬 단어 - 이름",
-
-
-"_comment": " [분류]: 희귀도 - 이름",
-
+	"_comment": " [분류]: 룬 단어 - 이름",
+	"_comment": " [분류]: 희귀도 - 이름",
 	"mmorpgs.rarity.common": "일반",
 	"mmorpgs.rarity.epic": "영웅",
 	"mmorpgs.rarity.legendary": "전설",
@@ -331,12 +289,8 @@
 	"mmorpgs.rarity.rare": "희귀",
 	"mmorpgs.rarity.uncommon": "고급",
 	"mmorpgs.rarity.unique": "고유",
-
-"_comment": " [분류]: 희귀도 - 이름",
-
-
-"_comment": " [분류]: 접두사 - 이름",
-
+	"_comment": " [분류]: 희귀도 - 이름",
+	"_comment": " [분류]: 접두사 - 이름",
 	"mmorpg.prefix.arcanists": "비전술사의",
 	"mmorpg.prefix.archaeologists": "고고학자의",
 	"mmorpg.prefix.bonusfirereflectprefix": "불꽃 가시",
@@ -387,12 +341,8 @@
 	"mmorpg.prefix.water_heretic": "냉기의 이단자",
 	"mmorpg.prefix.water_shield": "물의 장벽",
 	"mmorpg.prefix.wise": "지혜로운",
-
-"_comment": " [분류]: 접두사 - 이름",
-
-
-"_comment": " [분류]: 재화 아이템 - 이름",
-
+	"_comment": " [분류]: 접두사 - 이름",
+	"_comment": " [분류]: 재화 아이템 - 이름",
 	"item.mmorpg.attack_infusion": "§c공격력 주입 수정",
 	"item.mmorpg.currency.add_group_map": "§c고독의 돌",
 	"item.mmorpg.currency.add_prefix": "§c접두사 발현",
@@ -420,12 +370,8 @@
 	"item.mmorpg.resource_infusion": "§c자원 관리 주입 수정",
 	"item.mmorpg.superior_upgrade_infusion": "§c고급 주입 강화의 구",
 	"item.mmorpg.wondrous_upgrade_infusion": "§c최고급 주입 강화의 구",
-
-"_comment": " [분류]: 재화 아이템 - 이름",
-
-
-"_comment": " [분류]: 룬 - 이름",
-
+	"_comment": " [분류]: 재화 아이템 - 이름",
+	"_comment": " [분류]: 룬 - 이름",
 	"item.mmorpg.runes.ano0": "§7ANO - 일반 룬",
 	"item.mmorpg.runes.ano1": "§aANO - 고급 룬",
 	"item.mmorpg.runes.ano2": "§eANO - 희귀 룬",
@@ -490,12 +436,8 @@
 	"item.mmorpg.runes.xah3": "§9XAH - 영웅 룬",
 	"item.mmorpg.runes.xah4": "§6XAH - 전설 룬",
 	"item.mmorpg.runes.xah5": "§dXAH - 신화 룬",
-
-"_comment": " [분류]: 룬 - 이름",
-
-
-"_comment": " [분류]: 단어 - 이름",
-
+	"_comment": " [분류]: 룬 - 이름",
+	"_comment": " [분류]: 단어 - 이름",
 	"mmorpg.word.activation_time": "발동 시간",
 	"mmorpg.word.addchaosstats": "혼돈 능력치 추가",
 	"mmorpg.word.addmajorarcana": "특수 혼돈 능력치 추가",
@@ -655,12 +597,8 @@
 	"mmorpg.word.weapon": "무기",
 	"mmorpg.word.works_when_equipped": "착용시 작동",
 	"mmorpg.word.world_type": "세계 종류",
-
-"_comment": " [분류]: 단어 - 이름",
-
-
-"_comment": " [분류]: 접미사 - 이름",
-
+	"_comment": " [분류]: 단어 - 이름",
+	"_comment": " [분류]: 접미사 - 이름",
 	"mmorpg.suffix.fire_of_dissonance": "- 화염 불협화음",
 	"mmorpg.suffix.nature_of_dissonance": "- 맹독 불협화음",
 	"mmorpg.suffix.of_axe_flurry": "- 광풍",
@@ -700,12 +638,8 @@
 	"mmorpg.suffix.ofvampirism": "- 흡혈귀",
 	"mmorpg.suffix.thunder_of_dissonance": "- 번개 불협화음",
 	"mmorpg.suffix.water_of_dissonance": "- 서리 불협화음",
-
-"_comment": " [분류]: 접미사 - 이름",
-
-
-"_comment": " [분류]: 능력치 - 이름",
-
+	"_comment": " [분류]: 접미사 - 이름",
+	"_comment": " [분류]: 능력치 - 이름",
 	"mmorpg.stat.acidbolt_power": "§c맹독 화살 강화",
 	"mmorpg.stat.acidbomb_power": "§c맹독 폭탄 강화",
 	"mmorpg.stat.acidexplosion_power": "§c맹독 폭발 강화",
@@ -929,12 +863,8 @@
 	"mmorpg.stat.wheeloffortune": "행운의 수레바퀴",
 	"mmorpg.stat.wisdom": "지혜",
 	"mmorpg.stat.zephyr's_speed": "서풍",
-
-"_comment": " [분류]: 능력치 - 이름",
-
-
-"_comment": " [분류]: 발전과제 설명 - 이름",
-
+	"_comment": " [분류]: 능력치 - 이름",
+	"_comment": " [분류]: 발전과제 설명 - 이름",
 	"mmorpg.advancement.desc.addaffix": "고유 아이템은 수식어가 붙을 확률이 낮습니다. 재화 아이템이 중요한 이유죠.",
 	"mmorpg.advancement.desc.adventuremap": "지도는 지도 장치에서 사용합니다. 지도를 소모해 다른 차원에서 장비를 얻을 시간을 벌 수 있습니다!",
 	"mmorpg.advancement.desc.autosalvagebag": "이 가방들은 장착하면 자동으로 아이템을 분해합니다! 이를 통해 일반, 고급 장비나 다른 쓸모없는 아이템들을 자동으로 분해할 수 있습니다! 등급이 높을 수록 분해해서 더 좋은 아이템이 나옵니다.",
@@ -954,12 +884,8 @@
 	"mmorpg.advancement.desc.salvagestation": "아이템을 광석과 재화로 바꿉니다.",
 	"mmorpg.advancement.desc.stoneofhope": "아이템을 재창조해, 더 높은 등급으로 만듭니다. 안 좋거나 원하지 않는 능력치가 있는 전설 아이템에 사용하면 좋습니다.",
 	"mmorpg.advancement.desc.welcomemineandslash": "이 모드는 몹을 죽이는데에만 중점을 둡니다. 몹을 잡아 강력한 장비를 얻어 몹을 더 잡으세요!",
-
-"_comment": " [분류]: 발전과제 설명 - 이름",
-
-
-"_comment": " [분류]: 장비칸 - 이름",
-
+	"_comment": " [분류]: 발전과제 설명 - 이름",
+	"_comment": " [분류]: 장비칸 - 이름",
 	"mmorpg.gear_type.axe": "도끼",
 	"mmorpg.gear_type.boots": "판금 부츠",
 	"mmorpg.gear_type.bow": "활",
@@ -985,12 +911,8 @@
 	"mmorpg.gear_type.sword": "검",
 	"mmorpg.gear_type.torch": "횃불",
 	"mmorpg.gear_type.wand": "완드",
-
-"_comment": " [분류]: 장비 칸 - 이름",
-
-
-"_comment": " [분류]: 고유 아이템 - 이름",
-
+	"_comment": " [분류]: 장비 칸 - 이름",
+	"_comment": " [분류]: 고유 아이템 - 이름",
 	"item.mmorpg.uniques.axe.axefire0": "§e 작열하는 도끼",
 	"item.mmorpg.uniques.axe.axethunder0": "§e폭풍우의 도끼",
 	"item.mmorpg.uniques.axe.axewaterfire0": "§e서리불꽃 도끼",
@@ -1074,12 +996,8 @@
 	"item.mmorpg.uniques.sword.swordwater0": "§e얼음 정령검",
 	"item.mmorpg.uniques.sword.thunder_ele_saber0": "§e뇌섬검",
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§e서리불꽃 장검",
-
-"_comment": " [분류]: 고유 아이템 - 이름",
-
-
-"_comment": " [분류]: 물약 - 이름",
-
+	"_comment": " [분류]: 고유 아이템 - 이름",
+	"_comment": " [분류]: 물약 - 이름",
 	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_1": "물약 버프",
 	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_10": "물약 버프",
 	"effect.mmorpg.alchemy.buff.ene_regen.potion_lvl_100": "물약 버프",
@@ -1115,12 +1033,8 @@
 	"effect.mmorpg.mana_regen": "마나 재생",
 	"effect.mmorpg.self_regen": "재생",
 	"effect.mmorpg.teleport_protection": "순간이동 방지",
-
-"_comment": " [분류]: 물약 - 이름",
-
-
-"_comment": " [분류]: 장비 아이템 - 이름",
-
+	"_comment": " [분류]: 물약 - 이름",
+	"_comment": " [분류]: 장비 아이템 - 이름",
 	"item.mmorpg.bracelet.bracelet0": "§7팔찌",
 	"item.mmorpg.bracelet.bracelet1": "§a팔찌",
 	"item.mmorpg.bracelet.bracelet2": "§e팔찌",
@@ -1271,12 +1185,8 @@
 	"item.mmorpg.wand.wand3": "§9완드",
 	"item.mmorpg.wand.wand4": "§6완드",
 	"item.mmorpg.wand.wand5": "§d완드",
-	
-"_comment": " [분류]: 장비 아이템 - 이름",
-
-
-"_comment": " [분류]: 세계 종류 - 이름",
-
+	"_comment": " [분류]: 장비 아이템 - 이름",
+	"_comment": " [분류]: 세계 종류 - 이름",
 	"mmorpg.world_type.beach": "사막 해변",
 	"mmorpg.world_type.birch_forest": "자작나무 숲",
 	"mmorpg.world_type.desert_hills": "사막 언덕",
@@ -1287,12 +1197,8 @@
 	"mmorpg.world_type.rock_mountains": "바위산",
 	"mmorpg.world_type.snowy_mountains": "눈 덮인 산",
 	"mmorpg.world_type.swamp_hills": "늪지",
-
-"_comment": " [분류]: 세계 종류 - 이름",
-
-
-"_comment": " [CATEGORY]: 채팅 메시지 - 설명",
-
+	"_comment": " [분류]: 세계 종류 - 이름",
+	"_comment": " [CATEGORY]: 채팅 메시지 - 설명",
 	"mmorpg.chat.a_piece_of_gear_is_too_high_level_for_you": "일부 장비를 사용하기 위한 레벨이 부족합니다.",
 	"mmorpg.chat.can_not_go_over_maximum_level": "최대 레벨보다 더 높아질 수 없습니다",
 	"mmorpg.chat.cooldown_not_met": "재사용 대기 중입니다",
@@ -1325,12 +1231,8 @@
 	"mmorpg.chat.you_have_leveled_up": "레벨이 증가했습니다",
 	"mmorpg.chat.you_have_ran_out_of_time": "시간이 다 되었습니다",
 	"mmorpg.chat.youneedheartstone": "이 블록에 조율하기 위해 귀환석이 필요합니다.",
-
-"_comment": " [분류]: 채팅 메시지 - 이름",
-
-
-"_comment": " [분류]: 고유 아이템 - 설명",
-
+	"_comment": " [분류]: 채팅 메시지 - 이름",
+	"_comment": " [분류]: 고유 아이템 - 설명",
 	"item.mmorpg.uniques.axe.axefire0.desc": "내 불꽃 검무를 버텨낼 수 있을까!",
 	"item.mmorpg.uniques.axe.axethunder0.desc": "번개가 내리치고, 적의 머리는 바닥을 구르지.",
 	"item.mmorpg.uniques.axe.axewaterfire0.desc": "원소를 합치려는 내 노력은 헛되지 않았어.",
@@ -1414,12 +1316,8 @@
 	"item.mmorpg.uniques.sword.swordwater0.desc": "자신을 거머쥐어 달라는 힘이 주변에 넘쳐나는군.",
 	"item.mmorpg.uniques.sword.thunder_ele_saber0.desc": "번개가 당신을 인도합니다.",
 	"item.mmorpg.uniques.sword.water_ele_saber0.desc": "물이 당신을 인도합니다.",
-
-"_comment": " [분류]: 고유 아이템 - 설명",
-
-
-"_comment": " [분류]: 재화 아이템 - 설명",
-
+	"_comment": " [분류]: 고유 아이템 - 설명",
+	"_comment": " [분류]: 재화 아이템 - 설명",
 	"item.mmorpg.attack_infusion.desc": "아이템에 공격 개조를 주입합니다.",
 	"item.mmorpg.currency.add_group_map.desc": "지도를 그룹 지도로 바꿉니다.",
 	"item.mmorpg.currency.add_prefix.desc": "접두사를 추가합니다.",
@@ -1447,12 +1345,8 @@
 	"item.mmorpg.resource_infusion.desc": "아이템에 자원 관련 개조를 주입합니다.",
 	"item.mmorpg.superior_upgrade_infusion.desc": "주입 강화를 한 아이템에 사용해 더 강화합니다.",
 	"item.mmorpg.wondrous_upgrade_infusion.desc": "주입 강화를 한 아이템에 사용해 더 강화합니다.",
-
-"_comment": " [분류]: 재화 아이템 - 설명",
-
-
-"_comment": " [분류]: 능력치 - 설명",
-
+	"_comment": " [분류]: 재화 아이템 - 설명",
+	"_comment": " [분류]: 능력치 - 설명",
 	"mmorpg.stat_desc.all_attributes": "후술하는 모든 핵심 능력치를 증가시킵니다. - 생명, 민첩, 힘, 지능, 지혜, 지구력",
 	"mmorpg.stat_desc.all_ele_dmg": "주문, 공격의 모든 속성 피해량을 증가시킵니다.",
 	"mmorpg.stat_desc.alleledmg": "주문, 공격의 모든 속성 피해량을 증가시킵니다.",
@@ -1516,7 +1410,7 @@
 	"mmorpg.stat_desc.physical_dispersion": "속성 피해를 주었을 때 물리 피해를 제일 피해량이 높은 속성 피해로 변환시킵니다.",
 	"mmorpg.stat_desc.purity": "자가 회복 주문이 부정적 효과를 제거해줍니다.",
 	"mmorpg.stat_desc.reckless_blows_trait": "모든 관통력이 2배로 증가합니다. 대신 방어력이 절반으로 감소합니다.",
-	"mmorpg.stat_desc.refreshing_breeze_trait": "회피에 성공하면 기력이 50% 회복됩니다.",	
+	"mmorpg.stat_desc.refreshing_breeze_trait": "회피에 성공하면 기력이 50% 회복됩니다.",
 	"mmorpg.stat_desc.shining_light": "자가 회복 주문에 광역 재생 효과를 부여합니다.",
 	"mmorpg.stat_desc.spell_damage": "속성 종류에 관계 없이 주문 피해량을 증가시킵니다.",
 	"mmorpg.stat_desc.spell_dodge": "일정 확률로 주문 피해를 무시합니다.",
@@ -1530,12 +1424,8 @@
 	"mmorpg.stat_desc.weapon_damage": "무기로 공격할 때 피해량이 증가합니다.",
 	"mmorpg.stat_desc.wisdom": "마나 재생, 기력 재생과 체력 재생을 증가시킵니다.",
 	"mmorpg.stat_desc.zephyr's_speed": "자가 회복 주문이 일시적으로 이동 속도를 증가시킵니다.",
-
-"_comment": " [분류]: 능력치 - 설명",
-
-
-"_comment": " [분류]: 재화 아이템 - 설명글",
-
+	"_comment": " [분류]: 능력치 - 설명",
+	"_comment": " [분류]: 재화 아이템 - 설명글",
 	"lore_0_item.attack_infusion": "행운은 모든 것에 영향을 끼치는 마력 같은 존재이다.",
 	"lore_0_item.currency.add_group_map": "너 혼자서는 할 수 없는 일이지..",
 	"lore_0_item.currency.add_prefix": "너의 잠재력을 모르고 있을 뿐이야.",
@@ -1563,12 +1453,8 @@
 	"lore_0_item.resource_infusion": "행운은 모든 것에 영향을 끼치는 마력 같은 존재이다.",
 	"lore_0_item.superior_upgrade_infusion": "행운에 대한 이해가 깊어졌다.",
 	"lore_0_item.wondrous_upgrade_infusion": "행운을 자신의 손으로 거머쥐어라.",
-
-"_comment": " [분류]: 재화 아이템 - 설명글",
-
-
-"_comment": " [분류]: 기타 - 설명글",
-
+	"_comment": " [분류]: 재화 아이템 - 설명글",
+	"_comment": " [분류]: 기타 - 설명글",
 	"lore_0_item.mmorpg.auto_salvage_bag": "분해할 등급의 상한을 정하려면",
 	"lore_1_item.mmorpg.auto_salvage_bag": "해당 등급의 아이템을 왼손에 드세요.",
 	"lore_2_item.mmorpg.auto_salvage_bag": "그리고 가방으로 우클릭을 하세요.",
@@ -1578,8 +1464,5 @@
 	"lore_1_item.mmorpg.ores": " * 재화 아이템 제작",
 	"lore_2_item.mmorpg.ores": " * 장비 수리",
 	"lore_3_item.mmorpg.ores": " * 새 장비 제작",
-
-"_comment": " [분류]: 기타 - 설명글"
-
-
+	"_comment": " [분류]: 기타 - 설명글"
 }

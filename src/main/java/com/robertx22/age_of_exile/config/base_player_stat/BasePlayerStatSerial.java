@@ -52,7 +52,6 @@ public class BasePlayerStatSerial implements ISerializedConfig<BasePlayerStatCon
             .create();
         String json = gson.toJson(currentConfig);
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json, true);
-
     }
 
     @Override

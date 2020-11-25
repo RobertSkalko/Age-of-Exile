@@ -77,6 +77,8 @@ public class Stats implements ISlashRegistryInit {
                     add(DayDamage.getInstance());
                     add(NightDamage.getInstance());
 
+                    add(SpellAccuracy.getInstance());
+                    add(SpellDodge.getInstance());
                     add(Accuracy.getInstance());
 
                     add(DamageUnderPotion.HUNGER);

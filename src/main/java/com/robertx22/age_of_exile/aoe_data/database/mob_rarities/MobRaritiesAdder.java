@@ -58,6 +58,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         epic.loot_multi = 3F;
         epic.weight = 250;
         epic.higher_rar = IRarity.LEGENDARY_ID;
+        epic.loot_lvl_modifier = 1;
         epic.setEpicFields();
         epic.addToSerializables();
 
@@ -71,6 +72,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         legendary.loot_multi = 4F;
         legendary.weight = 100;
         legendary.higher_rar = IRarity.BOSS_ID;
+        legendary.loot_lvl_modifier = 2;
         legendary.setLegendaryFields();
         legendary.addToSerializables();
 
@@ -84,6 +86,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         boss.exp_multi = 6F;
         boss.loot_multi = 6F;
         boss.weight = 10;
+        boss.loot_lvl_modifier = 3;
         boss.setBossFields();
         boss.addToSerializables();
 

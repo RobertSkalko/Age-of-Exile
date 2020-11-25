@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
@@ -15,6 +16,15 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        AffixBuilder.Normal("of_steadiness")
+            .Named("Of Steadiness")
+            .tier(1, new StatModifier(10, 20, Accuracy.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(7, 10, Accuracy.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 7, Accuracy.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.weapon_family)
+            .Suffix()
+            .Build();
 
         AffixBuilder.Normal("of_precision")
             .Named("Of Precision")

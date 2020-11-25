@@ -611,7 +611,7 @@ public class EntityCap {
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
-            num *= SlashRegistry.getEntityConfig(data.getAttackerEntity(), data.getAttackerEntityData()).dmg_multi;
+            num *= SlashRegistry.getEntityConfig(entity, this).dmg_multi;
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 

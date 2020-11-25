@@ -32,11 +32,11 @@ public class LevelPart extends BlueprintPart<Integer, ItemBlueprint> {
 
             minLevel = gearb.gearItemSlot.get()
                 .getLevelRange()
-                .getMinLevel();
+                .getMinLevel() + blueprint.extraLevelModifier;
 
             maxLevel = gearb.gearItemSlot.get()
                 .getLevelRange()
-                .getMaxLevel();
+                .getMaxLevel() + blueprint.extraLevelModifier;
         }
 
         if (LevelRange) {

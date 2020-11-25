@@ -10,6 +10,7 @@ public final class MobRarity extends BaseRarity implements Rarity, IAutoGson<Mob
     public static MobRarity SERIALIZER = new MobRarity();
 
     public int min_lvl;
+    public int loot_lvl_modifier = 0;
     public float dmg_multi;
     public float extra_hp_multi;
     public float stat_multi;

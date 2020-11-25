@@ -398,7 +398,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             ServerPlayerEntity player = (ServerPlayerEntity) source;
 
             if (this.isDodged) {
-                text = "Dodge";
+                if (EffectUtils.isConsideredAWeaponAttack(this)) {
+                    text = "Dodge";
+                } else {
+                    text = "Resist";
+                }
 
                 DmgNumPacket packet = new DmgNumPacket(target, this.element, text, 0);
                 Packets.sendToClient(player, packet);

@@ -17,16 +17,6 @@ public abstract class BlueprintPart<T, C extends ItemBlueprint> {
 
     protected abstract T generateIfNull();
 
-    public void forceSet(T t) {
-        part = t;
-    }
-
-    public void trySet(T t) {
-        if (part == null) {
-            part = t;
-        }
-    }
-
     public void set(T t) {
 
         if (part == null) {
