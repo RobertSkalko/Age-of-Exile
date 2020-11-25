@@ -85,6 +85,16 @@ I will just increase the elemental affixes for existing mobs to compensate for t
 More mobs will be coming in my World of Exile mod!
 * mob affixes are now more meaningful
 * fix chance to apply effect stats not working (they applied effect for 1 tick actually)
+* crit damage starts at 150% now instead of 120%.
+* stat points now give flat amounts, so each point is say 20 health, no matter your level.
+The stat points you receive though are multiplied by the scaling.
+* tweaked base stats (delete the config folder please)
+* new stat: accuracy
+* mobs now all have dodge chance. You shouldn't notice if you build even a tiny amount of accuracy,
+but battling high level mobs should be a bigger problem due to it.
+* if dodge fails, it rolls a second time to try to fail the crit.
+* melee and ranged spells are now affected by accuracy and dodge
+
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

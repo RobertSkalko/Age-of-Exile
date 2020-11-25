@@ -305,9 +305,6 @@ public class Unit {
 
         addVanillaHpToStats(entity, data);
 
-        CommonStatUtils.CalcTraitsAndCoreStats(
-            data); // has to be at end for the conditionals like if crit higher than x
-
         new HashMap<>(stats.statsInCalc).entrySet()
             .forEach(x -> {
                 InCalcStatData statdata = x.getValue();

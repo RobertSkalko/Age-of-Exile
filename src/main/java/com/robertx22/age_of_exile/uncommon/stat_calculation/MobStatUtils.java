@@ -7,6 +7,8 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.ElementalDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -109,6 +111,11 @@ public class MobStatUtils {
 
         unit.getStatInCalculation(Health.getInstance())
             .addFlat(hpToAdd, lvl);
+
+        unit.getStatInCalculation(DodgeRating.getInstance())
+            .addFlat(50, lvl);
+        unit.getStatInCalculation(ElementalDodge.getInstance())
+            .addFlat(50, lvl);
 
         unit.getStatInCalculation(Armor.GUID)
             .addFlat((Armor.getInstance()

@@ -1,33 +1,32 @@
-package com.robertx22.age_of_exile.database.data.stats.types.defense;
+package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
-import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
-import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.defense.DodgeEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.AccuracyEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILocalStat {
+public class Accuracy extends Stat implements IStatEffects {
 
-    public static String GUID = "dodge";
+    public static String GUID = "accuracy";
 
-    public static DodgeRating getInstance() {
-        return SingletonHolder.INSTANCE;
+    public static Accuracy getInstance() {
+        return Accuracy.SingletonHolder.INSTANCE;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Chance to ignore physical damage";
+        return "Increases your chance to hit, also affects chance to crit. Specifically it decreases opponent's chance to dodge";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return DodgeEffect.getInstance();
+        return AccuracyEffect.getInstance();
     }
 
-    protected DodgeRating() {
+    private Accuracy() {
+        this.base_val = 0;
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
@@ -50,20 +49,10 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     @Override
     public String locNameForLangFile() {
-        return "Dodge Rating";
-    }
-
-    @Override
-    public float getMaxMulti() {
-        return 0.9F;
-    }
-
-    @Override
-    public float valueNeededToReachMaximumPercentAtLevelOne() {
-        return 200;
+        return "Accuracy";
     }
 
     private static class SingletonHolder {
-        private static final DodgeRating INSTANCE = new DodgeRating();
+        private static final Accuracy INSTANCE = new Accuracy();
     }
 }

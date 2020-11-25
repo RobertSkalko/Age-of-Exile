@@ -4,6 +4,7 @@ throw_flames_proj_speed
 mod_magma_flower_burn
 mod_tp_dmg
 unlock_volcano
+accuracy
 dodge_to_ele_doddge
 spell_thunder_damage
 unlock_passive_nature
@@ -103,6 +104,7 @@ mob_imbue_crit
 unlock_thunder_strikes
 mod_holy_flower_cure
 mana_shield
+unlock_frost_armor
 mana_per_sec
 all_fire_damage
 mod_mana_magic

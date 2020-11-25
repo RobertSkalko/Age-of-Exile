@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.config.base_player_stat;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -26,15 +27,18 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
 
         //base ones
 
-        c.nonScaled(Health.getInstance(), 10);
-        c.nonScaled(new AttackDamage(Elements.Physical), 3);
-        c.nonScaled(HealthRegen.getInstance(), 2);
-        c.nonScaled(MagicShieldRegen.getInstance(), 1);
+        c.nonScaled(Health.getInstance(), 20);
+        c.nonScaled(Mana.getInstance(), 40);
         c.nonScaled(CriticalHit.getInstance(), 1);
         c.nonScaled(CriticalDamage.getInstance(), 0);
 
-        c.scaled(Mana.getInstance(), 25);
+        c.scaled(Accuracy.getInstance(), 20);
+        c.scaled(Health.getInstance(), 10);
+        c.scaled(Mana.getInstance(), 10);
         c.scaled(ManaRegen.getInstance(), 1.5F);
+        c.scaled(HealthRegen.getInstance(), 1);
+        c.scaled(MagicShieldRegen.getInstance(), 1);
+        c.scaled(new AttackDamage(Elements.Physical), 1);
 
         return c;
 

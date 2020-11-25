@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
-import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -16,8 +16,8 @@ public class Wisdom extends BaseCoreStat {
 
     private Wisdom() {
         super(Arrays.asList(
-            new StatModifier(3F, 3F, Mana.getInstance(), ModType.FLAT),
-            new StatModifier(0.1F, 0.1F, ManaRegen.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(10, 10, Mana.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(1, 1, ManaRegen.getInstance(), ModType.FLAT)
         ));
     }
 

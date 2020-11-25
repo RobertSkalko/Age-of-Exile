@@ -110,7 +110,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public int armorPene;
     public int elementalPene;
     public boolean isBlocked = false;
+    public boolean accuracyCritRollFailed = false;
     public float damageMultiplier = 1;
+    public float attackerAccuracy = 0;
 
     public float healthHealed;
     public float magicShieldRestored;
@@ -149,11 +151,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         dmg = dmg * percentMulti;
 
-        if (target instanceof PlayerEntity) {
+        if (!isDodged && target instanceof PlayerEntity) { // todo this code sucks
+            // a getter should not modify anything
             dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
-
             dmg = MagicShield.modifyEntityDamage(this, dmg);
-
         }
 
         return dmg;
@@ -278,8 +279,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (ifPlayersShouldNotDamageEachOther()) {
             return;
         }
+
+        DmgByElement info = getDmgByElement();
+
         if (isDodged) {
             cancelDamage();
+            sendDamageParticle(info);
             SoundUtils.playSound(target, SoundEvents.ITEM_SHIELD_BLOCK, 1, 1.5F);
             return;
         }
@@ -289,7 +294,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return;
         }
 
-        DmgByElement info = getDmgByElement();
         float dmg = info.totalDmg;
         float vanillaDamage = HealthUtils.realToVanilla(target, dmg);
 
@@ -380,24 +384,40 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             onEventPotions();
 
-            if (source instanceof ServerPlayerEntity) {
+            sendDamageParticle(info);
 
-                info.dmgmap.entrySet()
-                    .forEach(x -> {
-                        if (x.getValue()
-                            .intValue() > 0) {
-                            ServerPlayerEntity player = (ServerPlayerEntity) source;
-
-                            String str = NumberUtils.formatDamageNumber(this, x.getValue()
-                                .intValue());
-                            DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str, x.getValue());
-                            Packets.sendToClient(player, packet);
-                        }
-                    });
-
-            }
         }
 
+    }
+
+    private void sendDamageParticle(DmgByElement info) {
+
+        String text = "";
+
+        if (source instanceof ServerPlayerEntity) {
+            ServerPlayerEntity player = (ServerPlayerEntity) source;
+
+            if (this.isDodged) {
+                text = "Dodge";
+
+                DmgNumPacket packet = new DmgNumPacket(target, this.element, text, 0);
+                Packets.sendToClient(player, packet);
+                return;
+            }
+
+            for (Entry<Elements, Float> entry : info.dmgmap.entrySet()) {
+                if (entry.getValue()
+                    .intValue() > 0) {
+
+                    text = NumberUtils.formatDamageNumber(this, entry.getValue()
+                        .intValue());
+
+                    DmgNumPacket packet = new DmgNumPacket(target, entry.getKey(), text, entry.getValue());
+                    Packets.sendToClient(player, packet);
+                }
+            }
+
+        }
     }
 
     private void onEventPotions() {

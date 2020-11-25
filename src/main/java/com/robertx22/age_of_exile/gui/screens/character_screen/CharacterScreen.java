@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -117,7 +118,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), MagicShield.getInstance(), Mana.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), MagicShieldRegen.getInstance(), ManaRegen.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Armor.getInstance(), DodgeRating.getInstance()));
-        addTo(StatType.MAIN, Arrays.asList(SpellDamage.getInstance(), CriticalHit.getInstance(), CriticalDamage.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(Accuracy.getInstance(), SpellDamage.getInstance(), CriticalHit.getInstance(), CriticalDamage.getInstance()));
 
         addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.ELEMENTAL, new ElementalSpellDamage(Elements.Elemental).generateAllPossibleStatVariations());

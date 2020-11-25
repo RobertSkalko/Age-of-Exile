@@ -15,7 +15,7 @@ public class ServerContainer {
 
     //public double REPAIR_FUEL_NEEDED_MULTI = 1;
     public double REGEN_HUNGER_COST = 10;
-    public double EXP_LOSS_ON_DEATH = 0.05F;
+    public double EXP_LOSS_ON_DEATH = 0.1F;
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.1F;
     public double LEVEL_DISTANCE_PENALTY_MAX = 0.95F;
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
@@ -25,7 +25,7 @@ public class ServerContainer {
 
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;
 
-    public double STAT_POINTS_PER_LVL = 1;
+    public double STAT_POINTS_PER_LVL = 2;
     public double TALENT_POINTS_AT_MAX_LEVEL = 100;
     public double STARTING_TALENT_POINTS = 1;
     public double SPELL_POINTS_AT_MAX_LEVEL = 20;

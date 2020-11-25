@@ -4,8 +4,7 @@ import com.robertx22.age_of_exile.config.forge.parts.LevelScalingConfig;
 import com.robertx22.age_of_exile.config.forge.parts.LevelScalingRangePart;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class StatScaleConfigs {
 
@@ -15,24 +14,18 @@ public class StatScaleConfigs {
     @ConfigEntry.Gui.CollapsibleObject
     public LevelScalingConfig SLOW_STAT_SCALING;
 
+    @ConfigEntry.Gui.CollapsibleObject
+    public LevelScalingConfig MANA_COST_SCALING;
+
     public StatScaleConfigs() {
 
-        List<LevelScalingRangePart> normal = new ArrayList<>();
-        normal.add(new LevelScalingRangePart(0F, 0.2F, 1.1F, 2F));
-        normal.add(new LevelScalingRangePart(0.2F, 0.4F, 2F, 10F));
-        normal.add(new LevelScalingRangePart(0.4F, 0.8F, 10F, 40));
-        normal.add(new LevelScalingRangePart(0.8F, 1F, 40, 100));
+        NORMAL_STAT_SCALING = new LevelScalingConfig(Arrays.asList(new LevelScalingRangePart(0F, 1F, 1, 50)));
 
-        List<LevelScalingRangePart> kills = new ArrayList<>();
-        kills.add(new LevelScalingRangePart(0F, 0.2F, 2, 15));
-        kills.add(new LevelScalingRangePart(0.2F, 0.4F, 15, 40));
-        kills.add(new LevelScalingRangePart(0.4F, 0.8F, 40, 100));
-        kills.add(new LevelScalingRangePart(0.8F, 1F, 100, 2500));
+        SLOW_STAT_SCALING = new LevelScalingConfig(Arrays.asList(new LevelScalingRangePart(0F, 1F, 1, 1.25F)));
 
-        List<LevelScalingRangePart> slow = new ArrayList<>();
-        slow.add(new LevelScalingRangePart(0F, 1F, 1, 1.25F));
+        MANA_COST_SCALING = new LevelScalingConfig(Arrays.asList(new LevelScalingRangePart(0F, 1F, 1, 25)));
 
-        NORMAL_STAT_SCALING = new LevelScalingConfig(normal);
-        SLOW_STAT_SCALING = new LevelScalingConfig(slow);
     }
 }
+
+

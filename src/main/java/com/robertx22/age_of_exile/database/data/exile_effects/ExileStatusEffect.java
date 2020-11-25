@@ -134,17 +134,18 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
     @Override
     public void applyStats(World world, StatusEffectInstance instance, LivingEntity target) {
-        ExileEffectInstanceData data = getSavedData(target);
+        if (!world.isClient) {
 
-        ExileEffect exect = getExileEffect();
-        int stacks = data.stacks;
+            ExileEffectInstanceData data = getSavedData(target);
+            int stacks = data.stacks;
 
-        if (data != null && data.spellData != null && data.spellData.getCaster(world) != null) {
-            int casterlvl = Load.Unit(data.spellData.getCaster(world))
-                .getLevel();
-            getExileEffect().stats.stream()
-                .map(x -> new OptScaleExactStat(x.first * stacks, x.second * stacks, x.getStat(), x.getModType()))
-                .forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
+            if (data != null && data.spellData != null && data.spellData.getCaster(world) != null) {
+                int casterlvl = Load.Unit(data.spellData.getCaster(world))
+                    .getLevel();
+                getExileEffect().stats.stream()
+                    .map(x -> new OptScaleExactStat(x.first * stacks, x.second * stacks, x.getStat(), x.getModType()))
+                    .forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
+            }
         }
     }
 

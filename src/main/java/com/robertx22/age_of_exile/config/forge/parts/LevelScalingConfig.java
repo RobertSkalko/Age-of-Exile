@@ -40,7 +40,13 @@ public class LevelScalingConfig {
                 return 1;
             }
         }
-        return cachedMultipliers.get(lvl);
+        if (cachedMultipliers.containsKey(lvl)) {
+            return cachedMultipliers.get(lvl);
+        } else {
+            System.out.print("No scaling multiplier found?");
+            return 1;
+        }
+
     }
 
 }

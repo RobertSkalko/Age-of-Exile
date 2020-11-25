@@ -27,6 +27,9 @@ public class EntitySavedSpellData {
 
     public SpellStatsCalcEffect.CalculatedSpellConfiguration config = new SpellStatsCalcEffect.CalculatedSpellConfiguration();
 
+    // this is buggy in dev because the player's UUID changes (random name each time game is started)
+    // so after restart of game, the caster is null
+    // but works fine outside of dev
     public LivingEntity getCaster(World world) {
         return Utilities.getLivingEntityByUUID(world, UUID.fromString(caster_uuid));
     }

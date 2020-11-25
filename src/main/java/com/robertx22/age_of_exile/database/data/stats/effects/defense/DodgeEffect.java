@@ -2,14 +2,20 @@ package com.robertx22.age_of_exile.database.data.stats.effects.defense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.AccuracyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.util.math.MathHelper;
 
 public class DodgeEffect extends BaseDamageEffect {
 
-    private DodgeEffect() {
+    protected DodgeEffect() {
     }
 
     public static DodgeEffect getInstance() {
@@ -18,7 +24,8 @@ public class DodgeEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
-        return Priority.AlmostLast.priority;
+        return Priority.afterThis(AccuracyEffect.getInstance()
+            .GetPriority());
     }
 
     @Override
@@ -30,21 +37,52 @@ public class DodgeEffect extends BaseDamageEffect {
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         DodgeRating dodge = (DodgeRating) stat;
 
-        float chance = dodge.getUsableValue((int) data.getAverageValue(), effect.sourceData.getLevel()) * 100;
+        float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.attackerAccuracy, 0, Integer.MAX_VALUE);
+
+        float chance = dodge.getUsableValue((int) totalDodge, effect.sourceData.getLevel()) * 100;
 
         if (RandomUtils.roll(chance)) {
-            DamageEffect dmgeffect = (DamageEffect) effect;
-
             effect.number = 0;
-            dmgeffect.isDodged = true;
-
+            effect.isDodged = true;
+        } else {
+            if (RandomUtils.roll(chance)) {
+                effect.accuracyCritRollFailed = true;
+            }
         }
+
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.element.isPhysical();
+        if (effect.element == Elements.Physical) {
+            if (isDodgeable(effect)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isDodgeable(DamageEffect effect) {
+
+        if (effect.effectType == EffectData.EffectTypes.BASIC_ATTACK) {
+            return true;
+        }
+
+        if (effect instanceof SpellDamageEffect) {
+            SpellDamageEffect sdmg = (SpellDamageEffect) effect;
+            if (sdmg.getSpell()
+                .getConfig().style == AttackPlayStyle.MELEE) {
+                return true;
+            }
+            if (sdmg.getSpell()
+                .getConfig().style == AttackPlayStyle.RANGED) {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
     private static class SingletonHolder {

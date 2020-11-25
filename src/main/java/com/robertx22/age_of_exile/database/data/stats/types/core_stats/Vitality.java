@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
-import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -15,8 +15,8 @@ public class Vitality extends BaseCoreStat {
 
     private Vitality() {
         super(Arrays.asList(
-            new StatModifier(2, 2, Health.getInstance(), ModType.FLAT),
-            new StatModifier(0.15F, 0.15F, HealthRegen.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(20, 20, Health.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(1, 1, HealthRegen.getInstance(), ModType.FLAT)
         ));
     }
 

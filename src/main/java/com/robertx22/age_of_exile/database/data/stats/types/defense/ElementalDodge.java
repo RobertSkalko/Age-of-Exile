@@ -22,7 +22,7 @@ public class ElementalDodge extends DodgeRating {
         return ElementalDodgeEffect.getInstance();
     }
 
-    private ElementalDodge() {
+    protected ElementalDodge() {
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;

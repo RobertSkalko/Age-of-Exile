@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats.base;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -18,14 +18,14 @@ import java.util.List;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
-    public BaseCoreStat(List<StatModifier> stats) {
+    public BaseCoreStat(List<OptScaleExactStat> stats) {
         this.scaling = StatScaling.LINEAR;
         this.min_val = 0;
         this.stats = stats;
         this.statGroup = StatGroup.CORE;
     }
 
-    List<StatModifier> stats;
+    List<OptScaleExactStat> stats;
 
     @Override
     public boolean IsPercent() {
@@ -38,7 +38,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     @Override
-    public final List<StatModifier> statsThatBenefit() {
+    public final List<OptScaleExactStat> statsThatBenefit() {
         return stats;
     }
 
@@ -46,8 +46,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     public final String locDescForLangFile() {
         // because i tend to change things and then the damn tooltip becomes outdated.
         String str = "Determines your total: ";
-        for (StatModifier x : this.statsThatBenefit()) {
-            str += x.GetStat()
+        for (OptScaleExactStat x : this.statsThatBenefit()) {
+            str += x.getStat()
                 .translate() + ", ";
         }
         str = str.substring(0, str.length() - 2);
@@ -56,7 +56,13 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     public float getPercent(StatData data) {
-        return data.getAverageValue() * 100;
+        // when nothing is allocated, show as if 1 is (as a preview)
+        return (data.getAverageValue() - 1) * 100;
+    }
+
+    public float getPercentNext(StatData data) {
+        // when nothing is allocated, show as if 1 is (as a preview)
+        return (data.getAverageValue()) * 100;
     }
 
     public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
@@ -64,12 +70,16 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         TooltipInfo info = new TooltipInfo(unitdata, null);
 
         int perc = (int) getPercent(data);
+        int percnext = (int) getPercentNext(data);
 
         List<Text> list = new ArrayList<>();
         list.add(
             new LiteralText("Stats that benefit: ").formatted(Formatting.GREEN));
-
         getMods(perc, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        list.add(new LiteralText(""));
+        list.add(
+            new LiteralText("On next upgrade: ").formatted(Formatting.GREEN));
+        getMods(percnext, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 
@@ -78,8 +88,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     public List<ExactStatData> getMods(int perc, int lvl) {
 
         List<ExactStatData> list = new ArrayList<>();
-        for (StatModifier x : this.statsThatBenefit()) {
-            ExactStatData exactStatData = x.ToExactStat(100, lvl);
+        for (OptScaleExactStat x : this.statsThatBenefit()) {
+            ExactStatData exactStatData = x.toExactStat(1);
             exactStatData.percentIncrease = perc;
             exactStatData.increaseByAddedPercent();
             list.add(exactStatData);

@@ -25,7 +25,7 @@ public class CriticalDamage extends Stat implements IStatEffects {
     }
 
     private CriticalDamage() {
-        this.base_val = 20;
+        this.base_val = 50;
         this.min_val = 0;
         this.max_val = 500;
         this.statGroup = StatGroup.MAIN;

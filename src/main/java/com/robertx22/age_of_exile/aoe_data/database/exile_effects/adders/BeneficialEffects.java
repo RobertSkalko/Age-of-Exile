@@ -24,6 +24,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvents;
 
 import java.util.UUID;
 
@@ -45,6 +46,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static String ARCANE_HUNTER = "beneficial/" + 11;
     public static String EAGLE_EYE = "beneficial/" + 12;
     public static String SAVAGE_HUNTER = "beneficial/" + 13;
+    public static String FROST_ARMOR = "beneficial/" + 14;
 
     @Override
     public void registerAll() {
@@ -96,6 +98,19 @@ public class BeneficialEffects implements ISlashRegistryInit {
                     .requiresSpellMod(NatureSpellModStats.THORN_ARMOR_THORNS_KEY))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 5D, 1D)
                     .onTick(20D))
+
+                .buildForEffect())
+            .build();
+
+        ExileEffectBuilder.of(FROST_ARMOR, "Frost Armor", EffectType.BENEFICIAL)
+            .stat(10, new ElementalResist(Elements.Water), ModType.FLAT)
+            .stat(50, Armor.getInstance(), ModType.FLAT)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.CHILL, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
+                    .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
+                    .addPerEntityHit(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 100D, 1D, 0.2D))
+                    .addPerEntityHit(PartBuilder.playSound(SoundEvents.BLOCK_SNOW_HIT, 1D, 1D))
+                    .onTick(40D))
                 .buildForEffect())
             .build();
 

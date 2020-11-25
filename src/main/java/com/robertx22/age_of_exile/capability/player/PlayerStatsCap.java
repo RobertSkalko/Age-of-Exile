@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PlayerStatPointsData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -62,7 +63,12 @@ public class PlayerStatsCap {
         }
 
         public int getPointsForLevel(int lvl) {
-            return (int) (lvl * ModConfig.get().Server.STAT_POINTS_PER_LVL);
+            float scaling = Health.getInstance()
+                .scale(1, lvl);
+
+            // as stat point stats don't scale, I will scale the amount given per level
+
+            return (int) (scaling * ModConfig.get().Server.STAT_POINTS_PER_LVL);
         }
 
         @Override

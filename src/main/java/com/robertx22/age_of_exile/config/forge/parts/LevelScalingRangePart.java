@@ -25,10 +25,16 @@ public class LevelScalingRangePart {
     }
 
     public float getGrowthForLevel(int lvl) {
+
         // TODO this might be too damn laggy!!!
         int min = LevelUtils.getLevelForMultiplier(min_lvl);
         int max = LevelUtils.getLevelForMultiplier(max_lvl);
-        int left = lvl - min;
+
+        if (lvl == max) {
+            return stat_growth_max; // todo this shouldnt be needed
+        }
+
+        int left = lvl - min - 1;
         float multi = (float) left / (float) (max - min);
         return stat_growth_min + (multi * (stat_growth_max - stat_growth_min));
     }

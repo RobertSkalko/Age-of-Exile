@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
-import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
@@ -15,8 +15,8 @@ public class Willpower extends BaseCoreStat {
 
     private Willpower() {
         super(Arrays.asList(
-            new StatModifier(2, 2, MagicShield.getInstance(), ModType.FLAT),
-            new StatModifier(0.1F, 0.1F, MagicShieldRegen.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(20, 20, MagicShield.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(1, 1, MagicShieldRegen.getInstance(), ModType.FLAT)
         ));
     }
 

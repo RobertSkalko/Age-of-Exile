@@ -27,6 +27,9 @@ public class ExileEffectsManager {
 
             if (extraData.stacks < 1) {
                 target.removeStatusEffect(effect);
+                Load.Unit(target)
+                    .getStatusEffectsData()
+                    .set(effect, null);
             }
 
             Load.Unit(target)
@@ -77,9 +80,6 @@ public class ExileEffectsManager {
                 server.networkHandler.sendPacket(packet);
             });
 
-        Load.Unit(target)
-            .getStatusEffectsData()
-            .set(effect, extraData);
         Load.Unit(target)
             .setEquipsChanged(true);
         Load.Unit(target)

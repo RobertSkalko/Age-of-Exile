@@ -172,6 +172,7 @@ physical_weapon_damage
 health_regen
 spell_fire_damage
 bow_damage_big
+frost_armor
 nature_resist_big
 magical_life
 elemental_purity

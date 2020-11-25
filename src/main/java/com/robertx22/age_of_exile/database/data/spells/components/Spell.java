@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
@@ -11,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -199,8 +199,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
         float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
-        return (int) Mana.getInstance()
-            .scale(getConfig().mana_cost * manaCostMulti, ctx.calcData.level);
+
+        float scaling = ModConfig.get().statScalings.MANA_COST_SCALING.getMultiFor(ctx.calcData.level);
+
+        return (int) (getConfig().mana_cost * manaCostMulti * scaling);
     }
 
     public boolean isPassive() {

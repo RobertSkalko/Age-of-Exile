@@ -20,6 +20,5 @@ public class EntityStatusEffectsData {
     public void set(ExileStatusEffect eff, ExileEffectInstanceData data) {
         exileMap.put(eff.GUID(), data);
     }
-    // old ones down, delete when new system up
 
 }

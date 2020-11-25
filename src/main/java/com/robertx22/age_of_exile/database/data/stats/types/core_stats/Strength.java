@@ -1,9 +1,10 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
-import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
@@ -15,8 +16,9 @@ public class Strength extends BaseCoreStat {
 
     private Strength() {
         super(Arrays.asList(
-            new StatModifier(1, 1, CriticalDamage.getInstance(), ModType.FLAT),
-            new StatModifier(0.5F, 0.5F, AttackStyleDamage.MELEE, ModType.FLAT)
+            new OptScaleExactStat(10, 10, Accuracy.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(0.5F, 0.5F, AttackStyleDamage.MELEE, ModType.FLAT),
+            new OptScaleExactStat(1, 1, Armor.getInstance(), ModType.LOCAL_INCREASE)
         ));
     }
 

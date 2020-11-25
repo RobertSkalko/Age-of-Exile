@@ -154,6 +154,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             .getSpell()
             .getAttached()
             .tryActivate(getEntityName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
+
     }
 
     @Override
