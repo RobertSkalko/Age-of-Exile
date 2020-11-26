@@ -37,12 +37,6 @@ public enum PlayerCaps {
             return Load.perks(player);
         }
     },
-    STAT_POINTS {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.statPoints(player);
-        }
-    },
     SPELLS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {

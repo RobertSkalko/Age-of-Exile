@@ -3,7 +3,10 @@ package com.robertx22.age_of_exile.database.registrators;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
@@ -112,9 +115,6 @@ public class Stats implements ISlashRegistryInit {
                     add(Strength.INSTANCE);
                     add(Dexterity.INSTANCE);
                     add(Intelligence.INSTANCE);
-                    add(Willpower.INSTANCE);
-                    add(Vitality.INSTANCE);
-                    add(Wisdom.INSTANCE);
 
                     add(ExtraMobDropsStat.getInstance());
                     add(BonusExp.getInstance());

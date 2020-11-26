@@ -139,6 +139,7 @@ public class PerkButton extends TexturedButtonWidget {
             }
         } else if (perk.getType() == Perk.PerkType.SPECIAL) {
             // icon
+            offset = 6;
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
             drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);

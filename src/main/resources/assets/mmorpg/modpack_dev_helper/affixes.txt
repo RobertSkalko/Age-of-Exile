@@ -4,7 +4,6 @@ nature_wep_dmg_jewelry
 scaled
 fire_ele_dmg_jewelry
 nature_res
-of_vitality
 seraphim
 thunder_wep_dmg
 of_consumption
@@ -29,7 +28,6 @@ glimmering
 nature_ele_dmg_jewelry
 yetis
 snakes
-of_wis
 of_the_wind
 of_treasure
 water_wep_dmg_jewelry
@@ -40,7 +38,6 @@ of_speed
 of_vampirism
 of_steadiness
 water_wep_dmg
-of_will
 tyrannical
 thunder_ele_dmg_jewelry
 of_spirit_markings

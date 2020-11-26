@@ -25,7 +25,6 @@ public class ServerContainer {
 
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;
 
-    public double STAT_POINTS_PER_LVL = 2;
     public double TALENT_POINTS_AT_MAX_LEVEL = 100;
     public double STARTING_TALENT_POINTS = 1;
     public double SPELL_POINTS_AT_MAX_LEVEL = 20;

@@ -288,8 +288,6 @@ public class Unit {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
             Load.perks(entity)
                 .applyStats(data);
-            Load.statPoints((PlayerEntity) entity)
-                .applyStats(data);
             Load.playerSkills((PlayerEntity) entity)
                 .applyStats(data);
         } else {

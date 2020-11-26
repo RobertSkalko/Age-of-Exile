@@ -32,7 +32,7 @@ public class AllAttributes extends Stat implements ITransferToOtherStats {
     }
 
     public List<BaseCoreStat> coreStatsThatBenefit() {
-        return Arrays.asList(Wisdom.INSTANCE, Dexterity.INSTANCE, Intelligence.INSTANCE, Strength.INSTANCE, Willpower.INSTANCE, Vitality.INSTANCE);
+        return Arrays.asList(Dexterity.INSTANCE, Intelligence.INSTANCE, Strength.INSTANCE);
     }
 
     @Override

@@ -2,7 +2,9 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
@@ -41,19 +43,13 @@ public class Perks implements ISlashRegistryInit {
         start2.one_of_a_kind = "start";
         start2.addToSerializables();
 
-        PerkBuilder.stat("int", new OptScaleExactStat(1, Intelligence.INSTANCE, ModType.FLAT));
-        PerkBuilder.stat("dex", new OptScaleExactStat(1, Dexterity.INSTANCE, ModType.FLAT));
-        PerkBuilder.stat("str", new OptScaleExactStat(1, Strength.INSTANCE, ModType.FLAT));
-        PerkBuilder.stat("wis", new OptScaleExactStat(1, Wisdom.INSTANCE, ModType.FLAT));
-        PerkBuilder.stat("vit", new OptScaleExactStat(1, Vitality.INSTANCE, ModType.FLAT));
-        PerkBuilder.stat("wil", new OptScaleExactStat(1, Willpower.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("int", new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("dex", new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("str", new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT));
 
-        PerkBuilder.bigStat("big_int", new OptScaleExactStat(3, Intelligence.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_dex", new OptScaleExactStat(3, Dexterity.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_str", new OptScaleExactStat(3, Strength.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_wis", new OptScaleExactStat(3, Wisdom.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_vit", new OptScaleExactStat(3, Vitality.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_wil", new OptScaleExactStat(3, Willpower.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_int", new OptScaleExactStat(30, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_dex", new OptScaleExactStat(30, Dexterity.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_str", new OptScaleExactStat(30, Strength.INSTANCE, ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, CriticalHit.getInstance(), ModType.FLAT));

@@ -66,7 +66,6 @@ unlock_throw_flames
 unlock_frostball
 thunder_penetration
 strength
-willpower
 non_crit_damage
 health_per_sec
 convert_fire_to_phys
@@ -74,7 +73,6 @@ mana_steal
 unlock_teleport
 unlock_healing_aura
 water_resist
-vitality
 armor_penetration
 bow_damage
 unlock_whirlpool
@@ -82,13 +80,11 @@ mod_throw_flames_fast
 axe_damage
 magic_find
 max_fire_resist
-burning_currents
 unlock_arcane_comet
 magic_shield
 ele_wand_damage
 armor
 spell_nature_damage
-frostball_proj_speed
 unlock_passive_hunting
 unlock_recoil_shot
 spell_water_damage
@@ -97,7 +93,6 @@ wither_immunity
 max_thunder_resist
 elemental_penetration
 ele_sword_damage
-wisdom
 unlock_arcane_bolt
 fire_weapon_damage
 mob_imbue_crit
@@ -119,7 +114,6 @@ unlock_fireball
 lifesteal
 ele_bow_damage
 heal_to_dmg
-tidal_wave_mana_cost
 mod_mana_ele_res
 unlock_gorgons_gaze
 mob_imbue_phys
@@ -142,8 +136,6 @@ unlock_thorn_bush
 water_penetration
 mod_tp_ele_res
 magic_shield_per_sec
-crashing_rocks
-chilling_tides
 unlock_arrow_storm
 unlock_multi_shot
 slow_immunity
@@ -163,7 +155,6 @@ hp_to_blood
 unlock_passive_arcane
 blood_user
 poison_immunity
-fast_frostball
 mod_throw_flames_lifesteal
 melee_dmg
 mana_regen
@@ -216,7 +207,6 @@ health_on_kill
 fire_penetration
 dexterity
 convert_nature_to_phys
-frostball_chill
 magic_steal
 dmg_under_wither
 heal_effect_on_self

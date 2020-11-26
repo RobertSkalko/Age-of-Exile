@@ -106,6 +106,8 @@ because they already had a generated config that didn't change with update.
 Now as a datapack, that will only happen if the player actually changes something. 
 * Crystal of Purification no longer a random drop anymore
 * removed the lvl 10 boss golem, modify station now crafts with a diamond instead
+* will, vit, wis removed. 
+* removed stat point allocation
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

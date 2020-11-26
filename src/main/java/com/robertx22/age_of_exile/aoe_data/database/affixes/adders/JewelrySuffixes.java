@@ -4,7 +4,10 @@ import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
@@ -55,30 +58,6 @@ public class JewelrySuffixes implements ISlashRegistryInit {
         AffixBuilder.Normal("of_the_wind")
             .Named("Of the Wind")
             .coreStat(Dexterity.INSTANCE)
-            .includesTags(SlotTag.jewelry_family, SlotTag.leather)
-            .excludesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_will")
-            .Named("Of Will")
-            .coreStat(Willpower.INSTANCE)
-            .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
-            .excludesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_vitality")
-            .Named("Of Vitality")
-            .coreStat(Vitality.INSTANCE)
-            .includesTags(SlotTag.jewelry_family, SlotTag.plate)
-            .excludesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_wis")
-            .Named("Of Wisdom")
-            .coreStat(Wisdom.INSTANCE)
             .includesTags(SlotTag.jewelry_family, SlotTag.leather)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()

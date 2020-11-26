@@ -146,7 +146,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
     public enum PerkType {
         STAT(2, 24, 24, 39),
-        SPECIAL(3, 24, 26, 77),
+        SPECIAL(3, 28, 28, 77),
         MAJOR(1, 33, 33, 1),
         START(4, 23, 23, 115),
         SPELL_MOD(5, 26, 26, 153);

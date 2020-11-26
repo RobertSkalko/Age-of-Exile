@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 
@@ -41,7 +40,7 @@ public class StatRequirement implements ISerializable<StatRequirement> {
         }
 
         float calc = (float) (val * gear.getRarity()
-            .statReqMulti() * ModConfig.get().Server.STAT_POINTS_PER_LVL);
+            .statReqMulti());
 
         return (int) Dexterity.INSTANCE.scale(calc, gear.level);
     }

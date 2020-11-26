@@ -7,32 +7,45 @@ import java.util.Locale;
 
 public class GridPoint {
 
-    public int x;
-    public int y;
-    private String id;
+    static int MAX_DISTANCE = 8;
+
+    public final int x;
+    public final int y;
+    private final String id;
 
     boolean isTalent = false;
     boolean isConnector = false;
+    boolean isCenter = false;
+
+    private final PointData point;
 
     public String getId() {
-        return id.toLowerCase();
+        return id;
     }
 
     public GridPoint(int x, int y, String str) {
         this.x = x;
         this.y = y;
-        this.id = str;
+        this.id = str.toLowerCase(Locale.ROOT);
 
-        this.isTalent = isTalent();
-        this.isConnector = isConnector();
+        this.point = new PointData(x, y);
+
+        if (id.length() == 1) {
+            this.isConnector = true;
+        } else if (id.equalsIgnoreCase(CENTER_ID)) {
+            this.isCenter = true;
+        } else if (id.length() > 2) {
+            this.isTalent = true;
+        }
+
     }
 
     public boolean isInDistanceOf(GridPoint other) {
-        return Math.abs(x - other.x) < 10 && Math.abs(y - other.y) < 10;
+        return Math.abs(x - other.x) < MAX_DISTANCE && Math.abs(y - other.y) < MAX_DISTANCE;
     }
 
     public PointData getPoint() {
-        return new PointData(x, y);
+        return this.point;
     }
 
     @Override
@@ -51,24 +64,6 @@ public class GridPoint {
         return false;
     }
 
-    public String getPerk() {
-        return getId().toLowerCase(Locale.ROOT);
-    }
-
     public static String CENTER_ID = "[CENTER]";
-
-    private boolean isTalent() {
-        return id.length() > 2 && !isCenter();
-    }
-
-    public boolean isCenter() {
-        return id.equalsIgnoreCase(CENTER_ID);
-    }
-
-    static String CONNECTOR_ID = "o";
-
-    private boolean isConnector() {
-        return id.equalsIgnoreCase(CONNECTOR_ID);
-    }
 
 }

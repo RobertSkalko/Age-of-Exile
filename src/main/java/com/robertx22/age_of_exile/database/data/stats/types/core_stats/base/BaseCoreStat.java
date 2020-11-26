@@ -56,13 +56,8 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     public float getPercent(StatData data) {
-        // when nothing is allocated, show as if 1 is (as a preview)
-        return (data.getAverageValue() - 1) * 100;
-    }
 
-    public float getPercentNext(StatData data) {
-        // when nothing is allocated, show as if 1 is (as a preview)
-        return (data.getAverageValue()) * 100;
+        return ((data.getAverageValue() - 10) / 10) * 100;
     }
 
     public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
@@ -70,16 +65,11 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         TooltipInfo info = new TooltipInfo(unitdata, null);
 
         int perc = (int) getPercent(data);
-        int percnext = (int) getPercentNext(data);
 
         List<Text> list = new ArrayList<>();
         list.add(
             new LiteralText("Stats that benefit: ").formatted(Formatting.GREEN));
         getMods(perc, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
-        list.add(new LiteralText(""));
-        list.add(
-            new LiteralText("On next upgrade: ").formatted(Formatting.GREEN));
-        getMods(percnext, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 

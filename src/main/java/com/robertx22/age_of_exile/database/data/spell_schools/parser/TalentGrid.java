@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 
 import java.util.*;
 
@@ -42,73 +43,90 @@ public class TalentGrid {
 
         Set<GridPoint> perks = new HashSet<>();
 
+        Watch gridwatch = new Watch().min(500);
         for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {
                 if (point.isTalent) {
 
-                    try {
-                        String perk = point.getPerk();
-                        school.calcData.addPerk(point.getPoint(), perk);
-                        perks.add(point);
+                    school.calcData.addPerk(point.getPoint(), point.getId());
+                    perks.add(point);
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        System.out.println("PERK: " + point.getId() + " is broken!");
-                    }
-
-                } else if (point.isCenter()) {
+                } else if (point.isCenter) {
                     school.calcData.center = point.getPoint();
                 }
             }
 
         }
+        gridwatch.print(" Setting up grid ");
 
         Objects.requireNonNull(school.calcData.center, "Tree needs a center!");
 
-        //  Watch conwatch = new Watch();
+        Watch conwatch = new Watch().min(20000);
         // this can take a long time if the "hasPath" checks aren't minimized
         for (GridPoint one : perks) {
+            Set<String> connectorTypes = getConnectorTypes(one);
+
             for (GridPoint two : perks) {
                 if (one.isInDistanceOf(two)) {
-                    if (hasPath(one, two)) {
+                    if (hasPath(one, two, connectorTypes)) {
                         this.school.calcData.addConnection(one.getPoint(), two.getPoint());
                     }
                 }
             }
         }
-        // conwatch.print(" connecting tree");
+        conwatch.print(" Connecting tree ");
 
     }
 
     // this is very resource intensive
-    private boolean hasPath(GridPoint start, GridPoint end) {
-        Queue<GridPoint> openSet = new ArrayDeque<>();
-        openSet.add(start);
+    private boolean hasPath(GridPoint start, GridPoint end, Set<String> connectorTypes) {
 
-        Set<GridPoint> closedSet = new HashSet<>();
+        for (String connector : connectorTypes) {
 
-        while (!openSet.isEmpty()) {
-            GridPoint current = openSet.poll();
+            Queue<GridPoint> openSet = new ArrayDeque<>();
+            openSet.add(start);
 
-            if (current.equals(end)) {
-                return true;
+            Set<GridPoint> closedSet = new HashSet<>();
+
+            while (!openSet.isEmpty()) {
+                GridPoint current = openSet.poll();
+
+                if (!closedSet.add(current)) {
+                    continue; // we already visited it
+                }
+
+                if (current.equals(end)) {
+                    return true;
+                }
+
+                if (current.isTalent && current != start) {
+                    continue; // skip exploring this path
+                }
+
+                openSet.addAll(getEligibleSurroundingPoints(current, connector));
             }
 
-            if (!closedSet.add(current)) {
-                continue; // we already visited it
-            }
-
-            if (current.isTalent && current != start) {
-                continue; // skip exploring this path
-            }
-
-            openSet.addAll(getEligibleSurroundingPoints(current));
         }
 
         return false;
     }
 
-    public Set<GridPoint> getEligibleSurroundingPoints(GridPoint p) {
+    Set<String> getConnectorTypes(GridPoint p) {
+        Set<String> set = new HashSet<>();
+
+        for (int x = -1; x < 2; x++) {
+            for (int y = -1; y < 2; y++) {
+                GridPoint c = get(p.x + x, p.y + y);
+                if (c.isConnector) {
+                    set.add(c.getId());
+                }
+            }
+        }
+        return set;
+
+    }
+
+    public Set<GridPoint> getEligibleSurroundingPoints(GridPoint p, String connector) {
 
         Set<GridPoint> set = new HashSet<>();
         int x = p.x;
@@ -119,37 +137,28 @@ public class TalentGrid {
                 if (dx == 0 && dy == 0) {
                     continue;
                 }
-                if (isInRange(x + dx, y + dy)) {
-                    GridPoint point = get(x + dx, y + dy);
 
-                    if (Math.abs(dx) == 1 && Math.abs(dy) == 1) { // we are discovering a diagonal
-                        if (get(x + dx, y).isTalent || get(x, y + dy).isTalent) {
-                            continue; // skip this diagonal, it crosses a talent
-                        }
+                GridPoint point = get(x + dx, y + dy);
+
+                if (Math.abs(dx) == 1 && Math.abs(dy) == 1) { // we are discovering a diagonal
+                    if (get(x + dx, y).isTalent || get(x, y + dy).isTalent) {
+                        continue; // skip this diagonal, it crosses a talent
                     }
+                }
 
-                    if (point.isTalent || point.isConnector) {
+                if (point.isTalent) {
+                    set.add(point);
+                } else if (point.isConnector) {
+                    if (point.getId()
+                        .equals(connector)) {
                         set.add(point);
                     }
                 }
+
             }
         }
 
         return set;
-    }
-
-    public boolean isInRange(int x, int y) {
-
-        if (y < 2) {
-            return false;
-        }
-
-        try {
-            return get(x, y) != null;
-        } catch (Exception e) {
-        }
-
-        return false;
     }
 
 }

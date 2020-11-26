@@ -14,7 +14,6 @@ big_health
 mod_slow_bush
 arcane_devotion
 all_water_damage
-vit
 all_physical_damage_big
 nature_weapon_damage
 heart_of_chill
@@ -67,7 +66,6 @@ mod_throw_flames_fast
 big_armor
 axe_damage
 axe_damage_big
-burning_currents
 magic_shield
 armor
 ele_wand_damage
@@ -95,7 +93,6 @@ awaken_mana
 chance_of_burn
 bravery
 healing_aura
-big_wis
 thorn_armor
 ele_bow_damage
 passive_hunting
@@ -126,12 +123,8 @@ fire_weapon_damage_big
 spell_damage
 ice_flower_restore
 spell_fire_damage_big
-big_wil
 water_penetration
 mod_tp_ele_res
-crashing_rocks
-chilling_tides
-big_vit
 mod_mana_cd
 big_str
 steady_hand
@@ -151,7 +144,6 @@ health
 all_elemental_damage_big
 poisoned_weapons
 passive_arcane
-fast_frostball
 big_dex
 mod_throw_flames_lifesteal
 melee_dmg
@@ -192,10 +184,8 @@ nature_balm
 ele_crossbow_damage
 big_dodge
 magic_shield_regen
-wil
 water_weapon_damage_big
 big_increase_healing
-wis
 thunder_spear
 ele_sword_damage_big
 spell_elemental_damage_big
@@ -203,7 +193,6 @@ int
 fire_penetration
 big_magic_shield_regen
 spell_damage_big
-frostball_chill
 reckless_blows
 big_mana
 crossbow_damage_big

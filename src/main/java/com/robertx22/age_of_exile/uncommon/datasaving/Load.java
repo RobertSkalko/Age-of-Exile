@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.capability.player.PlayerFavor;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
-import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -39,10 +38,6 @@ public class Load {
         }
 
         return data;
-    }
-
-    public static PlayerStatsCap.IPlayerStatPointsData statPoints(PlayerEntity provider) {
-        return ModRegistry.COMPONENTS.PLAYER_STAT_POINTS.get(provider);
     }
 
     public static PlayerFavor favor(PlayerEntity provider) {

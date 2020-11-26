@@ -2,12 +2,12 @@ package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.capability.player.PlayerStatsCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
@@ -35,7 +35,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.*;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -44,18 +43,12 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
-import com.robertx22.age_of_exile.vanilla_mc.packets.SpendStatPointsPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
-import com.robertx22.library_of_exile.gui.HelpButton;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -171,40 +164,25 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         this.buttons.clear();
         this.children.clear();
 
-        EntityCap.UnitData data = Load.Unit(mc.player);
-        PlayerStatsCap.IPlayerStatPointsData stats = Load.statPoints(mc.player);
-
         int XSPACING = 240 / STAT_MAP.get(statToShow)
             .size();
         int YSPACING = 19;
 
         // CORE STATS
-        int xpos = guiLeft + 95;
+        int xpos = guiLeft + 75;
         int ypos = guiTop + 25;
 
         if (this.isMainScreen()) {
 
-            addButton(new StatButton(Vitality.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Vitality.INSTANCE, xpos - 19, ypos + 1));
-            ypos += 20;
-            addButton(new StatButton(Willpower.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Willpower.INSTANCE, xpos - 19, ypos + 1));
-            ypos += 20;
-            addButton(new StatButton(Wisdom.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Wisdom.INSTANCE, xpos - 19, ypos + 1));
-
             //
-            xpos += 65;
-            ypos = guiTop + 25;
+            //xpos += 65;
+            ypos = guiTop + 15;
 
             addButton(new StatButton(Strength.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Strength.INSTANCE, xpos - 19, ypos + 1));
             ypos += 20;
             addButton(new StatButton(Intelligence.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Intelligence.INSTANCE, xpos - 19, ypos + 1));
             ypos += 20;
             addButton(new StatButton(Dexterity.INSTANCE, xpos, ypos));
-            addButton(new IncreaseStatButton(data, stats, Dexterity.INSTANCE, xpos - 19, ypos + 1));
 
         }
 
@@ -231,14 +209,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         if (this.isMainScreen()) {
             List<Text> list = new ArrayList<>();
-            list.add(new LiteralText("Allocate stats here"));
-            list.add(new LiteralText(""));
-            list.add(new LiteralText("These stats determine your playstyle."));
-            list.add(new LiteralText("Points into vitality or willpower are recommended for newbies."));
-            list.add(new LiteralText(""));
-            list.add(new LiteralText("To reset stats, you need to craft:"));
-            list.add(ModRegistry.MISC_ITEMS.RESET_STATS_POTION.locName());
-            this.addButton(new HelpButton(list, guiLeft + sizeX - 30, guiTop + 5));
+            // this.addButton(new HelpButton(list, guiLeft + sizeX - 30, guiTop + 5));
 
             addButton(new FavorButton(guiLeft + sizeX - 45, guiTop + 40));
 
@@ -287,13 +258,6 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             String str = "Level: " + Load.Unit(mc.player)
                 .getLevel();
             GuiUtils.renderScaledText(matrix, xe, ye - 60, 0.6F, str, Formatting.YELLOW);
-
-            int xpos = guiLeft + 95;
-            int ypos = guiTop + 15;
-
-            String points = "Points: " + Load.statPoints(mc.player)
-                .getAvailablePoints(Load.Unit(mc.player));
-            GuiUtils.renderScaledText(matrix, xpos, ypos, 1, points, Formatting.GREEN);
 
         }
     }
@@ -391,53 +355,6 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         }
         return str;
-
-    }
-
-    class IncreaseStatButton extends TexturedButtonWidget {
-
-        PlayerStatsCap.IPlayerStatPointsData data;
-        Stat stat;
-        EntityCap.UnitData unitdata;
-
-        public IncreaseStatButton(EntityCap.UnitData unitdata, PlayerStatsCap.IPlayerStatPointsData data,
-                                  Stat stat, int xPos, int yPos) {
-            super(xPos, yPos, PLUS_BUTTON_SIZE_X, PLUS_BUTTON_SIZE_Y, 0, 0, PLUS_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
-
-                Packets.sendToServer(new SpendStatPointsPacket(stat));
-                Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
-
-            });
-
-            this.data = data;
-            this.stat = stat;
-            this.unitdata = unitdata;
-
-        }
-
-        @Override
-        public void renderToolTip(MatrixStack matrix, int x, int y) {
-            if (isInside(x, y)) {
-
-                List<Text> tooltip = new ArrayList<>();
-
-                tooltip.add(
-                    stat.locName()
-                        .formatted(Formatting.BLUE));
-
-                if (stat instanceof BaseCoreStat) {
-                    BaseCoreStat core = (BaseCoreStat) stat;
-                    tooltip.addAll(core.getCoreStatTooltip(unitdata, unitdata.getUnit()
-                        .getCalculatedStat(stat)));
-                }
-                GuiUtils.renderTooltip(matrix, tooltip, x, y);
-
-            }
-        }
-
-        public boolean isInside(int x, int y) {
-            return GuiUtils.isInRect(this.x, this.y, PLUS_BUTTON_SIZE_X, PLUS_BUTTON_SIZE_Y, x, y);
-        }
 
     }
 
