@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.mobs.bosses.GolemBossEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.SpiderEntity;
@@ -26,8 +25,6 @@ public class MobAttributes {
             .add(GENERIC_MOVEMENT_SPEED, 0.35F));
         FabricDefaultAttributeRegistry.register(ENTITIES.THUNDER_CHICKEN, SpiderEntity.createSpiderAttributes()
             .add(GENERIC_MOVEMENT_SPEED, 0.35F));
-
-        FabricDefaultAttributeRegistry.register(ENTITIES.GOLEM_BOSS, GolemBossEntity.createAttributes());
 
     }
 }

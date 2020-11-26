@@ -13,7 +13,7 @@
       "item": "minecraft:crafting_table"
     } , 
 	"B": {
-      "item": "mmorpg:mat/modify_part"
+      "item": "minecraft:diamond"
     } 
   },
   "result": {

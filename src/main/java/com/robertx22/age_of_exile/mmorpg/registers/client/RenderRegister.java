@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 import com.robertx22.age_of_exile.database.data.spells.entities.renders.ModTridentRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.renders.MySpriteRenderer;
 import com.robertx22.age_of_exile.database.data.spells.entities.renders.RangerArrowRenderer;
-import com.robertx22.age_of_exile.mobs.renders.BossGolemRenderer;
 import com.robertx22.age_of_exile.mobs.renders.MageMobRenderer;
 import com.robertx22.age_of_exile.mobs.renders.ModChickenRenderer;
 import net.minecraft.client.MinecraftClient;
@@ -32,8 +31,6 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.WATER_CHICKEN, (d, ctx) -> new ModChickenRenderer(d, "water_chicken.png"));
         INSTANCE.register(ENTITIES.NATURE_CHICKEN, (d, ctx) -> new ModChickenRenderer(d, "nature_chicken.png"));
         INSTANCE.register(ENTITIES.THUNDER_CHICKEN, (d, ctx) -> new ModChickenRenderer(d, "thunder_chicken.png"));
-
-        INSTANCE.register(ENTITIES.GOLEM_BOSS, (d, ctx) -> new BossGolemRenderer(d));
 
         INSTANCE.register(ENTITIES.SIMPLE_ARROW, (d, ctx) -> new RangerArrowRenderer<>(d));
         INSTANCE.register(ENTITIES.SIMPLE_BONE_PROJECTILE, (d, ctx) -> new RangerArrowRenderer<>(d));

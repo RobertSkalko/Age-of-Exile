@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.SimpleProjectile
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleTridentEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mobs.bosses.GolemBossEntity;
 import com.robertx22.age_of_exile.mobs.chickens.ModChicken;
 import com.robertx22.age_of_exile.mobs.mages.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -54,8 +53,6 @@ public class ModEntities {
     public EntityType<ModChicken> WATER_CHICKEN = mob(ModChicken::new, "water_chicken", chickenDim);
     public EntityType<ModChicken> NATURE_CHICKEN = mob(ModChicken::new, "nature_chicken", chickenDim);
     public EntityType<ModChicken> THUNDER_CHICKEN = mob(ModChicken::new, "thunder_chicken", chickenDim);
-
-    public EntityType<GolemBossEntity> GOLEM_BOSS = mob(GolemBossEntity::new, "boss_golem", new EntityDimensions(1.4F, 2.7F, true));
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id) {

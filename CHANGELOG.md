@@ -63,7 +63,7 @@ This bag item can be used for more than level up rewards if modpackers wish.
 This is for stats like critical damage that on a lvl 1 item give 10% crit but on lvl 50 item give 20% crit.
 This scaling is supposed to be small and only there so lvl 1 items never get to be better than lvl 50 items. (in case they have no scaling stats)
 High level players should feel less overpowered now.
-* added spell cast hotkey! Retained right click cast as a config
+* added spell cast hotkey! 
 * items from craftable utilities mod have been transfered to this mod and are now part of inscribing skill
 * fix items not being enchantable at anvil (this might not fix existing items)
 * removed other gui overlay types as this one is configurable enough that it can replace them. 
@@ -104,6 +104,8 @@ You shouldn't notice your spells missing at all as long as you aren't fighting m
 Reason: too many times did I change the base stats and players with old configs had completely screwed games, 
 because they already had a generated config that didn't change with update. 
 Now as a datapack, that will only happen if the player actually changes something. 
+* Crystal of Purification no longer a random drop anymore
+* removed the lvl 10 boss golem, modify station now crafts with a diamond instead
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

@@ -27,7 +27,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
 
     @Override
     public int getWeight() {
-        return 500;
+        return 0;
     }
 
     public CrystalOfPurificationItem() {
@@ -74,7 +74,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.CRYSTAL_OF_PURIFICATION)
+        return shaped(this)
             .input('t', ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
             .input('v', ModRegistry.GEAR_MATERIALS.ARCANA)
             .input('o', ModRegistry.MISC_ITEMS.T3_DUST)

@@ -38,7 +38,6 @@ public class FarmingAdder {
         b.skill.dropTables.add(skillDrops.build());
         b.skill.dropTables.add(rareDrops.build());
 
-        b.blockExp(Blocks.MELON, 15);
         b.blockExp(Blocks.WHEAT, 7);
         b.blockExp(Blocks.POTATOES, 7);
         b.blockExp(Blocks.CARROTS, 7);

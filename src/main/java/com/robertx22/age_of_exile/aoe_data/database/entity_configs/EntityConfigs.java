@@ -6,8 +6,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
 
@@ -63,12 +61,6 @@ public class EntityConfigs implements ISlashRegistryInit {
     }
 
     void setupMyMobs() {
-        EntityConfig golem = mob(ModRegistry.ENTITIES.GOLEM_BOSS, new SpecialMobStats());
-        golem.max_lvl = 10;
-        golem.min_lvl = 10;
-        golem.min_rarity = IRarity.Boss;
-        golem.max_rarity = IRarity.Boss;
-
         mob(ENTITIES.FIRE_CHICKEN, fire());
         mob(ENTITIES.WATER_CHICKEN, water());
         mob(ENTITIES.NATURE_CHICKEN, nature());
