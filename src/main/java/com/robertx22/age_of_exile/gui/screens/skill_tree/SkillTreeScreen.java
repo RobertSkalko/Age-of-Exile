@@ -98,6 +98,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     public void removePerkButtons() {
         this.buttons.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
         this.children.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
+
     }
 
     @Override
@@ -207,7 +208,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                         int x = (int) (point.x - ((float) size / 2));
                         int y = (int) (point.y - ((float) size / 2));
 
-                        this.newButton(new ConnectionButton(school, p, pb.point, x, y));
+                        newButton(new ConnectionButton(school, p, pb.point, x, y));
 
                     }
 
@@ -219,6 +220,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     }
 
     public void refreshButtons() {
+
+        //Watch watch = new Watch();
 
         originalButtonLocMap.clear();
         pointPerkButtonMap.clear();
@@ -291,6 +294,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
 
         addConnections();
+
+        //       watch.print(" Setting up buttons ");
 
     }
 
@@ -421,13 +426,16 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
+        // Watch watch = new Watch();
+
         try {
 
             this.buttons.forEach(b -> {
+
                 if (originalButtonLocMap.containsKey(b)) {
-                    b.x = (int) (this.originalButtonLocMap.get(b).
+                    b.x = (this.originalButtonLocMap.get(b).
                         x + scrollX);
-                    b.y = (int) (this.originalButtonLocMap.get(b)
+                    b.y = (this.originalButtonLocMap.get(b)
                         .y + scrollY);
                 }
             });
@@ -469,6 +477,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             e.printStackTrace();
         }
 
+        //watch.print(" rendering ");
     }
 
     private void renderPanels(MatrixStack matrix) {

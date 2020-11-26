@@ -108,6 +108,7 @@ Now as a datapack, that will only happen if the player actually changes somethin
 * removed the lvl 10 boss golem, modify station now crafts with a diamond instead
 * will, vit, wis removed. 
 * removed stat point allocation
+* talent screen lag optimization
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

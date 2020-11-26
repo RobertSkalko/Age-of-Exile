@@ -94,11 +94,9 @@ public class TalentGrid {
                 if (!closedSet.add(current)) {
                     continue; // we already visited it
                 }
-
                 if (current.equals(end)) {
                     return true;
                 }
-
                 if (current.isTalent && current != start) {
                     continue; // skip exploring this path
                 }

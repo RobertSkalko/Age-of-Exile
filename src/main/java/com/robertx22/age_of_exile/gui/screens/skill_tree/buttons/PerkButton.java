@@ -97,10 +97,19 @@ public class PerkButton extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        MinecraftClient mc = MinecraftClient.getInstance();
+
+        if (this.x < 0 || this.x > mc.getWindow()
+            .getScaledWidth()) {
+            return; // if outside of screen, don't waste time rendering it
+        }
+        if (this.y < 0 || this.y > mc.getWindow()
+            .getScaledHeight()) {
+            return; // if outside of screen, don't waste time rendering it
+        }
 
         PerkStatus status = enperks.getStatus(MinecraftClient.getInstance().player, school, point);
 
-        MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
             .bindTexture(ID);
 

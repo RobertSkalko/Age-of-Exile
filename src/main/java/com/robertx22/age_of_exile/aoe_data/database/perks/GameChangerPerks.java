@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.NonCritDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
@@ -57,8 +56,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("steady_hand",
-            new OptScaleExactStat(-100, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-100, CriticalHit.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-500, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(20, TotalDamage.getInstance(), ModType.FLAT)
         );
 

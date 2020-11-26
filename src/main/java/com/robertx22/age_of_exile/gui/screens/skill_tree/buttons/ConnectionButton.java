@@ -20,6 +20,7 @@ public class ConnectionButton extends TexturedButtonWidget {
     SpellSchool school;
     PointData one;
     PointData two;
+    MinecraftClient mc = MinecraftClient.getInstance();
 
     public ConnectionButton(SpellSchool school, PointData one, PointData two, int x, int y) {
         super(x, y, SIZE, SIZE, 0, 0, 0, ID, (action) -> {
@@ -29,13 +30,28 @@ public class ConnectionButton extends TexturedButtonWidget {
         this.two = two;
     }
 
+    int ticks = 0;
+    Perk.Connection connection;
+
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 
-        Perk.Connection connection = Load.perks(MinecraftClient.getInstance().player)
-            .getConnection(school, one, two);
+        if (this.x < 0 || this.x > mc.getWindow()
+            .getScaledWidth()) {
+            return; // if outside of screen, don't waste time rendering it
+        }
+        if (this.y < 0 || this.y > mc.getWindow()
+            .getScaledHeight()) {
+            return; // if outside of screen, don't waste time rendering it
+        }
 
-        MinecraftClient mc = MinecraftClient.getInstance();
+        ticks++;
+
+        if (connection == null || ticks % 10 == 0) {
+            connection = Load.perks(mc.player)
+                .getConnection(school, one, two);
+        }
+
         mc.getTextureManager()
             .bindTexture(ID);
         RenderSystem.enableDepthTest();
