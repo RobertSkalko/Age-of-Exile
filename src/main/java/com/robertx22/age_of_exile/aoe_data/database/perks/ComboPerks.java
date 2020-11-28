@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -10,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 public class ComboPerks implements ISlashRegistryInit {
@@ -46,6 +48,11 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Mana.getInstance(), ModType.FLAT)
         );
 
+        PerkBuilder.stat("flat_health_phys_dmg",
+            new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.FLAT)
+        );
+
         PerkBuilder.stat("flat_mana_reg_melee_dmg",
             new OptScaleExactStat(1, ManaRegen.getInstance(), ModType.FLAT),
             new OptScaleExactStat(2, AttackStyleDamage.MELEE, ModType.FLAT)
@@ -59,6 +66,11 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         );
+        PerkBuilder.stat("armor_and_health",
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
         PerkBuilder.stat("dodge_and_ms",
             new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, MagicShield.getInstance(), ModType.LOCAL_INCREASE)

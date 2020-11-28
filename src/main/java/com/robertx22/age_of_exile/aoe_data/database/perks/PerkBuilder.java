@@ -71,7 +71,7 @@ public class PerkBuilder {
         return perk;
     }
 
-    public static Perk gameChanger(String id, OptScaleExactStat... stats) {
+    public static Perk gameChanger(String id, String locname, OptScaleExactStat... stats) {
         Perk perk = new Perk();
 
         perk.stats = new ArrayList<>();
@@ -79,6 +79,7 @@ public class PerkBuilder {
         for (OptScaleExactStat stat : stats) {
             perk.stats.add(stat);
         }
+        perk.locname = locname;
         perk.type = Perk.PerkType.MAJOR;
         perk.identifier = id;
         perk.icon = new Identifier(Ref.MODID, "textures/gui/stat_icons/game_changers/" + id + ".png")

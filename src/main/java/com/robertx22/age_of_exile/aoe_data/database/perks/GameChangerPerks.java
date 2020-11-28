@@ -26,67 +26,67 @@ public class GameChangerPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        PerkBuilder.gameChanger("blood_mage",
+        PerkBuilder.gameChanger("blood_mage", "Blood Mage",
             new OptScaleExactStat(1, BloodUser.getInstance(), ModType.FLAT),
             new OptScaleExactStat(50, HealthRestorationToBlood.getInstance(), ModType.FLAT),
             new OptScaleExactStat(50, DatapackStatAdder.HEALTH_TO_BLOOD, ModType.FLAT),
             new OptScaleExactStat(-100, Mana.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
-        PerkBuilder.gameChanger("arcane_devotion",
+        PerkBuilder.gameChanger("arcane_devotion", "Arcane Devotion",
             new OptScaleExactStat(-50, Health.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-50, HealthRegen.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-50, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(25, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
-        PerkBuilder.gameChanger("elemental_purity",
+        PerkBuilder.gameChanger("elemental_purity", "Elemental Purity",
             new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(-50, new ElementalDamageBonus(Elements.Physical), ModType.FLAT)
         );
 
-        PerkBuilder.gameChanger("reckless_blows",
+        PerkBuilder.gameChanger("reckless_blows", "Reckless Blows",
             new OptScaleExactStat(-50, HealthRegen.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(15, new ElementalPenetration(Elements.Elemental), ModType.FLAT)
         );
 
-        PerkBuilder.gameChanger("overflowing_vitality",
+        PerkBuilder.gameChanger("overflowing_vitality", "Overflowing Vitality",
             new OptScaleExactStat(0.5F, DatapackStatAdder.CONVERT_HEALTH_TO_PHYS_DMG, ModType.FLAT),
             new OptScaleExactStat(-10, Health.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
-        PerkBuilder.gameChanger("steady_hand",
+        PerkBuilder.gameChanger("steady_hand", "Steady Hand",
             new OptScaleExactStat(-500, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(20, TotalDamage.getInstance(), ModType.FLAT)
         );
 
-        PerkBuilder.gameChanger("true_hit",
+        PerkBuilder.gameChanger("true_hit", "True Hit",
             new OptScaleExactStat(25, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-25, NonCritDamage.getInstance(), ModType.FLAT)
         );
 
-        PerkBuilder.gameChanger("harmony",
+        PerkBuilder.gameChanger("harmony", "Harmony",
             new OptScaleExactStat(50, HealToMagicShield.getInstance(), ModType.FLAT)
         );
 
-        PerkBuilder.gameChanger("mana_battery",
+        PerkBuilder.gameChanger("mana_battery", "Mana Battery",
             new OptScaleExactStat(50, DamageAbsorbedByMana.getInstance(), ModType.FLAT),
             new OptScaleExactStat(-20, Health.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-15, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-10, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
-        PerkBuilder.gameChanger("magical_life",
+        PerkBuilder.gameChanger("magical_life", "Magical Life",
             new OptScaleExactStat(50, DatapackStatAdder.CONVERT_MAGIC_SHIELD_TO_HEALTH, ModType.FLAT)
         );
 
-        PerkBuilder.gameChanger("familiar_instincts",
+        PerkBuilder.gameChanger("familiar_instincts", "Familiar Instincts",
             new OptScaleExactStat(25, DatapackStatAdder.DODGE_TO_ELE_DODGE, ModType.FLAT),
             new OptScaleExactStat(-25, Armor.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-25, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
-        PerkBuilder.gameChanger("divinity",
+        PerkBuilder.gameChanger("divinity", "Divinity",
             new OptScaleExactStat(25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
             new OptScaleExactStat(-50, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE)
         );
