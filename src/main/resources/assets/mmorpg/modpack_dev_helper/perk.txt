@@ -6,6 +6,7 @@ big_flow_of_mana
 mod_tp_dmg
 thorn_armor
 throw_flames
+big_wand
 ele_bow_damage
 passive_divine
 passive_hunting
@@ -34,6 +35,7 @@ heart_of_chill
 big_force_of_will
 mod_fast_bush
 mod_magma_flower_heal
+armor_and_dodge
 str
 big_mana_and_health
 cast_speed
@@ -60,12 +62,14 @@ big_frog
 crit_dmg
 mod_mana_cd
 big_vampire
+spell_critical_damage
 big_str
 tidal_wave
 steady_hand
 heart_of_magic
 trickery
 nature_resist
+mana_cost_red
 volcano
 mod_tp_fast
 spell_elemental_damage
@@ -92,6 +96,8 @@ all_nature_damage
 mod_imbue_ele
 chance_of_poison
 mana
+spell_critical_hit
+flat_mana_reg_melee_dmg
 mana_and_health
 poisoned_weapons
 passive_arcane
@@ -109,6 +115,7 @@ big_aspect_of_nature
 mana_battery
 big_iron_skin
 thunder_weapon_damage
+flat_health_mana
 magic_dmg
 wand_damage
 overflowing_vitality
@@ -130,7 +137,10 @@ health_regen
 big_blood_siphon
 spell_fire_damage
 frost_armor
+dodge_and_ms
+big_spell_crit
 magic_shield
+big_health_mana_cost
 big_armor_and_ms
 magical_life
 elemental_purity

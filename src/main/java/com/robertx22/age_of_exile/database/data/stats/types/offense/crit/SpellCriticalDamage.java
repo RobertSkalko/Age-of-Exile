@@ -38,7 +38,7 @@ public class SpellCriticalDamage extends Stat implements IStatEffects {
 
     @Override
     public Elements getElement() {
-        return null;
+        return Elements.Physical;
     }
 
     @Override

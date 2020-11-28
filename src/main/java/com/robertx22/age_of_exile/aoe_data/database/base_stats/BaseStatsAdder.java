@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellAccuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
@@ -31,8 +33,11 @@ public class BaseStatsAdder implements ISlashRegistryInit {
 
         c.nonScaled(Health.getInstance(), 20);
         c.nonScaled(Mana.getInstance(), 40);
+
         c.nonScaled(CriticalHit.getInstance(), 1);
         c.nonScaled(CriticalDamage.getInstance(), 0);
+        c.nonScaled(SpellCriticalHit.getInstance(), 1);
+        c.nonScaled(SpellCriticalDamage.getInstance(), 0);
 
         c.scaled(SpellAccuracy.getInstance(), 10);
         c.scaled(Accuracy.getInstance(), 20);

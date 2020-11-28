@@ -12,6 +12,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
@@ -25,6 +27,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaO
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -35,9 +38,14 @@ public class BigPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        PerkBuilder.bigStat("big_int", "Power", new OptScaleExactStat(30, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_int", "Wisdom", new OptScaleExactStat(30, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_dex", "Skill", new OptScaleExactStat(30, Dexterity.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_str", "Wisdom", new OptScaleExactStat(30, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_str", "Power", new OptScaleExactStat(30, Strength.INSTANCE, ModType.FLAT));
+
+        PerkBuilder.bigStat("big_spell_crit", "Destruction",
+            new OptScaleExactStat(5, SpellCriticalHit.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(15, SpellCriticalDamage.getInstance(), ModType.FLAT)
+        );
 
         PerkBuilder.bigStat("big_wand", "Wand Master",
             new OptScaleExactStat(10, new SpecificWeaponDamage(WeaponTypes.Wand), ModType.FLAT),
@@ -176,7 +184,13 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_armor_and_ms", "Magical Armor",
+            new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
             new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, MagicShield.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("big_health_mana_cost", "Righteous Indignation",
+            new OptScaleExactStat(5, ReducedManaCost.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
             new OptScaleExactStat(5, MagicShield.getInstance(), ModType.LOCAL_INCREASE)
         );
 

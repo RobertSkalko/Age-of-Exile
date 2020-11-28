@@ -144,6 +144,7 @@ slow_immunity
 mana_burn_resist
 mod_mana_cd
 increased_quantity
+spell_critical_damage
 max_water_resist
 unlock_awaken_mana
 nature_resist
@@ -155,6 +156,7 @@ health
 unlock_passive_ocean
 hp_to_blood
 unlock_passive_arcane
+spell_critical_hit
 blood_user
 poison_immunity
 mod_throw_flames_lifesteal
@@ -167,6 +169,7 @@ thunder_weapon_damage
 magic_dmg
 day_dmg
 wand_damage
+global_critical_hit
 damage_shield
 unlock_imbue
 critical_damage

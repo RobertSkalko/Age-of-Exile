@@ -10,6 +10,7 @@ public class ReducedManaCost extends Stat implements IStatEffects {
 
     private ReducedManaCost() {
         this.max_val = 75;
+
     }
 
     public static ReducedManaCost getInstance() {
