@@ -9,8 +9,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;

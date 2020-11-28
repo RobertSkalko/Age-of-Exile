@@ -10,6 +10,10 @@ public class DamageToAffectedEffect extends BaseDamageIncreaseEffect {
 
     ExileEffect eff;
 
+    public DamageToAffectedEffect(ExileEffect eff) {
+        this.eff = eff;
+    }
+
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
         return effect.target.hasStatusEffect(eff.getStatusEffect());

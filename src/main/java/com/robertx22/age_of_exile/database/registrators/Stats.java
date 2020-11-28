@@ -13,8 +13,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
@@ -121,6 +123,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ExtraMobDropsStat.getInstance());
                     add(BonusExp.getInstance());
                     add(BonusFavor.getInstance());
+                    add(DamageTakenToMana.getInstance());
 
                     add(new UnknownStat());
 
@@ -150,6 +153,10 @@ public class Stats implements ISlashRegistryInit {
                     add(Armor.getInstance());
                     add(CriticalDamage.getInstance());
                     add(CriticalHit.getInstance());
+                    add(SpellCriticalDamage.getInstance());
+                    add(SpellCriticalHit.getInstance());
+                    add(GlobalCriticalDamage.getInstance());
+                    add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
                     add(ElementalDodge.getInstance());

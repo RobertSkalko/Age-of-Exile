@@ -1,13 +1,13 @@
-package com.robertx22.age_of_exile.database.data.stats.effects.offense;
+package com.robertx22.age_of_exile.database.data.stats.effects.offense.crit;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseAnyEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.ICrittable;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
-public class CriticalHitEffect extends BaseAnyEffect {
+public class CriticalHitEffect extends BaseDamageEffect {
 
     private CriticalHitEffect() {
     }
@@ -27,15 +27,14 @@ public class CriticalHitEffect extends BaseAnyEffect {
     }
 
     @Override
-    public EffectData activate(EffectData effect, StatData data, Stat stat) {
-        ((ICrittable) effect).setCrit(true);
-
+    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        effect.setCrit(true);
         return effect;
     }
 
     @Override
-    public boolean canActivate(EffectData effect, StatData data, Stat stat) {
-        return effect instanceof ICrittable && RandomUtils.roll(data.getAverageValue());
+    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        return EffectUtils.isConsideredAWeaponAttack(effect) && RandomUtils.roll(data.getAverageValue());
     }
 
     private static class SingletonHolder {

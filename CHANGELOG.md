@@ -115,6 +115,10 @@ Now as a datapack, that will only happen if the player actually changes somethin
 "That one talent that gives int, health and mana" is probably not nice to say.
 * added projectile damage stat, useful way of adding damage to both rangers and mages with projectile spells
 * spell datapacks now have a tag field, projectile spells have projectile tag there.
+* added damage taken to mana stat
+* added spell crit chance and damage stats, "critical chance" now doesn't affect spells unless it has "spell" in the name.
+* added all critical chance and damage stats, increases for both attack and spell based crits.
+
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

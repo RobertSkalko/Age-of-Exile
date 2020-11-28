@@ -9,6 +9,7 @@ dodge_to_ele_doddge
 spell_thunder_damage
 unlock_passive_nature
 trident_damage
+mana_to_ms
 increase_healing
 bonus_exp
 bonus_favor
@@ -28,6 +29,7 @@ mod_fast_bush
 mod_magma_flower_heal
 unlock_arrow_barrage
 cdr
+projectile_damage
 all_elemental_damage
 chance_of_static
 unlock_thunder_storm
@@ -212,3 +214,4 @@ dmg_under_wither
 heal_effect_on_self
 thorn_bush_cooldown
 hunger_immunity
+dmg_taken_to_mana

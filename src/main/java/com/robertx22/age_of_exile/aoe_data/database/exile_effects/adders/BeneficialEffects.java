@@ -12,8 +12,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;

@@ -1,33 +1,34 @@
-package com.robertx22.age_of_exile.database.data.stats.types.offense;
+package com.robertx22.age_of_exile.database.data.stats.types.offense.crit;
 
+import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.CriticalDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.CriticalHitEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class CriticalDamage extends Stat implements IStatEffects {
+public class CriticalHit extends Stat implements IStatEffects, ILocalStat {
 
-    public static String GUID = "critical_damage";
+    public static String GUID = "critical_hit";
 
-    public static CriticalDamage getInstance() {
+    public static CriticalHit getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "If Critical, multiply by x";
+        return "Chance to multiply attack damage by critical damage";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new CriticalDamageEffect();
+        return CriticalHitEffect.getInstance();
     }
 
-    private CriticalDamage() {
-        this.base_val = 50;
+    private CriticalHit() {
+        this.base_val = 1;
+        this.max_val = 100;
         this.min_val = 0;
-        this.max_val = 500;
         this.statGroup = StatGroup.MAIN;
     }
 
@@ -48,10 +49,10 @@ public class CriticalDamage extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Critical Damage";
+        return "Critical Chance";
     }
 
     private static class SingletonHolder {
-        private static final CriticalDamage INSTANCE = new CriticalDamage();
+        private static final CriticalHit INSTANCE = new CriticalHit();
     }
 }

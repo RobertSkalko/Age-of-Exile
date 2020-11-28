@@ -2,12 +2,10 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 public class RegeneratePercentStat extends Stat {
 
@@ -21,18 +19,9 @@ public class RegeneratePercentStat extends Stat {
         this.statRestored = statRestored;
         this.scaling = StatScaling.NONE;
 
+        this.add$To$toTooltip = false;
         this.statGroup = StatGroup.RESTORATION;
 
-    }
-
-    @Override
-    public StatNameRegex getStatNameRegex() {
-        return new StatNameRegex() {
-            @Override
-            public String getStatNameRegex(ModType type, Stat stat, float v1, float v2) {
-                return "Restore " + StatNameRegex.VALUE + " " + StatNameRegex.NAME;
-            }
-        };
     }
 
     @Override

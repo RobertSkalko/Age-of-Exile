@@ -1,11 +1,19 @@
-package com.robertx22.age_of_exile.database.data.stats.effects.offense;
+package com.robertx22.age_of_exile.database.data.stats.effects.offense.crit;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 
-public class CriticalDamageEffect extends BaseDamageEffect {
+public class SpellCriticalDamageEffect extends BaseDamageEffect {
+
+    private SpellCriticalDamageEffect() {
+    }
+
+    public static SpellCriticalDamageEffect getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Override
     public int GetPriority() {
@@ -26,6 +34,13 @@ public class CriticalDamageEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.isCriticalHit() && !effect.accuracyCritRollFailed;
+        return
+            EffectUtils.isConsideredASpellAttack(effect)
+                && effect.isCriticalHit()
+                && !effect.accuracyCritRollFailed;
+    }
+
+    private static class SingletonHolder {
+        private static final SpellCriticalDamageEffect INSTANCE = new SpellCriticalDamageEffect();
     }
 }

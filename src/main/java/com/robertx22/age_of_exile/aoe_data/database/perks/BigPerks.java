@@ -8,11 +8,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
@@ -25,7 +24,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -37,6 +38,23 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_int", "Power", new OptScaleExactStat(30, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_dex", "Skill", new OptScaleExactStat(30, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_str", "Wisdom", new OptScaleExactStat(30, Strength.INSTANCE, ModType.FLAT));
+
+        PerkBuilder.bigStat("big_wand", "Wand Master",
+            new OptScaleExactStat(10, new SpecificWeaponDamage(WeaponTypes.Wand), ModType.FLAT),
+            new OptScaleExactStat(5, CriticalHit.getInstance(), ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_sadist", "Sadist",
+            new OptScaleExactStat(2, DamageTakenToMana.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_balistic", "Ballistics Expert",
+            new OptScaleExactStat(5, ProjectileDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, ProjectileSpeedStat.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(20, Dexterity.INSTANCE, ModType.FLAT)
+        );
 
         PerkBuilder.bigStat("big_hunter", "Soul of the Hunter",
             new OptScaleExactStat(5, AttackStyleDamage.RANGED, ModType.FLAT),
@@ -101,15 +119,20 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_overflow_mana", "Overflowing Mana",
-            new OptScaleExactStat(15, Mana.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(15, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(1, ManaOnHit.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(2, ManaOnHit.getInstance(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_ele_protection", "Elemental Protection",
             new OptScaleExactStat(1, new MaxElementalResist(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(5, new ElementalResist(Elements.Elemental), ModType.FLAT),
-            new OptScaleExactStat(5, MagicShield.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(5, MagicShield.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("big_force_of_will", "Force of Will",
+            new OptScaleExactStat(20, MagicShield.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(1, new MaxElementalResist(Elements.Elemental), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_blood_siphon", "Blood Stealing",

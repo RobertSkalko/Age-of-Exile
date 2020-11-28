@@ -1,18 +1,18 @@
-package com.robertx22.age_of_exile.database.data.stats.effects.offense;
+package com.robertx22.age_of_exile.database.data.stats.effects.offense.crit;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.CriticalHitEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 
-public class NonCritDamageEffect extends BaseDamageEffect {
+public class CriticalDamageEffect extends BaseDamageEffect {
 
-    private NonCritDamageEffect() {
+    private CriticalDamageEffect() {
     }
 
-    public static NonCritDamageEffect getInstance() {
-        return NonCritDamageEffect.SingletonHolder.INSTANCE;
+    public static CriticalDamageEffect getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -34,11 +34,13 @@ public class NonCritDamageEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.isCriticalHit();
+        return
+            EffectUtils.isConsideredAWeaponAttack(effect)
+                && effect.isCriticalHit()
+                && !effect.accuracyCritRollFailed;
     }
 
     private static class SingletonHolder {
-        private static final NonCritDamageEffect INSTANCE = new NonCritDamageEffect();
+        private static final CriticalDamageEffect INSTANCE = new CriticalDamageEffect();
     }
 }
-

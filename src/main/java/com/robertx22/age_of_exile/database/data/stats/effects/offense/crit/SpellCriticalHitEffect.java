@@ -1,24 +1,24 @@
-package com.robertx22.age_of_exile.database.data.stats.effects.offense;
+package com.robertx22.age_of_exile.database.data.stats.effects.offense.crit;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.CriticalHitEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
-public class NonCritDamageEffect extends BaseDamageEffect {
+public class SpellCriticalHitEffect extends BaseDamageEffect {
 
-    private NonCritDamageEffect() {
+    private SpellCriticalHitEffect() {
     }
 
-    public static NonCritDamageEffect getInstance() {
-        return NonCritDamageEffect.SingletonHolder.INSTANCE;
+    public static SpellCriticalHitEffect getInstance() {
+        return SpellCriticalHitEffect.SingletonHolder.INSTANCE;
     }
 
     @Override
     public int GetPriority() {
-        return Priority.afterThis(CriticalHitEffect.getInstance()
-            .GetPriority());
+        return Priority.First.priority;
     }
 
     @Override
@@ -28,17 +28,16 @@ public class NonCritDamageEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.percentIncrease += data.getAverageValue();
+        effect.setCrit(true);
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.isCriticalHit();
+        return EffectUtils.isConsideredASpellAttack(effect) && RandomUtils.roll(data.getAverageValue());
     }
 
     private static class SingletonHolder {
-        private static final NonCritDamageEffect INSTANCE = new NonCritDamageEffect();
+        private static final SpellCriticalHitEffect INSTANCE = new SpellCriticalHitEffect();
     }
 }
-
