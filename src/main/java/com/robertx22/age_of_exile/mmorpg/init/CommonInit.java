@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.mmorpg.init;
 
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.aoe_data.GeneratedData;
-import com.robertx22.age_of_exile.aoe_data.datapacks.passive_parser.PassiveJsonParser;
 import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
@@ -40,7 +39,6 @@ public class CommonInit implements ModInitializer {
     public void onInitialize() {
 
         Watch watch = new Watch();
-        PassiveJsonParser.generate();
 
         MapField.init();
         EffectCondition.init();
@@ -84,9 +82,9 @@ public class CommonInit implements ModInitializer {
             }
         });
 
-        //testSkillLevelCurve();
+        testSkillLevelCurve();
 
-        // testLevelCurve();
+        testLevelCurve();
 
 
         /*

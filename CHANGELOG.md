@@ -109,6 +109,12 @@ Now as a datapack, that will only happen if the player actually changes somethin
 * will, vit, wis removed. 
 * removed stat point allocation
 * talent screen lag optimization
+* changed identifier of some perks, instead of spell_dmg_big, it's now big_spell_damage etc.
+* max level changed to 100
+* big talent perks now have a name and identity, to more easily share builds
+"That one talent that gives int, health and mana" is probably not nice to say.
+* added projectile damage stat, useful way of adding damage to both rangers and mages with projectile spells
+* spell datapacks now have a tag field, projectile spells have projectile tag there.
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

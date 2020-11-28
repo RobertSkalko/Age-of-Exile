@@ -35,6 +35,6 @@ public class ServerContainer {
 
     public List<String> IGNORED_ENTITIES = Arrays.asList("minecraft:bat");
 
-    public int MAX_LEVEL = 50;
+    public int MAX_LEVEL = 100;
 
 }

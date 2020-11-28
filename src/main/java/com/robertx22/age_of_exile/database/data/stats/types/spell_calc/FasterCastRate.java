@@ -33,7 +33,7 @@ public class FasterCastRate extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Faster Cast Rate";
+        return "Spell Cast Speed";
     }
 
     @Override

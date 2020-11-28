@@ -17,7 +17,7 @@ public class Accuracy extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases your chance to hit, also affects chance to crit. Specifically it decreases opponent's chance to dodge";
+        return "Increases your chance to hit, low accuracy also causes crits to fail. Specifically it decreases opponent's chance to dodge";
     }
 
     @Override

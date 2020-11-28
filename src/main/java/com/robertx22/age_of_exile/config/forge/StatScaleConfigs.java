@@ -23,7 +23,7 @@ public class StatScaleConfigs {
 
         SLOW_STAT_SCALING = new LevelScalingConfig(Arrays.asList(new LevelScalingRangePart(0F, 1F, 1, 1.25F)));
 
-        MANA_COST_SCALING = new LevelScalingConfig(Arrays.asList(new LevelScalingRangePart(0F, 1F, 1, 25)));
+        MANA_COST_SCALING = new LevelScalingConfig(Arrays.asList(new LevelScalingRangePart(0F, 1F, 1, 10)));
 
     }
 }

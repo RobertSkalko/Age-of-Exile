@@ -5,24 +5,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum WeaponTypes {
-    None(false, "none", false),
-    Axe(true, "axe", true),
+    None(false, "none", false, false),
+    Axe(true, "axe", true, false),
     //Hammer(true, "hammer", true),
-    Trident(true, "trident", false),
-    Bow(true, "bow", false),
-    Sword(true, "sword", true),
-    CrossBow(true, "crossbow", false),
-    Wand(true, "wand", true);
+    Trident(true, "trident", false, false),
+    Bow(true, "bow", false, true),
+    Sword(true, "sword", true, false),
+    CrossBow(true, "crossbow", false, true),
+    Wand(true, "wand", true, false);
 
-    WeaponTypes(boolean isSingleType, String id, boolean melee) {
+    WeaponTypes(boolean isSingleType, String id, boolean melee, boolean isProjectile) {
         this.isSingleType = isSingleType;
         this.id = id;
         this.isMelee = melee;
+        this.isProjectile = isProjectile;
     }
 
     boolean isSingleType = true;
     public String id;
     public boolean isMelee;
+    public boolean isProjectile;
 
     public static List<WeaponTypes> getAll() {
 

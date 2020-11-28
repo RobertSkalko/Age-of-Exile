@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
@@ -28,7 +29,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, ITooltipList, IByteBuf<Perk> {
+public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, ITooltipList, IByteBuf<Perk>, IAutoLocName {
     public static Perk SERIALIZER = new Perk();
 
     public PerkType type;
@@ -37,6 +38,8 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public String lock_under_adv = "";
     public String icon = "";
     public String one_of_a_kind = null;
+
+    public transient String locname = "";
 
     public boolean is_entry = false;
     public int lvl_req = 1;
@@ -108,6 +111,10 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
         try {
 
+            if (this.type != PerkType.STAT) {
+                list.add(locName().formatted(type.format));
+            }
+
             if (spell != null && !spell.GUID()
                 .isEmpty()) {
                 list.addAll(new SpellCastContext(info.player, 0, getSpell()).calcData.GetTooltipString(info));
@@ -140,28 +147,45 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         return list;
     }
 
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Talents;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".talent." + identifier;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return locname;
+    }
+
     public enum Connection {
         LINKED, BLOCKED, POSSIBLE
     }
 
     public enum PerkType {
-        STAT(2, 24, 24, 39),
-        SPECIAL(3, 28, 28, 77),
-        MAJOR(1, 33, 33, 1),
-        START(4, 23, 23, 115),
-        SPELL_MOD(5, 26, 26, 153);
+        STAT(2, 24, 24, 39, Formatting.WHITE),
+        SPECIAL(3, 28, 28, 77, Formatting.LIGHT_PURPLE),
+        MAJOR(1, 33, 33, 1, Formatting.RED),
+        START(4, 23, 23, 115, Formatting.YELLOW),
+        SPELL_MOD(5, 26, 26, 153, Formatting.BLACK);
 
         int order;
 
         public int width;
         public int height;
         private int xoff;
+        public Formatting format;
 
-        PerkType(int order, int width, int height, int xoff) {
+        PerkType(int order, int width, int height, int xoff, Formatting format) {
             this.order = order;
             this.width = width;
             this.height = height;
             this.xoff = xoff;
+            this.format = format;
         }
 
         public int getXOffset() {

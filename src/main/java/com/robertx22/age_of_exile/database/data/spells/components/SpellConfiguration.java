@@ -6,6 +6,9 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TickUtils;
 import net.minecraft.entity.LivingEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpellConfiguration {
 
     public boolean swing_arm = false;
@@ -17,6 +20,7 @@ public class SpellConfiguration {
     public boolean is_starter = false;
     public AttackPlayStyle style = AttackPlayStyle.MAGIC;
     public PassiveConfig passive_config = new PassiveConfig();
+    public List<String> tags = new ArrayList<>();
 
     public static class PassiveConfig {
         public boolean is_passive = false;
@@ -25,6 +29,10 @@ public class SpellConfiguration {
         public boolean canCastNow(LivingEntity en) {
             return HealthUtils.getCombinedHealthMulti(en) < cast_when_hp_bellow;
         }
+    }
+
+    public boolean isProjectile() {
+        return tags.contains(SpellTags.PROJECTILE);
     }
 
     public SpellConfiguration setIsStarter() {

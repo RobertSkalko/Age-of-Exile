@@ -1,9 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
-import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
-import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
+import com.robertx22.age_of_exile.database.data.spells.components.*;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 
@@ -35,6 +32,11 @@ public class SpellBuilder {
 
     public SpellBuilder attackStyle(AttackPlayStyle style) {
         this.spell.config.style = style;
+        return this;
+    }
+
+    public SpellBuilder projectile() {
+        this.spell.config.tags.add(SpellTags.PROJECTILE);
         return this;
     }
 

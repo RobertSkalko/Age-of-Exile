@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.SpecificWeaponElementalDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.SpecificWeaponElementalDamageEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;

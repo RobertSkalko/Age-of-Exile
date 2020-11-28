@@ -26,7 +26,6 @@ public class ElementalFocusEffect extends BaseDamageEffect {
 
         } else {
             effect.percentIncrease -= data.getAverageValue();
-
         }
 
         return effect;

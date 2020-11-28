@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class PerkBuilder {
     private final Perk perk = new Perk();
@@ -55,12 +56,15 @@ public class PerkBuilder {
         return perk;
     }
 
-    public static Perk stat(String id, OptScaleExactStat stat) {
+    public static Perk stat(String id, OptScaleExactStat... stat) {
+        List<OptScaleExactStat> list = Arrays.asList(stat);
+
         Perk perk = new Perk();
-        perk.stats = Arrays.asList(stat);
+        perk.stats = list;
         perk.type = Perk.PerkType.STAT;
         perk.identifier = id;
-        perk.icon = stat.getStat()
+        perk.icon = list.get(0)
+            .getStat()
             .getIconLocation()
             .toString();
         perk.addToSerializables();
@@ -83,9 +87,12 @@ public class PerkBuilder {
         return perk;
     }
 
-    public static Perk bigStat(String id, OptScaleExactStat stat) {
+    public static Perk bigStat(String id, String locname, OptScaleExactStat... stat) {
         Perk perk = stat(id, stat);
         perk.type = Perk.PerkType.SPECIAL;
+        perk.locname = locname;
+        perk.icon = new Identifier(Ref.MODID, "textures/gui/talent_icons/" + perk.identifier + ".png")
+            .toString();
         return perk;
     }
 

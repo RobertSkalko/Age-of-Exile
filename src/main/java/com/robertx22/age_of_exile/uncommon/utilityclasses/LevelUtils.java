@@ -27,7 +27,7 @@ public class LevelUtils {
     }
 
     public static int getExpRequiredForLevel(int level) {
-        return (int) (Math.pow(6F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2.35F));
+        return (int) (Math.pow(6F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2.5F));
     }
 
     public static int getExpNeededForSkillLevel(int level) {
@@ -36,7 +36,7 @@ public class LevelUtils {
     }
 
     public static int getBaseExpMobReward(int level) {
-        return 6 + (int) (Math.pow(2F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.2F));
+        return 10 + (int) (Math.pow(3F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.3F));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {

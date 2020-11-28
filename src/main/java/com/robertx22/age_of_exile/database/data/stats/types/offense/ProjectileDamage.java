@@ -2,26 +2,26 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.NightDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.ProjectileDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class NightDamage extends Stat implements IStatEffects {
+public class ProjectileDamage extends Stat implements IStatEffects {
 
-    public static String GUID = "night_dmg";
+    public static String GUID = "projectile_damage";
 
-    private NightDamage() {
+    private ProjectileDamage() {
         this.scaling = StatScaling.NONE;
     }
 
-    public static NightDamage getInstance() {
-        return NightDamage.SingletonHolder.INSTANCE;
+    public static ProjectileDamage getInstance() {
+        return ProjectileDamage.SingletonHolder.INSTANCE;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Increases dmg at night.";
+        return "Affects projectile damage, includes projectile spells like fireballs, and ranged basic attacks.";
     }
 
     @Override
@@ -41,15 +41,15 @@ public class NightDamage extends Stat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return "Damage at Night";
+        return "Projectile Damage";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return NightDamageEffect.getInstance();
+        return ProjectileDamageEffect.getInstance();
     }
 
     private static class SingletonHolder {
-        private static final NightDamage INSTANCE = new NightDamage();
+        private static final ProjectileDamage INSTANCE = new ProjectileDamage();
     }
 }

@@ -333,8 +333,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
     }
 
-    float scale = 1;
-
     int zoomedOutTimes = 0;
 
     public static boolean RETURN_ZOOM = false;
@@ -373,14 +371,11 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
         if (scroll < 0) {
-            this.scale -= 0.075F;
             zoomedOutTimes++;
         }
         if (scroll > 0) {
-            this.scale += 0.075F;
             zoomedOutTimes--;
         }
-        this.scale = MathHelper.clamp(scale, 0.25F, 1);
 
         this.zoomedOutTimes = MathHelper.clamp(zoomedOutTimes, 0, 25);
 
@@ -394,9 +389,9 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                 .getScaleFactor();
         }
 
-        if (this.zoomedOutTimes % 2 == 0) {
+        if (this.zoomedOutTimes % 1 == 0) {
             mc.getWindow()
-                .setScaleFactor(MathHelper.clamp(SAVED_SCALE_FACTOR - zoomedOutTimes * 0.1F, 0.3F, 500));
+                .setScaleFactor(MathHelper.clamp(SAVED_SCALE_FACTOR - zoomedOutTimes * 0.1F, 0.2F, 500));
             resize(mc, mc.getWindow()
                 .getScaledWidth(), mc.getWindow()
                 .getScaledHeight());

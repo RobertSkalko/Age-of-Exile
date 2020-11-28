@@ -1,33 +1,17 @@
-package com.robertx22.age_of_exile.database.data.stats.effects.offense;
+package com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 
-public class TotalDamageEffect extends BaseDamageEffect {
+public class TotalDamageEffect extends BaseDamageIncreaseEffect {
 
     private TotalDamageEffect() {
     }
 
     public static TotalDamageEffect getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public int GetPriority() {
-        return Priority.First.priority;
-    }
-
-    @Override
-    public EffectSides Side() {
-        return EffectSides.Source;
-    }
-
-    @Override
-    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.percentIncrease += data.getAverageValue();
-        return effect;
     }
 
     @Override
