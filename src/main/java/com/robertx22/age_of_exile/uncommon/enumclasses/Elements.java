@@ -2,38 +2,29 @@ package com.robertx22.age_of_exile.uncommon.enumclasses;
 
 import com.robertx22.age_of_exile.uncommon.interfaces.IColor;
 import com.robertx22.library_of_exile.utils.RGB;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum Elements implements IColor {
-    Physical(0, new RGB(240, 157, 55), false, "Physical", Formatting.GOLD, Items.COAL, "physical", "\u2726"),
-    Fire(1, new RGB(255, 0, 0), true, "Fire", Formatting.RED, Items.FIRE_CHARGE, "fire",
-        "\u2600"
-    ),
-    Water(2, new RGB(0, 128, 255), true, "Ice", Formatting.AQUA, Items.SNOWBALL, "water", "\u2749"
-    ),
-    Thunder(3, new RGB(204, 0, 255), true, "Lightning", Formatting.YELLOW, Items.GLOWSTONE_DUST,
-        "thunder", "\u272A"),
-    Nature(4, new RGB(0, 204, 0), true, "Poison", Formatting.DARK_GREEN, Items.SLIME_BALL, "nature", "\u273F"),
-    Elemental(5, new RGB(0, 0, 0), false, "Elemental", Formatting.GOLD, Items.EMERALD, "elemental", "\u269C"
-    );
+
+    Physical(0, new RGB(240, 157, 55), false, "Physical", Formatting.GOLD, "physical", "\u2726"),
+    Fire(1, new RGB(255, 0, 0), true, "Fire", Formatting.RED, "fire", "\u2600"),
+    Water(2, new RGB(0, 128, 255), true, "Ice", Formatting.AQUA, "water", "\u2749"),
+    Thunder(3, new RGB(204, 0, 255), true, "Lightning", Formatting.YELLOW, "thunder", "\u272A"),
+    Nature(4, new RGB(0, 204, 0), true, "Poison", Formatting.DARK_GREEN, "nature", "\u273F"),
+    Elemental(5, new RGB(0, 0, 0), false, "Elemental", Formatting.GOLD, "elemental", "\u269C");
 
     public boolean isSingleElement = true;
-    public Item projectileItem;
     private RGB color;
 
-    Elements(int i, RGB color, boolean isSingleElement, String dmgname, Formatting format, Item item,
-             String guidname, String icon) {
+    Elements(int i, RGB color, boolean isSingleElement, String dmgname, Formatting format, String guidname, String icon) {
         this.i = i;
         this.color = color;
         this.isSingleElement = isSingleElement;
         this.dmgName = dmgname;
         this.format = format;
-        this.projectileItem = item;
         this.guidName = guidname;
         this.icon = icon;
     }
@@ -68,6 +59,29 @@ public enum Elements implements IColor {
     @Override
     public RGB getRGBColor() {
         return color;
+    }
+
+    public boolean elementsMatch(Elements other) {
+        if (other == null) {
+            return false;
+        }
+
+        if (this == other) {
+            return true;
+        }
+
+        if (other == Elements.Elemental) {
+            if (this != Elements.Physical) {
+                return true;
+            }
+        }
+        if (this == Elements.Elemental) {
+            if (other != Elements.Physical) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

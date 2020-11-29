@@ -23,6 +23,7 @@ mod_fast_bush
 mod_magma_flower_heal
 armor_and_dodge
 str
+projectile_damage
 big_mana_and_health
 cast_speed
 all_elemental_damage
@@ -37,6 +38,7 @@ critical_hit
 thunder_resist
 thunder_strikes
 big_frog
+big_gladiator
 big_vampire
 heart_of_magic
 trickery
@@ -57,6 +59,7 @@ all_nature_damage
 mod_imbue_ele
 chance_of_poison
 mana
+big_blood_thirst
 mana_and_health
 big_lord_of_arcane
 harmony
@@ -90,6 +93,7 @@ armor_and_health
 ele_sword_damage
 elemental_penetration
 lightning_totem
+big_arena
 passive_nature
 mob_imbue_crit
 flower_of_ice
@@ -151,6 +155,7 @@ heart_of_ice
 passive_storm
 whirlpool
 health
+big_bravery
 spell_critical_hit
 flat_mana_reg_melee_dmg
 big_warrior_heart
@@ -162,6 +167,7 @@ big_effect_of_ele
 melee_dmg
 big_health_ms_mana_cost
 mana_regen
+attack_speed
 ranged_dmg
 big_aspect_of_nature
 mana_battery
@@ -188,6 +194,7 @@ spell_dmg_flat_mana
 elemental_resist
 purifying_fires
 chance_of_chill
+big_fury_bolt
 mod_poison_bush
 big_divine_light
 recoil_shot

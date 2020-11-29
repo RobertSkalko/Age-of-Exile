@@ -207,6 +207,8 @@ public abstract class EffectData {
                 .forEach(data -> {
                     if (data.isNotZero()) {
                         Stat stat = data.GetStat();
+                        stat.effects.forEach(x -> effects.add(new EffectUnitStat(x, unit, data)));
+
                         if (stat instanceof IStatEffects) {
                             ((IStatEffects) stat).getEffects()
                                 .forEach(effect -> {

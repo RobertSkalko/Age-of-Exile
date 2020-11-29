@@ -35,6 +35,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.Projectil
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
@@ -167,6 +169,8 @@ public class Stats implements ISlashRegistryInit {
 
                     add(ManaBurn.getInstance());
                     add(ManaBurnResistance.getInstance());
+
+                    add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourcesData.Type.HEALTH, AttackType.ATTACK)));
 
                     add(HealPower.getInstance());
                     add(HealEffectivenessOnSelf.getInstance());

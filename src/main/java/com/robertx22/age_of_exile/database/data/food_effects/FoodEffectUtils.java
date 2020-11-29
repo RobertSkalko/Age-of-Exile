@@ -7,7 +7,7 @@ public class FoodEffectUtils {
 
     public static boolean isFood(Item item) {
 
-        return item.getFoodComponent() != null;
+        return getEffect(item) != null;
     }
 
     public static FoodEffect getEffect(Item item) {

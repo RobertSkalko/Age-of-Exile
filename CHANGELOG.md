@@ -119,6 +119,7 @@ Now as a datapack, that will only happen if the player actually changes somethin
 * added spell crit chance and damage stats, "critical chance" now doesn't affect spells unless it has "spell" in the name.
 * added all critical chance and damage stats, increases for both attack and spell based crits.
 * lifesteal and other leech types now work on attack based spells too, not just basic attacks
+* slightly reduced favor gains
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

@@ -6,7 +6,10 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
+import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
+import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -27,10 +30,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
+import net.minecraft.util.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
@@ -42,7 +42,8 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
     PotionType type;
 
     public AlchemyPotionItem(PotionType type, SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Alchemy));
+        super(new Settings().group(CreativeTabs.Alchemy)
+            .maxCount(16));
         this.tier = tier;
         this.type = type;
     }
@@ -76,6 +77,8 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
             );
             unitdata.getResources()
                 .modify(ctx);
+
+            getFoodEffect().apply(player); // because it's only applied when eating food normally
 
             SoundUtils.playSound(player, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
         }
@@ -138,5 +141,34 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
     @Override
     public float getSkillLevelMultiNeeded() {
         return tier.lvl_req;
+    }
+
+    public FoodEffect getFoodEffect() {
+
+        FoodEffect eff = new FoodEffect();
+        try {
+            Identifier effect = null;
+
+            if (this.type == PotionType.MAGIC_SHIELD) {
+                effect = PotionRegister.FOOD_MAGIC_REGEN;
+            }
+            if (this.type == PotionType.HEALTH) {
+                effect = PotionRegister.FOOD_HP;
+            }
+
+            if (this.type == PotionType.MANA) {
+                effect = PotionRegister.FOOD_MANA;
+            }
+
+            if (effect == null) {
+                return null;
+            }
+
+            eff.effects_given.add(new StatusEffectData(effect, 6, (int) (this.tier.statMulti * 10)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return eff;
+
     }
 }

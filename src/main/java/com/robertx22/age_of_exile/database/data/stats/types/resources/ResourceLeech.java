@@ -1,0 +1,103 @@
+package com.robertx22.age_of_exile.database.data.stats.types.resources;
+
+import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ConditionalRestoreResource;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ResourceLeech extends Stat implements IGenerated<Stat> {
+
+    Info info;
+
+    public ResourceLeech(Info info) {
+        this.info = info;
+        this.effects.add(new Effect(info));
+    }
+
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = new ArrayList<>();
+        for (Elements ele : Elements.values()) {
+            for (ResourcesData.Type res : ResourcesData.Type.values()) {
+                for (AttackType atk : AttackType.values()) {
+                    list.add(new ResourceLeech(new Info(ele, res, atk)));
+                }
+            }
+        }
+        return list;
+    }
+
+    public static class Info {
+
+        Elements element;
+        ResourcesData.Type resource;
+        AttackType attackType;
+
+        public Info(Elements element, ResourcesData.Type resource, AttackType attackType) {
+            this.element = element;
+            this.resource = resource;
+            this.attackType = attackType;
+
+        }
+    }
+
+    @Override
+    public Elements getElement() {
+        return info.element;
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return "Leeches resource based on % of damage dealt.";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Of " + info.attackType.locname + " " + info.element.dmgName + " " + "Leeched as " + info.resource.locname;
+    }
+
+    @Override
+    public String GUID() {
+        return info.attackType.id + "_" + info.element.guidName + "_dmg_leech_as_" + info.resource.id;
+    }
+
+    static class Effect extends BaseDamageEffect {
+
+        Info info;
+
+        public Effect(Info info) {
+            this.info = info;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            float amount = data.getAverageValue() * effect.number / 100F;
+            effect.addToRestore(new ConditionalRestoreResource(info.resource, amount));
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return info.attackType.isAttack(effect) && info.element.elementsMatch(effect.GetElement());
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public int GetPriority() {
+            return Priority.Last.priority;
+        }
+    }
+
+}

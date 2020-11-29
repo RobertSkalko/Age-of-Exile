@@ -97,10 +97,20 @@ public class ResourcesData {
     }
 
     public enum Type {
-        HEALTH,
-        MANA,
-        BLOOD,
-        MAGIC_SHIELD
+        HEALTH("health", "Health"),
+        MANA("mana", "Mana"),
+        BLOOD("blood", "Blood"),
+        MAGIC_SHIELD("magic_shield", "Magic Shield");
+
+        public String id;
+
+        Type(String id, String locname) {
+            this.id = id;
+            this.locname = locname;
+        }
+
+        public String locname;
+
     }
 
     public enum Use {

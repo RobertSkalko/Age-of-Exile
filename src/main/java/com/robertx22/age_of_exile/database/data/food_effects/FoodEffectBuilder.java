@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.food_effects;
 import com.mojang.datafixers.util.Pair;
 import com.robertx22.age_of_exile.mixin_ducks.StatusEffectAccesor;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
+import com.robertx22.age_of_exile.player_skills.items.alchemy.AlchemyPotionItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.FarmingFoodItem;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -17,6 +18,11 @@ import net.minecraft.util.math.MathHelper;
 public class FoodEffectBuilder {
 
     public static FoodEffect auto(Item food) {
+
+        if (food instanceof AlchemyPotionItem) {
+            AlchemyPotionItem cast = (AlchemyPotionItem) food;
+            return cast.getFoodEffect();
+        }
 
         if (food.getFoodComponent() == null) {
             return null;

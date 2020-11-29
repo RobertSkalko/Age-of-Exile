@@ -39,11 +39,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
@@ -72,6 +69,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     AttackInformation attackInfo;
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
+
+    private List<ConditionalRestoreResource> toRestore = new ArrayList<>();
+
+    public void addToRestore(ConditionalRestoreResource data) {
+        this.toRestore.add(data);
+    }
 
     public boolean isElemental() {
         return this.element != null && this.element != Elements.Physical;
@@ -113,14 +116,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public boolean accuracyCritRollFailed = false;
     public float damageMultiplier = 1;
     public float attackerAccuracy = 0;
-
-    public float healthHealed;
-    public float magicShieldRestored;
-    public float manaRestored;
-
-    public float healthHealedOnKill;
-    public float magicShieldRestoredOnKill;
-    public float manaRestoredOnKill;
 
     public float manaBurn = 0;
 
@@ -368,22 +363,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         }
 
-        Heal(healthHealed);
-        RestoreMana(manaRestored);
-        restoreMagicShield(magicShieldRestored);
+        this.toRestore.forEach(x -> x.tryRestore(this));
 
         doManaBurn();
-
-        if (!target.isAlive()) {
-            Heal(healthHealedOnKill);
-            RestoreMana(manaRestoredOnKill);
-            restoreMagicShield(magicShieldRestoredOnKill);
-        }
 
         if (dmg > 0) {
 
             onEventPotions();
-
             sendDamageParticle(info);
 
         }
