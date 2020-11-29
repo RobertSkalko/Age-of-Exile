@@ -8,7 +8,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
@@ -40,13 +42,6 @@ public class Perks implements ISlashRegistryInit {
         start.type = Perk.PerkType.START;
         start.addToSerializables();
 
-        Perk start2 = new Perk();
-        start2.is_entry = true;
-        start2.identifier = "talent_start";
-        start2.type = Perk.PerkType.START;
-        start2.one_of_a_kind = "start";
-        start2.addToSerializables();
-
         PerkBuilder.stat("int", new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.stat("dex", new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.stat("str", new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT));
@@ -54,6 +49,10 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat("cast_speed", new OptScaleExactStat(3, FasterCastRate.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, ReducedManaCost.getInstance(), ModType.FLAT));
+
+        PerkBuilder.stat(new OptScaleExactStat(3, AttackSpeed.getInstance(), ModType.FLAT));
+
+        PerkBuilder.stat(new OptScaleExactStat(2, ProjectileDamage.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, CriticalHit.getInstance(), ModType.FLAT));

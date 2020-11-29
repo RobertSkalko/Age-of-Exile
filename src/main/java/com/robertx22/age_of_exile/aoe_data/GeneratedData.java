@@ -70,6 +70,7 @@ public class GeneratedData {
             new SpellModifierPerks().registerAll();
             new BigPerks().registerAll();
             new ComboPerks().registerAll();
+            new StartPerks().registerAll();
 
             new AutoDatapackStats().registerAll();
 
