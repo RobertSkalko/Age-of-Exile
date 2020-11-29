@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
@@ -75,7 +76,7 @@ public class MagicShield extends Stat implements ILocalStat {
         realdmg -= toReduce;
 
         ResourcesData.Context ms = new ResourcesData.Context(data, en,
-            ResourcesData.Type.MAGIC_SHIELD,
+            ResourceType.MAGIC_SHIELD,
             toReduce,
             ResourcesData.Use.SPEND
         );
@@ -103,7 +104,7 @@ public class MagicShield extends Stat implements ILocalStat {
             finaldmg -= dmgReduced;
 
             ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-                ResourcesData.Type.MAGIC_SHIELD, dmgReduced,
+                ResourceType.MAGIC_SHIELD, dmgReduced,
                 ResourcesData.Use.SPEND
             );
 

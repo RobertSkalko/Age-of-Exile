@@ -2,28 +2,29 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.resource.ResourceOnKill;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ConditionalRestoreResource;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class PlusResourceOnKill extends Stat implements IStatEffects {
+public class PlusResourceOnKill extends Stat {
 
-    public static PlusResourceOnKill HEALTH = new PlusResourceOnKill(Health.getInstance(), ResourceOnKill.HEALTH);
-    public static PlusResourceOnKill MANA = new PlusResourceOnKill(Mana.getInstance(), ResourceOnKill.MANA);
-    public static PlusResourceOnKill MAGIC_SHIELD = new PlusResourceOnKill(MagicShield.getInstance(), ResourceOnKill.MAGIC_SHIELD);
+    public static PlusResourceOnKill HEALTH = new PlusResourceOnKill(Health.getInstance(), new Effect(ResourceType.HEALTH));
+    public static PlusResourceOnKill MANA = new PlusResourceOnKill(Mana.getInstance(), new Effect(ResourceType.MANA));
+    public static PlusResourceOnKill MAGIC_SHIELD = new PlusResourceOnKill(MagicShield.getInstance(), new Effect(ResourceType.MAGIC_SHIELD));
 
     Stat statRestored;
-    ResourceOnKill effect;
 
-    private PlusResourceOnKill(Stat statRestored, ResourceOnKill effect) {
+    private PlusResourceOnKill(Stat statRestored, Effect effect) {
         this.statRestored = statRestored;
-        this.effect = effect;
+        this.statEffect = effect;
         this.statGroup = StatGroup.RESTORATION;
         this.scaling = StatScaling.NORMAL;
     }
@@ -63,8 +64,35 @@ public class PlusResourceOnKill extends Stat implements IStatEffects {
         return statRestored.GUID() + "_on_kill";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return effect;
+    private static class Effect extends BaseDamageEffect {
+
+        ResourceType resource;
+
+        private Effect(ResourceType resource) {
+            this.resource = resource;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            effect.addToRestore(new ConditionalRestoreResource(resource, data.getAverageValue()));
+            return effect;
+        }
+
+        @Override
+        public int GetPriority() {
+            return Priority.Second.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return true;
+        }
+
     }
+
 }

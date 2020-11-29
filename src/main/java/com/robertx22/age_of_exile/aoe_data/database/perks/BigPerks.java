@@ -18,18 +18,19 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCr
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -97,7 +98,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_blood_thirst", "Blood thirst",
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(3, Lifesteal.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.FLAT)
+            new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("big_bravery", "Soul of Bravery",
@@ -178,7 +179,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_overflow_mana", "Overflowing Mana",
             new OptScaleExactStat(15, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, ManaOnHit.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_ele_protection", "Elemental Protection",
@@ -195,7 +196,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_blood_siphon", "Blood Stealing",
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(20, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(2, LifeOnHit.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.ATTACK)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_precision", "Precision",

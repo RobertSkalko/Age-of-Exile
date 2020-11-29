@@ -33,13 +33,13 @@ public class ResourcesData {
         public UnitData targetData;
         public LivingEntity target;
 
-        public Type type;
+        public ResourceType type;
         public float amount;
         public Use use;
 
         public boolean statsCalculated = false;
 
-        public Context(UnitData data, LivingEntity entity, Type type, float amount, Use use, Spell spell) {
+        public Context(UnitData data, LivingEntity entity, ResourceType type, float amount, Use use, Spell spell) {
             this.targetData = data;
             this.target = entity;
             this.sourceData = data;
@@ -51,7 +51,7 @@ public class ResourcesData {
             calculateStats();
         }
 
-        public Context(UnitData data, LivingEntity entity, Type type, float amount, Use use) {
+        public Context(UnitData data, LivingEntity entity, ResourceType type, float amount, Use use) {
             this.targetData = data;
             this.target = entity;
             this.sourceData = data;
@@ -62,7 +62,7 @@ public class ResourcesData {
             calculateStats();
         }
 
-        public Context(LivingEntity caster, LivingEntity target, Type type, float amount, Use use, Spell spell) {
+        public Context(LivingEntity caster, LivingEntity target, ResourceType type, float amount, Use use, Spell spell) {
             this.targetData = Load.Unit(target);
             this.target = target;
             this.sourceData = Load.Unit(caster);
@@ -75,7 +75,7 @@ public class ResourcesData {
             calculateStats();
         }
 
-        public Context(LivingEntity caster, LivingEntity target, UnitData casterData, UnitData targetData, Type type,
+        public Context(LivingEntity caster, LivingEntity target, UnitData casterData, UnitData targetData, ResourceType type,
                        float amount, Use use, Spell spell) {
             this.targetData = targetData;
             this.target = target;
@@ -93,23 +93,6 @@ public class ResourcesData {
                 new ModifyResourceEffect(this).Activate();
             }
         }
-
-    }
-
-    public enum Type {
-        HEALTH("health", "Health"),
-        MANA("mana", "Mana"),
-        BLOOD("blood", "Blood"),
-        MAGIC_SHIELD("magic_shield", "Magic Shield");
-
-        public String id;
-
-        Type(String id, String locname) {
-            this.id = id;
-            this.locname = locname;
-        }
-
-        public String locname;
 
     }
 
@@ -146,35 +129,35 @@ public class ResourcesData {
 
     }
 
-    public float get(LivingEntity en, Type type) {
-        if (type == Type.MANA) {
+    public float get(LivingEntity en, ResourceType type) {
+        if (type == ResourceType.MANA) {
             return mana;
-        } else if (type == Type.MAGIC_SHIELD) {
+        } else if (type == ResourceType.MAGIC_SHIELD) {
             return magicShield;
-        } else if (type == Type.BLOOD) {
+        } else if (type == ResourceType.BLOOD) {
             return blood;
-        } else if (type == Type.HEALTH) {
+        } else if (type == ResourceType.HEALTH) {
             return HealthUtils.getCurrentHealth(en);
         }
         return 0;
 
     }
 
-    public float getMax(LivingEntity en, Type type) {
+    public float getMax(LivingEntity en, ResourceType type) {
         UnitData data = Load.Unit(en);
-        if (type == Type.MANA) {
+        if (type == ResourceType.MANA) {
             return data.getUnit()
                 .manaData()
                 .getAverageValue();
-        } else if (type == Type.MAGIC_SHIELD) {
+        } else if (type == ResourceType.MAGIC_SHIELD) {
             return data.getUnit()
                 .magicShieldData()
                 .getAverageValue();
-        } else if (type == Type.BLOOD) {
+        } else if (type == ResourceType.BLOOD) {
             return data.getUnit()
                 .bloodData()
                 .getAverageValue();
-        } else if (type == Type.HEALTH) {
+        } else if (type == ResourceType.HEALTH) {
             return HealthUtils.getMaxHealth(en);
         }
         return 0;
@@ -185,30 +168,28 @@ public class ResourcesData {
         return get(ctx.target, ctx.type);
     }
 
-    static boolean check = false;
-
     private void modifyBy(Context ctx) {
 
         if (ctx.amount == 0) {
             return;
         }
 
-        if (ctx.type == Type.MANA) {
+        if (ctx.type == ResourceType.MANA) {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .manaData()
                 .getAverageValue());
             sync(ctx);
-        } else if (ctx.type == Type.MAGIC_SHIELD) {
+        } else if (ctx.type == ResourceType.MAGIC_SHIELD) {
             magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .magicShieldData()
                 .getAverageValue());
             sync(ctx);
-        } else if (ctx.type == Type.BLOOD) {
+        } else if (ctx.type == ResourceType.BLOOD) {
             blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .bloodData()
                 .getAverageValue());
             sync(ctx);
-        } else if (ctx.type == Type.HEALTH) {
+        } else if (ctx.type == ResourceType.HEALTH) {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {

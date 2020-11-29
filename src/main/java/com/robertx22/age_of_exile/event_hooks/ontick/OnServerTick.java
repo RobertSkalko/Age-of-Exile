@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.Regenerate
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -68,7 +69,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                             .getAverageValue() * unit.manaData()
                             .getAverageValue() / 100F;
 
-                        ResourcesData.Context mana = new ResourcesData.Context(unitdata, player, ResourcesData.Type.MANA,
+                        ResourcesData.Context mana = new ResourcesData.Context(unitdata, player, ResourceType.MANA,
                             manarestored,
                             ResourcesData.Use.RESTORE
                         );
@@ -89,7 +90,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 .getAverageValue();
                             healthrestored += unit.getCalculatedStat(RegeneratePercentStat.HEALTH)
                                 .getAverageValue() * player.getMaxHealth() / 100F;
-                            ResourcesData.Context hp = new ResourcesData.Context(unitdata, player, ResourcesData.Type.HEALTH,
+                            ResourcesData.Context hp = new ResourcesData.Context(unitdata, player, ResourceType.HEALTH,
                                 healthrestored,
                                 ResourcesData.Use.RESTORE
                             );
@@ -110,7 +111,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 .getAverageValue() * unit.magicShieldData()
                                 .getAverageValue() / 100F;
                             ResourcesData.Context ms = new ResourcesData.Context(unitdata, player,
-                                ResourcesData.Type.MAGIC_SHIELD,
+                                ResourceType.MAGIC_SHIELD,
                                 magicshieldrestored,
                                 ResourcesData.Use.RESTORE
                             );

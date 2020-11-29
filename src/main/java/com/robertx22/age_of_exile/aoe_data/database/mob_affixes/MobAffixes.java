@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToAp
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import net.minecraft.util.Formatting;
 
@@ -74,7 +74,7 @@ public class MobAffixes implements ISlashRegistryInit {
 
     public static MobAffix VAMPIRE = new MobAffix("vampire", "Vampire Lord", Formatting.RED)
         .setMods(new StatModifier(25, 25, Health.getInstance()),
-            new StatModifier(3, 3, LifeOnHit.getInstance()),
+            new StatModifier(15, 15, Lifesteal.getInstance()),
             new StatModifier(15, 15, ExtraMobDropsStat.getInstance()))
         .setWeight(500);
 

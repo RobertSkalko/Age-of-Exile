@@ -120,6 +120,8 @@ Now as a datapack, that will only happen if the player actually changes somethin
 * added all critical chance and damage stats, increases for both attack and spell based crits.
 * lifesteal and other leech types now work on attack based spells too, not just basic attacks
 * slightly reduced favor gains
+* removed some stats like magic steal. Made new stats that allow for more customization.
+Now you can have a "% Spell damage leeched as mana", or "% Attack damage leeched as magic shield" etc.
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

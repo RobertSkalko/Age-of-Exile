@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.entities.IDatapackSpellEntity;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
@@ -69,7 +70,7 @@ public class SpellUtils {
 
     public static void heal(Spell spell, LivingEntity en, float amount) {
         SpellHealEffect heal = new SpellHealEffect(
-            new ResourcesData.Context(Load.Unit(en), en, ResourcesData.Type.HEALTH,
+            new ResourcesData.Context(Load.Unit(en), en, ResourceType.HEALTH,
                 amount, ResourcesData.Use.RESTORE,
                 spell
             ));

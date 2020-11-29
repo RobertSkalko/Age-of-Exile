@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.effects.misc;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
@@ -33,7 +34,7 @@ public class DamageTakenToManaEffect extends BaseStatEffect<DamageEffect> {
 
         if (restore > 0) {
             ResourcesData.Context mana = new ResourcesData.Context(effect.targetData, effect.target,
-                ResourcesData.Type.MANA,
+                ResourceType.MANA,
                 restore,
                 ResourcesData.Use.RESTORE
             );

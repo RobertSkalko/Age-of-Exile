@@ -13,60 +13,58 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResourceLeech extends Stat implements IGenerated<Stat> {
+public class ResourceOnHit extends Stat implements IGenerated<Stat> {
 
     Info info;
 
-    public ResourceLeech(Info info) {
+    public ResourceOnHit(Info info) {
         this.info = info;
+        this.is_percent = false;
+        this.add$To$toTooltip = false;
         this.statEffect = new Effect(info);
     }
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        for (Elements ele : Elements.values()) {
-            for (ResourceType res : ResourceType.values()) {
-                for (AttackType atk : AttackType.values()) {
-                    list.add(new ResourceLeech(new Info(ele, res, atk)));
-                }
+        for (ResourceType res : ResourceType.values()) {
+            for (AttackType atk : AttackType.values()) {
+                list.add(new ResourceOnHit(new Info(res, atk)));
             }
         }
+
         return list;
     }
 
     public static class Info {
 
-        Elements element;
         ResourceType resource;
         AttackType attackType;
 
-        public Info(Elements element, ResourceType resource, AttackType attackType) {
-            this.element = element;
+        public Info(ResourceType resource, AttackType attackType) {
             this.resource = resource;
             this.attackType = attackType;
-
         }
     }
 
     @Override
     public Elements getElement() {
-        return info.element;
+        return Elements.Physical;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Leeches resource based on % of damage dealt.";
+        return "Restores resource on every hit of the correct type.";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Of " + info.attackType.locname + " " + info.element.dmgName + " " + "Leeched as " + info.resource.locname;
+        return info.resource.locname + " On " + info.attackType.locname + " Hit";
     }
 
     @Override
     public String GUID() {
-        return info.attackType.id + "_" + info.element.guidName + "_dmg_leech_as_" + info.resource.id;
+        return info.resource.id + "_on_" + info.attackType.id + "_hit";
     }
 
     private static class Effect extends BaseDamageEffect {
@@ -79,14 +77,14 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
 
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            float amount = data.getAverageValue() * effect.number / 100F;
+            float amount = data.getAverageValue();
             effect.addToRestore(new ConditionalRestoreResource(info.resource, amount));
             return effect;
         }
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return info.attackType.isAttack(effect) && info.element.elementsMatch(effect.GetElement());
+            return info.attackType.isAttack(effect);
         }
 
         @Override
@@ -101,3 +99,4 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
     }
 
 }
+

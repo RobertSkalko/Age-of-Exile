@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.effects.game_changers;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
@@ -29,7 +30,7 @@ public class BloodUserEffect extends BaseStatEffect<ModifyResourceEffect> {
     @Override
     public ModifyResourceEffect activate(ModifyResourceEffect effect, StatData data, Stat stat) {
 
-        effect.ctx.type = ResourcesData.Type.BLOOD;
+        effect.ctx.type = ResourceType.BLOOD;
 
         return effect;
     }
@@ -39,7 +40,7 @@ public class BloodUserEffect extends BaseStatEffect<ModifyResourceEffect> {
 
         if (effect.ctx.use == ResourcesData.Use.SPEND) {
             if (effect.ctx.amount > 0) {
-                if (effect.ctx.type == ResourcesData.Type.MANA) {
+                if (effect.ctx.type == ResourceType.MANA) {
                     return true;
                 }
             }

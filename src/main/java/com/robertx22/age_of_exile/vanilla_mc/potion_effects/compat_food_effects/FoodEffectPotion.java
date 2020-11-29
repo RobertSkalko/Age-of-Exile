@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +20,7 @@ public abstract class FoodEffectPotion extends StatusEffect {
         super(StatusEffectType.BENEFICIAL, color);
     }
 
-    public abstract ResourcesData.Type resourceType();
+    public abstract ResourceType resourceType();
 
     public abstract List<Text> GetTooltipString(TooltipInfo info, int duration, int amplifier);
 

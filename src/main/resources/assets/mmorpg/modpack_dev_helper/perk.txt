@@ -137,7 +137,6 @@ mod_tp_ele_res
 big_rat
 mage
 big_wisdom_of_the_elders
-crit_dmg
 mod_mana_cd
 big_eviscerator
 spell_critical_damage
@@ -175,7 +174,6 @@ thunder_weapon_damage
 magic_dmg
 wand_damage
 overflowing_vitality
-talent_start
 passive_ocean
 gorgons_gaze
 critical_damage
@@ -217,4 +215,3 @@ int
 big_balistic
 fire_penetration
 reckless_blows
-crit_hit

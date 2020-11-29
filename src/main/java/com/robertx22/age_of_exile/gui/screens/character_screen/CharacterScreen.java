@@ -27,13 +27,12 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResour
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicSteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.*;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
@@ -124,9 +123,9 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.RESISTS, new MaxElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.RESISTS, new ElementalPenetration(Elements.Elemental).generateAllPossibleStatVariations());
 
-        addTo(StatType.RESTORATION, Arrays.asList(LifeOnHit.getInstance(), Lifesteal.getInstance(), PlusResourceOnKill.HEALTH, RegeneratePercentStat.HEALTH));
-        addTo(StatType.RESTORATION, Arrays.asList(MagicOnHit.getInstance(), MagicSteal.getInstance(), PlusResourceOnKill.MAGIC_SHIELD, RegeneratePercentStat.MAGIC_SHIELD));
-        addTo(StatType.RESTORATION, Arrays.asList(ManaOnHit.getInstance(), ManaSteal.getInstance(), PlusResourceOnKill.MANA, RegeneratePercentStat.MANA));
+        addTo(StatType.RESTORATION, Arrays.asList(Lifesteal.getInstance(), PlusResourceOnKill.HEALTH, RegeneratePercentStat.HEALTH));
+        addTo(StatType.RESTORATION, Arrays.asList(PlusResourceOnKill.MAGIC_SHIELD, RegeneratePercentStat.MAGIC_SHIELD));
+        addTo(StatType.RESTORATION, Arrays.asList(PlusResourceOnKill.MANA, RegeneratePercentStat.MANA));
         addTo(StatType.RESTORATION, Arrays.asList(HealPower.getInstance(), HealEffectivenessOnSelf.getInstance(), ManaBurnResistance.getInstance()));
 
         addTo(StatType.WEAPON, new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations());

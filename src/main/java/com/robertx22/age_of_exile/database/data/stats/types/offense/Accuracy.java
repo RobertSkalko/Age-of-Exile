@@ -2,12 +2,13 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.AccuracyEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class Accuracy extends Stat implements IStatEffects {
+public class Accuracy extends Stat {
 
     public static String GUID = "accuracy";
 
@@ -20,16 +21,12 @@ public class Accuracy extends Stat implements IStatEffects {
         return "Increases your chance to hit, low accuracy also causes crits to fail. Specifically it decreases opponent's chance to dodge";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return AccuracyEffect.getInstance();
-    }
-
     private Accuracy() {
         this.base_val = 0;
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
+        this.statEffect = new Effect();
     }
 
     @Override
@@ -50,6 +47,34 @@ public class Accuracy extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Accuracy";
+    }
+
+    public static class Effect extends BaseDamageEffect {
+
+        private Effect() {
+        }
+
+        @Override
+        public int GetPriority() {
+            return Priority.First.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            effect.attackerAccuracy = data.getAverageValue();
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return EffectUtils.isConsideredAWeaponAttack(effect);
+        }
+
     }
 
     private static class SingletonHolder {

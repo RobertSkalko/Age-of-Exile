@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -433,7 +434,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public void doManaBurn() {
         if (manaBurn > 0) {
             ResourcesData.Context ctx = new ResourcesData.Context(targetData, target,
-                ResourcesData.Type.MANA, manaBurn,
+                ResourceType.MANA, manaBurn,
                 ResourcesData.Use.SPEND
             );
 
@@ -446,7 +447,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (healed > 0) {
 
             sourceData.getResources()
-                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MANA, healed,
+                .modify(new ResourcesData.Context(sourceData, source, ResourceType.MANA, healed,
                     ResourcesData.Use.RESTORE
                 ));
 
@@ -456,7 +457,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public void Heal(float healed) {
         if (healed > 0) {
             sourceData.getResources()
-                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.HEALTH, healed,
+                .modify(new ResourcesData.Context(sourceData, source, ResourceType.HEALTH, healed,
                     ResourcesData.Use.RESTORE
                 ));
         }
@@ -465,7 +466,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public void restoreMagicShield(float healed) {
         if (healed > 0) {
             sourceData.getResources()
-                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MAGIC_SHIELD, healed,
+                .modify(new ResourcesData.Context(sourceData, source, ResourceType.MAGIC_SHIELD, healed,
                     ResourcesData.Use.RESTORE
                 ));
         }

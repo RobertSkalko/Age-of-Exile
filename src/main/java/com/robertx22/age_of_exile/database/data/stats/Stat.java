@@ -9,6 +9,9 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.saveclasses.unit.Unit;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -26,9 +29,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, IAutoLocDesc, ISerializedRegistryEntry<DatapackStat> {
 
@@ -37,7 +38,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public boolean isShown = true;
 
-    public Set<IStatEffect> effects = new HashSet<>();
+    public IStatEffect statEffect = new EmptyEffect();
 
     public float min_val = -1000;
     public float max_val = Integer.MAX_VALUE;
@@ -211,4 +212,21 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         }
     }
 
+    static class EmptyEffect implements IStatEffect {
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public int GetPriority() {
+            return 0;
+        }
+
+        @Override
+        public EffectData TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat) {
+            return effect;
+        }
+    }
 }

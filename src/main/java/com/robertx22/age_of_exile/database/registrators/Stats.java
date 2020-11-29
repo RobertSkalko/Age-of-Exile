@@ -23,19 +23,19 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Bloo
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicSteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.*;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -138,16 +138,12 @@ public class Stats implements ISlashRegistryInit {
                     add(HealthRestorationToBlood.getInstance());
                     add(Blood.getInstance());
                     add(BloodUser.getInstance());
-                    add(ManaSteal.getInstance());
-                    add(MagicOnHit.getInstance());
                     add(Health.getInstance());
                     add(HealthRegen.getInstance());
                     add(Lifesteal.getInstance());
-                    add(LifeOnHit.getInstance());
-                    add(MagicSteal.getInstance());
+
                     add(Mana.getInstance());
                     add(ManaRegen.getInstance());
-                    add(ManaOnHit.getInstance());
                     add(MagicShield.getInstance());
                     add(MagicShieldRegen.getInstance());
                     // Resources
@@ -170,7 +166,8 @@ public class Stats implements ISlashRegistryInit {
                     add(ManaBurn.getInstance());
                     add(ManaBurnResistance.getInstance());
 
-                    add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourcesData.Type.HEALTH, AttackType.ATTACK)));
+                    add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.HEALTH, AttackType.ATTACK)));
+                    add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.ATTACK)));
 
                     add(HealPower.getInstance());
                     add(HealEffectivenessOnSelf.getInstance());

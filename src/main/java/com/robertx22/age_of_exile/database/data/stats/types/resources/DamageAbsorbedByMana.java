@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
@@ -78,7 +79,7 @@ public class DamageAbsorbedByMana extends Stat {
                     PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.element, dmgReduced);
                 }
                 ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-                    ResourcesData.Type.MANA, dmgReduced,
+                    ResourceType.MANA, dmgReduced,
                     ResourcesData.Use.SPEND
                 );
 

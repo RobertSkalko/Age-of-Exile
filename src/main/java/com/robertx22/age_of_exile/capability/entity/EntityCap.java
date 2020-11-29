@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.MobAffixesData;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
@@ -739,22 +740,22 @@ public class EntityCap {
 
                 // fully restore on lvlup
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.MANA,
+                    .modify(new ResourcesData.Context(this, player, ResourceType.MANA,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.HEALTH,
+                    .modify(new ResourcesData.Context(this, player, ResourceType.HEALTH,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.BLOOD,
+                    .modify(new ResourcesData.Context(this, player, ResourceType.BLOOD,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourcesData.Type.MAGIC_SHIELD,
+                    .modify(new ResourcesData.Context(this, player, ResourceType.MAGIC_SHIELD,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ))

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.LifeOnHit;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -84,7 +84,7 @@ public class AreaModifiers {
     public AreaModifier OF_VAMPIRISM = of("of_vampirism", 500, Affix.Type.suffix, "Of Vampirism",
         Arrays.asList(), new AreaRequirement())
         .addStats(
-            new StatModifier(1F, 1F, LifeOnHit.getInstance(), ModType.FLAT),
+            new StatModifier(15, 15, Lifesteal.getInstance(), ModType.FLAT),
             new StatModifier(15, 15, ExtraMobDropsStat.getInstance(), ModType.FLAT)
         )
         .addEffects(new StatusEffectInstance(StatusEffects.SPEED, Integer.MAX_VALUE, 1));
