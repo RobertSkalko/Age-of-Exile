@@ -2,16 +2,18 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.mana;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.ManaBurnEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class ManaBurn extends Stat implements IStatEffects {
+public class ManaBurn extends Stat {
     public static String GUID = "mana_burn";
 
     private ManaBurn() {
         this.scaling = StatScaling.NORMAL;
+        this.statEffect = new Effect();
     }
 
     public static ManaBurn getInstance() {
@@ -21,11 +23,6 @@ public class ManaBurn extends Stat implements IStatEffects {
     @Override
     public String locDescForLangFile() {
         return "Burns mana on basic attack";
-    }
-
-    @Override
-    public IStatEffect getEffect() {
-        return new ManaBurnEffect();
     }
 
     @Override
@@ -46,6 +43,31 @@ public class ManaBurn extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Mana Burn";
+    }
+
+    private static class Effect extends BaseDamageEffect {
+
+        @Override
+        public int GetPriority() {
+            return Priority.Second.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            effect.manaBurn = data.getAverageValue();
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.getEffectType()
+                .equals(EffectData.EffectTypes.BASIC_ATTACK);
+        }
     }
 
     private static class SingletonHolder {

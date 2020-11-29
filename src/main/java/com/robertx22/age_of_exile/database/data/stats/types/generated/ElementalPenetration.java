@@ -1,17 +1,17 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.ElementalPenetrationEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class ElementalPenetration extends ElementalStat implements IStatEffects {
+public class ElementalPenetration extends ElementalStat {
     public static MapWrapper<Elements, ElementalPenetration> MAP = new MapWrapper();
 
     @Override
@@ -26,6 +26,8 @@ public class ElementalPenetration extends ElementalStat implements IStatEffects 
         super(element);
         this.min_val = 0;
         this.statGroup = StatGroup.ELEMENTAL;
+
+        this.statEffect = new Effect();
     }
 
     @Override
@@ -60,9 +62,31 @@ public class ElementalPenetration extends ElementalStat implements IStatEffects 
             .name() + " Penetration";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return new ElementalPenetrationEffect();
+    private static class Effect extends BaseDamageEffect {
+
+        @Override
+        public int GetPriority() {
+            return Priority.First.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            effect.addElementalPenetration((int) data.getAverageValue());
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.GetElement()
+                .equals(stat.getElement()) && !stat.getElement()
+                .equals(Elements.Elemental);
+        }
+
     }
 
 }

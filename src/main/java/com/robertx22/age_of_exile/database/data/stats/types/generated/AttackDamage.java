@@ -4,17 +4,18 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.AttackDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttackDamage extends ElementalStat implements IStatEffects, ILocalStat {
+public class AttackDamage extends ElementalStat implements ILocalStat {
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
@@ -29,8 +30,8 @@ public class AttackDamage extends ElementalStat implements IStatEffects, ILocalS
         super(element);
         this.uses_second_val = true;
         this.scaling = StatScaling.NORMAL;
-
         this.statGroup = StatGroup.ELEMENTAL;
+        this.statEffect = new Effect();
     }
 
     @Override
@@ -46,11 +47,6 @@ public class AttackDamage extends ElementalStat implements IStatEffects, ILocalS
     @Override
     public boolean IsPercent() {
         return false;
-    }
-
-    @Override
-    public IStatEffect getEffect() {
-        return new AttackDamageEffect();
     }
 
     @Override
@@ -75,6 +71,32 @@ public class AttackDamage extends ElementalStat implements IStatEffects, ILocalS
     @Override
     public String GUID() {
         return this.getElement().guidName + "_weapon_damage";
+    }
+
+    private static class Effect extends BaseDamageEffect {
+
+        @Override
+        public int GetPriority() {
+            return Priority.Second.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            effect.addBonusEleDmg(stat.getElement(), data.getRandomRangeValue());
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.getEffectType()
+                .equals(EffectData.EffectTypes.BASIC_ATTACK);
+        }
+
     }
 
 }

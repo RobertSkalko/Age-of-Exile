@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.stats.types.defense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.ArmorPenetrationEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class ArmorPenetration extends Stat implements IStatEffects {
+public class ArmorPenetration extends Stat {
 
     public static ArmorPenetration getInstance() {
         return SingletonHolder.INSTANCE;
@@ -21,6 +21,7 @@ public class ArmorPenetration extends Stat implements IStatEffects {
 
     private ArmorPenetration() {
         this.min_val = 0;
+        this.statEffect = new Effect();
     }
 
     @Override
@@ -39,13 +40,33 @@ public class ArmorPenetration extends Stat implements IStatEffects {
     }
 
     @Override
-    public IStatEffect getEffect() {
-        return new ArmorPenetrationEffect();
-    }
-
-    @Override
     public String locNameForLangFile() {
         return "Armor Penetration";
+    }
+
+    private static class Effect extends BaseDamageEffect {
+
+        @Override
+        public int GetPriority() {
+            return Priority.First.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            effect.SetArmorPenetration(effect.GetArmorPenetration() + (int) data.getAverageValue());
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.GetElement() == Elements.Physical;
+        }
+
     }
 
     private static class SingletonHolder {

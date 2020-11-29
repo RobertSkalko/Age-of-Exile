@@ -2,16 +2,16 @@ package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.ElementalDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
 import java.util.List;
 
-public class ElementalDamageBonus extends ElementalStat implements IStatEffects {
+public class ElementalDamageBonus extends ElementalStat {
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
@@ -25,6 +25,7 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
         super(element);
         this.scaling = StatScaling.NONE;
         this.statGroup = StatGroup.ELEMENTAL;
+        this.statEffect = new Effect();
     }
 
     @Override
@@ -53,14 +54,17 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
     }
 
     @Override
-    public IStatEffect getEffect() {
-        return ElementalDamageEffect.getInstance();
-    }
-
-    @Override
     public String locNameForLangFile() {
         return "All " + getElement()
             .dmgName + " Damage";
+    }
+
+    private static class Effect extends BaseDamageIncreaseEffect {
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.GetElement() != null && effect.GetElement()
+                .elementsMatch(stat.getElement());
+        }
     }
 
 }

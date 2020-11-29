@@ -2,16 +2,19 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.AllSpellDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class SpellDamage extends Stat implements IStatEffects {
+public class SpellDamage extends Stat {
 
     private SpellDamage() {
         this.scaling = StatScaling.SLOW;
         this.statGroup = StatGroup.MAIN;
+
+        this.statEffect = new Effect();
     }
 
     public static String GUID = "spell_damage";
@@ -41,13 +44,36 @@ public class SpellDamage extends Stat implements IStatEffects {
     }
 
     @Override
-    public IStatEffect getEffect() {
-        return AllSpellDamageEffect.INSTANCE;
-    }
-
-    @Override
     public String locNameForLangFile() {
         return "Spell Damage";
+    }
+
+    private static class Effect extends BaseStatEffect<SpellDamageEffect> {
+
+        private Effect() {
+            super(SpellDamageEffect.class);
+        }
+
+        @Override
+        public int GetPriority() {
+            return Priority.Second.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public SpellDamageEffect activate(SpellDamageEffect effect, StatData data, Stat stat) {
+            effect.percentIncrease += data.getAverageValue();
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(SpellDamageEffect effect, StatData data, Stat stat) {
+            return EffectUtils.isConsideredASpellAttack(effect);
+        }
     }
 
     private static class SingletonHolder {

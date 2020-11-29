@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.AttackStyleDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class AttackStyleDamage extends Stat implements IStatEffects {
+public class AttackStyleDamage extends Stat {
 
     public static AttackStyleDamage MELEE = new AttackStyleDamage("melee_dmg", "Melee Damage", AttackPlayStyle.MELEE);
     public static AttackStyleDamage RANGED = new AttackStyleDamage("ranged_dmg", "Ranged Damage", AttackPlayStyle.RANGED);
@@ -17,7 +17,6 @@ public class AttackStyleDamage extends Stat implements IStatEffects {
     String id;
     transient String name;
     AttackPlayStyle style;
-    AttackStyleDamageEffect effect;
 
     private AttackStyleDamage(String id, String name, AttackPlayStyle style) {
         this.id = id;
@@ -27,7 +26,7 @@ public class AttackStyleDamage extends Stat implements IStatEffects {
         this.scaling = StatScaling.SLOW;
         this.statGroup = StatGroup.Misc;
 
-        this.effect = new AttackStyleDamageEffect(style);
+        this.statEffect = new Effect(style);
     }
 
     @Override
@@ -55,9 +54,19 @@ public class AttackStyleDamage extends Stat implements IStatEffects {
         return "Modifies damage of that type. This includes spells.";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return effect;
+    private static class Effect extends BaseDamageIncreaseEffect {
+
+        AttackPlayStyle style;
+
+        public Effect(AttackPlayStyle style) {
+            this.style = style;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.style == this.style;
+        }
+
     }
 
 }

@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.DamageUnderPotionEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 
-public class DamageUnderPotion extends Stat implements IStatEffects {
+public class DamageUnderPotion extends Stat {
 
     public static DamageUnderPotion HUNGER = new DamageUnderPotion(StatusEffects.HUNGER, "hunger");
     public static DamageUnderPotion POISON = new DamageUnderPotion(StatusEffects.POISON, "poison");
@@ -17,12 +17,11 @@ public class DamageUnderPotion extends Stat implements IStatEffects {
 
     StatusEffect status;
     String id;
-    DamageUnderPotionEffect effect;
 
     private DamageUnderPotion(StatusEffect status, String id) {
         this.status = status;
         this.id = id;
-        this.effect = new DamageUnderPotionEffect(status);
+        this.statEffect = new Effect(status);
         this.is_percent = true;
         this.add$To$toTooltip = false;
     }
@@ -47,8 +46,17 @@ public class DamageUnderPotion extends Stat implements IStatEffects {
         return "dmg_under_" + id;
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return effect;
+    private static class Effect extends BaseDamageIncreaseEffect {
+        StatusEffect status;
+
+        public Effect(StatusEffect status) {
+            this.status = status;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.source.hasStatusEffect(status);
+        }
+
     }
 }

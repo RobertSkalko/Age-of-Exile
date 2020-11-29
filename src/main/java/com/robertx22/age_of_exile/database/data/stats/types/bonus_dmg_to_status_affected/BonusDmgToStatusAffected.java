@@ -3,26 +3,25 @@ package com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.DamageToAffectedEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class BonusDmgToStatusAffected extends Stat implements IStatEffects {
+public class BonusDmgToStatusAffected extends Stat {
 
     public static BonusDmgToStatusAffected FROST = new BonusDmgToStatusAffected(NegativeEffects.CHILL, "Chilled", "chill");
     public static BonusDmgToStatusAffected BURN = new BonusDmgToStatusAffected(NegativeEffects.BURN, "Burning", "burn");
     public static BonusDmgToStatusAffected POISON = new BonusDmgToStatusAffected(NegativeEffects.THORNS, "Poisoned", "poison");
     public static BonusDmgToStatusAffected STATIC = new BonusDmgToStatusAffected(NegativeEffects.STATIC, "Charged", "static");
 
-    String effect;
     String affectedName;
     String id;
 
     private BonusDmgToStatusAffected(String effect, String affectedName, String id) {
-        this.effect = effect;
+        this.statEffect = new Effect(effect);
         this.affectedName = affectedName;
         this.id = id;
         this.scaling = StatScaling.NONE;
@@ -57,9 +56,26 @@ public class BonusDmgToStatusAffected extends Stat implements IStatEffects {
         return id + "_bonus_dmg";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return new DamageToAffectedEffect(SlashRegistry.ExileEffects()
-            .get(effect));
+    private static class Effect extends BaseDamageIncreaseEffect {
+
+        String eff;
+
+        public Effect(String eff) {
+            this.eff = eff;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            try {
+                return effect.target.hasStatusEffect(SlashRegistry.ExileEffects()
+                    .get(eff)
+                    .getStatusEffect());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+
     }
+
 }

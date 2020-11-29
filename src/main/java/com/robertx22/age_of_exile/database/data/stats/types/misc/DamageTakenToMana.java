@@ -1,14 +1,17 @@
 package com.robertx22.age_of_exile.database.data.stats.types.misc;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.misc.DamageTakenToManaEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class DamageTakenToMana extends Stat implements IStatEffects {
+public class DamageTakenToMana extends Stat {
 
     private DamageTakenToMana() {
+        this.statEffect = new Effect();
     }
 
     public static DamageTakenToMana getInstance() {
@@ -40,9 +43,41 @@ public class DamageTakenToMana extends Stat implements IStatEffects {
         return "Of Damage Taken to Mana";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return DamageTakenToManaEffect.getInstance();
+    private static class Effect extends BaseDamageEffect {
+
+        @Override
+        public int GetPriority() {
+            return Priority.Last.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Target;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+
+            float restore = effect.number * data.getAverageValue() / 100F; // todo dmg number
+
+            if (restore > 0) {
+                ResourcesData.Context mana = new ResourcesData.Context(effect.targetData, effect.target,
+                    ResourceType.MANA,
+                    restore,
+                    ResourcesData.Use.RESTORE
+                );
+                effect.targetData.getResources()
+                    .modify(mana);
+            }
+
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return true;
+        }
+
     }
 
     private static class SingletonHolder {

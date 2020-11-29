@@ -122,6 +122,7 @@ Now as a datapack, that will only happen if the player actually changes somethin
 * slightly reduced favor gains
 * removed some stats like magic steal. Made new stats that allow for more customization.
 Now you can have a "% Spell damage leeched as mana", or "% Attack damage leeched as magic shield" etc.
+* spell damage now no longer works on attack based spells
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

@@ -2,17 +2,18 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.NightDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class NightDamage extends Stat implements IStatEffects {
+public class NightDamage extends Stat {
 
     public static String GUID = "night_dmg";
 
     private NightDamage() {
         this.scaling = StatScaling.NONE;
+        this.statEffect = new Effect();
     }
 
     public static NightDamage getInstance() {
@@ -44,9 +45,11 @@ public class NightDamage extends Stat implements IStatEffects {
         return "Damage at Night";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return NightDamageEffect.getInstance();
+    private static class Effect extends BaseDamageIncreaseEffect {
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return !effect.source.world.isDay();
+        }
     }
 
     private static class SingletonHolder {

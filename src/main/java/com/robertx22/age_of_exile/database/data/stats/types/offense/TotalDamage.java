@@ -2,16 +2,17 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.TotalDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class TotalDamage extends Stat implements IStatEffects {
+public class TotalDamage extends Stat {
 
     private TotalDamage() {
         this.scaling = StatScaling.SLOW;
         this.statGroup = StatGroup.MAIN;
+        this.statEffect = new Effect();
     }
 
     public static String GUID = "total_damage";
@@ -40,9 +41,13 @@ public class TotalDamage extends Stat implements IStatEffects {
         return true;
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return TotalDamageEffect.getInstance();
+    private static class Effect extends BaseDamageIncreaseEffect {
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return true;
+        }
+
     }
 
     @Override

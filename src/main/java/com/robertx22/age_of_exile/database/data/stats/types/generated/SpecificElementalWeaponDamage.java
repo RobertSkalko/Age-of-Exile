@@ -1,18 +1,18 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.damage_increase.SpecificWeaponElementalDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecificElementalWeaponDamage extends Stat implements IStatEffects, IGenerated<SpecificElementalWeaponDamage> {
+public class SpecificElementalWeaponDamage extends Stat implements IGenerated<SpecificElementalWeaponDamage> {
 
     @Override
     public List<SpecificElementalWeaponDamage> generateAllPossibleStatVariations() {
@@ -28,6 +28,7 @@ public class SpecificElementalWeaponDamage extends Stat implements IStatEffects,
     public SpecificElementalWeaponDamage(WeaponTypes type) {
         this.weaponType = type;
         this.statGroup = StatGroup.WEAPON;
+        this.statEffect = new Effect();
     }
 
     @Override
@@ -55,11 +56,6 @@ public class SpecificElementalWeaponDamage extends Stat implements IStatEffects,
     }
 
     @Override
-    public IStatEffect getEffect() {
-        return SpecificWeaponElementalDamageEffect.INSTANCE;
-    }
-
-    @Override
     public String locDescLangFileGUID() {
         return Ref.MODID + ".stat_desc." + "ele_wep_damage";
     }
@@ -68,6 +64,27 @@ public class SpecificElementalWeaponDamage extends Stat implements IStatEffects,
     public String locNameForLangFile() {
         return "Elemental " + this.weaponType()
             .name() + " Damage";
+    }
+
+    private static class Effect extends BaseDamageIncreaseEffect {
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            if (stat instanceof SpecificElementalWeaponDamage) {
+
+                SpecificElementalWeaponDamage wepStat = (SpecificElementalWeaponDamage) stat;
+
+                if (wepStat.weaponType()
+                    .equals(effect.weaponType)) {
+                    if (effect.isElemental()) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
     }
 
 }

@@ -1,16 +1,16 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.offense.ElementalFocusEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.SingleElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
 import java.util.List;
 
-public class ElementalFocus extends SingleElementalStat implements IStatEffects {
+public class ElementalFocus extends SingleElementalStat {
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
@@ -21,7 +21,7 @@ public class ElementalFocus extends SingleElementalStat implements IStatEffects 
 
     public ElementalFocus(Elements element) {
         super(element);
-
+        this.statEffect = new Effect();
     }
 
     @Override
@@ -59,9 +59,35 @@ public class ElementalFocus extends SingleElementalStat implements IStatEffects 
         return Ref.MODID + ".stat_desc." + "elemental_focus";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return new ElementalFocusEffect();
-    }
+    private static class Effect extends BaseDamageEffect {
 
+        @Override
+        public int GetPriority() {
+            return Priority.Second.priority;
+        }
+
+        @Override
+        public EffectSides Side() {
+            return EffectSides.Source;
+        }
+
+        @Override
+        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+
+            if (effect.element.equals(stat.getElement())) {
+                effect.percentIncrease += data.getAverageValue();
+
+            } else {
+                effect.percentIncrease -= data.getAverageValue();
+            }
+
+            return effect;
+        }
+
+        @Override
+        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            return effect.element != null && effect.element != Elements.Physical;
+        }
+
+    }
 }
