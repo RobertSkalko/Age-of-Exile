@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
@@ -384,9 +384,9 @@ public class EntityCap {
 
         @Override
         public void setRarity(int rarity) {
-            this.rarity = MathHelper.clamp(rarity, SlashRegistry.MobRarities()
+            this.rarity = MathHelper.clamp(rarity, Database.MobRarities()
                 .lowest()
-                .Rank(), SlashRegistry.MobRarities()
+                .Rank(), Database.MobRarities()
                 .highest()
                 .Rank());
             this.equipsChanged = true;
@@ -395,9 +395,9 @@ public class EntityCap {
 
         @Override
         public int getRarity() {
-            return MathHelper.clamp(rarity, SlashRegistry.MobRarities()
+            return MathHelper.clamp(rarity, Database.MobRarities()
                 .lowest()
-                .Rank(), SlashRegistry.MobRarities()
+                .Rank(), Database.MobRarities()
                 .highest()
                 .Rank());
         }
@@ -421,7 +421,7 @@ public class EntityCap {
 
             } else {
 
-                MobRarity rarity = SlashRegistry.MobRarities()
+                MobRarity rarity = Database.MobRarities()
                     .get(getRarity());
 
                 Formatting rarformat = rarity.textFormatting();
@@ -512,7 +512,7 @@ public class EntityCap {
                     Load.favor(player)
                         .setFavor(1000); // newbie starting favor
 
-                    SlashRegistry.Spells()
+                    Database.Spells()
                         .getFiltered(x -> x.getConfig().is_starter)
                         .forEach(x -> Load.perks(player).data.putOnFirstEmptyHotbarSlot(player, x));
                     Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
@@ -530,7 +530,7 @@ public class EntityCap {
         @Override
         public boolean increaseRarity() {
 
-            MobRarity rar = SlashRegistry.MobRarities()
+            MobRarity rar = Database.MobRarities()
                 .get(rarity);
 
             if (rar.hasHigherRarity()) {
@@ -561,7 +561,7 @@ public class EntityCap {
 
         @Override
         public Tier getMapTier() {
-            return SlashRegistry.Tiers()
+            return Database.Tiers()
                 .get(this.tier + "");
         }
 
@@ -604,7 +604,7 @@ public class EntityCap {
 
         @Override
         public void mobBasicAttack(AttackInformation data) {
-            MobRarity rar = SlashRegistry.MobRarities()
+            MobRarity rar = Database.MobRarities()
                 .get(data.getAttackerEntityData()
                     .getRarity());
 
@@ -612,7 +612,7 @@ public class EntityCap {
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
-            num *= SlashRegistry.getEntityConfig(entity, this).dmg_multi;
+            num *= Database.getEntityConfig(entity, this).dmg_multi;
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
@@ -677,7 +677,7 @@ public class EntityCap {
         }
 
         private void setMobLvlNormally(LivingEntity entity, PlayerEntity nearestPlayer) {
-            EntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, this);
+            EntityConfig entityConfig = Database.getEntityConfig(entity, this);
 
             int lvl = LevelUtils.determineLevel(entity.world, entity.getBlockPos(),
                 nearestPlayer

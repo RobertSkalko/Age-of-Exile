@@ -15,7 +15,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Bloo
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
@@ -95,7 +95,7 @@ public class Unit {
         InCalcStatData data = stats.statsInCalc.get(guid);
 
         if (data == null) {
-            Stat stat = SlashRegistry.Stats()
+            Stat stat = Database.Stats()
                 .get(guid);
             if (stat != null) {
                 stats.statsInCalc.put(stat.GUID(), new InCalcStatData(stat.GUID()));
@@ -141,7 +141,7 @@ public class Unit {
 
             StatData data = entry.getValue();
 
-            if (!SlashRegistry.Stats()
+            if (!Database.Stats()
                 .isRegistered(data.getId())) {
                 stats.stats.remove(entry.getKey());
             }
@@ -210,20 +210,20 @@ public class Unit {
 
     public int randomRarity(LivingEntity entity, UnitData data) {
 
-        List<MobRarity> rarities = SlashRegistry.MobRarities()
+        List<MobRarity> rarities = Database.MobRarities()
             .getAllRarities()
             .stream()
             .filter(x -> data.getLevel() >= x.minMobLevelForRandomSpawns() || data.getLevel() >= ModConfig.get().Server.MAX_LEVEL)
             .collect(Collectors.toList());
 
         if (rarities.isEmpty()) {
-            rarities.add(SlashRegistry.MobRarities()
+            rarities.add(Database.MobRarities()
                 .lowest());
         }
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 
-        EntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, data);
+        EntityConfig entityConfig = Database.getEntityConfig(entity, data);
 
         return MathHelper.clamp(finalRarity.Rank(), entityConfig.min_rarity, entityConfig.max_rarity);
 

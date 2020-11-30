@@ -32,7 +32,7 @@ public class RegistryPackets {
 
                 if (type.getLoader() != null && type.ser instanceof IByteBuf == false) {
 
-                    SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
+                    SlashRegistryContainer reg = Database.getRegistry(type);
 
                     reg.unregisterAllEntriesFromDatapacks();
 

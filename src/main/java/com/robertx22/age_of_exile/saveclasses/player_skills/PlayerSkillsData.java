@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.player_skills;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -28,7 +28,7 @@ public class PlayerSkillsData implements IApplyableStats {
     public void applyStats(EntityCap.UnitData data) {
         map.entrySet()
             .forEach(x -> {
-                PlayerSkill skill = SlashRegistry.PlayerSkills()
+                PlayerSkill skill = Database.PlayerSkills()
                     .get(x.getKey().id);
 
                 skill.getClaimedStats(x.getValue()

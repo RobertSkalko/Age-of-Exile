@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -15,14 +15,14 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
 
     RarityRegistryContainer<GearRarity> container;
 
-    public List<GearRarity> possible = SlashRegistry.GearRarityGroups()
+    public List<GearRarity> possible = Database.GearRarityGroups()
         .get(GearRarityGroups.NON_UNIQUE_ID)
         .getRarities();
 
     public float chanceForHigherRarity = 0;
 
     public void setupChances(LootInfo info) {
-        this.chanceForHigherRarity = SlashRegistry.Tiers()
+        this.chanceForHigherRarity = Database.Tiers()
             .get(this.blueprint.tier.get() + "").chance_for_higher_drop_rarity;
 
         if (info.playerData != null) {

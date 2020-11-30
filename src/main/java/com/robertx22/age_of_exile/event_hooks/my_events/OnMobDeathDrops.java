@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.event_hooks.my_events;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -69,7 +69,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                         ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                         UnitData playerData = Load.Unit(player);
 
-                        EntityConfig config = SlashRegistry.getEntityConfig(mobKilled, mobKilledData);
+                        EntityConfig config = Database.getEntityConfig(mobKilled, mobKilledData);
 
                         float loot_multi = (float) config.loot_multi;
                         float exp_multi = (float) config.exp_multi;
@@ -102,11 +102,11 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             exp++;
         }
 
-        exp *= SlashRegistry.getEntityConfig(victim, mobData).exp_multi;
+        exp *= Database.getEntityConfig(victim, mobData).exp_multi;
 
         exp *= multi;
 
-        exp *= SlashRegistry.MobRarities()
+        exp *= Database.MobRarities()
             .get(mobData.getRarity())
             .expMulti();
 

@@ -14,7 +14,7 @@ import com.robertx22.age_of_exile.aoe_data.database.gems.Gems;
 import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdder;
-import com.robertx22.age_of_exile.aoe_data.database.perks.*;
+import com.robertx22.age_of_exile.aoe_data.database.perks.AllPerks;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
 import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
@@ -65,12 +65,7 @@ public class GeneratedData {
             new Runes().registerAll();
             new Runewords().registerAll();
 
-            new Perks().registerAll();
-            new GameChangerPerks().registerAll();
-            new SpellModifierPerks().registerAll();
-            new BigPerks().registerAll();
-            new ComboPerks().registerAll();
-            new StartPerks().registerAll();
+            new AllPerks().registerAll();
 
             new AutoDatapackStats().registerAll();
 

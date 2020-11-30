@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
@@ -40,7 +40,7 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
     public void onReceived(PacketContext ctx) {
         PlayerEntity player = ctx.getPlayer();
 
-        Spell spell = SlashRegistry.Spells()
+        Spell spell = Database.Spells()
             .get(spellid);
         SpellCastContext c = new SpellCastContext(player, 0, spell);
 

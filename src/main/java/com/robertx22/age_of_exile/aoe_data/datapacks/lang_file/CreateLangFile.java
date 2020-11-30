@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.lang_file;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
@@ -112,46 +112,46 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
-        list.addAll(SlashRegistry.MobAffixes()
+        list.addAll(Database.MobAffixes()
             .getSerializable());
-        list.addAll(SlashRegistry.Perks()
+        list.addAll(Database.Perks()
             .getSerializable());
-        list.addAll(SlashRegistry.Spells()
+        list.addAll(Database.Spells()
             .getSerializable());
-        list.addAll(SlashRegistry.UniqueGears()
+        list.addAll(Database.UniqueGears()
             .getSerializable());
-        list.addAll(SlashRegistry.Affixes()
+        list.addAll(Database.Affixes()
             .getSerializable());
-        list.addAll(SlashRegistry.FavorRanks()
+        list.addAll(Database.FavorRanks()
             .getSerializable());
-        list.addAll(SlashRegistry.Runewords()
+        list.addAll(Database.Runewords()
             .getSerializable());
 
-        List<Stat> stats = SlashRegistry.Stats()
+        List<Stat> stats = Database.Stats()
             .getList()
             .stream()
             .filter(x -> !x.isFromDatapack())
             .collect(Collectors.toList());
-        list.addAll(SlashRegistry.Stats()
+        list.addAll(Database.Stats()
             .getSerializable());
         list.addAll(stats);
 
-        list.addAll(SlashRegistry.GearTypes()
+        list.addAll(Database.GearTypes()
             .getSerializable());
-        list.addAll(SlashRegistry.ExileEffects()
+        list.addAll(Database.ExileEffects()
             .getSerializable());
         list.addAll(Arrays.asList(Words.values()));
-        list.addAll(SlashRegistry.GearRarities()
+        list.addAll(Database.GearRarities()
             .getSerializable());
-        list.addAll(SlashRegistry.MobRarities()
+        list.addAll(Database.MobRarities()
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
 
-        SlashRegistry.UniqueGears()
+        Database.UniqueGears()
             .getSerializable()
             .forEach(x -> list.add(new UniqueName(x)));
 
-        SlashRegistry.Spells()
+        Database.Spells()
             .getSerializable()
             .forEach(x -> list.add(new OneOfAKindName(x)));
 
@@ -185,15 +185,15 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
 
-        list.addAll(SlashRegistry.UniqueGears()
+        list.addAll(Database.UniqueGears()
             .getSerializable());
 
-        List<Stat> stats = SlashRegistry.Stats()
+        List<Stat> stats = Database.Stats()
             .getList()
             .stream()
             .filter(x -> !x.isFromDatapack())
             .collect(Collectors.toList());
-        list.addAll(SlashRegistry.Stats()
+        list.addAll(Database.Stats()
             .getSerializable());
         list.addAll(stats);
 

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.player_skills.events;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.block.Block;
@@ -57,7 +57,7 @@ public class OnBlockDropMining {
             if (player.world.isClient) {
                 return;
             }
-            PlayerSkill skill = SlashRegistry.PlayerSkills()
+            PlayerSkill skill = Database.PlayerSkills()
                 .get(PlayerSkillEnum.MINING.id);
 
             PlayerSkills skills = Load.playerSkills(player);

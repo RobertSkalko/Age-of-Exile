@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -29,7 +29,7 @@ public class CasterHasStatCondition extends EffectCondition implements ICMainToo
         List<MutableText> list = new ArrayList<>();
         MutableText text = new LiteralText("");
 
-        Stat mod = SlashRegistry.Stats()
+        Stat mod = Database.Stats()
             .get(data.get(MapField.SPELL_MODIFIER));
 
         text.append("Spell Modifier: ")
@@ -45,7 +45,7 @@ public class CasterHasStatCondition extends EffectCondition implements ICMainToo
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
 
-        MarkerStat mod = (MarkerStat) SlashRegistry.Stats()
+        MarkerStat mod = (MarkerStat) Database.Stats()
             .get(data.get(MapField.SPELL_MODIFIER));
 
         return Load.Unit(ctx.caster)

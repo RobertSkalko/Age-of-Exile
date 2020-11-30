@@ -19,7 +19,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -58,7 +58,7 @@ public class MobStatUtils {
     public static void worldMultiplierStats(World world, Unit unit) {
         for (InCalcStatData stat : unit.getStatsContainer().statsInCalc
             .values()) {
-            stat.multiplyFlat(SlashRegistry.getDimensionConfig(world).mob_strength_multi);
+            stat.multiplyFlat(Database.getDimensionConfig(world).mob_strength_multi);
         }
 
     }
@@ -66,7 +66,7 @@ public class MobStatUtils {
     public static void modifyMobStatsByConfig(LivingEntity entity, UnitData unitdata) {
 
         Unit unit = unitdata.getUnit();
-        EntityConfig config = SlashRegistry.getEntityConfig(entity, unitdata);
+        EntityConfig config = Database.getEntityConfig(entity, unitdata);
 
         config.stats.stats.forEach(x -> x.applyStats(unitdata));
 
@@ -97,7 +97,7 @@ public class MobStatUtils {
             e.printStackTrace();
         }
 
-        MobRarity rar = SlashRegistry.MobRarities()
+        MobRarity rar = Database.MobRarities()
             .get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.testing.tests;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 
 public class CountUniqueGearTypes {
 
@@ -9,9 +9,9 @@ public class CountUniqueGearTypes {
 
         System.out.println("[UNIQUES PER SLOT");
 
-        for (BaseGearType slot : SlashRegistry.GearTypes().getList()) {
+        for (BaseGearType slot : Database.GearTypes().getList()) {
 
-            int amount = SlashRegistry.UniqueGears()
+            int amount = Database.UniqueGears()
                     .getWrapped()
                     .ofSpecificGearType(slot.GUID()).list.size();
 

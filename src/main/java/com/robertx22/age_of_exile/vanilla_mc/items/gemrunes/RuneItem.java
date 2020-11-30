@@ -34,7 +34,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -118,7 +118,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
         gear.sockets.sockets.add(socket);
 
-        SlashRegistry.Runewords()
+        Database.Runewords()
             .getList()
             .forEach(x -> {
                 if (x.HasRuneWord(gear)) {
@@ -396,7 +396,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
     }
 
     public Rune getRune() {
-        return SlashRegistry.Runes()
+        return Database.Runes()
             .get(type.id);
     }
 

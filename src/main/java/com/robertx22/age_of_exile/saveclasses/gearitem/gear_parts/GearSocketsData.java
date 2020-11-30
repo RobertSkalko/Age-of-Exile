@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
@@ -66,9 +66,9 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
 
     public RuneWord getRuneWord() {
 
-        if (SlashRegistry.Runewords()
+        if (Database.Runewords()
             .isRegistered(activated_runeword)) {
-            return SlashRegistry.Runewords()
+            return Database.Runewords()
                 .get(activated_runeword);
         }
         return null;

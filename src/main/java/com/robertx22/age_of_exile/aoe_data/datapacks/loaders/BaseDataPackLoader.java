@@ -6,7 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -56,7 +56,7 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
     @Override
     protected void apply(Map<Identifier, JsonElement> mapToLoad, ResourceManager manager, Profiler profilerIn) {
 
-        SlashRegistryContainer reg = SlashRegistry.getRegistry(registryType);
+        SlashRegistryContainer reg = Database.getRegistry(registryType);
 
         Watch normal = new Watch();
         normal.min = 15000;

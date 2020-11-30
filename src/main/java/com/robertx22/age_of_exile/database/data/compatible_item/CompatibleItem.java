@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -206,16 +206,16 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
 
         blueprint.level.set(MathHelper.clamp(RandomUtils.RandomRange(min, max), min, cap));
 
-        blueprint.rarity.possible = SlashRegistry.GearRarityGroups()
+        blueprint.rarity.possible = Database.GearRarityGroups()
             .get(this.rarities)
             .getRarities();
 
         blueprint.isUniquePart.chance = chance_to_become_unique;
 
-        if (SlashRegistry.UniqueGears()
+        if (Database.UniqueGears()
             .isRegistered(unique_id)) {
 
-            blueprint.uniquePart.set(SlashRegistry.UniqueGears()
+            blueprint.uniquePart.set(Database.UniqueGears()
                 .get(unique_id));
         }
 
@@ -238,19 +238,19 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
 
         boolean valid = true;
 
-        if (!SlashRegistry.GearTypes()
+        if (!Database.GearTypes()
             .isRegistered(this.item_type)) {
             System.out.println("\n Invalid gear slot: " + item_type);
             valid = false;
         }
         if (!unique_id.isEmpty()) {
-            if (!SlashRegistry.UniqueGears()
+            if (!Database.UniqueGears()
                 .isRegistered(unique_id)) {
                 System.out.println("\n Invalid unique gear id: " + unique_id);
                 valid = false;
             }
         }
-        if (!SlashRegistry.GearRarityGroups()
+        if (!Database.GearRarityGroups()
             .isRegistered(rarities)) {
             System.out.print("\n" + rarities + " isn't a valid gear rarity group datapack identifier.");
             valid = false;

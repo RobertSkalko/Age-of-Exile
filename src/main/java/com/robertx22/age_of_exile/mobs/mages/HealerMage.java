@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mobs.mages;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mobs.ai.SpellAttackGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -19,7 +19,7 @@ public class HealerMage extends BaseMage {
 
     @Override
     public Spell getSpell() {
-        return SlashRegistry.Spells()
+        return Database.Spells()
             .get(Spells.HEALING_AURA_ID);
     }
 

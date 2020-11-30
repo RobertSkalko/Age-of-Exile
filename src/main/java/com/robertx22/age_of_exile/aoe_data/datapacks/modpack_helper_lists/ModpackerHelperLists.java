@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.modpack_helper_lists;
 
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
 
 import java.io.File;
@@ -18,7 +18,7 @@ public class ModpackerHelperLists {
 
         System.out.println("Starting to create lang file");
 
-        SlashRegistry.getAllRegistries()
+        Database.getAllRegistries()
             .forEach(x -> {
                 try {
 

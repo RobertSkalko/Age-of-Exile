@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.loot.blueprints;
 
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.bases.LevelPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.TierPart;
@@ -27,7 +27,7 @@ public abstract class ItemBlueprint {
         this.tier.number = info.tier;
 
         if (info.mobData != null) {
-            extraLevelModifier = SlashRegistry.MobRarities()
+            extraLevelModifier = Database.MobRarities()
                 .get(info.mobData.getRarity()).loot_lvl_modifier;
         }
 

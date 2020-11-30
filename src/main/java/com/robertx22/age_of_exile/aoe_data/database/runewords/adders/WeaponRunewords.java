@@ -51,7 +51,7 @@ public class WeaponRunewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new AttackDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(4, 15, ChanceToApplyEffect.CHILL, ModType.FLAT)
+                new StatModifier(4, 15, ChanceToApplyEffect.FROSTBURN, ModType.FLAT)
             ),
             Arrays.asList(TOQ, ITA, NOS))
             .addToSerializables();
@@ -62,7 +62,7 @@ public class WeaponRunewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new AttackDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(4, 15, ChanceToApplyEffect.STATIC, ModType.FLAT)
+                new StatModifier(4, 15, ChanceToApplyEffect.SHOCK, ModType.FLAT)
             ),
             Arrays.asList(CEN, ITA, NOS))
             .addToSerializables();

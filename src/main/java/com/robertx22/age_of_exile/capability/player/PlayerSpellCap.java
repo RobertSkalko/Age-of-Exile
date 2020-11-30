@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.capability.player;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.GiveSpellStat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -90,7 +90,7 @@ public class PlayerSpellCap {
             if (en instanceof PlayerEntity) {
                 PlayerEntity p = (PlayerEntity) en;
                 if (p.isCreative()) { // allow easy testing of all spells
-                    return SlashRegistry.Spells()
+                    return Database.Spells()
                         .getList();
                 }
             }
@@ -110,7 +110,7 @@ public class PlayerSpellCap {
                     }
                 });
 
-            SlashRegistry.Spells()
+            Database.Spells()
                 .getList()
                 .stream()
                 .filter(x -> x.getConfig().is_starter)

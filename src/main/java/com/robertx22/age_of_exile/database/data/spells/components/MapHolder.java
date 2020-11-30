@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileE
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SummonProjectileAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -53,7 +53,7 @@ public class MapHolder {
     }
 
     public ExileEffect getExileEffect() {
-        return SlashRegistry.ExileEffects()
+        return Database.ExileEffects()
             .get(get(EXILE_POTION_ID));
     }
 

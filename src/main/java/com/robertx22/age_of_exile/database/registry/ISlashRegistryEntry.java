@@ -11,12 +11,12 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
     SlashRegistryType getSlashRegistryType();
 
     default void registerToSlashRegistry() {
-        SlashRegistry.getRegistry(getSlashRegistryType())
+        Database.getRegistry(getSlashRegistryType())
             .register(this);
     }
 
     default void unregisterFromSlashRegistry() {
-        SlashRegistry.getRegistry(getSlashRegistryType())
+        Database.getRegistry(getSlashRegistryType())
             .unRegister(this);
     }
 
@@ -25,7 +25,7 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
     }
 
     default void unregisterDueToInvalidity() {
-        SlashRegistry.getRegistry(getSlashRegistryType())
+        Database.getRegistry(getSlashRegistryType())
             .unRegister(this);
         try {
             throw new Exception("Registry Entry: " + GUID() + " of type: " + this.getSlashRegistryType()
@@ -56,7 +56,7 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
 
     @Override
     default Rarity getRarity() {
-        return SlashRegistry.GearRarities()
+        return Database.GearRarities()
             .get(getRarityRank());
     }
 

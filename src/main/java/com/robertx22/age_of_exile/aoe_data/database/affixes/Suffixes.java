@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.NonWeaponSuff
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.WeaponSuffixes;
 import com.robertx22.age_of_exile.database.base.IRandomDefault;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class Suffixes implements IRandomDefault<Affix>, ISlashRegistryInit {
 
     @Override
     public List<Affix> All() {
-        return SlashRegistry.Affixes()
+        return Database.Affixes()
             .getWrapped()
             .ofAffixType(Affix.Type.suffix).list;
     }

@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
@@ -21,7 +21,7 @@ public class UniqueGearBuilder {
         b.uniq.langDesc = desc;
         b.uniq.guid = id;
 
-        b.uniq.serBaseGearType = SlashRegistry.GearTypes()
+        b.uniq.serBaseGearType = Database.GearTypes()
             .getFromSerializables(gearType);
         b.uniq.gearType = gearType.GUID();
 

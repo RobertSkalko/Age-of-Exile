@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.favor;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -104,7 +104,7 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
         if (!excludedRarities.isEmpty()) {
             hasBad = true;
             excludedRarities.forEach(x -> {
-                list.add(SlashRegistry.GearRarities()
+                list.add(Database.GearRarities()
                     .get(x)
                     .locName()
                     .append(" rarity can't drop.")

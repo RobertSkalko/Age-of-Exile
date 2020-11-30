@@ -70,7 +70,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
                 new StatModifier(1, 1, 10, 15, new AttackDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(5, 15, ChanceToApplyEffect.STATIC, ModType.FLAT),
+                new StatModifier(5, 15, ChanceToApplyEffect.SHOCK, ModType.FLAT),
                 new StatModifier(-20, 20, CriticalDamage.getInstance(), ModType.FLAT)
             ))
             .build();
@@ -97,7 +97,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(10, 30, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 10, ChanceToApplyEffect.BURN, ModType.FLAT),
-                new StatModifier(5, 10, ChanceToApplyEffect.CHILL, ModType.FLAT),
+                new StatModifier(5, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.POISON, ModType.FLAT)
             ))
             .build();
@@ -162,7 +162,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
                 new StatModifier(1, 1, 3, 3, new AttackDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, ProjectileSpeedStat.getInstance(), ModType.FLAT),
-                new StatModifier(5, 10, ChanceToApplyEffect.CHILL, ModType.FLAT),
+                new StatModifier(5, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT),
                 new StatModifier(10, 20, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(1, 3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT)
             ))

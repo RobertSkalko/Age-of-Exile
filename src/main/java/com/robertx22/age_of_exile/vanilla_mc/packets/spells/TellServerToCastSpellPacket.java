@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -52,7 +52,7 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
 
         PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-        if (!SlashRegistry.Spells()
+        if (!Database.Spells()
             .isRegistered(spellid)) {
             return;
         }
@@ -61,7 +61,7 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
             return;
         }
 
-        Spell spell = SlashRegistry.Spells()
+        Spell spell = Database.Spells()
             .get(this.spellid);
 
         if (spell != null) {

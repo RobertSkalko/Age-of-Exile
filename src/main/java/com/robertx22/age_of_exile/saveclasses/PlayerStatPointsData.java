@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.saveclasses;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -30,7 +30,7 @@ public class PlayerStatPointsData implements IApplyableStats {
         }
         return stats.entrySet()
             .stream()
-            .filter(x -> SlashRegistry.Stats()
+            .filter(x -> Database.Stats()
                 .isRegistered(x.getKey()))
             .map(e -> e.getValue())
             .reduce((a, b) -> a + b)
@@ -41,7 +41,7 @@ public class PlayerStatPointsData implements IApplyableStats {
     public void applyStats(EntityCap.UnitData data) {
         stats.entrySet()
             .forEach(x -> data.getUnit()
-                .getStatInCalculation(SlashRegistry.Stats()
+                .getStatInCalculation(Database.Stats()
                     .get(x.getKey()))
                 .addAlreadyScaledFlat(x.getValue()));
 

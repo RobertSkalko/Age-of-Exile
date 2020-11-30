@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.base.DatapackSpellStat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalcEffect;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
@@ -37,7 +37,7 @@ public class PerSpellExtraProjectilesStat extends DatapackSpellStat implements I
     public String spell = "";
 
     public Spell getSpell() {
-        return SlashRegistry.Spells()
+        return Database.Spells()
             .get(spell);
     }
 

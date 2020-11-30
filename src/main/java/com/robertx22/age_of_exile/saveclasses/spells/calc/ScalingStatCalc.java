@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.spells.calc;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
@@ -21,7 +21,7 @@ public class ScalingStatCalc extends BaseStatCalc {
     public float multi;
 
     public Stat getStat() {
-        return SlashRegistry.Stats()
+        return Database.Stats()
             .get(statID);
     }
 

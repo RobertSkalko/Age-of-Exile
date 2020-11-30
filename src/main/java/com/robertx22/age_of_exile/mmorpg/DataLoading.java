@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
@@ -30,14 +30,14 @@ public class DataLoading {
 
                 Cached.reset();
 
-                SlashRegistry.backup();
+                Database.backup();
 
-                SlashRegistry.checkGuidValidity();
+                Database.checkGuidValidity();
                 ErrorChecks.getAll()
                     .forEach(x -> x.check());
-                SlashRegistry.unregisterInvalidEntries();
+                Database.unregisterInvalidEntries();
 
-                SlashRegistry.getAllRegistries()
+                Database.getAllRegistries()
                     .forEach(x -> x.onAllDatapacksLoaded());
 
             }

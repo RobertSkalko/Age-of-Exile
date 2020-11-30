@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -118,7 +118,7 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
 
     @Override
     public Rarity getRarity() {
-        return SlashRegistry.GearRarities()
+        return Database.GearRarities()
             .lowest();
     }
 
@@ -181,12 +181,12 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
 
     @Override
     public BaseGearType getBaseGearType() {
-        if (!SlashRegistry.GearTypes()
+        if (!Database.GearTypes()
             .isRegistered(this.gearType)) {
             assert this.serBaseGearType != null;
             return serBaseGearType;
         }
-        return SlashRegistry.GearTypes()
+        return Database.GearTypes()
             .get(gearType);
     }
 

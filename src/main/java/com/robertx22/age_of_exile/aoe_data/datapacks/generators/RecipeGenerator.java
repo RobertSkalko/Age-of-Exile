@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import joptsimple.internal.Strings;
 import net.fabricmc.loader.api.FabricLoader;
@@ -99,7 +99,7 @@ public class RecipeGenerator {
             }
         }
 
-        SlashRegistry.GearTypes()
+        Database.GearTypes()
             .getSerializable()
             .forEach(x -> {
 

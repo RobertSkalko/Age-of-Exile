@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.loot.generators;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
@@ -39,7 +39,7 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        return new ItemStack(SlashRegistry.CurrencyItems()
+        return new ItemStack(Database.CurrencyItems()
             .getWrapped()
             .ofTierOrLess(info.tier)
             .random());

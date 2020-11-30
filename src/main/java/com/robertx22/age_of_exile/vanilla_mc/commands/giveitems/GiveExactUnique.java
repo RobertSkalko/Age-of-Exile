@@ -4,10 +4,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.UniqueGearsSuggestions;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
@@ -60,7 +60,7 @@ public class GiveExactUnique {
 
             if (!id.equals("random")) {
 
-                blueprint.uniquePart.set(SlashRegistry.UniqueGears()
+                blueprint.uniquePart.set(Database.UniqueGears()
                     .get(id));
                 blueprint.gearItemSlot.set(blueprint.uniquePart.get()
                     .getBaseGearType());

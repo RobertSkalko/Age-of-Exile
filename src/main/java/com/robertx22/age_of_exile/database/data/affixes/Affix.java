@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.requirements.Requirements;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -124,7 +124,7 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
 
     @Override
     public Rarity getRarity() {
-        return SlashRegistry.GearRarities()
+        return Database.GearRarities()
             .lowest();
     }
 

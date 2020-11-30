@@ -71,7 +71,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
             // save the packetbytebuf, this should save at least 0.1 sec for each time anyone logs in.
             // SUPER important for big mmorpg servers!
             if (type.ser instanceof IByteBuf) {
-                new EfficientRegistryPacket(type, SlashRegistry.getRegistry(type)
+                new EfficientRegistryPacket(type, Database.getRegistry(type)
                     .getFromDatapacks()).saveToData(cachedBuf);
             } else {
                 ListStringData data = new ListStringData(getFromDatapacks()

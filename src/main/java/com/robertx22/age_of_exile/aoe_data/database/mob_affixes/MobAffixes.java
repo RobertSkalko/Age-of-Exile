@@ -28,7 +28,7 @@ public class MobAffixes implements ISlashRegistryInit {
     public static MobAffix WINTER = new MobAffix("winter", "Lord of Winter", Water.format)
         .setMods(
             new StatModifier(15, 15, Health.getInstance()),
-            new StatModifier(5, 5, ChanceToApplyEffect.CHILL),
+            new StatModifier(5, 5, ChanceToApplyEffect.FROSTBURN),
             new StatModifier(75, 75, new PhysConvertToEle(Water)),
             new StatModifier(1, 1, new AttackDamage(Water)),
             new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))
@@ -48,7 +48,7 @@ public class MobAffixes implements ISlashRegistryInit {
     public static MobAffix THUNDER = new MobAffix("thunder_lord", "Lord of Thunder", Thunder.format)
         .setMods(
             new StatModifier(15, 15, Health.getInstance()),
-            new StatModifier(5, 5, ChanceToApplyEffect.STATIC),
+            new StatModifier(5, 5, ChanceToApplyEffect.SHOCK),
             new StatModifier(75, 75, new PhysConvertToEle(Thunder)),
             new StatModifier(1, 1, new AttackDamage(Thunder)),
             new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))

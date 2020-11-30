@@ -121,7 +121,7 @@ public enum SlashRegistryType {
     }
 
     public List getAllForSerialization() {
-        return SlashRegistry.getRegistry(this)
+        return Database.getRegistry(this)
             .getSerializable();
     }
 

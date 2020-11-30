@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPart;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
@@ -89,9 +89,9 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     }
 
     public Gem getGem() {
-        if (SlashRegistry.Gems()
+        if (Database.Gems()
             .isRegistered(gem_id)) {
-            return SlashRegistry.Gems()
+            return Database.Gems()
                 .get(gem_id);
 
         }
@@ -99,9 +99,9 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     }
 
     public Rune getRune() {
-        if (SlashRegistry.Runes()
+        if (Database.Runes()
             .isRegistered(rune_id)) {
-            return SlashRegistry.Runes()
+            return Database.Runes()
                 .get(rune_id);
         }
         return null;

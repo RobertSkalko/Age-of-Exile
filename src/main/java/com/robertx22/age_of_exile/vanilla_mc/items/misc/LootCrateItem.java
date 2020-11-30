@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.MinMax;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.generators.GemLootGen;
@@ -107,8 +107,8 @@ public class LootCrateItem extends Item implements IAutoModel {
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
                 // use only gear types that have uniques
-                blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
-                    .getFilterWrapped(x -> SlashRegistry.UniqueGears()
+                blueprint.gearItemSlot.set(Database.GearTypes()
+                    .getFilterWrapped(x -> Database.UniqueGears()
                         .getList()
                         .stream()
                         .anyMatch(e -> e.getBaseGearType()

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerFavor;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -78,7 +78,7 @@ public class LootInfo {
 
             info.setupAllFields();
 
-            if (SlashRegistry.MobRarities()
+            if (Database.MobRarities()
                 .get(info.mobData.getRarity()).extra_hp_multi > 5 || EntityUtils.getVanillaMaxHealth(mob) > 100) {
                 // is boss basically
                 if (info.favorRank != null) {
@@ -218,11 +218,11 @@ public class LootInfo {
 
             modifier += LootUtils.getMobHealthBasedLootMulti(mobData, mobKilled) - 1F;
 
-            modifier += SlashRegistry.getEntityConfig(mobKilled, this.mobData).loot_multi - 1F;
+            modifier += Database.getEntityConfig(mobKilled, this.mobData).loot_multi - 1F;
             modifier += mobData.getUnit()
                 .getCalculatedStat(ExtraMobDropsStat.getInstance())
                 .getMultiplier() - 1;
-            modifier += SlashRegistry.MobRarities()
+            modifier += Database.MobRarities()
                 .get(mobData.getRarity())
                 .LootMultiplier() - 1;
 
@@ -237,7 +237,7 @@ public class LootInfo {
         }
 
         if (world != null) {
-            modifier += SlashRegistry.getDimensionConfig(world).all_drop_multi - 1F;
+            modifier += Database.getDimensionConfig(world).all_drop_multi - 1F;
         }
 
         float chance = gen.baseDropChance() * modifier;

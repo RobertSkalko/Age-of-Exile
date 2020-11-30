@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.age_of_exile.config.forge.parts.AutoConfigItemType;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -60,7 +60,7 @@ public class ItemAutoPowerLevels {
             return 0F;
         }
 
-        List<BaseGearType> slots = SlashRegistry.GearTypes()
+        List<BaseGearType> slots = Database.GearTypes()
             .getList()
             .stream()
             .filter(x -> BaseGearType.isGearOfThisType(x, item))
@@ -144,7 +144,7 @@ public class ItemAutoPowerLevels {
 
     public static void setupHashMaps() {
 
-        Set<BaseGearType> types = new HashSet<>(SlashRegistry.GearTypes()
+        Set<BaseGearType> types = new HashSet<>(Database.GearTypes()
             .getList());
 
         Watch watch = new Watch();

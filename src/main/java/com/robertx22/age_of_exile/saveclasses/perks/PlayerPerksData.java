@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -93,7 +93,7 @@ public class PlayerPerksData {
     public void allocate(PlayerEntity player, SpellSchool school, PointData point) {
         Perk perk = school.calcData.getPerk(point);
 
-        if (SlashRegistry.Spells()
+        if (Database.Spells()
             .isRegistered(perk.spell)) {
             if (perk.getSpell() != null && !perk.getSpell()
                 .isPassive()) {

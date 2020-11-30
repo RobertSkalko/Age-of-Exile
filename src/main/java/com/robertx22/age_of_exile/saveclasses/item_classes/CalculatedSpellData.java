@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -40,7 +40,7 @@ public class CalculatedSpellData implements ITooltipList {
     }
 
     public Spell getSpell() {
-        return SlashRegistry.Spells()
+        return Database.Spells()
             .get(spell_id);
     }
 
@@ -50,12 +50,12 @@ public class CalculatedSpellData implements ITooltipList {
         List<Text> list = new ArrayList<>();
         try {
 
-            if (!SlashRegistry.Spells()
+            if (!Database.Spells()
                 .isRegistered(spell_id)) {
                 return list;
             }
 
-            Spell spell = SlashRegistry.Spells()
+            Spell spell = Database.Spells()
                 .get(spell_id);
 
             if (spell == null) {

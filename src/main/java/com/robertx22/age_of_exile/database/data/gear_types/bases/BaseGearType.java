@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Wea
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -95,7 +95,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     }
 
     public GearSlot getGearSlot() {
-        return SlashRegistry.GearSlots()
+        return Database.GearSlots()
             .get(gear_slot);
     }
 
@@ -198,7 +198,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
         String id = GUID();
 
-        List<UniqueGear> list = SlashRegistry.UniqueGears()
+        List<UniqueGear> list = Database.UniqueGears()
             .getFilterWrapped(x -> {
                 String otherid = x.getBaseGearType()
                     .GUID();
@@ -542,7 +542,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     @Override
     public Rarity getRarity() {
-        return SlashRegistry.GearRarities()
+        return Database.GearRarities()
             .get(getRarityRank());
     }
 

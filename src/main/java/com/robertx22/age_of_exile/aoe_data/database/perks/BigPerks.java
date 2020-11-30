@@ -141,9 +141,9 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_effect_of_ele", "Elemental Destruction",
             new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(10, ChanceToApplyEffect.POISON, ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, ChanceToApplyEffect.STATIC, ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, ChanceToApplyEffect.SHOCK, ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, ChanceToApplyEffect.BURN, ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, ChanceToApplyEffect.CHILL, ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, ChanceToApplyEffect.FROSTBURN, ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("big_aspect_of_thunder", "Aspect of Thunder",

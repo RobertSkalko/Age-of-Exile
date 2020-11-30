@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.currency.loc_reqs;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -31,7 +31,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final SimpleGearLocReq IS_COMMON = new SimpleGearLocReq(
         x -> x.rarity == IRarity.Common, Words.IsCommon.locName());
     public static final SimpleGearLocReq IS_NOT_HIGHEST_RARITY = new SimpleGearLocReq(
-        x -> x.rarity < SlashRegistry.GearRarities()
+        x -> x.rarity < Database.GearRarities()
             .getAllRarities()
             .stream()
             .filter(t -> t.Rank() != IRarity.Unique)

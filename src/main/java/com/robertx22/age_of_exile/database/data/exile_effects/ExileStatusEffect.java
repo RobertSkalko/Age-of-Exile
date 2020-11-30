@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IApplyStatPotion;
 import net.minecraft.entity.LivingEntity;
@@ -36,12 +36,12 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
     }
 
     public boolean hasExileRegistry() {
-        return SlashRegistry.ExileEffects()
+        return Database.ExileEffects()
             .isRegistered(exileEffectId);
     }
 
     public ExileEffect getExileEffect() {
-        return SlashRegistry.ExileEffects()
+        return Database.ExileEffects()
             .get(exileEffectId);
     }
 

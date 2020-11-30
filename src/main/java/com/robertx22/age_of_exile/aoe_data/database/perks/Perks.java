@@ -8,10 +8,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
@@ -26,7 +23,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -70,8 +67,8 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(5, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE));
 
         PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.BURN, ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.CHILL, ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.STATIC, ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.FROSTBURN, ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.SHOCK, ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.POISON, ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
@@ -87,7 +84,7 @@ public class Perks implements ISlashRegistryInit {
         new ElementalSpellDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
-
+                PerkBuilder.stat(x.GUID() + "_and_dot", new OptScaleExactStat(1, x, ModType.FLAT), new OptScaleExactStat(3, new DamageOverTime(x.getElement()), ModType.FLAT));
             });
 
         new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()
@@ -125,7 +122,7 @@ public class Perks implements ISlashRegistryInit {
 
             });
 
-        SlashRegistry.Spells()
+        Database.Spells()
             .getSerializable()
             .forEach(spell -> {
                 PerkBuilder.spell(spell);

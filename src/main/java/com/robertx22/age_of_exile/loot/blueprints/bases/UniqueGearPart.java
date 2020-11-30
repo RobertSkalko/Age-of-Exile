@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.FilterListWrap;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 
 public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
@@ -16,7 +16,7 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
 
         GearBlueprint gearBlueprint = (GearBlueprint) blueprint;
 
-        FilterListWrap<UniqueGear> gen = SlashRegistry.UniqueGears()
+        FilterListWrap<UniqueGear> gen = Database.UniqueGears()
             .getWrapped()
             .ofSpecificGearType(gearBlueprint.gearItemSlot.get()
                 .GUID());

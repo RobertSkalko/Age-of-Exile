@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.perks.PlayerPerksData;
@@ -51,7 +51,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         for (SpellSchool.SchoolType type : SpellSchool.SchoolType.values()) {
             for (Map.Entry<String, SchoolData> x : data.getPerks(type)
                 .entrySet()) {
-                SpellSchool school = SlashRegistry.SpellSchools()
+                SpellSchool school = Database.SpellSchools()
                     .get(x.getKey());
                 if (school != null) {
                     for (PointData p : x.getValue()
@@ -88,7 +88,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
 
         SpellSchool school = null;
 
-        for (SpellSchool x : SlashRegistry.SpellSchools()
+        for (SpellSchool x : Database.SpellSchools()
             .getFiltered(x -> x.getSchool_type() == SpellSchool.SchoolType.SPELLS)) {
             int alo = data.getSchool(x)
                 .getAllocatedPointsInSchool();

@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
@@ -99,9 +99,9 @@ public class CustomLootCrateItem extends Item implements IAutoModel {
                 }
             }
             if (rar != null) {
-                if (SlashRegistry.GearRarities()
+                if (Database.GearRarities()
                     .isRegistered(rar)) {
-                    this.gearRarity = SlashRegistry.GearRarities()
+                    this.gearRarity = Database.GearRarities()
                         .get(rar);
                 }
             }

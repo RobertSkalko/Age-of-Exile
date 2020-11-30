@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -149,7 +149,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
 
             if (gear != null) {
 
-                SlashRegistry.Runewords()
+                Database.Runewords()
                     .getList()
                     .forEach(x -> {
                         if (x.canItemHave(gear)) {
@@ -161,7 +161,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
         } else if (!CraftItemSlot().isEmpty()) {
             if (CraftItemSlot().getItem() instanceof RuneItem) {
                 RuneItem rune = (RuneItem) CraftItemSlot().getItem();
-                SlashRegistry.Runewords()
+                Database.Runewords()
                     .getList()
                     .forEach(x -> {
                         if (x.containsRune(rune.getRune())) {

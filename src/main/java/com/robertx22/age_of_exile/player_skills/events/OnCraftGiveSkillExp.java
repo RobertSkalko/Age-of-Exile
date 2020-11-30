@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.player_skills.events;
 
 import com.robertx22.age_of_exile.database.data.player_skills.ItemCraftExp;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ public class OnCraftGiveSkillExp {
             return;
         }
 
-        for (PlayerSkill skill : SlashRegistry.PlayerSkills()
+        for (PlayerSkill skill : Database.PlayerSkills()
             .getList()) {
             Optional<ItemCraftExp> opt = skill.item_craft_exp.stream()
                 .filter(x -> x.getItem() == stack.getItem())

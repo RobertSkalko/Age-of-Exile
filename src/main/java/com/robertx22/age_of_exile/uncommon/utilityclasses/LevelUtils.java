@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -43,7 +43,7 @@ public class LevelUtils {
 
         ServerWorld sw = (ServerWorld) world;
 
-        DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(world);
+        DimensionConfig dimConfig = Database.getDimensionConfig(world);
 
         int lvl = 0;
 
@@ -108,7 +108,7 @@ public class LevelUtils {
     }
 
     public static double getBlocksForEachLevelDistance(ServerWorld world) {
-        DimensionConfig config = SlashRegistry.getDimensionConfig(world);
+        DimensionConfig config = Database.getDimensionConfig(world);
 
         double scale = MathHelper.clamp(world.getDimension()
             .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);

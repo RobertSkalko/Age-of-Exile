@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.registry;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
@@ -39,7 +39,7 @@ public class RequestRegistriesPacket extends MyPacket<RequestRegistriesPacket> {
 
     @Override
     public void onReceived(PacketContext ctx) {
-        SlashRegistry.sendPacketsToClient((ServerPlayerEntity) ctx.getPlayer(), sync);
+        Database.sendPacketsToClient((ServerPlayerEntity) ctx.getPlayer(), sync);
         Packets.sendToClient(ctx.getPlayer(), new OnLoginClientPacket(sync, OnLoginClientPacket.When.AFTER));
     }
 

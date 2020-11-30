@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -50,7 +50,7 @@ public class CompatibleItemUtils {
             String reg = Registry.ITEM.getId(item)
                 .toString();
 
-            all.addAll(SlashRegistry.CompatibleItems()
+            all.addAll(Database.CompatibleItems()
                 .getFilterWrapped(x -> x.item_id.equals(reg)).list);
 
             if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
@@ -59,7 +59,7 @@ public class CompatibleItemUtils {
 
                         Set<GearSlot> slots = new HashSet<>();
 
-                        SlashRegistry.GearTypes()
+                        Database.GearTypes()
                             .getList()
                             .forEach(x -> {
                                 if (BaseGearType.isGearOfThisType(x, item)) {
@@ -81,24 +81,24 @@ public class CompatibleItemUtils {
             if (!all.isEmpty()) {
 
                 CompatibleItem min = all.stream()
-                    .min(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
+                    .min(Comparator.comparingInt(s -> Database.GearTypes()
                         .get(s.item_type)
                         .getLevelRange()
                         .getMinLevel()))
                     .get();
                 CompatibleItem max = all.stream()
-                    .max(Comparator.comparingInt(s -> SlashRegistry.GearTypes()
+                    .max(Comparator.comparingInt(s -> Database.GearTypes()
                         .get(s.item_type)
                         .getLevelRange()
                         .getMaxLevel()))
                     .get();
 
-                this.minLevel = SlashRegistry.GearTypes()
+                this.minLevel = Database.GearTypes()
                     .get(min.item_type)
                     .getLevelRange()
                     .getMinLevel();
 
-                this.maxLevel = SlashRegistry.GearTypes()
+                this.maxLevel = Database.GearTypes()
                     .get(max.item_type)
                     .getLevelRange()
                     .getMaxLevel();
@@ -119,7 +119,7 @@ public class CompatibleItemUtils {
 
     public static Data getData(World world, Item item) {
 
-        if (!SlashRegistry.areDatapacksLoaded(world)) {
+        if (!Database.areDatapacksLoaded(world)) {
             return Data.empty();
         }
         if (!Cached.COMPATIBLE_ITEMS.containsKey(item)) {

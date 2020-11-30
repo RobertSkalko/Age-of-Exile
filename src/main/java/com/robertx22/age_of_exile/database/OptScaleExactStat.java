@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 
@@ -24,8 +25,6 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     public String stat;
     public String type;
     public boolean scaleToLevel = false;
-
-    public transient Stat transientstat;
 
     private OptScaleExactStat() {
     }
@@ -58,7 +57,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         this.first = first;
         this.stat = stat.GUID();
         this.type = type.name();
-        this.transientstat = stat;
+
     }
 
     public OptScaleExactStat(float first, float second, Stat stat, ModType type) {
@@ -66,7 +65,6 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         this.second = second;
         this.stat = stat.GUID();
         this.type = type.name();
-        this.transientstat = stat;
     }
 
     @Override
@@ -82,7 +80,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     }
 
     public Stat getStat() {
-        return SlashRegistry.Stats()
+        return Database.Stats()
             .get(stat);
     }
 
@@ -91,7 +89,7 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     }
 
     public ExactStatData toExactStat(int lvl) {
-        Stat stat = SlashRegistry.Stats()
+        Stat stat = Database.Stats()
             .get(this.stat);
 
         return ExactStatData.of(first, second, stat, getModType(), lvl);
@@ -107,6 +105,11 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
     public void applyStats(EntityCap.UnitData data) {
         toExactStat(scaleToLevel ? data.getLevel() : 1)
             .applyStats(data);
+    }
+
+    public String getDebugString() {
+
+        return "" + (int) first + " " + getModType().name() + " " + CLOC.translate(getStat().locName());
     }
 
     public static void combine(List<OptScaleExactStat> list) {

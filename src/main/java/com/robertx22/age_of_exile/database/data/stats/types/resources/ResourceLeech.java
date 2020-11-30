@@ -61,7 +61,7 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
 
     @Override
     public String locNameForLangFile() {
-        return "Of " + info.attackType.locname + " " + info.element.dmgName + " " + "Leeched as " + info.resource.locname;
+        return "Of " + info.attackType.locname + " " + info.element.dmgName + " Damage Leeched as " + info.resource.locname;
     }
 
     @Override

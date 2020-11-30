@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.registry;
 import com.google.common.collect.Lists;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.IByteBuf;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -76,7 +76,7 @@ public class EfficientRegistryPacket<T extends IByteBuf & ISerializedRegistryEnt
     @Override
     public void onReceived(PacketContext ctx) {
 
-        SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
+        SlashRegistryContainer reg = Database.getRegistry(type);
 
         reg.unregisterAllEntriesFromDatapacks();
 

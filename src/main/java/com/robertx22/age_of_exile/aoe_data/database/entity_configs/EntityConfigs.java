@@ -67,9 +67,9 @@ public class EntityConfigs implements ISlashRegistryInit {
         mob(ENTITIES.THUNDER_CHICKEN, thunder());
 
         mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.BURN)))));
-        mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.CHILL)))));
+        mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.FROSTBURN)))));
         mob(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.POISON)))));
-        mob(ENTITIES.THUNDER_MAGE, new SpecialMobStats(thunder(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.STATIC)))));
+        mob(ENTITIES.THUNDER_MAGE, new SpecialMobStats(thunder(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.SHOCK)))));
 
         mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new MobStatData(new StatModifier(-90, -90, HealEffectivenessOnSelf.getInstance()))));
 

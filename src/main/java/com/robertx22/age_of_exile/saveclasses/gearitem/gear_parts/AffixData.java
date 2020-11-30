@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.FilterListWrap;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -60,7 +60,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     }
 
     public Affix getAffix() {
-        return SlashRegistry.Affixes()
+        return Database.Affixes()
             .get(this.baseAffix);
     }
 
@@ -77,7 +77,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     }
 
     public final Affix BaseAffix() {
-        return SlashRegistry.Affixes()
+        return Database.Affixes()
             .get(baseAffix);
     }
 
@@ -93,7 +93,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     }
 
     public boolean isValid() {
-        if (!SlashRegistry.Affixes()
+        if (!Database.Affixes()
             .isRegistered(this.baseAffix)) {
             return false;
         }
@@ -131,7 +131,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         Affix affix = null;
         try {
 
-            FilterListWrap<Affix> list = SlashRegistry.Affixes()
+            FilterListWrap<Affix> list = Database.Affixes()
                 .getFilterWrapped(x -> x.type == getAffixType() && gear.canGetAffix(x));
 
             if (list.list.isEmpty()) {

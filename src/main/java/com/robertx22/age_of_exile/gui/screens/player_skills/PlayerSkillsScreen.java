@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.player_skills;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
@@ -60,7 +60,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
         int x = guiLeft + 25;
         int y = guiTop + 50;
 
-        List<PlayerSkill> all = SlashRegistry.PlayerSkills()
+        List<PlayerSkill> all = Database.PlayerSkills()
             .getList();
         all.sort(Comparator.comparingInt(s -> s.order));
 
@@ -116,7 +116,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
         drawTexture(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
 
         mc.getTextureManager()
-            .bindTexture(SlashRegistry.PlayerSkills()
+            .bindTexture(Database.PlayerSkills()
                 .get(skill.id)
                 .getIcon());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -170,7 +170,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
                 TooltipInfo info = new TooltipInfo(mc.player);
 
-                tooltip.addAll(SlashRegistry.PlayerSkills()
+                tooltip.addAll(Database.PlayerSkills()
                     .get(skill.id)
                     .GetTooltipString(info));
 

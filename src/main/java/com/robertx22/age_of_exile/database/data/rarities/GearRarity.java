@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.MinMax;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 
 public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
     public static GearRarity SERIALIZER = new GearRarity();
@@ -124,12 +124,12 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     }
 
     public boolean hasHigherRarity() {
-        return SlashRegistry.GearRarities()
+        return Database.GearRarities()
             .isRegistered(higher_rar);
     }
 
     public GearRarity getHigherRarity() {
-        return SlashRegistry.GearRarities()
+        return Database.GearRarities()
             .get(higher_rar);
     }
 }

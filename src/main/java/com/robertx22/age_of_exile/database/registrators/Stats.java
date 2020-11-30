@@ -73,10 +73,10 @@ public class Stats implements ISlashRegistryInit {
                     add(BonusDmgToStatusAffected.POISON);
                     add(BonusDmgToStatusAffected.STATIC);
 
-                    add(ChanceToApplyEffect.CHILL);
+                    add(ChanceToApplyEffect.FROSTBURN);
                     add(ChanceToApplyEffect.BURN);
                     add(ChanceToApplyEffect.POISON);
-                    add(ChanceToApplyEffect.STATIC);
+                    add(ChanceToApplyEffect.SHOCK);
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
@@ -168,6 +168,8 @@ public class Stats implements ISlashRegistryInit {
 
                     add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.HEALTH, AttackType.ATTACK)));
                     add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.ATTACK)));
+
+                    add(new DamageOverTime(Elements.Elemental));
 
                     add(HealPower.getInstance());
                     add(HealEffectivenessOnSelf.getInstance());

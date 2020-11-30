@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SlashRegistry {
+public class Database {
 
     private static HashMap<SlashRegistryType, SlashRegistryContainer> SERVER = new HashMap<>();
     private static HashMap<SlashRegistryType, SlashRegistryContainer> BACKUP = new HashMap<>();
@@ -52,7 +52,7 @@ public class SlashRegistry {
     public static boolean areDatapacksLoaded(World world) {
         return SlashRegistryType.getInRegisterOrder(SyncTime.ON_LOGIN)
             .stream()
-            .allMatch(x -> SlashRegistry.getRegistry(x)
+            .allMatch(x -> Database.getRegistry(x)
                 .isRegistrationDone());
     }
 

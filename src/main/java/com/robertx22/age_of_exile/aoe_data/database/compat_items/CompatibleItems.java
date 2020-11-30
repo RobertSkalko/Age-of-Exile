@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -18,7 +18,7 @@ public class CompatibleItems {
 
         try {
 
-            for (BaseGearType slot : SlashRegistry.GearTypes()
+            for (BaseGearType slot : Database.GearTypes()
                 .getSerializable()
             ) {
                 Item item = slot.getItem();
@@ -48,7 +48,7 @@ public class CompatibleItems {
                     items.add(c);
                 }
             }
-            for (UniqueGear uniq : SlashRegistry.UniqueGears()
+            for (UniqueGear uniq : Database.UniqueGears()
                 .getSerializable()
             ) {
                 Item item = uniq.getUniqueItem();

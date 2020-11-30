@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
@@ -114,19 +114,19 @@ public class WorldUtils {
         if (isMapWorldClass(world)) {
             return true;
         } else {
-            return SlashRegistry.getDimensionConfig(world)
+            return Database.getDimensionConfig(world)
                 .isMapWorld();
         }
     }
 
     public static boolean isMapWorldClass(WorldAccess world) {
 
-        return SlashRegistry.getDimensionConfig(world).mob_tier > 0;
+        return Database.getDimensionConfig(world).mob_tier > 0;
     }
 
     public static int getTier(World world, BlockPos pos) {
 
-        return SlashRegistry.getDimensionConfig(world).mob_tier;
+        return Database.getDimensionConfig(world).mob_tier;
 
     }
 

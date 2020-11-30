@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.parser.TalentGrid;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 
@@ -72,7 +72,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         boolean isvalid = true;
 
         for (Map.Entry<PointData, String> x : this.calcData.perks.entrySet()) {
-            if (!SlashRegistry.Perks()
+            if (!Database.Perks()
                 .isRegistered(x.getValue())) {
                 System.out.print("\n Perk of id: " + x.getValue()
                     .replaceAll("\r", "[NEWLINE]") + " doesn't exist, used in spell school: " + this.identifier + " at point: " + x.getKey()
@@ -97,7 +97,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         public transient HashMap<PointData, String> perks = new HashMap<>();
 
         public Perk getPerk(PointData point) {
-            return SlashRegistry.Perks()
+            return Database.Perks()
                 .get(perks.get(point));
         }
 

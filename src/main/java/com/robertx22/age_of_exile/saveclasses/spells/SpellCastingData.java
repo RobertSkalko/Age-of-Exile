@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.spells;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -52,7 +52,7 @@ public class SpellCastingData {
         PlayerSpellCap.ISpellsCap spells = Load.spells(player);
         new HashMap<>(bar).entrySet()
             .forEach(x -> {
-                if (!spells.isSpellLearned(player, SlashRegistry.Spells()
+                if (!spells.isSpellLearned(player, Database.Spells()
                     .get(x.getValue()))) {
                     bar.put(x.getKey(), "");
                 }
@@ -92,7 +92,7 @@ public class SpellCastingData {
 
     public boolean isCasting() {
 
-        return casting && SlashRegistry.Spells()
+        return casting && Database.Spells()
             .isRegistered(spellBeingCast);
     }
 
@@ -101,12 +101,12 @@ public class SpellCastingData {
         try {
 
             if (spellBeingCast != null && spellBeingCast.length() > 0) {
-                Spell spell = SlashRegistry.Spells()
+                Spell spell = Database.Spells()
                     .get(spellBeingCast);
 
                 SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
 
-                if (spell != null && spells != null && SlashRegistry.Spells()
+                if (spell != null && spells != null && Database.Spells()
                     .isRegistered(spell)) {
                     spell.onCastingTick(ctx);
                 }
@@ -155,7 +155,7 @@ public class SpellCastingData {
 
         if (!spellBeingCast.isEmpty()) {
             if (castingTicksLeft <= 0) {
-                Spell spell = SlashRegistry.Spells()
+                Spell spell = Database.Spells()
                     .get(spellBeingCast);
 
                 int timesToCast = ctx.spell.getConfig().times_to_cast;
@@ -179,7 +179,7 @@ public class SpellCastingData {
     }
 
     public Spell getSpellBeingCast() {
-        return SlashRegistry.Spells()
+        return Database.Spells()
             .get(spellBeingCast);
     }
 
@@ -237,9 +237,9 @@ public class SpellCastingData {
         }
 
         if (id != null) {
-            if (SlashRegistry.Spells()
+            if (Database.Spells()
                 .isRegistered(id)) {
-                return SlashRegistry.Spells()
+                return Database.Spells()
                     .get(id);
             }
 

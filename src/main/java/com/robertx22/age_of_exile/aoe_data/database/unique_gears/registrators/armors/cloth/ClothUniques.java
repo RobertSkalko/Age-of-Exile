@@ -65,7 +65,7 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(25, 50, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalPenetration(Elements.Water), ModType.FLAT),
-                new StatModifier(5, 15, ChanceToApplyEffect.CHILL, ModType.FLAT)
+                new StatModifier(5, 15, ChanceToApplyEffect.FROSTBURN, ModType.FLAT)
             ))
             .build();
 

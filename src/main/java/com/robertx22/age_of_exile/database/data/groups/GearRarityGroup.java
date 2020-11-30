@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.groups;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class GearRarityGroup implements ISerializedRegistryEntry<GearRarityGroup
 
     public List<GearRarity> getRarities() {
         return rarities.stream()
-            .map(x -> SlashRegistry.GearRarities()
+            .map(x -> Database.GearRarities()
                 .get(x))
             .collect(Collectors.toList());
     }

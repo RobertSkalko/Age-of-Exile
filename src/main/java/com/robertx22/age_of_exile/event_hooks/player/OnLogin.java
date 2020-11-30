@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.event_hooks.player;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -32,9 +32,9 @@ public class OnLogin {
         try {
 
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.BEFORE));
-            SlashRegistry.sendPacketsToClient(player, SyncTime.ON_LOGIN);
+            Database.sendPacketsToClient(player, SyncTime.ON_LOGIN);
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.AFTER));
-            SlashRegistry.restoreFromBackupifEmpty();
+            Database.restoreFromBackupifEmpty();
 
             Load.spells(player)
                 .getCastingData()
@@ -76,7 +76,7 @@ public class OnLogin {
             e.printStackTrace();
         }
 
-        SlashRegistry.restoreFromBackupifEmpty();
+        Database.restoreFromBackupifEmpty();
 
         if (MMORPG.RUN_DEV_TOOLS) {
             total.print("Total on login actions took ");

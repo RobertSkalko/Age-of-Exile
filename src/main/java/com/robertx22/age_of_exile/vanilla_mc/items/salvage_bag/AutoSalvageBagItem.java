@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -30,7 +30,7 @@ public abstract class AutoSalvageBagItem extends Item implements IAutoLocName, I
 
     public List<GearRarity> getRaritiesThatCanSalvage() {
         return salvagableRaritiesInternal().stream()
-            .map(x -> SlashRegistry.GearRarities()
+            .map(x -> Database.GearRarities()
                 .get(x))
             .collect(Collectors.toList());
     }

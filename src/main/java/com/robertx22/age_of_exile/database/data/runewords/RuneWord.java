@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
@@ -94,7 +94,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
     public boolean canItemHave(GearItemData gear) {
 
         int minlvl = runes_needed.stream()
-            .map(x -> SlashRegistry.Runes()
+            .map(x -> Database.Runes()
                 .get(x))
             .min(Comparator.comparingInt(x -> x.getReqLevel()))
             .get()

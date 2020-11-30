@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.config.forge.parts;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class AutoConfigItemType {
         List<CompatibleItem> list = new ArrayList<>();
 
         try {
-            SlashRegistry.GearTypes()
+            Database.GearTypes()
                 .getFilterWrapped(x -> {
 
                     if (x.getGearSlot()

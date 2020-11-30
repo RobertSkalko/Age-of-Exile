@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.interfaces.data_items;
 
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -12,7 +12,7 @@ public interface ITiered {
 
     public static int getMaxTier() {
         if (Cached.maxTier == null) {
-            Optional<Tier> opt = SlashRegistry.Tiers()
+            Optional<Tier> opt = Database.Tiers()
                 .getList()
                 .stream()
                 .max(Comparator.comparingInt(x -> x.id_rank));

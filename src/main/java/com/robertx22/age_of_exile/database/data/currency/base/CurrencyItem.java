@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -145,7 +145,7 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
     @Override
     public Rarity getRarity() {
-        return SlashRegistry.MobRarities()
+        return Database.MobRarities()
             .get(getRarityRank());
     }
 

@@ -6,6 +6,7 @@ mod_tp_dmg
 throw_flames
 big_wand
 passive_divine
+big_heart_of_ice
 big_eagle
 blazing_inferno
 spell_thunder_damage
@@ -32,12 +33,15 @@ flat_ms_mana_regen
 arcane_bolt
 multi_shot
 big_flame_of_life
+spell_fire_damage_and_dot
 all_physical_damage
 warrior
 critical_hit
 thunder_resist
+spell_nature_damage_and_dot
 thunder_strikes
 big_frog
+big_breath_of_fire
 big_gladiator
 big_vampire
 heart_of_magic
@@ -50,6 +54,7 @@ mod_holy_flower_dmg
 mod_thorn_armor_thorns
 big_aspect_of_thunder
 dodge
+spell_elemental_damage_and_dot
 blizzard
 familiar_instincts
 magic_bomb
@@ -66,6 +71,7 @@ harmony
 magma_flower
 thunder_penetration
 hp_mana_cost
+big_breath_of_thunder
 big_iron_skin
 flat_health_mana
 thunder_storm
@@ -98,7 +104,9 @@ passive_nature
 mob_imbue_crit
 flower_of_ice
 fire_weapon_damage
+spell_water_damage_and_dot
 mod_holy_flower_cure
+spell_thunder_damage_and_dot
 start
 frostball
 fire_bombs
@@ -126,6 +134,7 @@ all_thunder_damage
 hp_res
 wizardry
 big_force_of_will
+big_breath_of_water
 imbue
 spear_of_judgement
 mod_holy_flower_rest
@@ -137,6 +146,8 @@ mod_tp_ele_res
 big_rat
 mage
 big_wisdom_of_the_elders
+big_heart_of_thunder
+big_breath_of_nature
 mod_mana_cd
 big_eviscerator
 spell_critical_damage
@@ -144,6 +155,8 @@ big_str
 steady_hand
 tidal_wave
 nature_resist
+big_heart_of_fire
+chance_of_shock
 mod_tp_fast
 arrow_barrage
 fireball
@@ -210,8 +223,10 @@ magic_shield_regen
 big_faith_armor
 thunder_spear
 big_sadist
+chance_of_frostburn
 big_will_of_mana
 int
 big_balistic
 fire_penetration
+big_heart_of_nature
 reckless_blows

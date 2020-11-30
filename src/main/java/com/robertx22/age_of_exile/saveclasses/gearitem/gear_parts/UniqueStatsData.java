@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IRerollable;
@@ -63,7 +63,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     }
 
     public UniqueGear getUnique(GearItemData gear) {
-        return SlashRegistry.UniqueGears()
+        return Database.UniqueGears()
             .get(gear.unique_id);
 
     }
@@ -76,7 +76,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
         int i = 0;
-        for (StatModifier mod : SlashRegistry.UniqueGears()
+        for (StatModifier mod : Database.UniqueGears()
             .get(gear.unique_id)
             .uniqueStats()) {
             ExactStatData exact = mod.ToExactStat(percents.get(i), gear.level);
@@ -92,7 +92,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         List<ExactStatData> list = new ArrayList<>();
 
         int i = 0;
-        for (StatModifier mod : SlashRegistry.UniqueGears()
+        for (StatModifier mod : Database.UniqueGears()
             .get(gear.unique_id)
             .uniqueStats()) {
             list.add(mod.ToExactStat(percents.get(i), gear.level));

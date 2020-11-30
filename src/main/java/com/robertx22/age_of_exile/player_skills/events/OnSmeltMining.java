@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.player_skills.events;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.SlashRegistry;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -23,7 +23,7 @@ public class OnSmeltMining {
 
         PlayerSkills skills = Load.playerSkills(player);
 
-        PlayerSkill mining = SlashRegistry.PlayerSkills()
+        PlayerSkill mining = Database.PlayerSkills()
             .get(PlayerSkillEnum.MINING.id);
 
         for (Object2IntMap.Entry<Identifier> entry : recipesUsed.object2IntEntrySet()) {
