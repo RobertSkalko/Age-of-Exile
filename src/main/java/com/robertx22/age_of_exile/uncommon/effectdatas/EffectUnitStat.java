@@ -8,6 +8,8 @@ import java.util.Comparator;
 
 public class EffectUnitStat implements Comparator<EffectUnitStat> {
 
+    public static EffectUnitStat COMPARATOR = new EffectUnitStat();
+
     public IStatEffect effect;
     public Unit source;
     public StatData stat;

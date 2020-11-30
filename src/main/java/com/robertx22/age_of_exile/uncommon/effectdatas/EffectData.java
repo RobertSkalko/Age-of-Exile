@@ -170,16 +170,14 @@ public abstract class EffectData {
 
         Effects = AddEffects(Effects, unit, side);
 
-        Effects.sort(new EffectUnitStat());
+        Effects.sort(EffectUnitStat.COMPARATOR);
 
         for (EffectUnitStat item : Effects) {
             if (item.stat.isNotZero()) {
                 if (item.effect.Side()
                     .equals(side)) {
                     item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
-
                 }
-
             }
         }
 

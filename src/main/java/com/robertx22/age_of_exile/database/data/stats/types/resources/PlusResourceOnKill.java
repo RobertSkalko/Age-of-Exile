@@ -74,7 +74,7 @@ public class PlusResourceOnKill extends Stat {
 
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            effect.addToRestore(new ConditionalRestoreResource(resource, data.getAverageValue()));
+            effect.addToRestore(new ConditionalRestoreResource(resource, data.getAverageValue(), x -> x.target.isDead()));
             return effect;
         }
 
