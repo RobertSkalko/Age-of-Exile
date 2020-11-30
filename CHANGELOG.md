@@ -88,7 +88,7 @@ More mobs will be coming in my World of Exile mod!
 * crit damage starts at 150% now instead of 120%.
 * stat points now give flat amounts, so each point is say 20 health, no matter your level.
 The stat points you receive though are multiplied by the scaling.
-* tweaked base stats (delete the config folder please)
+* tweaked base stats
 * new stat: accuracy
 * mobs now all have dodge chance. You shouldn't notice if you build even a tiny amount of accuracy,
 but battling high level mobs should be a bigger problem due to it.

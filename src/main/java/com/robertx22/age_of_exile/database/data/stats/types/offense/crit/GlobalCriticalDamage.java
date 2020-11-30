@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class GlobalCriticalDamage extends Stat implements ITransferToOtherStats {
 
-    public static String GUID = "global_critical_hit";
+    public static String GUID = "global_critical_damage";
 
     public static GlobalCriticalDamage getInstance() {
         return GlobalCriticalDamage.SingletonHolder.INSTANCE;

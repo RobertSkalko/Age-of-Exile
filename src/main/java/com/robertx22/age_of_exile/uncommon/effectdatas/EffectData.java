@@ -2,9 +2,12 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileAmountStat;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect.EffectSides;
@@ -125,11 +128,11 @@ public abstract class EffectData {
 
             logOnStartData();
 
-            TryApplyEffects(this.GetSource(), EffectSides.Source);
+            TryApplyEffects(this.sourceData, EffectSides.Source);
 
             //  if (GetSource().GUID.equals(GetTarget().GUID) == false) { // todo unsure
             // this makes stats not apply twice if  caster is both target and source.. hmm
-            TryApplyEffects(this.GetTarget(), EffectSides.Target);
+            TryApplyEffects(this.targetData, EffectSides.Target);
             // }
             logOnEndData();
 
@@ -160,15 +163,17 @@ public abstract class EffectData {
 
     protected abstract void activate();
 
-    protected EffectData TryApplyEffects(Unit unit, EffectSides side) {
+    protected void TryApplyEffects(UnitData data, EffectSides side) {
 
         if (this.canceled) {
-            return this;
+            return;
         }
 
         List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
 
-        Effects = AddEffects(Effects, unit, side);
+        Effects = AddEffects(Effects, data);
+
+        addSkillGemEffects(Effects, data);
 
         Effects.sort(EffectUnitStat.COMPARATOR);
 
@@ -181,23 +186,46 @@ public abstract class EffectData {
             }
         }
 
-        return this;
     }
 
-    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit, EffectSides side) {
+    private void addSkillGemEffects(List<EffectUnitStat> effects, UnitData data) {
+
+        if (this instanceof IHasSpellEffect) {
+            IHasSpellEffect has = (IHasSpellEffect) this;
+
+            // todo
+
+            if (MMORPG.RUN_DEV_TOOLS) {
+
+                Stat stat = ProjectileAmountStat.getInstance();
+
+                StatData statData = new StatData(stat.GUID(), 5, 5);
+
+                effects.add(new EffectUnitStat(stat.statEffect, data.getUnit(), statData));
+
+            }
+
+        }
+
+    }
+
+    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, UnitData unit) {
         if (unit != null) {
-            unit.getStats()
+            unit.getUnit()
+                .getStats()
                 .values()
                 .forEach(data -> {
                     if (data.isNotZero()) {
                         Stat stat = data.GetStat();
 
-                        effects.add(new EffectUnitStat(stat.statEffect, unit, data));
+                        if (stat.statEffect != null) {
+                            effects.add(new EffectUnitStat(stat.statEffect, unit.getUnit(), data));
+                        }
 
                         if (stat instanceof IStatEffects) {
                             ((IStatEffects) stat).getEffects()
                                 .forEach(effect -> {
-                                    effects.add(new EffectUnitStat(effect, unit, data));
+                                    effects.add(new EffectUnitStat(effect, unit.getUnit(), data));
                                 });
                         }
                     }

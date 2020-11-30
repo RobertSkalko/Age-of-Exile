@@ -201,6 +201,7 @@ thunder_dot_damage
 mana_on_spell_hit
 mod_tp_dmg
 mana_to_ms
+more_proj
 other_fire_dmg_leech_as_magic_shield
 all_water_damage
 mod_slow_bush
@@ -295,6 +296,7 @@ heal_to_dmg
 spell_physical_dmg_leech_as_mana
 spell_fire_dmg_leech_as_magic_shield
 mod_mana_ele_res
+global_critical_damage
 mob_imbue_phys
 ele_axe_damage
 unlock_magma_flower

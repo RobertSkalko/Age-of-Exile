@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillsAd
 import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
 import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_outputs.SalvageOutputsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
 import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
@@ -73,6 +74,8 @@ public class GeneratedData {
             new SalvageOutputsAdder().registerAll();
             new PlayerSkillsAdder().registerAll();
             new BaseStatsAdder().registerAll();
+
+            new SkillGemsAdder().registerAll();
 
         }
     }

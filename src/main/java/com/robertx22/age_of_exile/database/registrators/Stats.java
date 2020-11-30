@@ -30,10 +30,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
@@ -110,6 +107,7 @@ public class Stats implements ISlashRegistryInit {
 
                     // generated
 
+                    add(ProjectileAmountStat.getInstance());
                     add(ProjectileSpeedStat.getInstance());
                     add(ReducedCooldownStat.getInstance());
                     add(ReducedManaCost.getInstance());

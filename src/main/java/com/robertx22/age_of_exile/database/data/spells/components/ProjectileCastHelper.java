@@ -21,7 +21,14 @@ public class ProjectileCastHelper {
     MapHolder holder;
     Vec3d pos;
 
+    public CastType castType = CastType.SPREAD_OUT_IN_RADIUS;
+
+    public enum CastType {
+        SPREAD_OUT_IN_RADIUS, SPREAD_OUT_HORIZONTAL
+    }
+
     public float pitch;
+
     public float yaw;
 
     public boolean fallDown = false;
@@ -42,24 +49,41 @@ public class ProjectileCastHelper {
 
         float addYaw = 0;
 
+        Vec3d posAdd = new Vec3d(0, 0, 0);
+
         for (int i = 0; i < projectilesAmount; i++) {
-            if (projectilesAmount > 1) {
-                if (i < projectilesAmount / 2) {
-                    addYaw -= apart / projectilesAmount;
-                } else if (i == projectilesAmount / 2) {
-                    addYaw = 0;
-                } else if (i > projectilesAmount / 2) {
-                    addYaw += apart / projectilesAmount;
+
+            if (this.castType == CastType.SPREAD_OUT_IN_RADIUS) {
+                if (projectilesAmount > 1) {
+                    if (i < projectilesAmount / 2) {
+                        addYaw -= apart / projectilesAmount;
+                    } else if (i == projectilesAmount / 2) {
+                        addYaw = 0;
+                    } else if (i > projectilesAmount / 2) {
+                        addYaw += apart / projectilesAmount;
+                    }
+                }
+            }
+            if (this.castType == CastType.SPREAD_OUT_HORIZONTAL) { // TODO
+                if (projectilesAmount > 1) {
+                    if (i < projectilesAmount / 2) {
+
+                    } else if (i == projectilesAmount / 2) {
+                        posAdd = Vec3d.ZERO;
+                    } else if (i > projectilesAmount / 2) {
+
+                    }
                 }
             }
 
             PersistentProjectileEntity en = (PersistentProjectileEntity) projectile.create(world);
-            SpellUtils.shootProjectile(pos, en, caster, shootSpeed, pitch, yaw + addYaw);
+            SpellUtils.shootProjectile(pos.add(posAdd), en, caster, shootSpeed, pitch, yaw + addYaw);
             SpellUtils.initSpellEntity(en, caster, data, holder);
 
             if (fallDown) {
                 en.setVelocity(0, -1, 0);
             }
+
             caster.world.spawnEntity(en);
         }
 

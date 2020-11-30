@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.GiveSpellStat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
+import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemContainer;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -20,6 +21,7 @@ import java.util.Set;
 public class PlayerSpellCap {
 
     private static final String PLAYER_SPELL_DATA = "player_spells_data";
+    private static final String GEMS = "gems";
 
     public abstract static class ISpellsCap implements ICommonPlayerCap {
 
@@ -37,11 +39,14 @@ public class PlayerSpellCap {
     public static class DefaultImpl extends ISpellsCap {
         SpellCastingData spellCastingData = new SpellCastingData();
 
+        SkillGemContainer skillGems = new SkillGemContainer();
+
         @Override
         public CompoundTag toTag(CompoundTag nbt) {
 
             try {
                 LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
+                LoadSave.Save(skillGems, nbt, GEMS);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -63,6 +68,12 @@ public class PlayerSpellCap {
 
                 if (spellCastingData == null) {
                     spellCastingData = new SpellCastingData();
+                }
+
+                this.skillGems = LoadSave.Load(SkillGemContainer.class, new SkillGemContainer(), nbt, GEMS);
+
+                if (skillGems == null) {
+                    skillGems = new SkillGemContainer();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
