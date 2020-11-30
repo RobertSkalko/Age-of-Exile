@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManage
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
 import java.util.Arrays;
@@ -16,9 +16,9 @@ import java.util.Set;
 public class ChanceToApplyPotionEffect extends BaseStatEffect<DamageEffect> {
 
     ExileEffect statusEffect;
-    Set<EffectData.EffectTypes> onEffectType;
+    Set<AttackType> onEffectType;
 
-    public ChanceToApplyPotionEffect(ExileEffect effect, EffectData.EffectTypes... onEffectType) {
+    public ChanceToApplyPotionEffect(ExileEffect effect, AttackType... onEffectType) {
         super(DamageEffect.class);
         this.statusEffect = effect;
         this.onEffectType = new HashSet<>(Arrays.asList(onEffectType));
@@ -44,6 +44,6 @@ public class ChanceToApplyPotionEffect extends BaseStatEffect<DamageEffect> {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return onEffectType.contains(effect.getEffectType());
+        return onEffectType.contains(effect.getAttackType());
     }
 }

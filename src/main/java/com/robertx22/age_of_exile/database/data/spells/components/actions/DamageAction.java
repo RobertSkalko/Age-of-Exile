@@ -56,7 +56,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
             for (LivingEntity t : targets) {
                 SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value, ctx.calculatedSpellData.getSpell());
                 if (data.has(MapField.DMG_EFFECT_TYPE)) {
-                    dmg.effectType = data.getDmgEffectType();
+                    dmg.attackType = data.getDmgEffectType();
                 }
                 dmg.element = ele;
                 dmg.Activate();

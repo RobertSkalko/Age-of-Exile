@@ -168,7 +168,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water))
 
-            .onHit(PartBuilder.exileEffect(NegativeEffects.CHILL, 20 * 10D))
+            .onHit(PartBuilder.exileEffect(NegativeEffects.FROSTBURN, 20 * 10D))
 
             .build();
 
@@ -225,7 +225,7 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(1D, PARTICLES.BUBBLE, 15D, 0.15D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.BUBBLE_POP, 15D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.15F, 1), Elements.Water))
-            .onHit(PartBuilder.exileEffect(NegativeEffects.CHILL, 20 * 10D))
+            .onHit(PartBuilder.exileEffect(NegativeEffects.FROSTBURN, 20 * 10D))
             .build();
 
         THUNDER_STORM = SpellBuilder.of("thunder_storm", HIGH_AOE_LONG_CD(), "Thunderstorm")
@@ -362,7 +362,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.healCaster(ValueCalculationData.base(15)))
             .onCast(PartBuilder.restoreMagicShieldToCaster(ValueCalculationData.base(20))
                 .requiresSpellMod(OceanSpellModStats.HEART_MAGIC_SHIELD_RESTORE_KEY))
-            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.CHILL, 5D, 20D * 10D)
+            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN, 5D, 20D * 10D)
                 .requiresSpellMod(OceanSpellModStats.HEART_CHILL_ENEMIES_KEY))
             .build();
 

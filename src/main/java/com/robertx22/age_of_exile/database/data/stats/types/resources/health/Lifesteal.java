@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ConditionalRestoreResource;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class Lifesteal extends Stat {
@@ -69,7 +68,7 @@ public class Lifesteal extends Stat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return EffectUtils.isConsideredAWeaponAttack(effect);
+            return effect.attackType.isAttack();
         }
 
     }

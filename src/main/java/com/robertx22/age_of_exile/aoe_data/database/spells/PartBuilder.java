@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -34,7 +34,7 @@ public class PartBuilder {
     public static ComponentPart dotDamageOnTick(ValueCalculationData calc, Elements ele) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele)
-            .put(MapField.DMG_EFFECT_TYPE, EffectData.EffectTypes.DOT_DMG.name()));
+            .put(MapField.DMG_EFFECT_TYPE, AttackType.DOT.name()));
         c.targets.add(BaseTargetSelector.TARGET.create());
         return c;
     }

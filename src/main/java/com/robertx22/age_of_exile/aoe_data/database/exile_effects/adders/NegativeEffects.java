@@ -25,45 +25,51 @@ public class NegativeEffects implements ISlashRegistryInit {
 
     public static String ELE_WEAKNESS = "negative/" + 0;
     public static String PETRIFY = "negative/" + 1;
-    public static String CHILL = "negative/" + 2;
+    public static String FROSTBURN = "negative/" + 2;
     public static String THORNS = "negative/" + 3;
     public static String WOUNDS = "negative/" + 4;
     public static String BURN = "negative/" + 5;
     public static String JUDGEMENT = "negative/" + 6;
-    public static String STATIC = "negative/" + 7;
+    public static String SHOCK = "negative/" + 7;
+    public static String BLEED = "negative/" + 8;
 
     @Override
     public void registerAll() {
 
-        ExileEffectBuilder.of(STATIC, "Static", EffectType.HARMFUL)
+        ExileEffectBuilder.of(SHOCK, "Shock", EffectType.HARMFUL)
             .maxStacks(5)
-            .stat(-5, new ElementalResist(Elements.Thunder), ModType.FLAT)
+            .stat(-1, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
+
+                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Thunder)
+                    .onTick(20D))
+
                 .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.THUNDER, 20D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(ELE_WEAKNESS, "-Ele Resist", EffectType.HARMFUL)
-            .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .build();
-
-        ExileEffectBuilder.of(CHILL, "Chill", EffectType.HARMFUL)
+        ExileEffectBuilder.of(FROSTBURN, "Frostburn", EffectType.HARMFUL)
             .maxStacks(5)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
+            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.05F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
             .stat(-4, new ElementalResist(Elements.Water), ModType.FLAT)
+
             .spell(SpellBuilder.forEffect()
+
+                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(1.5F), Elements.Water)
+                    .onTick(20D))
+
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
 
         ExileEffectBuilder.of(THORNS, "Thorns", EffectType.HARMFUL)
+            .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
                 .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Nature)
                     .onTick(20D))
-
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 15D, 1D)
                     .onTick(20D))
                 .onTick(PartBuilder.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 0.5D, 0.5D)
@@ -71,11 +77,8 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(WOUNDS, "Wounds", EffectType.HARMFUL)
-            .stat(-25, HealPower.getInstance(), ModType.FLAT)
-            .build();
-
         ExileEffectBuilder.of(BURN, "Burn", EffectType.HARMFUL)
+            .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
                 .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Fire)
@@ -86,6 +89,28 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .onTick(PartBuilder.playSound(SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5D, 1D)
                     .onTick(20D))
                 .buildForEffect())
+            .build();
+
+        ExileEffectBuilder.of(BLEED, "Bleed", EffectType.HARMFUL)
+            .maxStacks(5)
+            .spell(SpellBuilder.forEffect()
+
+                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2.25F), Elements.Physical)
+                    .onTick(20D))
+
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 10D, 1D)
+                    .onTick(20D))
+                .onTick(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_HURT, 0.5D, 1D)
+                    .onTick(20D))
+                .buildForEffect())
+            .build();
+
+        ExileEffectBuilder.of(ELE_WEAKNESS, "-Ele Resist", EffectType.HARMFUL)
+            .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .build();
+
+        ExileEffectBuilder.of(WOUNDS, "Wounds", EffectType.HARMFUL)
+            .stat(-25, HealPower.getInstance(), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(JUDGEMENT, "Judgement", EffectType.HARMFUL)

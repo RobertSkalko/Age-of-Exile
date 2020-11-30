@@ -106,7 +106,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(10, new ElementalResist(Elements.Water), ModType.FLAT)
             .stat(50, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.CHILL, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
+                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.FROSTBURN, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
                     .addPerEntityHit(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 100D, 1D, 0.2D))
                     .addPerEntityHit(PartBuilder.playSound(SoundEvents.BLOCK_SNOW_HIT, 1D, 1D))

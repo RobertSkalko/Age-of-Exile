@@ -47,20 +47,22 @@ import java.util.stream.Collectors;
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable, ICrittable {
 
-    public DamageEffect(AttackInformation data, int dmg, EffectTypes effectType, WeaponTypes weptype, AttackPlayStyle style) {
+    public DamageEffect(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(data.getAttackerEntity(), data.getTargetEntity(), data.getAttackerEntityData(), data.getTargetEntityData());
         this.attackInfo = data;
-        this.setEffectType(effectType, weptype);
+        this.attackType = effectType;
+        this.weaponType = weptype;
         this.number = dmg;
         this.style = style;
         calcBlock();
     }
 
     public DamageEffect(AttackInformation attackInfo, LivingEntity source, LivingEntity target, int dmg,
-                        EffectTypes effectType, WeaponTypes weptype, AttackPlayStyle style) {
+                        AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(source, target, Load.Unit(source), Load.Unit(target));
         this.attackInfo = attackInfo;
-        this.setEffectType(effectType, weptype);
+        this.attackType = effectType;
+        this.weaponType = weptype;
         this.number = dmg;
         this.style = style;
         calcBlock();
@@ -319,7 +321,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             EntityAttributeInstance attri = target.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
 
-            if (!knockback || this.effectType == EffectTypes.DOT_DMG) {
+            if (!knockback || this.attackType == AttackType.DOT) {
                 if (!attri.hasModifier(NO_KNOCKBACK)) {
                     attri.addPersistentModifier(NO_KNOCKBACK);
                 }
@@ -385,7 +387,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             ServerPlayerEntity player = (ServerPlayerEntity) source;
 
             if (this.isDodged) {
-                if (EffectUtils.isConsideredAWeaponAttack(this)) {
+                if (attackType.isAttack()) {
                     text = "Dodge";
                 } else {
                     text = "Resist";
@@ -413,7 +415,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private void onEventPotions() {
 
-        if (this.getEffectType() == EffectTypes.BASIC_ATTACK) {
+        if (this.getAttackType() == AttackType.ATTACK) {
             List<StatusEffectInstance> onAttacks = source.getStatusEffects()
                 .stream()
                 .filter(x -> x.getEffectType() instanceof IOnBasicAttackPotion)
@@ -514,7 +516,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(
                     attackInfo, source, target, entry.getValue(),
-                    EffectTypes.BONUS_ATTACK, this.weaponType, style);
+                    AttackType.OTHER, this.weaponType, style);
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;
                 bonus.calculateEffects();

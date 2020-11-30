@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
@@ -72,7 +71,7 @@ public class SpellDamage extends Stat {
 
         @Override
         public boolean canActivate(SpellDamageEffect effect, StatData data, Stat stat) {
-            return EffectUtils.isConsideredASpellAttack(effect);
+            return effect.attackType.isSpell();
         }
     }
 

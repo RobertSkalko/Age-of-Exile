@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
@@ -66,7 +65,7 @@ public class ElementalSpellDamage extends ElementalStat {
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
 
-            return EffectUtils.isConsideredASpellAttack(effect) && effect.GetElement() != null && effect.GetElement()
+            return effect.attackType.isSpell() && effect.GetElement() != null && effect.GetElement()
                 .equals(stat.getElement());
 
         }

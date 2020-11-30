@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 import java.util.ArrayList;
@@ -93,8 +92,7 @@ public class AttackDamage extends ElementalStat implements ILocalStat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.getEffectType()
-                .equals(EffectData.EffectTypes.BASIC_ATTACK);
+            return effect.attackType.isBasicAttack();
         }
 
     }

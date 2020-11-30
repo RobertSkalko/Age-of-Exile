@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
 public class SpellCriticalHitEffect extends BaseDamageEffect {
@@ -34,7 +33,7 @@ public class SpellCriticalHitEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return EffectUtils.isConsideredASpellAttack(effect) && RandomUtils.roll(data.getAverageValue());
+        return effect.attackType.isSpell() && RandomUtils.roll(data.getAverageValue());
     }
 
     private static class SingletonHolder {

@@ -1,25 +1,24 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 public enum AttackType {
+
     ATTACK("attack", "Attack") {
-        @Override
-        public boolean isAttack(DamageEffect effect) {
-            return EffectUtils.isConsideredAWeaponAttack(effect);
-        }
-    },
 
+    },
     SPELL("spell", "Spell") {
-        @Override
-        public boolean isAttack(DamageEffect effect) {
-            return EffectUtils.isConsideredASpellAttack(effect);
-        }
-    },
 
+    },
+    DOT("dot", "DOT") {
+
+    },
+    OTHER("other", "Misc") {
+
+    },
+    BASIC_ATTACK("basic_attack", "Basic Attack") {
+
+    },
     ALL("all", "All") {
-        @Override
-        public boolean isAttack(DamageEffect effect) {
-            return true;
-        }
+
     };
 
     public String id;
@@ -29,7 +28,30 @@ public enum AttackType {
         this.locname = locname;
     }
 
-    public abstract boolean isAttack(DamageEffect effect);
+    public boolean isAttack() {
+        return this == ATTACK || this == BASIC_ATTACK;
+    }
+
+    public boolean isSpell() {
+        return this == SPELL;
+    }
+
+    public boolean isDot() {
+        return this == DOT;
+    }
+
+    public boolean isBasicAttack() {
+        return this == BASIC_ATTACK;
+    }
+
+    public boolean matches(AttackType other) {
+
+        if (other == ALL || this == ALL) {
+            return true;
+        }
+
+        return this == other;
+    }
 
     public String locname;
 

@@ -87,27 +87,13 @@ public abstract class EffectData {
 
     }
 
-    public EffectTypes effectType = EffectTypes.BASIC_ATTACK;
+    public AttackType attackType = AttackType.ATTACK;
 
-    public EffectTypes getEffectType() {
-        return effectType;
-    }
-
-    public void setEffectType(EffectTypes effectType, WeaponTypes weaponType) {
-        this.effectType = effectType;
-        this.weaponType = weaponType;
+    public AttackType getAttackType() {
+        return attackType;
     }
 
     public WeaponTypes weaponType = WeaponTypes.None;
-
-    public enum EffectTypes {
-        NORMAL,
-        SPELL,
-        BASIC_ATTACK,
-        BONUS_ATTACK,
-        REFLECT,
-        DOT_DMG,
-    }
 
     public Unit GetSource() {
 

@@ -86,7 +86,7 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return info.attackType.isAttack(effect) && info.element.elementsMatch(effect.GetElement());
+            return effect.attackType.matches(effect.attackType) && info.element.elementsMatch(effect.GetElement());
         }
 
         @Override
