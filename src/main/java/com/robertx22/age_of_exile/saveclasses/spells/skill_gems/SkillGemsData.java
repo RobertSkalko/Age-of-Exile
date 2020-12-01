@@ -44,9 +44,9 @@ public class SkillGemsData implements Inventory {
         B16(15, 3, EquipmentSlot.FEET, SkillGemType.SUPPORT_GEM, 101, 78),
 
         B17(16, 4, null, SkillGemType.SKILL_GEM, 43, 101),
-        B18(17, 4, null, SkillGemType.SKILL_GEM, 67, 101),
-        B19(18, 4, null, SkillGemType.SKILL_GEM, 91, 101),
-        B20(19, 4, null, SkillGemType.SKILL_GEM, 115, 101);
+        B18(17, 5, null, SkillGemType.SKILL_GEM, 67, 101),
+        B19(18, 6, null, SkillGemType.SKILL_GEM, 91, 101),
+        B20(19, 7, null, SkillGemType.SKILL_GEM, 115, 101);
 
         public int index;
         public int place;
@@ -81,8 +81,10 @@ public class SkillGemsData implements Inventory {
 
     public ItemStack getSkillGemOf(int place) {
         for (Places en : Places.values()) {
-            if (en.slotType == SkillGemType.SUPPORT_GEM) {
-                return stacks.get(en.index);
+            if (en.place == place) {
+                if (en.slotType == SkillGemType.SKILL_GEM) {
+                    return stacks.get(en.index);
+                }
             }
         }
         System.out.print("No skill gem found for place " + place);

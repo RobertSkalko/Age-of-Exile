@@ -14,12 +14,28 @@ public class KeybindsRegister {
     public static KeyBinding SPELL_HOTBAR_3 = new KeyBinding("Use Spell 3", GLFW.GLFW_KEY_C, Ref.MOD_NAME);
     public static KeyBinding SPELL_HOTBAR_4 = new KeyBinding("Use Spell 4", GLFW.GLFW_KEY_G, Ref.MOD_NAME);
 
-    public static KeyBinding CHOOSE_SPELL_KEY = new KeyBinding("Choose Spell", GLFW.GLFW_KEY_V, Ref.MOD_NAME);
+    public static KeyBinding getSpellHotbar(int num) {
+        int n = num;
+        if (num > 3) {
+            n -= 4;
+        }
+        if (n == 0) {
+            return SPELL_HOTBAR_1;
+        }
+        if (n == 1) {
+            return SPELL_HOTBAR_2;
+        }
+        if (n == 2) {
+            return SPELL_HOTBAR_3;
+        } else {
+            return SPELL_HOTBAR_4;
+        }
+
+    }
 
     public static void register() {
 
         KeyBindingHelper.registerKeyBinding(HUB_SCREEN_KEY);
-        KeyBindingHelper.registerKeyBinding(CHOOSE_SPELL_KEY);
 
         KeyBindingHelper.registerKeyBinding(SPELL_HOTBAR_1);
         KeyBindingHelper.registerKeyBinding(SPELL_HOTBAR_2);

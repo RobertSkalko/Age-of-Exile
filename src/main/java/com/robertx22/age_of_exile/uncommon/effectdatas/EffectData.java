@@ -1,9 +1,13 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileAmountStat;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -13,6 +17,8 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect.EffectSides;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
@@ -190,23 +196,56 @@ public abstract class EffectData {
 
     private void addSkillGemEffects(List<EffectUnitStat> effects, UnitData data) {
 
-        if (this instanceof IHasSpellEffect) {
-            IHasSpellEffect has = (IHasSpellEffect) this;
+        // todo this needs MASSIVE perf improvements
 
-            // todo
+        if (source instanceof PlayerEntity) {
+            if (this instanceof IHasSpellEffect) {
+                IHasSpellEffect has = (IHasSpellEffect) this;
 
-            if (MMORPG.RUN_DEV_TOOLS) {
+                Spell spell = has.getSpell();
 
-                Stat stat = ProjectileAmountStat.getInstance();
+                PlayerSpellCap.ISpellsCap spells = Load.spells(source);
 
-                StatData statData = new StatData(stat.GUID(), 5, 5);
+                int place = -1;
 
-                effects.add(new EffectUnitStat(stat.statEffect, data.getUnit(), statData));
+                for (int i = 0; i < spells.getSkillGemData().stacks.size(); i++) {
 
+                    ItemStack stack = spells.getSkillGemData().stacks.get(i);
+
+                    SkillGemData sd = SkillGemData.fromStack(stack);
+                    if (sd != null && sd.getSkillGem().spell_id.equals(spell.GUID())) {
+                        for (SkillGemsData.Places p : SkillGemsData.Places.values()) {
+                            if (p.index == i) {
+                                place = p.place;
+                            }
+                        }
+                    }
+
+                }
+
+                if (place > -1) {
+
+                    spells.getSkillGemData()
+                        .getSupportGemsOf(place)
+                        .forEach(x -> {
+                            SkillGemData sd = SkillGemData.fromStack(x);
+
+                            if (sd != null) {
+                                Stat stat = ProjectileAmountStat.getInstance();
+
+                                sd.getSkillGem()
+                                    .getStats(sd)
+                                    .forEach(e -> {
+                                        StatData statData = new StatData(e.getStatId(), e.getFirstValue(), e.getFirstValue());
+                                        effects.add(new EffectUnitStat(stat.statEffect, data.getUnit(), statData));
+
+                                    });
+                            }
+                        });
+
+                }
             }
-
         }
-
     }
 
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, UnitData unit) {

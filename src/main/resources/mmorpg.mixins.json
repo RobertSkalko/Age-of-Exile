@@ -22,10 +22,8 @@
     "StatusEffectMixin"
   ],
   "client": [
-    "ClientPlayerInventoryMixin",
     "InGameHudMixin",
     "ItemStackMixin",
-    "KeyboardMixin",
     "MobNameTagMixin",
     "WorldRendererMixin"
   ],

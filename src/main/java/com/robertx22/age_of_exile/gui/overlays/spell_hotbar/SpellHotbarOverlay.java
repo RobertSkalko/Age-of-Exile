@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
-import com.robertx22.age_of_exile.mixin_methods.OnKeyMethod;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
@@ -16,6 +15,7 @@ import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -26,7 +26,7 @@ import java.util.Locale;
 public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallback {
 
     private static final Identifier HOTBAR_TEX = new Identifier(Ref.MODID,
-        "textures/gui/spells/hotbar_horizontal.png"
+        "textures/gui/spells/hotbar.png"
     );
     private static final Identifier COOLDOWN_TEX = new Identifier(Ref.MODID,
         "textures/gui/spells/cooldown.png"
@@ -41,8 +41,8 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         "textures/gui/spells/on_cooldown.png"
     );
 
-    static int WIDTH = 182;
-    static int HEIGHT = 22;
+    static int WIDTH = 22;
+    static int HEIGHT = 82;
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -60,19 +60,25 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
             RenderSystem.enableBlend(); // enables transparency
 
-            if (OnKeyMethod.isSelectingSpells()) {
-                int x = mc.getWindow()
-                    .getScaledWidth() / 2 - WIDTH / 2;
-                int y = (int) (mc.getWindow()
-                    .getScaledHeight() - HEIGHT);
+            int x = 0;
+            int y = mc.getWindow()
+                .getScaledHeight() / 2 - HEIGHT / 2;
 
-                renderHotbar(matrix, x, y);
-                renderSpellsOnHotbar(matrix, x, y);
+            renderHotbar(matrix, x, y);
+            //renderSpellsOnHotbar(matrix, x, y);
+
+            for (int i = 0; i < 4; i++) {
+
+                int place = i;
+                if (Screen.hasShiftDown()) {
+                    place += 4;
+                }
+
+                RenderSystem.enableBlend(); // enables transparency
+                renderCurrentSpell(place, i, matrix);
+                RenderSystem.disableBlend(); // enables transparency
 
             }
-
-            renderCurrentSpell(matrix);
-
             RenderSystem.disableBlend(); // enables transparency
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,7 +86,8 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
     }
 
-    private void renderCurrentSpell(MatrixStack matrix) {
+    private void renderCurrentSpell(int place, int num, MatrixStack matrix) {
+
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         boolean render = true;
@@ -89,7 +96,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         SpellCastContext ctx = null;
         try {
             spell = Load.spells(this.mc.player)
-                .getCurrentRightClickSpell();
+                .getSpellByNumber(place);
 
             ctx = new SpellCastContext(mc.player, 0, spell);
         } catch (Exception e) {
@@ -100,10 +107,11 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             return;
         }
 
-        int x = mc.getWindow()
-            .getScaledWidth() / 2 + 98;
+        int x = 2;
         int y = mc.getWindow()
-            .getScaledHeight() - HEIGHT + 2;
+            .getScaledHeight() / 2 - HEIGHT / 2 + 2;
+
+        y += num * 20;
 
         double scale = 0.6F;
         RenderSystem.scaled(scale, scale, scale);
@@ -144,7 +152,8 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     .bindTexture(COOLDOWN_TEX);
                 this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
 
-                String txt = CLOC.translate(KeybindsRegister.USE_SPELL_KEY.getBoundKeyLocalizedText())
+                String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
+                    .getBoundKeyLocalizedText())
                     .toUpperCase(Locale.ROOT);
 
                 GuiUtils.renderScaledText(matrix,

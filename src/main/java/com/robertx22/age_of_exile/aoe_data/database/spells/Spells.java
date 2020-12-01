@@ -79,8 +79,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        ARCANE_BALL = SpellBuilder.of("arcane_bolt", SpellConfiguration.Builder.instant(7, 6)
-            .setIsStarter(), "Arcane Bolt")
+        ARCANE_BALL = SpellBuilder.of("arcane_bolt", SpellConfiguration.Builder.instant(7, 6), "Arcane Bolt")
             .projectile()
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))

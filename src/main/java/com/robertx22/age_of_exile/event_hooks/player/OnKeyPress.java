@@ -30,7 +30,7 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
             cooldown = 10;
         } else {
 
-            int number = 0;
+            int number = -1;
             if (KeybindsRegister.SPELL_HOTBAR_1.isPressed()) {
                 number = 0;
             }
@@ -46,9 +46,11 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
             if (Screen.hasShiftDown()) {
                 number += 4;
             }
-            // todo make sure its not lagging servers
-            Packets.sendToServer(new TellServerToCastSpellPacket(number));
-            cooldown = 5;
+            if (number > -1) {
+                // todo make sure its not lagging servers
+                Packets.sendToServer(new TellServerToCastSpellPacket(number));
+                cooldown = 5;
+            }
         }
     }
 }
