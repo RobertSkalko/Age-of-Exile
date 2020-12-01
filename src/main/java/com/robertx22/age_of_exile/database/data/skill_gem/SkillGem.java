@@ -3,33 +3,40 @@ package com.robertx22.age_of_exile.database.data.skill_gem;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SpellGem implements ISerializedRegistryEntry<SpellGem>, IAutoGson<SpellGem> {
-    public static SpellGem SERIALIZER = new SpellGem();
+public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<SkillGem>, IAutoLocName {
+    public static SkillGem SERIALIZER = new SkillGem();
 
     public String identifier = "";
 
     public float mana_multi = 1;
 
+    public SkillGemType type = SkillGemType.SKILL_GEM;
+
+    public StatAttribute attribute = StatAttribute.DEX;
+
     public List<StatModifier> stats = new ArrayList<>();
-    
+
     public transient String locname = "";
 
-    public List<ExactStatData> getStats(SpellGemData data) {
+    public List<ExactStatData> getStats(SkillGemData data) {
         return stats.stream()
             .map(x -> x.ToExactStat(data.stat_perc, data.lvl))
             .collect(Collectors.toList());
     }
 
     @Override
-    public Class<SpellGem> getClassForSerialization() {
-        return SpellGem.class;
+    public Class<SkillGem> getClassForSerialization() {
+        return SkillGem.class;
     }
 
     @Override
@@ -40,5 +47,20 @@ public class SpellGem implements ISerializedRegistryEntry<SpellGem>, IAutoGson<S
     @Override
     public String GUID() {
         return identifier;
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Misc;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".skill_gem." + GUID();
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return locname;
     }
 }

@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc;
 
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -28,7 +30,11 @@ public class SkillGemsContainer extends BaseTileContainer {
         int count = 0;
 
         for (SkillGemsData.Places place : SkillGemsData.Places.values()) {
-            addSlot(new Slot(inventory, count++, place.x + 1, place.y + 1));
+            if (place.slotType == SkillGemType.SKILL_GEM) {
+                addSlot(new SkillGemSlot(inventory, count++, place.x + 1, place.y + 1));
+            } else {
+                addSlot(new SupportGemSlot(inventory, count++, place.x + 1, place.y + 1));
+            }
         }
 
     }
@@ -42,4 +48,31 @@ public class SkillGemsContainer extends BaseTileContainer {
     public boolean canUse(PlayerEntity player) {
         return tile.canPlayerUse(player);
     }
+
+    public static class SkillGemSlot extends Slot {
+
+        public SkillGemSlot(Inventory inventory, int index, int x, int y) {
+            super(inventory, index, x, y);
+        }
+
+        @Override
+        public boolean canInsert(ItemStack stack) {
+            SkillGemData gem = SkillGemData.fromStack(stack);
+            return gem != null && gem.getSkillGem().type == SkillGemType.SKILL_GEM;
+        }
+    }
+
+    public static class SupportGemSlot extends Slot {
+
+        public SupportGemSlot(Inventory inventory, int index, int x, int y) {
+            super(inventory, index, x, y);
+        }
+
+        @Override
+        public boolean canInsert(ItemStack stack) {
+            SkillGemData gem = SkillGemData.fromStack(stack);
+            return gem != null && gem.getSkillGem().type == SkillGemType.SUPPORT_GEM;
+        }
+    }
+
 }

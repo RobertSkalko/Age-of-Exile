@@ -82,6 +82,7 @@ public class MasterLootGen {
         items.addAll(new GemLootGen(info).tryGenerate());
         items.addAll(new RuneLootGen(info).tryGenerate());
         items.addAll(new VanillaRewardsLootGen(info).tryGenerate());
+        items.addAll(new SkillGemLootGen(info).tryGenerate());
 
         return items.stream()
             .filter(x -> x != null && !x.isEmpty())

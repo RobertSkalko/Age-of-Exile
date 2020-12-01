@@ -22,7 +22,7 @@ import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
-import com.robertx22.age_of_exile.database.data.skill_gem.SpellGem;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -181,8 +181,8 @@ public class Database {
         return getRegistry(SlashRegistryType.TIER);
     }
 
-    public static SlashRegistryContainer<SpellGem> SpellGems() {
-        return getRegistry(SlashRegistryType.SPELL);
+    public static SlashRegistryContainer<SkillGem> SkillGems() {
+        return getRegistry(SlashRegistryType.SPELL_GEM);
     }
 
     public static SlashRegistryContainer<BaseGearType> GearTypes() {

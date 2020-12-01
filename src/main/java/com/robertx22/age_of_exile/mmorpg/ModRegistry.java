@@ -10,6 +10,7 @@ public class ModRegistry {
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
+    public static SkillGemItemRegister SKILL_GEMS;
     public static FoodItemRegister FOOD_ITEMS;
     public static GemItemRegister GEMS;
     public static RuneItemRegister RUNES;
@@ -53,6 +54,7 @@ public class ModRegistry {
         ALCHEMY = new AlchemyItemRegister();
         ENCHANTS = new ModEnchants();
         TINKERING = new TinkeringItemRegister();
+        SKILL_GEMS = new SkillGemItemRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }
