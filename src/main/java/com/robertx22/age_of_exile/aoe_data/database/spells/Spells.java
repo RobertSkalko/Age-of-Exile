@@ -133,8 +133,6 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Water))
 
-            .onHit(PartBuilder.exileEffect(NegativeEffects.FROSTBURN, 20 * 10D))
-
             .build();
 
         FIREBALL = SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Fire Ball",
@@ -146,9 +144,6 @@ public class Spells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(11), Elements.Fire))
 
-            .onHit(PartBuilder.exileEffect(NegativeEffects.BURN, 20 * 10D)
-                .addCondition(EffectCondition.CHANCE.create(20D)))
-
             .build();
 
         POISONBALL = SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20), "Poison Ball",
@@ -159,9 +154,6 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SLIME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(10), Elements.Nature))
-
-            .onHit(PartBuilder.exileEffect(NegativeEffects.THORNS, 20 * 10D)
-                .addCondition(EffectCondition.CHANCE.create(20D)))
 
             .build();
 

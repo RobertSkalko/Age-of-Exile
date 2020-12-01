@@ -54,7 +54,6 @@ big_str
 steady_hand
 nature_resist
 big_heart_of_fire
-mana_cost_red
 chance_of_shock
 spell_elemental_damage
 fire_resist
@@ -97,6 +96,7 @@ true_hit
 water_resist
 critical_damage
 bow_damage
+mana_cost
 hunter
 axe_damage
 ele_trident_damage

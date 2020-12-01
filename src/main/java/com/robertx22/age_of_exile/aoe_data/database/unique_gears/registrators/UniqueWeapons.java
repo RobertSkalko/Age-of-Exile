@@ -16,9 +16,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -147,7 +147,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             BaseGearWeapons.WAND.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
                 new StatModifier(20, 45, SpellDamage.getInstance(), ModType.FLAT),
-                new StatModifier(-10, -20, ReducedManaCost.getInstance(), ModType.FLAT),
+                new StatModifier(20, 40, ManaCost.getInstance(), ModType.FLAT),
                 new StatModifier(10, 30, ReducedCooldownStat.getInstance(), ModType.FLAT)
             ))
             .build();

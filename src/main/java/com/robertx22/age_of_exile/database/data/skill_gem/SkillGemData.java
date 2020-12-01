@@ -83,6 +83,10 @@ public class SkillGemData implements ITooltipList {
         list.add(new LiteralText(""));
         list.add(TooltipUtils.level(this.lvl));
 
+        list.add(new LiteralText(""));
+        list.add(TooltipUtils.rarity(getRarity())
+            .formatted(getRarity().textFormatting()));
+
         TooltipUtils.removeDoubleBlankLines(list);
 
         return list;

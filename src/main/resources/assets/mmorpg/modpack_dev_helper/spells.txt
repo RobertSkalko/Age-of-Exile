@@ -5,7 +5,6 @@ healing_aura
 poison_ball
 teleport
 thorn_armor
-thunder_strikes
 blazing_inferno
 lightning_totem
 thunder_storm
@@ -21,7 +20,6 @@ thunder_spear
 heart_of_ice
 blizzard
 frost_armor
-magic_bomb
 frostball
 whirlpool
 fire_bombs

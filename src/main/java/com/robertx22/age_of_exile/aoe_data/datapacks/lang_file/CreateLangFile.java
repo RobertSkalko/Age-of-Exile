@@ -114,6 +114,8 @@ public class CreateLangFile {
 
         list.addAll(Database.MobAffixes()
             .getSerializable());
+        list.addAll(Database.SkillGemRarities()
+            .getSerializable());
         list.addAll(Database.SkillGems()
             .getSerializable());
         list.addAll(Database.Perks()

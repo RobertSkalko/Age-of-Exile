@@ -6,7 +6,9 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +24,10 @@ public class SkillGemBuilder {
         gem.type = SkillGemType.SUPPORT_GEM;
         gem.attribute = attri;
         gem.tags = tags;
+
+        int mana = (int) ((manaMulti - 1F) * 100F);
+        gem.stats = new ArrayList<>(gem.stats);
+        gem.stats.add(new StatModifier(mana, mana, ManaCost.getInstance()));
 
         gem.addToSerializables();
 

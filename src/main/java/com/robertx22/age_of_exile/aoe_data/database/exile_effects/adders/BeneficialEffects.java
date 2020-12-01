@@ -92,7 +92,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(25, Armor.getInstance(), ModType.FLAT)
             .stat(25, DodgeRating.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.THORNS, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
+                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 5D, 1D)

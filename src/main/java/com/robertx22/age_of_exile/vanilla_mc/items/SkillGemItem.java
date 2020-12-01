@@ -66,7 +66,9 @@ public class SkillGemItem extends Item implements IAutoLocName, IAutoModel {
             SkillGem gem = data.getSkillGem();
 
             tooltip.clear();
-            tooltip.add(gem.locName());
+            tooltip.add(gem.locName()
+                .formatted(data.getRarity()
+                    .textFormatting()));
 
             tooltip.addAll(data.GetTooltipString(new TooltipInfo(ClientOnly.getPlayer())));
 

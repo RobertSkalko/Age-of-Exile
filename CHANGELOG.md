@@ -130,7 +130,8 @@ Could be useful for wiki editors too, like the exp requirement test command prin
 * removed give spell stat. As spells are now skill gems.
 * added give skill_gem command
 * new datapack types: skill gems, random skill gem stats
-
+* effects like burn can only by applied by correct element type damage now. So you can't apply burn with physical attacks.
+* mana cost red now mana cost and works opposite
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

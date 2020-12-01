@@ -26,8 +26,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
@@ -258,13 +258,13 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_health_ms_mana_cost", "Righteous Indignation",
-            new OptScaleExactStat(5, ReducedManaCost.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(-5, ManaCost.getInstance(), ModType.FLAT),
             new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
             new OptScaleExactStat(5, MagicShield.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("big_health_mana_cost", "Righteous Indignation",
-            new OptScaleExactStat(5, ReducedManaCost.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(-5, ManaCost.getInstance(), ModType.FLAT),
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.bigStat("big_faith_armor", "Armor of Faith",

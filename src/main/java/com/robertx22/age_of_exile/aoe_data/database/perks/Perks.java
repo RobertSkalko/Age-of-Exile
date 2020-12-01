@@ -21,7 +21,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -44,7 +44,7 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat("cast_speed", new OptScaleExactStat(3, FasterCastRate.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(2, ReducedManaCost.getInstance(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(-2, ManaCost.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, AttackSpeed.getInstance(), ModType.FLAT));
 

@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -22,7 +22,7 @@ public class ComboPerks implements ISlashRegistryInit {
     public void registerAll() {
 
         PerkBuilder.stat("hp_mana_cost",
-            new OptScaleExactStat(2, ReducedManaCost.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(-2, ManaCost.getInstance(), ModType.FLAT),
             new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
 

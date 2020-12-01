@@ -139,10 +139,6 @@ public enum Words implements IAutoLocName {
 
     OpenAnyLootCrates("Open Any Loot Crates"),
 
-    ThornBush("Thorn Bush"), HolyFlower("Holy Flower"),
-
-    MagmaFlower("Magma Flower"),
-
     Fire("Fire"), Mastery("Mastery"),
 
     Ocean("Ocean"), Hunting("Hunting"),

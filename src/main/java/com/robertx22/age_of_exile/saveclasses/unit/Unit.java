@@ -50,21 +50,18 @@ import java.util.stream.Collectors;
 public class Unit {
 
     @Store
-    private StatContainer stats = new StatContainer();
-
-    @Store
-    private HashMap<StatContainerType, StatContainer> spellStats = new HashMap<>();
+    private HashMap<StatContainerType, StatContainer> stats = new HashMap<>();
 
     @Store
     public String GUID = UUID.randomUUID()
         .toString();
 
     public InCalcStatData getStatInCalculation(Stat stat) {
-        return stats.getStatInCalculation(stat);
+        return getStats().getStatInCalculation(stat);
     }
 
     public InCalcStatData getStatInCalculation(String stat) {
-        return stats.getStatInCalculation(stat);
+        return getStats().getStatInCalculation(stat);
     }
 
     public enum StatContainerType {
@@ -82,16 +79,14 @@ public class Unit {
     }
 
     public StatContainer getStats() {
-        return stats;
+        return getStats(StatContainerType.NORMAL);
     }
 
     public StatContainer getStats(StatContainerType type) {
-
-        if (type == StatContainerType.NORMAL) {
-            return stats;
+        if (!stats.containsKey(type)) {
+            stats.put(type, new StatContainer());
         }
-
-        return spellStats.get(type);
+        return stats.get(type);
     }
 
     public StatData getCalculatedStat(Stat stat) {
@@ -100,11 +95,11 @@ public class Unit {
 
     public StatData getCalculatedStat(String guid) {
 
-        if (stats.stats == null) {
+        if (getStats().stats == null) {
             this.initStats();
         }
 
-        return stats.stats.getOrDefault(guid, StatData.empty());
+        return getStats().stats.getOrDefault(guid, StatData.empty());
 
     }
 
@@ -113,16 +108,16 @@ public class Unit {
     }
 
     public void initStats() {
-        stats.stats = new HashMap<String, StatData>();
+        getStats().stats = new HashMap<String, StatData>();
     }
 
     private void removeEmptyStats() {
 
-        for (StatData data : new ArrayList<>(stats.stats.values())) {
+        for (StatData data : new ArrayList<>(getStats().stats.values())) {
             if (!data.isNotZero() || data.getId()
                 .isEmpty()) {
                 //System.out.println(data.Name);
-                stats.stats.remove(data.getId());
+                getStats().stats.remove(data.getId());
             }
         }
 
@@ -130,19 +125,19 @@ public class Unit {
 
     public void removeUnregisteredStats() {
 
-        if (stats.stats == null) {
-            stats.stats = new HashMap<String, StatData>();
+        if (getStats().stats == null) {
+            getStats().stats = new HashMap<String, StatData>();
         }
 
         removeEmptyStats();
 
-        for (Map.Entry<String, StatData> entry : new ArrayList<>(stats.stats.entrySet())) {
+        for (Map.Entry<String, StatData> entry : new ArrayList<>(getStats().stats.entrySet())) {
 
             StatData data = entry.getValue();
 
             if (!Database.Stats()
                 .isRegistered(data.getId())) {
-                stats.stats.remove(entry.getKey());
+                getStats().stats.remove(entry.getKey());
             }
         }
 
@@ -248,7 +243,7 @@ public class Unit {
      */
     private DirtyCheck getDirtyCheck() {
 
-        if (stats.stats == null || stats.stats.isEmpty()) {
+        if (getStats().stats == null || getStats().stats.isEmpty()) {
             this.initStats();
         }
 
@@ -273,8 +268,8 @@ public class Unit {
 
         DirtyCheck old = getDirtyCheck();
 
-        stats.statsInCalc.clear();
-        stats.stats.clear();
+        getStats().statsInCalc.clear();
+        getStats().stats.clear();
 
         List<GearData> gears = new ArrayList<>();
 
@@ -302,7 +297,7 @@ public class Unit {
 
         addVanillaHpToStats(entity, data);
 
-        new HashMap<>(stats.statsInCalc).entrySet()
+        new HashMap<>(getStats().statsInCalc).entrySet()
             .forEach(x -> {
                 InCalcStatData statdata = x.getValue();
                 Stat stat = x.getValue()
@@ -313,7 +308,7 @@ public class Unit {
                 }
             });
 
-        new HashMap<>(stats.statsInCalc).entrySet()
+        new HashMap<>(getStats().statsInCalc).entrySet()
             .forEach(x -> {
                 InCalcStatData statdata = x.getValue();
                 Stat stat = x.getValue()
@@ -324,7 +319,7 @@ public class Unit {
                 }
             });
 
-        new HashMap<>(stats.statsInCalc).entrySet()
+        new HashMap<>(getStats().statsInCalc).entrySet()
             .forEach(x -> {
                 InCalcStatData statdata = x.getValue();
                 Stat stat = x.getValue()
@@ -340,11 +335,11 @@ public class Unit {
             for (StatContainerType type : StatContainerType.values()) {
                 // different stat containers for each spell with support gems.
                 if (type == StatContainerType.NORMAL) {
-                    this.spellStats.put(type, stats);
+                    this.stats.put(type, getStats());
                 } else {
 
-                    StatContainer copy = stats.cloneForSpellStats();
-                    spellStats.put(type, copy);
+                    StatContainer copy = getStats().cloneForSpellStats();
+                    stats.put(type, copy);
 
                     List<ItemStack> stack = Load.spells(entity)
                         .getSkillGemData()
@@ -373,12 +368,13 @@ public class Unit {
 
             }
 
-            spellStats.values()
+            stats.values()
                 .forEach(x -> x.calculate());
 
         }
 
-        this.stats.calculate();
+        this.getStats()
+            .calculate();
 
         removeEmptyStats();
 
@@ -405,13 +401,13 @@ public class Unit {
             float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 40);
             // all increases after this would just reduce enviro damage
 
-            if (stats.getStatInCalculation(Health.getInstance())
-                .getFlatAverage() > stats.getStatInCalculation(MagicShield.getInstance())
+            if (getStats().getStatInCalculation(Health.getInstance())
+                .getFlatAverage() > getStats().getStatInCalculation(MagicShield.getInstance())
                 .getFlatAverage()) {
-                stats.getStatInCalculation(Health.getInstance())
+                getStats().getStatInCalculation(Health.getInstance())
                     .addFlat(maxhp, data.getLevel());
             } else {
-                stats.getStatInCalculation(MagicShield.getInstance())
+                getStats().getStatInCalculation(MagicShield.getInstance())
                     .addFlat(maxhp, data.getLevel());
             }
             // add vanila hp to extra hp

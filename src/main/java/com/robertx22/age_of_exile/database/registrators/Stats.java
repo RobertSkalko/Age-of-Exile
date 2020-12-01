@@ -74,6 +74,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ChanceToApplyEffect.BURN);
                     add(ChanceToApplyEffect.POISON);
                     add(ChanceToApplyEffect.SHOCK);
+                    add(ChanceToApplyEffect.BLEED);
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
@@ -111,7 +112,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ProjectileAmountStat.getInstance());
                     add(ProjectileSpeedStat.getInstance());
                     add(ReducedCooldownStat.getInstance());
-                    add(ReducedManaCost.getInstance());
+                    add(ManaCost.getInstance());
                     add(FasterCastRate.getInstance());
 
                     add(AllAttributes.getInstance());

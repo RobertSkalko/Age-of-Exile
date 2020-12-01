@@ -29,6 +29,7 @@ attack_thunder_dmg_leech_as_mana
 heal_to_ms
 other_water_dmg_leech_as_health
 attack_elemental_dmg_leech_as_health
+attack_all_dmg_leech_as_mana
 dot_physical_dmg_leech_as_magic_shield
 cdr
 projectile_damage
@@ -39,6 +40,7 @@ basic_attack_physical_dmg_leech_as_magic_shield
 health_on_spell_hit
 all_physical_damage
 spell_physical_dmg_leech_as_blood
+dot_all_dmg_leech_as_health
 dot_physical_dmg_leech_as_health
 critical_hit
 other_fire_dmg_leech_as_blood
@@ -52,15 +54,17 @@ spell_thunder_dmg_leech_as_blood
 extra_mob_drops
 water_dot_damage
 ele_dodge
+spell_all_dmg_leech_as_blood
 attack_fire_dmg_leech_as_health
 other_fire_dmg_leech_as_health
 poison_bonus_dmg
-mana_cost_red
 dot_thunder_dmg_leech_as_magic_shield
 spell_elemental_damage
+basic_attack_all_dmg_leech_as_health
 dot_fire_dmg_leech_as_mana
 dodge
 mana_on_other_hit
+dot_all_dmg_leech_as_mana
 health_on_dot_hit
 attack_nature_dmg_leech_as_health
 attack_physical_dmg_leech_as_magic_shield
@@ -83,6 +87,7 @@ thunder_penetration
 other_elemental_dmg_leech_as_mana
 strength
 other_elemental_dmg_leech_as_health
+spell_all_dmg_leech_as_health
 basic_attack_thunder_dmg_leech_as_blood
 dot_thunder_dmg_leech_as_health
 non_crit_damage
@@ -96,7 +101,9 @@ other_physical_dmg_leech_as_mana
 armor_penetration
 bow_damage
 basic_attack_elemental_dmg_leech_as_mana
+other_all_dmg_leech_as_magic_shield
 other_nature_dmg_leech_as_blood
+all_all_dmg_leech_as_health
 axe_damage
 mana_on_dot_hit
 magic_find
@@ -115,7 +122,10 @@ spell_nature_damage
 all_elemental_dmg_leech_as_magic_shield
 spell_water_dmg_leech_as_magic_shield
 mana_on_basic_attack_hit
+all_all_dmg_leech_as_mana
+all_all_dmg_leech_as_blood
 dot_fire_dmg_leech_as_health
+dot_all_dmg_leech_as_blood
 spell_elemental_dmg_leech_as_health
 spell_water_damage
 water_focus
@@ -125,6 +135,7 @@ other_nature_dmg_leech_as_mana
 attack_nature_dmg_leech_as_magic_shield
 wither_immunity
 attack_nature_dmg_leech_as_mana
+other_all_dmg_leech_as_health
 dot_thunder_dmg_leech_as_blood
 other_thunder_dmg_leech_as_blood
 basic_attack_nature_dmg_leech_as_mana
@@ -145,6 +156,7 @@ health_on_other_hit
 blood_on_all_hit
 nature_dot_damage
 mana_shield
+attack_all_dmg_leech_as_magic_shield
 spell_accuracy
 mana_per_sec
 basic_attack_nature_dmg_leech_as_blood
@@ -175,8 +187,10 @@ spell_physical_dmg_leech_as_health
 heal_to_dmg
 spell_physical_dmg_leech_as_mana
 spell_fire_dmg_leech_as_magic_shield
+dot_all_dmg_leech_as_magic_shield
 global_critical_damage
 blood_on_other_hit
+basic_attack_all_dmg_leech_as_magic_shield
 ele_axe_damage
 thunder_focus
 all_physical_dmg_leech_as_mana
@@ -189,6 +203,9 @@ all_fire_dmg_leech_as_blood
 other_thunder_dmg_leech_as_magic_shield
 intelligence
 basic_attack_fire_dmg_leech_as_magic_shield
+basic_attack_all_dmg_leech_as_mana
+attack_all_dmg_leech_as_blood
+basic_attack_all_dmg_leech_as_blood
 spell_damage
 all_thunder_dmg_leech_as_magic_shield
 attack_thunder_dmg_leech_as_magic_shield
@@ -222,8 +239,10 @@ spell_water_dmg_leech_as_health
 health
 attack_physical_dmg_leech_as_health
 spell_elemental_dmg_leech_as_mana
+all_all_dmg_leech_as_magic_shield
 basic_attack_thunder_dmg_leech_as_magic_shield
 hp_to_blood
+spell_all_dmg_leech_as_magic_shield
 spell_critical_hit
 blood_user
 other_nature_dmg_leech_as_magic_shield
@@ -249,10 +268,12 @@ damage_shield
 magic_shield_on_other_hit
 critical_damage
 mana_burn
+mana_cost
 static_bonus_dmg
 ele_trident_damage
 basic_attack_nature_dmg_leech_as_health
 all_elemental_dmg_leech_as_mana
+spell_all_dmg_leech_as_mana
 dmg_under_hunger
 physical_weapon_damage
 health_regen
@@ -262,6 +283,7 @@ dot_water_dmg_leech_as_blood
 all_nature_dmg_leech_as_health
 convert_ms_to_hp
 all_physical_dmg_leech_as_health
+chance_of_bleed
 all_water_dmg_leech_as_magic_shield
 total_damage
 dot_nature_dmg_leech_as_magic_shield
@@ -279,6 +301,7 @@ all_nature_dmg_leech_as_blood
 chill_bonus_dmg
 attack_elemental_dmg_leech_as_magic_shield
 other_nature_dmg_leech_as_health
+attack_all_dmg_leech_as_health
 magic_shield_on_dot_hit
 spell_dodge
 crossbow_damage
@@ -297,6 +320,7 @@ max_elemental_resist
 basic_attack_nature_dmg_leech_as_magic_shield
 health_on_kill
 all_physical_dmg_leech_as_magic_shield
+other_all_dmg_leech_as_blood
 fire_penetration
 dexterity
 convert_nature_to_phys
@@ -304,6 +328,7 @@ spell_nature_dmg_leech_as_blood
 all_fire_dmg_leech_as_mana
 dmg_under_wither
 heal_effect_on_self
+other_all_dmg_leech_as_mana
 hunger_immunity
 dot_nature_dmg_leech_as_health
 dmg_taken_to_mana

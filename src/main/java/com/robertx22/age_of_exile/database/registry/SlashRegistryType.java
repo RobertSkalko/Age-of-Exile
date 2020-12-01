@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.registry;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.database.compat_items.CompatibleItems;
-import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.age_of_exile.aoe_data.datapacks.loaders.BaseDataPackLoader;
@@ -16,6 +15,7 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
+import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.random_skill_gem_stats.RandomSkillGemStats;
@@ -32,6 +32,7 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackSta
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -55,7 +56,7 @@ public enum SlashRegistryType {
     TIER("tier", 5, Tier.SERIALIZER, SyncTime.ON_LOGIN),
     GEM("gems", 6, Gem.SERIALIZER, SyncTime.ON_LOGIN),
     RUNE("runes", 7, Rune.SERIALIZER, SyncTime.ON_LOGIN),
-    MOB_AFFIX("mob_affix", 8, MobAffixes.EMPTY, SyncTime.ON_LOGIN),
+    MOB_AFFIX("mob_affix", 8, new MobAffix("empty", "empty", Formatting.AQUA), SyncTime.ON_LOGIN),
     RUNEWORD("runewords", 9, RuneWord.SERIALIZER, SyncTime.ON_LOGIN),
     AFFIX("affixes", 10, EmptyAffix.getInstance(), SyncTime.ON_LOGIN),
     UNIQUE_GEAR("unique_gears", 11, UniqueGear.SERIALIZER, SyncTime.ON_LOGIN),

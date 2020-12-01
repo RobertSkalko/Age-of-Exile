@@ -453,7 +453,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.dataTracker.set(EXPIRE_ON_HIT, holder.getOrDefault(MapField.EXPIRE_ON_HIT, true));
 
         if (data.config.piercing) {
-            this.dataTracker.set(PIERCE, false);
+            this.dataTracker.set(PIERCE, true);
         }
 
         data.item_id = holder.get(MapField.ITEM);

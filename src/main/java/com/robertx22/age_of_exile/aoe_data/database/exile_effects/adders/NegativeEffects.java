@@ -26,7 +26,7 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static String ELE_WEAKNESS = "negative/" + 0;
     public static String PETRIFY = "negative/" + 1;
     public static String FROSTBURN = "negative/" + 2;
-    public static String THORNS = "negative/" + 3;
+    public static String POISON = "negative/" + 3;
     public static String WOUNDS = "negative/" + 4;
     public static String BURN = "negative/" + 5;
     public static String JUDGEMENT = "negative/" + 6;
@@ -64,7 +64,7 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(THORNS, "Thorns", EffectType.HARMFUL)
+        ExileEffectBuilder.of(POISON, "Poison", EffectType.HARMFUL)
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
