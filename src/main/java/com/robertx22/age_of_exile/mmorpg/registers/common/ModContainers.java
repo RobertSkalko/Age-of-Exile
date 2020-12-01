@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackContainer;
+import com.robertx22.age_of_exile.vanilla_mc.SkillGemsContainer;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandlerType;
@@ -13,6 +14,9 @@ public class ModContainers {
 
     public Identifier BACKPACK = id("backpack");
     public ScreenHandlerType<BackpackContainer> BACKPACK_TYPE = ScreenHandlerRegistry.registerExtended(BACKPACK, BackpackContainer::new);
+
+    public Identifier SKILL_GEMS = id("skill_gems");
+    public ScreenHandlerType<SkillGemsContainer> SKILL_GEMS_TYPE = ScreenHandlerRegistry.registerExtended(SKILL_GEMS, SkillGemsContainer::new);
 
     public Identifier GEAR_MODIFY = id("modify");
     public Identifier GEAR_REPAIR = id("repair");

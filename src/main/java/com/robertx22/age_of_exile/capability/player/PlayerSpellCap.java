@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.GiveSpellStat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
-import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemContainer;
+import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -31,6 +31,8 @@ public class PlayerSpellCap {
 
         public abstract SpellCastingData getCastingData();
 
+        public abstract SkillGemsData getSkillGemData();
+
         public abstract List<Spell> getLearnedSpells(LivingEntity en);
 
         public abstract boolean isSpellLearned(LivingEntity en, Spell spell);
@@ -39,7 +41,7 @@ public class PlayerSpellCap {
     public static class DefaultImpl extends ISpellsCap {
         SpellCastingData spellCastingData = new SpellCastingData();
 
-        SkillGemContainer skillGems = new SkillGemContainer();
+        SkillGemsData skillGems = new SkillGemsData();
 
         @Override
         public CompoundTag toTag(CompoundTag nbt) {
@@ -70,10 +72,10 @@ public class PlayerSpellCap {
                     spellCastingData = new SpellCastingData();
                 }
 
-                this.skillGems = LoadSave.Load(SkillGemContainer.class, new SkillGemContainer(), nbt, GEMS);
+                this.skillGems = LoadSave.Load(SkillGemsData.class, new SkillGemsData(), nbt, GEMS);
 
                 if (skillGems == null) {
-                    skillGems = new SkillGemContainer();
+                    skillGems = new SkillGemsData();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -93,6 +95,11 @@ public class PlayerSpellCap {
         @Override
         public SpellCastingData getCastingData() {
             return this.spellCastingData;
+        }
+
+        @Override
+        public SkillGemsData getSkillGemData() {
+            return this.skillGems;
         }
 
         @Override

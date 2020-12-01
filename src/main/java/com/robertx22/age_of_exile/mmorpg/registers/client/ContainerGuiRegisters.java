@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackScreen;
+import com.robertx22.age_of_exile.vanilla_mc.SkillGemsScreen;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.ContainerGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.GuiGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.ContainerGearRepair;
@@ -26,6 +27,7 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<SocketStationContainer>registerFactory(ModRegistry.CONTAINERS.GEAR_SOCKET, x -> new SocketStationGui(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
 
         ScreenRegistry.register(ModRegistry.CONTAINERS.BACKPACK_TYPE, BackpackScreen::new);
+        ScreenRegistry.register(ModRegistry.CONTAINERS.SKILL_GEMS_TYPE, SkillGemsScreen::new);
 
     }
 

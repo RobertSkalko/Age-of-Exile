@@ -19,6 +19,7 @@ magic_bomb_gem
 throw_flames_gem
 multi_shot_gem
 lightning_totem_gem
+minor_multi_proj
 purifying_fires_gem
 passive_arcane_gem
 poison_ball_gem
