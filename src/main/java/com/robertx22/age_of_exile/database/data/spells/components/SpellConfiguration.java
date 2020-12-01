@@ -17,7 +17,6 @@ public class SpellConfiguration {
     public int times_to_cast = 1;
     public int cast_time_ticks;
     public int cooldown_ticks;
-    public boolean is_starter = false;
     public AttackPlayStyle style = AttackPlayStyle.MAGIC;
     public PassiveConfig passive_config = new PassiveConfig();
     public List<String> tags = new ArrayList<>();
@@ -33,11 +32,6 @@ public class SpellConfiguration {
 
     public boolean isProjectile() {
         return tags.contains(SpellTags.PROJECTILE);
-    }
-
-    public SpellConfiguration setIsStarter() {
-        this.is_starter = true;
-        return this;
     }
 
     public SpellConfiguration setSwingArm() {

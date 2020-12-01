@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpel
 import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 
 public class OnKeyPress implements ClientTickEvents.EndTick {
 
@@ -27,12 +28,27 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
         if (KeybindsRegister.HUB_SCREEN_KEY.isPressed()) {
             mc.openScreen(new MainHubScreen());
             cooldown = 10;
-        } else if (KeybindsRegister.USE_SPELL_KEY.isPressed()) {
+        } else {
 
+            int number = 0;
+            if (KeybindsRegister.SPELL_HOTBAR_1.isPressed()) {
+                number = 0;
+            }
+            if (KeybindsRegister.SPELL_HOTBAR_2.isPressed()) {
+                number = 1;
+            }
+            if (KeybindsRegister.SPELL_HOTBAR_3.isPressed()) {
+                number = 2;
+            }
+            if (KeybindsRegister.SPELL_HOTBAR_4.isPressed()) {
+                number = 3;
+            }
+            if (Screen.hasShiftDown()) {
+                number += 4;
+            }
             // todo make sure its not lagging servers
-            Packets.sendToServer(new TellServerToCastSpellPacket(mc.player));
-            cooldown = 10;
+            Packets.sendToServer(new TellServerToCastSpellPacket(number));
+            cooldown = 5;
         }
-
     }
 }

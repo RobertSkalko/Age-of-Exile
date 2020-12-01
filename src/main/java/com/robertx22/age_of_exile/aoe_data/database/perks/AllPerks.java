@@ -8,7 +8,6 @@ public class AllPerks implements ISlashRegistryInit {
     public void registerAll() {
         new Perks().registerAll();
         new GameChangerPerks().registerAll();
-        new SpellModifierPerks().registerAll();
         new BigPerks().registerAll();
         new ComboPerks().registerAll();
         new StartPerks().registerAll();

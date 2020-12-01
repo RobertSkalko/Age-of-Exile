@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.armors.plate;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BasePlateArmors;
-import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.GiveSpellStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
@@ -91,7 +89,6 @@ public class PlateUniques implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(2, 5, Health.getInstance(), ModType.FLAT),
                 new StatModifier(25, 50, CriticalDamage.getInstance(), ModType.FLAT),
-                new StatModifier(1, 1, new GiveSpellStat(Spells.BRAVERY_ID), ModType.FLAT),
                 new StatModifier(-100, -100, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE)
             ))
             .build();

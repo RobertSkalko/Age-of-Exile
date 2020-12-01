@@ -23,7 +23,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -120,12 +119,6 @@ public class Perks implements ISlashRegistryInit {
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.LOCAL_INCREASE));
 
-            });
-
-        Database.Spells()
-            .getSerializable()
-            .forEach(spell -> {
-                PerkBuilder.spell(spell);
             });
 
     }

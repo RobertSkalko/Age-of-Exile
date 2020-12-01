@@ -13,9 +13,6 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.ConnectionButto
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SelectTreeButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SpellSchoolButton;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.SpellHotbarButton;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.WholeSpellHotbarButton;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.pick_spell_buttons.picking.PickSpellForHotBarButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -287,12 +284,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             }
         }
 
-        if (this.schoolType == SchoolType.SPELLS) {
-            this.addButton(new WholeSpellHotbarButton(this, mc.getWindow()
-                .getScaledWidth() / 2 - WholeSpellHotbarButton.XSIZE / 2, mc.getWindow()
-                .getScaledHeight() - WholeSpellHotbarButton.YSIZE));
-        }
-
         addConnections();
 
         //       watch.print(" Setting up buttons ");
@@ -456,12 +447,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                     b.render(matrix, x, y, ticks);
                 }
 
-            });
-
-            buttons.forEach(b -> {
-                if (b instanceof PickSpellForHotBarButton || b instanceof SpellHotbarButton) {
-                    b.render(matrix, x, y, ticks);
-                }
             });
 
             this.tick_count++;

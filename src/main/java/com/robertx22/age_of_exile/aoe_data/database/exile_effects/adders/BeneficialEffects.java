@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.spell_mod_stats.NatureSpellModStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
@@ -94,8 +93,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.THORNS, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
-                    .onTick(20D)
-                    .requiresSpellMod(NatureSpellModStats.THORN_ARMOR_THORNS_KEY))
+                    .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 5D, 1D)
                     .onTick(20D))
 

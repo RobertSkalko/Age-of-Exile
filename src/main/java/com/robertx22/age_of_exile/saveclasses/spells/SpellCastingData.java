@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,30 +33,7 @@ public class SpellCastingData {
     public Boolean casting = false;
 
     @Store
-    private HashMap<Integer, String> bar = new HashMap<>();
-
-    public HashMap<Integer, String> getBar() {
-        for (int i = 0; i < 9; i++) {
-            if (!bar.containsKey(i)) {
-                bar.put(i, "");
-            }
-        }
-        return bar;
-    }
-
-    @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
-
-    public void clearLockedSpells(PlayerEntity player) {
-        PlayerSpellCap.ISpellsCap spells = Load.spells(player);
-        new HashMap<>(bar).entrySet()
-            .forEach(x -> {
-                if (!spells.isSpellLearned(player, Database.Spells()
-                    .get(x.getValue()))) {
-                    bar.put(x.getKey(), "");
-                }
-            });
-    }
 
     public void cancelCast(PlayerEntity player) {
         try {
@@ -82,16 +58,7 @@ public class SpellCastingData {
 
     }
 
-    public void clear() {
-        bar.clear();
-    }
-
-    public Spell getSelectedSpell() {
-        return getSpellByNumber(selectedSpell);
-    }
-
     public boolean isCasting() {
-
         return casting && Database.Spells()
             .isRegistered(spellBeingCast);
     }
@@ -225,26 +192,6 @@ public class SpellCastingData {
 
         return spellDatas.get(id);
 
-    }
-
-    public Spell getSpellByNumber(int key) {
-
-        String id = "";
-        try {
-            id = bar.getOrDefault(key, "");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (id != null) {
-            if (Database.Spells()
-                .isRegistered(id)) {
-                return Database.Spells()
-                    .get(id);
-            }
-
-        }
-        return null;
     }
 
 }

@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.OpenGuiPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.util.Identifier;
 
-public class NewPlayerSkillGemsOpener implements IContainerNamedScreen {
+public class SkillGemsOpener implements IContainerNamedScreen {
 
     @Override
     public void openContainer() {

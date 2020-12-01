@@ -181,11 +181,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                         return false;
                     }
 
-                    if (!ctx.spellsCap.getLearnedSpells(ctx.caster)
-                        .contains(this)) {
-                        return false;
-                    }
-
                     return true;
                 } else {
                     if (caster instanceof ServerPlayerEntity) {

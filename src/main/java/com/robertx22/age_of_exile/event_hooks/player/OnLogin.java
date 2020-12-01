@@ -36,10 +36,6 @@ public class OnLogin {
             Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.AFTER));
             Database.restoreFromBackupifEmpty();
 
-            Load.spells(player)
-                .getCastingData()
-                .clearLockedSpells(player);
-
             Load.perks(player)
                 .syncToClient(player);
 

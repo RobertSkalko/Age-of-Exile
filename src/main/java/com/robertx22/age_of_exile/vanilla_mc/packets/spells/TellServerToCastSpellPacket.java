@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -9,23 +10,16 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
 public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellPacket> {
 
-    public String spellid = "";
+    int number;
 
-    public TellServerToCastSpellPacket(PlayerEntity player) {
-        Spell cspell = Load.spells(player)
-            .getCurrentRightClickSpell();
-        if (cspell != null) {
-            this.spellid = cspell.GUID();
-        }
-
-        if (spellid == null) {
-            spellid = "";
-        }
+    public TellServerToCastSpellPacket(int number) {
+        this.number = number;
     }
 
     public TellServerToCastSpellPacket() {
@@ -38,12 +32,12 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        this.spellid = tag.readString(30);
+        this.number = tag.readInt();
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
-        tag.writeString(spellid);
+        tag.writeInt(number);
     }
 
     @Override
@@ -52,8 +46,16 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
 
         PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-        if (!Database.Spells()
-            .isRegistered(spellid)) {
+        ItemStack stack = spells.getSkillGemData()
+            .getSkillGemOf(number);
+
+        if (stack == null) {
+            return;
+        }
+
+        SkillGemData data = SkillGemData.fromStack(stack);
+
+        if (data == null) {
             return;
         }
 
@@ -62,7 +64,7 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
         }
 
         Spell spell = Database.Spells()
-            .get(this.spellid);
+            .get(data.getSkillGem().spell_id);
 
         if (spell != null) {
 

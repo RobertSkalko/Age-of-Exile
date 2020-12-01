@@ -24,7 +24,6 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
 import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.SpellDependentDatapackStatAdder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.SpellModifierStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.database.registrators.Tiers;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -53,7 +52,6 @@ public class GeneratedData {
 
             new Spells().registerAll();
             new SpellDependentDatapackStatAdder().registerAll();
-            new SpellModifierStats().registerAll();
 
             new Prefixes().registerAll();
             new Suffixes().registerAll();

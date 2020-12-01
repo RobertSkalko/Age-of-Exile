@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.GiveSpellStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.util.Identifier;
@@ -34,25 +33,6 @@ public class PerkBuilder {
 
     public Perk build() {
         this.perk.addToSerializables();
-        return perk;
-    }
-
-    public static Perk spell(Spell spell) {
-        Perk perk = new Perk();
-
-        perk.spell = spell.GUID();
-        perk.stats.add(new OptScaleExactStat(1, new GiveSpellStat(spell), ModType.FLAT));
-        perk.type = Perk.PerkType.MAJOR;
-        perk.identifier = spell.GUID();
-        perk.icon = spell.getIconLoc()
-            .toString();
-
-        if (spell.getConfig().passive_config.is_passive) {
-            perk.one_of_a_kind = "passive_spell";
-            perk.lvl_req = 20;
-        }
-
-        perk.addToSerializables();
         return perk;
     }
 

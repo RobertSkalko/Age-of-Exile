@@ -4,10 +4,8 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.PointData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
@@ -51,9 +49,7 @@ public class PlayerPerksData {
 
         int num = 0;
         if (type == SpellSchool.SchoolType.SPELLS) {
-            num = (int) ModConfig.get().Server.STARTING_SPELL_POINTS;
-            num += ModConfig.get().Server.SPELL_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
-
+            // todo remove
         } else {
             num = (int) ModConfig.get().Server.STARTING_TALENT_POINTS;
             num += ModConfig.get().Server.TALENT_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
@@ -69,27 +65,6 @@ public class PlayerPerksData {
         return getPerks(school.getSchool_type()).get(school.GUID());
     }
 
-    public void putOnFirstEmptyHotbarSlot(PlayerEntity player, Spell spell) {
-        for (Map.Entry<Integer, String> entry : new HashMap<>(Load.spells(player)
-            .getCastingData()
-            .getBar())
-            .entrySet()) {
-
-            if (entry.getValue()
-                .isEmpty()) {
-
-                Load.spells(player)
-                    .getCastingData()
-                    .getBar()
-                    .put(entry.getKey(), spell.GUID());
-
-                break;
-            }
-
-        }
-
-    }
-
     public void allocate(PlayerEntity player, SpellSchool school, PointData point) {
         Perk perk = school.calcData.getPerk(point);
 
@@ -98,7 +73,6 @@ public class PlayerPerksData {
             if (perk.getSpell() != null && !perk.getSpell()
                 .isPassive()) {
                 if (!getSchool(school).map.getOrDefault(point, false)) {
-                    putOnFirstEmptyHotbarSlot(player, perk.getSpell());
                 }
             }
 

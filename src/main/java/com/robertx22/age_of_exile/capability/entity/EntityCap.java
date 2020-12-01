@@ -512,9 +512,6 @@ public class EntityCap {
                     Load.favor(player)
                         .setFavor(1000); // newbie starting favor
 
-                    Database.Spells()
-                        .getFiltered(x -> x.getConfig().is_starter)
-                        .forEach(x -> Load.perks(player).data.putOnFirstEmptyHotbarSlot(player, x));
                     Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
 
                     if (ModConfig.get().Server.GET_STARTER_ITEMS) {

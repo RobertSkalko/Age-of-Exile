@@ -20,7 +20,6 @@ public class StatSerializers {
         map.put(ConvertFromOneToOtherStat.SER_ID, new TransferStatSer());
         map.put(MarkerStat.SER_ID, new MarkerSer());
 
-        map.put(GiveSpellStat.SER_ID, new SpellStatSer<>(x -> new GiveSpellStat(x)));
         map.put(PerSpellExtraProjectilesStat.SER_ID, new SpellStatSer<>(x -> new PerSpellExtraProjectilesStat(x)));
         map.put(PerSpellCooldownStat.SER_ID, new SpellStatSer<>(x -> new PerSpellCooldownStat(x)));
         map.put(PerSpellDamageStat.SER_ID, new SpellStatSer<>(x -> new PerSpellDamageStat(x)));

@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.damage_hooks.ScaleVanillaMobDamage;
 import com.robertx22.age_of_exile.damage_hooks.ScaleVanillaPlayerDamage;
 import com.robertx22.age_of_exile.event_hooks.entity.OnMobSpawn;
 import com.robertx22.age_of_exile.event_hooks.entity.OnTrackEntity;
-import com.robertx22.age_of_exile.event_hooks.my_events.OnDamageTryActivatePassiveSpells;
 import com.robertx22.age_of_exile.event_hooks.my_events.OnEntityTick;
 import com.robertx22.age_of_exile.event_hooks.my_events.OnMobDeathDrops;
 import com.robertx22.age_of_exile.event_hooks.my_events.OnPlayerDeath;
@@ -45,7 +44,6 @@ public class CommonEvents {
         ExileEvents.DAMAGE_BEFORE_CALC.register(new ScaleVanillaPlayerDamage());
 
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnPlayerDamageEntityEvent());
-        ExileEvents.DAMAGE_AFTER_CALC.register(new OnDamageTryActivatePassiveSpells());
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnDamagePlayerActivateTablets());
 
         ExileEvents.PLAYER_DEATH.register(new OnPlayerDeath());

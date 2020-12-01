@@ -20,6 +20,8 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
 
     public float mana_multi = 1;
 
+    public String spell_id = "";
+
     public SkillGemType type = SkillGemType.SKILL_GEM;
 
     public StatAttribute attribute = StatAttribute.DEX;
