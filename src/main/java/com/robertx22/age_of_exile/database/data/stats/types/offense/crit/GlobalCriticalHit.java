@@ -49,8 +49,10 @@ public class GlobalCriticalHit extends Stat implements ITransferToOtherStats {
     @Override
     public void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat) {
         thisstat.addFullyTo(unit.getUnit()
+            .getStats()
             .getStatInCalculation(CriticalHit.getInstance()));
         thisstat.addFullyTo(unit.getUnit()
+            .getStats()
             .getStatInCalculation(SpellCriticalHit.getInstance()));
         thisstat.clear();
     }

@@ -23,7 +23,7 @@ public class CanEntityHavePotionMixin {
 
             for (StatData statData : Load.Unit(en)
                 .getUnit()
-                .getStats()
+                .getStats().stats
                 .values()) {
                 if (statData.GetStat() instanceof EffectImmunity) {
                     EffectImmunity imm = (EffectImmunity) statData.GetStat();

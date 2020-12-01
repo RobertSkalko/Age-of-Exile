@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
@@ -36,6 +36,7 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
@@ -52,20 +53,40 @@ public class Unit {
     private StatContainer stats = new StatContainer();
 
     @Store
+    private HashMap<StatContainerType, StatContainer> spellStats = new HashMap<>();
+
+    @Store
     public String GUID = UUID.randomUUID()
         .toString();
 
-    public HashMap<String, StatData> getStats() {
-
-        if (stats.stats == null) {
-            this.initStats();
-        }
-
-        return stats.stats;
+    public InCalcStatData getStatInCalculation(Stat stat) {
+        return stats.getStatInCalculation(stat);
     }
 
-    public StatContainer getStatsContainer() {
+    public InCalcStatData getStatInCalculation(String stat) {
+        return stats.getStatInCalculation(stat);
+    }
+
+    public enum StatContainerType {
+        NORMAL(-1),
+        SPELL1(0),
+        SPELL2(1),
+        SPELL3(2),
+        SPELL4(3);
+
+        StatContainerType(int place) {
+            this.place = place;
+        }
+
+        public int place;
+    }
+
+    public StatContainer getStats() {
         return stats;
+    }
+
+    public StatContainer getStats(StatContainerType type) {
+        return spellStats.get(type);
     }
 
     public StatData getCalculatedStat(Stat stat) {
@@ -80,33 +101,6 @@ public class Unit {
 
         return stats.stats.getOrDefault(guid, StatData.empty());
 
-    }
-
-    public InCalcStatData getStatInCalculation(Stat stat) {
-        return getStatInCalculation(stat.GUID());
-    }
-
-    public InCalcStatData getStatInCalculation(String guid) {
-
-        if (stats.stats == null) {
-            this.initStats();
-        }
-
-        InCalcStatData data = stats.statsInCalc.get(guid);
-
-        if (data == null) {
-            Stat stat = Database.Stats()
-                .get(guid);
-            if (stat != null) {
-                stats.statsInCalc.put(stat.GUID(), new InCalcStatData(stat.GUID()));
-
-                return stats.statsInCalc.get(stat.GUID());
-            } else {
-                return new InCalcStatData(new UnknownStat().GUID());
-            }
-        } else {
-            return data;
-        }
     }
 
     public Unit() {
@@ -266,7 +260,7 @@ public class Unit {
             return;
         }
 
-        data.setEquipsChanged(false);
+        //data.setEquipsChanged(false);
 
         if (data.getUnit() == null) {
             data.setUnit(this);
@@ -274,8 +268,8 @@ public class Unit {
 
         DirtyCheck old = getDirtyCheck();
 
-        this.stats.statsInCalc.clear();
-        this.stats.stats.clear();
+        stats.statsInCalc.clear();
+        stats.stats.clear();
 
         List<GearData> gears = new ArrayList<>();
 
@@ -293,8 +287,8 @@ public class Unit {
         } else {
             MobStatUtils.AddMobcStats(data, entity);
             MobStatUtils.addAffixStats(data);
-            MobStatUtils.worldMultiplierStats(entity.world, this);
-            MobStatUtils.increaseMobStatsPerTier(data, this);
+            MobStatUtils.worldMultiplierStats(entity, entity.world, this);
+            MobStatUtils.increaseMobStatsPerTier(entity, data, this);
             MobStatUtils.modifyMobStatsByConfig(entity, data);
             ExtraMobRarityAttributes.add(entity, data);
         }
@@ -336,6 +330,42 @@ public class Unit {
                 }
             });
 
+        if (entity instanceof PlayerEntity) {
+
+            for (StatContainerType type : StatContainerType.values()) {
+                if (type == StatContainerType.NORMAL) {
+                    this.spellStats.put(type, stats);
+                } else {
+
+                    StatContainer copy = stats.cloneForSpellStats();
+                    spellStats.put(type, copy);
+
+                    List<ItemStack> stack = Load.spells(entity)
+                        .getSkillGemData()
+                        .getSupportGemsOf(type.place);
+
+                    stack.forEach(x -> {
+                        SkillGemData sd = SkillGemData.fromStack(x);
+                        if (sd != null) {
+                            sd.getSkillGem()
+                                .getStats(sd)
+                                .forEach(s -> {
+                                    spellStats.get(type)
+                                        .getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
+                        }
+                    });
+
+                }
+
+            }
+
+            spellStats.values()
+                .forEach(x -> x.calculate());
+
+        }
+
         this.stats.calculate();
 
         removeEmptyStats();
@@ -363,11 +393,13 @@ public class Unit {
             float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 40);
             // all increases after this would just reduce enviro damage
 
-            if (getStatInCalculation(Health.getInstance()).getFlatAverage() > getStatInCalculation(MagicShield.getInstance()).getFlatAverage()) {
-                this.getStatInCalculation(Health.getInstance())
+            if (stats.getStatInCalculation(Health.getInstance())
+                .getFlatAverage() > stats.getStatInCalculation(MagicShield.getInstance())
+                .getFlatAverage()) {
+                stats.getStatInCalculation(Health.getInstance())
                     .addFlat(maxhp, data.getLevel());
             } else {
-                this.getStatInCalculation(MagicShield.getInstance())
+                stats.getStatInCalculation(MagicShield.getInstance())
                     .addFlat(maxhp, data.getLevel());
             }
             // add vanila hp to extra hp

@@ -180,6 +180,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     @Override
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit()
+            .getStats()
             .getStatInCalculation(stat_id)
             .add(this, data);
     }

@@ -127,6 +127,7 @@ Now you can have a "% Spell damage leeched as mana", or "% Attack damage leeched
 * added elemental damage over time stats
 * new command /age_of_exile runtest. I will try to add tests here that are useful to myself, and maybe for modpack makers.
 Could be useful for wiki editors too, like the exp requirement test command prints out all exp requirements.
+* removed give spell stat. As spells are now skill gems.
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

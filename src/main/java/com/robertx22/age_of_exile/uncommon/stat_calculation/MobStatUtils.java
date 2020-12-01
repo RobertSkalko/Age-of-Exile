@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 public class MobStatUtils {
 
-    public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
+    public static void increaseMobStatsPerTier(LivingEntity en, UnitData mobdata, Unit unit) {
 
-        for (InCalcStatData data : unit.getStatsContainer().statsInCalc
+        for (InCalcStatData data : unit.getStats().statsInCalc
             .values()
             .stream()
             .filter(x -> {
@@ -55,8 +55,8 @@ public class MobStatUtils {
 
     }
 
-    public static void worldMultiplierStats(World world, Unit unit) {
-        for (InCalcStatData stat : unit.getStatsContainer().statsInCalc
+    public static void worldMultiplierStats(LivingEntity en, World world, Unit unit) {
+        for (InCalcStatData stat : unit.getStats().statsInCalc
             .values()) {
             stat.multiplyFlat(Database.getDimensionConfig(world).mob_strength_multi);
         }
@@ -70,7 +70,7 @@ public class MobStatUtils {
 
         config.stats.stats.forEach(x -> x.applyStats(unitdata));
 
-        for (InCalcStatData data : unit.getStatsContainer().statsInCalc
+        for (InCalcStatData data : unit.getStats().statsInCalc
             .values()) {
             Stat stat = data.GetStat();
             if (stat instanceof AttackDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {

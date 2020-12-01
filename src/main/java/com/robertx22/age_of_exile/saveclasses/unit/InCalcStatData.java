@@ -26,6 +26,17 @@ public class InCalcStatData {
 
     }
 
+    public InCalcStatData cloneForSpellStats() {
+        InCalcStatData clone = new InCalcStatData();
+        clone.id = id;
+        clone.Flat = Flat;
+        clone.Flat2 = Flat2;
+        clone.Percent = Percent;
+        clone.Multi = Multi;
+
+        return clone;
+    }
+
     public InCalcStatData(String id) {
         this.id = id;
     }

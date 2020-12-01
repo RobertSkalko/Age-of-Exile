@@ -5,10 +5,8 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileAmountStat;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
-import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffect;
@@ -134,11 +132,11 @@ public abstract class EffectData {
 
             logOnStartData();
 
-            TryApplyEffects(this.sourceData, EffectSides.Source);
+            TryApplyEffects(source, sourceData, EffectSides.Source);
 
             //  if (GetSource().GUID.equals(GetTarget().GUID) == false) { // todo unsure
             // this makes stats not apply twice if  caster is both target and source.. hmm
-            TryApplyEffects(this.targetData, EffectSides.Target);
+            TryApplyEffects(target, targetData, EffectSides.Target);
             // }
             logOnEndData();
 
@@ -169,7 +167,7 @@ public abstract class EffectData {
 
     protected abstract void activate();
 
-    protected void TryApplyEffects(UnitData data, EffectSides side) {
+    protected void TryApplyEffects(LivingEntity en, UnitData data, EffectSides side) {
 
         if (this.canceled) {
             return;
@@ -177,9 +175,7 @@ public abstract class EffectData {
 
         List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
 
-        Effects = AddEffects(Effects, data);
-
-        addSkillGemEffects(Effects, data);
+        Effects = AddEffects(Effects, data, en);
 
         Effects.sort(EffectUnitStat.COMPARATOR);
 
@@ -194,17 +190,15 @@ public abstract class EffectData {
 
     }
 
-    private void addSkillGemEffects(List<EffectUnitStat> effects, UnitData data) {
+    private Unit.StatContainerType getStatType(LivingEntity en, UnitData data) {
 
-        // todo this needs MASSIVE perf improvements
-
-        if (source instanceof PlayerEntity) {
+        if (en instanceof PlayerEntity) {
             if (this instanceof IHasSpellEffect) {
                 IHasSpellEffect has = (IHasSpellEffect) this;
 
                 Spell spell = has.getSpell();
 
-                PlayerSpellCap.ISpellsCap spells = Load.spells(source);
+                PlayerSpellCap.ISpellsCap spells = Load.spells(en);
 
                 int place = -1;
 
@@ -225,33 +219,34 @@ public abstract class EffectData {
 
                 if (place > -1) {
 
-                    spells.getSkillGemData()
-                        .getSupportGemsOf(place)
-                        .forEach(x -> {
-                            SkillGemData sd = SkillGemData.fromStack(x);
-
-                            if (sd != null) {
-                                Stat stat = ProjectileAmountStat.getInstance();
-
-                                sd.getSkillGem()
-                                    .getStats(sd)
-                                    .forEach(e -> {
-                                        StatData statData = new StatData(e.getStatId(), e.getFirstValue(), e.getFirstValue());
-                                        effects.add(new EffectUnitStat(stat.statEffect, data.getUnit(), statData));
-
-                                    });
-                            }
-                        });
-
+                    if (place == 0) {
+                        return Unit.StatContainerType.SPELL1;
+                    }
+                    if (place == 1) {
+                        return Unit.StatContainerType.SPELL2;
+                    }
+                    if (place == 2) {
+                        return Unit.StatContainerType.SPELL3;
+                    }
+                    if (place == 3) {
+                        return Unit.StatContainerType.SPELL4;
+                    }
                 }
+
             }
         }
+
+        return Unit.StatContainerType.NORMAL;
+
     }
 
-    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, UnitData unit) {
+    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, UnitData unit, LivingEntity en) {
+
+        Unit.StatContainerType type = getStatType(en, unit);
+
         if (unit != null) {
             unit.getUnit()
-                .getStats()
+                .getStats(type).stats
                 .values()
                 .forEach(data -> {
                     if (data.isNotZero()) {

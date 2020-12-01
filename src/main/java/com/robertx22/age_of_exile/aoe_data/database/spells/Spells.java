@@ -157,7 +157,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        POISONBALL = SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Poison Ball")
+        POISONBALL = SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.nonInstant(7, 0, 20), "Poison Ball")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .projectile()
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))

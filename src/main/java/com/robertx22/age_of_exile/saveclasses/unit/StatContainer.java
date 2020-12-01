@@ -1,5 +1,8 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
+import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
+import com.robertx22.age_of_exile.database.registry.Database;
 import info.loenwind.autosave.Registry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -27,6 +30,16 @@ public class StatContainer implements IHandler<StatContainer> {
         return !this.statsInCalc.isEmpty();
     }
 
+    public StatContainer cloneForSpellStats() {
+        StatContainer clone = new StatContainer();
+        statsInCalc.entrySet()
+            .forEach(x -> {
+                clone.statsInCalc.put(x.getKey(), x.getValue()
+                    .cloneForSpellStats());
+            });
+        return clone;
+    }
+
     public void calculate() {
         stats.clear();
 
@@ -35,6 +48,29 @@ public class StatContainer implements IHandler<StatContainer> {
                 stats.put(x.id, x.getCalculated());
             });
         statsInCalc.clear();
+    }
+
+    public InCalcStatData getStatInCalculation(Stat stat) {
+        return getStatInCalculation(stat.GUID());
+    }
+
+    public InCalcStatData getStatInCalculation(String guid) {
+
+        InCalcStatData data = statsInCalc.get(guid);
+
+        if (data == null) {
+            Stat stat = Database.Stats()
+                .get(guid);
+            if (stat != null) {
+                statsInCalc.put(stat.GUID(), new InCalcStatData(stat.GUID()));
+
+                return statsInCalc.get(stat.GUID());
+            } else {
+                return new InCalcStatData(new UnknownStat().GUID());
+            }
+        } else {
+            return data;
+        }
     }
 
     @Override
