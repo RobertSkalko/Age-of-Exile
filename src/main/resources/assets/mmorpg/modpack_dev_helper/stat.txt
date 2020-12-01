@@ -47,6 +47,7 @@ spell_nature_dmg_leech_as_health
 dot_water_dmg_leech_as_mana
 health_on_attack_hit
 faster_projectiles
+piercing_projectiles
 spell_thunder_dmg_leech_as_blood
 extra_mob_drops
 water_dot_damage

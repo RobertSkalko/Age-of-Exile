@@ -5,6 +5,7 @@ multi_shot_gem
 lightning_totem_gem
 minor_multi_proj
 thunder_strikes_gem
+piercing_proj
 purifying_fires_gem
 thorn_armor_gem
 poison_ball_gem
@@ -14,6 +15,7 @@ tidal_strike_gem
 fire_bombs_gem
 frost_armor_gem
 heart_of_ice_gem
+faster_proj
 healing_aura_gem
 nature_balm_gem
 arcane_bolt_gem
@@ -34,3 +36,4 @@ volcano_gem
 poisoned_weapons_gem
 arcane_comet_gem
 magic_bomb_gem
+major_multi_proj

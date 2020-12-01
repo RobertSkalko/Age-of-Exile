@@ -86,6 +86,11 @@ public class Unit {
     }
 
     public StatContainer getStats(StatContainerType type) {
+
+        if (type == StatContainerType.NORMAL) {
+            return stats;
+        }
+
         return spellStats.get(type);
     }
 
@@ -350,8 +355,7 @@ public class Unit {
                             sd.getSkillGem()
                                 .getStats(sd)
                                 .forEach(s -> {
-                                    spellStats.get(type)
-                                        .getStatInCalculation(s.getStat())
+                                    copy.getStatInCalculation(s.getStat())
                                         .add(s, data);
                                 });
                         }
