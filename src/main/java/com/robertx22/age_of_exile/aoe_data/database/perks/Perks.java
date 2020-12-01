@@ -59,7 +59,6 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(4, HealPower.getInstance(), ModType.FLAT));
-        PerkBuilder.stat("increase_healing", new OptScaleExactStat(8, HealPower.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));
@@ -101,7 +100,6 @@ public class Perks implements ISlashRegistryInit {
         new ElementalDamageBonus(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
-                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(5, x, ModType.FLAT));
             });
 
         new ElementalResist(Elements.Nature).generateAllPossibleStatVariations()

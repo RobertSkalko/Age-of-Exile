@@ -43,7 +43,7 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.SPELL_GEM;
+        return SlashRegistryType.SKILL_GEM;
     }
 
     @Override

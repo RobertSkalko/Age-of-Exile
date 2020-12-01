@@ -12,7 +12,7 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public enum RarityType {
-        GEAR("gear"), MOB("mob");
+        GEAR("gear"), MOB("mob"), SKILL_GEM("skill_gem");
 
         public String id;
 

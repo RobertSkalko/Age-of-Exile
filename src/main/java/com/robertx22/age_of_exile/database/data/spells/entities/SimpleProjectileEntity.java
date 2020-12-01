@@ -442,6 +442,10 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
         this.dataTracker.set(EXPIRE_ON_HIT, holder.getOrDefault(MapField.EXPIRE_ON_HIT, true));
 
+        if (data.config.piercing) {
+            this.dataTracker.set(EXPIRE_ON_HIT, false);
+        }
+
         data.item_id = holder.get(MapField.ITEM);
         CompoundTag nbt = new CompoundTag();
         nbt.putString("spell", GSON.toJson(spellData));

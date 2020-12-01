@@ -38,6 +38,7 @@ public class SpellStatsCalcEffect extends EffectData implements IHasSpellEffect 
 
     public static class CalculatedSpellConfiguration {
 
+        public boolean piercing = false;
         public int extraProjectiles = 0;
 
         private HashMap<SpellModEnum, Float> map = new HashMap<>();

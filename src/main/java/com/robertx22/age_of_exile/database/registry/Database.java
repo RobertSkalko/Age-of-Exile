@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
@@ -149,6 +150,10 @@ public class Database {
         return getRegistry(SlashRegistryType.EXILE_EFFECT);
     }
 
+    public static SlashRegistryContainer<SkillGemRarity> SkillGemRarities() {
+        return getRegistry(SlashRegistryType.SKILL_GEM_RARITY);
+    }
+
     public static SlashRegistryContainer<FavorRank> FavorRanks() {
         return getRegistry(SlashRegistryType.FAVOR_RANK);
     }
@@ -182,7 +187,7 @@ public class Database {
     }
 
     public static SlashRegistryContainer<SkillGem> SkillGems() {
-        return getRegistry(SlashRegistryType.SPELL_GEM);
+        return getRegistry(SlashRegistryType.SKILL_GEM);
     }
 
     public static SlashRegistryContainer<BaseGearType> GearTypes() {
@@ -322,7 +327,8 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SALVAGE_OUTPUT, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.PLAYER_SKILLS, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.BASE_STATS, null).setIsDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SPELL_GEM, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SKILL_GEM, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SKILL_GEM_RARITY, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

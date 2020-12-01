@@ -20,6 +20,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
@@ -78,7 +79,8 @@ public enum SlashRegistryType {
     PLAYER_SKILLS("player_skills", 23, PlayerSkill.SERIALIZER, SyncTime.ON_LOGIN),
     FAVOR_RANK("favor_rank", 21, FavorRank.SERIALIZER, SyncTime.ON_LOGIN),
     BASE_STATS("base_stats", 22, BaseStatsConfig.SERIALIZER, SyncTime.ON_LOGIN),
-    SPELL_GEM("spell_gem", 23, SkillGem.SERIALIZER, SyncTime.ON_LOGIN);
+    SKILL_GEM("spell_gem", 23, SkillGem.SERIALIZER, SyncTime.ON_LOGIN),
+    SKILL_GEM_RARITY("skill_gem_rarity", 24, SkillGemRarity.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;
     ISerializable ser;

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
+import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import info.loenwind.autosave.annotations.Storable;
@@ -21,6 +22,11 @@ public class SkillGemData {
     public SkillGem getSkillGem() {
         return Database.SkillGems()
             .get(id);
+    }
+
+    public SkillGemRarity getRarity() {
+        return Database.SkillGemRarities()
+            .get(rar);
     }
 
     public static SkillGemData fromStack(ItemStack stack) {

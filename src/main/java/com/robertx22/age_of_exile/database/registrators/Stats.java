@@ -107,6 +107,7 @@ public class Stats implements ISlashRegistryInit {
 
                     // generated
 
+                    add(PiercingProjectile.getInstance());
                     add(ProjectileAmountStat.getInstance());
                     add(ProjectileSpeedStat.getInstance());
                     add(ReducedCooldownStat.getInstance());
