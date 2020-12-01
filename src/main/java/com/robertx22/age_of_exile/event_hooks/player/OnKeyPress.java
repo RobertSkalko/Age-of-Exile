@@ -31,18 +31,19 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
         } else {
 
             int number = -1;
+
             if (KeybindsRegister.SPELL_HOTBAR_1.isPressed()) {
                 number = 0;
-            }
-            if (KeybindsRegister.SPELL_HOTBAR_2.isPressed()) {
+            } else if (KeybindsRegister.SPELL_HOTBAR_2.isPressed()) {
                 number = 1;
-            }
-            if (KeybindsRegister.SPELL_HOTBAR_3.isPressed()) {
+            } else if (KeybindsRegister.SPELL_HOTBAR_3.isPressed()) {
                 number = 2;
-            }
-            if (KeybindsRegister.SPELL_HOTBAR_4.isPressed()) {
+            } else if (KeybindsRegister.SPELL_HOTBAR_4.isPressed()) {
                 number = 3;
+            } else {
+                number -= 500; // dont cast
             }
+
             if (Screen.hasShiftDown()) {
                 number += 4;
             }

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.entities.renders.IMyRenderAsItem;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
@@ -57,6 +58,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<Boolean> EXPIRE_ON_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> PIERCE = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public Entity ignoreEntity;
 
@@ -291,10 +293,13 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
 
             if (caster != null) {
-                this.getSpellData()
-                    .getSpell()
-                    .getAttached()
-                    .tryActivate(getEntityName(), SpellCtx.onHit(caster, this, en, getSpellData()));
+                if (!Load.spells(caster)
+                    .alreadyHit(this, en)) {
+                    this.getSpellData()
+                        .getSpell()
+                        .getAttached()
+                        .tryActivate(getEntityName(), SpellCtx.onHit(caster, this, en, getSpellData()));
+                }
             }
 
         } else {
@@ -303,9 +308,13 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
         }
 
-        if (this.dataTracker.get(EXPIRE_ON_HIT)) {
+        if (entityHit == null && this.dataTracker.get(EXPIRE_ON_HIT)) {
             this.scheduleRemoval();
         }
+        if (entityHit != null && !dataTracker.get(PIERCE)) {
+            this.scheduleRemoval();
+        }
+
     }
 
     boolean removeNextTick = false;
@@ -378,6 +387,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
         this.dataTracker.startTracking(ENTITY_NAME, "");
         this.dataTracker.startTracking(EXPIRE_ON_HIT, true);
+        this.dataTracker.startTracking(PIERCE, false);
         super.initDataTracker();
     }
 
@@ -443,7 +453,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.dataTracker.set(EXPIRE_ON_HIT, holder.getOrDefault(MapField.EXPIRE_ON_HIT, true));
 
         if (data.config.piercing) {
-            this.dataTracker.set(EXPIRE_ON_HIT, false);
+            this.dataTracker.set(PIERCE, false);
         }
 
         data.item_id = holder.get(MapField.ITEM);

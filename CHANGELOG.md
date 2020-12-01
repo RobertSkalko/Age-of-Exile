@@ -129,6 +129,8 @@ Now you can have a "% Spell damage leeched as mana", or "% Attack damage leeched
 Could be useful for wiki editors too, like the exp requirement test command prints out all exp requirements.
 * removed give spell stat. As spells are now skill gems.
 * added give skill_gem command
+* new datapack types: skill gems, random skill gem stats
+
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

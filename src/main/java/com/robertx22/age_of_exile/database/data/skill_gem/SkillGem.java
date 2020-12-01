@@ -28,10 +28,18 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
 
     public List<StatModifier> stats = new ArrayList<>();
 
+    public List<SkillGemTag> tags = new ArrayList<>();
+
     public transient String locname = "";
 
-    public List<ExactStatData> getStats(SkillGemData data) {
+    public List<ExactStatData> getConstantStats(SkillGemData data) {
         return stats.stream()
+            .map(x -> x.ToExactStat(100, data.lvl))
+            .collect(Collectors.toList());
+    }
+
+    public List<ExactStatData> getRandomStats(SkillGemData data) {
+        return data.random_stats.stream()
             .map(x -> x.ToExactStat(data.stat_perc, data.lvl))
             .collect(Collectors.toList());
     }

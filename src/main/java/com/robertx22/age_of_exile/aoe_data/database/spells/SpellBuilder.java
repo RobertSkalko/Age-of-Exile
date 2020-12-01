@@ -1,22 +1,29 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
-import com.robertx22.age_of_exile.database.data.spells.components.*;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
+import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class SpellBuilder {
     Spell spell;
 
-    public static SpellBuilder of(String id, SpellConfiguration config, String name) {
+    public static SpellBuilder of(String id, SpellConfiguration config, String name, List<SkillGemTag> tags) {
         SpellBuilder builder = new SpellBuilder();
 
         builder.spell = new Spell();
         builder.spell.identifier = id;
         builder.spell.config = config;
         builder.spell.locName = name;
+
+        builder.spell.getConfig().tags = tags;
 
         return builder;
     }
@@ -32,11 +39,6 @@ public class SpellBuilder {
 
     public SpellBuilder attackStyle(AttackPlayStyle style) {
         this.spell.config.style = style;
-        return this;
-    }
-
-    public SpellBuilder projectile() {
-        this.spell.config.tags.add(SpellTags.PROJECTILE);
         return this;
     }
 

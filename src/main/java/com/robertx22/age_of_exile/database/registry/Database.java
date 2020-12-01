@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
+import com.robertx22.age_of_exile.database.data.random_skill_gem_stats.RandomSkillGemStats;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
@@ -168,6 +169,10 @@ public class Database {
 
     public static SlashRegistryContainer<Rune> Runes() {
         return getRegistry(SlashRegistryType.RUNE);
+    }
+
+    public static SlashRegistryContainer<RandomSkillGemStats> RandomSkilLGemStats() {
+        return getRegistry(SlashRegistryType.RANDOM_SKILL_GEM_STATS);
     }
 
     public static SlashRegistryContainer<Affix> Affixes() {
@@ -329,6 +334,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.BASE_STATS, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SKILL_GEM, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SKILL_GEM_RARITY, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RANDOM_SKILL_GEM_STATS, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

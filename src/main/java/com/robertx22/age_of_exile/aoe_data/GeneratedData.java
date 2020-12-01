@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.perks.AllPerks;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.random_skill_gem_stats.RandomSkillGemStatsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
 import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_outputs.SalvageOutputsAdder;
@@ -76,6 +77,7 @@ public class GeneratedData {
             new BaseStatsAdder().registerAll();
 
             new SkillGemsAdder().registerAll();
+            new RandomSkillGemStatsAdder().registerAll();
 
         }
     }

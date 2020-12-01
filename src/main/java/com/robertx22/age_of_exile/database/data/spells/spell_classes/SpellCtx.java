@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.spell_classes;
 
 import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
@@ -51,6 +52,9 @@ public class SpellCtx {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
+
+        Load.spells(caster)
+            .onSpellHitTarget(sourceEntity, target);
         return new SpellCtx(EntityActivation.ON_HIT, sourceEntity, caster, target, target.getBlockPos(), target.getPos(), data);
     }
 
@@ -67,7 +71,6 @@ public class SpellCtx {
         LivingEntity target = sourceEntity instanceof LivingEntity ? (LivingEntity) sourceEntity : null;
         return new SpellCtx(EntityActivation.ON_EXPIRE, sourceEntity, caster, target, sourceEntity.getBlockPos(), sourceEntity.getPos(), data);
     }
-
 
     public static SpellCtx onTick(LivingEntity caster, Entity sourceEntity, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);

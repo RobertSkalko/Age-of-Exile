@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
@@ -19,7 +20,7 @@ public class SpellConfiguration {
     public int cooldown_ticks;
     public AttackPlayStyle style = AttackPlayStyle.MAGIC;
     public PassiveConfig passive_config = new PassiveConfig();
-    public List<String> tags = new ArrayList<>();
+    public List<SkillGemTag> tags = new ArrayList<>();
 
     public static class PassiveConfig {
         public boolean is_passive = false;
@@ -31,7 +32,7 @@ public class SpellConfiguration {
     }
 
     public boolean isProjectile() {
-        return tags.contains(SpellTags.PROJECTILE);
+        return tags.contains(SkillGemTag.PROJECTILE);
     }
 
     public SpellConfiguration setSwingArm() {

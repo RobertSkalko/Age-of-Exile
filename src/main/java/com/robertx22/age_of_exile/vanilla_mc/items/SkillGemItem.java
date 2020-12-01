@@ -6,7 +6,9 @@ import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -63,11 +65,15 @@ public class SkillGemItem extends Item implements IAutoLocName, IAutoModel {
             SkillGemData data = SkillGemData.fromStack(stack);
             SkillGem gem = data.getSkillGem();
 
+            tooltip.clear();
             tooltip.add(gem.locName());
+
+            tooltip.addAll(data.GetTooltipString(new TooltipInfo(ClientOnly.getPlayer())));
 
             // todo
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

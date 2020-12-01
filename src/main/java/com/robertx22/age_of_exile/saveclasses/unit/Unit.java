@@ -338,6 +338,7 @@ public class Unit {
         if (entity instanceof PlayerEntity) {
 
             for (StatContainerType type : StatContainerType.values()) {
+                // different stat containers for each spell with support gems.
                 if (type == StatContainerType.NORMAL) {
                     this.spellStats.put(type, stats);
                 } else {
@@ -353,11 +354,18 @@ public class Unit {
                         SkillGemData sd = SkillGemData.fromStack(x);
                         if (sd != null) {
                             sd.getSkillGem()
-                                .getStats(sd)
+                                .getConstantStats(sd)
                                 .forEach(s -> {
                                     copy.getStatInCalculation(s.getStat())
                                         .add(s, data);
                                 });
+                            sd.getSkillGem()
+                                .getRandomStats(sd)
+                                .forEach(s -> {
+                                    copy.getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
+
                         }
                     });
 

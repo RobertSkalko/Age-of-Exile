@@ -8,8 +8,15 @@ import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 public class PlayerSpellCap {
 
@@ -24,9 +31,14 @@ public class PlayerSpellCap {
 
         public abstract SkillGemsData getSkillGemData();
 
+        public abstract void onSpellHitTarget(Entity spellEntity, LivingEntity target);
+
+        public abstract boolean alreadyHit(Entity spellEntity, LivingEntity target);
+
     }
 
     public static class DefaultImpl extends ISpellsCap {
+
         SpellCastingData spellCastingData = new SpellCastingData();
 
         SkillGemsData skillGems = new SkillGemsData();
@@ -93,6 +105,41 @@ public class PlayerSpellCap {
         @Override
         public SkillGemsData getSkillGemData() {
             return this.skillGems;
+        }
+
+        public HashMap<UUID, List<UUID>> mobsHit = new HashMap<>();
+
+        @Override
+        public void onSpellHitTarget(Entity spellEntity, LivingEntity target) {
+
+            UUID id = target.getUuid();
+
+            UUID key = spellEntity.getUuid();
+
+            if (!mobsHit.containsKey(key)) {
+                mobsHit.put(key, new ArrayList<>());
+            }
+            mobsHit.get(key)
+                .add(id);
+
+            if (mobsHit.size() > 1000) {
+                mobsHit.clear();
+            }
+
+        }
+
+        @Override
+        public boolean alreadyHit(Entity spellEntity, LivingEntity target) {
+            // this makes sure piercing projectiles hit target only once and then pass through
+            // i can replace this with an effect that tags them too
+
+            UUID key = spellEntity.getUuid();
+
+            if (!mobsHit.containsKey(key)) {
+                return false;
+            }
+            return mobsHit.get(key)
+                .contains(target.getUuid());
         }
 
     }

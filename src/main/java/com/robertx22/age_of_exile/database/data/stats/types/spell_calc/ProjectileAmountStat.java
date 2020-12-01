@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.spell_calc;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalcEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
@@ -11,6 +12,7 @@ public class ProjectileAmountStat extends Stat {
     private ProjectileAmountStat() {
         this.max_val = 10;
         this.statEffect = new Effect();
+        this.scaling = StatScaling.NONE;
     }
 
     public static ProjectileAmountStat getInstance() {

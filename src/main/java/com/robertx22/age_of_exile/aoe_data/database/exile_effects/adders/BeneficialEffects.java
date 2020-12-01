@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -129,6 +130,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(IMBUE, "Imbue", EffectType.BENEFICIAL)
+            .stat(15, AttackStyleDamage.RANGED, ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(SAVAGE_HUNTER, "Savage Hunter", EffectType.BENEFICIAL)
