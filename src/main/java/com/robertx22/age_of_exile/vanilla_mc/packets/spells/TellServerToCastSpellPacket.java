@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
@@ -46,14 +45,8 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
 
         PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-        ItemStack stack = spells.getSkillGemData()
+        SkillGemData data = spells.getSkillGemData()
             .getSkillGemOf(number);
-
-        if (stack == null) {
-            return;
-        }
-
-        SkillGemData data = SkillGemData.fromStack(stack);
 
         if (data == null) {
             return;

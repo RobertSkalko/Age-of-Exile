@@ -61,7 +61,7 @@ public class OnLogin {
                 if (ModConfig.get().Server.ENABLE_MOD_COMPAT_WARNINGS) {
                     player.sendMessage(
                         new LiteralText("You are using Immersive Portals mod, " +
-                            "this mod causes Age of Exile's spells to be invisible, and probably other issues."), false);
+                            "this mod tends to be incompatible with Age of Exile."), false);
                     player.sendMessage(
                         new LiteralText("Mod Compatibility warnings can be disabled under Age of Exile server settings."), false);
                 }

@@ -76,6 +76,7 @@ public class SkillGemsContainer extends BaseTileContainer {
         @Override
         public boolean canInsert(ItemStack stack) {
             SkillGemData gem = SkillGemData.fromStack(stack);
+
             return gem != null && gem.getSkillGem().type == SkillGemType.SUPPORT_GEM && gem.canPlayerUse(player);
         }
     }

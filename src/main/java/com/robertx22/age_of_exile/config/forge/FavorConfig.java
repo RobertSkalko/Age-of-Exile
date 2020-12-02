@@ -6,4 +6,6 @@ public class FavorConfig {
 
     public float FAVOR_GAIN_PER_CHEST_LOOTED = 20;
 
+    public int STARTING_FAVOR = 100;
+
 }

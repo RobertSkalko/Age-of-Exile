@@ -193,46 +193,50 @@ public abstract class EffectData {
     private Unit.StatContainerType getStatType(LivingEntity en, UnitData data) {
 
         if (en instanceof PlayerEntity) {
-            if (this instanceof IHasSpellEffect) {
-                IHasSpellEffect has = (IHasSpellEffect) this;
+            try {
+                if (this instanceof IHasSpellEffect) {
+                    IHasSpellEffect has = (IHasSpellEffect) this;
 
-                Spell spell = has.getSpell();
+                    Spell spell = has.getSpell();
 
-                PlayerSpellCap.ISpellsCap spells = Load.spells(en);
+                    PlayerSpellCap.ISpellsCap spells = Load.spells(en);
 
-                int place = -1;
+                    int place = -1;
 
-                for (int i = 0; i < spells.getSkillGemData().stacks.size(); i++) {
+                    for (int i = 0; i < spells.getSkillGemData().stacks.size(); i++) {
 
-                    ItemStack stack = spells.getSkillGemData().stacks.get(i);
+                        ItemStack stack = spells.getSkillGemData().stacks.get(i);
 
-                    SkillGemData sd = SkillGemData.fromStack(stack);
-                    if (sd != null && sd.getSkillGem().spell_id.equals(spell.GUID())) {
-                        for (SkillGemsData.Places p : SkillGemsData.Places.values()) {
-                            if (p.index == i) {
-                                place = p.place;
+                        SkillGemData sd = SkillGemData.fromStack(stack);
+                        if (sd != null && sd.getSkillGem() != null && sd.getSkillGem().spell_id.equals(spell.GUID())) {
+                            for (SkillGemsData.Places p : SkillGemsData.Places.values()) {
+                                if (p.index == i) {
+                                    place = p.place;
+                                }
                             }
+                        }
+
+                    }
+
+                    if (place > -1) {
+
+                        if (place == 0) {
+                            return Unit.StatContainerType.SPELL1;
+                        }
+                        if (place == 1) {
+                            return Unit.StatContainerType.SPELL2;
+                        }
+                        if (place == 2) {
+                            return Unit.StatContainerType.SPELL3;
+                        }
+                        if (place == 3) {
+                            return Unit.StatContainerType.SPELL4;
                         }
                     }
 
                 }
-
-                if (place > -1) {
-
-                    if (place == 0) {
-                        return Unit.StatContainerType.SPELL1;
-                    }
-                    if (place == 1) {
-                        return Unit.StatContainerType.SPELL2;
-                    }
-                    if (place == 2) {
-                        return Unit.StatContainerType.SPELL3;
-                    }
-                    if (place == 3) {
-                        return Unit.StatContainerType.SPELL4;
-                    }
-                }
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

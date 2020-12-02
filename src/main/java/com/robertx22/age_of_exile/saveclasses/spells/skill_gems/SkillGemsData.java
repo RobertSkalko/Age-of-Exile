@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.spells.skill_gems;
 
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -66,7 +67,7 @@ public class SkillGemsData implements Inventory {
         }
     }
 
-    public List<ItemStack> getSupportGemsOf(int place) {
+    public List<SkillGemData> getSupportGemsOf(int place) {
         List<ItemStack> list = new ArrayList<>();
 
         for (Places en : Places.values()) {
@@ -76,19 +77,29 @@ public class SkillGemsData implements Inventory {
                 }
             }
         }
-        return list;
+        List<SkillGemData> gems = new ArrayList<>();
+
+        list.forEach(x -> {
+            SkillGemData d = SkillGemData.fromStack(x);
+            if (d != null) {
+                gems.add(d);
+            }
+        });
+
+        return gems;
     }
 
-    public ItemStack getSkillGemOf(int place) {
+    public SkillGemData getSkillGemOf(int place) {
         for (Places en : Places.values()) {
             if (en.place == place) {
                 if (en.slotType == SkillGemType.SKILL_GEM) {
-                    return stacks.get(en.index);
+                    SkillGemData gem = SkillGemData.fromStack(stacks.get(en.index));
+                    return gem;
                 }
             }
         }
         System.out.print("No skill gem found for place " + place);
-        return ItemStack.EMPTY;
+        return null;
     }
 
     @Override

@@ -509,14 +509,15 @@ public class EntityCap {
                 if (isNewbie()) {
                     setNewbieStatus(false);
 
-                    Load.favor(player)
-                        .setFavor(1000); // newbie starting favor
-
-                    Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
-
                     if (ModConfig.get().Server.GET_STARTER_ITEMS) {
                         OnLogin.GiveStarterItems(player);
                     }
+
+                    Load.favor(player)
+                        .setFavor(ModConfig.get().Favor.STARTING_FAVOR); // newbie starting favor
+
+                    Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
+
                 }
 
             } catch (Exception e) {

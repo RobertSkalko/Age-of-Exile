@@ -54,6 +54,9 @@ public class Spells implements ISlashRegistryInit {
     public static String THUNDERSPEAR_ID = "thunder_spear";
     public static String HEALING_AURA_ID = "healing_aura";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
+    public static String ARCANE_BOLT_ID = "arcane_bolt";
+    public static String MULTI_SHOT_ID = "multi_shot";
+    public static String FLAME_STRIKE_ID = "flame_strike";
 
     public static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG() {
         return SpellConfiguration.Builder.instant(7, 20);
@@ -77,7 +80,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        ARCANE_BALL = SpellBuilder.of("arcane_bolt", SpellConfiguration.Builder.instant(7, 6), "Arcane Bolt",
+        ARCANE_BALL = SpellBuilder.of(ARCANE_BOLT_ID, SpellConfiguration.Builder.instant(7, 20), "Arcane Bolt",
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE)
         )
 
@@ -124,7 +127,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        FROSTBALL = SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Ice Ball",
+        FROSTBALL = SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 20), "Ice Ball",
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
@@ -135,7 +138,7 @@ public class Spells implements ISlashRegistryInit {
 
             .build();
 
-        FIREBALL = SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 5), "Fire Ball",
+        FIREBALL = SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 20), "Fire Ball",
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
@@ -282,7 +285,7 @@ public class Spells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of("multi_shot", SINGLE_TARGET_PROJ_CONFIG(), "Multi Shot",
+        SpellBuilder.of(MULTI_SHOT_ID, SINGLE_TARGET_PROJ_CONFIG(), "Multi Shot",
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.RANGED)
 
@@ -327,8 +330,8 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
             .build();
 
-        SpellBuilder.of("purifying_fires", SpellConfiguration.Builder.instant(8, 15)
-                .setSwingArm(), "Purifying Fires",
+        SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
+                .setSwingArm(), "Flame Strike",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .attackStyle(AttackPlayStyle.MELEE)
             .weaponReq(CastingWeapon.MELEE_WEAPON)

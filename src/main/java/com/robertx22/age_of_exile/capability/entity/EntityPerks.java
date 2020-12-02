@@ -82,27 +82,6 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         }
     }
 
-    public SpellSchool getMainSpellSchool() {
-
-        int highestnum = 0;
-
-        SpellSchool school = null;
-
-        for (SpellSchool x : Database.SpellSchools()
-            .getFiltered(x -> x.getSchool_type() == SpellSchool.SchoolType.SPELLS)) {
-            int alo = data.getSchool(x)
-                .getAllocatedPointsInSchool();
-            if (alo > highestnum) {
-                highestnum = alo;
-                school = x;
-            }
-
-        }
-
-        return school;
-
-    }
-
     public Perk.Connection getConnection(SpellSchool school, PointData one, PointData two) {
 
         if (isAllocated(school, one) && isAllocated(school, two)) {

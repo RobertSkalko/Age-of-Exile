@@ -137,6 +137,8 @@ Could be useful for wiki editors too, like the exp requirement test command prin
 * faster cast rate stat renamed to cast speed. (I'm trying to keep all stat names neutral, because "- 5 to faster rate" is confusing as hell)
 * stat req in datapacks have all values now as optional, + base req feature. This means you can have something that requires 50 str at all levels.
 Or maybe 20 str + scaling over lvls slowly.
+* your starting gear and spell are now different based on which talent starting position you pick. (I had a few people who went archer but started with a wand lol)
+* newbie gear now comes with unbreaking
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

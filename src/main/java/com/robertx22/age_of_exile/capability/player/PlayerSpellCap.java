@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
@@ -84,9 +83,7 @@ public class PlayerSpellCap {
 
         @Override
         public Spell getSpellByNumber(int key) {
-            ItemStack gem = this.skillGems.getSkillGemOf(key);
-
-            SkillGemData data = SkillGemData.fromStack(gem);
+            SkillGemData data = this.skillGems.getSkillGemOf(key);
 
             if (data != null) {
                 return Database.Spells()

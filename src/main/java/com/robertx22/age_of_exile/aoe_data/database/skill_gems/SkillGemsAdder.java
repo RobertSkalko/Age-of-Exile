@@ -18,7 +18,7 @@ public class SkillGemsAdder implements ISlashRegistryInit {
         Database.Spells()
             .getSerializable()
             .forEach(x -> {
-                SkillGemBuilder.spell(x, x.GUID() + "_gem", x.locName + " Gem",
+                SkillGemBuilder.spell(x, x.GUID(), x.locName + " Gem",
                     x.config.style.attribute, 1);
             });
     }

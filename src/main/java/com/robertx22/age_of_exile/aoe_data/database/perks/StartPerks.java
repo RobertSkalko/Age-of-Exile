@@ -10,44 +10,52 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 public class StartPerks implements ISlashRegistryInit {
 
+    public static String MAGE = "mage";
+    public static String WARRIOR = "warrior";
+    public static String HUNTER = "hunter";
+    public static String TEMPLAR = "templar";
+    public static String DUELIST = "duelist";
+    public static String BATTLE_MAGE = "battle_mage";
+    public static String SCION = "scion";
+
     @Override
     public void registerAll() {
 
-        of("mage", "Mage",
+        of(MAGE, "Mage",
             new OptScaleExactStat(30, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(15, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(15, Dexterity.INSTANCE, ModType.FLAT)
         );
-        of("warrior", "Warrior",
+        of(WARRIOR, "Warrior",
             new OptScaleExactStat(15, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(30, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(15, Dexterity.INSTANCE, ModType.FLAT)
         );
-        of("hunter", "Hunter",
+        of(HUNTER, "Hunter",
             new OptScaleExactStat(15, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(15, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(30, Dexterity.INSTANCE, ModType.FLAT)
         );
 
-        of("templar", "Templar",
+        of(TEMPLAR, "Templar",
             new OptScaleExactStat(23, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(23, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(14, Dexterity.INSTANCE, ModType.FLAT)
         );
 
-        of("duelist", "Duelist",
+        of(DUELIST, "Duelist",
             new OptScaleExactStat(14, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(23, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(23, Dexterity.INSTANCE, ModType.FLAT)
         );
 
-        of("battle_mage", "Battle Mage",
+        of(BATTLE_MAGE, "Battle Mage",
             new OptScaleExactStat(23, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(14, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(23, Dexterity.INSTANCE, ModType.FLAT)
         );
 
-        of("scion", "Scion",
+        of(SCION, "Scion",
             new OptScaleExactStat(20, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(20, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(20, Dexterity.INSTANCE, ModType.FLAT)

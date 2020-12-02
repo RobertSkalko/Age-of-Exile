@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalD
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -66,6 +67,12 @@ public class StrSupportGems implements ISlashRegistryInit {
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.DAMAGE),
             new StatModifier(5, 20, new ElementalDamageBonus(Elements.Nature))
+        );
+
+        SkillGemBuilder.of("less_mana_cost", "Mana Cost Reduction Support", new StatRequirement().setBaseStr(20)
+                .setStr(0.3F), StatAttribute.STR, 1,
+            Arrays.asList(SkillGemTag.DAMAGE),
+            new StatModifier(-10, -20, ManaCost.getInstance())
         );
     }
 }

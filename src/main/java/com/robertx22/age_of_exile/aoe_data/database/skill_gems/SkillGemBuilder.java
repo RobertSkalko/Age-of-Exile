@@ -27,9 +27,11 @@ public class SkillGemBuilder {
         gem.tags = tags;
         gem.req = req;
 
-        int mana = (int) ((manaMulti - 1F) * 100F);
-        gem.stats = new ArrayList<>(gem.stats);
-        gem.stats.add(new StatModifier(mana, mana, ManaCost.getInstance()));
+        if (manaMulti > 1) {
+            int mana = (int) ((manaMulti - 1F) * 100F);
+            gem.stats = new ArrayList<>(gem.stats);
+            gem.stats.add(new StatModifier(mana, mana, ManaCost.getInstance()));
+        }
 
         gem.addToSerializables();
 

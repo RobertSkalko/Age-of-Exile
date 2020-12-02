@@ -21,12 +21,12 @@ heart_of_ice
 blizzard
 frost_armor
 frostball
+flame_strike
 whirlpool
 fire_bombs
 awaken_mana
 imbue
 spear_of_judgement
-purifying_fires
 tidal_strike
 arcane_bolt
 multi_shot

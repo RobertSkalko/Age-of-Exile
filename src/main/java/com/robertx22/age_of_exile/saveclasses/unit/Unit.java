@@ -36,7 +36,6 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
@@ -341,28 +340,38 @@ public class Unit {
                     StatContainer copy = getStats().cloneForSpellStats();
                     stats.put(type, copy);
 
-                    List<ItemStack> supportGems = Load.spells(entity)
+                    List<SkillGemData> supportGems = Load.spells(entity)
                         .getSkillGemData()
                         .getSupportGemsOf(type.place);
 
-                    for (ItemStack x : supportGems) {
-                        SkillGemData sd = SkillGemData.fromStack(x);
-                        if (sd != null) {
-                            if (sd.canPlayerUse((PlayerEntity) entity)) {
-                                sd.getSkillGem()
-                                    .getConstantStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
-                                sd.getSkillGem()
-                                    .getRandomStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
+                    List<SkillGemData> noGemDuplicateList = new ArrayList<>();
 
-                            }
+                    Set<String> gemIdSet = new HashSet<>();
+
+                    supportGems.forEach(x -> {
+                        if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
+                            noGemDuplicateList.add(x);
+                            gemIdSet.add(x.id);
+                        }
+
+                    });
+
+                    for (SkillGemData sd : noGemDuplicateList) {
+
+                        if (sd.canPlayerUse((PlayerEntity) entity)) {
+                            sd.getSkillGem()
+                                .getConstantStats(sd)
+                                .forEach(s -> {
+                                    copy.getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
+                            sd.getSkillGem()
+                                .getRandomStats(sd)
+                                .forEach(s -> {
+                                    copy.getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
+
                         }
                     }
 
