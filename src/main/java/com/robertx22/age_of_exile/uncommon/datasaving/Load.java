@@ -20,7 +20,7 @@ public class Load {
         if (provider instanceof PlayerEntity) {
             return ModRegistry.COMPONENTS.PLAYER_SPELLS.get(provider);
         } else {
-            return new PlayerSpellCap.DefaultImpl();
+            return new PlayerSpellCap.DefaultImpl(provider);
         }
     }
 

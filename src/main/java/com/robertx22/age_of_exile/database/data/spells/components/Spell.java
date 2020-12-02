@@ -54,6 +54,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return attached;
     }
 
+    public AuraSpellData aura_data = null;
+
+    public boolean isAura() {
+        return aura_data != null;
+    }
+
     public SpellConfiguration getConfig() {
         return config;
     }
@@ -108,6 +114,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (this.config.swing_arm) {
             caster.swingHand(Hand.MAIN_HAND);
+        }
+
+        if (this.aura_data != null) {
+            ctx.spellsCap.triggerAura(this);
         }
 
         attached.onCast(SpellCtx.onCast(caster, data));
@@ -169,6 +179,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         }
         if (this.config.passive_config.is_passive) {
             return false;
+        }
+
+        if (this.isAura()) {
+            if (!ctx.spellsCap.getCastingData().auras.getOrDefault(GUID(), false)) { // if not active
+                if (ctx.spellsCap.getManaReservedByAuras() + aura_data.mana_reserved > 1) {
+                    return false; // todo make affected by mana reserve reduction
+                }
+            }
         }
 
         if (!caster.world.isClient) {

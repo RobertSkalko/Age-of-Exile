@@ -293,7 +293,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
 
             if (caster != null) {
-                if (!Load.spells(caster)
+                if (!Load.spells((PlayerEntity) caster)
                     .alreadyHit(this, en)) {
                     this.getSpellData()
                         .getSpell()

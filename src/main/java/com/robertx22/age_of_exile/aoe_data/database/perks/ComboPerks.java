@@ -32,11 +32,6 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("spell_dmg_flat_mana",
-            new OptScaleExactStat(5, SpellDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(10, Mana.getInstance(), ModType.FLAT)
-        );
-
-        PerkBuilder.stat("spell_dmg_flat_mana",
             new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(5, Mana.getInstance(), ModType.FLAT)
         );

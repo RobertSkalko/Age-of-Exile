@@ -199,7 +199,7 @@ public abstract class EffectData {
 
                     Spell spell = has.getSpell();
 
-                    PlayerSpellCap.ISpellsCap spells = Load.spells(en);
+                    PlayerSpellCap.ISpellsCap spells = Load.spells((PlayerEntity) en);
 
                     int place = -1;
 

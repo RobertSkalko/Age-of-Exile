@@ -30,7 +30,7 @@ public class ComponentRegisters {
         ComponentRegistry.INSTANCE.registerIfAbsent(
             new Identifier(Ref.MODID, "spells"),
             PlayerSpellCap.ISpellsCap.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerSpellCap.DefaultImpl());
+            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerSpellCap.DefaultImpl(x));
 
     public ComponentType<PlayerFavor> PLAYER_FAVOR =
         ComponentRegistry.INSTANCE.registerIfAbsent(

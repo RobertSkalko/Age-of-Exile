@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -59,7 +59,7 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
         SlashRegistryContainer reg = Database.getRegistry(registryType);
 
         Watch normal = new Watch();
-        normal.min = 15000;
+        normal.min = 5000;
         reg.unregisterAllEntriesFromDatapacks();
 
         mapToLoad.forEach((key, value) -> {
@@ -78,7 +78,7 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
             }
         });
 
-        normal.print("Loading " + registryType.name() + " jsons");
+        normal.print("Loading " + registryType.name() + " jsons ");
 
         if (reg
             .isEmpty()) {

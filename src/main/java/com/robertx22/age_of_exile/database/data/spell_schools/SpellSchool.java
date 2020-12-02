@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.spell_schools;
 
-import com.google.common.collect.Sets;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -102,7 +101,11 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
         }
 
         public boolean isConnected(PointData one, PointData two) {
-            return connections.getOrDefault(one, Sets.newHashSet())
+
+            if (!connections.containsKey(one)) {
+                return false;
+            }
+            return connections.get(one)
                 .contains(two);
         }
 

@@ -23,6 +23,7 @@ frost_armor
 frostball
 flame_strike
 whirlpool
+haste
 fire_bombs
 awaken_mana
 imbue

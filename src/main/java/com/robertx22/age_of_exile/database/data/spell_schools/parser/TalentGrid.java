@@ -41,40 +41,44 @@ public class TalentGrid {
 
     public void loadIntoTree() {
 
-        Set<GridPoint> perks = new HashSet<>();
+        List<GridPoint> perks = new ArrayList<>();
 
         Watch gridwatch = new Watch().min(500);
         for (List<GridPoint> list : grid) {
             for (GridPoint point : list) {
                 if (point.isTalent) {
-
                     school.calcData.addPerk(point.getPoint(), point.getId());
                     perks.add(point);
-
                 } else if (point.isCenter) {
                     school.calcData.center = point.getPoint();
                 }
             }
 
         }
+
         gridwatch.print(" Setting up grid ");
 
         Objects.requireNonNull(school.calcData.center, "Tree needs a center!");
 
-        Watch conwatch = new Watch().min(20000);
+        Watch fast2 = new Watch().min(1);
         // this can take a long time if the "hasPath" checks aren't minimized
-        for (GridPoint one : perks) {
-            Set<String> connectorTypes = getConnectorTypes(one);
+        perks
+            .forEach(one -> {
+                Set<String> connectorTypes = getConnectorTypes(one);
+                perks
+                    .forEach(two -> {
+                        if (!school.calcData.isConnected(one.getPoint(), two.getPoint())) {
+                            if (one.isInDistanceOf(two)) {
+                                if (hasPath(one, two, connectorTypes)) {
+                                    this.school.calcData.addConnection(one.getPoint(), two.getPoint());
+                                }
+                            }
+                        }
+                    });
 
-            for (GridPoint two : perks) {
-                if (one.isInDistanceOf(two)) {
-                    if (hasPath(one, two, connectorTypes)) {
-                        this.school.calcData.addConnection(one.getPoint(), two.getPoint());
-                    }
-                }
-            }
-        }
-        conwatch.print(" Connecting tree ");
+            });
+
+        fast2.print(" fast  Connecting tree ");
 
     }
 

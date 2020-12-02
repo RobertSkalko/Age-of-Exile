@@ -10,12 +10,15 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 public class RegistryPacket extends MyPacket<RegistryPacket> {
     public static Identifier ID = new Identifier(Ref.MODID, "reg");
@@ -63,14 +66,14 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
     public void saveToData(PacketByteBuf tag) {
 
         try {
-            //Watch watch = new Watch();
+            Watch watch = new Watch().min(2000);
             tag.writeString(type.name(), 30);
             CompoundTag nbt = new CompoundTag();
 
             LoadSave.Save(data, nbt, "data");
 
             tag.writeCompoundTag(nbt);
-            // watch.print("Writing gson packet for " + this.type.name() + " ");
+            watch.print("Writing gson packet for " + this.type.name() + " ");
         } catch (Exception e) {
             System.out.println("Failed saving " + type.name() + " Age of Exile packet to bufferer.");
             e.printStackTrace();
@@ -87,11 +90,13 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
             throw new RuntimeException("Registry list sent from server is empty!");
         }
 
+        List<JsonObject> set = RegistryPackets.get(type);
+
         data.getList()
             .forEach(x -> {
                 try {
                     JsonObject json = (JsonObject) PARSER.parse(x);
-                    RegistryPackets.add(this.type, json);
+                    set.add(json);
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
                 }

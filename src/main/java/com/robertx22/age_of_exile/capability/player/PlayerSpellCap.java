@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class PlayerSpellCap {
 
@@ -34,6 +36,13 @@ public class PlayerSpellCap {
 
         public abstract boolean alreadyHit(Entity spellEntity, LivingEntity target);
 
+        public abstract void triggerAura(Spell spell);
+
+        public abstract void applyAuraStats();
+
+        public abstract float getManaReservedByAuras();
+
+        public abstract float getReservedManaMulti();
     }
 
     public static class DefaultImpl extends ISpellsCap {
@@ -41,6 +50,12 @@ public class PlayerSpellCap {
         SpellCastingData spellCastingData = new SpellCastingData();
 
         SkillGemsData skillGems = new SkillGemsData();
+
+        LivingEntity entity;
+
+        public DefaultImpl(LivingEntity entity) {
+            this.entity = entity;
+        }
 
         @Override
         public CompoundTag toTag(CompoundTag nbt) {
@@ -137,6 +152,69 @@ public class PlayerSpellCap {
             }
             return mobsHit.get(key)
                 .contains(target.getUuid());
+        }
+
+        @Override
+        public void triggerAura(Spell spell) {
+
+            String key = spell.GUID();
+            boolean current = spellCastingData.auras.getOrDefault(key, false);
+            spellCastingData.auras.put(key, !current);
+
+            Load.Unit(entity)
+                .setEquipsChanged(true);
+
+        }
+
+        @Override
+        public float getManaReservedByAuras() {
+            float reserve = 0;
+
+            for (String x : getAuras()) {
+                reserve += Database.Spells()
+                    .get(x).aura_data.mana_reserved;
+            }
+
+            return reserve;
+
+        }
+
+        @Override
+        public float getReservedManaMulti() {
+            return 1F - getManaReservedByAuras();
+        }
+
+        public List<String> getAuras() {
+            return this.spellCastingData.auras.entrySet()
+                .stream()
+                .filter(x -> {
+                    return x.getValue() && skillGems.stacks.stream()
+                        .anyMatch(g -> {
+                            SkillGemData data = SkillGemData.fromStack(g);
+                            return data != null && data.getSkillGem().spell_id.equals(x.getKey());
+                        });
+                })
+                .map(x -> x.getKey())
+                .collect(Collectors.toList());
+        }
+
+        @Override
+        public void applyAuraStats() {
+            List<String> auras = getAuras();
+            auras.forEach(x -> {
+                skillGems.stacks.stream()
+                    .forEach(s -> {
+                        SkillGemData data = SkillGemData.fromStack(s);
+                        if (data != null && data.getSkillGem().spell_id.equals(x)) {
+                            Spell spell = Database.Spells()
+                                .get(data.getSkillGem().spell_id);
+                            spell.aura_data.getStats(data.lvl)
+                                .forEach(t -> t.applyStats(Load.Unit(entity)));
+                        }
+                    });
+
+            });
+
         }
 
     }

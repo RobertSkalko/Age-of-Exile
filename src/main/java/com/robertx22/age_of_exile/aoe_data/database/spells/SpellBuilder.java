@@ -1,10 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
-import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
-import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
+import com.robertx22.age_of_exile.database.data.spells.components.*;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 
@@ -24,6 +21,20 @@ public class SpellBuilder {
         builder.spell.locName = name;
 
         builder.spell.getConfig().tags = tags;
+
+        return builder;
+    }
+
+    public static SpellBuilder aura(String id, String name, AuraSpellData aura) {
+        SpellBuilder builder = new SpellBuilder();
+
+        builder.spell = new Spell();
+        builder.spell.identifier = id;
+        builder.spell.config = SpellConfiguration.Builder.instant(0, 5);
+        builder.spell.locName = name;
+        builder.spell.aura_data = aura;
+
+        builder.spell.config.tags.add(SkillGemTag.AURA);
 
         return builder;
     }

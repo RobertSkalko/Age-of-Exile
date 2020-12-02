@@ -33,6 +33,9 @@ public class SpellCastingData {
     public Boolean casting = false;
 
     @Store
+    public HashMap<String, Boolean> auras = new HashMap<>();
+
+    @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
 
     public void cancelCast(PlayerEntity player) {

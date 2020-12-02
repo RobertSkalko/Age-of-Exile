@@ -27,6 +27,7 @@ import net.minecraft.util.Identifier;
 public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
 
     static Identifier BASETEX = new Identifier(Ref.MODID, "textures/gui/overlay/base.png");
+    static Identifier MANA_RESERVE = new Identifier(Ref.MODID, "textures/gui/overlay/mana_reserve.png");
 
     public RPGGuiOverlay() {
         super();
@@ -188,6 +189,16 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                 mc.getTextureManager()
                     .bindTexture(type.getIcon(Load.Unit(mc.player), mc.player));
                 drawTexture(matrix, point.x + BAR_WIDTH + 1, point.y, 9, 9, 0, 0, 9, 9, 9, 9); // draw icon
+            }
+
+            if (config.type == BarGuiType.MANA) {
+                float reserved = Load.spells(mc.player)
+                    .getManaReservedByAuras(); // todo cache this
+                mc.getTextureManager()
+                    .bindTexture(MANA_RESERVE);
+
+                int width = (int) (INNER_BAR_WIDTH * reserved);
+                drawTexture(matrix, point.x + 2 + (INNER_BAR_WIDTH - width), point.y + 2, width, INNER_BAR_HEIGHT, 0, 0, INNER_BAR_WIDTH, INNER_BAR_HEIGHT, INNER_BAR_WIDTH, INNER_BAR_HEIGHT);
             }
         }
 

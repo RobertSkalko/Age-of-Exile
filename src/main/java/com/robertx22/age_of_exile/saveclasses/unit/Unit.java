@@ -283,6 +283,8 @@ public class Unit {
                 .applyStats(data);
             Load.playerSkills((PlayerEntity) entity)
                 .applyStats(data);
+            Load.spells(entity)
+                .applyAuraStats();
         } else {
             MobStatUtils.AddMobcStats(data, entity);
             MobStatUtils.addAffixStats(data);

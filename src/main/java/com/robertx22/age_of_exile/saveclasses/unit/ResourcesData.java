@@ -177,7 +177,8 @@ public class ResourcesData {
         if (ctx.type == ResourceType.MANA) {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .manaData()
-                .getAverageValue());
+                .getAverageValue() * Load.spells(ctx.source)
+                .getReservedManaMulti());
             sync(ctx);
         } else if (ctx.type == ResourceType.MAGIC_SHIELD) {
             magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
@@ -185,9 +186,11 @@ public class ResourcesData {
                 .getAverageValue());
             sync(ctx);
         } else if (ctx.type == ResourceType.BLOOD) {
+
             blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .bloodData()
-                .getAverageValue());
+                .getAverageValue() * Load.spells(ctx.source)
+                .getReservedManaMulti());
             sync(ctx);
         } else if (ctx.type == ResourceType.HEALTH) {
             if (ctx.use == Use.RESTORE) {

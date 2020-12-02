@@ -26,6 +26,7 @@ tidal_strike
 arcane_bolt
 multi_shot
 major_multi_proj
+less_mana_cost
 recoil_shot
 poison_ball
 piercing_proj
@@ -48,6 +49,7 @@ frostball
 flame_strike
 whirlpool
 bleed_chance
+haste
 fire_bombs
 spell_crit_dmg
 awaken_mana

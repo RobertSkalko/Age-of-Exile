@@ -47,7 +47,7 @@ public class SpellCastContext {
         if (caster instanceof PlayerEntity) {
             this.spellsCap = Load.spells((PlayerEntity) caster);
         } else {
-            this.spellsCap = new PlayerSpellCap.DefaultImpl();
+            this.spellsCap = new PlayerSpellCap.DefaultImpl(caster);
         }
 
         calcSpellData();
