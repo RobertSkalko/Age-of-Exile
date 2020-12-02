@@ -1,15 +1,19 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 
@@ -54,7 +58,23 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
             value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.DAMAGE);
 
             for (LivingEntity t : targets) {
-                SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value, ctx.calculatedSpellData.getSpell());
+
+                int stacks = 1;
+                try {
+                    if (data.has(MapField.EXILE_POTION_ID)) {
+                        // if damage done by effect, multiple dmg by effect stacks.
+                        StatusEffect effect = ModRegistry.POTIONS.getExileEffect(data.get(MapField.EXILE_POTION_ID));
+                        if (t.hasStatusEffect(effect)) {
+                            stacks = Load.Unit(t)
+                                .getStatusEffectsData()
+                                .get((ExileStatusEffect) effect).stacks;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value * stacks, ctx.calculatedSpellData.getSpell());
                 if (data.has(MapField.DMG_EFFECT_TYPE)) {
                     dmg.attackType = data.getDmgEffectType();
                 }

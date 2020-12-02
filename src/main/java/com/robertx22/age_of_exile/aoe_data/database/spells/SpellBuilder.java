@@ -34,6 +34,7 @@ public class SpellBuilder {
         builder.spell.identifier = "";
         builder.spell.config = new SpellConfiguration();
         builder.spell.locName = "";
+
         return builder;
     }
 

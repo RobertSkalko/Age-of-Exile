@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense.crit;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.CriticalDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class CriticalDamage extends Stat implements IStatEffects {
+public class CriticalDamage extends Stat implements IExtraStatEffect {
 
     public static String GUID = "critical_damage";
 

@@ -9,10 +9,10 @@ import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class PerSpellProjectileSpeedStat extends DatapackSpellStat implements IStatEffects {
+public class PerSpellProjectileSpeedStat extends DatapackSpellStat implements IExtraStatEffect {
 
     public static String SER_ID = "spell_proj_speed";
 

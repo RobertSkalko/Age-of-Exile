@@ -37,7 +37,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
     public void registerAll() {
 
         BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "leather_boots", "Boots", ModRegistry.GEAR_ITEMS.LEATHER_BOOTS)
-            .req(new StatRequirement().dexterity(0.5f))
+            .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.boots, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.FEET) * min, multiOf(EquipmentSlot.FEET) * max, DodgeRating.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.FEET) * minHP, multiOf(EquipmentSlot.FEET) * maxHP, Health.getInstance(), ModType.FLAT))
@@ -45,7 +45,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
             .build();
 
         PANTS = BaseGearBuilder.of(GearSlots.PANTS, "leather_pants", "Pants", ModRegistry.GEAR_ITEMS.LEATHER_PANTS)
-            .req(new StatRequirement().dexterity(0.5f))
+            .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.pants, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * min, multiOf(EquipmentSlot.LEGS) * max, DodgeRating.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * minHP, multiOf(EquipmentSlot.LEGS) * maxHP, Health.getInstance(), ModType.FLAT))
@@ -53,7 +53,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
             .build();
 
         CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "leather_chest", "Vest", ModRegistry.GEAR_ITEMS.LEATHER_CHESTS)
-            .req(new StatRequirement().dexterity(0.5f))
+            .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.chest, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * min, multiOf(EquipmentSlot.CHEST) * max, DodgeRating.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * minHP, multiOf(EquipmentSlot.CHEST) * maxHP, Health.getInstance(), ModType.FLAT))
@@ -61,7 +61,7 @@ public class BaseLeatherArmors implements ISlashRegistryInit {
             .build();
 
         HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "leather_helmet", "Cap", ModRegistry.GEAR_ITEMS.LEATHER_HELMETS)
-            .req(new StatRequirement().dexterity(0.5f))
+            .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.leather, SlotTag.helmet, SlotTag.armor_family, SlotTag.dodge_stat, SlotTag.dexterity))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * min, multiOf(EquipmentSlot.HEAD) * max, DodgeRating.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * minHP, multiOf(EquipmentSlot.HEAD) * maxHP, Health.getInstance(), ModType.FLAT))

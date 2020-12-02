@@ -6,10 +6,10 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.defense.ArmorEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat {
+public class Armor extends Stat implements IExtraStatEffect, IUsableStat, ILocalStat {
 
     public static Armor getInstance() {
         return SingletonHolder.INSTANCE;

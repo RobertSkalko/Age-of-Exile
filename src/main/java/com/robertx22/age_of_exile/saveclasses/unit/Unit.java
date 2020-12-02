@@ -341,28 +341,30 @@ public class Unit {
                     StatContainer copy = getStats().cloneForSpellStats();
                     stats.put(type, copy);
 
-                    List<ItemStack> stack = Load.spells(entity)
+                    List<ItemStack> supportGems = Load.spells(entity)
                         .getSkillGemData()
                         .getSupportGemsOf(type.place);
 
-                    stack.forEach(x -> {
+                    for (ItemStack x : supportGems) {
                         SkillGemData sd = SkillGemData.fromStack(x);
                         if (sd != null) {
-                            sd.getSkillGem()
-                                .getConstantStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
-                            sd.getSkillGem()
-                                .getRandomStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
+                            if (sd.canPlayerUse((PlayerEntity) entity)) {
+                                sd.getSkillGem()
+                                    .getConstantStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
+                                sd.getSkillGem()
+                                    .getRandomStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
 
+                            }
                         }
-                    });
+                    }
 
                 }
 
@@ -371,10 +373,11 @@ public class Unit {
             stats.values()
                 .forEach(x -> x.calculate());
 
-        }
+        } else {
 
-        this.getStats()
-            .calculate();
+            stats.values()
+                .forEach(x -> x.calculate());
+        }
 
         removeEmptyStats();
 

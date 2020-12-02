@@ -37,7 +37,7 @@ public class BasePlateArmors implements ISlashRegistryInit {
     public void registerAll() {
 
         BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "plate_boots", "Footwear", ModRegistry.GEAR_ITEMS.PLATE_BOOTS)
-            .req(new StatRequirement().strength(0.5f))
+            .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.boots, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.FEET) * min, multiOf(EquipmentSlot.FEET) * max, Armor.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.FEET) * minHP, multiOf(EquipmentSlot.FEET) * maxHP, Health.getInstance(), ModType.FLAT))
@@ -45,7 +45,7 @@ public class BasePlateArmors implements ISlashRegistryInit {
             .build();
 
         PANTS = BaseGearBuilder.of(GearSlots.PANTS, "plate_pants", "Greaves", ModRegistry.GEAR_ITEMS.PLATE_PANTS)
-            .req(new StatRequirement().strength(0.5f))
+            .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.pants, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * min, multiOf(EquipmentSlot.LEGS) * max, Armor.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * minHP, multiOf(EquipmentSlot.LEGS) * maxHP, Health.getInstance(), ModType.FLAT))
@@ -53,7 +53,7 @@ public class BasePlateArmors implements ISlashRegistryInit {
             .build();
 
         CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "plate_chest", "Chestplate", ModRegistry.GEAR_ITEMS.PLATE_CHESTS)
-            .req(new StatRequirement().strength(0.5f))
+            .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.chest, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * min, multiOf(EquipmentSlot.CHEST) * max, Armor.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * minHP, multiOf(EquipmentSlot.CHEST) * maxHP, Health.getInstance(), ModType.FLAT))
@@ -61,7 +61,7 @@ public class BasePlateArmors implements ISlashRegistryInit {
             .build();
 
         HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "plate_helmet", "Helmet", ModRegistry.GEAR_ITEMS.PLATE_HELMETS)
-            .req(new StatRequirement().strength(0.5f))
+            .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.helmet, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * min, multiOf(EquipmentSlot.HEAD) * max, Armor.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * minHP, multiOf(EquipmentSlot.HEAD) * maxHP, Health.getInstance(), ModType.FLAT))

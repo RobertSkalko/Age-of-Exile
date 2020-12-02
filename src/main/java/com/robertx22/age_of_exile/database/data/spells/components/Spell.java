@@ -119,6 +119,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         float ticks = config.cooldown_ticks * multi;
 
+        if (config.cast_time_ticks == 0) {
+            float castspeed = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
+            ticks *= castspeed;
+        }
+
         if (ticks < 1) {
             return 1; // cant go lower than 1 tick!!!
         }

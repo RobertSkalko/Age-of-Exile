@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.CriticalHitEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class CriticalHit extends Stat implements IStatEffects, ILocalStat {
+public class CriticalHit extends Stat implements IExtraStatEffect, ILocalStat {
 
     public static String GUID = "critical_hit";
 

@@ -113,7 +113,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ProjectileSpeedStat.getInstance());
                     add(ReducedCooldownStat.getInstance());
                     add(ManaCost.getInstance());
-                    add(FasterCastRate.getInstance());
+                    add(CastSpeed.getInstance());
 
                     add(AllAttributes.getInstance());
                     add(SpellDamage.getInstance());

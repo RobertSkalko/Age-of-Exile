@@ -2,14 +2,19 @@ package com.robertx22.age_of_exile.database.data.skill_gem;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -27,7 +32,17 @@ public class SkillGemData implements ITooltipList {
     @Store
     public int stat_perc = 100;
     @Store
-    public int lvl = 100;
+    public int lvl = 1;
+
+    public boolean canPlayerUse(PlayerEntity player) {
+
+        if (lvl > Load.Unit(player)
+            .getLevel()) {
+            return false;
+        }
+
+        return true;
+    }
 
     // only support gems should have random stats
     @Store
@@ -64,6 +79,14 @@ public class SkillGemData implements ITooltipList {
         list.add(new LiteralText(""));
 
         List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
+
+        if (this.getSkillGem().type == SkillGemType.SKILL_GEM) {
+            Spell spell = Database.Spells()
+                .get(getSkillGem().spell_id);
+            SpellCastContext ctx = new SpellCastContext(info.player, 0, spell);
+
+            list.addAll(spell.GetTooltipString(info, CalculatedSpellData.create(info.player, spell, ctx.spellConfig)));
+        }
 
         if (!cStats.isEmpty()) {
             list.add(new LiteralText("Support Gem Stats: "));

@@ -11,9 +11,9 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect.EffectSides;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -256,8 +256,8 @@ public abstract class EffectData {
                             effects.add(new EffectUnitStat(stat.statEffect, unit.getUnit(), data));
                         }
 
-                        if (stat instanceof IStatEffects) {
-                            ((IStatEffects) stat).getEffects()
+                        if (stat instanceof IExtraStatEffect) {
+                            ((IExtraStatEffect) stat).getEffects()
                                 .forEach(effect -> {
                                     effects.add(new EffectUnitStat(effect, unit.getUnit(), data));
                                 });

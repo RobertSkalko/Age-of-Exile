@@ -8,7 +8,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToAp
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -20,28 +22,39 @@ public class IntSupportGems implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        SkillGemBuilder.of("spell_crit_rate", "Spell Critical Chance Support", StatAttribute.INT, 1.25F,
+        SkillGemBuilder.of("spell_crit_rate", "Spell Critical Chance Support", new StatRequirement().setBaseInt(20)
+                .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.DAMAGE),
             new StatModifier(5, 25, SpellCriticalHit.getInstance())
         );
 
-        SkillGemBuilder.of("spell_crit_dmg", "Spell Critical Damage Support", StatAttribute.INT, 1.2F,
+        SkillGemBuilder.of("spell_crit_dmg", "Spell Critical Damage Support", new StatRequirement().setBaseInt(20)
+                .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SkillGemTag.DAMAGE),
             new StatModifier(10, 40, SpellCriticalDamage.getInstance())
         );
 
-        SkillGemBuilder.of("fire_chance", "Chance to Burn Support", StatAttribute.INT, 1.25F,
+        SkillGemBuilder.of("fire_chance", "Chance to Burn Support", new StatRequirement().setBaseInt(20)
+                .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.DAMAGE),
-            new StatModifier(10, 20, ChanceToApplyEffect.POISON)
+            new StatModifier(10, 20, ChanceToApplyEffect.BURN)
         );
-        SkillGemBuilder.of("frostburn_chance", "Chance to Frostburn Support", StatAttribute.INT, 1.25F,
+        SkillGemBuilder.of("frostburn_chance", "Chance to Frostburn Support", new StatRequirement().setBaseInt(20)
+                .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.DAMAGE),
-            new StatModifier(10, 20, ChanceToApplyEffect.POISON)
+            new StatModifier(10, 20, ChanceToApplyEffect.FROSTBURN)
         );
 
-        SkillGemBuilder.of("shield_leech", "Magic Shield Leech Support", StatAttribute.INT, 1.25F,
+        SkillGemBuilder.of("shield_leech", "Magic Shield Leech Support", new StatRequirement().setBaseInt(25)
+                .setInt(0.3F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.DAMAGE),
             new StatModifier(1, 2, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.MAGIC_SHIELD, AttackType.ALL)))
+        );
+
+        SkillGemBuilder.of("cast_speed", "Faster Casting Support", new StatRequirement().setBaseInt(25)
+                .setInt(0.4F), StatAttribute.INT, 1.25F,
+            Arrays.asList(SkillGemTag.DAMAGE),
+            new StatModifier(5, 25, CastSpeed.getInstance())
         );
 
     }

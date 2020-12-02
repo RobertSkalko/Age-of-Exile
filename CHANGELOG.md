@@ -132,6 +132,11 @@ Could be useful for wiki editors too, like the exp requirement test command prin
 * new datapack types: skill gems, random skill gem stats
 * effects like burn can only by applied by correct element type damage now. So you can't apply burn with physical attacks.
 * mana cost red now mana cost and works opposite
+* cast speed now affects the cooldown of instant spells
+* attack speed now acts as cast speed for attack based spells
+* faster cast rate stat renamed to cast speed. (I'm trying to keep all stat names neutral, because "- 5 to faster rate" is confusing as hell)
+* stat req in datapacks have all values now as optional, + base req feature. This means you can have something that requires 50 str at all levels.
+Or maybe 20 str + scaling over lvls slowly.
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

@@ -5,13 +5,13 @@ import com.robertx22.age_of_exile.database.data.stats.effects.defense.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class ElementalResist extends ElementalStat implements IStatEffects {
+public class ElementalResist extends ElementalStat implements IExtraStatEffect {
 
     public static MapWrapper<Elements, ElementalResist> MAP = new MapWrapper();
 

@@ -70,6 +70,14 @@ public class ExileEffectsManager {
         Load.Unit(target)
             .getStatusEffectsData()
             .set(effect, extraData);
+
+        if (target.hasStatusEffect(newInstance.getEffectType())) {
+            target.getActiveStatusEffects()
+                .put(newInstance.getEffectType(), newInstance);
+        } else {
+            target.addStatusEffect(newInstance);
+        }
+
         target.addStatusEffect(newInstance);
 
         // sync packets to client

@@ -41,7 +41,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .stat(-1, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Thunder)
+                .onTick(PartBuilder.dotDamageOnTick(SHOCK, ValueCalculationData.base(2), Elements.Thunder)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.THUNDER, 20D, 1D)
@@ -56,7 +56,7 @@ public class NegativeEffects implements ISlashRegistryInit {
 
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(1.5F), Elements.Water)
+                .onTick(PartBuilder.dotDamageOnTick(FROSTBURN, ValueCalculationData.base(1.5F), Elements.Water)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
@@ -68,7 +68,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Nature)
+                .onTick(PartBuilder.dotDamageOnTick(POISON, ValueCalculationData.base(2), Elements.Nature)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 15D, 1D)
                     .onTick(20D))
@@ -81,7 +81,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2), Elements.Fire)
+                .onTick(PartBuilder.dotDamageOnTick(BURN, ValueCalculationData.base(2), Elements.Fire)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
@@ -95,7 +95,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(ValueCalculationData.base(2.25F), Elements.Physical)
+                .onTick(PartBuilder.dotDamageOnTick(BLEED, ValueCalculationData.base(2.25F), Elements.Physical)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 10D, 1D)

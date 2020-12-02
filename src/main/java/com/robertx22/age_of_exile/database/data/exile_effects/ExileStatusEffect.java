@@ -90,7 +90,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
 
             EntityCap.UnitData unitdata = Load.Unit(target);
             unitdata.getStatusEffectsData()
-                .set(this, null);
+                .get(this).stacks = 0;
             unitdata.setEquipsChanged(true);
 
             super.onRemoved(target, attributes, amplifier);

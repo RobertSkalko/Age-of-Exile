@@ -25,7 +25,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lif
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.FasterCastRate;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -167,7 +167,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_flame_of_life", "Flame of Life",
             new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(1, RegeneratePercentStat.HEALTH, ModType.FLAT),
-            new OptScaleExactStat(3, FasterCastRate.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(3, CastSpeed.getInstance(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_will_of_mana", "Will of Mana",

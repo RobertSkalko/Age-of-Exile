@@ -34,6 +34,7 @@ dot_physical_dmg_leech_as_magic_shield
 cdr
 projectile_damage
 magic_shield_on_spell_hit
+cast_speed
 mana_on_attack_hit
 all_elemental_damage
 basic_attack_physical_dmg_leech_as_magic_shield
@@ -197,7 +198,6 @@ all_physical_dmg_leech_as_mana
 attack_fire_dmg_leech_as_magic_shield
 water_weapon_damage
 all_thunder_damage
-faster_cast_rate
 dot_elemental_dmg_leech_as_mana
 all_fire_dmg_leech_as_blood
 other_thunder_dmg_leech_as_magic_shield

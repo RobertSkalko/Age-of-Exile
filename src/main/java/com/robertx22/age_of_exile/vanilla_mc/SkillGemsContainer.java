@@ -31,9 +31,9 @@ public class SkillGemsContainer extends BaseTileContainer {
 
         for (SkillGemsData.Places place : SkillGemsData.Places.values()) {
             if (place.slotType == SkillGemType.SKILL_GEM) {
-                addSlot(new SkillGemSlot(inventory, count++, place.x + 1, place.y + 1));
+                addSlot(new SkillGemSlot(invPlayer.player, inventory, count++, place.x + 1, place.y + 1));
             } else {
-                addSlot(new SupportGemSlot(inventory, count++, place.x + 1, place.y + 1));
+                addSlot(new SupportGemSlot(invPlayer.player, inventory, count++, place.x + 1, place.y + 1));
             }
         }
 
@@ -50,28 +50,33 @@ public class SkillGemsContainer extends BaseTileContainer {
     }
 
     public static class SkillGemSlot extends Slot {
+        PlayerEntity player;
 
-        public SkillGemSlot(Inventory inventory, int index, int x, int y) {
+        public SkillGemSlot(PlayerEntity player, Inventory inventory, int index, int x, int y) {
             super(inventory, index, x, y);
+            this.player = player;
         }
 
         @Override
         public boolean canInsert(ItemStack stack) {
             SkillGemData gem = SkillGemData.fromStack(stack);
-            return gem != null && gem.getSkillGem().type == SkillGemType.SKILL_GEM;
+            return gem != null && gem.getSkillGem().type == SkillGemType.SKILL_GEM && gem.canPlayerUse(player);
         }
     }
 
     public static class SupportGemSlot extends Slot {
 
-        public SupportGemSlot(Inventory inventory, int index, int x, int y) {
+        PlayerEntity player;
+
+        public SupportGemSlot(PlayerEntity player, Inventory inventory, int index, int x, int y) {
             super(inventory, index, x, y);
+            this.player = player;
         }
 
         @Override
         public boolean canInsert(ItemStack stack) {
             SkillGemData gem = SkillGemData.fromStack(stack);
-            return gem != null && gem.getSkillGem().type == SkillGemType.SUPPORT_GEM;
+            return gem != null && gem.getSkillGem().type == SkillGemType.SUPPORT_GEM && gem.canPlayerUse(player);
         }
     }
 

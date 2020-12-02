@@ -138,8 +138,7 @@ public class BaseGearBuilder {
     }
 
     public BaseGearBuilder req(StatRequirement req) {
-        // this.req = req; TODO, easiest way to disable all gear requirements temporarily
-        // until i decide what i want to do
+        this.req = req;
         return this;
     }
 

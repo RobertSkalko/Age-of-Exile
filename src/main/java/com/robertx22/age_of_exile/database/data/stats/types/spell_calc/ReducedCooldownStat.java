@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.database.data.stats.types.spell_calc;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.spell_calc.ReduceCooldownEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffects;
 
-public class ReducedCooldownStat extends Stat implements IStatEffects {
+public class ReducedCooldownStat extends Stat implements IExtraStatEffect {
 
     private ReducedCooldownStat() {
         this.max_val = 75;
