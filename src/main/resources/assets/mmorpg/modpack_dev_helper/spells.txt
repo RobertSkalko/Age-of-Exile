@@ -21,6 +21,7 @@ volcano
 arrow_barrage
 fireball
 thunder_spear
+charge
 heart_of_ice
 blizzard
 frost_armor
@@ -37,7 +38,6 @@ imbue
 spear_of_judgement
 mana_reg_aura
 tidal_strike
-arcane_bolt
 multi_shot
 poisoned_weapons
 dodge_aura

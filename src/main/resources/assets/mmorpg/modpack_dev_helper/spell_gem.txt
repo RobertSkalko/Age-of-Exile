@@ -29,7 +29,6 @@ imbue
 spear_of_judgement
 atk_speed
 tidal_strike
-arcane_bolt
 multi_shot
 major_multi_proj
 less_mana_cost
@@ -48,6 +47,7 @@ volcano
 arrow_barrage
 fireball
 thunder_spear
+charge
 heart_of_ice
 nature_dmg
 blizzard

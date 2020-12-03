@@ -197,6 +197,13 @@ public class PartBuilder {
         ComponentPart c = groundParticles(particle, count, radius, randomY);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
+
+    }
+
+    public static ComponentPart cancelSpell() {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.CANCEL_CAST.create());
+        return c;
     }
 
     public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
@@ -247,6 +254,14 @@ public class PartBuilder {
     public static ComponentPart giveSelfEffect(StatusEffect effect, Double dura) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createGive(effect, dura));
+        c.targets.add(BaseTargetSelector.CASTER.create());
+        return c;
+    }
+
+    public static ComponentPart giveSelfEffect(StatusEffect effect, Double dura, Double str) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.POTION.createGive(effect, dura)
+            .put(MapField.POTION_STRENGTH, str));
         c.targets.add(BaseTargetSelector.CASTER.create());
         return c;
     }

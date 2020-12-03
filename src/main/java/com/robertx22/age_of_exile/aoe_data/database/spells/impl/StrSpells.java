@@ -1,6 +1,8 @@
-package com.robertx22.age_of_exile.aoe_data.database.spells;
+package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
@@ -10,6 +12,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -101,6 +104,20 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(0.2F, 1), Elements.Physical, 1.5D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 50D, 0.5D, 0.1D))
                 .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(2)))
+            )
+            .build();
+
+        SpellBuilder.of("charge", SpellConfiguration.Builder.multiCast(10, 20 * 15, 100, 50), "Charge",
+            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            .attackStyle(AttackPlayStyle.MELEE)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .onCast(PartBuilder.giveSelfEffect(StatusEffects.SPEED, 20D, 2D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 20D, 1D, 0.5D))
+            .onCast(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(1F, 0), Elements.Physical, 1.75D)
+                .addPerEntityHit(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_LAND, 1D, 1D))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 0.5D, 0.1D))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 100D, 0.5D, 0.1D))
+                .addPerEntityHit(PartBuilder.cancelSpell())
             )
             .build();
 

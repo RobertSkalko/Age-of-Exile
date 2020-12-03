@@ -139,6 +139,8 @@ Could be useful for wiki editors too, like the exp requirement test command prin
 Or maybe 20 str + scaling over lvls slowly.
 * your starting gear and spell are now different based on which talent starting position you pick. (I had a few people who went archer but started with a wand lol)
 * newbie gear now comes with unbreaking
+* stat modifier in datapacks now saved differently. "first_min" is now "min1" to reduce size. etc (for modpack devs, you can just do a replaceall in files)
+* stat modifiers now only save 2nd value when needed. Means it's optional now
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

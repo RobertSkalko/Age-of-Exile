@@ -23,14 +23,14 @@ import java.util.List;
 public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatModifier> {
 
     @Store
-    public float first_min = 0;
+    public float min1 = 0;
     @Store
-    public float first_max = 0;
+    public float max1 = 0;
 
     @Store
-    public float second_min = 0;
+    public float min2 = 0;
     @Store
-    public float second_max = 0;
+    public float max2 = 0;
 
     @Store
     public String stat;
@@ -47,10 +47,10 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
     @Override
     public StatModifier getFromBuf(PacketByteBuf buf) {
         StatModifier mod = new StatModifier();
-        mod.first_min = buf.readFloat();
-        mod.first_max = buf.readFloat();
-        mod.second_min = buf.readFloat();
-        mod.second_max = buf.readFloat();
+        mod.min1 = buf.readFloat();
+        mod.max1 = buf.readFloat();
+        mod.min2 = buf.readFloat();
+        mod.max2 = buf.readFloat();
 
         mod.stat = buf.readString(100);
         mod.type = buf.readString(100);
@@ -59,10 +59,10 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
 
     @Override
     public void toBuf(PacketByteBuf buf) {
-        buf.writeFloat(first_min);
-        buf.writeFloat(first_max);
-        buf.writeFloat(second_min);
-        buf.writeFloat(second_max);
+        buf.writeFloat(min1);
+        buf.writeFloat(max1);
+        buf.writeFloat(min2);
+        buf.writeFloat(max2);
 
         buf.writeString(stat, 100);
         buf.writeString(type, 100);
@@ -70,22 +70,22 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
     }
 
     public StatModifier(float firstMin, float firstMax, Stat stat, ModType type) {
-        this.first_min = firstMin;
-        this.first_max = firstMax;
+        this.min1 = firstMin;
+        this.max1 = firstMax;
         this.stat = stat.GUID();
         this.type = type.name();
     }
 
     public StatModifier(float firstMin, float firstMax, Stat stat) {
-        this.first_min = firstMin;
-        this.first_max = firstMax;
+        this.min1 = firstMin;
+        this.max1 = firstMax;
         this.stat = stat.GUID();
         this.type = ModType.FLAT.name();
     }
 
     public StatModifier(float firstMin, float firstMax, String stat, ModType type) {
-        this.first_min = firstMin;
-        this.first_max = firstMax;
+        this.min1 = firstMin;
+        this.max1 = firstMax;
         this.stat = stat;
         this.type = type.name();
     }
@@ -100,20 +100,20 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
             }
         }
 
-        this.first_min = firstMin;
-        this.first_max = firstMax;
-        this.second_min = secondMin;
-        this.second_max = secondMax;
+        this.min1 = firstMin;
+        this.max1 = firstMax;
+        this.min2 = secondMin;
+        this.max2 = secondMax;
         this.stat = stat.GUID();
         this.type = type.name();
     }
 
     public StatModifier(float firstMin, float firstMax, float secondMin, float secondMax, String stat, ModType type) {
 
-        this.first_min = firstMin;
-        this.first_max = firstMax;
-        this.second_min = secondMin;
-        this.second_max = secondMax;
+        this.min1 = firstMin;
+        this.max1 = firstMax;
+        this.min2 = secondMin;
+        this.max2 = secondMax;
         this.stat = stat;
         this.type = type.name();
     }
@@ -125,23 +125,23 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
 
     public boolean usesNumberRanges() {
         return getModType()
-            .equals(ModType.FLAT) && second_max != 0;
+            .equals(ModType.FLAT) && max2 != 0;
     }
 
     public MutableText getRangeToShow(int lvl) {
 
-        int fmin = (int) first_min;
-        int fmax = (int) first_max;
+        int fmin = (int) min1;
+        int fmax = (int) max1;
 
         if (getModType().isFlat()) {
-            fmin = (int) GetStat().scale(first_min, lvl);
-            fmax = (int) GetStat().scale(first_max, lvl);
+            fmin = (int) GetStat().scale(min1, lvl);
+            fmax = (int) GetStat().scale(max1, lvl);
         }
         String text = fmin + "/" + fmax;
 
         if (GetStat().UsesSecondValue() && getModType().isFlat()) {
-            int smin = (int) GetStat().scale(second_min, lvl);
-            int smax = (int) GetStat().scale(second_max, lvl);
+            int smin = (int) GetStat().scale(min2, lvl);
+            int smax = (int) GetStat().scale(max2, lvl);
             text += " / " + smin + "-" + smax;
         } else {
             if (GetStat().IsPercent() || getModType().isLocalIncrease()) {
@@ -166,10 +166,13 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
 
         JsonObject json = new JsonObject();
 
-        json.addProperty("firstMin", first_min);
-        json.addProperty("firstMax", first_max);
-        json.addProperty("secondMin", second_min);
-        json.addProperty("secondMax", second_max);
+        json.addProperty("min1", min1);
+        json.addProperty("max1", max1);
+
+        if (GetStat().UsesSecondValue() && getModType().isFlat()) {
+            json.addProperty("min2", min2);
+            json.addProperty("max2", max2);
+        }
 
         json.addProperty("stat", stat);
         json.addProperty("type", ModType.valueOf(type).id);
@@ -180,15 +183,15 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
     @Override
     public StatModifier fromJson(JsonObject json) {
 
-        float firstMin = json.get("firstMin")
+        float firstMin = json.get("min1")
             .getAsFloat();
-        float firstMax = json.get("firstMax")
+        float firstMax = json.get("max1")
             .getAsFloat();
 
-        float secondMin = json.get("secondMin")
-            .getAsFloat();
-        float secondMax = json.get("secondMax")
-            .getAsFloat();
+        float secondMin = json.has("min2") ? json.get("min2")
+            .getAsFloat() : 0;
+        float secondMax = json.has("min2") ? json.get("max2")
+            .getAsFloat() : 0;
 
         String stat = json.get("stat")
             .getAsString();

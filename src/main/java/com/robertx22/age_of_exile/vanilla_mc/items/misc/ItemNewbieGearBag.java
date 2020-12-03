@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
 import com.robertx22.age_of_exile.aoe_data.database.perks.StartPerks;
-import com.robertx22.age_of_exile.aoe_data.database.spells.DexSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.IntSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.StrSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.impl.DexSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.impl.IntSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.impl.StrSpells;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;

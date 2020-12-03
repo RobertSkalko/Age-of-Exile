@@ -59,7 +59,7 @@ public class SkillGemBlueprint extends ItemBlueprint {
                         .anyMatch(t -> data.getSkillGem().tags.contains(t)));
 
                 if (!opt.list.isEmpty()) {
-                    opt.random().stats.forEach(x -> data.random_stats.add(new StatModifier(x.first_min, x.first_max, x.GetStat(), x.getModType())));
+                    opt.random().stats.forEach(x -> data.random_stats.add(new StatModifier(x.min1, x.max1, x.GetStat(), x.getModType())));
                 }
             }
         }
