@@ -463,7 +463,7 @@ public class Unit {
                     }
 
                     if (addstats) {
-                        GearRarity rar = (GearRarity) gear.getRarity();
+                        GearRarity rar = gear.getRarity();
                         if (rar.hasMaxWornRestriction()) {
                             if (rarityMap.get(rar) >= rar.max_worn_at_once) {
                                 addstats = false;

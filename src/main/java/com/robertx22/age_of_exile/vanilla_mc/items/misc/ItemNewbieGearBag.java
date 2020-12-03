@@ -43,11 +43,12 @@ public class ItemNewbieGearBag extends Item {
     }
 
     static HashMap<String, NewbieContent> MAP = new HashMap<>();
-    static NewbieContent defaultContent = new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.ARCANE_BOLT_ID));
+    static NewbieContent defaultContent = new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.FIREBALL_ID));
 
     static {
 
-        MAP.put(StartPerks.MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.ARCANE_BOLT_ID)));
+        MAP.put(StartPerks.MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.FIREBALL_ID)));
+        MAP.put(StartPerks.BATTLE_MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.POISONBALL_ID)));
         MAP.put(StartPerks.HUNTER, new NewbieContent(Arrays.asList("bow0"), Arrays.asList(Spells.MULTI_SHOT_ID)).addStack(new ItemStack(Items.ARROW, 64)));
         MAP.put(StartPerks.WARRIOR, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(Spells.FLAME_STRIKE_ID)));
         MAP.put(StartPerks.DUELIST, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(Spells.FLAME_STRIKE_ID)));

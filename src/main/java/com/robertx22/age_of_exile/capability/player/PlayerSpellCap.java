@@ -202,7 +202,7 @@ public class PlayerSpellCap {
                 .filter(x -> {
                     if (x.getValue().active) {
                         SkillGemData data = SkillGemData.fromStack(skillGems.stacks.get(x.getValue().place));
-                        return data != null && data.getSkillGem().spell_id.equals(x.getKey());
+                        return data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x.getKey());
                     }
                     return false;
                 })
@@ -212,20 +212,25 @@ public class PlayerSpellCap {
 
         @Override
         public void applyAuraStats() {
-            List<String> auras = getAuras();
-            auras.forEach(x -> {
-                skillGems.stacks.stream()
-                    .forEach(s -> {
-                        SkillGemData data = SkillGemData.fromStack(s);
-                        if (data != null && data.getSkillGem().spell_id.equals(x)) {
-                            Spell spell = Database.Spells()
-                                .get(data.getSkillGem().spell_id);
-                            spell.aura_data.getStats(data.lvl)
-                                .forEach(t -> t.applyStats(Load.Unit(entity)));
-                        }
-                    });
 
-            });
+            try {
+                List<String> auras = getAuras();
+                auras.forEach(x -> {
+                    skillGems.stacks.stream()
+                        .forEach(s -> {
+                            SkillGemData data = SkillGemData.fromStack(s);
+                            if (data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x)) {
+                                Spell spell = Database.Spells()
+                                    .get(data.getSkillGem().spell_id);
+                                spell.aura_data.getStats(data.lvl)
+                                    .forEach(t -> t.applyStats(Load.Unit(entity)));
+                            }
+                        });
+
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
 

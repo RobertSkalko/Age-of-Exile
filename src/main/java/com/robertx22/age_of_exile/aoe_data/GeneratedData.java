@@ -22,7 +22,6 @@ import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_outputs.SalvageOutputsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gem_rarity.SkillGemRarityAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.AuraSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
 import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
@@ -55,7 +54,7 @@ public class GeneratedData {
             new Tiers().registerAll();
 
             new Spells().registerAll();
-            new AuraSpells().registerAll();
+
             new SpellDependentDatapackStatAdder().registerAll();
 
             new Prefixes().registerAll();

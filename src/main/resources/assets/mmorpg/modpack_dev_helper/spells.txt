@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 recoil_shot
+thirst_strike
 healing_aura
 poison_ball
 teleport
@@ -13,11 +14,11 @@ thunder_dash
 ele_res_aura
 gorgons_gaze
 nature_balm
+haste_aura
 arrow_storm
 volcano
 arrow_barrage
 fireball
-arcane_comet
 thunder_spear
 heart_of_ice
 blizzard
@@ -25,7 +26,7 @@ frost_armor
 frostball
 flame_strike
 whirlpool
-haste
+meteor
 fire_bombs
 crit_aura
 ms_aura

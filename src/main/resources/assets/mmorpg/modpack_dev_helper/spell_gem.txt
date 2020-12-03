@@ -12,6 +12,7 @@ poison_chance
 gorgons_gaze
 frostburn_chance
 mana_leech
+haste_aura
 water_dmg
 arrow_storm
 thunder_dmg
@@ -32,6 +33,7 @@ multi_shot
 major_multi_proj
 less_mana_cost
 recoil_shot
+thirst_strike
 poison_ball
 piercing_proj
 minor_multi_proj
@@ -44,16 +46,15 @@ nature_balm
 volcano
 arrow_barrage
 fireball
-arcane_comet
 thunder_spear
 heart_of_ice
 nature_dmg
 blizzard
 frostball
 flame_strike
+meteor
 whirlpool
 bleed_chance
-haste
 fire_bombs
 spell_crit_dmg
 ms_aura
