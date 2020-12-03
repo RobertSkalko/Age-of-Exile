@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEffect;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
@@ -159,7 +160,7 @@ public class PlayerSpellCap {
         public void triggerAura(Spell spell) {
 
             String key = spell.GUID();
-            SpellCastingData.AuraData current = spellCastingData.auras.getOrDefault(key, new SpellCastingData.AuraData(false, 0));
+            SpellCastingData.AuraData current = spellCastingData.auras.getOrDefault(key, new SpellCastingData.AuraData(false, 0, 0));
             current.active = !current.active;
 
             for (int i = 0; i < skillGems.stacks.size(); i++) {
@@ -171,6 +172,14 @@ public class PlayerSpellCap {
                 }
             }
 
+            if (!current.active) {
+                ReserveManaEffect effect = new ReserveManaEffect(spell, entity);
+                effect.Activate();
+                current.mana_reserved = effect.manaReserved;
+            } else {
+                current.mana_reserved = 0;
+            }
+
             spellCastingData.auras.put(key, current);
 
             Load.Unit(entity)
@@ -180,15 +189,10 @@ public class PlayerSpellCap {
 
         @Override
         public float getManaReservedByAuras() {
-            float reserve = 0;
-
-            for (String x : getAuras()) {
-                reserve += Database.Spells()
-                    .get(x).aura_data.mana_reserved;
-            }
-
-            return reserve;
-
+            return (float) spellCastingData.auras.values()
+                .stream()
+                .mapToDouble(auraData -> auraData.mana_reserved)
+                .sum();
         }
 
         @Override
@@ -222,7 +226,7 @@ public class PlayerSpellCap {
                             if (data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x)) {
                                 Spell spell = Database.Spells()
                                     .get(data.getSkillGem().spell_id);
-                                spell.aura_data.getStats(data.lvl)
+                                spell.aura_data.getStats(spell, entity, data.lvl)
                                     .forEach(t -> t.applyStats(Load.Unit(entity)));
                             }
                         });

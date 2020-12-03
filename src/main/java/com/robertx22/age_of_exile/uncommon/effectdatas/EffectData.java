@@ -46,9 +46,17 @@ public abstract class EffectData {
         }
         if (source != null) {
             this.sourceData = Load.Unit(source);
-
         }
+
         if (source != null) {
+
+            try {
+                if (source.world.isClient) {
+                    // throw new RuntimeException("Effect ran on client!!!"); spell stats is ran on client.. hmm
+                }
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
 
             try {
                 if (target != null) {
@@ -57,16 +65,8 @@ public abstract class EffectData {
 
                 sourceUnit = sourceData.getUnit();
 
-                if (sourceUnit != null) {
-                    sourceData.tryRecalculateStats();
-
-                } else {
+                if (sourceUnit == null) {
                     this.canceled = true;
-                }
-                if (targetUnit != null) {
-
-                    targetData.tryRecalculateStats();
-
                 }
 
             } catch (Exception e) {

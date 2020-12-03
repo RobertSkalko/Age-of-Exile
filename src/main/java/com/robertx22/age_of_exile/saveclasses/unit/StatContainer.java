@@ -41,7 +41,6 @@ public class StatContainer implements IHandler<StatContainer> {
     }
 
     public void calculate() {
-        stats.clear();
 
         statsInCalc.values()
             .forEach(x -> {

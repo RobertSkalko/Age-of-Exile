@@ -41,13 +41,16 @@ public class SpellCastingData {
         public boolean active = false;
         @Store
         public int place = 0;
+        @Store
+        public float mana_reserved = 0;
 
         public AuraData() {
         }
 
-        public AuraData(boolean active, int place) {
+        public AuraData(boolean active, int place, float mana_reserved) {
             this.active = active;
             this.place = place;
+            this.mana_reserved = mana_reserved;
         }
     }
 

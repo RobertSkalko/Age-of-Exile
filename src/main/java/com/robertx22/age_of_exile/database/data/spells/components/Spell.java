@@ -250,12 +250,16 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 .formatted(Formatting.GOLD));
         }
 
-        if (!isPassive()) {
-            list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-        }
-        list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
-        if (!isPassive()) {
-            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
+        if (!this.isAura()) {
+            if (!isPassive()) {
+                list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
+            }
+            list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
+            if (!isPassive()) {
+                list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
+            }
+        } else {
+            list.addAll(this.aura_data.GetTooltipString(this, ctx.skillGemData, new TooltipInfo((PlayerEntity) ctx.caster)));
         }
 
         TooltipUtils.addEmpty(list);

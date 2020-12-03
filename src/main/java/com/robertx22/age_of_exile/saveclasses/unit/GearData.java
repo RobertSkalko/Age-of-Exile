@@ -68,9 +68,6 @@ public class GearData {
 
         BaseGearType type = gear.GetBaseGearType();
 
-        if (type.isMeleeWeapon()) {
-            return slot == EquipmentSlot.MAINHAND;
-        }
         if (type.isWeapon()) {
             return slot == EquipmentSlot.MAINHAND; // ranged weapon
         }

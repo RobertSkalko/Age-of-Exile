@@ -141,6 +141,7 @@ Or maybe 20 str + scaling over lvls slowly.
 * newbie gear now comes with unbreaking
 * stat modifier in datapacks now saved differently. "first_min" is now "min1" to reduce size. etc (for modpack devs, you can just do a replaceall in files)
 * stat modifiers now only save 2nd value when needed. Means it's optional now
+* added reduced mana reserved stat and increased effect of auras stat
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

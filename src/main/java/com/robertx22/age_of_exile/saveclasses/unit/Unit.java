@@ -265,129 +265,135 @@ public class Unit {
             data.setUnit(this);
         }
 
-        DirtyCheck old = getDirtyCheck();
-
-        getStats().statsInCalc.clear();
-        getStats().stats.clear();
-
         List<GearData> gears = new ArrayList<>();
-
         new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData);
 
-        CommonStatUtils.addPotionStats(entity);
-        CommonStatUtils.addExactCustomStats(data);
+        stats.values()
+            .forEach(x -> x.stats.clear());
+        stats.values()
+            .forEach(x -> x.statsInCalc.clear());
 
-        if (entity instanceof PlayerEntity) {
-            PlayerStatUtils.AddPlayerBaseStats(data, this);
-            Load.perks(entity)
-                .applyStats(data);
-            Load.playerSkills((PlayerEntity) entity)
-                .applyStats(data);
-            Load.spells(entity)
-                .applyAuraStats();
-        } else {
-            MobStatUtils.AddMobcStats(data, entity);
-            MobStatUtils.addAffixStats(data);
-            MobStatUtils.worldMultiplierStats(entity, entity.world, this);
-            MobStatUtils.increaseMobStatsPerTier(entity, data, this);
-            MobStatUtils.modifyMobStatsByConfig(entity, data);
-            ExtraMobRarityAttributes.add(entity, data);
-        }
+        DirtyCheck old = getDirtyCheck();
 
-        addGearStats(gears, entity, data);
+        for (Stat.CalcOrder order : Stat.CALC_ORDERS) {
+            // todo ideally only stats from that order would actually be calculated..
+            // but it works when you just calc twice for my use case
 
-        addVanillaHpToStats(entity, data);
+            CommonStatUtils.addPotionStats(entity);
+            CommonStatUtils.addExactCustomStats(data);
 
-        new HashMap<>(getStats().statsInCalc).entrySet()
-            .forEach(x -> {
-                InCalcStatData statdata = x.getValue();
-                Stat stat = x.getValue()
-                    .GetStat();
-                if (statdata != null && stat instanceof ITransferToOtherStats) {
-                    ITransferToOtherStats add = (ITransferToOtherStats) stat;
-                    add.transferStats(data, statdata);
-                }
-            });
+            if (entity instanceof PlayerEntity) {
+                PlayerStatUtils.AddPlayerBaseStats(data, this);
+                Load.perks(entity)
+                    .applyStats(data);
+                Load.playerSkills((PlayerEntity) entity)
+                    .applyStats(data);
+                Load.spells(entity)
+                    .applyAuraStats();
+            } else {
+                MobStatUtils.AddMobcStats(data, entity);
+                MobStatUtils.addAffixStats(data);
+                MobStatUtils.worldMultiplierStats(entity, entity.world, this);
+                MobStatUtils.increaseMobStatsPerTier(entity, data, this);
+                MobStatUtils.modifyMobStatsByConfig(entity, data);
+                ExtraMobRarityAttributes.add(entity, data);
+            }
 
-        new HashMap<>(getStats().statsInCalc).entrySet()
-            .forEach(x -> {
-                InCalcStatData statdata = x.getValue();
-                Stat stat = x.getValue()
-                    .GetStat();
-                if (statdata != null && stat instanceof ICoreStat) {
-                    ICoreStat add = (ICoreStat) stat;
-                    add.addToOtherStats(data, statdata);
-                }
-            });
+            addGearStats(gears, entity, data);
 
-        new HashMap<>(getStats().statsInCalc).entrySet()
-            .forEach(x -> {
-                InCalcStatData statdata = x.getValue();
-                Stat stat = x.getValue()
-                    .GetStat();
-                if (statdata != null && stat instanceof IAffectsStats) {
-                    IAffectsStats add = (IAffectsStats) stat;
-                    add.affectStats(data, statdata);
-                }
-            });
+            addVanillaHpToStats(entity, data);
 
-        if (entity instanceof PlayerEntity) {
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (statdata != null && stat instanceof ITransferToOtherStats) {
+                        ITransferToOtherStats add = (ITransferToOtherStats) stat;
+                        add.transferStats(data, statdata);
+                    }
+                });
 
-            for (StatContainerType type : StatContainerType.values()) {
-                // different stat containers for each spell with support gems.
-                if (type == StatContainerType.NORMAL) {
-                    this.stats.put(type, getStats());
-                } else {
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (statdata != null && stat instanceof ICoreStat) {
+                        ICoreStat add = (ICoreStat) stat;
+                        add.addToOtherStats(data, statdata);
+                    }
+                });
 
-                    StatContainer copy = getStats().cloneForSpellStats();
-                    stats.put(type, copy);
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (statdata != null && stat instanceof IAffectsStats) {
+                        IAffectsStats add = (IAffectsStats) stat;
+                        add.affectStats(data, statdata);
+                    }
+                });
 
-                    List<SkillGemData> supportGems = Load.spells(entity)
-                        .getSkillGemData()
-                        .getSupportGemsOf(type.place);
+            if (entity instanceof PlayerEntity) {
 
-                    List<SkillGemData> noGemDuplicateList = new ArrayList<>();
+                for (StatContainerType type : StatContainerType.values()) {
+                    // different stat containers for each spell with support gems.
+                    if (type == StatContainerType.NORMAL) {
+                        this.stats.put(type, getStats());
+                    } else {
 
-                    Set<String> gemIdSet = new HashSet<>();
+                        StatContainer copy = getStats().cloneForSpellStats();
+                        stats.put(type, copy);
 
-                    supportGems.forEach(x -> {
-                        if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
-                            noGemDuplicateList.add(x);
-                            gemIdSet.add(x.id);
+                        List<SkillGemData> supportGems = Load.spells(entity)
+                            .getSkillGemData()
+                            .getSupportGemsOf(type.place);
+
+                        List<SkillGemData> noGemDuplicateList = new ArrayList<>();
+
+                        Set<String> gemIdSet = new HashSet<>();
+
+                        supportGems.forEach(x -> {
+                            if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
+                                noGemDuplicateList.add(x);
+                                gemIdSet.add(x.id);
+                            }
+
+                        });
+
+                        for (SkillGemData sd : noGemDuplicateList) {
+
+                            if (sd.canPlayerUse((PlayerEntity) entity)) {
+                                sd.getSkillGem()
+                                    .getConstantStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
+                                sd.getSkillGem()
+                                    .getRandomStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
+
+                            }
                         }
 
-                    });
-
-                    for (SkillGemData sd : noGemDuplicateList) {
-
-                        if (sd.canPlayerUse((PlayerEntity) entity)) {
-                            sd.getSkillGem()
-                                .getConstantStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
-                            sd.getSkillGem()
-                                .getRandomStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
-
-                        }
                     }
 
                 }
 
+                stats.values()
+                    .forEach(x -> x.calculate());
+
+            } else {
+                stats.get(StatContainerType.NORMAL)
+                    .calculate();
             }
 
-            stats.values()
-                .forEach(x -> x.calculate());
-
-        } else {
-
-            stats.values()
-                .forEach(x -> x.calculate());
         }
 
         removeEmptyStats();

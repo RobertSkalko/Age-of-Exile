@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -21,6 +22,8 @@ public class SpellCastContext {
     public boolean isLastCastTick;
     public boolean castedThisTick = false;
     public CalculatedSpellData calcData;
+
+    public SkillGemData skillGemData;
 
     public SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig;
 
@@ -46,8 +49,26 @@ public class SpellCastContext {
 
         if (caster instanceof PlayerEntity) {
             this.spellsCap = Load.spells((PlayerEntity) caster);
+
+            try {
+                skillGemData = spellsCap.getSkillGemData().stacks.stream()
+                    .map(x -> {
+                        return SkillGemData.fromStack(x);
+                    })
+                    .filter(x -> {
+                        return x != null && x.getSkillGem() != null && x.getSkillGem().spell_id.equals(spell.GUID());
+                    })
+                    .findAny()
+                    .get();
+            } catch (Exception e) {
+                e.printStackTrace();
+                this.skillGemData = new SkillGemData();
+            }
+
         } else {
             this.spellsCap = new PlayerSpellCap.DefaultImpl(caster);
+            this.skillGemData = new SkillGemData();
+            skillGemData.lvl = data.getLevel();
         }
 
         calcSpellData();

@@ -18,6 +18,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsSt
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
@@ -78,6 +80,8 @@ public class Stats implements ISlashRegistryInit {
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
+                    add(ReducedManaReserved.getInstance());
+                    add(IncreasedEffectOfAuras.getInstance());
 
                     add(DayDamage.getInstance());
                     add(NightDamage.getInstance());

@@ -196,6 +196,7 @@ ele_axe_damage
 thunder_focus
 all_physical_dmg_leech_as_mana
 attack_fire_dmg_leech_as_magic_shield
+red_mana_reserved
 water_weapon_damage
 all_thunder_damage
 dot_elemental_dmg_leech_as_mana
@@ -240,6 +241,7 @@ health
 attack_physical_dmg_leech_as_health
 spell_elemental_dmg_leech_as_mana
 all_all_dmg_leech_as_magic_shield
+inc_aura_effect
 basic_attack_thunder_dmg_leech_as_magic_shield
 hp_to_blood
 spell_all_dmg_leech_as_magic_shield

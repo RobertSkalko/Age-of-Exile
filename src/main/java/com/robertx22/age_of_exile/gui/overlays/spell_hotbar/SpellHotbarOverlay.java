@@ -54,7 +54,9 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     public void onHudRender(MatrixStack matrix, float v) {
 
         try {
-
+            if (mc.options.debugEnabled || mc.player.isSpectator()) {
+                return;
+            }
             if (mc.player.isSpectator()) {
                 return;
             }
