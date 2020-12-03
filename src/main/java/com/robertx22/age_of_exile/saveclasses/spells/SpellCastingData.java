@@ -131,8 +131,8 @@ public class SpellCastingData {
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         this.spellBeingCast = spell.GUID();
-        this.castingTicksLeft = ctx.spell.getConfig().cast_time_ticks;
-        this.lastSpellCastTimeInTicks = ctx.spell.getConfig().cast_time_ticks;
+        this.castingTicksLeft = ctx.spell.getCastTimeTicks(ctx);
+        this.lastSpellCastTimeInTicks = this.castingTicksLeft;
         this.castingTicksDone = 0;
         this.casting = true;
     }

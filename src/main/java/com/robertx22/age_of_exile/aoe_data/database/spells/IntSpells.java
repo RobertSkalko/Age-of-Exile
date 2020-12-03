@@ -195,7 +195,7 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.of("meteor", SpellConfiguration.Builder.instant(18, 20 * 30), "Meteor",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE)
         )
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 6D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.MAGMA_BLOCK, 200D)
@@ -203,7 +203,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .put(MapField.BLOCK_FALL_SPEED, -0.03D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, true)))
-            .onTick("block", PartBuilder.particleOnTick(25D, ParticleTypes.LAVA, 25D, 0.5D))
+            .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.LAVA, 2D, 0.5D))
             .onExpire("block", PartBuilder.damageInAoe(ValueCalculationData.base(10), Elements.Fire, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 150D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 25D, 3D))

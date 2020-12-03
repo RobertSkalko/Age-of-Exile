@@ -86,8 +86,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (timesToCast > 1) {
 
-            int castTimeTicks = (int) ctx.calcData.getSpell()
-                .getConfig().cast_time_ticks;
+            int castTimeTicks = (int) getCastTimeTicks(ctx);
 
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
@@ -130,7 +129,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         float ticks = config.cooldown_ticks * multi;
 
-        if (config.cast_time_ticks == 0) {
+        if (config.getCastTimeTicks() == 0) {
             float castspeed = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
             ticks *= castspeed;
         }
@@ -142,9 +141,9 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return (int) ticks;
     }
 
-    public final float getUseDurationInSeconds(SpellCastContext ctx) {
+    public final int getCastTimeTicks(SpellCastContext ctx) {
         float multi = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
-        return (config.cast_time_ticks * multi) / 20;
+        return (int) (config.getCastTimeTicks() * multi);
     }
 
     @Override
@@ -256,7 +255,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         }
         list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
         if (!isPassive()) {
-            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s"));
+            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
         }
 
         TooltipUtils.addEmpty(list);

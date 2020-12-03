@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -88,5 +89,20 @@ public class StrSpells implements ISlashRegistryInit {
                 .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(2)))
             )
             .build();
+
+        SpellBuilder.of("whirlwind", SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
+                .setSwingArm(), "Whirlwind",
+            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            .attackStyle(AttackPlayStyle.MELEE)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1D, 1D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
+            .onCast(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(0.2F, 1), Elements.Physical, 1.5D)
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 50D, 0.5D, 0.1D))
+                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(2)))
+            )
+            .build();
+
     }
 }

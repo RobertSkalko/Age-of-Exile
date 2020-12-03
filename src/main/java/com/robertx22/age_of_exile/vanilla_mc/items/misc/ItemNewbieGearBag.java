@@ -1,7 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
 import com.robertx22.age_of_exile.aoe_data.database.perks.StartPerks;
-import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.DexSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.IntSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.StrSpells;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -43,15 +45,15 @@ public class ItemNewbieGearBag extends Item {
     }
 
     static HashMap<String, NewbieContent> MAP = new HashMap<>();
-    static NewbieContent defaultContent = new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.FIREBALL_ID));
+    static NewbieContent defaultContent = new NewbieContent(Arrays.asList("wand0"), Arrays.asList(IntSpells.FIREBALL_ID));
 
     static {
 
-        MAP.put(StartPerks.MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.FIREBALL_ID)));
-        MAP.put(StartPerks.BATTLE_MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(Spells.POISONBALL_ID)));
-        MAP.put(StartPerks.HUNTER, new NewbieContent(Arrays.asList("bow0"), Arrays.asList(Spells.MULTI_SHOT_ID)).addStack(new ItemStack(Items.ARROW, 64)));
-        MAP.put(StartPerks.WARRIOR, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(Spells.FLAME_STRIKE_ID)));
-        MAP.put(StartPerks.DUELIST, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(Spells.FLAME_STRIKE_ID)));
+        MAP.put(StartPerks.MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(IntSpells.FIREBALL_ID)));
+        MAP.put(StartPerks.BATTLE_MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(IntSpells.POISONBALL_ID)));
+        MAP.put(StartPerks.HUNTER, new NewbieContent(Arrays.asList("bow0"), Arrays.asList(DexSpells.MULTI_SHOT_ID)).addStack(new ItemStack(Items.ARROW, 64)));
+        MAP.put(StartPerks.WARRIOR, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(StrSpells.FLAME_STRIKE_ID)));
+        MAP.put(StartPerks.DUELIST, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(StrSpells.FLAME_STRIKE_ID)));
 
     }
 

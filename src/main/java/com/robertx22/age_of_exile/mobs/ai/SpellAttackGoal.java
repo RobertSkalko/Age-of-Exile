@@ -44,7 +44,7 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
             .GUID();
 
         this.castTicksNeeded = (int) data.getSpell()
-            .getConfig().cast_time_ticks;
+            .config.getCastTimeTicks();
 
     }
 

@@ -16,11 +16,15 @@ public class SpellConfiguration {
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public int mana_cost;
     public int times_to_cast = 1;
-    public int cast_time_ticks;
+    private int cast_time_ticks;
     public int cooldown_ticks;
     public AttackPlayStyle style = AttackPlayStyle.MAGIC;
     public PassiveConfig passive_config = new PassiveConfig();
     public List<SkillGemTag> tags = new ArrayList<>();
+
+    public int getCastTimeTicks() {
+        return cast_time_ticks;
+    }
 
     public static class PassiveConfig {
         public boolean is_passive = false;

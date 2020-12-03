@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mobs.mages;
 
-import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.IntSpells;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
 import net.minecraft.entity.EntityType;
@@ -16,6 +16,6 @@ public class WaterMage extends BaseMage {
     @Override
     public Spell getSpell() {
         return Database.Spells()
-            .get(Spells.FROSTBALL_ID);
+            .get(IntSpells.FROSTBALL_ID);
     }
 }

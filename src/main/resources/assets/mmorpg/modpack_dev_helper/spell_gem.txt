@@ -4,6 +4,7 @@ healing_aura
 thorn_armor
 fire_chance
 blazing_inferno
+whirlwind
 thunder_storm
 armor_aura
 thunder_dash

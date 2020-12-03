@@ -8,6 +8,7 @@ teleport
 thorn_armor
 blazing_inferno
 lightning_totem
+whirlwind
 thunder_storm
 armor_aura
 thunder_dash

@@ -54,7 +54,8 @@ public class SpellCastContext {
 
         if (spell != null) {
             int castTicks = (int) this.calcData.getSpell()
-                .getConfig().cast_time_ticks;
+                .getConfig()
+                .getCastTimeTicks();
             this.isLastCastTick = castTicks == ticksInUse;
         }
 
