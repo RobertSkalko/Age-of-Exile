@@ -33,7 +33,23 @@ public class SpellCastingData {
     public Boolean casting = false;
 
     @Store
-    public HashMap<String, Boolean> auras = new HashMap<>();
+    public HashMap<String, AuraData> auras = new HashMap<>();
+
+    @Storable
+    public static class AuraData {
+        @Store
+        public boolean active = false;
+        @Store
+        public int place = 0;
+
+        public AuraData() {
+        }
+
+        public AuraData(boolean active, int place) {
+            this.active = active;
+            this.place = place;
+        }
+    }
 
     @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();

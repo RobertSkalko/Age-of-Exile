@@ -31,7 +31,7 @@ public class Spells implements ISlashRegistryInit {
     public static Spell POISONBALL;
     public static Spell THUNDER_SPEAR;
     public static Spell ARCANE_BALL;
-    public static Spell ARCANE_COMET;
+    public static Spell METEOR;
     public static Spell TELEPORT;
     public static Spell IMBUE;
 
@@ -91,22 +91,20 @@ public class Spells implements ISlashRegistryInit {
             .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Elemental))
             .build();
 
-        ARCANE_COMET = SpellBuilder.of("arcane_comet", SpellConfiguration.Builder.instant(18, 20 * 30), "Arcane Comet",
+        METEOR = SpellBuilder.of("meteor", SpellConfiguration.Builder.instant(18, 20 * 30), "Meteor",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE)
         )
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 6D)
-                .put(MapField.HEIGHT, 14D)
-            ))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.BUBBLE_CORAL_BLOCK, 200D)
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 6D)))
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.MAGMA_BLOCK, 200D)
                 .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, -0.02D)
+                .put(MapField.BLOCK_FALL_SPEED, -0.03D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, true)))
-            .onTick("block", PartBuilder.particleOnTick(3D, ParticleTypes.WITCH, 25D, 0.5D))
+            .onTick("block", PartBuilder.particleOnTick(25D, ParticleTypes.LAVA, 25D, 0.5D))
             .onExpire("block", PartBuilder.damageInAoe(ValueCalculationData.base(12), Elements.Elemental, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.WITCH, 150D, 3D))
+            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 150D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
             .onExpire("block", PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
@@ -222,7 +220,7 @@ public class Spells implements ISlashRegistryInit {
             .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN, 5D, 20D * 10D))
             .build();
 
-        HEALING_AURA = SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Aura",
+        HEALING_AURA = SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Atmosphere",
             Arrays.asList(SkillGemTag.HEALING))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_HOE_TILL, 1D, 1D))

@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
@@ -158,8 +159,19 @@ public class PlayerSpellCap {
         public void triggerAura(Spell spell) {
 
             String key = spell.GUID();
-            boolean current = spellCastingData.auras.getOrDefault(key, false);
-            spellCastingData.auras.put(key, !current);
+            SpellCastingData.AuraData current = spellCastingData.auras.getOrDefault(key, new SpellCastingData.AuraData(false, 0));
+            current.active = !current.active;
+
+            for (int i = 0; i < skillGems.stacks.size(); i++) {
+                ItemStack x = skillGems.stacks.get(i);
+                SkillGemData data = SkillGemData.fromStack(x);
+                if (data != null && data.getSkillGem().spell_id.equals(spell.GUID())) {
+                    current.place = i;
+                    break;
+                }
+            }
+
+            spellCastingData.auras.put(key, current);
 
             Load.Unit(entity)
                 .setEquipsChanged(true);
@@ -188,11 +200,11 @@ public class PlayerSpellCap {
             return this.spellCastingData.auras.entrySet()
                 .stream()
                 .filter(x -> {
-                    return x.getValue() && skillGems.stacks.stream()
-                        .anyMatch(g -> {
-                            SkillGemData data = SkillGemData.fromStack(g);
-                            return data != null && data.getSkillGem().spell_id.equals(x.getKey());
-                        });
+                    if (x.getValue().active) {
+                        SkillGemData data = SkillGemData.fromStack(skillGems.stacks.get(x.getValue().place));
+                        return data != null && data.getSkillGem().spell_id.equals(x.getKey());
+                    }
+                    return false;
                 })
                 .map(x -> x.getKey())
                 .collect(Collectors.toList());

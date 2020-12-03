@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -182,7 +183,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         }
 
         if (this.isAura()) {
-            if (!ctx.spellsCap.getCastingData().auras.getOrDefault(GUID(), false)) { // if not active
+            if (!ctx.spellsCap.getCastingData().auras.getOrDefault(GUID(), new SpellCastingData.AuraData()).active) { // if not active
                 if (ctx.spellsCap.getManaReservedByAuras() + aura_data.mana_reserved > 1) {
                     return false; // todo make affected by mana reserve reduction
                 }

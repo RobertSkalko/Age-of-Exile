@@ -5,7 +5,9 @@ thorn_armor
 fire_chance
 blazing_inferno
 thunder_storm
+armor_aura
 thunder_dash
+ele_res_aura
 poison_chance
 gorgons_gaze
 frostburn_chance
@@ -18,7 +20,9 @@ fire_dmg
 frost_armor
 crit_rate
 health_leech
+crit_aura
 cast_speed
+hp_reg_aura
 imbue
 spear_of_judgement
 atk_speed
@@ -52,5 +56,8 @@ bleed_chance
 haste
 fire_bombs
 spell_crit_dmg
+ms_aura
 awaken_mana
+mana_reg_aura
 poisoned_weapons
+dodge_aura

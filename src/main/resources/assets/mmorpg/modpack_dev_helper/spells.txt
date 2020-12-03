@@ -8,7 +8,9 @@ thorn_armor
 blazing_inferno
 lightning_totem
 thunder_storm
+armor_aura
 thunder_dash
+ele_res_aura
 gorgons_gaze
 nature_balm
 arrow_storm
@@ -25,10 +27,15 @@ flame_strike
 whirlpool
 haste
 fire_bombs
+crit_aura
+ms_aura
 awaken_mana
+hp_reg_aura
 imbue
 spear_of_judgement
+mana_reg_aura
 tidal_strike
 arcane_bolt
 multi_shot
 poisoned_weapons
+dodge_aura

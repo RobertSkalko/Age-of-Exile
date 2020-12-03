@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
@@ -36,6 +35,9 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     );
     private static final Identifier SPELl_NO_MANA = new Identifier(Ref.MODID,
         "textures/gui/spells/no_mana.png"
+    );
+    private static final Identifier AURA_ACTIVATED = new Identifier(Ref.MODID,
+        "textures/gui/spells/aura_activated.png"
     );
     private static final Identifier SPELL_ON_COOLDOWN = new Identifier(Ref.MODID,
         "textures/gui/spells/on_cooldown.png"
@@ -119,7 +121,10 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         int xs = (int) (x * 1 / scale);
         int ys = (int) (y * 1 / scale);
 
-        if (!this.data.getCastingData()
+        if (data.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) {
+            mc.getTextureManager()
+                .bindTexture(AURA_ACTIVATED);
+        } else if (!this.data.getCastingData()
             .getDataBySpell(spell)
             .cooldownIsReady()) {
             mc.getTextureManager()
@@ -164,72 +169,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
         RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
-    }
-
-    private void renderSpellsOnHotbar(MatrixStack matrix, int x, int y) {
-
-        x += 3;
-        y += 3;
-
-        for (int i = 0; i < 9; i++) {
-            Spell spell = data.getSpellByNumber(i);
-
-            boolean selected = i == SpellCastingData.selectedSpell;
-
-            if (selected) {
-                mc.getTextureManager()
-                    .bindTexture(SPELL_READY_TEX);
-                this.drawTexture(matrix, x - 2, y - 2, 0, 0, 20, 20, 20, 20);
-            }
-
-            if (spell != null) {
-
-                double scale = 0.5D;
-                RenderSystem.scaled(scale, scale, scale);
-
-                int xs = (int) (x * 1 / scale);
-                int ys = (int) (y * 1 / scale);
-
-                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-                mc.getTextureManager()
-                    .bindTexture(spell.getIconLoc());
-                this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
-
-                SpellData spelldata = data.getCastingData()
-                    .getDataBySpell(spell);
-
-                if (spelldata != null) {
-                    if (spelldata.cooldownIsReady() == false) {
-
-                        float percent = (float) spelldata.getRemainingCooldown() / (float) spelldata.getTotalCooldown();
-                        percent = MathHelper.clamp(percent, 0, 1F);
-                        mc.getTextureManager()
-                            .bindTexture(COOLDOWN_TEX);
-                        this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
-
-                    }
-                }
-
-                RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
-
-                if (spelldata != null) {
-                    if (spelldata.cooldownIsReady()) {
-                        if (OnClientTick.COOLDOWN_READY_MAP.getOrDefault(spell.GUID(), 0) > 0) {
-
-                            RenderSystem.enableBlend(); // enables transparency
-                            mc.getTextureManager()
-                                .bindTexture(SPELL_READY_TEX);
-                            this.drawTexture(matrix, x - 2, y - 2, 0, 0, 20, 20, 20, 20);
-                            RenderSystem.disableBlend(); // enables transparency
-
-                        }
-                    }
-                }
-
-            }
-            x += 20;
-        }
     }
 
     private void renderHotbar(MatrixStack matrix, int x, int y) {
