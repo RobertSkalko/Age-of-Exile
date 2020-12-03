@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ExactStatData implements ISerializable<ExactStatData>, IApplyableStats, ITooltipList {
+public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList {
 
     public static ExactStatData EMPTY = new ExactStatData();
 
@@ -34,9 +33,9 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     public static ExactStatData of(float first, float second, Stat stat, ModType type, int lvl) {
         ExactStatData data = new ExactStatData();
-        data.first_val = first;
-        data.second_val = second;
-        data.stat_id = stat.GUID();
+        data.v1 = first;
+        data.v2 = second;
+        data.stat = stat.GUID();
         data.type = type;
         data.scaleToLevel(lvl);
         return data;
@@ -45,16 +44,16 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     public static ExactStatData fromStatModifier(StatModifier mod, int percent, int lvl) {
         ExactStatData data = new ExactStatData();
 
-        data.first_val = (mod.min1 + (mod.max1 - mod.min1) * percent / 100F);
+        data.v1 = (mod.min1 + (mod.max1 - mod.min1) * percent / 100F);
 
         if (mod.usesNumberRanges()) {
-            data.second_val = (mod.min2 + (mod.max2 - mod.min2) * percent / 100);
+            data.v2 = (mod.min2 + (mod.max2 - mod.min2) * percent / 100);
         } else {
-            data.second_val = data.first_val;
+            data.v2 = data.v1;
         }
 
         data.type = mod.getModType();
-        data.stat_id = mod.stat;
+        data.stat = mod.stat;
 
         data.scaleToLevel(lvl);
 
@@ -68,11 +67,11 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     public static ExactStatData scaleTo(float v1, float v2, ModType type, String stat, int level) {
         ExactStatData data = new ExactStatData();
 
-        data.first_val = v1;
-        data.second_val = v2;
+        data.v1 = v1;
+        data.v2 = v2;
 
         data.type = type;
-        data.stat_id = stat;
+        data.stat = stat;
 
         data.scaleToLevel(level);
 
@@ -82,11 +81,11 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     public static ExactStatData noScaling(float v1, float v2, ModType type, String stat) {
         ExactStatData data = new ExactStatData();
 
-        data.first_val = v1;
-        data.second_val = v2;
+        data.v1 = v1;
+        data.v2 = v2;
 
         data.type = type;
-        data.stat_id = stat;
+        data.stat = stat;
 
         data.scaled = true;
 
@@ -98,30 +97,30 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     private void scaleToLevel(int lvl) {
         if (!scaled) {
             if (this.type.isFlat()) {
-                this.first_val = getStat().scale(first_val, lvl);
-                this.second_val = getStat().scale(second_val, lvl);
+                this.v1 = getStat().scale(v1, lvl);
+                this.v2 = getStat().scale(v2, lvl);
             }
         }
     }
 
     @Store
-    private float first_val = 0;
+    private float v1 = 0;
     @Store
-    private float second_val = 0;
+    private float v2 = 0;
     @Store
     private ModType type = ModType.FLAT;
 
     @Store
-    private String stat_id = "";
+    private String stat = "";
 
-    public float percentIncrease = 0;
+    public transient float percentIncrease = 0;
 
     public String getStatId() {
-        return stat_id;
+        return stat;
     }
 
     public float getAverageValue() {
-        return (first_val + second_val) / 2F;
+        return (v1 + v2) / 2F;
     }
 
     public boolean shouldBeAddedToLocalStats(GearItemData gear) {
@@ -142,8 +141,8 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     public void add(ExactStatData other) {
         if (type == other.type) {
-            first_val += other.first_val;
-            second_val += other.second_val;
+            v1 += other.v1;
+            v2 += other.v2;
         } else {
             System.out.println("error wrong types");
         }
@@ -151,21 +150,21 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     public void increaseByAddedPercent() {
 
-        first_val += first_val * percentIncrease / 100F;
+        v1 += v1 * percentIncrease / 100F;
 
-        if (second_val != 0) {
-            second_val += second_val * percentIncrease / 100F;
+        if (v2 != 0) {
+            v2 += v2 * percentIncrease / 100F;
         }
 
         percentIncrease = 0;
     }
 
     public float getFirstValue() {
-        return first_val;
+        return v1;
     }
 
     public float getSecondValue() {
-        return second_val;
+        return v2;
     }
 
     public ModType getType() {
@@ -174,14 +173,13 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     public Stat getStat() {
         return Database.Stats()
-            .get(stat_id);
+            .get(stat);
     }
 
-    @Override
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit()
             .getStats()
-            .getStatInCalculation(stat_id)
+            .getStatInCalculation(stat)
             .add(this, data);
     }
 
@@ -199,10 +197,10 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
         JsonObject json = new JsonObject();
 
-        json.addProperty("first_val", this.first_val);
-        json.addProperty("second_val", this.second_val);
+        json.addProperty("first_val", this.v1);
+        json.addProperty("second_val", this.v2);
         json.addProperty("type", this.type.id);
-        json.addProperty("stat", this.stat_id);
+        json.addProperty("stat", this.stat);
 
         return json;
     }
@@ -222,9 +220,9 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
             .getAsString());
 
         ExactStatData data = new ExactStatData();
-        data.first_val = first;
-        data.second_val = second;
-        data.stat_id = stat;
+        data.v1 = first;
+        data.v2 = second;
+        data.stat = stat;
         data.type = type;
 
         data.scaled = true;

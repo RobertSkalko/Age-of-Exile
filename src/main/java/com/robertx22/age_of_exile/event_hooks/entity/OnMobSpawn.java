@@ -39,11 +39,6 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
         if (endata != null) {
 
-            if (endata.getUnit() != null) {
-                endata.getUnit()
-                    .removeUnregisteredStats();
-            }
-
             endata.setType();
 
             PlayerEntity nearestPlayer = null;

@@ -1,15 +1,17 @@
 package com.robertx22.age_of_exile.capability.entity;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
-import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.perks.PlayerPerksData;
 import com.robertx22.age_of_exile.saveclasses.perks.SchoolData;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -18,6 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -132,11 +135,10 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
-        for (Perk x : getAllAllocatedPerks()) {
-            for (OptScaleExactStat s : x.stats) {
-                s.applyStats(data);
-            }
-        }
+    public List<StatContext> getStatAndContext(LivingEntity en) {
+        List<ExactStatData> stats = new ArrayList<>();
+        getAllAllocatedPerks().forEach(p -> p.stats.forEach(s -> stats.add(s.toExactStat(Load.Unit(en)
+            .getLevel()))));
+        return Arrays.asList(new MiscStatCtx(stats));
     }
 }

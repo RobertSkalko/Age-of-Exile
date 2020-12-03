@@ -1,29 +1,37 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IApplyStatPotion;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommonStatUtils {
 
-    public static void addExactCustomStats(UnitData data) {
-        data.getCustomExactStats()
-            .applyStats(data);
+    public static List<StatContext> addExactCustomStats(LivingEntity en) {
+        return Load.Unit(en)
+            .getCustomExactStats()
+            .getStatAndContext(en);
     }
 
-    public static void addPotionStats(LivingEntity entity) {
+    public static List<StatContext> addPotionStats(LivingEntity entity) {
+
+        List<StatContext> list = new ArrayList<>();
 
         for (StatusEffectInstance instance : entity.getStatusEffects()) {
-            if (instance.getEffectType() instanceof IApplyStatPotion) {
-                IApplyStatPotion stat = (IApplyStatPotion) instance.getEffectType();
+            if (instance.getEffectType() instanceof IApplyableStats) {
+                IApplyableStats stat = (IApplyableStats) instance.getEffectType();
                 try {
-                    stat.applyStats(entity.world, instance, entity);
+                    list.addAll(stat.getStatAndContext(entity));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
+        return list;
     }
 
 }

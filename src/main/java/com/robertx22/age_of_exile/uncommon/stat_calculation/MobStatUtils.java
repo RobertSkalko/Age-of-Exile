@@ -16,17 +16,23 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class MobStatUtils {
@@ -47,19 +53,31 @@ public class MobStatUtils {
 
     }
 
-    public static void addAffixStats(UnitData data) {
-
-        data.getAffixData()
+    public static List<StatContext> addAffixStats(LivingEntity en) {
+        List<StatContext> list = new ArrayList<>();
+        Load.Unit(en)
+            .getAffixData()
             .getAffixes()
-            .forEach(x -> x.applyStats(data));
+            .forEach(x -> list.addAll(x.getStatAndContext(en)));
+        return list;
 
     }
 
-    public static void worldMultiplierStats(LivingEntity en, World world, Unit unit) {
-        for (InCalcStatData stat : unit.getStats().statsInCalc
-            .values()) {
-            stat.multiplyFlat(Database.getDimensionConfig(world).mob_strength_multi);
-        }
+    public static List<StatContext> worldMultiplierStats(LivingEntity en) {
+        // todo does this work?
+
+        List<StatContext> list = new ArrayList<>();
+
+        List<ExactStatData> stats = new ArrayList<>();
+
+        float val = (1F - Database.getDimensionConfig(en.world).mob_strength_multi) * 100F;
+
+        stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, Health.getInstance()
+            .GUID()));
+        stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, TotalDamage.getInstance()
+            .GUID()));
+
+        return list;
 
     }
 
@@ -68,7 +86,7 @@ public class MobStatUtils {
         Unit unit = unitdata.getUnit();
         EntityConfig config = Database.getEntityConfig(entity, unitdata);
 
-        config.stats.stats.forEach(x -> x.applyStats(unitdata));
+        // TODO TODO TODO  config.stats.stats.forEach(x -> x.applyStats(unitdata));
 
         for (InCalcStatData data : unit.getStats().statsInCalc
             .values()) {

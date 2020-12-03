@@ -6,16 +6,21 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IApplyStatPotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.world.World;
 
-public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStatPotion {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyableStats {
 
     String exileEffectId;
 
@@ -133,25 +138,28 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyStat
     }
 
     @Override
-    public void applyStats(World world, StatusEffectInstance instance, LivingEntity target) {
-        if (!world.isClient) {
-
-            ExileEffectInstanceData data = getSavedData(target);
-            int stacks = data.stacks;
-
-            if (data != null && data.spellData != null && data.spellData.getCaster(world) != null) {
-                int casterlvl = Load.Unit(data.spellData.getCaster(world))
-                    .getLevel();
-                getExileEffect().stats.stream()
-                    .map(x -> new OptScaleExactStat(x.first * stacks, x.second * stacks, x.getStat(), x.getModType()))
-                    .forEach(x -> x.applyStats(Load.Unit(target), casterlvl));
-            }
-        }
-    }
-
-    @Override
     public String GUID() {
         return exileEffectId;
     }
 
+    @Override
+    public List<StatContext> getStatAndContext(LivingEntity en) {
+
+        List<ExactStatData> stats = new ArrayList<>();
+
+        ExileEffectInstanceData data = getSavedData(en);
+        if (data != null) {
+            int stacks = data.stacks;
+
+            if (data.spellData != null && data.spellData.getCaster(en.world) != null) {
+                int casterlvl = Load.Unit(data.spellData.getCaster(en.world))
+                    .getLevel();
+                getExileEffect().stats.stream()
+                    .map(x -> new OptScaleExactStat(x.first * stacks, x.second * stacks, x.getStat(), x.getModType()))
+                    .forEach(x -> stats.add(x.toExactStat(casterlvl)));
+            }
+        }
+
+        return Arrays.asList(new SimpleStatCtx(StatContext.StatCtxType.POTION_EFFECT, stats));
+    }
 }

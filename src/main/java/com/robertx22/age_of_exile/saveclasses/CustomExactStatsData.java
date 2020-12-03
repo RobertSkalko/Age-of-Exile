@@ -1,13 +1,19 @@
 package com.robertx22.age_of_exile.saveclasses;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.LivingEntity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 @Storable
 public class CustomExactStatsData implements IApplyableStats {
@@ -47,14 +53,14 @@ public class CustomExactStatsData implements IApplyableStats {
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
+    public List<StatContext> getStatAndContext(LivingEntity en) {
+        List<ExactStatData> stats = new ArrayList<>();
 
-        this.stats.values()
-            .forEach(x -> x.applyStats(data));
-
+        stats.addAll(this.stats.values());
         this.mods.values()
-            .forEach(x -> x.ToExactStat(100, data.getLevel())
-                .applyStats(data));
-
+            .forEach(x -> stats.add(x.ToExactStat(100, Load.Unit(en)
+                .getLevel())));
+        return Arrays.asList(new MiscStatCtx(stats));
     }
+
 }

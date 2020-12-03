@@ -5,18 +5,22 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -142,14 +146,17 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
         }
 
         @Override
-        public void applyStats(EntityCap.UnitData data) {
+        public List<StatContext> getStatAndContext(LivingEntity en) {
+            List<ExactStatData> stats = new ArrayList<>();
+
             if (scaleToLevel) {
-                mod.ToExactStat(100, data.getLevel())
-                    .applyStats(data);
+                stats.add(mod.ToExactStat(100, Load.Unit(en)
+                    .getLevel()));
             } else {
-                mod.ToExactStat(100, 1)
-                    .applyStats(data);
+                stats.add(mod.ToExactStat(100, 1));
             }
+
+            return Arrays.asList(new MiscStatCtx(stats));
         }
 
     }

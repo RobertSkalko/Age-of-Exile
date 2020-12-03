@@ -4,8 +4,12 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.AuraStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEffect;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -26,7 +30,7 @@ public class PlayerSpellCap {
     private static final String PLAYER_SPELL_DATA = "player_spells_data";
     private static final String GEMS = "gems";
 
-    public abstract static class ISpellsCap implements ICommonPlayerCap {
+    public abstract static class ISpellsCap implements ICommonPlayerCap, IApplyableStats {
 
         public abstract Spell getSpellByNumber(int key);
 
@@ -39,8 +43,6 @@ public class PlayerSpellCap {
         public abstract boolean alreadyHit(Entity spellEntity, LivingEntity target);
 
         public abstract void triggerAura(Spell spell);
-
-        public abstract void applyAuraStats();
 
         public abstract float getManaReservedByAuras();
 
@@ -215,27 +217,29 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public void applyAuraStats() {
+        public List<StatContext> getStatAndContext(LivingEntity en) {
 
-            try {
-                List<String> auras = getAuras();
-                auras.forEach(x -> {
-                    skillGems.stacks.stream()
-                        .forEach(s -> {
-                            SkillGemData data = SkillGemData.fromStack(s);
-                            if (data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x)) {
-                                Spell spell = Database.Spells()
-                                    .get(data.getSkillGem().spell_id);
-                                spell.aura_data.getStats(spell, entity, data.lvl)
-                                    .forEach(t -> t.applyStats(Load.Unit(entity)));
-                            }
-                        });
+            List<StatContext> ctxs = new ArrayList<>();
 
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            List<String> auras = getAuras();
+            auras.forEach(x -> {
+                skillGems.stacks.stream()
+                    .forEach(s -> {
+                        SkillGemData data = SkillGemData.fromStack(s);
+                        if (data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x)) {
+                            Spell spell = Database.Spells()
+                                .get(data.getSkillGem().spell_id);
 
+                            List<ExactStatData> list = spell.aura_data.stats.stream()
+                                .map(e -> e.ToExactStat(100, data.lvl))
+                                .collect(Collectors.toList());
+                            ctxs.add(new AuraStatCtx(spell, list));
+                        }
+                    });
+
+            });
+
+            return ctxs;
         }
 
     }

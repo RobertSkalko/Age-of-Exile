@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.database;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
@@ -17,7 +15,7 @@ import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBuf<OptScaleExactStat> {
+public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactStat> {
     public static OptScaleExactStat SERIALIZER = new OptScaleExactStat();
 
     public float first = 0;
@@ -92,19 +90,8 @@ public class OptScaleExactStat implements IApplyableStats, ITooltipList, IByteBu
         Stat stat = Database.Stats()
             .get(this.stat);
 
-        return ExactStatData.of(first, second, stat, getModType(), lvl);
+        return ExactStatData.of(first, second, stat, getModType(), scaleToLevel ? lvl : 1);
 
-    }
-
-    public void applyStats(EntityCap.UnitData data, int lvl) {
-        toExactStat(scaleToLevel ? lvl : 1)
-            .applyStats(data);
-    }
-
-    @Override
-    public void applyStats(EntityCap.UnitData data) {
-        toExactStat(scaleToLevel ? data.getLevel() : 1)
-            .applyStats(data);
     }
 
     public String getDebugString() {

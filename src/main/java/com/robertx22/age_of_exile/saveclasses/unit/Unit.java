@@ -17,6 +17,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
@@ -108,38 +110,6 @@ public class Unit {
 
     public void initStats() {
         getStats().stats = new HashMap<String, StatData>();
-    }
-
-    private void removeEmptyStats() {
-
-        for (StatData data : new ArrayList<>(getStats().stats.values())) {
-            if (!data.isNotZero() || data.getId()
-                .isEmpty()) {
-                //System.out.println(data.Name);
-                getStats().stats.remove(data.getId());
-            }
-        }
-
-    }
-
-    public void removeUnregisteredStats() {
-
-        if (getStats().stats == null) {
-            getStats().stats = new HashMap<String, StatData>();
-        }
-
-        removeEmptyStats();
-
-        for (Map.Entry<String, StatData> entry : new ArrayList<>(getStats().stats.entrySet())) {
-
-            StatData data = entry.getValue();
-
-            if (!Database.Stats()
-                .isRegistered(data.getId())) {
-                getStats().stats.remove(entry.getKey());
-            }
-        }
-
     }
 
     @Override
@@ -275,128 +245,124 @@ public class Unit {
 
         DirtyCheck old = getDirtyCheck();
 
-        for (Stat.CalcOrder order : Stat.CALC_ORDERS) {
-            // todo ideally only stats from that order would actually be calculated..
-            // but it works when you just calc twice for my use case
+        List<StatContext> statContexts = new ArrayList<>();
 
-            CommonStatUtils.addPotionStats(entity);
-            CommonStatUtils.addExactCustomStats(data);
+        statContexts.addAll(CommonStatUtils.addPotionStats(entity));
+        statContexts.addAll(CommonStatUtils.addExactCustomStats(entity));
 
-            if (entity instanceof PlayerEntity) {
-                PlayerStatUtils.AddPlayerBaseStats(data, this);
-                Load.perks(entity)
-                    .applyStats(data);
-                Load.playerSkills((PlayerEntity) entity)
-                    .applyStats(data);
-                Load.spells(entity)
-                    .applyAuraStats();
-            } else {
-                MobStatUtils.AddMobcStats(data, entity);
-                MobStatUtils.addAffixStats(data);
-                MobStatUtils.worldMultiplierStats(entity, entity.world, this);
-                MobStatUtils.increaseMobStatsPerTier(entity, data, this);
-                MobStatUtils.modifyMobStatsByConfig(entity, data);
-                ExtraMobRarityAttributes.add(entity, data);
-            }
+        if (entity instanceof PlayerEntity) {
+            statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
+            statContexts.addAll(Load.perks(entity)
+                .getStatAndContext(entity));
+            statContexts.addAll(Load.playerSkills((PlayerEntity) entity)
+                .getStatAndContext(entity));
+            statContexts.addAll(Load.spells(entity)
+                .getStatAndContext(entity));
+        } else {
+            MobStatUtils.AddMobcStats(data, entity);
+            statContexts.addAll(MobStatUtils.addAffixStats(entity));
+            statContexts.addAll(MobStatUtils.worldMultiplierStats(entity));
+            MobStatUtils.increaseMobStatsPerTier(entity, data, this);
+            MobStatUtils.modifyMobStatsByConfig(entity, data);
+            ExtraMobRarityAttributes.add(entity, data);
+        }
 
-            addGearStats(gears, entity, data);
+        statContexts.addAll(addGearStats(gears, entity, data));
 
-            addVanillaHpToStats(entity, data);
+        statContexts.forEach(x -> x.stats.forEach(s -> s.applyStats(data)));
 
-            new HashMap<>(getStats().statsInCalc).entrySet()
-                .forEach(x -> {
-                    InCalcStatData statdata = x.getValue();
-                    Stat stat = x.getValue()
-                        .GetStat();
-                    if (statdata != null && stat instanceof ITransferToOtherStats) {
-                        ITransferToOtherStats add = (ITransferToOtherStats) stat;
-                        add.transferStats(data, statdata);
-                    }
-                });
+        addVanillaHpToStats(entity, data);
 
-            new HashMap<>(getStats().statsInCalc).entrySet()
-                .forEach(x -> {
-                    InCalcStatData statdata = x.getValue();
-                    Stat stat = x.getValue()
-                        .GetStat();
-                    if (statdata != null && stat instanceof ICoreStat) {
-                        ICoreStat add = (ICoreStat) stat;
-                        add.addToOtherStats(data, statdata);
-                    }
-                });
+        new HashMap<>(getStats().statsInCalc).entrySet()
+            .forEach(x -> {
+                InCalcStatData statdata = x.getValue();
+                Stat stat = x.getValue()
+                    .GetStat();
+                if (stat instanceof ITransferToOtherStats) {
+                    ITransferToOtherStats add = (ITransferToOtherStats) stat;
+                    add.transferStats(data, statdata);
+                }
+            });
 
-            new HashMap<>(getStats().statsInCalc).entrySet()
-                .forEach(x -> {
-                    InCalcStatData statdata = x.getValue();
-                    Stat stat = x.getValue()
-                        .GetStat();
-                    if (statdata != null && stat instanceof IAffectsStats) {
-                        IAffectsStats add = (IAffectsStats) stat;
-                        add.affectStats(data, statdata);
-                    }
-                });
+        new HashMap<>(getStats().statsInCalc).entrySet()
+            .forEach(x -> {
+                InCalcStatData statdata = x.getValue();
+                Stat stat = x.getValue()
+                    .GetStat();
+                if (stat instanceof ICoreStat) {
+                    ICoreStat add = (ICoreStat) stat;
+                    add.addToOtherStats(data, statdata);
+                }
+            });
 
-            if (entity instanceof PlayerEntity) {
+        new HashMap<>(getStats().statsInCalc).entrySet()
+            .forEach(x -> {
+                InCalcStatData statdata = x.getValue();
+                Stat stat = x.getValue()
+                    .GetStat();
+                if (stat instanceof IAffectsStats) {
+                    IAffectsStats add = (IAffectsStats) stat;
+                    add.affectStats(data, statdata);
+                }
+            });
 
-                for (StatContainerType type : StatContainerType.values()) {
-                    // different stat containers for each spell with support gems.
-                    if (type == StatContainerType.NORMAL) {
-                        this.stats.put(type, getStats());
-                    } else {
+        if (entity instanceof PlayerEntity) {
 
-                        StatContainer copy = getStats().cloneForSpellStats();
-                        stats.put(type, copy);
+            for (StatContainerType type : StatContainerType.values()) {
+                // different stat containers for each spell with support gems.
+                if (type == StatContainerType.NORMAL) {
+                    this.stats.put(type, getStats());
+                } else {
 
-                        List<SkillGemData> supportGems = Load.spells(entity)
-                            .getSkillGemData()
-                            .getSupportGemsOf(type.place);
+                    StatContainer copy = getStats().cloneForSpellStats();
+                    stats.put(type, copy);
 
-                        List<SkillGemData> noGemDuplicateList = new ArrayList<>();
+                    List<SkillGemData> supportGems = Load.spells(entity)
+                        .getSkillGemData()
+                        .getSupportGemsOf(type.place);
 
-                        Set<String> gemIdSet = new HashSet<>();
+                    List<SkillGemData> noGemDuplicateList = new ArrayList<>();
 
-                        supportGems.forEach(x -> {
-                            if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
-                                noGemDuplicateList.add(x);
-                                gemIdSet.add(x.id);
-                            }
+                    Set<String> gemIdSet = new HashSet<>();
 
-                        });
-
-                        for (SkillGemData sd : noGemDuplicateList) {
-
-                            if (sd.canPlayerUse((PlayerEntity) entity)) {
-                                sd.getSkillGem()
-                                    .getConstantStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
-                                sd.getSkillGem()
-                                    .getRandomStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
-
-                            }
+                    supportGems.forEach(x -> {
+                        if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
+                            noGemDuplicateList.add(x);
+                            gemIdSet.add(x.id);
                         }
 
+                    });
+
+                    for (SkillGemData sd : noGemDuplicateList) {
+
+                        if (sd.canPlayerUse((PlayerEntity) entity)) {
+                            sd.getSkillGem()
+                                .getConstantStats(sd)
+                                .forEach(s -> {
+                                    copy.getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
+                            sd.getSkillGem()
+                                .getRandomStats(sd)
+                                .forEach(s -> {
+                                    copy.getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
+
+                        }
                     }
 
                 }
 
-                stats.values()
-                    .forEach(x -> x.calculate());
-
-            } else {
-                stats.get(StatContainerType.NORMAL)
-                    .calculate();
             }
 
-        }
+            stats.values()
+                .forEach(x -> x.calculate());
 
-        removeEmptyStats();
+        } else {
+            stats.get(StatContainerType.NORMAL)
+                .calculate();
+        }
 
         DirtyCheck aftercalc = getDirtyCheck();
 
@@ -434,7 +400,13 @@ public class Unit {
         }
     }
 
-    private void addGearStats(List<GearData> gears, LivingEntity entity, UnitData data) {
+    private List<StatContext> addGearStats(List<GearData> gears, LivingEntity entity, UnitData data) {
+
+        /// can rework this now that i unequip gear
+        // TODO
+
+        List<StatContext> ctxs = new ArrayList<>();
+
 
         /*
         Add all gear stats that meet requirements
@@ -483,10 +455,8 @@ public class Unit {
 
                 if (addstats) {
 
-                    gear.GetAllStats(true, false)
-                        .forEach(x -> {
-                            x.applyStats(data);
-                        });
+                    ctxs.add(new GearStatCtx(gear, gear.GetAllStats(true, false)));
+
                     toremove.add(gear);
                     addedAny = true;
                 }
@@ -496,7 +466,7 @@ public class Unit {
             if (toremove.isEmpty()) {
                 if (!addedAny) {
                     gears.clear();
-                    return;
+                    break;
                 } else {
                     addedAny = false;
                 }
@@ -505,6 +475,8 @@ public class Unit {
             toremove.forEach(x -> gears.removeIf(g -> g.gear.equals(x)));
             toremove.clear();
         }
+
+        return ctxs;
 
     }
 

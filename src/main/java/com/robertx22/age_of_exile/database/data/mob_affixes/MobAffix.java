@@ -1,17 +1,22 @@
 package com.robertx22.age_of_exile.database.data.mob_affixes;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Formatting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -111,8 +116,11 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
-        this.stats.forEach(x -> x.ToExactStat(100, data.getLevel())
-            .applyStats(data));
+    public List<StatContext> getStatAndContext(LivingEntity en) {
+        List<ExactStatData> stats = new ArrayList<>();
+        this.stats.forEach(x -> stats.add(x.ToExactStat(100, Load.Unit(en)
+            .getLevel())));
+        return Arrays.asList(new SimpleStatCtx(StatContext.StatCtxType.MOB_AFFIX, stats));
     }
+
 }

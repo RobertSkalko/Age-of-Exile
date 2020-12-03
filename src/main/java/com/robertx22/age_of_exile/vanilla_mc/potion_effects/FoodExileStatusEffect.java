@@ -3,7 +3,10 @@ package com.robertx22.age_of_exile.vanilla_mc.potion_effects;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.LivingEntity;
@@ -15,13 +18,13 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPotion, IOneOfATypePotion, IAutoLocName {
+public class FoodExileStatusEffect extends StatusEffect implements IApplyableStats, IOneOfATypePotion, IAutoLocName {
 
     FoodExileEffect effect;
 
@@ -65,14 +68,6 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPot
         }
     }
 
-    @Override
-    public void applyStats(World world, StatusEffectInstance instance, LivingEntity target) {
-
-        List<OptScaleExactStat> list = getStats(instance.getAmplifier());
-
-        list.forEach(x -> x.applyStats(Load.Unit(target)));
-    }
-
     public List<OptScaleExactStat> getStats(int amplifier) {
         SkillItemTier tier = SkillItemTier.of(amplifier - 1);
 
@@ -113,5 +108,18 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyStatPot
     @Override
     public String GUID() {
         return "";
+    }
+
+    @Override
+    public List<StatContext> getStatAndContext(LivingEntity en) {
+        StatusEffectInstance instance = en.getStatusEffect(this);
+
+        return Arrays.asList(new SimpleStatCtx(
+            StatContext.StatCtxType.POTION_EFFECT,
+            getStats(instance.getAmplifier()).stream()
+                .map(x -> x.toExactStat(Load.Unit(en)
+                    .getLevel()))
+                .collect(Collectors.toList())));
+
     }
 }

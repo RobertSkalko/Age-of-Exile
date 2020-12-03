@@ -503,7 +503,6 @@ public class EntityCap {
                 if (unit == null) {
                     unit = new Unit();
                 }
-                unit.removeUnregisteredStats();
 
                 // check if newbie
                 if (isNewbie()) {

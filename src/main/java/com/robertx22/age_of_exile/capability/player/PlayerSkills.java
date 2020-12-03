@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillsData;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SkillLevelUpToClient;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -14,9 +14,12 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToCl
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.SoundUtils;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
 
@@ -95,7 +98,8 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
-        this.data.applyStats(data);
+    public List<StatContext> getStatAndContext(LivingEntity en) {
+        return data.getStatAndContext(en);
     }
+
 }
