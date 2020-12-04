@@ -21,7 +21,7 @@ public abstract class BaseDamageIncreaseEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.percentIncrease += data.getAverageValue();
+        effect.increaseByPercent(data.getAverageValue());
         return effect;
     }
 

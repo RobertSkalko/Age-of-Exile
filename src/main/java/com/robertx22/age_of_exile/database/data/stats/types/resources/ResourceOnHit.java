@@ -78,7 +78,7 @@ public class ResourceOnHit extends Stat implements IGenerated<Stat> {
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
             float amount = data.getAverageValue();
-            effect.addToRestore(new ConditionalRestoreResource(info.resource, amount));
+            effect.addToRestore(new ConditionalRestoreResource(ConditionalRestoreResource.RestoreType.LEECH, info.resource, amount));
             return effect;
         }
 
@@ -94,7 +94,7 @@ public class ResourceOnHit extends Stat implements IGenerated<Stat> {
 
         @Override
         public int GetPriority() {
-            return Priority.Last.priority;
+            return Priority.AlmostLast.priority;
         }
     }
 

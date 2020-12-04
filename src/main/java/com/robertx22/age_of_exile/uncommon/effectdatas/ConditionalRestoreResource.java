@@ -7,17 +7,24 @@ import java.util.function.Predicate;
 
 public class ConditionalRestoreResource {
 
-    public ConditionalRestoreResource(ResourceType resource, float amount, Predicate<DamageEffect> predicate) {
+    public enum RestoreType {
+        LEECH, REGENERATION;
+    }
+
+    public ConditionalRestoreResource(RestoreType restoreType, ResourceType resource, float amount, Predicate<DamageEffect> predicate) {
         this.resource = resource;
         this.amount = amount;
         this.predicate = predicate;
+        this.restoreType = restoreType;
     }
 
-    public ConditionalRestoreResource(ResourceType resource, float amount) {
+    public ConditionalRestoreResource(RestoreType restoreType, ResourceType resource, float amount) {
         this.resource = resource;
         this.amount = amount;
+        this.restoreType = restoreType;
     }
 
+    public RestoreType restoreType;
     public ResourceType resource;
     public float amount;
 

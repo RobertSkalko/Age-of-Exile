@@ -19,6 +19,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
@@ -271,7 +273,11 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, MagicShield.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, new ElementalResist(Elements.Elemental), ModType.FLAT)
+        );
 
+        PerkBuilder.bigStat("big_aura_eff", "Determination",
+            new OptScaleExactStat(20, IncreasedEffectOfAuras.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, ReducedManaReserved.getInstance(), ModType.FLAT)
         );
 
     }

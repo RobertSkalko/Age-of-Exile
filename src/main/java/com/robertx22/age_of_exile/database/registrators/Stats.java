@@ -137,6 +137,7 @@ public class Stats implements ISlashRegistryInit {
                     add(NonCritDamage.getInstance());
 
                     // Resources
+                    add(IncreasedLeech.getInstance());
                     add(DamageAbsorbedByMana.getInstance());
                     add(HealToMagicShield.getInstance());
                     add(HealthRestorationToBlood.getInstance());

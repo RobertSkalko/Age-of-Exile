@@ -1,29 +1,29 @@
-package com.robertx22.age_of_exile.database.data.stats.types.resources.health;
+package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ConditionalRestoreResource;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class Lifesteal extends Stat {
+public class IncreasedLeech extends Stat {
+    public static String GUID = "inc_leech";
 
-    private Lifesteal() {
+    private IncreasedLeech() {
         this.statGroup = StatGroup.RESTORATION;
+        this.scaling = StatScaling.SLOW;
         this.statEffect = new Effect();
     }
 
-    public static String GUID = "lifesteal";
-
-    public static Lifesteal getInstance() {
-        return SingletonHolder.INSTANCE;
+    public static IncreasedLeech getInstance() {
+        return IncreasedLeech.SingletonHolder.INSTANCE;
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Percent of basic attack DMG added to health";
+        return "Affects all resource leech stats like: onhit, leech dmg, on kill restore etc";
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Lifesteal extends Stat {
 
     @Override
     public Elements getElement() {
-        return null;
+        return Elements.All;
     }
 
     @Override
@@ -43,14 +43,14 @@ public class Lifesteal extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Lifesteal";
+        return "Increased Leech Effects";
     }
 
     private static class Effect extends BaseDamageEffect {
 
         @Override
         public int GetPriority() {
-            return Priority.AlmostLast.priority;
+            return Priority.Last.priority;
         }
 
         @Override
@@ -60,20 +60,23 @@ public class Lifesteal extends Stat {
 
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            float healed = ((float) data.getAverageValue() * effect.number / 100);
-            effect.addToRestore(new ConditionalRestoreResource(ConditionalRestoreResource.RestoreType.LEECH, ResourceType.HEALTH, healed));
+            float multi = data.getMultiplier();
+            effect.toRestore.forEach(x -> {
+                if (x.restoreType == ConditionalRestoreResource.RestoreType.LEECH) {
+                    x.amount *= multi;
+                }
+            });
             return effect;
-
         }
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isAttack();
+            return !effect.toRestore.isEmpty();
         }
 
     }
 
     private static class SingletonHolder {
-        private static final Lifesteal INSTANCE = new Lifesteal();
+        private static final IncreasedLeech INSTANCE = new IncreasedLeech();
     }
 }

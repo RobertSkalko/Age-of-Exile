@@ -301,6 +301,7 @@ basic_attack_water_dmg_leech_as_blood
 basic_attack_water_dmg_leech_as_mana
 all_nature_dmg_leech_as_blood
 chill_bonus_dmg
+inc_leech
 attack_elemental_dmg_leech_as_magic_shield
 other_nature_dmg_leech_as_health
 attack_all_dmg_leech_as_health

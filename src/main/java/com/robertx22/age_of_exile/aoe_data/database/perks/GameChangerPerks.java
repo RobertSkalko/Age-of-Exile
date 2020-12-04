@@ -5,18 +5,20 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.NonCritDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealToMagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.IncreasedLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -34,9 +36,9 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("arcane_devotion", "Arcane Devotion",
-            new OptScaleExactStat(-50, Health.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-50, HealthRegen.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-50, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-25, Health.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-25, HealthRegen.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-25, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(25, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
@@ -45,9 +47,11 @@ public class GameChangerPerks implements ISlashRegistryInit {
             new OptScaleExactStat(-50, new ElementalDamageBonus(Elements.Physical), ModType.FLAT)
         );
 
-        PerkBuilder.gameChanger("reckless_blows", "Reckless Blows",
-            new OptScaleExactStat(-50, HealthRegen.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(15, new ElementalPenetration(Elements.Elemental), ModType.FLAT)
+        PerkBuilder.gameChanger("refined_taste", "Refined Taste",
+            new OptScaleExactStat(50, IncreasedLeech.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(-75, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-75, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-75, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("overflowing_vitality", "Overflowing Vitality",

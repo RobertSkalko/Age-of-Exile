@@ -144,6 +144,7 @@ Or maybe 20 str + scaling over lvls slowly.
 * added reduced mana reserved stat and increased effect of auras stat
 * massive changes to internal stat calculation code, initially made to make the "Increased aura effect"  stat work. 
 Now I know the context of where each stat came from, so stats like "50% increased defenses from shields" can work!
+* added increased leech effect stat
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

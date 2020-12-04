@@ -75,10 +75,9 @@ public class ElementalFocus extends SingleElementalStat {
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
 
             if (effect.element.equals(stat.getElement())) {
-                effect.percentIncrease += data.getAverageValue();
-
+                effect.increaseByPercent(data.getAverageValue());
             } else {
-                effect.percentIncrease -= data.getAverageValue();
+                effect.increaseByPercent(-data.getAverageValue());
             }
 
             return effect;

@@ -16,6 +16,7 @@ big_int
 arcane_devotion
 all_water_damage
 ele_axe_damage
+red_mana_reserved
 water_weapon_damage
 all_thunder_damage
 hp_res
@@ -33,6 +34,7 @@ flat_ms_mana_regen
 big_flame_of_life
 spell_fire_damage_and_dot
 scion
+big_aura_eff
 water_penetration
 big_rat
 all_physical_damage
@@ -62,6 +64,7 @@ big_aspect_of_thunder
 dodge
 spell_elemental_damage_and_dot
 familiar_instincts
+refined_taste
 health
 all_nature_damage
 chance_of_poison

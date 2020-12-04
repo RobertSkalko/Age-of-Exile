@@ -54,6 +54,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.weaponType = weptype;
         this.number = dmg;
         this.style = style;
+        this.originalNumber = number;
         calcBlock();
     }
 
@@ -65,6 +66,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.weaponType = weptype;
         this.number = dmg;
         this.style = style;
+        this.originalNumber = number;
         calcBlock();
     }
 
@@ -73,7 +75,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
 
-    private List<ConditionalRestoreResource> toRestore = new ArrayList<>();
+    public List<ConditionalRestoreResource> toRestore = new ArrayList<>();
 
     public void addToRestore(ConditionalRestoreResource data) {
         this.toRestore.add(data);
@@ -81,6 +83,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     public boolean isElemental() {
         return this.element != null && this.element != Elements.Physical;
+    }
+
+    public void increaseByPercent(float perc) {
+        this.number += this.originalNumber * perc / 100F;
     }
 
     public void addBonusEleDmg(Elements element, float dmg) {
@@ -109,7 +115,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
-    public float percentIncrease = 0;
+    public float originalNumber;
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
     public Elements element = Elements.Physical;
@@ -135,8 +141,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return 0;
         }
 
-        float percentMulti = 1F + this.percentIncrease / 100F;
-
         if (source instanceof PlayerEntity) {
             dmg = modifyByAttackSpeedIfMelee(dmg);
             dmg = modifyIfArrowDamage(dmg);
@@ -146,8 +150,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (areBothPlayers()) {
             dmg *= ModConfig.get().Server.PVP_DMG_MULTI;
         }
-
-        dmg = dmg * percentMulti;
 
         if (!isDodged && target instanceof PlayerEntity) { // todo this code sucks
             // a getter should not modify anything
