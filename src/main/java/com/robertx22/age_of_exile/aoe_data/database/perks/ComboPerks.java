@@ -102,10 +102,16 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(1, ProjectileDamage.getInstance(), ModType.FLAT)
         );
+
+        PerkBuilder.stat("hp_dot_dmg",
+            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, DotDamage.getInstance(), ModType.FLAT)
+        );
+
         PerkBuilder.stat("fire_water_spell_dmg",
             new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
         );
-       
+
     }
 }

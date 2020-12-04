@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.selectors;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
@@ -50,7 +51,7 @@ public class InFrontSelector extends BaseTargetSelector implements ICTextTooltip
     }
 
     @Override
-    public List<LivingEntity> get(LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
+    public List<LivingEntity> get(SpellCtx ctx, LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
         EntityFinder.EntityPredicate predicate = data.getEntityPredicate();
         float distance = data.get(DISTANCE)
             .floatValue();

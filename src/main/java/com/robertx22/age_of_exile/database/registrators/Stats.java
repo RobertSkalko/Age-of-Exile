@@ -92,6 +92,7 @@ public class Stats implements ISlashRegistryInit {
 
                     add(ProjectileDamage.getInstance());
                     add(DotDamage.getInstance());
+                    add(AreaDamage.getInstance());
 
                     add(DamageUnderPotion.HUNGER);
                     add(DamageUnderPotion.POISON);
@@ -118,6 +119,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ProjectileSpeedStat.getInstance());
                     add(ReducedCooldownStat.getInstance());
                     add(ManaCost.getInstance());
+                    add(IncreasedAreaOfEffect.getInstance());
                     add(CastSpeed.getInstance());
 
                     add(AllAttributes.getInstance());

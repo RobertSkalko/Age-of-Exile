@@ -173,6 +173,7 @@ blood_on_spell_hit
 dot_water_dmg_leech_as_health
 all_attributes
 chance_of_burn
+area_dmg
 convert_hp_to_phys_dmg
 spell_nature_dmg_leech_as_mana
 blood_on_dot_hit
@@ -314,6 +315,7 @@ fire_focus
 magic_shield_on_all_hit
 nature_focus
 attack_water_dmg_leech_as_mana
+inc_aoe
 ele_crossbow_damage
 magic_shield_regen
 dot_water_dmg_leech_as_magic_shield

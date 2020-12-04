@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.selectors;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
@@ -24,7 +25,7 @@ public class CasterSelector extends BaseTargetSelector implements ICTextTooltip 
     }
 
     @Override
-    public List<LivingEntity> get(LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
+    public List<LivingEntity> get(SpellCtx ctx, LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
         return Arrays.asList(caster);
     }
 

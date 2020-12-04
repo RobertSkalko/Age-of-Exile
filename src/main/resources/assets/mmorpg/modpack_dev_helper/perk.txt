@@ -31,6 +31,7 @@ projectile_damage
 big_breath_of_water
 big_mana_and_health
 cast_speed
+tormentor
 spell_damage
 all_elemental_damage
 flat_ms_mana_regen
@@ -167,6 +168,7 @@ chance_of_frostburn
 big_will_of_mana
 int
 all_fire_damage
+hp_dot_dmg
 big_balistic
 fire_penetration
 sword_damage

@@ -88,7 +88,7 @@ public class ComponentPart {
 
         for (MapHolder part : targets) {
             BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
-            list.addAll(selector.get(ctx.caster, ctx.target, ctx.pos, part));
+            list.addAll(selector.get(ctx, ctx.caster, ctx.target, ctx.pos, part));
         }
 
         for (MapHolder part : acts) {

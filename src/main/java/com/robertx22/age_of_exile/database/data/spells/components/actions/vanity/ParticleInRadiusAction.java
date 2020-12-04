@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions.vanit
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.library_of_exile.utils.GeometryUtils;
@@ -37,10 +38,16 @@ public class ParticleInRadiusAction extends SpellAction {
 
             float radius = data.get(RADIUS)
                 .floatValue();
+
+            radius *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.AREA);
+
             float height = data.getOrDefault(HEIGHT, 0D)
                 .floatValue();
             int amount = data.get(PARTICLE_COUNT)
                 .intValue();
+
+            amount *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.AREA);
+
             float yrand = data.getOrDefault(Y_RANDOM, 0D)
                 .floatValue();
 

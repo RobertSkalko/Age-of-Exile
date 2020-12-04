@@ -7,16 +7,16 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class ProjectileSpeedStat extends Stat {
+public class IncreasedAreaOfEffect extends Stat {
 
-    private ProjectileSpeedStat() {
-        this.max_val = 200;
+    private IncreasedAreaOfEffect() {
+        this.max_val = 500;
 
         this.statEffect = new Effect();
     }
 
-    public static ProjectileSpeedStat getInstance() {
-        return ProjectileSpeedStat.SingletonHolder.INSTANCE;
+    public static IncreasedAreaOfEffect getInstance() {
+        return IncreasedAreaOfEffect.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -31,31 +31,30 @@ public class ProjectileSpeedStat extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Makes spell projectiles faster";
+        return "Spell aoe effects will be larger.";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Faster Projectiles";
+        return "Increased Area of Effect";
     }
 
     @Override
     public String GUID() {
-        return "faster_projectiles";
+        return "inc_aoe";
     }
 
     static class Effect extends BaseSpellCalcEffect {
 
         @Override
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.add(SpellModEnum.PROJECTILE_SPEED, data.getAverageValue());
+            effect.data.add(SpellModEnum.AREA, data.getAverageValue());
             return effect;
         }
 
     }
 
     private static class SingletonHolder {
-        private static final ProjectileSpeedStat INSTANCE = new ProjectileSpeedStat();
+        private static final IncreasedAreaOfEffect INSTANCE = new IncreasedAreaOfEffect();
     }
 }
-

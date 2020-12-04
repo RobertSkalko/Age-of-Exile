@@ -231,7 +231,7 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 200 * 20), "Gorgon's Gaze",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            Arrays.asList(SkillGemTag.AREA))
             .onCast(PartBuilder.playSound(SOUNDS.STONE_CRACK, 1D, 1D))
             .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY, 15D, 3D, 20 * 5D))
             .build();
