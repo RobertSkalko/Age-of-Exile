@@ -33,11 +33,13 @@ big_mana_and_health
 cast_speed
 tormentor
 spell_damage
+area_dmg_mana
 all_elemental_damage
 flat_ms_mana_regen
 big_flame_of_life
 spell_fire_damage_and_dot
 scion
+inc_area_spell_dmg
 big_aura_eff
 water_penetration
 big_rat
@@ -91,7 +93,9 @@ big_effect_of_ele
 melee_dmg
 big_health_ms_mana_cost
 big_breath_of_thunder
+big_inc_area_spell_dmg
 mana_regen
+big_area_dmg_mana
 attack_speed
 ranged_dmg
 big_aspect_of_nature

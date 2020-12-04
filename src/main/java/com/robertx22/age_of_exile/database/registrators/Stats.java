@@ -165,7 +165,6 @@ public class Stats implements ISlashRegistryInit {
                     add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
-                    add(ElementalDodge.getInstance());
 
                     add(AttackStyleDamage.MELEE);
                     add(AttackStyleDamage.RANGED);

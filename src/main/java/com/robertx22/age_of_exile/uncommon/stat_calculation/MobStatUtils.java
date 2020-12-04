@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.ElementalDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.SpellDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -136,8 +135,6 @@ public class MobStatUtils {
             .GUID(), lvl));
 
         stats.add(ExactStatData.scaleTo(50, ModType.FLAT, DodgeRating.getInstance()
-            .GUID(), lvl));
-        stats.add(ExactStatData.scaleTo(50, ModType.FLAT, ElementalDodge.getInstance()
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(9, ModType.FLAT, SpellDodge.getInstance()
             .GUID(), lvl));

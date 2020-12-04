@@ -54,7 +54,6 @@ piercing_projectiles
 spell_thunder_dmg_leech_as_blood
 extra_mob_drops
 water_dot_damage
-ele_dodge
 spell_all_dmg_leech_as_blood
 attack_fire_dmg_leech_as_health
 other_fire_dmg_leech_as_health

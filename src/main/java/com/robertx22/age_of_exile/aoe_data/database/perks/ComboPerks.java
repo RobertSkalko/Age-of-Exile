@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -111,6 +112,15 @@ public class ComboPerks implements ISlashRegistryInit {
         PerkBuilder.stat("fire_water_spell_dmg",
             new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
+        );
+        PerkBuilder.stat("inc_area_spell_dmg",
+            new OptScaleExactStat(4, IncreasedAreaOfEffect.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(2, SpellDamage.getInstance(), ModType.FLAT)
+        );
+
+        PerkBuilder.stat("area_dmg_mana",
+            new OptScaleExactStat(4, AreaDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
 
     }

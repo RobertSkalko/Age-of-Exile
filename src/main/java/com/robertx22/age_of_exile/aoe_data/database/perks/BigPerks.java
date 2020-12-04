@@ -23,6 +23,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shie
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -335,6 +336,18 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, SpellCriticalHit.getInstance(), ModType.FLAT),
             new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_inc_area_spell_dmg", "Blast Radius",
+            new OptScaleExactStat(15, IncreasedAreaOfEffect.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, SpellDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_area_dmg_mana", "Destruction Zone",
+            new OptScaleExactStat(10, AreaDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(20, Intelligence.INSTANCE, ModType.FLAT)
         );
 
     }

@@ -1,7 +1,7 @@
 ## v1.8.0
 
 
-Skills Update! No, not the spells, but skills/professions!
+### Skills/Professions feature!
 
 Added many gathering skills: Mining, Farming, Exploring, and Fishing.
 These skills level up as you mine ores, gather crops, loot chests or fish. 
@@ -20,6 +20,32 @@ In fact, leveling your combat level is now harder, and bonus exp given by leveli
 These skills were added to provide a reason and rewards for doing things besides killing mobs and exploring.
 They will provide you useful items to aid in combat, and ways to teleport to adventure and back!
 
+### Spells update!
+
+Spell schools are gone, now spells are skill gems! (not to be confused with skills)
+
+You have 8 skill gem slots, and 4 of those have support gem slots.
+Support gems power up that skill gem. Here's some support gems that exist:
+- projectile amount
+- projectile speed
+- cast/attack speed
+- critical hit/dmg
+- chance to proc effects
+- health/mana leech
+- piercing projectiles
+
+This way mana cost won't be going up magically as you level that much, 
+instead you have the choice of using extra mana with support gems, to deal more damage.
+
+Misc spell stuff:
+* deleted a few spells
+* tweaked some others (for example arcane comet is now meteor)
+* added new melee spells (whirlwind, tidal strike etc)
+* You can't use multiple of the same type for 1 spell.
+* casting now uses 4 keybinds and shift switches to the 2nd hotbar of another 4 spells that use the same 4 keybinds.
+
+
+Other misc changes:
 * new overlay gui. I think this one will become the main one. 
 Basically like hack slash mine's gui, just less textured.
 It's fully configurable unlike the other guis.
@@ -147,8 +173,4 @@ Now I know the context of where each stat came from, so stats like "50% increase
 * added increased leech effect stat
 * new stat, spell area of effect damage
 * new stat, increased area of effect
-
-Spell adjustements:
-* whirlpool is now at caster, not a projectile
-* fire/frost etc balls now have about 4 times less cooldown, in other words, pew pew pew
-* many more!
+* dodge now works against elemental attacks, but is harder to get

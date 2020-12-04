@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DotDamage;
@@ -83,12 +82,6 @@ public class GameChangerPerks implements ISlashRegistryInit {
 
         PerkBuilder.gameChanger("magical_life", "Magical Life",
             new OptScaleExactStat(50, DatapackStatAdder.CONVERT_MAGIC_SHIELD_TO_HEALTH, ModType.FLAT)
-        );
-
-        PerkBuilder.gameChanger("familiar_instincts", "Familiar Instincts",
-            new OptScaleExactStat(25, DatapackStatAdder.DODGE_TO_ELE_DODGE, ModType.FLAT),
-            new OptScaleExactStat(-25, Armor.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-25, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("divinity", "Divinity",

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.spell_calc;
 
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalcEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -47,6 +48,12 @@ public class PiercingProjectile extends Stat {
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
             effect.data.piercing = data.getAverageValue() > 0;
             return effect;
+        }
+
+        @Override
+        public boolean canActivate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
+            return effect.getSpell()
+                .is(SkillGemTag.PROJECTILE);
         }
     }
 
