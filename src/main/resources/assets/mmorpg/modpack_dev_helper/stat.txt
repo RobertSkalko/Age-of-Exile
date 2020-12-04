@@ -153,6 +153,7 @@ attack_nature_dmg_leech_as_blood
 spell_elemental_dmg_leech_as_blood
 fire_weapon_damage
 other_water_dmg_leech_as_mana
+dot_dmg
 health_on_other_hit
 blood_on_all_hit
 nature_dot_damage

@@ -91,6 +91,7 @@ public class Stats implements ISlashRegistryInit {
                     add(Accuracy.getInstance());
 
                     add(ProjectileDamage.getInstance());
+                    add(DotDamage.getInstance());
 
                     add(DamageUnderPotion.HUNGER);
                     add(DamageUnderPotion.POISON);

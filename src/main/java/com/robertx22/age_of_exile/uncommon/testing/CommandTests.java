@@ -19,7 +19,7 @@ public class CommandTests {
             tests.get(id)
                 .run(p);
 
-            System.out.print("Test ended: " + "id" + "\n");
+            System.out.print("Test ended: " + id + "\n");
 
             System.out.print("\n");
 

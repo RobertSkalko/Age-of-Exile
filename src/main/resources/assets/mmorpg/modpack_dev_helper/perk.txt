@@ -57,6 +57,7 @@ big_vampire
 big_eviscerator
 spell_critical_damage
 big_str
+crit_proj_dmg
 steady_hand
 nature_resist
 big_heart_of_fire
@@ -69,6 +70,7 @@ dodge
 spell_elemental_damage_and_dot
 familiar_instincts
 refined_taste
+huge_int
 health
 all_nature_damage
 chance_of_poison
@@ -99,6 +101,7 @@ flat_health_mana
 magic_dmg
 wand_damage
 overflowing_vitality
+big_gambler
 true_hit
 water_resist
 critical_damage
@@ -106,6 +109,7 @@ bow_damage
 mana_cost
 hunter
 axe_damage
+big_inner_sense
 ele_trident_damage
 armor_and_ms
 big_poe
@@ -113,12 +117,15 @@ physical_weapon_damage
 health_regen
 big_blood_siphon
 spell_fire_damage
+fire_water_spell_dmg
 dodge_and_ms
 big_spell_crit
 templar
 magic_shield
 big_health_mana_cost
+huge_str
 big_armor_and_ms
+huge_dex
 magical_life
 elemental_purity
 armor
@@ -128,12 +135,14 @@ spell_dmg_flat_mana
 spell_nature_damage
 elemental_resist
 big_precision
+big_primal
 big_fury_bolt
 spell_water_damage
 big_divine_light
 divinity
 big_overflow_mana
 big_ele_protection
+big_ele_unity
 duelist
 battle_mage
 big_hunter
@@ -150,6 +159,7 @@ magic_shield_regen
 fire_weapon_damage
 big_faith_armor
 spell_water_damage_and_dot
+big_poison_alchemy
 spell_thunder_damage_and_dot
 start
 big_sadist
@@ -163,4 +173,5 @@ sword_damage
 big_heart_of_nature
 reckless_blows
 big_fighter
+big_fire_water_spell_crit_dmg
 chance_of_burn

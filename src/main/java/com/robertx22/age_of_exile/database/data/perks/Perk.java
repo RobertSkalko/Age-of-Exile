@@ -140,6 +140,11 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
                     .formatted(Formatting.YELLOW));
             }
 
+            if (this.type == PerkType.MAJOR) {
+
+                list.add(new LiteralText("Game changer talent.").formatted(Formatting.RED));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -31,7 +31,11 @@ public class CountTalentTreeAttributes extends CommandTest {
                 .get(x1);
 
             if (perk != null) {
-                perk.stats.forEach(s -> stats.add(s));
+                perk.stats.forEach(s -> {
+                    if (s.first > 0) {
+                        stats.add(s);
+                    }
+                });
 
                 if (perk.type == Perk.PerkType.SPECIAL) {
                     notables++;
