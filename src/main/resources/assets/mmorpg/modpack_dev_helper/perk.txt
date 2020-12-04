@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 big_flow_of_mana
+dodge_and_hp
 big_wand
 ele_bow_damage
 big_heart_of_ice
@@ -19,9 +20,11 @@ ele_axe_damage
 red_mana_reserved
 water_weapon_damage
 all_thunder_damage
+big_mana_steal
 hp_res
 nature_weapon_damage
 big_force_of_will
+mana_on_hit
 armor_and_dodge
 str
 projectile_damage
@@ -39,6 +42,7 @@ water_penetration
 big_rat
 all_physical_damage
 mage
+big_lacerator
 warrior
 big_wisdom_of_the_elders
 critical_hit
@@ -104,6 +108,7 @@ hunter
 axe_damage
 ele_trident_damage
 armor_and_ms
+big_poe
 physical_weapon_damage
 health_regen
 big_blood_siphon
@@ -118,6 +123,7 @@ magical_life
 elemental_purity
 armor
 ele_wand_damage
+atk_cast_speed
 spell_dmg_flat_mana
 spell_nature_damage
 elemental_resist
@@ -137,6 +143,7 @@ elemental_penetration
 crossbow_damage
 nature_penetration
 big_arena
+phys_acc
 flat_health_phys_dmg
 ele_crossbow_damage
 magic_shield_regen

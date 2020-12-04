@@ -15,10 +15,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -278,6 +275,24 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_aura_eff", "Determination",
             new OptScaleExactStat(20, IncreasedEffectOfAuras.getInstance(), ModType.FLAT),
             new OptScaleExactStat(5, ReducedManaReserved.getInstance(), ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_poe", "Principle of Essence",
+            new OptScaleExactStat(20, MagicShield.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_lacerator", "Lacerator",
+            new OptScaleExactStat(5, AttackSpeed.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, CastSpeed.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("big_mana_steal", "Mana Thief",
+            new OptScaleExactStat(5, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT),
+            new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT),
+            new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT)
         );
 
     }

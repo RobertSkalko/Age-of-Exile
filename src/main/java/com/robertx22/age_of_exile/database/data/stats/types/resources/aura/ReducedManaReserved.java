@@ -25,7 +25,7 @@ public class ReducedManaReserved extends Stat {
         this.min_val = 0;
         this.max_val = 75;
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.MAIN;
+        this.statGroup = StatGroup.Misc;
         this.statEffect = new Effect();
     }
 
