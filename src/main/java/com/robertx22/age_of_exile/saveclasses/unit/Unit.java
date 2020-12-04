@@ -270,14 +270,25 @@ public class Unit {
 
         statContexts.addAll(addGearStats(gears, entity, data));
 
+        HashMap<StatContext.StatCtxType, List<StatContext>> map = new HashMap<>();
+        for (StatContext.StatCtxType type : StatContext.StatCtxType.values()) {
+            map.put(type, new ArrayList<>());
+        }
         statContexts.forEach(x -> {
-            x.stats.forEach(s -> {
-                if (s.getStat() instanceof IStatCtxModifier) {
-                    IStatCtxModifier mod = (IStatCtxModifier) s.getStat();
-                    statContexts.forEach(c -> mod.modify(s, c));
-                }
-            });
+            map.get(x.type)
+                .add(x);
         });
+
+        map.forEach((key, value) -> value
+            .forEach(v -> {
+                v.stats.forEach(s -> {
+                    if (s.getStat() instanceof IStatCtxModifier) {
+                        IStatCtxModifier mod = (IStatCtxModifier) s.getStat();
+                        map.get(mod.getCtxTypeNeeded())
+                            .forEach(c -> mod.modify(s, c));
+                    }
+                });
+            }));
 
         statContexts.forEach(x -> x.stats.forEach(s -> s.applyStats(data)));
 

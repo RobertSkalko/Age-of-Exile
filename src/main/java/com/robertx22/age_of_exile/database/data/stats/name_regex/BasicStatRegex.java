@@ -12,11 +12,7 @@ public class BasicStatRegex extends StatNameRegex {
 
             String adds = "";
 
-            String to = " To ";
-
-            if (!stat.add$To$toTooltip) {
-                to = " ";
-            }
+            String to = " ";
 
             if (stat.UsesSecondValue() || stat.isLocal()) {
                 if (v1 > 0 && v2 > 0) {

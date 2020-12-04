@@ -23,7 +23,7 @@ public class DamageUnderPotion extends Stat {
         this.id = id;
         this.statEffect = new Effect(status);
         this.is_percent = true;
-        this.add$To$toTooltip = false;
+
     }
 
     @Override

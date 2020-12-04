@@ -11,7 +11,6 @@ public class HealPower extends Stat {
     public static String GUID = "increase_healing";
 
     private HealPower() {
-        this.add$To$toTooltip = false;
         this.statGroup = StatGroup.RESTORATION;
         this.scaling = StatScaling.SLOW;
         this.statEffect = new Effect();

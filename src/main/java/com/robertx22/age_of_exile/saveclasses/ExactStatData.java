@@ -202,8 +202,8 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
 
         JsonObject json = new JsonObject();
 
-        json.addProperty("first_val", this.v1);
-        json.addProperty("second_val", this.v2);
+        json.addProperty("v1", this.v1);
+        json.addProperty("v2", this.v2);
         json.addProperty("type", this.type.id);
         json.addProperty("stat", this.stat);
 
@@ -213,9 +213,9 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
     @Override
     public ExactStatData fromJson(JsonObject json) {
 
-        float first = json.get("first_val")
+        float first = json.get("v1")
             .getAsFloat();
-        float second = json.get("second_val")
+        float second = json.get("v2")
             .getAsFloat();
 
         String stat = json.get("stat")

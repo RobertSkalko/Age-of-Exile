@@ -142,6 +142,8 @@ Or maybe 20 str + scaling over lvls slowly.
 * stat modifier in datapacks now saved differently. "first_min" is now "min1" to reduce size. etc (for modpack devs, you can just do a replaceall in files)
 * stat modifiers now only save 2nd value when needed. Means it's optional now
 * added reduced mana reserved stat and increased effect of auras stat
+* massive changes to internal stat calculation code, initially made to make the "Increased aura effect"  stat work. 
+Now I know the context of where each stat came from, so stats like "50% increased defenses from shields" can work!
 
 Spell adjustements:
 * whirlpool is now at caster, not a projectile

@@ -7,4 +7,6 @@ public interface IStatCtxModifier {
 
     void modify(ExactStatData thisStat, StatContext target);
 
+    StatContext.StatCtxType getCtxTypeNeeded();
+
 }

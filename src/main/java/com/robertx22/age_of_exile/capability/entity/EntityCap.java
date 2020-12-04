@@ -32,7 +32,6 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
@@ -457,9 +456,9 @@ public class EntityCap {
             }
 
             if (needsToRecalcStats()) {
-                Watch watch = new Watch();
+                //Watch watch = new Watch();
                 unit.recalculateStats(entity, this, null);
-                watch.print("stat calc for " + (entity instanceof PlayerEntity ? "player " : "mob "));
+                //watch.print("stat calc for " + (entity instanceof PlayerEntity ? "player " : "mob "));
             }
 
         }

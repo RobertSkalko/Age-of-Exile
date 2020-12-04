@@ -10,6 +10,8 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
+import java.util.Optional;
+
 ;
 
 public class SpellCastContext {
@@ -51,15 +53,26 @@ public class SpellCastContext {
             this.spellsCap = Load.spells((PlayerEntity) caster);
 
             try {
-                skillGemData = spellsCap.getSkillGemData().stacks.stream()
+
+                Optional<SkillGemData> opt = spellsCap.getSkillGemData().stacks.stream()
                     .map(x -> {
                         return SkillGemData.fromStack(x);
                     })
                     .filter(x -> {
                         return x != null && x.getSkillGem() != null && x.getSkillGem().spell_id.equals(spell.GUID());
                     })
-                    .findAny()
-                    .get();
+                    .findAny();
+
+                if (caster.world.isClient) {
+                    if (opt.isPresent()) {
+                        skillGemData = opt.get();
+                    } else {
+                        this.skillGemData = new SkillGemData();
+                    }
+                } else {
+                    skillGemData = opt.get();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
                 this.skillGemData = new SkillGemData();

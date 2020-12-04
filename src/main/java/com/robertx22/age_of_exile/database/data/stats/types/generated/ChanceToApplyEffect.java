@@ -34,7 +34,6 @@ public class ChanceToApplyEffect extends Stat {
         this.id = id;
         this.ele = ele;
 
-        this.add$To$toTooltip = false;
         this.add$plusminus$toTooltip = false;
         this.min_val = 0;
 

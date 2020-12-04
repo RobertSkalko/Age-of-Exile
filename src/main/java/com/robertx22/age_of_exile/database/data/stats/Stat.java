@@ -26,7 +26,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, IAutoLocDesc, ISerializedRegistryEntry<DatapackStat> {
@@ -47,17 +46,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public StatGroup statGroup = StatGroup.Misc;
 
-    public boolean add$To$toTooltip = true;
     public boolean add$plusminus$toTooltip = true;
-
-    public CalcOrder calcOrder = CalcOrder.SECOND;
-
-    public enum CalcOrder {
-        FIRST, SECOND;
-
-    }
-
-    public static List<CalcOrder> CALC_ORDERS = Arrays.asList(CalcOrder.FIRST, CalcOrder.SECOND);
 
     @Override
     public boolean isFromDatapack() {

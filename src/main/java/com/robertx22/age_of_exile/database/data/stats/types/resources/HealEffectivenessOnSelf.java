@@ -10,7 +10,6 @@ public class HealEffectivenessOnSelf extends Stat {
     public static String GUID = "heal_effect_on_self";
 
     private HealEffectivenessOnSelf() {
-        this.add$To$toTooltip = false;
         this.statGroup = StatGroup.RESTORATION;
         this.statEffect = new Effect();
     }

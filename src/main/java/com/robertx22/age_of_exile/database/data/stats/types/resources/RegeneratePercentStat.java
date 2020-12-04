@@ -19,7 +19,6 @@ public class RegeneratePercentStat extends Stat {
         this.statRestored = statRestored;
         this.scaling = StatScaling.NONE;
 
-        this.add$To$toTooltip = false;
         this.statGroup = StatGroup.RESTORATION;
 
     }

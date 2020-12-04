@@ -27,7 +27,6 @@ public class IncreasedEffectOfAuras extends Stat implements IStatCtxModifier {
         this.scaling = StatScaling.NONE;
         this.statGroup = StatGroup.MAIN;
 
-        this.calcOrder = CalcOrder.FIRST; // cus it affects the aura stats, needs to be first
     }
 
     @Override
@@ -52,14 +51,16 @@ public class IncreasedEffectOfAuras extends Stat implements IStatCtxModifier {
 
     @Override
     public void modify(ExactStatData thisStat, StatContext target) {
-        if (target.type == StatContext.StatCtxType.AURA) {
+        float multi = 1F + thisStat.getAverageValue() / 100F;
 
-            float multi = 1F + thisStat.getAverageValue() / 100F;
+        target.stats.forEach(x -> {
+            x.multiplyBy(multi);
+        });
+    }
 
-            target.stats.forEach(x -> {
-                x.multiplyBy(multi);
-            });
-        }
+    @Override
+    public StatContext.StatCtxType getCtxTypeNeeded() {
+        return StatContext.StatCtxType.AURA;
     }
 
     private static class SingletonHolder {

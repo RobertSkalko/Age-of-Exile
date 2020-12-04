@@ -19,7 +19,6 @@ public class DamageAbsorbedByMana extends Stat {
         this.scaling = StatScaling.NONE;
         this.statGroup = StatGroup.MAIN;
 
-        this.add$To$toTooltip = false;
     }
 
     public static DamageAbsorbedByMana getInstance() {

@@ -25,7 +25,6 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
         this.locname = locname;
         this.desc = desc;
 
-        this.add$To$toTooltip = false;
         this.is_percent = true;
         this.min_val = 0;
         this.scaling = StatScaling.NONE;
@@ -36,7 +35,6 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
         this.stat_to_add_to = stat_to_add_to;
         this.adder_stat = adder_stat;
 
-        this.add$To$toTooltip = false;
         this.is_percent = true;
         this.min_val = 0;
         this.scaling = StatScaling.NONE;

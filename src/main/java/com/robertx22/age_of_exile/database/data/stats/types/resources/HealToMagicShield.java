@@ -12,7 +12,6 @@ public class HealToMagicShield extends Stat {
     public static String GUID = "heal_to_ms";
 
     private HealToMagicShield() {
-        this.add$To$toTooltip = false;
         this.statGroup = StatGroup.RESTORATION;
         this.statEffect = new Effect();
     }
