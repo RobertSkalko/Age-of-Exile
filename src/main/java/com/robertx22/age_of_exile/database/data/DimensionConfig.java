@@ -21,7 +21,6 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
     public static DimensionConfig Overworld() {
         DimensionConfig c = new DimensionConfig(1, "minecraft:overworld");
-        c.max_lvl = 45;
         return c;
     }
 

@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AuraStatEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -28,14 +27,8 @@ public class AuraSpellData {
     }
 
     public List<ExactStatData> getStats(Spell spell, LivingEntity caster, int lvl) {
-
-        AuraStatEffect effect = new AuraStatEffect(spell, caster);
-        effect.Activate();
-
-        int perc = (int) (effect.aura_stat_multi * 100);
-
         return stats.stream()
-            .map(x -> x.ToExactStat(perc, lvl))
+            .map(x -> x.ToExactStat(100, lvl))
             .collect(Collectors.toList());
 
     }

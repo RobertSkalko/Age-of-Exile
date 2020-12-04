@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
@@ -259,15 +260,24 @@ public class Unit {
             statContexts.addAll(Load.spells(entity)
                 .getStatAndContext(entity));
         } else {
-            MobStatUtils.AddMobcStats(data, entity);
-            statContexts.addAll(MobStatUtils.addAffixStats(entity));
-            statContexts.addAll(MobStatUtils.worldMultiplierStats(entity));
+            statContexts.addAll(MobStatUtils.getMobBaseStats(data, entity));
+            statContexts.addAll(MobStatUtils.getAffixStats(entity));
+            statContexts.addAll(MobStatUtils.getWorldMultiplierStats(entity));
             MobStatUtils.increaseMobStatsPerTier(entity, data, this);
-            MobStatUtils.modifyMobStatsByConfig(entity, data);
+            statContexts.addAll(MobStatUtils.getMobConfigStats(entity, data));
             ExtraMobRarityAttributes.add(entity, data);
         }
 
         statContexts.addAll(addGearStats(gears, entity, data));
+
+        statContexts.forEach(x -> {
+            x.stats.forEach(s -> {
+                if (s.getStat() instanceof IStatCtxModifier) {
+                    IStatCtxModifier mod = (IStatCtxModifier) s.getStat();
+                    statContexts.forEach(c -> mod.modify(s, c));
+                }
+            });
+        });
 
         statContexts.forEach(x -> x.stats.forEach(s -> s.applyStats(data)));
 

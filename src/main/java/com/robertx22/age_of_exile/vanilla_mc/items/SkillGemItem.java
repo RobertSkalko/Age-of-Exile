@@ -75,7 +75,7 @@ public class SkillGemItem extends Item implements IAutoLocName, IAutoModel {
             // todo
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 }

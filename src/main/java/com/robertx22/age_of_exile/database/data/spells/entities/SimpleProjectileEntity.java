@@ -11,6 +11,8 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
 import com.robertx22.library_of_exile.utils.SoundUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -34,6 +36,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -86,6 +89,26 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     @Override
     public void equipStack(EquipmentSlot slotIn, ItemStack stack) {
 
+    }
+
+    @Override // copied from projectileEntity
+    @Environment(EnvType.CLIENT)
+    public void setVelocityClient(double x, double y, double z) {
+        this.setVelocity(x, y, z);
+        if (this.prevPitch == 0.0F && this.prevYaw == 0.0F) {
+            float f = MathHelper.sqrt(x * x + z * z);
+            this.pitch = (float) (MathHelper.atan2(y, (double) f) * 57.2957763671875D);
+            this.yaw = (float) (MathHelper.atan2(x, z) * 57.2957763671875D);
+            this.prevPitch = this.pitch;
+            this.prevYaw = this.yaw;
+            this.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.yaw, this.pitch);
+        }
+
+    }
+
+    @Override // seems to help making it hit easier?
+    public float getTargetingMargin() {
+        return 1.0F;
     }
 
     public int getTicksInGround() {

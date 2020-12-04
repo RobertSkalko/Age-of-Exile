@@ -122,6 +122,7 @@ public class ItemNewbieGearBag extends Item {
 
                 List<Perk> starts = Load.perks(playerIn)
                     .getAllAllocatedPerks()
+                    .values()
                     .stream()
                     .filter(x -> x.is_entry)
                     .collect(Collectors.toList());

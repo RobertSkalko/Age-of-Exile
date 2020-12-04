@@ -78,6 +78,11 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
         return data;
     }
 
+    public void multiplyBy(float multi) {
+        v1 *= multi;
+        v2 *= multi;
+    }
+
     public static ExactStatData noScaling(float v1, float v2, ModType type, String stat) {
         ExactStatData data = new ExactStatData();
 

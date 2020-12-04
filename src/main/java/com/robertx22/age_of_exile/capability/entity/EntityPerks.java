@@ -10,8 +10,8 @@ import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.perks.PlayerPerksData;
 import com.robertx22.age_of_exile.saveclasses.perks.SchoolData;
-import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.TalentStatCtx;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -20,7 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,8 +49,8 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
             .clear();
     }
 
-    public List<Perk> getAllAllocatedPerks() {
-        List<Perk> perks = new ArrayList<>();
+    public HashMap<PointData, Perk> getAllAllocatedPerks() {
+        HashMap<PointData, Perk> perks = new HashMap<>();
         for (SpellSchool.SchoolType type : SpellSchool.SchoolType.values()) {
             for (Map.Entry<String, SchoolData> x : data.getPerks(type)
                 .entrySet()) {
@@ -62,7 +62,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
                     if (school != null) {
                         for (PointData p : x.getValue()
                             .getAllocatedPoints(school)) {
-                            perks.add(school.calcData.getPerk(p));
+                            perks.put(p, school.calcData.getPerk(p));
                         }
                     }
                 }
@@ -136,9 +136,20 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
 
     @Override
     public List<StatContext> getStatAndContext(LivingEntity en) {
-        List<ExactStatData> stats = new ArrayList<>();
-        getAllAllocatedPerks().forEach(p -> p.stats.forEach(s -> stats.add(s.toExactStat(Load.Unit(en)
-            .getLevel()))));
-        return Arrays.asList(new MiscStatCtx(stats));
+        List<StatContext> ctx = new ArrayList<>();
+
+        HashMap<PointData, Perk> map = getAllAllocatedPerks();
+
+        int lvl = Load.Unit(en)
+            .getLevel();
+
+        map.forEach((key, value) -> {
+            List<ExactStatData> stats = new ArrayList<>();
+            value.stats.forEach(s -> stats.add(s.toExactStat(lvl)));
+            ctx.add(new TalentStatCtx(key, value, stats));
+
+        });
+
+        return ctx;
     }
 }
