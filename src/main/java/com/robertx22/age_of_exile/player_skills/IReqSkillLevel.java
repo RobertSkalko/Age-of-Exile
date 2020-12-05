@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,6 +26,6 @@ public interface IReqSkillLevel {
     float getSkillLevelMultiNeeded();
 
     public default int getSkillLevelRequired() {
-        return (int) (ModConfig.get().Server.MAX_LEVEL * getSkillLevelMultiNeeded());
+        return (int) (GameBalanceConfig.get().MAX_LEVEL * getSkillLevelMultiNeeded());
     }
 }

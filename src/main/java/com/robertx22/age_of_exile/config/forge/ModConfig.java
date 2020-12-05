@@ -34,9 +34,6 @@ public class ModConfig implements ConfigData {
     public AutoCompatibleItemConfig autoCompatibleItems = new AutoCompatibleItemConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
-    public StatScaleConfigs statScalings = new StatScaleConfigs();
-
-    @ConfigEntry.Gui.CollapsibleObject
     public FoodEffectsConfig foodEffects = new FoodEffectsConfig();
 
     public static ModConfig get() {

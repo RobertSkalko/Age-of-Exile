@@ -71,7 +71,6 @@ mana_and_regen
 big_aspect_of_thunder
 dodge
 spell_elemental_damage_and_dot
-familiar_instincts
 refined_taste
 huge_int
 health
@@ -166,7 +165,6 @@ big_faith_armor
 spell_water_damage_and_dot
 big_poison_alchemy
 spell_thunder_damage_and_dot
-start
 big_sadist
 chance_of_frostburn
 big_will_of_mana
@@ -177,7 +175,6 @@ big_balistic
 fire_penetration
 sword_damage
 big_heart_of_nature
-reckless_blows
 big_fighter
 big_fire_water_spell_crit_dmg
 chance_of_burn

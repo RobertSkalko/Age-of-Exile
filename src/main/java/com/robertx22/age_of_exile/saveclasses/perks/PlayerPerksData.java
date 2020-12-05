@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.perks;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -51,8 +51,8 @@ public class PlayerPerksData {
         if (type == SpellSchool.SchoolType.SPELLS) {
             // todo remove
         } else {
-            num = (int) ModConfig.get().Server.STARTING_TALENT_POINTS;
-            num += ModConfig.get().Server.TALENT_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
+            num = (int) GameBalanceConfig.get().STARTING_TALENT_POINTS;
+            num += GameBalanceConfig.get().TALENT_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
         }
         num -= this.getAllocatedPoints(type);
         return num;

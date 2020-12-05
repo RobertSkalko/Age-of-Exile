@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegister;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -46,7 +47,15 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new LiteralText("Crafts Level " + range.getMinLevel() + " - " + range.getMaxLevel() + " items.").formatted(Formatting.GOLD));
+
+        try {
+            if (Database.areDatapacksLoaded(world)) {
+                tooltip.add(new LiteralText("Crafts Level " + range.getMinLevel() + " - " + range.getMaxLevel() + " items.").formatted(Formatting.GOLD));
+            }
+        } catch (Exception e) {
+            // it seems to do this before the game even loads..
+        }
+
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
@@ -83,7 +84,8 @@ public enum SlashRegistryType {
     BASE_STATS("base_stats", 22, BaseStatsConfig.SERIALIZER, SyncTime.ON_LOGIN),
     SKILL_GEM("spell_gem", 23, SkillGem.SERIALIZER, SyncTime.ON_LOGIN),
     SKILL_GEM_RARITY("skill_gem_rarity", 24, SkillGemRarity.SERIALIZER, SyncTime.ON_LOGIN),
-    RANDOM_SKILL_GEM_STATS("random_skill_gem_stats", 25, RandomSkillGemStats.SERIALIZER, SyncTime.ON_LOGIN);
+    RANDOM_SKILL_GEM_STATS("random_skill_gem_stats", 25, RandomSkillGemStats.SERIALIZER, SyncTime.ON_LOGIN),
+    GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;
     ISerializable ser;

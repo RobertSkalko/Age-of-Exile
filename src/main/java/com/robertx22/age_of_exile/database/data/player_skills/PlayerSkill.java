@@ -2,9 +2,9 @@ package com.robertx22.age_of_exile.database.data.player_skills;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.enchants.BonusSkillLootEnchant;
@@ -178,7 +178,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
         if (lvl >= Load.Unit(info.player)
             .getLevel()) {
-            if (lvl < ModConfig.get().Server.MAX_LEVEL) {
+            if (lvl < GameBalanceConfig.get().MAX_LEVEL) {
                 list.add(new LiteralText(""));
                 list.add(new LiteralText("Skill level Capped to Combat level.").formatted(Formatting.RED));
                 list.add(new LiteralText("Level your Combat level to progress further.").formatted(Formatting.RED));

@@ -70,6 +70,10 @@ public interface IGUID {
 
     public static boolean isGUIDFormattedCorrectly(String id) {
 
+        if (id == null) {
+            return false;
+        }
+
         for (char c : id.toCharArray()) {
             if (!isValidPathCharacter(c)) {
                 return false;

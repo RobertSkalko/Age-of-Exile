@@ -8,7 +8,6 @@ spell_fire_dmg_leech_as_blood
 dot_elemental_dmg_leech_as_health
 accuracy
 all_water_dmg_leech_as_health
-dodge_to_ele_doddge
 spell_thunder_damage
 trident_damage
 mana_to_ms

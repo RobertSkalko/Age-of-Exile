@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.data.level_ranges;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import net.minecraft.util.math.MathHelper;
 
 public class LevelRange implements ISerializable<LevelRange> {
@@ -24,11 +24,11 @@ public class LevelRange implements ISerializable<LevelRange> {
     }
 
     public int getMinLevel() {
-        return MathHelper.clamp((int) (start * ModConfig.get().Server.MAX_LEVEL), 1, Integer.MAX_VALUE);
+        return MathHelper.clamp((int) (start * GameBalanceConfig.get().MAX_LEVEL), 1, Integer.MAX_VALUE);
     }
 
     public int getMaxLevel() {
-        return (int) (end * ModConfig.get().Server.MAX_LEVEL);
+        return (int) (end * GameBalanceConfig.get().MAX_LEVEL);
     }
 
     public float getEndPercent() {

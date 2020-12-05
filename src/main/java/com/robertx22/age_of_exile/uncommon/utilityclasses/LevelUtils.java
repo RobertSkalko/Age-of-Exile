@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,30 +14,30 @@ import net.minecraft.world.World;
 public class LevelUtils {
 
     public static int getDistanceFromMaxLevel(int lvl) {
-        int max = ModConfig.get().Server.MAX_LEVEL;
+        int max = GameBalanceConfig.get().MAX_LEVEL;
         return Math.abs(lvl - max);
     }
 
     public static float getMaxLevelMultiplier(int lvl) {
-        float max = ModConfig.get().Server.MAX_LEVEL;
+        float max = GameBalanceConfig.get().MAX_LEVEL;
         return (float) lvl / max;
     }
 
     public static int getLevelForMultiplier(float multi) {
-        return (int) (ModConfig.get().Server.MAX_LEVEL * multi);
+        return (int) (GameBalanceConfig.get().MAX_LEVEL * multi);
     }
 
     public static int getExpRequiredForLevel(int level) {
-        return (int) (Math.pow(6F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 2.5F));
+        return (int) (Math.pow(6F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 2.5F));
     }
 
     public static int getExpNeededForSkillLevel(int level) {
-        float exponent = 0.5F * (float) level / (float) ModConfig.get().Server.MAX_LEVEL;
+        float exponent = 0.5F * (float) level / (float) GameBalanceConfig.get().MAX_LEVEL;
         return (int) Math.pow(100 + (level * 25), 1 + exponent);
     }
 
     public static int getBaseExpMobReward(int level) {
-        return 10 + (int) (Math.pow(3F * ModConfig.get().statScalings.NORMAL_STAT_SCALING.getMultiFor(level), 1.3F));
+        return 10 + (int) (Math.pow(3F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 1.3F));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
@@ -65,7 +66,7 @@ public class LevelUtils {
 
         lvl = MathHelper.clamp(lvl, dimConfig.min_lvl, dimConfig.max_lvl);
 
-        lvl = MathHelper.clamp(lvl, 1, ModConfig.get().Server.MAX_LEVEL);
+        lvl = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
 
         return lvl;
     }

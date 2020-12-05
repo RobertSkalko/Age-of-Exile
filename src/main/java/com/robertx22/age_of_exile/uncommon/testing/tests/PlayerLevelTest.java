@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.testing.tests;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.uncommon.testing.CommandTest;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -15,7 +15,7 @@ public class PlayerLevelTest extends CommandTest {
     }
 
     public static void testLevelCurve() {
-        for (int i = 1; i < ModConfig.get().Server.MAX_LEVEL + 1; i++) {
+        for (int i = 1; i < GameBalanceConfig.get().MAX_LEVEL + 1; i++) {
 
             int needed = LevelUtils.getExpRequiredForLevel(i);
             int basepermob = LevelUtils.getBaseExpMobReward(i);

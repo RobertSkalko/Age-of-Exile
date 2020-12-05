@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.config.LevelRewardConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -719,7 +720,7 @@ public class EntityCap {
 
         @Override
         public boolean CheckLevelCap() {
-            return getLevel() + 1 <= ModConfig.get().Server.MAX_LEVEL;
+            return getLevel() + 1 <= GameBalanceConfig.get().MAX_LEVEL;
         }
 
         @Override
@@ -789,7 +790,7 @@ public class EntityCap {
         @Override
         public void setLevel(int lvl) {
 
-            level = MathHelper.clamp(lvl, 1, ModConfig.get().Server.MAX_LEVEL);
+            level = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
 
             this.equipsChanged = true;
             this.shouldSync = true;

@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
@@ -66,15 +67,15 @@ public class StatRequirement implements ISerializable<StatRequirement> {
     }
 
     private int getDex(int lvl) {
-        return base_dex + (int) Dexterity.INSTANCE.scale(dex_req, lvl);
+        return base_dex + (int) StatScaling.STAT_REQ.scale(dex_req, lvl);
     }
 
     private int getInt(int lvl) {
-        return base_int + (int) Dexterity.INSTANCE.scale(int_req, lvl);
+        return base_int + (int) StatScaling.STAT_REQ.scale(int_req, lvl);
     }
 
     private int getStr(int lvl) {
-        return base_str + (int) Dexterity.INSTANCE.scale(str_req, lvl);
+        return base_str + (int) StatScaling.STAT_REQ.scale(str_req, lvl);
     }
 
     public StatRequirement setDex(float dex_req) {
@@ -194,9 +195,12 @@ public class StatRequirement implements ISerializable<StatRequirement> {
         if (data.getUnit()
             .getCalculatedStat(stat)
             .getAverageValue() > req) {
-            return new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + CHECK_YES_ICON).append(" " + Formatting.GRAY + req + " Intelligence");
+            return new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + CHECK_YES_ICON).append(" " + Formatting.GRAY + req + " ")
+                .append(stat.locName());
         } else {
-            return new LiteralText(Formatting.RED + "" + Formatting.BOLD + NO_ICON).append(" " + Formatting.GRAY + req + " Intelligence");
+            return new LiteralText(Formatting.RED + "" + Formatting.BOLD + NO_ICON).append(" " + Formatting.GRAY + req + " ")
+                .append(
+                    stat.locName());
         }
 
     }

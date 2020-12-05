@@ -175,3 +175,9 @@ Now I know the context of where each stat came from, so stats like "50% increase
 * new stat, increased area of effect
 * dodge now works against elemental attacks, but is harder to get
 * gear requirements are back, and should now be more meaningful as stats aren't just points you can pick and choose.
+* level and stat scaling configs are now a datapack.
+Primarily to discourage from messing with them as the game balance will now be a lot more delicate.
+In short, If you want to mess with max level or stat scalings, be prepared to mess with other datapack things too.
+As most of your power comes from the talent tree now, as the tree is finite. It means if you don't edit the tree or player's base stats
+(which are both datapacks), then you shouldn't edit the max level.
+I wouldn't be doing this if I didn't think the current config would be a trap.

@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
@@ -335,6 +336,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SKILL_GEM, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SKILL_GEM_RARITY, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RANDOM_SKILL_GEM_STATS, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GAME_BALANCE, new GameBalanceConfig()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

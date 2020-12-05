@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -224,7 +224,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public final int getCalculatedManaCost(SpellCastContext ctx) {
         float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
 
-        float scaling = ModConfig.get().statScalings.MANA_COST_SCALING.getMultiFor(ctx.calcData.level);
+        float scaling = GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(ctx.calcData.level);
 
         return (int) (getConfig().mana_cost * manaCostMulti * scaling);
     }
