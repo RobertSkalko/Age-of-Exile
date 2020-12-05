@@ -41,6 +41,10 @@ public class SkillGemData implements ITooltipList {
             return false;
         }
 
+        if (!getSkillGem().req.meetsReq(lvl, Load.Unit(player))) {
+            return false;
+        }
+
         return true;
     }
 
@@ -77,6 +81,8 @@ public class SkillGemData implements ITooltipList {
 
         List<Text> list = new ArrayList<>();
         list.add(new LiteralText(""));
+
+        list.addAll(getSkillGem().req.GetTooltipString(lvl, Load.Unit(info.player)));
 
         List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
 

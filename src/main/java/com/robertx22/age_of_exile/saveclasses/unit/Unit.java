@@ -457,7 +457,7 @@ public class Unit {
 
                 if (entity instanceof PlayerEntity) {
 
-                    if (!gear.meetsStatRequirements(data)) {
+                    if (!gear.canPlayerWear(data)) {
                         addstats = false;
                     }
 

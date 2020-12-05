@@ -86,9 +86,19 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public boolean isSalvagable = true;
 
-    public boolean meetsStatRequirements(EntityCap.UnitData data) {
+    public boolean canPlayerWear(EntityCap.UnitData data) {
 
-        return true;
+        if (level > data.getLevel()) {
+            return false;
+        }
+
+        int gearlvlreq = GetBaseGearType().getLevelRange()
+            .getMinLevel();
+        if (Math.abs(gearlvlreq - level) > 25) {
+            gearlvlreq = level; // only use the min lvl if the lvl difference isn't too high
+        }
+        return getRequirement().meetsReq(gearlvlreq, data);
+
     }
 
     public boolean isValidItem() {
@@ -110,6 +120,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         return affix.meetsRequirements(new GearRequestedFor(this));
 
+    }
+
+    public StatRequirement getRequirement() {
+        StatRequirement req = new StatRequirement(GetBaseGearType().getStatRequirements());
+
+        // todo add unique req;
+
+        return req;
     }
 
     public float getInstability() {

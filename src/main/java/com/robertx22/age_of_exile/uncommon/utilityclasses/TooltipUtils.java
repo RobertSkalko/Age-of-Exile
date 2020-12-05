@@ -40,6 +40,8 @@ public class TooltipUtils {
         tip.add(new SText(""));
         tip.add(new LiteralText(reqNumberColor + "").append(Words.Level.locName())
             .append(": " + gear.level));
+        tip.addAll(gear.getRequirement()
+            .GetTooltipString(gear.level, data)); // todo doesnt allow for uniques to add req
         tip.add(new SText(""));
     }
 

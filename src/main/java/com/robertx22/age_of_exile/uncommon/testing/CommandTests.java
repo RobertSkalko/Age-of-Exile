@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.testing;
 
 import com.robertx22.age_of_exile.uncommon.testing.tests.CountTalentTreeAttributes;
+import com.robertx22.age_of_exile.uncommon.testing.tests.FindUnusedPerksTest;
 import com.robertx22.age_of_exile.uncommon.testing.tests.PlayerLevelTest;
 import com.robertx22.age_of_exile.uncommon.testing.tests.SkillLevelTest;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -34,6 +35,7 @@ public class CommandTests {
         reg(new CountTalentTreeAttributes());
         reg(new SkillLevelTest());
         reg(new PlayerLevelTest());
+        reg(new FindUnusedPerksTest());
     }
 
     static void reg(CommandTest t) {

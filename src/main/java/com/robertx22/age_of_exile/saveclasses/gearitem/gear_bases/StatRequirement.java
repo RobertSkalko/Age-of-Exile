@@ -2,10 +2,22 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatRequirement implements ISerializable<StatRequirement> {
+
+    static String CHECK_YES_ICON = "\u2713";
+    static String NO_ICON = "\u2715";
 
     public static StatRequirement EMPTY = new StatRequirement();
 
@@ -17,19 +29,40 @@ public class StatRequirement implements ISerializable<StatRequirement> {
     public float int_req = 0;
     public float str_req = 0;
 
+    public StatRequirement(StatRequirement r) {
+        this.base_int = r.base_int;
+        this.base_dex = r.base_dex;
+        this.base_str = r.base_str;
+
+        this.dex_req = r.dex_req;
+        this.int_req = r.int_req;
+        this.str_req = r.str_req;
+
+    }
+
     public StatRequirement() {
     }
 
-    private int getDex(GearItemData gear) {
-        return base_dex + (int) scale(dex_req, gear);
-    }
+    public boolean meetsReq(int lvl, EntityCap.UnitData data) {
 
-    private int getInt(GearItemData gear) {
-        return base_int + (int) scale(int_req, gear);
-    }
+        if (data.getUnit()
+            .getCalculatedStat(Strength.INSTANCE)
+            .getAverageValue() < getStr(lvl)) {
+            return false;
+        }
+        if (data.getUnit()
+            .getCalculatedStat(Intelligence.INSTANCE)
+            .getAverageValue() < getInt(lvl)) {
+            return false;
+        }
+        if (data.getUnit()
+            .getCalculatedStat(Dexterity.INSTANCE)
+            .getAverageValue() < getDex(lvl)) {
+            return false;
+        }
 
-    private int getStr(GearItemData gear) {
-        return base_str + (int) scale(str_req, gear);
+        return true;
+
     }
 
     private int getDex(int lvl) {
@@ -42,17 +75,6 @@ public class StatRequirement implements ISerializable<StatRequirement> {
 
     private int getStr(int lvl) {
         return base_str + (int) Dexterity.INSTANCE.scale(str_req, lvl);
-    }
-
-    private float scale(float val, GearItemData gear) {
-        if (val <= 0) {
-            return 0;
-        }
-
-        float calc = (float) (val * gear.getRarity()
-            .statReqMulti());
-
-        return (int) Dexterity.INSTANCE.scale(calc, gear.level);
     }
 
     public StatRequirement setDex(float dex_req) {
@@ -142,6 +164,40 @@ public class StatRequirement implements ISerializable<StatRequirement> {
                 .getAsInt();
         }
         return r;
+
+    }
+
+    public List<Text> GetTooltipString(int lvl, EntityCap.UnitData data) {
+        List<Text> list = new ArrayList<>();
+
+        int dex = getDex(lvl);
+        int str = getStr(lvl);
+        int inte = getInt(lvl);
+
+        if (dex > 0) {
+            list.add(getTooltip(dex, Dexterity.INSTANCE, data));
+        }
+
+        if (str > 0) {
+            list.add(getTooltip(str, Strength.INSTANCE, data));
+
+        }
+        if (inte > 0) {
+            list.add(getTooltip(inte, Intelligence.INSTANCE, data));
+        }
+
+        return list;
+    }
+
+    static Text getTooltip(int req, Stat stat, EntityCap.UnitData data) {
+
+        if (data.getUnit()
+            .getCalculatedStat(stat)
+            .getAverageValue() > req) {
+            return new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + CHECK_YES_ICON).append(" " + Formatting.GRAY + req + " Intelligence");
+        } else {
+            return new LiteralText(Formatting.RED + "" + Formatting.BOLD + NO_ICON).append(" " + Formatting.GRAY + req + " Intelligence");
+        }
 
     }
 }

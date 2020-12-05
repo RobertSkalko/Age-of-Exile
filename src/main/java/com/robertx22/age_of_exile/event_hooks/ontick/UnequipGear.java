@@ -63,9 +63,8 @@ public class UnequipGear {
             GearItemData gear = Gear.Load(stack);
 
             if (gear != null) {
-
-                if (lvl < gear.level) {
-                    drop(player, slot, stack, new LiteralText("You are too low level to use that item.").formatted(Formatting.RED));
+                if (!gear.canPlayerWear(Load.Unit(player))) {
+                    drop(player, slot, stack, new LiteralText("You do not meet the requirements of that item.").formatted(Formatting.RED));
                 } else if (gear.isUnique()) {
                     uniques++;
                     if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_ON_PLAYER) {
@@ -93,8 +92,8 @@ public class UnequipGear {
                     GearItemData gear = Gear.Load(stack);
 
                     if (gear != null) {
-                        if (lvl < gear.level) {
-                            drop(player, handler, i, stack, new LiteralText("You are too low level to use that item.").formatted(Formatting.RED));
+                        if (!gear.canPlayerWear(Load.Unit(player))) {
+                            drop(player, handler, i, stack, new LiteralText("You do not meet the requirements of that item.").formatted(Formatting.RED));
                         } else if (gear.isUnique()) {
                             uniques++;
                             if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_ON_PLAYER) {

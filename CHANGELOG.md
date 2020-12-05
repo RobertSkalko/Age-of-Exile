@@ -174,3 +174,4 @@ Now I know the context of where each stat came from, so stats like "50% increase
 * new stat, spell area of effect damage
 * new stat, increased area of effect
 * dodge now works against elemental attacks, but is harder to get
+* gear requirements are back, and should now be more meaningful as stats aren't just points you can pick and choose.
