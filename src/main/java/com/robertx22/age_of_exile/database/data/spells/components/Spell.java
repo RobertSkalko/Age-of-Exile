@@ -17,18 +17,22 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -206,6 +210,19 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                     .hasEnough(rctx)) {
 
                     if (!getConfig().castingWeapon.predicate.predicate.test(caster)) {
+                        return false;
+                    }
+
+                    GearItemData wep = Gear.Load(ctx.caster.getMainHandStack());
+
+                    if (wep == null) {
+                        return false;
+                    }
+
+                    if (!wep.canPlayerWear(ctx.data)) {
+                        if (ctx.caster instanceof PlayerEntity) {
+                            OnScreenMessageUtils.sendMessage((ServerPlayerEntity) ctx.caster, new LiteralText("Weapon requirements not met"), TitleS2CPacket.Action.ACTIONBAR);
+                        }
                         return false;
                     }
 

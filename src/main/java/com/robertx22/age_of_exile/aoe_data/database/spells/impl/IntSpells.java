@@ -108,6 +108,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onTick(PartBuilder.tickCloudParticle(2D, ParticleTypes.ITEM_SNOWBALL, 20D, 4D))
             .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Water, 4D))
             .build();
+
         SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",
             Arrays.asList(SkillGemTag.DAMAGE)
         )

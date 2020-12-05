@@ -4,11 +4,15 @@ import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.damage_hooks.util.DmgSourceUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
@@ -78,6 +82,11 @@ public class LivingHurtUtils {
             if (data.getAttackerEntity() instanceof PlayerEntity) {
 
                 if (weapondata == null) {
+                    return;
+                }
+
+                if (!weapondata.canPlayerWear(data.getAttackerEntityData())) {
+                    OnScreenMessageUtils.sendMessage((ServerPlayerEntity) data.getAttackerEntity(), new LiteralText("Weapon requirements not met"), TitleS2CPacket.Action.ACTIONBAR);
                     return;
                 }
 

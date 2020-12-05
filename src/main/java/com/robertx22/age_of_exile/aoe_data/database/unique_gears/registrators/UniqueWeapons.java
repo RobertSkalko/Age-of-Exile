@@ -17,7 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResour
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -161,7 +161,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(1, 1, 3, 3, new AttackDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(10, 20, ProjectileSpeedStat.getInstance(), ModType.FLAT),
+                new StatModifier(10, 20, ProjectileSpeed.getInstance(), ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT),
                 new StatModifier(10, 20, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(1, 3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT)

@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDa
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.PiercingProjectile;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileAmountStat;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -45,7 +45,7 @@ public class DexSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("faster_proj", "Faster Projectiles Support", new StatRequirement().setBaseDex(20)
                 .setDex(0.2F), StatAttribute.DEX, 1.2F,
             Arrays.asList(SkillGemTag.PROJECTILE),
-            new StatModifier(10, 20, ProjectileSpeedStat.getInstance()),
+            new StatModifier(10, 20, ProjectileSpeed.getInstance()),
             new StatModifier(10, 20, ProjectileDamage.getInstance())
         );
 

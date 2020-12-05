@@ -8,16 +8,16 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class ProjectileSpeedStat extends Stat {
+public class ProjectileSpeed extends Stat {
 
-    private ProjectileSpeedStat() {
+    private ProjectileSpeed() {
         this.max_val = 200;
 
         this.statEffect = new Effect();
     }
 
-    public static ProjectileSpeedStat getInstance() {
-        return ProjectileSpeedStat.SingletonHolder.INSTANCE;
+    public static ProjectileSpeed getInstance() {
+        return ProjectileSpeed.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ProjectileSpeedStat extends Stat {
     }
 
     private static class SingletonHolder {
-        private static final ProjectileSpeedStat INSTANCE = new ProjectileSpeedStat();
+        private static final ProjectileSpeed INSTANCE = new ProjectileSpeed();
     }
 }
 

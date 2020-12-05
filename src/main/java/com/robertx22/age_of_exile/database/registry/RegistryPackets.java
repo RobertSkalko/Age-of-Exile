@@ -62,6 +62,7 @@ public class RegistryPackets {
                         throw new RuntimeException("Mine and Slash Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
                     } else {
                         System.out.println(type.name() + " registry load on client succeeded with: " + reg.getSize() + " entries.");
+
                     }
                 }
             });

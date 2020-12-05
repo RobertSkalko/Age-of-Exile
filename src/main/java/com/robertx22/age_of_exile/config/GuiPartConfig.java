@@ -10,6 +10,7 @@ public class GuiPartConfig {
     public BarGuiType type = BarGuiType.HEALTH;
 
     GuiPosition position = GuiPosition.BOTTOM_CENTER;
+
     @ConfigEntry.Gui.CollapsibleObject
     PointData position_offset = new PointData(0, 0);
     public boolean enabled = true;

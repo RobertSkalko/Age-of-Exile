@@ -169,7 +169,8 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
         json.addProperty("min1", min1);
         json.addProperty("max1", max1);
 
-        if (GetStat().UsesSecondValue() && getModType().isFlat()) {
+        if (Database.Stats()
+            .isRegistered(stat) && GetStat().UsesSecondValue() && getModType().isFlat()) {
             json.addProperty("min2", min2);
             json.addProperty("max2", max2);
         }

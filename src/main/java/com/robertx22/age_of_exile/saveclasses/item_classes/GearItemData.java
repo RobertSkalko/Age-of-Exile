@@ -94,9 +94,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         int gearlvlreq = GetBaseGearType().getLevelRange()
             .getMinLevel();
-        if (Math.abs(gearlvlreq - level) > 25) {
-            gearlvlreq = level; // only use the min lvl if the lvl difference isn't too high
-        }
+
         return getRequirement().meetsReq(gearlvlreq, data);
 
     }

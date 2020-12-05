@@ -33,7 +33,6 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
         super();
     }
 
-    public static int BAR_WIDTH = 82;
     static int BAR_HEIGHT = 9;
 
     public static int INNER_BAR_WIDTH = 78;
@@ -174,7 +173,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
         if (!drawText) {
             mc.getTextureManager()
                 .bindTexture(BASETEX);
-            drawTexture(matrix, point.x, point.y, BAR_WIDTH, BAR_HEIGHT, 0, 0, BAR_WIDTH, BAR_HEIGHT, BAR_WIDTH, BAR_HEIGHT);
+            drawTexture(matrix, point.x, point.y, GuiConstants.BAR_WIDTH, BAR_HEIGHT, 0, 0, GuiConstants.BAR_WIDTH, BAR_HEIGHT, GuiConstants.BAR_WIDTH, BAR_HEIGHT);
             float multi = type.getMulti(Load.Unit(mc.player), mc.player);
             int bar = (int) (multi * INNER_BAR_WIDTH);
             mc.getTextureManager()
@@ -188,7 +187,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
             } else if (config.icon_renderer == GuiPartConfig.IconRenderer.RIGHT) {
                 mc.getTextureManager()
                     .bindTexture(type.getIcon(Load.Unit(mc.player), mc.player));
-                drawTexture(matrix, point.x + BAR_WIDTH + 1, point.y, 9, 9, 0, 0, 9, 9, 9, 9); // draw icon
+                drawTexture(matrix, point.x + GuiConstants.BAR_WIDTH + 1, point.y, 9, 9, 0, 0, 9, 9, 9, 9); // draw icon
             }
 
             if (config.type == BarGuiType.MANA) {
@@ -207,7 +206,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
             double scale = 0.7;
 
             int width = mc.textRenderer.getWidth(text);
-            int textX = (int) (point.x - width / 2F + BAR_WIDTH / 2F);
+            int textX = (int) (point.x - width / 2F + GuiConstants.BAR_WIDTH / 2F);
             int textY = point.y + 2 + 3;
 
             double antiScale = 1.0D / scale;

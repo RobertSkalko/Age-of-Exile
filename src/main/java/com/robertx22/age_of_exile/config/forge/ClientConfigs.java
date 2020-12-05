@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.config.GuiPartConfig;
 import com.robertx22.age_of_exile.config.OverlayGuiConfig;
 import com.robertx22.age_of_exile.config.forge.parts.DmgParticleConfig;
 import com.robertx22.age_of_exile.gui.overlays.BarGuiType;
-import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.RPGGuiOverlay;
+import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.GuiConstants;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
@@ -41,11 +41,11 @@ public class ClientConfigs {
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.MANA, new PointData(-91, -49), IconRenderer.LEFT));
 
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.EXP,
-                new PointData(91 - RPGGuiOverlay.BAR_WIDTH, -39), IconRenderer.RIGHT));
+                new PointData(91 - GuiConstants.BAR_WIDTH, -39), IconRenderer.RIGHT));
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.HUNGER,
-                new PointData(91 - RPGGuiOverlay.BAR_WIDTH, -49), IconRenderer.RIGHT));
+                new PointData(91 - GuiConstants.BAR_WIDTH, -49), IconRenderer.RIGHT));
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.AIR,
-                new PointData(91 - RPGGuiOverlay.BAR_WIDTH, -59), IconRenderer.RIGHT));
+                new PointData(91 - GuiConstants.BAR_WIDTH, -59), IconRenderer.RIGHT));
 
             AREA_LVL_OVERLAY = new GuiPartConfig(BarGuiType.NONE, new PointData(160, -25), IconRenderer.NONE);
 

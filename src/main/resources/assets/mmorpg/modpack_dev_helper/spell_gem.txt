@@ -19,6 +19,7 @@ arrow_storm
 thunder_dmg
 shield_leech
 fire_dmg
+less_radius
 frost_armor
 crit_rate
 health_leech
@@ -29,6 +30,7 @@ imbue
 spear_of_judgement
 atk_speed
 tidal_strike
+more_radius
 multi_shot
 major_multi_proj
 less_mana_cost

@@ -25,7 +25,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeedStat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
@@ -82,7 +82,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_balistic", "Ballistics Expert",
             new OptScaleExactStat(5, ProjectileDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(10, ProjectileSpeedStat.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, ProjectileSpeed.getInstance(), ModType.FLAT),
             new OptScaleExactStat(20, Dexterity.INSTANCE, ModType.FLAT)
         );
 
@@ -93,7 +93,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_fury_bolt", "Furious Bolts",
             new OptScaleExactStat(5, ProjectileDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(5, ProjectileSpeedStat.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, ProjectileSpeed.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(20, Strength.INSTANCE, ModType.FLAT)
         );
 

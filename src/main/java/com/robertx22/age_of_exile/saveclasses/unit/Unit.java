@@ -457,11 +457,7 @@ public class Unit {
                 boolean addstats = true;
 
                 if (entity instanceof PlayerEntity) {
-
-                    if (!gear.canPlayerWear(data)) {
-                        addstats = false;
-                    }
-
+// TODO
                     if (addstats) {
                         GearRarity rar = gear.getRarity();
                         if (rar.hasMaxWornRestriction()) {

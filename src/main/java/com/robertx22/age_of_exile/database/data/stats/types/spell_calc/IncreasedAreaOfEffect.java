@@ -37,7 +37,7 @@ public class IncreasedAreaOfEffect extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Increased Area of Effect";
+        return "Area of Effect";
     }
 
     @Override

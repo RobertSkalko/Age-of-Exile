@@ -56,7 +56,7 @@ public class TalentGrid {
 
         }
 
-        gridwatch.print(" Setting up grid ");
+        gridwatch.print(" Setting up talent grid ");
 
         Objects.requireNonNull(school.calcData.center, "Tree needs a center!");
 
@@ -78,7 +78,7 @@ public class TalentGrid {
 
             });
 
-        fast2.print(" fast  Connecting tree ");
+        fast2.print(" Connecting talent tree ");
 
     }
 

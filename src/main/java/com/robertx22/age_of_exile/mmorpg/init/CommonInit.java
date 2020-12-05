@@ -43,6 +43,7 @@ public class CommonInit implements ModInitializer {
         EffectCondition.init();
 
         ModRegistry.init();
+
         ModItemTags.init();
         MobAttributes.register();
 
@@ -90,7 +91,7 @@ public class CommonInit implements ModInitializer {
             .logUsableAmountTests();h
          */
 
-        watch.print("Age of Exile common init ");
+        watch.print("Age of Exile mod initialization ");
 
     }
 
