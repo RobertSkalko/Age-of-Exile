@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.parts.AutoConfigItemType;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -14,10 +15,14 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CompatibleItemUtils {
 
@@ -43,8 +48,6 @@ public class CompatibleItemUtils {
 
         public Data(Item item) {
 
-            //Watch watch = new Watch();
-
             this.all = new ArrayList<>();
 
             String reg = Registry.ITEM.getId(item)
@@ -69,42 +72,21 @@ public class CompatibleItemUtils {
 
                         slots.forEach(x -> {
                             all.addAll(ItemAutoPowerLevels.getPowerClassification(item)
-                                .getAutoCompatibleItems(ItemAutoPowerLevels.getFloatValueOf(item), item, x));
+                                .getAutoCompatibleItems(item, x));
                         });
 
                     }
                 }
             }
 
-            this.isCompatible = !all.isEmpty();
-
             if (!all.isEmpty()) {
-
-                CompatibleItem min = all.stream()
-                    .min(Comparator.comparingInt(s -> Database.GearTypes()
-                        .get(s.item_type)
-                        .getLevelRange()
-                        .getMinLevel()))
-                    .get();
-                CompatibleItem max = all.stream()
-                    .max(Comparator.comparingInt(s -> Database.GearTypes()
-                        .get(s.item_type)
-                        .getLevelRange()
-                        .getMaxLevel()))
-                    .get();
-
-                this.minLevel = Database.GearTypes()
-                    .get(min.item_type)
-                    .getLevelRange()
-                    .getMinLevel();
-
-                this.maxLevel = Database.GearTypes()
-                    .get(max.item_type)
-                    .getLevelRange()
-                    .getMaxLevel();
+                AutoConfigItemType type = ItemAutoPowerLevels.getPowerClassification(item);
+                this.minLevel = type.MIN_LEVEL;
+                this.maxLevel = type.MAX_LEVEL;
             }
 
-            //watch.print("Compat for :" + CLOC.translate(item.getName()));
+            this.isCompatible = !all.isEmpty();
+
         }
 
         public List<CompatibleItem> getAll() {
@@ -155,11 +137,19 @@ public class CompatibleItemUtils {
             CompatibleItem config = CompatibleItemUtils.getRandomCompatibleItemFor(stack.getItem());
 
             if (config != null) {
+
+                AutoConfigItemType data = ItemAutoPowerLevels.getPowerClassification(stack.getItem());
+
                 // slow check to make absolutely sure it doesnt have stats
                 GearItemData gear = Gear.Load(stack);
                 if (gear == null) {
                     ItemStack s = config.createStack(player, level, stack);
-                    Gear.Save(stack, Gear.Load(s));
+
+                    GearItemData geardata = Gear.Load(s);
+
+                    geardata.level = MathHelper.clamp(geardata.level, data.MIN_LEVEL, data.MAX_LEVEL);
+
+                    Gear.Save(stack, geardata);
 
                 }
             }

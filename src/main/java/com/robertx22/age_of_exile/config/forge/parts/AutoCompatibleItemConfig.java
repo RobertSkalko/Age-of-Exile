@@ -39,17 +39,23 @@ public class AutoCompatibleItemConfig {
     public int MAX_TOTAL_STATS = 200;
 
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TIER_0 = new AutoConfigItemType(0, 0.15F, 5)
-        .noSalvage();
+    public AutoConfigItemType WOOD = new AutoConfigItemType(0, 1, 1, 3).noSalvage();
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TIER_1 = new AutoConfigItemType(0.15F, 0.25F, 10).noSalvage();
+    public AutoConfigItemType STONE = new AutoConfigItemType(0, 1, 1, 5).noSalvage();
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TIER_2 = new AutoConfigItemType(0.25F, 0.5F, 20);
+    public AutoConfigItemType LEATHER = new AutoConfigItemType(0, 1, 1, 15).noSalvage();
+
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TIER_3 = new AutoConfigItemType(0.5F, 0.8F, 30);
+    public AutoConfigItemType TIER_0 = new AutoConfigItemType(0, 0.15F, 1, 5).noSalvage();
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TIER_4 = new AutoConfigItemType(0.8F, 0.9F, 40);
+    public AutoConfigItemType TIER_1 = new AutoConfigItemType(0.15F, 0.25F, 1, 10).noSalvage();
     @ConfigEntry.Gui.CollapsibleObject
-    public AutoConfigItemType TIER_5 = new AutoConfigItemType(0.9F, 1F, 50);
+    public AutoConfigItemType TIER_2 = new AutoConfigItemType(0.25F, 0.5F, 1, 20);
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoConfigItemType TIER_3 = new AutoConfigItemType(0.5F, 0.8F, 20, 35);
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoConfigItemType TIER_4 = new AutoConfigItemType(0.8F, 0.9F, 35, 45);
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoConfigItemType TIER_5 = new AutoConfigItemType(0.9F, 1F, 45, 60);
 
 }

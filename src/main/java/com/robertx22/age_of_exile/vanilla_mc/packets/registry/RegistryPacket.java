@@ -99,6 +99,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
                     set.add(json);
                 } catch (JsonSyntaxException e) {
                     e.printStackTrace();
+
                 }
             });
 

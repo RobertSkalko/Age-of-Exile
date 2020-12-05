@@ -9,10 +9,10 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
+import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 
@@ -25,7 +25,8 @@ import java.util.stream.Collectors;
 public class ItemAutoPowerLevels {
 
     private static HashMap<String, ItemAutoPowerLevels> STRONGEST = new HashMap<>();
-    public static HashMap<Item, Float> CACHED = new HashMap<>();
+    public static HashMap<Item, AutoConfigItemType> CACHED = new HashMap<>();
+    public static HashMap<Item, Float> CACHED_FLOATS = new HashMap<>();
 
     public ItemAutoPowerLevels(Item item, BaseGearType slot) {
 
@@ -53,11 +54,12 @@ public class ItemAutoPowerLevels {
 
     public static float getFloatValueOf(Item item) {
 
-        if (CACHED.containsKey(item)) {
-            return CACHED.get(item);
-        }
         if (STRONGEST.isEmpty()) {
             return 0F;
+        }
+
+        if (CACHED_FLOATS.containsKey(item)) {
+            return CACHED_FLOATS.get(item);
         }
 
         List<BaseGearType> slots = Database.GearTypes()
@@ -85,9 +87,40 @@ public class ItemAutoPowerLevels {
 
         val /= slots.size();
 
-        CACHED.put(item, val);
+        CACHED_FLOATS.put(item, val);
 
         return val;
+    }
+
+    @Nullable
+    public static AutoConfigItemType getHandCustomizedType(Item item) {
+
+        if (!ModConfig.get().autoCompatibleItems.ENABLE_MANUAL_TWEAKS) {
+            return null;
+        }
+
+        if (item instanceof ToolItem) {
+            ToolItem tool = (ToolItem) item;
+            ToolMaterial mat = tool.getMaterial();
+
+            if (mat == ToolMaterials.WOOD) {
+                return ModConfig.get().autoCompatibleItems.WOOD;
+            }
+            if (mat == ToolMaterials.STONE) {
+                return ModConfig.get().autoCompatibleItems.STONE;
+            }
+
+        } else if (item instanceof ArmorItem) {
+            ArmorItem tool = (ArmorItem) item;
+            ArmorMaterial mat = tool.getMaterial();
+
+            if (mat == ArmorMaterials.LEATHER) {
+                return ModConfig.get().autoCompatibleItems.LEATHER;
+            }
+
+        }
+
+        return null;
     }
 
     public static AutoConfigItemType getPowerClassification(Float val) {
@@ -116,12 +149,18 @@ public class ItemAutoPowerLevels {
     public static AutoConfigItemType getPowerClassification(Item item) {
 
         if (CACHED.containsKey(item)) {
-            return getPowerClassification(CACHED.get(item));
+            return CACHED.get(item);
+        }
+
+        AutoConfigItemType handmade = getHandCustomizedType(item);
+
+        if (handmade != null) {
+            return handmade;
         }
 
         AutoConfigItemType type = getPowerClassification(getFloatValueOf(item));
 
-        CACHED.put(item, getFloatValueOf(item));
+        CACHED.put(item, type);
 
         return type;
     }

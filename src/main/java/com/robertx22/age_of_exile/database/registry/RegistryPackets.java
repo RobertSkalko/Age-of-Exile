@@ -15,13 +15,12 @@ public class RegistryPackets {
 
     private static HashMap<SlashRegistryType, List<JsonObject>> map = new HashMap<>();
 
-    static {
-        for (SlashRegistryType type : SlashRegistryType.values()) {
+    public static List<JsonObject> get(SlashRegistryType type) {
+
+        if (!map.containsKey(type)) {
             map.put(type, new ArrayList<>());
         }
-    }
 
-    public static List<JsonObject> get(SlashRegistryType type) {
         return map.get(type);
     }
 

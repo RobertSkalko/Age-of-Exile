@@ -11,6 +11,7 @@ import java.util.List;
 
 public class AutoConfigItemType {
 
+    public int MIN_LEVEL;
     public int MAX_LEVEL;
 
     public double POWER_REQ_MIN;
@@ -18,10 +19,11 @@ public class AutoConfigItemType {
 
     public boolean CAN_BE_SALVAGED = true;
 
-    public AutoConfigItemType(float reqmin, float req, int maxlvl) {
+    public AutoConfigItemType(float reqmin, float req, int minlvl, int maxlvl) {
         MAX_LEVEL = maxlvl;
         POWER_REQ_MIN = reqmin;
         POWER_REQ_MAX = req;
+        this.MIN_LEVEL = minlvl;
     }
 
     public AutoConfigItemType noSalvage() {
@@ -33,7 +35,7 @@ public class AutoConfigItemType {
         return power >= POWER_REQ_MIN && POWER_REQ_MAX >= power;
     }
 
-    public List<CompatibleItem> getAutoCompatibleItems(float power, Item item, GearSlot slot) {
+    public List<CompatibleItem> getAutoCompatibleItems(Item item, GearSlot slot) {
 
         List<CompatibleItem> list = new ArrayList<>();
 
@@ -46,12 +48,9 @@ public class AutoConfigItemType {
                         .equals(slot
                             .GUID())) {
 
-                        if (power < x.getLevelRange()
-                            .getStartPercent()) {
-                            return false;
-                        }
-                        if (power > x.getLevelRange()
-                            .getEndPercent()) {
+                        if (!x.getLevelRange()
+                            .isLevelInRange(MIN_LEVEL) && !x.getLevelRange()
+                            .isLevelInRange(MAX_LEVEL)) {
                             return false;
                         }
 

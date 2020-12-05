@@ -313,7 +313,7 @@ public class Database {
         SlashRegistryType.init();
 
         // data pack ones
-        addRegistry(new RarityRegistryContainer<GearRarity>(SlashRegistryType.GEAR_RARITY, null).setIsDatapack());
+        addRegistry(new RarityRegistryContainer<GearRarity>(SlashRegistryType.GEAR_RARITY, new GearRarity()).setIsDatapack());
         addRegistry(new RarityRegistryContainer<MobRarity>(SlashRegistryType.MOB_RARITY, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SLOT, new GearSlot("", 0)).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_RARITY_GROUP, null).setIsDatapack());

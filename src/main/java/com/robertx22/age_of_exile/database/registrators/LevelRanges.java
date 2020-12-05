@@ -13,6 +13,27 @@ public class LevelRanges {
     public static LevelRange HIGH = new LevelRange(3 + "", 0.6F, 0.8F);
     public static LevelRange ENDGAME = new LevelRange(4 + "", 0.8F, 1F);
 
+    public static LevelRange fromTier(int tier) {
+
+        if (tier == 0) {
+            return STARTER;
+        }
+        if (tier == 1) {
+            return LOW;
+        }
+        if (tier == 2) {
+            return MIDDLE;
+        }
+        if (tier == 3) {
+            return HIGH;
+        }
+        if (tier == 4) {
+            return ENDGAME;
+        }
+
+        return STARTER;
+    }
+
     public static LevelRange START_TO_LOW = new LevelRange("_low", 0F, 0.4F);
     public static LevelRange MID_TO_END = new LevelRange("_end", 0.4F, 1F);
 
