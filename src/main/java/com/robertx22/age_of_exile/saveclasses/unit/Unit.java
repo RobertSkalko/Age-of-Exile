@@ -357,7 +357,7 @@ public class Unit {
 
                     for (SkillGemData sd : noGemDuplicateList) {
 
-                        if (sd.canPlayerUse((PlayerEntity) entity)) {
+                        if (true || sd.canPlayerUse((PlayerEntity) entity)) {
                             sd.getSkillGem()
                                 .getConstantStats(sd)
                                 .forEach(s -> {

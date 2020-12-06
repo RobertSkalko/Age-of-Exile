@@ -82,7 +82,6 @@ You lvl up, get the reward bag, click it, it gives you items based on the config
 This bag item can be used for more than level up rewards if modpackers wish.
 * leveling now has milestone rewards! Get useful materials to progress as you level up!
 * gem lvl req now higher, max tier is max lvl
-* choose spell is now V, use spell is R hotkey. I think that's easier.
 * essence items are now crafted with dyes instead
 * critical damage now isn't a total multiplier and instead works like all other damage additions. Additive percent calculated at the end.
 * reduced slow stat scaling from 100% more at max level, to 25% more.
@@ -181,3 +180,4 @@ In short, If you want to mess with max level or stat scalings, be prepared to me
 As most of your power comes from the talent tree now, as the tree is finite. It means if you don't edit the tree or player's base stats
 (which are both datapacks), then you shouldn't edit the max level.
 I wouldn't be doing this if I didn't think the current config would be a trap.
+* added a command that replaces your gear to easily test builds

@@ -94,8 +94,10 @@ public class SkillGemData implements ITooltipList {
             list.addAll(spell.GetTooltipString(info, CalculatedSpellData.create(info.player, spell, ctx.spellConfig)));
         }
 
+        list.add(new LiteralText(""));
+
         if (!cStats.isEmpty()) {
-            list.add(new LiteralText("Support Gem Stats: "));
+            list.add(new LiteralText("Supported Skill Gains: "));
 
             cStats
                 .forEach(x -> list.addAll(x.GetTooltipString(info)));

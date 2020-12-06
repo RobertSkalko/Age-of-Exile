@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.vanilla_mc.commands.stats.ClearStats;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.GiveStat;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.ListStats;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.RemoveStat;
+import com.robertx22.age_of_exile.vanilla_mc.commands.test_build.TestBuild;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 
@@ -31,6 +32,8 @@ public class CommandRegister {
         SetEntityRarity.register(dispatcher);
         SetLevel.register(dispatcher);
         GiveExp.register(dispatcher);
+
+        TestBuild.register(dispatcher);
 
         ResetSpellCooldowns.register(dispatcher);
 
