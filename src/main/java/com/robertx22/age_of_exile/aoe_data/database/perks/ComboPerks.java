@@ -123,5 +123,10 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
 
+        PerkBuilder.stat("spell_dmg_atk_speed",
+            new OptScaleExactStat(2, SpellDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(2, AttackSpeed.getInstance(), ModType.FLAT)
+        );
+
     }
 }

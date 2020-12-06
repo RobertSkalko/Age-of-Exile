@@ -350,5 +350,43 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(20, Intelligence.INSTANCE, ModType.FLAT)
         );
 
+        PerkBuilder.bigStat("big_self_reflection", "Self Reflection",
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(20, Intelligence.INSTANCE, ModType.FLAT)
+        );
+        PerkBuilder.bigStat("big_warrior_path", "Warrior's Path",
+            new OptScaleExactStat(100, Armor.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, AttackStyleDamage.MELEE, ModType.FLAT),
+            new OptScaleExactStat(20, Strength.INSTANCE, ModType.FLAT)
+        );
+        PerkBuilder.bigStat("big_hunters_path", "Hunters's Path",
+            new OptScaleExactStat(100, Accuracy.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, ProjectileDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(20, Dexterity.INSTANCE, ModType.FLAT)
+        );
+        PerkBuilder.bigStat("big_mages_path", "Mage's Path",
+            new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, SpellDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(20, Intelligence.INSTANCE, ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_endurance", "Endurance",
+            new OptScaleExactStat(20, Health.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("big_willpower", "Willpower",
+            new OptScaleExactStat(20, MagicShield.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, MagicShield.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("big_agility", "Agility",
+            new OptScaleExactStat(100, Accuracy.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, Accuracy.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(100, DodgeRating.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
     }
 }

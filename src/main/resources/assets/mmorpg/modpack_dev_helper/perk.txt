@@ -25,6 +25,7 @@ hp_res
 nature_weapon_damage
 big_force_of_will
 mana_on_hit
+big_hunters_path
 armor_and_dodge
 str
 projectile_damage
@@ -50,6 +51,7 @@ warrior
 big_wisdom_of_the_elders
 critical_hit
 thunder_resist
+big_mages_path
 spell_nature_damage_and_dot
 big_heart_of_thunder
 big_frog
@@ -112,11 +114,13 @@ critical_damage
 bow_damage
 mana_cost
 hunter
+big_endurance
 axe_damage
 big_inner_sense
 ele_trident_damage
 armor_and_ms
 big_poe
+big_warrior_path
 physical_weapon_damage
 health_regen
 big_blood_siphon
@@ -124,6 +128,7 @@ spell_fire_damage
 fire_water_spell_dmg
 dodge_and_ms
 big_spell_crit
+big_self_reflection
 templar
 magic_shield
 big_health_mana_cost
@@ -135,12 +140,15 @@ elemental_purity
 armor
 ele_wand_damage
 atk_cast_speed
+big_willpower
 spell_dmg_flat_mana
 spell_nature_damage
 elemental_resist
+big_agility
 big_precision
 big_primal
 big_fury_bolt
+spell_dmg_atk_speed
 spell_water_damage
 big_divine_light
 divinity
