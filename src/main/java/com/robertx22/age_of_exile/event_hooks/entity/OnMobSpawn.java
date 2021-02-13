@@ -72,7 +72,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
         endata.SetMobLevelAtSpawn(nearestPlayer);
 
-        int rar = mob.randomRarity(entity, endata);
+        String rar = mob.randomRarity(entity, endata);
         endata.setRarity(rar);
 
         MobRarity rarity = Database.MobRarities()

@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
@@ -29,7 +30,6 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,7 +61,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public String unique_id = ""; // uniq_id
 
     @Store
-    public int rarity; // rar
+    public String rarity = IRarity.COMMON_ID; // rar
 
     @Store
     public int rare_prefix = -1; // pre_name
@@ -154,12 +154,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     @Override
-    public int getRarityRank() {
-        return MathHelper.clamp(rarity, Database.GearRarities()
-            .lowest()
-            .Rank(), Database.GearRarities()
-            .highest()
-            .Rank());
+    public String getRarityRank() {
+        return rarity;
     }
 
     @Override

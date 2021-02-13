@@ -20,10 +20,6 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
             .unRegister(this);
     }
 
-    default boolean isUnique() {
-        return getRarityRank() == IRarity.Unique;
-    }
-
     default void unregisterDueToInvalidity() {
         Database.getRegistry(getSlashRegistryType())
             .unRegister(this);
@@ -50,8 +46,8 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
     }
 
     @Override
-    default int getRarityRank() {
-        return 0;
+    default String getRarityRank() {
+        return IRarity.COMMON_ID;
     }
 
     @Override

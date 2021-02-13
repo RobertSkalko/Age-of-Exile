@@ -65,8 +65,8 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     }
 
     @Override
-    public int getRarityRank() {
-        return IRarity.Common;
+    public String getRarityRank() {
+        return IRarity.COMMON_ID;
     }
 
     @Override

@@ -23,6 +23,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.MobStatUtils;
@@ -173,24 +174,24 @@ public class Unit {
         return StatData.empty();
     }
 
-    public int randomRarity(LivingEntity entity, UnitData data) {
+    public String randomRarity(LivingEntity entity, UnitData data) {
 
         List<MobRarity> rarities = Database.MobRarities()
-            .getAllRarities()
+            .getList()
             .stream()
             .filter(x -> data.getLevel() >= x.minMobLevelForRandomSpawns() || data.getLevel() >= GameBalanceConfig.get().MAX_LEVEL)
             .collect(Collectors.toList());
 
         if (rarities.isEmpty()) {
             rarities.add(Database.MobRarities()
-                .lowest());
+                .get(IRarity.COMMON_ID));
         }
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 
         EntityConfig entityConfig = Database.getEntityConfig(entity, data);
 
-        return MathHelper.clamp(finalRarity.Rank(), entityConfig.min_rarity, entityConfig.max_rarity);
+        return finalRarity.GUID();
 
     }
 

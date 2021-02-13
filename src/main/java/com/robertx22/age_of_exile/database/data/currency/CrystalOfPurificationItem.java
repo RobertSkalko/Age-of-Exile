@@ -58,8 +58,8 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public int getRarityRank() {
-        return IRarity.Magical;
+    public String getRarityRank() {
+        return IRarity.MAGICAL_ID;
     }
 
     @Override

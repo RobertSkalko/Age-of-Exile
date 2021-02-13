@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.currency.loc_reqs;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -29,15 +30,18 @@ public class SimpleGearLocReq extends BaseLocRequirement {
         x -> x.affixes.canGetMore(Affix.Type.prefix, x) || x.affixes.canGetMore(Affix.Type.suffix, x), Words.CantGetMoreAffixes.locName());
 
     public static final SimpleGearLocReq IS_COMMON = new SimpleGearLocReq(
-        x -> x.rarity == IRarity.Common, Words.IsCommon.locName());
+        x -> x.rarity.equals(IRarity.COMMON_ID), Words.IsCommon.locName());
+
     public static final SimpleGearLocReq IS_NOT_HIGHEST_RARITY = new SimpleGearLocReq(
-        x -> x.rarity < Database.GearRarities()
-            .getAllRarities()
+        x -> Database.GearRarityGroups()
+            .get(GearRarityGroups.NON_UNIQUE_ID)
+            .getRarities()
+
             .stream()
-            .filter(t -> t.Rank() != IRarity.Unique)
-            .max(Comparator.comparingInt(r -> r.Rank()))
+            .max(Comparator.comparingDouble(r -> r.itemTierPower()))
             .get()
-            .Rank(), Words.IsNotMaxRarity.locName());
+            .isHigherThan(x.getRarity())
+        , Words.IsNotMaxRarity.locName());
     public static final SimpleGearLocReq IS_NOT_UNIQUE = new SimpleGearLocReq(
         x -> !x.isUnique(), Words.isNotUnique.locName());
     public static final SimpleGearLocReq IS_UNIQUE = new SimpleGearLocReq(

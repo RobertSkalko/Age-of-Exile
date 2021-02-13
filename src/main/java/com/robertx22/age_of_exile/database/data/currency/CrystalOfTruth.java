@@ -70,8 +70,8 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
     }
 
     @Override
-    public int getRarityRank() {
-        return IRarity.Magical;
+    public String getRarityRank() {
+        return IRarity.MAGICAL_ID;
     }
 
     @Override

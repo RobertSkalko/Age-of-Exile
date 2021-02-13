@@ -79,8 +79,8 @@ public class OrbOfInfinityItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public int getRarityRank() {
-        return IRarity.Legendary;
+    public String getRarityRank() {
+        return IRarity.LEGENDARY_ID;
     }
 
     @Override

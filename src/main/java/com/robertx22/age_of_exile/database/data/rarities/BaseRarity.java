@@ -22,7 +22,6 @@ public abstract class BaseRarity implements Rarity {
     }
 
     public RarityType rarity_type;
-    public int rank;
     public int weight;
     public String text_format;
     public String higher_rar = "";
@@ -41,13 +40,8 @@ public abstract class BaseRarity implements Rarity {
     }
 
     @Override
-    public int Rank() {
-        return rank;
-    }
-
-    @Override
-    public int getRarityRank() {
-        return this.rank;
+    public String getRarityRank() {
+        return this.guid;
     }
 
     @Override
@@ -74,7 +68,6 @@ public abstract class BaseRarity implements Rarity {
         this.guid = IRarity.COMMON_ID;
         this.loc_name = "Common";
         this.text_format = Formatting.GRAY.name();
-        this.rank = IRarity.Common;
         onSetFields();
     }
 
@@ -83,7 +76,6 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Monster Unique";
         this.text_format = Formatting.GREEN.name();
 
-        this.rank = IRarity.MonsterUnique;
         onSetFields();
     }
 
@@ -92,7 +84,6 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Magical";
         this.text_format = Formatting.GREEN.name();
 
-        this.rank = IRarity.Magical;
         onSetFields();
     }
 
@@ -101,7 +92,6 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Rare";
         this.text_format = Formatting.YELLOW.name();
 
-        this.rank = IRarity.Rare;
         onSetFields();
     }
 
@@ -110,7 +100,6 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Epic";
         this.text_format = Formatting.LIGHT_PURPLE.name();
 
-        this.rank = IRarity.Epic;
         onSetFields();
     }
 
@@ -119,7 +108,6 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Legendary";
         this.text_format = Formatting.GOLD.name();
 
-        this.rank = IRarity.Legendary;
         onSetFields();
     }
 
@@ -128,7 +116,6 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Mythic";
         this.text_format = Formatting.DARK_PURPLE.name();
 
-        this.rank = IRarity.Mythic;
         onSetFields();
     }
 
@@ -137,15 +124,13 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Boss";
         this.text_format = Formatting.RED.name();
 
-        this.rank = 9;
         onSetFields();
     }
 
     public void setRelicFields() {
-        this.guid = IRarity.RELID_ID;
+        this.guid = IRarity.RELIC_ID;
         this.loc_name = "Relic";
         this.text_format = Formatting.GOLD.name();
-        this.rank = IRarity.Relic;
         onSetFields();
     }
 
@@ -153,7 +138,6 @@ public abstract class BaseRarity implements Rarity {
         this.guid = "antique";
         this.loc_name = "Antique";
         this.text_format = Formatting.WHITE.name();
-        this.rank = IRarity.Antique;
         onSetFields();
     }
 
@@ -162,7 +146,6 @@ public abstract class BaseRarity implements Rarity {
         this.loc_name = "Unique";
         this.text_format = Formatting.RED.name();
 
-        this.rank = IRarity.Unique;
         onSetFields();
     }
 

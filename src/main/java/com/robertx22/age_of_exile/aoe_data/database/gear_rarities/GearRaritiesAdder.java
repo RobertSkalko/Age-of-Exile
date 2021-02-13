@@ -11,7 +11,6 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
     public void registerAll() {
 
         GearRarity common = new GearRarity();
-        common.rank = IRarity.Common;
         common.unidentified_chance = 0;
         common.stat_req_multi = 0.5F;
         common.spawn_durability_hit = new MinMax(60, 80);
@@ -101,7 +100,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         antique.weight = 500;
         antique.item_tier_power = 1.2F;
         antique.item_value_multi = 1.2F;
-        antique.higher_rar = IRarity.RELID_ID;
+        antique.higher_rar = IRarity.RELIC_ID;
         antique.setAntiqueFields();
         antique.addToSerializables();
 

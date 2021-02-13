@@ -67,8 +67,8 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public int getRarityRank() {
-        return IRarity.Epic;
+    public String getRarityRank() {
+        return IRarity.EPIC_ID;
     }
 
     @Override

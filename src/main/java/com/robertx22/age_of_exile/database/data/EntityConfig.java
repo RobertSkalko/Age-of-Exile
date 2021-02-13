@@ -57,10 +57,6 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
 
     public double exp_multi = 1F;
 
-    public int min_rarity = 0;
-
-    public int max_rarity = 4;
-
     public int min_lvl = 1;
 
     public int max_lvl = 1000000;
@@ -113,11 +109,6 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     @Override
     public int Weight() {
         return 100;
-    }
-
-    @Override
-    public int getRarityRank() {
-        return 0;
     }
 
     @Override

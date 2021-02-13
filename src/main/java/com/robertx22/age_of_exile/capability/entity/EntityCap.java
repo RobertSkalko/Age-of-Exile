@@ -32,6 +32,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -105,9 +106,9 @@ public class EntityCap {
 
         void setUnit(Unit unit);
 
-        void setRarity(int rarity);
+        void setRarity(String rarity);
 
-        int getRarity();
+        String getRarity();
 
         String getUUID();
 
@@ -187,7 +188,7 @@ public class EntityCap {
 
         // sync these for mobs
         Unit unit = new Unit();
-        int rarity = 0;
+        String rarity = IRarity.COMMON_ID;
         int level = 1;
         int exp = 0;
         int maxHealth = 0;
@@ -218,7 +219,7 @@ public class EntityCap {
         public void addClientNBT(CompoundTag nbt) {
 
             nbt.putInt(LEVEL, level);
-            nbt.putInt(RARITY, rarity);
+            nbt.putString(RARITY, rarity);
             nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
                 .getAverageValue());
             nbt.putString(ENTITY_TYPE, this.type.toString());
@@ -233,7 +234,7 @@ public class EntityCap {
         @Override
         public void loadFromClientNBT(CompoundTag nbt) {
 
-            this.rarity = nbt.getInt(RARITY);
+            this.rarity = nbt.getString(RARITY);
             this.level = nbt.getInt(LEVEL);
             this.maxHealth = nbt.getInt(HP);
             this.area_mod = nbt.getString("area");
@@ -384,23 +385,16 @@ public class EntityCap {
         }
 
         @Override
-        public void setRarity(int rarity) {
-            this.rarity = MathHelper.clamp(rarity, Database.MobRarities()
-                .lowest()
-                .Rank(), Database.MobRarities()
-                .highest()
-                .Rank());
+        public void setRarity(String rarity) {
+            this.rarity = rarity;
+
             this.equipsChanged = true;
             this.shouldSync = true;
         }
 
         @Override
-        public int getRarity() {
-            return MathHelper.clamp(rarity, Database.MobRarities()
-                .lowest()
-                .Rank(), Database.MobRarities()
-                .highest()
-                .Rank());
+        public String getRarity() {
+            return rarity;
         }
 
         @Override
@@ -534,7 +528,8 @@ public class EntityCap {
                 .get(rarity);
 
             if (rar.hasHigherRarity()) {
-                rarity = rar.getHigherRarity().rank;
+                rarity = rar.getHigherRarity()
+                    .GUID();
                 this.equipsChanged = true;
                 this.shouldSync = true;
                 this.forceRecalculateStats();

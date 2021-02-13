@@ -76,7 +76,8 @@ public class LootCrateItem extends Item implements IAutoModel {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.setSpecificRarity(IRarity.Common);
+                blueprint.rarity.set(Database.GearRarities()
+                    .get(IRarity.COMMON_ID));
                 return blueprint.createStack();
             }
         },
@@ -86,7 +87,8 @@ public class LootCrateItem extends Item implements IAutoModel {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.setSpecificRarity(IRarity.Magical);
+                blueprint.rarity.set(Database.GearRarities()
+                    .get(IRarity.MAGICAL_ID));
                 return blueprint.createStack();
             }
         },
@@ -96,7 +98,8 @@ public class LootCrateItem extends Item implements IAutoModel {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.setSpecificRarity(IRarity.Rare);
+                blueprint.rarity.set(Database.GearRarities()
+                    .get(IRarity.RARE_ID));
                 return blueprint.createStack();
             }
         },
@@ -125,7 +128,8 @@ public class LootCrateItem extends Item implements IAutoModel {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.setSpecificRarity(IRarity.Relic);
+                blueprint.rarity.set(Database.GearRarities()
+                    .get(IRarity.RELIC_ID));
                 return blueprint.createStack();
             }
         };

@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantments;
@@ -157,7 +158,8 @@ public class ItemNewbieGearBag extends Item {
     private static GearBlueprint getBlueprint(BaseGearType type) {
         GearBlueprint print = new GearBlueprint(1);
         print.gearItemSlot.set(type);
-        print.rarity.setSpecificRarity(0);
+        print.rarity.set(Database.GearRarities()
+            .get(IRarity.COMMON_ID));
         return print;
     }
 

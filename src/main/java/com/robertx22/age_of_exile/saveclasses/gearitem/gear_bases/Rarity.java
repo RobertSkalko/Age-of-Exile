@@ -9,8 +9,6 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializedRegistryEntr
 
     String GUID();
 
-    int Rank();
-
     default String Color() {
         return textFormatting().toString();
     }

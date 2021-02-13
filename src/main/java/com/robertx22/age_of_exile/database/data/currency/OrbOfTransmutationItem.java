@@ -73,8 +73,8 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public int getRarityRank() {
-        return IRarity.Common;
+    public String getRarityRank() {
+        return IRarity.COMMON_ID;
     }
 
     @Override

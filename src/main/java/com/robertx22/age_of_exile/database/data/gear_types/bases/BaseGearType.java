@@ -26,6 +26,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
@@ -536,8 +537,8 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     }
 
     @Override
-    public int getRarityRank() {
-        return 0;
+    public String getRarityRank() {
+        return IRarity.COMMON_ID;
     }
 
     @Override

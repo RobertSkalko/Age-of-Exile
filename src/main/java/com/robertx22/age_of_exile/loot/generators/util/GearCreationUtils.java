@@ -31,7 +31,7 @@ public class GearCreationUtils {
         data.gear_type = blueprint.gearItemSlot.get()
             .GUID();
         data.level = blueprint.level.get();
-        data.rarity = rarity.Rank();
+        data.rarity = rarity.GUID();
 
         if (blueprint.isUniquePart.get()) {
             if (blueprint.gearItemSlot.get()
@@ -45,7 +45,7 @@ public class GearCreationUtils {
 
                 data.rarity = Database.GearRarities()
                     .get(unique.uniqueRarity)
-                    .Rank();
+                    .GUID();
 
                 data.is_unique = true;
                 data.unique_id = unique.GUID();
