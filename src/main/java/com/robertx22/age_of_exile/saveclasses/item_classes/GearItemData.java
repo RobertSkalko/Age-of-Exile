@@ -251,8 +251,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                     .locName()
                     .append(" "));
         }
-        text.append(GetBaseGearType().locName()
-            .formatted(format));
+        if (this.uniqueStats == null) {
+            text.append(GetBaseGearType().locName()
+                .formatted(format));
+        } else {
+            text.append(uniqueStats.getUnique(this)
+                .locName()
+                .formatted(format));
+        }
 
         list.add(text);
 
@@ -330,7 +336,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     private boolean useFullAffixedName() {
 
-        if (isUnique()) {
+        if (isUnique() && affixes.getNumberOfAffixes() == 0) {
             return false;
         }
         if (hasRuneWord()) {

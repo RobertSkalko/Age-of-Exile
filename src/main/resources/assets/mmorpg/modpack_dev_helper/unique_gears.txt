@@ -13,6 +13,7 @@ will_of_flora
 birth_miracle
 kingmaker
 harbinger
+bonechill_ring
 inca_thunder
 frigid_staff
 lunar_ring

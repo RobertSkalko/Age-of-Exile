@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -74,17 +75,19 @@ public class GearAffixesData implements IGearPartTooltip {
 
     public void randomize(GearItemData gear) {
 
-        for (int i = 0; i < gear.getRarity()
+        GearRarity rar = gear.getRarity();
+
+        for (int i = 0; i < rar
             .maximumOfOneAffixType(); i++) {
 
-            if (RandomUtils.roll(gear.getRarity()
+            if (RandomUtils.roll(rar
                 .AffixChance())) {
                 AffixData suffix = new AffixData(Affix.Type.suffix);
                 suffix.RerollFully(gear);
                 suffixes.add(suffix);
             }
 
-            if (RandomUtils.roll(gear.getRarity()
+            if (RandomUtils.roll(rar
                 .AffixChance())) {
                 AffixData prefix = new AffixData(Affix.Type.prefix);
                 prefix.RerollFully(gear);
@@ -92,7 +95,7 @@ public class GearAffixesData implements IGearPartTooltip {
             }
         }
 
-        int minaffixes = gear.getRarity()
+        int minaffixes = rar
             .minAffixes();
         int affixesToGen = minaffixes - getNumberOfAffixes();
 

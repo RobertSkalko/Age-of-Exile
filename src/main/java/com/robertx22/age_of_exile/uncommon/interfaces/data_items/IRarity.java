@@ -18,6 +18,7 @@ public interface IRarity<R extends Rarity> {
     int Epic = 3;
     int Legendary = 4;
     int Mythic = 11;
+    int MonsterUnique = 12;
 
     int Relic = 5;
     int Antique = 6;
@@ -25,8 +26,10 @@ public interface IRarity<R extends Rarity> {
     int Unique = 10;
     int Boss = 9;
 
+    String UNIQUE_ID = "unique";
     String COMMON_ID = "common";
     String MAGICAL_ID = "magical";
+    String MONSTER_UNIQUE_ID = "monster_unique";
     String RARE_ID = "rare";
     String EPIC_ID = "epic";
     String LEGENDARY_ID = "legendary";

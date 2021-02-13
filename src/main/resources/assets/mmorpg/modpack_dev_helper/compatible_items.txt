@@ -50,6 +50,7 @@ mmorpg:armor/cloth/boots/cloth_boots3
 mmorpg:armor/cloth/helmet/cloth_helmet0
 mmorpg:armor/cloth/boots/cloth_boots4
 mmorpg:jewelry/necklace/all_res_necklace_end
+mmorpg:uniques/jewelry/bonechill_ring
 mmorpg:armor/cloth/helmet/cloth_helmet4
 mmorpg:armor/cloth/helmet/cloth_helmet3
 mmorpg:armor/leather/chest/leather_chest1

@@ -23,6 +23,7 @@ less_radius
 frost_armor
 crit_rate
 health_leech
+ms_reg_aura
 crit_aura
 cast_speed
 hp_reg_aura

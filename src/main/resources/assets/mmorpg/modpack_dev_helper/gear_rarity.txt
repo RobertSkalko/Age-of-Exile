@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 magical
 common
+monster_unique
 relic
 mythic
 legendary

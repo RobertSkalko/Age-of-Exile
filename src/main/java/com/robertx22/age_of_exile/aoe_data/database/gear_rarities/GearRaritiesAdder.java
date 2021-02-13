@@ -118,6 +118,20 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         relic.setRelicFields();
         relic.addToSerializables();
 
+        GearRarity mi = new GearRarity();
+        mi.unidentified_chance = 0;
+        mi.stat_req_multi = 1F;
+        mi.default_stat_percents = new MinMax(0, 100);
+        mi.affix_stat_percents = new MinMax(80, 100);
+        mi.spawn_durability_hit = new MinMax(60, 80);
+        mi.weight = 0;
+        mi.affixes = new GearRarity.Part(1, 2, 50);
+        mi.sockets = new GearRarity.Part(0, 0, 0);
+        mi.item_tier_power = 1.5F;
+        mi.item_value_multi = 1.5F;
+        mi.setMIFields();
+        mi.addToSerializables();
+
         GearRarity unique = new GearRarity();
         unique.unidentified_chance = 25;
         unique.stat_req_multi = 1;

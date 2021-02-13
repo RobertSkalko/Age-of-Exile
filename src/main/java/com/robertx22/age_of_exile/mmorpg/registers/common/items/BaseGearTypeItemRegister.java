@@ -91,6 +91,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
 
     private HashMap<LevelRange, Item> jewelry(String idprefix, Supplier<Item> item) {
         HashMap<LevelRange, Item> map = new HashMap<LevelRange, Item>();
+
         LevelRanges.allJewelry()
             .forEach(x -> {
                 map.put(x, register(ITEM, id(idprefix + x.id_suffix), item.get()));

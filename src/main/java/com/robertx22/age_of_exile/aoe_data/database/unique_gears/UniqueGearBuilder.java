@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
@@ -33,6 +34,11 @@ public class UniqueGearBuilder {
 
     public UniqueGearBuilder stats(List<StatModifier> stats) {
         this.uniq.uniqueStats = stats;
+        return this;
+    }
+
+    public UniqueGearBuilder setMI() {
+        this.uniq.uniqueRarity = IRarity.MONSTER_UNIQUE_ID;
         return this;
     }
 

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
+public class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<UniqueGear>, ISerializable<UniqueGear> {
 
     public static UniqueGear SERIALIZER = new UniqueGear();
@@ -36,6 +36,7 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
     public String guid;
     public String gearType;
     public Identifier itemID;
+    public String uniqueRarity = IRarity.UNIQUE_ID;
 
     @Override
     public UniqueGear getFromBuf(PacketByteBuf buf) {
@@ -48,6 +49,7 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
         uniq.guid = buf.readString(500);
         uniq.gearType = buf.readString(500);
         uniq.itemID = buf.readIdentifier();
+        uniq.uniqueRarity = buf.readString(500);
 
         return uniq;
     }
@@ -59,6 +61,7 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
         buf.writeString(guid, 500);
         buf.writeString(gearType, 500);
         buf.writeIdentifier(itemID);
+        buf.writeString(uniqueRarity);
     }
 
     public transient String langName;
@@ -83,6 +86,8 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
         json.addProperty("item_id", this.getResourceLocForItem()
             .toString());
 
+        json.addProperty("rarity", this.uniqueRarity);
+
         return json;
     }
 
@@ -101,6 +106,8 @@ public final class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, IT
         uniq.uniqueStats = JsonUtils.getStats(json, "unique_stats");
 
         uniq.gearType = json.get("gear_type")
+            .getAsString();
+        uniq.uniqueRarity = json.get("rarity")
             .getAsString();
 
         return uniq;

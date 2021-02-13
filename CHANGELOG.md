@@ -181,3 +181,5 @@ As most of your power comes from the talent tree now, as the tree is finite. It 
 (which are both datapacks), then you shouldn't edit the max level.
 I wouldn't be doing this if I didn't think the current config would be a trap.
 * added a command that replaces your gear to easily test builds
+* added monster unique rarity. Work almost the same as unique items, except they usually have lower stats but in return can have 2 affixes.
+They also can only drop from certain mobs, for example bonechill ring can only drop from skeleton mobs.
