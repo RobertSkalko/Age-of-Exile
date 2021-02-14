@@ -32,7 +32,6 @@ meteor
 ms_reg_aura
 fire_bombs
 crit_aura
-ms_aura
 awaken_mana
 hp_reg_aura
 imbue

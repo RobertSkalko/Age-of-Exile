@@ -50,5 +50,6 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item JUDGEMENT_AXE = item(new BaseUniqueAxe("Axe"), "uniques/weapon/judgement");
 
     public Item BONECHILL_RING_MI = item(new BaseUniqueRing("Ring"), "uniques/jewelry/bonechill_ring");
+    public Item BONECHILL_AMULET_MI = item(new BaseUniqueRing("Amulet"), "uniques/jewelry/bonechill_amulet");
 
 }

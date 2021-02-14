@@ -6,6 +6,7 @@ frost_crown
 divine_might
 inner_conflux
 jester_hat
+bonechill_amulet
 loop_of_infinity
 exec_pride
 fifth_rider

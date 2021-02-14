@@ -30,5 +30,19 @@ public class JewelryMIs implements ISlashRegistryInit {
             ))
             .setMI()
             .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.BONECHILL_AMULET_MI,
+            "bonechill_amulet",
+            "Bonechill Amulet",
+            "",
+            BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.START_TO_LOW))
+            .stats(Arrays.asList(
+                new StatModifier(3, 4, Health.getInstance(), ModType.FLAT),
+                new StatModifier(7, 18, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
+            ))
+            .setMI()
+            .build();
+
     }
 }

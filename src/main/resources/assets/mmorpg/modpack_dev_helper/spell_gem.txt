@@ -61,7 +61,6 @@ whirlpool
 bleed_chance
 fire_bombs
 spell_crit_dmg
-ms_aura
 awaken_mana
 mana_reg_aura
 poisoned_weapons
