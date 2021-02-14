@@ -149,9 +149,6 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
         try {
             Identifier effect = null;
 
-            if (this.type == PotionType.MAGIC_SHIELD) {
-                effect = PotionRegister.FOOD_MAGIC_REGEN;
-            }
             if (this.type == PotionType.HEALTH) {
                 effect = PotionRegister.FOOD_HP;
             }

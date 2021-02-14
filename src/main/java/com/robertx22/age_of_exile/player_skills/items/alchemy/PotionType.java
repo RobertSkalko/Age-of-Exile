@@ -8,8 +8,7 @@ import java.util.function.Supplier;
 
 public enum PotionType {
     HEALTH("Health", "health", ResourceType.HEALTH, () -> ModRegistry.GEAR_MATERIALS.LIFE),
-    MANA("Mana", "mana", ResourceType.MANA, () -> ModRegistry.GEAR_MATERIALS.MANA),
-    MAGIC_SHIELD("Magic Shield", "magic_shield", ResourceType.MAGIC_SHIELD, () -> ModRegistry.GEAR_MATERIALS.ARCANA);
+    MANA("Mana", "mana", ResourceType.MANA, () -> ModRegistry.GEAR_MATERIALS.MANA);
 
     public String word;
     public String id;

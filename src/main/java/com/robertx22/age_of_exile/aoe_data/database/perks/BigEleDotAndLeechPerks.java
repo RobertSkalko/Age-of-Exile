@@ -20,22 +20,22 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_heart_of_ice", "Heart of Ice",
             new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
             new OptScaleExactStat(2, new ElementalPenetration(Elements.Water), ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Water, ResourceType.MAGIC_SHIELD, AttackType.SPELL)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Water, ResourceType.HEALTH, AttackType.SPELL)), ModType.FLAT)
         );
         PerkBuilder.bigStat("big_heart_of_thunder", "Heart of Thunder",
             new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Thunder), ModType.FLAT),
             new OptScaleExactStat(2, new ElementalPenetration(Elements.Thunder), ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Thunder, ResourceType.MAGIC_SHIELD, AttackType.SPELL)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Thunder, ResourceType.HEALTH, AttackType.SPELL)), ModType.FLAT)
         );
         PerkBuilder.bigStat("big_heart_of_fire", "Heart of Fire",
             new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(2, new ElementalPenetration(Elements.Fire), ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Fire, ResourceType.MAGIC_SHIELD, AttackType.SPELL)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Fire, ResourceType.HEALTH, AttackType.SPELL)), ModType.FLAT)
         );
         PerkBuilder.bigStat("big_heart_of_nature", "Heart of Nature",
             new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
             new OptScaleExactStat(2, new ElementalPenetration(Elements.Nature), ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Nature, ResourceType.MAGIC_SHIELD, AttackType.SPELL)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Nature, ResourceType.HEALTH, AttackType.SPELL)), ModType.FLAT)
         );
 
         //

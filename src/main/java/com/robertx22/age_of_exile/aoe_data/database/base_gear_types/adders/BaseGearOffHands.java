@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -38,8 +38,8 @@ public class BaseGearOffHands implements ISlashRegistryInit {
         MS_SHIELD = BaseGearBuilder.of(GearSlots.SHIELD, "spirit_shield", "Spirit Shield", ModRegistry.GEAR_ITEMS.MS_SHIELDS)
             .req(new StatRequirement().setInt(0.5f))
             .tags(new TagList(SlotTag.shield, SlotTag.cloth, SlotTag.offhand_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
-            .baseStat(new StatModifier(4, 12, MagicShield.getInstance(), ModType.FLAT))
-            .implicitStat(new StatModifier(3, 8, SpellDamage.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(5, 15, Mana.getInstance(), ModType.FLAT))
+            .implicitStat(new StatModifier(5, 10, SpellDamage.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 

@@ -37,7 +37,7 @@ public class ClientConfigs {
 
         if (OVERLAY_GUI.parts.isEmpty()) {
 
-            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.COMBINED_HEALTH, new PointData(-91, -39), IconRenderer.LEFT));
+            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.HEALTH, new PointData(-91, -39), IconRenderer.LEFT));
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.MANA, new PointData(-91, -49), IconRenderer.LEFT));
 
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.EXP,

@@ -8,8 +8,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -50,8 +50,8 @@ public class ArmorRunewords implements ISlashRegistryInit {
             "Starlight",
             BaseGearType.SlotFamily.Armor,
             Arrays.asList(
-                new StatModifier(2, 5, MagicShield.getInstance(), ModType.FLAT),
-                new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT)
+                new StatModifier(2, 5, Health.getInstance(), ModType.FLAT),
+                new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT)
             ),
             Arrays.asList(XER, CEN, ORU, NOS))
             .addToSerializables();

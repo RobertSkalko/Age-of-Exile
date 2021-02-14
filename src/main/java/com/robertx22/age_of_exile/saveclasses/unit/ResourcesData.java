@@ -105,8 +105,6 @@ public class ResourcesData {
     private float mana = 0;
     @Store
     private float blood = 0;
-    @Store
-    private float magicShield = 0;
 
     public float getMana() {
         return mana;
@@ -114,10 +112,6 @@ public class ResourcesData {
 
     public float getBlood() {
         return blood;
-    }
-
-    public float getMagicShield() {
-        return magicShield;
     }
 
     public float getModifiedValue(Context ctx) {
@@ -132,8 +126,6 @@ public class ResourcesData {
     public float get(LivingEntity en, ResourceType type) {
         if (type == ResourceType.MANA) {
             return mana;
-        } else if (type == ResourceType.MAGIC_SHIELD) {
-            return magicShield;
         } else if (type == ResourceType.BLOOD) {
             return blood;
         } else if (type == ResourceType.HEALTH) {
@@ -149,10 +141,7 @@ public class ResourcesData {
             return data.getUnit()
                 .manaData()
                 .getAverageValue();
-        } else if (type == ResourceType.MAGIC_SHIELD) {
-            return data.getUnit()
-                .magicShieldData()
-                .getAverageValue();
+
         } else if (type == ResourceType.BLOOD) {
             return data.getUnit()
                 .bloodData()
@@ -180,11 +169,7 @@ public class ResourcesData {
                 .getAverageValue() * Load.spells(ctx.source)
                 .getReservedManaMulti());
             sync(ctx);
-        } else if (ctx.type == ResourceType.MAGIC_SHIELD) {
-            magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .magicShieldData()
-                .getAverageValue());
-            sync(ctx);
+
         } else if (ctx.type == ResourceType.BLOOD) {
 
             blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()

@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICor
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -152,14 +151,6 @@ public class Unit {
     public StatData bloodData() {
         try {
             return getCalculatedStat(Blood.GUID);
-        } catch (Exception e) {
-        }
-        return StatData.empty();
-    }
-
-    public StatData magicShieldData() {
-        try {
-            return getCalculatedStat(MagicShield.GUID);
         } catch (Exception e) {
         }
         return StatData.empty();
@@ -410,15 +401,9 @@ public class Unit {
             float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 40);
             // all increases after this would just reduce enviro damage
 
-            if (getStats().getStatInCalculation(Health.getInstance())
-                .getFlatAverage() > getStats().getStatInCalculation(MagicShield.getInstance())
-                .getFlatAverage()) {
-                getStats().getStatInCalculation(Health.getInstance())
-                    .addFlat(maxhp, data.getLevel());
-            } else {
-                getStats().getStatInCalculation(MagicShield.getInstance())
-                    .addFlat(maxhp, data.getLevel());
-            }
+            getStats().getStatInCalculation(Health.getInstance())
+                .addFlat(maxhp, data.getLevel());
+
             // add vanila hp to extra hp
         }
     }

@@ -749,11 +749,7 @@ public class EntityCap {
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
-                getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.MAGIC_SHIELD,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ))
+
                 // fully restore on lvlup
                 ;
 

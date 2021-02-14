@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.damage_hooks.LivingHurtUtils;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
@@ -78,17 +77,6 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
         }
         if (source instanceof MyDamageSource) {
             ci.setReturnValue(amount);
-        }
-        try {
-            if (amount <= 0) {
-                return;
-            }
-            float afterReduction = MagicShield.modifyEnviroDamage(en, amount);
-            if (afterReduction != amount) {
-                ci.setReturnValue(afterReduction);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }

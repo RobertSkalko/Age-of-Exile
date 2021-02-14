@@ -58,15 +58,12 @@ public class HealthUtils {
 
     public static float getCombinedMaxHealth(LivingEntity en) {
         EntityCap.UnitData data = Load.Unit(en);
-        return data.getUnit()
-            .magicShieldData()
-            .getAverageValue() + getMaxHealth(en);
+        return getMaxHealth(en);
 
     }
 
     public static float getCombinedCurrentHealth(LivingEntity en) {
         EntityCap.UnitData data = Load.Unit(en);
-        return data.getResources()
-            .getMagicShield() + getCurrentHealth(en);
+        return getCurrentHealth(en);
     }
 }

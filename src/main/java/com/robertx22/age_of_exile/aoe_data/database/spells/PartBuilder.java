@@ -62,20 +62,6 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart restoreMagicShieldInRadius(ValueCalculationData calc, Double radius) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.RESTORE_MAGIC_SHIELD.create(calc));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
-        return c;
-    }
-
-    public static ComponentPart restoreMagicShieldToCaster(ValueCalculationData calc) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.RESTORE_MAGIC_SHIELD.create(calc));
-        c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
     public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculationData calc, Elements ele, Double radius) {
         ComponentPart c = damageInAoe(calc, ele, radius);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));

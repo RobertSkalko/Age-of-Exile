@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.DayDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
@@ -85,8 +84,7 @@ public class UniqueRings implements ISlashRegistryInit {
             BaseGearJewelry.RING_MANA_REG.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT),
-                new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT),
-                new StatModifier(0.5F, 2, MagicShieldRegen.getInstance(), ModType.FLAT)
+                new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT)
             ))
             .build();
 

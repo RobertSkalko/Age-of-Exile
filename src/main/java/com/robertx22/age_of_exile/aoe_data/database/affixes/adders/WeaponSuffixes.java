@@ -83,15 +83,6 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .Suffix()
             .Build();
 
-        AffixBuilder.Normal("of_absorption")
-            .Named("Of Absorption")
-            .tier(1, new StatModifier(4, 6, PlusResourceOnKill.MAGIC_SHIELD, ModType.FLAT))
-            .tier(2, new StatModifier(3, 4, PlusResourceOnKill.MAGIC_SHIELD, ModType.FLAT))
-            .tier(3, new StatModifier(1, 3, PlusResourceOnKill.MAGIC_SHIELD, ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
         AffixBuilder.Normal("of_consumption")
             .Named("Of Consumption")
             .tier(1, new StatModifier(4, 6, PlusResourceOnKill.MANA, ModType.FLAT))

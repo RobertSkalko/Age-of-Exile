@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.player_skills.items.protection_tablets.effects
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.FoodExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.HealthRegenFoodEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.MagicShieldFoodEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.ManaRegenFoodEffect;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -26,7 +25,6 @@ public class PotionRegister {
 
     public static Identifier FOOD_HP = new Identifier(Ref.MODID, "food_health_regen");
     public static Identifier FOOD_MANA = new Identifier(Ref.MODID, "food_mana_regen");
-    public static Identifier FOOD_MAGIC_REGEN = new Identifier(Ref.MODID, "food_magic_shield_regen");
 
     public AntiPotionEffect ANTI_WITHER = new AntiPotionEffect(StatusEffects.WITHER);
     public AntiPotionEffect ANTI_POISON = new AntiPotionEffect(StatusEffects.POISON);
@@ -73,7 +71,6 @@ public class PotionRegister {
 
         Registry.register(Registry.STATUS_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
         Registry.register(Registry.STATUS_EFFECT, FOOD_MANA, ManaRegenFoodEffect.INSTANCE);
-        Registry.register(Registry.STATUS_EFFECT, FOOD_MAGIC_REGEN, MagicShieldFoodEffect.INSTANCE);
 
     }
 

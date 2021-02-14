@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -154,7 +153,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (!isDodged && target instanceof PlayerEntity) { // todo this code sucks
             // a getter should not modify anything
             dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
-            dmg = MagicShield.modifyEntityDamage(this, dmg);
         }
 
         return dmg;
@@ -462,15 +460,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (healed > 0) {
             sourceData.getResources()
                 .modify(new ResourcesData.Context(sourceData, source, ResourceType.HEALTH, healed,
-                    ResourcesData.Use.RESTORE
-                ));
-        }
-    }
-
-    public void restoreMagicShield(float healed) {
-        if (healed > 0) {
-            sourceData.getResources()
-                .modify(new ResourcesData.Context(sourceData, source, ResourceType.MAGIC_SHIELD, healed,
                     ResourcesData.Use.RESTORE
                 ));
         }

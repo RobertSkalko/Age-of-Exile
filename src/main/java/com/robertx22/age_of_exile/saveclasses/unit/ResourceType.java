@@ -3,8 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 public enum ResourceType {
     HEALTH("health", "Health"),
     MANA("mana", "Mana"),
-    BLOOD("blood", "Blood"),
-    MAGIC_SHIELD("magic_shield", "Magic Shield");
+    BLOOD("blood", "Blood");
 
     public String id;
 

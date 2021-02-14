@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
@@ -54,7 +53,7 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("flat_ms_mana_regen",
-            new OptScaleExactStat(10, MagicShield.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
             new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
 
@@ -78,7 +77,7 @@ public class ComboPerks implements ISlashRegistryInit {
 
         PerkBuilder.stat("armor_and_ms",
             new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, MagicShield.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("armor_and_dodge",
             new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
@@ -91,7 +90,7 @@ public class ComboPerks implements ISlashRegistryInit {
 
         PerkBuilder.stat("dodge_and_ms",
             new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, MagicShield.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.stat("dodge_and_hp",

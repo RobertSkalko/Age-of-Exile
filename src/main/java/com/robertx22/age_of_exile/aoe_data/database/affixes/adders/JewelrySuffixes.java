@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalD
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -85,9 +85,9 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_spirit_markings")
             .Named("Of Spirit Markings")
-            .tier(1, new StatModifier(1, 2, MagicShieldRegen.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(0.5F, 1, MagicShieldRegen.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.3F, 0.5F, MagicShieldRegen.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(1, 2, ManaRegen.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.5F, 1, ManaRegen.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.3F, 0.5F, ManaRegen.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
             .Weight(200)
             .Suffix()

@@ -12,8 +12,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantit
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -36,7 +36,7 @@ public class PlateUniques implements ISlashRegistryInit {
             BasePlateArmors.CHESTS.get(LevelRanges.MIDDLE))
             .stats(Arrays.asList(
                 new StatModifier(20, 100, Armor.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(20, 60, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE)
+                new StatModifier(10, 40, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
             ))
             .build();
 

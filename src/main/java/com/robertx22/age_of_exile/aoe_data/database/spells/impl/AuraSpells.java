@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -39,12 +38,6 @@ public class AuraSpells implements ISlashRegistryInit {
         SpellBuilder.aura("dodge_aura", "Dodge Aura", new AuraSpellData(0.2F,
             Arrays.asList(
                 new StatModifier(50, 125, DodgeRating.getInstance())
-            )))
-            .build();
-
-        SpellBuilder.aura("ms_reg_aura", "Magic Shield Regeneration Aura", new AuraSpellData(0.1F,
-            Arrays.asList(
-                new StatModifier(2, 5, MagicShieldRegen.getInstance())
             )))
             .build();
 

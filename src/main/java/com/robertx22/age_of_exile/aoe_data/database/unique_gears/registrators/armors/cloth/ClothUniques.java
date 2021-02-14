@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -33,11 +33,9 @@ public class ClothUniques implements ISlashRegistryInit {
             "Merge the Rivers of Mana and Magic, attain infinity, or die.",
             BaseClothArmors.CHESTS.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(5, 15, MagicShield.getInstance(), ModType.FLAT),
-                new StatModifier(10, 30, MagicShield.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(1, 2, RegeneratePercentStat.MANA, ModType.FLAT),
-                new StatModifier(1, 2, RegeneratePercentStat.MAGIC_SHIELD, ModType.FLAT),
-                new StatModifier(-8, -3, Health.getInstance(), ModType.FLAT)
+                new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
+                new StatModifier(10, 30, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(1, 2, RegeneratePercentStat.MANA, ModType.FLAT)
             ))
             .build();
 

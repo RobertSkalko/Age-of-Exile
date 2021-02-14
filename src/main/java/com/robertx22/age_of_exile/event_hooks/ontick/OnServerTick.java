@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
@@ -97,26 +96,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                             unitdata.getResources()
                                 .modify(hp);
-
-                            if (unitdata.getResources()
-                                .getMagicShield() < unitdata.getUnit()
-                                .magicShieldData()
-                                .getAverageValue()) {
-                                restored = true;
-                            }
-
-                            float magicshieldrestored = unit.getCalculatedStat(MagicShieldRegen.GUID)
-                                .getAverageValue();
-                            magicshieldrestored += unit.getCalculatedStat(RegeneratePercentStat.MAGIC_SHIELD)
-                                .getAverageValue() * unit.magicShieldData()
-                                .getAverageValue() / 100F;
-                            ResourcesData.Context ms = new ResourcesData.Context(unitdata, player,
-                                ResourceType.MAGIC_SHIELD,
-                                magicshieldrestored,
-                                ResourcesData.Use.RESTORE
-                            );
-                            unitdata.getResources()
-                                .modify(ms);
 
                             if (restored) {
                                 unitdata.syncToClient(player);

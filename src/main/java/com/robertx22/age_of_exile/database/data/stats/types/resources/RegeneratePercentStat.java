@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
@@ -11,7 +10,6 @@ public class RegeneratePercentStat extends Stat {
 
     public static RegeneratePercentStat HEALTH = new RegeneratePercentStat(Health.getInstance());
     public static RegeneratePercentStat MANA = new RegeneratePercentStat(Mana.getInstance());
-    public static RegeneratePercentStat MAGIC_SHIELD = new RegeneratePercentStat(MagicShield.getInstance());
 
     Stat statRestored;
 

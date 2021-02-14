@@ -28,8 +28,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.Regenerate
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -109,8 +107,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     static {
 
-        addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), MagicShield.getInstance(), Mana.getInstance()));
-        addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), MagicShieldRegen.getInstance(), ManaRegen.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), Mana.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), ManaRegen.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Armor.getInstance(), DodgeRating.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(CriticalHit.getInstance(), CriticalDamage.getInstance(), SpellCriticalHit.getInstance(), SpellCriticalDamage.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Accuracy.getInstance(), SpellDamage.getInstance()));
@@ -124,7 +122,6 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.RESISTS, new ElementalPenetration(Elements.Elemental).generateAllPossibleStatVariations());
 
         addTo(StatType.RESTORATION, Arrays.asList(Lifesteal.getInstance(), PlusResourceOnKill.HEALTH, RegeneratePercentStat.HEALTH));
-        addTo(StatType.RESTORATION, Arrays.asList(PlusResourceOnKill.MAGIC_SHIELD, RegeneratePercentStat.MAGIC_SHIELD));
         addTo(StatType.RESTORATION, Arrays.asList(PlusResourceOnKill.MANA, RegeneratePercentStat.MANA));
         addTo(StatType.RESTORATION, Arrays.asList(HealPower.getInstance(), HealEffectivenessOnSelf.getInstance(), ManaBurnResistance.getInstance()));
 

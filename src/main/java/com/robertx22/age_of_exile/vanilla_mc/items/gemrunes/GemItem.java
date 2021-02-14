@@ -27,8 +27,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOn
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -210,17 +208,17 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(2, 4, MagicShield.getInstance()));
+                return Arrays.asList(new StatModifier(2, 4, Health.getInstance()), new StatModifier(2, 4, Mana.getInstance()));
             }
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(0.5F, 1.5F, MagicShieldRegen.getInstance()));
+                return Arrays.asList(new StatModifier(0.5F, 1.5F, HealthRegen.getInstance()), new StatModifier(0.5F, 1.5F, ManaRegen.getInstance()));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 4, new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.MAGIC_SHIELD, AttackType.ATTACK))));
+                return Arrays.asList(new StatModifier(2, 4, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.MANA, AttackType.ATTACK))));
             }
         }),
         GARNET("garnet", "Garnet", Formatting.GREEN, new GemStatPerTypes() {

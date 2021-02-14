@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -18,7 +17,6 @@ public class PlusResourceOnKill extends Stat {
 
     public static PlusResourceOnKill HEALTH = new PlusResourceOnKill(Health.getInstance(), new Effect(ResourceType.HEALTH));
     public static PlusResourceOnKill MANA = new PlusResourceOnKill(Mana.getInstance(), new Effect(ResourceType.MANA));
-    public static PlusResourceOnKill MAGIC_SHIELD = new PlusResourceOnKill(MagicShield.getInstance(), new Effect(ResourceType.MAGIC_SHIELD));
 
     Stat statRestored;
 

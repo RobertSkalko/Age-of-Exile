@@ -31,7 +31,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -162,7 +162,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         NOS(1000, "nos", "Nos", 0.2F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(5, 20, MagicShield.getInstance(), ModType.LOCAL_INCREASE));
+                return Arrays.asList(new StatModifier(5, 20, Mana.getInstance(), ModType.LOCAL_INCREASE));
             }
 
             @Override

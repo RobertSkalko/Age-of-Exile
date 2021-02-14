@@ -11,7 +11,6 @@ import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -70,10 +69,7 @@ public class FoodEffectBuilder {
 
         Identifier effect = null;
 
-        if (ItemTags.FISHES.contains(food)) {
-            effect = PotionRegister.FOOD_MAGIC_REGEN;
-            value *= 1F;
-        } else if (foodcomponent.isMeat()) {
+        if (foodcomponent.isMeat()) {
             effect = PotionRegister.FOOD_HP;
             value *= 0.75F;
         } else {

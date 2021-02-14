@@ -26,8 +26,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Heal
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
@@ -60,11 +58,9 @@ public class Stats implements ISlashRegistryInit {
                     add(EffectImmunity.WITHER);
 
                     add(RegeneratePercentStat.HEALTH);
-                    add(RegeneratePercentStat.MAGIC_SHIELD);
                     add(RegeneratePercentStat.MANA);
 
                     add(PlusResourceOnKill.HEALTH);
-                    add(PlusResourceOnKill.MAGIC_SHIELD);
                     add(PlusResourceOnKill.MANA);
 
                     add(BonusDmgToStatusAffected.FROST);
@@ -142,7 +138,6 @@ public class Stats implements ISlashRegistryInit {
                     // Resources
                     add(IncreasedLeech.getInstance());
                     add(DamageAbsorbedByMana.getInstance());
-                    add(HealToMagicShield.getInstance());
                     add(HealthRestorationToBlood.getInstance());
                     add(Blood.getInstance());
                     add(BloodUser.getInstance());
@@ -152,8 +147,6 @@ public class Stats implements ISlashRegistryInit {
 
                     add(Mana.getInstance());
                     add(ManaRegen.getInstance());
-                    add(MagicShield.getInstance());
-                    add(MagicShieldRegen.getInstance());
                     // Resources
 
                     add(Armor.getInstance());

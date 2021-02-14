@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCr
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -45,7 +44,6 @@ public class BaseStatsAdder implements ISlashRegistryInit {
         c.scaled(Mana.getInstance(), 10);
         c.scaled(ManaRegen.getInstance(), 1.5F);
         c.scaled(HealthRegen.getInstance(), 1);
-        c.scaled(MagicShieldRegen.getInstance(), 1);
         c.scaled(new AttackDamage(Elements.Physical), 1);
 
         return c;

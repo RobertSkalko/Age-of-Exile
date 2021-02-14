@@ -96,47 +96,6 @@ public enum BarGuiType {
         }
 
     },
-    COMBINED_HEALTH {
-        @Override
-        public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
-            return HEALTH.getCurrent(data, en) + MAGIC_SHIELD.getCurrent(data, en);
-        }
-
-        @Override
-        public float getMax(EntityCap.UnitData data, PlayerEntity en) {
-            return HEALTH.getMax(data, en) + MAGIC_SHIELD.getMax(data, en);
-        }
-
-        @Override
-        public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
-            if (HEALTH.getMax(data, en) > MAGIC_SHIELD.getMax(data, en)) {
-                return HEALTH.getTexture(data, en);
-            } else {
-                return MAGIC_SHIELD.getTexture(data, en);
-            }
-        }
-
-    },
-    MAGIC_SHIELD {
-        @Override
-        public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
-            return data.getResources()
-                .getMagicShield();
-        }
-
-        @Override
-        public float getMax(EntityCap.UnitData data, PlayerEntity en) {
-            return data.getUnit()
-                .magicShieldData()
-                .getAverageValue();
-        }
-
-        @Override
-        public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/magic_shield.png");
-        }
-
-    },
     HUNGER {
         @Override
         public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {

@@ -9,14 +9,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.NonCritDamag
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealToMagicShield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.IncreasedLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShield;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -35,13 +32,6 @@ public class GameChangerPerks implements ISlashRegistryInit {
             new OptScaleExactStat(-100, Mana.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
-        PerkBuilder.gameChanger("arcane_devotion", "Arcane Devotion",
-            new OptScaleExactStat(-25, Health.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-25, HealthRegen.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-25, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(25, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
-        );
-
         PerkBuilder.gameChanger("elemental_purity", "Elemental Purity",
             new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(-50, new ElementalDamageBonus(Elements.Physical), ModType.FLAT)
@@ -50,8 +40,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         PerkBuilder.gameChanger("refined_taste", "Refined Taste",
             new OptScaleExactStat(50, IncreasedLeech.getInstance(), ModType.FLAT),
             new OptScaleExactStat(-75, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-75, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-75, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-75, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("overflowing_vitality", "Overflowing Vitality",
@@ -70,18 +59,15 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("harmony", "Harmony",
-            new OptScaleExactStat(50, HealToMagicShield.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-5, TotalDamage.getInstance(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("mana_battery", "Mana Battery",
             new OptScaleExactStat(50, DamageAbsorbedByMana.getInstance(), ModType.FLAT),
             new OptScaleExactStat(-20, Health.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-15, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-10, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
-        );
-
-        PerkBuilder.gameChanger("magical_life", "Magical Life",
-            new OptScaleExactStat(50, DatapackStatAdder.CONVERT_MAGIC_SHIELD_TO_HEALTH, ModType.FLAT)
+            new OptScaleExactStat(-15, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("divinity", "Divinity",

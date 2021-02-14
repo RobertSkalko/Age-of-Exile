@@ -13,8 +13,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLe
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.magic_shield.MagicShieldRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -74,7 +74,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT),
-                new StatModifier(10, 20, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(10, 20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)
             ))
@@ -88,10 +88,9 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             BaseGearJewelry.HP_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(-100, -100, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(-100, -100, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 25, DamageUnderPotion.HUNGER, ModType.FLAT),
                 new StatModifier(15, 50, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(2, 3, new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.MAGIC_SHIELD, AttackType.ATTACK)), ModType.FLAT)
+                new StatModifier(2, 3, new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT)
             ))
             .build();
 
