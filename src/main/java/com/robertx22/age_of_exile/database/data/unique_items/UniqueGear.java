@@ -4,9 +4,9 @@ import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFiltersGroupData;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.item.Item;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
+public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<UniqueGear>, ISerializable<UniqueGear> {
 
     public static UniqueGear SERIALIZER = new UniqueGear();
@@ -37,6 +36,8 @@ public class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered,
     public Identifier itemID;
     public String uniqueRarity = IRarity.UNIQUE_ID;
 
+    public DropFiltersGroupData filters = new DropFiltersGroupData();
+/*
     @Override
     public UniqueGear getFromBuf(PacketByteBuf buf) {
         UniqueGear uniq = new UniqueGear();
@@ -50,6 +51,8 @@ public class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered,
         uniq.itemID = buf.readIdentifier();
         uniq.uniqueRarity = buf.readString(500);
 
+        uniq.filters = DropFiltersGroupData.fromJson(buf.readString(50000));
+
         return uniq;
     }
 
@@ -61,7 +64,10 @@ public class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered,
         buf.writeString(gearType, 500);
         buf.writeIdentifier(itemID);
         buf.writeString(uniqueRarity);
+        buf.writeString(filters.toJson(), 5000);
     }
+
+ */
 
     public transient String langName;
     public transient String langDesc;
@@ -87,6 +93,7 @@ public class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered,
 
         json.addProperty("rarity", this.uniqueRarity);
 
+        json.add("filters", filters.toJson());
         return json;
     }
 
@@ -108,6 +115,8 @@ public class UniqueGear implements IByteBuf<UniqueGear>, IBaseGearType, ITiered,
             .getAsString();
         uniq.uniqueRarity = json.get("rarity")
             .getAsString();
+
+        uniq.filters = DropFiltersGroupData.fromJson(json.get("filters"));
 
         return uniq;
     }

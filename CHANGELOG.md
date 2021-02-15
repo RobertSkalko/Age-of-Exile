@@ -184,3 +184,4 @@ I wouldn't be doing this if I didn't think the current config would be a trap.
 * added monster unique rarity. Work almost the same as unique items, except they usually have lower stats but in return can have 2 affixes.
 They also can only drop from certain mobs, for example bonechill ring can only drop from skeleton mobs.
 * rarities are now no longer internally saved as integers (ranks), now they are saved by their string (identifier). This means you should probably start a new world as idk exactly how many things will break. This is a big update so i'll try put as many breaking changes in. I try to only do this every half year at most.
+* magic shield stat removed. Cloth armors now have mana and health.

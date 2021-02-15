@@ -70,6 +70,10 @@ public class StatData {
 
     public float getAverageValue() {
 
+        if (!GetStat().UsesSecondValue()) {
+            return getFirstValue();
+        }
+
         float val = (getFirstValue() + getSecondValue()) / 2F;
 
         Stat stat = GetStat();

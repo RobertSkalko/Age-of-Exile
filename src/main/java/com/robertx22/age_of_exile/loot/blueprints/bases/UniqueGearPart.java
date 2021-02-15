@@ -18,6 +18,7 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
 
         FilterListWrap<UniqueGear> gen = Database.UniqueGears()
             .getWrapped()
+            .of(x -> !x.filters.cantDrop(blueprint.info))
             .ofSpecificGearType(gearBlueprint.gearItemSlot.get()
                 .GUID());
 

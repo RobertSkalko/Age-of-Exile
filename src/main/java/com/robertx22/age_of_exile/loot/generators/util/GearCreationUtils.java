@@ -25,6 +25,8 @@ public class GearCreationUtils {
 
     public static GearItemData CreateData(GearBlueprint blueprint) {
 
+        blueprint.isUniquePart.set(true);
+
         IGearRarity rarity = (IGearRarity) blueprint.rarity.get();
         GearItemData data = new GearItemData();
 

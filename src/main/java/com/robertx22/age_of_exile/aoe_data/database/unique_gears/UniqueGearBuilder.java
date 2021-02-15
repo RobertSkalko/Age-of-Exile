@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
+import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
@@ -30,6 +31,11 @@ public class UniqueGearBuilder {
 
         return b;
 
+    }
+
+    public UniqueGearBuilder dropFilter(DropFilterData filter) {
+        this.uniq.filters.list.add(filter);
+        return this;
     }
 
     public UniqueGearBuilder stats(List<StatModifier> stats) {

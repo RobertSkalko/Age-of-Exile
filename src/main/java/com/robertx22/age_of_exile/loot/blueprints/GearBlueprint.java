@@ -21,6 +21,7 @@ public class GearBlueprint extends ItemBlueprint {
         super(info);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
 
+        this.info = info;
         this.rarity.setupChances(info);
         this.isUniquePart.setupChances(info);
     }

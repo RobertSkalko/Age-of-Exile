@@ -15,6 +15,8 @@ import java.util.List;
 // use once and discard!
 public abstract class ItemBlueprint {
 
+    public LootInfo info = null;
+
     public int extraLevelModifier = 0;
 
     public ItemBlueprint(int lvl) {

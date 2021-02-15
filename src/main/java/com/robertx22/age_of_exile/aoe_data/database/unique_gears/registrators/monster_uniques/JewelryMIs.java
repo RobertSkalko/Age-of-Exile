@@ -5,11 +5,14 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
+import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.tag.EntityTypeTags;
 
 import java.util.Arrays;
 
@@ -29,6 +32,8 @@ public class JewelryMIs implements ISlashRegistryInit {
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
             ))
             .setMI()
+            .dropFilter(DropFilterData.of(new MobTagFilter(), EntityTypeTags.SKELETONS.getId()
+                .toString()))
             .build();
 
         UniqueGearBuilder.of(
@@ -42,6 +47,8 @@ public class JewelryMIs implements ISlashRegistryInit {
                 new StatModifier(7, 18, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
             ))
             .setMI()
+            .dropFilter(DropFilterData.of(new MobTagFilter(), EntityTypeTags.SKELETONS.getId()
+                .toString()))
             .build();
 
     }

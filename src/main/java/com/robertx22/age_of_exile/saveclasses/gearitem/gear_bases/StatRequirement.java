@@ -51,9 +51,12 @@ public class StatRequirement implements ISerializable<StatRequirement> {
             .getAverageValue() < getStr(lvl)) {
             return false;
         }
-        if (data.getUnit()
+
+        float intv = data.getUnit()
             .getCalculatedStat(Intelligence.INSTANCE)
-            .getAverageValue() < getInt(lvl)) {
+            .getAverageValue();
+        float intreq = getInt(lvl);
+        if (intv < intreq) {
             return false;
         }
         if (data.getUnit()

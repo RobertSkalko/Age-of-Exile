@@ -124,6 +124,7 @@ mmorpg:uniques/jewelry/snake_eye
 mmorpg:uniques/jewelry/loop_of_infinity
 mmorpg:uniques/armor/kingmaker
 mmorpg:uniques/armor/frost_crown
+mmorpg:uniques/jewelry/bonechill_amulet
 mmorpg:uniques/armor/ms_armor_chest
 mmorpg:jewelry/ring/mana_reg_ring_low
 mmorpg:uniques/jewelry/lunar_ring
