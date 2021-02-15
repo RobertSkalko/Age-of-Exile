@@ -210,8 +210,6 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
             .get(this.rarities)
             .getRarities();
 
-        blueprint.isUniquePart.chance = chance_to_become_unique;
-
         if (Database.UniqueGears()
             .isRegistered(unique_id)) {
 

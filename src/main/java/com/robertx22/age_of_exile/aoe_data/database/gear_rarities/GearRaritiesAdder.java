@@ -128,6 +128,8 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mi.sockets = new GearRarity.Part(0, 0, 0);
         mi.item_tier_power = 1.5F;
         mi.item_value_multi = 1.5F;
+        mi.special_spawn_chance = 3;
+        mi.is_unique_item = true;
         mi.setMIFields();
         mi.addToSerializables();
 
@@ -142,7 +144,10 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         unique.item_value_multi = 2;
         unique.setUniqueFields();
         unique.addToSerializables();
+        unique.special_spawn_chest_bonus_chance = 1;
+        unique.special_spawn_chance = 0.5F;
         unique.announce_in_chat = true;
+        unique.is_unique_item = true;
 
     }
 }

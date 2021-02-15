@@ -5,9 +5,9 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.UniqueGearsSuggestions;
-import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
@@ -55,15 +55,21 @@ public class GiveExactUnique {
         for (int i = 0; i < amount; i++) {
             GearBlueprint blueprint = new GearBlueprint(lvl, 0);
             blueprint.unidentifiedPart.set(false);
-            blueprint.isUniquePart.set(true);
             blueprint.level.set(lvl);
 
             if (!id.equals("random")) {
 
+                blueprint.rarity.set(Database.GearRarities()
+                    .getFilterWrapped(x -> x.is_unique_item)
+                    .random());
                 blueprint.uniquePart.set(Database.UniqueGears()
                     .get(id));
                 blueprint.gearItemSlot.set(blueprint.uniquePart.get()
                     .getBaseGearType());
+            } else {
+                blueprint.rarity.set(Database.GearRarities()
+                    .get(Database.UniqueGears()
+                        .get(id).uniqueRarity));
             }
 
             player.giveItemStack(blueprint.createStack());

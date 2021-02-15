@@ -118,7 +118,8 @@ public class LootCrateItem extends Item implements IAutoModel {
                             .GUID()
                             .equals(x.GUID())))
                     .random());
-                blueprint.isUniquePart.set(true);
+                blueprint.rarity.set(Database.GearRarities()
+                    .get(IRarity.UNIQUE_ID));
                 return blueprint.createStack();
             }
         },

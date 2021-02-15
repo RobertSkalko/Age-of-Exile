@@ -48,6 +48,10 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public MinMax spawn_durability_hit = new MinMax(60, 80);
     public boolean announce_in_chat = false;
 
+    public boolean is_unique_item = false;
+    public float special_spawn_chance = 0;
+    public float special_spawn_chest_bonus_chance = 0;
+
     public boolean isHigherThan(GearRarity other) {
         return this.valueMulti() > other.valueMulti();
         // todo can be better

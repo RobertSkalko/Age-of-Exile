@@ -46,8 +46,6 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
         gearPrint.rarity.possible.removeIf(x -> x.equals(gear.getRarity()));
         gearPrint.level.set(gear.level);
 
-        gearPrint.isUniquePart.set(false);
-
         GearItemData newgear = gearPrint.createData();
         gear.WriteOverDataThatShouldStay(newgear);
 

@@ -49,8 +49,6 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
             .getHigherRarity());
         gearPrint.level.set(gear.level);
 
-        gearPrint.isUniquePart.set(false);
-
         GearItemData newgear = gearPrint.createData();
         gear.WriteOverDataThatShouldStay(newgear);
 
