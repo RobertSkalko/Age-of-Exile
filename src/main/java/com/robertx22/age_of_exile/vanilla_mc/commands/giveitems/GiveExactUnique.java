@@ -60,16 +60,18 @@ public class GiveExactUnique {
             if (!id.equals("random")) {
 
                 blueprint.rarity.set(Database.GearRarities()
-                    .getFilterWrapped(x -> x.is_unique_item)
-                    .random());
+                    .get(Database.UniqueGears()
+                        .random().uniqueRarity));
+
                 blueprint.uniquePart.set(Database.UniqueGears()
                     .get(id));
                 blueprint.gearItemSlot.set(blueprint.uniquePart.get()
                     .getBaseGearType());
             } else {
+
                 blueprint.rarity.set(Database.GearRarities()
-                    .get(Database.UniqueGears()
-                        .get(id).uniqueRarity));
+                    .getFilterWrapped(x -> x.is_unique_item)
+                    .random());
             }
 
             player.giveItemStack(blueprint.createStack());

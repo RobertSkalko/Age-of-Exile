@@ -95,6 +95,8 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         super(new Settings().maxCount(16)
             .group(CreativeTabs.Runes));
         this.type = type;
+
+        this.weight = type.weight;
     }
 
     @Override

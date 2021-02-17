@@ -245,6 +245,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             text.append(format + "")
                 .append(prefix.BaseAffix()
                     .locName()
+                    .formatted(format)
                     .append(" "));
         }
         if (this.uniqueStats == null) {
@@ -274,7 +275,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .textFormatting();
 
         UniqueGear uniq = this.uniqueStats.getUnique(this);
-        list.add(new LiteralText(format + "").append(uniq.locName()));
+        list.add(new LiteralText(format + "").append(uniq.locName()
+            .formatted(format)));
         list.add(new LiteralText(format + "").append(GetBaseGearType().locName()
             .formatted(format)));
         return list;

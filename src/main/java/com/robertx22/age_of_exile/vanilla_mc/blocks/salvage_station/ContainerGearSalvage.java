@@ -21,18 +21,24 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
         final int SLOT_Y_SPACING = 18;
 
-        final int INPUT_SLOTS_XPOS = 26;
-        final int INPUT_SLOTS_YPOS = 24;
+        final int INPUT_SLOTS_XPOS = 44;
+        final int INPUT_SLOTS_YPOS = 9;
         // Add the tile input slots
         for (int y = 0; y < TileGearSalvage.INPUT_SLOTS.size(); y++) {
-            addSlot(new SalvageSlot(inventory, TileGearSalvage.INPUT_SLOTS.get(y), INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+            addSlot(new SalvageSlot(inventory, TileGearSalvage.INPUT_SLOTS.get(y), INPUT_SLOTS_XPOS + SLOT_Y_SPACING * y, INPUT_SLOTS_YPOS));
         }
 
-        final int OUTPUT_SLOTS_XPOS = 134;
-        final int OUTPUT_SLOTS_YPOS = 24;
+        final int OUTPUT_SLOTS_XPOS = 8;
+        final int OUTPUT_SLOTS_YPOS = 63;
         // Add the tile output slots
-        for (int y = 0; y < TileGearSalvage.OUTPUT_SLOTS.size(); y++) {
-            addSlot(new OutputSlot(inventory, TileGearSalvage.OUTPUT_SLOTS.get(y), OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+
+        int i = 0;
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 9; x++) { // hard coded numbers
+                addSlot(new OutputSlot(inventory, TileGearSalvage.OUTPUT_SLOTS.get(i), OUTPUT_SLOTS_XPOS + SLOT_Y_SPACING * x, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
+
+                i++;
+            }
         }
 
     }

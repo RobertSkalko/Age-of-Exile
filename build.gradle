@@ -12,6 +12,9 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+maven {
+		url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
+	}
     maven {        url = "https://maven.theillusivec4.top/"    }
     maven {
         name = "Ladysnake Libs"
@@ -65,6 +68,8 @@ dependencies {
 	modImplementation "de.siphalor:nbtcrafting-${nbtcrafting_version}"
 	include "de.siphalor:nbtcrafting-${nbtcrafting_version}"	
 	
+    modImplementation group: 'net.devtech', name: 'arrp', version: '0.3.7'
+
     compile files("Library-Of-Exile-1.16.3-1.0.7-dev.jar")	
 		
 	

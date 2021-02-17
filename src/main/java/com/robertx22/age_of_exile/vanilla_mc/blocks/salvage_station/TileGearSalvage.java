@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
-import com.robertx22.library_of_exile.tile_bases.BaseTile;
 import com.robertx22.library_of_exile.tile_bases.NonFullBlock;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.SoundUtils;
@@ -23,15 +23,20 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileGearSalvage extends BaseTile {
+public class TileGearSalvage extends BaseModificationStation {
 
-    public static List<Integer> FUEL_SLOTS = Arrays.asList(0);
-    public static List<Integer> INPUT_SLOTS = Arrays.asList(1, 2, 3, 4, 5);
-    public static List<Integer> OUTPUT_SLOTS = Arrays.asList(6, 7, 8, 9, 10);
-    public static int TOTAL_SLOTS_COUNT = FUEL_SLOTS.size() + INPUT_SLOTS.size() + OUTPUT_SLOTS.size();
+    public static List<Integer> INPUT_SLOTS = Arrays.asList(0, 1, 2, 3, 4);
+    public static List<Integer> OUTPUT_SLOTS =
+        Arrays.asList(
+            5, 6, 7, 8, 9, 10, 11, 12, 13, 14 /**/,
+            15, 16, 17, 18, 19, 20, 21, 22, 23,/**/
+            24, 25, 26, 27, 28, 29, 30, 31);
+
+    public static int TOTAL_SLOTS_COUNT = INPUT_SLOTS.size() + OUTPUT_SLOTS.size();
 
     @Override
     public List<Integer> inputSlots() {
@@ -102,31 +107,17 @@ public class TileGearSalvage extends BaseTile {
 
     @Override
     public void finishCooking() {
-        this.smeltItem();
-
-        SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.3F, 1);
-
-        ParticleEnum.sendToClients(
-            pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
-                .type(ParticleTypes.DUST)
-                .amount(15));
-
-        ParticleEnum.sendToClients(
-            pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
-                .type(ParticleTypes.FLAME)
-                .motion(new Vec3d(0, 0, 0))
-                .amount(15));
 
     }
 
     @Override
     public boolean isCooking() {
-        return canSmelt();
+        return false;
     }
 
     @Override
     public int tickRate() {
-        return 10;
+        return 1000;
     }
 
     @Override
@@ -138,20 +129,22 @@ public class TileGearSalvage extends BaseTile {
         return smeltItem(false);
     }
 
-    boolean outputsAreEmpty() {
+    boolean outputsHaveEmptySlots() {
+        int emptySlots = 0;
+
         for (int slot : OUTPUT_SLOTS) {
-            if (!itemStacks[slot].isEmpty()) {
-                return false;
+            if (itemStacks[slot].isEmpty()) {
+                emptySlots++;
             }
         }
-        return true;
+        return emptySlots > 5;
     }
 
     /**
      * Smelt an input item into an output slot, if possible
      */
-    private void smeltItem() {
-        smeltItem(true);
+    private boolean smeltItem() {
+        return smeltItem(true);
     }
 
     private boolean smeltItem(boolean performSmelt) {
@@ -171,11 +164,25 @@ public class TileGearSalvage extends BaseTile {
 
                         itemStacks[inputSlot] = ItemStack.EMPTY;
 
-                        if (outputsAreEmpty()) {
+                        List<Integer> outputed = new ArrayList<>();
+
+                        if (outputsHaveEmptySlots()) {
                             for (int slot : OUTPUT_SLOTS) {
-                                if (!results.isEmpty()) {
-                                    itemStacks[slot] = results.get(0);
-                                    results.remove(0);
+                                for (int i = 0; i < results.size(); i++) {
+                                    ItemStack result = results.get(i);
+                                    if (!outputed.contains(i)) {
+                                        if (itemStacks[slot].isEmpty()) {
+                                            itemStacks[slot] = result;
+                                            outputed.add(i);
+                                        } else if (itemStacks[slot].isItemEqual(result)) {
+                                            if ((itemStacks[slot].getCount() + result.getCount()) < result.getItem()
+                                                .getMaxCount()) {
+                                                itemStacks[slot].setCount(itemStacks[slot].getCount() + result.getCount());
+                                                outputed.add(i);
+                                            }
+                                        }
+                                    }
+
                                 }
                             }
                         } else {
@@ -225,5 +232,28 @@ public class TileGearSalvage extends BaseTile {
     @Override
     public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
         return new ContainerGearSalvage(num, inventory, this, this.getPos());
+    }
+
+    @Override
+    public boolean modifyItem() {
+
+        if (this.smeltItem()) {
+
+            SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.3F, 1);
+
+            ParticleEnum.sendToClients(
+                pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                    .type(ParticleTypes.DUST)
+                    .amount(15));
+
+            ParticleEnum.sendToClients(
+                pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                    .type(ParticleTypes.FLAME)
+                    .motion(new Vec3d(0, 0, 0))
+                    .amount(15));
+
+        }
+
+        return true;
     }
 }

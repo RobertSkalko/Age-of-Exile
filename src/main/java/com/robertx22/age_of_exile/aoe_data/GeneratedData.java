@@ -83,6 +83,8 @@ public class GeneratedData {
 
             new GameBalanceConfig().addToSerializables();
 
+            LootTablesGen.gen();
+
         }
     }
 }

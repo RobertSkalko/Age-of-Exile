@@ -104,32 +104,33 @@ public class TooltipMethod {
                 }
 
                 if (data instanceof GearItemData) {
-                    List<String> strings = tooltip
-                        .stream()
-                        .map(x -> CLOC.translate(x))
-                        .collect(Collectors.toList());
+                    if (true) { // tooltip centering
+                        List<String> strings = tooltip
+                            .stream()
+                            .map(x -> CLOC.translate(x))
+                            .collect(Collectors.toList());
 
-                    TextRenderer font = MinecraftClient.getInstance().textRenderer;
+                        TextRenderer font = MinecraftClient.getInstance().textRenderer;
 
-                    int max = font.getWidth(strings.stream()
-                        .max(Comparator.comparingInt(x -> font.getWidth(x)))
-                        .get());
+                        int max = font.getWidth(strings.stream()
+                            .max(Comparator.comparingInt(x -> font.getWidth(x)))
+                            .get());
 
-                    tooltip.clear();
+                        tooltip.clear();
 
-                    strings.forEach(x -> {
+                        strings.forEach(x -> {
 
-                        String str = x;
+                            String str = x;
 
-                        while (font.getWidth(str) <= max) {
-                            str = " " + str + " ";
-                        }
+                            while (font.getWidth(str) <= max) {
+                                str = " " + str + " ";
+                            }
 
-                        tooltip
-                            .add(new SText(str));
+                            tooltip
+                                .add(new SText(str));
 
-                    });
-
+                        });
+                    }
                 }
             }
 
