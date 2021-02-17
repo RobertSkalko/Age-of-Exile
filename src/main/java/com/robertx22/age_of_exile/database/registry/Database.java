@@ -25,6 +25,7 @@ import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
+import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -150,6 +151,10 @@ public class Database {
 
     public static SlashRegistryContainer<ExileEffect> ExileEffects() {
         return getRegistry(SlashRegistryType.EXILE_EFFECT);
+    }
+
+    public static SlashRegistryContainer<SalvageRecipe> SalvageRecipes() {
+        return getRegistry(SlashRegistryType.SALVAGE_RECIPE);
     }
 
     public static SlashRegistryContainer<SkillGemRarity> SkillGemRarities() {
@@ -337,6 +342,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SKILL_GEM_RARITY, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RANDOM_SKILL_GEM_STATS, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GAME_BALANCE, new GameBalanceConfig()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SALVAGE_RECIPE, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

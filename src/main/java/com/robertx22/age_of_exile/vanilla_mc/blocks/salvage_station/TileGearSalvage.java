@@ -126,7 +126,7 @@ public class TileGearSalvage extends BaseModificationStation {
     }
 
     private boolean canSmelt() {
-        return smeltItem(false);
+        return salvage(false);
     }
 
     boolean outputsHaveEmptySlots() {
@@ -140,14 +140,55 @@ public class TileGearSalvage extends BaseModificationStation {
         return emptySlots > 5;
     }
 
-    /**
-     * Smelt an input item into an output slot, if possible
-     */
-    private boolean smeltItem() {
-        return smeltItem(true);
+    private void ouputItems(List<ItemStack> results) {
+
+        List<Integer> outputed = new ArrayList<>();
+
+        if (outputsHaveEmptySlots()) {
+            for (int slot : OUTPUT_SLOTS) {
+                for (int i = 0; i < results.size(); i++) {
+                    ItemStack result = results.get(i);
+                    if (!outputed.contains(i)) {
+                        if (itemStacks[slot].isEmpty()) {
+                            itemStacks[slot] = result;
+                            outputed.add(i);
+                        } else if (itemStacks[slot].isItemEqual(result)) {
+                            if ((itemStacks[slot].getCount() + result.getCount()) < result.getItem()
+                                .getMaxCount()) {
+                                itemStacks[slot].setCount(itemStacks[slot].getCount() + result.getCount());
+                                outputed.add(i);
+                            }
+                        }
+                    }
+
+                }
+            }
+        } else {
+
+            Vec3d itempos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
+
+            BlockState block = world.getBlockState(pos);
+
+            Direction dir = block.get(NonFullBlock.direction);
+
+            itempos = itempos.add(dir.getVector()
+                .getX(), 0, dir.getVector()
+                .getZ());
+
+            for (ItemStack x : results) {
+                ItemEntity itemEntity = new ItemEntity(
+                    this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
+                itemEntity.setToDefaultPickupDelay();
+                this.world.spawnEntity(itemEntity);
+            }
+        }
     }
 
-    private boolean smeltItem(boolean performSmelt) {
+    private boolean salvage() {
+        return salvage(true);
+    }
+
+    private boolean salvage(boolean performSmelt) {
 
         try {
             List<ItemStack> results;
@@ -164,46 +205,7 @@ public class TileGearSalvage extends BaseModificationStation {
 
                         itemStacks[inputSlot] = ItemStack.EMPTY;
 
-                        List<Integer> outputed = new ArrayList<>();
-
-                        if (outputsHaveEmptySlots()) {
-                            for (int slot : OUTPUT_SLOTS) {
-                                for (int i = 0; i < results.size(); i++) {
-                                    ItemStack result = results.get(i);
-                                    if (!outputed.contains(i)) {
-                                        if (itemStacks[slot].isEmpty()) {
-                                            itemStacks[slot] = result;
-                                            outputed.add(i);
-                                        } else if (itemStacks[slot].isItemEqual(result)) {
-                                            if ((itemStacks[slot].getCount() + result.getCount()) < result.getItem()
-                                                .getMaxCount()) {
-                                                itemStacks[slot].setCount(itemStacks[slot].getCount() + result.getCount());
-                                                outputed.add(i);
-                                            }
-                                        }
-                                    }
-
-                                }
-                            }
-                        } else {
-
-                            Vec3d itempos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
-
-                            BlockState block = world.getBlockState(pos);
-
-                            Direction dir = block.get(NonFullBlock.direction);
-
-                            itempos = itempos.add(dir.getVector()
-                                .getX(), 0, dir.getVector()
-                                .getZ());
-
-                            for (ItemStack x : results) {
-                                ItemEntity itemEntity = new ItemEntity(
-                                    this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
-                                itemEntity.setToDefaultPickupDelay();
-                                this.world.spawnEntity(itemEntity);
-                            }
-                        }
+                        ouputItems(results);
                         return true;
 
                     }
@@ -237,7 +239,7 @@ public class TileGearSalvage extends BaseModificationStation {
     @Override
     public boolean modifyItem() {
 
-        if (this.smeltItem()) {
+        if (this.salvage()) {
 
             SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.3F, 1);
 

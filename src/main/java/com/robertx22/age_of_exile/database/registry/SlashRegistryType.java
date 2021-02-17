@@ -26,6 +26,7 @@ import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
+import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -85,6 +86,7 @@ public enum SlashRegistryType {
     SKILL_GEM("spell_gem", 23, SkillGem.SERIALIZER, SyncTime.ON_LOGIN),
     SKILL_GEM_RARITY("skill_gem_rarity", 24, SkillGemRarity.SERIALIZER, SyncTime.ON_LOGIN),
     RANDOM_SKILL_GEM_STATS("random_skill_gem_stats", 25, RandomSkillGemStats.SERIALIZER, SyncTime.ON_LOGIN),
+    SALVAGE_RECIPE("salvage_recipe", 27, SalvageRecipe.SERIALIZER, SyncTime.ON_LOGIN),
     GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;
