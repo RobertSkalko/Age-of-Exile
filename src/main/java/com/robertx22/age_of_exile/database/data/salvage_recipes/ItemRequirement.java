@@ -16,6 +16,13 @@ public class ItemRequirement {
     public String req_str = "";
     public Integer req_num = 0;
 
+    public static ItemRequirement rarity(String rar) {
+        ItemRequirement r = new ItemRequirement();
+        r.req_type = RARITY;
+        r.req_str = rar;
+        return r;
+    }
+
     public boolean matches(ItemStack stack) {
 
         if (req_type.equals("item")) {

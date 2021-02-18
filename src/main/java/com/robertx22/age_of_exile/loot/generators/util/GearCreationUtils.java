@@ -15,9 +15,6 @@ public class GearCreationUtils {
 
     public static ItemStack CreateStack(GearItemData data) {
 
-        if (!data.getRarity().is_unique_item) {
-            return ItemStack.EMPTY;
-        }
         ItemStack stack = new ItemStack(data.getItem());
 
         Gear.Save(stack, data);

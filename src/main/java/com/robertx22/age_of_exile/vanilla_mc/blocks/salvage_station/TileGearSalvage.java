@@ -1,5 +1,8 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 
+import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
+import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
@@ -10,15 +13,22 @@ import com.robertx22.library_of_exile.tile_bases.NonFullBlock;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -126,7 +136,7 @@ public class TileGearSalvage extends BaseModificationStation {
     }
 
     private boolean canSmelt() {
-        return salvage(false);
+        return noRecipeSalvage(false);
     }
 
     boolean outputsHaveEmptySlots() {
@@ -185,10 +195,49 @@ public class TileGearSalvage extends BaseModificationStation {
     }
 
     private boolean salvage() {
-        return salvage(true);
+
+        List<ItemStack> stacks = new ArrayList<>();
+        for (int inputSlot : INPUT_SLOTS) {
+            stacks.add(itemStacks[inputSlot]);
+        }
+
+        FilterListWrap<SalvageRecipe> matching = Database.SalvageRecipes()
+            .getFilterWrapped(x -> x.matches(stacks));
+
+        if (matching.list.isEmpty()) {
+            return noRecipeSalvage(true);
+        } else {
+            salvageRecipe(matching.list.get(0));
+            return true;
+        }
+
     }
 
-    private boolean salvage(boolean performSmelt) {
+    private void salvageRecipe(SalvageRecipe recipe) {
+
+        Identifier loottableId = new Identifier(recipe.loot_table_output);
+
+        LootContext lootContext = new LootContext.Builder((ServerWorld) world)
+            .parameter(LootContextParameters.TOOL, ItemStack.EMPTY)
+            .parameter(LootContextParameters.ORIGIN, new Vec3d(pos.getX(), pos.getY(), pos.getZ()))
+            .parameter(LootContextParameters.BLOCK_STATE, Blocks.AIR.getDefaultState())
+            .build(LootContextTypes.BLOCK);
+        ServerWorld serverWorld = lootContext.getWorld();
+        LootTable lootTable = serverWorld.getServer()
+            .getLootManager()
+            .getTable(loottableId);
+
+        List<ItemStack> drops = lootTable.generateLoot(lootContext);
+
+        for (int inputSlot : INPUT_SLOTS) {
+            itemStacks[inputSlot] = ItemStack.EMPTY;
+        }
+
+        ouputItems(drops);
+
+    }
+
+    private boolean noRecipeSalvage(boolean performSmelt) {
 
         try {
             List<ItemStack> results;

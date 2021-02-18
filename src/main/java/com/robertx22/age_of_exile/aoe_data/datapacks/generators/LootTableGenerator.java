@@ -78,7 +78,7 @@ public class LootTableGenerator {
     }
 
     public static Identifier RUNE_SALVAGE_RECIPE = Ref.id("runes_salvage_recipe");
-    public static Identifier GEN_SALVAGE_RECIPE = Ref.id("gems_salvage_recipe");
+    public static Identifier GEM_SALVAGE_RECIPE = Ref.id("gems_salvage_recipe");
 
     private HashMap<Identifier, LootTable> getLootTables() {
         HashMap<Identifier, LootTable> map = new HashMap<Identifier, LootTable>();
@@ -102,7 +102,7 @@ public class LootTableGenerator {
         runes.pool(runeloot);
 
         map.put(RUNE_SALVAGE_RECIPE, runes.build());
-        map.put(GEN_SALVAGE_RECIPE, gems.build());
+        map.put(GEM_SALVAGE_RECIPE, gems.build());
 
         return map;
 
