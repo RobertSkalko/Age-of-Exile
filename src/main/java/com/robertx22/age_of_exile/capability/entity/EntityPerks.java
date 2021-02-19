@@ -118,6 +118,10 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     public void fromTag(CompoundTag tag) {
         try {
             this.data = LoadSave.Load(PlayerPerksData.class, new PlayerPerksData(), tag, "data");
+
+            if (data == null) {
+                data = new PlayerPerksData();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

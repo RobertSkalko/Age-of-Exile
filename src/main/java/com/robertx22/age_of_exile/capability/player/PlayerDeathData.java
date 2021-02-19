@@ -26,7 +26,6 @@ public class PlayerDeathData implements Component, ICommonPlayerCap {
         }
         if (this.deathStats == null) {
             this.deathStats = new PlayerDeathStatistics();
-
         }
     }
 

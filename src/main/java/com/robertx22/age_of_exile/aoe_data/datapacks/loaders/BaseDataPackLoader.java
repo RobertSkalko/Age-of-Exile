@@ -59,7 +59,7 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
         SlashRegistryContainer reg = Database.getRegistry(registryType);
 
         Watch normal = new Watch();
-        normal.min = 5000;
+        normal.min = 50000;
         reg.unregisterAllEntriesFromDatapacks();
 
         mapToLoad.forEach((key, value) -> {
@@ -84,7 +84,7 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
             .isEmpty()) {
             throw new RuntimeException("Mine and Slash Registry of type " + registryType.id + " is EMPTY after datapack loading!");
         } else {
-            System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
+            // System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
         }
 
     }

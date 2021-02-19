@@ -70,7 +70,7 @@ dependencies {
 	
     modImplementation group: 'net.devtech', name: 'arrp', version: '0.3.7'
 
-    compile files("Library-Of-Exile-1.16.3-1.0.7-dev.jar")	
+    compile files("Library-Of-Exile-1.16.4-1.0.7-dev.jar")	
 		
 	
 	

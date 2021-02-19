@@ -18,6 +18,7 @@ public class SalvageRecipe implements ISerializedRegistryEntry<SalvageRecipe>, I
     public String id;
 
     public String loot_table_output = "";
+    public int loot_table_rolls = 1;
     public transient String locname = "";
 
     public List<ItemIngredient> item_req = new ArrayList<>();
@@ -53,6 +54,11 @@ public class SalvageRecipe implements ISerializedRegistryEntry<SalvageRecipe>, I
         r.item_req = new ArrayList<>(Arrays.asList(ingredients));
 
         return r;
+    }
+
+    public SalvageRecipe rolls(int rolls) {
+        this.loot_table_rolls = rolls;
+        return this;
     }
 
     @Override

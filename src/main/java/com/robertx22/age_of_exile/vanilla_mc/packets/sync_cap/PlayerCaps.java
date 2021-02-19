@@ -12,11 +12,21 @@ public enum PlayerCaps {
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.Unit(player);
         }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return true;
+        }
     },
     DEATH_STATS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(player);
+        }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return false;
         }
     },
     PLAYER_SKILLS {
@@ -24,11 +34,32 @@ public enum PlayerCaps {
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.playerSkills(player);
         }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return false;
+        }
     },
     FAVOR {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.favor(player);
+        }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return false;
+        }
+    },
+    CHARACTERS {
+        @Override
+        public ICommonPlayerCap getCap(PlayerEntity player) {
+            return Load.characters(player);
+        }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return false;
         }
     },
     ENTITY_PERKS {
@@ -36,11 +67,21 @@ public enum PlayerCaps {
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.perks(player);
         }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return true;
+        }
     },
     SPELLS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.spells(player);
+        }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return true;
         }
     };
 
@@ -49,5 +90,7 @@ public enum PlayerCaps {
     }
 
     public abstract ICommonPlayerCap getCap(PlayerEntity player);
+
+    public abstract boolean shouldSaveToPlayerCharacter();
 
 }

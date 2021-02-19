@@ -426,7 +426,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                 }
             });
 
-            renderBackgroundTexture(0);
+            renderBackgroundDirt(this, 0);
 
             super.render(matrix, x, y, ticks);
 
@@ -504,26 +504,27 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
-    public void renderBackgroundTexture(int vOffset) {
+    public static void renderBackgroundDirt(Screen screen, int vOffset) {
         //copied from Scree
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
-        this.client.getTextureManager()
+        MinecraftClient.getInstance()
+            .getTextureManager()
             .bindTexture(Screen.OPTIONS_BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         float f = 32.0F;
         bufferBuilder.begin(7, VertexFormats.POSITION_TEXTURE_COLOR);
-        bufferBuilder.vertex(0.0D, (double) this.height, 0.0D)
-            .texture(0.0F, (float) this.height / 32.0F + (float) vOffset)
+        bufferBuilder.vertex(0.0D, (double) screen.height, 0.0D)
+            .texture(0.0F, (float) screen.height / 32.0F + (float) vOffset)
             .color(64, 64, 64, 255)
             .next();
-        bufferBuilder.vertex((double) this.width, (double) this.height, 0.0D)
-            .texture((float) this.width / 32.0F, (float) this.height / 32.0F + (float) vOffset)
+        bufferBuilder.vertex((double) screen.width, (double) screen.height, 0.0D)
+            .texture((float) screen.width / 32.0F, (float) screen.height / 32.0F + (float) vOffset)
             .color(64, 64, 64, 255)
             .next();
-        bufferBuilder.vertex((double) this.width, 0.0D, 0.0D)
-            .texture((float) this.width / 32.0F, (float) vOffset)
+        bufferBuilder.vertex((double) screen.width, 0.0D, 0.0D)
+            .texture((float) screen.width / 32.0F, (float) vOffset)
             .color(64, 64, 64, 255)
             .next();
         bufferBuilder.vertex(0.0D, 0.0D, 0.0D)

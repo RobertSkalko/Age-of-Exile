@@ -79,6 +79,7 @@ public class LootTableGenerator {
 
     public static Identifier RUNE_SALVAGE_RECIPE = Ref.id("runes_salvage_recipe");
     public static Identifier GEM_SALVAGE_RECIPE = Ref.id("gems_salvage_recipe");
+    public static Identifier CURRENCIES_SALVAGE_RECIPE = Ref.id("currencies_salvage_recipe");
 
     private HashMap<Identifier, LootTable> getLootTables() {
         HashMap<Identifier, LootTable> map = new HashMap<Identifier, LootTable>();
@@ -101,8 +102,18 @@ public class LootTableGenerator {
         });
         runes.pool(runeloot);
 
+        LootTable.Builder currencies = LootTable.builder();
+        LootPool.Builder curLoot = LootPool.builder();
+        curLoot.rolls(UniformLootTableRange.between(1, 3));
+        ModRegistry.CURRENCIES.currencies.forEach(x -> {
+            runeloot.with(ItemEntry.builder(x)
+                .weight(x.Weight()));
+        });
+        currencies.pool(curLoot);
+
         map.put(RUNE_SALVAGE_RECIPE, runes.build());
         map.put(GEM_SALVAGE_RECIPE, gems.build());
+        map.put(CURRENCIES_SALVAGE_RECIPE, currencies.build());
 
         return map;
 

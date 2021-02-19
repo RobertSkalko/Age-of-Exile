@@ -26,6 +26,7 @@ public class RegistryPackets {
 
     public static void registerAll(SyncTime sync) {
         Watch watch = new Watch();
+        watch.min = 50000;
 
         SlashRegistryType.getInRegisterOrder(sync)
             .forEach(type -> {
@@ -60,7 +61,7 @@ public class RegistryPackets {
                         .isEmpty()) {
                         throw new RuntimeException("Mine and Slash Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
                     } else {
-                        System.out.println(type.name() + " registry load on client succeeded with: " + reg.getSize() + " entries.");
+                        // System.out.println(type.name() + " registry load on client succeeded with: " + reg.getSize() + " entries.");
 
                     }
                 }

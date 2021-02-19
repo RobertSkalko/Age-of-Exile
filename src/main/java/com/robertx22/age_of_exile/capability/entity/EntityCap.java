@@ -236,6 +236,9 @@ public class EntityCap {
 
             this.rarity = nbt.getString(RARITY);
             this.level = nbt.getInt(LEVEL);
+            if (level < 1) {
+                level = 1;
+            }
             this.maxHealth = nbt.getInt(HP);
             this.area_mod = nbt.getString("area");
 

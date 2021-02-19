@@ -187,3 +187,4 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * magic shield stat removed. Cloth armors now have mana and health.
 
 * salvaging is now a button click like how modifying/socketing is now too
+* added "secret" salvaging recipes (datapacks can't keep secrets though)
