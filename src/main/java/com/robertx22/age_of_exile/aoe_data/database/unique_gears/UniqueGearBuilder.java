@@ -16,16 +16,19 @@ public class UniqueGearBuilder {
 
     UniqueGear uniq = new UniqueGear();
 
-    public static UniqueGearBuilder of(Item item, String id, String locname, String desc, DataGenKey<BaseGearType> gearType) {
+    public static UniqueGearBuilder of(Item item, String id, String locname, String desc, DataGenKey<BaseGearType>... gearType) {
 
         UniqueGearBuilder b = new UniqueGearBuilder();
         b.uniq.langName = locname;
         b.uniq.langDesc = desc;
         b.uniq.guid = id;
 
-        b.uniq.serBaseGearType = Database.GearTypes()
-            .getFromSerializables(gearType);
-        b.uniq.gearType = gearType.GUID();
+        for (DataGenKey<BaseGearType> type : gearType) {
+            b.uniq.serBaseGearType = Database.GearTypes()
+                .getFromSerializables(type);
+            b.uniq.gearType = type.GUID();
+            b.uniq.gear_types.add(type.GUID());
+        }
 
         b.uniq.itemID = Registry.ITEM.getId(item);
 
@@ -40,6 +43,11 @@ public class UniqueGearBuilder {
 
     public UniqueGearBuilder stats(List<StatModifier> stats) {
         this.uniq.uniqueStats = stats;
+        return this;
+    }
+
+    public UniqueGearBuilder devComment(String comment) {
+        // OMAE WA MOU SHINDEIRU
         return this;
     }
 
