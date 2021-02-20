@@ -10,13 +10,16 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class UniqueGearBuilder {
 
     UniqueGear uniq = new UniqueGear();
 
-    public static UniqueGearBuilder of(Item item, String id, String locname, String desc, DataGenKey<BaseGearType>... gearType) {
+    public static UniqueGearBuilder of(Item item, String id, String locname, String desc, List<DataGenKey<BaseGearType>> gearType) {
 
         UniqueGearBuilder b = new UniqueGearBuilder();
         b.uniq.langName = locname;
@@ -34,6 +37,16 @@ public class UniqueGearBuilder {
 
         return b;
 
+    }
+
+    public static UniqueGearBuilder of(Item item, String id, String locname, String desc, DataGenKey<BaseGearType>... gearType) {
+        return of(item, id, locname, desc, Arrays.asList(gearType));
+    }
+
+    public static UniqueGearBuilder of(Item item, String id, String locname, String desc, Collection<DataGenKey<BaseGearType>> gearType) {
+        List<DataGenKey<BaseGearType>> list = new ArrayList<>();
+        list.addAll(gearType);
+        return of(item, id, locname, desc, list);
     }
 
     public UniqueGearBuilder dropFilter(DropFilterData filter) {

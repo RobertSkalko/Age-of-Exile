@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalD
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -26,7 +25,7 @@ public class JewelryMIs implements ISlashRegistryInit {
             "bonechill_ring",
             "Bonechill Ring",
             "",
-            BaseGearJewelry.COLD_RES_RING.get(LevelRanges.START_TO_LOW))
+            BaseGearJewelry.COLD_RES_RING.values())
             .stats(Arrays.asList(
                 new StatModifier(2, 3, Health.getInstance(), ModType.FLAT),
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
@@ -41,7 +40,7 @@ public class JewelryMIs implements ISlashRegistryInit {
             "bonechill_amulet",
             "Bonechill Amulet",
             "",
-            BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.START_TO_LOW))
+            BaseGearJewelry.ALL_RES_NECKLACE.values())
             .stats(Arrays.asList(
                 new StatModifier(3, 4, Health.getInstance(), ModType.FLAT),
                 new StatModifier(7, 18, new ElementalDamageBonus(Elements.Water), ModType.FLAT)

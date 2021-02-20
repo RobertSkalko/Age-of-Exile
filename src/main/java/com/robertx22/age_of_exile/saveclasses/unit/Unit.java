@@ -322,6 +322,11 @@ public class Unit {
 
         if (entity instanceof PlayerEntity) {
 
+            if (data.hasRace()) {
+                data.getRace()
+                    .addStats((PlayerEntity) entity);
+            }
+
             for (StatContainerType type : StatContainerType.values()) {
                 // different stat containers for each spell with support gems.
                 if (type == StatContainerType.NORMAL) {

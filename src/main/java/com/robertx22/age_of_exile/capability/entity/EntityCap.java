@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -59,6 +60,7 @@ import java.util.UUID;
 public class EntityCap {
 
     private static final String RARITY = "rarity";
+    private static final String RACE = "race";
     private static final String LEVEL = "level";
     private static final String EXP = "exp";
     private static final String HP = "hp";
@@ -170,6 +172,12 @@ public class EntityCap {
 
         MobAffixesData getAffixData();
 
+        PlayerRace getRace();
+
+        boolean hasRace();
+
+        void setRace(String race);
+
     }
 
     public static class DefaultImpl implements UnitData {
@@ -213,6 +221,7 @@ public class EntityCap {
 
             nbt.putInt(LEVEL, level);
             nbt.putString(RARITY, rarity);
+            nbt.putString(RACE, race);
             nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
                 .getAverageValue());
             nbt.putString(ENTITY_TYPE, this.type.toString());
@@ -227,6 +236,7 @@ public class EntityCap {
         public void loadFromClientNBT(CompoundTag nbt) {
 
             this.rarity = nbt.getString(RARITY);
+            this.race = nbt.getString(RACE);
             this.level = nbt.getInt(LEVEL);
             if (level < 1) {
                 level = 1;
@@ -641,6 +651,23 @@ public class EntityCap {
         @Override
         public MobAffixesData getAffixData() {
             return affixes;
+        }
+
+        @Override
+        public PlayerRace getRace() {
+            return Database.Races()
+                .get(race);
+        }
+
+        @Override
+        public boolean hasRace() {
+            return Database.Races()
+                .isRegistered(race);
+        }
+
+        @Override
+        public void setRace(String race) {
+            this.race = race;
         }
 
         @Override
