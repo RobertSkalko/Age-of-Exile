@@ -80,7 +80,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
             .get(gear.unique_id)
             .uniqueStats()) {
             ExactStatData exact = mod.ToExactStat(percents.get(i), gear.level);
-            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), mod, gear.level));
+            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percents.get(i), info), mod, gear.level));
             i++;
         }
         return list;

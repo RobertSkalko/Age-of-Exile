@@ -19,7 +19,7 @@ public class MergedStats implements IGearPartTooltip {
 
         List<TooltipStatInfo> infolist = new ArrayList<>();
 
-        list.forEach(x -> infolist.add(new TooltipStatInfo(x, info)));
+        list.forEach(x -> infolist.add(new TooltipStatInfo(x, -99, info)));
 
         this.list = TooltipStatInfo.mergeDuplicates(infolist);
 

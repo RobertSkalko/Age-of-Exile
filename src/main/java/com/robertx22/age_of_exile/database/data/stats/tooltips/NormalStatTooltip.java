@@ -24,7 +24,7 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         if (ctx.showStatRanges()) {
             txt.append(" ")
-                .append(ctx.mod.getRangeToShow(ctx.level));
+                .append(getPercentageView(ctx.statinfo.percent));
         }
 
         list.add(txt);
@@ -34,6 +34,25 @@ public class NormalStatTooltip implements IStatTooltipType {
         }
 
         return list;
+
+    }
+
+    public MutableText getPercentageView(int perc) {
+        Formatting format = Formatting.RED;
+        if (perc > 25) {
+            format = Formatting.YELLOW;
+        }
+        if (perc > 50) {
+            format = Formatting.GREEN;
+        }
+        if (perc > 75) {
+            format = Formatting.AQUA;
+        }
+        if (perc > 90) {
+            format = Formatting.LIGHT_PURPLE;
+        }
+
+        return new LiteralText(format + " [" + perc + "%]").formatted(format);
 
     }
 

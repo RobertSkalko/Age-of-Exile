@@ -224,7 +224,7 @@ public enum Words implements IAutoLocName {
     StatPoints("Stat Points"),
 
     MapInfo("Map Info"),
-    CharacterSelect("Character Select"),
+    CharacterSelect("Hero Select"),
 
     Compendium("Compendium"),
 

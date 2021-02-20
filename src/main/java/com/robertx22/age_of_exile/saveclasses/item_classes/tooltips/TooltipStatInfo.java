@@ -23,18 +23,21 @@ public class TooltipStatInfo implements ITooltipList {
 
     public TooltipInfo tooltipInfo;
 
-    public TooltipStatInfo(ExactStatData data, TooltipInfo info) {
+    public int percent = -99;
+
+    public TooltipStatInfo(ExactStatData data, int percent, TooltipInfo info) {
         this.stat = data.getStat();
         this.firstValue = data.getFirstValue();
         this.secondValue = data.getSecondValue();
         this.type = data.getType();
         this.tooltipInfo = info;
+        this.percent = percent;
     }
 
     public TooltipStatInfo(OptScaleExactStat data, TooltipInfo info) {
         this.stat = data.getStat();
-        this.firstValue = data.first;
-        this.secondValue = data.second;
+        this.firstValue = data.v1;
+        this.secondValue = data.v2;
         this.type = data.getModType();
         this.tooltipInfo = info;
     }

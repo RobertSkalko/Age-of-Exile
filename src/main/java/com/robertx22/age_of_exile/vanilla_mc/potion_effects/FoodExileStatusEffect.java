@@ -73,8 +73,8 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyableSta
 
         List<OptScaleExactStat> list = effect.stats.stream()
             .map(x -> {
-                OptScaleExactStat stat = new OptScaleExactStat(x.first * tier.statMulti, x.getStat(), x.getModType());
-                stat.scaleToLevel = x.scaleToLevel;
+                OptScaleExactStat stat = new OptScaleExactStat(x.v1 * tier.statMulti, x.getStat(), x.getModType());
+                stat.scale_to_lvl = x.scale_to_lvl;
                 return stat;
 
             })

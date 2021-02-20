@@ -18,11 +18,11 @@ import java.util.List;
 public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactStat> {
     public static OptScaleExactStat SERIALIZER = new OptScaleExactStat();
 
-    public float first = 0;
-    public float second = 0;
+    public float v1 = 0;
+    public float v2 = 0;
     public String stat;
     public String type;
-    public boolean scaleToLevel = false;
+    public boolean scale_to_lvl = false;
 
     private OptScaleExactStat() {
     }
@@ -30,21 +30,21 @@ public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactSt
     @Override
     public OptScaleExactStat getFromBuf(PacketByteBuf buf) {
         OptScaleExactStat data = new OptScaleExactStat();
-        data.first = buf.readFloat();
-        data.second = buf.readFloat();
+        data.v1 = buf.readFloat();
+        data.v2 = buf.readFloat();
         data.stat = buf.readString(100);
         data.type = buf.readString(50);
-        data.scaleToLevel = buf.readBoolean();
+        data.scale_to_lvl = buf.readBoolean();
         return data;
     }
 
     @Override
     public void toBuf(PacketByteBuf buf) {
-        buf.writeFloat(first);
-        buf.writeFloat(second);
+        buf.writeFloat(v1);
+        buf.writeFloat(v2);
         buf.writeString(stat, 100);
         buf.writeString(type, 50);
-        buf.writeBoolean(scaleToLevel);
+        buf.writeBoolean(scale_to_lvl);
     }
 
     public OptScaleExactStat(float first, Stat stat) {
@@ -52,15 +52,15 @@ public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactSt
     }
 
     public OptScaleExactStat(float first, Stat stat, ModType type) {
-        this.first = first;
+        this.v1 = first;
         this.stat = stat.GUID();
         this.type = type.name();
 
     }
 
     public OptScaleExactStat(float first, float second, Stat stat, ModType type) {
-        this.first = first;
-        this.second = second;
+        this.v1 = first;
+        this.v2 = second;
         this.stat = stat.GUID();
         this.type = type.name();
     }
@@ -68,12 +68,12 @@ public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactSt
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         Stat stat = getStat();
-        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(this.scaleToLevel ? info.unitdata.getLevel() : 1), info);
+        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(this.scale_to_lvl ? info.unitdata.getLevel() : 1), -99, info);
         return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
     }
 
     public OptScaleExactStat scale() {
-        this.scaleToLevel = true;
+        this.scale_to_lvl = true;
         return this;
     }
 
@@ -90,13 +90,13 @@ public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactSt
         Stat stat = Database.Stats()
             .get(this.stat);
 
-        return ExactStatData.of(first, second, stat, getModType(), scaleToLevel ? lvl : 1);
+        return ExactStatData.of(v1, v2, stat, getModType(), scale_to_lvl ? lvl : 1);
 
     }
 
     public String getDebugString() {
 
-        return "" + (int) first + " " + getModType().name() + " " + CLOC.translate(getStat().locName());
+        return "" + (int) v1 + " " + getModType().name() + " " + CLOC.translate(getStat().locName());
     }
 
     public static void combine(List<OptScaleExactStat> list) {
@@ -115,16 +115,16 @@ public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactSt
 
                 if (i == 0) {
                     toRemove.add(stat);
-                    current = new OptScaleExactStat(stat.first, stat.second, stat.getStat(), stat.getModType());
+                    current = new OptScaleExactStat(stat.v1, stat.v2, stat.getStat(), stat.getModType());
                     i++;
                     continue;
                 }
 
                 if (current.stat.equals(stat.stat)) {
                     if (current.type.equals(stat.type)) {
-                        if (current.scaleToLevel == stat.scaleToLevel) {
-                            current.first += stat.first;
-                            current.second += stat.second;
+                        if (current.scale_to_lvl == stat.scale_to_lvl) {
+                            current.v1 += stat.v1;
+                            current.v2 += stat.v2;
                             toRemove.add(stat);
                         }
                     }

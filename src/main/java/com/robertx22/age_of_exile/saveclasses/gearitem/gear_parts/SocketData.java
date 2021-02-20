@@ -50,14 +50,14 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
                 .getFor(this.slot_family)
                 .forEach(x -> {
                     ExactStatData exact = x.ToExactStat(this.percent, this.level);
-                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), x, this.level));
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, this.level));
                 });
         } else if (isRune()) {
             getRune()
                 .getFor(this.slot_family)
                 .forEach(x -> {
                     ExactStatData exact = x.ToExactStat(this.percent, this.level);
-                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), x, this.level));
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, this.level));
                 });
         }
 

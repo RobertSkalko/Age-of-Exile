@@ -62,7 +62,7 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
             .implicitStats()
             .forEach(x -> {
                 ExactStatData exact = x.ToExactStat(percent, gear.level);
-                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), x, gear.level));
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, gear.level));
             });
         return list;
     }

@@ -185,6 +185,16 @@ I wouldn't be doing this if I didn't think the current config would be a trap.
 They also can only drop from certain mobs, for example bonechill ring can only drop from skeleton mobs.
 * rarities are now no longer internally saved as integers (ranks), now they are saved by their string (identifier). This means you should probably start a new world as idk exactly how many things will break. This is a big update so i'll try put as many breaking changes in. I try to only do this every half year at most.
 * magic shield stat removed. Cloth armors now have mana and health.
+* instead of item stat ranges, you now get a "[x%]" percentage view of the stat, so you can easily know if it's a good roll or bad. Brought to you by popular bad guy color, red! And of course, the purple king!
+* optscaleexactstat field names changed, possibly datapacks changed
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)
+
+Character Select!
+
+Every wanted to play multiple characters on the same world?
+Easily switch builds and play styles with no need for reset potions?
+Wanted to level multiple characters?
+
+Now it's possible! (and probably a bit buggy!)

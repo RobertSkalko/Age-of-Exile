@@ -32,7 +32,7 @@ public class CountTalentTreeAttributes extends CommandTest {
 
             if (perk != null) {
                 perk.stats.forEach(s -> {
-                    if (s.first > 0) {
+                    if (s.v1 > 0) {
                         stats.add(s);
                     }
                 });
@@ -51,7 +51,7 @@ public class CountTalentTreeAttributes extends CommandTest {
         int differentPerks = diffPerks.size();
 
         OptScaleExactStat.combine(stats);
-        stats.sort(Comparator.comparingInt(x -> (int) -x.first));
+        stats.sort(Comparator.comparingInt(x -> (int) -x.v1));
 
         System.out.print("" + "\n");
 

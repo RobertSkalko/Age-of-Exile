@@ -42,7 +42,7 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
         if (word != null) {
             word.stats.forEach(s -> {
                 ExactStatData exact = s.ToExactStat(runeword_percent, gear.level);
-                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, info), s, gear.level));
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, runeword_percent, info), s, gear.level));
             });
         }
         return list;
