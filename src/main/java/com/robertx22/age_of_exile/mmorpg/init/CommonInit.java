@@ -2,8 +2,6 @@ package com.robertx22.age_of_exile.mmorpg.init;
 
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.aoe_data.GeneratedData;
-import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
-import com.robertx22.age_of_exile.areas.base_areas.BaseAreas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -50,9 +48,6 @@ public class CommonInit implements ModInitializer {
         Database.initRegistries();
         Database.registerAllItems(); // after config registerAll
         GeneratedData.addAllObjectsToGenerate();
-
-        BaseAreas.INSTANCE = new BaseAreas();
-        AreaModifiers.INSTANCE = new AreaModifiers();
 
         CommonEvents.register();
 

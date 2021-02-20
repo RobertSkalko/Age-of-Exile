@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.entity;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
@@ -81,9 +80,6 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
             .randomizeAffixes(rarity);
 
         endata.setUnit(mob);
-
-        endata.setAreaMod(WorldAreas.getArea(entity.world, entity.getBlockPos())
-            .getAreaModifier());
 
         endata.mobStatsAreSet();
         endata.forceRecalculateStats();

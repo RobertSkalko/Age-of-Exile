@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.uncommon.stat_calculation;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
-import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -110,14 +109,6 @@ public class MobStatUtils {
     public static List<StatContext> getMobBaseStats(UnitData unitdata, LivingEntity en) {
         List<StatContext> list = new ArrayList<>();
         List<ExactStatData> stats = new ArrayList<>();
-
-        try {
-            for (StatModifier x : unitdata.getAreaMod().stats) {
-                stats.add(x.ToExactStat(100, unitdata.getLevel()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         MobRarity rar = Database.MobRarities()
             .get(unitdata.getRarity());

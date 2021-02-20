@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleArrowEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleProjectileEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleTridentEntity;
@@ -19,7 +18,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -79,11 +77,6 @@ public class ModEntities {
             return false;
         }
 
-        if (!WorldAreas.getArea((World) sw, pos)
-            .getAreaModifier()
-            .canMobSpawn(type)) {
-            return false;
-        }
         return HostileEntity.canSpawnInDark((EntityType<? extends HostileEntity>) type, sw, spawnReason, pos, random);
     }
 

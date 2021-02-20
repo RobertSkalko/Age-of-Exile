@@ -3,12 +3,10 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.capability.player.*;
-import com.robertx22.age_of_exile.capability.world.WorldAreas;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
-import nerdhub.cardinal.components.api.event.WorldComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.minecraft.entity.LivingEntity;
@@ -53,10 +51,6 @@ public class ComponentRegisters {
             EntityPerks.class)
             .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityPerks(x));
 
-    public ComponentType<WorldAreas> WORLD_AREAS =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-            new Identifier(Ref.MODID, "world_areas"),
-            WorldAreas.class);
     public ComponentType<PlayerDeathData> PLAYER_DEATH_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
             new Identifier(Ref.MODID, "player_death_data"),
@@ -72,10 +66,6 @@ public class ComponentRegisters {
         EntityComponents.setRespawnCopyStrategy(PLAYER_CHARACTERS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_SKILLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_DEATH_DATA, RespawnCopyStrategy.ALWAYS_COPY);
-
-        WorldComponentCallback.EVENT.register(
-            (world, components) -> components.put(
-                WORLD_AREAS, new WorldAreas(world)));
 
     }
 

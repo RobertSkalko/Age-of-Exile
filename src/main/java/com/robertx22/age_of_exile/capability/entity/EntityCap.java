@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.capability.entity;
 
-import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifier;
-import com.robertx22.age_of_exile.areas.area_modifiers.AreaModifiers;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
@@ -170,10 +168,6 @@ public class EntityCap {
 
         EntityGears getCurrentGears();
 
-        AreaModifier getAreaMod();
-
-        void setAreaMod(AreaModifier area);
-
         MobAffixesData getAffixData();
 
     }
@@ -195,8 +189,6 @@ public class EntityCap {
         MobAffixesData affixes = new MobAffixesData();
 
         public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
-
-        String area_mod = "";
 
         EntityTypeUtils.EntityClassification type = EntityTypeUtils.EntityClassification.PLAYER;
         // sync these for mobs
@@ -223,7 +215,6 @@ public class EntityCap {
             nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
                 .getAverageValue());
             nbt.putString(ENTITY_TYPE, this.type.toString());
-            nbt.putString("area", area_mod);
 
             if (affixes != null) {
                 LoadSave.Save(affixes, nbt, AFFIXES);
@@ -240,7 +231,6 @@ public class EntityCap {
                 level = 1;
             }
             this.maxHealth = nbt.getInt(HP);
-            this.area_mod = nbt.getString("area");
 
             try {
                 String typestring = nbt.getString(ENTITY_TYPE);
@@ -645,20 +635,6 @@ public class EntityCap {
         @Override
         public EntityGears getCurrentGears() {
             return gears;
-        }
-
-        @Override
-        public AreaModifier getAreaMod() {
-            return AreaModifiers.INSTANCE.MAP.getOrDefault(area_mod, AreaModifiers.INSTANCE.PLAIN);
-
-        }
-
-        @Override
-        public void setAreaMod(AreaModifier area) {
-            this.area_mod = area.GUID();
-            area.effectsOnMobSpawn.forEach(x -> {
-                this.entity.addStatusEffect(x);
-            });
         }
 
         @Override
