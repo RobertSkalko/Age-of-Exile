@@ -2,7 +2,11 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
-import com.robertx22.age_of_exile.capability.player.*;
+import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
+import com.robertx22.age_of_exile.capability.player.PlayerFavor;
+import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;

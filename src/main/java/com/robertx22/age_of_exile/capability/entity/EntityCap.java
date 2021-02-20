@@ -183,6 +183,7 @@ public class EntityCap {
         // sync these for mobs
         Unit unit = new Unit();
         String rarity = IRarity.COMMON_ID;
+        String race = "";
         int level = 1;
         int exp = 0;
         int maxHealth = 0;

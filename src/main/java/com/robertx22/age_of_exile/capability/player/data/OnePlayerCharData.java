@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.capability.player;
+package com.robertx22.age_of_exile.capability.player.data;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;

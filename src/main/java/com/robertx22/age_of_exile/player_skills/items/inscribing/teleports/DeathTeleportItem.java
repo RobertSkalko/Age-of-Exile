@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.inscribing.teleports;
 
-import com.robertx22.age_of_exile.capability.player.PlayerDeathData;
+import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.BaseTpItem;

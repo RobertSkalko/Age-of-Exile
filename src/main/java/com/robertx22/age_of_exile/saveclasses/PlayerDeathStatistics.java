@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses;
 
-import com.robertx22.age_of_exile.capability.player.PlayerDeathData;
+import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Storable;

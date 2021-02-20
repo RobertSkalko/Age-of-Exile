@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.gui.overlays.death_stats;
 
-import com.robertx22.age_of_exile.capability.player.PlayerDeathData;
+import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;

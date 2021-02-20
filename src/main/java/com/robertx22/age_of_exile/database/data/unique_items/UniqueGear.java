@@ -22,6 +22,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<UniqueGear>, ISerializable<UniqueGear> {
@@ -36,38 +37,9 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     public Identifier itemID;
     public String uniqueRarity = IRarity.UNIQUE_ID;
 
+    public List<String> gear_types = new ArrayList<>();
+
     public DropFiltersGroupData filters = new DropFiltersGroupData();
-/*
-    @Override
-    public UniqueGear getFromBuf(PacketByteBuf buf) {
-        UniqueGear uniq = new UniqueGear();
-
-        int amount = buf.readInt();
-        for (int i = 0; i < amount; i++) {
-            uniq.uniqueStats.add(StatModifier.EMPTY.getFromBuf(buf));
-        }
-        uniq.guid = buf.readString(500);
-        uniq.gearType = buf.readString(500);
-        uniq.itemID = buf.readIdentifier();
-        uniq.uniqueRarity = buf.readString(500);
-
-        uniq.filters = DropFiltersGroupData.fromJson(buf.readString(50000));
-
-        return uniq;
-    }
-
-    @Override
-    public void toBuf(PacketByteBuf buf) {
-        buf.writeInt(this.uniqueStats.size());
-        uniqueStats.forEach(x -> x.toBuf(buf));
-        buf.writeString(guid, 500);
-        buf.writeString(gearType, 500);
-        buf.writeIdentifier(itemID);
-        buf.writeString(uniqueRarity);
-        buf.writeString(filters.toJson(), 5000);
-    }
-
- */
 
     public transient String langName;
     public transient String langDesc;
@@ -181,6 +153,14 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     @Override
     public String GUID() {
         return guid;
+    }
+
+    public List<BaseGearType> getPossibleGearTypes() {
+
+        return gear_types.stream()
+            .map(x -> Database.GearTypes()
+                .get(x))
+            .collect(Collectors.toList());
     }
 
     @Override

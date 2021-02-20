@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
-import com.robertx22.age_of_exile.capability.player.PlayerDeathData;
+import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;

@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.gui.screens.char_select;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.capability.player.OnePlayerCharData;
 import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
+import com.robertx22.age_of_exile.capability.player.data.OnePlayerCharData;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
