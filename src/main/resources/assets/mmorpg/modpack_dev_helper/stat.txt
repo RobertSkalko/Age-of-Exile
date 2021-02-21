@@ -41,6 +41,7 @@ thunder_resist
 spell_nature_dmg_leech_as_health
 dot_water_dmg_leech_as_mana
 health_on_attack_hit
+bonus_none_exp
 faster_projectiles
 piercing_projectiles
 spell_thunder_dmg_leech_as_blood
@@ -69,6 +70,7 @@ mana
 blood_on_basic_attack_hit
 health_on_all_hit
 dmg_under_poison
+bonus_inscribing_exp
 max_nature_resist
 thunder_penetration
 other_elemental_dmg_leech_as_mana
@@ -124,6 +126,7 @@ elemental_penetration
 ele_sword_damage
 dot_physical_dmg_leech_as_blood
 basic_attack_physical_dmg_leech_as_mana
+bonus_farming_exp
 attack_nature_dmg_leech_as_blood
 spell_elemental_dmg_leech_as_blood
 fire_weapon_damage
@@ -167,10 +170,12 @@ blood_on_other_hit
 ele_axe_damage
 thunder_focus
 all_physical_dmg_leech_as_mana
+bonus_cooking_exp
 red_mana_reserved
 water_weapon_damage
 all_thunder_damage
 dot_elemental_dmg_leech_as_mana
+bonus_mining_exp
 all_fire_dmg_leech_as_blood
 intelligence
 basic_attack_all_dmg_leech_as_mana
@@ -184,11 +189,13 @@ night_dmg
 water_penetration
 other_thunder_dmg_leech_as_health
 attack_physical_dmg_leech_as_blood
+bonus_alchemy_exp
 slow_immunity
 basic_attack_fire_dmg_leech_as_blood
 basic_attack_physical_dmg_leech_as_blood
 mana_burn_resist
 increased_quantity
+bonus_tinkering_exp
 spell_critical_damage
 elemental_dot_damage
 max_water_resist
@@ -196,6 +203,7 @@ other_elemental_dmg_leech_as_blood
 nature_resist
 chance_of_shock
 attack_fire_dmg_leech_as_blood
+bonus_exploration_exp
 fire_resist
 spell_fire_dmg_leech_as_mana
 spell_water_dmg_leech_as_health
@@ -269,6 +277,7 @@ all_thunder_dmg_leech_as_health
 chance_of_frostburn
 max_elemental_resist
 health_on_kill
+bonus_fishing_exp
 other_all_dmg_leech_as_blood
 fire_penetration
 dexterity
