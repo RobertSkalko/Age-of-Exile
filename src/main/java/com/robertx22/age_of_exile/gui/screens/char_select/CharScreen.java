@@ -4,9 +4,9 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
 import com.robertx22.age_of_exile.capability.player.data.OnePlayerCharData;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
+import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
+import com.robertx22.age_of_exile.gui.screens.race_select.RaceImageButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -24,24 +24,14 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class CharScreen extends BaseScreen implements INamedScreen {
-
-    public MinecraftClient mc;
+public class CharScreen extends BaseSelectionScreen implements INamedScreen {
 
     public CharScreen() {
-        super(MinecraftClient.getInstance()
-            .getWindow()
-            .getScaledWidth(), MinecraftClient.getInstance()
-            .getWindow()
-            .getScaledHeight());
+        super();
         this.mc = MinecraftClient.getInstance();
         this.data = Load.Unit(mc.player);
-
         Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.CHARACTERS));
-
     }
-
-    public int firstSlot = 0;
 
     @Override
     protected void init() {
@@ -52,7 +42,7 @@ public class CharScreen extends BaseScreen implements INamedScreen {
         int x = 0;
         int y = 0;
 
-        int ySpace = this.height / 2;
+        int ySpace = this.height / 50;
 
         y += ySpace / 2;
 
@@ -60,12 +50,32 @@ public class CharScreen extends BaseScreen implements INamedScreen {
 
         if (slots > PlayerCharCap.MAX_CHAR_COUNT) {
             slots = PlayerCharCap.MAX_CHAR_COUNT;
+
         }
 
         x = (this.width - (CharButton.xSize + 5) * slots) / 2;
 
-        for (int i = firstSlot; i < slots; i++) {
-            this.addButton(new CharButton(cap.data.characters.get(i), x, y));
+        int num = 0;
+
+        for (int i = 0; i < PlayerCharCap.MAX_CHAR_COUNT; i++) {
+
+            if (num >= slots) {
+                num = 0;
+                y += 20 + CharButton.ySize + Button.ySize * 2;
+                x = (this.width - (CharButton.xSize + 5) * slots) / 2;
+            }
+
+            num++;
+
+            OnePlayerCharData data = cap.data.characters.get(i);
+
+            this.addButton(new CharButton(data, x, y));
+
+            if (data != null && Database.Races()
+                .isRegistered(data.race)) {
+                this.addButton(new RaceImageButton(Database.Races()
+                    .get(data.race), x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
+            }
 
             this.addButton(new Button(this, i, CharSelectPackets.Action.LOAD, cap.data.characters.get(i), x + 6, y + CharButton.ySize - 5 - Button.ySize + 35));
 
@@ -75,16 +85,6 @@ public class CharScreen extends BaseScreen implements INamedScreen {
             x += 5 + CharButton.xSize;
         }
 
-    }
-
-    @Override
-    public void render(MatrixStack matrix, int x, int y, float ticks) {
-
-        SkillTreeScreen.renderBackgroundDirt(this, 0);
-
-        super.render(matrix, x, y, ticks);
-
-        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
     }
 
     EntityCap.UnitData data;
@@ -102,7 +102,7 @@ public class CharScreen extends BaseScreen implements INamedScreen {
     static class CharButton extends TexturedButtonWidget {
 
         public static int xSize = 125;
-        public static int ySize = 175;
+        public static int ySize = 139;
 
         static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/one_char.png");
         boolean noChar = false;
@@ -131,9 +131,14 @@ public class CharScreen extends BaseScreen implements INamedScreen {
 
                 GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 20, 1, "Level " + data.lvl, Formatting.YELLOW);
 
-                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 35, 1, CLOC.translate(Database.Races()
-                    .get(data.race)
-                    .locName()), Formatting.RED);
+                String race = "Race not selected";
+
+                if (!data.race.isEmpty()) {
+                    race = CLOC.translate(Database.Races()
+                        .get(data.race)
+                        .locName());
+                }
+                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 35, 1, race, Formatting.RED);
 
             }
 

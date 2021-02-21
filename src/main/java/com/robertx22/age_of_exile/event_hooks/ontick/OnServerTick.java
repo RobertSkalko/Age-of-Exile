@@ -59,10 +59,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
 
-                        if (!unitdata.hasRace()) {
-                            Packets.sendToClient(player, new ForceChoosingRace());
-                        }
-
                         unitdata.tryRecalculateStats();
 
                         Unit unit = unitdata.getUnit();
@@ -162,6 +158,11 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
                     data.playerSyncTick = 0;
+
+                    if (!Load.Unit(player)
+                        .hasRace()) {
+                        Packets.sendToClient(player, new ForceChoosingRace());
+                    }
 
                     CapSyncUtil.syncAll(player);
                     Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));
