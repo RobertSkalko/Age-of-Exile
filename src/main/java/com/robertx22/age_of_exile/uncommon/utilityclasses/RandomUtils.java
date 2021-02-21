@@ -162,6 +162,11 @@ public class RandomUtils {
 
     private static IWeighted WeightedRandom(List<IWeighted> lootTable, double nextDouble) {
 
+        if (lootTable.stream()
+            .allMatch(x -> x.Weight() == 0)) {
+            return RandomUtils.randomFromList(lootTable);
+        }
+
         double value = Total(lootTable) * nextDouble;
         double weight = 0;
 

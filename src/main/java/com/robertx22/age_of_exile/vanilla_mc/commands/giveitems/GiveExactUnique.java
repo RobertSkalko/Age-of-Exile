@@ -72,6 +72,12 @@ public class GiveExactUnique {
                 blueprint.rarity.set(Database.GearRarities()
                     .getFilterWrapped(x -> x.is_unique_item)
                     .random());
+                blueprint.uniquePart.set(Database.UniqueGears()
+                    .getFilterWrapped(x -> x.uniqueRarity.equals(blueprint.rarity.get()
+                        .GUID()))
+                    .random());
+                blueprint.gearItemSlot.set(blueprint.uniquePart.get()
+                    .getBaseGearType());
             }
 
             player.giveItemStack(blueprint.createStack());

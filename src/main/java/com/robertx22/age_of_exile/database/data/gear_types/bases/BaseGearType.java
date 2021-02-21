@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Nor
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.WeaponMechanic;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -195,11 +196,17 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     }
 
     public final boolean hasUniqueItemVersions() {
-        return !Database.UniqueGears()
-            .getFilterWrapped(x -> x.getPossibleGearTypes()
-                .stream()
-                .anyMatch(e -> e.GUID()
-                    .equals(GUID()))).list.isEmpty();
+
+        List<UniqueGear> uniques = Database.UniqueGears()
+            .getFilterWrapped(x -> {
+                return x.getPossibleGearTypes()
+                    .stream()
+                    .anyMatch(e -> e.GUID()
+                        .equals(GUID()));
+            }).list;
+
+        return !uniques.isEmpty();
+
     }
 
     public final boolean isWeapon() {

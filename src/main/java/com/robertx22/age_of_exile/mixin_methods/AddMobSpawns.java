@@ -18,16 +18,11 @@ public class AddMobSpawns {
 
         List<SpawnEntry> all = new ArrayList<>();
 
-        public SpawnEntry FIRE_MAGE = of(ENTITIES.FIRE_MAGE, 15, 1, 1);
-        public SpawnEntry WATER_MAGE = of(ENTITIES.WATER_MAGE, 15, 1, 1);
-        public SpawnEntry THUNDER_MAGE = of(ENTITIES.THUNDER_MAGE, 15, 1, 1);
-        public SpawnEntry NATURE_MAGE = of(ENTITIES.NATURE_MAGE, 15, 1, 1);
+        public SpawnEntry FIRE_MAGE = of(ENTITIES.FIRE_MAGE, 10, 1, 1);
+        public SpawnEntry WATER_MAGE = of(ENTITIES.WATER_MAGE, 10, 1, 1);
+        public SpawnEntry THUNDER_MAGE = of(ENTITIES.THUNDER_MAGE, 10, 1, 1);
+        public SpawnEntry NATURE_MAGE = of(ENTITIES.NATURE_MAGE, 10, 1, 1);
         public SpawnEntry HEALER_MAGE = of(ENTITIES.HEALER_MAGE, 5, 1, 1);
-
-        public SpawnEntry FIRE_CHICKEN = of(ENTITIES.FIRE_CHICKEN, 15, 1, 1);
-        public SpawnEntry WATER_CHICKEN = of(ENTITIES.WATER_CHICKEN, 15, 1, 1);
-        public SpawnEntry THUNDER_CHICKEN = of(ENTITIES.THUNDER_CHICKEN, 15, 1, 1);
-        public SpawnEntry NATURE_CHICKEN = of(ENTITIES.NATURE_CHICKEN, 15, 1, 1);
 
         SpawnEntry of(EntityType type, int weight, int min, int max) {
             SpawnEntry entry = new SpawnEntry(type, weight, min, max);
@@ -50,7 +45,7 @@ public class AddMobSpawns {
     public static boolean shouldAddMySpawns(Map<SpawnGroup, List<SpawnSettings.SpawnEntry>> map) {
 
         List<SpawnEntry> list = new ArrayList<>(map.get(SpawnGroup.MONSTER));
-        return !list.contains(SPAWNS.FIRE_CHICKEN);
+        return !list.contains(SPAWNS.FIRE_MAGE);
     }
 
 }

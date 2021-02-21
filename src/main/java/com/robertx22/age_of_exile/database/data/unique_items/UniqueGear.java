@@ -65,6 +65,8 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
 
         json.addProperty("rarity", this.uniqueRarity);
 
+        json.add("gear_types", JsonUtils.stringListToJsonArray(gear_types));
+
         json.add("filters", filters.toJson());
         return json;
     }
@@ -82,6 +84,9 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
             .getAsString());
 
         uniq.uniqueStats = JsonUtils.getStats(json, "unique_stats");
+
+        uniq.gear_types = JsonUtils.jsonArrayToStringList(json.get("gear_types")
+            .getAsJsonArray());
 
         uniq.gearType = json.get("gear_type")
             .getAsString();

@@ -74,7 +74,7 @@ public abstract class BaseRarity implements Rarity {
     public void setMIFields() {
         this.guid = IRarity.MONSTER_UNIQUE_ID;
         this.loc_name = "Monster Unique";
-        this.text_format = Formatting.GREEN.name();
+        this.text_format = Formatting.RED.name();
 
         onSetFields();
     }
@@ -82,7 +82,7 @@ public abstract class BaseRarity implements Rarity {
     public void setMagicalFields() {
         this.guid = IRarity.MAGICAL_ID;
         this.loc_name = "Magical";
-        this.text_format = Formatting.GREEN.name();
+        this.text_format = Formatting.YELLOW.name();
 
         onSetFields();
     }
@@ -90,7 +90,7 @@ public abstract class BaseRarity implements Rarity {
     public void setRareFields() {
         this.guid = IRarity.RARE_ID;
         this.loc_name = "Rare";
-        this.text_format = Formatting.YELLOW.name();
+        this.text_format = Formatting.GREEN.name();
 
         onSetFields();
     }
@@ -98,7 +98,7 @@ public abstract class BaseRarity implements Rarity {
     public void setEpicFields() {
         this.guid = IRarity.EPIC_ID;
         this.loc_name = "Epic";
-        this.text_format = Formatting.LIGHT_PURPLE.name();
+        this.text_format = Formatting.BLUE.name();
 
         onSetFields();
     }
@@ -114,7 +114,7 @@ public abstract class BaseRarity implements Rarity {
     public void setMythicFields() {
         this.guid = IRarity.MYTHIC_ID;
         this.loc_name = "Mythic";
-        this.text_format = Formatting.DARK_PURPLE.name();
+        this.text_format = Formatting.LIGHT_PURPLE.name();
 
         onSetFields();
     }

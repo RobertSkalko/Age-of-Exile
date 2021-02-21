@@ -28,6 +28,8 @@ public class ClientConfigs {
     public boolean SHOW_LOW_ENERGY_MANA_WARNING = true;
     public boolean RENDER_SIMPLE_MOB_BAR = true;
     public boolean RENDER_DEATH_STATISTICS = true;
+    public boolean RENDER_ITEM_RARITY_BACKGROUND = true;
+    public float ITEM_RARITY_OPACITY = 0.75F;
 
     public int REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES = 32;
 

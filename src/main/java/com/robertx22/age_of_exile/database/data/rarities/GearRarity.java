@@ -3,6 +3,9 @@ package com.robertx22.age_of_exile.database.data.rarities;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
+import net.minecraft.util.Identifier;
 
 public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
     public static GearRarity SERIALIZER = new GearRarity();
@@ -51,6 +54,22 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public boolean is_unique_item = false;
     public float special_spawn_chance = 0;
     public float special_spawn_chest_bonus_chance = 0;
+
+    transient Identifier glintTex;
+
+    public Identifier getGlintTexture() {
+
+        if (glintTex == null) {
+            Identifier tex = Ref.id("textures/gui/rarity_glint/" + GUID() + ".png");
+            if (ClientTextureUtils.textureExists(tex)) {
+                glintTex = tex;
+            } else {
+                glintTex = Ref.id("textures/gui/rarity_glint/default.png");
+            }
+        }
+        return glintTex;
+
+    }
 
     public boolean isHigherThan(GearRarity other) {
         return this.valueMulti() > other.valueMulti();

@@ -61,10 +61,6 @@ public class EntityConfigs implements ISlashRegistryInit {
     }
 
     void setupMyMobs() {
-        mob(ENTITIES.FIRE_CHICKEN, fire());
-        mob(ENTITIES.WATER_CHICKEN, water());
-        mob(ENTITIES.NATURE_CHICKEN, nature());
-        mob(ENTITIES.THUNDER_CHICKEN, thunder());
 
         mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.BURN)))));
         mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.FROSTBURN)))));

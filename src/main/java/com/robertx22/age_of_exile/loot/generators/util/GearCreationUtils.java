@@ -52,6 +52,8 @@ public class GearCreationUtils {
                 data.uniqueStats = new UniqueStatsData();
                 data.uniqueStats.RerollFully(data);
 
+            } else {
+                // error bad
             }
         }
 

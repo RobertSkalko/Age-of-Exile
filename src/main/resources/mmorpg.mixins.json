@@ -10,7 +10,6 @@
     "FallingBlockEntityMixin",
     "FoodComponentMixin",
     "FurnaceMixin",
-    "ItemEntityMixin",
     "LivingEntityMixin",
     "LootTableMixin",
     "OnCraftMixin",
@@ -23,6 +22,7 @@
   ],
   "client": [
     "InGameHudMixin",
+    "ItemGlintMixin",
     "ItemStackMixin",
     "MobNameTagMixin",
     "WorldRendererMixin"
