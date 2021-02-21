@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
+import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.random_skill_gem_stats.RandomSkillGemStats;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -43,12 +44,6 @@ import java.util.stream.Collectors;
 
 public enum SlashRegistryType {
 
-    EMPTY("none", 0, null, SyncTime.NEVER) {
-        @Override
-        public BaseDataPackLoader getLoader() {
-            return null;
-        }
-    },
     GEAR_RARITY("gear_rarity", 0, GearRarity.SERIALIZER, SyncTime.ON_LOGIN),
     MOB_RARITY("mob_rarity", 0, MobRarity.SERIALIZER, SyncTime.ON_LOGIN),
     STAT("stat", 1, DatapackStat.MAIN_SERIALIZER, SyncTime.ON_LOGIN),
@@ -87,7 +82,7 @@ public enum SlashRegistryType {
     SKILL_GEM_RARITY("skill_gem_rarity", 24, SkillGemRarity.SERIALIZER, SyncTime.ON_LOGIN),
     RANDOM_SKILL_GEM_STATS("random_skill_gem_stats", 25, RandomSkillGemStats.SERIALIZER, SyncTime.ON_LOGIN),
     SALVAGE_RECIPE("salvage_recipe", 27, SalvageRecipe.SERIALIZER, SyncTime.ON_LOGIN),
-    RACES("races", 28, SalvageRecipe.SERIALIZER, SyncTime.ON_LOGIN),
+    RACES("races", 28, PlayerRace.SERIALIZER, SyncTime.ON_LOGIN),
     GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;

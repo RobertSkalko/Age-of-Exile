@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -28,4 +29,10 @@ public class ClientOnly {
     public static PlayerEntity getPlayer() {
         return MinecraftClient.getInstance().player;
     }
+
+    public static void openRaceSelection() {
+        MinecraftClient.getInstance()
+            .openScreen(new RaceSelectScreen());
+    }
+
 }

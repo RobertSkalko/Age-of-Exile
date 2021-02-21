@@ -16,6 +16,8 @@ public class OnePlayerCharData {
     // these are just for preview on the character screen
     @Store
     public int lvl = 1;
+    @Store
+    public String race = "";
     // these are just for preview on the character screen
 
     @Store
@@ -35,6 +37,13 @@ public class OnePlayerCharData {
 
         this.lvl = Load.Unit(player)
             .getLevel();
+        try {
+            this.race = Load.Unit(player)
+                .getRace()
+                .GUID();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

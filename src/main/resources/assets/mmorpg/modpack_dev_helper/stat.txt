@@ -10,7 +10,6 @@ accuracy
 all_water_dmg_leech_as_health
 spell_thunder_damage
 trident_damage
-mana_to_ms
 increase_healing
 more_proj
 basic_attack_thunder_dmg_leech_as_mana
@@ -240,7 +239,6 @@ spell_fire_damage
 all_fire_dmg_leech_as_health
 dot_water_dmg_leech_as_blood
 all_nature_dmg_leech_as_health
-convert_ms_to_hp
 all_physical_dmg_leech_as_health
 chance_of_bleed
 total_damage

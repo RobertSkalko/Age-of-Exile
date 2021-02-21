@@ -29,7 +29,6 @@ frostball
 flame_strike
 whirlpool
 meteor
-ms_reg_aura
 fire_bombs
 crit_aura
 awaken_mana

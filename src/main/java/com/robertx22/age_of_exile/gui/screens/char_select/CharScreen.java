@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.char_select;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
 import com.robertx22.age_of_exile.capability.player.data.OnePlayerCharData;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
@@ -13,6 +14,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.CharSelectPackets;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.client.MinecraftClient;
@@ -128,6 +130,10 @@ public class CharScreen extends BaseScreen implements INamedScreen {
             } else {
 
                 GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 20, 1, "Level " + data.lvl, Formatting.YELLOW);
+
+                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 35, 1, CLOC.translate(Database.Races()
+                    .get(data.race)
+                    .locName()), Formatting.RED);
 
             }
 

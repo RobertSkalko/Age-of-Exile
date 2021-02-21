@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.ForceChoosingRace;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -57,6 +58,10 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     if (player.isAlive()) {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
+
+                        if (!unitdata.hasRace()) {
+                            Packets.sendToClient(player, new ForceChoosingRace());
+                        }
 
                         unitdata.tryRecalculateStats();
 

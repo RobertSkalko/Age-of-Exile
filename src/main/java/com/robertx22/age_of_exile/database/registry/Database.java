@@ -348,7 +348,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RANDOM_SKILL_GEM_STATS, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GAME_BALANCE, new GameBalanceConfig()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SALVAGE_RECIPE, null).setIsDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RACES, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RACES, new PlayerRace()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

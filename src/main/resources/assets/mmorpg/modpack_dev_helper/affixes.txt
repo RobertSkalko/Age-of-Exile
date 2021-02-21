@@ -14,7 +14,6 @@ azure
 cruel
 fawns
 reinforced
-resolute
 thunder_wep_dmg_jewelry
 valkyrie
 of_brutality
@@ -32,7 +31,6 @@ of_the_wind
 of_treasure
 water_wep_dmg_jewelry
 of_the_troll
-of_absorption
 of_the_sky
 of_speed
 of_vampirism

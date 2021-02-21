@@ -14,7 +14,6 @@ blood_mage
 big_tenacious_combatant
 dex
 big_int
-arcane_devotion
 all_water_damage
 ele_axe_damage
 red_mana_reserved
@@ -130,12 +129,10 @@ dodge_and_ms
 big_spell_crit
 big_self_reflection
 templar
-magic_shield
 big_health_mana_cost
 huge_str
 big_armor_and_ms
 huge_dex
-magical_life
 elemental_purity
 armor
 ele_wand_damage
@@ -167,7 +164,6 @@ big_arena
 phys_acc
 flat_health_phys_dmg
 ele_crossbow_damage
-magic_shield_regen
 fire_weapon_damage
 big_faith_armor
 spell_water_damage_and_dot

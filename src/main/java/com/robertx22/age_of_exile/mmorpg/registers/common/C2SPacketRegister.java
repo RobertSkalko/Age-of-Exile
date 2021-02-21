@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.vanilla_mc.packets.CharSelectPackets;
+import com.robertx22.age_of_exile.vanilla_mc.packets.ChooseRacePacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OpenGuiPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
@@ -15,6 +16,7 @@ public class C2SPacketRegister {
 
         Packets.registerClientToServerPacket(new ModifyItemPacket());
         Packets.registerClientToServerPacket(new CharSelectPackets());
+        Packets.registerClientToServerPacket(new ChooseRacePacket());
         Packets.registerClientToServerPacket(new RequestSyncCapToClient());
         Packets.registerClientToServerPacket(new TellServerToCastSpellPacket());
         Packets.registerClientToServerPacket(new PerkChangePacket());

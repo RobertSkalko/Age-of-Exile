@@ -190,6 +190,7 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * removed world areas mechanic, wasn't used really ever since it was invisible
 * new datapack type: races. They contain extra stat scalings (like being able to gain mana with more dexterity), base stats, etc.
 * unique gear datapacks now need another field "gear_types", this determines which gear types can get this unique. 
+* reset potions are now much more expensive to make the character select feature more lucrative
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)

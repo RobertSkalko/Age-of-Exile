@@ -23,7 +23,7 @@ public class PlayerCharsData {
             // load saved character and replace it with current one
             characters.get(num)
                 .load(p);
-            characters.get(num).map = data.map;
+            characters.put(num, data);
         } else {
             //new character
             Load.Unit(p)

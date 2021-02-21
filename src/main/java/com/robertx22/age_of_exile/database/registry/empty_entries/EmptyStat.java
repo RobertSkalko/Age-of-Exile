@@ -35,7 +35,7 @@ public class EmptyStat extends Stat {
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.EMPTY;
+        return SlashRegistryType.STAT;
     }
 
     @Override

@@ -114,6 +114,8 @@ public class CreateLangFile {
 
         list.addAll(Database.MobAffixes()
             .getSerializable());
+        list.addAll(Database.Races()
+            .getSerializable());
         list.addAll(Database.SkillGemRarities()
             .getSerializable());
         list.addAll(Database.SkillGems()
@@ -190,6 +192,8 @@ public class CreateLangFile {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
 
         list.addAll(Database.UniqueGears()
+            .getSerializable());
+        list.addAll(Database.Races()
             .getSerializable());
 
         List<Stat> stats = Database.Stats()

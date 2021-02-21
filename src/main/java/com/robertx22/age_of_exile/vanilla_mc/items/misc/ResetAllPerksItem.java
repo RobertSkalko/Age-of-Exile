@@ -64,7 +64,7 @@ public class ResetAllPerksItem extends AutoItem implements IShapedRecipe {
             .input('t', ModRegistry.MISC_ITEMS.T0_DUST)
             .input('v', Items.GOLD_INGOT)
             .input('b', Items.GLASS_BOTTLE)
-            .input('c', Items.IRON_INGOT)
+            .input('c', Items.DIAMOND)
             .pattern("cvc")
             .pattern("vtv")
             .pattern("cbc")
