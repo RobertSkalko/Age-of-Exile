@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 nature_wep_dmg_jewelry
 scaled
+jewel_accuracy_suffix
 fire_ele_dmg_jewelry
 nature_res
 seraphim
@@ -21,6 +22,7 @@ of_affluence
 water_res
 protective
 agile
+mana_thief
 of_the_titan
 shades
 glimmering
@@ -31,12 +33,14 @@ of_the_wind
 of_treasure
 water_wep_dmg_jewelry
 of_the_troll
+scavanger
 of_the_sky
 of_speed
 of_vampirism
 of_steadiness
 water_wep_dmg
 tyrannical
+vampiric
 thunder_ele_dmg_jewelry
 of_spirit_markings
 of_the_philosopher

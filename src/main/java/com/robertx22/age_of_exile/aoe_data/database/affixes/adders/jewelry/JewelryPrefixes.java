@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
+package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
@@ -6,7 +6,11 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -35,6 +39,35 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(10, 15F, TreasureQuality.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(7, 10, TreasureQuality.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(5, 7, TreasureQuality.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.jewelry_family)
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("vampiric")
+            .Named("Vampiric")
+            .Weight(100)
+            .tier(1, new StatModifier(1, 2, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.HEALTH, AttackType.ATTACK)), ModType.FLAT))
+            .tier(2, new StatModifier(1, 1, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.HEALTH, AttackType.ATTACK)), ModType.FLAT))
+            .includesTags(SlotTag.jewelry_family)
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("scavanger")
+            .Named("Scavanger")
+            .tier(1, new StatModifier(6, 8, PlusResourceOnKill.HEALTH))
+            .tier(2, new StatModifier(4, 6, PlusResourceOnKill.HEALTH))
+            .tier(3, new StatModifier(3, 4, PlusResourceOnKill.HEALTH))
+            .tier(4, new StatModifier(1, 3, PlusResourceOnKill.HEALTH))
+            .includesTags(SlotTag.jewelry_family)
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("mana_thief")
+            .Named("Mana Thief's")
+            .tier(1, new StatModifier(6, 8, PlusResourceOnKill.MANA))
+            .tier(2, new StatModifier(4, 6, PlusResourceOnKill.MANA))
+            .tier(3, new StatModifier(3, 4, PlusResourceOnKill.MANA))
+            .tier(4, new StatModifier(1, 3, PlusResourceOnKill.MANA))
             .includesTags(SlotTag.jewelry_family)
             .Prefix()
             .Build();

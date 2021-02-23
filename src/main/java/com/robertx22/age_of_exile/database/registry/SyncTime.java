@@ -8,26 +8,7 @@ public enum SyncTime {
 
         }
     },
-    ON_SKILL_TREE {
-        @Override
-        public void trySyncIfNeeded() {
-
-        }
-        /*
-        @Override
-        public void trySyncIfNeeded() {
-            if (!OnLogin.CLIENT_ONLY_GOT_SKILL_PACKETS) {
-                Packets.sendToServer(new RequestRegistriesPacket(this));
-            } else {
-                if (SlashRegistry.Spells()
-                    .isEmpty()) {
-                    Packets.sendToServer(new RequestRegistriesPacket(this));
-                }
-            }
-        }
-
-         */
-    }, NEVER {
+    NEVER {
         @Override
         public void trySyncIfNeeded() {
 

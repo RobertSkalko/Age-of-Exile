@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -36,6 +37,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
 
         BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "cloth_boots", "Shoes", ModRegistry.GEAR_ITEMS.CLOTH_BOOTS)
             .req(new StatRequirement().setInt(0.5f))
+            .implicitStat(new StatModifier(5, 10, SpellDamage.getInstance()))
             .tags(new TagList(SlotTag.cloth, SlotTag.boots, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(multiOf(FEET) * min, multiOf(FEET) * max, Health.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(FEET) * min, multiOf(FEET) * max, Mana.getInstance(), ModType.FLAT))
@@ -44,6 +46,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
 
         PANTS = BaseGearBuilder.of(GearSlots.PANTS, "cloth_pants", "Leggings", ModRegistry.GEAR_ITEMS.CLOTH_PANTS)
             .req(new StatRequirement().setInt(0.5f))
+            .implicitStat(new StatModifier(5, 15, SpellDamage.getInstance()))
             .tags(new TagList(SlotTag.cloth, SlotTag.pants, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * min, multiOf(EquipmentSlot.LEGS) * max, Health.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.LEGS) * min, multiOf(EquipmentSlot.LEGS) * max, Mana.getInstance(), ModType.FLAT))
@@ -52,6 +55,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
 
         CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "cloth_chest", "Robe", ModRegistry.GEAR_ITEMS.CLOTH_CHESTS)
             .req(new StatRequirement().setInt(0.5f))
+            .implicitStat(new StatModifier(5, 15, SpellDamage.getInstance()))
             .tags(new TagList(SlotTag.cloth, SlotTag.chest, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * min, multiOf(EquipmentSlot.CHEST) * max, Health.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.CHEST) * min, multiOf(EquipmentSlot.CHEST) * max, Mana.getInstance(), ModType.FLAT))
@@ -60,6 +64,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
 
         HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "cloth_helmet", "Hat", ModRegistry.GEAR_ITEMS.CLOTH_HELMETS)
             .req(new StatRequirement().setInt(0.5f))
+            .implicitStat(new StatModifier(5, 10, SpellDamage.getInstance()))
             .tags(new TagList(SlotTag.cloth, SlotTag.helmet, SlotTag.armor_family, SlotTag.magic_shield_stat, SlotTag.intelligence))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * min, multiOf(EquipmentSlot.HEAD) * max, Health.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(multiOf(EquipmentSlot.HEAD) * min, multiOf(EquipmentSlot.HEAD) * max, Mana.getInstance(), ModType.FLAT))

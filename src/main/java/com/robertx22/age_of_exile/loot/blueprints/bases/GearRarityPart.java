@@ -35,8 +35,11 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
             FilterListWrap<UniqueGear> gen = Database.UniqueGears()
                 .getWrapped()
                 .of(x -> !x.filters.cantDrop(blueprint.info))
-                .ofSpecificGearType(blueprint.gearItemSlot.get()
-                    .GUID());
+                .of((x -> x.getPossibleGearTypes()
+                    .stream()
+                    .anyMatch(e -> e.GUID()
+                        .equals(blueprint.gearItemSlot.get()
+                            .GUID()))));
 
             if (!gen.list.isEmpty()) {
 

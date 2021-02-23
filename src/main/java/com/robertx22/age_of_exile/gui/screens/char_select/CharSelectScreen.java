@@ -24,9 +24,9 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class CharScreen extends BaseSelectionScreen implements INamedScreen {
+public class CharSelectScreen extends BaseSelectionScreen implements INamedScreen {
 
-    public CharScreen() {
+    public CharSelectScreen() {
         super();
         this.mc = MinecraftClient.getInstance();
         this.data = Load.Unit(mc.player);

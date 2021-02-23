@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
+package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -107,6 +108,16 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(7, 10, TreasureQuantity.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(5, 7, TreasureQuantity.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(3, 5, TreasureQuantity.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.jewelry_family)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("jewel_accuracy_suffix")
+            .Named("Of Accuracy")
+            .tier(1, new StatModifier(15, 20, Accuracy.getInstance()))
+            .tier(2, new StatModifier(12, 15, Accuracy.getInstance()))
+            .tier(3, new StatModifier(10, 12, Accuracy.getInstance()))
+            .tier(4, new StatModifier(6, 10, Accuracy.getInstance()))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();

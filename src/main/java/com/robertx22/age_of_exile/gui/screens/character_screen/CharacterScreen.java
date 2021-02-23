@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
+import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -21,23 +23,22 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
+import com.robertx22.age_of_exile.gui.screens.ItemSlotButton;
+import com.robertx22.age_of_exile.gui.screens.MainHubButton;
+import com.robertx22.age_of_exile.gui.screens.char_select.CharSelectScreen;
+import com.robertx22.age_of_exile.gui.screens.player_skills.PlayerSkillsScreen;
+import com.robertx22.age_of_exile.gui.screens.skill_gems.SkillGemsOpener;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.TalentsScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
@@ -48,6 +49,8 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -66,11 +69,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
     MinecraftClient mc = MinecraftClient.getInstance();
 
     public enum StatType {
+        BLANK("blank"),
         MAIN("main"),
         ELEMENTAL("elemental"),
         RESISTS("resists"),
-        RESTORATION("restoration"),
-        WEAPON("weapon"),
         MISC("misc");
 
         String id;
@@ -85,10 +87,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
     }
 
     boolean isMainScreen() {
-        return this.statToShow == StatType.MAIN;
+        return this.statToShow == StatType.BLANK;
     }
 
-    public StatType statToShow = StatType.MAIN;
+    public StatType statToShow = StatType.BLANK;
 
     static HashMap<StatType, List<List<Stat>>> STAT_MAP = new HashMap<>();
 
@@ -120,13 +122,6 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.RESISTS, new ElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.RESISTS, new MaxElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.RESISTS, new ElementalPenetration(Elements.Elemental).generateAllPossibleStatVariations());
-
-        addTo(StatType.RESTORATION, Arrays.asList(Lifesteal.getInstance(), PlusResourceOnKill.HEALTH, RegeneratePercentStat.HEALTH));
-        addTo(StatType.RESTORATION, Arrays.asList(PlusResourceOnKill.MANA, RegeneratePercentStat.MANA));
-        addTo(StatType.RESTORATION, Arrays.asList(HealPower.getInstance(), HealEffectivenessOnSelf.getInstance(), ManaBurnResistance.getInstance()));
-
-        addTo(StatType.WEAPON, new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations());
-        addTo(StatType.WEAPON, new SpecificElementalWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations());
 
         addTo(StatType.MISC, Arrays.asList(BonusExp.getInstance(), TreasureQuality.getInstance(), TreasureQuantity.getInstance()));
 
@@ -163,26 +158,21 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         this.buttons.clear();
         this.children.clear();
 
-        int XSPACING = 240 / STAT_MAP.get(statToShow)
-            .size();
-        int YSPACING = 19;
-
         // CORE STATS
         int xpos = guiLeft + 75;
         int ypos = guiTop + 25;
 
         if (this.isMainScreen()) {
 
-            //
-            //xpos += 65;
-            ypos = guiTop + 15;
+            if (false) {
+                ypos = guiTop + 15;
 
-            addButton(new StatButton(Strength.INSTANCE, xpos, ypos));
-            ypos += 20;
-            addButton(new StatButton(Intelligence.INSTANCE, xpos, ypos));
-            ypos += 20;
-            addButton(new StatButton(Dexterity.INSTANCE, xpos, ypos));
-
+                addButton(new StatButton(Strength.INSTANCE, xpos, ypos));
+                ypos += 20;
+                addButton(new StatButton(Intelligence.INSTANCE, xpos, ypos));
+                ypos += 20;
+                addButton(new StatButton(Dexterity.INSTANCE, xpos, ypos));
+            }
         }
 
         if (isMainScreen()) {
@@ -193,33 +183,70 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             ypos = guiTop + 12;
         }
 
-        int ynum = 0;
-        for (List<Stat> list : STAT_MAP.get(statToShow)) {
-            for (Stat stat : list) {
-                if (stat.isShown) {
-                    addButton(new StatButton(stat, xpos, ypos + (YSPACING * ynum)));
+        if (!isMainScreen()) {
 
-                    ynum++;
+            int XSPACING = 240 / STAT_MAP.get(statToShow)
+                .size();
+            int YSPACING = 19;
+
+            int ynum = 0;
+            for (List<Stat> list : STAT_MAP.get(statToShow)) {
+                for (Stat stat : list) {
+                    if (stat.isShown) {
+                        addButton(new StatButton(stat, xpos, ypos + (YSPACING * ynum)));
+
+                        ynum++;
+                    }
                 }
+                ynum = 0;
+                xpos += XSPACING;
             }
-            ynum = 0;
-            xpos += XSPACING;
         }
 
         if (this.isMainScreen()) {
-            List<Text> list = new ArrayList<>();
-            // this.addButton(new HelpButton(list, guiLeft + sizeX - 30, guiTop + 5));
+            addButton(new FavorButton(guiLeft - 15 + sizeX - FavorButton.FAVOR_BUTTON_SIZE_X, guiTop + 21 - FavorButton.FAVOR_BUTTON_SIZE_Y / 2));
 
-            addButton(new FavorButton(guiLeft + sizeX - 45, guiTop + 40));
+            // hub buttons
+            List<INamedScreen> screens = new ArrayList<>();
+            screens.add(new TalentsScreen());
+            screens.add(new SkillGemsOpener());
+            screens.add(new PlayerSkillsScreen());
+            screens.add(new CharSelectScreen());
 
+            int x = guiLeft + sizeX - 1;
+            int y = guiTop + 30;
+
+            for (INamedScreen screen : screens) {
+                addButton(new MainHubButton(screen, x, y));
+                y += MainHubButton.ySize + 0;
+            }
         }
 
         int i = 0;
         for (StatType group : StatType.values()) {
-            this.addButton(new StatPageButton(this, group, guiLeft + sizeX, guiTop + 5 + (i * (PAGE_BUTTON_SIZE_Y + 1))));
+            this.addButton(new StatPageButton(this, group, guiLeft - PAGE_BUTTON_SIZE_X, guiTop + 5 + (i * (PAGE_BUTTON_SIZE_Y + 1))));
             i++;
         }
 
+        if (isMainScreen()) {
+            // gear items
+            addItemButton(MyCurioUtils.get(RefCurio.NECKLACE, mc.player, 0), 78, 15);
+            addItemButton(MyCurioUtils.get(RefCurio.RING, mc.player, 0), 78, 33);
+            addItemButton(MyCurioUtils.get(RefCurio.RING, mc.player, 1), 78, 51);
+            addItemButton(MyCurioUtils.get(RefCurio.SALVAGE_BAG, mc.player, 0), 78, 69);
+
+            addItemButton(mc.player.getEquippedStack(EquipmentSlot.HEAD), 159, 15);
+            addItemButton(mc.player.getEquippedStack(EquipmentSlot.CHEST), 159, 33);
+            addItemButton(mc.player.getEquippedStack(EquipmentSlot.LEGS), 159, 51);
+            addItemButton(mc.player.getEquippedStack(EquipmentSlot.FEET), 159, 69);
+
+            addItemButton(mc.player.getEquippedStack(EquipmentSlot.MAINHAND), 58, 69);
+            addItemButton(mc.player.getEquippedStack(EquipmentSlot.OFFHAND), 179, 69);
+        }
+    }
+
+    void addItemButton(ItemStack stack, int x, int y) {
+        addButton(new ItemSlotButton(stack, this.guiLeft + x, this.guiTop + y));
     }
 
     private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/stats.png");
@@ -248,15 +275,15 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
-        int xe = guiLeft + 32;
-        int ye = guiTop + 75;
+        int xe = guiLeft + 35 + 91;
+        int ye = guiTop + 75 + 7;
 
         if (isMainScreen()) {
             InventoryScreen.drawEntity(xe, ye, 30, xe - x, ye - y, mc.player);
 
             String str = "Level: " + Load.Unit(mc.player)
                 .getLevel();
-            GuiUtils.renderScaledText(matrix, xe, ye - 60, 0.6F, str, Formatting.YELLOW);
+            GuiUtils.renderScaledText(matrix, xe, ye - 63, 0.6F, str, Formatting.YELLOW);
 
         }
     }

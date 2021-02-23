@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -24,7 +23,7 @@ public class PlusResourceOnKill extends Stat {
         this.statRestored = statRestored;
         this.statEffect = effect;
         this.statGroup = StatGroup.RESTORATION;
-        this.scaling = StatScaling.NORMAL;
+        this.scaling = statRestored.scaling;
     }
 
     @Override

@@ -21,8 +21,6 @@ import net.minecraft.text.LiteralText;
 
 public class OnLogin {
 
-    public static boolean CLIENT_ONLY_GOT_SKILL_PACKETS = false;
-
     public static void onLoad(ServerPlayerEntity player) {
 
         Watch total = null;

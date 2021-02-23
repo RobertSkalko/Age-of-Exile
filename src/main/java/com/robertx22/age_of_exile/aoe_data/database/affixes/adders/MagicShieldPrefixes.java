@@ -20,7 +20,7 @@ public class MagicShieldPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(2, 3, Mana.getInstance(), ModType.FLAT), new StatModifier(15, 20, Armor.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(1, 2, Mana.getInstance(), ModType.FLAT), new StatModifier(12, 15, Armor.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(0, 1, Mana.getInstance(), ModType.FLAT), new StatModifier(10, 12, Armor.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.magic_shield_stat)
+            .includesTags(SlotTag.magic_shield_stat)
             .Prefix()
             .Build();
 

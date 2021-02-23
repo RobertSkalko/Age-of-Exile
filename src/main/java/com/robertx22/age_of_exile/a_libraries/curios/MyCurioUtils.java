@@ -51,6 +51,17 @@ public class MyCurioUtils {
 
     }
 
+    public static ItemStack get(String slot, PlayerEntity player, int num) {
+
+        List<ItemStack> list = getAllSlots(Arrays.asList(slot), player);
+
+        if (num + 1 > list.size()) {
+            return ItemStack.EMPTY;
+        } else {
+            return list.get(num);
+        }
+    }
+
     public static List<ItemStack> getAllSlots(List<String> slots, PlayerEntity player) {
 
         List<ItemStack> list = new ArrayList<>();
