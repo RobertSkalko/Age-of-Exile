@@ -57,7 +57,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
         int num = 0;
 
-        int x = guiLeft + 25;
+        int x = guiLeft + 22;
         int y = guiTop + 50;
 
         List<PlayerSkill> all = Database.PlayerSkills()

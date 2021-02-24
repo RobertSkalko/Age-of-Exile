@@ -60,11 +60,11 @@ public class TooltipInfo implements Cloneable {
     public boolean hasShiftDown = false;
 
     public boolean shouldShowDescriptions() {
-        return hasAltDown && !hasShiftDown && !isSet;
+        return hasAltDown && !hasShiftDown;
     }
 
     public boolean useInDepthStats() {
-        return !hasAltDown && hasShiftDown && !isSet;
+        return !hasAltDown && hasShiftDown;
     }
 
 }

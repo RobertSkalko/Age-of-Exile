@@ -35,13 +35,13 @@ public class BigPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        PerkBuilder.bigStat("big_int", "Wisdom", new OptScaleExactStat(30, Intelligence.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_dex", "Skill", new OptScaleExactStat(30, Dexterity.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_str", "Power", new OptScaleExactStat(30, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_int", "Wisdom", new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_dex", "Skill", new OptScaleExactStat(5, Dexterity.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_str", "Power", new OptScaleExactStat(5, Strength.INSTANCE, ModType.FLAT));
 
-        PerkBuilder.bigStat("huge_int", "Superior Wisdom", new OptScaleExactStat(50, Intelligence.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("huge_dex", "Superior Skill", new OptScaleExactStat(50, Dexterity.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("huge_str", "Superior Power", new OptScaleExactStat(50, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("huge_int", "Superior Wisdom", new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("huge_dex", "Superior Skill", new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("huge_str", "Superior Power", new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT));
 
         PerkBuilder.bigStat("big_hp_res", "Hard Life",
             new OptScaleExactStat(15, Health.getInstance(), ModType.LOCAL_INCREASE),

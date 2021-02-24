@@ -87,6 +87,7 @@ health_on_basic_attack_hit
 all_water_dmg_leech_as_mana
 water_resist
 other_physical_dmg_leech_as_mana
+vitality
 armor_penetration
 bow_damage
 basic_attack_elemental_dmg_leech_as_mana
@@ -109,6 +110,7 @@ all_all_dmg_leech_as_blood
 dot_fire_dmg_leech_as_health
 dot_all_dmg_leech_as_blood
 spell_elemental_dmg_leech_as_health
+agility
 spell_water_damage
 water_focus
 other_nature_dmg_leech_as_mana
@@ -125,6 +127,7 @@ all_elemental_dmg_leech_as_health
 elemental_penetration
 ele_sword_damage
 dot_physical_dmg_leech_as_blood
+wisdom
 basic_attack_physical_dmg_leech_as_mana
 bonus_farming_exp
 attack_nature_dmg_leech_as_blood

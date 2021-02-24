@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -56,8 +57,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     public float getPercent(StatData data) {
-
-        return ((data.getAverageValue() - 10) / 10) * 100;
+        return (data.getAverageValue() - 1) * 100;
     }
 
     public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
@@ -67,9 +67,16 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         int perc = (int) getPercent(data);
 
         List<Text> list = new ArrayList<>();
+
         list.add(
-            new LiteralText("Stats that benefit: ").formatted(Formatting.GREEN));
-        getMods(perc, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
+            new LiteralText("For each point: ").formatted(Formatting.GREEN));
+        getMods(0, 1).forEach(x -> list.addAll(x.GetTooltipString(info)));
+
+        list.add(new SText(""));
+
+        list.add(
+            new LiteralText("Total: ").formatted(Formatting.GREEN));
+        getMods(perc, 1).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 

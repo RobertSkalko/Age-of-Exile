@@ -33,9 +33,9 @@ public class Perks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        PerkBuilder.stat("int", new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT));
-        PerkBuilder.stat("dex", new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT));
-        PerkBuilder.stat("str", new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("int", new OptScaleExactStat(1, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("dex", new OptScaleExactStat(1, Dexterity.INSTANCE, ModType.FLAT));
+        PerkBuilder.stat("str", new OptScaleExactStat(1, Strength.INSTANCE, ModType.FLAT));
 
         PerkBuilder.stat("cast_speed", new OptScaleExactStat(3, CastSpeed.getInstance(), ModType.FLAT));
 
