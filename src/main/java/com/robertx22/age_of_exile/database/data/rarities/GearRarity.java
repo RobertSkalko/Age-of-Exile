@@ -55,19 +55,34 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public float special_spawn_chance = 0;
     public float special_spawn_chest_bonus_chance = 0;
 
-    transient Identifier glintTex;
+    transient Identifier glintFull;
+    transient Identifier glintTexBorder;
 
-    public Identifier getGlintTexture() {
+    public Identifier getGlintTextureFull() {
 
-        if (glintTex == null) {
-            Identifier tex = Ref.id("textures/gui/rarity_glint/" + GUID() + ".png");
+        if (glintFull == null) {
+            Identifier tex = Ref.id("textures/gui/rarity_glint/full/" + GUID() + ".png");
             if (ClientTextureUtils.textureExists(tex)) {
-                glintTex = tex;
+                glintFull = tex;
             } else {
-                glintTex = Ref.id("textures/gui/rarity_glint/default.png");
+                glintFull = Ref.id("textures/gui/rarity_glint/full/default.png");
             }
         }
-        return glintTex;
+        return glintFull;
+
+    }
+
+    public Identifier getGlintTextureBorder() {
+
+        if (glintTexBorder == null) {
+            Identifier tex = Ref.id("textures/gui/rarity_glint/border/" + GUID() + ".png");
+            if (ClientTextureUtils.textureExists(tex)) {
+                glintTexBorder = tex;
+            } else {
+                glintTexBorder = Ref.id("textures/gui/rarity_glint/border/default.png");
+            }
+        }
+        return glintTexBorder;
 
     }
 
