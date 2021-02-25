@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.capability.player.data;
 
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,13 +25,15 @@ public class PlayerCharsData {
                 .load(p);
             characters.put(num, data);
         } else {
+
             //new character
-            Load.Unit(p)
-                .fromTag(new CompoundTag());
-            Load.spells(p)
-                .fromTag(new CompoundTag());
-            Load.perks(p)
-                .fromTag(new CompoundTag());
+
+            for (PlayerCaps cap : PlayerCaps.values()) {
+                if (cap.shouldSaveToPlayerCharacter()) {
+                    cap.getCap(p)
+                        .fromTag(new CompoundTag());
+                }
+            }
 
             characters.put(num, data);
 

@@ -43,9 +43,10 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
+import com.robertx22.age_of_exile.vanilla_mc.packets.AllocateStatPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -316,6 +317,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         public AllocateStatButton(Stat stat, int xPos, int yPos) {
             super(xPos, yPos, SIZEX, SIZEY, 0, 0, SIZEY, BUTTON_TEX, (button) -> {
+                Packets.sendToServer(new AllocateStatPacket(stat));
             });
             this.stat = stat;
         }
@@ -372,10 +374,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
     static int STAT_BUTTON_SIZE_X = 18;
     static int STAT_BUTTON_SIZE_Y = 18;
 
-    public class StatButton extends TexturedButtonWidget {
+    public static class StatButton extends TexturedButtonWidget {
 
-        TextRenderer font = MinecraftClient.getInstance().textRenderer;
         Stat stat;
+        public String presetValue = "";
 
         public StatButton(Stat stat, int xPos, int yPos) {
             super(xPos, yPos, STAT_BUTTON_SIZE_X, STAT_BUTTON_SIZE_Y, 0, 0, STAT_BUTTON_SIZE_Y, BUTTON_TEX, (button) -> {
@@ -409,17 +411,21 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         @Override
         public void renderButton(MatrixStack matrix, int x, int y, float f) {
             if (!(stat instanceof UnknownStat)) {
-
+                MinecraftClient mc = MinecraftClient.getInstance();
                 String str = getStatString(Load.Unit(mc.player)
                     .getUnit()
                     .getCalculatedStat(stat), Load.Unit(mc.player));
+
+                if (!presetValue.isEmpty()) {
+                    str = presetValue;
+                }
 
                 Identifier res = stat
                     .getIconForRendering();
 
                 RenderUtils.render16Icon(matrix, res, this.x, this.y);
 
-                CharacterScreen.this.drawStringWithShadow(matrix, font, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
+                mc.textRenderer.drawWithShadow(matrix, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
 
             }
         }

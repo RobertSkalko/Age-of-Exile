@@ -49,13 +49,15 @@ public class OnePlayerCharData {
 
     public void load(PlayerEntity player) {
 
-        map.entrySet()
-            .forEach(x -> {
-                ICommonPlayerCap cap = x.getKey()
-                    .getCap(player);
-                cap.fromTag(x.getValue());
-                cap.syncToClient(player);
-            });
+        for (PlayerCaps cap : PlayerCaps.values()) {
+            if (cap.shouldSaveToPlayerCharacter()) {
+
+                CompoundTag nbt = map.getOrDefault(cap, new CompoundTag());
+                ICommonPlayerCap pcap = cap.getCap(player);
+                pcap.fromTag(nbt);
+                pcap.syncToClient(player);
+            }
+        }
 
     }
 

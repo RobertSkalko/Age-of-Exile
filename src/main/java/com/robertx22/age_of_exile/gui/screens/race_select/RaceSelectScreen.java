@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.gui.screens.race_select;
 
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
+import com.robertx22.age_of_exile.gui.screens.character_screen.CharacterScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ChooseRacePacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -54,6 +56,14 @@ public class RaceSelectScreen extends BaseSelectionScreen {
 
             this.addButton(new RaceSelectScreen.CharButton(race, x, y));
             this.addButton(new RaceImageButton(race, x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
+
+            int n = 0;
+            for (OptScaleExactStat stat : race.starting_stats) {
+                CharacterScreen.StatButton statbutton = new CharacterScreen.StatButton(stat.getStat(), x + 15 + (35 * n), y + 80);
+                statbutton.presetValue = (int) stat.v1 + "";
+                this.addButton(statbutton);
+                n++;
+            }
 
             this.addButton(new ChooseRaceButton(this, race, x + 6, y + RaceSelectScreen.CharButton.ySize - 5 - ChooseRaceButton.ySize + 35));
 

@@ -245,6 +245,11 @@ public class Unit {
         statContexts.addAll(CommonStatUtils.addExactCustomStats(entity));
 
         if (entity instanceof PlayerEntity) {
+            if (data.hasRace()) {
+                data.getRace()
+                    .addStats((PlayerEntity) entity);
+            }
+            Load.statPoints((PlayerEntity) entity).data.addStats(data);
             statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
             statContexts.addAll(Load.characters((PlayerEntity) entity)
                 .getStats());
@@ -323,11 +328,6 @@ public class Unit {
             });
 
         if (entity instanceof PlayerEntity) {
-
-            if (data.hasRace()) {
-                data.getRace()
-                    .addStats((PlayerEntity) entity);
-            }
 
             for (StatContainerType type : StatContainerType.values()) {
                 // different stat containers for each spell with support gems.

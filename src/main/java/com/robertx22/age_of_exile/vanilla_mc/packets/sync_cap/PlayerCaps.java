@@ -18,6 +18,17 @@ public enum PlayerCaps {
             return true;
         }
     },
+    STAT_POINTS {
+        @Override
+        public ICommonPlayerCap getCap(PlayerEntity player) {
+            return Load.statPoints(player);
+        }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return true;
+        }
+    },
     DEATH_STATS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {

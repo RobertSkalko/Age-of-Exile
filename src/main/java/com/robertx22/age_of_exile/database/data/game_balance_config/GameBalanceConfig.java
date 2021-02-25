@@ -25,6 +25,7 @@ public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceCo
     public LevelScalingConfig STAT_REQ_SCALING = new LevelScalingConfig(2, 2);
 
     public double TALENT_POINTS_AT_MAX_LEVEL = 125;
+    public double STAT_POINTS_PER_LEVEL = 2;
     public double STARTING_TALENT_POINTS = 1;
 
     @Override

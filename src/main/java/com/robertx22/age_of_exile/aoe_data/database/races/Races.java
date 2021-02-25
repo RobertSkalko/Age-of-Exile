@@ -4,9 +4,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.races.ExtraStatPerStat;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.races.RaceLevelingPerk;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -38,6 +36,11 @@ public class Races implements ISlashRegistryInit {
                 new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
             )
             ,
+            Arrays.asList(
+                new OptScaleExactStat(10, Vitality.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(10, Wisdom.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(10, Agility.INSTANCE, ModType.FLAT)
+            ),
             RaceLevelingPerk.profession(PlayerSkillEnum.COOKING)
         )
             .addToSerializables();
@@ -53,6 +56,11 @@ public class Races implements ISlashRegistryInit {
             ),
             Arrays.asList(new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE))
             ,
+            Arrays.asList(
+                new OptScaleExactStat(15, Vitality.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(8, Wisdom.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(7, Agility.INSTANCE, ModType.FLAT)
+            ),
             RaceLevelingPerk.profession(PlayerSkillEnum.TINKERING)
         )
             .addToSerializables();
@@ -68,7 +76,11 @@ public class Races implements ISlashRegistryInit {
             ),
 
             Arrays.asList(new OptScaleExactStat(10, new ElementalResist(Elements.Elemental))),
-
+            Arrays.asList(
+                new OptScaleExactStat(7, Vitality.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(15, Wisdom.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(8, Agility.INSTANCE, ModType.FLAT)
+            ),
             RaceLevelingPerk.profession(PlayerSkillEnum.INSCRIBING)
         )
             .addToSerializables();
@@ -84,6 +96,11 @@ public class Races implements ISlashRegistryInit {
             ),
             Arrays.asList(new OptScaleExactStat(40, new ElementalResist(Elements.Nature))),
 
+            Arrays.asList(
+                new OptScaleExactStat(8, Vitality.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(7, Wisdom.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(15, Agility.INSTANCE, ModType.FLAT)
+            ),
             RaceLevelingPerk.profession(PlayerSkillEnum.ALCHEMY)
         )
             .addToSerializables();

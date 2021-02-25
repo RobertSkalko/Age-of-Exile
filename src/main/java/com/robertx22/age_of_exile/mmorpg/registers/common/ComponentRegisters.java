@@ -2,10 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
-import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
-import com.robertx22.age_of_exile.capability.player.PlayerFavor;
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.*;
 import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
@@ -36,6 +33,12 @@ public class ComponentRegisters {
             PlayerFavor.RESOURCE,
             PlayerFavor.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerFavor(x));
+
+    public ComponentType<PlayerStatPointsCap> STAT_POINTS =
+        ComponentRegistry.INSTANCE.registerIfAbsent(
+            PlayerStatPointsCap.RESOURCE,
+            PlayerStatPointsCap.class)
+            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerStatPointsCap(x));
 
     public ComponentType<PlayerCharCap> PLAYER_CHARACTERS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
@@ -70,6 +73,7 @@ public class ComponentRegisters {
         EntityComponents.setRespawnCopyStrategy(PLAYER_CHARACTERS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_SKILLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_DEATH_DATA, RespawnCopyStrategy.ALWAYS_COPY);
+        EntityComponents.setRespawnCopyStrategy(STAT_POINTS, RespawnCopyStrategy.ALWAYS_COPY);
 
     }
 

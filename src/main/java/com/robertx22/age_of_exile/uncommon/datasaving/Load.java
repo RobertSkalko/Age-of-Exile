@@ -2,10 +2,7 @@ package com.robertx22.age_of_exile.uncommon.datasaving;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.entity.EntityPerks;
-import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
-import com.robertx22.age_of_exile.capability.player.PlayerFavor;
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.*;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -43,6 +40,10 @@ public class Load {
 
     public static PlayerFavor favor(PlayerEntity provider) {
         return ModRegistry.COMPONENTS.PLAYER_FAVOR.get(provider);
+    }
+
+    public static PlayerStatPointsCap statPoints(PlayerEntity provider) {
+        return ModRegistry.COMPONENTS.STAT_POINTS.get(provider);
     }
 
     public static PlayerCharCap characters(PlayerEntity provider) {

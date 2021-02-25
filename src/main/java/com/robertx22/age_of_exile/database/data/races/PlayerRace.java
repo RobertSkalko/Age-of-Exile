@@ -33,6 +33,8 @@ public class PlayerRace implements ISerializedRegistryEntry<PlayerRace>, IAutoGs
 
     public List<OptScaleExactStat> base_stats = new ArrayList<>();
 
+    public List<OptScaleExactStat> starting_stats = new ArrayList<>();
+
     public List<RaceLevelingPerk> lvling_perks = new ArrayList<>();
 
     public final Identifier getIcon() {
@@ -73,7 +75,7 @@ public class PlayerRace implements ISerializedRegistryEntry<PlayerRace>, IAutoGs
 
     }
 
-    public static PlayerRace of(String id, String name, String desc, List<ExtraStatPerStat> extraStats, List<OptScaleExactStat> baseStats, List<RaceLevelingPerk> perks) {
+    public static PlayerRace of(String id, String name, String desc, List<ExtraStatPerStat> extraStats, List<OptScaleExactStat> baseStats, List<OptScaleExactStat> starting_stats, List<RaceLevelingPerk> perks) {
 
         PlayerRace r = new PlayerRace();
         r.locdesc = desc;
@@ -81,6 +83,7 @@ public class PlayerRace implements ISerializedRegistryEntry<PlayerRace>, IAutoGs
         r.id = id;
         r.base_stats = baseStats;
         r.extra_stats = extraStats;
+        r.starting_stats = starting_stats;
         r.lvling_perks = perks;
 
         return r;
@@ -109,6 +112,9 @@ public class PlayerRace implements ISerializedRegistryEntry<PlayerRace>, IAutoGs
         });
 
         this.base_stats.forEach(x -> x.toExactStat(lvl)
+            .applyStats(data));
+
+        this.starting_stats.forEach(x -> x.toExactStat(lvl)
             .applyStats(data));
 
     }
