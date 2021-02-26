@@ -5,12 +5,9 @@ import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBui
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ALCHEMY;
 
 public class FarmingAdder {
 
@@ -20,13 +17,6 @@ public class FarmingAdder {
         b.addDefaultBonusExpRewards();
 
         DropRewardsBuilder skillDrops = DropRewardsBuilder.of(2);
-        skillDrops.addFoodDrops();
-
-        skillDrops.dropReward(new SkillDropReward(1, 100, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(10, 75, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(20, 50, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(30, 25, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(40, 10, ALCHEMY.MAT_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
 
         DropRewardsBuilder rareDrops = DropRewardsBuilder.of(0.25F);
         rareDrops.dropReward(new SkillDropReward(10, 10, Items.BONE_MEAL, new MinMax(1, 2)));
@@ -38,10 +28,8 @@ public class FarmingAdder {
         b.skill.dropTables.add(skillDrops.build());
         b.skill.dropTables.add(rareDrops.build());
 
-        b.blockExp(Blocks.WHEAT, 7);
-        b.blockExp(Blocks.POTATOES, 7);
-        b.blockExp(Blocks.CARROTS, 7);
-        b.blockExp(Blocks.BEETROOTS, 7);
+        b.blockExp(ModRegistry.BLOCKS.PLANT1, 10);
+        b.blockExp(ModRegistry.BLOCKS.PLANT2, 10);
 
         b.regens(10, 2);
         b.regens(20, 4);

@@ -69,7 +69,7 @@ public class EfficientRegistryPacket<T extends IByteBuf & ISerializedRegistryEnt
         items.forEach(x -> x.toBuf(buf));
 
         if (MMORPG.RUN_DEV_TOOLS) {
-            watch.print("Writing efficient direct bytebuf packet for " + this.type.name() + " ");
+            //watch.print("Writing efficient direct bytebuf packet for " + this.type.name() + " ");
         }
     }
 

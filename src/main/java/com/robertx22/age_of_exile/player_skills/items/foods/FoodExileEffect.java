@@ -18,7 +18,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
+import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
@@ -62,17 +62,17 @@ public enum FoodExileEffect {
     }
 
     public enum EffectColor {
-        RED("red", "Red", () -> ModRegistry.GEAR_MATERIALS.FIRE),
+        RED("red", "Red", () -> ModRegistry.MISC_ITEMS.BLOOD_WHEAT),
         GREEN("green", "Green", () -> ModRegistry.GEAR_MATERIALS.NATURE),
         BLUE("blue", "Blue", () -> ModRegistry.GEAR_MATERIALS.WATER),
-        PURPLE("purple", "Purple", () -> ModRegistry.GEAR_MATERIALS.ARCANA),
+        PURPLE("purple", "Purple", () -> ModRegistry.MISC_ITEMS.ARCANE_WHEAT),
         YELLOW("yellow", "Yellow", () -> ModRegistry.GEAR_MATERIALS.THUNDER);
 
         public String id;
         public String word;
-        public Supplier<CraftEssenceItem> essenceItem;
+        public Supplier<Item> essenceItem;
 
-        EffectColor(String id, String word, Supplier<CraftEssenceItem> essence) {
+        EffectColor(String id, String word, Supplier<Item> essence) {
             this.id = id;
             this.word = word;
             this.essenceItem = essence;

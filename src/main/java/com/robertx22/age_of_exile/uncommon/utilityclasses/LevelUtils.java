@@ -23,9 +23,11 @@ public class LevelUtils {
         return (float) lvl / max;
     }
 
+    /*
     public static int getLevelForMultiplier(float multi) {
         return (int) (GameBalanceConfig.get().MAX_LEVEL * multi);
     }
+     */
 
     public static int getExpRequiredForLevel(int level) {
         return (int) (Math.pow(6F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 2.5F));

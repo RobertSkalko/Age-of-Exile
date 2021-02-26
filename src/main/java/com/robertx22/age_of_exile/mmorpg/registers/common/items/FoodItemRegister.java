@@ -12,16 +12,12 @@ import static com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffe
 
 public class FoodItemRegister extends BaseItemRegistrator {
 
-    public HashMap<SkillItemTier, MysteriousSpiceItem> MAT_TIER_MAP = new HashMap<>();
     public HashMap<EffectColor, FoodExtractItem> EXTRACT_MAP = new HashMap<>();
 
     public HashMap<Triple<FoodType, EffectColor, SkillItemTier>, FarmingFoodItem> MAP = new HashMap<>();
 
     public FoodItemRegister() {
 
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            MAT_TIER_MAP.put(tier, item(new MysteriousSpiceItem(tier)));
-        }
         for (EffectColor color : EffectColor.values()) {
             EXTRACT_MAP.put(color, item(new FoodExtractItem(color)));
         }

@@ -1,22 +1,25 @@
-package com.robertx22.age_of_exile.player_skills.items.foods;
+package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.player_skills.items.backpacks.IGatheringMat;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.registry.Registry;
 
-public class MysteriousSpiceItem extends Item implements IAutoLocName, IAutoModel, IGatheringMat {
+public class CondensedSalvageEssence extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
     SkillItemTier tier;
 
-    public MysteriousSpiceItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Foods));
+    public CondensedSalvageEssence(SkillItemTier tier) {
+        super(new Settings().group(CreativeTabs.Alchemy));
         this.tier = tier;
     }
 
@@ -42,13 +45,20 @@ public class MysteriousSpiceItem extends Item implements IAutoLocName, IAutoMode
     }
 
     @Override
+    public ShapelessRecipeJsonFactory getRecipe() {
+        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
+        fac.input(ModRegistry.MISC_ITEMS.getDusts()
+            .get(tier.tier), 9);
+        return fac.criterion("player_level", trigger());
+    }
+
+    @Override
     public String locNameForLangFile() {
-        return "Mysterious " + tier.word + " Spice";
+        return "Condensed " + tier.word + " Essence";
     }
 
     @Override
     public String GUID() {
-        return "food/material/" + tier.tier;
+        return "mat/condensed_salvage/c" + tier.tier;
     }
-
 }

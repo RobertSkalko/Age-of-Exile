@@ -119,7 +119,7 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
         fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
-        fac.input(ModRegistry.FOOD_ITEMS.MAT_TIER_MAP.get(this.tier));
+        fac.input(ModRegistry.ALCHEMY.MAT_TIER_MAP.get(this.tier));
         fac.input(type.vanillaCraftingItem);
         return fac.criterion("player_level", trigger());
     }
