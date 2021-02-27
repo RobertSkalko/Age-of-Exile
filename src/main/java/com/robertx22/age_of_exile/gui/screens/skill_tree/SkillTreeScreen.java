@@ -55,8 +55,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
-    public static double SAVED_SCALE_FACTOR = -1;
-
     public void removeRemovableButtons() {
         boolean did = false;
         if (this.buttons.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
@@ -249,7 +247,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                 int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
                 int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
 
-                this.newButton(new PerkButton(entityPerks, school, e.getKey(), perk, x, y));
+                this.newButton(new PerkButton(this, entityPerks, school, e.getKey(), perk, x, y));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -324,7 +322,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
     }
 
-    int zoomedOutTimes = 0;
+    public float zoom = 1;
 
     public static boolean RETURN_ZOOM = false;
 
@@ -346,63 +344,31 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     }
 
     private void resetZoom() {
-        if (SAVED_SCALE_FACTOR > 0) {
-            mc.getWindow()
-                .setScaleFactor(SkillTreeScreen.SAVED_SCALE_FACTOR);
-            if (mc.currentScreen != null) {
-                mc.currentScreen.resize(mc, mc.getWindow()
-                    .getScaledWidth(), mc.getWindow()
-                    .getScaledHeight());
-            }
-            mc.onResolutionChanged();
-            SkillTreeScreen.RETURN_ZOOM = false;
-        }
+        zoom = 1;
     }
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
         if (scroll < 0) {
-            zoomedOutTimes++;
+            zoom -= 0.1F;
         }
         if (scroll > 0) {
-            zoomedOutTimes--;
+            zoom += 0.1F;
         }
 
-        this.zoomedOutTimes = MathHelper.clamp(zoomedOutTimes, 0, 25);
-
-        SpellSchool savedschool = this.school;
-
-        int SscrollX = this.scrollX;
-        int SscrollY = this.scrollY;
-
-        if (SAVED_SCALE_FACTOR < 0) {
-            SAVED_SCALE_FACTOR = mc.getWindow()
-                .getScaleFactor();
-        }
-
-        if (this.zoomedOutTimes % 1 == 0) {
-            mc.getWindow()
-                .setScaleFactor(MathHelper.clamp(SAVED_SCALE_FACTOR - zoomedOutTimes * 0.1F, 0.2F, 500));
-            resize(mc, mc.getWindow()
-                .getScaledWidth(), mc.getWindow()
-                .getScaledHeight());
-
-            this.school = savedschool;
-            if (this.schoolsInOrder.size() > 1) {
-                this.refreshButtons();
-            }
-
-            this.scrollX = SscrollX;
-            this.scrollY = SscrollY;
-        }
+        this.zoom = MathHelper.clamp(zoom, 0.08F, 1);
 
         return true;
     }
 
+    public PointData getZoomedPosition(PointData pos) {
+        return new PointData((int) this.zoom / pos.x, (int) this.zoom / pos.y);
+    }
+
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        this.scrollX += deltaX;
-        this.scrollY += deltaY;
+        this.scrollX += 1F / zoom * deltaX;
+        this.scrollY += 1F / zoom * deltaY;
 
         scrollY = MathHelper.clamp(scrollY, -3333, 3333);
 
@@ -414,15 +380,27 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
         // Watch watch = new Watch();
 
+        matrix.scale(zoom, zoom, zoom);
+
         try {
 
             this.buttons.forEach(b -> {
 
                 if (originalButtonLocMap.containsKey(b)) {
                     b.x = (this.originalButtonLocMap.get(b).
-                        x + scrollX);
+                        x);
                     b.y = (this.originalButtonLocMap.get(b)
-                        .y + scrollY);
+                        .y);
+
+                    float addx = (1F / zoom - 1) * this.width / 2F;
+                    float addy = (1F / zoom - 1) * this.height / 2F;
+
+                    b.x += addx;
+                    b.y += addy;
+
+                    b.x += scrollX;
+                    b.y += scrollY;
+
                 }
             });
 
@@ -430,32 +408,35 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
             super.render(matrix, x, y, ticks);
 
-            buttons.forEach(b -> {
-                if (b instanceof PerkButton) {
-                    b.render(matrix, x, y, ticks);
+            for (AbstractButtonWidget abstractButtonWidget : buttons) {
+                if (abstractButtonWidget instanceof PerkButton) {
+                    abstractButtonWidget.render(matrix, x, y, ticks);
                 }
-            });
-
-            renderPanels(matrix);
+            }
 
             // we order them here so school buttons are on top, and perks are on top of connection buttons..
             // probably a better way to do it exists?
 
-            buttons.forEach(b -> {
-
-                if (b instanceof IMarkOnTop) {
-                    b.render(matrix, x, y, ticks);
+            for (AbstractButtonWidget button : buttons) {
+                if (button instanceof IMarkOnTop) {
+                    button.render(matrix, x, y, ticks);
                 }
 
-            });
+            }
 
             this.tick_count++;
 
-            buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+            for (AbstractButtonWidget b : buttons) {
+                b.renderToolTip(matrix, x, y);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        matrix.scale(1F / zoom, 1F / zoom, 1F / zoom);
+
+        renderPanels(matrix);
 
         //watch.print(" rendering ");
     }

@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -39,8 +40,9 @@ public class PerkButton extends TexturedButtonWidget {
     public int origX;
     public int origY;
     MinecraftClient mc = MinecraftClient.getInstance();
+    SkillTreeScreen screen;
 
-    public PerkButton(EntityPerks enperks, SpellSchool school, PointData point, Perk perk, int x, int y) {
+    public PerkButton(SkillTreeScreen screen, EntityPerks enperks, SpellSchool school, PointData point, Perk perk, int x, int y) {
         super(x, y, perk.getType().width, perk.getType().height, 0, 0, 1, ID, (action) -> {
         });
         this.perk = perk;
@@ -52,16 +54,22 @@ public class PerkButton extends TexturedButtonWidget {
         this.origY = y;
         this.originalWidth = this.width;
         this.originalHeight = this.height;
+        this.screen = screen;
 
     }
 
     public boolean isInside(int x, int y) {
+
         return GuiUtils.isInRect(this.x, this.y, width, height, x, y);
     }
 
     @Override
     public void renderToolTip(MatrixStack matrices, int mouseX, int mouseY) {
+        mouseX = (int) (1F / screen.zoom * mouseX);
+        mouseY = (int) (1F / screen.zoom * mouseY);
+
         if (this.isInside(mouseX, mouseY)) {
+
             List<Text> tooltip = perk.GetTooltipString(new TooltipInfo(MinecraftClient.getInstance().player));
             GuiUtils.renderTooltip(matrices, tooltip, mouseX, mouseY);
         }
@@ -70,6 +78,10 @@ public class PerkButton extends TexturedButtonWidget {
     // copied from abstractbutton
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+
+        mouseX = 1F / screen.zoom * mouseX;
+        mouseY = 1F / screen.zoom * mouseY;
+
         if (this.active && this.visible) {
 
             boolean bl = this.clicked(mouseX, mouseY);
@@ -99,11 +111,11 @@ public class PerkButton extends TexturedButtonWidget {
 
         if (this.x < 0 || this.x > mc.getWindow()
             .getScaledWidth()) {
-            return; // if outside of screen, don't waste time rendering it
+            //return; // if outside of screen, don't waste time rendering it
         }
         if (this.y < 0 || this.y > mc.getWindow()
             .getScaledHeight()) {
-            return; // if outside of screen, don't waste time rendering it
+            //return; // if outside of screen, don't waste time rendering it
         }
 
         PerkStatus status = enperks.getStatus(MinecraftClient.getInstance().player, school, point);

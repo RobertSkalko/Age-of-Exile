@@ -193,6 +193,7 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * reset potions are now much more expensive to make the character select feature more lucrative
 * added item rarity backgrounds in inventory! Makes it really easy to know which items are good upon a glance. Configurable too.
 * main menu hub is now much prettier!
+* talent screen has better zoom now
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)

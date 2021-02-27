@@ -21,6 +21,7 @@ public class ConnectionButton extends TexturedButtonWidget {
     PointData one;
     PointData two;
     MinecraftClient mc = MinecraftClient.getInstance();
+    ;
 
     public ConnectionButton(SpellSchool school, PointData one, PointData two, int x, int y) {
         super(x, y, SIZE, SIZE, 0, 0, 0, ID, (action) -> {
@@ -28,6 +29,7 @@ public class ConnectionButton extends TexturedButtonWidget {
         this.school = school;
         this.one = one;
         this.two = two;
+
     }
 
     int ticks = 0;
@@ -38,11 +40,11 @@ public class ConnectionButton extends TexturedButtonWidget {
 
         if (this.x < 0 || this.x > mc.getWindow()
             .getScaledWidth()) {
-            return; // if outside of screen, don't waste time rendering it
+            // return; // if outside of screen, don't waste time rendering it
         }
         if (this.y < 0 || this.y > mc.getWindow()
             .getScaledHeight()) {
-            return; // if outside of screen, don't waste time rendering it
+            // return; // if outside of screen, don't waste time rendering it
         }
 
         ticks++;
