@@ -65,10 +65,11 @@ public class PerkButton extends TexturedButtonWidget {
 
     @Override
     public void renderToolTip(MatrixStack matrices, int mouseX, int mouseY) {
-        mouseX = (int) (1F / screen.zoom * mouseX);
-        mouseY = (int) (1F / screen.zoom * mouseY);
 
-        if (this.isInside(mouseX, mouseY)) {
+        int MmouseX = (int) (1F / screen.zoom * mouseX);
+        int MmouseY = (int) (1F / screen.zoom * mouseY);
+
+        if (this.isInside(MmouseX, MmouseY)) {
 
             List<Text> tooltip = perk.GetTooltipString(new TooltipInfo(MinecraftClient.getInstance().player));
             GuiUtils.renderTooltip(matrices, tooltip, mouseX, mouseY);

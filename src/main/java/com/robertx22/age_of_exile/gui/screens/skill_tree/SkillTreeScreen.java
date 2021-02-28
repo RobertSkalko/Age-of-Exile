@@ -426,10 +426,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
             this.tick_count++;
 
-            for (AbstractButtonWidget b : buttons) {
-                b.renderToolTip(matrix, x, y);
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -437,7 +433,9 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         matrix.scale(1F / zoom, 1F / zoom, 1F / zoom);
 
         renderPanels(matrix);
-
+        for (AbstractButtonWidget b : buttons) {
+            b.renderToolTip(matrix, x, y);
+        }
         //watch.print(" rendering ");
     }
 
