@@ -13,88 +13,122 @@ import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.OrderedText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RaceSelectScreen extends BaseSelectionScreen {
+
+    int currentRace = 0;
+
+    List<PlayerRace> races = new ArrayList<>();
+
+    RaceImageButton raceImageButton;
+
+    public PlayerRace getRace() {
+        return races.get(currentRace);
+    }
+
+    public void goLeft() {
+        if (currentRace == 0) {
+            currentRace = races.size() - 1;
+        } else {
+            currentRace -= 1;
+        }
+        refresh();
+    }
+
+    public void goRight() {
+        if (currentRace == races.size() - 1) {
+            currentRace = 0;
+        } else {
+            currentRace += 1;
+        }
+
+        refresh();
+    }
+
+    public void refresh() {
+        this.raceImageButton.race = getRace();
+    }
 
     @Override
     protected void init() {
         super.init();
 
-        int x = 0;
-        int y = this.height / 50;
-
-        int slots = this.width / (RaceSelectScreen.CharButton.xSize + 10);
-
-        if (slots > Database.Races()
-            .getSize()) {
-            slots = Database.Races()
-                .getSize();
-        }
-
-        List<PlayerRace> races = Database.Races()
+        this.races = Database.Races()
             .getList();
 
-        int num = 0;
+        // mc.textRenderer.wrapLines() TODO WOW
 
-        x = (this.width - (RaceSelectScreen.CharButton.xSize + 5) * slots) / 2;
+        int x = this.width / 2 - CharButton.xSize / 2;
+        int y = this.height / 2 - CharButton.ySize / 2;
 
-        for (int i = 0; i < races.size(); i++) {
+        PlayerRace race = getRace();
 
-            if (num >= slots) {
-                num = 0;
-                y += 15 + CharButton.ySize + ChooseRaceButton.ySize;
-                x = (this.width - (RaceSelectScreen.CharButton.xSize + 5) * slots) / 2;
+        this.addButton(new CharButton(this, x, y));
+        this.raceImageButton = this.addButton(new RaceImageButton(getRace(), x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
 
-            }
+        this.addButton(new LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true));
+        this.addButton(new LeftRightButton(this, x + 30 - LeftRightButton.xSize + CharButton.xSize, y + CharButton.ySize / 2, false));
 
-            num++;
-            PlayerRace race = races.get(i);
-
-            this.addButton(new RaceSelectScreen.CharButton(race, x, y));
-            this.addButton(new RaceImageButton(race, x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
-
-            int n = 0;
-            for (OptScaleExactStat stat : race.starting_stats) {
-                CharacterScreen.StatButton statbutton = new CharacterScreen.StatButton(stat.getStat(), x + 15 + (35 * n), y + 80);
-                statbutton.presetValue = (int) stat.v1 + "";
-                this.addButton(statbutton);
-                n++;
-            }
-
-            this.addButton(new ChooseRaceButton(this, race, x + 6, y + RaceSelectScreen.CharButton.ySize - 5 - ChooseRaceButton.ySize + 35));
-
-            x += 5 + RaceSelectScreen.CharButton.xSize;
+        int n = 0;
+        for (OptScaleExactStat stat : race.starting_stats) {
+            CharacterScreen.StatButton statbutton = new CharacterScreen.StatButton(stat.getStat(), x + 55 + (35 * n), y + 80);
+            statbutton.presetValue = (int) stat.v1 + "";
+            this.addButton(statbutton);
+            n++;
         }
 
+        this.addButton(new ChooseRaceButton(this, race, x + CharButton.xSize / 2 - ChooseRaceButton.xSize / 2, y + CharButton.ySize - 5 - ChooseRaceButton.ySize + 35));
+
+        x += 5 + RaceSelectScreen.CharButton.xSize;
+
+    }
+
+    @Override
+    public boolean shouldCloseOnEsc() {
+        return false;
     }
 
     static class CharButton extends TexturedButtonWidget {
 
-        public static int xSize = 125;
-        public static int ySize = 113;
+        public static int xSize = 203;
+        public static int ySize = 200;
 
-        static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/one_race.png");
+        static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/race_select/background.png");
 
-        PlayerRace race;
+        RaceSelectScreen screen;
 
-        public CharButton(PlayerRace race, int xPos, int yPos) {
+        public CharButton(RaceSelectScreen screen, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, 0, buttonLoc, (button) -> {
             });
-            this.race = race;
-
+            this.screen = screen;
         }
 
         @Override
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
 
-            String name = CLOC.translate(race.locName());
+            String name = CLOC.translate(screen.getRace()
+                .locName());
 
-            GuiUtils.renderScaledText(matrix, this.x + RaceSelectScreen.CharButton.xSize / 2, this.y + 20, 1, name, Formatting.YELLOW);
+            GuiUtils.renderScaledText(matrix, this.x + RaceSelectScreen.CharButton.xSize / 2, this.y + 30, 1, name, Formatting.YELLOW);
+
+            List<OrderedText> list = screen.mc.textRenderer.wrapLines(screen.getRace()
+                .locDesc(), xSize - 25);
+
+            int xpos = this.x + 15;
+            int ypos = this.y + 100;
+
+            for (OrderedText txt : list) {
+                screen.mc.textRenderer.drawWithShadow(matrix, txt, xpos, ypos, Formatting.WHITE.getColorValue());
+
+                ypos += screen.mc.textRenderer.fontHeight + 2;
+            }
 
         }
     }
@@ -119,9 +153,34 @@ public class RaceSelectScreen extends BaseSelectionScreen {
         @Override
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
-            String text = "Choose Race";
+            String text = "Select";
             Formatting format = Formatting.GREEN;
             GuiUtils.renderScaledText(matrix, this.x + xSize / 2, this.y + 10, 1, text, format);
+        }
+
+    }
+
+    static class LeftRightButton extends TexturedButtonWidget {
+
+        public static int xSize = 22;
+        public static int ySize = 22;
+
+        static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/race_select/leftright.png");
+
+        public LeftRightButton(RaceSelectScreen screen, int xPos, int yPos, boolean isLeft) {
+            super(xPos, yPos, xSize, ySize, isLeft ? 0 : 22, 0, 0, buttonLoc, (button) -> {
+                if (isLeft) {
+                    screen.goLeft();
+                } else {
+                    screen.goRight();
+                }
+            });
+
+        }
+
+        @Override
+        public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
+            super.renderButton(matrix, x, y, ticks);
         }
 
     }
