@@ -49,13 +49,11 @@ Other misc changes:
 * new overlay gui. I think this one will become the main one. 
 Basically like hack slash mine's gui, just less textured.
 It's fully configurable unlike the other guis.
-* nerfed salvaging a bit
 * increased mob hp
 * nerfed ranged weapon base damage
 * mob lvl is slower per distance now
 * need bit more exp per lvl
 * more hp, less regen (I hear there's too many one shot deaths, I want less of that)
-* fix restoration to magic shield stat not working on spell effects
 * added max wear cap for uniques and runeword gear back in (I had that in mine and slash but thought i could balance things perfectly this time, yeah that wasn't possible, everyone just wore runed gear)
 * added new healer talents
 * newbie gear drops now drop with much more durability
@@ -66,9 +64,6 @@ if I'm correct, this will make it much harder to have too much favor but still r
 * player is now fully restored on level up
 * added 2 items, empty and full favor bottle. Contains 1000 favor. 
 Possible uses: modpacker way to give favor, players can save their favor if they don't want to spend it. etc.
-* enabled keepinventory gamerule by default, instead of just hotbar and armor.
-Reason: I upped difficulty, going back to spawn should be punishment enough.
- If not, you can disable it, or wait till I get an idea for a fair death peanlty in a mod where your gear is 90% of your strength.
 * if item too high lvl, item is tried to put in inventory instead of dropping
 * gear has more durability now
 * added salvage bag item back in. 
@@ -131,8 +126,6 @@ because they already had a generated config that didn't change with update.
 Now as a datapack, that will only happen if the player actually changes something. 
 * Crystal of Purification no longer a random drop anymore
 * removed the lvl 10 boss golem, modify station now crafts with a diamond instead
-* will, vit, wis removed. 
-* removed stat point allocation
 * talent screen lag optimization
 * changed identifier of some perks, instead of spell_dmg_big, it's now big_spell_damage etc.
 * max level changed to 100
@@ -194,6 +187,10 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * added item rarity backgrounds in inventory! Makes it really easy to know which items are good upon a glance. Configurable too.
 * main menu hub is now much prettier!
 * talent screen has better zoom now
+* added back item that clears runes and gems from gear
+* added gear corruption chance on death, higher the higher level you are
+* added orb of purification
+
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)

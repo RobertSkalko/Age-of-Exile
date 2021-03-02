@@ -10,14 +10,14 @@ import java.util.HashMap;
 
 public class AlchemyItemRegister extends BaseItemRegistrator {
 
-    public HashMap<SkillItemTier, CondensedSalvageEssence> MAT_TIER_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, CondensedSalvageEssence> CONDENSED_ESSENCE_MAP = new HashMap<>();
 
     public HashMap<ImmutablePair<SkillItemTier, PotionType>, AlchemyPotionItem> POTIONS_MAP = new HashMap();
 
     public AlchemyItemRegister() {
 
         for (SkillItemTier tier : SkillItemTier.values()) {
-            MAT_TIER_MAP.put(tier, item(new CondensedSalvageEssence(tier)));
+            CONDENSED_ESSENCE_MAP.put(tier, item(new CondensedSalvageEssence(tier)));
         }
 
         for (SkillItemTier tier : SkillItemTier.values()) {

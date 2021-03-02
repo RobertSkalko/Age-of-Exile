@@ -57,6 +57,29 @@ public class GearTooltipUtils {
             return;
         }
 
+        if (gear.isCorrupted()) {
+
+            tip.add(new SText(""));
+
+            tip.add(new LiteralText(Formatting.RED + "").append(
+                Words.Corrupted.locName())
+                .formatted(Formatting.RED));
+
+            tip.add(new SText(""));
+
+            tip.add(
+                Words.CorruptedExplanation1.locName()
+                    .formatted(Formatting.GRAY));
+            tip.add(
+                Words.CorruptedExplanation2.locName()
+                    .formatted(Formatting.GRAY));
+
+            tip.add(new SText(""));
+
+            return;
+
+        }
+
         if (gear.baseStats != null) {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
@@ -107,7 +130,7 @@ public class GearTooltipUtils {
         }
 
         if (Screen.hasShiftDown()) {
-            if (!gear.isSalvagable) {
+            if (!gear.can_sal) {
                 tip.add(
                     Words.Unsalvagable.locName()
                         .formatted(Formatting.RED));

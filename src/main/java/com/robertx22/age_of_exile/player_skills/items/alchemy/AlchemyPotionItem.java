@@ -119,7 +119,7 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
         fac.input(type.craftItem.get());
         fac.input(Items.GLASS_BOTTLE);
-        fac.input(ModRegistry.ALCHEMY.MAT_TIER_MAP.get(this.tier));
+        fac.input(ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(this.tier));
         return fac.criterion("player_level", trigger());
     }
 

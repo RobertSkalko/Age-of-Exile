@@ -85,8 +85,6 @@ public class RaceSelectScreen extends BaseSelectionScreen {
 
         this.addButton(new ChooseRaceButton(this, race, x + CharButton.xSize / 2 - ChooseRaceButton.xSize / 2, y + CharButton.ySize - 5 - ChooseRaceButton.ySize + 35));
 
-        x += 5 + RaceSelectScreen.CharButton.xSize;
-
     }
 
     @Override
@@ -112,6 +110,10 @@ public class RaceSelectScreen extends BaseSelectionScreen {
         @Override
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
+
+            String choose = "Choose a Race";
+
+            screen.mc.textRenderer.drawWithShadow(matrix, choose, this.x + xSize / 2 - screen.mc.textRenderer.getWidth(choose) / 2, this.y - 25, Formatting.WHITE.getColorValue());
 
             String name = CLOC.translate(screen.getRace()
                 .locName());

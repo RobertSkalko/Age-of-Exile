@@ -218,11 +218,11 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         }
 
         GearItemData gear = blueprint.createData();
-        gear.isSalvagable = this.can_be_salvaged;
+        gear.can_sal = this.can_be_salvaged;
 
         if (!Load.favor(player)
             .getRank().can_salvage_loot) {
-            gear.isSalvagable = false;
+            gear.can_sal = false;
         }
 
         Gear.Save(stack, gear);

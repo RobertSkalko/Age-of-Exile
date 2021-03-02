@@ -9,13 +9,15 @@ public class ServerContainer {
     public boolean LOG_REGISTRY_ENTRIES = false;
     public boolean GET_STARTER_ITEMS = true;
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
-    public boolean KEEP_INVENTORY_ON_DEATH = true;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
     public boolean ENABLE_MOD_COMPAT_WARNINGS = true;
 
     //public double REPAIR_FUEL_NEEDED_MULTI = 1;
     public double REGEN_HUNGER_COST = 10;
     public double EXP_LOSS_ON_DEATH = 0.1F;
+
+    public double CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL = 50;
+
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.1F;
     public double LEVEL_DISTANCE_PENALTY_MAX = 0.95F;
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;

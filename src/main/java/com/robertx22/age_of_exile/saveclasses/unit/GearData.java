@@ -51,6 +51,7 @@ public class GearData {
         if (gear == null) {
             return false;
         }
+
         if (stack.isDamageable()) {
             if (RepairUtils.isItemBroken(stack)) {
                 return false;
@@ -59,7 +60,7 @@ public class GearData {
         if (!gear.isValidItem()) {
             return false;
         }
-        if (!gear.isIdentified()) {
+        if (!gear.isIdentified() || gear.isCorrupted()) {
             return false;
         }
         if (data.getLevel() < gear.level) {

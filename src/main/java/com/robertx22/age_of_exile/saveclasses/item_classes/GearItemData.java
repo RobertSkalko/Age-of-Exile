@@ -84,7 +84,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public boolean sealed = false;
 
     @Store
-    public boolean isSalvagable = true;
+    public boolean can_sal = true;
+
+    @Store
+    public boolean is_cor = false;
+
+    public boolean isCorrupted() {
+        return is_cor;
+    }
 
     public boolean canPlayerWear(EntityCap.UnitData data) {
 
@@ -188,7 +195,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public void WriteOverDataThatShouldStay(GearItemData newdata) {
 
-        newdata.isSalvagable = this.isSalvagable;
+        newdata.can_sal = this.can_sal;
 
     }
 
@@ -420,7 +427,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     @Override
     public List<ItemStack> getSalvageResult(float salvageBonus) {
-        if (this.isSalvagable) {
+        if (this.can_sal) {
 
             SalvageOutput sal = RandomUtils.weightedRandom(Database.SalvageOutputs()
                 .getFiltered(x -> x.isForItem(this))
@@ -441,7 +448,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Override
     public boolean isSalvagable(SalvageContext context) {
 
-        return this.isSalvagable;
+        return this.can_sal;
     }
 
     @Override

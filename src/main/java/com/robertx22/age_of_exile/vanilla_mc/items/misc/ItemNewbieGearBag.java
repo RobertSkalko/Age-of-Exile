@@ -94,7 +94,7 @@ public class ItemNewbieGearBag extends Item {
                     .get(x);
                 GearItemData data = getBlueprint(gear).createData();
                 data.level = 1;
-                data.isSalvagable = false;
+                data.can_sal = false;
                 ItemStack stack = GearCreationUtils.CreateStack(data);
 
                 EnchantedBookItem.addEnchantment(stack, new EnchantmentLevelEntry(Enchantments.UNBREAKING, 1));

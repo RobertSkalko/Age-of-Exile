@@ -71,9 +71,9 @@ public class CommonInit implements ModInitializer {
             @Override
             public void dropRules(LivingEntity livingEntity, ICuriosItemHandler iCuriosItemHandler, DamageSource damageSource, int i, boolean b, List<Pair<Predicate<ItemStack>, ICurio.DropRule>> list) {
 
-                if (ModConfig.get().Server.KEEP_INVENTORY_ON_DEATH) {
-                    list.add(new Pair<Predicate<ItemStack>, ICurio.DropRule>(x -> true, ICurio.DropRule.ALWAYS_KEEP));
-                }
+                //if (ModConfig.get().Server.KEEP_INVENTORY_ON_DEATH) {
+                // list.add(new Pair<Predicate<ItemStack>, ICurio.DropRule>(x -> true, ICurio.DropRule.ALWAYS_KEEP));
+                // }
             }
         });
 

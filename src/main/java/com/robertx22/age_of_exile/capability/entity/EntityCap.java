@@ -14,14 +14,12 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.unit.MobAffixesData;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
+import com.robertx22.age_of_exile.saveclasses.unit.*;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -33,10 +31,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.LootTableItem;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
@@ -53,6 +48,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
@@ -343,10 +339,35 @@ public class EntityCap {
         @Override
         public void onDeath() {
 
-            int expLoss = (int) (exp * ModConfig.get().Server.EXP_LOSS_ON_DEATH);
+            if (entity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) entity;
 
-            if (expLoss > 0) {
-                this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
+                int expLoss = (int) (exp * ModConfig.get().Server.EXP_LOSS_ON_DEATH);
+
+                if (expLoss > 0) {
+                    this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
+                }
+
+                List<GearData> stacks = CollectGearEvent.getAllGear(null, entity, Load.Unit(entity));
+
+                int amount = 0;
+
+                for (GearData data : stacks) {
+                    float chance = (float) (LevelUtils.getMaxLevelMultiplier(getLevel()) * ModConfig.get().Server.CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL);
+
+                    if (!data.gear.isCorrupted()) {
+                        if (RandomUtils.roll(chance)) {
+                            data.gear.is_cor = true;
+                            data.gear.saveToStack(data.stack);
+                            amount++;
+                        }
+                    }
+                }
+
+                if (amount > 0) {
+                    player.sendMessage(new LiteralText(Formatting.RED + "As a result of death, " + amount + " worn items have been corrupted."), false);
+                }
+
             }
         }
 
