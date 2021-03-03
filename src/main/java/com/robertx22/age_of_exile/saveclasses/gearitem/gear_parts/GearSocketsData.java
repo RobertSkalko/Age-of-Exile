@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.MoreSocketsStat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.text.Text;
@@ -25,13 +24,13 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
     public List<SocketData> sockets = new ArrayList<>();
 
     @Store
-    public int max_sockets = 0;
+    public int sockets_count = 0;
 
     @Store
-    public String activated_runeword = "";
+    public String word = "";
 
     @Store
-    public int runeword_percent = 0;
+    public int word_perc = 0;
 
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
@@ -41,35 +40,36 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
 
         if (word != null) {
             word.stats.forEach(s -> {
-                ExactStatData exact = s.ToExactStat(runeword_percent, gear.level);
-                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, runeword_percent, info), s, gear.level));
+                ExactStatData exact = s.ToExactStat(word_perc, gear.level);
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, word_perc, info), s, gear.level));
             });
         }
         return list;
     }
 
-    public void create(GearItemData gear) {
-        IGearRarity rarity = gear.getRarity();
+    public void setSocketsCount(GearItemData gear) {
 
-        this.max_sockets = rarity.minSockets();
+        List<ExactStatData> stats = gear.GetAllStats(true, true);
 
-        for (int i = 0; i < rarity.maxSockets() - rarity.minSockets(); i++) {
-            if (RandomUtils.roll(rarity.socketChance())) {
-                max_sockets++;
+        this.sockets_count = 0;
+
+        for (ExactStatData x : stats) {
+            if (x.getStat() == MoreSocketsStat.getInstance()) {
+                this.sockets_count += x.getAverageValue();
             }
         }
     }
 
     public int getEmptySockets() {
-        return max_sockets - sockets.size();
+        return sockets_count - sockets.size();
     }
 
     public RuneWord getRuneWord() {
 
         if (Database.Runewords()
-            .isRegistered(activated_runeword)) {
+            .isRegistered(word)) {
             return Database.Runewords()
-                .get(activated_runeword);
+                .get(word);
         }
         return null;
 
@@ -82,7 +82,7 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
         RuneWord word = getRuneWord();
 
         if (word != null) {
-            word.stats.forEach(s -> list.add(s.ToExactStat(runeword_percent, gear.level)));
+            word.stats.forEach(s -> list.add(s.ToExactStat(word_perc, gear.level)));
         }
 
         return list;

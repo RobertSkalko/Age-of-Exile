@@ -16,7 +16,7 @@ public class BasicStatRegex extends StatNameRegex {
 
             if (stat.UsesSecondValue() || stat.isLocal()) {
                 if (v1 > 0 && v2 > 0) {
-                    adds = "Adds ";
+                    //  adds = "Adds ";
                 }
             }
 

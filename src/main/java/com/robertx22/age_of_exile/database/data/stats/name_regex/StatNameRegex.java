@@ -43,7 +43,7 @@ public abstract class StatNameRegex {
         }
 
         if (stat.UsesSecondValue()) {
-            plusminus = "";
+            //plusminus = "";
         }
 
         if (type == ModType.LOCAL_INCREASE || type == ModType.GLOBAL_INCREASE || stat.IsPercent()) {
@@ -54,7 +54,7 @@ public abstract class StatNameRegex {
 
         if (type == ModType.FLAT && stat.UsesSecondValue()) {
             str = str.replace(MIN_VALUE, NUMBER_COLOR + plusminus + v1s + percent + TEXT_COLOR);
-            str = str.replace(MAX_VALUE, NUMBER_COLOR + plusminus + v2s + percent + TEXT_COLOR);
+            str = str.replace(MAX_VALUE, NUMBER_COLOR + v2s + percent + TEXT_COLOR);
         } else {
             str = str.replace(VALUE, NUMBER_COLOR + "" + plusminus + v1s + percent + Formatting.RESET + TEXT_COLOR);
         }

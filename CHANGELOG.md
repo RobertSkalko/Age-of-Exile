@@ -190,7 +190,8 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * added back item that clears runes and gems from gear
 * added gear corruption chance on death, higher the higher level you are
 * added orb of purification
-
+* sockets are now given to items based on extra socket stat. That means you need affixes like "jeweled" for the item to have sockets. Extra bonus is this makes it easy for modpack makers to make a unique item for example with sockets. 
+* deleted gear rarities antique and runed, replaced with socket affixes
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)

@@ -17,7 +17,7 @@ public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceCo
             .get(ID);
     }
 
-    public int MAX_LEVEL = 100;
+    public int MAX_LEVEL = 50;
 
     public LevelScalingConfig NORMAL_STAT_SCALING = new LevelScalingConfig(1, 0.5F);
     public LevelScalingConfig SLOW_STAT_SCALING = new LevelScalingConfig(1, 0.002F);

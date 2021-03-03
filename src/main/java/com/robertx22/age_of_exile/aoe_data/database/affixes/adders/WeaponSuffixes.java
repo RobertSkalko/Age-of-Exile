@@ -5,10 +5,13 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -89,6 +92,33 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(3, 4, PlusResourceOnKill.MANA, ModType.FLAT))
             .tier(3, new StatModifier(1, 3, PlusResourceOnKill.MANA, ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_fast_cast")
+            .Named("Of Faster Casting")
+            .tier(1, new StatModifier(15, 20, CastSpeed.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(12, 15, CastSpeed.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(7, 12, CastSpeed.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.wand, SlotTag.jewelry_family)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_less_cd")
+            .Named("Of Repetition")
+            .tier(1, new StatModifier(12, 15, ReducedCooldownStat.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 12, ReducedCooldownStat.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(6, 10, ReducedCooldownStat.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.wand, SlotTag.jewelry_family)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_spell_dmg")
+            .Named("Of Spell Damage")
+            .tier(1, new StatModifier(12, 15, SpellDamage.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 12, SpellDamage.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(6, 10, SpellDamage.getInstance(), ModType.FLAT))
+            .includesTags(SlotTag.wand, SlotTag.jewelry_family)
             .Suffix()
             .Build();
 

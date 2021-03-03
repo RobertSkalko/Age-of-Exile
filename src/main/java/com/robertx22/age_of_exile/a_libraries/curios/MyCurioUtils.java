@@ -73,9 +73,9 @@ public class MyCurioUtils {
                 ItemStack stack = x
                     .getStacks()
                     .getStack(i);
-                if (!stack.isEmpty()) {
-                    list.add(stack);
-                }
+                // if (!stack.isEmpty()) {
+                list.add(stack);
+                // }
             }
         });
 

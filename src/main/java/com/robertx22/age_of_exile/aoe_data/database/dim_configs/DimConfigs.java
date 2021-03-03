@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 
 public class DimConfigs implements ISlashRegistryInit {
+
     @Override
     public void registerAll() {
 
@@ -14,9 +15,9 @@ public class DimConfigs implements ISlashRegistryInit {
         DimensionConfig.End()
             .addToSerializables();
 
-        DimensionConfig abyss = new DimensionConfig(1, "world_of_exile:abyss").setMobTier(3);
-        abyss.scale_to_nearest_player = true;
-        abyss.addToSerializables();
+        new DimensionConfig("world_of_exile:hell1", 20, 30).addToSerializables();
+        new DimensionConfig("world_of_exile:hell2", 30, 40).addToSerializables();
+        new DimensionConfig("world_of_exile:hell3", 40, 50).addToSerializables();
 
     }
 }

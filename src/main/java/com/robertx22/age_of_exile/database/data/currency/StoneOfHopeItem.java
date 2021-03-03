@@ -39,8 +39,13 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
+    public float getInstability() {
+        return 250;
+    }
+
+    @Override
     public int getWeight() {
-        return 30;
+        return 15;
     }
 
     @Override
@@ -94,7 +99,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(ModRegistry.CURRENCIES.STONE_OF_HOPE)
             .input('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
-            .input('t', ModRegistry.CURRENCIES.CROWN_OF_DISCOVERY)
+            .input('t', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
             .input('v', ModRegistry.CURRENCIES.ORB_OF_UNIQUE_BLESSING)
             .input('o', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
             .pattern("#o#")

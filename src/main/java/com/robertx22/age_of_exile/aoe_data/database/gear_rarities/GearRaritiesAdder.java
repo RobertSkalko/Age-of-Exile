@@ -15,7 +15,6 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         common.stat_req_multi = 0.5F;
         common.spawn_durability_hit = new MinMax(60, 80);
         common.affixes = new GearRarity.Part(0, 0, 0);
-        common.sockets = new GearRarity.Part(0, 3, 15);
         common.weight = 6000;
         common.item_tier_power = 1;
         common.item_value_multi = 1;
@@ -30,7 +29,6 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         magical.affix_stat_percents = new MinMax(80, 100);
         magical.spawn_durability_hit = new MinMax(60, 80);
         magical.affixes = new GearRarity.Part(1, 2, 15);
-        magical.sockets = new GearRarity.Part(0, 2, 15);
         magical.weight = 2500;
         magical.item_tier_power = 1.25F;
         magical.item_value_multi = 1.25F;
@@ -91,32 +89,6 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mythic.setMythicFields();
         mythic.addToSerializables();
 
-        GearRarity antique = new GearRarity();
-        antique.unidentified_chance = 0;
-        antique.stat_req_multi = 1;
-        antique.spawn_durability_hit = new MinMax(60, 80);
-        antique.affixes = new GearRarity.Part(0, 0, 0);
-        antique.sockets = new GearRarity.Part(2, 3, 50);
-        antique.weight = 500;
-        antique.item_tier_power = 1.2F;
-        antique.item_value_multi = 1.2F;
-        antique.higher_rar = IRarity.RELIC_ID;
-        antique.setAntiqueFields();
-        antique.addToSerializables();
-
-        GearRarity relic = new GearRarity();
-        relic.unidentified_chance = 20;
-        relic.stat_req_multi = 1;
-        relic.spawn_durability_hit = new MinMax(60, 80);
-        relic.affixes = new GearRarity.Part(0, 0, 0);
-        relic.sockets = new GearRarity.Part(3, 5, 20);
-        relic.weight = 100;
-        relic.item_tier_power = 1.5F;
-        relic.item_value_multi = 1.5F;
-        relic.announce_in_chat = true;
-        relic.setRelicFields();
-        relic.addToSerializables();
-
         GearRarity mi = new GearRarity();
         mi.unidentified_chance = 0;
         mi.stat_req_multi = 1F;
@@ -125,7 +97,6 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mi.spawn_durability_hit = new MinMax(60, 80);
         mi.weight = 0;
         mi.affixes = new GearRarity.Part(1, 2, 50);
-        mi.sockets = new GearRarity.Part(0, 0, 0);
         mi.item_tier_power = 1.5F;
         mi.item_value_multi = 1.5F;
         mi.special_spawn_chance = 3;
@@ -138,7 +109,6 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         unique.stat_req_multi = 1;
         unique.spawn_durability_hit = new MinMax(60, 80);
         unique.affixes = new GearRarity.Part(0, 0, 0);
-        unique.sockets = new GearRarity.Part(0, 0, 0);
         unique.weight = 0;
         unique.item_tier_power = 2;
         unique.item_value_multi = 2;

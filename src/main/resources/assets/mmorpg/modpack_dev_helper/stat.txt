@@ -251,6 +251,7 @@ all_fire_dmg_leech_as_health
 dot_water_dmg_leech_as_blood
 all_nature_dmg_leech_as_health
 all_physical_dmg_leech_as_health
+socket_slots
 chance_of_bleed
 total_damage
 renamed_or_deleted_stat

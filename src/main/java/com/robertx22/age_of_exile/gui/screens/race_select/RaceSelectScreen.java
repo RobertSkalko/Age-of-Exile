@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
+import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.gui.screens.character_screen.CharacterScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ChooseRacePacket;
@@ -20,7 +21,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RaceSelectScreen extends BaseSelectionScreen {
+public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight {
 
     int currentRace = 0;
 
@@ -32,6 +33,7 @@ public class RaceSelectScreen extends BaseSelectionScreen {
         return races.get(currentRace);
     }
 
+    @Override
     public void goLeft() {
         if (currentRace == 0) {
             currentRace = races.size() - 1;
@@ -41,6 +43,7 @@ public class RaceSelectScreen extends BaseSelectionScreen {
         refresh();
     }
 
+    @Override
     public void goRight() {
         if (currentRace == races.size() - 1) {
             currentRace = 0;
@@ -169,7 +172,7 @@ public class RaceSelectScreen extends BaseSelectionScreen {
 
         static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/race_select/leftright.png");
 
-        public LeftRightButton(RaceSelectScreen screen, int xPos, int yPos, boolean isLeft) {
+        public LeftRightButton(ILeftRight screen, int xPos, int yPos, boolean isLeft) {
             super(xPos, yPos, xSize, ySize, isLeft ? 0 : 22, 0, 0, buttonLoc, (button) -> {
                 if (isLeft) {
                     screen.goLeft();

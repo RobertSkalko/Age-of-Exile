@@ -26,6 +26,9 @@ import net.minecraft.util.Identifier;
 
 public class CharSelectScreen extends BaseSelectionScreen implements INamedScreen {
 
+    //this.client.player = this.client.interactionManager.createPlayer(this.world, new StatHandler(), new ClientRecipeBook());
+    //
+
     public CharSelectScreen() {
         super();
         this.mc = MinecraftClient.getInstance();
@@ -101,10 +104,10 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
 
     static class CharButton extends TexturedButtonWidget {
 
-        public static int xSize = 125;
-        public static int ySize = 139;
+        public static int xSize = 150;
+        public static int ySize = 200;
 
-        static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/one_char.png");
+        static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/background.png");
         boolean noChar = false;
         OnePlayerCharData data;
 

@@ -123,6 +123,7 @@ public class Stats implements ISlashRegistryInit {
                     add(Vitality.INSTANCE);
                     add(Agility.INSTANCE);
 
+                    add(MoreSocketsStat.getInstance());
                     add(ExtraMobDropsStat.getInstance());
                     add(BonusExp.getInstance());
                     add(BonusFavor.getInstance());

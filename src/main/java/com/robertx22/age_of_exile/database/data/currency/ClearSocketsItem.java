@@ -38,7 +38,7 @@ public class ClearSocketsItem extends CurrencyItem implements ICurrencyItemEffec
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
         gear.sockets.sockets.clear();
-        gear.sockets.activated_runeword = "";
+        gear.sockets.word = "";
         Gear.Save(stack, gear);
         return stack;
     }

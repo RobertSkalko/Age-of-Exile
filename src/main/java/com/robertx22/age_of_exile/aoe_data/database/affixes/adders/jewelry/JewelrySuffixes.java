@@ -4,10 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
@@ -64,11 +61,35 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .Suffix()
             .Build();
 
+        AffixBuilder.Normal("of_the_wise")
+            .Named("Of the Wise")
+            .coreStat(Wisdom.INSTANCE)
+            .includesTags(SlotTag.jewelry_family)
+            .excludesTags(SlotTag.weapon_family)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_the_agile")
+            .Named("Of the Agile")
+            .coreStat(Agility.INSTANCE)
+            .includesTags(SlotTag.jewelry_family)
+            .excludesTags(SlotTag.weapon_family)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_the_virile")
+            .Named("Of the Virile")
+            .coreStat(Vitality.INSTANCE)
+            .includesTags(SlotTag.jewelry_family)
+            .excludesTags(SlotTag.weapon_family)
+            .Suffix()
+            .Build();
+
         AffixBuilder.Normal("of_the_sky")
             .Named("Of the Sky")
-            .tier(1, new StatModifier(0.5F, 0.8F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(0.3F, 0.5F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.1F, 0.3F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(0.3F, 0.4F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.2F, 0.3F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Weight(50)
             .Suffix()

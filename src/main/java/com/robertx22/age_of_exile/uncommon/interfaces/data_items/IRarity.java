@@ -22,6 +22,5 @@ public interface IRarity<R extends Rarity> {
     String LEGENDARY_ID = "legendary";
     String MYTHIC_ID = "mythic";
     String BOSS_ID = "boss";
-    String RELIC_ID = "relic";
 
 }

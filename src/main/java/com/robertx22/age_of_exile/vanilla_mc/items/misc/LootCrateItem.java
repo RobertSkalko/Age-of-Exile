@@ -122,17 +122,6 @@ public class LootCrateItem extends Item implements IAutoModel {
                     .get(IRarity.UNIQUE_ID));
                 return blueprint.createStack();
             }
-        },
-        RELIC(new MinMax(2, 3)) {
-            @Override
-            public ItemStack generate(PlayerEntity en) {
-                int lvl = Load.Unit(en)
-                    .getLevel();
-                GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.set(Database.GearRarities()
-                    .get(IRarity.RELIC_ID));
-                return blueprint.createStack();
-            }
         };
 
         public abstract ItemStack generate(PlayerEntity en);

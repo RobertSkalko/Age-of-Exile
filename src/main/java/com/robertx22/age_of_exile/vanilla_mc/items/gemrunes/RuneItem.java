@@ -124,8 +124,8 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
             .getList()
             .forEach(x -> {
                 if (x.HasRuneWord(gear)) {
-                    gear.sockets.activated_runeword = x.GUID();
-                    gear.sockets.runeword_percent = RandomUtils.RandomRange(0, 100);
+                    gear.sockets.word = x.GUID();
+                    gear.sockets.word_perc = RandomUtils.RandomRange(0, 100);
                 }
             });
 

@@ -208,7 +208,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(2, 4, Health.getInstance()), new StatModifier(2, 4, Mana.getInstance()));
+                return Arrays.asList(new StatModifier(1, 2, Health.getInstance()), new StatModifier(1, 2, Mana.getInstance()));
             }
 
             @Override

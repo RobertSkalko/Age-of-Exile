@@ -32,7 +32,8 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     }
 
     public Part affixes;
-    public Part sockets = new GearRarity.Part(0, 0, 0);
+
+    // public Part sockets = new GearRarity.Part(0, 0, 0);
 
     public int max_worn_at_once = -1;
 
@@ -124,21 +125,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     @Override
     public int maxAffixes() {
         return affixes.max_amount;
-    }
-
-    @Override
-    public int maxSockets() {
-        return this.sockets.max_amount;
-    }
-
-    @Override
-    public int minSockets() {
-        return this.sockets.min_amount;
-    }
-
-    @Override
-    public float socketChance() {
-        return this.sockets.chance_for_more;
     }
 
     @Override

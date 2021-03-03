@@ -112,11 +112,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .isRegistered(gear_type);
     }
 
-    public int getMaxSockets() {
-        return this.getRarity()
-            .maxSockets();
-    }
-
     public boolean canGetAffix(Affix affix) {
 
         if (affixes.containsAffix(affix)) {

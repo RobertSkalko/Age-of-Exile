@@ -25,12 +25,6 @@ public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
 
     int maxAffixes();
 
-    int maxSockets();
-
-    int minSockets();
-
-    float socketChance();
-
     int minAffixes();
 
     float itemTierPower();
