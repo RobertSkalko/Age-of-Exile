@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.capability.player.data;
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -55,6 +56,10 @@ public class OnePlayerCharData {
 
     private void saveGear(PlayerEntity p) {
 
+        if (!ModConfig.get().Server.SAVE_GEAR_TO_CHARACTERS) {
+            return;
+        }
+
         this.wep = getNullOrTagAndDelete(EquipmentSlot.MAINHAND, p);
         this.o = getNullOrTagAndDelete(EquipmentSlot.OFFHAND, p);
 
@@ -70,6 +75,10 @@ public class OnePlayerCharData {
     }
 
     private void loadGear(PlayerEntity p) {
+
+        if (!ModConfig.get().Server.SAVE_GEAR_TO_CHARACTERS) {
+            return;
+        }
 
         equipOrGive(EquipmentSlot.MAINHAND, wep, p);
         equipOrGive(EquipmentSlot.OFFHAND, o, p);

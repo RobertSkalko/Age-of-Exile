@@ -41,7 +41,6 @@ public class EntityFinder {
                                 if (x.world.isClient) {
                                     return true;
                                 } else {
-
                                     if (setup.caster.isPartOf(x)) {
                                         return true;
                                     }

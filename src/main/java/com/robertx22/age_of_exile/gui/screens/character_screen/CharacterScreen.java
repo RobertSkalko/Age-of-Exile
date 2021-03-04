@@ -269,6 +269,13 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
+        int p = Load.statPoints(mc.player)
+            .getFreePoints();
+        if (p > 0) {
+            String points = "Points: " + p;
+            mc.textRenderer.drawWithShadow(matrix, points, guiLeft + sizeX / 2 - mc.textRenderer.getWidth(points) / 2, guiTop + sizeY + 10, Formatting.GREEN.getColorValue());
+        }
+
     }
 
     private static final Identifier STAT_PAGE_BUTTON_TEXT = new Identifier(Ref.MODID, "textures/gui/main_hub/buttons_backwards.png");

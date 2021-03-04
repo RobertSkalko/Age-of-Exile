@@ -21,7 +21,9 @@ public class TeamUtils {
                     .forEach(x -> {
                         if (player.getScoreboardTeam()
                             .isEqual(x.getScoreboardTeam())) {
-                            players.add(x);
+                            if (player.distanceTo(x) < ModConfig.get().Server.PARTY_RADIUS) {
+                                players.add(x);
+                            }
                         }
                     });
             } catch (Exception e) {
