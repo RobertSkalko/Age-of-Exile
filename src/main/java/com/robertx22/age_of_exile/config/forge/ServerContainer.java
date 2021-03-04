@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ServerContainer {
 
-    public boolean ALL_PLAYERS_ARE_TEAMED_PVE_MODE = true;
+    public boolean ALL_PLAYERS_ARE_TEAMED_PVE_MODE = false;
     public boolean LOG_REGISTRY_ENTRIES = false;
     public boolean GET_STARTER_ITEMS = true;
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
@@ -24,6 +24,7 @@ public class ServerContainer {
 
     public int MAX_RUNEWORD_GEARS_ON_PLAYER = 1;
     public int MAX_UNIQUE_GEARS_ON_PLAYER = 4;
+    public int MAX_CHARACTERS = 8;
 
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;
 

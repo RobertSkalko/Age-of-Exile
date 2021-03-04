@@ -1,8 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
-import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -29,8 +27,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
-import com.robertx22.age_of_exile.gui.screens.ItemSlotButton;
 import com.robertx22.age_of_exile.gui.screens.MainHubButton;
+import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
 import com.robertx22.age_of_exile.gui.screens.char_select.CharSelectScreen;
 import com.robertx22.age_of_exile.gui.screens.player_skills.PlayerSkillsScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_gems.SkillGemsOpener;
@@ -47,11 +45,8 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.AllocateStatPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -244,24 +239,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         }
 
         if (isMainScreen()) {
-            // gear items
-            addItemButton(MyCurioUtils.get(RefCurio.NECKLACE, mc.player, 0), 78, 15);
-            addItemButton(MyCurioUtils.get(RefCurio.RING, mc.player, 0), 78, 33);
-            addItemButton(MyCurioUtils.get(RefCurio.RING, mc.player, 1), 78, 51);
-            addItemButton(MyCurioUtils.get(RefCurio.SALVAGE_BAG, mc.player, 0), 78, 69);
-
-            addItemButton(mc.player.getEquippedStack(EquipmentSlot.HEAD), 159, 15);
-            addItemButton(mc.player.getEquippedStack(EquipmentSlot.CHEST), 159, 33);
-            addItemButton(mc.player.getEquippedStack(EquipmentSlot.LEGS), 159, 51);
-            addItemButton(mc.player.getEquippedStack(EquipmentSlot.FEET), 159, 69);
-
-            addItemButton(mc.player.getEquippedStack(EquipmentSlot.MAINHAND), 58, 69);
-            addItemButton(mc.player.getEquippedStack(EquipmentSlot.OFFHAND), 179, 69);
+            addButton(new PlayerGearButton(mc.player, this, this.guiLeft + CharacterScreen.sizeX / 2 - PlayerGearButton.xSize / 2, this.guiTop + 10));
         }
-    }
-
-    void addItemButton(ItemStack stack, int x, int y) {
-        addButton(new ItemSlotButton(stack, this.guiLeft + x, this.guiTop + y));
     }
 
     private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/stats.png");
@@ -290,17 +269,6 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
-        int xe = guiLeft + 35 + 91;
-        int ye = guiTop + 75 + 7;
-
-        if (isMainScreen()) {
-            InventoryScreen.drawEntity(xe, ye, 30, xe - x, ye - y, mc.player);
-
-            String str = "Level: " + Load.Unit(mc.player)
-                .getLevel();
-            GuiUtils.renderScaledText(matrix, xe, ye - 63, 0.6F, str, Formatting.YELLOW);
-
-        }
     }
 
     private static final Identifier STAT_PAGE_BUTTON_TEXT = new Identifier(Ref.MODID, "textures/gui/main_hub/buttons_backwards.png");

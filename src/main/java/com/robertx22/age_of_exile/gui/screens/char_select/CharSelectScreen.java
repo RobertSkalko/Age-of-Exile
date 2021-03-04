@@ -3,10 +3,13 @@ package com.robertx22.age_of_exile.gui.screens.char_select;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
 import com.robertx22.age_of_exile.capability.player.data.OnePlayerCharData;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
-import com.robertx22.age_of_exile.gui.screens.race_select.RaceImageButton;
+import com.robertx22.age_of_exile.gui.screens.ILeftRight;
+import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
+import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -20,11 +23,14 @@ import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotati
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.client.recipebook.ClientRecipeBook;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.stat.StatHandler;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class CharSelectScreen extends BaseSelectionScreen implements INamedScreen {
+public class CharSelectScreen extends BaseSelectionScreen implements INamedScreen, ILeftRight {
 
     //this.client.player = this.client.interactionManager.createPlayer(this.world, new StatHandler(), new ClientRecipeBook());
     //
@@ -36,57 +42,75 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
         Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.CHARACTERS));
     }
 
+    int index = 0;
+
+    @Override
+    public void goLeft() {
+        if (index <= 0) {
+            index = ModConfig.get().Server.MAX_CHARACTERS;
+        } else {
+            index--;
+        }
+
+        this.init();
+    }
+
+    @Override
+    public void goRight() {
+        if (index >= ModConfig.get().Server.MAX_CHARACTERS - 1 - 3) {
+            index = 0;
+        } else {
+            index++;
+        }
+        this.init();
+    }
+
     @Override
     protected void init() {
         super.init();
 
+        this.buttons.clear();
+
         PlayerCharCap cap = Load.characters(mc.player);
 
         int x = 0;
-        int y = 0;
+        int y = this.height / 2 - CharButton.ySize / 2;
 
-        int ySpace = this.height / 50;
+        int slots = this.width / (CharButton.xSize + 50);
 
-        y += ySpace / 2;
-
-        int slots = this.width / (CharButton.xSize + 10);
-
-        if (slots > PlayerCharCap.MAX_CHAR_COUNT) {
-            slots = PlayerCharCap.MAX_CHAR_COUNT;
-
+        if (slots > 3) {
+            slots = 3;
         }
 
         x = (this.width - (CharButton.xSize + 5) * slots) / 2;
 
-        int num = 0;
+        this.addButton(new RaceSelectScreen.LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true));
 
-        for (int i = 0; i < PlayerCharCap.MAX_CHAR_COUNT; i++) {
-
-            if (num >= slots) {
-                num = 0;
-                y += 20 + CharButton.ySize + Button.ySize * 2;
-                x = (this.width - (CharButton.xSize + 5) * slots) / 2;
-            }
-
-            num++;
+        for (int i = index; i < index + slots; i++) {
 
             OnePlayerCharData data = cap.data.characters.get(i);
 
             this.addButton(new CharButton(data, x, y));
 
-            if (data != null && Database.Races()
-                .isRegistered(data.race)) {
-                this.addButton(new RaceImageButton(Database.Races()
-                    .get(data.race), x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
-            }
+            if (data != null) {
 
-            this.addButton(new Button(this, i, CharSelectPackets.Action.LOAD, cap.data.characters.get(i), x + 6, y + CharButton.ySize - 5 - Button.ySize + 35));
+                // create new player so it can be rendered
+                PlayerEntity player = client.interactionManager.createPlayer(client.world, new StatHandler(), new ClientRecipeBook());
+                data.load(player);
+
+                addButton(new PlayerGearButton(player, this, x + CharButton.xSize / 2 - PlayerGearButton.xSize / 2, y + 30));
+            }  // create new player so it can be rendered
+
+            this.addButton(new Button(this, i, CharSelectPackets.Action.LOAD, cap.data.characters.get(i), x + CharButton.xSize / 2 - Button.xSize / 2, y + CharButton.ySize - 5 - Button.ySize + 35));
 
             if (cap.data.characters.containsKey(i)) {
-                this.addButton(new Button(this, i, CharSelectPackets.Action.DELETE, cap.data.characters.get(i), x + 6, y + CharButton.ySize - 5 - (2 + Button.ySize * 2) + 80));
+                this.addButton(new Button(this, i, CharSelectPackets.Action.DELETE, cap.data.characters.get(i), x + CharButton.xSize / 2 - Button.xSize / 2, y + CharButton.ySize - 5 - (2 + Button.ySize * 2) + 80));
             }
             x += 5 + CharButton.xSize;
+
         }
+
+        this.addButton(new RaceSelectScreen.LeftRightButton(this, x + 25 - RaceSelectScreen.LeftRightButton.xSize, y + CharButton.ySize / 2, false));
 
     }
 
@@ -128,11 +152,11 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
 
             if (noChar) {
 
-                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 20, 1, "Empty Character Slot", Formatting.YELLOW);
+                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 30, 1, "Empty Character Slot", Formatting.YELLOW);
 
             } else {
 
-                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 20, 1, "Level " + data.lvl, Formatting.YELLOW);
+                //GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 20, 1, "Level " + data.lvl, Formatting.YELLOW);
 
                 String race = "Race not selected";
 
@@ -141,7 +165,7 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
                         .get(data.race)
                         .locName());
                 }
-                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 35, 1, race, Formatting.RED);
+                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 10, 1, race, Formatting.RED);
 
             }
 

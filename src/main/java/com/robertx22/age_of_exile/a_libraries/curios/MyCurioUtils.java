@@ -25,7 +25,6 @@ public class MyCurioUtils {
         List<ICurioStacksHandler> list = new ArrayList<>();
 
         ICuriosItemHandler handler = CuriosApi.getCuriosHelper()
-
             .getCuriosHandler(player)
             .get();
 

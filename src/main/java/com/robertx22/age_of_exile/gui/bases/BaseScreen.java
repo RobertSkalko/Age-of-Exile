@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.event_hooks.player.OnKeyPress;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.text.LiteralText;
 
 public class BaseScreen extends Screen {
@@ -37,6 +38,10 @@ public class BaseScreen extends Screen {
 
         this.guiLeft = (this.width - this.sizeX) / 2;
         this.guiTop = (this.height - this.sizeY) / 2;
+    }
+
+    public <T extends AbstractButtonWidget> T publicAddButton(T w) {
+        return this.addButton(w);
     }
 
 }

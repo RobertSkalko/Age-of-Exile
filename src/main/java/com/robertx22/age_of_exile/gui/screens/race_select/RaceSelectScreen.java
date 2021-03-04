@@ -11,26 +11,25 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.ChooseRacePacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight {
 
     int currentRace = 0;
 
-    List<PlayerRace> races = new ArrayList<>();
+    List<PlayerRace> races = Database.Races()
+        .getList();
 
     RaceImageButton raceImageButton;
 
-    public PlayerRace getRace() {
-        return races.get(currentRace);
+    public RaceSelectScreen() {
+
     }
 
     @Override
@@ -55,25 +54,23 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
     }
 
     public void refresh() {
-        this.raceImageButton.race = getRace();
+
+        init();
     }
 
     @Override
     protected void init() {
         super.init();
 
-        this.races = Database.Races()
-            .getList();
-
-        // mc.textRenderer.wrapLines() TODO WOW
+        this.buttons.clear();
 
         int x = this.width / 2 - CharButton.xSize / 2;
         int y = this.height / 2 - CharButton.ySize / 2;
 
-        PlayerRace race = getRace();
+        PlayerRace race = races.get(currentRace);
 
-        this.addButton(new CharButton(this, x, y));
-        this.raceImageButton = this.addButton(new RaceImageButton(getRace(), x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
+        this.addButton(new CharButton(this, race, x, y));
+        this.raceImageButton = this.addButton(new RaceImageButton(race, x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
 
         this.addButton(new LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true));
         this.addButton(new LeftRightButton(this, x + 30 - LeftRightButton.xSize + CharButton.xSize, y + CharButton.ySize / 2, false));
@@ -86,7 +83,7 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
             n++;
         }
 
-        this.addButton(new ChooseRaceButton(this, race, x + CharButton.xSize / 2 - ChooseRaceButton.xSize / 2, y + CharButton.ySize - 5 - ChooseRaceButton.ySize + 35));
+        this.addButton(new ChooseRaceButton(this, x + CharButton.xSize / 2 - ChooseRaceButton.xSize / 2, y + CharButton.ySize - 5 - ChooseRaceButton.ySize + 35));
 
     }
 
@@ -103,11 +100,13 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
         static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/race_select/background.png");
 
         RaceSelectScreen screen;
+        PlayerRace race;
 
-        public CharButton(RaceSelectScreen screen, int xPos, int yPos) {
+        public CharButton(RaceSelectScreen screen, PlayerRace race, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, 0, buttonLoc, (button) -> {
             });
             this.screen = screen;
+            this.race = race;
         }
 
         @Override
@@ -118,12 +117,12 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
 
             screen.mc.textRenderer.drawWithShadow(matrix, choose, this.x + xSize / 2 - screen.mc.textRenderer.getWidth(choose) / 2, this.y - 25, Formatting.WHITE.getColorValue());
 
-            String name = CLOC.translate(screen.getRace()
+            String name = CLOC.translate(race
                 .locName());
 
             GuiUtils.renderScaledText(matrix, this.x + RaceSelectScreen.CharButton.xSize / 2, this.y + 30, 1, name, Formatting.YELLOW);
 
-            List<OrderedText> list = screen.mc.textRenderer.wrapLines(screen.getRace()
+            List<OrderedText> list = screen.mc.textRenderer.wrapLines(race
                 .locDesc(), xSize - 25);
 
             int xpos = this.x + 15;
@@ -144,15 +143,19 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
         public static int ySize = 20;
 
         static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/button.png");
-        PlayerRace race;
+        RaceSelectScreen screen;
 
-        public ChooseRaceButton(Screen screen, PlayerRace race, int xPos, int yPos) {
+        public ChooseRaceButton(RaceSelectScreen screen, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, 0, buttonLoc, (button) -> {
-                Packets.sendToServer(new ChooseRacePacket(race));
-                screen.onClose();
-            });
-            this.race = race;
 
+            });
+            this.screen = screen;
+        }
+
+        @Override
+        public void onPress() {
+            Packets.sendToServer(new ChooseRacePacket(screen.races.get(screen.currentRace)));
+            screen.onClose();
         }
 
         @Override
@@ -165,7 +168,7 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
 
     }
 
-    static class LeftRightButton extends TexturedButtonWidget {
+    public static class LeftRightButton extends TexturedButtonWidget {
 
         public static int xSize = 22;
         public static int ySize = 22;

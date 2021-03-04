@@ -32,8 +32,6 @@ public class PlayerCharCap implements ICommonPlayerCap {
 
     public PlayerCharsData data = new PlayerCharsData();
 
-    public static Integer MAX_CHAR_COUNT = 8;
-
     @Override
     public CompoundTag toTag(CompoundTag nbt) {
         LoadSave.Save(data, nbt, LOC);

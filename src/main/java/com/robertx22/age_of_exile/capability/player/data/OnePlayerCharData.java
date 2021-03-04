@@ -126,6 +126,10 @@ public class OnePlayerCharData {
 
     private void equipOrGiveCurios(String slot, int index, CompoundTag itemnbt, PlayerEntity p) {
 
+        if (p.world.isClient) {
+            return;
+        }
+
         try {
             if (itemnbt != null) {
                 ItemStack stack = ItemStack.fromTag(itemnbt);
@@ -169,16 +173,6 @@ public class OnePlayerCharData {
 
     public void save(PlayerEntity player) {
 
-        for (PlayerCaps cap : PlayerCaps.values()) {
-            if (cap.shouldSaveToPlayerCharacter()) {
-                CompoundTag nbt = new CompoundTag();
-                cap.getCap(player)
-                    .toTag(nbt);
-                map.put(cap, nbt);
-            }
-
-        }
-
         this.lvl = Load.Unit(player)
             .getLevel();
         try {
@@ -187,6 +181,16 @@ public class OnePlayerCharData {
                 .GUID();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        for (PlayerCaps cap : PlayerCaps.values()) {
+            if (cap.shouldSaveToPlayerCharacter()) {
+                CompoundTag nbt = new CompoundTag();
+                cap.getCap(player)
+                    .toTag(nbt);
+                map.put(cap, nbt);
+            }
+
         }
 
         saveGear(player);
@@ -201,6 +205,7 @@ public class OnePlayerCharData {
                 CompoundTag nbt = map.getOrDefault(cap, new CompoundTag());
                 ICommonPlayerCap pcap = cap.getCap(player);
                 pcap.fromTag(nbt);
+
                 pcap.syncToClient(player);
             }
         }

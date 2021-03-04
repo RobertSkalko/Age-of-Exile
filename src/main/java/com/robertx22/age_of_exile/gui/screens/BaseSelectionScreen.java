@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.saveclasses.PointData;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.HashMap;
 
@@ -29,9 +28,9 @@ public class BaseSelectionScreen extends BaseScreen {
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
 
-        this.scrollY += deltaY;
+        // this.scrollY += deltaY;
 
-        scrollY = MathHelper.clamp(scrollY, -3333, 3333);
+        //scrollY = MathHelper.clamp(scrollY, -3333, 3333);
 
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
