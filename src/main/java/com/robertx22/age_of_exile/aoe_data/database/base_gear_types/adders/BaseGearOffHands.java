@@ -31,7 +31,7 @@ public class BaseGearOffHands implements ISlashRegistryInit {
         ARMOR_SHIELD = BaseGearBuilder.of(GearSlots.SHIELD, "tower_shield", "Tower Shield", ModRegistry.GEAR_ITEMS.ARMOR_SHIELDS)
             .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.shield, SlotTag.plate, SlotTag.offhand_family, SlotTag.armor_stat, SlotTag.strength))
-            .baseStat(new StatModifier(60, 120, Armor.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(6, 12, Armor.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 
@@ -46,7 +46,7 @@ public class BaseGearOffHands implements ISlashRegistryInit {
         DODGE_SHIELD = BaseGearBuilder.of(GearSlots.SHIELD, "buckler_shield", "Buckler Shield", ModRegistry.GEAR_ITEMS.DODGE_SHIELDS)
             .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.shield, SlotTag.leather, SlotTag.offhand_family, SlotTag.dodge_stat, SlotTag.dexterity))
-            .baseStat(new StatModifier(50, 120, DodgeRating.getInstance(), ModType.FLAT))
+            .baseStat(new StatModifier(5, 12, DodgeRating.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 

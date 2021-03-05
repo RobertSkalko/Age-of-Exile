@@ -19,14 +19,6 @@ public class SalvageRecipes implements ISlashRegistryInit {
         )
             .addToSerializables();
 
-        SalvageRecipe.of("rune_recipe", "Rune Recipe", LootTableGenerator.RUNE_SALVAGE_RECIPE,
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.RELIC_ID)),
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.RELIC_ID)),
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.RELIC_ID))
-
-        )
-            .addToSerializables();
-
         SalvageRecipe.of("currency_recipe", "Currency Recipe", LootTableGenerator.CURRENCIES_SALVAGE_RECIPE,
             ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID)),
             ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID)),

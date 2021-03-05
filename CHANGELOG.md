@@ -193,6 +193,7 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * sockets are now given to items based on extra socket stat. That means you need affixes like "jeweled" for the item to have sockets. Extra bonus is this makes it easy for modpack makers to make a unique item for example with sockets. 
 * deleted gear rarities antique and runed, replaced with socket affixes
 * party exp share now only works when nearby
+* scaled armor and dodge values to be similar to health and other stats
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)

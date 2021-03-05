@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
@@ -213,8 +214,11 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
         if (Database.UniqueGears()
             .isRegistered(unique_id)) {
 
-            blueprint.uniquePart.set(Database.UniqueGears()
-                .get(unique_id));
+            UniqueGear uniq = Database.UniqueGears()
+                .get(unique_id);
+            blueprint.uniquePart.set(uniq);
+            blueprint.rarity.set(Database.GearRarities()
+                .get(uniq.uniqueRarity));
         }
 
         GearItemData gear = blueprint.createData();

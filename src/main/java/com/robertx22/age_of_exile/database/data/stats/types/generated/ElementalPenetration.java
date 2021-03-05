@@ -59,7 +59,7 @@ public class ElementalPenetration extends ElementalStat {
     @Override
     public String locNameForLangFile() {
         return this.getElement()
-            .name() + " Penetration";
+            .dmgName + " Penetration";
     }
 
     private static class Effect extends BaseDamageEffect {

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
@@ -31,19 +32,18 @@ public class TooltipUtils {
 
     public static void addRequirements(List<Text> tip, GearItemData gear, EntityCap.UnitData data) {
 
-        Formatting reqNumberColor = Formatting.YELLOW;
-
-        if (gear.level > data.getLevel()) {
-            reqNumberColor = Formatting.RED;
-        }
-
         tip.add(new SText(""));
-        tip.add(new LiteralText(reqNumberColor + "").append(Words.Level.locName())
-            .append(": " + gear.level));
+
+        if (data.getLevel() >= gear.level) {
+            tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                .append(Formatting.GRAY + " Level Min: " + gear.level + " "));
+
+        } else {
+            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY).append(Formatting.GRAY + " Level Min: " + gear.level + " ")
+            );
+        }
         tip.addAll(gear.getRequirement()
-            .GetTooltipString(gear.GetBaseGearType()
-                .getLevelRange()
-                .getMinLevel(), data)); // todo doesnt allow for uniques to add req
+            .GetTooltipString(gear.level, data)); // todo doesnt allow for uniques to add req
         tip.add(new SText(""));
     }
 
@@ -76,11 +76,12 @@ public class TooltipUtils {
         List<String> lores = TooltipUtils.cutIfTooLong(uniqdesc);
         tip.add(new LiteralText(""));
 
+        Formatting format = Formatting.GREEN;
+
         int i = 0;
         for (String desc : lores) {
 
-            MutableText comp = new LiteralText(gear.getRarity()
-                .textFormatting() + "");
+            MutableText comp = new LiteralText(format + "");
 
             if (i == 0) {
                 comp.append("'");
@@ -91,6 +92,7 @@ public class TooltipUtils {
                 comp.append("'");
             }
             i++;
+            comp.formatted(format);
             tip.add(comp);
 
         }
@@ -218,10 +220,11 @@ public class TooltipUtils {
 
     public static MutableText rarity(Rarity rarity) {
 
-        return (new LiteralText(rarity.textFormatting() + "")
+        return new LiteralText(rarity.textFormatting() + "")
             .append(rarity.locName()
                 .append(" ")
-                .append(Words.Item.locName())));
+                .append(Words.Item.locName()))
+            .formatted(rarity.textFormatting());
     }
 
     public static MutableText rarityShort(Rarity rarity) {

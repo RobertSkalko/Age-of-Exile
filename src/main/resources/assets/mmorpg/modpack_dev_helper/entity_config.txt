@@ -8,16 +8,12 @@ mmorpg:water_mage
 mmorpg:healer_mage
 mmorpg:fire_mage
 minecraft:zombified_piglin
-mmorpg:water_chicken
 minecraft:iron_golem
-mmorpg:fire_chicken
-mmorpg:nature_chicken
 minecraft:enderman
 minecraft:zombie
 minecraft:drowned
 animal
 minecraft:wolf
-mmorpg:thunder_chicken
 lycanite_mobs
 minecraft:wither
 mmorpg:nature_mage

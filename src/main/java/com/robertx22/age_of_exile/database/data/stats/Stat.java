@@ -44,6 +44,10 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public boolean uses_second_val = false;
     public StatScaling scaling = StatScaling.SLOW;
 
+    public String textIcon = "";
+    public int baseStatTooltipOrder = 100;
+    public Formatting textFormat = Formatting.GRAY;
+
     public StatGroup statGroup = StatGroup.Misc;
 
     public boolean add$plusminus$toTooltip = true;

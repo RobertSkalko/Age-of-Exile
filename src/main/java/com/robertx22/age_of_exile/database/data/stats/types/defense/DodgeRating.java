@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 
 public class DodgeRating extends Stat implements IUsableStat, ILocalStat {
@@ -31,6 +32,9 @@ public class DodgeRating extends Stat implements IUsableStat, ILocalStat {
         this.statGroup = StatGroup.MAIN;
 
         this.statEffect = new Effect();
+
+        this.textIcon = "\u56DE";
+        this.textFormat = Formatting.DARK_GREEN;
     }
 
     @Override
@@ -60,7 +64,7 @@ public class DodgeRating extends Stat implements IUsableStat, ILocalStat {
 
     @Override
     public float valueNeededToReachMaximumPercentAtLevelOne() {
-        return 300;
+        return 15;
     }
 
     private static class Effect extends BaseDamageEffect {

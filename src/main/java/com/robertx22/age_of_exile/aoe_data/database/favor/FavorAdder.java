@@ -17,7 +17,7 @@ public class FavorAdder implements ISlashRegistryInit {
         none.rank = 0;
 
         none.can_salvage_loot = false;
-        none.excludedRarities = Arrays.asList(IRarity.MYTHIC_ID, IRarity.LEGENDARY_ID, IRarity.RELIC_ID);
+        none.excludedRarities = Arrays.asList(IRarity.MYTHIC_ID, IRarity.LEGENDARY_ID);
         none.drop_currency = false;
         none.drop_gems = false;
         none.drop_runes = false;

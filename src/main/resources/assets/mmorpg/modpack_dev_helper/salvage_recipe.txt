@@ -2,4 +2,3 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 currency_recipe
 gem_recipe
-rune_recipe

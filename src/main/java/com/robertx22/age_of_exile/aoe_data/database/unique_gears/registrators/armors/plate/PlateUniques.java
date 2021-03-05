@@ -35,7 +35,7 @@ public class PlateUniques implements ISlashRegistryInit {
             "If only they knew that the inscription referred to the armor.",
             BasePlateArmors.CHESTS.get(LevelRanges.MIDDLE))
             .stats(Arrays.asList(
-                new StatModifier(20, 100, Armor.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(2, 10, Armor.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(10, 40, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
             ))
             .build();

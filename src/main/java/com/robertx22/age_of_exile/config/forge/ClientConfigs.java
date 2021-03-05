@@ -29,6 +29,7 @@ public class ClientConfigs {
     public boolean RENDER_SIMPLE_MOB_BAR = true;
     public boolean RENDER_DEATH_STATISTICS = true;
     public boolean RENDER_ITEM_RARITY_BACKGROUND = true;
+    public boolean SHOW_DURABILITY = false;
     public GlintType ITEM_RARITY_BACKGROUND_TYPE = GlintType.FULL;
 
     public enum GlintType {

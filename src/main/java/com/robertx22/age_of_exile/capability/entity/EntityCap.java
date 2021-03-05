@@ -355,7 +355,7 @@ public class EntityCap {
                 for (GearData data : stacks) {
                     float chance = (float) (LevelUtils.getMaxLevelMultiplier(getLevel()) * ModConfig.get().Server.CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL);
 
-                    if (!data.gear.isCorrupted()) {
+                    if (data.gear != null && !data.gear.isCorrupted()) {
                         if (RandomUtils.roll(chance)) {
                             data.gear.is_cor = true;
                             data.gear.saveToStack(data.stack);

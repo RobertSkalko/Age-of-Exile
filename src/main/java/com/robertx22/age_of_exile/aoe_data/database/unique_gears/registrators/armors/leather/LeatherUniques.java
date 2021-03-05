@@ -24,7 +24,7 @@ public class LeatherUniques implements ISlashRegistryInit {
             "To miss is not an option.",
             BaseLeatherArmors.CHESTS.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
-                new StatModifier(5, 15, DodgeRating.getInstance(), ModType.FLAT),
+                new StatModifier(2, 5, DodgeRating.getInstance(), ModType.FLAT),
                 new StatModifier(10, 40, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 20, CriticalHit.getInstance(), ModType.FLAT)
             ))

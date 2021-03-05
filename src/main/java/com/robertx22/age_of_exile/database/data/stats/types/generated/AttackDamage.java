@@ -31,6 +31,9 @@ public class AttackDamage extends ElementalStat implements ILocalStat {
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.ELEMENTAL;
         this.statEffect = new Effect();
+
+        this.textFormat = element.format;
+        this.textIcon = element.icon;
     }
 
     @Override

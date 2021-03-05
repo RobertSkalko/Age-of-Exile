@@ -1,13 +1,12 @@
 package com.robertx22.age_of_exile.database.data.stats.types.offense.crit;
 
-import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.SpellCriticalHitEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
-public class SpellCriticalHit extends Stat implements IExtraStatEffect, ILocalStat {
+public class SpellCriticalHit extends Stat implements IExtraStatEffect {
 
     public static String GUID = "spell_critical_hit";
 

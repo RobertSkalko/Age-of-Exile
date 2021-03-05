@@ -17,8 +17,10 @@ import java.util.List;
 
 public class StatRequirement implements ISerializable<StatRequirement> {
 
-    static String CHECK_YES_ICON = "\u2713";
-    static String NO_ICON = "\u2715";
+    public static String PLUS_ICON = "\u271A";
+
+    //public static String CHECK_YES_ICON = "\u2713";
+    // public static String NO_ICON = "\u2715";
 
     public static StatRequirement EMPTY = new StatRequirement();
 
@@ -197,13 +199,16 @@ public class StatRequirement implements ISerializable<StatRequirement> {
 
         if (data.getUnit()
             .getCalculatedStat(stat)
-            .getAverageValue() > req) {
-            return new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + CHECK_YES_ICON).append(" " + Formatting.GRAY + req + " ")
-                .append(stat.locName());
+            .getAverageValue() >= req) {
+            return new LiteralText(Formatting.GREEN + "" + PLUS_ICON + " ").append(stat.locName()
+                .formatted(Formatting.GRAY))
+                .append(" " + Formatting.GRAY + "Min: " + req + " ");
         } else {
-            return new LiteralText(Formatting.RED + "" + Formatting.BOLD + NO_ICON).append(" " + Formatting.GRAY + req + " ")
-                .append(
-                    stat.locName());
+
+            return new LiteralText(Formatting.RED + "" + PLUS_ICON + " ").append(stat.locName()
+                .formatted(Formatting.GRAY))
+                .append(" " + Formatting.GRAY + "Min: " + req + " ");
+
         }
 
     }

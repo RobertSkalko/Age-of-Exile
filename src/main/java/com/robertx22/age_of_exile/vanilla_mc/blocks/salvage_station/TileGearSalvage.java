@@ -55,7 +55,6 @@ public class TileGearSalvage extends BaseModificationStation {
 
     @Override
     public int getCookTime() {
-
         return COOK_TIME_FOR_COMPLETION;
     }
 
@@ -288,7 +287,18 @@ public class TileGearSalvage extends BaseModificationStation {
     @Override
     public boolean modifyItem() {
 
-        if (this.salvage()) {
+        boolean sal = false;
+
+        for (int i = 0; i < this.inputSlots()
+            .size(); i++) {
+            if (this.salvage()) {
+
+                sal = true;
+
+            }
+        }
+
+        if (sal) {
 
             SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.3F, 1);
 

@@ -104,7 +104,7 @@ public class TooltipMethod {
                 }
 
                 if (data instanceof GearItemData) {
-                    if (true) { // tooltip centering
+                    if (false) { // tooltip centering
                         List<String> strings = tooltip
                             .stream()
                             .map(x -> CLOC.translate(x))

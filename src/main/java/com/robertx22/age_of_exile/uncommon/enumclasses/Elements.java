@@ -11,10 +11,10 @@ public enum Elements implements IColor {
 
     Physical(0, new RGB(240, 157, 55), false, "Physical", Formatting.GOLD, "physical", "\u2726"),
     Fire(1, new RGB(255, 0, 0), true, "Fire", Formatting.RED, "fire", "\u2600"),
-    Water(2, new RGB(0, 128, 255), true, "Ice", Formatting.AQUA, "water", "\u2749"),
-    Thunder(3, new RGB(204, 0, 255), true, "Lightning", Formatting.YELLOW, "thunder", "\u272A"),
+    Water(2, new RGB(0, 128, 255), true, "Cold", Formatting.AQUA, "water", "\u2749"),
+    Thunder(3, new RGB(204, 0, 255), true, "Thunder", Formatting.YELLOW, "thunder", "\u272A"),
     Nature(4, new RGB(0, 204, 0), true, "Poison", Formatting.DARK_GREEN, "nature", "\u273F"),
-    Elemental(5, new RGB(0, 0, 0), false, "Elemental", Formatting.GOLD, "elemental", "\u269C"),
+    Elemental(5, new RGB(0, 0, 0), false, "Elemental", Formatting.LIGHT_PURPLE, "elemental", "\u269C"),
     All(6, new RGB(0, 204, 0), false, "All", Formatting.LIGHT_PURPLE, "all", "\u273F");
 
     public boolean isSingleElement = true;

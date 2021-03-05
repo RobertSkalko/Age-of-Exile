@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -39,7 +38,6 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .baseStat(new StatModifier(1, 2, 2, 4, new AttackDamage(Elements.Physical), ModType.FLAT))
-            .baseStat(new StatModifier(4, 12, CriticalHit.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.RANGED)
             .addHunterLevelRanges()
             .build();
@@ -49,7 +47,6 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .baseStat(new StatModifier(1, 1.5F, 1.5F, 3, new AttackDamage(Elements.Physical), ModType.FLAT))
-            .baseStat(new StatModifier(3, 6, CriticalHit.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.RANGED)
             .addHunterLevelRanges()
             .build();
@@ -60,9 +57,9 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.axe, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
             .baseStat(new StatModifier(2, 3, 4, 8, new AttackDamage(Elements.Physical), ModType.FLAT))
-            .baseStat(new StatModifier(4, 15, CriticalHit.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.MELEE)
             .addWarriorLevelRanges()
+
             .build();
 
         SWORD = BaseGearBuilder.of(GearSlots.SWORD, "sword", "Sword", ModRegistry.GEAR_ITEMS.SWORDS)
@@ -72,7 +69,6 @@ public class BaseGearWeapons implements ISlashRegistryInit {
                 .setDex(0.1F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.sword, SlotTag.melee_weapon, SlotTag.weapon_family, SlotTag.strength, SlotTag.dexterity))
             .baseStat(new StatModifier(2, 3, 2, 4, new AttackDamage(Elements.Physical), ModType.FLAT))
-            .baseStat(new StatModifier(2, 6, CriticalHit.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.MELEE)
             .addWarriorLevelRanges()
             .build();
@@ -83,7 +79,6 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setInt(0.5F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
             .baseStat(new StatModifier(2, 3, 3, 6, new AttackDamage(Elements.Physical), ModType.FLAT))
-            .baseStat(new StatModifier(3, 10, CriticalHit.getInstance(), ModType.FLAT))
             .implicitStat(new StatModifier(3, 10, SpellDamage.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.MAGIC)
             .addMageWeaponLevelRanges()
@@ -97,7 +92,6 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setInt(0.5F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
             .baseStat(new StatModifier(2, 3, 3, 6, new AttackDamage(Elements.Physical), ModType.FLAT))
-            .baseStat(new StatModifier(2, 5, CriticalHit.getInstance(), ModType.FLAT))
             .implicitStat(new StatModifier(3, 10, HealPower.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.MELEE)
             .addMageWeaponLevelRanges()

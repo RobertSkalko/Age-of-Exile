@@ -21,7 +21,7 @@ public class BasicStatRegex extends StatNameRegex {
             }
 
             if (stat.UsesSecondValue()) {
-                return adds + MIN_VALUE + " to " + MAX_VALUE + " " + NAME;
+                return adds + MIN_VALUE + "-" + MAX_VALUE + " " + NAME;
             } else {
                 return adds + VALUE + to + NAME;
             }
@@ -31,7 +31,7 @@ public class BasicStatRegex extends StatNameRegex {
             return VALUE + s + NAME;
         }
         if (type == ModType.GLOBAL_INCREASE) {
-            return VALUE + " To Global " + NAME;
+            return VALUE + " Total " + NAME;
         }
 
         return null;

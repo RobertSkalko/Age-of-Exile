@@ -23,8 +23,8 @@ public class NormalStatTooltip implements IStatTooltipType {
             .translate(info.type, info.firstValue, info.secondValue, info.stat));
 
         if (ctx.showStatRanges()) {
-            //txt.append(" ")
-            //    .append(getPercentageView(ctx.statinfo.percent));
+            txt.append(" ")
+                .append(getPercentageView(ctx.statinfo.percent));
         }
 
         list.add(txt);

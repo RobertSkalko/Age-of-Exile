@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.stats.tooltips;
 
+import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
 
         List<Text> list = new ArrayList<Text>();
 
-        MutableText txt = new LiteralText(Formatting.GRAY + info.stat.getStatNameRegex()
+        MutableText txt = new LiteralText(info.stat.textFormat + info.stat.textIcon + " " + StatNameRegex.BASIC_LOCAL
             .translate(info.type, info.firstValue, info.secondValue, info.stat));
 
         if (ctx.showStatRanges()) {

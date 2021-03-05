@@ -44,10 +44,6 @@ public class LevelUtils {
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
 
-        if (true) {
-            return 50;
-        }
-
         ServerWorld sw = (ServerWorld) world;
 
         DimensionConfig dimConfig = Database.getDimensionConfig(world);

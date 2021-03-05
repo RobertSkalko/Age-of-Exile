@@ -127,20 +127,6 @@ public abstract class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    public void setRelicFields() {
-        this.guid = IRarity.RELIC_ID;
-        this.loc_name = "Relic";
-        this.text_format = Formatting.GOLD.name();
-        onSetFields();
-    }
-
-    public void setAntiqueFields() {
-        this.guid = "antique";
-        this.loc_name = "Antique";
-        this.text_format = Formatting.WHITE.name();
-        onSetFields();
-    }
-
     public void setUniqueFields() {
         this.guid = IRarity.UNIQUE_ID;
         this.loc_name = "Unique";

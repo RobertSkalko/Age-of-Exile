@@ -31,9 +31,9 @@ public class CompatibleItemUtils {
         public int minLevel = 0;
         public int maxLevel = 0;
 
-        public boolean isCompatible;
+        public boolean isCompatible = false;
 
-        List<CompatibleItem> all;
+        List<CompatibleItem> all = new ArrayList<>();
 
         public static Data empty() {
             Data data = new Data();
@@ -80,9 +80,24 @@ public class CompatibleItemUtils {
             }
 
             if (!all.isEmpty()) {
-                AutoConfigItemType type = ItemAutoPowerLevels.getPowerClassification(item);
-                this.minLevel = type.MIN_LEVEL;
-                this.maxLevel = type.MAX_LEVEL;
+
+                all.forEach(x -> {
+                    BaseGearType t = Database.GearTypes()
+                        .get(x.item_type);
+
+                    if (t.getLevelRange()
+                        .getMinLevel() < this.minLevel) {
+                        this.minLevel = t.getLevelRange()
+                            .getMinLevel();
+                    }
+                    if (t.getLevelRange()
+                        .getMaxLevel() > this.maxLevel) {
+                        this.maxLevel = t.getLevelRange()
+                            .getMaxLevel();
+                    }
+
+                });
+
             }
 
             this.isCompatible = !all.isEmpty();

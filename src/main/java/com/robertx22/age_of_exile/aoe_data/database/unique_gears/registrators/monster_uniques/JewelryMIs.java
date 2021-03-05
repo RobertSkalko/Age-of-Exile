@@ -27,7 +27,7 @@ public class JewelryMIs implements ISlashRegistryInit {
             "",
             BaseGearJewelry.COLD_RES_RING.values())
             .stats(Arrays.asList(
-                new StatModifier(2, 3, Health.getInstance(), ModType.FLAT),
+                new StatModifier(5, 10, Health.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
             ))
             .setMI()
@@ -42,7 +42,7 @@ public class JewelryMIs implements ISlashRegistryInit {
             "",
             BaseGearJewelry.ALL_RES_NECKLACE.values())
             .stats(Arrays.asList(
-                new StatModifier(3, 4, Health.getInstance(), ModType.FLAT),
+                new StatModifier(5, 12, Health.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(7, 18, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
             ))
             .setMI()

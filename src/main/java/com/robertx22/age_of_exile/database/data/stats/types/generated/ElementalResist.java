@@ -28,6 +28,10 @@ public class ElementalResist extends ElementalStat implements IExtraStatEffect {
 
         this.max_val = 80;
         this.statGroup = StatGroup.ELEMENTAL;
+
+        this.textFormat = element.format;
+        this.textIcon = element.icon;
+
     }
 
     @Override
@@ -62,7 +66,7 @@ public class ElementalResist extends ElementalStat implements IExtraStatEffect {
 
     @Override
     public String locNameForLangFile() {
-        return this.getElement().dmgName + " Resist";
+        return this.getElement().dmgName + " Defense";
     }
 
 }

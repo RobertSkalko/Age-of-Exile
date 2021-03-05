@@ -2,30 +2,24 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.age_of_exile.uncommon.wrappers.SText;
-import com.robertx22.library_of_exile.utils.CLOC;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Pair;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 @Storable
 public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartTooltip {
@@ -66,77 +60,31 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
         List<ExactStatData> all = GetAllStats(gear);
 
+        info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS;
+
         List<Text> list = new ArrayList<>();
         list.add(new LiteralText(" "));
 
-        MutableText physdmg = null;
-        MutableText eledmg = null;
-        MutableText critchance = null;
+        List<Pair<Stat, List<Text>>> pairs = new ArrayList<>();
 
-        String eleDmgs = "";
+        List<StatModifier> stats = Database.GearTypes()
+            .get(this.gear_type).base_stats;
 
-        for (ExactStatData exactStatData : all) {
-            Stat stat = exactStatData.getStat();
-
-            String perc = stat.IsPercent() || !exactStatData.getType()
-                .isFlat() ? "%" : "";
-
-            if (stat instanceof AttackDamage) {
-                if (stat.getElement() == Elements.Physical) {
-                    physdmg = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + NUMBER_COLOR +
-                        NumberUtils.format(exactStatData.getFirstValue()) + "-" + NumberUtils.format(exactStatData.getSecondValue()));
-
-                } else {
-
-                    String dot = ",";
-                    if (eleDmgs.length() == 0) {
-                        dot = "";
-                    }
-                    eleDmgs += dot + " " + stat.getElement().format +
-                        NumberUtils.format(exactStatData.getFirstValue()) + "-" + NumberUtils.format(exactStatData.getSecondValue());
-                }
-
-            } else {
-
-                Formatting color = NUMBER_COLOR;
-
-                if (stat instanceof CriticalHit) {
-                    color = Formatting.YELLOW;
-                }
-
-                MutableText comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + color + NumberUtils.format(MathHelper.clamp(exactStatData.getFirstValue(), 0, Integer.MAX_VALUE)) + perc);
-
-                if (stat instanceof CriticalHit) {
-                    critchance = comp;
-                } else {
-                    list.add(comp);
-                }
-
+        for (int i = 0; i < this.percents.size(); i++) {
+            if (stats.size() > i && all.size() > i) {
+                int perc = percents.get(i);
+                pairs.add(new Pair(stats.get(i)
+                    .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), stats.get(i), gear.level))));
             }
         }
-        if (eleDmgs.length() > 0) {
-            eledmg = new SText(TEXT_COLOR + "Elemental:" + eleDmgs);
-        }
 
-        if (physdmg != null) {
-            list.add(physdmg);
-        }
-        if (eledmg != null) {
-            list.add(eledmg);
-        }
-        if (critchance != null) {
-            list.add(critchance);
-        }
-        if (gear.GetBaseGearType()
-            .isMeleeWeapon()) {
+        pairs.sort(Comparator.comparingInt(x -> x.getLeft().baseStatTooltipOrder));
 
-            float atk_per_sec = gear.GetBaseGearType()
-                .getAttacksPerSecondForTooltip(gear);
+        pairs.forEach(x -> {
+            list.addAll(x.getRight());
+        });
 
-            list.add(new SText(TEXT_COLOR + "Attacks per Second: " + Formatting.GREEN + NumberUtils.formatForTooltip(atk_per_sec)));
-            // unsure if i want dps on tooltip//list.add(new SText(TEXT_COLOR + "DPS: " + NUMBER_COLOR + NumberUtils.formatForTooltip(totalDmg * atk_per_sec)));
-
-        }
+        info.statTooltipType = StatTooltipType.NORMAL;
 
         return list;
 
@@ -150,68 +98,21 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
+        List<ExactStatData> local = new ArrayList<>();
+
         try {
-            List<ExactStatData> local = new ArrayList<>();
-            List<ExactStatData> all = gear.GetAllStats(false, true);
-
             int i = 0;
-
             for (StatModifier mod : Database.GearTypes()
                 .get(gear_type)
                 .baseStats()) {
-                if (percents.size() > i) {
-                    local.add(mod.ToExactStat(percents.get(i), gear.level));
-                }
+                local.add(mod.ToExactStat(percents.get(i), gear.level));
                 i++;
             }
-
-            // add up flats first
-            all.forEach(x -> {
-
-                if (x.shouldBeAddedToLocalStats(gear) && x.getType()
-                    .isFlat()) {
-
-                    Optional<ExactStatData> opt = local.stream()
-                        .filter(t -> t.getStat() == x.getStat())
-                        .findFirst();
-
-                    if (opt.isPresent()) {
-                        opt.get()
-                            .add(x);
-                    } else {
-                        local.add(x);
-                    }
-                }
-            });
-
-            // now increase all flats by local increases
-            all.stream()
-                .filter(x ->
-                    x.shouldBeAddedToLocalStats(gear) && x.getType()
-                        == ModType.LOCAL_INCREASE)
-                .forEach(s -> {
-
-                    Optional<ExactStatData> opt = local.stream()
-                        .filter(x -> x.getStat()
-                            .GUID()
-                            .equals(s.getStat()
-                                .GUID()))
-                        .findFirst();
-
-                    if (opt.isPresent()) {
-                        opt.get().percentIncrease += s.getFirstValue();
-                    }
-
-                });
-
-            local.forEach(x -> x.increaseByAddedPercent());
-
-            return local;
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Arrays.asList();
+        return local;
     }
 
     @Override

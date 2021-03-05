@@ -64,7 +64,7 @@ public class ComboPerks implements ISlashRegistryInit {
 
         PerkBuilder.stat("flat_health_phys_dmg",
             new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.FLAT)
+            new OptScaleExactStat(1, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("phys_acc",
             new OptScaleExactStat(3, Accuracy.getInstance(), ModType.LOCAL_INCREASE),

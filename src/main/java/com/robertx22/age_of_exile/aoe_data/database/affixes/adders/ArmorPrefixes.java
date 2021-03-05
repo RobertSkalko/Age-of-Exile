@@ -15,19 +15,19 @@ public class ArmorPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("protective")
             .Named("Protective")
-            .tier(1, new StatModifier(30, 40, Armor.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(20, 30, Armor.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(5, 10, Armor.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(3, 4, Armor.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 3, Armor.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2, Armor.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(0.5F, 1F, Armor.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.armor_stat)
             .Prefix()
             .Build();
 
         AffixBuilder.Normal("scaled")
             .Named("Scaled")
-            .tier(1, new StatModifier(14, 20, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 1.5F, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(8, 14, Armor.getInstance(), ModType.FLAT), new StatModifier(0.8F, 1F, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, Armor.getInstance(), ModType.FLAT), new StatModifier(0.5F, 0.8F, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(1F, 1.5F, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 1.5F, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.8F, 1F, Armor.getInstance(), ModType.FLAT), new StatModifier(0.8F, 1F, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.5F, 0.8F, Armor.getInstance(), ModType.FLAT), new StatModifier(0.5F, 0.8F, Health.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.armor_stat)
             .Prefix()
             .Build();
