@@ -53,15 +53,16 @@ public class SkillGemBuilder {
 
         StatRequirement req = new StatRequirement();
         if (attri == StatAttribute.STR) {
-            req.base_str = 20;
-            req.str_req = 0.5F;
+            req.setBaseStr(20);
+            req.setStr(0.5F);
         } else if (attri == StatAttribute.INT) {
-            req.base_int = 20;
-            req.int_req = 0.5F;
+            req.setBaseInt(20);
+            req.setInt(0.5F);
         } else if (attri == StatAttribute.DEX) {
-            req.base_dex = 20;
-            req.dex_req = 0.5F;
+            req.setBaseDex(20);
+            req.setDex(0.5F);
         }
+
         gem.req = req;
 
         gem.addToSerializables();

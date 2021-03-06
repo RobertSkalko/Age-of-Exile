@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.auto_comp;
+package com.robertx22.age_of_exile.uncommon.auto_comp;
 
 import com.google.common.collect.Multimap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
@@ -97,6 +97,10 @@ public class ItemAutoPowerLevels {
 
         if (!ModConfig.get().autoCompatibleItems.ENABLE_MANUAL_TWEAKS) {
             return null;
+        }
+
+        if (item == Items.BOW || item == Items.CROSSBOW) {
+            return ModConfig.get().autoCompatibleItems.TIER_0;
         }
 
         if (item instanceof ToolItem) {

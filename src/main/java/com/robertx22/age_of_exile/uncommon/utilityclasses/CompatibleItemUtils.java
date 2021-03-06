@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.config.forge.parts.AutoConfigItemType;
@@ -9,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;

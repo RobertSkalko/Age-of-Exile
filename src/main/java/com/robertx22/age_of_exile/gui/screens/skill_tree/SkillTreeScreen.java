@@ -68,6 +68,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
     }
 
+    public int mouseRecentlyClickedTicks = 0;
+
     @Override
     public boolean mouseReleased(double x, double y, int ticks) {
 
@@ -85,6 +87,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         if (!didClickInside) {
             removeRemovableButtons();
         }
+
+        mouseRecentlyClickedTicks = 100;
 
         return super.mouseReleased(x, y, ticks);
 
@@ -203,7 +207,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                         int x = (int) (point.x - ((float) size / 2));
                         int y = (int) (point.y - ((float) size / 2));
 
-                        newButton(new ConnectionButton(school, p, pb.point, x, y));
+                        newButton(new ConnectionButton(this, school, p, pb.point, x, y));
 
                     }
 
@@ -379,6 +383,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         // Watch watch = new Watch();
+        mouseRecentlyClickedTicks--;
 
         matrix.scale(zoom, zoom, zoom);
 

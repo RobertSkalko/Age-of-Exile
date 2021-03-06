@@ -73,7 +73,7 @@ public abstract class BaseRarity implements Rarity {
 
     public void setMIFields() {
         this.guid = IRarity.MONSTER_UNIQUE_ID;
-        this.loc_name = "Monster Unique";
+        this.loc_name = "Monster Infrequent";
         this.text_format = Formatting.RED.name();
 
         onSetFields();

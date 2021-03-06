@@ -194,6 +194,8 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * deleted gear rarities antique and runed, replaced with socket affixes
 * party exp share now only works when nearby
 * scaled armor and dodge values to be similar to health and other stats
+* stat requirement datapacks now use hashmaps instead of fields, so you'll need to update them
+
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)

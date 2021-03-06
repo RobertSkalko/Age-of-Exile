@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.saveclasses.unit.GearData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +14,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollectGearEvent {
+
+    public static class CollectedGearStacks {
+
+        public List<GearData> gears;
+
+        public LivingEntity entity;
+        public AttackInformation data;
+
+        public CollectedGearStacks(LivingEntity entity, List<GearData> gears, AttackInformation data) {
+            this.entity = entity;
+            this.gears = gears;
+            this.data = data;
+
+            EntityCap.UnitData unitdata = Load.Unit(entity);
+
+            gears.addAll(CollectGearEvent.getAllGear(data, entity, unitdata));
+
+            gears.removeIf(x -> !x.isUsableBy(unitdata));
+
+        }
+
+    }
 
     public static List<GearData> getAllGear(AttackInformation event, LivingEntity entity, EntityCap.UnitData unitdata) {
         List<GearData> list = new ArrayList<>();

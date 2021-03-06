@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToAp
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageUnderPotion;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
@@ -18,8 +17,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -90,7 +87,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(-100, -100, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 25, DamageUnderPotion.HUNGER, ModType.FLAT),
                 new StatModifier(15, 50, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(2, 3, new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT)
+                new StatModifier(2, 5, Lifesteal.getInstance(), ModType.FLAT)
             ))
             .build();
 

@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -28,6 +29,7 @@ public class JewelryMIs implements ISlashRegistryInit {
             BaseGearJewelry.COLD_RES_RING.values())
             .stats(Arrays.asList(
                 new StatModifier(5, 10, Health.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(5, 10, Mana.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
             ))
             .setMI()
@@ -43,6 +45,7 @@ public class JewelryMIs implements ISlashRegistryInit {
             BaseGearJewelry.ALL_RES_NECKLACE.values())
             .stats(Arrays.asList(
                 new StatModifier(5, 12, Health.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(5, 12, Mana.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(7, 18, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
             ))
             .setMI()

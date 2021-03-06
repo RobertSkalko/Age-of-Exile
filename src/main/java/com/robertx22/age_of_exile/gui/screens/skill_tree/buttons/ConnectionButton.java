@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -20,15 +21,22 @@ public class ConnectionButton extends TexturedButtonWidget {
     SpellSchool school;
     PointData one;
     PointData two;
+
+    SkillTreeScreen screen;
     MinecraftClient mc = MinecraftClient.getInstance();
     ;
 
-    public ConnectionButton(SpellSchool school, PointData one, PointData two, int x, int y) {
+    public ConnectionButton(SkillTreeScreen screen, SpellSchool school, PointData one, PointData two, int x, int y) {
         super(x, y, SIZE, SIZE, 0, 0, 0, ID, (action) -> {
         });
         this.school = school;
         this.one = one;
         this.two = two;
+
+        this.screen = screen;
+
+        connection = Load.perks(mc.player)
+            .getConnection(school, one, two);
 
     }
 
@@ -49,9 +57,12 @@ public class ConnectionButton extends TexturedButtonWidget {
 
         ticks++;
 
-        if (connection == null || ticks % 10 == 0) {
-            connection = Load.perks(mc.player)
-                .getConnection(school, one, two);
+        if (screen.mouseRecentlyClickedTicks > 1) {
+            if (connection == null || ticks % 10 == 0) {
+                connection = Load.perks(mc.player)
+                    .getConnection(school, one, two);
+
+            }
         }
 
         mc.getTextureManager()

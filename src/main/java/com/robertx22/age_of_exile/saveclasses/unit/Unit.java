@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
-import com.robertx22.age_of_exile.api.MineAndSlashEvents;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
@@ -16,6 +15,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Bloo
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
@@ -230,7 +230,7 @@ public class Unit {
         }
 
         List<GearData> gears = new ArrayList<>();
-        new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData);
+        new CollectGearEvent.CollectedGearStacks(entity, gears, dmgData);
 
         stats.values()
             .forEach(x -> x.stats.clear());
