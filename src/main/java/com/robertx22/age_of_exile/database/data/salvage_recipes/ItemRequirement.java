@@ -40,7 +40,7 @@ public class ItemRequirement {
                 return gear.rarity.equals(req_str);
             }
             if (req_type.equals(LEVEL)) {
-                return gear.level >= req_num;
+                return gear.lvl >= req_num;
             }
         }
 

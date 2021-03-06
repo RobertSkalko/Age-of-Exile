@@ -63,7 +63,7 @@ public class GearData {
         if (!gear.isIdentified() || gear.isCorrupted()) {
             return false;
         }
-        if (data.getLevel() < gear.level) {
+        if (data.getLevel() < gear.lvl) {
             return false;
         }
 

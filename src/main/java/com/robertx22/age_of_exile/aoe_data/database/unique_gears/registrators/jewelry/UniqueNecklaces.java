@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -35,6 +36,8 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(3, 8, ChanceToApplyEffect.POISON, ModType.FLAT),
                 new StatModifier(4, 6, Lifesteal.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setDex(0.5F)
+                .setAgi(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -48,6 +51,8 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(1, 1, EffectImmunity.POISON, ModType.FLAT),
                 new StatModifier(3, 5, PlusResourceOnKill.MANA, ModType.FLAT)
             ))
+            .req(new StatRequirement().setVit(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -61,6 +66,8 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(2, 5, PlusResourceOnKill.HEALTH, ModType.FLAT)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setVit(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -75,6 +82,8 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -89,6 +98,8 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                 new StatModifier(15, 50, Lifesteal.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(2, 5, Lifesteal.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setVit(0.75F))
             .build();
 
     }

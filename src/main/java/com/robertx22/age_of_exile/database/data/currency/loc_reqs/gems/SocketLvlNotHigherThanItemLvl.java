@@ -19,7 +19,7 @@ public class SocketLvlNotHigherThanItemLvl extends BaseLocRequirement {
         if (ctx.Currency.getItem() instanceof BaseGemRuneItem) {
             BaseGemRuneItem gitem = (BaseGemRuneItem) ctx.Currency.getItem();
             GearItemData gear = (GearItemData) ctx.data;
-            return gear.level >= gitem.getBaseRuneGem()
+            return gear.lvl >= gitem.getBaseRuneGem()
                 .getReqLevel();
 
         }

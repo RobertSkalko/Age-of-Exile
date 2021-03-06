@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFi
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
@@ -30,6 +31,8 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     public static UniqueGear SERIALIZER = new UniqueGear();
 
     public List<StatModifier> uniqueStats = new ArrayList<>();
+    public List<StatModifier> base_stats = new ArrayList<>();
+    public StatRequirement stat_req = new StatRequirement();
     public int tier;
     public int weight = 1000;
     public String guid;
@@ -57,6 +60,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
         JsonObject json = getDefaultJson();
 
         JsonUtils.addStats(uniqueStats(), json, "unique_stats");
+        JsonUtils.addStats(base_stats, json, "base_stats");
 
         json.addProperty("gear_type", this.getBaseGearType()
             .GUID());
@@ -67,6 +71,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
 
         json.add("gear_types", JsonUtils.stringListToJsonArray(gear_types));
 
+        json.add("stat_req", stat_req.toJson());
         json.add("filters", filters.toJson());
         return json;
     }
@@ -84,6 +89,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
             .getAsString());
 
         uniq.uniqueStats = JsonUtils.getStats(json, "unique_stats");
+        uniq.base_stats = JsonUtils.getStats(json, "base_stats");
 
         uniq.gear_types = JsonUtils.jsonArrayToStringList(json.get("gear_types")
             .getAsJsonArray());
@@ -94,6 +100,13 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
             .getAsString();
 
         uniq.filters = DropFiltersGroupData.fromJson(json.get("filters"));
+
+        try {
+            uniq.stat_req = StatRequirement.EMPTY.fromJson(json.get("stat_req")
+                .getAsJsonObject());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return uniq;
     }

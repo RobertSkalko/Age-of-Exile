@@ -93,7 +93,7 @@ public class ItemNewbieGearBag extends Item {
                 BaseGearType gear = Database.GearTypes()
                     .get(x);
                 GearItemData data = getBlueprint(gear).createData();
-                data.level = 1;
+                data.lvl = 1;
                 data.can_sal = false;
                 ItemStack stack = GearCreationUtils.CreateStack(data);
 

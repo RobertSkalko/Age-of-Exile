@@ -40,8 +40,8 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
 
         if (word != null) {
             word.stats.forEach(s -> {
-                ExactStatData exact = s.ToExactStat(word_perc, gear.level);
-                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, word_perc, info), s, gear.level));
+                ExactStatData exact = s.ToExactStat(word_perc, gear.lvl);
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, word_perc, info), s, gear.lvl));
             });
         }
         return list;
@@ -82,7 +82,7 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
         RuneWord word = getRuneWord();
 
         if (word != null) {
-            word.stats.forEach(s -> list.add(s.ToExactStat(word_perc, gear.level)));
+            word.stats.forEach(s -> list.add(s.ToExactStat(word_perc, gear.lvl)));
         }
 
         return list;

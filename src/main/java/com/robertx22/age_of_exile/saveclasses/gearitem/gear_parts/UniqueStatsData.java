@@ -64,7 +64,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
     public UniqueGear getUnique(GearItemData gear) {
         return Database.UniqueGears()
-            .get(gear.unique_id);
+            .get(gear.uniq_id);
 
     }
 
@@ -77,10 +77,10 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         List<TooltipStatWithContext> list = new ArrayList<>();
         int i = 0;
         for (StatModifier mod : Database.UniqueGears()
-            .get(gear.unique_id)
+            .get(gear.uniq_id)
             .uniqueStats()) {
-            ExactStatData exact = mod.ToExactStat(percents.get(i), gear.level);
-            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percents.get(i), info), mod, gear.level));
+            ExactStatData exact = mod.ToExactStat(percents.get(i), gear.lvl);
+            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percents.get(i), info), mod, gear.lvl));
             i++;
         }
         return list;
@@ -93,9 +93,9 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
         int i = 0;
         for (StatModifier mod : Database.UniqueGears()
-            .get(gear.unique_id)
+            .get(gear.uniq_id)
             .uniqueStats()) {
-            list.add(mod.ToExactStat(percents.get(i), gear.level));
+            list.add(mod.ToExactStat(percents.get(i), gear.lvl));
             i++;
         }
         return list;

@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -38,6 +39,8 @@ public class UniqueRings implements ISlashRegistryInit {
                 new StatModifier(-10, -5, Health.getInstance(), ModType.FLAT)
 
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setAgi(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -50,6 +53,8 @@ public class UniqueRings implements ISlashRegistryInit {
                 new StatModifier(5, 10, Mana.getInstance(), ModType.FLAT),
                 new StatModifier(1, 4, RegeneratePercentStat.MANA, ModType.FLAT)
             ))
+            .req(new StatRequirement().setWis(0.5F)
+                .setInt(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -62,6 +67,8 @@ public class UniqueRings implements ISlashRegistryInit {
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setWis(0.5F)
+                .setAgi(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -74,6 +81,8 @@ public class UniqueRings implements ISlashRegistryInit {
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setDex(0.5F)
+                .setAgi(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -86,6 +95,8 @@ public class UniqueRings implements ISlashRegistryInit {
                 new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT),
                 new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setWis(0.5F)
+                .setVit(0.5F))
             .build();
 
     }

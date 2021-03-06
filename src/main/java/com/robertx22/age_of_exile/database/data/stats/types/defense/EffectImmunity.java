@@ -49,7 +49,7 @@ public class EffectImmunity extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Immune to " + name + " Effect";
+        return name + " Immunity";
     }
 
     @Override

@@ -100,7 +100,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
             .get()
             .getReqLevel();
 
-        if (minlvl > gear.level) {
+        if (minlvl > gear.lvl) {
             return false;
         }
 

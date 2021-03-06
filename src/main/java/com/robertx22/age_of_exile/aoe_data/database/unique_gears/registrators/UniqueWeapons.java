@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
@@ -22,6 +23,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCo
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -40,12 +42,16 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Judgement",
             "Are you worthy, mortal?",
             BaseGearWeapons.AXE.get(LevelRanges.HIGH))
-            .stats(Arrays.asList(
+            .baseStats(Arrays.asList(
                 new StatModifier(1, 3, 3, 3, new AttackDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(1, 3, 3, 3, new AttackDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(1, 3, 3, 3, new AttackDamage(Elements.Fire), ModType.FLAT)
+            ))
+            .stats(Arrays.asList(
                 new StatModifier(-30, 30, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(-5, 5, ManaBurn.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -54,12 +60,16 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Obsidian's Might",
             "This thirst for blood only seems lower than it's desire to taste burning flesh.",
             BaseGearWeapons.AXE.get(LevelRanges.ENDGAME))
+            .baseStats(Arrays.asList(
+                new StatModifier(3, 5, 5, 8, new AttackDamage(Elements.Fire), ModType.FLAT)
+            ))
             .stats(Arrays.asList(
-                new StatModifier(3, 5, 5, 8, new AttackDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(15, 50, CriticalHit.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(1, 3, PlusResourceOnKill.HEALTH, ModType.FLAT),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.BURN, ModType.FLAT)
             ))
+            .req(new StatRequirement().setVit(0.5F)
+                .setStr(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -68,11 +78,15 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Incarnation of Thunder",
             "The ability to wield thunder is said to come once in a millennium.",
             BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
+            .baseStats(Arrays.asList(
+                new StatModifier(1, 1, 10, 15, new AttackDamage(Elements.Thunder), ModType.FLAT)
+            ))
             .stats(Arrays.asList(
-                new StatModifier(1, 1, 10, 15, new AttackDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 15, ChanceToApplyEffect.SHOCK, ModType.FLAT),
                 new StatModifier(-20, 20, CriticalDamage.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setAgi(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -81,11 +95,15 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Water Elemental",
             "Essence lies in water.",
             BaseGearWeapons.SWORD.get(LevelRanges.HIGH))
+            .baseStats(Arrays.asList(
+                new StatModifier(1, 3, 3, 8, new AttackDamage(Elements.Water), ModType.FLAT)
+            ))
             .stats(Arrays.asList(
-                new StatModifier(1, 3, 3, 8, new AttackDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(15, 30, new AttackDamage(Elements.Water), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.FROST, ModType.FLAT)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setAgi(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -94,12 +112,15 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Eye of Zegrath",
             "A cultist once so powerful, even his remnant eye inflicts ills on others.",
             BaseGearWeapons.WAND.get(LevelRanges.STARTER))
+
             .stats(Arrays.asList(
                 new StatModifier(10, 30, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 10, ChanceToApplyEffect.BURN, ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.POISON, ModType.FLAT)
             ))
+            .req(new StatRequirement().setAgi(0.5F)
+                .setInt(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -108,12 +129,17 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Divine Might",
             "God might prefer peaceful means, but sometimes peace is not an option.",
             BaseGearWeapons.SCEPTER.get(LevelRanges.ENDGAME))
+
+            .baseStats(Arrays.asList(
+                new StatModifier(1, 3, 3, 5, new AttackDamage(Elements.Thunder), ModType.FLAT)
+            ))
             .stats(Arrays.asList(
-                new StatModifier(1, 3, 3, 5, new AttackDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(10, 25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -122,10 +148,16 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Will of Flora",
             "Everything must be exactly as required.",
             BaseGearWeapons.SCEPTER.get(LevelRanges.HIGH))
-            .stats(Arrays.asList(
-                new StatModifier(5, 5, 5, 5, new AttackDamage(Elements.Nature), ModType.FLAT),
-                new StatModifier(10, 30, HealPower.getInstance(), ModType.FLAT)
+            .baseStats(Arrays.asList(
+                new StatModifier(5, 5, 5, 5, new AttackDamage(Elements.Nature), ModType.FLAT)
             ))
+            .stats(Arrays.asList(
+                new StatModifier(10, 30, HealPower.getInstance(), ModType.FLAT),
+                new StatModifier(2, 10, new ElementalPenetration(Elements.Nature), ModType.FLAT),
+                new StatModifier(-4, -10, ManaCost.getInstance(), ModType.FLAT)
+            ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -137,6 +169,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(100, 200, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setStr(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -150,6 +184,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
                 new StatModifier(20, 40, ManaCost.getInstance(), ModType.FLAT),
                 new StatModifier(10, 30, ReducedCooldownStat.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setWis(0.5F)
+                .setInt(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -158,14 +194,17 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Gem of The North",
             "Found in a deep pit of ice. Many wands were shattered in attempts to imbue it.",
             BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
+            .baseStats(Arrays.asList(
+                new StatModifier(1, 1, 3, 3, new AttackDamage(Elements.Water), ModType.FLAT)
+            ))
             .stats(Arrays.asList(
-                new StatModifier(1, 1, 3, 3, new AttackDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(10, 25, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, ProjectileSpeed.getInstance(), ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT),
                 new StatModifier(10, 20, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(1, 3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT)
             ))
+            .req(new StatRequirement().setWis(0.5F)
+                .setInt(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -174,12 +213,16 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Worldbearer",
             "The ability to carry any burden is a heavy one.",
             BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
+            .baseStats(Arrays.asList(
+                new StatModifier(3, 3, 3, 6, new AttackDamage(Elements.Nature), ModType.FLAT)
+            ))
             .stats(Arrays.asList(
-                new StatModifier(3, 3, 3, 6, new AttackDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(15, 30, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(15, 30, Strength.INSTANCE, ModType.LOCAL_INCREASE)
             ))
+            .req(new StatRequirement().setVit(0.5F)
+                .setInt(0.75F))
             .build();
 
     }

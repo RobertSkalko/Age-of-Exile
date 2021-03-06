@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
@@ -28,6 +29,8 @@ public class LeatherUniques implements ISlashRegistryInit {
                 new StatModifier(10, 40, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 20, CriticalHit.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setDex(0.5F)
+                .setAgi(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -40,6 +43,8 @@ public class LeatherUniques implements ISlashRegistryInit {
                 new StatModifier(10, 100, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(2, 10, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(25, 25, CriticalDamage.getInstance(), ModType.FLAT)))
+            .req(new StatRequirement().setDex(0.5F)
+                .setAgi(0.75F))
             .build();
 
     }

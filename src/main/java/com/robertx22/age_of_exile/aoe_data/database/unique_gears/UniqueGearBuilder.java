@@ -1,11 +1,13 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears;
 
+import com.ibm.icu.impl.Assert;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -59,6 +61,24 @@ public class UniqueGearBuilder {
         return this;
     }
 
+    public UniqueGearBuilder baseStats(StatModifier... stat) {
+        this.uniq.base_stats.addAll(Arrays.asList(stat));
+        return this;
+    }
+
+    public UniqueGearBuilder baseStats(List<StatModifier> stat) {
+        this.uniq.base_stats.addAll(stat);
+        return this;
+    }
+
+    public UniqueGearBuilder req(StatRequirement req) {
+        if (!uniq.stat_req.base_req.isEmpty() || !uniq.stat_req.scaling_req.isEmpty()) {
+            throw new RuntimeException("Overrided unique stat requirements");
+        }
+        this.uniq.stat_req = req;
+        return this;
+    }
+
     public UniqueGearBuilder devComment(String comment) {
         // OMAE WA MOU SHINDEIRU
         return this;
@@ -70,7 +90,8 @@ public class UniqueGearBuilder {
     }
 
     public UniqueGear build() {
-        assert !uniq.uniqueStats.isEmpty();
+        Assert.assrt(!uniq.uniqueStats.isEmpty());
+        Assert.assrt(!uniq.stat_req.isEmpty());
 
         uniq.addToSerializables();
         return uniq;

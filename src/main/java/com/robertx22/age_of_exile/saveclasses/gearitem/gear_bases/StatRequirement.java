@@ -33,6 +33,21 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
 
     }
 
+    public static StatRequirement combine(StatRequirement one, StatRequirement two) {
+        StatRequirement req = new StatRequirement(one);
+
+        two.scaling_req.entrySet()
+            .forEach(x -> {
+                req.scaling_req.put(x.getKey(), req.scaling_req.getOrDefault(x.getKey(), 0F) + x.getValue());
+            });
+        two.base_req.entrySet()
+            .forEach(x -> {
+                req.base_req.put(x.getKey(), req.base_req.getOrDefault(x.getKey(), 0F) + x.getValue());
+            });
+
+        return req;
+    }
+
     public StatRequirement() {
     }
 
@@ -65,6 +80,7 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
     }
 
     public StatRequirement setWis(float req) {
+
         this.scaling_req.put(Wisdom.INSTANCE.GUID(), req);
         return this;
     }
@@ -120,6 +136,10 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
         }
 
         return list;
+    }
+
+    public boolean isEmpty() {
+        return this.base_req.isEmpty() && this.scaling_req.isEmpty();
     }
 
     static Text getTooltip(int req, Stat stat, EntityCap.UnitData data) {

@@ -162,7 +162,7 @@ public class CompatibleItemUtils {
 
                     GearItemData geardata = Gear.Load(s);
 
-                    geardata.level = MathHelper.clamp(geardata.level, data.MIN_LEVEL, data.MAX_LEVEL);
+                    geardata.lvl = MathHelper.clamp(geardata.lvl, data.MIN_LEVEL, data.MAX_LEVEL);
 
                     Gear.Save(stack, geardata);
 

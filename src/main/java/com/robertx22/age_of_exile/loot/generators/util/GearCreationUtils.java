@@ -30,7 +30,7 @@ public class GearCreationUtils {
 
         data.gear_type = blueprint.gearItemSlot.get()
             .GUID();
-        data.level = blueprint.level.get();
+        data.lvl = blueprint.level.get();
         data.rarity = rarity.GUID();
 
         if (rarity.is_unique_item) {
@@ -47,8 +47,8 @@ public class GearCreationUtils {
                     .get(unique.uniqueRarity)
                     .GUID();
 
-                data.is_unique = true;
-                data.unique_id = unique.GUID();
+                data.is_uniq = true;
+                data.uniq_id = unique.GUID();
                 data.uniqueStats = new UniqueStatsData();
                 data.uniqueStats.RerollFully(data);
 
@@ -60,7 +60,7 @@ public class GearCreationUtils {
         data.baseStats = new BaseStatsData();
         data.baseStats.RerollFully(data);
 
-        data.implicitStats.RerollFully(data);
+        data.implicit.RerollFully(data);
 
         data.affixes.randomize(data);
 

@@ -41,7 +41,7 @@ public class LootUtils {
                 return stack;
             }
 
-            boolean isnewbie = LevelUtils.getMaxLevelMultiplier(gear.level) < 0.2F;
+            boolean isnewbie = LevelUtils.getMaxLevelMultiplier(gear.lvl) < 0.2F;
 
             float dmgMulti = (float) RandomUtils.RandomRange(
                 rar.SpawnDurabilityHit().min, rar.SpawnDurabilityHit().max) / (float) 100;

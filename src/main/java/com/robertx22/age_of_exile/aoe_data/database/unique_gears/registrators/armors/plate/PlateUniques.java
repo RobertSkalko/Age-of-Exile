@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lif
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -38,6 +39,8 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(2, 10, Armor.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(10, 40, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setVit(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -52,6 +55,8 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(1, 1, EffectImmunity.HUNGER, ModType.FLAT),
                 new StatModifier(-15, -5, TreasureQuantity.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setVit(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -66,6 +71,8 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Thunder), ModType.FLAT)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setVit(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -78,6 +85,8 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
                 new StatModifier(50, 100, Lifesteal.getInstance(), ModType.LOCAL_INCREASE)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setVit(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -91,6 +100,8 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(25, 50, CriticalDamage.getInstance(), ModType.FLAT),
                 new StatModifier(-100, -100, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE)
             ))
+            .req(new StatRequirement().setStr(0.5F)
+                .setVit(0.75F))
             .build();
 
     }

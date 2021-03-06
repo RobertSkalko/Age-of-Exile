@@ -34,16 +34,16 @@ public class TooltipUtils {
 
         tip.add(new SText(""));
 
-        if (data.getLevel() >= gear.level) {
+        if (data.getLevel() >= gear.lvl) {
             tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
-                .append(Formatting.GRAY + " Level Min: " + gear.level + " "));
+                .append(Formatting.GRAY + " Level Min: " + gear.lvl + " "));
 
         } else {
-            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY).append(Formatting.GRAY + " Level Min: " + gear.level + " ")
+            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY).append(Formatting.GRAY + " Level Min: " + gear.lvl + " ")
             );
         }
         tip.addAll(gear.getRequirement()
-            .GetTooltipString(gear.level, data)); // todo doesnt allow for uniques to add req
+            .GetTooltipString(gear.lvl, data)); // todo doesnt allow for uniques to add req
         tip.add(new SText(""));
     }
 

@@ -61,8 +61,8 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
         gear.GetBaseGearType()
             .implicitStats()
             .forEach(x -> {
-                ExactStatData exact = x.ToExactStat(percent, gear.level);
-                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, gear.level));
+                ExactStatData exact = x.ToExactStat(percent, gear.lvl);
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, gear.lvl));
             });
         return list;
     }
@@ -72,7 +72,7 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
         return gear.GetBaseGearType()
             .implicitStats()
             .stream()
-            .map(x -> x.ToExactStat(percent, gear.level))
+            .map(x -> x.ToExactStat(percent, gear.lvl))
             .collect(Collectors.toList());
     }
 }

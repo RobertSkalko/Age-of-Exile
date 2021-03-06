@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFi
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.tag.EntityTypeTags;
@@ -32,6 +33,8 @@ public class JewelryMIs implements ISlashRegistryInit {
                 new StatModifier(5, 10, Mana.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
             ))
+            .req(new StatRequirement().setWis(0.5F)
+                .setAgi(0.25F))
             .setMI()
             .dropFilter(DropFilterData.of(new MobTagFilter(), EntityTypeTags.SKELETONS.getId()
                 .toString()))
@@ -43,6 +46,8 @@ public class JewelryMIs implements ISlashRegistryInit {
             "Bonechill Amulet",
             "",
             BaseGearJewelry.ALL_RES_NECKLACE.values())
+            .req(new StatRequirement().setWis(0.5F)
+                .setAgi(0.25F))
             .stats(Arrays.asList(
                 new StatModifier(5, 12, Health.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 12, Mana.getInstance(), ModType.LOCAL_INCREASE),

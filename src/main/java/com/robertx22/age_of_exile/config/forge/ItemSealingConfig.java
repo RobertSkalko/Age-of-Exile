@@ -20,13 +20,13 @@ public class ItemSealingConfig {
         if (!ENABLE_SEALING_FEATURE) {
             return 0;
         }
-        if (gear.level < START_AT_LEVEL) {
+        if (gear.lvl < START_AT_LEVEL) {
             return 0;
         }
 
         float num = effect.getInstability();
 
-        float multi = BASE_INSTABILITY_MULTI + (LevelUtils.getMaxLevelMultiplier(gear.level) * EXTRA_INSTABILITY_MULTI_AT_MAX_LEVEL);
+        float multi = BASE_INSTABILITY_MULTI + (LevelUtils.getMaxLevelMultiplier(gear.lvl) * EXTRA_INSTABILITY_MULTI_AT_MAX_LEVEL);
 
         num *= multi;
 
@@ -37,7 +37,7 @@ public class ItemSealingConfig {
         if (!ENABLE_SEALING_FEATURE) {
             return 0;
         }
-        if (gear.level < START_AT_LEVEL) {
+        if (gear.lvl < START_AT_LEVEL) {
             return 0;
         }
 

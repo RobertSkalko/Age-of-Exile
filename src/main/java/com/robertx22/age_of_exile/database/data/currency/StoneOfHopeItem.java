@@ -53,7 +53,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
         GearItemData gear = Gear.Load(stack);
 
-        GearBlueprint blueprint = new GearBlueprint(gear.level);
+        GearBlueprint blueprint = new GearBlueprint(gear.lvl);
         blueprint.gearItemSlot.set(gear.gear_type);
         blueprint.rarity.set(gear.getRarity()
             .getHigherRarity());

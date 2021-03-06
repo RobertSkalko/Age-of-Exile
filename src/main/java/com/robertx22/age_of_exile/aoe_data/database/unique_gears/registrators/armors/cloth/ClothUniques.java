@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -37,6 +38,8 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(10, 30, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(1, 2, RegeneratePercentStat.MANA, ModType.FLAT)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -51,6 +54,8 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(-15, 15, TreasureQuality.getInstance(), ModType.FLAT),
                 new StatModifier(-15, 15, TreasureQuantity.getInstance(), ModType.FLAT)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -65,6 +70,8 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(10, 20, new ElementalPenetration(Elements.Water), ModType.FLAT),
                 new StatModifier(5, 15, ChanceToApplyEffect.FROSTBURN, ModType.FLAT)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setWis(0.75F))
             .build();
 
         UniqueGearBuilder.of(
@@ -79,6 +86,8 @@ public class ClothUniques implements ISlashRegistryInit {
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Nature), ModType.FLAT)
             ))
+            .req(new StatRequirement().setInt(0.5F)
+                .setWis(0.75F))
             .build();
 
     }

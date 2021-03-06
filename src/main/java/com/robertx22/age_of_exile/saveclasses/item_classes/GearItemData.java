@@ -41,7 +41,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public BaseStatsData baseStats = new BaseStatsData();
     @Store
-    public ImplicitStatsData implicitStats = new ImplicitStatsData();
+    public ImplicitStatsData implicit = new ImplicitStatsData();
     @Store
     public GearAffixesData affixes = new GearAffixesData();
     @Store
@@ -54,10 +54,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     // i added rename ideas to comments. As tiny as possible while still allowing people to understand kinda what it is
     // apparently people had big issues with many storage mods, So i should try minimize the nbt.
     @Store
-    public boolean is_unique = false; // isuniq
+    public boolean is_uniq = false; // isuniq
 
     @Store
-    public String unique_id = ""; // uniq_id
+    public String uniq_id = ""; // uniq_id
 
     @Store
     public String rarity = IRarity.COMMON_ID; // rar
@@ -68,7 +68,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public int rare_suffix = -1; // suf_name
 
     @Store
-    public int level = 1; // lvl
+    public int lvl = 1; // lvl
 
     @Store
     public String gear_type = "";
@@ -94,14 +94,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean canPlayerWear(EntityCap.UnitData data) {
 
-        if (level > data.getLevel()) {
+        if (lvl > data.getLevel()) {
             return false;
         }
 
-        int gearlvlreq = GetBaseGearType().getLevelRange()
-            .getMinLevel();
-
-        return getRequirement().meetsReq(gearlvlreq, data);
+        return getRequirement().meetsReq(lvl, data);
 
     }
 
@@ -124,8 +121,12 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public StatRequirement getRequirement() {
         StatRequirement req = new StatRequirement(GetBaseGearType().getStatRequirements());
 
-        // todo add unique req;
-
+        if (Database.UniqueGears()
+            .isRegistered(this.uniq_id)) {
+            UniqueGear uniq = Database.UniqueGears()
+                .get(uniq_id);
+            return new StatRequirement(uniq.stat_req);
+        }
         return req;
     }
 
@@ -171,9 +172,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     // used when upgrading item rarity
     public Item getItem() {
-        if (is_unique) {
+        if (is_uniq) {
             return Database.UniqueGears()
-                .get(unique_id)
+                .get(uniq_id)
                 .getUniqueItem();
         } else {
             if (gear_type.isEmpty()) {
@@ -363,7 +364,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             IfNotNullAdd(baseStats, list);
         }
 
-        IfNotNullAdd(implicitStats, list);
+        IfNotNullAdd(implicit, list);
 
         affixes.getAllAffixesAndSockets()
             .forEach(x -> IfNotNullAdd(x, list));
@@ -412,7 +413,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         affixes.getAllAffixesAndSockets()
             .forEach(x -> IfNotNullAdd(x, list));
 
-        list.add(implicitStats);
+        list.add(implicit);
 
         IfNotNullAdd(uniqueStats, list);
         return list;
@@ -485,7 +486,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean isBetterThan(GearItemData other) {
 
-        if (other.level > level + 10) {
+        if (other.lvl > lvl + 10) {
             return false;
         }
         return getRarity()

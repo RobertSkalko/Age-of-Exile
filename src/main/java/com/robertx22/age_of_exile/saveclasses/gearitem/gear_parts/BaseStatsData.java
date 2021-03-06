@@ -36,14 +36,14 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         percents = new ArrayList<>();
         this.gear_type = gear.gear_type;
 
-        gear.GetBaseGearType()
-            .baseStats()
-            .forEach(x -> percents.add(getMinMax(gear).random()));
+        for (int i = 0; i < 8; i++) {
+            percents.add(getMinMax(gear).random());
 
-        gear.rare_prefix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.prefixAny
-            .keySet()));
-        gear.rare_suffix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.getSuffixMap(gear.GetBaseGearType())
-            .keySet()));
+            gear.rare_prefix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.prefixAny
+                .keySet()));
+            gear.rare_suffix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.getSuffixMap(gear.GetBaseGearType())
+                .keySet()));
+        }
 
     }
 
@@ -70,12 +70,37 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         List<StatModifier> stats = Database.GearTypes()
             .get(this.gear_type).base_stats;
 
+        int index = 0;
+
         for (int i = 0; i < this.percents.size(); i++) {
-            if (stats.size() > i && all.size() > i) {
-                int perc = percents.get(i);
-                pairs.add(new Pair(stats.get(i)
-                    .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), stats.get(i), gear.level))));
+
+            if (all.size() > i) {
+
+                if (stats.size() > i) {
+                    int perc = percents.get(i);
+
+                    if (stats.size() > i) {
+                        pairs.add(new Pair(stats.get(i)
+                            .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), stats.get(i), gear.lvl))));
+                    }
+
+                } else {
+                    if (gear.isUnique()) {
+
+                        List<StatModifier> uniq = gear.uniqueStats.getUnique(gear)
+                            .base_stats;
+                        int perc = percents.get(i);
+
+                        if (uniq.size() > index) {
+                            pairs.add(new Pair(uniq.get(index)
+                                .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), uniq.get(index), gear.lvl))));
+                        }
+                        index++;
+
+                    }
+                }
             }
+
         }
 
         pairs.sort(Comparator.comparingInt(x -> x.getLeft().baseStatTooltipOrder));
@@ -105,9 +130,19 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
             for (StatModifier mod : Database.GearTypes()
                 .get(gear_type)
                 .baseStats()) {
-                local.add(mod.ToExactStat(percents.get(i), gear.level));
+                local.add(mod.ToExactStat(percents.get(i), gear.lvl));
                 i++;
             }
+
+            if (gear.isUnique()) {
+                int n = 0;
+                for (StatModifier mod : gear.uniqueStats.getUnique(gear)
+                    .base_stats) {
+                    local.add(mod.ToExactStat(percents.get(n), gear.lvl));
+                    n++;
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
