@@ -26,7 +26,7 @@ public class LeatherUniques implements ISlashRegistryInit {
             BaseLeatherArmors.CHESTS.get(LevelRanges.ENDGAME))
             .stats(Arrays.asList(
                 new StatModifier(2, 5, DodgeRating.getInstance(), ModType.FLAT),
-                new StatModifier(10, 40, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(10, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 20, CriticalHit.getInstance(), ModType.FLAT)
             ))
             .req(new StatRequirement().setDex(0.5F)
@@ -40,7 +40,7 @@ public class LeatherUniques implements ISlashRegistryInit {
             "His eyes like black holes, his armor had the color of horizon.",
             BaseLeatherArmors.CHESTS.get(LevelRanges.MIDDLE))
             .stats(Arrays.asList(
-                new StatModifier(10, 100, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(5, 15, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(2, 10, CriticalHit.getInstance(), ModType.FLAT),
                 new StatModifier(25, 25, CriticalDamage.getInstance(), ModType.FLAT)))
             .req(new StatRequirement().setDex(0.5F)

@@ -35,6 +35,8 @@ yetis
 snakes
 of_the_wind
 of_treasure
+crit_prefix
+physical_wep_dmg
 water_wep_dmg_jewelry
 of_the_troll
 scavanger
@@ -45,7 +47,6 @@ of_vampirism
 of_steadiness
 water_wep_dmg
 of_less_cd
-tyrannical
 vampiric
 thunder_ele_dmg_jewelry
 of_spirit_markings

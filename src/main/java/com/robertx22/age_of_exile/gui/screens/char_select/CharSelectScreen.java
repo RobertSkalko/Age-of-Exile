@@ -82,6 +82,10 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
             slots = 3;
         }
 
+        if (slots > ModConfig.get().Server.MAX_CHARACTERS) {
+            slots = ModConfig.get().Server.MAX_CHARACTERS;
+        }
+
         x = (this.width - (CharButton.xSize + 5) * slots) / 2;
 
         this.addButton(new RaceSelectScreen.LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true));

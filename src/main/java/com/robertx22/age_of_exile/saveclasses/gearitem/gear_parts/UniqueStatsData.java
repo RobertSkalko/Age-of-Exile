@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
-import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.text.Text;
@@ -54,7 +53,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
         List<Text> list = new ArrayList<Text>();
 
-        list.add(new SText(""));
+        //list.add(new SText(""));
 
         getAllStatsWithCtx(gear, info).forEach(x -> list.addAll(x.GetTooltipString(info)));
 

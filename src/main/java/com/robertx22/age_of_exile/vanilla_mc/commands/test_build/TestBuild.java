@@ -27,22 +27,21 @@ public class TestBuild {
 
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .then(literal("test").requires(e -> e.hasPermissionLevel(2))
-                    .then(literal("replace_equipped_gear")
-                        .requires(e -> e.hasPermissionLevel(2))
-                        .then(argument("target", EntityArgumentType.player())
-                            .then(argument("tag", StringArgumentType.word())
-                                .suggests(new SlotTagSuggestions())
-                                .then(argument("level", IntegerArgumentType.integer())
-                                    .then(argument("rarity", StringArgumentType
-                                        .word()).suggests(new GearRaritySuggestions())
-                                        .executes(e -> execute(e.getSource(), EntityArgumentType
-                                            .getPlayer(e, "target"), StringArgumentType
-                                            .getString(e, "tag"), IntegerArgumentType
-                                            .getInteger(e, "level"), StringArgumentType
-                                            .getString(e, "rarity")
+                .then(literal("dev_replace_equipped_gear").requires(e -> e.hasPermissionLevel(2))
+                    .requires(e -> e.hasPermissionLevel(2))
+                    .then(argument("target", EntityArgumentType.player())
+                        .then(argument("tag", StringArgumentType.word())
+                            .suggests(new SlotTagSuggestions())
+                            .then(argument("level", IntegerArgumentType.integer())
+                                .then(argument("rarity", StringArgumentType
+                                    .word()).suggests(new GearRaritySuggestions())
+                                    .executes(e -> execute(e.getSource(), EntityArgumentType
+                                        .getPlayer(e, "target"), StringArgumentType
+                                        .getString(e, "tag"), IntegerArgumentType
+                                        .getInteger(e, "level"), StringArgumentType
+                                        .getString(e, "rarity")
 
-                                        )))))))));
+                                    ))))))));
     }
 
     private static int execute(ServerCommandSource commandSource, PlayerEntity player,

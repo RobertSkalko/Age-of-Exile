@@ -37,7 +37,7 @@ public class PlateUniques implements ISlashRegistryInit {
             BasePlateArmors.CHESTS.get(LevelRanges.MIDDLE))
             .stats(Arrays.asList(
                 new StatModifier(2, 10, Armor.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(10, 40, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+                new StatModifier(10, 30, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
             ))
             .req(new StatRequirement().setStr(0.5F)
                 .setVit(0.75F))
@@ -66,7 +66,7 @@ public class PlateUniques implements ISlashRegistryInit {
             "The only thing that's missing is the horse.",
             BasePlateArmors.HELMETS.get(LevelRanges.HIGH))
             .stats(Arrays.asList(
-                new StatModifier(20, 80, Armor.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(15, 30, Armor.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 25, new SpecificWeaponDamage(WeaponTypes.Sword), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Thunder), ModType.FLAT)

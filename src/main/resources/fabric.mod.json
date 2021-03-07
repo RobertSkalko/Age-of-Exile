@@ -37,6 +37,7 @@
     "minecraft": ">=1.16.2",
     "curios": ">=0.0.10-1.16.3",
     "library_of_exile": ">=1.0.6",
+    "world_of_exile": ">=1.2.0",
     "cloth-config2": "*",
     "autoconfig1u": "*",
     "patchouli": "*",

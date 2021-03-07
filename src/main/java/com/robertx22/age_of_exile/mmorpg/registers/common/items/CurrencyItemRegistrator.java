@@ -15,6 +15,7 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
 
     public CurrencyItem ORB_OF_TRANSMUTATION = of(new OrbOfTransmutationItem());
     public CurrencyItem CLEAR_CORRUPTION = of(new ClearCorruptionItem());
+    public CurrencyItem REROLL_INTO_SOCKET = of(new RerollAffixIntoSocket());
     public CurrencyItem CRYSTAL_OF_PURIFICATION = of(new CrystalOfPurificationItem());
     public CurrencyItem CRYSTAL_OF_TRUTH = of(new CrystalOfTruth());
     public CurrencyItem CLEAR_RUNES = of(new ClearSocketsItem());

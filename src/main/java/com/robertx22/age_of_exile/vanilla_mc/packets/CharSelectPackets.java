@@ -1,11 +1,13 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
+import com.robertx22.age_of_exile.capability.player.data.OnePlayerCharData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
 public class CharSelectPackets extends MyPacket<CharSelectPackets> {
@@ -47,7 +49,13 @@ public class CharSelectPackets extends MyPacket<CharSelectPackets> {
         PlayerEntity p = ctx.getPlayer();
 
         if (action == Action.DELETE) {
-            Load.characters(p).data.characters.remove(num);
+            OnePlayerCharData data = Load.characters(p).data.characters.get(num);
+            if (data.gearIsEmpty()) {
+                Load.characters(p).data.characters.remove(num);
+            } else {
+                ctx.getPlayer()
+                    .sendMessage(new LiteralText("You can't delete a character that is wearing gear."), false);
+            }
         } else if (action == Action.LOAD) {
             Load.characters(p).data.load(num, p);
         }

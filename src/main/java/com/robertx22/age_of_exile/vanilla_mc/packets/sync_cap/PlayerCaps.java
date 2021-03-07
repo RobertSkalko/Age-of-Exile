@@ -59,7 +59,7 @@ public enum PlayerCaps {
 
         @Override
         public boolean shouldSaveToPlayerCharacter() {
-            return false;
+            return true;
         }
     },
     CHARACTERS {

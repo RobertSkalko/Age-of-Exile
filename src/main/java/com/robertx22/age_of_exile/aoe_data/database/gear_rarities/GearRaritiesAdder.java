@@ -97,7 +97,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mythic.addToSerializables();
 
         GearRarity mi = new GearRarity();
-        mi.unidentified_chance = 0;
+        mi.unidentified_chance = 100;
         mi.stat_req_multi = 1F;
         mi.default_stat_percents = new MinMax(0, 100);
         mi.affix_stat_percents = new MinMax(80, 100);
@@ -112,7 +112,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mi.addToSerializables();
 
         GearRarity unique = new GearRarity();
-        unique.unidentified_chance = 25;
+        unique.unidentified_chance = 100;
         unique.stat_req_multi = 1;
         unique.spawn_durability_hit = new MinMax(60, 80);
         unique.affixes = new GearRarity.Part(0, 0, 0);

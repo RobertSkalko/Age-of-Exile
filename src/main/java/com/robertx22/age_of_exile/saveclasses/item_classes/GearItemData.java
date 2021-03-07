@@ -233,6 +233,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return Arrays.asList();
     }
 
+    public boolean uniqueBaseStatsReplaceBaseStats() {
+        return uniqueStats != null && this.uniqueStats.getUnique(this) != null && !uniqueStats.getUnique(this).base_stats.isEmpty();
+    }
+
     private List<MutableText> getFullAffixedName() {
         List<MutableText> list = new ArrayList<>();
         Formatting format = this.getRarity()

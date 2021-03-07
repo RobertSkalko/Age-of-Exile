@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders;
 
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
+import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -8,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -37,7 +37,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .weaponType(WeaponTypes.Bow)
             .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
-            .baseStat(new StatModifier(1, 2, 2, 4, new AttackDamage(Elements.Physical), ModType.FLAT))
+            .baseStat(DataHelper.getAttackDamageStat(WeaponTypes.Bow, DataHelper.Number.FULL, Elements.Physical))
             .attackStyle(AttackPlayStyle.RANGED)
             .addHunterLevelRanges()
             .build();
@@ -46,7 +46,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .weaponType(WeaponTypes.CrossBow)
             .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
-            .baseStat(new StatModifier(1, 1.5F, 1.5F, 3, new AttackDamage(Elements.Physical), ModType.FLAT))
+            .baseStat(DataHelper.getAttackDamageStat(WeaponTypes.CrossBow, DataHelper.Number.FULL, Elements.Physical))
             .attackStyle(AttackPlayStyle.RANGED)
             .addHunterLevelRanges()
             .build();
@@ -56,7 +56,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .weaponType(WeaponTypes.Axe)
             .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.axe, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
-            .baseStat(new StatModifier(2, 3, 4, 8, new AttackDamage(Elements.Physical), ModType.FLAT))
+            .baseStat(DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.FULL, Elements.Physical))
             .attackStyle(AttackPlayStyle.MELEE)
             .addWarriorLevelRanges()
 
@@ -68,7 +68,9 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setStr(0.3F)
                 .setDex(0.1F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.sword, SlotTag.melee_weapon, SlotTag.weapon_family, SlotTag.strength, SlotTag.dexterity))
-            .baseStat(new StatModifier(2, 3, 2, 4, new AttackDamage(Elements.Physical), ModType.FLAT))
+
+            .baseStat(DataHelper.getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.FULL, Elements.Physical))
+
             .attackStyle(AttackPlayStyle.MELEE)
             .addWarriorLevelRanges()
             .build();
@@ -78,7 +80,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .weaponType(WeaponTypes.Wand)
             .req(new StatRequirement().setInt(0.5F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
-            .baseStat(new StatModifier(2, 3, 3, 6, new AttackDamage(Elements.Physical), ModType.FLAT))
+            .baseStat(DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Physical))
             .implicitStat(new StatModifier(3, 10, SpellDamage.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.MAGIC)
             .addMageWeaponLevelRanges()
@@ -91,7 +93,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .weaponType(WeaponTypes.Wand)
             .req(new StatRequirement().setInt(0.5F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
-            .baseStat(new StatModifier(2, 3, 3, 6, new AttackDamage(Elements.Physical), ModType.FLAT))
+            .baseStat(DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Physical))
             .implicitStat(new StatModifier(3, 10, HealPower.getInstance(), ModType.FLAT))
             .attackStyle(AttackPlayStyle.MELEE)
             .addMageWeaponLevelRanges()

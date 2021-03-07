@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators;
 
+import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
@@ -26,6 +27,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -43,8 +45,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Are you worthy, mortal?",
             BaseGearWeapons.AXE.get(LevelRanges.HIGH))
             .baseStats(Arrays.asList(
-                new StatModifier(1, 3, 3, 3, new AttackDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(1, 3, 3, 3, new AttackDamage(Elements.Fire), ModType.FLAT)
+                DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.HALF, Elements.Thunder),
+                DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.HALF, Elements.Fire)
             ))
             .stats(Arrays.asList(
                 new StatModifier(-30, 30, HealPower.getInstance(), ModType.FLAT),
@@ -61,8 +63,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "This thirst for blood only seems lower than it's desire to taste burning flesh.",
             BaseGearWeapons.AXE.get(LevelRanges.ENDGAME))
             .baseStats(Arrays.asList(
-                new StatModifier(3, 5, 5, 8, new AttackDamage(Elements.Fire), ModType.FLAT)
-            ))
+                DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.FULL, Elements.Fire))
+            )
             .stats(Arrays.asList(
                 new StatModifier(15, 50, CriticalHit.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(1, 3, PlusResourceOnKill.HEALTH, ModType.FLAT),
@@ -79,8 +81,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "The ability to wield thunder is said to come once in a millennium.",
             BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
             .baseStats(Arrays.asList(
-                new StatModifier(1, 1, 10, 15, new AttackDamage(Elements.Thunder), ModType.FLAT)
-            ))
+                DataHelper.getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.FULL, Elements.Thunder)))
             .stats(Arrays.asList(
                 new StatModifier(5, 15, ChanceToApplyEffect.SHOCK, ModType.FLAT),
                 new StatModifier(-20, 20, CriticalDamage.getInstance(), ModType.FLAT)
@@ -96,8 +97,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Essence lies in water.",
             BaseGearWeapons.SWORD.get(LevelRanges.HIGH))
             .baseStats(Arrays.asList(
-                new StatModifier(1, 3, 3, 8, new AttackDamage(Elements.Water), ModType.FLAT)
-            ))
+                DataHelper.getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.FULL, Elements.Water)))
             .stats(Arrays.asList(
                 new StatModifier(15, 30, new AttackDamage(Elements.Water), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.FROST, ModType.FLAT)
@@ -131,8 +131,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             BaseGearWeapons.SCEPTER.get(LevelRanges.ENDGAME))
 
             .baseStats(Arrays.asList(
-                new StatModifier(1, 3, 3, 5, new AttackDamage(Elements.Thunder), ModType.FLAT)
-            ))
+                DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Thunder)))
             .stats(Arrays.asList(
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),
@@ -149,8 +148,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Everything must be exactly as required.",
             BaseGearWeapons.SCEPTER.get(LevelRanges.HIGH))
             .baseStats(Arrays.asList(
-                new StatModifier(5, 5, 5, 5, new AttackDamage(Elements.Nature), ModType.FLAT)
-            ))
+                DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Nature)))
             .stats(Arrays.asList(
                 new StatModifier(10, 30, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(2, 10, new ElementalPenetration(Elements.Nature), ModType.FLAT),
@@ -195,8 +193,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Found in a deep pit of ice. Many wands were shattered in attempts to imbue it.",
             BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
             .baseStats(Arrays.asList(
-                new StatModifier(1, 1, 3, 3, new AttackDamage(Elements.Water), ModType.FLAT)
-            ))
+                DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Water)))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, ProjectileSpeed.getInstance(), ModType.FLAT),
                 new StatModifier(5, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT),
@@ -214,8 +211,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "The ability to carry any burden is a heavy one.",
             BaseGearWeapons.WAND.get(LevelRanges.ENDGAME))
             .baseStats(Arrays.asList(
-                new StatModifier(3, 3, 3, 6, new AttackDamage(Elements.Nature), ModType.FLAT)
-            ))
+                DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Nature)))
             .stats(Arrays.asList(
                 new StatModifier(15, 30, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
                 new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),

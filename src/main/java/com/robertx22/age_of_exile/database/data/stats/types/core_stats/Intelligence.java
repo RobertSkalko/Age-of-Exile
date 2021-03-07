@@ -12,7 +12,7 @@ public class Intelligence extends BaseCoreStat {
 
     private Intelligence() {
         super(Arrays.asList(
-            new OptScaleExactStat(1, 1, SpellDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(0.2F, 0.2F, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(0.25F, 0.25F, SpellCriticalHit.getInstance(), ModType.FLAT)
         ));
         this.statGroup = StatGroup.CORE;

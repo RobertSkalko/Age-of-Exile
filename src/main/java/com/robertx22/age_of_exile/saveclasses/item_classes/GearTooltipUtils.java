@@ -90,7 +90,7 @@ public class GearTooltipUtils {
             tip.addAll(gear.implicit.GetTooltipString(info, gear));
         }
 
-        tip.add(new LiteralText(""));
+        // tip.add(new LiteralText(""));
 
         List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
 
@@ -98,7 +98,7 @@ public class GearTooltipUtils {
             tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
         }
 
-        tip.add(new LiteralText(""));
+        //tip.add(new LiteralText(""));
 
         if (info.useInDepthStats()) {
             tip.addAll(gear.affixes.GetTooltipString(info, gear));

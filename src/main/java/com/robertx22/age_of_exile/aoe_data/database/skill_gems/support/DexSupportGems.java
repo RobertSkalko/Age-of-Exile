@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.PiercingProjectile;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileAmountStat;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -24,18 +23,6 @@ public class DexSupportGems implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        SkillGemBuilder.of("minor_multi_proj", "Minor Multiple Projectiles Support",
-            new StatRequirement().setBaseDex(20)
-                .setDex(0.2F),
-            StatAttribute.DEX, 2,
-            Arrays.asList(SkillGemTag.PROJECTILE),
-            new StatModifier(2, 2, ProjectileAmountStat.getInstance())
-        );
-        SkillGemBuilder.of("major_multi_proj", "Major Multiple Projectiles Support", new StatRequirement().setBaseDex(20)
-                .setDex(0.4F), StatAttribute.DEX, 4,
-            Arrays.asList(SkillGemTag.PROJECTILE),
-            new StatModifier(4, 4, ProjectileAmountStat.getInstance())
-        );
         SkillGemBuilder.of("piercing_proj", "Piercing Projectiles Support", new StatRequirement().setBaseDex(20)
                 .setDex(0.2F), StatAttribute.DEX, 1.5F,
             Arrays.asList(SkillGemTag.PROJECTILE),

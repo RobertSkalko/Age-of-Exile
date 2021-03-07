@@ -70,32 +70,26 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         List<StatModifier> stats = Database.GearTypes()
             .get(this.gear_type).base_stats;
 
-        int index = 0;
-
         for (int i = 0; i < this.percents.size(); i++) {
 
             if (all.size() > i) {
 
-                if (stats.size() > i) {
-                    int perc = percents.get(i);
+                int perc = percents.get(i);
 
+                if (gear.uniqueBaseStatsReplaceBaseStats()) {
+
+                    List<StatModifier> uniq = gear.uniqueStats.getUnique(gear)
+                        .base_stats;
+
+                    if (uniq.size() > i) {
+                        pairs.add(new Pair(uniq.get(i)
+                            .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), uniq.get(i), gear.lvl))));
+                    }
+                } else {
                     if (stats.size() > i) {
+
                         pairs.add(new Pair(stats.get(i)
                             .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), stats.get(i), gear.lvl))));
-                    }
-
-                } else {
-                    if (gear.isUnique()) {
-
-                        List<StatModifier> uniq = gear.uniqueStats.getUnique(gear)
-                            .base_stats;
-                        int perc = percents.get(i);
-
-                        if (uniq.size() > index) {
-                            pairs.add(new Pair(uniq.get(index)
-                                .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), uniq.get(index), gear.lvl))));
-                        }
-                        index++;
 
                     }
                 }
@@ -126,15 +120,16 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         List<ExactStatData> local = new ArrayList<>();
 
         try {
-            int i = 0;
-            for (StatModifier mod : Database.GearTypes()
-                .get(gear_type)
-                .baseStats()) {
-                local.add(mod.ToExactStat(percents.get(i), gear.lvl));
-                i++;
-            }
 
-            if (gear.isUnique()) {
+            if (!gear.uniqueBaseStatsReplaceBaseStats()) {
+                int i = 0;
+                for (StatModifier mod : Database.GearTypes()
+                    .get(gear_type)
+                    .baseStats()) {
+                    local.add(mod.ToExactStat(percents.get(i), gear.lvl));
+                    i++;
+                }
+            } else {
                 int n = 0;
                 for (StatModifier mod : gear.uniqueStats.getUnique(gear)
                     .base_stats) {

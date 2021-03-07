@@ -51,6 +51,11 @@ public class OnePlayerCharData {
     public CompoundTag n = null;
     // saved gear stacks
 
+    public boolean gearIsEmpty() {
+        return wep == null && f == null && p == null && c == null
+            && h == null && o == null && r1 == null && r2 == null && n == null;
+    }
+
     @Store
     public HashMap<PlayerCaps, CompoundTag> map = new HashMap<>();
 
