@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -29,12 +29,11 @@ public class CalculatedSpellData implements ITooltipList {
 
     }
 
-    public static CalculatedSpellData create(LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig) {
+    public static CalculatedSpellData create(SkillGemData gem, LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig) {
         CalculatedSpellData data = new CalculatedSpellData();
         data.spell_id = spell.GUID();
         data.config = spellConfig;
-        data.level = Load.Unit(caster)
-            .getLevel();
+        data.level = gem == null ? 1 : gem.lvl;
         return data;
 
     }

@@ -73,7 +73,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(TRICKERY, "Trickery", EffectType.BENEFICIAL)
-            .stat(40, DodgeRating.getInstance(), ModType.FLAT)
+            .stat(5, DodgeRating.getInstance(), ModType.FLAT)
             .stat(10, CriticalHit.getInstance(), ModType.FLAT)
             .build();
 
@@ -89,8 +89,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(THORN_ARMOR, "Thorn Armor", EffectType.BENEFICIAL)
             .stat(25, new ElementalResist(Elements.Nature), ModType.FLAT)
-            .stat(25, Armor.getInstance(), ModType.FLAT)
-            .stat(25, DodgeRating.getInstance(), ModType.FLAT)
+            .stat(3, Armor.getInstance(), ModType.FLAT)
+            .stat(3, DodgeRating.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
@@ -103,7 +103,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(FROST_ARMOR, "Frost Armor", EffectType.BENEFICIAL)
             .stat(10, new ElementalResist(Elements.Water), ModType.FLAT)
-            .stat(50, Armor.getInstance(), ModType.FLAT)
+            .stat(5, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.FROSTBURN, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
@@ -121,7 +121,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(DIVINE_SHIELD, "Divine Shield", EffectType.BENEFICIAL)
             .stat(25, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .stat(75, Armor.getInstance(), ModType.FLAT)
+            .stat(7, Armor.getInstance(), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(POISON_WEAPONS, "Poison Attack", EffectType.BENEFICIAL)

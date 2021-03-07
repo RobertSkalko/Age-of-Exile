@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -27,11 +28,11 @@ public class AttachedSpell {
         return entity_components.get(en);
     }
 
-    public List<MutableText> getTooltipForEntity(TooltipInfo info, AttachedSpell spell, String en) {
+    public List<MutableText> getTooltipForEntity(TooltipInfo info, AttachedSpell spell, String en, CalculatedSpellData spelldata) {
         List<MutableText> list = new ArrayList<>();
 
         for (ComponentPart part : spell.getDataForEntity(en)) {
-            List<MutableText> tip = part.GetTooltipString(info, spell)
+            List<MutableText> tip = part.GetTooltipString(info, spell, spelldata)
                 .stream()
                 .map(x -> new LiteralText(Formatting.RED + " * ").append(x))
                 .collect(Collectors.toList());
@@ -42,18 +43,18 @@ public class AttachedSpell {
         return list;
     }
 
-    public List<Text> getTooltip() {
+    public List<Text> getTooltip(CalculatedSpellData spelldata) {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<Text> list = new ArrayList<>();
-        on_cast.forEach(x -> list.addAll(x.GetTooltipString(info, this)));
+        on_cast.forEach(x -> list.addAll(x.GetTooltipString(info, this, spelldata)));
         return list;
     }
 
-    public List<Text> getEffectTooltip() {
+    public List<Text> getEffectTooltip(CalculatedSpellData spelldata) {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<Text> list = new ArrayList<>();
         entity_components.values()
-            .forEach(x -> x.forEach(e -> list.addAll(e.GetTooltipString(info, this))));
+            .forEach(x -> x.forEach(e -> list.addAll(e.GetTooltipString(info, this, spelldata))));
         return list;
     }
 

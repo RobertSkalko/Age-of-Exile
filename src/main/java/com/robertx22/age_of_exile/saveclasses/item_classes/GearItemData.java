@@ -246,7 +246,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         if (affixes.hasPrefix()) {
 
-            AffixData prefix = affixes.prefixes.get(0);
+            AffixData prefix = affixes.pre.get(0);
 
             text
                 .append(prefix.BaseAffix()
@@ -262,7 +262,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         }
 
         if (affixes.hasSuffix()) {
-            AffixData suffix = affixes.suffixes.get(0);
+            AffixData suffix = affixes.suf.get(0);
             text.append(" ")
                 .append(suffix.BaseAffix()
                     .locName());

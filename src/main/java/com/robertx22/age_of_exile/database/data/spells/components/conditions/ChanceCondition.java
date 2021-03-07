@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTex
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -18,7 +19,7 @@ public class ChanceCondition extends EffectCondition implements ICTextTooltip {
     }
 
     @Override
-    public MutableText getText(TooltipInfo info, MapHolder data) {
+    public MutableText getText(TooltipInfo info, MapHolder data, CalculatedSpellData spelldata) {
         MutableText text = new LiteralText("");
 
         Double chance = data.get(MapField.CHANCE);

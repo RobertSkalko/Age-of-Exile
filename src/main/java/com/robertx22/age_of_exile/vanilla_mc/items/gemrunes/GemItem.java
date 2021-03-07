@@ -115,11 +115,9 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         GearItemData gear = Gear.Load(stack);
 
         SocketData socket = new SocketData();
-        socket.gem_id = gem.identifier;
-        socket.level = gem.getEffectiveLevel();
-        socket.percent = RandomUtils.RandomRange(0, 100);
-        socket.slot_family = gear.GetBaseGearType()
-            .family();
+        socket.gem = gem.identifier;
+        socket.lvl = gem.getEffectiveLevel();
+        socket.perc = RandomUtils.RandomRange(0, 100);
 
         gear.sockets.sockets.add(socket);
 

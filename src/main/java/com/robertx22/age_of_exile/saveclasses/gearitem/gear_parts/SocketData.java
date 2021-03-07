@@ -24,19 +24,16 @@ import java.util.List;
 public class SocketData implements IGearPartTooltip, IStatsContainer {
 
     @Store
-    public BaseGearType.SlotFamily slot_family;
+    public Integer perc = -1;
 
     @Store
-    public Integer percent = -1;
+    public Integer lvl = 0;
 
     @Store
-    public Integer level = 0;
+    public String gem = "";
 
     @Store
-    public String gem_id = "";
-
-    @Store
-    public String rune_id = "";
+    public String rune = "";
 
     @Factory
     public SocketData() {
@@ -45,19 +42,22 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
 
+        BaseGearType.SlotFamily fam = gear.GetBaseGearType()
+            .family();
+
         if (isGem()) {
             getGem()
-                .getFor(this.slot_family)
+                .getFor(fam)
                 .forEach(x -> {
-                    ExactStatData exact = x.ToExactStat(this.percent, this.level);
-                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, this.level));
+                    ExactStatData exact = x.ToExactStat(this.perc, this.lvl);
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, this.lvl));
                 });
         } else if (isRune()) {
             getRune()
-                .getFor(this.slot_family)
+                .getFor(fam)
                 .forEach(x -> {
-                    ExactStatData exact = x.ToExactStat(this.percent, this.level);
-                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, this.level));
+                    ExactStatData exact = x.ToExactStat(this.perc, this.lvl);
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, this.lvl));
                 });
         }
 
@@ -65,7 +65,7 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     }
 
     public boolean isEmpty() {
-        return percent < 1;
+        return perc < 1;
     }
 
     public boolean isRune() {
@@ -90,9 +90,9 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
 
     public Gem getGem() {
         if (Database.Gems()
-            .isRegistered(gem_id)) {
+            .isRegistered(gem)) {
             return Database.Gems()
-                .get(gem_id);
+                .get(gem);
 
         }
         return null;
@@ -100,29 +100,31 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
 
     public Rune getRune() {
         if (Database.Runes()
-            .isRegistered(rune_id)) {
+            .isRegistered(rune)) {
             return Database.Runes()
-                .get(rune_id);
+                .get(rune);
         }
         return null;
     }
 
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
+        BaseGearType.SlotFamily fam = gear.GetBaseGearType()
+            .family();
 
         List<ExactStatData> stats = new ArrayList<>();
         try {
             if (isGem()) {
                 getGem()
-                    .getFor(this.slot_family)
+                    .getFor(fam)
                     .forEach(x -> {
-                        stats.add(x.ToExactStat(this.percent, this.level));
+                        stats.add(x.ToExactStat(this.perc, this.lvl));
                     });
             } else if (isRune()) {
                 getRune()
-                    .getFor(this.slot_family)
+                    .getFor(fam)
                     .forEach(x -> {
-                        stats.add(x.ToExactStat(this.percent, this.level));
+                        stats.add(x.ToExactStat(this.perc, this.lvl));
                     });
             }
 

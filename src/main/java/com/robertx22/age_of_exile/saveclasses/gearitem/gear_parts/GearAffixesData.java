@@ -18,14 +18,14 @@ import java.util.List;
 public class GearAffixesData implements IGearPartTooltip {
 
     @Store
-    public List<AffixData> suffixes = new ArrayList<>();
+    public List<AffixData> suf = new ArrayList<>();
     @Store
-    public List<AffixData> prefixes = new ArrayList<>();
+    public List<AffixData> pre = new ArrayList<>();
 
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
-        this.suffixes.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
-        this.prefixes.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
+        this.suf.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
+        this.pre.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
         return list;
     }
 
@@ -44,10 +44,10 @@ public class GearAffixesData implements IGearPartTooltip {
     }
 
     public void add(AffixData affix) {
-        if (affix.affixType.isSuffix()) {
-            suffixes.add(affix);
+        if (affix.type.isSuffix()) {
+            suf.add(affix);
         } else {
-            prefixes.add(affix);
+            pre.add(affix);
         }
     }
 
@@ -55,10 +55,10 @@ public class GearAffixesData implements IGearPartTooltip {
 
         int current;
         if (type == Affix.Type.prefix) {
-            current = prefixes
+            current = pre
                 .size();
         } else {
-            current = suffixes.size();
+            current = suf.size();
         }
 
         return current < getMaxAffixesPerType(gear);
@@ -66,11 +66,11 @@ public class GearAffixesData implements IGearPartTooltip {
     }
 
     public int getNumberOfPrefixes() {
-        return prefixes.size();
+        return pre.size();
     }
 
     public int getNumberOfSuffixes() {
-        return suffixes.size();
+        return suf.size();
     }
 
     public void randomize(GearItemData gear) {
@@ -84,14 +84,14 @@ public class GearAffixesData implements IGearPartTooltip {
                 .AffixChance())) {
                 AffixData suffix = new AffixData(Affix.Type.suffix);
                 suffix.RerollFully(gear);
-                suffixes.add(suffix);
+                suf.add(suffix);
             }
 
             if (RandomUtils.roll(rar
                 .AffixChance())) {
                 AffixData prefix = new AffixData(Affix.Type.prefix);
                 prefix.RerollFully(gear);
-                prefixes.add(prefix);
+                pre.add(prefix);
             }
         }
 
@@ -103,11 +103,11 @@ public class GearAffixesData implements IGearPartTooltip {
             if (getNumberOfPrefixes() > getNumberOfSuffixes()) {
                 AffixData suffix = new AffixData(Affix.Type.suffix);
                 suffix.RerollFully(gear);
-                suffixes.add(suffix);
+                suf.add(suffix);
             } else {
                 AffixData prefix = new AffixData(Affix.Type.prefix);
                 prefix.RerollFully(gear);
-                prefixes.add(prefix);
+                pre.add(prefix);
             }
 
             affixesToGen--;
@@ -126,8 +126,8 @@ public class GearAffixesData implements IGearPartTooltip {
     public List<AffixData> getAllAffixesAndSockets() {
         List<AffixData> list = new ArrayList<>();
 
-        list.addAll(prefixes);
-        list.addAll(suffixes);
+        list.addAll(pre);
+        list.addAll(suf);
 
         return list;
     }
@@ -138,7 +138,7 @@ public class GearAffixesData implements IGearPartTooltip {
 
     public boolean containsAffix(String id) {
         return getAllAffixesAndSockets().stream()
-            .anyMatch(x -> x.baseAffix.equals(id));
+            .anyMatch(x -> x.affix.equals(id));
     }
 
     public int getNumberOfAffixes() {

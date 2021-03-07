@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTex
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
@@ -25,13 +26,13 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
     }
 
     @Override
-    public MutableText getText(TooltipInfo info, MapHolder data) {
+    public MutableText getText(TooltipInfo info, MapHolder data, CalculatedSpellData spelldata) {
         MutableText text = new LiteralText("");
 
         ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
         text.append("Restore ")
-            .append(calc.getShortTooltip(info.unitdata))
+            .append(calc.getShortTooltip(spelldata.level))
             .append(" Mana");
 
         return text;
@@ -44,7 +45,7 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
         if (!ctx.world.isClient) {
             ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster);
+            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
             value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.HEALING);
 
             ResourcesData.Context hctx = new ResourcesData.Context(Load.Unit(ctx.caster), ctx.caster, ResourceType.MANA,

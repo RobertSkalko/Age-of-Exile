@@ -25,19 +25,19 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     // MAJOR NBT PROBLEM. RENAME ALL THESE
 
     @Store
-    public Integer percent = 0;
+    public Integer perc = 0;
 
     @Store
-    public String baseAffix;
+    public String affix;
 
     @Store
     public Integer tier = 10;
 
     @Store
-    public Affix.Type affixType;
+    public Affix.Type type;
 
     public AffixData(Affix.Type type) {
-        this.affixType = type;
+        this.type = type;
     }
 
     @Factory
@@ -45,11 +45,11 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     }
 
     public boolean isEmpty() {
-        return percent < 1;
+        return perc < 1;
     }
 
     public Affix.Type getAffixType() {
-        return affixType;
+        return type;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     public Affix getAffix() {
         return Database.Affixes()
-            .get(this.baseAffix);
+            .get(this.affix);
     }
 
     @Override
@@ -71,14 +71,14 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     @Override
     public void RerollNumbers(GearItemData gear) {
-        percent = getMinMax(gear)
+        perc = getMinMax(gear)
             .random();
 
     }
 
     public final Affix BaseAffix() {
         return Database.Affixes()
-            .get(baseAffix);
+            .get(affix);
     }
 
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
@@ -86,15 +86,15 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         this.BaseAffix()
             .getTierStats(tier)
             .forEach(x -> {
-                ExactStatData exact = x.ToExactStat(percent, gear.lvl);
-                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percent, info), x, gear.lvl));
+                ExactStatData exact = x.ToExactStat(perc, gear.lvl);
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, gear.lvl));
             });
         return list;
     }
 
     public boolean isValid() {
         if (!Database.Affixes()
-            .isRegistered(this.baseAffix)) {
+            .isRegistered(this.affix)) {
             return false;
         }
         if (this.isEmpty()) {
@@ -114,13 +114,13 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         return this.BaseAffix()
             .getTierStats(tier)
             .stream()
-            .map(x -> x.ToExactStat(percent, gear.lvl))
+            .map(x -> x.ToExactStat(perc, gear.lvl))
             .collect(Collectors.toList());
 
     }
 
     public void create(GearItemData gear, Affix suffix) {
-        baseAffix = suffix.GUID();
+        affix = suffix.GUID();
         this.tier = RandomUtils.weightedRandom(suffix.tier_map.values()).tier;
         RerollNumbers(gear);
     }
@@ -135,13 +135,13 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
                 .getFilterWrapped(x -> x.type == getAffixType() && gear.canGetAffix(x));
 
             if (list.list.isEmpty()) {
-                System.out.print("Gear Type: " + gear.gear_type + " affixtype: " + this.affixType.name());
+                System.out.print("Gear Type: " + gear.gear_type + " affixtype: " + this.type.name());
             }
 
             affix = list
                 .random();
         } catch (Exception e) {
-            System.out.print("Gear Type: " + gear.gear_type + " affixtype: " + this.affixType.name());
+            System.out.print("Gear Type: " + gear.gear_type + " affixtype: " + this.type.name());
             e.printStackTrace();
         }
 

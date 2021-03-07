@@ -30,7 +30,7 @@ public class SpellCastContext {
     public SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig;
 
     private void calcSpellData() {
-        this.calcData = CalculatedSpellData.create(caster, spell, spellConfig);
+        this.calcData = CalculatedSpellData.create(skillGemData, caster, spell, spellConfig);
     }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {

@@ -45,13 +45,13 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
         GearItemData gear = Gear.Load(stack);
         gear.is_cor = false;
 
-        Optional<AffixData> pre = gear.affixes.prefixes.stream()
+        Optional<AffixData> pre = gear.affixes.pre.stream()
             .filter(x -> x.getAffix()
                 .getTierStats(1)
                 .stream()
                 .anyMatch(e -> e.GetStat() instanceof MoreSocketsStat == false))
             .findAny();
-        Optional<AffixData> suf = gear.affixes.suffixes.stream()
+        Optional<AffixData> suf = gear.affixes.suf.stream()
             .filter(x -> x.getAffix()
                 .getTierStats(1)
                 .stream()
@@ -69,7 +69,7 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
         }
 
         if (data != null) {
-            Affix.Type type = data.affixType;
+            Affix.Type type = data.type;
 
             Affix affix = Database.Affixes()
                 .getFilterWrapped(x -> x.type == type)

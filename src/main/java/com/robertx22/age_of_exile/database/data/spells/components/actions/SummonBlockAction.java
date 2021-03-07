@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
@@ -28,14 +29,14 @@ public class SummonBlockAction extends SpellAction implements ICMainTooltip {
     static int SEARCH = 10;
 
     @Override
-    public List<MutableText> getLines(AttachedSpell spell, MapHolder data) {
+    public List<MutableText> getLines(AttachedSpell spell, MapHolder data, CalculatedSpellData spelldata) {
 
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<MutableText> list = new ArrayList<>();
 
         list.add(new LiteralText("Summon a block"));
 
-        list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME)));
+        list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME), spelldata));
 
         return list;
     }

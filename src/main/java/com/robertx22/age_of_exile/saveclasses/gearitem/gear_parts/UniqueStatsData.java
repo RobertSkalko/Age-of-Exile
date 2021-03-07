@@ -26,7 +26,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     }
 
     @Store
-    public List<Integer> percents = new ArrayList<Integer>();
+    public List<Integer> perc = new ArrayList<Integer>();
 
     @Override
     public void RerollFully(GearItemData gear) {
@@ -36,11 +36,11 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     @Override
     public void RerollNumbers(GearItemData gear) {
 
-        percents.clear();
+        perc.clear();
 
         // wont ever have more than 10 unique stats.
         for (int i = 0; i < 10; i++) {
-            percents.add(getMinMax(gear)
+            perc.add(getMinMax(gear)
                 .random());
         }
 
@@ -78,8 +78,8 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         for (StatModifier mod : Database.UniqueGears()
             .get(gear.uniq_id)
             .uniqueStats()) {
-            ExactStatData exact = mod.ToExactStat(percents.get(i), gear.lvl);
-            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, percents.get(i), info), mod, gear.lvl));
+            ExactStatData exact = mod.ToExactStat(perc.get(i), gear.lvl);
+            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc.get(i), info), mod, gear.lvl));
             i++;
         }
         return list;
@@ -94,7 +94,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         for (StatModifier mod : Database.UniqueGears()
             .get(gear.uniq_id)
             .uniqueStats()) {
-            list.add(mod.ToExactStat(percents.get(i), gear.lvl));
+            list.add(mod.ToExactStat(perc.get(i), gear.lvl));
             i++;
         }
         return list;

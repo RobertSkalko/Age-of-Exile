@@ -112,11 +112,9 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         GearItemData gear = Gear.Load(stack);
 
         SocketData socket = new SocketData();
-        socket.rune_id = rune.identifier;
-        socket.level = rune.getEffectiveLevel();
-        socket.percent = RandomUtils.RandomRange(0, 100);
-        socket.slot_family = gear.GetBaseGearType()
-            .family();
+        socket.rune = rune.identifier;
+        socket.lvl = rune.getEffectiveLevel();
+        socket.perc = RandomUtils.RandomRange(0, 100);
 
         gear.sockets.sockets.add(socket);
 

@@ -24,6 +24,8 @@ public class EntitySavedSpellData {
     String exile_effect_id;
     @Store
     public String item_id;
+    @Store
+    public int lvl = 1;
 
     public SpellStatsCalcEffect.CalculatedSpellConfiguration config = new SpellStatsCalcEffect.CalculatedSpellConfiguration();
 
@@ -34,11 +36,12 @@ public class EntitySavedSpellData {
         return Utilities.getLivingEntityByUUID(world, UUID.fromString(caster_uuid));
     }
 
-    public static EntitySavedSpellData create(LivingEntity caster, ExileEffect exEffect) {
+    public static EntitySavedSpellData create(int lvl, LivingEntity caster, ExileEffect exEffect) {
         Objects.requireNonNull(caster);
 
         EntitySavedSpellData data = new EntitySavedSpellData();
         data.exile_effect_id = exEffect.GUID();
+        data.lvl = lvl;
 
         data.caster_uuid = caster.getUuid()
             .toString();
@@ -46,13 +49,13 @@ public class EntitySavedSpellData {
         return data;
     }
 
-    public static EntitySavedSpellData create(LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration config) {
+    public static EntitySavedSpellData create(int lvl, LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration config) {
         Objects.requireNonNull(caster);
 
         EntitySavedSpellData data = new EntitySavedSpellData();
         data.spell_id = spell.GUID();
         data.config = config;
-
+        data.lvl = lvl;
         data.caster_uuid = caster.getUuid()
             .toString();
 

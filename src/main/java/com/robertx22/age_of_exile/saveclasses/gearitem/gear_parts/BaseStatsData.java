@@ -25,19 +25,19 @@ import java.util.List;
 public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartTooltip {
 
     @Store
-    public List<Integer> percents = new ArrayList<Integer>();
+    public List<Integer> perc = new ArrayList<Integer>();
 
     @Store
-    public String gear_type = "";
+    public String type = "";
 
     @Override
     public void RerollFully(GearItemData gear) {
 
-        percents = new ArrayList<>();
-        this.gear_type = gear.gear_type;
+        perc = new ArrayList<>();
+        this.type = gear.gear_type;
 
         for (int i = 0; i < 8; i++) {
-            percents.add(getMinMax(gear).random());
+            perc.add(getMinMax(gear).random());
 
             gear.rare_prefix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.prefixAny
                 .keySet()));
@@ -68,13 +68,13 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         List<Pair<Stat, List<Text>>> pairs = new ArrayList<>();
 
         List<StatModifier> stats = Database.GearTypes()
-            .get(this.gear_type).base_stats;
+            .get(this.type).base_stats;
 
-        for (int i = 0; i < this.percents.size(); i++) {
+        for (int i = 0; i < this.perc.size(); i++) {
 
             if (all.size() > i) {
 
-                int perc = percents.get(i);
+                int perc = this.perc.get(i);
 
                 if (gear.uniqueBaseStatsReplaceBaseStats()) {
 
@@ -124,16 +124,16 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
             if (!gear.uniqueBaseStatsReplaceBaseStats()) {
                 int i = 0;
                 for (StatModifier mod : Database.GearTypes()
-                    .get(gear_type)
+                    .get(type)
                     .baseStats()) {
-                    local.add(mod.ToExactStat(percents.get(i), gear.lvl));
+                    local.add(mod.ToExactStat(perc.get(i), gear.lvl));
                     i++;
                 }
             } else {
                 int n = 0;
                 for (StatModifier mod : gear.uniqueStats.getUnique(gear)
                     .base_stats) {
-                    local.add(mod.ToExactStat(percents.get(n), gear.lvl));
+                    local.add(mod.ToExactStat(perc.get(n), gear.lvl));
                     n++;
                 }
             }

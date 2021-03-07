@@ -117,7 +117,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public void cast(SpellCastContext ctx) {
         LivingEntity caster = ctx.caster;
 
-        EntitySavedSpellData data = EntitySavedSpellData.create(caster, this, ctx.spellConfig);
+        EntitySavedSpellData data = EntitySavedSpellData.create(ctx.calcData.level, caster, this, ctx.spellConfig);
 
         ctx.castedThisTick = true;
 
@@ -260,7 +260,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (Screen.hasShiftDown()) {
             list.addAll(attached
-                .getTooltip());
+                .getTooltip(data));
         }
 
         TooltipUtils.addEmpty(list);
@@ -316,7 +316,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 e.printStackTrace();
             }
             try {
-                effect.forEach(x -> list.addAll(x.GetTooltipString(info)));
+                effect.forEach(x -> list.addAll(x.GetTooltipString(info, data)));
             } catch (Exception e) {
                 e.printStackTrace();
             }

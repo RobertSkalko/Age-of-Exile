@@ -56,7 +56,7 @@ public class TooltipUtils {
             }
 
             if (x.isRune()) {
-                runes += BR + "[" + Formatting.GOLD + x.rune_id.toUpperCase(Locale.ROOT) + BR + "]";
+                runes += BR + "[" + Formatting.GOLD + x.rune.toUpperCase(Locale.ROOT) + BR + "]";
 
             }
             if (x.isGem()) {

@@ -30,8 +30,8 @@ public class BaseStatsAdder implements ISlashRegistryInit {
 
         c.id = PLAYER;
 
-        c.nonScaled(Health.getInstance(), 20);
-        c.nonScaled(Mana.getInstance(), 40);
+        c.nonScaled(Health.getInstance(), 10);
+        c.nonScaled(Mana.getInstance(), 10);
 
         c.nonScaled(CriticalHit.getInstance(), 1);
         c.nonScaled(CriticalDamage.getInstance(), 0);
@@ -40,9 +40,9 @@ public class BaseStatsAdder implements ISlashRegistryInit {
 
         c.scaled(SpellAccuracy.getInstance(), 10);
         c.scaled(Accuracy.getInstance(), 20);
-        c.scaled(Health.getInstance(), 10);
-        c.scaled(Mana.getInstance(), 10);
-        c.scaled(ManaRegen.getInstance(), 1.5F);
+        c.scaled(Health.getInstance(), 5);
+        c.scaled(Mana.getInstance(), 5);
+        c.scaled(ManaRegen.getInstance(), 1F);
         c.scaled(HealthRegen.getInstance(), 1);
         c.scaled(new AttackDamage(Elements.Physical), 1);
 

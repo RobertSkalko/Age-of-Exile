@@ -26,7 +26,7 @@ public class NoDuplicateRunes extends BaseLocRequirement {
             GearItemData gear = (GearItemData) ctx.data;
 
             return gear.sockets.sockets.stream()
-                .noneMatch(x -> x.getRune() != null && x.rune_id
+                .noneMatch(x -> x.getRune() != null && x.rune
                     .equals(gem.identifier));
 
         }

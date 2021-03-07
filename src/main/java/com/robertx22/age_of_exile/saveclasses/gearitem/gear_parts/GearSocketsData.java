@@ -24,7 +24,7 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
     public List<SocketData> sockets = new ArrayList<>();
 
     @Store
-    public int sockets_count = 0;
+    public int slots = 0;
 
     @Store
     public String word = "";
@@ -51,17 +51,17 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
 
         List<ExactStatData> stats = gear.GetAllStats(true, true);
 
-        this.sockets_count = 0;
+        this.slots = 0;
 
         for (ExactStatData x : stats) {
             if (x.getStat() == MoreSocketsStat.getInstance()) {
-                this.sockets_count += x.getAverageValue();
+                this.slots += x.getAverageValue();
             }
         }
     }
 
     public int getEmptySockets() {
-        return sockets_count - sockets.size();
+        return slots - sockets.size();
     }
 
     public RuneWord getRuneWord() {

@@ -37,7 +37,7 @@ public class AuraSpells implements ISlashRegistryInit {
 
         SpellBuilder.aura("dodge_aura", "Dodge Aura", new AuraSpellData(0.2F,
             Arrays.asList(
-                new StatModifier(50, 125, DodgeRating.getInstance())
+                new StatModifier(25, 50, DodgeRating.getInstance(), ModType.FLAT)
             )))
             .build();
 

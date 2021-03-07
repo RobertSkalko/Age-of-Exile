@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -29,7 +30,7 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
     }
 
     @Override
-    public List<MutableText> getLines(AttachedSpell spell, MapHolder data) {
+    public List<MutableText> getLines(AttachedSpell spell, MapHolder data, CalculatedSpellData spelldata) {
 
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<MutableText> list = new ArrayList<>();
@@ -44,7 +45,7 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
             list.add(new LiteralText("Shoot a Projectile"));
         }
 
-        list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME)));
+        list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME), spelldata));
 
         return list;
     }

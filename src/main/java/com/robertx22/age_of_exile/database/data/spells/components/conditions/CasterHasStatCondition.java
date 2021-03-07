@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -25,7 +26,7 @@ public class CasterHasStatCondition extends EffectCondition implements ICMainToo
     }
 
     @Override
-    public List<MutableText> getLines(AttachedSpell spell, MapHolder data) {
+    public List<MutableText> getLines(AttachedSpell spell, MapHolder data, CalculatedSpellData spelldata) {
         List<MutableText> list = new ArrayList<>();
         MutableText text = new LiteralText("");
 

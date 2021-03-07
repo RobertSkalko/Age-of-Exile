@@ -91,7 +91,7 @@ public class ChanceToApplyEffect extends Stat {
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
             if (RandomUtils.roll(data.getAverageValue())) {
-                ExileEffectsManager.apply(Database.ExileEffects()
+                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
                     .get(this.statusEffect), effect.source, effect.target, 20 * 10);
             }
             return effect;

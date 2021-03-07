@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTex
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -142,7 +143,7 @@ public class ComponentPart {
         return this;
     }
 
-    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell) {
+    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell, CalculatedSpellData spelldata) {
         List<MutableText> list = new ArrayList<>();
 
         MutableText text = new LiteralText("");
@@ -154,7 +155,7 @@ public class ComponentPart {
             SpellAction handler = SpellAction.MAP.get(part.type);
             if (handler instanceof ICMainTooltip) {
                 ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part));
+                list.addAll(line.getLines(spell, part, spelldata));
             }
         }
 
@@ -165,7 +166,7 @@ public class ComponentPart {
             }
             if (handler instanceof ICMainTooltip) {
                 ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part));
+                list.addAll(line.getLines(spell, part, spelldata));
 
             }
         }
@@ -177,7 +178,7 @@ public class ComponentPart {
 
             if (handler instanceof ICTextTooltip) {
                 ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part));
+                text.append(ictext.getText(info, part, spelldata));
             }
         }
 
@@ -186,7 +187,7 @@ public class ComponentPart {
 
             if (handler instanceof ICTextTooltip) {
                 ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part));
+                text.append(ictext.getText(info, part, spelldata));
                 hasAction = true;
             }
         }
@@ -196,7 +197,7 @@ public class ComponentPart {
 
             if (handler instanceof ICTextTooltip) {
                 ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part));
+                text.append(ictext.getText(info, part, spelldata));
             }
         }
 
@@ -216,7 +217,7 @@ public class ComponentPart {
 
             List<MutableText> pertxt = new ArrayList<>();
             pertxt.add(new LiteralText("Per entity hit:"));
-            per_entity_hit.forEach(x -> pertxt.addAll(x.GetTooltipString(info, spell)));
+            per_entity_hit.forEach(x -> pertxt.addAll(x.GetTooltipString(info, spell, spelldata)));
 
             if (pertxt.size() > 1) {
 

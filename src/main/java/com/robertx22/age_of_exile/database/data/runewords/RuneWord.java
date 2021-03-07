@@ -75,7 +75,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         int index = 0;
         for (SocketData socket : gear.sockets.sockets) {
 
-            if (socket.rune_id.equals(runes_needed.get(index))) {
+            if (socket.rune.equals(runes_needed.get(index))) {
                 index++;
                 if (index >= runes_needed.size()) {
                     return true;
@@ -106,7 +106,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
         List<String> runes = new ArrayList<>();
 
-        gear.sockets.sockets.forEach(x -> runes.add(x.rune_id));
+        gear.sockets.sockets.forEach(x -> runes.add(x.rune));
 
         int matches = 0;
 

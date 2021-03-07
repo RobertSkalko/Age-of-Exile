@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.spells.calc;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
@@ -103,19 +104,18 @@ public class ValueCalculationData {
         return (int) amount;
     }
 
-    public int getCalculatedValue(LivingEntity caster) {
+    public int getCalculatedValue(LivingEntity caster, EntitySavedSpellData ctx) {
         int val = getCalculatedScalingValue(Load.Unit(caster));
-        val += getCalculatedBaseValue(Load.Unit(caster)
-            .getLevel());
+        val += getCalculatedBaseValue(ctx.lvl);
 
         return val;
     }
 
-    public Text getShortTooltip(EntityCap.UnitData data) {
+    public Text getShortTooltip(int lvl) {
         MutableText text = new LiteralText("");
 
         if (this.base_val > 0) {
-            text.append(getCalculatedBaseValue(data.getLevel()) + "");
+            text.append(getCalculatedBaseValue(lvl) + "");
         }
 
         if (attack_scaling > 0) {

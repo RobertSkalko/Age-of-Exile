@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
@@ -30,14 +31,14 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
     }
 
     @Override
-    public MutableText getText(TooltipInfo info, MapHolder data) {
+    public MutableText getText(TooltipInfo info, MapHolder data, CalculatedSpellData spelldata) {
         MutableText text = new LiteralText("");
 
         ValueCalculationData calc = data.get(VALUE_CALCULATION);
         Elements ele = data.getElement();
 
         text.append("Deal ")
-            .append(calc.getShortTooltip(info.unitdata))
+            .append(calc.getShortTooltip(spelldata.level))
             .append(" ")
             .append(ele.dmgName)
             .append(" Damage");
@@ -53,7 +54,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
             Elements ele = data.getElement();
             ValueCalculationData calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster);
+            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
 
             value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.DAMAGE);
 

@@ -39,7 +39,7 @@ public class ExileEffectsManager {
         }
     }
 
-    public static void apply(ExileEffect reg, LivingEntity caster, LivingEntity target, int duration) {
+    public static void apply(int lvl, ExileEffect reg, LivingEntity caster, LivingEntity target, int duration) {
 
         if (caster.world.isClient) {
             return;
@@ -63,7 +63,7 @@ public class ExileEffectsManager {
             extraData = new ExileEffectInstanceData();
         }
 
-        extraData.spellData = EntitySavedSpellData.create(caster, reg);
+        extraData.spellData = EntitySavedSpellData.create(lvl, caster, reg);
 
         StatusEffectInstance newInstance = new StatusEffectInstance(effect, duration, 1, false, false, true);
 
