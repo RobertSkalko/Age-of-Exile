@@ -43,14 +43,16 @@ dependencies {
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${cardinal_version}"
 
 
-    /*
+   
+/*   
     modApi ("me.shedaniel.cloth:cloth-config-fabric:${config_api_version}"){
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-     */
+*/
+    
 
-    modApi("me.sargunvohra.mcmods:autoconfig1u:${auto_config_version}") {
+    modImplementation("me.sargunvohra.mcmods:autoconfig1u:${auto_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 

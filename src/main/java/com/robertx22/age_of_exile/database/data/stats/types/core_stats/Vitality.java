@@ -16,7 +16,7 @@ public class Vitality extends BaseCoreStat {
     private Vitality() {
         super(Arrays.asList(
             new OptScaleExactStat(10, 10, Health.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(1, 1, HealthRegen.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(0.5F, 0.5F, HealthRegen.getInstance(), ModType.FLAT)
         ));
     }
 

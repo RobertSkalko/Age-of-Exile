@@ -46,7 +46,7 @@ public class IntSpells implements ISlashRegistryInit {
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THtROW, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Water))

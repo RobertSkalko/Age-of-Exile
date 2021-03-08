@@ -16,7 +16,7 @@ public class Wisdom extends BaseCoreStat {
     private Wisdom() {
         super(Arrays.asList(
             new OptScaleExactStat(10, 10, Mana.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(1, 1, ManaRegen.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(0.5F, 0.5F, ManaRegen.getInstance(), ModType.FLAT)
         ));
     }
 

@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -250,9 +251,9 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return getConfig().passive_config.is_passive;
     }
 
-    public final List<Text> GetTooltipString(TooltipInfo info, CalculatedSpellData data) {
+    public final List<Text> GetTooltipString(SkillGemData gem, TooltipInfo info, CalculatedSpellData data) {
 
-        SpellCastContext ctx = new SpellCastContext(info.player, 0, data);
+        SpellCastContext ctx = new SpellCastContext(gem, info.player, 0, data);
 
         List<Text> list = new ArrayList<>();
 

@@ -91,7 +91,7 @@ public class SkillGemData implements ITooltipList {
                 .get(getSkillGem().spell_id);
             SpellCastContext ctx = new SpellCastContext(info.player, 0, spell);
 
-            list.addAll(spell.GetTooltipString(info, CalculatedSpellData.create(this, info.player, spell, ctx.spellConfig)));
+            list.addAll(spell.GetTooltipString(this, info, CalculatedSpellData.create(this, info.player, spell, ctx.spellConfig)));
         }
 
         list.add(new LiteralText(""));

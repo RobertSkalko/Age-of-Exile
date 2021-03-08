@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -33,11 +34,15 @@ public class SpellCastContext {
         this.calcData = CalculatedSpellData.create(skillGemData, caster, spell, spellConfig);
     }
 
-    public SpellCastContext(LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {
-        this(caster, ticksInUse, spell.getSpell());
+    public SpellCastContext(SkillGemData gem, LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {
+        this(gem, caster, ticksInUse, spell.getSpell());
     }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, Spell spell) {
+        this(null, caster, ticksInUse, spell);
+    }
+
+    public SpellCastContext(@Nullable SkillGemData gem, LivingEntity caster, int ticksInUse, Spell spell) {
         this.caster = caster;
         this.ticksInUse = ticksInUse;
 
@@ -50,6 +55,7 @@ public class SpellCastContext {
         this.spellConfig = effect.data;
 
         if (caster instanceof PlayerEntity) {
+
             this.spellsCap = Load.spells((PlayerEntity) caster);
 
             try {
@@ -64,18 +70,32 @@ public class SpellCastContext {
                     .findAny();
 
                 if (caster.world.isClient) {
-                    if (opt.isPresent()) {
+                    if (gem == null) {
+                        if (opt.isPresent()) {
+                            skillGemData = opt.get();
+                        } else {
+                            this.skillGemData = new SkillGemData();
+                        }
+                    } else {
+                        skillGemData = gem;
+                    }
+
+                } else {
+                    if (gem == null) {
                         skillGemData = opt.get();
                     } else {
-                        this.skillGemData = new SkillGemData();
+                        skillGemData = gem;
                     }
-                } else {
-                    skillGemData = opt.get();
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
-                this.skillGemData = new SkillGemData();
+
+                if (gem == null) {
+                    this.skillGemData = new SkillGemData();
+                } else {
+                    skillGemData = gem;
+                }
             }
 
         } else {

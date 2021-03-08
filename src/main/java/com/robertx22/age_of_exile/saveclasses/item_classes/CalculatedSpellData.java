@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -17,7 +16,7 @@ import net.minecraft.util.Formatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalculatedSpellData implements ITooltipList {
+public class CalculatedSpellData {
 
     public String spell_id = "";
 
@@ -43,7 +42,6 @@ public class CalculatedSpellData implements ITooltipList {
             .get(spell_id);
     }
 
-    @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
 
         List<Text> list = new ArrayList<>();
@@ -64,7 +62,7 @@ public class CalculatedSpellData implements ITooltipList {
             list
                 .add(new LiteralText("").append(spell.locName()));
 
-            list.addAll(spell.GetTooltipString(info, this));
+            list.addAll(spell.GetTooltipString(null, info, this));
 
             if (!Screen.hasShiftDown()) {
                 list.add(new LiteralText(Formatting.BLUE + "")

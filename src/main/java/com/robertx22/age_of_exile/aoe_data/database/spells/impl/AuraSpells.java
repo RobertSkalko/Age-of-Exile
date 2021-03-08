@@ -9,7 +9,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -31,25 +32,25 @@ public class AuraSpells implements ISlashRegistryInit {
 
         SpellBuilder.aura("armor_aura", "Armor Aura", new AuraSpellData(0.2F,
             Arrays.asList(
-                new StatModifier(20, 50, Armor.getInstance(), ModType.LOCAL_INCREASE)
+                new StatModifier(2, 4, Armor.getInstance(), ModType.FLAT)
             )))
             .build();
 
         SpellBuilder.aura("dodge_aura", "Dodge Aura", new AuraSpellData(0.2F,
             Arrays.asList(
-                new StatModifier(25, 50, DodgeRating.getInstance(), ModType.FLAT)
+                new StatModifier(2, 4, DodgeRating.getInstance(), ModType.FLAT)
             )))
             .build();
 
         SpellBuilder.aura("hp_reg_aura", "Health Regeneration Aura", new AuraSpellData(0.1F,
             Arrays.asList(
-                new StatModifier(2, 5, Health.getInstance())
+                new StatModifier(1, 4, HealthRegen.getInstance())
             )))
             .build();
 
         SpellBuilder.aura("mana_reg_aura", "Mana Regeneration Aura", new AuraSpellData(0.1F,
             Arrays.asList(
-                new StatModifier(2, 5, Health.getInstance())
+                new StatModifier(1, 4, ManaRegen.getInstance())
             )))
             .build();
 

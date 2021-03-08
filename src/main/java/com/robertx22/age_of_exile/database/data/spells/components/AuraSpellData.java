@@ -16,7 +16,7 @@ public class AuraSpellData {
 
     public float mana_reserved = 0.25F;
 
-    public List<StatModifier> stats = new ArrayList<>();
+    private List<StatModifier> stats = new ArrayList<>();
 
     public AuraSpellData() {
     }
@@ -26,9 +26,9 @@ public class AuraSpellData {
         this.stats = stats;
     }
 
-    public List<ExactStatData> getStats(Spell spell, LivingEntity caster, int lvl) {
+    public List<ExactStatData> getStats(SkillGemData gem, LivingEntity caster, int lvl) {
         return stats.stream()
-            .map(x -> x.ToExactStat(100, lvl))
+            .map(x -> x.ToExactStat(gem.stat_perc, lvl))
             .collect(Collectors.toList());
 
     }
@@ -36,7 +36,7 @@ public class AuraSpellData {
     public List<Text> GetTooltipString(Spell spell, SkillGemData data, TooltipInfo info) {
         List<Text> list = new ArrayList<>();
         list.add(new LiteralText("When Aura is Activated:"));
-        getStats(spell, info.player, data.lvl).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getStats(data, info.player, data.lvl).forEach(x -> list.addAll(x.GetTooltipString(info)));
         return list;
     }
 }

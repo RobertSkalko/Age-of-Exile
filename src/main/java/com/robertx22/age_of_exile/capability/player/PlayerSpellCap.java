@@ -174,7 +174,7 @@ public class PlayerSpellCap {
                 }
             }
 
-            if (!current.active) {
+            if (current.active) {
                 ReserveManaEffect effect = new ReserveManaEffect(spell, entity);
                 effect.Activate();
                 current.mana_reserved = effect.manaReserved;
@@ -191,15 +191,19 @@ public class PlayerSpellCap {
 
         @Override
         public float getManaReservedByAuras() {
-            return (float) spellCastingData.auras.values()
+
+            return (float) spellCastingData.auras.entrySet()
                 .stream()
-                .mapToDouble(auraData -> auraData.mana_reserved)
+                .filter(x -> x.getValue().active)
+                .mapToDouble(x -> x.getValue().mana_reserved)
                 .sum();
         }
 
         @Override
         public float getReservedManaMulti() {
-            return 1F - getManaReservedByAuras();
+            float multi = 1F - getManaReservedByAuras();
+
+            return multi;
         }
 
         public List<String> getAuras() {
@@ -230,9 +234,7 @@ public class PlayerSpellCap {
                             Spell spell = Database.Spells()
                                 .get(data.getSkillGem().spell_id);
 
-                            List<ExactStatData> list = spell.aura_data.stats.stream()
-                                .map(e -> e.ToExactStat(100, data.lvl))
-                                .collect(Collectors.toList());
+                            List<ExactStatData> list = spell.aura_data.getStats(data, en, data.lvl);
                             ctxs.add(new AuraStatCtx(spell, list));
                         }
                     });
