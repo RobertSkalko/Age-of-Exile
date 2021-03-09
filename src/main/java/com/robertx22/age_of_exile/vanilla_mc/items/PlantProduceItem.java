@@ -12,7 +12,7 @@ public class PlantProduceItem extends Item implements IAutoLocName, IAutoModel {
     String locname;
 
     public PlantProduceItem(String locname) {
-        super(new Settings().group(CreativeTabs.Alchemy));
+        super(new Settings().group(CreativeTabs.Professions));
         this.locname = locname;
     }
 

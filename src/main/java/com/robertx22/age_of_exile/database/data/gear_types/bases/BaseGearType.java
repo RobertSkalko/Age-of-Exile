@@ -169,7 +169,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     }
 
     public final float getAttacksPerSecondForTooltip(GearItemData gear) {
-        return getAttacksPerSecondForTooltip(gear.GetAllStats(false, false));
+        return getAttacksPerSecondForTooltip(gear.GetAllStats());
     }
 
     public final float getAttacksPerSecondForTooltip(List<ExactStatData> stats) {

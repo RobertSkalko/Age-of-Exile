@@ -33,7 +33,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
     public SkillItemTier tier;
 
     public BackpackItem(BackpackType type, SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Tinkering)
+        super(new Settings().group(CreativeTabs.Professions)
             .fireproof()
             .maxCount(1));
         this.type = type;

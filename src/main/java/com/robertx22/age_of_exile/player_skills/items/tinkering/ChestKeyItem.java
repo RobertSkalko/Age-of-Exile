@@ -26,7 +26,7 @@ public class ChestKeyItem extends Item implements IAutoLocName, IAutoModel, ISha
     public SkillItemTier tier;
 
     public ChestKeyItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Tinkering));
+        super(new Settings().group(CreativeTabs.Professions));
         this.tier = tier;
     }
 

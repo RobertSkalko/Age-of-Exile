@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -54,7 +53,7 @@ public class SpellCtx {
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
 
-        Load.spells((PlayerEntity) caster)
+        Load.spells(caster)
             .onSpellHitTarget(sourceEntity, target);
         return new SpellCtx(EntityActivation.ON_HIT, sourceEntity, caster, target, target.getBlockPos(), target.getPos(), data);
     }

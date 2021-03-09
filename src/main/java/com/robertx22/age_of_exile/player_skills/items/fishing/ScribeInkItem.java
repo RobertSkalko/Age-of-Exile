@@ -20,7 +20,7 @@ public class ScribeInkItem extends Item implements IAutoLocName, IAutoModel, IGa
     SkillItemTier tier;
 
     public ScribeInkItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Inscribing));
+        super(new Settings().group(CreativeTabs.Professions));
         this.tier = tier;
     }
 

@@ -32,44 +32,48 @@ public class IntSpells implements ISlashRegistryInit {
     public static String HEART_OF_ICE_ID = "heart_of_ice";
 
     static SpellConfiguration HIGH_AOE_LONG_CD() {
-        return SpellConfiguration.Builder.nonInstant(30, 120 * 20, 40);
+        return SpellConfiguration.Builder.nonInstant(30, 60 * 20, 40);
     }
 
     public static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG() {
-        return SpellConfiguration.Builder.instant(7, 20);
+        return SpellConfiguration.Builder.instant(7, 15)
+            .setSwingArm();
     }
 
     @Override
     public void registerAll() {
 
-        SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 20), "Ice Ball",
+        SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 15)
+                .setSwingArm(), "Ice Ball",
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 0.75D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SNOWBALL, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Water))
 
             .build();
 
-        SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 20), "Fire Ball",
+        SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 20)
+                .setSwingArm(), "Fire Ball",
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.FIRE_CHARGE, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.FIRE_CHARGE, 1D, 0.75D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.FLAME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Fire))
 
             .build();
 
-        SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20), "Poison Ball",
+        SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
+                .setSwingArm(), "Poison Ball",
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SLIME_BALL, 1D, 0.75D, ENTITIES.SIMPLE_PROJECTILE, 60D, false)))
             .onTick(PartBuilder.particleOnTick(3D, ParticleTypes.ITEM_SLIME, 3D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Nature))
 
@@ -88,7 +92,7 @@ public class IntSpells implements ISlashRegistryInit {
                     .addCondition(EffectCondition.CHANCE.create(20D))))
             .build();
 
-        SpellBuilder.of("whirlpool", SpellConfiguration.Builder.multiCast(30, 120 * 20, 60, 6), "Whirlpool",
+        SpellBuilder.of("whirlpool", SpellConfiguration.Builder.multiCast(30, 60 * 20, 60, 6), "Whirlpool",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
@@ -123,7 +127,7 @@ public class IntSpells implements ISlashRegistryInit {
             )
 
             .build();
-        SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 160 * 20), "Heart of Ice",
+        SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 60 * 20), "Heart of Ice",
             Arrays.asList(SkillGemTag.HEALING))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SOUNDS.FREEZE, 1D, 1D))
@@ -231,7 +235,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Fire, 3.5D))
             .build();
 
-        SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 200 * 20), "Gorgon's Gaze",
+        SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 60 * 20), "Gorgon's Gaze",
             Arrays.asList(SkillGemTag.AREA))
             .onCast(PartBuilder.playSound(SOUNDS.STONE_CRACK, 1D, 1D))
             .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY, 15D, 3D, 20 * 5D))

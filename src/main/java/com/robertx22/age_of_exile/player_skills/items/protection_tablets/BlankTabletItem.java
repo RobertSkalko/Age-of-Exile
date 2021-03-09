@@ -17,7 +17,7 @@ public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, I
     SkillItemTier stier;
 
     public BlankTabletItem(SkillItemTier stier, BlankTabletTier tier) {
-        super(new Settings().group(CreativeTabs.Inscribing));
+        super(new Settings().group(CreativeTabs.Professions));
         this.tier = tier;
         this.stier = stier;
     }

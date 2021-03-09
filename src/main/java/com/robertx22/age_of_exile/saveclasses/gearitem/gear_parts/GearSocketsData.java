@@ -49,7 +49,7 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
 
     public void setSocketsCount(GearItemData gear) {
 
-        List<ExactStatData> stats = gear.GetAllStats(true, true);
+        List<ExactStatData> stats = gear.GetAllStats();
 
         this.slots = 0;
 

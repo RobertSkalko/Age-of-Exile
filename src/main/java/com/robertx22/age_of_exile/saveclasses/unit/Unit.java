@@ -466,7 +466,7 @@ public class Unit {
 
                 if (addstats) {
 
-                    ctxs.add(new GearStatCtx(gear, gear.GetAllStats(true, false)));
+                    ctxs.add(new GearStatCtx(gear, gear.GetAllStats()));
 
                     toremove.add(gear);
                     addedAny = true;

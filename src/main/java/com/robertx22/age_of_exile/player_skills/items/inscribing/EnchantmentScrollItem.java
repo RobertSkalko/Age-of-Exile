@@ -41,7 +41,7 @@ public class EnchantmentScrollItem extends Item implements IAutoLocName, IAutoMo
     PlayerSkillEnum skill;
 
     public EnchantmentScrollItem(PlayerSkillEnum skill, EnchantsEnum enchant, SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Inscribing));
+        super(new Settings().group(CreativeTabs.Professions));
         this.tier = tier;
         this.enchant = enchant;
         this.skill = skill;

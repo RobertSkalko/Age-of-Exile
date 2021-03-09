@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 public abstract class BaseTpItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
     public BaseTpItem() {
-        super(new Settings().group(CreativeTabs.Inscribing)
+        super(new Settings().group(CreativeTabs.Professions)
             .maxCount(16));
     }
 

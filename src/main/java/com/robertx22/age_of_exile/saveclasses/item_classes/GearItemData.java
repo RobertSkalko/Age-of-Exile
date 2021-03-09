@@ -363,13 +363,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return true;
     }
 
-    public List<IStatsContainer> GetAllStatContainers(boolean includeBase) {
+    public List<IStatsContainer> GetAllStatContainers() {
 
         List<IStatsContainer> list = new ArrayList<IStatsContainer>();
 
-        if (includeBase) {
-            IfNotNullAdd(baseStats, list);
-        }
+        IfNotNullAdd(baseStats, list);
 
         IfNotNullAdd(implicit, list);
 
@@ -384,23 +382,16 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     }
 
-    public List<ExactStatData> GetAllStats(boolean includebase, boolean includelocaladditions) {
+    public List<ExactStatData> GetAllStats() {
 
         List<ExactStatData> list = new ArrayList<>();
-        GetAllStatContainers(includebase).stream()
+        GetAllStatContainers().stream()
             .forEach(x -> {
 
                 List<ExactStatData> stats = x.GetAllStats(this);
 
                 stats.forEach(s -> {
-
-                    if (!x.isBaseStats() && s.shouldBeAddedToLocalStats(this)) {
-                        if (includelocaladditions) {
-                            list.add(s);
-                        }
-                    } else {
-                        list.add(s);
-                    }
+                    list.add(s);
                 });
 
             });

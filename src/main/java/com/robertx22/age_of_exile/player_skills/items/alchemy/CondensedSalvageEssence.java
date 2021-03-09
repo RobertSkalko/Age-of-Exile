@@ -19,7 +19,7 @@ public class CondensedSalvageEssence extends Item implements IAutoLocName, IAuto
     SkillItemTier tier;
 
     public CondensedSalvageEssence(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Alchemy));
+        super(new Settings().group(CreativeTabs.Professions));
         this.tier = tier;
     }
 
@@ -48,7 +48,7 @@ public class CondensedSalvageEssence extends Item implements IAutoLocName, IAuto
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
         fac.input(ModRegistry.MISC_ITEMS.getDusts()
-            .get(tier.tier), 9);
+            .get(tier.tier), 3);
         return fac.criterion("player_level", trigger());
     }
 

@@ -182,7 +182,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_ele_protection", "Elemental Protection",
             new OptScaleExactStat(1, new MaxElementalResist(Elements.Elemental), ModType.FLAT),
-            new OptScaleExactStat(5, new ElementalResist(Elements.Elemental), ModType.FLAT),
+            new OptScaleExactStat(3, new ElementalResist(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
 
@@ -205,7 +205,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_iron_skin", "Iron Skin",
             new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, new ElementalResist(Elements.Elemental), ModType.FLAT),
+            new OptScaleExactStat(2, new ElementalResist(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT)
         );
 

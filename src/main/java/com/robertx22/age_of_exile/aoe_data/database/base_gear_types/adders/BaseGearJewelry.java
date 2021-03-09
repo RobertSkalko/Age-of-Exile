@@ -32,7 +32,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HP_NECKLACE;
 
     static int minResist = 15;
-    static int maxResist = 40;
+    static int maxResist = 30;
 
     @Override
     public void registerAll() {
@@ -80,7 +80,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
         ALL_RES_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "all_res_necklace", "Necklace", ModRegistry.GEAR_ITEMS.ALL_RES_NECKLACES)
             .essenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL)
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
-            .baseStat(new StatModifier(5, 10, new ElementalResist(Elements.Elemental), ModType.FLAT))
+            .baseStat(new StatModifier(4, 8, new ElementalResist(Elements.Elemental), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Primitive")
             .addLvlRange(LevelRanges.MID_TO_END, "Primordial")
             .build();

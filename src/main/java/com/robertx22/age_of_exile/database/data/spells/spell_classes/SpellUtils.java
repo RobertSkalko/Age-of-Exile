@@ -56,9 +56,12 @@ public class SpellUtils {
     public static void shootProjectile(Vec3d pos, PersistentProjectileEntity projectile, LivingEntity caster, float speed,
                                        float pitch, float yaw) {
 
+        pos = pos.add(caster.getRotationVector()
+            .multiply(0.75F));
+
         ((Entity) projectile).updatePosition(pos.x, pos.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
 
-        projectile.setProperties(caster, pitch, yaw, 0.0F, speed, 1F);
+        projectile.setProperties(caster, pitch, yaw, 0, speed, 1.2F);
 
     }
 

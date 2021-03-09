@@ -17,7 +17,7 @@ public class MiningStoneItem extends Item implements IAutoLocName, IAutoModel, I
     SkillItemTier tier;
 
     public MiningStoneItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Tinkering));
+        super(new Settings().group(CreativeTabs.Professions));
         this.tier = tier;
     }
 

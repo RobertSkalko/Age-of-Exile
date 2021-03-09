@@ -15,7 +15,7 @@ public class FoodExtractItem extends Item implements IAutoLocName, IAutoModel, I
     FoodExileEffect.EffectColor color;
 
     public FoodExtractItem(FoodExileEffect.EffectColor color) {
-        super(new Settings().group(CreativeTabs.Foods));
+        super(new Settings().group(CreativeTabs.Professions));
         this.color = color;
     }
 

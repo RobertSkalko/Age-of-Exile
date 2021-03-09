@@ -21,7 +21,7 @@ public class MysteriousLeatherItem extends Item implements IAutoLocName, IAutoMo
     public SkillItemTier tier;
 
     public MysteriousLeatherItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Tinkering));
+        super(new Settings().group(CreativeTabs.Professions));
         this.tier = tier;
     }
 

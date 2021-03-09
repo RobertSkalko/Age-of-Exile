@@ -18,7 +18,7 @@ public class PlantSeedItem extends AliasedBlockItem implements IAutoLocName, ISh
     Item recipeItem;
 
     public PlantSeedItem(Block block, Item recipeItem, String locname) {
-        super(block, new Settings().group(CreativeTabs.Alchemy));
+        super(block, new Settings().group(CreativeTabs.Professions));
         this.recipeItem = recipeItem;
         this.locname = locname;
     }

@@ -4,13 +4,19 @@ import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Block;
+import net.minecraft.block.CropBlock;
 import net.minecraft.data.DataCache;
 import net.minecraft.data.DataProvider;
+import net.minecraft.item.Item;
 import net.minecraft.loot.LootGsons;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.UniformLootTableRange;
+import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
+import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.predicate.StatePredicate;
 import net.minecraft.util.Identifier;
 
 import java.io.IOException;
@@ -115,8 +121,27 @@ public class LootTableGenerator {
         map.put(GEM_SALVAGE_RECIPE, gems.build());
         map.put(CURRENCIES_SALVAGE_RECIPE, currencies.build());
 
+        addFarming(ModRegistry.BLOCKS.PLANT1, ModRegistry.MISC_ITEMS.ARCANE_WHEAT, 3, map);
+        addFarming(ModRegistry.BLOCKS.PLANT2, ModRegistry.MISC_ITEMS.BLOOD_WHEAT, 3, map);
+
         return map;
 
+    }
+
+    private void addFarming(Block block, Item item, int age, HashMap<Identifier, LootTable> map) {
+
+        LootCondition.Builder condition = BlockStatePropertyLootCondition.builder(block)
+            .properties(StatePredicate.Builder.create()
+                .exactMatch(CropBlock.AGE, age));
+
+        LootTable.Builder b = LootTable.builder();
+        LootPool.Builder loot = LootPool.builder();
+        loot.conditionally(condition);
+        loot.rolls(UniformLootTableRange.between(1, 3));
+
+        loot.with(ItemEntry.builder(item));
+        b.pool(loot);
+        map.put(block.getLootTableId(), b.build());
     }
 
 }

@@ -89,12 +89,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public void addBonusEleDmg(Elements element, float dmg) {
-        if (bonusElementDamageMap.containsKey(element)) {
-            bonusElementDamageMap.put(element, (int) (bonusElementDamageMap.get(element) + dmg));
-
-        } else {
-            bonusElementDamageMap.put(element, (int) dmg);
-        }
+        bonusElementDamageMap.put(element, (int) (bonusElementDamageMap.getOrDefault(element, 0) + dmg));
     }
 
     private void calcBlock() {

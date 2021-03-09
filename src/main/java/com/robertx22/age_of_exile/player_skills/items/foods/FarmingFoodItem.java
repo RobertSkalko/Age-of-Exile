@@ -36,7 +36,7 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
     public SkillItemTier tier;
 
     public FarmingFoodItem(FoodType type, FoodExileEffect exileEffect, SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Foods)
+        super(new Settings().group(CreativeTabs.Professions)
             .food(type.foodValueItem.getFoodComponent()));
 
         this.type = type;
@@ -119,7 +119,8 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
         fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
-        fac.input(ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(this.tier));
+        fac.input(ModRegistry.MISC_ITEMS.getDusts()
+            .get(this.tier.tier));
         fac.input(type.vanillaCraftingItem);
         return fac.criterion("player_level", trigger());
     }

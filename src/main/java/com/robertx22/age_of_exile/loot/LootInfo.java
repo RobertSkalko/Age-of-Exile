@@ -17,7 +17,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -123,8 +122,8 @@ public class LootInfo {
         info.world = player.world;
         info.pos = player.getBlockPos();
         info.level = level;
-        info.multi = 1;
-        info.minItems = 2;
+        info.multi = 5;
+        info.minItems = 3;
         info.maxItems = 6;
         info.setupAllFields();
         return info;
@@ -246,7 +245,7 @@ public class LootInfo {
 
         amount = LootUtils.WhileRoll(chance);
 
-        amount = MathHelper.clamp(amount, minItems, maxItems);
+        //amount = MathHelper.clamp(amount, minItems, maxItems);
 
     }
 

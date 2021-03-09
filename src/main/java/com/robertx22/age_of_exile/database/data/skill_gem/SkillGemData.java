@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
@@ -33,6 +34,40 @@ public class SkillGemData implements ITooltipList {
     public int stat_perc = 100;
     @Store
     public int lvl = 1;
+    @Store
+    public int exp = 0;
+
+    // only support gems should have random stats
+    @Store
+    public List<StatModifier> random_stats = new ArrayList<>();
+
+    public void addExpBySacrificing(SkillGemData sacrifice) {
+        float multi = (float) sacrifice.lvl / (float) lvl;
+
+        int exp = (int) (lvl * 50 * multi);
+
+        this.exp += exp;
+
+        while (tryLevel()) {
+
+        }
+    }
+
+    public int getExpNeededToLvlUp() {
+        return 100 * lvl;
+    }
+
+    public boolean tryLevel() {
+        if (lvl >= GameBalanceConfig.get().MAX_LEVEL) {
+            return false;
+        }
+        if (exp >= getExpNeededToLvlUp()) {
+            exp -= getExpNeededToLvlUp();
+            lvl++;
+            return true;
+        }
+        return false;
+    }
 
     public boolean canPlayerUse(PlayerEntity player) {
 
@@ -47,10 +82,6 @@ public class SkillGemData implements ITooltipList {
 
         return true;
     }
-
-    // only support gems should have random stats
-    @Store
-    public List<StatModifier> random_stats = new ArrayList<>();
 
     public SkillGem getSkillGem() {
         return Database.SkillGems()
@@ -111,6 +142,7 @@ public class SkillGemData implements ITooltipList {
 
         }
 
+        list.add(new LiteralText("Exp: " + exp + "/" + getExpNeededToLvlUp()));
         list.add(new LiteralText(""));
         list.add(TooltipUtils.rarity(getRarity())
             .formatted(getRarity().textFormatting()));

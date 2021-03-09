@@ -95,7 +95,7 @@ public class AttackDamage extends ElementalStat implements ILocalStat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isBasicAttack();
+            return stat.getElement() != Elements.Physical && effect.attackType.isBasicAttack();
         }
 
     }

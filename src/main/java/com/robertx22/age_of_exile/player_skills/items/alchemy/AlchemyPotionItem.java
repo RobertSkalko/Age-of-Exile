@@ -42,7 +42,7 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
     PotionType type;
 
     public AlchemyPotionItem(PotionType type, SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Alchemy)
+        super(new Settings().group(CreativeTabs.Professions)
             .maxCount(16));
         this.tier = tier;
         this.type = type;
@@ -119,7 +119,8 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
         fac.input(type.craftItem.get());
         fac.input(Items.GLASS_BOTTLE);
-        fac.input(ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(this.tier));
+        fac.input(ModRegistry.MISC_ITEMS.getDusts()
+            .get(this.tier.tier));
         return fac.criterion("player_level", trigger());
     }
 

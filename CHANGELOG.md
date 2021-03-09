@@ -26,7 +26,6 @@ Spell schools are gone, now spells are skill gems! (not to be confused with skil
 
 You have 8 skill gem slots, and 4 of those have support gem slots.
 Support gems power up that skill gem. Here's some support gems that exist:
-- projectile amount
 - projectile speed
 - cast/attack speed
 - critical hit/dmg
@@ -196,13 +195,14 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * scaled armor and dodge values to be similar to health and other stats
 * stat requirement datapacks now use hashmaps instead of fields, so you'll need to update them
 * item ids are now saved to my gear stats data, and any time they change, the item itself is cleared the stats data and allowed to regenerate. This is used for smithing table upgrades, so now your diamond swords will reroll into appropriate netherite swords power levels. It's not a direct upgrade as it's a total reroll, but I think it's better than nothing.
+* skill gems can be leveled by sacrificing other gems in the modify station
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)
 
 Character Select!
 
-Every wanted to play multiple characters on the same world?
+Ever wanted to play multiple characters on the same world?
 Easily switch builds and play styles with no need for reset potions?
 Wanted to level multiple characters?
 

@@ -87,7 +87,7 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
             .findAny()
             .get();
 
-        return ShapelessRecipeJsonFactory.create(output, 2)
+        return ShapelessRecipeJsonFactory.create(output, 3)
             .input(this, 1)
             .criterion("player_level", trigger());
 
