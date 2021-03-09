@@ -25,13 +25,15 @@ public class SpellBuilder {
         return builder;
     }
 
-    public static SpellBuilder aura(String id, String name, AuraSpellData aura) {
+    public static SpellBuilder aura(AttackPlayStyle style, String id, String name, AuraSpellData aura) {
         SpellBuilder builder = new SpellBuilder();
 
         builder.spell = new Spell();
         builder.spell.identifier = id;
         builder.spell.config = SpellConfiguration.Builder.instant(0, 5);
         builder.spell.locName = name;
+        builder.spell.config.castingWeapon = CastingWeapon.ANY_WEAPON;
+        builder.spell.config.style = style;
         builder.spell.aura_data = aura;
 
         builder.spell.config.tags.add(SkillGemTag.AURA);

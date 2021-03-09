@@ -19,12 +19,16 @@ public class MobAffixes implements ISlashRegistryInit {
     public void registerAll() {
 
         new MobAffix("cold", "Cold", Water.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Water)), new StatModifier(1, 1, new AttackDamage(Water)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+            .setWeight(2000)
             .addToSerializables();
         new MobAffix("flaming", "Flaming", Fire.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Fire)), new StatModifier(1, 1, new AttackDamage(Fire)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+            .setWeight(2000)
             .addToSerializables();
         new MobAffix("lightning", "Thunder", Thunder.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Thunder)), new StatModifier(1, 1, new AttackDamage(Thunder)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+            .setWeight(2000)
             .addToSerializables();
         new MobAffix("venom", "Poison", Nature.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Nature)), new StatModifier(1, 1, new AttackDamage(Nature)), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+            .setWeight(2000)
             .addToSerializables();
 
         new MobAffix("winter", "Lord of Winter", Water.format)

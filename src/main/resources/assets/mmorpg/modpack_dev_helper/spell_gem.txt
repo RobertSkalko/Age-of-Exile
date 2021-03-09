@@ -31,13 +31,11 @@ atk_speed
 tidal_strike
 more_radius
 multi_shot
-major_multi_proj
 less_mana_cost
 recoil_shot
 thirst_strike
 poison_ball
 piercing_proj
-minor_multi_proj
 teleport
 spell_crit_rate
 lightning_totem

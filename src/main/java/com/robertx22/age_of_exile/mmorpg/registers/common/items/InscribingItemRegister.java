@@ -26,8 +26,8 @@ public class InscribingItemRegister extends BaseItemRegistrator {
 
     public List<ProtectionTabletItem> ALL_TABLETS = new ArrayList<>();
 
-    public BlankTabletItem BLANK_TABLET = item(new BlankTabletItem(BlankTabletTier.NORMAL), "tablet/blank_tablet0");
-    public BlankTabletItem RARE_BLANK_TABLET = item(new BlankTabletItem(BlankTabletTier.SUPREME), "tablet/blank_tablet1");
+    public BlankTabletItem BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.SPIRITUAL, BlankTabletTier.NORMAL), "tablet/blank_tablet0");
+    public BlankTabletItem RARE_BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.DIVINE, BlankTabletTier.SUPREME), "tablet/blank_tablet1");
 
     public ProtectionTabletItem ANTI_FIRE = tablet(new ProtectionTabletItem(SkillItemTier.SPIRITUAL, TabletTypes.ANTI_FIRE));
     public ProtectionTabletItem ANTI_POISON = tablet(new ProtectionTabletItem(SkillItemTier.SPIRITUAL, TabletTypes.ANTI_POISON));

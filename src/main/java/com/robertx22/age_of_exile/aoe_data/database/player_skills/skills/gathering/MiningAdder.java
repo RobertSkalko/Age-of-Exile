@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBui
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.block.Blocks;
@@ -37,23 +36,16 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_GOLD_ORE, 1);
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
 
-        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(0.75F);
+        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(0.5F);
         skillDrops.dropReward(new SkillDropReward(1, 150, TINKERING.STONE_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(10, 100, TINKERING.STONE_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(20, 75, TINKERING.STONE_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(30, 50, TINKERING.STONE_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
         skillDrops.dropReward(new SkillDropReward(40, 25, TINKERING.STONE_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
 
-        skillDrops.dropReward(new SkillDropReward(4, 3, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(9, 4, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(14, 5, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(19, 5, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 2)));
-        skillDrops.dropReward(new SkillDropReward(24, 6, ModRegistry.INSCRIBING.BLANK_TABLET, new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(29, 4, ModRegistry.INSCRIBING.RARE_BLANK_TABLET, new MinMax(1, 1)));
-
         b.skill.dropTables.add(skillDrops.build());
 
-        DropRewardsBuilder rareDrops = DropRewardsBuilder.of(0.5F);
+        DropRewardsBuilder rareDrops = DropRewardsBuilder.of(0.25F);
         rareDrops.dropReward(new SkillDropReward(5, 10, Items.COAL, new MinMax(1, 3)));
         rareDrops.dropReward(new SkillDropReward(10, 5, Items.IRON_INGOT, new MinMax(1, 1)));
         rareDrops.dropReward(new SkillDropReward(15, 5, Items.GOLD_INGOT, new MinMax(1, 1)));

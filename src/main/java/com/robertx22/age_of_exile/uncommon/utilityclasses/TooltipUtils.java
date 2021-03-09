@@ -30,20 +30,20 @@ public class TooltipUtils {
         return new LiteralText(format + "").append(comp);
     }
 
-    public static void addRequirements(List<Text> tip, GearItemData gear, EntityCap.UnitData data) {
+    public static void addRequirements(List<Text> tip, int lvl, StatRequirement req, EntityCap.UnitData data) {
 
         tip.add(new SText(""));
 
-        if (data.getLevel() >= gear.lvl) {
+        if (data.getLevel() >= lvl) {
             tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
-                .append(Formatting.GRAY + " Level Min: " + gear.lvl + " "));
+                .append(Formatting.GRAY + " Level Min: " + lvl + " "));
 
         } else {
-            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY).append(Formatting.GRAY + " Level Min: " + gear.lvl + " ")
+            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY).append(Formatting.GRAY + " Level Min: " + lvl + " ")
             );
         }
-        tip.addAll(gear.getRequirement()
-            .GetTooltipString(gear.lvl, data)); // todo doesnt allow for uniques to add req
+        tip.addAll(req
+            .GetTooltipString(lvl, data));
         tip.add(new SText(""));
     }
 
@@ -161,22 +161,6 @@ public class TooltipUtils {
         }
 
         return null;
-    }
-
-    public static MutableText requirement(MutableText text, int stat, int req) {
-
-        MutableText comp;
-
-        if (stat >= req) {
-            comp = new LiteralText(CHECKMARK);
-        } else {
-            comp = new LiteralText(X);
-        }
-
-        return comp.append(
-            new LiteralText(Formatting.GRAY + " ").append(text)
-                .append(": " + req));
-
     }
 
     public static List<Text> removeDoubleBlankLines(List<Text> list) {

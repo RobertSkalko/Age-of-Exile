@@ -94,9 +94,9 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
-                    .onTick(20D))
+                    .onTick(40D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 5D, 1D)
-                    .onTick(20D))
+                    .onTick(40D))
 
                 .buildForEffect())
             .build();
@@ -109,7 +109,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
                     .addPerEntityHit(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 100D, 1D, 0.2D))
                     .addPerEntityHit(PartBuilder.playSound(SoundEvents.BLOCK_SNOW_HIT, 1D, 1D))
-                    .onTick(40D))
+                    .onTick(100D))
                 .buildForEffect())
             .build();
 

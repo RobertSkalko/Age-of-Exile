@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.registry.Registry;
 
 public class Gear {
 
@@ -23,7 +24,26 @@ public class Gear {
             return null;
         }
 
-        return LoadSave.Load(GearItemData.class, new GearItemData(), stack.getTag(), LOC);
+        GearItemData gear = LoadSave.Load(GearItemData.class, new GearItemData(), stack.getTag(), LOC);
+
+        if (gear != null) {
+
+            String id = Registry.ITEM.getId(stack.getItem())
+                .toString();
+
+            if (gear.item_id.isEmpty()) {
+                gear.item_id = id;
+            } else {
+                if (id.equals(gear.item_id) == false) {
+                    // reroll by clearing gear tag because it was changed/upgraded
+                    stack.getTag()
+                        .remove(LOC);
+                    return new GearItemData();
+                }
+            }
+        }
+
+        return gear;
 
     }
 

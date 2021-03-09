@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc;
+package com.robertx22.age_of_exile.gui.screens.skill_gems;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;

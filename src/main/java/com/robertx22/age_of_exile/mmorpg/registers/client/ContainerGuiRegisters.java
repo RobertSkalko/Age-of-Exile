@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.client;
 
+import com.robertx22.age_of_exile.gui.screens.skill_gems.SkillGemsScreen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackScreen;
-import com.robertx22.age_of_exile.vanilla_mc.SkillGemsScreen;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.ContainerGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.GuiGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.ContainerGearRepair;

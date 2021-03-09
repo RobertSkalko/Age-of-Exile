@@ -192,9 +192,11 @@ public class PlayerSpellCap {
         @Override
         public float getManaReservedByAuras() {
 
+            List<String> auras = getAuras();
+
             return (float) spellCastingData.auras.entrySet()
                 .stream()
-                .filter(x -> x.getValue().active)
+                .filter(x -> x.getValue().active && auras.contains(x.getKey()))
                 .mapToDouble(x -> x.getValue().mana_reserved)
                 .sum();
         }

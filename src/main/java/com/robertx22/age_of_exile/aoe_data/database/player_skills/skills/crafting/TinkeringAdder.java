@@ -15,6 +15,9 @@ public class TinkeringAdder {
         ModRegistry.TINKERING.KEY_TIER_MAP.values()
             .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 50));
 
+        b.itemCraftExp(ModRegistry.INSCRIBING.BLANK_TABLET, 10);
+        b.itemCraftExp(ModRegistry.INSCRIBING.RARE_BLANK_TABLET, 30);
+
         ModRegistry.TINKERING.LEATHER_TIER_MAP.values()
             .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 15));
 

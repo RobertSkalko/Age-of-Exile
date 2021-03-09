@@ -82,7 +82,7 @@ public class SkillGemData implements ITooltipList {
         List<Text> list = new ArrayList<>();
         list.add(new LiteralText(""));
 
-        list.addAll(getSkillGem().req.GetTooltipString(lvl, Load.Unit(info.player)));
+        TooltipUtils.addRequirements(list, this.lvl, getSkillGem().req, info.unitdata);
 
         List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
 
@@ -110,9 +110,6 @@ public class SkillGemData implements ITooltipList {
                 .forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         }
-
-        list.add(new LiteralText(""));
-        list.add(TooltipUtils.level(this.lvl));
 
         list.add(new LiteralText(""));
         list.add(TooltipUtils.rarity(getRarity())

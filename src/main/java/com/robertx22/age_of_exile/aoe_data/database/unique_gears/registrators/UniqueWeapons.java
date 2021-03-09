@@ -165,7 +165,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Strange things you find yourself liking. Like a stick, with a piece of rotten flesh on it.",
             BaseGearWeapons.WAND.get(LevelRanges.LOW))
             .stats(Arrays.asList(
-                new StatModifier(100, 200, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+                new StatModifier(50, 100, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
             ))
             .req(new StatRequirement().setInt(0.5F)
                 .setStr(0.75F))

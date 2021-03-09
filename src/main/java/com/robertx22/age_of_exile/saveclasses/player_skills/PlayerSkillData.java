@@ -17,8 +17,9 @@ public class PlayerSkillData {
     public boolean addExp(PlayerEntity player, int addExp) {
 
         if (lvl >= Load.Unit(player)
-            .getLevel()) {
+            .getLevel() + 10) {
             return false; // don't allow leveling of skills if player level is not higher
+            // edit: 10 lvl diff is fine (maybe)
         }
 
         this.exp += addExp;

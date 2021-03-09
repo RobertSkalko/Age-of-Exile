@@ -41,7 +41,7 @@ public class SkillLevelUpToClient extends MyPacket<SkillLevelUpToClient> {
         try {
             SyncedToClientValues.skillJustLeveled = Database.PlayerSkills()
                 .get(skill).type_enum;
-            SyncedToClientValues.ticksToShowSkillLvled = 80;
+            SyncedToClientValues.ticksToShowSkillLvled = 120;
         } catch (Exception e) {
             e.printStackTrace();
         }

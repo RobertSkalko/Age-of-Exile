@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc;
+package com.robertx22.age_of_exile.gui.screens.skill_gems;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -26,6 +26,9 @@ public class SkillGemsScreen extends HandledScreen<SkillGemsContainer> {
         backgroundHeight = 207;
 
     }
+
+    static int BX = 176;
+    static int BY = 207;
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks) {

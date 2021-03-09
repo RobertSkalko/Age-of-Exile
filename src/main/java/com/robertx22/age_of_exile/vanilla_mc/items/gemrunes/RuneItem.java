@@ -179,7 +179,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         MOS(1000, "mos", "Mos", 0.2F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(5, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
+                return Arrays.asList(new StatModifier(5, 15, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
             }
 
             @Override
@@ -196,7 +196,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         ITA(1000, "ita", "Ita", 0.2F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(5, 20, Armor.getInstance(), ModType.LOCAL_INCREASE));
+                return Arrays.asList(new StatModifier(5, 15, Armor.getInstance(), ModType.LOCAL_INCREASE));
             }
 
             @Override

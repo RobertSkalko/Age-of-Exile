@@ -63,6 +63,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public String rarity = IRarity.COMMON_ID; // rar
 
     @Store
+    public String item_id = ""; // item registry name
+
+    @Store
     public int rare_prefix = -1; // pre_name
     @Store
     public int rare_suffix = -1; // suf_name

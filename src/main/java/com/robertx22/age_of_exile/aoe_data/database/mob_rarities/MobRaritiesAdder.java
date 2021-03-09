@@ -36,7 +36,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         uncommon.addToSerializables();
 
         MobRarity rare = new MobRarity();
-        rare.affix_chance = 40;
+        rare.affix_chance = 50;
         rare.stat_multi = 2F;
         rare.min_lvl = 10;
         rare.dmg_multi = 2F;

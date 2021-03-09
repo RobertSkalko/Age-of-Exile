@@ -222,7 +222,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         GARNET("garnet", "Garnet", Formatting.GREEN, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(4, 15, DodgeRating.getInstance()));
+                return Arrays.asList(new StatModifier(1, 3, DodgeRating.getInstance()));
             }
 
             @Override
@@ -238,7 +238,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         OPAL("opal", "Opal", Formatting.GOLD, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(5, 15, Armor.getInstance()));
+                return Arrays.asList(new StatModifier(1, 3, Armor.getInstance()));
             }
 
             @Override

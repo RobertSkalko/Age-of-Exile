@@ -84,7 +84,7 @@ public class GearTooltipUtils {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
 
-        TooltipUtils.addRequirements(tip, gear, data);
+        TooltipUtils.addRequirements(tip, gear.lvl, gear.getRequirement(), data);
 
         if (gear.implicit != null) {
             tip.addAll(gear.implicit.GetTooltipString(info, gear));
