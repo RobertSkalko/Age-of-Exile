@@ -28,8 +28,8 @@ public class FarmingAdder {
         b.skill.dropTables.add(skillDrops.build());
         b.skill.dropTables.add(rareDrops.build());
 
-        b.blockExp(ModRegistry.BLOCKS.PLANT1, 10);
-        b.blockExp(ModRegistry.BLOCKS.PLANT2, 10);
+        b.blockExp(ModRegistry.BLOCKS.PLANT1, 15);
+        b.blockExp(ModRegistry.BLOCKS.PLANT2, 15);
 
         b.regens(10, 2);
         b.regens(20, 4);

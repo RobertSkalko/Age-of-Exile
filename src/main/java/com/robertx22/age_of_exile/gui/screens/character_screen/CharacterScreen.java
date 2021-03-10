@@ -33,6 +33,7 @@ import com.robertx22.age_of_exile.gui.screens.char_select.CharSelectScreen;
 import com.robertx22.age_of_exile.gui.screens.player_skills.PlayerSkillsScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_gems.SkillGemsOpener;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.TalentsScreen;
+import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -222,9 +223,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             screens.add(new SkillGemsOpener());
             screens.add(new PlayerSkillsScreen());
             screens.add(new CharSelectScreen());
+            screens.add(new WikiScreen());
 
             int x = guiLeft + sizeX - 1;
-            int y = guiTop + 30;
+            int y = guiTop + 20;
 
             for (INamedScreen screen : screens) {
                 addButton(new MainHubButton(screen, x, y));

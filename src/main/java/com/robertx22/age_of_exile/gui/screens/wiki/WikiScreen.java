@@ -1,0 +1,125 @@
+package com.robertx22.age_of_exile.gui.screens.wiki;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.gui.bases.BaseScreen;
+import com.robertx22.age_of_exile.gui.bases.INamedScreen;
+import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class WikiScreen extends BaseScreen implements INamedScreen {
+    private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/wiki/wiki.png");
+
+    static int sizeX = 256;
+    static int sizeY = 207;
+
+    MinecraftClient mc = MinecraftClient.getInstance();
+
+    public WikiScreen() {
+        super(sizeX, sizeY);
+    }
+
+    WikiType currentType = WikiType.UNIQUE_GEARS;
+
+    public void changeType(WikiType type) {
+        this.currentType = type;
+        this.init();
+    }
+
+    int index = 0;
+
+    List<WikiEntry> entries = new ArrayList<>();
+
+    @Override
+    public Identifier iconLocation() {
+        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/wiki.png");
+    }
+
+    @Override
+    public Words screenName() {
+        return Words.Wiki;
+    }
+
+    @Override
+    public void init() {
+        super.init();
+
+        int x = guiLeft + 8;
+        int y = guiTop + 9;
+
+        this.buttons.clear();
+
+        int amount = 7;
+
+        this.entries = this.currentType.getAllEntries();
+
+        for (int i = index; i < amount + index; i++) {
+
+            if (entries.size() - 1 > i) {
+                this.addButton(new WikiEntryButton(this, entries.get(i), x, y));
+                y += WikiEntryButton.ySize - 1;
+            }
+        }
+
+    }
+
+    public void moveUp() {
+        if (index >= entries.size()) {
+            index = 0;
+        } else {
+            index++;
+        }
+        init();
+    }
+
+    public void moveDown() {
+        if (index <= 0) {
+            index = entries.size() - 1;
+        } else {
+            index--;
+        }
+        init();
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
+        if (scroll < 0) {
+            moveUp();
+        }
+        if (scroll > 0) {
+            moveDown();
+        }
+        return true;
+    }
+
+    @Override
+    public void render(MatrixStack matrix, int x, int y, float ticks) {
+
+        mc.getTextureManager()
+            .bindTexture(BACKGROUND);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        drawTexture(matrix, mc.getWindow()
+                .getScaledWidth() / 2 - sizeX / 2,
+            mc.getWindow()
+                .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
+        );
+
+        super.render(matrix, x, y, ticks);
+
+        buttons.forEach(b -> {
+
+            if (b instanceof WikiEntryButton == false) {
+                b.render(matrix, x, y, ticks); // render other buttons under the huge entry button
+            }
+
+            b.renderToolTip(matrix, x, y);
+        });
+
+    }
+
+}

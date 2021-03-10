@@ -16,6 +16,7 @@ mana_leech
 haste_aura
 water_dmg
 arrow_storm
+cooldown
 thunder_dmg
 fire_dmg
 less_radius

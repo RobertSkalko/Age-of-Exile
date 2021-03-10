@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
@@ -21,8 +21,13 @@ public class ItemSlotButton extends TexturedButtonWidget {
 
     static Identifier buttonLoc = new Identifier(Ref.MODID, "");
 
+    static Identifier fancyBorderLoc = new Identifier(Ref.MODID, "textures/gui/wiki/pretty_icon_border.png");
+    static int FX = 20;
+    static int FY = 20;
     ItemStack stack;
     MinecraftClient mc = MinecraftClient.getInstance();
+
+    public boolean renderFancyBorder = false;
 
     public ItemSlotButton(ItemStack stack, int xPos, int yPos) {
         super(xPos + 1, yPos + 1, xSize, ySize, 0, 0, ySize + 1, buttonLoc, (button) -> {
@@ -35,14 +40,14 @@ public class ItemSlotButton extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
-        //super.renderButton(matrix, x, y, ticks);
 
-        RenderSystem.enableDepthTest();
-        mc.getItemRenderer()
-            .renderInGuiWithOverrides(mc.player, stack, this.x, this.y);
-        mc.getItemRenderer()
-            .renderGuiItemOverlay(mc.textRenderer, stack, this.x, this.y, "");
-        RenderSystem.disableDepthTest();
+        if (renderFancyBorder) {
+            mc.getTextureManager()
+                .bindTexture(fancyBorderLoc);
+            drawTexture(matrix, this.x - 2, this.y - 2, 0, 0, FX, FY);
+        }
+
+        RenderUtils.renderStack(stack, this.x, this.y);
 
     }
 

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.level_ranges;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 
 public class LevelRange implements ISerializable<LevelRange> {
@@ -21,6 +22,10 @@ public class LevelRange implements ISerializable<LevelRange> {
     private LevelRange(float start, float end) {
         this.start = start;
         this.end = end;
+    }
+
+    public int randomFromRange() {
+        return RandomUtils.RandomRange(getMinLevel(), getMaxLevel());
     }
 
     public int getMinLevel() {

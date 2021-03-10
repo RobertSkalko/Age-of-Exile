@@ -108,6 +108,7 @@ public class ItemNewbieGearBag extends Item {
                     .get(x);
                 SkillGemBlueprint blueprint = new SkillGemBlueprint(1);
                 blueprint.type.set(gem);
+                blueprint.level.set(1);
                 PlayerUtils.giveItem(blueprint.createStack(), player);
             });
 

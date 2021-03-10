@@ -87,11 +87,11 @@ public class Races implements ISlashRegistryInit {
 
         PlayerRace.of("wood_elf", "Wood Elf", "Protectors of nature.",
             Arrays.asList(
-                new ExtraStatPerStat(new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.FLAT), Strength.INSTANCE
+                new ExtraStatPerStat(new OptScaleExactStat(0.1F, DodgeRating.getInstance(), ModType.FLAT), Strength.INSTANCE
                     .GUID()),
-                new ExtraStatPerStat(new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.FLAT), Dexterity.INSTANCE
+                new ExtraStatPerStat(new OptScaleExactStat(0.25F, DodgeRating.getInstance(), ModType.FLAT), Dexterity.INSTANCE
                     .GUID()),
-                new ExtraStatPerStat(new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.FLAT), Intelligence.INSTANCE
+                new ExtraStatPerStat(new OptScaleExactStat(0.1F, DodgeRating.getInstance(), ModType.FLAT), Intelligence.INSTANCE
                     .GUID())
             ),
             Arrays.asList(new OptScaleExactStat(40, new ElementalResist(Elements.Nature))),

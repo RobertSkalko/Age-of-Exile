@@ -17,7 +17,7 @@ public class FishingAdder {
         PlayerSkillBuilder b = PlayerSkillBuilder.of(3, PlayerSkillEnum.FISHING);
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
-        b.skill.exp_per_action = 25;
+        b.skill.exp_per_action = 40;
 
         DropRewardsBuilder skillDrops = DropRewardsBuilder.of(1.5F);
 

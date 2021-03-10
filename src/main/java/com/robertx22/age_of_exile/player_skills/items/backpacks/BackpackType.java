@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
+import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedSalvageEssence;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.SalvagedDustItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,7 +25,12 @@ public enum BackpackType {
         @Override
         public boolean canAcceptStack(ItemStack stack) {
             Item item = stack.getItem();
-            return item instanceof GemItem || item instanceof RuneItem || item instanceof CurrencyItem;
+            return item instanceof GemItem
+                || item instanceof RuneItem
+                || item instanceof CurrencyItem
+                || item instanceof SalvagedDustItem
+                || item instanceof CondensedSalvageEssence
+                ;
         }
 
         @Override
