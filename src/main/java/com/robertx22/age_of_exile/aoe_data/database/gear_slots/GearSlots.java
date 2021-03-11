@@ -6,6 +6,10 @@ import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 
 public class GearSlots implements ISlashRegistryInit {
 
+    public static String PICKAXE_ID = "pickaxe";
+    public static String FISHING_ROD_ID = "fishing_rod";
+    public static String HOE_ID = "hoe";
+
     public static DataGenKey<GearSlot> SWORD = new DataGenKey<GearSlot>("sword");
     public static DataGenKey<GearSlot> AXE = new DataGenKey<GearSlot>("axe");
     public static DataGenKey<GearSlot> WAND = new DataGenKey<GearSlot>("wand");
@@ -21,6 +25,10 @@ public class GearSlots implements ISlashRegistryInit {
 
     public static DataGenKey<GearSlot> RING = new DataGenKey<GearSlot>("ring");
     public static DataGenKey<GearSlot> NECKLACE = new DataGenKey<GearSlot>("necklace");
+
+    public static DataGenKey<GearSlot> PICKAXE = new DataGenKey<GearSlot>(PICKAXE_ID);
+    public static DataGenKey<GearSlot> FISHING_ROD = new DataGenKey<GearSlot>(FISHING_ROD_ID);
+    public static DataGenKey<GearSlot> HOE = new DataGenKey<GearSlot>(HOE_ID);
 
     @Override
     public void registerAll() {
@@ -40,6 +48,10 @@ public class GearSlots implements ISlashRegistryInit {
 
         new GearSlot(RING, 750).addToSerializables();
         new GearSlot(NECKLACE, 750).addToSerializables();
+
+        new GearSlot(PICKAXE, 0).addToSerializables();
+        new GearSlot(FISHING_ROD, 0).addToSerializables();
+        new GearSlot(HOE, 0).addToSerializables();
 
     }
 }

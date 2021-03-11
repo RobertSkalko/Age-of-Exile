@@ -87,7 +87,7 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
             .input('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('v', Items.GLISTERING_MELON_SLICE)
-            .input('o', ModRegistry.MISC_ITEMS.T4_DUST)
+            .input('o', ModRegistry.MISC_ITEMS.T4_DUST())
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ooo")

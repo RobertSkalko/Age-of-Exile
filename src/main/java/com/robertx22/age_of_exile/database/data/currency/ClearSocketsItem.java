@@ -77,8 +77,8 @@ public class ClearSocketsItem extends CurrencyItem implements ICurrencyItemEffec
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(this)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('v', ModRegistry.MISC_ITEMS.T2_DUST)
-            .input('o', ModRegistry.MISC_ITEMS.T3_DUST)
+            .input('v', ModRegistry.MISC_ITEMS.T2_DUST())
+            .input('o', ModRegistry.MISC_ITEMS.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

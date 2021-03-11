@@ -113,7 +113,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean canGetAffix(Affix affix) {
 
-        if (affixes.containsAffix(affix)) {
+        if (affix.only_one_per_item && affixes.containsAffix(affix)) {
             return false;
         }
 

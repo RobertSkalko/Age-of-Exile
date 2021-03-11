@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,14 +19,6 @@ public class ItemUtils {
         Item.Settings prop = new Item.Settings().group(CreativeTabs.MyModTab);
 
         return prop;
-    }
-
-    public static Item randomDustFor(int lvl) {
-        return ModRegistry.MISC_ITEMS.getDusts()
-            .stream()
-            .filter(x -> x.range.isLevelInRange(lvl))
-            .findFirst()
-            .get();
     }
 
     public static void tryAnnounceItem(ItemStack stack, PlayerEntity player) {

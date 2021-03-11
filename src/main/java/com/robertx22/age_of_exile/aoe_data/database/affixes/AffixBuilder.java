@@ -18,11 +18,10 @@ public class AffixBuilder {
     String guid;
     HashMap<Integer, List<StatModifier>> modsPerTier = new HashMap<>();
     String langName;
-
+    boolean allowDupli = false;
     int weight = 1000;
     public List<String> tags = new ArrayList<>();
     public Affix.Type type;
-    Requirements requirements = new Requirements();
 
     TagRequirement tagRequirement = new TagRequirement();
 
@@ -88,6 +87,11 @@ public class AffixBuilder {
         return this;
     }
 
+    public AffixBuilder AllowDuplicatesOnSameItem() {
+        allowDupli = true;
+        return this;
+    }
+
     public AffixBuilder Prefix() {
         type = Affix.Type.prefix;
         return this;
@@ -118,6 +122,7 @@ public class AffixBuilder {
             affix.tier_map.put(tier, affixTier);
         }
 
+        affix.only_one_per_item = !allowDupli;
         affix.type = type;
         affix.weight = weight;
         affix.loc_name = langName;

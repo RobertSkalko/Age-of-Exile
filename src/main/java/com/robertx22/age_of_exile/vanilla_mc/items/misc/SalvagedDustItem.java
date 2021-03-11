@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -25,10 +26,10 @@ import java.util.List;
 public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, IAutoModel, IShapelessRecipe {
 
     String name;
-    int tier;
+    public SkillItemTier tier;
     public LevelRange range;
 
-    public SalvagedDustItem(String name, int tier, LevelRange range) {
+    public SalvagedDustItem(String name, SkillItemTier tier, LevelRange range) {
         super(new Settings().maxCount(64)
             .group(CreativeTabs.MyModTab));
         this.name = name;
@@ -61,7 +62,7 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
 
     @Override
     public String GUID() {
-        return "mat/salvage/salvage" + tier;
+        return "mat/salvage/salvage" + tier.tier;
     }
 
     @Override
@@ -77,13 +78,13 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
         // de-craft recipe into lower tiers
-        if (tier < 1) {
+        if (tier.tier < 1) {
             return null;
         }
 
-        Item output = ModRegistry.MISC_ITEMS.getDusts()
+        Item output = ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.values()
             .stream()
-            .filter(x -> x.tier == tier - 1)
+            .filter(x -> x.tier.tier == tier.tier - 1)
             .findAny()
             .get();
 

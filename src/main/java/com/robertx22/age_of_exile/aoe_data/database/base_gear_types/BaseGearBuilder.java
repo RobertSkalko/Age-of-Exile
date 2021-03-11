@@ -66,6 +66,15 @@ public class BaseGearBuilder {
         return this;
     }
 
+    public BaseGearBuilder addToolLevelRanges() {
+        this.addLvlRange(LevelRanges.STARTER, "Old");
+        this.addLvlRange(LevelRanges.LOW, "Durable");
+        this.addLvlRange(LevelRanges.MIDDLE, "Sturdy");
+        this.addLvlRange(LevelRanges.HIGH, "Gilded");
+        this.addLvlRange(LevelRanges.ENDGAME, "Masterwork");
+        return this;
+    }
+
     public BaseGearBuilder addHunterLevelRanges() {
         this.addLvlRange(LevelRanges.STARTER, "Old");
         this.addLvlRange(LevelRanges.LOW, "Durable");

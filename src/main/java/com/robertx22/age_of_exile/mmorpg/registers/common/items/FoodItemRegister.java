@@ -40,7 +40,7 @@ public class FoodItemRegister extends BaseItemRegistrator {
                 FarmingFoodItem item = this.item(new FarmingFoodItem(type, effect, tier));
                 MAP.put(Triple.of(type, effect.color, tier), item);
 
-                if (tier == SkillItemTier.ANGELIC) {
+                if (tier == SkillItemTier.TIER3) {
                     if (colors.contains(effect.color)) {
                         throw new RuntimeException("Can't have 2 effects with same color!!!");
                     }

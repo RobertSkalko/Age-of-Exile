@@ -37,11 +37,11 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
 
         DropRewardsBuilder skillDrops = DropRewardsBuilder.of(0.5F);
-        skillDrops.dropReward(new SkillDropReward(1, 150, TINKERING.STONE_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(10, 100, TINKERING.STONE_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(20, 75, TINKERING.STONE_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(30, 50, TINKERING.STONE_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 3)));
-        skillDrops.dropReward(new SkillDropReward(40, 25, TINKERING.STONE_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(1, 150, TINKERING.STONE_TIER_MAP.get(SkillItemTier.TIER0), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(10, 100, TINKERING.STONE_TIER_MAP.get(SkillItemTier.TIER1), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(20, 75, TINKERING.STONE_TIER_MAP.get(SkillItemTier.TIER2), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(30, 50, TINKERING.STONE_TIER_MAP.get(SkillItemTier.TIER3), new MinMax(1, 3)));
+        skillDrops.dropReward(new SkillDropReward(40, 25, TINKERING.STONE_TIER_MAP.get(SkillItemTier.TIER4), new MinMax(1, 3)));
 
         b.skill.dropTables.add(skillDrops.build());
 

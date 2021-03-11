@@ -90,7 +90,7 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
             .input('#', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_BLESSING)
             .input('v', Items.GOLD_INGOT)
-            .input('o', ModRegistry.MISC_ITEMS.T4_DUST)
+            .input('o', ModRegistry.MISC_ITEMS.T4_DUST())
             .pattern("o#o")
             .pattern("oto")
             .pattern("v#v")

@@ -636,8 +636,15 @@ public class EntityCap {
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
+            AttackPlayStyle style = AttackPlayStyle.MELEE;
+
+            if (data.getSource() != null && data.getSource()
+                .isProjectile()) {
+                style = AttackPlayStyle.RANGED;
+            }
+
             DamageEffect dmg = new DamageEffect(
-                data, (int) num, AttackType.ATTACK, WeaponTypes.None, AttackPlayStyle.MELEE
+                data, (int) num, AttackType.ATTACK, WeaponTypes.None, style
             );
 
             dmg.Activate();

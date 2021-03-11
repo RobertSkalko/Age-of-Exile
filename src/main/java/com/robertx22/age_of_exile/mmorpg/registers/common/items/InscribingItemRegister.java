@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.player_skills.enchants.EnchantsEnum;
 import com.robertx22.age_of_exile.player_skills.items.fishing.ScribeInkItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EnchantmentScrollItem;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.StatInfusionItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.DeathTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.RandomPlayerLevelTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.SpawnTeleportItem;
@@ -23,19 +24,20 @@ public class InscribingItemRegister extends BaseItemRegistrator {
     public HashMap<ImmutableTriple<PlayerSkillEnum, EnchantsEnum, SkillItemTier>, EnchantmentScrollItem> ENCHANT_SCROLL_MAP = new HashMap<>();
 
     public HashMap<SkillItemTier, ScribeInkItem> INK_TIER_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, StatInfusionItem> STAT_INFUSION_MAP = new HashMap<>();
 
     public List<ProtectionTabletItem> ALL_TABLETS = new ArrayList<>();
 
-    public BlankTabletItem BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.SPIRITUAL, BlankTabletTier.NORMAL), "tablet/blank_tablet0");
-    public BlankTabletItem RARE_BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.DIVINE, BlankTabletTier.SUPREME), "tablet/blank_tablet1");
+    public BlankTabletItem BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.TIER0, BlankTabletTier.NORMAL), "tablet/blank_tablet0");
+    public BlankTabletItem RARE_BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.TIER4, BlankTabletTier.SUPREME), "tablet/blank_tablet1");
 
-    public ProtectionTabletItem ANTI_FIRE = tablet(new ProtectionTabletItem(SkillItemTier.SPIRITUAL, TabletTypes.ANTI_FIRE));
-    public ProtectionTabletItem ANTI_POISON = tablet(new ProtectionTabletItem(SkillItemTier.SPIRITUAL, TabletTypes.ANTI_POISON));
-    public ProtectionTabletItem ANTI_HUNGER = tablet(new ProtectionTabletItem(SkillItemTier.CELESTIAL, TabletTypes.ANTI_HUNGER));
-    public ProtectionTabletItem ANTI_WITHER = tablet(new ProtectionTabletItem(SkillItemTier.CELESTIAL, TabletTypes.ANTI_WITHER));
-    public ProtectionTabletItem ANTI_GEAR_BREAK = tablet(new ProtectionTabletItem(SkillItemTier.EMPYREAN, TabletTypes.ANTI_GEAR_BREAK));
-    public ProtectionTabletItem ANTI_DEATH = tablet(new ProtectionTabletItem(SkillItemTier.DIVINE, TabletTypes.ANTI_DEATH));
-    public ProtectionTabletItem GEAR_REPAIR = tablet(new ProtectionTabletItem(SkillItemTier.DIVINE, TabletTypes.GEAR_REPAIR));
+    public ProtectionTabletItem ANTI_FIRE = tablet(new ProtectionTabletItem(SkillItemTier.TIER0, TabletTypes.ANTI_FIRE));
+    public ProtectionTabletItem ANTI_POISON = tablet(new ProtectionTabletItem(SkillItemTier.TIER0, TabletTypes.ANTI_POISON));
+    public ProtectionTabletItem ANTI_HUNGER = tablet(new ProtectionTabletItem(SkillItemTier.TIER1, TabletTypes.ANTI_HUNGER));
+    public ProtectionTabletItem ANTI_WITHER = tablet(new ProtectionTabletItem(SkillItemTier.TIER1, TabletTypes.ANTI_WITHER));
+    public ProtectionTabletItem ANTI_GEAR_BREAK = tablet(new ProtectionTabletItem(SkillItemTier.TIER2, TabletTypes.ANTI_GEAR_BREAK));
+    public ProtectionTabletItem ANTI_DEATH = tablet(new ProtectionTabletItem(SkillItemTier.TIER4, TabletTypes.ANTI_DEATH));
+    public ProtectionTabletItem GEAR_REPAIR = tablet(new ProtectionTabletItem(SkillItemTier.TIER4, TabletTypes.GEAR_REPAIR));
 
     public DeathTeleportItem DEATH_TELEPORT = item(new DeathTeleportItem(), "scroll/death_teleport");
     public SpawnTeleportItem SPAWN_TELEPORT = item(new SpawnTeleportItem(), "scroll/spawn_teleport");
@@ -44,6 +46,7 @@ public class InscribingItemRegister extends BaseItemRegistrator {
     public InscribingItemRegister() {
         for (SkillItemTier tier : SkillItemTier.values()) {
             INK_TIER_MAP.put(tier, item(new ScribeInkItem(tier)));
+            STAT_INFUSION_MAP.put(tier, item(new StatInfusionItem(tier)));
         }
 
         for (SkillItemTier tier : SkillItemTier.values()) {

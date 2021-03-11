@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class WikiEntryButton extends TexturedButtonWidget {
@@ -36,7 +35,8 @@ public class WikiEntryButton extends TexturedButtonWidget {
 
         MinecraftClient mc = MinecraftClient.getInstance();
 
-        mc.textRenderer.drawWithShadow(matrix, entry.getName(), this.x + 60, this.y + 6, Formatting.RED.getColorValue());
+        mc.textRenderer.drawWithShadow(matrix, entry.getName(), this.x + 60, this.y + 6, this.entry.getFormat()
+            .getColorValue());
     }
 
 }

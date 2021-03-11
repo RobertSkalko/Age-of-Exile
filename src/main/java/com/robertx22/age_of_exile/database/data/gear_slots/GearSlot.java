@@ -2,9 +2,9 @@ package com.robertx22.age_of_exile.database.data.gear_slots;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 
 public class GearSlot implements ISerializedRegistryEntry<GearSlot>, ISerializable<GearSlot> {
 

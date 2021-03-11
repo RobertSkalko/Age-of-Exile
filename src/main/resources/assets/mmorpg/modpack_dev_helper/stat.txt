@@ -139,6 +139,7 @@ health_on_other_hit
 blood_on_all_hit
 nature_dot_damage
 mana_shield
+bonus_night_yield
 spell_accuracy
 mana_per_sec
 basic_attack_nature_dmg_leech_as_blood
@@ -210,11 +211,13 @@ bonus_exploration_exp
 fire_resist
 spell_fire_dmg_leech_as_mana
 spell_water_dmg_leech_as_health
+triple_drop_chance
 health
 attack_physical_dmg_leech_as_health
 spell_elemental_dmg_leech_as_mana
 inc_aura_effect
 hp_to_blood
+bonus_day_yield
 spell_critical_hit
 blood_user
 fire_dot_damage
@@ -256,6 +259,7 @@ chance_of_bleed
 total_damage
 renamed_or_deleted_stat
 other_thunder_dmg_leech_as_mana
+bonus_hot_biome_yield
 elemental_resist
 basic_attack_fire_dmg_leech_as_health
 dot_fire_dmg_leech_as_blood
@@ -266,6 +270,7 @@ basic_attack_water_dmg_leech_as_mana
 all_nature_dmg_leech_as_blood
 chill_bonus_dmg
 inc_leech
+bonus_cold_biome_yield
 other_nature_dmg_leech_as_health
 attack_all_dmg_leech_as_health
 spell_dodge
@@ -280,6 +285,7 @@ all_physical_dmg_leech_as_blood
 all_thunder_dmg_leech_as_health
 chance_of_frostburn
 max_elemental_resist
+double_drop_chance
 health_on_kill
 bonus_fishing_exp
 other_all_dmg_leech_as_blood
@@ -288,6 +294,7 @@ dexterity
 convert_nature_to_phys
 spell_nature_dmg_leech_as_blood
 all_fire_dmg_leech_as_mana
+bonus_rain_yield
 dmg_under_wither
 heal_effect_on_self
 other_all_dmg_leech_as_mana

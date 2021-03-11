@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantProduceItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
@@ -19,16 +19,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 
 public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
 
-    public List<SalvagedDustItem> getDusts() {
-        return Arrays.asList(T0_DUST, T1_DUST, T2_DUST, T3_DUST, T4_DUST);
-    }
+    public HashMap<SkillItemTier, SalvagedDustItem> SALVAGED_ESSENCE_MAP = new HashMap<>();
 
     public Item PLANT1_SEED = item(new PlantSeedItem(ModRegistry.BLOCKS.PLANT1, Items.WHEAT, "Arcane Wheat Seed"), "seed/plant1");
     public Item PLANT2_SEED = item(new PlantSeedItem(ModRegistry.BLOCKS.PLANT2, Items.WHEAT_SEEDS, "Blood Wheat Seed"), "seed/plant2");
@@ -36,11 +33,25 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item ARCANE_WHEAT = item(new PlantProduceItem("Arcane Wheat"), "plant/plant1");
     public Item BLOOD_WHEAT = item(new PlantProduceItem("Blood Wheat"), "plant/plant2");
 
-    public SalvagedDustItem T0_DUST = item(new SalvagedDustItem("T0 Purified Essence", 0, LevelRanges.STARTER));
-    public SalvagedDustItem T1_DUST = item(new SalvagedDustItem("T1 Purified Essence", 1, LevelRanges.LOW));
-    public SalvagedDustItem T2_DUST = item(new SalvagedDustItem("T2 Purified Essence", 2, LevelRanges.MIDDLE));
-    public SalvagedDustItem T3_DUST = item(new SalvagedDustItem("T3 Purified Essence", 3, LevelRanges.HIGH));
-    public SalvagedDustItem T4_DUST = item(new SalvagedDustItem("T4 Purified Essence", 4, LevelRanges.ENDGAME));
+    public SalvagedDustItem T0_DUST() {
+        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0);
+    }
+
+    public SalvagedDustItem T1_DUST() {
+        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER1);
+    }
+
+    public SalvagedDustItem T2_DUST() {
+        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER2);
+    }
+
+    public SalvagedDustItem T3_DUST() {
+        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER3);
+    }
+
+    public SalvagedDustItem T4_DUST() {
+        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER4);
+    }
 
     public RepairHammer0 REPAIR_HAMMER_0 = item(new RepairHammer0(1250), "repair_hammers/0");
     public RepairHammer1 REPAIR_HAMMER_1 = item(new RepairHammer1(3750), "repair_hammers/1");
@@ -81,6 +92,13 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item GEAR_SOCKET = blockItem(ModRegistry.BLOCKS.SOCKET_STATION);
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
+
+    public MiscItemsRegistrator() {
+
+        for (SkillItemTier tier : SkillItemTier.values()) {
+            SALVAGED_ESSENCE_MAP.put(tier, item(new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
+        }
+    }
 
     <T extends Block> Item blockItem(T block) {
         return item(new BlockItem(block, stationProp), Registry.BLOCK.getId(block)

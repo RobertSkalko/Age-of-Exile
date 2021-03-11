@@ -196,6 +196,8 @@ They also can only drop from certain mobs, for example bonechill ring can only d
 * stat requirement datapacks now use hashmaps instead of fields, so you'll need to update them
 * item ids are now saved to my gear stats data, and any time they change, the item itself is cleared the stats data and allowed to regenerate. This is used for smithing table upgrades, so now your diamond swords will reroll into appropriate netherite swords power levels. It's not a direct upgrade as it's a total reroll, but I think it's better than nothing.
 * skill gems can be leveled by sacrificing other gems in the modify station
+* added ingame wiki feature! Look at all the unique gears the mod/modpack has, see what level mobs are in which dimensions etc!
+* new affix datapack boolean, allows or dissallows duplicate affix on same item, by default most affixes don't allow duplicates, but some do (like sockets)
 
 * salvaging is now a button click like how modifying/socketing is now too
 * added "secret" salvaging recipes (datapacks can't keep secrets though)

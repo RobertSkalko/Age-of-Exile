@@ -23,7 +23,7 @@ public class CheckWeaponDpsBalanceTest {
             .forEach(x -> {
 
                 if (x.getBaseGearType()
-                    .isWeapon()) {
+                    .isWeaponOrTool()) {
 
                     List<StatModifier> mods = new ArrayList<>();
 

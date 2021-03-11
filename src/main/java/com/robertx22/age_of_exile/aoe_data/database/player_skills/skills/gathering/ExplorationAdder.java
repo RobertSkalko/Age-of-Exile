@@ -43,11 +43,11 @@ public class ExplorationAdder {
             new OptScaleExactStat(5, TreasureQuality.getInstance())));
 
         DropRewardsBuilder skillDrops = DropRewardsBuilder.of(1);
-        skillDrops.dropReward(new SkillDropReward(5, 1, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.SPIRITUAL), new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(15, 100, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.CELESTIAL), new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(25, 10000, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.EMPYREAN), new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(35, 1000000, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.ANGELIC), new MinMax(1, 1)));
-        skillDrops.dropReward(new SkillDropReward(45, 100000000, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.DIVINE), new MinMax(1, 1)));
+        skillDrops.dropReward(new SkillDropReward(5, 1, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.TIER0), new MinMax(1, 1)));
+        skillDrops.dropReward(new SkillDropReward(15, 100, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.TIER1), new MinMax(1, 1)));
+        skillDrops.dropReward(new SkillDropReward(25, 10000, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.TIER2), new MinMax(1, 1)));
+        skillDrops.dropReward(new SkillDropReward(35, 1000000, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.TIER3), new MinMax(1, 1)));
+        skillDrops.dropReward(new SkillDropReward(45, 100000000, TINKERING.LOCKED_CHEST_TIER_MAP.get(SkillItemTier.TIER4), new MinMax(1, 1)));
         b.skill.dropTables.add(skillDrops.build());
 
         return b.build();

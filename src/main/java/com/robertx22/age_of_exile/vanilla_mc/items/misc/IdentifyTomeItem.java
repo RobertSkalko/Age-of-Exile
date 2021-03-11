@@ -100,7 +100,7 @@ public class IdentifyTomeItem extends Item implements IShapedRecipe {
         return shaped(ModRegistry.MISC_ITEMS.IDENTIFY_TOME, 8)
             .input('b', Items.BOOK)
             .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.T0_DUST)
+            .input('o', ModRegistry.MISC_ITEMS.T0_DUST())
             .pattern("oo")
             .pattern("bv")
             .criterion("player_level", trigger());

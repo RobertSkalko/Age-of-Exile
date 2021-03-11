@@ -96,7 +96,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
             .input('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
             .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.T4_DUST)
+            .input('o', ModRegistry.MISC_ITEMS.T4_DUST())
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ovo")

@@ -45,6 +45,9 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     public HashMap<LevelRange, Item> WANDS = of("weapon/wand/wand", () -> new ItemWand("Wand"));
     public HashMap<LevelRange, Item> SCEPTERS = of("weapon/wand/scepter", () -> new ItemWand("Scepter"));
     public HashMap<LevelRange, Item> BOWS = vanilla(Items.BOW);
+    public HashMap<LevelRange, Item> PICKAXE = vanilla(Items.DIAMOND_PICKAXE);
+    public HashMap<LevelRange, Item> FISHING_RODS = vanilla(Items.FISHING_ROD);
+    public HashMap<LevelRange, Item> HOES = vanilla(Items.DIAMOND_HOE);
     public HashMap<LevelRange, Item> CROSSBOWS = vanilla(Items.CROSSBOW);
 
     public HashMap<LevelRange, Item> ARMOR_SHIELDS = vanilla(Items.SHIELD);

@@ -30,7 +30,7 @@ public class LevelUtils {
      */
 
     public static int getExpRequiredForLevel(int level) {
-        return (int) (Math.pow(6F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 2.5F));
+        return (int) (Math.pow(6F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 2.25F));
     }
 
     public static int getExpNeededForSkillLevel(int level) {

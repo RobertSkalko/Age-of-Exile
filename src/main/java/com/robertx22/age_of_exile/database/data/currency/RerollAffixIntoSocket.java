@@ -120,8 +120,8 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(this)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('v', ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(SkillItemTier.EMPYREAN))
-            .input('o', ModRegistry.MISC_ITEMS.T2_DUST)
+            .input('v', ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER2))
+            .input('o', ModRegistry.MISC_ITEMS.T2_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

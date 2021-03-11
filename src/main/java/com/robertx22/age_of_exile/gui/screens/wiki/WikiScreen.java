@@ -10,6 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WikiScreen extends BaseScreen implements INamedScreen {
@@ -28,10 +29,13 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
 
     public void changeType(WikiType type) {
         this.currentType = type;
+        this.index = 0;
         this.init();
     }
 
     int index = 0;
+
+    public static int ENTRY_BUTTONS_MAX = 7;
 
     List<WikiEntry> entries = new ArrayList<>();
 
@@ -54,7 +58,7 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
 
         this.buttons.clear();
 
-        int amount = 7;
+        int amount = ENTRY_BUTTONS_MAX;
 
         this.entries = this.currentType.getAllEntries();
 
@@ -64,6 +68,18 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
                 this.addButton(new WikiEntryButton(this, entries.get(i), x, y));
                 y += WikiEntryButton.ySize - 1;
             }
+        }
+
+        x = guiLeft + 3;
+        y = guiTop - 3 - WikiTypeButton.ySize;
+
+        for (int i = 0; i < WikiType.values().length; i++) {
+            WikiType type = Arrays.asList(WikiType.values())
+                .get(i);
+
+            this.addButton(new WikiTypeButton(this, type, x, y));
+            x += WikiTypeButton.xSize + 3;
+
         }
 
     }

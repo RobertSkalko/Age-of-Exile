@@ -90,7 +90,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
         return shaped(ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .input('t', Items.REDSTONE)
             .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.T0_DUST)
+            .input('o', ModRegistry.MISC_ITEMS.T0_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

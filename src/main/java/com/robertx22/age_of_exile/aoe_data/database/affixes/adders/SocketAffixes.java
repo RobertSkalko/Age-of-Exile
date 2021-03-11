@@ -12,46 +12,19 @@ public class SocketAffixes implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        // different ids so gear can have 3 socket prefixes etc
-        AffixBuilder.Normal("jeweled_1")
+        AffixBuilder.Normal("jeweled")
             .Named("Jeweled")
             .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
+            .AllowDuplicatesOnSameItem()
             .Prefix()
             .Build();
 
-        AffixBuilder.Normal("jeweled_2")
-            .Named("Jeweled")
-            .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
-            .Prefix()
-            .Build();
-
-        AffixBuilder.Normal("jeweled_3")
-            .Named("Jeweled")
-            .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
-            .Prefix()
-            .Build();
-
-        AffixBuilder.Normal("socket_suff_1")
+        AffixBuilder.Normal("socket_suff")
             .Named("Of Sockets")
             .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("socket_suff_2")
-            .Named("Of Sockets")
-            .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("socket_suff_3")
-            .Named("Of Sockets")
-            .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
+            .AllowDuplicatesOnSameItem()
             .Suffix()
             .Build();
 

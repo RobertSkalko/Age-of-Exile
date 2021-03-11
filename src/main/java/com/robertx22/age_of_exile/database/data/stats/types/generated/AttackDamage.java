@@ -38,7 +38,7 @@ public class AttackDamage extends ElementalStat implements ILocalStat {
 
     @Override
     public boolean IsNativeToGearType(BaseGearType slot) {
-        return slot.isWeapon();
+        return slot.isWeaponOrTool();
     }
 
     @Override

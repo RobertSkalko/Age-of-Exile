@@ -110,7 +110,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private SlashRegistryType type;
     private C emptyDefault;
 
-    protected C getDefault() {
+    public C getDefault() {
         return this.emptyDefault;
     }
 

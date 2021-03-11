@@ -26,7 +26,7 @@ public class PlantSeedItem extends AliasedBlockItem implements IAutoLocName, ISh
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
-        fac.input(ModRegistry.MISC_ITEMS.T1_DUST, 3);
+        fac.input(ModRegistry.MISC_ITEMS.T1_DUST(), 3);
         fac.input(recipeItem);
         return fac.criterion("player_level", trigger());
     }

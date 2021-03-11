@@ -38,6 +38,6 @@ public class CreativeTabs {
     public static ItemGroup Professions = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "proffs_group")
         ,
-        () -> new ItemStack(ModRegistry.ALCHEMY.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.DIVINE, PotionType.HEALTH))));
+        () -> new ItemStack(ModRegistry.ALCHEMY.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.TIER4, PotionType.HEALTH))));
 
 }

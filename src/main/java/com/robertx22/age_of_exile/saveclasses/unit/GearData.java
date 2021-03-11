@@ -38,7 +38,7 @@ public class GearData {
     private void calcStatUtilization(EntityCap.UnitData data) {
         if (slot == EquipmentSlot.OFFHAND) {
             if (gear != null && gear.GetBaseGearType()
-                .isWeapon()) {
+                .isWeaponOrTool()) {
                 percentStatUtilization = 15; // TODO
             }
         }
@@ -69,7 +69,7 @@ public class GearData {
 
         BaseGearType type = gear.GetBaseGearType();
 
-        if (type.isWeapon()) {
+        if (type.isWeaponOrTool()) {
             return slot == EquipmentSlot.MAINHAND; // ranged weapon
         }
         if (type.tags.contains(BaseGearType.SlotTag.chest)) {

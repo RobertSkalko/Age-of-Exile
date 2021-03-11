@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import joptsimple.internal.Strings;
 import net.fabricmc.loader.api.FabricLoader;
@@ -98,6 +99,16 @@ public class RecipeGenerator {
                 }
             }
         }
+
+        ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.values()
+            .forEach(x -> {
+                if (x.tier.lowerTier() != null) {
+                    ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(x, 1);
+                    fac.input(ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.get(x.tier.lowerTier()), 4);
+                    fac.criterion("player_level", EnchantedItemCriterion.Conditions.any())
+                        .offerTo(consumer);
+                }
+            });
 
         Database.GearTypes()
             .getSerializable()

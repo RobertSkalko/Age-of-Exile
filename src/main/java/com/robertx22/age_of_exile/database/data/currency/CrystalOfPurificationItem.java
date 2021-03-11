@@ -64,7 +64,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
 
     @Override
     public String locNameForLangFile() {
-        return nameColor + "Crystal of Purification";
+        return nameColor + "Crystal of Unsealing";
     }
 
     @Override
@@ -77,7 +77,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
         return shaped(this)
             .input('t', ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
             .input('v', ModRegistry.GEAR_MATERIALS.ARCANA)
-            .input('o', ModRegistry.MISC_ITEMS.T3_DUST)
+            .input('o', ModRegistry.MISC_ITEMS.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

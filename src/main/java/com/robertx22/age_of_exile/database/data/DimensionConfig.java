@@ -30,6 +30,12 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
         return c;
     }
 
+    public static DimensionConfig Hell(String id, int min, int max) {
+        DimensionConfig d = new DimensionConfig(id, min, max);
+        d.scale_to_nearest_player = true;
+        return d;
+    }
+
     public static DimensionConfig Nether() {
         DimensionConfig d = new DimensionConfig(10, "minecraft:the_nether").setMobTier(2);
         d.min_lvl = 10;
@@ -44,6 +50,11 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
         return d;
     }
 
+    public DimensionConfig setDistPerLevel(int dist) {
+        this.mob_lvl_per_distance = dist;
+        return this;
+    }
+
     public static DimensionConfig DefaultExtra() {
         DimensionConfig config = new DimensionConfig();
         config.min_lvl = 1;
@@ -56,7 +67,7 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
         return this;
     }
 
-    public String dimension_id = "";
+    public String dimension_id = "default";
 
     public int mob_tier = 0;
 

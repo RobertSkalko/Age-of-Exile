@@ -47,8 +47,7 @@ public class CondensedSalvageEssence extends Item implements IAutoLocName, IAuto
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
-        fac.input(ModRegistry.MISC_ITEMS.getDusts()
-            .get(tier.tier), 3);
+        fac.input(ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.get(tier), 3);
         return fac.criterion("player_level", trigger());
     }
 

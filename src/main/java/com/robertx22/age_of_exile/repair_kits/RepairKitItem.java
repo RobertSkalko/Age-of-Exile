@@ -88,7 +88,7 @@ public class RepairKitItem extends Item implements IAutoLocName, IAutoModel, ISh
         if (tier == 0) {
             return shaped(this)
                 .input('v', recipeItem)
-                .input('t', ModRegistry.MISC_ITEMS.T1_DUST)
+                .input('t', ModRegistry.MISC_ITEMS.T1_DUST())
                 .pattern(" v ")
                 .pattern("vtv")
                 .pattern(" v ")

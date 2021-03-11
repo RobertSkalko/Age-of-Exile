@@ -132,7 +132,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         if (tags.contains(SlotTag.helmet)) {
             return EquipmentSlot.HEAD;
         }
-        if (isWeapon()) {
+        if (isWeaponOrTool()) {
             return EquipmentSlot.MAINHAND;
         }
 
@@ -209,9 +209,9 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     }
 
-    public final boolean isWeapon() {
+    public final boolean isWeaponOrTool() {
         return this.family()
-            .equals(SlotFamily.Weapon);
+            .equals(SlotFamily.Weapon) || family() == SlotFamily.Tool;
     }
 
     public final boolean isMeleeWeapon() {
@@ -224,6 +224,10 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     }
 
     public enum SlotTag {
+        fishing_rod(SlotFamily.Tool),
+        pickaxe(SlotFamily.Tool),
+        hoe(SlotFamily.Tool),
+
         sword(SlotFamily.Weapon),
         axe(SlotFamily.Weapon),
         bow(SlotFamily.Weapon),
@@ -256,6 +260,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         armor_family(SlotFamily.NONE),
         jewelry_family(SlotFamily.NONE),
         offhand_family(SlotFamily.NONE),
+        tool_family(SlotFamily.NONE),
 
         intelligence(SlotFamily.NONE),
         dexterity(SlotFamily.NONE),
@@ -273,6 +278,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         Armor,
         Jewelry,
         OffHand,
+        Tool,
         NONE;
 
         public boolean isJewelry() {

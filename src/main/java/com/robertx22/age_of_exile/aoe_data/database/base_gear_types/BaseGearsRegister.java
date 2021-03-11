@@ -16,5 +16,7 @@ public class BaseGearsRegister implements ISlashRegistryInit {
         new BaseGearWeapons().registerAll();
         new BaseGearJewelry().registerAll();
 
+        new BaseToolsAdder().registerAll();
+
     }
 }

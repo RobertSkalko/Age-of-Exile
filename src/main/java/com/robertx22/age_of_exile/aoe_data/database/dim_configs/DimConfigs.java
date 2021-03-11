@@ -8,16 +8,20 @@ public class DimConfigs implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        DimensionConfig.Overworld()
-            .addToSerializables();
+        DimensionConfig c = DimensionConfig.Overworld();
+
+        c.addToSerializables();
         DimensionConfig.Nether()
             .addToSerializables();
         DimensionConfig.End()
             .addToSerializables();
 
-        new DimensionConfig("world_of_exile:hell1", 20, 30).addToSerializables();
-        new DimensionConfig("world_of_exile:hell2", 30, 40).addToSerializables();
-        new DimensionConfig("world_of_exile:hell3", 40, 50).addToSerializables();
+        DimensionConfig.Hell("world_of_exile:hell1", 20, 30)
+            .addToSerializables();
+        DimensionConfig.Hell("world_of_exile:hell2", 30, 40)
+            .addToSerializables();
+        DimensionConfig.Hell("world_of_exile:hell3", 40, 50)
+            .addToSerializables();
 
     }
 }

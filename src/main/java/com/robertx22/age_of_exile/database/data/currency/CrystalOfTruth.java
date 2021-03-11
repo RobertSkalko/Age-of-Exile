@@ -87,7 +87,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
         return shaped(ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
             .input('t', Items.REDSTONE)
             .input('v', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('o', ModRegistry.MISC_ITEMS.T2_DUST)
+            .input('o', ModRegistry.MISC_ITEMS.T2_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")
