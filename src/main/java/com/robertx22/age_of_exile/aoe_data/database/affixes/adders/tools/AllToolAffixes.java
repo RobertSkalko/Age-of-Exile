@@ -3,9 +3,11 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.tools;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
+import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillExp;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.DoubleDropChance;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.TripleDropChance;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
 public class AllToolAffixes implements ISlashRegistryInit {
 
@@ -47,6 +49,16 @@ public class AllToolAffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(8, 10, TripleDropChance.getInstance()))
             .tier(2, new StatModifier(6, 8, TripleDropChance.getInstance()))
             .tier(3, new StatModifier(2, 6, TripleDropChance.getInstance()))
+            .includesTags(SlotTag.tool_family)
+            .AllowDuplicatesOnSameItem()
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_exp")
+            .Named("Of Experience")
+            .tier(1, new StatModifier(10, 15, new BonusSkillExp(PlayerSkillEnum.ALL)))
+            .tier(2, new StatModifier(8, 10, new BonusSkillExp(PlayerSkillEnum.ALL)))
+            .tier(3, new StatModifier(5, 8, new BonusSkillExp(PlayerSkillEnum.ALL)))
             .includesTags(SlotTag.tool_family)
             .AllowDuplicatesOnSameItem()
             .Suffix()

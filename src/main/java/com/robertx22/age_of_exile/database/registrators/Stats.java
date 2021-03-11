@@ -11,10 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantit
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.*;
-import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusRequirement;
-import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusYield;
-import com.robertx22.age_of_exile.database.data.stats.types.professions.all.DoubleDropChance;
-import com.robertx22.age_of_exile.database.data.stats.types.professions.all.TripleDropChance;
+import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;

@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.stats.types.misc;
+package com.robertx22.age_of_exile.database.data.stats.types.professions.all;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -39,7 +39,7 @@ public class BonusSkillExp extends Stat implements IGenerated<Stat> {
 
     @Override
     public String locNameForLangFile() {
-        return "Bonus Experience";
+        return "Bonus " + skill.word.translate() + " Exp";
     }
 
     @Override
@@ -47,7 +47,6 @@ public class BonusSkillExp extends Stat implements IGenerated<Stat> {
         List<Stat> list = new ArrayList<>();
         Arrays.stream(PlayerSkillEnum.values())
             .forEach(x -> list.add(new BonusSkillExp(x)));
-
         return list;
     }
 

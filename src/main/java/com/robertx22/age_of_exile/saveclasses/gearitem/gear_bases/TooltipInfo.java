@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -16,6 +17,7 @@ public class TooltipInfo implements Cloneable {
 
         this.hasAltDown = Screen.hasAltDown();
         this.hasShiftDown = Screen.hasShiftDown();
+        this.player = ClientOnly.getPlayer();
     }
 
     public TooltipInfo(EntityCap.UnitData unitdata) {
@@ -25,12 +27,15 @@ public class TooltipInfo implements Cloneable {
 
         this.hasAltDown = Screen.hasAltDown();
         this.hasShiftDown = Screen.hasShiftDown();
+        this.player = ClientOnly.getPlayer();
 
     }
 
     public TooltipInfo() {
         this.hasAltDown = Screen.hasAltDown();
         this.hasShiftDown = Screen.hasShiftDown();
+
+        this.player = ClientOnly.getPlayer();
     }
 
     public TooltipInfo(PlayerEntity player) {

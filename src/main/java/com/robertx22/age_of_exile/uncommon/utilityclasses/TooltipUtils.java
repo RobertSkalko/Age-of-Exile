@@ -32,19 +32,17 @@ public class TooltipUtils {
 
     public static void addRequirements(List<Text> tip, int lvl, StatRequirement req, EntityCap.UnitData data) {
 
-        tip.add(new SText(""));
-
         if (data.getLevel() >= lvl) {
             tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
                 .append(Formatting.GRAY + " Level Min: " + lvl + " "));
 
         } else {
-            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY).append(Formatting.GRAY + " Level Min: " + lvl + " ")
+            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                .append(Formatting.GRAY + " Level Min: " + lvl + " ")
             );
         }
         tip.addAll(req
             .GetTooltipString(lvl, data));
-        tip.add(new SText(""));
     }
 
     public static void addSocketNamesLine(List<Text> tip, GearItemData gear) {

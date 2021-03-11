@@ -5,10 +5,8 @@ import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusSkillExp;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.player_skills.enchants.BonusSkillLootEnchant;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -61,11 +59,6 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
             }
         }
 
-        exp *= Load.Unit(player)
-            .getUnit()
-            .getCalculatedStat(new BonusSkillExp(this.type_enum))
-            .getMultiplier();
-
         return exp;
 
     }
@@ -98,9 +91,8 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
             float chance = dropTable.loot_chance_per_action_exp * expForAction;
 
-            float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
-
-            chance *= chanceMulti;
+            //  float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
+            // chance *= chanceMulti;
 
             if (RandomUtils.roll(chance)) {
                 List<SkillDropReward> possible = dropTable.drop_rewards

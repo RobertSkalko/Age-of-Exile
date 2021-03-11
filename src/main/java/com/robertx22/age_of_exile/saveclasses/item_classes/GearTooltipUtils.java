@@ -8,8 +8,11 @@ import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
+import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -84,7 +87,26 @@ public class GearTooltipUtils {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
 
+        tip.add(new SText(""));
+
+        PlayerSkillEnum skill = gear.getSkillNeeded();
+
+        if (skill != null) {
+            int skillvll = Load.playerSkills(info.player)
+                .getLevel(skill);
+            if (skillvll >= gear.lvl) {
+                tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                    .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " "));
+
+            } else {
+                tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                    .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " ")
+                );
+            }
+        }
+
         TooltipUtils.addRequirements(tip, gear.lvl, gear.getRequirement(), data);
+        tip.add(new SText(""));
 
         if (gear.implicit != null) {
             tip.addAll(gear.implicit.GetTooltipString(info, gear));

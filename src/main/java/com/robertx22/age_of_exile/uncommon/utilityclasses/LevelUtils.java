@@ -34,8 +34,9 @@ public class LevelUtils {
     }
 
     public static int getExpNeededForSkillLevel(int level) {
-        float exponent = 0.5F * (float) level / (float) GameBalanceConfig.get().MAX_LEVEL;
-        return (int) Math.pow(100 + (level * 20), 1 + exponent);
+        float exponent = 0.1F * (float) level / (float) GameBalanceConfig.get().MAX_LEVEL;
+        exponent = MathHelper.clamp(exponent, 0, 0.15F);
+        return (int) Math.pow(50 + (level * 20), 1 + exponent);
     }
 
     public static int getBaseExpMobReward(int level) {

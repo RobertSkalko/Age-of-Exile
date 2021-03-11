@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 
 public class ModRegistry {
 
-    public static ModEnchants ENCHANTS;
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
@@ -52,7 +51,6 @@ public class ModRegistry {
         FOOD_ITEMS = new FoodItemRegister();
         INSCRIBING = new InscribingItemRegister();
         ALCHEMY = new AlchemyItemRegister();
-        ENCHANTS = new ModEnchants();
         TINKERING = new TinkeringItemRegister();
         SKILL_GEMS = new SkillGemItemRegister();
 

@@ -118,7 +118,7 @@ public class TileGearRepair extends BaseModificationStation {
     }
 
     @Override
-    public boolean modifyItem() {
+    public boolean modifyItem(PlayerEntity player) {
         try {
 
             ItemStack fuelstack = this.CraftItemSlot();

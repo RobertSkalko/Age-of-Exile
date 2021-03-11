@@ -183,7 +183,7 @@ public class TileGearModify extends BaseModificationStation {
     }
 
     @Override
-    public boolean modifyItem() {
+    public boolean modifyItem(PlayerEntity player) {
 
         if (this.canModifyItem()) {
 

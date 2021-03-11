@@ -1,12 +1,14 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillExp;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillsData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SkillLevelUpToClient;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -35,6 +37,12 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
     PlayerSkillsData data = new PlayerSkillsData();
 
     public void addExp(PlayerSkillEnum skill, int exp) {
+
+        exp *= Load.Unit(player)
+            .getUnit()
+            .getCalculatedStat(new BonusSkillExp(skill))
+            .getMultiplier(); // bonus exp needs to happen here because otherwise it counts towards droprates
+
         PlayerSkillData sd = data.getDataFor(skill);
 
         if (sd.addExp(player, exp)) {

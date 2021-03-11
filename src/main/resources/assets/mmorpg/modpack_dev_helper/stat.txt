@@ -100,6 +100,7 @@ all_nature_dmg_leech_as_mana
 attack_elemental_dmg_leech_as_mana
 max_fire_resist
 other_fire_dmg_leech_as_mana
+bonus_all_exp
 basic_attack_elemental_dmg_leech_as_blood
 ele_wand_damage
 armor
@@ -140,6 +141,7 @@ blood_on_all_hit
 nature_dot_damage
 mana_shield
 bonus_night_yield
+bonus_salvaging_exp
 spell_accuracy
 mana_per_sec
 basic_attack_nature_dmg_leech_as_blood

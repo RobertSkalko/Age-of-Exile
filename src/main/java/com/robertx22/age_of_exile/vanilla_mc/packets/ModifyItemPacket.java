@@ -37,7 +37,7 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
 
         try {
             BaseModificationStation modify = (BaseModificationStation) ctx.getPlayer().world.getBlockEntity(pos);
-            modify.modifyItem();
+            modify.modifyItem(ctx.getPlayer());
         } catch (Exception e) {
             e.printStackTrace();
         }

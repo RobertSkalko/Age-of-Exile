@@ -58,7 +58,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
         int num = 0;
 
         int x = guiLeft + 22;
-        int y = guiTop + 50;
+        int y = guiTop + 15;
 
         List<PlayerSkill> all = Database.PlayerSkills()
             .getList();
@@ -91,7 +91,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
         String nametext = CLOC.translate(Words.Skills.locName());
 
-        TextUtils.renderText(matrix, 1.5F, nametext, guiLeft + sizeX / 2, guiTop + 20, Formatting.GREEN);
+        TextUtils.renderText(matrix, 1.5F, nametext, guiLeft + sizeX / 2, guiTop - 15, Formatting.GREEN);
 
     }
 
@@ -135,7 +135,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
             String xptext = exp + "/" + needed;
             String nametext = CLOC.translate(skill.word.locName());
 
-            TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 5, Formatting.GOLD);
+            TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 1, Formatting.GOLD);
             TextUtils.renderText(matrix, 1, xptext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.55F), Formatting.GREEN);
 
         }

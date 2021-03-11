@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.player_skills;
 
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -14,12 +15,19 @@ public class PlayerSkillData {
     @Store
     private int exp = 0;
 
+    static int MAX_LEVEL = 999;
+
     public boolean addExp(PlayerEntity player, int addExp) {
 
-        if (lvl >= Load.Unit(player)
-            .getLevel() + 10) {
-            return false; // don't allow leveling of skills if player level is not higher
-            // edit: 10 lvl diff is fine (maybe)
+        if (lvl >= MAX_LEVEL) {
+            return false;
+        }
+        if (GameBalanceConfig.get().MAX_LEVEL > lvl) {
+            if (lvl >= Load.Unit(player)
+                .getLevel() + 5) {
+                return false; // don't allow leveling of skills if player level is not higher
+                // edit: 10 lvl diff is fine (maybe)
+            }
         }
 
         this.exp += addExp;

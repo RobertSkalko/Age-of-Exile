@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+of_exp
 nature_wep_dmg_jewelry
 scaled
 jewel_accuracy_suffix

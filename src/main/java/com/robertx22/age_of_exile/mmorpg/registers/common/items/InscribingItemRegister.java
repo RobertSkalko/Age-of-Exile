@@ -1,9 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.player_skills.enchants.EnchantsEnum;
 import com.robertx22.age_of_exile.player_skills.items.fishing.ScribeInkItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.player_skills.items.inscribing.EnchantmentScrollItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.StatInfusionItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.DeathTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.RandomPlayerLevelTeleportItem;
@@ -12,16 +10,12 @@ import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTa
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTabletTier;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.ProtectionTabletItem;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.TabletTypes;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class InscribingItemRegister extends BaseItemRegistrator {
-
-    public HashMap<ImmutableTriple<PlayerSkillEnum, EnchantsEnum, SkillItemTier>, EnchantmentScrollItem> ENCHANT_SCROLL_MAP = new HashMap<>();
 
     public HashMap<SkillItemTier, ScribeInkItem> INK_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, StatInfusionItem> STAT_INFUSION_MAP = new HashMap<>();
@@ -49,13 +43,6 @@ public class InscribingItemRegister extends BaseItemRegistrator {
             STAT_INFUSION_MAP.put(tier, item(new StatInfusionItem(tier)));
         }
 
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            for (EnchantsEnum ench : EnchantsEnum.values()) {
-                for (PlayerSkillEnum skill : ench.getSkillsUsedFor()) {
-                    ENCHANT_SCROLL_MAP.put(ImmutableTriple.of(skill, ench, tier), item(new EnchantmentScrollItem(skill, ench, tier)));
-                }
-            }
-        }
     }
 
     ProtectionTabletItem tablet(ProtectionTabletItem c) {

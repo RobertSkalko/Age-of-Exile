@@ -18,10 +18,11 @@ public enum Words implements IAutoLocName {
     Skills("Skills"),
     Mining("Mining"),
     Farming("Farming"),
-
+    Salvaging("Salvaging"),
     SkillGem("Skill Gem"),
     Gear("Gear"),
     All("All"),
+    Skill("Skill"),
     Rune("Rune"),
     LevelRewards("Level Rewards"),
     Gem("Gem"),
