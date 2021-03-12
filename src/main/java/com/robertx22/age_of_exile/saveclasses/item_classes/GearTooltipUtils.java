@@ -211,7 +211,7 @@ public class GearTooltipUtils {
         } else {
             tip.add(Words.Instability.locName()
                 .formatted(Formatting.RED)
-                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.ALWAYS_SEAL_AT_X_INSTABILITY)
+                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.MAX_INSTABILITY)
             );
         }
 

@@ -164,6 +164,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public void setInstability(float insta) {
         this.in = insta;
+
+        if (in < 0) {
+            in = 0;
+        }
     }
 
     public boolean isIdentified() {

@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry can't be modified or added to.
+currency/clear_instability
 currency/number_reroll
 currency/reroll_affix_numbers
 currency/orb_of_transmutation

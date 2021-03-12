@@ -39,6 +39,11 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
+    public float getBreakChance() {
+        return 25;
+    }
+
+    @Override
     public float getInstability() {
         return 250;
     }

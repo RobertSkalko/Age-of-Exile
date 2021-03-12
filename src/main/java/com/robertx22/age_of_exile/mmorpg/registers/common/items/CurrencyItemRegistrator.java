@@ -26,6 +26,7 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
     public CurrencyItem ORB_OF_BLESSING = of(new OrbOfBlessingItem());
     public CurrencyItem ORB_OF_UNIQUE_BLESSING = of(new OrbOfUniqueBlessingItem());
     public CurrencyItem ORB_OF_INFINITY = of(new OrbOfInfinityItem());
+    public CurrencyItem CLEAR_INSTABILITY = of(new ClearInstabilityItem());
 
     CurrencyItem of(CurrencyItem c) {
         Registry.register(Registry.ITEM, new Identifier(Ref.MODID, c.GUID()), c);

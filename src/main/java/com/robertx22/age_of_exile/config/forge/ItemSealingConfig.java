@@ -8,11 +8,11 @@ public class ItemSealingConfig {
 
     private boolean ENABLE_SEALING_FEATURE = true;
 
-    private int START_AT_LEVEL = 20;
+    private int START_AT_LEVEL = 10;
 
     private float BASE_INSTABILITY_MULTI = 0.1F;
 
-    public float ALWAYS_SEAL_AT_X_INSTABILITY = 1000;
+    public float MAX_INSTABILITY = 1000;
 
     private float EXTRA_INSTABILITY_MULTI_AT_MAX_LEVEL = 1F;
 
@@ -41,7 +41,7 @@ public class ItemSealingConfig {
             return 0;
         }
 
-        float chance = gear.getInstability() / ALWAYS_SEAL_AT_X_INSTABILITY * 100F;
+        float chance = gear.getInstability() / MAX_INSTABILITY * 100F;
 
         return chance;
 

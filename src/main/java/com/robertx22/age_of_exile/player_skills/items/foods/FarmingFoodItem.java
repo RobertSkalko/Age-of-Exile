@@ -102,9 +102,7 @@ public class FarmingFoodItem extends Item implements IAutoLocName, IAutoModel, I
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-
         try {
-
             tooltip.add(new LiteralText("Tier " + tier.tier + " Food Item."));
 
         } catch (Exception e) {

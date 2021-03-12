@@ -15,6 +15,7 @@ import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
@@ -75,6 +76,11 @@ public class TileGearModify extends BaseModificationStation {
                         }
                         Gear.Save(copy, gear);
                     }
+
+                }
+
+                if (RandomUtils.roll(context.effect.getBreakChance())) {
+                    return new ResultItem(new ItemStack(Items.GUNPOWDER), ModifyResult.BREAK);
                 }
 
                 return new ResultItem(copy, ModifyResult.SUCCESS);

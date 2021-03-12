@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.currency.base;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -60,8 +61,13 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
         }
 
         if (context.isGear()) {
+
             if (this.getInstability() > 0) {
+
                 GearItemData gear = (GearItemData) context.data;
+                if (gear.getInstability() >= ModConfig.get().ItemSealing.MAX_INSTABILITY) {
+                    return false;
+                }
                 if (gear.sealed) {
                     return false;
                 }
@@ -127,6 +133,12 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
                 .formatted(Formatting.RED)
                 .append(": " + getInstability()));
 
+        }
+
+        if (this.getBreakChance() > 0) {
+            tooltip.add(Words.BreakChance.locName()
+                .append(": " + (int) getBreakChance())
+                .formatted(Formatting.RED));
         }
 
         TooltipUtils.addEmpty(tooltip);

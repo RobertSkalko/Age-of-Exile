@@ -23,6 +23,10 @@ public interface ICurrencyItemEffect {
         return 0;
     }
 
+    public default float getBreakChance() {
+        return 0;
+    }
+
     public enum StationType {
         MODIFY, SOCKET
     }

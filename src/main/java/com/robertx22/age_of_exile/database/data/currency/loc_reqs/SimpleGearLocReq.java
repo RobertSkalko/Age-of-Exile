@@ -42,7 +42,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final SimpleGearLocReq IS_NOT_UNIQUE = new SimpleGearLocReq(
         x -> !x.isUnique(), Words.isNotUnique.locName());
     public static final SimpleGearLocReq IS_UNIQUE = new SimpleGearLocReq(
-        x -> x.isUnique(), Words.isUnique.locName());
+        x -> x.getRarity().is_unique_item, Words.isUnique.locName());
     public static final BaseLocRequirement HAS_PRIMARY_STATS = new SimpleGearLocReq(
         x -> x.baseStats != null, Words.hasSet.locName());
     public static final BaseLocRequirement HAS_UNIQUE_STATS = new SimpleGearLocReq(
