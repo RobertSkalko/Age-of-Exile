@@ -5,9 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -22,7 +20,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe, IReqSkillLevel {
+public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
     TabletTypes type;
     SkillItemTier tier;
@@ -68,16 +66,6 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
         fac.input(ModRegistry.INSCRIBING.INK_TIER_MAP.get(tier));
 
         return fac.criterion("player_level", trigger());
-    }
-
-    @Override
-    public PlayerSkillEnum getItemSkillType() {
-        return PlayerSkillEnum.INSCRIBING;
-    }
-
-    @Override
-    public float getSkillLevelMultiNeeded() {
-        return tier.lvl_req;
     }
 
     @Override

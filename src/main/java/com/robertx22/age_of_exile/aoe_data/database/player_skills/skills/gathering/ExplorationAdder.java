@@ -19,6 +19,7 @@ public class ExplorationAdder {
     public static PlayerSkill createSkill() {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(4, PlayerSkillEnum.EXPLORATION);
+        b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.EXPLORATION);
         b.addDefaultBonusExpRewards();
         //b.skill.exp_per_action = 25; exp is based on favor gained
 

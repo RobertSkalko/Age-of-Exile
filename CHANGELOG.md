@@ -8,6 +8,8 @@ These skills level up as you mine ores, gather crops, loot chests or fish.
 You will gain extra random drops as your skill level increases.
 
 Added crafting skills: Alchemy, Cooking, Tinkering and Inscribing.
+Edit: these are currently not skills, but they "exist"! 
+You can make these stuff but they don't level any professions currently.
 These skills use ingredients from the gathering skills to craft useful items to aid you in your adventuring:
 - instant hp potions from alchemy
 - long-lasting food buffs from cooking

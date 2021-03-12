@@ -1,12 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.player_skills.BlockBreakExp;
-import com.robertx22.age_of_exile.database.data.player_skills.ItemCraftExp;
-import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.data.player_skills.SkillStatReward;
+import com.robertx22.age_of_exile.database.data.player_skills.*;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillYield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -15,6 +13,8 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
+import java.util.Arrays;
 
 public class PlayerSkillBuilder {
 
@@ -33,9 +33,22 @@ public class PlayerSkillBuilder {
         return this;
     }
 
+    public PlayerSkillBuilder masteryStat(MasteryStatReward stat) {
+        skill.mastery_stat_reward.add(stat);
+        return this;
+    }
+
     public PlayerSkillBuilder totalDamage(int lvl, float num) {
         stat(new SkillStatReward(lvl,
             new OptScaleExactStat(num, TotalDamage.getInstance(), ModType.FLAT)
+        ));
+        return this;
+    }
+
+    public PlayerSkillBuilder bonusSalvagingYield(int lvl, float num) {
+        stat(new SkillStatReward(lvl,
+            new OptScaleExactStat(num, new BonusSkillYield(PlayerSkillEnum.SALVAGING), ModType.FLAT)
+
         ));
         return this;
     }
@@ -72,12 +85,28 @@ public class PlayerSkillBuilder {
         return this;
     }
 
+    public PlayerSkillBuilder addSalvagingBonusYield() {
+        bonusSalvagingYield(10, 5);
+        bonusSalvagingYield(20, 10);
+        bonusSalvagingYield(30, 10);
+        bonusSalvagingYield(40, 15);
+        bonusSalvagingYield(50, 20);
+        return this;
+    }
+
     public PlayerSkillBuilder addDefaultHpMsMana() {
         hpMsMana(10, 2);
         hpMsMana(20, 3);
         hpMsMana(30, 4);
         hpMsMana(40, 5);
         hpMsMana(50, 5);
+        return this;
+    }
+
+    public PlayerSkillBuilder addBonusYieldMasteryLevelStats(PlayerSkillEnum skill) {
+        this.masteryStat(
+            new MasteryStatReward(Arrays.asList(new OptScaleExactStat(1, new BonusSkillYield(skill))), 10)
+        );
         return this;
     }
 

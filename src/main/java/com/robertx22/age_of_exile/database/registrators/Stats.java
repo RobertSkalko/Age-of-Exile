@@ -169,7 +169,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.HEALTH, AttackType.ATTACK)));
                     add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.ATTACK)));
 
-                    add(new BonusSkillExp(PlayerSkillEnum.ALCHEMY));
+                    add(new BonusSkillExp(PlayerSkillEnum.MINING));
 
                     add(new DamageOverTime(Elements.Elemental));
 
@@ -178,6 +178,7 @@ public class Stats implements ISlashRegistryInit {
                     // traits
 
                     add(new BonusYield(BonusRequirement.COLD_BIOME));
+                    add(new BonusSkillYield(PlayerSkillEnum.FISHING));
                     add(DoubleDropChance.getInstance());
                     add(TripleDropChance.getInstance());
                 }

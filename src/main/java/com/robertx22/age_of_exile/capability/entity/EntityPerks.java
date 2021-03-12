@@ -25,11 +25,11 @@ import java.util.List;
 import java.util.Map;
 
 public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
-    LivingEntity entity;
+    PlayerEntity entity;
 
     public PlayerPerksData data = new PlayerPerksData();
 
-    public EntityPerks(LivingEntity entity) {
+    public EntityPerks(PlayerEntity entity) {
         this.entity = entity;
     }
 
@@ -42,11 +42,6 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         this.data.getPerks(SpellSchool.SchoolType.TALENTS)
             .clear();
 
-    }
-
-    public void clearAllSpells() {
-        this.data.getPerks(SpellSchool.SchoolType.SPELLS)
-            .clear();
     }
 
     public HashMap<PointData, Perk> getAllAllocatedPerks() {

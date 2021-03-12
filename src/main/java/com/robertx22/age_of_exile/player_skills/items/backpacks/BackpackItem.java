@@ -6,9 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
@@ -28,7 +26,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-public class BackpackItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe, IReqSkillLevel {
+public class BackpackItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
     public BackpackType type;
     public SkillItemTier tier;
 
@@ -122,13 +120,4 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
             .criterion("player_level", trigger());
     }
 
-    @Override
-    public PlayerSkillEnum getItemSkillType() {
-        return PlayerSkillEnum.TINKERING;
-    }
-
-    @Override
-    public float getSkillLevelMultiNeeded() {
-        return tier.lvl_req;
-    }
 }

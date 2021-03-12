@@ -23,17 +23,10 @@ public class PlayerPerksData {
     private HashMap<String, SchoolData> perks = new HashMap<>();
 
     @Store
-    private HashMap<String, SchoolData> spells = new HashMap<>();
-
-    @Store
     public int reset_points = 5;
 
     public HashMap<String, SchoolData> getPerks(SpellSchool.SchoolType type) {
-        if (type == SpellSchool.SchoolType.SPELLS) {
-            return spells;
-        } else {
-            return perks;
-        }
+        return perks;
     }
 
     public int getAllocatedPoints(SpellSchool.SchoolType type) {
@@ -48,12 +41,10 @@ public class PlayerPerksData {
     public int getFreePoints(EntityCap.UnitData data, SpellSchool.SchoolType type) {
 
         int num = 0;
-        if (type == SpellSchool.SchoolType.SPELLS) {
-            // todo remove
-        } else {
-            num = (int) GameBalanceConfig.get().STARTING_TALENT_POINTS;
-            num += GameBalanceConfig.get().TALENT_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
-        }
+
+        num = (int) GameBalanceConfig.get().STARTING_TALENT_POINTS;
+        num += GameBalanceConfig.get().TALENT_POINTS_AT_MAX_LEVEL * LevelUtils.getMaxLevelMultiplier(data.getLevel());
+
         num -= this.getAllocatedPoints(type);
         return num;
     }

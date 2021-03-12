@@ -7,8 +7,8 @@ import net.minecraft.item.Item;
 import java.util.function.Supplier;
 
 public enum PotionType {
-    HEALTH("Health", "health", ResourceType.HEALTH, () -> ModRegistry.MISC_ITEMS.BLOOD_WHEAT),
-    MANA("Mana", "mana", ResourceType.MANA, () -> ModRegistry.MISC_ITEMS.ARCANE_WHEAT);
+    HEALTH("Health", "health", ResourceType.HEALTH, () -> ModRegistry.GEAR_MATERIALS.LIFE),
+    MANA("Mana", "mana", ResourceType.MANA, () -> ModRegistry.GEAR_MATERIALS.MANA);
 
     public String word;
     public String id;

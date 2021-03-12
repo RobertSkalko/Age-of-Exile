@@ -14,6 +14,7 @@ public class FarmingAdder {
     public static PlayerSkill createSkill() {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(2, PlayerSkillEnum.FARMING);
+        b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FARMING);
         b.addDefaultBonusExpRewards();
 
         DropRewardsBuilder skillDrops = DropRewardsBuilder.of(2);
@@ -28,8 +29,10 @@ public class FarmingAdder {
         b.skill.dropTables.add(skillDrops.build());
         b.skill.dropTables.add(rareDrops.build());
 
-        b.blockExp(ModRegistry.BLOCKS.PLANT1, 15);
-        b.blockExp(ModRegistry.BLOCKS.PLANT2, 15);
+        ModRegistry.BLOCKS.FARMING_PLANTS.entrySet()
+            .forEach(x -> {
+                b.blockExp(x.getValue(), (int) (x.getKey().statMulti * 10));
+            });
 
         b.regens(10, 2);
         b.regens(20, 4);

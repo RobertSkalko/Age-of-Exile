@@ -17,6 +17,7 @@ public class MiningAdder {
     public static PlayerSkill createSkill() {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(1, PlayerSkillEnum.MINING);
+        b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.MINING);
         b.addDefaultBonusExpRewards();
 
         b.totalDamage(10, 1);

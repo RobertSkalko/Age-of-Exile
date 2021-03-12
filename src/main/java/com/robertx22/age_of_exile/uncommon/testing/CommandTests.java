@@ -1,9 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.testing;
 
-import com.robertx22.age_of_exile.uncommon.testing.tests.CountTalentTreeAttributes;
-import com.robertx22.age_of_exile.uncommon.testing.tests.FindUnusedPerksTest;
-import com.robertx22.age_of_exile.uncommon.testing.tests.PlayerLevelTest;
-import com.robertx22.age_of_exile.uncommon.testing.tests.SkillLevelTest;
+import com.robertx22.age_of_exile.uncommon.testing.tests.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.HashMap;
@@ -36,6 +33,7 @@ public class CommandTests {
         reg(new SkillLevelTest());
         reg(new PlayerLevelTest());
         reg(new FindUnusedPerksTest());
+        reg(new GivePlayerCapNbt());
     }
 
     static void reg(CommandTest t) {

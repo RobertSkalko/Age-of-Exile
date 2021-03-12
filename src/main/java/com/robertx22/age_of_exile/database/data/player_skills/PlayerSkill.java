@@ -39,14 +39,27 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     public List<SkillDropTable> dropTables = new ArrayList<>();
 
     public List<SkillStatReward> stat_rewards = new ArrayList<>();
+    public List<MasteryStatReward> mastery_stat_reward = new ArrayList<>();
 
     public List<BlockBreakExp> block_break_exp = new ArrayList<>();
 
     public List<ItemCraftExp> item_craft_exp = new ArrayList<>();
     public List<ItemCraftExp> item_smelt_exp = new ArrayList<>();
 
+    List<SkillStatReward> cachedStatRewards = null;
+
     public Identifier getIcon() {
         return Ref.id("textures/gui/skills/icons/" + id + ".png");
+    }
+
+    public List<SkillStatReward> getStatRewards() {
+        if (cachedStatRewards == null) {
+            List<SkillStatReward> list = new ArrayList<>(stat_rewards);
+            mastery_stat_reward.forEach(x -> list.addAll(x.getStatRewards()));
+            cachedStatRewards = list;
+        }
+        return cachedStatRewards;
+
     }
 
     public int getExpForAction(PlayerEntity player) {
@@ -64,7 +77,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     }
 
     public List<SkillStatReward> getClaimedStats(int lvl) {
-        return stat_rewards.stream()
+        return getStatRewards().stream()
             .filter(r -> lvl >= r.lvl_req)
             .collect(Collectors.toList());
     }
@@ -152,7 +165,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
         }
 
-        Optional<SkillStatReward> opt = stat_rewards.stream()
+        Optional<SkillStatReward> opt = getStatRewards().stream()
             .filter(x -> x.lvl_req > lvl)
             .sorted(Comparator.comparingInt(x -> x.lvl_req))
             .findFirst();
@@ -161,7 +174,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
             List<SkillStatReward> nextstatrewards = new ArrayList<>();
 
-            for (SkillStatReward next : stat_rewards) {
+            for (SkillStatReward next : getStatRewards()) {
                 if (next.lvl_req == opt.get().lvl_req) {
                     nextstatrewards.add(next);
                 }
@@ -175,12 +188,16 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
             nextStats.forEach(x -> list.addAll(x.GetTooltipString(info)));
         }
 
-        if (lvl >= Load.Unit(info.player)
-            .getLevel()) {
-            if (lvl < GameBalanceConfig.get().MAX_LEVEL) {
-                list.add(new LiteralText(""));
-                list.add(new LiteralText("Skill level Capped to Combat level.").formatted(Formatting.RED));
-                list.add(new LiteralText("Level your Combat level to progress further.").formatted(Formatting.RED));
+        if (lvl >= GameBalanceConfig.get().MAX_LEVEL) {
+
+        } else {
+            if (lvl >= Load.Unit(info.player)
+                .getLevel()) {
+                if (lvl < GameBalanceConfig.get().MAX_LEVEL) {
+                    list.add(new LiteralText(""));
+                    list.add(new LiteralText("Skill level Capped to Combat level.").formatted(Formatting.RED));
+                    list.add(new LiteralText("Level your Combat level to progress further.").formatted(Formatting.RED));
+                }
             }
         }
 

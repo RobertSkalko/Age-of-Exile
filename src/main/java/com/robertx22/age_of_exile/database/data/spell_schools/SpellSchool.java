@@ -24,7 +24,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     public String icon;
 
     public enum SchoolType {
-        SPELLS, TALENTS
+        TALENTS
     }
 
     public SchoolType getSchool_type() {
@@ -32,7 +32,7 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
             return SchoolType.valueOf(school_type);
         } catch (Exception e) {
             e.printStackTrace();
-            return SchoolType.SPELLS;
+            return SchoolType.TALENTS;
         }
     }
 

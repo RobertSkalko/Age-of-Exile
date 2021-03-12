@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -27,14 +26,10 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     @Store
     public List<Integer> perc = new ArrayList<Integer>();
 
-    @Store
-    public String type = "";
-
     @Override
     public void RerollFully(GearItemData gear) {
 
         perc = new ArrayList<>();
-        this.type = gear.gear_type;
 
         for (int i = 0; i < 8; i++) {
             perc.add(getMinMax(gear).random());
@@ -67,8 +62,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
         List<Pair<Stat, List<Text>>> pairs = new ArrayList<>();
 
-        List<StatModifier> stats = Database.GearTypes()
-            .get(this.type).base_stats;
+        List<StatModifier> stats = gear.GetBaseGearType().base_stats;
 
         for (int i = 0; i < this.perc.size(); i++) {
 
@@ -123,8 +117,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
             if (!gear.uniqueBaseStatsReplaceBaseStats()) {
                 int i = 0;
-                for (StatModifier mod : Database.GearTypes()
-                    .get(type)
+                for (StatModifier mod : gear.GetBaseGearType()
                     .baseStats()) {
                     local.add(mod.ToExactStat(perc.get(i), gear.lvl));
                     i++;

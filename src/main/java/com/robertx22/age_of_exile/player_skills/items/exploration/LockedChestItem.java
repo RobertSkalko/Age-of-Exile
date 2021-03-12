@@ -7,9 +7,7 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.api.EnvType;
@@ -30,7 +28,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class LockedChestItem extends Item implements IAutoLocName, IAutoModel, IReqSkillLevel {
+public class LockedChestItem extends Item implements IAutoLocName, IAutoModel {
 
     SkillItemTier tier;
 
@@ -142,13 +140,4 @@ public class LockedChestItem extends Item implements IAutoLocName, IAutoModel, I
 
     }
 
-    @Override
-    public PlayerSkillEnum getItemSkillType() {
-        return PlayerSkillEnum.TINKERING;
-    }
-
-    @Override
-    public float getSkillLevelMultiNeeded() {
-        return tier.lvl_req;
-    }
 }

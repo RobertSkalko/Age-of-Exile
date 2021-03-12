@@ -10,9 +10,7 @@ import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
-import com.robertx22.age_of_exile.player_skills.IReqSkillLevel;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -36,7 +34,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe, IReqSkillLevel {
+public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
     public SkillItemTier tier;
     PotionType type;
@@ -119,7 +117,7 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
         fac.input(type.craftItem.get());
         fac.input(Items.GLASS_BOTTLE);
-        fac.input(ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.get(tier));
+        fac.input(ModRegistry.MISC_ITEMS.FARMING_PRODUCE.get(tier));
         return fac.criterion("player_level", trigger());
     }
 
@@ -131,16 +129,6 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
     @Override
     public String GUID() {
         return "alchemy/potion/" + type.id + "/" + tier.tier;
-    }
-
-    @Override
-    public PlayerSkillEnum getItemSkillType() {
-        return PlayerSkillEnum.ALCHEMY;
-    }
-
-    @Override
-    public float getSkillLevelMultiNeeded() {
-        return tier.lvl_req;
     }
 
     public FoodEffect getFoodEffect() {

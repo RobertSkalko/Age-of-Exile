@@ -47,7 +47,7 @@ public class FoodExtractItem extends Item implements IAutoLocName, IAutoModel, I
 
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
+        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
         fac.input(this.color.essenceItem.get(), 3);
         fac.input(Items.BOWL);
         return fac.criterion("player_level", trigger());

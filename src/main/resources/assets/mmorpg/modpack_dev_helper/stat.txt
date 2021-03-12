@@ -67,10 +67,10 @@ attack_thunder_dmg_leech_as_blood
 dot_physical_dmg_leech_as_mana
 chance_of_poison
 mana
+bonus_fishing_yield
 blood_on_basic_attack_hit
 health_on_all_hit
 dmg_under_poison
-bonus_inscribing_exp
 max_nature_resist
 thunder_penetration
 other_elemental_dmg_leech_as_mana
@@ -147,6 +147,7 @@ mana_per_sec
 basic_attack_nature_dmg_leech_as_blood
 mana_on_all_hit
 attack_physical_dmg_leech_as_mana
+bonus_exploration_yield
 all_fire_damage
 dot_elemental_dmg_leech_as_blood
 sword_damage
@@ -176,7 +177,6 @@ blood_on_other_hit
 ele_axe_damage
 thunder_focus
 all_physical_dmg_leech_as_mana
-bonus_cooking_exp
 red_mana_reserved
 water_weapon_damage
 all_thunder_damage
@@ -195,16 +195,15 @@ night_dmg
 water_penetration
 other_thunder_dmg_leech_as_health
 attack_physical_dmg_leech_as_blood
-bonus_alchemy_exp
 slow_immunity
 basic_attack_fire_dmg_leech_as_blood
 basic_attack_physical_dmg_leech_as_blood
 mana_burn_resist
 increased_quantity
-bonus_tinkering_exp
 spell_critical_damage
 elemental_dot_damage
 max_water_resist
+bonus_farming_yield
 other_elemental_dmg_leech_as_blood
 nature_resist
 chance_of_shock
@@ -223,8 +222,10 @@ bonus_day_yield
 spell_critical_hit
 blood_user
 fire_dot_damage
+bonus_none_yield
 poison_immunity
 basic_attack_water_dmg_leech_as_health
+bonus_salvaging_yield
 attack_fire_dmg_leech_as_mana
 melee_dmg
 spell_thunder_dmg_leech_as_health
@@ -283,8 +284,10 @@ nature_focus
 attack_water_dmg_leech_as_mana
 inc_aoe
 ele_crossbow_damage
+bonus_mining_yield
 all_physical_dmg_leech_as_blood
 all_thunder_dmg_leech_as_health
+bonus_all_yield
 chance_of_frostburn
 max_elemental_resist
 double_drop_chance

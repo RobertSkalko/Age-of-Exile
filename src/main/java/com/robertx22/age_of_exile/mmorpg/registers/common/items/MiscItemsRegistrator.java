@@ -16,22 +16,25 @@ import com.robertx22.age_of_exile.vanilla_mc.items.salvage_bag.CommonAutoSalvage
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 
 public class MiscItemsRegistrator extends BaseItemRegistrator {
 
+    public MiscItemsRegistrator() {
+        for (SkillItemTier tier : SkillItemTier.values()) {
+            SALVAGED_ESSENCE_MAP.put(tier, item(new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
+            FARMING_SEEDS.put(tier, item(new PlantSeedItem(tier, ModRegistry.BLOCKS.FARMING_PLANTS.get(tier)), "seed" + (tier.tier + 1)));
+            FARMING_PRODUCE.put(tier, item(new PlantProduceItem(tier), "plant/plant" + (tier.tier + 1)));
+        }
+    }
+
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
 
     public HashMap<SkillItemTier, SalvagedDustItem> SALVAGED_ESSENCE_MAP = new HashMap<>();
-
-    public Item PLANT1_SEED = item(new PlantSeedItem(ModRegistry.BLOCKS.PLANT1, Items.WHEAT, "Arcane Wheat Seed"), "seed/plant1");
-    public Item PLANT2_SEED = item(new PlantSeedItem(ModRegistry.BLOCKS.PLANT2, Items.WHEAT_SEEDS, "Blood Wheat Seed"), "seed/plant2");
-
-    public Item ARCANE_WHEAT = item(new PlantProduceItem("Arcane Wheat"), "plant/plant1");
-    public Item BLOOD_WHEAT = item(new PlantProduceItem("Blood Wheat"), "plant/plant2");
+    public HashMap<SkillItemTier, PlantSeedItem> FARMING_SEEDS = new HashMap<>();
+    public HashMap<SkillItemTier, PlantProduceItem> FARMING_PRODUCE = new HashMap<>();
 
     public SalvagedDustItem T0_DUST() {
         return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0);
@@ -92,13 +95,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item GEAR_SOCKET = blockItem(ModRegistry.BLOCKS.SOCKET_STATION);
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
-
-    public MiscItemsRegistrator() {
-
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            SALVAGED_ESSENCE_MAP.put(tier, item(new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
-        }
-    }
 
     <T extends Block> Item blockItem(T block) {
         return item(new BlockItem(block, stationProp), Registry.BLOCK.getId(block)

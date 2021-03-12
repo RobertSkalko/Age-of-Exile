@@ -16,12 +16,12 @@ public enum PlayerSkillEnum {
     MINING("mining", Words.Mining, Formatting.GRAY, EnchantmentTarget.DIGGER, () -> Items.IRON_PICKAXE),
     FARMING("farming", Words.Farming, Formatting.YELLOW, EnchantmentTarget.DIGGER, () -> Items.IRON_HOE),
     SALVAGING("salvaging", Words.Salvaging, Formatting.LIGHT_PURPLE, null, () -> Items.BOOK),
-    ALCHEMY("alchemy", Words.Alchemy, Formatting.LIGHT_PURPLE, null, () -> Items.BLAZE_POWDER),
-    INSCRIBING("inscribing", Words.Inscribing, Formatting.AQUA, null, () -> Items.INK_SAC),
-    COOKING("cooking", Words.Cooking, Formatting.RED, null, () -> Items.BREAD),
+    //ALCHEMY("alchemy", Words.Alchemy, Formatting.LIGHT_PURPLE, null, () -> Items.BLAZE_POWDER),
+    //INSCRIBING("inscribing", Words.Inscribing, Formatting.AQUA, null, () -> Items.INK_SAC),
+    //COOKING("cooking", Words.Cooking, Formatting.RED, null, () -> Items.BREAD),
     FISHING("fishing", Words.Fishing, Formatting.BLUE, EnchantmentTarget.FISHING_ROD, () -> Items.FISHING_ROD),
     EXPLORATION("exploration", Words.Exploration, Formatting.GOLD, null, () -> Items.CHEST),
-    TINKERING("tinkering", Words.Tinkering, Formatting.GREEN, null, () -> Items.CRAFTING_TABLE),
+    //TINKERING("tinkering", Words.Tinkering, Formatting.GREEN, null, () -> Items.CRAFTING_TABLE),
     ALL("all", Words.Skill, Formatting.GREEN, null, () -> Items.AIR),
     NONE("none", Words.Elemental_Attack_Damage, Formatting.BLACK, null, () -> Items.BEDROCK);
 

@@ -35,19 +35,23 @@ public class PlayerSkillsData implements IApplyableStats {
     public List<StatContext> getStatAndContext(LivingEntity en) {
         List<ExactStatData> stats = new ArrayList<>();
 
-        map.entrySet()
-            .forEach(x -> {
-                PlayerSkill skill = Database.PlayerSkills()
-                    .get(x.getKey().id);
+        try {
+            map.entrySet()
+                .forEach(x -> {
+                    PlayerSkill skill = Database.PlayerSkills()
+                        .get(x.getKey().id);
 
-                skill.getClaimedStats(x.getValue()
-                    .getLvl())
-                    .forEach(s -> {
-                        s.stats.forEach(e -> stats.add(e.toExactStat(Load.Unit(en)
-                            .getLevel())));
-                    });
+                    skill.getClaimedStats(x.getValue()
+                        .getLvl())
+                        .forEach(s -> {
+                            s.stats.forEach(e -> stats.add(e.toExactStat(Load.Unit(en)
+                                .getLevel())));
+                        });
 
-            });
+                });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return Arrays.asList(new MiscStatCtx(stats));
     }

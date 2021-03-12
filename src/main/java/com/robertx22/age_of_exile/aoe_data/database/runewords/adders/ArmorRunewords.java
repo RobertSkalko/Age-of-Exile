@@ -28,10 +28,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
             "Sentinel",
             BaseGearType.SlotFamily.Armor,
             Arrays.asList(
-                new StatModifier(-5, -5, new MaxElementalResist(Elements.Fire), ModType.FLAT),
-                new StatModifier(-5, -5, new MaxElementalResist(Elements.Water), ModType.FLAT),
-                new StatModifier(-5, -5, new MaxElementalResist(Elements.Nature), ModType.FLAT),
-                new StatModifier(-5, -5, new MaxElementalResist(Elements.Thunder), ModType.FLAT),
+                new StatModifier(-5, -5, new MaxElementalResist(Elements.Elemental), ModType.FLAT),
                 new StatModifier(5, 15, new ElementalResist(Elements.Elemental), ModType.FLAT)
             ),
             Arrays.asList(CEN, DOS, ANO, TOQ))

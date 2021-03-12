@@ -41,7 +41,7 @@ public class Races implements ISlashRegistryInit {
                 new OptScaleExactStat(10, Wisdom.INSTANCE, ModType.FLAT),
                 new OptScaleExactStat(10, Agility.INSTANCE, ModType.FLAT)
             ),
-            RaceLevelingPerk.profession(PlayerSkillEnum.COOKING)
+            RaceLevelingPerk.profession(PlayerSkillEnum.FISHING)
         )
             .addToSerializables();
 
@@ -61,7 +61,7 @@ public class Races implements ISlashRegistryInit {
                 new OptScaleExactStat(8, Wisdom.INSTANCE, ModType.FLAT),
                 new OptScaleExactStat(7, Agility.INSTANCE, ModType.FLAT)
             ),
-            RaceLevelingPerk.profession(PlayerSkillEnum.TINKERING)
+            RaceLevelingPerk.profession(PlayerSkillEnum.SALVAGING)
         )
             .addToSerializables();
 
@@ -81,7 +81,7 @@ public class Races implements ISlashRegistryInit {
                 new OptScaleExactStat(15, Wisdom.INSTANCE, ModType.FLAT),
                 new OptScaleExactStat(8, Agility.INSTANCE, ModType.FLAT)
             ),
-            RaceLevelingPerk.profession(PlayerSkillEnum.INSCRIBING)
+            RaceLevelingPerk.profession(PlayerSkillEnum.FARMING)
         )
             .addToSerializables();
 
@@ -101,7 +101,7 @@ public class Races implements ISlashRegistryInit {
                 new OptScaleExactStat(7, Wisdom.INSTANCE, ModType.FLAT),
                 new OptScaleExactStat(15, Agility.INSTANCE, ModType.FLAT)
             ),
-            RaceLevelingPerk.profession(PlayerSkillEnum.ALCHEMY)
+            RaceLevelingPerk.profession(PlayerSkillEnum.EXPLORATION)
         )
             .addToSerializables();
     }

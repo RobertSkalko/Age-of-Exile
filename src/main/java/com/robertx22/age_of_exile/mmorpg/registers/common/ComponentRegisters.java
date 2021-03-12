@@ -56,7 +56,7 @@ public class ComponentRegisters {
         ComponentRegistry.INSTANCE.registerIfAbsent(
             new Identifier(Ref.MODID, "perks"),
             EntityPerks.class)
-            .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityPerks(x));
+            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new EntityPerks(x));
 
     public ComponentType<PlayerDeathData> PLAYER_DEATH_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(

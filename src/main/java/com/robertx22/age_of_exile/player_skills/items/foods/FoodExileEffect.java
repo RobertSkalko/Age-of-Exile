@@ -62,10 +62,10 @@ public enum FoodExileEffect {
     }
 
     public enum EffectColor {
-        RED("red", "Red", () -> ModRegistry.MISC_ITEMS.BLOOD_WHEAT),
+        RED("red", "Red", () -> ModRegistry.GEAR_MATERIALS.LIFE),
         GREEN("green", "Green", () -> ModRegistry.GEAR_MATERIALS.NATURE),
         BLUE("blue", "Blue", () -> ModRegistry.GEAR_MATERIALS.WATER),
-        PURPLE("purple", "Purple", () -> ModRegistry.MISC_ITEMS.ARCANE_WHEAT),
+        PURPLE("purple", "Purple", () -> ModRegistry.GEAR_MATERIALS.ARCANA),
         YELLOW("yellow", "Yellow", () -> ModRegistry.GEAR_MATERIALS.THUNDER);
 
         public String id;

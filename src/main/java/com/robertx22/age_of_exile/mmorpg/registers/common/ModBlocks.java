@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.BlockGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
@@ -13,6 +14,8 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.HashMap;
+
 public class ModBlocks {
 
     public BlockGearModify GEAR_MODIFY = of("modify_station", new BlockGearModify());
@@ -20,8 +23,13 @@ public class ModBlocks {
     public BlockGearSalvage GEAR_SALVAGE = of("salvage_station", new BlockGearSalvage());
     public BlockGearRepair GEAR_REPAIR = of("repair_station", new BlockGearRepair());
 
-    public Block PLANT1 = plant("plant1");
-    public Block PLANT2 = plant("plant2");
+    public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
+
+    public ModBlocks() {
+        for (SkillItemTier tier : SkillItemTier.values()) {
+            FARMING_PLANTS.put(tier, plant("plant" + (tier.tier + 1)));
+        }
+    }
 
     Block plant(String id) {
         return of(id, new BeetrootsBlock(AbstractBlock.Settings.of(Material.PLANT)

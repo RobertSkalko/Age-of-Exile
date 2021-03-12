@@ -121,8 +121,10 @@ public class LootTableGenerator {
         map.put(GEM_SALVAGE_RECIPE, gems.build());
         map.put(CURRENCIES_SALVAGE_RECIPE, currencies.build());
 
-        addFarming(ModRegistry.BLOCKS.PLANT1, ModRegistry.MISC_ITEMS.ARCANE_WHEAT, 3, map);
-        addFarming(ModRegistry.BLOCKS.PLANT2, ModRegistry.MISC_ITEMS.BLOOD_WHEAT, 3, map);
+        ModRegistry.MISC_ITEMS.FARMING_PRODUCE.values()
+            .forEach(x -> {
+                addFarming(ModRegistry.BLOCKS.FARMING_PLANTS.get(x.tier), x, 3, map);
+            });
 
         return map;
 

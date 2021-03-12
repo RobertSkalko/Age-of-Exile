@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "mmorpg:blocks/plant4/stage1"
+  }
+}
