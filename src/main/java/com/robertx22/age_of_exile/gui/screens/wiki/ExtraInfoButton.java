@@ -28,6 +28,11 @@ public class ExtraInfoButton extends TexturedButtonWidget {
         this.list = list;
     }
 
+    public ExtraInfoButton(List<Text> list, int xPos, int yPos, PressAction action) {
+        super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, buttonLoc, action);
+        this.list = list;
+    }
+
     @Override
     public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
         super.renderButton(matrix, x, y, ticks);

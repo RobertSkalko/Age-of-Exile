@@ -41,13 +41,14 @@ public class PlayerSkillsData implements IApplyableStats {
                     PlayerSkill skill = Database.PlayerSkills()
                         .get(x.getKey().id);
 
-                    skill.getClaimedStats(x.getValue()
-                        .getLvl())
-                        .forEach(s -> {
-                            s.stats.forEach(e -> stats.add(e.toExactStat(Load.Unit(en)
-                                .getLevel())));
-                        });
-
+                    if (skill != null) {
+                        skill.getClaimedStats(x.getValue()
+                            .getLvl())
+                            .forEach(s -> {
+                                s.stats.forEach(e -> stats.add(e.toExactStat(Load.Unit(en)
+                                    .getLevel())));
+                            });
+                    }
                 });
         } catch (Exception e) {
             e.printStackTrace();

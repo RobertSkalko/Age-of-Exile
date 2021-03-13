@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -96,29 +97,30 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
     }
 
-    public List<ItemStack> getExtraDropsFor(PlayerSkills skills, int expForAction) {
+    public List<ItemStack> getExtraDropsFor(PlayerSkills skills, int expForAction, SkillItemTier tierContext) {
 
         List<ItemStack> list = new ArrayList<>();
 
         for (SkillDropTable dropTable : dropTables) {
 
-            float chance = dropTable.loot_chance_per_action_exp * expForAction;
+            if (dropTable.tier == tierContext) {
 
-            //  float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
-            // chance *= chanceMulti;
+                float chance = dropTable.loot_chance_per_action_exp * expForAction;
 
-            if (RandomUtils.roll(chance)) {
-                List<SkillDropReward> possible = dropTable.drop_rewards
-                    .stream()
-                    .filter(x -> skills.getLevel(type_enum) >= x.lvl_req)
-                    .collect(Collectors.toList());
+                //  float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
+                // chance *= chanceMulti;
 
-                if (!possible.isEmpty()) {
-                    list.add(RandomUtils.weightedRandom(possible)
-                        .getRewardStack());
+                if (RandomUtils.roll(chance)) {
+                    List<SkillDropReward> possible = dropTable.drop_rewards
+                        .stream()
+                        .collect(Collectors.toList());
+
+                    if (!possible.isEmpty()) {
+                        list.add(RandomUtils.weightedRandom(possible)
+                            .getRewardStack());
+                    }
                 }
             }
-
         }
         return list;
 

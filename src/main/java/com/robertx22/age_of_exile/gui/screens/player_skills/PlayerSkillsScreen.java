@@ -5,6 +5,8 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
+import com.robertx22.age_of_exile.gui.screens.wiki.ExtraInfoButton;
+import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -15,10 +17,12 @@ import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -87,6 +91,15 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
             addButton(new ProfessionButton(this, skill,
                 (int) (x + (num * (ProfessionButton.BUTTON_SIZE_X + 4))), y));
             num++;
+        }
+
+        if (currentSkill.type_enum.wiki != null) {
+            addButton(new ExtraInfoButton(Arrays.asList(new LiteralText("Open Wiki")), guiLeft + 20, guiTop + sizeY - 50, a -> {
+                WikiScreen wiki = new WikiScreen();
+                wiki.changeType(currentSkill.type_enum.wiki);
+                mc.openScreen(wiki);
+            }));
+
         }
 
     }

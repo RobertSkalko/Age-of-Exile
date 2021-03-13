@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
@@ -309,7 +310,7 @@ public class TileGearSalvage extends BaseModificationStation {
 
                 skills.addExp(skill.type_enum, exp);
 
-                List<ItemStack> list = skill.getExtraDropsFor(skills, exp);
+                List<ItemStack> list = skill.getExtraDropsFor(skills, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
                 list.forEach(x -> PlayerUtils.giveItem(x, player));
 
             }

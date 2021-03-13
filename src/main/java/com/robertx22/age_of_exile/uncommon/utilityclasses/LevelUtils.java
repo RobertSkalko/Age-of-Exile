@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -12,6 +13,15 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class LevelUtils {
+
+    public static SkillItemTier levelToTier(int lvl) {
+        for (SkillItemTier tier : SkillItemTier.values()) {
+            if (tier.levelRange.isLevelInRange(lvl)) {
+                return tier;
+            }
+        }
+        return SkillItemTier.TIER0;
+    }
 
     public static int getDistanceFromMaxLevel(int lvl) {
         int max = GameBalanceConfig.get().MAX_LEVEL;

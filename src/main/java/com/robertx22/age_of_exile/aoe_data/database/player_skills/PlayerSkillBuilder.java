@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.*;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
@@ -9,12 +10,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 public class PlayerSkillBuilder {
 
@@ -72,6 +75,15 @@ public class PlayerSkillBuilder {
 
     public PlayerSkillBuilder blockExp(Block block, int exp) {
         skill.block_break_exp.add(new BlockBreakExp(exp, block));
+        return this;
+    }
+
+    public PlayerSkillBuilder addTieredDrops(float chance, Function<SkillItemTier, Item> fun) {
+        for (SkillItemTier tier : SkillItemTier.values()) {
+            DropRewardsBuilder skillDrops = DropRewardsBuilder.of(chance, tier);
+            skillDrops.dropReward(new SkillDropReward(100, fun.apply(tier), new MinMax(1, 3)));
+            skill.dropTables.add(skillDrops.build());
+        }
         return this;
     }
 

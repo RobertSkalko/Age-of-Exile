@@ -29,6 +29,11 @@ public enum WikiType {
     },
     MINING_BLOCK_EXP("mining_exp") {
         @Override
+        public boolean showsInWiki() {
+            return false; // only by linking from professions page
+        }
+
+        @Override
         public List<WikiEntry> getAllEntries() {
             List<WikiEntry> list = new ArrayList<>();
 
@@ -62,6 +67,10 @@ public enum WikiType {
 
     WikiType(String icon) {
         this.icon = icon;
+    }
+
+    public boolean showsInWiki() {
+        return true;
     }
 
     public abstract List<WikiEntry> getAllEntries();

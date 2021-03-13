@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -66,7 +67,7 @@ public class OnBlockDropMining {
 
             skills.addExp(skill.type_enum, exp);
 
-            List<ItemStack> list = skill.getExtraDropsFor(skills, exp);
+            List<ItemStack> list = skill.getExtraDropsFor(skills, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
 
             ci.getReturnValue()
                 .addAll(list);

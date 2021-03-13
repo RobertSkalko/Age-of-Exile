@@ -79,12 +79,14 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
         y = guiTop - 3 - WikiTypeButton.ySize;
 
         for (int i = 0; i < WikiType.values().length; i++) {
+
             WikiType type = Arrays.asList(WikiType.values())
                 .get(i);
 
-            this.addButton(new WikiTypeButton(this, type, x, y));
-            x += WikiTypeButton.xSize + 3;
-
+            if (type.showsInWiki()) {
+                this.addButton(new WikiTypeButton(this, type, x, y));
+                x += WikiTypeButton.xSize + 3;
+            }
         }
 
     }

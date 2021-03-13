@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.player_skills.events;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.block.Block;
@@ -68,7 +69,7 @@ public class OnBlockDropFarming {
 
             int exp = skill.getExpForBlockBroken(block);
             skills.addExp(skill.type_enum, exp);
-            List<ItemStack> list = skill.getExtraDropsFor(skills, exp);
+            List<ItemStack> list = skill.getExtraDropsFor(skills, exp, SkillItemTier.TIER0); // todo tier
 
             ci.getReturnValue()
                 .addAll(list);

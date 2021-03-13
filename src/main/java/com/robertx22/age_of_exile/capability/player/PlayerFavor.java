@@ -67,7 +67,7 @@ public class PlayerFavor implements ICommonPlayerCap {
             .getCalculatedStat(BonusFavor.getInstance())
             .getMultiplier();
 
-        OnChestFavorGainedExploration.run(info.player, (int) favorGained);
+        OnChestFavorGainedExploration.run(info, info.player, (int) favorGained);
 
         this.favor += favorGained;
 

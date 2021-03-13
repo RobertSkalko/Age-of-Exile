@@ -1,13 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gathering;
 
-import com.robertx22.age_of_exile.aoe_data.database.player_skills.DropRewardsBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
-import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import net.minecraft.item.Items;
 
 public class FarmingAdder {
 
@@ -17,6 +13,8 @@ public class FarmingAdder {
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FARMING);
         b.addDefaultBonusExpRewards();
 
+
+        /*
         DropRewardsBuilder skillDrops = DropRewardsBuilder.of(2);
 
         DropRewardsBuilder rareDrops = DropRewardsBuilder.of(0.25F);
@@ -28,6 +26,8 @@ public class FarmingAdder {
 
         b.skill.dropTables.add(skillDrops.build());
         b.skill.dropTables.add(rareDrops.build());
+
+         */
 
         ModRegistry.BLOCKS.FARMING_PLANTS.entrySet()
             .forEach(x -> {
