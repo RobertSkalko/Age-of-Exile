@@ -42,7 +42,7 @@ public class PlantSeedItem extends AliasedBlockItem implements IAutoLocName, ISh
 
     @Override
     public String locNameForLangFile() {
-        return tier.word + " Wheat";
+        return tier.word + " Wheat Seed";
     }
 
     @Override

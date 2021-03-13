@@ -20,6 +20,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
 
@@ -70,6 +71,15 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
     public int getLevel(PlayerSkillEnum se) {
         return data.getDataFor(se)
             .getLvl();
+    }
+
+    public float getExpDividedByNeededToLevelMulti(PlayerSkillEnum skill) {
+
+        int exp = this.getDataFor(skill)
+            .getExp();
+        int need = getDataFor(skill).getExpNeededToLevel();
+
+        return MathHelper.clamp((float) exp / (float) need, 0F, 1F);
     }
 
     public void onLevelUp(PlayerSkillEnum skill) {

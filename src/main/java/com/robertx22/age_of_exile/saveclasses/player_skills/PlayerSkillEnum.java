@@ -13,30 +13,32 @@ import java.util.stream.Collectors;
 
 public enum PlayerSkillEnum {
 
-    MINING("mining", Words.Mining, Formatting.GRAY, EnchantmentTarget.DIGGER, () -> Items.IRON_PICKAXE),
-    FARMING("farming", Words.Farming, Formatting.YELLOW, EnchantmentTarget.DIGGER, () -> Items.IRON_HOE),
-    SALVAGING("salvaging", Words.Salvaging, Formatting.LIGHT_PURPLE, null, () -> Items.BOOK),
+    MINING("mining", Words.Mining, Words.MiningDesc, Formatting.GRAY, EnchantmentTarget.DIGGER, () -> Items.IRON_PICKAXE),
+    FARMING("farming", Words.Farming, Words.FarmingDesc, Formatting.YELLOW, EnchantmentTarget.DIGGER, () -> Items.IRON_HOE),
+    SALVAGING("salvaging", Words.Salvaging, Words.Salvaging, Formatting.LIGHT_PURPLE, null, () -> Items.BOOK),
     //ALCHEMY("alchemy", Words.Alchemy, Formatting.LIGHT_PURPLE, null, () -> Items.BLAZE_POWDER),
     //INSCRIBING("inscribing", Words.Inscribing, Formatting.AQUA, null, () -> Items.INK_SAC),
     //COOKING("cooking", Words.Cooking, Formatting.RED, null, () -> Items.BREAD),
-    FISHING("fishing", Words.Fishing, Formatting.BLUE, EnchantmentTarget.FISHING_ROD, () -> Items.FISHING_ROD),
-    EXPLORATION("exploration", Words.Exploration, Formatting.GOLD, null, () -> Items.CHEST),
+    FISHING("fishing", Words.Fishing, Words.Fishing, Formatting.BLUE, EnchantmentTarget.FISHING_ROD, () -> Items.FISHING_ROD),
+    EXPLORATION("exploration", Words.Exploration, Words.Exploration, Formatting.GOLD, null, () -> Items.CHEST),
     //TINKERING("tinkering", Words.Tinkering, Formatting.GREEN, null, () -> Items.CRAFTING_TABLE),
-    ALL("all", Words.Skill, Formatting.GREEN, null, () -> Items.AIR),
-    NONE("none", Words.Elemental_Attack_Damage, Formatting.BLACK, null, () -> Items.BEDROCK);
+    ALL("all", Words.Skill, Words.Skill, Formatting.GREEN, null, () -> Items.AIR),
+    NONE("none", Words.Skill, Words.Skill, Formatting.BLACK, null, () -> Items.BEDROCK);
 
     public String id;
     public Words word;
+    public Words desc;
     public Formatting format;
 
     public EnchantmentTarget enchantmentTarget;
     public Supplier<Item> craftItem;
 
-    PlayerSkillEnum(String id, Words word, Formatting format, EnchantmentTarget enchtarget, Supplier<Item> craftitem) {
+    PlayerSkillEnum(String id, Words word, Words desc, Formatting format, EnchantmentTarget enchtarget, Supplier<Item> craftitem) {
         this.id = id;
         this.word = word;
         this.enchantmentTarget = enchtarget;
         this.format = format;
+        this.desc = desc;
         this.craftItem = craftitem;
     }
 

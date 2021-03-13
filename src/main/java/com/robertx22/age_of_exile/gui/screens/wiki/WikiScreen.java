@@ -50,6 +50,11 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
     }
 
     @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
+
+    @Override
     public void init() {
         super.init();
 

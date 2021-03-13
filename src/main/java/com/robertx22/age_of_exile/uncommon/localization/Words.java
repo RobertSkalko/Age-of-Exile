@@ -6,6 +6,9 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+    MiningDesc("Mining is one of the basic gatherer professions. You gain experience for mining ores and smelting them. When mining ores, there's a small chance Mystical Stones pop up. They have various uses."),
+    FarmingDesc("Farming is the process of turning purified essence into edible crops. These crops can then be used for alchemy or cooking."),
+    Professions("Professions"),
     Wiki("Wiki"),
     CorruptedExplanation1("Use Orb of Purification to clear corruption."),
     CorruptedExplanation2("Item won't provide any stats until purified."),
