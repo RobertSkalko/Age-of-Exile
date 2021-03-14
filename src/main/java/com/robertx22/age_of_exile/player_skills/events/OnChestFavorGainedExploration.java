@@ -6,9 +6,13 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class OnChestFavorGainedExploration {
 
@@ -20,8 +24,12 @@ public class OnChestFavorGainedExploration {
         PlayerSkills skills = Load.playerSkills(player);
 
         skills.addExp(PlayerSkillEnum.EXPLORATION, favor);
-        exploration.getExtraDropsFor(skills, favor, LevelUtils.levelToTier(info.level))
-            .forEach(x -> PlayerUtils.giveItem(x, player));
+        List<ItemStack> list = exploration.getExtraDropsFor(skills, favor, LevelUtils.levelToTier(info.level));
+
+        SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.EXPLORATION, list);
+        effect.Activate();
+
+        effect.extraDrops.forEach(x -> PlayerUtils.giveItem(x, player));
 
     }
 }

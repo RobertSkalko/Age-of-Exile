@@ -20,7 +20,7 @@ public class LevelUtils {
                 return tier;
             }
         }
-        return SkillItemTier.TIER0;
+        return SkillItemTier.TIER4; // if it's neither, it's above max lvl, means we give max tier
     }
 
     public static int getDistanceFromMaxLevel(int lvl) {

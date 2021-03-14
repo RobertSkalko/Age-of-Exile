@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -54,8 +55,11 @@ public class OnFishing {
 
             List<ItemStack> list = skill.getExtraDropsFor(skills, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
 
+            SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.FISHING, list);
+            effect.Activate();
+
             ci.getReturnValue()
-                .addAll(list);
+                .addAll(effect.extraDrops);
         } catch (Exception e) {
             e.printStackTrace();
         }
