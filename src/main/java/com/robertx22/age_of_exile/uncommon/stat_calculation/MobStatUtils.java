@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.SpellDodge;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -21,9 +20,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 
@@ -125,13 +122,13 @@ public class MobStatUtils {
         stats.add(ExactStatData.scaleTo(hpToAdd, ModType.FLAT, Health.getInstance()
             .GUID(), lvl));
 
-        stats.add(ExactStatData.scaleTo(50, ModType.FLAT, DodgeRating.getInstance()
+        stats.add(ExactStatData.scaleTo(20, ModType.FLAT, DodgeRating.getInstance()
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(9, ModType.FLAT, SpellDodge.getInstance()
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(2, ModType.FLAT, Accuracy.getInstance()
             .GUID(), lvl));
-        stats.add(ExactStatData.scaleTo(20 * rar.StatMultiplier(), ModType.FLAT, Armor.getInstance()
+        stats.add(ExactStatData.scaleTo(10 * rar.StatMultiplier(), ModType.FLAT, Armor.getInstance()
             .GUID(), lvl));
 
         stats.add(ExactStatData.scaleTo(5 * rar.DamageMultiplier(), ModType.FLAT, CriticalHit.getInstance()
@@ -145,13 +142,6 @@ public class MobStatUtils {
                 stats.add(ExactStatData.scaleTo(5 * rar.StatMultiplier(), ModType.FLAT, x
                     .GUID(), lvl));
             });
-
-        float bonusEleDmg = 200F * LevelUtils.getMaxLevelMultiplier(lvl);
-
-        new ElementalDamageBonus(Elements.Water).generateAllPossibleStatVariations()
-            .forEach(x -> {
-                stats.add(ExactStatData.scaleTo(bonusEleDmg, ModType.FLAT, x.GUID(), lvl));
-            }); // the higher lvls go, the more important elemental resistances would be
 
         list.add(new MiscStatCtx(stats));
 

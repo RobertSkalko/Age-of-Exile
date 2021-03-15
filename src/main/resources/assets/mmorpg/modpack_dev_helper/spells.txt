@@ -6,7 +6,6 @@ healing_aura
 poison_ball
 teleport
 thorn_armor
-blazing_inferno
 lightning_totem
 whirlwind
 thunder_storm
@@ -27,8 +26,8 @@ blizzard
 frost_armor
 frostball
 flame_strike
-whirlpool
 meteor
+frost_nova
 fire_bombs
 crit_aura
 awaken_mana
@@ -36,6 +35,7 @@ hp_reg_aura
 imbue
 spear_of_judgement
 mana_reg_aura
+fire_nova
 tidal_strike
 multi_shot
 poisoned_weapons

@@ -18,7 +18,8 @@ public class ServerContainer {
     public double EXP_LOSS_ON_DEATH = 0.1F;
     public double PARTY_RADIUS = 200;
 
-    public double CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL = 30;
+    public double CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL = 20;
+    public double START_CORRUPT_AT_LVL = 30;
 
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.1F;
     public double LEVEL_DISTANCE_PENALTY_MAX = 0.95F;

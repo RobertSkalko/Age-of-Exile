@@ -9,7 +9,6 @@ ring
 pickaxe
 necklace
 bow
-tool
 axe
 sword
 helmet

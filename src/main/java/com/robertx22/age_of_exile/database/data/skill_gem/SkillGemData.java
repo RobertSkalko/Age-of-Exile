@@ -71,6 +71,10 @@ public class SkillGemData implements ITooltipList {
 
     public boolean canPlayerUse(PlayerEntity player) {
 
+        if (getSkillGem() == null) {
+            return false;
+        }
+
         if (lvl > Load.Unit(player)
             .getLevel()) {
             return false;

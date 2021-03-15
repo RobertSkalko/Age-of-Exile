@@ -17,6 +17,7 @@ public class SocketAffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
             .AllowDuplicatesOnSameItem()
+            .Weight(3000)
             .Prefix()
             .Build();
 
@@ -25,6 +26,7 @@ public class SocketAffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(1, 1, MoreSocketsStat.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.weapon_family, SlotTag.offhand_family)
             .AllowDuplicatesOnSameItem()
+            .Weight(3000)
             .Suffix()
             .Build();
 

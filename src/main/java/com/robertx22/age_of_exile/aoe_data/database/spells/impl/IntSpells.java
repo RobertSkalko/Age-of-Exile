@@ -92,14 +92,14 @@ public class IntSpells implements ISlashRegistryInit {
                     .addCondition(EffectCondition.CHANCE.create(20D))))
             .build();
 
-        SpellBuilder.of("whirlpool", SpellConfiguration.Builder.multiCast(30, 60 * 20, 60, 6), "Whirlpool",
+        SpellBuilder.of("frost_nova", SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE, 200D, 3.5D, 0.5D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 400D, 3.5D, 0.5D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 250D, 3.5D, 0.5D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(3), Elements.Water, 3.5D)
+            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
             .build();
 
@@ -179,14 +179,14 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.healInAoe(ValueCalculationData.base(4), 2D))
             .build();
 
-        SpellBuilder.of("blazing_inferno", SpellConfiguration.Builder.multiCast(20, 20 * 30, 60, 3), "Ring of Fire",
+        SpellBuilder.of("fire_nova", SpellConfiguration.Builder.instant(20, 20 * 25), "Fire Nova",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 100D, 2.8D, 0.2D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 50D, 2D, 0.2D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 25D, 1D, 0.2D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 200D, 2.8D, 0.2D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 70D, 2D, 0.2D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 55D, 1D, 0.2D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.SMOKE, 200D, 3D, 0.2D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(3), Elements.Fire, 3D))
+            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Fire, 3D))
             .build();
 
         SpellBuilder.of("awaken_mana", SpellConfiguration.Builder.instant(0, 300 * 20), "Awaken Mana",

@@ -351,24 +351,26 @@ public class EntityCap {
                     this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
                 }
 
-                List<GearData> stacks = CollectGearEvent.getAllGear(null, entity, Load.Unit(entity));
+                if (getLevel() >= ModConfig.get().Server.START_CORRUPT_AT_LVL) {
+                    List<GearData> stacks = CollectGearEvent.getAllGear(null, entity, Load.Unit(entity));
 
-                int amount = 0;
+                    int amount = 0;
 
-                for (GearData data : stacks) {
-                    float chance = (float) (LevelUtils.getMaxLevelMultiplier(getLevel()) * ModConfig.get().Server.CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL);
+                    for (GearData data : stacks) {
+                        float chance = (float) (LevelUtils.getMaxLevelMultiplier(getLevel()) * ModConfig.get().Server.CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL);
 
-                    if (data.gear != null && !data.gear.isCorrupted()) {
-                        if (RandomUtils.roll(chance)) {
-                            data.gear.is_cor = true;
-                            data.gear.saveToStack(data.stack);
-                            amount++;
+                        if (data.gear != null && !data.gear.isCorrupted()) {
+                            if (RandomUtils.roll(chance)) {
+                                data.gear.is_cor = true;
+                                data.gear.saveToStack(data.stack);
+                                amount++;
+                            }
                         }
                     }
-                }
 
-                if (amount > 0) {
-                    player.sendMessage(new LiteralText(Formatting.RED + "As a result of death, " + amount + " worn items have been corrupted."), false);
+                    if (amount > 0) {
+                        player.sendMessage(new LiteralText(Formatting.RED + "As a result of death, " + amount + " worn items have been corrupted."), false);
+                    }
                 }
 
             }

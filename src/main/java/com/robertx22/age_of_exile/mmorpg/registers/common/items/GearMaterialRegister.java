@@ -39,7 +39,7 @@ public class GearMaterialRegister extends BaseItemRegistrator {
     public CraftEssenceItem LIFE = item(new CraftEssenceItem("life", Items.RED_DYE, "Essence of Life"));
     public CraftEssenceItem WATER = item(new CraftEssenceItem("water", Items.CYAN_DYE, "Essence of Water"));
     public CraftEssenceItem NATURE = item(new CraftEssenceItem("nature", Items.GREEN_DYE, "Essence of Nature"));
-    public CraftEssenceItem FIRE = item(new CraftEssenceItem("fire", Items.RED_DYE, "Essence of Fire"));
+    public CraftEssenceItem FIRE = item(new CraftEssenceItem("fire", Items.ORANGE_DYE, "Essence of Fire"));
     public CraftEssenceItem THUNDER = item(new CraftEssenceItem("thunder", Items.YELLOW_DYE, "Essence of Thunder"));
     public CraftEssenceItem PHYSICAL = item(new CraftEssenceItem("physical", Items.BLACK_DYE, "Essence of Thunder"));
 

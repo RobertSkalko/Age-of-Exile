@@ -3,7 +3,6 @@ This registry is modify-able through datapacks.
 healing_aura
 thorn_armor
 fire_chance
-blazing_inferno
 whirlwind
 thunder_storm
 armor_aura
@@ -54,11 +53,12 @@ blizzard
 frostball
 flame_strike
 meteor
-whirlpool
+frost_nova
 bleed_chance
 fire_bombs
 spell_crit_dmg
 awaken_mana
 mana_reg_aura
+fire_nova
 poisoned_weapons
 dodge_aura

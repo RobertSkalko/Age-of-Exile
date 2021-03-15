@@ -39,7 +39,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         rare.affix_chance = 50;
         rare.stat_multi = 2F;
         rare.min_lvl = 10;
-        rare.dmg_multi = 2F;
+        rare.dmg_multi = 1.5F;
         rare.extra_hp_multi = 1.5f;
         rare.exp_multi = 2F;
         rare.loot_multi = 2F;
@@ -52,7 +52,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         epic.affix_chance = 75;
         epic.stat_multi = 3;
         epic.min_lvl = 15;
-        epic.dmg_multi = 2.2F;
+        epic.dmg_multi = 1.75F;
         epic.extra_hp_multi = 2.5f;
         epic.exp_multi = 3F;
         epic.loot_multi = 3F;
@@ -66,7 +66,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         legendary.affix_chance = 100;
         legendary.stat_multi = 3.5F;
         legendary.min_lvl = 20;
-        legendary.dmg_multi = 2.3F;
+        legendary.dmg_multi = 2;
         legendary.extra_hp_multi = 5f;
         legendary.exp_multi = 4F;
         legendary.loot_multi = 4F;

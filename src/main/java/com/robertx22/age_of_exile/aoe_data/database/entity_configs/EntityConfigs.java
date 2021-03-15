@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.entity_configs;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig.*;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
@@ -62,12 +61,12 @@ public class EntityConfigs implements ISlashRegistryInit {
 
     void setupMyMobs() {
 
-        mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.BURN)))));
-        mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.FROSTBURN)))));
-        mob(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.POISON)))));
-        mob(ENTITIES.THUNDER_MAGE, new SpecialMobStats(thunder(), new SpecialMobStats(new MobStatData(new StatModifier(100, 100, ChanceToApplyEffect.SHOCK)))));
+        mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire()));
+        mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water()));
+        mob(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature()));
+        mob(ENTITIES.THUNDER_MAGE, new SpecialMobStats(thunder()));
 
-        mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new MobStatData(new StatModifier(-90, -90, HealEffectivenessOnSelf.getInstance()))));
+        mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new MobStatData(new StatModifier(-100, -100, HealEffectivenessOnSelf.getInstance()))));
 
     }
 

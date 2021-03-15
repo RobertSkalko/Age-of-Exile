@@ -74,7 +74,8 @@ public class GameChangerPerks implements ISlashRegistryInit {
 
         PerkBuilder.gameChanger("divinity", "Divinity",
             new OptScaleExactStat(25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
-            new OptScaleExactStat(-50, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE)
+            new OptScaleExactStat(-50, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-50, SpellCriticalDamage.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("tormentor", "Tormentor",

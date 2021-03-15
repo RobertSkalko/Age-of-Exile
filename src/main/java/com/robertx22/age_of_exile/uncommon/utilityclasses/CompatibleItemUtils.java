@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.config.forge.parts.AutoConfigItemType;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -15,7 +14,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
@@ -28,7 +26,7 @@ public class CompatibleItemUtils {
 
     public static class Data {
 
-        public int minLevel = 0;
+        public int minLevel = Integer.MAX_VALUE;
         public int maxLevel = 0;
 
         public boolean isCompatible = false;
@@ -153,7 +151,7 @@ public class CompatibleItemUtils {
 
             if (config != null) {
 
-                AutoConfigItemType data = ItemAutoPowerLevels.getPowerClassification(stack.getItem());
+                // AutoConfigItemType data = ItemAutoPowerLevels.getPowerClassification(stack.getItem());
 
                 // slow check to make absolutely sure it doesnt have stats
                 GearItemData gear = Gear.Load(stack);
@@ -162,7 +160,7 @@ public class CompatibleItemUtils {
 
                     GearItemData geardata = Gear.Load(s);
 
-                    geardata.lvl = MathHelper.clamp(geardata.lvl, data.MIN_LEVEL, data.MAX_LEVEL);
+                    //  geardata.lvl = MathHelper.clamp(geardata.lvl, data.MIN_LEVEL, data.MAX_LEVEL);
 
                     Gear.Save(stack, geardata);
 

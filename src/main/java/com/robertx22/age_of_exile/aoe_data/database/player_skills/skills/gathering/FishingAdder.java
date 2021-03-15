@@ -14,7 +14,7 @@ public class FishingAdder {
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FISHING);
-        b.skill.exp_per_action = 40;
+        b.skill.exp_per_action = 50;
 
         b.addTieredDrops(1.5F, x -> INSCRIBING.INK_TIER_MAP.get(x));
 

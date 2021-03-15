@@ -26,9 +26,9 @@ public class MagicShieldPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("seraphim")
             .Named("Seraphim's")
-            .tier(1, new StatModifier(2, 3, Mana.getInstance(), ModType.FLAT), new StatModifier(1.5F, 2, Health.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(1, 2, Mana.getInstance(), ModType.FLAT), new StatModifier(1, 1.5F, Health.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.5F, 1, Mana.getInstance(), ModType.FLAT), new StatModifier(0.5F, 1, Health.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(6, 10, Mana.getInstance(), ModType.FLAT), new StatModifier(4, 5, Health.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(3, 5, Mana.getInstance(), ModType.FLAT), new StatModifier(3, 4, Health.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(2, 3, Mana.getInstance(), ModType.FLAT), new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.magic_shield_stat)
             .Prefix()
             .Build();
