@@ -50,23 +50,23 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("water_dmg", "Cold Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.DAMAGE),
-            new StatModifier(5, 20, new ElementalDamageBonus(Elements.Water))
+            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Water))
         );
 
         SkillGemBuilder.of("fire_dmg", "Fire Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.DAMAGE),
-            new StatModifier(5, 20, new ElementalDamageBonus(Elements.Fire))
+            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Fire))
         );
         SkillGemBuilder.of("thunder_dmg", "Lightning Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.DAMAGE),
-            new StatModifier(5, 20, new ElementalDamageBonus(Elements.Thunder))
+            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Thunder))
         );
         SkillGemBuilder.of("nature_dmg", "Poison Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.DAMAGE),
-            new StatModifier(5, 20, new ElementalDamageBonus(Elements.Nature))
+            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Nature))
         );
 
         SkillGemBuilder.of("less_mana_cost", "Mana Cost Reduction Support", new StatRequirement().setBaseStr(20)

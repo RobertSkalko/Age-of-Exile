@@ -23,6 +23,8 @@ thunder_spear
 charge
 heart_of_ice
 blizzard
+frost_breath
+fire_breath
 frost_armor
 frostball
 flame_strike

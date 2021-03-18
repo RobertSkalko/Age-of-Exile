@@ -83,7 +83,7 @@ public class LockedChestItem extends Item implements IAutoLocName, IAutoModel {
                 ItemStack key = getKeyStack(player);
 
                 if (key.isEmpty()) {
-                    player.sendMessage(new LiteralText("Needs ").append(getKeyItem().getName()), false);
+                    player.sendMessage(new LiteralText("Needs ").append(new TranslatableText(getKeyItem().getTranslationKey())), false);
                     return TypedActionResult.fail(stack);
 
                 }

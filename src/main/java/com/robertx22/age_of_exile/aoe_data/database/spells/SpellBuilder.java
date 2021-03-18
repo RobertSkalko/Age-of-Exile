@@ -2,15 +2,33 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.components.*;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.particle.DefaultParticleType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class SpellBuilder {
     Spell spell;
+
+    public static SpellBuilder breath(String id, String name, Elements ele, DefaultParticleType particle) {
+
+        return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
+            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)
+                .set(MapField.MOTION, ParticleMotion.CasterLook.name())
+                .set(MapField.HEIGHT, 1D)
+                .build())
+            .onCast(PartBuilder.onTickRaycast(10D, ValueCalculationData.base(3), ele, 15D));
+
+    }
 
     public static SpellBuilder of(String id, SpellConfiguration config, String name, List<SkillGemTag> tags) {
         SpellBuilder builder = new SpellBuilder();

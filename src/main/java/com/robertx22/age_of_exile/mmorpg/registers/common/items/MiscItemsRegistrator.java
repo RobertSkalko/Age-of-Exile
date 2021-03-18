@@ -30,6 +30,10 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
         }
     }
 
+    public ProjectileItem FIREBALL = item(new ProjectileItem("fireball"));
+    public ProjectileItem SNOWBALL = item(new ProjectileItem("snowball"));
+    public ProjectileItem SLIMEBALL = item(new ProjectileItem("slimeball"));
+
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
 
     public HashMap<SkillItemTier, SalvagedDustItem> SALVAGED_ESSENCE_MAP = new HashMap<>();

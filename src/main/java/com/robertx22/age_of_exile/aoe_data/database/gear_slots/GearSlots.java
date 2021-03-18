@@ -2,13 +2,10 @@ package com.robertx22.age_of_exile.aoe_data.database.gear_slots;
 
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.ids.GearSlotIds;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 
 public class GearSlots implements ISlashRegistryInit {
-
-    public static String PICKAXE_ID = "pickaxe";
-    public static String FISHING_ROD_ID = "fishing_rod";
-    public static String HOE_ID = "hoe";
 
     public static DataGenKey<GearSlot> SWORD = new DataGenKey<GearSlot>("sword");
     public static DataGenKey<GearSlot> AXE = new DataGenKey<GearSlot>("axe");
@@ -26,9 +23,9 @@ public class GearSlots implements ISlashRegistryInit {
     public static DataGenKey<GearSlot> RING = new DataGenKey<GearSlot>("ring");
     public static DataGenKey<GearSlot> NECKLACE = new DataGenKey<GearSlot>("necklace");
 
-    public static DataGenKey<GearSlot> PICKAXE = new DataGenKey<GearSlot>(PICKAXE_ID);
-    public static DataGenKey<GearSlot> FISHING_ROD = new DataGenKey<GearSlot>(FISHING_ROD_ID);
-    public static DataGenKey<GearSlot> HOE = new DataGenKey<GearSlot>(HOE_ID);
+    public static DataGenKey<GearSlot> PICKAXE = new DataGenKey<GearSlot>(GearSlotIds.PICKAXE_ID);
+    public static DataGenKey<GearSlot> FISHING_ROD = new DataGenKey<GearSlot>(GearSlotIds.FISHING_ROD_ID);
+    public static DataGenKey<GearSlot> HOE = new DataGenKey<GearSlot>(GearSlotIds.HOE_ID);
 
     @Override
     public void registerAll() {

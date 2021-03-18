@@ -25,6 +25,7 @@ public abstract class BaseTargetSelector extends BaseFieldNeeder implements IGUI
     public static TargetSelector TARGET = of(new TargetSelector());
     public static AoeSelector AOE = of(new AoeSelector());
     public static InFrontSelector IN_FRONT = of(new InFrontSelector());
+    public static RayCastSelector RAY_CAST = of(new RayCastSelector());
 
     private static <T extends BaseTargetSelector> T of(T s) {
         MAP.put(s.GUID(), s);

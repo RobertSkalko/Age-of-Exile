@@ -59,15 +59,21 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
     @Override
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 
-        ExileEffect exect = getExileEffect();
-        ExileEffectInstanceData data = getSavedData(entity);
+        try {
+            ExileEffect exect = getExileEffect();
+            ExileEffectInstanceData data = getSavedData(entity);
 
-        int stacks = data.stacks;
+            if (data != null) {
+                int stacks = data.stacks;
 
-        exect.mc_stats.forEach(x -> x.applyVanillaStats(entity, stacks));
+                exect.mc_stats.forEach(x -> x.applyVanillaStats(entity, stacks));
 
-        Load.Unit(entity)
-            .forceRecalculateStats();
+                Load.Unit(entity)
+                    .forceRecalculateStats();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         super.onApplied(entity, attributes, amplifier);
 

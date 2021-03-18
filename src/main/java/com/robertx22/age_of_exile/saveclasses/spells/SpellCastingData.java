@@ -153,10 +153,13 @@ public class SpellCastingData {
                     spell.cast(ctx);
                 }
 
+                /* // channel spells DESTROY weapon durability lol
                 player.getMainHandStack()
                     .damage(1, player, x -> {
                         player.sendToolBreakStatus(player.getActiveHand());
                     });
+
+                 */
 
                 onSpellCast(ctx);
 

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
@@ -8,16 +9,31 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class LookUtils {
+
     public static Entity getEntityLookedAt(Entity e) {
+        List<Entity> list = getEntityLookedAt(e, 32, true);
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    public static List<LivingEntity> getLivingEntityLookedAt(Entity e, double distance, boolean onlyfirst) {
+        return getEntityLookedAt(e, distance, onlyfirst).stream()
+            .filter(x -> x instanceof LivingEntity)
+            .map(x -> (LivingEntity) x)
+            .collect(Collectors.toList());
+    }
+
+    public static List<Entity> getEntityLookedAt(Entity e, double distance, boolean onlyfirst) {
         Entity foundEntity = null;
 
-        final double finalDistance = 32;
-        double distance = finalDistance;
-        HitResult pos = raycast(e, finalDistance);
+        HitResult pos = raycast(e, distance);
+
+        List<Entity> list = new ArrayList<>();
 
         Vec3d positionVector = e.getPos();
         if (e instanceof PlayerEntity)
@@ -28,13 +44,13 @@ public class LookUtils {
                 .distanceTo(positionVector);
 
         Vec3d lookVector = e.getRotationVector();
-        Vec3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance);
+        Vec3d reachVector = positionVector.add(lookVector.x * distance, lookVector.y * distance, lookVector.z * distance);
 
         Entity lookedEntity = null;
         List<Entity> entitiesInBoundingBox = e.getEntityWorld()
             .getOtherEntities(e, e.getBoundingBox()
-                .expand(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
-                .stretch(1F, 1F, 1F));
+                .expand(lookVector.x * distance, lookVector.y * distance, lookVector.z * distance)
+                .stretch(1.2F, 1.2F, 1.2F));
 
         double minDistance = distance;
 
@@ -65,7 +81,15 @@ public class LookUtils {
                 foundEntity = lookedEntity;
         }
 
-        return foundEntity;
+        if (onlyfirst) {
+            if (foundEntity != null) {
+                list.add(foundEntity);
+            }
+        } else {
+            list.addAll(entitiesInBoundingBox);
+        }
+
+        return list;
     }
 
     public static HitResult raycast(Entity e, double len) {

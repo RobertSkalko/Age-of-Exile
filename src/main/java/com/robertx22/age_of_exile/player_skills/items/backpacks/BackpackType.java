@@ -58,28 +58,6 @@ public enum BackpackType {
         public boolean autoPicksUp() {
             return false;
         }
-    },
-    GATHERING_MATS {
-        @Override
-        public String getName() {
-            return "Material";
-        }
-
-        @Override
-        public Item getCraftItem() {
-            return Items.WHEAT_SEEDS;
-        }
-
-        @Override
-        public boolean canAcceptStack(ItemStack stack) {
-            Item item = stack.getItem();
-            return item instanceof IGatheringMat;
-        }
-
-        @Override
-        public boolean autoPicksUp() {
-            return true;
-        }
     };
 
     public abstract String getName();

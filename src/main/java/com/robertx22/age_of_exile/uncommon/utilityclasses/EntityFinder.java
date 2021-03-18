@@ -127,6 +127,22 @@ public class EntityFinder {
 
                 List<T> entityList = setup.world.getNonSpectatingEntities(setup.entityType, aabb);
 
+                /* // TODO raycast remove wall cheese, experimental
+                entityList.removeIf(e -> {
+
+                    BlockHitResult result = e.world.raycast(new RaycastContext(e.getPos(), setup.caster.getPos(), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, e));
+
+                    if (result.getPos()
+                        .distanceTo(setup.caster.getPos()) < 2) {
+                        return false;
+                    }
+
+                    return true;
+
+                });
+
+                 */
+
                 return entityList;
             }
         },

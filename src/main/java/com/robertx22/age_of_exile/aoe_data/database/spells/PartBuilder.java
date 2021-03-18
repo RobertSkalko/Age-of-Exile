@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -79,6 +80,14 @@ public class PartBuilder {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
         c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
+        return c;
+    }
+
+    public static ComponentPart onTickRaycast(Double ticks, ValueCalculationData calc, Elements ele, Double distance) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+        c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+        c.targets.add(BaseTargetSelector.RAY_CAST.create(distance, EntityFinder.EntityPredicate.ENEMIES));
         return c;
     }
 
@@ -193,11 +202,40 @@ public class PartBuilder {
     }
 
     public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
+        return groundEdgeParticles(particle, count, radius, randomY, ParticleMotion.None);
+    }
+
+    public static class Particle {
+
+        MapHolder map;
+
+        public static Particle builder(DefaultParticleType particle, Double count, Double radius) {
+            Particle p = new Particle();
+            p.map = SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius);
+            p.map.put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.CIRCLE.name());
+            return p;
+        }
+
+        public <T> Particle set(MapField<T> field, T t) {
+            map.put(field, t);
+            return this;
+        }
+
+        public ComponentPart build() {
+            ComponentPart p = new ComponentPart();
+            p.acts.add(map);
+            return p;
+        }
+
+    }
+
+    public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY, ParticleMotion motion) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
             .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
             .put(MapField.Y_RANDOM, randomY)
             .put(MapField.HEIGHT, 0.5D)
+            .put(MapField.MOTION, motion.name())
             .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE_EDGE.name()));
         return c;
     }

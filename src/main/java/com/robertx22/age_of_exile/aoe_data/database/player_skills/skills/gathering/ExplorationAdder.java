@@ -19,23 +19,23 @@ public class ExplorationAdder {
         b.addDefaultBonusExpRewards();
         //b.skill.exp_per_action = 25; exp is based on favor gained
 
-        b.stat(new SkillStatReward(5,
+        b.stat(new SkillStatReward(10,
             new OptScaleExactStat(2, BonusFavor.getInstance()),
             new OptScaleExactStat(2, TreasureQuality.getInstance())));
 
-        b.stat(new SkillStatReward(15,
+        b.stat(new SkillStatReward(20,
             new OptScaleExactStat(2, BonusFavor.getInstance()),
             new OptScaleExactStat(2, TreasureQuality.getInstance())));
 
-        b.stat(new SkillStatReward(25,
+        b.stat(new SkillStatReward(30,
             new OptScaleExactStat(3, BonusFavor.getInstance()),
             new OptScaleExactStat(3, TreasureQuality.getInstance())));
 
-        b.stat(new SkillStatReward(35,
+        b.stat(new SkillStatReward(40,
             new OptScaleExactStat(4, BonusFavor.getInstance()),
             new OptScaleExactStat(4, TreasureQuality.getInstance())));
 
-        b.stat(new SkillStatReward(45,
+        b.stat(new SkillStatReward(50,
             new OptScaleExactStat(5, BonusFavor.getInstance()),
             new OptScaleExactStat(5, TreasureQuality.getInstance())));
 

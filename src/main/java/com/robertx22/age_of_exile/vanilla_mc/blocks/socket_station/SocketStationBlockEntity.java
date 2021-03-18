@@ -177,7 +177,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
         for (int i = 2; i < SocketStationContainer.RUNEWORD_SLOTS + 2; i++) {
             int index = i - 2;
             if (possible.size() > index) {
-                this.itemStacks[i] = RuneWordItem.get(possible.get(index));
+                this.itemStacks[i] = RuneWordItem.createStack(possible.get(index));
             }
         }
 

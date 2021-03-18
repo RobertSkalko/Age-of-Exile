@@ -41,7 +41,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
 
         GearRarity rare = new GearRarity();
         rare.unidentified_chance = 10;
-        rare.base_stat_percents = new MinMax(10, 85);
+        rare.base_stat_percents = new MinMax(20, 85);
         rare.stat_req_multi = 0.5F;
         rare.default_stat_percents = new MinMax(5, 100);
         rare.affix_stat_percents = new MinMax(70, 100);
@@ -56,7 +56,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         GearRarity epic = new GearRarity();
         epic.unidentified_chance = 15;
         epic.stat_req_multi = 0.6F;
-        epic.base_stat_percents = new MinMax(15, 90);
+        epic.base_stat_percents = new MinMax(30, 90);
         epic.default_stat_percents = new MinMax(20, 100);
         epic.affix_stat_percents = new MinMax(20, 100);
         epic.affixes = new GearRarity.Part(3, 4, 15);
@@ -69,7 +69,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
 
         GearRarity legendary = new GearRarity();
         legendary.unidentified_chance = 25;
-        legendary.base_stat_percents = new MinMax(25, 100);
+        legendary.base_stat_percents = new MinMax(40, 100);
         legendary.stat_req_multi = 0.8F;
         legendary.default_stat_percents = new MinMax(30, 100);
         legendary.affix_stat_percents = new MinMax(30, 100);
@@ -85,7 +85,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         GearRarity mythic = new GearRarity();
         mythic.unidentified_chance = 50;
         mythic.stat_req_multi = 1F;
-        mythic.base_stat_percents = new MinMax(30, 100);
+        mythic.base_stat_percents = new MinMax(50, 100);
         mythic.default_stat_percents = new MinMax(40, 100);
         mythic.affix_stat_percents = new MinMax(40, 100);
         mythic.affixes = new GearRarity.Part(5, 6, 15);
@@ -99,7 +99,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         GearRarity mi = new GearRarity();
         mi.unidentified_chance = 100;
         mi.stat_req_multi = 1F;
-        mi.default_stat_percents = new MinMax(0, 100);
+        mi.default_stat_percents = new MinMax(20, 100);
         mi.affix_stat_percents = new MinMax(80, 100);
         mi.spawn_durability_hit = new MinMax(60, 80);
         mi.weight = 0;

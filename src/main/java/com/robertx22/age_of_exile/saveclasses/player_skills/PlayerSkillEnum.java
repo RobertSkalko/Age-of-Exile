@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public enum PlayerSkillEnum {
 
     MINING("mining", WikiType.MINING_BLOCK_EXP, Words.Mining, Words.MiningDesc, Formatting.GRAY, EnchantmentTarget.DIGGER, () -> Items.IRON_PICKAXE),
-    FARMING("farming", null, Words.Farming, Words.FarmingDesc, Formatting.YELLOW, EnchantmentTarget.DIGGER, () -> Items.IRON_HOE),
+    FARMING("farming", WikiType.FARMING_EXP, Words.Farming, Words.FarmingDesc, Formatting.YELLOW, EnchantmentTarget.DIGGER, () -> Items.IRON_HOE),
     SALVAGING("salvaging", null, Words.Salvaging, Words.SalvagingDesc, Formatting.LIGHT_PURPLE, null, () -> Items.BOOK),
     //ALCHEMY("alchemy", Words.Alchemy, Formatting.LIGHT_PURPLE, null, () -> Items.BLAZE_POWDER),
     //INSCRIBING("inscribing", Words.Inscribing, Formatting.AQUA, null, () -> Items.INK_SAC),

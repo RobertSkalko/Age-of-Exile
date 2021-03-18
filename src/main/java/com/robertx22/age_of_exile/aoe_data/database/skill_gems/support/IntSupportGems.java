@@ -60,14 +60,13 @@ public class IntSupportGems implements ISlashRegistryInit {
                 .setInt(0.5F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.DAMAGE, SkillGemTag.AREA),
             new StatModifier(-10, -20, IncreasedAreaOfEffect.getInstance()),
-            new StatModifier(10, 25, AreaDamage.getInstance())
+            new StatModifier(15, 25, AreaDamage.getInstance())
         );
 
         SkillGemBuilder.of("more_radius", "Expanded Area Support", new StatRequirement().setBaseInt(25)
                 .setInt(0.5F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.DAMAGE, SkillGemTag.AREA),
-            new StatModifier(10, 20, IncreasedAreaOfEffect.getInstance()),
-            new StatModifier(-5, -20, AreaDamage.getInstance())
+            new StatModifier(10, 20, IncreasedAreaOfEffect.getInstance())
         );
 
     }

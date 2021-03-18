@@ -48,27 +48,42 @@ public class ParticleInRadiusAction extends SpellAction {
 
             amount *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.AREA);
 
+            Vec3d motion = Vec3d.ZERO;
+
+            try {
+                motion = ParticleMotion.valueOf(data.get(MOTION))
+                    .getMotion(ctx);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+
             float yrand = data.getOrDefault(Y_RANDOM, 0D)
                 .floatValue();
 
             if (shape == Shape.CIRCLE) {
                 if (ctx.sourceEntity.age > 2) {
                     for (int i = 0; i < amount; i++) {
-                        Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(ctx.vecPos, radius);
-                        ParticleUtils.spawn(particle, ctx.world, p);
+
+                        // todo unsure if this helps
+                        Vec3d pos = ctx.vecPos;
+                        Vec3d vel = ctx.sourceEntity.getVelocity();
+                        pos = new Vec3d(pos.x - vel.x / 2F, pos.y - vel.y / 2 + height, pos.z - vel.z / 2);
+
+                        Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(pos, radius);
+                        ParticleUtils.spawn(particle, ctx.world, p, motion);
                     }
                 }
             } else if (shape == Shape.HORIZONTAL_CIRCLE) {
                 for (int i = 0; i < amount; i++) {
                     float yRandom = (int) RandomUtils.RandomRange(0, yrand);
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
-                    ParticleUtils.spawn(particle, ctx.world, p);
+                    ParticleUtils.spawn(particle, ctx.world, p, motion);
                 }
             } else if (shape == Shape.HORIZONTAL_CIRCLE_EDGE) {
                 for (int i = 0; i < amount; i++) {
                     float yRandom = (int) RandomUtils.RandomRange(0, yrand);
                     Vec3d p = randomEdgeCirclePos(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
-                    ParticleUtils.spawn(particle, ctx.world, p);
+                    ParticleUtils.spawn(particle, ctx.world, p, motion);
                 }
             }
         }
@@ -82,12 +97,17 @@ public class ParticleInRadiusAction extends SpellAction {
     }
 
     public MapHolder create(DefaultParticleType particle, Double count, Double radius) {
+        return create(particle, count, radius, ParticleMotion.None);
+    }
+
+    public MapHolder create(DefaultParticleType particle, Double count, Double radius, ParticleMotion motion) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(RADIUS, radius);
         dmg.put(PARTICLE_COUNT, count);
         dmg.put(PARTICLE_TYPE, Registry.PARTICLE_TYPE.getId(particle)
             .toString());
+        dmg.put(MOTION, motion.name());
         return dmg;
     }
 

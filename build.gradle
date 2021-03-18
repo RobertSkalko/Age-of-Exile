@@ -132,7 +132,7 @@ curseforge {
         relations {
             requiredDependency 'fabric-api'
             requiredDependency 'library-of-exile'
-            requiredDependency 'world-of-exile'
+            requiredDependency 'dungeons-of-exile'
             requiredDependency 'curios-fabric'
             requiredDependency 'patchouli-fabric'
         }

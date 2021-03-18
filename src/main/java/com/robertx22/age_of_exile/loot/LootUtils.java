@@ -68,7 +68,7 @@ public class LootUtils {
         multi += (1 + hp / 40F) - 1;
 
         if (entity instanceof SlimeEntity) {
-            multi *= 0.1F;
+            multi *= 0.05F;
         }
 
         return multi;

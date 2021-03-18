@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
-import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
@@ -20,6 +19,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -48,21 +48,16 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.NONE;
+        return UseAction.DRINK;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand handIn) {
-
-        ItemStack stack = player.getStackInHand(handIn);
-
-        if (!IsSkillItemUsableUtil.canUseItem(player, stack, true)) {
-            return TypedActionResult.fail(stack);
-        }
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity player) {
 
         stack.decrement(1);
-        PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), player);
-
+        if (player instanceof PlayerEntity) {
+            PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), (PlayerEntity) player);
+        }
         if (!world.isClient) {
             EntityCap.UnitData unitdata = Load.Unit(player);
 
@@ -81,8 +76,19 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
             SoundUtils.playSound(player, SoundEvents.ENTITY_GENERIC_DRINK, 1, 1);
         }
 
+        return stack;
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
+        ItemStack itemStack = player.getStackInHand(handIn);
         player.setCurrentHand(handIn);
-        return TypedActionResult.success(stack);
+        return TypedActionResult.success(itemStack);
+    }
+
+    @Override
+    public int getMaxUseTime(ItemStack stack) {
+        return 20;
     }
 
     @Override

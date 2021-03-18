@@ -39,11 +39,11 @@ public class OnTickCondition extends EffectCondition implements ICTextTooltip {
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
         if (ctx.activation != EntityActivation.ON_TICK) {
-            return false;
+            //return false; TODO
         }
         int ticks = data.get(MapField.TICK_RATE)
             .intValue();
-        return ctx.sourceEntity != null && ctx.sourceEntity.age % ticks == 0;
+        return ctx.sourceEntity == null ? ctx.caster.age % ticks == 0 : ctx.sourceEntity.age % ticks == 0;
     }
 
     public MapHolder create(Double ticks) {

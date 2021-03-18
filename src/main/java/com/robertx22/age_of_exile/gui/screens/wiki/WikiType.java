@@ -3,9 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.wiki;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.gui.screens.wiki.entries.DimensionsEntry;
-import com.robertx22.age_of_exile.gui.screens.wiki.entries.MiningBlockExpEntry;
-import com.robertx22.age_of_exile.gui.screens.wiki.entries.UniqueGearEntry;
+import com.robertx22.age_of_exile.gui.screens.wiki.entries.*;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.util.Identifier;
@@ -27,6 +25,17 @@ public enum WikiType {
                 .collect(Collectors.toList());
         }
     },
+    RUNEWORDS("runeword") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return Database.Runewords()
+                .getList()
+                .stream()
+                .map(x -> new RuneWordEntry(x))
+                .collect(Collectors.toList());
+        }
+    },
+
     MINING_BLOCK_EXP("mining_exp") {
         @Override
         public boolean showsInWiki() {
@@ -41,9 +50,26 @@ public enum WikiType {
                 .get(PlayerSkillEnum.MINING.id).block_break_exp.forEach(x -> {
                 list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
             });
-
+            Database.PlayerSkills()
+                .get(PlayerSkillEnum.MINING.id).item_smelt_exp.forEach(x -> {
+                list.add(new MiningSmeltEntry(x.getItem(), x.exp));
+            });
             return list;
+        }
+    }, FARMING_EXP("farming_exp") {
+        @Override
+        public boolean showsInWiki() {
+            return false; // only by linking from professions page
+        }
 
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            List<WikiEntry> list = new ArrayList<>();
+            Database.PlayerSkills()
+                .get(PlayerSkillEnum.FARMING.id).block_break_exp.forEach(x -> {
+                list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
+            });
+            return list;
         }
     },
     DIMENSIONS("dimension") {

@@ -18,7 +18,6 @@ public class TinkeringItemRegister extends BaseItemRegistrator {
     public HashMap<SkillItemTier, LockedChestItem> LOCKED_CHEST_TIER_MAP = new HashMap<>();
 
     public HashMap<SkillItemTier, BackpackItem> VALUABLES_BACKPACKS_TIER_MAP = new HashMap<>();
-    public HashMap<SkillItemTier, BackpackItem> MAT_BACKPACKS_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, BackpackItem> NORMAL_BACKPACKS_TIER_MAP = new HashMap<>();
 
     public TinkeringItemRegister() {
@@ -31,7 +30,6 @@ public class TinkeringItemRegister extends BaseItemRegistrator {
             LEATHER_TIER_MAP.put(tier, item(new MysteriousLeatherItem(tier)));
 
             VALUABLES_BACKPACKS_TIER_MAP.put(tier, item(new BackpackItem(BackpackType.VALUABLES, tier), "backpack/valuables/" + tier.tier));
-            MAT_BACKPACKS_TIER_MAP.put(tier, item(new BackpackItem(BackpackType.GATHERING_MATS, tier), "backpack/materials/" + tier.tier));
             NORMAL_BACKPACKS_TIER_MAP.put(tier, item(new BackpackItem(BackpackType.NORMAL, tier), "backpack/normal/" + tier.tier));
         }
 

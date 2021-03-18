@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.player_skills.items.inscribing;
 
-import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
@@ -8,10 +7,10 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
+import com.robertx22.age_of_exile.database.ids.GearSlotIds;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.items.backpacks.IGatheringMat;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -24,7 +23,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.Arrays;
 import java.util.List;
 
-public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, IGatheringMat, IShapelessRecipe, ICurrencyItemEffect {
+public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe, ICurrencyItemEffect {
 
     SkillItemTier tier;
 
@@ -75,32 +74,36 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
 
-        StatInfusionItem inf = (StatInfusionItem) currency.getItem();
+        try {
+            StatInfusionItem inf = (StatInfusionItem) currency.getItem();
 
-        int lvl = inf.tier.levelRange.randomFromRange();
+            int lvl = inf.tier.levelRange.randomFromRange();
 
-        GearBlueprint b = new GearBlueprint(lvl);
-        b.level.set(lvl);
+            GearBlueprint b = new GearBlueprint(lvl);
+            b.level.set(lvl);
 
-        String slot = "";
+            String slot = "";
 
-        if (stack.getItem() instanceof PickaxeItem) {
-            slot = GearSlots.PICKAXE_ID;
-        } else if (stack.getItem() instanceof HoeItem) {
-            slot = GearSlots.HOE_ID;
-        } else if (stack.getItem() instanceof FishingRodItem) {
-            slot = GearSlots.FISHING_ROD_ID;
-        }
+            if (stack.getItem() instanceof PickaxeItem) {
+                slot = GearSlotIds.PICKAXE_ID;
+            } else if (stack.getItem() instanceof HoeItem) {
+                slot = GearSlotIds.HOE_ID;
+            } else if (stack.getItem() instanceof FishingRodItem) {
+                slot = GearSlotIds.FISHING_ROD_ID;
+            }
 
-        if (!slot.isEmpty()) {
-            final String slotid = slot;
-            b.gearItemSlot.set(Database.GearTypes()
-                .getFilterWrapped(x -> x.gear_slot.equals(slotid))
-                .random());
+            if (!slot.isEmpty()) {
+                final String slotid = slot;
+                b.gearItemSlot.set(Database.GearTypes()
+                    .getFilterWrapped(x -> x.gear_slot.equals(slotid))
+                    .random());
 
-            GearItemData gear = b.createData();
+                GearItemData gear = b.createData();
 
-            gear.saveToStack(stack);
+                gear.saveToStack(stack);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return stack;

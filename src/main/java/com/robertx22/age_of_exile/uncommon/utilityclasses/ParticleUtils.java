@@ -9,6 +9,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ParticleUtils {
+    public static void spawn(ParticleEffect type, World world, Vec3d vec, Vec3d mot) {
+        world.addParticle(type, vec.x, vec.y, vec.z, mot.x, mot.y, mot.z);
+    }
 
     public static void spawn(ParticleEffect type, World world, Vec3d vec) {
         world.addParticle(type, vec.x, vec.y, vec.z, 0, 0, 0);

@@ -36,8 +36,7 @@ public class MySpriteRenderer<T extends Entity & IMyRenderAsItem> extends Entity
 
     @Override
     public void render(T entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        if (entity.age >= 2 || this.dispatcher.camera.getFocusedEntity()
-            .squaredDistanceTo(entity) >= 12.25D) {
+        if (entity.age >= 3) {
             matrices.push();
             matrices.scale(this.scale, this.scale, this.scale);
             matrices.multiply(this.dispatcher.getRotation());

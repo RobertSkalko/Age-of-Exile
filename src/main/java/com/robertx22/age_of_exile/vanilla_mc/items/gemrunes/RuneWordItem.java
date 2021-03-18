@@ -37,7 +37,7 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
         super(new Settings().group(CreativeTabs.Runewords));
     }
 
-    public static ItemStack get(RuneWord word) {
+    public static ItemStack createStack(RuneWord word) {
         CompoundTag tag = new CompoundTag();
         tag.putString("runeword", word.GUID());
         ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.RUNEWORD);
@@ -84,7 +84,7 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
         if (this.isIn(group)) {
             Database.Runewords()
                 .getList()
-                .forEach(x -> stacks.add(get(x)));
+                .forEach(x -> stacks.add(createStack(x)));
         }
     }
 

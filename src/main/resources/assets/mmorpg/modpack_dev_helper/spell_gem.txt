@@ -19,6 +19,7 @@ cooldown
 thunder_dmg
 fire_dmg
 less_radius
+fire_breath
 frost_armor
 crit_rate
 health_leech
@@ -50,6 +51,7 @@ charge
 heart_of_ice
 nature_dmg
 blizzard
+frost_breath
 frostball
 flame_strike
 meteor

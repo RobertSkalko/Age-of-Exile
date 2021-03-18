@@ -69,7 +69,7 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
 
         for (int i = index; i < amount + index; i++) {
 
-            if (entries.size() - 1 > i) {
+            if (entries.size() > i) {
                 this.addButton(new WikiEntryButton(this, entries.get(i), x, y));
                 y += WikiEntryButton.ySize - 1;
             }

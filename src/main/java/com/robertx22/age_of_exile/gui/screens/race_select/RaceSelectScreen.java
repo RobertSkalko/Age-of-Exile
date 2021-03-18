@@ -26,8 +26,6 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
     List<PlayerRace> races = Database.Races()
         .getList();
 
-    RaceImageButton raceImageButton;
-
     public RaceSelectScreen() {
 
     }
@@ -70,7 +68,7 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
         PlayerRace race = races.get(currentRace);
 
         this.addButton(new CharButton(this, race, x, y));
-        this.raceImageButton = this.addButton(new RaceImageButton(race, x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
+        this.addButton(new RaceImageButton(race, x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
 
         this.addButton(new LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true));
         this.addButton(new LeftRightButton(this, x + 30 - LeftRightButton.xSize + CharButton.xSize, y + CharButton.ySize / 2, false));
