@@ -6,9 +6,12 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffData;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.DatabaseSuggestions;
+import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
@@ -18,20 +21,20 @@ import java.util.Objects;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class GiveSkillGem {
+public class GiveBuffScroll {
     public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
 
         commandDispatcher.register(
             literal(CommandRefs.ID)
                 .then(literal("give").requires(e -> e.hasPermissionLevel(2))
-                    .then(literal("skill_gem")
+                    .then(literal("buff_scroll")
                         .requires(e -> e.hasPermissionLevel(2))
                         .then(argument("target", EntityArgumentType.player())
                             .then(argument("id", StringArgumentType.word())
-                                .suggests(new DatabaseSuggestions(SlashRegistryType.SKILL_GEM))
+                                .suggests(new DatabaseSuggestions(SlashRegistryType.SCROLL_BUFFS))
                                 .then(argument("level", IntegerArgumentType.integer())
                                     .then(argument("rarity", StringArgumentType.word())
-                                        .suggests(new DatabaseSuggestions(SlashRegistryType.SKILL_GEM_RARITY))
+                                        .suggests(new GearRaritySuggestions())
                                         .then(argument("amount", IntegerArgumentType
                                             .integer(1, 5000))
                                             .executes(e -> execute(e.getSource(), EntityArgumentType
@@ -56,20 +59,25 @@ public class GiveSkillGem {
         }
 
         for (int i = 0; i < amount; i++) {
-            SkillGemBlueprint blueprint = new SkillGemBlueprint(lvl);
-            blueprint.level.set(lvl);
+            ScrollBuffData data = new ScrollBuffData();
 
-            if (!rar.equals("random")) {
-                blueprint.rarity.set(Database.SkillGemRarities()
-                    .get(rar));
+            data.lvl = lvl;
+            data.rar = rar;
+            data.id = id;
+
+            if (id.equals("random")) {
+                data.id = Database.ScrollBuffs()
+                    .random().id;
             }
 
-            if (!id.equals("random")) {
-                blueprint.type.set(Database.SkillGems()
-                    .get(id));
+            if (rar.equals("random")) {
+                data.rar = Database.GearRarities()
+                    .random()
+                    .GUID();
             }
 
-            player.giveItemStack(blueprint.createStack());
+            PlayerUtils.giveItem(ScrollBuffItem.create(data), player);
+
         }
 
         return 0;

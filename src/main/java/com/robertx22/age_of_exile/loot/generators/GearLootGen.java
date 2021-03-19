@@ -37,12 +37,15 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.can_sal = info.favorRank.can_salvage_loot;
+        if (gear != null) {
 
-        Gear.Save(stack, gear);
+            gear.can_sal = info.favorRank.can_salvage_loot;
 
-        ItemUtils.tryAnnounceItem(stack, info.player);
+            Gear.Save(stack, gear);
 
+            ItemUtils.tryAnnounceItem(stack, info.player);
+
+        }
         return stack;
 
     }

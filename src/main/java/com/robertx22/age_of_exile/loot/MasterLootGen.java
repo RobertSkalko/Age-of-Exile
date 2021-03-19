@@ -13,58 +13,63 @@ import java.util.stream.Collectors;
 public class MasterLootGen {
 
     public static List<ItemStack> generateLoot(LootInfo info) {
-        List<ItemStack> items = new ArrayList<ItemStack>();
+        List<ItemStack> items = null;
+        try {
+            items = new ArrayList<ItemStack>();
 
-        if (info == null) {
-            return items;
-        }
-
-        items = populateOnce(info);
-
-        int tries = 0;
-
-        while (items.size() < info.getMinItems()) {
-
-            tries++;
-            if (tries > 20) {
-                System.out.println("Tried to generate loot many times but failed! " + info.toString());
-                break;
+            if (info == null) {
+                return items;
             }
-            List<ItemStack> extra = populateOnce(info);
-            if (!extra.isEmpty()) {
-                items.add(RandomUtils.randomFromList(extra));
-            }
-        }
 
-        while (items.size() > info.getMaxItems()) {
-            ItemStack randomtoremove = RandomUtils.randomFromList(items);
-            items.removeIf(x -> x.equals(randomtoremove));
-        }
+            items = populateOnce(info);
 
-        if (info.favor != null && info.favorRank != null) {
-            info.favor.afterLootingItems(info.favorRank.favor_drain_per_item, info, items.size());
+            int tries = 0;
 
-            List<ItemStack> extraFavorItems = new ArrayList<ItemStack>();
+            while (items.size() < info.getMinItems()) {
 
-            int extraTries = 0;
-
-            while (extraFavorItems.size() < info.getExtraFavorItems()) {
-
-                extraTries++;
-                if (extraTries > 20) {
+                tries++;
+                if (tries > 20) {
                     System.out.println("Tried to generate loot many times but failed! " + info.toString());
                     break;
                 }
                 List<ItemStack> extra = populateOnce(info);
                 if (!extra.isEmpty()) {
-                    extraFavorItems.add(RandomUtils.randomFromList(extra));
+                    items.add(RandomUtils.randomFromList(extra));
                 }
             }
 
-            info.favor.afterLootingItems(info.favorRank.extra_item_favor_cost, info, extraFavorItems.size());
+            while (items.size() > info.getMaxItems()) {
+                ItemStack randomtoremove = RandomUtils.randomFromList(items);
+                items.removeIf(x -> x.equals(randomtoremove));
+            }
 
-            items.addAll(extraFavorItems);
+            if (info.favor != null && info.favorRank != null) {
+                info.favor.afterLootingItems(info.favorRank.favor_drain_per_item, info, items.size());
 
+                List<ItemStack> extraFavorItems = new ArrayList<ItemStack>();
+
+                int extraTries = 0;
+
+                while (extraFavorItems.size() < info.getExtraFavorItems()) {
+
+                    extraTries++;
+                    if (extraTries > 20) {
+                        System.out.println("Tried to generate loot many times but failed! " + info.toString());
+                        break;
+                    }
+                    List<ItemStack> extra = populateOnce(info);
+                    if (!extra.isEmpty()) {
+                        extraFavorItems.add(RandomUtils.randomFromList(extra));
+                    }
+                }
+
+                info.favor.afterLootingItems(info.favorRank.extra_item_favor_cost, info, extraFavorItems.size());
+
+                items.addAll(extraFavorItems);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return items;
@@ -77,12 +82,16 @@ public class MasterLootGen {
             return items;
         }
 
-        items.addAll(new CurrencyLootGen(info).tryGenerate());
-        items.addAll(new GearLootGen(info).tryGenerate());
-        items.addAll(new GemLootGen(info).tryGenerate());
-        items.addAll(new RuneLootGen(info).tryGenerate());
-        items.addAll(new VanillaRewardsLootGen(info).tryGenerate());
-        items.addAll(new SkillGemLootGen(info).tryGenerate());
+        try {
+            items.addAll(new CurrencyLootGen(info).tryGenerate());
+            items.addAll(new GearLootGen(info).tryGenerate());
+            items.addAll(new GemLootGen(info).tryGenerate());
+            items.addAll(new RuneLootGen(info).tryGenerate());
+            items.addAll(new VanillaRewardsLootGen(info).tryGenerate());
+            items.addAll(new SkillGemLootGen(info).tryGenerate());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return items.stream()
             .filter(x -> x != null && !x.isEmpty())

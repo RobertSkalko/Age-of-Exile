@@ -5,10 +5,11 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
+import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.DatabaseSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
-import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearTypeSuggestions;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
@@ -28,7 +29,7 @@ public class GiveGear {
                     .then(literal("gear")
                         .then(argument("target", EntityArgumentType.player())
                             .then(argument("type", StringArgumentType.word())
-                                .suggests(new GearTypeSuggestions())
+                                .suggests(new DatabaseSuggestions(SlashRegistryType.GEAR_TYPE))
                                 .then(argument("level",
                                     IntegerArgumentType.integer()
                                 )

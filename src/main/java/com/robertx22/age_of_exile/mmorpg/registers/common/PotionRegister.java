@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.google.common.base.Preconditions;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
@@ -48,22 +49,29 @@ public class PotionRegister {
         }
 
         for (int i = 0; i < 20; i++) {
-            String key = ExileStatusEffect.getIdPath(StatusEffectType.NEUTRAL, i);
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.NEUTRAL, i));
+            String key = ExileStatusEffect.getIdPath(EffectType.NEUTRAL, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.NEUTRAL, i));
             exileEffectsMap.put(key, eff);
         }
         for (int i = 0; i < 20; i++) {
-            String key = ExileStatusEffect.getIdPath(StatusEffectType.HARMFUL, i);
-
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.HARMFUL, i));
+            String key = ExileStatusEffect.getIdPath(EffectType.HARMFUL, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.HARMFUL, i));
             exileEffectsMap.put(key, eff);
         }
         for (int i = 0; i < 20; i++) {
-            String key = ExileStatusEffect.getIdPath(StatusEffectType.BENEFICIAL, i);
-
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(StatusEffectType.BENEFICIAL, i));
+            String key = ExileStatusEffect.getIdPath(EffectType.BENEFICIAL, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.BENEFICIAL, i));
             exileEffectsMap.put(key, eff);
         }
+        /*
+        for (int i = 0; i < 20; i++) {
+
+            String key = ExileStatusEffect.getIdPath(EffectType.BUFF, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.BUFF, i));
+            exileEffectsMap.put(key, eff);
+        }
+
+         */
 
         Registry.register(Registry.STATUS_EFFECT, Ref.id("knockback_resist"), KNOCKBACK_RESISTANCE);
         Registry.register(Registry.STATUS_EFFECT, Ref.id("anti_wither"), ANTI_WITHER);

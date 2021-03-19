@@ -60,7 +60,7 @@ public class IntSpells implements ISlashRegistryInit {
             Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.FIREBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, PARTICLES.FLAME, 1D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Fire))
@@ -128,6 +128,7 @@ public class IntSpells implements ISlashRegistryInit {
             )
 
             .build();
+
         SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 60 * 20), "Heart of Ice",
             Arrays.asList(SkillGemTag.HEALING))
             .weaponReq(CastingWeapon.ANY_WEAPON)
@@ -174,13 +175,15 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Atmosphere",
             Arrays.asList(SkillGemTag.HEALING))
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_HOE_TILL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
             .onCast(PartBuilder.healInAoe(ValueCalculationData.base(4), 2D))
             .build();
 
         SpellBuilder.breath("fire_breath", "Fire Breath", Elements.Fire, PARTICLES.FLAME)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_BURN, 1D, 1D)
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
             .build();
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)
             .build();

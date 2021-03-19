@@ -15,6 +15,18 @@
         "category": "hostile",
         "sounds": [{"name": "mmorpg:stone_crack", "stream": true}]
     },
+    "buff": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:buff", "stream": true}]
+    },
+	"fire": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:fire", "stream": true}]
+    },	
+	"burn": {
+        "category": "hostile",
+        "sounds": [{"name": "mmorpg:burn", "stream": true}]
+    },
     "splash": {
         "category": "hostile",
         "sounds": [{"name": "mmorpg:splash", "stream": true}]

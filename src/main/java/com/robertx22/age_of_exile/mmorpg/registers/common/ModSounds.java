@@ -12,6 +12,9 @@ public class ModSounds {
     public SoundEvent SPLASH = of("splash");
     public SoundEvent STONE_CRACK = of("stone_crack");
     public SoundEvent FIREBALL = of("fireball");
+    public SoundEvent BUFF = of("buff");
+    public SoundEvent FIRE = of("fire");
+    public SoundEvent BURN = of("burn");
 
     SoundEvent of(String id) {
         SoundEvent sound = new SoundEvent(new Identifier(Ref.MODID, id));

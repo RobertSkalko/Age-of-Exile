@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,19 +23,22 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
 
     String exileEffectId;
 
-    public ExileStatusEffect(StatusEffectType type, int numericId) {
-        super(type, 0);
+    public ExileStatusEffect(EffectType type, int numericId) {
+        super(type.type, 0);
         this.exileEffectId = getIdPath(type, numericId);
     }
 
-    public static String getIdPath(StatusEffectType type, int num) {
-
-        if (type == StatusEffectType.BENEFICIAL) {
+    public static String getIdPath(EffectType type, int num) {
+        if (type == EffectType.BENEFICIAL) {
             return "beneficial/" + num;
         }
-        if (type == StatusEffectType.HARMFUL) {
+        if (type == EffectType.HARMFUL) {
             return "negative/" + num;
         }
+        if (type == EffectType.BUFF) {
+            return "buff/" + num;
+        }
+
         return "neutral/" + num;
     }
 

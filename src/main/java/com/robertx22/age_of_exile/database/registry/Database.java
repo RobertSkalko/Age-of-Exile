@@ -27,6 +27,7 @@ import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
+import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -210,6 +211,10 @@ public class Database {
         return getRegistry(SlashRegistryType.GEAR_TYPE);
     }
 
+    public static SlashRegistryContainer<ScrollBuff> ScrollBuffs() {
+        return getRegistry(SlashRegistryType.SCROLL_BUFFS);
+    }
+
     public static SlashRegistryContainer<Spell> Spells() {
         return getRegistry(SlashRegistryType.SPELL);
     }
@@ -349,6 +354,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GAME_BALANCE, new GameBalanceConfig()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SALVAGE_RECIPE, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RACES, new PlayerRace()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SCROLL_BUFFS, new ScrollBuff()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .setIsDatapack()

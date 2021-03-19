@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantProduceItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
@@ -35,6 +36,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public ProjectileItem SLIMEBALL = item(new ProjectileItem("slimeball"));
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
+    public ScrollBuffItem SCROLL_BUFF = item(new ScrollBuffItem(), "scroll/buff");
 
     public HashMap<SkillItemTier, SalvagedDustItem> SALVAGED_ESSENCE_MAP = new HashMap<>();
     public HashMap<SkillItemTier, PlantSeedItem> FARMING_SEEDS = new HashMap<>();
