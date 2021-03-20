@@ -4,6 +4,7 @@ dot_nature_dmg_leech_as_blood
 thunder_dot_damage
 mana_on_spell_hit
 basic_attack_physical_dmg_leech_as_health
+bonus_exp_for_t4_mob
 spell_fire_dmg_leech_as_blood
 dot_elemental_dmg_leech_as_health
 accuracy
@@ -88,6 +89,7 @@ all_water_dmg_leech_as_mana
 water_resist
 other_physical_dmg_leech_as_mana
 vitality
+bonus_exp_for_t3_mob
 armor_penetration
 bow_damage
 basic_attack_elemental_dmg_leech_as_mana
@@ -174,6 +176,7 @@ heal_to_dmg
 spell_physical_dmg_leech_as_mana
 global_critical_damage
 blood_on_other_hit
+bonus_exp_for_t2_mob
 ele_axe_damage
 thunder_focus
 all_physical_dmg_leech_as_mana
@@ -255,6 +258,7 @@ health_regen
 spell_fire_damage
 all_fire_dmg_leech_as_health
 dot_water_dmg_leech_as_blood
+bonus_exp_for_t1_mob
 all_nature_dmg_leech_as_health
 all_physical_dmg_leech_as_health
 socket_slots
@@ -296,6 +300,7 @@ bonus_fishing_exp
 other_all_dmg_leech_as_blood
 fire_penetration
 dexterity
+bonus_exp_for_t5_mob
 convert_nature_to_phys
 spell_nature_dmg_leech_as_blood
 all_fire_dmg_leech_as_mana

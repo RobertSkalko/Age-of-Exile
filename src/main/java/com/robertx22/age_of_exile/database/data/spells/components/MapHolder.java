@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
+import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SummonProjectileAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
@@ -109,6 +110,10 @@ public class MapHolder {
 
     public EntityFinder.SelectionType getSelectionType() {
         return EntityFinder.SelectionType.valueOf(get(MapField.SELECTION_TYPE));
+    }
+
+    public SetAdd getSetAdd() {
+        return SetAdd.valueOf(get(MapField.SET_ADD));
     }
 
     public ParticleInRadiusAction.Shape getParticleShape() {

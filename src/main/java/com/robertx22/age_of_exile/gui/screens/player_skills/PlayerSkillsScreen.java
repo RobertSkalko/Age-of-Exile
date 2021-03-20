@@ -127,8 +127,6 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
 
         super.render(matrix, x, y, ticks);
 
-        buttons.forEach(b -> b.renderToolTip(matrix, x, y));
-
         String nametext = CLOC.translate(Words.Professions.locName());
 
         //TextUtils.renderText(matrix, 1.5F, nametext, guiLeft + sizeX / 2, guiTop - 15, Formatting.GREEN);
@@ -152,6 +150,8 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
             renderBar(matrix);
 
         }
+
+        buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 

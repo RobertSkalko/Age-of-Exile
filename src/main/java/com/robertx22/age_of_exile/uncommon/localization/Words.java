@@ -6,9 +6,10 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+    DidYouKnow("Did you know?"),
     SalvagingDesc("Salvaging is about turning useless gear into essence, a material that's useful for many things."),
     FishingDesc("Fishing is the simplest profession. You catch fish and get experience. Sometimes you might get important materials like ink, which is used in other professions."),
-    ExplorationDesc("Exploration is all about treasure finding! Looting chests out in the world gives not only loot and favor, but also exploration experience."),
+    ExplorationDesc("Exploration is all about treasure finding! Looting chests out in the world gives not only loot and favor, but also exploration experience. Completing minecraft advancements also rewards experience."),
     MiningDesc("Mining is one of the basic gatherer professions. You gain experience for mining ores and smelting them. When mining ores, there's a small chance Mystical Stones pop up. They have various uses."),
     FarmingDesc("Farming is the process of turning purified essence into edible crops. These crops can then be used for alchemy or cooking."),
     Professions("Professions"),

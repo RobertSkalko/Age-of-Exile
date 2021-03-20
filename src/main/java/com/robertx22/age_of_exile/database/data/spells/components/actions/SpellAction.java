@@ -37,6 +37,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static RestoreHealthAction RESTORE_HEALTH = of(new RestoreHealthAction());
     public static RestoreManaAction RESTORE_MANA = of(new RestoreManaAction());
     public static CancelCastAction CANCEL_CAST = of(new CancelCastAction());
+    public static SpellMotionAction SET_ADD_MOTION = of(new SpellMotionAction());
 
     public static ExileEffectAction EXILE_EFFECT = of(new ExileEffectAction());
 

@@ -24,6 +24,10 @@ public class LevelRange implements ISerializable<LevelRange> {
         this.end = end;
     }
 
+    public int getMiddleLevel() {
+        return (getMinLevel() + getMaxLevel()) / 2;
+    }
+
     public int randomFromRange() {
         return RandomUtils.RandomRange(getMinLevel(), getMaxLevel());
     }

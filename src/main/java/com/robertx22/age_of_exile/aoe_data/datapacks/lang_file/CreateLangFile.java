@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
+import com.robertx22.age_of_exile.uncommon.localization.RandomTips;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
 
@@ -152,6 +153,7 @@ public class CreateLangFile {
         list.addAll(Database.MobRarities()
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
+        list.addAll(Arrays.asList(RandomTips.values()));
 
         Database.UniqueGears()
             .getSerializable()

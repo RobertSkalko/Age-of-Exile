@@ -25,6 +25,10 @@ public enum SkillItemTier {
         this.levelRange = levelRange;
     }
 
+    public int getDisplayTierNumber() {
+        return tier + 1;
+    }
+
     public static SkillItemTier of(int tier) {
         return Arrays.stream(SkillItemTier.values())
             .filter(x -> x.tier == tier)

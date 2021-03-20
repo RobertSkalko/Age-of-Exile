@@ -27,6 +27,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaB
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
@@ -129,6 +130,7 @@ public class Stats implements ISlashRegistryInit {
                     add(BonusExp.getInstance());
                     add(BonusFavor.getInstance());
                     add(DamageTakenToMana.getInstance());
+                    add(new BonusXpToMobsOfTier(SkillItemTier.TIER0));
 
                     add(new UnknownStat());
 

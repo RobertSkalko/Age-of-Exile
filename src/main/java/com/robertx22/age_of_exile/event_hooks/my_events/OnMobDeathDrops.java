@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.event_hooks.my_events;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusXpToMobsOfTier;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
@@ -113,6 +114,10 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp *= LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), killerData.getLevel());
 
         exp *= LootUtils.getMobHealthBasedLootMulti(mobData, killer);
+
+        exp *= killerData.getUnit()
+            .getCalculatedStat(new BonusXpToMobsOfTier(LevelUtils.levelToTier(mobData.getLevel())))
+            .getMultiplier();
 
         exp *= killerData.getUnit()
             .getCalculatedStat(BonusExp.getInstance())

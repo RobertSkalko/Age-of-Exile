@@ -12,7 +12,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
 
         GearRarity common = new GearRarity();
         common.unidentified_chance = 0;
-        common.stat_req_multi = 0.5F;
+        common.stat_req_multi = 0.25F;
         common.spawn_durability_hit = new MinMax(60, 80);
 
         common.affixes = new GearRarity.Part(0, 0, 0);
@@ -27,7 +27,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         GearRarity magical = new GearRarity();
         magical.unidentified_chance = 0;
         magical.base_stat_percents = new MinMax(5, 80);
-        magical.stat_req_multi = 0.25F;
+        magical.stat_req_multi = 0.4F;
         magical.default_stat_percents = new MinMax(0, 100);
         magical.affix_stat_percents = new MinMax(80, 100);
         magical.spawn_durability_hit = new MinMax(60, 80);

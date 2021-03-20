@@ -38,16 +38,21 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.localization.RandomTips;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.age_of_exile.vanilla_mc.packets.AllocateStatPacket;
+import com.robertx22.library_of_exile.gui.HelpButton;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -160,6 +165,14 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         int ypos = guiTop + 25;
 
         if (this.isMainScreen()) {
+
+            List<Text> help = new ArrayList<>();
+
+            help.add(Words.DidYouKnow.locName());
+            help.add(new LiteralText(""));
+            help.addAll(TooltipUtils.cutIfTooLong(RandomUtils.randomFromList(Arrays.asList(RandomTips.values()))
+                .locName()));
+            addButton(new HelpButton(help, guiLeft + 15, guiTop + 15));
 
             if (true) {
 

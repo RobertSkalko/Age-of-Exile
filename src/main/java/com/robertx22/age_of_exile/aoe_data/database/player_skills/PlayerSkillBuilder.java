@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.*;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusXpToMobsOfTier;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillYield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -123,11 +123,9 @@ public class PlayerSkillBuilder {
     }
 
     public PlayerSkillBuilder addDefaultBonusExpRewards() {
-        stat(new SkillStatReward(5, new OptScaleExactStat(10, BonusExp.getInstance())));
-        stat(new SkillStatReward(15, new OptScaleExactStat(15, BonusExp.getInstance())));
-        stat(new SkillStatReward(25, new OptScaleExactStat(15, BonusExp.getInstance())));
-        stat(new SkillStatReward(35, new OptScaleExactStat(20, BonusExp.getInstance())));
-        stat(new SkillStatReward(45, new OptScaleExactStat(25, BonusExp.getInstance())));
+        for (SkillItemTier tier : SkillItemTier.values()) {
+            stat(new SkillStatReward(tier.levelRange.getMiddleLevel(), new OptScaleExactStat(20, new BonusXpToMobsOfTier(tier))));
+        }
         return this;
     }
 
