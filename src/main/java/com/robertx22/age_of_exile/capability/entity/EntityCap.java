@@ -633,7 +633,9 @@ public class EntityCap {
                 .get(data.getAttackerEntityData()
                     .getRarity());
 
-            float vanilla = data.getAmount() * (float) ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG;
+            float multi = (float) (ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG + (LevelUtils.getMaxLevelMultiplier(getLevel()) * (ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL - ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG)));
+
+            float vanilla = data.getAmount() * multi;
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 

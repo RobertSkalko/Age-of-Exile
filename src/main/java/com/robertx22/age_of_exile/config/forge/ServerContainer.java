@@ -32,6 +32,8 @@ public class ServerContainer {
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;
 
     public double VANILLA_MOB_DMG_AS_EXILE_DMG = 0.5F;
+    public double VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL = 1F;
+
     public double PVP_DMG_MULTI = 1F;
 
     public List<String> IGNORED_ENTITIES = Arrays.asList("minecraft:bat");
