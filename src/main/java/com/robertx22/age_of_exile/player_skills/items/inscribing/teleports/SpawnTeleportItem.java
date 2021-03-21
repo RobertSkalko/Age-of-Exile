@@ -44,7 +44,7 @@ public class SpawnTeleportItem extends BaseTpItem {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
         fac.input(Items.PAPER);
         fac.input(Items.ENDER_PEARL);
-        fac.input(ModRegistry.INSCRIBING.INK_TIER_MAP.get(SkillItemTier.TIER0));
+        fac.input(ModRegistry.TIERED.INK_TIER_MAP.get(SkillItemTier.TIER0));
         return fac.criterion("player_level", trigger());
     }
 }

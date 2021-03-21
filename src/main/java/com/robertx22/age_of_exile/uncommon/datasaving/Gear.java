@@ -11,7 +11,7 @@ public class Gear {
     private static final String LOC = "GEAR_ITEM_DATA";
 
     public static boolean has(ItemStack stack) {
-        return stack.hasTag() && stack.getTag()
+        return stack != null && stack.hasTag() && stack.getTag()
             .contains(LOC);
     }
 

@@ -63,7 +63,7 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
 
         this.type.getRecipeItems()
             .forEach(x -> fac.input(x));
-        fac.input(ModRegistry.INSCRIBING.INK_TIER_MAP.get(tier));
+        fac.input(ModRegistry.TIERED.INK_TIER_MAP.get(tier));
 
         return fac.criterion("player_level", trigger());
     }

@@ -100,11 +100,11 @@ public class RecipeGenerator {
             }
         }
 
-        ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.values()
+        ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.values()
             .forEach(x -> {
                 if (x.tier.lowerTier() != null) {
                     ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(x, 1);
-                    fac.input(ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.get(x.tier.lowerTier()), 4);
+                    fac.input(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(x.tier.lowerTier()), 4);
                     fac.criterion("player_level", EnchantedItemCriterion.Conditions.any())
                         .offerTo(consumer);
                 }

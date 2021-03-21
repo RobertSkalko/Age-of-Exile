@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.BlockGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
@@ -22,6 +23,7 @@ public class ModBlocks {
     public SocketStationBlock SOCKET_STATION = of("socket_station", new SocketStationBlock());
     public BlockGearSalvage GEAR_SALVAGE = of("salvage_station", new BlockGearSalvage());
     public BlockGearRepair GEAR_REPAIR = of("repair_station", new BlockGearRepair());
+    public ScribeBuffBlock SCRIBE_BUFF = of("scribe_buff", new ScribeBuffBlock());
 
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 

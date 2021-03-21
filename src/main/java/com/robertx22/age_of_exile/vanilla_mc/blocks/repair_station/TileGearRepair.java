@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
-import net.minecraft.util.math.MathHelper;
 
 public class TileGearRepair extends BaseModificationStation {
 
@@ -37,51 +36,14 @@ public class TileGearRepair extends BaseModificationStation {
     }
 
     @Override
-    public int getCookTime() {
-        return COOK_TIME_FOR_COMPLETION;
-    }
-
-    @Override
     public boolean isOutputSlot(int slot) {
         return false;
     }
-
-    private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearRepair() {
         super(ModRegistry.BLOCK_ENTITIES.GEAR_REPAIR);
         itemStacks = new ItemStack[2];
         clear();
-    }
-
-    public double fractionOfCookTimeComplete() {
-        double fraction = cookTime / (double) getCookTime();
-        return MathHelper.clamp(fraction, 0.0, 1.0);
-    }
-
-    @Override
-    public int ticksRequired() {
-        return getCookTime();
-    }
-
-    @Override
-    public void finishCooking() {
-
-    }
-
-    @Override
-    public boolean isCooking() {
-        return false;
-    }
-
-    @Override
-    public int tickRate() {
-        return 50;
-    }
-
-    @Override
-    public void doActionEveryTime() {
-
     }
 
     @Override
@@ -118,7 +80,7 @@ public class TileGearRepair extends BaseModificationStation {
     }
 
     @Override
-    public boolean modifyItem(PlayerEntity player) {
+    public boolean modifyItem(int number, PlayerEntity player) {
         try {
 
             ItemStack fuelstack = this.CraftItemSlot();

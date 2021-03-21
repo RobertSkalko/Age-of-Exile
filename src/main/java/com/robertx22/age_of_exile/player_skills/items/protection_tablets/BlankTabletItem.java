@@ -40,7 +40,6 @@ public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, I
 
     @Override
     public String locNameForLangFile() {
-
         return tier.prefixName + "Blank Tablet";
     }
 
@@ -52,7 +51,7 @@ public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, I
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
         return ShapelessRecipeJsonFactory.create(this)
-            .input(ModRegistry.TINKERING.STONE_TIER_MAP.get(stier), 3)
+            .input(ModRegistry.TIERED.STONE_TIER_MAP.get(stier), 3)
             .criterion("player_level", trigger());
     }
 

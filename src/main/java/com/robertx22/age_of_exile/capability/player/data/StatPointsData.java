@@ -15,6 +15,10 @@ public class StatPointsData {
     @Store
     public HashMap<String, Integer> map = new HashMap<>();
 
+    public void reset() {
+        this.map.clear();
+    }
+
     public void addStats(EntityCap.UnitData data) {
         map.entrySet()
             .forEach(x -> {

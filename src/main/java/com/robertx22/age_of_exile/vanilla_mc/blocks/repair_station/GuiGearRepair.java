@@ -1,17 +1,15 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.FuelSlot;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.library_of_exile.gui.HelpButton;
 import com.robertx22.library_of_exile.main.Packets;
-import com.robertx22.library_of_exile.tile_bases.TileGui;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
@@ -27,14 +25,14 @@ import java.util.Comparator;
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
-public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> {
+public class GuiGearRepair extends ModificationGui<ContainerGearRepair, TileGearRepair> {
 
     // This is the resource location for the background image
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/repair_station.png");
 
     public GuiGearRepair(ContainerGearRepair cont, PlayerInventory invPlayer,
                          MutableText comp) {
-        super(cont, invPlayer, new LiteralText("Modify"), TileGearRepair.class);
+        super(texture, cont, invPlayer, new LiteralText("Modify"), TileGearRepair.class);
 
         // Set the width and height of the gui
         backgroundWidth = 176;
@@ -62,21 +60,6 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
 
         this.addButton(new HelpButton(list, this.x + this.backgroundWidth - 25, this.y + 5));
         this.addButton(new CraftButton(tile.getPos(), this.x + 58, this.y + 85));
-
-    }
-
-    @Override
-    protected void drawBackground(MatrixStack matrix, float partialTicks, int x, int y) {
-
-        // Bind the image texture
-        MinecraftClient.getInstance()
-            .getTextureManager()
-            .bindTexture(texture);
-        // Draw the image
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
-
-        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 

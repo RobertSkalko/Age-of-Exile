@@ -179,7 +179,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         }
     }
 
-    static class PlayerTickData {
+    public static class PlayerTickData {
         public int regenTicks = 0;
         public int playerSyncTick = 0;
         public int ticksToPassMinute = 0;

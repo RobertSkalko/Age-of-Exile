@@ -52,7 +52,7 @@ public class ChanceToApplyEffect extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Chance to apply effect on weapon hits.";
+        return "Chance to apply effect on hit, only works on appropriate element. (Burn = Fire damage) ";
     }
 
     @Override
@@ -90,16 +90,18 @@ public class ChanceToApplyEffect extends Stat {
 
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            if (RandomUtils.roll(data.getAverageValue())) {
-                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(this.statusEffect), effect.source, effect.target, 20 * 10);
-            }
+            ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
+                .get(this.statusEffect), effect.source, effect.target, 20 * 10);
+
             return effect;
         }
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return onEffectType.contains(effect.getAttackType()) && effect.element == ele;
+            if (RandomUtils.roll(data.getAverageValue())) {
+                return onEffectType.contains(effect.getAttackType()) && effect.element == ele;
+            }
+            return false;
         }
     }
 

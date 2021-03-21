@@ -23,34 +23,38 @@ public class ItemGlintMixin {
         cancellable = true)
     private void drawMyGlint(MatrixStack matrices, Slot slot, CallbackInfo ci) {
 
-        if (ModConfig.get().client.RENDER_ITEM_RARITY_BACKGROUND) {
-            ItemStack stack = slot.getStack();
+        try {
+            if (ModConfig.get().client.RENDER_ITEM_RARITY_BACKGROUND) {
+                ItemStack stack = slot.getStack();
 
-            if (Gear.has(stack)) {
+                if (Gear.has(stack)) {
 
-                HandledScreen screen = (HandledScreen) (Object) this;
+                    HandledScreen screen = (HandledScreen) (Object) this;
 
-                GearItemData gear = Gear.Load(stack);
+                    GearItemData gear = Gear.Load(stack);
 
-                RenderSystem.enableBlend();
-                RenderSystem.color4f(1.0F, 1.0F, 1.0F, ModConfig.get().client.ITEM_RARITY_OPACITY); // transparency
+                    RenderSystem.enableBlend();
+                    RenderSystem.color4f(1.0F, 1.0F, 1.0F, ModConfig.get().client.ITEM_RARITY_OPACITY); // transparency
 
-                Identifier tex = gear.getRarity()
-                    .getGlintTextureFull();
+                    Identifier tex = gear.getRarity()
+                        .getGlintTextureFull();
 
-                if (ModConfig.get().client.ITEM_RARITY_BACKGROUND_TYPE == ClientConfigs.GlintType.BORDER) {
-                    tex = gear.getRarity()
-                        .getGlintTextureBorder();
+                    if (ModConfig.get().client.ITEM_RARITY_BACKGROUND_TYPE == ClientConfigs.GlintType.BORDER) {
+                        tex = gear.getRarity()
+                            .getGlintTextureBorder();
+                    }
+
+                    MinecraftClient.getInstance()
+                        .getTextureManager()
+                        .bindTexture(tex);
+
+                    screen.drawTexture(matrices, slot.x, slot.y, 0, 0, 16, 16, 16, 16);
+                    RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1F);
+                    RenderSystem.disableBlend();
                 }
-
-                MinecraftClient.getInstance()
-                    .getTextureManager()
-                    .bindTexture(tex);
-
-                screen.drawTexture(matrices, slot.x, slot.y, 0, 0, 16, 16, 16, 16);
-                RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1F);
-                RenderSystem.disableBlend();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

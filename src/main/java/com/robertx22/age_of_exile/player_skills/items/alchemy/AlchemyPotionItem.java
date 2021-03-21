@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
@@ -9,10 +7,10 @@ import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
+import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
@@ -21,28 +19,23 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
+public class AlchemyPotionItem extends TieredItem implements IShapelessRecipe {
 
-    public SkillItemTier tier;
     PotionType type;
 
     public AlchemyPotionItem(PotionType type, SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Professions)
+        super(tier, new Settings().group(CreativeTabs.Professions)
             .maxCount(16));
-        this.tier = tier;
         this.type = type;
     }
 
@@ -92,27 +85,6 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
     }
 
     @Override
-    public Text getName(ItemStack stack) {
-        return new TranslatableText(this.getTranslationKey()).formatted(tier.format);
-    }
-
-    @Override
-    public void generateModel(ItemModelManager manager) {
-        manager.generated(this);
-    }
-
-    @Override
-    public AutoLocGroup locNameGroup() {
-        return AutoLocGroup.Misc;
-    }
-
-    @Override
-    public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
-            .toString();
-    }
-
-    @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(new LiteralText("Restores " + (int) tier.percent_healed + "% " + type.word).formatted(Formatting.LIGHT_PURPLE));
@@ -123,7 +95,7 @@ public class AlchemyPotionItem extends Item implements IAutoLocName, IAutoModel,
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
         fac.input(type.craftItem.get());
         fac.input(Items.GLASS_BOTTLE);
-        fac.input(ModRegistry.MISC_ITEMS.FARMING_PRODUCE.get(tier));
+        fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
         return fac.criterion("player_level", trigger());
     }
 

@@ -197,6 +197,8 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(Database.Races()
             .getSerializable());
+        list.addAll(Database.ScrollBuffs()
+            .getSerializable());
 
         List<Stat> stats = Database.Stats()
             .getList()

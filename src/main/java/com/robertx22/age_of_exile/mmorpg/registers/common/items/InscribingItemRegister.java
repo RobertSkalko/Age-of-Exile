@@ -1,8 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.player_skills.items.fishing.ScribeInkItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.player_skills.items.inscribing.StatInfusionItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.DeathTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.RandomPlayerLevelTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.SpawnTeleportItem;
@@ -12,17 +10,13 @@ import com.robertx22.age_of_exile.player_skills.items.protection_tablets.Protect
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.TabletTypes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class InscribingItemRegister extends BaseItemRegistrator {
 
-    public HashMap<SkillItemTier, ScribeInkItem> INK_TIER_MAP = new HashMap<>();
-    public HashMap<SkillItemTier, StatInfusionItem> STAT_INFUSION_MAP = new HashMap<>();
-
     public List<ProtectionTabletItem> ALL_TABLETS = new ArrayList<>();
 
-    public BlankTabletItem BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.TIER0, BlankTabletTier.NORMAL), "tablet/blank_tablet0");
+    public BlankTabletItem BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.TIER3, BlankTabletTier.NORMAL), "tablet/blank_tablet0");
     public BlankTabletItem RARE_BLANK_TABLET = item(new BlankTabletItem(SkillItemTier.TIER4, BlankTabletTier.SUPREME), "tablet/blank_tablet1");
 
     public ProtectionTabletItem ANTI_FIRE = tablet(new ProtectionTabletItem(SkillItemTier.TIER0, TabletTypes.ANTI_FIRE));
@@ -38,10 +32,6 @@ public class InscribingItemRegister extends BaseItemRegistrator {
     public RandomPlayerLevelTeleportItem RANDOM_TELEPORT = item(new RandomPlayerLevelTeleportItem(), "scroll/random_teleport");
 
     public InscribingItemRegister() {
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            INK_TIER_MAP.put(tier, item(new ScribeInkItem(tier)));
-            STAT_INFUSION_MAP.put(tier, item(new StatInfusionItem(tier)));
-        }
 
     }
 

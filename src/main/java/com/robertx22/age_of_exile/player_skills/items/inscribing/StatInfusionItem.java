@@ -66,8 +66,8 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
-        fac.input(ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(tier), 1);
-        fac.input(ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.get(tier), 4);
+        fac.input(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier), 1);
+        fac.input(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier), 4);
         return fac.criterion("player_level", trigger());
     }
 

@@ -1,12 +1,14 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.misc;
+package com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
@@ -14,16 +16,16 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
-public class AddResetPerkPointsItem extends AutoItem implements IShapedRecipe {
+public class ResetStatsPotion extends AutoItem implements IShapedRecipe {
 
-    public AddResetPerkPointsItem() {
-        super(new Settings().group(CreativeTabs.MyModTab)
-            .maxCount(64));
+    public ResetStatsPotion() {
+        super(new Item.Settings().group(CreativeTabs.MyModTab)
+            .maxCount(10));
     }
 
     @Override
     public String GUID() {
-        return "potions/add_reset_perk_points";
+        return "potions/reset_stats";
     }
 
     @Override
@@ -33,7 +35,7 @@ public class AddResetPerkPointsItem extends AutoItem implements IShapedRecipe {
 
         if (player instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) player;
-            Load.perks(p).data.reset_points += 5;
+            Load.statPoints(p).data.reset();
             p.giveItemStack(new ItemStack(Items.GLASS_BOTTLE));
         }
 
@@ -59,19 +61,19 @@ public class AddResetPerkPointsItem extends AutoItem implements IShapedRecipe {
 
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.MISC_ITEMS.ADD_RESET_PERK_POINTS)
-            .input('t', ModRegistry.MISC_ITEMS.T0_DUST())
-            .input('v', Items.DIAMOND)
+        return shaped(this)
+            .input('t', ModRegistry.MISC_ITEMS.T1_DUST())
+            .input('v', Items.GOLD_INGOT)
             .input('b', Items.GLASS_BOTTLE)
-            .pattern(" v ")
+            .input('c', Items.DIAMOND)
+            .pattern("cvc")
             .pattern("vtv")
-            .pattern(" b ")
+            .pattern("cbc")
             .criterion("player_level", trigger());
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Perk Reset Points Potion";
+        return "Stat Reset Potion";
     }
-
 }

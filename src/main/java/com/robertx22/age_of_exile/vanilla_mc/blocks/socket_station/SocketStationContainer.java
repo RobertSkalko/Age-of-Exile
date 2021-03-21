@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station;
 
+import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.AnyCurrencyEffectItemSlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.AnyItemNotACurrencyEffectSlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.NoTouchSlot;
-import com.robertx22.library_of_exile.tile_bases.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;

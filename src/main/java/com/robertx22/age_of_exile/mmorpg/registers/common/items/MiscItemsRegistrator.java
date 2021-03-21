@@ -4,13 +4,14 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.PlantProduceItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.PlantSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SingleTalentResetPotion;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.TalentResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer0;
 import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer1;
 import com.robertx22.age_of_exile.vanilla_mc.items.salvage_bag.CommonAutoSalvageBagItem;
@@ -19,16 +20,10 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
-import java.util.HashMap;
-
 public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public MiscItemsRegistrator() {
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            SALVAGED_ESSENCE_MAP.put(tier, item(new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
-            FARMING_SEEDS.put(tier, item(new PlantSeedItem(tier, ModRegistry.BLOCKS.FARMING_PLANTS.get(tier)), "seed/plant" + (tier.tier + 1)));
-            FARMING_PRODUCE.put(tier, item(new PlantProduceItem(tier), "plant/plant" + (tier.tier + 1)));
-        }
+
     }
 
     public ProjectileItem FIREBALL = item(new ProjectileItem("fireball"));
@@ -38,28 +33,24 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
     public ScrollBuffItem SCROLL_BUFF = item(new ScrollBuffItem(), "scroll/buff");
 
-    public HashMap<SkillItemTier, SalvagedDustItem> SALVAGED_ESSENCE_MAP = new HashMap<>();
-    public HashMap<SkillItemTier, PlantSeedItem> FARMING_SEEDS = new HashMap<>();
-    public HashMap<SkillItemTier, PlantProduceItem> FARMING_PRODUCE = new HashMap<>();
-
     public SalvagedDustItem T0_DUST() {
-        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0);
+        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0);
     }
 
     public SalvagedDustItem T1_DUST() {
-        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER1);
+        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER1);
     }
 
     public SalvagedDustItem T2_DUST() {
-        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER2);
+        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER2);
     }
 
     public SalvagedDustItem T3_DUST() {
-        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER3);
+        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER3);
     }
 
     public SalvagedDustItem T4_DUST() {
-        return SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER4);
+        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER4);
     }
 
     public RepairHammer0 REPAIR_HAMMER_0 = item(new RepairHammer0(1250), "repair_hammers/0");
@@ -92,13 +83,15 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item GOLDEN_ORB = item(new SimpleMatItem(), "mat/golden_orb");
     public Item MYTHIC_ESSENCE = item(new SimpleMatItem(), "mat/mythic_essence");
 
-    public ResetAllPerksItem RESET_ALL_PERKS = item(new ResetAllPerksItem());
-    public AddResetPerkPointsItem ADD_RESET_PERK_POINTS = item(new AddResetPerkPointsItem());
+    public TalentResetPotion RESET_ALL_PERKS = item(new TalentResetPotion());
+    public SingleTalentResetPotion ADD_RESET_PERK_POINTS = item(new SingleTalentResetPotion());
+    public ResetStatsPotion RESET_STATS = item(new ResetStatsPotion());
 
     public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);
     public Item GEAR_REPAIR = blockItem(ModRegistry.BLOCKS.GEAR_REPAIR);
     public Item GEAR_SALVAGE = blockItem(ModRegistry.BLOCKS.GEAR_SALVAGE);
     public Item GEAR_SOCKET = blockItem(ModRegistry.BLOCKS.SOCKET_STATION);
+    public Item SCRIBE_BUFF = blockItem(ModRegistry.BLOCKS.SCRIBE_BUFF);
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
 

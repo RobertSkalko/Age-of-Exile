@@ -77,7 +77,7 @@ public class ClearCorruptionItem extends CurrencyItem implements ICurrencyItemEf
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(this)
             .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('v', ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER0))
+            .input('v', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER0))
             .input('o', ModRegistry.MISC_ITEMS.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")

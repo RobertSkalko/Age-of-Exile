@@ -20,7 +20,7 @@ import java.util.List;
 public class ScrollBuffItem extends AutoItem {
 
     public ScrollBuffItem() {
-        super(new Settings());
+        super(new Settings().maxCount(1));
     }
 
     @Override

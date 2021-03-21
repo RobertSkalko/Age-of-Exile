@@ -82,7 +82,7 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
             return null;
         }
 
-        Item output = ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.values()
+        Item output = ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.values()
             .stream()
             .filter(x -> x.tier.tier == tier.tier - 1)
             .findAny()

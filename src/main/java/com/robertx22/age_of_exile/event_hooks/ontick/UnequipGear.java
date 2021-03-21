@@ -51,9 +51,6 @@ public class UnequipGear {
 
     public static void onTick(PlayerEntity player) {
 
-        int lvl = Load.Unit(player)
-            .getLevel();
-
         int runewords = 0;
         int uniques = 0;
 

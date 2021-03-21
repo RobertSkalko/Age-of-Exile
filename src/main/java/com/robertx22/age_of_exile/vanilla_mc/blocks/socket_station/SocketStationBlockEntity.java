@@ -21,7 +21,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
@@ -41,11 +40,6 @@ public class SocketStationBlockEntity extends BaseModificationStation {
 
     public enum SocketResult {
         BREAK, SUCCESS, NONE
-    }
-
-    @Override
-    public int getCookTime() {
-        return COOK_TIME_FOR_COMPLETION;
     }
 
     @Override
@@ -100,32 +94,10 @@ public class SocketStationBlockEntity extends BaseModificationStation {
         itemStacks[0] = stack;
     }
 
-    private static final short COOK_TIME_FOR_COMPLETION = 80; // vanilla value is 200 = 10 seconds
-
     public SocketStationBlockEntity() {
         super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION);
         itemStacks = new ItemStack[SocketStationContainer.TOTAL_SLOTS];
         clear();
-    }
-
-    @Override
-    public int ticksRequired() {
-        return 555555;
-    }
-
-    @Override
-    public void finishCooking() {
-
-    }
-
-    @Override
-    public boolean isCooking() {
-        return false;
-    }
-
-    @Override
-    public int tickRate() {
-        return 10;
     }
 
     private void clearRunewordShow() {
@@ -135,7 +107,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
     }
 
     @Override
-    public void doActionEveryTime() {
+    public void tick() {
 
         if (GearSlot().isEmpty() && CraftItemSlot().isEmpty()) {
             clearRunewordShow();
@@ -183,11 +155,6 @@ public class SocketStationBlockEntity extends BaseModificationStation {
 
     }
 
-    public double fractionOfCookTimeComplete() {
-        double fraction = cookTime / (double) getCookTime();
-        return MathHelper.clamp(fraction, 0.0, 1.0);
-    }
-
     static class ResultItem {
 
         ItemStack stack;
@@ -221,7 +188,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
     }
 
     @Override
-    public boolean modifyItem(PlayerEntity player) {
+    public boolean modifyItem(int number, PlayerEntity player) {
 
         if (this.canModifyItem()) {
 

@@ -249,6 +249,18 @@ public class Unit {
                 data.getRace()
                     .addStats((PlayerEntity) entity);
             }
+
+            /*
+            Load.statPoints((PlayerEntity) entity).data.map.entrySet()
+                .forEach(x -> {
+                    float val = x.getValue();
+                    ExactStatData stat = ExactStatData.of(val, val, Database.Stats()
+                        .get(x.getKey()), ModType.FLAT, 1);
+                    statContexts.add(new MiscStatCtx(Arrays.asList(stat)));
+                });
+
+             */
+
             Load.statPoints((PlayerEntity) entity).data.addStats(data);
             statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
             statContexts.addAll(Load.characters((PlayerEntity) entity)
@@ -405,11 +417,11 @@ public class Unit {
     private void addVanillaHpToStats(LivingEntity entity, UnitData data) {
         if (entity instanceof PlayerEntity) {
 
-            float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 40);
+            float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 500);
             // all increases after this would just reduce enviro damage
 
             getStats().getStatInCalculation(Health.getInstance())
-                .addFlat(maxhp, data.getLevel());
+                .addAlreadyScaledFlat(maxhp);
 
             // add vanila hp to extra hp
         }

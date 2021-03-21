@@ -1,19 +1,17 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.library_of_exile.gui.HelpButton;
 import com.robertx22.library_of_exile.main.Packets;
-import com.robertx22.library_of_exile.tile_bases.TileGui;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
@@ -28,13 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
-public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> {
+public class GuiGearModify extends ModificationGui<ContainerGearModify, TileGearModify> {
 
     // This is the resource location for the background image
     private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/modify_station.png");
 
     public GuiGearModify(ContainerGearModify cont, PlayerInventory invPlayer, MutableText comp) {
-        super(cont, invPlayer, new LiteralText(""), TileGearModify.class);
+        super(texture, cont, invPlayer, new LiteralText(""), TileGearModify.class);
 
         backgroundWidth = 176;
         backgroundHeight = 207;
@@ -58,25 +56,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrix, float partialTicks, int x, int y) {
-
-        // Bind the image texture
-        MinecraftClient.getInstance()
-            .getTextureManager()
-            .bindTexture(texture);
-        // Draw the image
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-        drawTexture(matrix, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
-
-        this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
-
-    }
-
-    @Override
     protected void drawForeground(MatrixStack matrix, int mouseX, int mouseY) {
         super.drawForeground(matrix, mouseX, mouseY);
-
     }
 
     private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/craftbutton.png");

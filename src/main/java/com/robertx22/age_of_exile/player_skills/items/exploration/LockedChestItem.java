@@ -1,15 +1,12 @@
 package com.robertx22.age_of_exile.player_skills.items.exploration;
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
-import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
-import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -23,39 +20,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class LockedChestItem extends Item implements IAutoLocName, IAutoModel {
-
-    SkillItemTier tier;
+public class LockedChestItem extends TieredItem {
 
     public LockedChestItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Professions));
-        this.tier = tier;
-    }
-
-    @Override
-    public Text getName(ItemStack stack) {
-        return new TranslatableText(this.getTranslationKey()).formatted(tier.format);
-    }
-
-    @Override
-    public void generateModel(ItemModelManager manager) {
-        manager.generated(this);
-    }
-
-    @Override
-    public AutoLocGroup locNameGroup() {
-        return AutoLocGroup.Misc;
-    }
-
-    @Override
-    public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
-            .toString();
+        super(tier);
     }
 
     @Override
@@ -120,7 +92,7 @@ public class LockedChestItem extends Item implements IAutoLocName, IAutoModel {
     }
 
     Item getKeyItem() {
-        return ModRegistry.TINKERING.KEY_TIER_MAP.get(tier);
+        return ModRegistry.TIERED.KEY_TIER_MAP.get(tier);
     }
 
     @Override

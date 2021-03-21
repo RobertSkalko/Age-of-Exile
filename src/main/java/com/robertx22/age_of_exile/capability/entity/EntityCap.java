@@ -72,6 +72,7 @@ public class EntityCap {
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
     private static final String STATUSES = "statuses";
+    private static final String SCROLL_BUFF_SEED = "sb_seed";
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
@@ -177,6 +178,10 @@ public class EntityCap {
 
         void setRace(String race);
 
+        int getBuffSeed();
+
+        void randomizeBuffSeed();
+
     }
 
     public static class DefaultImpl implements UnitData {
@@ -195,6 +200,7 @@ public class EntityCap {
         int exp = 0;
         int maxHealth = 0;
         MobAffixesData affixes = new MobAffixesData();
+        int buffSeed = 0;
 
         public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
 
@@ -221,6 +227,7 @@ public class EntityCap {
             nbt.putInt(LEVEL, level);
             nbt.putString(RARITY, rarity);
             nbt.putString(RACE, race);
+            nbt.putInt(SCROLL_BUFF_SEED, buffSeed);
             nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
                 .getAverageValue());
             nbt.putString(ENTITY_TYPE, this.type.toString());
@@ -237,6 +244,7 @@ public class EntityCap {
             this.rarity = nbt.getString(RARITY);
             this.race = nbt.getString(RACE);
             this.level = nbt.getInt(LEVEL);
+            this.buffSeed = nbt.getInt(SCROLL_BUFF_SEED);
             if (level < 1) {
                 level = 1;
             }
@@ -703,6 +711,16 @@ public class EntityCap {
         @Override
         public void setRace(String race) {
             this.race = race;
+        }
+
+        @Override
+        public int getBuffSeed() {
+            return buffSeed;
+        }
+
+        @Override
+        public void randomizeBuffSeed() {
+            this.buffSeed = new Random().nextInt();
         }
 
         @Override

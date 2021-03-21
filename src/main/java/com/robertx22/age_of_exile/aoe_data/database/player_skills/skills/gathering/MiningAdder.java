@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TINKERING;
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
 public class MiningAdder {
 
@@ -33,7 +33,7 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_GOLD_ORE, 1);
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
 
-        b.addTieredDrops(0.5F, x -> TINKERING.STONE_TIER_MAP.get(x));
+        b.addTieredDrops(0.5F, x -> TIERED.STONE_TIER_MAP.get(x));
 
         /*
         DropRewardsBuilder rareDrops = DropRewardsBuilder.of(0.25F);

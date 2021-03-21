@@ -95,7 +95,7 @@ public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, I
         Item resultItem = ModRegistry.GEAR_MATERIALS.MAP.get(type)
             .get(tier);
         Item smallResource = Items.GOLD_NUGGET;
-        Item essence = ModRegistry.MISC_ITEMS.SALVAGED_ESSENCE_MAP.values()
+        Item essence = ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.values()
             .stream()
             .filter(x -> x.range.equals(this.range))
             .findAny()

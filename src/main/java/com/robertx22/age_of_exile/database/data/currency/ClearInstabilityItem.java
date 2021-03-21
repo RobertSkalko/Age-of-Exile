@@ -83,7 +83,7 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
         return shaped(this)
             .input('t', ModRegistry.CURRENCIES.CLEAR_RUNES)
             .input('v', ModRegistry.MISC_ITEMS.T4_DUST())
-            .input('o', ModRegistry.ALCHEMY.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER4))
+            .input('o', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER4))
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

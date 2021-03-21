@@ -27,7 +27,7 @@ public class ModRegistry {
     public static RepairKitsRegister REPAIR_KITS;
     public static InscribingItemRegister INSCRIBING;
     public static AlchemyItemRegister ALCHEMY;
-    public static TinkeringItemRegister TINKERING;
+    public static TierItemsRegister TIERED;
 
     public static void init() {
 
@@ -51,8 +51,8 @@ public class ModRegistry {
         FOOD_ITEMS = new FoodItemRegister();
         INSCRIBING = new InscribingItemRegister();
         ALCHEMY = new AlchemyItemRegister();
-        TINKERING = new TinkeringItemRegister();
         SKILL_GEMS = new SkillGemItemRegister();
+        TIERED = new TierItemsRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }

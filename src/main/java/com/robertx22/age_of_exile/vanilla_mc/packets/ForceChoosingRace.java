@@ -24,6 +24,7 @@ public class ForceChoosingRace extends MyPacket<ForceChoosingRace> {
 
     @Override
     public void onReceived(PacketContext ctx) {
+
         ClientOnly.openRaceSelection();
     }
 

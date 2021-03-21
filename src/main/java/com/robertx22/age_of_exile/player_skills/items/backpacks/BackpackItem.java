@@ -111,7 +111,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(this)
-            .input('o', ModRegistry.TINKERING.LEATHER_TIER_MAP.get(tier))
+            .input('o', ModRegistry.TIERED.LEATHER_TIER_MAP.get(tier))
             .input('m', Items.CHEST)
             .input('d', type.getCraftItem())
             .pattern("ooo")

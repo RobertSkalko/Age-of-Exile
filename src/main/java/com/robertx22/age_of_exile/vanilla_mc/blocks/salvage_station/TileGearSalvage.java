@@ -37,7 +37,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
@@ -58,11 +57,6 @@ public class TileGearSalvage extends BaseModificationStation {
     @Override
     public List<Integer> inputSlots() {
         return INPUT_SLOTS;
-    }
-
-    @Override
-    public int getCookTime() {
-        return COOK_TIME_FOR_COMPLETION;
     }
 
     @Override
@@ -104,45 +98,6 @@ public class TileGearSalvage extends BaseModificationStation {
         super(ModRegistry.BLOCK_ENTITIES.GEAR_SALVAGE);
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
-    }
-
-    /**
-     * Returns the amount of cook time completed on the currently cooking item.
-     *
-     * @return fraction remaining, between 0 - 1
-     */
-    public double fractionOfCookTimeComplete() {
-        double fraction = cookTime / (double) getCookTime();
-        return MathHelper.clamp(fraction, 0.0, 1.0);
-    }
-
-    @Override
-    public int ticksRequired() {
-        return getCookTime();
-    }
-
-    @Override
-    public void finishCooking() {
-
-    }
-
-    @Override
-    public boolean isCooking() {
-        return false;
-    }
-
-    @Override
-    public int tickRate() {
-        return 1000;
-    }
-
-    @Override
-    public void doActionEveryTime() {
-
-    }
-
-    private boolean canSmelt() {
-        return noRecipeSalvage(false);
     }
 
     boolean outputsHaveEmptySlots() {
@@ -292,7 +247,7 @@ public class TileGearSalvage extends BaseModificationStation {
     }
 
     @Override
-    public boolean modifyItem(PlayerEntity player) {
+    public boolean modifyItem(int number, PlayerEntity player) {
 
         boolean sal = false;
 
@@ -340,4 +295,5 @@ public class TileGearSalvage extends BaseModificationStation {
 
         return true;
     }
+
 }

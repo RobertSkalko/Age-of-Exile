@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBui
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.INSCRIBING;
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
 public class FishingAdder {
 
@@ -16,7 +16,7 @@ public class FishingAdder {
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FISHING);
         b.skill.exp_per_action = 50;
 
-        b.addTieredDrops(1F, x -> INSCRIBING.INK_TIER_MAP.get(x));
+        b.addTieredDrops(1F, x -> TIERED.INK_TIER_MAP.get(x));
 
         return b.build();
     }

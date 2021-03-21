@@ -14,8 +14,15 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
 
     BlockPos pos;
 
+    int num = 0;
+
     public ModifyItemPacket() {
 
+    }
+
+    public ModifyItemPacket(BlockPos pos, int num) {
+        this.pos = pos;
+        this.num = num;
     }
 
     public ModifyItemPacket(BlockPos pos) {
@@ -25,11 +32,13 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
     @Override
     public void loadFromData(PacketByteBuf buf) {
         this.pos = buf.readBlockPos();
+        this.num = buf.readInt();
     }
 
     @Override
     public void saveToData(PacketByteBuf buf) {
         buf.writeBlockPos(pos);
+        buf.writeInt(num);
     }
 
     @Override
@@ -37,7 +46,7 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
 
         try {
             BaseModificationStation modify = (BaseModificationStation) ctx.getPlayer().world.getBlockEntity(pos);
-            modify.modifyItem(ctx.getPlayer());
+            modify.modifyItem(num, ctx.getPlayer());
         } catch (Exception e) {
             e.printStackTrace();
         }

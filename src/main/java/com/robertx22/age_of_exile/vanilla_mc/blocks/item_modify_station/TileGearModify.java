@@ -20,7 +20,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class TileGearModify extends BaseModificationStation {
@@ -33,11 +32,6 @@ public class TileGearModify extends BaseModificationStation {
     @Override
     public boolean isItemValidInput(ItemStack stack) {
         return true;
-    }
-
-    @Override
-    public int getCookTime() {
-        return COOK_TIME_FOR_COMPLETION;
     }
 
     public enum ModifyResult {
@@ -125,36 +119,6 @@ public class TileGearModify extends BaseModificationStation {
 
     }
 
-    @Override
-    public int ticksRequired() {
-        return 555555;
-    }
-
-    @Override
-    public void finishCooking() {
-
-    }
-
-    @Override
-    public boolean isCooking() {
-        return false;
-    }
-
-    @Override
-    public int tickRate() {
-        return 555;
-    }
-
-    @Override
-    public void doActionEveryTime() {
-
-    }
-
-    public double fractionOfCookTimeComplete() {
-        double fraction = cookTime / (double) getCookTime();
-        return MathHelper.clamp(fraction, 0.0, 1.0);
-    }
-
     public static class ResultItem {
 
         public ItemStack stack;
@@ -189,7 +153,7 @@ public class TileGearModify extends BaseModificationStation {
     }
 
     @Override
-    public boolean modifyItem(PlayerEntity player) {
+    public boolean modifyItem(int number, PlayerEntity player) {
 
         if (this.canModifyItem()) {
 

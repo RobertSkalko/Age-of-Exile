@@ -31,7 +31,7 @@ public class ClientOnly {
     }
 
     public static void openRaceSelection() {
-        if (MinecraftClient.getInstance().currentScreen instanceof RaceSelectScreen == false) {
+        if (MinecraftClient.getInstance().currentScreen == null) {
             MinecraftClient.getInstance()
                 .openScreen(new RaceSelectScreen());
         }
