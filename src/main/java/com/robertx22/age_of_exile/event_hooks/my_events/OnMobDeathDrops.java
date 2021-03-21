@@ -103,30 +103,30 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             exp++;
         }
 
-        exp *= Database.getEntityConfig(victim, mobData).exp_multi;
-
-        exp *= multi;
-
-        exp *= Database.MobRarities()
-            .get(mobData.getRarity())
-            .expMulti();
-
         exp *= LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), killerData.getLevel());
 
-        exp *= LootUtils.getMobHealthBasedLootMulti(mobData, killer);
+        float baseexp = exp;
 
-        exp *= killerData.getUnit()
+        exp += (-1F + multi) * baseexp;
+
+        exp += (-1F + Database.MobRarities()
+            .get(mobData.getRarity())
+            .expMulti()) * baseexp;
+
+        exp += (-1F + Load.favor(killer)
+            .getRank().exp_multi) * baseexp;
+
+        exp += (-1F + LootUtils.getMobHealthBasedLootMulti(mobData, killer)) * baseexp;
+
+        exp += (-1F + killerData.getUnit()
             .getCalculatedStat(new BonusXpToMobsOfTier(LevelUtils.levelToTier(mobData.getLevel())))
-            .getMultiplier();
+            .getMultiplier()) * baseexp;
 
-        exp *= killerData.getUnit()
+        exp += (-1F + killerData.getUnit()
             .getCalculatedStat(BonusExp.getInstance())
-            .getMultiplier();
+            .getMultiplier()) * baseexp;
 
         exp = ExileEvents.MOB_EXP_DROP.callEvents(new ExileEvents.OnMobExpDrop(victim, exp)).exp;
-
-        exp *= Load.favor(killer)
-            .getRank().exp_multi;
 
         if ((int) exp > 0) {
 
