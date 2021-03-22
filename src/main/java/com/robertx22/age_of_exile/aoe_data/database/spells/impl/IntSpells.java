@@ -31,10 +31,6 @@ public class IntSpells implements ISlashRegistryInit {
     public static String HEALING_AURA_ID = "healing_aura";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
 
-    static SpellConfiguration HIGH_AOE_LONG_CD() {
-        return SpellConfiguration.Builder.nonInstant(30, 60 * 20, 40);
-    }
-
     public static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG() {
         return SpellConfiguration.Builder.instant(7, 15)
             .setSwingArm();
@@ -80,19 +76,6 @@ public class IntSpells implements ISlashRegistryInit {
 
             .build();
 
-        SpellBuilder.of("thunder_storm", HIGH_AOE_LONG_CD(), "Thunderstorm",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
-            .onTick(PartBuilder.tickCloudParticle(2D, ParticleTypes.CLOUD, 20D, 4D))
-            .onTick(PartBuilder.tickCloudParticle(2D, ParticleTypes.FALLING_WATER, 20D, 4D))
-            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Thunder, 4D)
-                .addPerEntityHit(PartBuilder.empty()
-                    .addActions(SpellAction.SUMMON_LIGHTNING_STRIKE.create())
-                    .addCondition(EffectCondition.CHANCE.create(20D))))
-            .build();
-
         SpellBuilder.of("frost_nova", SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.ANY_WEAPON)
@@ -102,16 +85,6 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
             .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
-            .build();
-
-        SpellBuilder.of("blizzard", HIGH_AOE_LONG_CD(), "Blizzard",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_EVOKER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
-            .onTick(PartBuilder.tickCloudParticle(2D, ParticleTypes.CLOUD, 20D, 4D))
-            .onTick(PartBuilder.tickCloudParticle(2D, ParticleTypes.ITEM_SNOWBALL, 20D, 4D))
-            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(2), Elements.Water, 4D))
             .build();
 
         SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",
@@ -137,18 +110,6 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(PartBuilder.healCaster(ValueCalculationData.base(15)))
             .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN, 5D, 20D * 10D))
-            .build();
-
-        // it falls into ground
-        SpellBuilder.of("lightning_totem", SpellConfiguration.Builder.nonInstant(12, 45 * 20, 20), "Lightning Totem",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.TOTEM_OF_UNDYING, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 120D, true)
-                .put(MapField.EXPIRE_ON_HIT, false)))
-            .onTick(PartBuilder.particleOnTick(20D, PARTICLES.THUNDER, 80D, 1.5D))
-            .onTick(PartBuilder.playSoundEveryTicks(20D, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
-            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Thunder, 1.5D))
             .build();
 
         SpellBuilder.of(THUNDERSPEAR_ID, SINGLE_TARGET_PROJ_CONFIG(), "Thunder Spear",
@@ -208,6 +169,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.restoreManaToCaster(ValueCalculationData.base(30)))
 
             .build();
+
         SpellBuilder.of("meteor", SpellConfiguration.Builder.instant(18, 20 * 30), "Meteor",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE)
         )
@@ -231,17 +193,6 @@ public class IntSpells implements ISlashRegistryInit {
             Arrays.asList(SkillGemTag.HEALING))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE, 20 * 15D))
-            .build();
-
-        SpellBuilder.of("volcano", HIGH_AOE_LONG_CD(), "Volcano",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SOUNDS.FIREBALL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 100D, 4D)))
-            .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.SMOKE, 10D, 3.5D, 0.5D))
-            .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.LAVA, 10D, 3.5D, 0.5D))
-            .onTick(PartBuilder.tickGroundParticle(1D, ParticleTypes.FALLING_LAVA, 10D, 3.5D, 0.5D))
-            .onTick(PartBuilder.onTickDamageInAoe(20D, ValueCalculationData.base(3), Elements.Fire, 3.5D))
             .build();
 
         SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 60 * 20), "Gorgon's Gaze",

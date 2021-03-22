@@ -1,24 +1,29 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station;
 
+import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssenceInkItem;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffData;
+import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -32,6 +37,14 @@ public class ScribeBuffTile extends BaseModificationStation {
 
     public static int PAPER_SLOT = 0;
     public static int MAT_SLOT = 1;
+
+    public static boolean isValidPaper(ItemStack stack) {
+        return stack.getItem() instanceof EssencePaperItem;
+    }
+
+    public static boolean isValidInk(ItemStack stack) {
+        return stack.getItem() instanceof EssenceInkItem;
+    }
 
     public static List<ScrollBuff> getCurrentSelection(PlayerEntity p) {
 
@@ -58,14 +71,19 @@ public class ScribeBuffTile extends BaseModificationStation {
         ItemStack paper = itemStacks[PAPER_SLOT];
         ItemStack mat = itemStacks[MAT_SLOT];
 
-        if (paper.getItem() == Items.PAPER) {
-            if (mat.getItem() instanceof EssenceInkItem) {
+        if (isValidPaper(paper)) {
+            if (isValidInk(mat)) {
 
                 List<ScrollBuff> selection = getCurrentSelection(player);
 
                 ScrollBuff buff = selection.get(MathHelper.clamp(number, 0, 5));
 
                 EssenceInkItem ink = (EssenceInkItem) mat.getItem();
+
+                if (!ink.getSkillRequirement()
+                    .meetsRequirement(player)) {
+                    return false;
+                }
 
                 ScrollBuffData data = new ScrollBuffData();
 
@@ -82,7 +100,20 @@ public class ScribeBuffTile extends BaseModificationStation {
                 itemStacks[MAT_SLOT].decrement(1);
                 Load.Unit(player)
                     .randomizeBuffSeed();
-                PlayerUtils.giveItem(stack, player);
+
+                SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.INSCRIBING, Arrays.asList(stack));
+
+                effect.extraDrops.forEach(x -> {
+                    PlayerUtils.giveItem(x, player);
+
+                });
+
+                PlayerSkill skill = Database.PlayerSkills()
+                    .get(PlayerSkillEnum.INSCRIBING.id);
+                PlayerSkills skills = Load.playerSkills(player);
+                int exp = (ink.tier.tier + 1) * skill.exp_per_action;
+                skills.addExp(skill.type_enum, exp);
+
                 Load.Unit(player)
                     .syncToClient(player);
             }

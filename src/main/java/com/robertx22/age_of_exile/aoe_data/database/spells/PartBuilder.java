@@ -331,12 +331,4 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart playSoundEveryTicks(Double ticks, SoundEvent sound, Double volume, Double pitch) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
-        c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
-
-        return c;
-    }
-
 }

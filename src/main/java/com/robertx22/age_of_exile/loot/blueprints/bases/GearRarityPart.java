@@ -25,6 +25,18 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
 
     public float chanceForHigherRarity = 0;
 
+    public GearRarityPart(GearBlueprint blueprint) {
+        super(blueprint);
+        this.container = blueprint.getRarityContainer();
+
+        if (blueprint.gearItemSlot.isGenerated()) {
+            this.possible = blueprint.gearItemSlot.get()
+                .getRarityGroup()
+                .getRarities();
+        }
+
+    }
+
     public void setupChances(LootInfo info) {
 
         List<GearRarity> specialRarities = Database.GearRarities()
@@ -89,12 +101,6 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
             possible.removeIf(x -> info.favorRank.excludedRarities.stream()
                 .anyMatch(e -> e.equals(x.GUID())));
         }
-
-    }
-
-    public GearRarityPart(GearBlueprint blueprint) {
-        super(blueprint);
-        this.container = blueprint.getRarityContainer();
 
     }
 

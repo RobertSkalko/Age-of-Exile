@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station;
 
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.player_skills.items.SkillRequirement;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.EssenceInkItem;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.library_of_exile.gui.HelpButton;
@@ -12,6 +14,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -77,6 +80,17 @@ public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, Scrib
 
                 try {
                     List<Text> tooltip = new ArrayList<>();
+                    ItemStack stack = tile.itemStacks[ScribeBuffTile.MAT_SLOT];
+                    if (ScribeBuffTile.isValidInk(stack)) {
+                        EssenceInkItem ink = (EssenceInkItem) stack.getItem();
+                        SkillRequirement req = ink.getSkillRequirement();
+
+                        if (req.meetsRequirement(client.player)) {
+                            tooltip.add(new LiteralText("Choose?"));
+                        } else {
+                            tooltip.add(req.getUnmetReqText());
+                        }
+                    }
 
                     GuiUtils.renderTooltip(matrix,
                         tooltip, x, y);
@@ -91,17 +105,21 @@ public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, Scrib
         @Override
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
-            MinecraftClient mc = MinecraftClient.getInstance();
 
-            ScrollBuff buff = ScribeBuffTile.getCurrentSelection(client.player)
-                .get(this.num);
+            ItemStack stack = tile.itemStacks[ScribeBuffTile.MAT_SLOT];
+            if (ScribeBuffTile.isValidInk(stack)) {
 
-            String str = CLOC.translate(buff.locDesc()) + "...";
+                MinecraftClient mc = MinecraftClient.getInstance();
 
-            mc.textRenderer.drawWithShadow(matrix,
-                str, this.x + 22, this.y + 3, Formatting.YELLOW
-                    .getColorValue());
+                ScrollBuff buff = ScribeBuffTile.getCurrentSelection(client.player)
+                    .get(this.num);
 
+                String str = CLOC.translate(buff.locDesc()) + "...";
+
+                mc.textRenderer.drawWithShadow(matrix,
+                    str, this.x + 22, this.y + 3, Formatting.YELLOW
+                        .getColorValue());
+            }
         }
 
         public boolean isInside(int x, int y) {

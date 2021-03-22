@@ -95,7 +95,11 @@ public class RecipeGenerator {
                 IShapelessRecipe sr = (IShapelessRecipe) item;
                 ShapelessRecipeJsonFactory srec = sr.getRecipe();
                 if (srec != null) {
-                    srec.offerTo(consumer);
+                    try {
+                        srec.offerTo(consumer);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

@@ -72,6 +72,7 @@ bonus_fishing_yield
 blood_on_basic_attack_hit
 health_on_all_hit
 dmg_under_poison
+bonus_inscribing_exp
 max_nature_resist
 thunder_penetration
 other_elemental_dmg_leech_as_mana
@@ -197,6 +198,7 @@ burn_bonus_dmg
 night_dmg
 water_penetration
 other_thunder_dmg_leech_as_health
+bonus_inscribing_yield
 attack_physical_dmg_leech_as_blood
 slow_immunity
 basic_attack_fire_dmg_leech_as_blood

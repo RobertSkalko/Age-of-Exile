@@ -13,7 +13,9 @@ public class LifeCycleEvents {
     public static void register() {
 
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {
-            DataGeneration.generateAll();
+            if (MMORPG.RUN_DEV_TOOLS) {
+                DataGeneration.generateAll();
+            }
             MMORPG.server = server;
 
         });

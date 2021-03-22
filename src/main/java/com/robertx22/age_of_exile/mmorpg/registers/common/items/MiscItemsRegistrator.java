@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
@@ -32,6 +33,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
     public ScrollBuffItem SCROLL_BUFF = item(new ScrollBuffItem(), "scroll/buff");
+    public EssencePaperItem ESSENCE_PAPER = item(new EssencePaperItem(), "scroll/paper");
 
     public SalvagedDustItem T0_DUST() {
         return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0);

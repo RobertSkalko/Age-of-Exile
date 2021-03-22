@@ -48,15 +48,24 @@ public class ParticleInRadiusAction extends SpellAction {
 
             amount *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.AREA);
 
-            Vec3d motion = Vec3d.ZERO;
+            ParticleMotion motion = null;
 
             try {
-                motion = ParticleMotion.valueOf(data.get(MOTION))
-                    .getMotion(ctx);
+                motion = ParticleMotion.valueOf(data.get(MOTION));
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
+                motion = ParticleMotion.None;
             }
 
+            /*
+            if (true) {
+                // todo
+                motion = ParticleMotion.OutwardMotion;
+                particle = ModRegistry.PARTICLES.FLAME;
+            }
+
+
+             */
             float yrand = data.getOrDefault(Y_RANDOM, 0D)
                 .floatValue();
 
@@ -70,20 +79,20 @@ public class ParticleInRadiusAction extends SpellAction {
                         pos = new Vec3d(pos.x - vel.x / 2F, pos.y - vel.y / 2 + height, pos.z - vel.z / 2);
 
                         Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(pos, radius);
-                        ParticleUtils.spawn(particle, ctx.world, p, motion);
+                        ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx));
                     }
                 }
             } else if (shape == Shape.HORIZONTAL_CIRCLE) {
                 for (int i = 0; i < amount; i++) {
                     float yRandom = (int) RandomUtils.RandomRange(0, yrand);
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
-                    ParticleUtils.spawn(particle, ctx.world, p, motion);
+                    ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx));
                 }
             } else if (shape == Shape.HORIZONTAL_CIRCLE_EDGE) {
                 for (int i = 0; i < amount; i++) {
                     float yRandom = (int) RandomUtils.RandomRange(0, yrand);
                     Vec3d p = randomEdgeCirclePos(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
-                    ParticleUtils.spawn(particle, ctx.world, p, motion);
+                    ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx));
                 }
             }
         }

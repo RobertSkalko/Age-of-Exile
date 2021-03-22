@@ -142,6 +142,8 @@ public class CreateLangFile {
         list.addAll(Database.Stats()
             .getSerializable());
         list.addAll(stats);
+        list.addAll(Database.ScrollBuffs()
+            .getSerializable());
 
         list.addAll(Database.GearTypes()
             .getSerializable());

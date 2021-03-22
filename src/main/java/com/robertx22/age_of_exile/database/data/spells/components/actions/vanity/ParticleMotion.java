@@ -6,16 +6,30 @@ import net.minecraft.util.math.Vec3d;
 public enum ParticleMotion {
     CasterLook {
         @Override
-        public Vec3d getMotion(SpellCtx ctx) {
+        public Vec3d getMotion(Vec3d particlePos, SpellCtx ctx) {
             Vec3d rot = ctx.caster.getRotationVector();
             return rot;
         }
-    }, None {
+    },
+    OutwardMotion {
         @Override
-        public Vec3d getMotion(SpellCtx ctx) {
+        public Vec3d getMotion(Vec3d particlePos, SpellCtx ctx) {
+
+            Vec3d c = ctx.vecPos;
+            c = new Vec3d(c.x, 0, c.z);
+
+            Vec3d p = particlePos;
+            p = new Vec3d(p.x, 0, p.z);
+
+            return p.subtract(c);
+        }
+    },
+    None {
+        @Override
+        public Vec3d getMotion(Vec3d particlePos, SpellCtx ctx) {
             return Vec3d.ZERO;
         }
     };
 
-    public abstract Vec3d getMotion(SpellCtx ctx);
+    public abstract Vec3d getMotion(Vec3d particlePos, SpellCtx ctx);
 }

@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
@@ -21,8 +22,20 @@ public class ScribeBuffContainer extends BaseTileContainer {
         this.pos = pos;
         int count = 0;
 
-        addSlot(new Slot(inventory, count++, 13, 56));
-        addSlot(new Slot(inventory, count++, 33, 56));
+        tile.onOpen(invPlayer.player);
+
+        addSlot(new Slot(inventory, count++, 13, 56) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return ScribeBuffTile.isValidPaper(stack);
+            }
+        });
+        addSlot(new Slot(inventory, count++, 33, 56) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return ScribeBuffTile.isValidInk(stack);
+            }
+        });
 
     }
 

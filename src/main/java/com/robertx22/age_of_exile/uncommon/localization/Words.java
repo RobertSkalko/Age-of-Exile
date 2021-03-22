@@ -7,6 +7,7 @@ import java.util.Locale;
 
 public enum Words implements IAutoLocName {
     DidYouKnow("Did you know?"),
+    InscribingDesc("Inscribing is about using words of wisdom to produce beneficial items. Paper is enchanted with ink to produce scrolls that buff you. Chalk is used to write on glyphs to create defensive glyphs. "),
     SalvagingDesc("Salvaging is about turning useless gear into essence, a material that's useful for many things."),
     FishingDesc("Fishing is the simplest profession. You catch fish and get experience. Sometimes you might get important materials like ink, which is used in other professions."),
     ExplorationDesc("Exploration is all about treasure finding! Looting chests out in the world gives not only loot and favor, but also exploration experience. Completing minecraft advancements also rewards experience."),

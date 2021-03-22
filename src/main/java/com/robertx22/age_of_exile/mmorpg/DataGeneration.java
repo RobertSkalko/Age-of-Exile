@@ -11,10 +11,6 @@ public class DataGeneration {
 
     public static void generateAll() {
 
-        if (!MMORPG.RUN_DEV_TOOLS) {
-            return;
-        }
-
         new RecipeGenerator().run();
         new LootTableGenerator().run();
 

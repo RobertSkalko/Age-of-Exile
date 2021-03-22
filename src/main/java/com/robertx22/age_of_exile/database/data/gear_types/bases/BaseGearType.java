@@ -10,6 +10,8 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.WeaponMechanic;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
+import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
@@ -46,6 +48,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     protected String guid;
     protected LevelRange level_range;
     public String gear_slot = "";
+    public String rar_group = GearRarityGroups.NON_UNIQUE_ID;
     public int weight = 1000;
     public AttackPlayStyle style = AttackPlayStyle.MELEE;
 
@@ -551,6 +554,11 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
             .get(getRarityRank());
     }
 
+    public GearRarityGroup getRarityGroup() {
+        return Database.GearRarityGroups()
+            .get(rar_group);
+    }
+
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.GEAR_TYPE;
@@ -583,6 +591,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         json.addProperty("item_id", Registry.ITEM.getId(getItem())
             .toString());
         json.addProperty("gear_slot", this.gear_slot);
+        json.addProperty("rar_group", this.rar_group);
         json.addProperty("weapon_type", weaponType().toString());
         json.addProperty("attack_style", style.name());
 
@@ -601,6 +610,8 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         o.base_stats = JsonUtils.getStats(json, "base_stats");
         o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");
         o.gear_slot = json.get("gear_slot")
+            .getAsString();
+        o.rar_group = json.get("rar_group")
             .getAsString();
 
         try {

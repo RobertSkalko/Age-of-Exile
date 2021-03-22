@@ -27,7 +27,7 @@ public class SpellMotionAction extends SpellAction {
                 .floatValue();
 
             Vec3d motion = ParticleMotion.valueOf(data.get(MapField.MOTION))
-                .getMotion(ctx)
+                .getMotion(ctx.vecPos, ctx)
                 .multiply(str);
 
             SetAdd setAdd = data.getSetAdd();

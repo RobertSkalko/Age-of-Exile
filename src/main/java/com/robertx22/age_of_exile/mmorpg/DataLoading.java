@@ -33,8 +33,10 @@ public class DataLoading {
                 Database.backup();
 
                 Database.checkGuidValidity();
+
                 ErrorChecks.getAll()
                     .forEach(x -> x.check());
+
                 Database.unregisterInvalidEntries();
 
                 Database.getAllRegistries()

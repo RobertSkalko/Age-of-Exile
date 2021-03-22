@@ -16,8 +16,11 @@ import net.minecraft.util.math.Direction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class BaseModificationStation extends BlockEntity implements IOBlock, SidedInventory, Tickable, NamedScreenHandlerFactory {
+
+    static UUID EMPTY_ID = UUID.fromString("3f715e84-4318-4025-9f23-875e3738c19b");
 
     public BaseModificationStation(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
@@ -28,6 +31,17 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
     public ItemStack[] itemStacks;
 
     public int ticks = 0;
+    public int fuel = 0;
+
+    public int expEarned = 0;
+    OwnerData ownerData = new OwnerData();
+
+    public UUID ownerID = EMPTY_ID;
+
+    public PlayerEntity getOwner() {
+        PlayerEntity en = world.getPlayerByUuid(ownerID);
+        return en;
+    }
 
     // OVERRIDE IF AUTOMATABLE
     @Override
@@ -39,7 +53,25 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
     public void tick() {
         if (world != null && !world.isClient) {
             ticks++;
+            if (this instanceof ISmeltingStation) {
+                ISmeltingStation smelt = (ISmeltingStation) this;
+                smelt.onSmeltTick();
+            }
+
+            if (ticks % 2000 == 0) {
+                updateOwnerData();
+            }
         }
+    }
+
+    void updateOwnerData() {
+
+        PlayerEntity p = getOwner();
+
+        if (p != null) {
+            this.ownerData = new OwnerData(p);
+        }
+
     }
 
     @Override
@@ -153,8 +185,14 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
         Arrays.fill(itemStacks, ItemStack.EMPTY); // EMPTY_ITEM
     }
 
+    // this must be called manually when the container opens, or else it isn't called at all
+    // vanilla doesnt call it by itself
     @Override
     public void onOpen(PlayerEntity player) {
+        if (ownerID.equals(EMPTY_ID)) {
+            ownerID = player.getUuid();
+        }
+
     }
 
     @Override
@@ -208,8 +246,8 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag parentNBTTagCompound) {
-        super.toTag(parentNBTTagCompound); // The super call is required to save and load the tiles location
+    public CompoundTag toTag(CompoundTag nbt) {
+        super.toTag(nbt); // The super call is required to save and load the tiles location
 
         ListTag dataForAllSlots = new ListTag();
         for (int i = 0; i < this.itemStacks.length; ++i) {
@@ -222,18 +260,20 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
         }
         // the array of hashmaps is then inserted into the instance hashmap for the
         // container
-        parentNBTTagCompound.put("Items", dataForAllSlots);
-        parentNBTTagCompound.putInt("ticks", ticks);
+        nbt.put("Items", dataForAllSlots);
+        nbt.putInt("ticks", ticks);
+        nbt.putInt("fuel", fuel);
+        nbt.putUuid("owner_id", ownerID);
 
-        return parentNBTTagCompound;
+        return nbt;
     }
 
     // This is where you load the dataInstance that you saved in write
     @Override
-    public void fromTag(BlockState state, CompoundTag nbtTagCompound) {
-        super.fromTag(state, nbtTagCompound); // The super call is required to save and load the tiles location
+    public void fromTag(BlockState state, CompoundTag nbt) {
+        super.fromTag(state, nbt); // The super call is required to save and load the tiles location
         final byte NBT_TYPE_COMPOUND = 10; // See NBTBase.createNewByType() for a listing
-        ListTag dataForAllSlots = nbtTagCompound.getList("Items", NBT_TYPE_COMPOUND);
+        ListTag dataForAllSlots = nbt.getList("Items", NBT_TYPE_COMPOUND);
 
         Arrays.fill(itemStacks, ItemStack.EMPTY); // set all slots to empty EMPTY_ITEM
         for (int i = 0; i < dataForAllSlots.size(); ++i) {
@@ -246,7 +286,9 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
 
         // Load everything else. Trim the arrays (or pad with 0) to make sure they have
         // the correct number of elements
-        ticks = nbtTagCompound.getInt("ticks");
+        ticks = nbt.getInt("ticks");
+        fuel = nbt.getInt("fuel");
+        ownerID = nbt.getUuid("owner_id");
     }
 
 }

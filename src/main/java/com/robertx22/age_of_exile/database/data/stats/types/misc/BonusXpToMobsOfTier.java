@@ -56,7 +56,7 @@ public class BonusXpToMobsOfTier extends Stat implements IGenerated<Stat> {
 
     @Override
     public String locNameForLangFile() {
-        return "Tier " + tier.tier + " Mob Exp";
+        return "Tier " + tier.getDisplayTierNumber() + " Mob Exp";
     }
 
     public boolean worksOn(EntityCap.UnitData mob) {

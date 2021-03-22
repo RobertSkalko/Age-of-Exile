@@ -212,3 +212,7 @@ Easily switch builds and play styles with no need for reset potions?
 Wanted to level multiple characters?
 
 Now it's possible! (and probably a bit buggy!)
+
+1.8.1
+
+- base gear datapacks can and must now specify rarity groups
