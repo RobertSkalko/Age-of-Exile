@@ -6,9 +6,7 @@ healing_aura
 poison_ball
 teleport
 thorn_armor
-lightning_totem
 whirlwind
-thunder_storm
 armor_aura
 thunder_dash
 ele_res_aura
@@ -16,13 +14,11 @@ gorgons_gaze
 nature_balm
 haste_aura
 arrow_storm
-volcano
 arrow_barrage
 fireball
 thunder_spear
 charge
 heart_of_ice
-blizzard
 frost_breath
 fire_breath
 frost_armor

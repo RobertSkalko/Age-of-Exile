@@ -97,7 +97,7 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
         fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
         fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
-        fac.input(type.vanillaCraftingItem);
+        fac.input(type.getCraftItem(tier, exileEffect.color));
         return fac.criterion("player_level", trigger());
     }
 

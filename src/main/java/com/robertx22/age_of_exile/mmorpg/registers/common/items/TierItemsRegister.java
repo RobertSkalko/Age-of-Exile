@@ -43,6 +43,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
         for (SkillItemTier tier : SkillItemTier.values()) {
 
             INK_TIER_MAP.put(tier, item(new ScribeInkItem(tier)));
+
             SMELTED_ESSENCE.put(tier, item(new SmeltedEssenceItem(tier)));
             ESSENCE_INK.put(tier, item(new EssenceInkItem(tier)));
             STAT_INFUSION_MAP.put(tier, item(new StatInfusionItem(tier)));

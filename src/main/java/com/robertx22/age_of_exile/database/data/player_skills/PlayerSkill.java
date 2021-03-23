@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.player_skills;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -97,7 +96,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
     }
 
-    public List<ItemStack> getExtraDropsFor(PlayerSkills skills, int expForAction, SkillItemTier tierContext) {
+    public List<ItemStack> getExtraDropsFor(PlayerEntity player, int expForAction, SkillItemTier tierContext) {
 
         List<ItemStack> list = new ArrayList<>();
 
@@ -105,19 +104,21 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
             if (dropTable.tier == tierContext) {
 
-                float chance = dropTable.loot_chance_per_action_exp * expForAction;
+                if (dropTable.req.isAllowed(player.world, player.getBlockPos())) {
+                    float chance = dropTable.loot_chance_per_action_exp * expForAction;
 
-                //  float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
-                // chance *= chanceMulti;
+                    //  float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
+                    // chance *= chanceMulti;
 
-                if (RandomUtils.roll(chance)) {
-                    List<SkillDropReward> possible = dropTable.drop_rewards
-                        .stream()
-                        .collect(Collectors.toList());
+                    if (RandomUtils.roll(chance)) {
+                        List<SkillDropReward> possible = dropTable.drop_rewards
+                            .stream()
+                            .collect(Collectors.toList());
 
-                    if (!possible.isEmpty()) {
-                        list.add(RandomUtils.weightedRandom(possible)
-                            .getRewardStack());
+                        if (!possible.isEmpty()) {
+                            list.add(RandomUtils.weightedRandom(possible)
+                                .getRewardStack());
+                        }
                     }
                 }
             }

@@ -48,7 +48,7 @@ public class OnSmeltMining {
                         int exp = s.exp;
                         skills.addExp(mining.type_enum, exp);
 
-                        SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.MINING, mining.getExtraDropsFor(skills, exp, SkillItemTier.TIER0));
+                        SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.MINING, mining.getExtraDropsFor(player, exp, SkillItemTier.TIER0));
                         effect.Activate();
 
                         effect.extraDrops.forEach(x -> PlayerUtils.giveItem(x, player));

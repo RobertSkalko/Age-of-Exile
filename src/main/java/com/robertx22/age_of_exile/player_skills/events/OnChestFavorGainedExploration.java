@@ -24,7 +24,7 @@ public class OnChestFavorGainedExploration {
         PlayerSkills skills = Load.playerSkills(player);
 
         skills.addExp(PlayerSkillEnum.EXPLORATION, favor);
-        List<ItemStack> list = exploration.getExtraDropsFor(skills, favor, LevelUtils.levelToTier(info.level));
+        List<ItemStack> list = exploration.getExtraDropsFor(player, favor, LevelUtils.levelToTier(info.level));
 
         SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.EXPLORATION, list);
         effect.Activate();

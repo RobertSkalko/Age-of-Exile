@@ -5,6 +5,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import org.apache.commons.lang3.tuple.Triple;
 
 public enum FoodType {
 
@@ -13,12 +14,13 @@ public enum FoodType {
     JAM("Jam", "jam", StatusEffects.FIRE_RESISTANCE, Items.MELON, Items.COOKED_SALMON),
     PIE("Pie", "pie", StatusEffects.HASTE, Items.PUMPKIN_PIE, Items.PUMPKIN_PIE),
     COOKIE("Cookie", "cookie", StatusEffects.SPEED, Items.COOKIE, Items.COOKED_CHICKEN),
+    FISH("Fish", "fish", ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, Items.COOKED_COD, Items.COOKED_COD),
     BREW("Brew", "brew", StatusEffects.NIGHT_VISION, Items.MUSHROOM_STEW, Items.COOKED_SALMON);
 
     public String word;
     public String id;
     public StatusEffect effect;
-    public Item vanillaCraftingItem;
+    private Item vanillaCraftingItem;
 
     public Item foodValueItem;
 
@@ -28,5 +30,12 @@ public enum FoodType {
         this.effect = effect;
         this.foodValueItem = foodValueItem;
         this.vanillaCraftingItem = vanillaCraftingItem;
+    }
+
+    public Item getCraftItem(SkillItemTier tier, FoodExileEffect.EffectColor color) {
+        if (this == FISH) {
+            return ModRegistry.FOOD_ITEMS.RAW_FISH.get(Triple.of(FISH, color, tier));
+        }
+        return vanillaCraftingItem;
     }
 }

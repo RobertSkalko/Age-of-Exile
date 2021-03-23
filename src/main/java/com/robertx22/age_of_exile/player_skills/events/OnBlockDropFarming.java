@@ -70,7 +70,7 @@ public class OnBlockDropFarming {
 
             int exp = skill.getExpForBlockBroken(block);
             skills.addExp(skill.type_enum, exp);
-            List<ItemStack> list = skill.getExtraDropsFor(skills, exp, SkillItemTier.TIER0); // todo tier
+            List<ItemStack> list = skill.getExtraDropsFor(player, exp, SkillItemTier.TIER0); // todo tier
 
             SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.FARMING, list);
             effect.Activate();

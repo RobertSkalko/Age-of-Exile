@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
+import com.robertx22.age_of_exile.player_skills.items.fishing.RawFishItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.*;
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -16,6 +17,8 @@ public class FoodItemRegister extends BaseItemRegistrator {
 
     public HashMap<Triple<FoodType, EffectColor, SkillItemTier>, FarmingFoodItem> MAP = new HashMap<>();
 
+    public HashMap<Triple<FoodType, EffectColor, SkillItemTier>, RawFishItem> RAW_FISH = new HashMap<>();
+
     public FoodItemRegister() {
 
         for (EffectColor color : EffectColor.values()) {
@@ -25,10 +28,22 @@ public class FoodItemRegister extends BaseItemRegistrator {
         reg(FoodType.APPLE, Arrays.asList(MANA_REGEN, HEALTH_REGEN, MAGIC_SHIELD_REGEN));
         reg(FoodType.COOKIE, Arrays.asList(TREASURE_QUALITY, HEALTH_REGEN, MAGIC_SHIELD_REGEN));
         reg(FoodType.BREW, Arrays.asList(CRITICAL, HEALING, PHYSICAL_DAMAGE, ELEMENTAL_RESISTANCE));
-        reg(FoodType.BEER, Arrays.asList(SPELL_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, THUNDER_DAMAGE));
+        //reg(FoodType.BEER, Arrays.asList(SPELL_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, THUNDER_DAMAGE));
         reg(FoodType.JAM, Arrays.asList(DEF_PURPLE, DEF_BLUE, DEF_YELLOW, DEF_GREEN, DEF_GRAY));
-        reg(FoodType.PIE, Arrays.asList(SPELL_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, THUNDER_DAMAGE));
+        // reg(FoodType.PIE, Arrays.asList(SPELL_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, THUNDER_DAMAGE));
 
+        regFish(FoodType.FISH, Arrays.asList(ELEMENTAL_RESISTANCE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, THUNDER_DAMAGE));
+
+    }
+
+    void regFish(FoodType type, List<FoodExileEffect> effects) {
+
+        for (FoodExileEffect effect : effects) {
+            for (SkillItemTier tier : SkillItemTier.values()) {
+                RAW_FISH.put(Triple.of(type, effect.color, tier), item(new RawFishItem(tier, type, effect)));
+                MAP.put(Triple.of(type, effect.color, tier), item(new FarmingFoodItem(type, effect, tier)));
+            }
+        }
     }
 
     void reg(FoodType type, List<FoodExileEffect> effects) {
@@ -37,8 +52,7 @@ public class FoodItemRegister extends BaseItemRegistrator {
         for (FoodExileEffect effect : effects) {
             for (SkillItemTier tier : SkillItemTier.values()) {
 
-                FarmingFoodItem item = this.item(new FarmingFoodItem(type, effect, tier));
-                MAP.put(Triple.of(type, effect.color, tier), item);
+                MAP.put(Triple.of(type, effect.color, tier), item(new FarmingFoodItem(type, effect, tier)));
 
                 if (tier == SkillItemTier.TIER3) {
                     if (colors.contains(effect.color)) {
@@ -46,6 +60,7 @@ public class FoodItemRegister extends BaseItemRegistrator {
                     }
                     colors.add(effect.color);
                 }
+
             }
         }
     }

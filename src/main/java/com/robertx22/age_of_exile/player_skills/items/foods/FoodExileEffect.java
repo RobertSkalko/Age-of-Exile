@@ -26,10 +26,10 @@ import java.util.function.Supplier;
 
 public enum FoodExileEffect {
 
-    WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
-    FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
-    THUNDER_DAMAGE("Sky", "thunder", EffectColor.YELLOW, new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Thunder)), new OptScaleExactStat(20, new ElementalResist(Elements.Thunder))),
-    NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Nature)), new OptScaleExactStat(20, new ElementalResist(Elements.Nature))),
+    WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
+    FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
+    THUNDER_DAMAGE("Sky", "thunder", EffectColor.YELLOW, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Thunder)), new OptScaleExactStat(20, new ElementalResist(Elements.Thunder))),
+    NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Nature)), new OptScaleExactStat(20, new ElementalResist(Elements.Nature))),
     PHYSICAL_DAMAGE("Physical", "physical", EffectColor.RED, new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Physical)), new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE)),
 
     DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(5, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
@@ -38,13 +38,13 @@ public enum FoodExileEffect {
     DEF_GREEN("Terra Defense", "def_green", EffectColor.GREEN, new OptScaleExactStat(20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_GRAY("Physical Defense", "def_gray", EffectColor.RED, new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
 
-    ELEMENTAL_RESISTANCE("Resistant", "elemental_resist", EffectColor.PURPLE, new OptScaleExactStat(10, new ElementalResist(Elements.Elemental))),
+    ELEMENTAL_RESISTANCE("Elementum", "elemental_resist", EffectColor.PURPLE, new OptScaleExactStat(10, new ElementalResist(Elements.Elemental))),
 
     MAGIC_SHIELD_REGEN("Magicka", "magic_shield_regen", EffectColor.PURPLE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
     MANA_REGEN("Arcana", "mana_regen", EffectColor.BLUE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
     HEALTH_REGEN("Vitala", "health_regen", EffectColor.RED, new OptScaleExactStat(1, RegeneratePercentStat.HEALTH), new OptScaleExactStat(15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)),
 
-    HEALING("Holy", "healing", EffectColor.YELLOW, new OptScaleExactStat(20, HealPower.getInstance())),
+    HEALING("Sancti", "healing", EffectColor.YELLOW, new OptScaleExactStat(20, HealPower.getInstance())),
     SPELL_DAMAGE("Enigma", "spell_damage", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance())),
     CRITICAL("Critical", "critical", EffectColor.GREEN, new OptScaleExactStat(5, CriticalHit.getInstance()), new OptScaleExactStat(10, CriticalDamage.getInstance())),
     TREASURE_QUALITY("Treasure", "treasure", EffectColor.YELLOW, new OptScaleExactStat(10, TreasureQuality.getInstance()));

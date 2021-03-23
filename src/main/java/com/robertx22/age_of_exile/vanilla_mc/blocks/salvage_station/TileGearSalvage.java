@@ -266,7 +266,7 @@ public class TileGearSalvage extends BaseModificationStation {
 
                 skills.addExp(skill.type_enum, exp);
 
-                List<ItemStack> list = skill.getExtraDropsFor(skills, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
+                List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
 
                 SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.SALVAGING, list);
                 effect.Activate();

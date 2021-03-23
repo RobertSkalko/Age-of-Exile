@@ -61,6 +61,7 @@ dot_all_dmg_leech_as_mana
 health_on_dot_hit
 attack_nature_dmg_leech_as_health
 dot_nature_dmg_leech_as_mana
+bonus_swamp_biome_yield
 convert_thunder_to_phys
 all_nature_damage
 blood
@@ -105,6 +106,7 @@ max_fire_resist
 other_fire_dmg_leech_as_mana
 bonus_all_exp
 basic_attack_elemental_dmg_leech_as_blood
+bonus_mountain_biome_yield
 ele_wand_damage
 armor
 spell_nature_damage

@@ -9,7 +9,7 @@ public enum Words implements IAutoLocName {
     DidYouKnow("Did you know?"),
     InscribingDesc("Inscribing is about using words of wisdom to produce beneficial items. Paper is enchanted with ink to produce scrolls that buff you. Chalk is used to write on glyphs to create defensive glyphs. "),
     SalvagingDesc("Salvaging is about turning useless gear into essence, a material that's useful for many things."),
-    FishingDesc("Fishing is the simplest profession. You catch fish and get experience. Sometimes you might get important materials like ink, which is used in other professions."),
+    FishingDesc("Fishing is the simplest profession. You catch fish and get experience. Sometimes you might get important materials like ink, which is used in other professions. You can also catch different fish in different biomes."),
     ExplorationDesc("Exploration is all about treasure finding! Looting chests out in the world gives not only loot and favor, but also exploration experience. Completing minecraft advancements also rewards experience."),
     MiningDesc("Mining is one of the basic gatherer professions. You gain experience for mining ores and smelting them. When mining ores, there's a small chance Mystical Stones pop up. They have various uses."),
     FarmingDesc("Farming is the process of turning purified essence into edible crops. These crops can then be used for alchemy or cooking."),
