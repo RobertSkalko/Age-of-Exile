@@ -8,16 +8,16 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 
-public class CondensedSalvageEssence extends TieredItem implements IAutoLocName, IAutoModel, IShapelessRecipe {
+public class CondensedEssenceItem extends TieredItem implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
-    public CondensedSalvageEssence(SkillItemTier tier) {
+    public CondensedEssenceItem(SkillItemTier tier) {
         super(tier);
     }
 
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
-        fac.input(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier), 3);
+        fac.input(ModRegistry.TIERED.SMELTED_ESSENCE.get(tier), 3);
         return fac.criterion("player_level", trigger());
     }
 

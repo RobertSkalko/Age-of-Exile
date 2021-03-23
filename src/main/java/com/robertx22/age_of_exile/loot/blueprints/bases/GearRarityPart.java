@@ -28,16 +28,15 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
     public GearRarityPart(GearBlueprint blueprint) {
         super(blueprint);
         this.container = blueprint.getRarityContainer();
+    }
+
+    public void setupChances(LootInfo info) {
 
         if (blueprint.gearItemSlot.isGenerated()) {
             this.possible = blueprint.gearItemSlot.get()
                 .getRarityGroup()
                 .getRarities();
         }
-
-    }
-
-    public void setupChances(LootInfo info) {
 
         List<GearRarity> specialRarities = Database.GearRarities()
             .getFiltered(x -> x.special_spawn_chance > 0);

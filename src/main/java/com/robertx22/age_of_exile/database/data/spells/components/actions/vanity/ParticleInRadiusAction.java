@@ -69,6 +69,9 @@ public class ParticleInRadiusAction extends SpellAction {
             float yrand = data.getOrDefault(Y_RANDOM, 0D)
                 .floatValue();
 
+            float motionMulti = data.getOrDefault(MOTION_MULTI, 1D)
+                .floatValue();
+
             if (shape == Shape.CIRCLE) {
                 if (ctx.sourceEntity.age > 2) {
                     for (int i = 0; i < amount; i++) {
@@ -79,20 +82,23 @@ public class ParticleInRadiusAction extends SpellAction {
                         pos = new Vec3d(pos.x - vel.x / 2F, pos.y - vel.y / 2 + height, pos.z - vel.z / 2);
 
                         Vec3d p = GeometryUtils.getRandomPosInRadiusCircle(pos, radius);
-                        ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx));
+                        ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx)
+                            .multiply(motionMulti));
                     }
                 }
             } else if (shape == Shape.HORIZONTAL_CIRCLE) {
                 for (int i = 0; i < amount; i++) {
                     float yRandom = (int) RandomUtils.RandomRange(0, yrand);
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
-                    ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx));
+                    ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx)
+                        .multiply(motionMulti));
                 }
             } else if (shape == Shape.HORIZONTAL_CIRCLE_EDGE) {
                 for (int i = 0; i < amount; i++) {
                     float yRandom = (int) RandomUtils.RandomRange(0, yrand);
                     Vec3d p = randomEdgeCirclePos(ctx.vecPos.getX(), ctx.vecPos.getY() + height + yRandom, ctx.vecPos.getZ(), radius);
-                    ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx));
+                    ParticleUtils.spawn(particle, ctx.world, p, motion.getMotion(p, ctx)
+                        .multiply(motionMulti));
                 }
             }
         }

@@ -4,7 +4,6 @@ healing_aura
 thorn_armor
 fire_chance
 whirlwind
-thunder_storm
 armor_aura
 thunder_dash
 ele_res_aura
@@ -39,18 +38,15 @@ poison_ball
 piercing_proj
 teleport
 spell_crit_rate
-lightning_totem
 crit_dmg
 faster_proj
 nature_balm
-volcano
 arrow_barrage
 fireball
 thunder_spear
 charge
 heart_of_ice
 nature_dmg
-blizzard
 frost_breath
 frostball
 flame_strike

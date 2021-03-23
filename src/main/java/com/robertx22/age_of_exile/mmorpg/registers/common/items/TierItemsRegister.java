@@ -1,7 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedSalvageEssence;
+import com.robertx22.age_of_exile.player_skills.items.SmeltedEssenceItem;
+import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackType;
 import com.robertx22.age_of_exile.player_skills.items.exploration.LockedChestItem;
@@ -20,7 +21,8 @@ import java.util.HashMap;
 
 public class TierItemsRegister extends BaseItemRegistrator {
 
-    public HashMap<SkillItemTier, CondensedSalvageEssence> CONDENSED_ESSENCE_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, CondensedEssenceItem> CONDENSED_ESSENCE_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, SmeltedEssenceItem> SMELTED_ESSENCE = new HashMap<>();
     public HashMap<SkillItemTier, ScribeInkItem> INK_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, StatInfusionItem> STAT_INFUSION_MAP = new HashMap<>();
     public HashMap<SkillItemTier, SalvagedDustItem> SALVAGED_ESSENCE_MAP = new HashMap<>();
@@ -41,9 +43,10 @@ public class TierItemsRegister extends BaseItemRegistrator {
         for (SkillItemTier tier : SkillItemTier.values()) {
 
             INK_TIER_MAP.put(tier, item(new ScribeInkItem(tier)));
+            SMELTED_ESSENCE.put(tier, item(new SmeltedEssenceItem(tier)));
             ESSENCE_INK.put(tier, item(new EssenceInkItem(tier)));
             STAT_INFUSION_MAP.put(tier, item(new StatInfusionItem(tier)));
-            CONDENSED_ESSENCE_MAP.put(tier, item(new CondensedSalvageEssence(tier)));
+            CONDENSED_ESSENCE_MAP.put(tier, item(new CondensedEssenceItem(tier)));
             SALVAGED_ESSENCE_MAP.put(tier, item(new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
             FARMING_SEEDS.put(tier, item(new PlantSeedItem(tier, ModRegistry.BLOCKS.FARMING_PLANTS.get(tier)), "seed/plant" + (tier.tier + 1)));
             FARMING_PRODUCE.put(tier, item(new PlantProduceItem(tier), "plant/plant" + (tier.tier + 1)));

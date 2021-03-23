@@ -10,13 +10,20 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import joptsimple.internal.Strings;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancement.criterion.EnchantedItemCriterion;
+import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.data.DataCache;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.server.recipe.CookingRecipeJsonFactory;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.predicate.NumberRange;
+import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.registry.Registry;
 
 import java.io.IOException;
@@ -104,6 +111,14 @@ public class RecipeGenerator {
             }
         }
 
+        ModRegistry.TIERED.SMELTED_ESSENCE.values()
+            .forEach(x -> {
+                Item ess = ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(x.tier);
+                CookingRecipeJsonFactory.createSmelting(Ingredient.ofItems(ess), x, 0.2F, 200)
+                    .criterion("ess" + x.tier, conditionsFromItem(ess))
+                    .offerTo(consumer);
+            });
+
         ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.values()
             .forEach(x -> {
                 if (x.tier.lowerTier() != null) {
@@ -162,6 +177,16 @@ public class RecipeGenerator {
                 }
             });
 
+    }
+
+    static InventoryChangedCriterion.Conditions conditionsFromItem(ItemConvertible itemConvertible) {
+        return conditionsFromItemPredicates(ItemPredicate.Builder.create()
+            .item(itemConvertible)
+            .build());
+    }
+
+    private static InventoryChangedCriterion.Conditions conditionsFromItemPredicates(ItemPredicate... itemPredicates) {
+        return new InventoryChangedCriterion.Conditions(EntityPredicate.Extended.EMPTY, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, NumberRange.IntRange.ANY, itemPredicates);
     }
 
 }

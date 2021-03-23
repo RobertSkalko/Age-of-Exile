@@ -21,8 +21,8 @@ public class ServerContainer {
     public double CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL = 20;
     public double START_CORRUPT_AT_LVL = 30;
 
-    public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.1F;
-    public double LEVEL_DISTANCE_PENALTY_MAX = 0.95F;
+    public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.15F;
+    public double LEVEL_DISTANCE_PENALTY_MIN_MULTI = 0.01F;
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
 
     public int MAX_RUNEWORD_GEARS_ON_PLAYER = 1;

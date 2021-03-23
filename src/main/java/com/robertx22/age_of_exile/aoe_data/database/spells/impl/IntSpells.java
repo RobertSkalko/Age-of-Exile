@@ -143,19 +143,23 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.breath("fire_breath", "Fire Breath", Elements.Fire, PARTICLES.FLAME)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_BURN, 1D, 1D)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
             .build();
+
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)
             .build();
 
         SpellBuilder.of("fire_nova", SpellConfiguration.Builder.instant(20, 20 * 25), "Fire Nova",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1D, 1D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 200D, 2.8D, 0.2D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 70D, 2D, 0.2D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 55D, 1D, 0.2D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.SMOKE, 200D, 3D, 0.2D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
+
+            .onCast(PartBuilder.nova(ParticleTypes.FLAME, 200D, 2.8D, 0.05D))
+            .onCast(PartBuilder.nova(ParticleTypes.FLAME, 100D, 2D, 0.05D))
+            .onCast(PartBuilder.nova(ParticleTypes.FLAME, 100D, 1D, 0.05D))
+            .onCast(PartBuilder.nova(ParticleTypes.SMOKE, 200D, 1D, 0.05D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 0D, 0.2D))
+
             .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Fire, 3D))
             .build();
 

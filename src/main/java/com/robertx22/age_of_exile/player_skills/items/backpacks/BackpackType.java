@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
-import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedSalvageEssence;
+import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedEssenceItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.SalvagedDustItem;
@@ -29,7 +29,7 @@ public enum BackpackType {
                 || item instanceof RuneItem
                 || item instanceof CurrencyItem
                 || item instanceof SalvagedDustItem
-                || item instanceof CondensedSalvageEssence
+                || item instanceof CondensedEssenceItem
                 ;
         }
 

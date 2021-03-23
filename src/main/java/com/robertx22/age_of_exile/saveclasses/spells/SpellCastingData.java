@@ -201,7 +201,17 @@ public class SpellCastingData {
         SpellData data = spellDatas.getOrDefault(ctx.spell.GUID(), new SpellData());
 
         int cd = ctx.spell.getCooldownTicks(ctx);
+
         data.setCooldown(cd);
+
+        if (ctx.caster instanceof PlayerEntity) {
+            PlayerEntity p = (PlayerEntity) ctx.caster;
+            if (p.isCreative()) {
+                if (cd > 20) {
+                    data.setCooldown(20);
+                }
+            }
+        }
 
         spellDatas.put(ctx.spell.GUID(), data);
         this.casting = false;

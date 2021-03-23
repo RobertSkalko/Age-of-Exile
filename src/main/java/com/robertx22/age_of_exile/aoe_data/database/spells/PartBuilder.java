@@ -229,6 +229,18 @@ public class PartBuilder {
 
     }
 
+    public static ComponentPart nova(DefaultParticleType particle, Double count, Double radius, Double motionMulti) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
+            .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
+            .put(MapField.Y_RANDOM, 0.2D)
+            .put(MapField.HEIGHT, 0.5D)
+            .put(MapField.MOTION, ParticleMotion.OutwardMotion.name())
+            .put(MapField.MOTION_MULTI, motionMulti)
+            .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE_EDGE.name()));
+        return c;
+    }
+
     public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY, ParticleMotion motion) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)

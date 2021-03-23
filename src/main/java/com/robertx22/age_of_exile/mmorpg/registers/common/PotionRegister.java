@@ -33,6 +33,8 @@ public class PotionRegister {
     public StatusEffect KNOCKBACK_RESISTANCE = new ModStatusEffect(StatusEffectType.BENEFICIAL, 1)
         .addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "648D7564-6A60-4F59-8ABE-C2C27A6DD7A9", 0.75F, EntityAttributeModifier.Operation.ADDITION);
 
+    public StatusEffect SCROLL_BUFF = new ModStatusEffect(StatusEffectType.BENEFICIAL, 1);
+
     HashMap<String, ExileStatusEffect> exileEffectsMap = new HashMap<>();
 
     public ExileStatusEffect getExileEffect(String num) {
@@ -76,6 +78,7 @@ public class PotionRegister {
         Registry.register(Registry.STATUS_EFFECT, Ref.id("knockback_resist"), KNOCKBACK_RESISTANCE);
         Registry.register(Registry.STATUS_EFFECT, Ref.id("anti_wither"), ANTI_WITHER);
         Registry.register(Registry.STATUS_EFFECT, Ref.id("anti_poison"), ANTI_POISON);
+        Registry.register(Registry.STATUS_EFFECT, Ref.id("scroll_buff"), SCROLL_BUFF);
 
         Registry.register(Registry.STATUS_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
         Registry.register(Registry.STATUS_EFFECT, FOOD_MANA, ManaRegenFoodEffect.INSTANCE);

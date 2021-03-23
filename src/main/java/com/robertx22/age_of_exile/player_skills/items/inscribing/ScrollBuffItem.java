@@ -8,11 +8,19 @@ import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -40,6 +48,44 @@ public class ScrollBuffItem extends AutoItem {
         }
         return txt;
 
+    }
+
+    @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        if (user instanceof ServerPlayerEntity) {
+
+            try {
+                stack.decrement(1);
+                ScrollBuffData data = getData(stack);
+                ServerPlayerEntity p = (ServerPlayerEntity) user;
+                p.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60));
+                Load.Unit(p)
+                    .getStatusEffectsData().sb = data;
+                Load.Unit(p)
+                    .setEquipsChanged(true);
+                Load.Unit(p)
+                    .tryRecalculateStats();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return stack;
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.BOW;
+    }
+
+    @Override
+    public int getMaxUseTime(ItemStack stack) {
+        return 40;
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        return ItemUsage.consumeHeldItem(world, user, hand);
     }
 
     public static ItemStack create(ScrollBuffData data) {

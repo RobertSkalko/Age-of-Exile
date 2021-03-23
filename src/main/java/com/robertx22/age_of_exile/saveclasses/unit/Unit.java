@@ -271,6 +271,8 @@ public class Unit {
                 .getStatAndContext(entity));
             statContexts.addAll(Load.spells(entity)
                 .getStatAndContext(entity));
+            statContexts.add(data.getStatusEffectsData()
+                .getStats(entity));
         } else {
             statContexts.addAll(MobStatUtils.getMobBaseStats(data, entity));
             statContexts.addAll(MobStatUtils.getAffixStats(entity));

@@ -33,9 +33,8 @@ public class GearBlueprint extends ItemBlueprint {
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 
-    public GearRarityPart rarity = new GearRarityPart(this);
-
     public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);
+    public GearRarityPart rarity = new GearRarityPart(this);
     public UnidentifiedPart unidentifiedPart = new UnidentifiedPart(this);
     public UniqueGearPart uniquePart = new UniqueGearPart(this);
 

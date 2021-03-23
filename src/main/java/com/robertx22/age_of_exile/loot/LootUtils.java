@@ -28,7 +28,7 @@ public class LootUtils {
 
         float multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_LVL);
 
-        return (float) MathHelper.clamp(multi, 0F, ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MAX);
+        return (float) MathHelper.clamp(multi, ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI, 1F);
     }
 
     public static ItemStack RandomDamagedGear(ItemStack stack, IGearRarity rar) {

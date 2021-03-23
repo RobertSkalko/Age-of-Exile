@@ -271,24 +271,28 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
     // This is where you load the dataInstance that you saved in write
     @Override
     public void fromTag(BlockState state, CompoundTag nbt) {
-        super.fromTag(state, nbt); // The super call is required to save and load the tiles location
-        final byte NBT_TYPE_COMPOUND = 10; // See NBTBase.createNewByType() for a listing
-        ListTag dataForAllSlots = nbt.getList("Items", NBT_TYPE_COMPOUND);
+        try {
+            super.fromTag(state, nbt); // The super call is required to save and load the tiles location
+            final byte NBT_TYPE_COMPOUND = 10; // See NBTBase.createNewByType() for a listing
+            ListTag dataForAllSlots = nbt.getList("Items", NBT_TYPE_COMPOUND);
 
-        Arrays.fill(itemStacks, ItemStack.EMPTY); // set all slots to empty EMPTY_ITEM
-        for (int i = 0; i < dataForAllSlots.size(); ++i) {
-            CompoundTag dataForOneSlot = dataForAllSlots.getCompound(i);
-            byte slotNumber = dataForOneSlot.getByte("Slot");
-            if (slotNumber >= 0 && slotNumber < this.itemStacks.length) {
-                this.itemStacks[slotNumber] = ItemStack.fromTag(dataForOneSlot);
+            Arrays.fill(itemStacks, ItemStack.EMPTY); // set all slots to empty EMPTY_ITEM
+            for (int i = 0; i < dataForAllSlots.size(); ++i) {
+                CompoundTag dataForOneSlot = dataForAllSlots.getCompound(i);
+                byte slotNumber = dataForOneSlot.getByte("Slot");
+                if (slotNumber >= 0 && slotNumber < this.itemStacks.length) {
+                    this.itemStacks[slotNumber] = ItemStack.fromTag(dataForOneSlot);
+                }
             }
-        }
 
-        // Load everything else. Trim the arrays (or pad with 0) to make sure they have
-        // the correct number of elements
-        ticks = nbt.getInt("ticks");
-        fuel = nbt.getInt("fuel");
-        ownerID = nbt.getUuid("owner_id");
+            // Load everything else. Trim the arrays (or pad with 0) to make sure they have
+            // the correct number of elements
+            ticks = nbt.getInt("ticks");
+            fuel = nbt.getInt("fuel");
+            ownerID = nbt.getUuid("owner_id");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
