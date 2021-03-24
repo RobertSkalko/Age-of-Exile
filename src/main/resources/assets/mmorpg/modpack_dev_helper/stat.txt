@@ -229,7 +229,6 @@ bonus_day_yield
 spell_critical_hit
 blood_user
 fire_dot_damage
-bonus_none_yield
 poison_immunity
 basic_attack_water_dmg_leech_as_health
 bonus_salvaging_yield

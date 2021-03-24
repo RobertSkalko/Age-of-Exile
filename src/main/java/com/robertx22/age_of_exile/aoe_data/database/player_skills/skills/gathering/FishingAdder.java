@@ -50,7 +50,13 @@ public class FishingAdder {
                         req = BonusRequirement.MOUNTAIN_BIOME;
                     }
 
-                    DropRewardsBuilder skillDrops = DropRewardsBuilder.of(0.3F, tier, req);
+                    float chance = 0.3F;
+
+                    if (color == FoodExileEffect.EffectColor.PURPLE) {
+                        chance = 0.1F;
+                    }
+
+                    DropRewardsBuilder skillDrops = DropRewardsBuilder.of(chance, tier, req);
                     skillDrops.dropReward(new SkillDropReward(100, rawfish, new MinMax(1, 3)));
                     b.skill.dropTables.add(skillDrops.build());
                 }

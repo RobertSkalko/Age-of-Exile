@@ -20,7 +20,7 @@ public class RawFishItem extends TieredItem {
 
     @Override
     public String locNameForLangFile() {
-        return "Raw " + tier.word + exileEffect.word + " Fish";
+        return "Raw " + tier.word + " " + exileEffect.word + " Fish";
     }
 
     public void generateModel(ItemModelManager manager) {

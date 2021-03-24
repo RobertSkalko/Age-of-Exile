@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 
 public class ModRegistry {
 
+    public static ModRecipeTypes RECIPE_TYPES;
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
@@ -31,6 +32,7 @@ public class ModRegistry {
 
     public static void init() {
 
+        RECIPE_TYPES = new ModRecipeTypes();
         RECIPE_SER = new ModRecipeSerializers();
         REPAIR_KITS = new RepairKitsRegister();
         UNIQUE_GEARS = new UniqueGearItemRegister();

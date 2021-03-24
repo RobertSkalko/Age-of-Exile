@@ -92,7 +92,7 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.swordSweepParticles())
             .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.5F, 1), Elements.Physical, 1.25D, 1.25D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 75D, 0.5D, 0.1D))
-                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(2)))
+                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(1)))
             )
             .build();
 

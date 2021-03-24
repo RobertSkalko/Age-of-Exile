@@ -8,10 +8,10 @@ import java.util.Arrays;
 
 public enum SkillItemTier {
 
-    TIER0("Spiritual", LevelRanges.STARTER, 0, 0, 1, Formatting.YELLOW, 60 * 2, 10),
-    TIER1("Celestial", LevelRanges.LOW, 0.2F, 1, 1.25F, Formatting.AQUA, 60 * 3, 15),
-    TIER2("Empyrean", LevelRanges.MIDDLE, 0.4F, 2, 1.5F, Formatting.GOLD, 60 * 5, 20),
-    TIER3("Angelic", LevelRanges.HIGH, 0.6F, 3, 1.75F, Formatting.LIGHT_PURPLE, 60 * 7, 25),
+    TIER0("Spiritual", LevelRanges.STARTER, 0, 0, 1, Formatting.YELLOW, 60 * 5, 10),
+    TIER1("Celestial", LevelRanges.LOW, 0.2F, 1, 1.25F, Formatting.AQUA, 60 * 6, 15),
+    TIER2("Empyrean", LevelRanges.MIDDLE, 0.4F, 2, 1.5F, Formatting.GOLD, 60 * 7, 20),
+    TIER3("Angelic", LevelRanges.HIGH, 0.6F, 3, 1.75F, Formatting.LIGHT_PURPLE, 60 * 8, 25),
     TIER4("Divine", LevelRanges.ENDGAME, 0.8F, 4, 2, Formatting.DARK_PURPLE, 60 * 10, 30);
 
     SkillItemTier(String word, LevelRange levelRange, float lvl_req, int tier, float statMulti, Formatting format, int durationseconds, float percent_healed) {

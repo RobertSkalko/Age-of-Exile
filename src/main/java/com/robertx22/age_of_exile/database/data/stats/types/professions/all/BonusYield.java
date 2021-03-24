@@ -56,7 +56,9 @@ public class BonusYield extends Stat implements IGenerated<Stat> {
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
         for (BonusRequirement r : BonusRequirement.values()) {
-            list.add(new BonusYield(r));
+            if (r != BonusRequirement.NONE) {
+                list.add(new BonusYield(r));
+            }
         }
         return list;
     }
