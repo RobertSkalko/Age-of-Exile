@@ -24,23 +24,8 @@ import net.minecraft.util.math.Vec3d;
 
 public class TileGearModify extends BaseModificationStation {
 
-    @Override
-    public boolean isAutomatable() {
-        return false;
-    }
-
-    @Override
-    public boolean isItemValidInput(ItemStack stack) {
-        return true;
-    }
-
     public enum ModifyResult {
         BREAK, SUCCESS, NONE
-    }
-
-    @Override
-    public boolean isOutputSlot(int slot) {
-        return false;
     }
 
     public ResultItem getSmeltingResultForItem() {
@@ -110,13 +95,8 @@ public class TileGearModify extends BaseModificationStation {
         itemStacks[0] = stack;
     }
 
-    private static final short COOK_TIME_FOR_COMPLETION = 80; // vanilla value is 200 = 10 seconds
-
     public TileGearModify() {
-        super(ModRegistry.BLOCK_ENTITIES.GEAR_MODIFY);
-        itemStacks = new ItemStack[2];
-        clear();
-
+        super(ModRegistry.BLOCK_ENTITIES.GEAR_MODIFY, 2);
     }
 
     public static class ResultItem {

@@ -25,25 +25,9 @@ public class TileGearRepair extends BaseModificationStation {
         return itemStacks[1];
     }
 
-    @Override
-    public boolean isAutomatable() {
-        return true;
-    }
-
-    @Override
-    public boolean isItemValidInput(ItemStack stack) {
-        return true;
-    }
-
-    @Override
-    public boolean isOutputSlot(int slot) {
-        return false;
-    }
-
     public TileGearRepair() {
-        super(ModRegistry.BLOCK_ENTITIES.GEAR_REPAIR);
-        itemStacks = new ItemStack[2];
-        clear();
+        super(ModRegistry.BLOCK_ENTITIES.GEAR_REPAIR, 2);
+
     }
 
     @Override

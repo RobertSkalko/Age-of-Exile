@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
@@ -43,7 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileGearSalvage extends BaseModificationStation {
+public class TileGearSalvage extends BaseModificationStation implements IAutomatable {
 
     public static List<Integer> INPUT_SLOTS = Arrays.asList(0, 1, 2, 3, 4);
     public static List<Integer> OUTPUT_SLOTS =
@@ -55,18 +56,18 @@ public class TileGearSalvage extends BaseModificationStation {
     public static int TOTAL_SLOTS_COUNT = INPUT_SLOTS.size() + OUTPUT_SLOTS.size();
 
     @Override
-    public List<Integer> inputSlots() {
+    public List<Integer> getInputSlots() {
         return INPUT_SLOTS;
     }
 
     @Override
-    public boolean isAutomatable() {
-        return true;
+    public List<Integer> getOutputSlots() {
+        return OUTPUT_SLOTS;
     }
 
     @Override
-    public boolean isOutputSlot(int slot) {
-        return OUTPUT_SLOTS.contains(slot);
+    public List<Integer> getFuelSlots() {
+        return Arrays.asList();
     }
 
     public static List<ItemStack> getSmeltingResultForItem(ItemStack st) {
@@ -95,9 +96,8 @@ public class TileGearSalvage extends BaseModificationStation {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearSalvage() {
-        super(ModRegistry.BLOCK_ENTITIES.GEAR_SALVAGE);
-        itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
-        clear();
+        super(ModRegistry.BLOCK_ENTITIES.GEAR_SALVAGE, TOTAL_SLOTS_COUNT);
+
     }
 
     boolean outputsHaveEmptySlots() {
@@ -229,7 +229,7 @@ public class TileGearSalvage extends BaseModificationStation {
     }
 
     @Override
-    public boolean isItemValidInput(ItemStack stack) {
+    public boolean isValidInput(ItemStack stack) {
         return this.getSmeltingResultForItem(stack)
             .stream()
             .anyMatch(x -> !x.isEmpty());
@@ -251,8 +251,7 @@ public class TileGearSalvage extends BaseModificationStation {
 
         boolean sal = false;
 
-        for (int i = 0; i < this.inputSlots()
-            .size(); i++) {
+        for (int i = 0; i < INPUT_SLOTS.size(); i++) {
             if (this.salvage()) {
 
                 sal = true;

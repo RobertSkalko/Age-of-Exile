@@ -5,6 +5,8 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackScreen;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffScreen;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingContainer;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingScreen;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.ContainerGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.GuiGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.ContainerGearRepair;
@@ -28,6 +30,7 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<ContainerGearSalvage>registerFactory(ModRegistry.CONTAINERS.GEAR_SALVAGE, x -> new GuiGearSalvage(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<SocketStationContainer>registerFactory(ModRegistry.CONTAINERS.GEAR_SOCKET, x -> new SocketStationGui(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<ScribeBuffContainer>registerFactory(ModRegistry.CONTAINERS.SCRIBE_BUFF, x -> new ScribeBuffScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<CookingContainer>registerFactory(ModRegistry.CONTAINERS.COOKING_STATION, x -> new CookingScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
 
         ScreenRegistry.register(ModRegistry.CONTAINERS.BACKPACK_TYPE, BackpackScreen::new);
         ScreenRegistry.register(ModRegistry.CONTAINERS.SKILL_GEMS_TYPE, SkillGemsScreen::new);

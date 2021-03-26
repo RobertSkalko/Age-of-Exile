@@ -33,8 +33,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
 
     public Part affixes;
 
-    // public Part sockets = new GearRarity.Part(0, 0, 0);
-
     public int max_worn_at_once = -1;
 
     public boolean hasMaxWornRestriction() {
@@ -45,6 +43,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public MinMax affix_stat_percents = new MinMax(0, 100);
     public MinMax unique_stat_percents = new MinMax(0, 100);
     public MinMax base_stat_percents = new MinMax(0, 100);
+    public MinMax essence_per_sal = new MinMax(1, 1);
 
     public float item_tier_power;
     public float item_value_multi;

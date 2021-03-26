@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
+import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -84,6 +85,7 @@ public enum SlashRegistryType {
     RANDOM_SKILL_GEM_STATS("random_skill_gem_stats", 25, RandomSkillGemStats.SERIALIZER, SyncTime.ON_LOGIN),
     SALVAGE_RECIPE("salvage_recipe", 27, SalvageRecipe.SERIALIZER, SyncTime.ON_LOGIN),
     RACES("races", 28, PlayerRace.SERIALIZER, SyncTime.ON_LOGIN),
+    CRAFTING_REQ("crafting_req", 30, CraftingReq.SERIALIZER, SyncTime.ON_LOGIN),
     SCROLL_BUFFS("scroll_buffs", 29, ScrollBuff.SERIALIZER, SyncTime.ON_LOGIN),
     GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 

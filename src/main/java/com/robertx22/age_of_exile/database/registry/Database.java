@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
+import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
@@ -235,6 +236,10 @@ public class Database {
         return getRegistry(SlashRegistryType.PLAYER_SKILLS);
     }
 
+    public static SlashRegistryContainer<CraftingReq> ItemCraftReq() {
+        return getRegistry(SlashRegistryType.CRAFTING_REQ);
+    }
+
     public static SlashRegistryContainer<Stat> Stats() {
         return getRegistry(SlashRegistryType.STAT);
     }
@@ -354,6 +359,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GAME_BALANCE, new GameBalanceConfig()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SALVAGE_RECIPE, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RACES, new PlayerRace()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.CRAFTING_REQ, new CraftingReq()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SCROLL_BUFFS, new ScrollBuff()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()

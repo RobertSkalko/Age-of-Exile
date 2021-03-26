@@ -55,6 +55,10 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
         return this.data.getDataFor(skill);
     }
 
+    public PlayerSkillData getDataFor(String id) {
+        return this.data.getDataFor(id);
+    }
+
     public Identifier getBackGroundTextureFor(PlayerSkillEnum se) {
         int lvl = getLevel(se);
         float multi = LevelUtils.getMaxLevelMultiplier(lvl);

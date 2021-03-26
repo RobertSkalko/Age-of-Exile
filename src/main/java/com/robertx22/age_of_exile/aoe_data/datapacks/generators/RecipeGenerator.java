@@ -7,6 +7,8 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.player_skills.recipe_types.IStationRecipe;
+import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import joptsimple.internal.Strings;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancement.criterion.EnchantedItemCriterion;
@@ -101,6 +103,17 @@ public class RecipeGenerator {
             if (item instanceof IShapelessRecipe) {
                 IShapelessRecipe sr = (IShapelessRecipe) item;
                 ShapelessRecipeJsonFactory srec = sr.getRecipe();
+                if (srec != null) {
+                    try {
+                        srec.offerTo(consumer);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if (item instanceof IStationRecipe) {
+                IStationRecipe sr = (IStationRecipe) item;
+                StationShapelessFactory srec = sr.getStationRecipe();
                 if (srec != null) {
                     try {
                         srec.offerTo(consumer);

@@ -5,16 +5,16 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ModelHelper;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
+import com.robertx22.age_of_exile.player_skills.recipe_types.IStationRecipe;
+import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoModel, IShapelessRecipe {
+public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoModel, IStationRecipe {
 
     public FoodType type;
     public FoodExileEffect exileEffect;
@@ -93,8 +93,8 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
+    public StationShapelessFactory getStationRecipe() {
+        StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.FOOD, this);
         fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
         fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
         fac.input(type.getCraftItem(tier, exileEffect.color));

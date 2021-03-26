@@ -37,6 +37,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.*;
@@ -167,13 +168,17 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                     float secWaited = (float) (source.age - source.getLastAttackTime()) / 20F;
 
-                    if (secWaited > atkpersec) {
-                        secWaited = atkpersec;
-                    }
+                    float secNeededToWaitForFull = 1F / atkpersec;
 
-                    cool = secWaited / atkpersec;
+                    cool = secWaited / secNeededToWaitForFull;
+
+                    cool = MathHelper.clamp(cool, 0F, 1F);
 
                     dmg *= cool;
+
+                    if (cool < 1) { // TODO
+                        this.cancelDamage();
+                    }
 
                 }
             }

@@ -7,6 +7,7 @@ import java.util.Locale;
 
 public enum Words implements IAutoLocName {
     DidYouKnow("Did you know?"),
+    CookingDesc("Cooking is about creating foods that give helpful buffs to help you in your journey! Farming provides wheat, and Fishing provides fish."),
     InscribingDesc("Inscribing is about using words of wisdom to produce beneficial items. Paper is enchanted with ink to produce scrolls that buff you. Chalk is used to write on glyphs to create defensive glyphs. "),
     SalvagingDesc("Salvaging is about turning useless gear into essence, a material that's useful for many things."),
     FishingDesc("Fishing is the simplest profession. You catch fish and get experience. Sometimes you might get important materials like ink, which is used in other professions. You can also catch different fish in different biomes."),

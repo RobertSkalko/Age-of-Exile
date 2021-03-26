@@ -3,10 +3,11 @@ package com.robertx22.age_of_exile.player_skills.recipe_types;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
@@ -17,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.Iterator;
 
-public class FoodShapeless implements CraftingRecipe {
+public class FoodShapeless implements Recipe<Inventory> {
     private final Identifier id;
     private final String group;
     private final ItemStack output;
@@ -30,12 +31,17 @@ public class FoodShapeless implements CraftingRecipe {
         this.input = input;
     }
 
+    @Override
+    public RecipeType<?> getType() {
+        return ModRegistry.RECIPE_TYPES.FOOD_RECIPE;
+    }
+
     public Identifier getId() {
         return this.id;
     }
 
     public RecipeSerializer<?> getSerializer() {
-        return RecipeSerializer.SHAPELESS;
+        return ModRegistry.RECIPE_SER.FOOD;
     }
 
     @Environment(EnvType.CLIENT)
@@ -51,7 +57,7 @@ public class FoodShapeless implements CraftingRecipe {
         return this.input;
     }
 
-    public boolean matches(CraftingInventory craftingInventory, World world) {
+    public boolean matches(Inventory craftingInventory, World world) {
         RecipeFinder recipeFinder = new RecipeFinder();
         int i = 0;
 
@@ -66,7 +72,7 @@ public class FoodShapeless implements CraftingRecipe {
         return i == this.input.size() && recipeFinder.findRecipe(this, (IntList) null);
     }
 
-    public ItemStack craft(CraftingInventory craftingInventory) {
+    public ItemStack craft(Inventory craftingInventory) {
         return this.output.copy();
     }
 

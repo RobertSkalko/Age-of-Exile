@@ -66,6 +66,7 @@ convert_thunder_to_phys
 all_nature_damage
 blood
 attack_thunder_dmg_leech_as_blood
+bonus_cooking_yield
 dot_physical_dmg_leech_as_mana
 chance_of_poison
 mana
@@ -183,6 +184,7 @@ bonus_exp_for_t2_mob
 ele_axe_damage
 thunder_focus
 all_physical_dmg_leech_as_mana
+bonus_cooking_exp
 red_mana_reserved
 water_weapon_damage
 all_thunder_damage

@@ -20,6 +20,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         common.weight = 6000;
         common.item_tier_power = 1;
         common.item_value_multi = 1;
+        common.essence_per_sal = new MinMax(1, 1);
         common.higher_rar = IRarity.MAGICAL_ID;
         common.setCommonFields();
         common.addToSerializables();
@@ -34,6 +35,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         magical.affixes = new GearRarity.Part(1, 2, 15);
         magical.weight = 2500;
         magical.item_tier_power = 1.25F;
+        magical.essence_per_sal = new MinMax(1, 2);
         magical.item_value_multi = 1.25F;
         magical.higher_rar = IRarity.RARE_ID;
         magical.setMagicalFields();
@@ -45,6 +47,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         rare.stat_req_multi = 0.5F;
         rare.default_stat_percents = new MinMax(5, 100);
         rare.affix_stat_percents = new MinMax(70, 100);
+        rare.essence_per_sal = new MinMax(2, 2);
         rare.affixes = new GearRarity.Part(2, 3, 15);
         rare.weight = 1500;
         rare.item_tier_power = 1.5F;
@@ -61,6 +64,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         epic.affix_stat_percents = new MinMax(20, 100);
         epic.affixes = new GearRarity.Part(3, 4, 15);
         epic.weight = 400;
+        epic.essence_per_sal = new MinMax(2, 3);
         epic.item_tier_power = 1.7F;
         epic.item_value_multi = 1.7F;
         epic.higher_rar = IRarity.LEGENDARY_ID;
@@ -76,6 +80,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         legendary.affixes = new GearRarity.Part(4, 5, 15);
         legendary.weight = 100;
         legendary.item_tier_power = 2F;
+        legendary.essence_per_sal = new MinMax(3, 3);
         legendary.item_value_multi = 2F;
         legendary.higher_rar = IRarity.MYTHIC_ID;
         legendary.announce_in_chat = true;
@@ -90,6 +95,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mythic.affix_stat_percents = new MinMax(40, 100);
         mythic.affixes = new GearRarity.Part(5, 6, 15);
         mythic.weight = 20;
+        mythic.essence_per_sal = new MinMax(5, 5);
         mythic.item_tier_power = 2.5F;
         mythic.item_value_multi = 3F;
         mythic.announce_in_chat = true;
@@ -105,6 +111,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mi.weight = 0;
         mi.affixes = new GearRarity.Part(1, 2, 50);
         mi.item_tier_power = 1.5F;
+        mi.essence_per_sal = new MinMax(2, 3);
         mi.item_value_multi = 1.5F;
         mi.special_spawn_chance = 3;
         mi.is_unique_item = true;
@@ -119,6 +126,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         unique.weight = 0;
         unique.item_tier_power = 2;
         unique.item_value_multi = 2;
+        unique.essence_per_sal = new MinMax(5, 5);
         unique.setUniqueFields();
         unique.addToSerializables();
         unique.special_spawn_chest_bonus_chance = 1;

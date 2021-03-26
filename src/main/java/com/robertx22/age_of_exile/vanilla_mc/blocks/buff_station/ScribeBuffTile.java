@@ -30,9 +30,7 @@ import java.util.Random;
 public class ScribeBuffTile extends BaseModificationStation {
 
     public ScribeBuffTile() {
-        super(ModRegistry.BLOCK_ENTITIES.SCRIBE_BUFF);
-        this.itemStacks = new ItemStack[ScribeBuffContainer.SCRIBE_BUFF_SLOT_COUNT];
-        this.clear();
+        super(ModRegistry.BLOCK_ENTITIES.SCRIBE_BUFF, ScribeBuffContainer.SCRIBE_BUFF_SLOT_COUNT);
     }
 
     public static int PAPER_SLOT = 0;
@@ -120,21 +118,6 @@ public class ScribeBuffTile extends BaseModificationStation {
         }
 
         return true;
-    }
-
-    @Override
-    public boolean isItemValidInput(ItemStack itemStack) {
-        return true;
-    }
-
-    @Override
-    public boolean isAutomatable() {
-        return false;
-    }
-
-    @Override
-    public boolean isOutputSlot(int i) {
-        return false;
     }
 
     @Override

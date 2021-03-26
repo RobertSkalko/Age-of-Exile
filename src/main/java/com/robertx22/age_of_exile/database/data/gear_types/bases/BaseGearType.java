@@ -19,14 +19,12 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
@@ -172,30 +170,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     }
 
     public final float getAttacksPerSecondForTooltip(GearItemData gear) {
-        return getAttacksPerSecondForTooltip(gear.GetAllStats());
-    }
-
-    public final float getAttacksPerSecondForTooltip(List<ExactStatData> stats) {
-        // only show bonus atk speed from this item
-
-        float speed = attacksPerSecond;
-
-        for (ExactStatData x : stats) {
-            if (x.getStat() instanceof AttackSpeed) {
-                if (x.getType() == ModType.FLAT) {
-                    speed *= 1F + x.getAverageValue() / 100F;
-                }
-            }
-        }
-        for (ExactStatData x : stats) {
-            if (x.getStat() instanceof AttackSpeed) {
-                if (x.getType() == ModType.LOCAL_INCREASE) {
-                    speed *= 1F + x.getAverageValue() / 100F;
-                }
-            }
-        }
-
-        return speed;
+        return attacksPerSecond;
     }
 
     public final boolean hasUniqueItemVersions() {
@@ -594,6 +569,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         json.addProperty("rar_group", this.rar_group);
         json.addProperty("weapon_type", weaponType().toString());
         json.addProperty("attack_style", style.name());
+        json.addProperty("atk_speed", attacksPerSecond);
 
         return json;
     }
@@ -605,14 +581,20 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
         o.guid = this.getGUIDFromJson(json);
         o.weight = this.getWeightFromJson(json);
+        if (json.has("atk_speed")) {
+            o.attacksPerSecond = json.get("atk_speed")
+                .getAsFloat();
+        }
         o.level_range = LevelRange.SERIALIZER.fromJson(json.getAsJsonObject("level_range"));
         o.stat_reqs = StatRequirement.EMPTY.fromJson(json.getAsJsonObject("stat_req"));
         o.base_stats = JsonUtils.getStats(json, "base_stats");
         o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");
         o.gear_slot = json.get("gear_slot")
             .getAsString();
-        o.rar_group = json.get("rar_group")
-            .getAsString();
+        if (json.has("rar_group")) {
+            o.rar_group = json.get("rar_group")
+                .getAsString();
+        }
 
         try {
             o.style = AttackPlayStyle.valueOf(json.get("attack_style")

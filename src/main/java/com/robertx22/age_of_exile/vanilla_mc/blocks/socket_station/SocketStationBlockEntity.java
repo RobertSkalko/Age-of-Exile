@@ -28,23 +28,8 @@ import java.util.List;
 
 public class SocketStationBlockEntity extends BaseModificationStation {
 
-    @Override
-    public boolean isAutomatable() {
-        return false;
-    }
-
-    @Override
-    public boolean isItemValidInput(ItemStack stack) {
-        return true;
-    }
-
     public enum SocketResult {
         BREAK, SUCCESS, NONE
-    }
-
-    @Override
-    public boolean isOutputSlot(int slot) {
-        return false;
     }
 
     public ResultItem getSmeltingResultForItem() {
@@ -95,9 +80,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
     }
 
     public SocketStationBlockEntity() {
-        super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION);
-        itemStacks = new ItemStack[SocketStationContainer.TOTAL_SLOTS];
-        clear();
+        super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION, SocketStationContainer.TOTAL_SLOTS);
     }
 
     private void clearRunewordShow() {

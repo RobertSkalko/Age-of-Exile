@@ -14,6 +14,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ReiPlugin implements REIPluginV0 {
+
     public static final Identifier FOOD = Ref.id("food");
 
     @Override
@@ -30,8 +31,7 @@ public class ReiPlugin implements REIPluginV0 {
 
     @Override
     public void registerPluginCategories(RecipeHelper recipeHelper) {
-        recipeHelper.registerCategories(
-            new MyShapelessCategory(FOOD, ModRegistry.MISC_ITEMS.SCRIBE_BUFF_BLOCK));
+        recipeHelper.registerCategories(new MyShapelessCategory(FOOD, ModRegistry.MISC_ITEMS.SCRIBE_BUFF_BLOCK));
     }
 
     @Override

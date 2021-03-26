@@ -19,7 +19,7 @@ public enum PlayerSkillEnum {
     SALVAGING("salvaging", null, Words.Salvaging, Words.SalvagingDesc, Formatting.LIGHT_PURPLE, null, () -> Items.BOOK),
     //ALCHEMY("alchemy", Words.Alchemy, Formatting.LIGHT_PURPLE, null, () -> Items.BLAZE_POWDER),
     INSCRIBING("inscribing", null, Words.Inscribing, Words.InscribingDesc, Formatting.AQUA, null, () -> Items.INK_SAC),
-    //COOKING("cooking", Words.Cooking, Formatting.RED, null, () -> Items.BREAD),
+    COOKING("cooking", null, Words.Cooking, Words.CookingDesc, Formatting.RED, null, () -> Items.BREAD),
     FISHING("fishing", null, Words.Fishing, Words.FishingDesc, Formatting.BLUE, EnchantmentTarget.FISHING_ROD, () -> Items.FISHING_ROD),
     EXPLORATION("exploration", null, Words.Exploration, Words.ExplorationDesc, Formatting.GOLD, null, () -> Items.CHEST),
     //TINKERING("tinkering", Words.Tinkering, Formatting.GREEN, null, () -> Items.CRAFTING_TABLE),

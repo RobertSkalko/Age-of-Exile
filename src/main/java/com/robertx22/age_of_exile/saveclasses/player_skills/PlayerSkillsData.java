@@ -22,6 +22,20 @@ public class PlayerSkillsData implements IApplyableStats {
     @Store
     private HashMap<PlayerSkillEnum, PlayerSkillData> map = new HashMap<>();
 
+    public PlayerSkillData getDataFor(String id) {
+
+        PlayerSkillEnum skill = PlayerSkillEnum.NONE;
+
+        for (PlayerSkill x : Database.PlayerSkills()
+            .getList()) {
+            if (x.id.equals(id)) {
+                skill = x.type_enum;
+            }
+        }
+        return getDataFor(skill);
+
+    }
+
     public PlayerSkillData getDataFor(PlayerSkillEnum skill) {
 
         if (!map.containsKey(skill)) {

@@ -78,7 +78,6 @@ public class CommonInit implements ModInitializer {
         });
 
 
-
         /*
         Armor.getInstance()
             .logUsableAmountTests();

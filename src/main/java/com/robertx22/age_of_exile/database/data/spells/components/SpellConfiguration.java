@@ -16,8 +16,8 @@ public class SpellConfiguration {
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public int mana_cost;
     public int times_to_cast = 1;
-    private int cast_time_ticks;
-    public int cooldown_ticks;
+    private int cast_time_ticks = 0;
+    public int cooldown_ticks = 20;
     public AttackPlayStyle style = AttackPlayStyle.MAGIC;
     public PassiveConfig passive_config = new PassiveConfig();
     public List<SkillGemTag> tags = new ArrayList<>();

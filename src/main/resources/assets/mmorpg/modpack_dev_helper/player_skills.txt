@@ -6,3 +6,4 @@ farming
 fishing
 inscribing
 mining
+cooking

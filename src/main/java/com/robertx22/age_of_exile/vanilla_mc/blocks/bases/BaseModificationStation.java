@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 
-import com.robertx22.library_of_exile.tile_bases.IOBlock;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -18,12 +18,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class BaseModificationStation extends BlockEntity implements IOBlock, SidedInventory, Tickable, NamedScreenHandlerFactory {
+public abstract class BaseModificationStation extends BlockEntity implements SidedInventory, Tickable, NamedScreenHandlerFactory {
 
     static UUID EMPTY_ID = UUID.fromString("3f715e84-4318-4025-9f23-875e3738c19b");
 
-    public BaseModificationStation(BlockEntityType<?> tileEntityTypeIn) {
+    public BaseModificationStation(BlockEntityType<?> tileEntityTypeIn, int slots) {
         super(tileEntityTypeIn);
+        itemStacks = new ItemStack[slots];
+        clear();
     }
 
     public abstract boolean modifyItem(int number, PlayerEntity player);
@@ -43,10 +45,14 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
         return en;
     }
 
-    // OVERRIDE IF AUTOMATABLE
-    @Override
-    public List<Integer> inputSlots() {
-        return Arrays.asList();
+    // todo allow stacking items
+    public boolean canPushTo(int index, ItemStack stack) {
+        return itemStacks[index].isEmpty();
+    }
+
+    // todo allow stacking items
+    public void pushTo(int index, ItemStack stack) {
+        itemStacks[index] = stack;
     }
 
     @Override
@@ -95,24 +101,32 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
         return slots;
     }
 
-    public boolean containsSlot(int index) {
-        return inputSlots().contains(index);
-    }
-
     @Override
-    public boolean canInsert(int index, ItemStack itemStackIn, Direction direction) {
-        if (this.isAutomatable() && containsSlot(index)) {
-            // don't insert shit
-            return this.isItemValidInput(itemStackIn);
+    public boolean canInsert(int index, ItemStack stack, Direction direction) {
+
+        if (this instanceof IAutomatable) {
+            IAutomatable auto = (IAutomatable) this;
+            if (direction.getAxis()
+                .isVertical() && auto.isInputSlot(index)) {
+                // don't insert shit
+                return auto.isValidInput(stack);
+            }
+            if (direction.getAxis()
+                .isHorizontal()) {
+                // don't insert shit
+                if (auto.isFuelSlot(index)) {
+                    return auto.isValidFuel(stack);
+                }
+            }
         }
         return false;
     }
 
     @Override
     public boolean canExtract(int index, ItemStack stack, Direction direction) {
-
-        if (this.isAutomatable()) {
-            return isOutputSlot(index);
+        if (this instanceof IAutomatable) {
+            IAutomatable auto = (IAutomatable) this;
+            return auto.isOutputSlot(index) && auto.isValidOuput(stack);
         }
         return false;
     }
@@ -189,7 +203,7 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
     // vanilla doesnt call it by itself
     @Override
     public void onOpen(PlayerEntity player) {
-        if (ownerID.equals(EMPTY_ID)) {
+        if (ownerID.equals(player.getUuid()) == false) {
             ownerID = player.getUuid();
         }
 
@@ -289,7 +303,9 @@ public abstract class BaseModificationStation extends BlockEntity implements IOB
             // the correct number of elements
             ticks = nbt.getInt("ticks");
             fuel = nbt.getInt("fuel");
-            ownerID = nbt.getUuid("owner_id");
+            if (nbt.contains("owner_id")) {
+                ownerID = nbt.getUuid("owner_id");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

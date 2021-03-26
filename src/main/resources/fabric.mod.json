@@ -29,8 +29,10 @@
     ],
 	"rei_plugins": [
       "com.robertx22.age_of_exile.mmorpg.registers.client.ReiPlugin"
-	]
-	
+	],
+	"rei_containers": [
+      "com.robertx22.age_of_exile.mmorpg.registers.ReiContainers"
+    ]	
   },
   "mixins": [
     "mmorpg.mixins.json"

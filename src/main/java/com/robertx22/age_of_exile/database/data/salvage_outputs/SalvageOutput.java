@@ -28,7 +28,7 @@ public class SalvageOutput implements ISerializedRegistryEntry<SalvageOutput>, I
         ItemStack stack = new ItemStack(RandomUtils.weightedRandom(outputs)
             .getItem());
         stack.setCount(Math.max(1, (int) gear.getRarity()
-            .valueMulti()));
+            .essence_per_sal.random()));
 
         List<ItemStack> list = new ArrayList<>();
         list.add(stack);
