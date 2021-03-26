@@ -116,6 +116,8 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp += (-1F + Load.favor(killer)
             .getRank().exp_multi) * baseexp;
 
+        exp += (-1F + Database.getDimensionConfig(victim.world).exp_multi) * baseexp;
+
         exp += (-1F + LootUtils.getMobHealthBasedLootMulti(mobData, killer)) * baseexp;
 
         exp += (-1F + killerData.getUnit()

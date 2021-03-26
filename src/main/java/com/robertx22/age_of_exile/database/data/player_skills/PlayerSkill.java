@@ -52,6 +52,18 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
         return Ref.id("textures/gui/skills/icons/" + id + ".png");
     }
 
+    public int getExpForCraft(ItemStack stack, PlayerEntity player) {
+
+        Optional<ItemCraftExp> opt = item_craft_exp.stream()
+            .filter(x -> x.getItem() == stack.getItem())
+            .findAny();
+
+        if (opt.isPresent()) {
+            return opt.get().exp;
+        }
+        return 0;
+    }
+
     public List<SkillStatReward> getStatRewards() {
         if (cachedStatRewards == null) {
             List<SkillStatReward> list = new ArrayList<>(stat_rewards);
@@ -68,7 +80,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
         if (this.type_enum == PlayerSkillEnum.FISHING) {
             if (player.world.isRaining()) {
-                exp *= 1.25F;
+                exp *= 1.2F;
             }
         }
 
@@ -106,9 +118,6 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
                 if (dropTable.req.isAllowed(player.world, player.getBlockPos())) {
                     float chance = dropTable.loot_chance_per_action_exp * expForAction;
-
-                    //  float chanceMulti = BonusSkillLootEnchant.getBonusLootChanceMulti(skills.player, this.type_enum);
-                    // chance *= chanceMulti;
 
                     if (RandomUtils.roll(chance)) {
                         List<SkillDropReward> possible = dropTable.drop_rewards

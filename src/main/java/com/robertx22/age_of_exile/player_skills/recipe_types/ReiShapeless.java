@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.recipe_types;
 
+import com.robertx22.age_of_exile.player_skills.recipe_types.base.StationShapeless;
 import me.shedaniel.rei.api.EntryStack;
 import me.shedaniel.rei.plugin.crafting.DefaultCraftingDisplay;
 import net.minecraft.recipe.Recipe;
@@ -11,11 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReiShapeless implements DefaultCraftingDisplay {
-    private FoodShapeless display;
+    private StationShapeless display;
     private List<List<EntryStack>> input;
     private List<EntryStack> output;
 
-    public ReiShapeless(FoodShapeless recipe) {
+    public ReiShapeless(StationShapeless recipe) {
         this.display = recipe;
         this.input = EntryStack.ofIngredients(recipe.getPreviewInputs());
         this.output = Collections.singletonList(EntryStack.create(recipe.getOutput()));

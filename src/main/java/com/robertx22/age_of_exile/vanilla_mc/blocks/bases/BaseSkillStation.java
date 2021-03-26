@@ -1,0 +1,110 @@
+package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
+
+import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
+import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
+import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.registry.Registry;
+
+public abstract class BaseSkillStation extends BaseModificationStation implements IAutomatable, ISmeltingStation {
+
+    PlayerSkillEnum skill;
+    RecipeType<? extends Recipe<Inventory>> recipeType;
+
+    public BaseSkillStation(RecipeType<? extends Recipe<Inventory>> recipeType, PlayerSkillEnum skill, BlockEntityType<?> type, int slots) {
+        super(type, slots);
+        this.skill = skill;
+        this.recipeType = recipeType;
+    }
+
+    @Override
+    public boolean modifyItem(int number, PlayerEntity player) {
+        return false;
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return new LiteralText("");
+    }
+
+    @Override
+    public void onSmeltTick() {
+
+        PlayerEntity player = getOwner();
+
+        if (player != null) {
+
+            ItemStack[] craftinv = new ItemStack[getInputSlots().size()];
+
+            int i = 0;
+            for (Integer INPUT_SLOT : getInputSlots()) {
+                craftinv[i] = itemStacks[INPUT_SLOT];
+                i++;
+            }
+
+            Inventory inv = new SimpleInventory(craftinv);
+
+            Recipe<Inventory> recipe = this.world.getRecipeManager()
+                .getFirstMatch(recipeType, inv, this.world)
+                .orElse(null);
+
+            if (recipe != null) {
+
+                ItemStack output = recipe.craft(inv);
+
+                CraftingReq req = null;
+
+                String key = Registry.ITEM.getId(output.getItem())
+                    .toString();
+
+                if (Database.ItemCraftReq()
+                    .isRegistered(key)) {
+                    req = Database.ItemCraftReq()
+                        .get(key);
+                }
+
+                if (req != null) {
+                    if (!req.meets(player)) {
+                        return;
+                    }
+                }
+
+                for (Integer x : getOutputSlots()) {
+                    if (canPushTo(x, output)) {
+
+                        getInputSlots().stream()
+                            .forEach(e -> {
+                                itemStacks[e].decrement(1);
+                            });
+
+                        PlayerSkill skill = Database.PlayerSkills()
+                            .get(this.skill.id);
+
+                        PlayerSkills skills = Load.playerSkills(player);
+
+                        int exp = skill.getExpForCraft(output, player);
+
+                        skills.addExp(skill.type_enum, exp);
+
+                        pushTo(x, output);
+                    }
+                }
+            }
+
+        }
+
+    }
+
+}

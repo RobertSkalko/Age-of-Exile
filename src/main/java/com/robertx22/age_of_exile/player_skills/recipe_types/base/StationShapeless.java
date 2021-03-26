@@ -1,9 +1,8 @@
-package com.robertx22.age_of_exile.player_skills.recipe_types;
+package com.robertx22.age_of_exile.player_skills.recipe_types.base;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,30 +17,21 @@ import net.minecraft.world.World;
 
 import java.util.Iterator;
 
-public class FoodShapeless implements Recipe<Inventory> {
-    private final Identifier id;
-    private final String group;
-    private final ItemStack output;
-    private final DefaultedList<Ingredient> input;
+public abstract class StationShapeless implements Recipe<Inventory> {
+    public final Identifier id;
+    public final String group;
+    public final ItemStack output;
+    public final DefaultedList<Ingredient> input;
 
-    public FoodShapeless(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input) {
+    public StationShapeless(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input) {
         this.id = id;
         this.group = group;
         this.output = output;
         this.input = input;
     }
 
-    @Override
-    public RecipeType<?> getType() {
-        return ModRegistry.RECIPE_TYPES.FOOD_RECIPE;
-    }
-
     public Identifier getId() {
         return this.id;
-    }
-
-    public RecipeSerializer<?> getSerializer() {
-        return ModRegistry.RECIPE_SER.FOOD;
     }
 
     @Environment(EnvType.CLIENT)
@@ -81,8 +71,9 @@ public class FoodShapeless implements Recipe<Inventory> {
         return width * height >= this.input.size();
     }
 
-    public static class Serializer implements RecipeSerializer<FoodShapeless> {
-        public FoodShapeless read(Identifier identifier, JsonObject jsonObject) {
+    public abstract static class Serializer<T extends StationShapeless> implements RecipeSerializer<T> {
+        @Override
+        public T read(Identifier identifier, JsonObject jsonObject) {
             String string = JsonHelper.getString(jsonObject, "group", "");
             DefaultedList<Ingredient> defaultedList = getIngredients(JsonHelper.getArray(jsonObject, "ingredients"));
             if (defaultedList.isEmpty()) {
@@ -91,7 +82,7 @@ public class FoodShapeless implements Recipe<Inventory> {
                 throw new JsonParseException("Too many ingredients for shapeless recipe");
             } else {
                 ItemStack itemStack = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
-                return new FoodShapeless(identifier, string, itemStack, defaultedList);
+                return createNew(identifier, string, itemStack, defaultedList);
             }
         }
 
@@ -108,7 +99,10 @@ public class FoodShapeless implements Recipe<Inventory> {
             return defaultedList;
         }
 
-        public FoodShapeless read(Identifier identifier, PacketByteBuf packetByteBuf) {
+        public abstract T createNew(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input);
+
+        @Override
+        public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
             String string = packetByteBuf.readString(32767);
             int i = packetByteBuf.readVarInt();
             DefaultedList<Ingredient> defaultedList = DefaultedList.ofSize(i, Ingredient.EMPTY);
@@ -118,10 +112,11 @@ public class FoodShapeless implements Recipe<Inventory> {
             }
 
             ItemStack itemStack = packetByteBuf.readItemStack();
-            return new FoodShapeless(identifier, string, itemStack, defaultedList);
+            return createNew(identifier, string, itemStack, defaultedList);
         }
 
-        public void write(PacketByteBuf packetByteBuf, FoodShapeless FoodShapeless) {
+        @Override
+        public void write(PacketByteBuf packetByteBuf, T FoodShapeless) {
             packetByteBuf.writeString(FoodShapeless.group);
             packetByteBuf.writeVarInt(FoodShapeless.input.size());
             Iterator var3 = FoodShapeless.input.iterator();

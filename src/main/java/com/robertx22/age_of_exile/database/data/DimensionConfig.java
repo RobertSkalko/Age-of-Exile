@@ -72,6 +72,7 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
     public int mob_tier = 0;
 
     public float all_drop_multi = 1F;
+    public float exp_multi = 1F;
 
     public float unique_gear_drop_multi = 1F;
 
@@ -113,6 +114,7 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
         json.addProperty("dimension_id", dimension_id);
         json.addProperty("mob_tier", mob_tier);
+        json.addProperty("exp_multi", exp_multi);
         json.addProperty("all_drop_multi", all_drop_multi);
         json.addProperty("mob_lvl_per_distance", mob_lvl_per_distance);
         json.addProperty("unique_gear_drop_multi", unique_gear_drop_multi);
@@ -137,6 +139,10 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
                 .getAsInt();
             config.all_drop_multi = json.get("all_drop_multi")
                 .getAsFloat();
+            if (json.has("exp_multi")) {
+                config.exp_multi = json.get("exp_multi")
+                    .getAsFloat();
+            }
             config.unique_gear_drop_multi = json.get("unique_gear_drop_multi")
                 .getAsFloat();
             config.mob_lvl_per_distance = json.get("mob_lvl_per_distance")

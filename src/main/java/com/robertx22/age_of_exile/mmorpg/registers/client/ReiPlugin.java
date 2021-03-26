@@ -2,9 +2,9 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.player_skills.recipe_types.FoodShapeless;
 import com.robertx22.age_of_exile.player_skills.recipe_types.MyShapelessCategory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.ReiShapeless;
+import com.robertx22.age_of_exile.player_skills.recipe_types.recipe_types.FoodShapeless;
 import me.shedaniel.rei.api.EntryStack;
 import me.shedaniel.rei.api.RecipeHelper;
 import me.shedaniel.rei.api.plugins.REIPluginV0;

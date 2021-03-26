@@ -41,7 +41,14 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
     public UUID ownerID = EMPTY_ID;
 
     public PlayerEntity getOwner() {
-        PlayerEntity en = world.getPlayerByUuid(ownerID);
+        PlayerEntity en = null;
+        try {
+            en = world.getServer()
+                .getPlayerManager()
+                .getPlayer(ownerID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return en;
     }
 
