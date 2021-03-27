@@ -52,6 +52,7 @@ public class ScrollBuffItem extends AutoItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+
         if (user instanceof ServerPlayerEntity) {
 
             try {
@@ -59,6 +60,7 @@ public class ScrollBuffItem extends AutoItem {
                 ScrollBuffData data = getData(stack);
                 ServerPlayerEntity p = (ServerPlayerEntity) user;
                 p.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60));
+
                 Load.Unit(p)
                     .getStatusEffectsData().sb = data;
                 Load.Unit(p)
@@ -70,6 +72,11 @@ public class ScrollBuffItem extends AutoItem {
             }
 
         }
+
+        if (world.isClient) {
+            user.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60));
+        }
+
         return stack;
     }
 

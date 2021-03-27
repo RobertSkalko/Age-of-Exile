@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.library_of_exile.gui.HelpButton;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -34,6 +35,12 @@ public class CookingScreen extends ModificationGui<CookingContainer, CookingTile
         int x = this.x + 58;
         int y = this.y + 16;
 
+    }
+
+    @Override
+    public void renderOther(MatrixStack matrix, int mouseX, int mouseY) {
+        this.renderCookArrow(matrix, this.x + 79, this.y + 44, tile.getCookProgress());
+        this.renderCookFlame(matrix, this.x + 56, this.y + 46, tile.getFuelProgress());
     }
 
 }

@@ -17,6 +17,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.text.LiteralText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,8 @@ public class ScrollBuffData implements ITooltip {
         TooltipUtils.addRequirements(ctx.tooltip, lvl, new StatRequirement(), ctx.data);
 
         getStats().forEach(x -> ctx.tooltip.addAll(x.GetTooltipString(info)));
+
+        ctx.tooltip.add(new LiteralText("1 Min"));
 
         ctx.tooltip.add(TooltipUtils.rarity(getRarity()));
     }

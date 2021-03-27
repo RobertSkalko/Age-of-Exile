@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
@@ -39,8 +40,41 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
         return new LiteralText("");
     }
 
+    public float getCookProgress() {
+        return cook_ticks / (20F * 8F); // todo setup cook time in recipe
+    }
+
+    public float getFuelProgress() {
+        return fuel / 2000F;
+
+    }
+
+    public void burnFuelIfNeeded() {
+        if (!hasFuel()) {
+
+            getFuelSlots().forEach(x -> {
+                ItemStack stack = itemStacks[x];
+
+                int val = FurnaceBlockEntity.createFuelTimeMap()
+                    .getOrDefault(stack.getItem(), 0);
+
+                if (val > 0) {
+                    stack.decrement(1);
+                    fuel += val;
+                }
+            });
+
+        }
+    }
+
+    public boolean hasFuel() {
+        return fuel > 0;
+    }
+
     @Override
     public void onSmeltTick() {
+
+        fuel--;
 
         PlayerEntity player = getOwner();
 
@@ -77,12 +111,30 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
 
                 if (req != null) {
                     if (!req.meets(player)) {
+                        cook_ticks--;
                         return;
                     }
                 }
 
+                burnFuelIfNeeded();
+
+                if (!hasFuel()) {
+                    cook_ticks--;
+                    return;
+                }
+
                 for (Integer x : getOutputSlots()) {
                     if (canPushTo(x, output)) {
+
+                        if (getCookProgress() < 1F) {
+                            cook_ticks++;
+                            fuel--;
+                            return;
+                        } else {
+                            cook_ticks = 0;
+                        }
+
+                        this.expEarned += 1; // todo
 
                         getInputSlots().stream()
                             .forEach(e -> {
@@ -101,8 +153,9 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                         pushTo(x, output);
                     }
                 }
+            } else {
+                cook_ticks--;
             }
-
         }
 
     }

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializable<MobAffix>, IAutoLocName, IApplyableStats {
 
-    List<StatModifier> stats;
+    List<StatModifier> stats = new ArrayList<>();
     String id;
     int weight = 1000;
     public String icon = "";
@@ -118,8 +118,12 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
     @Override
     public List<StatContext> getStatAndContext(LivingEntity en) {
         List<ExactStatData> stats = new ArrayList<>();
-        this.stats.forEach(x -> stats.add(x.ToExactStat(100, Load.Unit(en)
-            .getLevel())));
+        try {
+            this.stats.forEach(x -> stats.add(x.ToExactStat(100, Load.Unit(en)
+                .getLevel())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return Arrays.asList(new SimpleStatCtx(StatContext.StatCtxType.MOB_AFFIX, stats));
     }
 

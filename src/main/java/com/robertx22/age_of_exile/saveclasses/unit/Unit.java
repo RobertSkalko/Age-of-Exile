@@ -219,199 +219,192 @@ public class Unit {
 
     public void recalculateStats(LivingEntity entity, UnitData data, AttackInformation dmgData) {
 
-        if (entity.world.isClient) {
-            return;
-        }
-
-        //data.setEquipsChanged(false);
-
-        if (data.getUnit() == null) {
-            data.setUnit(this);
-        }
-
-        List<GearData> gears = new ArrayList<>();
-        new CollectGearEvent.CollectedGearStacks(entity, gears, dmgData);
-
-        stats.values()
-            .forEach(x -> x.stats.clear());
-        stats.values()
-            .forEach(x -> x.statsInCalc.clear());
-
-        DirtyCheck old = getDirtyCheck();
-
-        List<StatContext> statContexts = new ArrayList<>();
-
-        statContexts.addAll(CommonStatUtils.addPotionStats(entity));
-        statContexts.addAll(CommonStatUtils.addExactCustomStats(entity));
-
-        if (entity instanceof PlayerEntity) {
-            if (data.hasRace()) {
-                data.getRace()
-                    .addStats((PlayerEntity) entity);
-            }
-
-            /*
-            Load.statPoints((PlayerEntity) entity).data.map.entrySet()
-                .forEach(x -> {
-                    float val = x.getValue();
-                    ExactStatData stat = ExactStatData.of(val, val, Database.Stats()
-                        .get(x.getKey()), ModType.FLAT, 1);
-                    statContexts.add(new MiscStatCtx(Arrays.asList(stat)));
-                });
-
-             */
-
-            Load.statPoints((PlayerEntity) entity).data.addStats(data);
-            statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
-            statContexts.addAll(Load.characters((PlayerEntity) entity)
-                .getStats());
-            statContexts.addAll(Load.perks(entity)
-                .getStatAndContext(entity));
-            statContexts.addAll(Load.playerSkills((PlayerEntity) entity)
-                .getStatAndContext(entity));
-            statContexts.addAll(Load.spells(entity)
-                .getStatAndContext(entity));
-            statContexts.add(data.getStatusEffectsData()
-                .getStats(entity));
-        } else {
-            statContexts.addAll(MobStatUtils.getMobBaseStats(data, entity));
-            statContexts.addAll(MobStatUtils.getAffixStats(entity));
-            statContexts.addAll(MobStatUtils.getWorldMultiplierStats(entity));
-            MobStatUtils.increaseMobStatsPerTier(entity, data, this);
-            statContexts.addAll(MobStatUtils.getMobConfigStats(entity, data));
-            ExtraMobRarityAttributes.add(entity, data);
-        }
-
-        statContexts.addAll(addGearStats(gears, entity, data));
-
-        HashMap<StatContext.StatCtxType, List<StatContext>> map = new HashMap<>();
-        for (StatContext.StatCtxType type : StatContext.StatCtxType.values()) {
-            map.put(type, new ArrayList<>());
-        }
-        statContexts.forEach(x -> {
-            map.get(x.type)
-                .add(x);
-        });
-
-        map.forEach((key, value) -> value
-            .forEach(v -> {
-                v.stats.forEach(s -> {
-                    if (s.getStat() instanceof IStatCtxModifier) {
-                        IStatCtxModifier mod = (IStatCtxModifier) s.getStat();
-                        map.get(mod.getCtxTypeNeeded())
-                            .forEach(c -> mod.modify(s, c));
-                    }
-                });
-            }));
-
-        statContexts.forEach(x -> x.stats.forEach(s -> s.applyStats(data)));
-
-        addVanillaHpToStats(entity, data);
-
-        new HashMap<>(getStats().statsInCalc).entrySet()
-            .forEach(x -> {
-                InCalcStatData statdata = x.getValue();
-                Stat stat = x.getValue()
-                    .GetStat();
-                if (stat instanceof ITransferToOtherStats) {
-                    ITransferToOtherStats add = (ITransferToOtherStats) stat;
-                    add.transferStats(data, statdata);
-                }
-            });
-
-        new HashMap<>(getStats().statsInCalc).entrySet()
-            .forEach(x -> {
-                InCalcStatData statdata = x.getValue();
-                Stat stat = x.getValue()
-                    .GetStat();
-                if (stat instanceof ICoreStat) {
-                    ICoreStat add = (ICoreStat) stat;
-                    add.addToOtherStats(data, statdata);
-                }
-            });
-
-        new HashMap<>(getStats().statsInCalc).entrySet()
-            .forEach(x -> {
-                InCalcStatData statdata = x.getValue();
-                Stat stat = x.getValue()
-                    .GetStat();
-                if (stat instanceof IAffectsStats) {
-                    IAffectsStats add = (IAffectsStats) stat;
-                    add.affectStats(data, statdata);
-                }
-            });
-
-        if (entity instanceof PlayerEntity) {
-
-            for (StatContainerType type : StatContainerType.values()) {
-                // different stat containers for each spell with support gems.
-                if (type == StatContainerType.NORMAL) {
-                    this.stats.put(type, getStats());
-                } else {
-
-                    StatContainer copy = getStats().cloneForSpellStats();
-                    stats.put(type, copy);
-
-                    List<SkillGemData> supportGems = Load.spells(entity)
-                        .getSkillGemData()
-                        .getSupportGemsOf(type.place);
-
-                    List<SkillGemData> noGemDuplicateList = new ArrayList<>();
-
-                    Set<String> gemIdSet = new HashSet<>();
-
-                    supportGems.forEach(x -> {
-                        if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
-                            noGemDuplicateList.add(x);
-                            gemIdSet.add(x.id);
-                        }
-
-                    });
-
-                    for (SkillGemData sd : noGemDuplicateList) {
-
-                        if (true || sd.canPlayerUse((PlayerEntity) entity)) {
-                            sd.getSkillGem()
-                                .getConstantStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
-                            sd.getSkillGem()
-                                .getRandomStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
-
-                        }
-                    }
-
-                }
-
-            }
-
-            stats.values()
-                .forEach(x -> x.calculate());
-
-        } else {
-            stats.get(StatContainerType.NORMAL)
-                .calculate();
-        }
-
-        DirtyCheck aftercalc = getDirtyCheck();
-
-        addToVanillaHealth(entity);
-
-        if (old.isDirty(aftercalc)) {
-            if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
+        try {
+            if (entity.world.isClient) {
                 return;
             }
-            Packets.sendToTracking(getUpdatePacketFor(entity, data), entity);
-        }
 
-        if (entity instanceof PlayerEntity) {
-            Packets.sendToClient((PlayerEntity) entity, new EntityUnitPacket(entity));
+            //data.setEquipsChanged(false);
+
+            if (data.getUnit() == null) {
+                data.setUnit(this);
+            }
+
+            List<GearData> gears = new ArrayList<>();
+            new CollectGearEvent.CollectedGearStacks(entity, gears, dmgData);
+
+            stats.values()
+                .forEach(x -> x.stats.clear());
+            stats.values()
+                .forEach(x -> x.statsInCalc.clear());
+
+            DirtyCheck old = getDirtyCheck();
+
+            List<StatContext> statContexts = new ArrayList<>();
+
+            statContexts.addAll(CommonStatUtils.addPotionStats(entity));
+            statContexts.addAll(CommonStatUtils.addExactCustomStats(entity));
+
+            if (entity instanceof PlayerEntity) {
+                if (data.hasRace()) {
+                    data.getRace()
+                        .addStats((PlayerEntity) entity);
+                }
+
+                Load.statPoints((PlayerEntity) entity).data.addStats(data);
+                statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
+                statContexts.addAll(Load.characters((PlayerEntity) entity)
+                    .getStats());
+                statContexts.addAll(Load.perks(entity)
+                    .getStatAndContext(entity));
+                statContexts.addAll(Load.playerSkills((PlayerEntity) entity)
+                    .getStatAndContext(entity));
+                statContexts.addAll(Load.spells(entity)
+                    .getStatAndContext(entity));
+                statContexts.add(data.getStatusEffectsData()
+                    .getStats(entity));
+            } else {
+                statContexts.addAll(MobStatUtils.getMobBaseStats(data, entity));
+                statContexts.addAll(MobStatUtils.getAffixStats(entity));
+                statContexts.addAll(MobStatUtils.getWorldMultiplierStats(entity));
+                MobStatUtils.increaseMobStatsPerTier(entity, data, this);
+                statContexts.addAll(MobStatUtils.getMobConfigStats(entity, data));
+                ExtraMobRarityAttributes.add(entity, data);
+            }
+
+            statContexts.addAll(addGearStats(gears, entity, data));
+
+            HashMap<StatContext.StatCtxType, List<StatContext>> map = new HashMap<>();
+            for (StatContext.StatCtxType type : StatContext.StatCtxType.values()) {
+                map.put(type, new ArrayList<>());
+            }
+            statContexts.forEach(x -> {
+                map.get(x.type)
+                    .add(x);
+            });
+
+            map.forEach((key, value) -> value
+                .forEach(v -> {
+                    v.stats.forEach(s -> {
+                        if (s.getStat() instanceof IStatCtxModifier) {
+                            IStatCtxModifier mod = (IStatCtxModifier) s.getStat();
+                            map.get(mod.getCtxTypeNeeded())
+                                .forEach(c -> mod.modify(s, c));
+                        }
+                    });
+                }));
+
+            statContexts.forEach(x -> x.stats.forEach(s -> s.applyStats(data)));
+
+            addVanillaHpToStats(entity, data);
+
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (stat instanceof ITransferToOtherStats) {
+                        ITransferToOtherStats add = (ITransferToOtherStats) stat;
+                        add.transferStats(data, statdata);
+                    }
+                });
+
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (stat instanceof ICoreStat) {
+                        ICoreStat add = (ICoreStat) stat;
+                        add.addToOtherStats(data, statdata);
+                    }
+                });
+
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (stat instanceof IAffectsStats) {
+                        IAffectsStats add = (IAffectsStats) stat;
+                        add.affectStats(data, statdata);
+                    }
+                });
+
+            if (entity instanceof PlayerEntity) {
+
+                for (StatContainerType type : StatContainerType.values()) {
+                    // different stat containers for each spell with support gems.
+                    if (type == StatContainerType.NORMAL) {
+                        this.stats.put(type, getStats());
+                    } else {
+
+                        StatContainer copy = getStats().cloneForSpellStats();
+                        stats.put(type, copy);
+
+                        List<SkillGemData> supportGems = Load.spells(entity)
+                            .getSkillGemData()
+                            .getSupportGemsOf(type.place);
+
+                        List<SkillGemData> noGemDuplicateList = new ArrayList<>();
+
+                        Set<String> gemIdSet = new HashSet<>();
+
+                        supportGems.forEach(x -> {
+                            if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
+                                noGemDuplicateList.add(x);
+                                gemIdSet.add(x.id);
+                            }
+
+                        });
+
+                        for (SkillGemData sd : noGemDuplicateList) {
+
+                            if (true || sd.canPlayerUse((PlayerEntity) entity)) {
+                                sd.getSkillGem()
+                                    .getConstantStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
+                                sd.getSkillGem()
+                                    .getRandomStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
+
+                            }
+                        }
+
+                    }
+
+                }
+
+                stats.values()
+                    .forEach(x -> x.calculate());
+
+            } else {
+                stats.get(StatContainerType.NORMAL)
+                    .calculate();
+            }
+
+            DirtyCheck aftercalc = getDirtyCheck();
+
+            addToVanillaHealth(entity);
+
+            if (old.isDirty(aftercalc)) {
+                if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
+                    return;
+                }
+                Packets.sendToTracking(getUpdatePacketFor(entity, data), entity);
+            }
+
+            if (entity instanceof PlayerEntity) {
+                Packets.sendToClient((PlayerEntity) entity, new EntityUnitPacket(entity));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

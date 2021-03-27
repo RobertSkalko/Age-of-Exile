@@ -22,13 +22,13 @@ public class ReiPlugin implements REIPluginV0 {
     @Override
     public void registerOthers(RecipeHelper recipeHelper) {
 
-        recipeHelper.registerWorkingStations(FOOD, EntryStack.create(ModRegistry.MISC_ITEMS.SCRIBE_BUFF_BLOCK));
+        recipeHelper.registerWorkingStations(FOOD, EntryStack.create(ModRegistry.MISC_ITEMS.COOKING_STATION));
 
     }
 
     @Override
     public void registerPluginCategories(RecipeHelper recipeHelper) {
-        recipeHelper.registerCategories(new MyShapelessCategory(FOOD, ModRegistry.MISC_ITEMS.SCRIBE_BUFF_BLOCK));
+        recipeHelper.registerCategories(new MyShapelessCategory(FOOD, ModRegistry.MISC_ITEMS.COOKING_STATION));
     }
 
     @Override

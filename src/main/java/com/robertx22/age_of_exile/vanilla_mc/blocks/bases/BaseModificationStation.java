@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +37,7 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
     public ItemStack[] itemStacks;
 
     public int ticks = 0;
+    public int cook_ticks = 0;
     public int fuel = 0;
 
     public int expEarned = 0;
@@ -212,6 +217,25 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
     public void onOpen(PlayerEntity player) {
         if (ownerID.equals(player.getUuid()) == false) {
             ownerID = player.getUuid();
+        } else {
+            if (expEarned > 0) {
+                dropExperience(world, new Vec3d(pos.getX(), pos.getY(), pos.getZ()), expEarned);
+                expEarned = 0;
+            }
+        }
+    }
+
+    private static void dropExperience(World world, Vec3d vec3d, float f) {
+        int j = (int) f;
+        float g = MathHelper.fractionalPart((float) f);
+        if (g != 0.0F && Math.random() < (double) g) {
+            ++j;
+        }
+
+        while (j > 0) {
+            int k = ExperienceOrbEntity.roundToOrbSize(j);
+            j -= k;
+            world.spawnEntity(new ExperienceOrbEntity(world, vec3d.x, vec3d.y, vec3d.z, k));
         }
 
     }
@@ -283,6 +307,7 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
         // container
         nbt.put("Items", dataForAllSlots);
         nbt.putInt("ticks", ticks);
+        nbt.putInt("cook_ticks", cook_ticks);
         nbt.putInt("fuel", fuel);
         nbt.putUuid("owner_id", ownerID);
 
@@ -309,6 +334,7 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
             // Load everything else. Trim the arrays (or pad with 0) to make sure they have
             // the correct number of elements
             ticks = nbt.getInt("ticks");
+            cook_ticks = nbt.getInt("cook_ticks");
             fuel = nbt.getInt("fuel");
             if (nbt.contains("owner_id")) {
                 ownerID = nbt.getUuid("owner_id");

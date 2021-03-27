@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.packets.RequestTilePacket;
@@ -36,6 +37,29 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
         }
     }
 
+    static Identifier COOK_ARROW = Ref.id("textures/gui/cook_arrow.png");
+    static int COOK_X = 24;
+    static int COOK_Y = 17;
+
+    public void renderCookArrow(MatrixStack matrix, int x, int y, float progress) {
+        mc.getTextureManager()
+            .bindTexture(COOK_ARROW);
+        drawTexture(matrix, x, y, 0, 0, (int) (COOK_X * progress), COOK_Y);
+    }
+
+    static Identifier COOK_FLAME = Ref.id("textures/gui/cook_flame.png");
+    static int FLAME_X = 14;
+    static int FLAME_Y = 14;
+
+    public void renderCookFlame(MatrixStack matrix, int x, int y, float progress) {
+        mc.getTextureManager()
+            .bindTexture(COOK_FLAME);
+
+        int offset = (int) (FLAME_Y * (1F - progress));
+        drawTexture(matrix, x, y + offset, 0, offset, FLAME_X, (int) (FLAME_Y * progress));
+
+    }
+
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         // dont draw "inventory" text lol
@@ -52,7 +76,12 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
 
         this.renderBackground(matrix);
         super.render(matrix, mouseX, mouseY, partialTicks);
+        renderOther(matrix, mouseX, mouseY);
         this.drawMouseoverTooltip(matrix, mouseX, mouseY);
+
+    }
+
+    public void renderOther(MatrixStack matrix, int mouseX, int mouseY) {
 
     }
 
