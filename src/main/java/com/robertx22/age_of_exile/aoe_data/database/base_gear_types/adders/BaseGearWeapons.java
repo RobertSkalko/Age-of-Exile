@@ -45,7 +45,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
         CROSSBOW = BaseGearBuilder.of(GearSlots.CROSBOW, "crossbow", "Crossbow", ModRegistry.GEAR_ITEMS.CROSSBOWS)
             .weaponType(WeaponTypes.CrossBow)
             .req(new StatRequirement().setDex(0.5f))
-            .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
+            .tags(new TagList(SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .baseStat(DataHelper.getAttackDamageStat(WeaponTypes.CrossBow, DataHelper.Number.FULL, Elements.Physical))
             .attackStyle(AttackPlayStyle.RANGED)
             .addHunterLevelRanges()

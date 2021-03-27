@@ -36,6 +36,13 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     private static final Identifier SPELl_NO_MANA = new Identifier(Ref.MODID,
         "textures/gui/spells/no_mana.png"
     );
+
+    private static final Identifier TECHNIQUE_CAN_ACTIVATE = new Identifier(Ref.MODID,
+        "textures/gui/spells/charged.png"
+    );
+    private static final Identifier TECHNIQUE_CANT_ACTIVATE = new Identifier(Ref.MODID,
+        "textures/gui/spells/not_charged.png"
+    );
     private static final Identifier AURA_ACTIVATED = new Identifier(Ref.MODID,
         "textures/gui/spells/aura_activated.png"
     );
@@ -136,6 +143,16 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             .hasEnough(spell.getManaCostCtx(ctx))) {
             mc.getTextureManager()
                 .bindTexture(SPELl_NO_MANA);
+        } else if (spell.config.isTechnique() && !Load.spells(mc.player)
+            .getCastingData()
+            .meetActionRequirements(spell)) {
+            mc.getTextureManager()
+                .bindTexture(TECHNIQUE_CANT_ACTIVATE);
+        } else if (spell.config.isTechnique() && Load.spells(mc.player)
+            .getCastingData()
+            .meetActionRequirements(spell)) {
+            mc.getTextureManager()
+                .bindTexture(TECHNIQUE_CAN_ACTIVATE);
         } else {
             mc.getTextureManager()
                 .bindTexture(SPELL_READY_TEX);

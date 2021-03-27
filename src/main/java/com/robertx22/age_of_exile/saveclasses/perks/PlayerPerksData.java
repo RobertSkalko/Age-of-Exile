@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -57,17 +56,7 @@ public class PlayerPerksData {
     }
 
     public void allocate(PlayerEntity player, SpellSchool school, PointData point) {
-        Perk perk = school.calcData.getPerk(point);
 
-        if (Database.Spells()
-            .isRegistered(perk.spell)) {
-            if (perk.getSpell() != null && !perk.getSpell()
-                .isPassive()) {
-                if (!getSchool(school).map.getOrDefault(point, false)) {
-                }
-            }
-
-        }
         getSchool(school).map.put(point, true);
 
         Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));

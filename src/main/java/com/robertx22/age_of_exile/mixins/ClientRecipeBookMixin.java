@@ -8,17 +8,21 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CancellationException;
 
 @Mixin(ClientRecipeBook.class)
 public class ClientRecipeBookMixin {
 
     @Inject(method = "getGroupForRecipe(Lnet/minecraft/recipe/Recipe;)Lnet/minecraft/client/recipebook/RecipeBookGroup;", at = @At(value = "HEAD"), cancellable = true)
     private static void stopUnknownRecipeSpam(Recipe<?> recipe, CallbackInfoReturnable<RecipeBookGroup> ci) {
-
-        if (recipe.getId()
-            .getNamespace()
-            .equals(Ref.MODID)) {
-            ci.setReturnValue(RecipeBookGroup.UNKNOWN);
+        try {
+            if (recipe.getId()
+                .getNamespace()
+                .equals(Ref.MODID)) {
+                ci.setReturnValue(RecipeBookGroup.UNKNOWN);
+            }
+        } catch (CancellationException e) {
+            e.printStackTrace();
         }
     }
 }

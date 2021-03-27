@@ -16,9 +16,11 @@ haste_aura
 arrow_storm
 arrow_barrage
 fireball
+explosive_arrow
 thunder_spear
 charge
 heart_of_ice
+poison_arrow
 frost_breath
 fire_breath
 frost_armor

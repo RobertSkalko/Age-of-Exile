@@ -43,10 +43,12 @@ faster_proj
 nature_balm
 arrow_barrage
 fireball
+explosive_arrow
 thunder_spear
 charge
 heart_of_ice
 nature_dmg
+poison_arrow
 frost_breath
 frostball
 flame_strike

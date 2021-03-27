@@ -9,6 +9,8 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
+import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
@@ -25,7 +27,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
@@ -33,9 +34,11 @@ import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BowItem;
 import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -116,6 +119,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public void cast(SpellCastContext ctx) {
+        if (config.cast_type == SpellCastType.USE_ITEM) {
+            int use = ctx.caster.getItemUseTime();
+            if (BowItem.getPullProgress(use) < 1F) { // TODO this is hardcoded but idk how else
+                return; // todo
+            } else {
+                ctx.caster.clearActiveItem();
+            }
+        }
         LivingEntity caster = ctx.caster;
 
         EntitySavedSpellData data = EntitySavedSpellData.create(ctx.calcData.level, caster, this, ctx.spellConfig);
@@ -187,9 +198,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         if (((PlayerEntity) caster).isCreative()) {
             return true;
         }
-        if (this.config.passive_config.is_passive) {
-            return false;
-        }
 
         if (this.isAura()) {
             if (!ctx.spellsCap.getCastingData().auras.getOrDefault(GUID(), new SpellCastingData.AuraData()).active) { // if not active
@@ -247,10 +255,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return (int) (getConfig().mana_cost * manaCostMulti * scaling);
     }
 
-    public boolean isPassive() {
-        return getConfig().passive_config.is_passive;
-    }
-
     public final List<Text> GetTooltipString(SkillGemData gem, TooltipInfo info, CalculatedSpellData data) {
 
         SpellCastContext ctx = new SpellCastContext(gem, info.player, 0, data);
@@ -266,30 +270,31 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         TooltipUtils.addEmpty(list);
 
-        if (this.isPassive()) {
-            list.add(Words.PassiveSkill.locName()
-                .formatted(Formatting.GOLD));
-            list.add(Words.PassiveDesc.locName()
-                .formatted(Formatting.GOLD));
-        }
-
         if (!this.isAura()) {
-            if (!isPassive()) {
-                list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-            }
+            list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
             list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
-            if (!isPassive()) {
-                list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
-            }
+            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
+
         } else {
             list.addAll(this.aura_data.GetTooltipString(this, ctx.skillGemData, new TooltipInfo((PlayerEntity) ctx.caster)));
         }
 
         TooltipUtils.addEmpty(list);
+        if (config.isTechnique()) {
 
-        if (!isPassive()) {
-            list.add(getConfig().castingWeapon.predicate.text);
+            MutableText txt = new LiteralText("Cast Requirement: ");
+
+            for (int i = 0; i < config.actions_needed.size(); i++) {
+                PlayerAction x = config.actions_needed.get(i);
+                if (i > 0 && i < config.actions_needed.size()) {
+                    txt.append(" + ");
+                }
+                txt.append(x.word.locName());
+            }
+
+            list.add(txt);
         }
+        list.add(getConfig().castingWeapon.predicate.text);
 
         TooltipUtils.addEmpty(list);
 

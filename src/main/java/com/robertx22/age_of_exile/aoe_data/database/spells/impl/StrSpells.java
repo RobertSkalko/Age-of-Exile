@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -59,6 +60,7 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
+                .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
                 .setSwingArm(), "Flame Strike",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .attackStyle(AttackPlayStyle.MELEE)
@@ -70,6 +72,7 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("tidal_strike", SpellConfiguration.Builder.instant(8, 12)
+                .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
                 .setSwingArm(), "Tidal Strike",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .attackStyle(AttackPlayStyle.MELEE)

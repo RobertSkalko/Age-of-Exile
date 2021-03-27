@@ -14,6 +14,10 @@ public class KeybindsRegister {
     public static KeyBinding SPELL_HOTBAR_3 = new KeyBinding("Use Spell 3", GLFW.GLFW_KEY_C, Ref.MOD_NAME);
     public static KeyBinding SPELL_HOTBAR_4 = new KeyBinding("Use Spell 4", GLFW.GLFW_KEY_G, Ref.MOD_NAME);
 
+    public static boolean noSpellKeysAreHeld() {
+        return !SPELL_HOTBAR_1.isPressed() && !SPELL_HOTBAR_2.isPressed() && !SPELL_HOTBAR_3.isPressed() && !SPELL_HOTBAR_4.isPressed();
+    }
+
     public static KeyBinding getSpellHotbar(int num) {
         int n = num;
         if (num > 3) {

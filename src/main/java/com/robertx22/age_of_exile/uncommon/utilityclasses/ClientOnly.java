@@ -30,6 +30,14 @@ public class ClientOnly {
         return MinecraftClient.getInstance().player;
     }
 
+    public static void pressUseKey() {
+        MinecraftClient.getInstance().options.keyUse.setPressed(true);
+    }
+
+    public static void stopUseKey() {
+        MinecraftClient.getInstance().options.keyUse.setPressed(false);
+    }
+
     public static void openRaceSelection() {
         if (MinecraftClient.getInstance().currentScreen == null) {
             MinecraftClient.getInstance()

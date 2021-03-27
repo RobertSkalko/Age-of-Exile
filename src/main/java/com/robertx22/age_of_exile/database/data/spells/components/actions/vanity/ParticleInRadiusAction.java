@@ -57,15 +57,6 @@ public class ParticleInRadiusAction extends SpellAction {
                 motion = ParticleMotion.None;
             }
 
-            /*
-            if (true) {
-                // todo
-                motion = ParticleMotion.OutwardMotion;
-                particle = ModRegistry.PARTICLES.FLAME;
-            }
-
-
-             */
             float yrand = data.getOrDefault(Y_RANDOM, 0D)
                 .floatValue();
 
@@ -73,7 +64,7 @@ public class ParticleInRadiusAction extends SpellAction {
                 .floatValue();
 
             if (shape == Shape.CIRCLE) {
-                if (ctx.sourceEntity.age > 2) {
+                if (ctx.sourceEntity.age > 1) {
                     for (int i = 0; i < amount; i++) {
 
                         // todo unsure if this helps

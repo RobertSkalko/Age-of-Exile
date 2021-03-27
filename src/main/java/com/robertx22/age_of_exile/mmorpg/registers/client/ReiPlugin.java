@@ -8,11 +8,8 @@ import com.robertx22.age_of_exile.player_skills.recipe_types.recipe_types.FoodSh
 import me.shedaniel.rei.api.EntryStack;
 import me.shedaniel.rei.api.RecipeHelper;
 import me.shedaniel.rei.api.plugins.REIPluginV0;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
 
-@Environment(EnvType.CLIENT)
 public class ReiPlugin implements REIPluginV0 {
 
     public static final Identifier FOOD = Ref.id("food");

@@ -93,38 +93,49 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
     public boolean canItemHave(GearItemData gear) {
 
-        int minlvl = runes_needed.stream()
-            .map(x -> Database.Runes()
-                .get(x))
-            .min(Comparator.comparingInt(x -> x.getReqLevel()))
-            .get()
-            .getReqLevel();
+        try {
+            int minlvl = runes_needed.stream()
+                .map(x -> Database.Runes()
+                    .get(x))
+                .min(Comparator.comparingInt(x -> x.getReqLevel()))
+                .get()
+                .getReqLevel();
 
-        if (minlvl > gear.lvl) {
-            return false;
-        }
-
-        List<String> runes = new ArrayList<>();
-
-        gear.sockets.sockets.forEach(x -> runes.add(x.rune));
-
-        int matches = 0;
-
-        for (String rune : runes) {
-            if (rune.equals(runes_needed.get(matches))) {
-                matches++;
-            } else {
-                matches = 0;
+            if (minlvl > gear.lvl) {
+                return false;
             }
-        }
 
-        if (matches + gear.sockets.getEmptySockets() < runes_needed.size()) {
-            return false;
-        }
+            List<String> runes = new ArrayList<>();
 
-        return gear.GetBaseGearType()
-            .family()
-            .equals(this.family);
+            gear.sockets.sockets.forEach(x -> {
+                if (x.isRune()) {
+                    runes.add(x.rune);
+                }
+            });
+
+            int matches = 0;
+
+            for (String rune : runes) {
+                if (runes_needed.size() > matches) {
+                    if (rune.equals(runes_needed.get(matches))) {
+                        matches++;
+                    } else {
+                        matches = 0;
+                    }
+                }
+            }
+
+            if (matches + gear.sockets.getEmptySockets() < runes_needed.size()) {
+                return false;
+            }
+
+            return gear.GetBaseGearType()
+                .family()
+                .equals(this.family);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public static RuneWord create(String id, String locname, BaseGearType.SlotFamily family, List<StatModifier> stats, List<RuneItem.RuneType> runes_needed) {

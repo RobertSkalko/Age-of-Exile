@@ -92,48 +92,52 @@ public class SocketStationBlockEntity extends BaseModificationStation {
     @Override
     public void tick() {
 
-        if (GearSlot().isEmpty() && CraftItemSlot().isEmpty()) {
+        try {
+            if (GearSlot().isEmpty() && CraftItemSlot().isEmpty()) {
+                clearRunewordShow();
+                return;
+            }
+
+            List<RuneWord> possible = new ArrayList<>();
+
+            if (!GearSlot().isEmpty()) {
+                GearItemData gear = Gear.Load(GearSlot());
+
+                if (gear != null) {
+
+                    Database.Runewords()
+                        .getList()
+                        .forEach(x -> {
+                            if (x.canItemHave(gear)) {
+                                possible.add(x);
+                            }
+                        });
+                }
+
+            } else if (!CraftItemSlot().isEmpty()) {
+                if (CraftItemSlot().getItem() instanceof RuneItem) {
+                    RuneItem rune = (RuneItem) CraftItemSlot().getItem();
+                    Database.Runewords()
+                        .getList()
+                        .forEach(x -> {
+                            if (x.containsRune(rune.getRune())) {
+                                possible.add(x);
+                            }
+                        });
+                }
+
+            }
+
             clearRunewordShow();
-            return;
-        }
 
-        List<RuneWord> possible = new ArrayList<>();
-
-        if (!GearSlot().isEmpty()) {
-            GearItemData gear = Gear.Load(GearSlot());
-
-            if (gear != null) {
-
-                Database.Runewords()
-                    .getList()
-                    .forEach(x -> {
-                        if (x.canItemHave(gear)) {
-                            possible.add(x);
-                        }
-                    });
+            for (int i = 2; i < SocketStationContainer.RUNEWORD_SLOTS + 2; i++) {
+                int index = i - 2;
+                if (possible.size() > index) {
+                    this.itemStacks[i] = RuneWordItem.createStack(possible.get(index));
+                }
             }
-
-        } else if (!CraftItemSlot().isEmpty()) {
-            if (CraftItemSlot().getItem() instanceof RuneItem) {
-                RuneItem rune = (RuneItem) CraftItemSlot().getItem();
-                Database.Runewords()
-                    .getList()
-                    .forEach(x -> {
-                        if (x.containsRune(rune.getRune())) {
-                            possible.add(x);
-                        }
-                    });
-            }
-
-        }
-
-        clearRunewordShow();
-
-        for (int i = 2; i < SocketStationContainer.RUNEWORD_SLOTS + 2; i++) {
-            int index = i - 2;
-            if (possible.size() > index) {
-                this.itemStacks[i] = RuneWordItem.createStack(possible.get(index));
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

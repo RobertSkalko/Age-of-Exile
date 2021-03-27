@@ -20,7 +20,7 @@ import java.util.List;
 public class PlayerSkillsData implements IApplyableStats {
 
     @Store
-    private HashMap<PlayerSkillEnum, PlayerSkillData> map = new HashMap<>();
+    private HashMap<String, PlayerSkillData> map = new HashMap<>();
 
     public PlayerSkillData getDataFor(String id) {
 
@@ -38,11 +38,11 @@ public class PlayerSkillsData implements IApplyableStats {
 
     public PlayerSkillData getDataFor(PlayerSkillEnum skill) {
 
-        if (!map.containsKey(skill)) {
-            map.put(skill, new PlayerSkillData());
+        if (!map.containsKey(skill.id)) {
+            map.put(skill.id, new PlayerSkillData());
         }
 
-        return map.get(skill);
+        return map.get(skill.id);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class PlayerSkillsData implements IApplyableStats {
             map.entrySet()
                 .forEach(x -> {
                     PlayerSkill skill = Database.PlayerSkills()
-                        .get(x.getKey().id);
+                        .get(x.getKey());
 
                     if (skill != null) {
                         skill.getClaimedStats(x.getValue()

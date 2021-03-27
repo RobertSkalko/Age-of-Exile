@@ -1,11 +1,10 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
+import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TickUtils;
-import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +18,26 @@ public class SpellConfiguration {
     private int cast_time_ticks = 0;
     public int cooldown_ticks = 20;
     public AttackPlayStyle style = AttackPlayStyle.MAGIC;
-    public PassiveConfig passive_config = new PassiveConfig();
     public List<SkillGemTag> tags = new ArrayList<>();
+    public SpellCastType cast_type = SpellCastType.NORMAL;
+    public List<PlayerAction> actions_needed = new ArrayList<>();
+
+    public boolean isTechnique() {
+        return !actions_needed.isEmpty();
+    }
 
     public int getCastTimeTicks() {
         return cast_time_ticks;
     }
 
-    public static class PassiveConfig {
-        public boolean is_passive = false;
-        public float cast_when_hp_bellow = 0.3F;
+    public SpellConfiguration setRequireActions(List<PlayerAction> list) {
+        this.actions_needed = list;
+        return this;
+    }
 
-        public boolean canCastNow(LivingEntity en) {
-            return HealthUtils.getCombinedHealthMulti(en) < cast_when_hp_bellow;
-        }
+    public SpellConfiguration setCastType(SpellCastType type) {
+        this.cast_type = type;
+        return this;
     }
 
     public boolean isProjectile() {
@@ -54,18 +59,20 @@ public class SpellConfiguration {
             return c;
         }
 
+        public static SpellConfiguration arrowSpell(int mana, int cd) {
+            SpellConfiguration c = new SpellConfiguration();
+            c.cast_time_ticks = 0;
+            c.mana_cost = mana;
+            c.cooldown_ticks = cd;
+            c.cast_type = SpellCastType.USE_ITEM;
+            return c;
+        }
+
         public static SpellConfiguration nonInstant(int mana, int cd, int casttime) {
             SpellConfiguration c = new SpellConfiguration();
             c.cast_time_ticks = casttime;
             c.mana_cost = mana;
             c.cooldown_ticks = cd;
-            return c;
-        }
-
-        public static SpellConfiguration passive() {
-            SpellConfiguration c = new SpellConfiguration();
-            c.cooldown_ticks = TickUtils.MINUTE * 10;
-            c.passive_config.is_passive = true;
             return c;
         }
 
