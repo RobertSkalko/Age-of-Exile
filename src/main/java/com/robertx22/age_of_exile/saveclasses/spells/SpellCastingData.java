@@ -1,13 +1,18 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
+import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +29,6 @@ public class SpellCastingData {
     @Store
     public int lastSpellCastTimeInTicks = 0;
 
-    public static Integer selectedSpell = 0; // this is just used on client, so client tells server which spell to cast
-
     @Store
     public String spellBeingCast = "";
 
@@ -34,6 +37,41 @@ public class SpellCastingData {
 
     @Store
     public HashMap<String, AuraData> auras = new HashMap<>();
+
+    @Store
+    public List<PlayerAction> last_actions = new ArrayList<>();
+
+    public void onAction(PlayerAction action) {
+        last_actions.add(action);
+        if (last_actions.size() > 10) {
+            last_actions.remove(0);
+        }
+    }
+
+    public boolean meetActionRequirements(Spell spell) {
+
+        if (spell.config.actions_needed.isEmpty()) {
+            return true;
+        }
+
+        List<PlayerAction> needed = spell.config.actions_needed;
+
+        if (needed.size() > last_actions.size()) {
+            return false;
+        }
+
+        int x = last_actions.size() - 1;
+        for (int i = needed.size() - 1; i > -1; i--) {
+            PlayerAction act = last_actions.get(x);
+            PlayerAction act2 = needed.get(i);
+            if (act != act2) {
+                return false;
+            }
+            x--;
+        }
+
+        return true;
+    }
 
     @Storable
     public static class AuraData {
@@ -59,21 +97,23 @@ public class SpellCastingData {
 
     public void cancelCast(PlayerEntity player) {
         try {
-            SpellCastContext ctx = new SpellCastContext(player, 0, getSpellBeingCast());
+            if (isCasting()) {
+                SpellCastContext ctx = new SpellCastContext(player, 0, getSpellBeingCast());
 
-            Spell spell = getSpellBeingCast();
-            if (spell != null) {
-                SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
+                Spell spell = getSpellBeingCast();
+                if (spell != null) {
+                    SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
-                int cd = ctx.spell.getCooldownTicks(ctx);
-                data.setCooldown(cd);
+                    int cd = ctx.spell.getCooldownTicks(ctx);
+                    data.setCooldown(cd);
+                }
+
+                spellBeingCast = "";
+                castingTicksLeft = 0;
+                lastSpellCastTimeInTicks = 0;
+                castingTicksDone = 0;
+                this.casting = false;
             }
-
-            spellBeingCast = "";
-            castingTicksLeft = 0;
-            lastSpellCastTimeInTicks = 0;
-            castingTicksDone = 0;
-            this.casting = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,15 +121,17 @@ public class SpellCastingData {
     }
 
     public boolean isCasting() {
-        return casting && Database.Spells()
+        return spellBeingCast != null && casting && Database.Spells()
             .isRegistered(spellBeingCast);
     }
+
+    transient static Spell lastSpell = null;
 
     public void onTimePass(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int ticks) {
 
         try {
 
-            if (spellBeingCast != null && spellBeingCast.length() > 0) {
+            if (isCasting()) {
                 Spell spell = Database.Spells()
                     .get(spellBeingCast);
 
@@ -100,14 +142,29 @@ public class SpellCastingData {
                     spell.onCastingTick(ctx);
                 }
 
-                tryCast(player, spells, ctx);
+                if (ctx.spell.config.cast_type != SpellCastType.USE_ITEM) {
+                    tryCast(player, spells, ctx);
+                }
+
+                if (player.world.isClient) {
+                    if (spell.config.cast_type == SpellCastType.USE_ITEM) {
+                        ClientOnly.pressUseKey();
+                    }
+                }
+
+                lastSpell = spell;
 
                 castingTicksLeft--;
                 castingTicksDone++;
 
                 if (castingTicksLeft < 0) {
-                    this.spellBeingCast = "";
+                    if (spell.config.cast_type != SpellCastType.USE_ITEM) {
+                        this.spellBeingCast = "";
+                    }
                 }
+            } else {
+
+                lastSpell = null;
             }
 
             spellDatas.values()
@@ -140,12 +197,11 @@ public class SpellCastingData {
         this.casting = true;
     }
 
-    private void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, SpellCastContext ctx) {
+    public void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, SpellCastContext ctx) {
 
-        if (!spellBeingCast.isEmpty()) {
+        if (getSpellBeingCast() != null) {
             if (castingTicksLeft <= 0) {
-                Spell spell = Database.Spells()
-                    .get(spellBeingCast);
+                Spell spell = getSpellBeingCast();
 
                 int timesToCast = ctx.spell.getConfig().times_to_cast;
 
@@ -153,16 +209,7 @@ public class SpellCastingData {
                     spell.cast(ctx);
                 }
 
-                /* // channel spells DESTROY weapon durability lol
-                player.getMainHandStack()
-                    .damage(1, player, x -> {
-                        player.sendToolBreakStatus(player.getActiveHand());
-                    });
-
-                 */
-
                 onSpellCast(ctx);
-
                 spellBeingCast = "";
 
             }
@@ -183,6 +230,14 @@ public class SpellCastingData {
 
         if (spell == null) {
             return false;
+        }
+
+        if (spell.config.isTechnique()) {
+            if (!Load.spells(player)
+                .getCastingData()
+                .meetActionRequirements(spell)) {
+                return false;
+            }
         }
 
         SpellData data = getDataBySpell(spell);
@@ -212,6 +267,10 @@ public class SpellCastingData {
                 }
             }
         }
+
+        ctx.spellsCap
+            .getCastingData()
+            .onAction(PlayerAction.NOPE);
 
         spellDatas.put(ctx.spell.GUID(), data);
         this.casting = false;
