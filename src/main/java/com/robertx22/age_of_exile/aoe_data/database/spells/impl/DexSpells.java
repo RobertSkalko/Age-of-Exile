@@ -44,14 +44,14 @@ public class DexSpells implements ISlashRegistryInit {
             .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(1), Elements.Nature))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.5F, 1), Elements.Nature))
 
             .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON, 2D, 20 * 8D))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(1), Elements.Nature))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Nature))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
 
@@ -61,13 +61,13 @@ public class DexSpells implements ISlashRegistryInit {
             .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(2), Elements.Physical))
+            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.5F, 2), Elements.Physical))
 
             .onHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculationData.base(3), Elements.Physical, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(0.25F, 3), Elements.Physical, 2D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
 
@@ -88,17 +88,5 @@ public class DexSpells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of(MULTI_SHOT_ID, SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Multi Shot",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.RANGED)
-
-            .attackStyle(AttackPlayStyle.RANGED)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(3D)))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.5F, 3), Elements.Physical))
-            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Physical))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
-            .build();
     }
 }

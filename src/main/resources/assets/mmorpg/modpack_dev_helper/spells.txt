@@ -16,6 +16,7 @@ haste_aura
 arrow_storm
 arrow_barrage
 fireball
+levitation
 explosive_arrow
 thunder_spear
 charge

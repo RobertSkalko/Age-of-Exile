@@ -250,7 +250,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public final int getCalculatedManaCost(SpellCastContext ctx) {
         float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
 
-        float scaling = GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(ctx.calcData.level);
+        int lvl = ctx.calcData.level;
+
+        if (config.scale_mana_cost_to_player_lvl) {
+            lvl = ctx.data.getLevel();
+        }
+
+        float scaling = GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(lvl);
 
         return (int) (getConfig().mana_cost * manaCostMulti * scaling);
     }

@@ -17,7 +17,7 @@ public enum PlayerSkillEnum {
     MINING("mining", WikiType.MINING_BLOCK_EXP, Words.Mining, Words.MiningDesc, Formatting.GRAY, EnchantmentTarget.DIGGER, () -> Items.IRON_PICKAXE),
     FARMING("farming", WikiType.FARMING_EXP, Words.Farming, Words.FarmingDesc, Formatting.YELLOW, EnchantmentTarget.DIGGER, () -> Items.IRON_HOE),
     SALVAGING("salvaging", null, Words.Salvaging, Words.SalvagingDesc, Formatting.LIGHT_PURPLE, null, () -> Items.BOOK),
-    //ALCHEMY("alchemy", Words.Alchemy, Formatting.LIGHT_PURPLE, null, () -> Items.BLAZE_POWDER),
+    ALCHEMY("alchemy", null, Words.Alchemy, Words.AlchemyDesc, Formatting.LIGHT_PURPLE, null, () -> Items.BLAZE_POWDER),
     INSCRIBING("inscribing", null, Words.Inscribing, Words.InscribingDesc, Formatting.AQUA, null, () -> Items.INK_SAC),
     COOKING("cooking", null, Words.Cooking, Words.CookingDesc, Formatting.RED, null, () -> Items.BREAD),
     FISHING("fishing", null, Words.Fishing, Words.FishingDesc, Formatting.BLUE, EnchantmentTarget.FISHING_ROD, () -> Items.FISHING_ROD),

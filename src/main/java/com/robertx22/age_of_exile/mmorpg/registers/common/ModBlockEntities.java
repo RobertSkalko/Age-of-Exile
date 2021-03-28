@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.TileGearModify;
@@ -24,6 +25,7 @@ public class ModBlockEntities {
     public BlockEntityType<ScribeBuffTile> SCRIBE_BUFF = of(ModRegistry.BLOCKS.SCRIBE_BUFF, ScribeBuffTile::new);
     public BlockEntityType<CookingTile> COOKING = of(ModRegistry.BLOCKS.COOKING_STATION, CookingTile::new);
     public BlockEntityType<TabletStationTile> TABLET = of(ModRegistry.BLOCKS.TABLET_STATION, TabletStationTile::new);
+    public BlockEntityType<AlchemyTile> ALCHEMY_STATION = of(ModRegistry.BLOCKS.ALCHEMY_STATION, AlchemyTile::new);
 
     private <T extends BlockEntity> BlockEntityType<T> of(Block block, Supplier<T> en) {
         BlockEntityType<T> type = BlockEntityType.Builder.create(en, block)

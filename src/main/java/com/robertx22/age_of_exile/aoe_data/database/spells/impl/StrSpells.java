@@ -113,7 +113,8 @@ public class StrSpells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of("charge", SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60), "Charge",
+        SpellBuilder.of("charge", SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60)
+                .setScaleManaToPlayer(), "Charge",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .attackStyle(AttackPlayStyle.MELEE)
             .weaponReq(CastingWeapon.MELEE_WEAPON)

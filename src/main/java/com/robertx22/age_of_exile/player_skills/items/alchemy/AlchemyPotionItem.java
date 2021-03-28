@@ -2,13 +2,14 @@ package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
+import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -16,7 +17,6 @@ import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class AlchemyPotionItem extends TieredItem implements IShapelessRecipe {
+public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
 
     PotionType type;
 
@@ -91,15 +91,6 @@ public class AlchemyPotionItem extends TieredItem implements IShapelessRecipe {
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
-        fac.input(type.craftItem.get());
-        fac.input(Items.GLASS_BOTTLE);
-        fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
-        return fac.criterion("player_level", trigger());
-    }
-
-    @Override
     public String locNameForLangFile() {
         return tier.word + " " + type.word + " Potion";
     }
@@ -133,5 +124,14 @@ public class AlchemyPotionItem extends TieredItem implements IShapelessRecipe {
         }
         return eff;
 
+    }
+
+    @Override
+    public StationShapelessFactory getStationRecipe() {
+        StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.ALCHEMY, this, 3);
+        fac.input(type.craftItem.get());
+        fac.input(Items.GLASS_BOTTLE);
+        fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
+        return fac.criterion("player_level", trigger());
     }
 }

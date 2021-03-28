@@ -23,6 +23,7 @@ basic_attack_elemental_dmg_leech_as_health
 convert_water_to_phys
 nature_weapon_damage
 attack_thunder_dmg_leech_as_mana
+bonus_alchemy_yield
 other_water_dmg_leech_as_health
 attack_elemental_dmg_leech_as_health
 attack_all_dmg_leech_as_mana
@@ -204,6 +205,7 @@ water_penetration
 other_thunder_dmg_leech_as_health
 bonus_inscribing_yield
 attack_physical_dmg_leech_as_blood
+bonus_alchemy_exp
 slow_immunity
 basic_attack_fire_dmg_leech_as_blood
 basic_attack_physical_dmg_leech_as_blood

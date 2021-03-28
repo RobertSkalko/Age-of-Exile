@@ -60,6 +60,18 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
 
     }
 
+    static Identifier ALCHEMY_ARROW = Ref.id("textures/gui/alchemy_arrow.png");
+    static int A_ARROW_X = 9;
+    static int A_ARROW_Y = 28;
+
+    public void renderAlchemyArrow(MatrixStack matrix, int x, int y, float progress) {
+        mc.getTextureManager()
+            .bindTexture(ALCHEMY_ARROW);
+
+        drawTexture(matrix, x, y, 0, 0, A_ARROW_X, (int) (A_ARROW_Y * progress));
+
+    }
+
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         // dont draw "inventory" text lol

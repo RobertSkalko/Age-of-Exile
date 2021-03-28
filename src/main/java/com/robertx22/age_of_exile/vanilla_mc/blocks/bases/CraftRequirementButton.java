@@ -80,6 +80,10 @@ public class CraftRequirementButton extends TexturedButtonWidget {
             List<Text> tooltip = new ArrayList<>();
             CraftingReq req = getReq();
 
+            if (req.item_id.isEmpty()) {
+                return;
+            }
+
             if (req.meets(player)) {
 
                 tooltip.add(new LiteralText("").append(Words.Level.locName())

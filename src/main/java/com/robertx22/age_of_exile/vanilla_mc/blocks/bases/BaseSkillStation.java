@@ -46,7 +46,6 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
 
     public float getFuelProgress() {
         return fuel / 2000F;
-
     }
 
     public void burnFuelIfNeeded() {
@@ -68,7 +67,14 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
     }
 
     public boolean hasFuel() {
+        if (!needsFuel()) {
+            return true;
+        }
         return fuel > 0;
+    }
+
+    public boolean needsFuel() {
+        return !getFuelSlots().isEmpty();
     }
 
     public Recipe<Inventory> getRecipeBeingTried() {

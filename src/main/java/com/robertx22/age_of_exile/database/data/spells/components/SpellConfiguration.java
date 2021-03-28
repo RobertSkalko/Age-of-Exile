@@ -21,6 +21,7 @@ public class SpellConfiguration {
     public List<SkillGemTag> tags = new ArrayList<>();
     public SpellCastType cast_type = SpellCastType.NORMAL;
     public List<PlayerAction> actions_needed = new ArrayList<>();
+    public boolean scale_mana_cost_to_player_lvl = false;
 
     public boolean isTechnique() {
         return !actions_needed.isEmpty();
@@ -46,6 +47,11 @@ public class SpellConfiguration {
 
     public SpellConfiguration setSwingArm() {
         this.swing_arm = true;
+        return this;
+    }
+
+    public SpellConfiguration setScaleManaToPlayer() {
+        this.scale_mana_cost_to_player_lvl = true;
         return this;
     }
 

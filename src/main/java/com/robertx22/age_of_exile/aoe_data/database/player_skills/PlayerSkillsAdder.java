@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 
+import com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.crafting.AlchemyAdder;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.crafting.CookingAdder;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.crafting.InscribingAdder;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gathering.*;
@@ -18,17 +19,7 @@ public class PlayerSkillsAdder implements ISlashRegistryInit {
 
         InscribingAdder.createSkill();
         CookingAdder.createSkill();
-
-
-
-
-        /*
-        TinkeringAdder.createSkill();
         AlchemyAdder.createSkill();
-        CookingAdder.createSkill();
-        InscribingAdder.createSkill();
-
-         */
 
     }
 }

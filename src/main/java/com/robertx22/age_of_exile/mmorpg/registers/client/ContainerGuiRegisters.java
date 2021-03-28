@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 import com.robertx22.age_of_exile.gui.screens.skill_gems.SkillGemsScreen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackScreen;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyContainer;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyScreen;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffScreen;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingContainer;
@@ -34,6 +36,7 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<ScribeBuffContainer>registerFactory(ModRegistry.CONTAINERS.SCRIBE_BUFF, x -> new ScribeBuffScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<CookingContainer>registerFactory(ModRegistry.CONTAINERS.COOKING_STATION, x -> new CookingScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<TabletStationContainer>registerFactory(ModRegistry.CONTAINERS.TABLET_STATION, x -> new TabletStationScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<AlchemyContainer>registerFactory(ModRegistry.CONTAINERS.ALCHEMY_STATION, x -> new AlchemyScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
 
         ScreenRegistry.register(ModRegistry.CONTAINERS.BACKPACK_TYPE, BackpackScreen::new);
         ScreenRegistry.register(ModRegistry.CONTAINERS.SKILL_GEMS_TYPE, SkillGemsScreen::new);
