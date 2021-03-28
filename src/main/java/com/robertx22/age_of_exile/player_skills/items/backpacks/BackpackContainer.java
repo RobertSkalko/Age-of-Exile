@@ -1,11 +1,9 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgradeItem;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
@@ -49,21 +47,17 @@ public class BackpackContainer extends BaseTileContainer {
 
             this.backpackInv = new BackpackInventory(invPlayer.player, stack);
 
-            int rows = 3 + info.extraRows;
+            int rows = 2 + info.extraRows;
 
             int num = 0;
             for (int y = 0; y < rows; ++y) {
                 for (int x = 0; x < 9; ++x) {
 
                     int xpos = 8 + x * 18;
-                    if (num < 9) {
-                        int ypos = 11 + y * 18;
 
-                        this.addSlot(new UpgradeSlot(backpackInv, num, xpos, ypos));
-                    } else {
-                        int ypos = 37 + (y - 1) * 18;
-                        this.addSlot(new BackpackSlot(backpackInv, num, xpos, ypos));
-                    }
+                    int ypos = 37 + (y) * 18;
+                    this.addSlot(new BackpackSlot(backpackInv, num, xpos, ypos));
+
                     num++;
                 }
             }
@@ -108,23 +102,6 @@ public class BackpackContainer extends BaseTileContainer {
             return false;
         }
         return true;
-    }
-
-    private class UpgradeSlot extends Slot {
-
-        public UpgradeSlot(Inventory inventory, int index, int x, int y) {
-            super(inventory, index, x, y);
-        }
-
-        @Override
-        public boolean canTakeItems(PlayerEntity player) {
-            return true;
-        }
-
-        @Override
-        public boolean canInsert(ItemStack stack) {
-            return stack.getItem() instanceof BackpackUpgradeItem;
-        }
     }
 
     private class BackpackSlot extends Slot {

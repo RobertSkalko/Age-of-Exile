@@ -8,13 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.collection.DefaultedList;
 
-/*
-I'm not fully satisfied with how hacky it is but basically:
-Inventory is filled as if it's maximum possible size
-Methods are overrided so auto pickup doesn't put items in the first 9 slots (reserved for upgrades),
-and the last slots if the bag isn't big enough
-This is done to eliminate the possibility of items being lost due to bag becoming smaller..
- */
 public class BackpackInventory extends SimpleInventory {
 
     protected final ItemStack stack;
@@ -31,66 +24,13 @@ public class BackpackInventory extends SimpleInventory {
         setup();
     }
 
-    // NEEDED SO IT DOESNT AUTO PIKCUP INTO UPGRADE SLOTS
-    public ItemStack addStack(ItemStack stack) {
-        ItemStack itemStack = stack.copy();
-        this.addToExistingSlot(itemStack);
-        if (itemStack.isEmpty()) {
-            return ItemStack.EMPTY;
-        } else {
-            this.addToNewSlot(itemStack);
-            return itemStack.isEmpty() ? ItemStack.EMPTY : itemStack;
-        }
-    }
-
-    private void addToNewSlot(ItemStack stack) {
-        for (int i = 9; i < getSizeBackpack(stack); ++i) {
-            ItemStack itemStack = this.getStack(i);
-            if (itemStack.isEmpty()) {
-                this.setStack(i, stack.copy());
-                stack.setCount(0);
-                return;
-            }
-        }
-
-    }
-
-    private void addToExistingSlot(ItemStack stack) {
-        for (int i = 9; i < getSizeBackpack(stack); ++i) {
-            ItemStack itemStack = this.getStack(i);
-            if (this.canCombine(itemStack, stack)) {
-                this.transfer(stack, itemStack);
-                if (stack.isEmpty()) {
-                    return;
-                }
-            }
-        }
-
-    }
-
-    private boolean canCombine(ItemStack one, ItemStack two) {
-        return one.getItem() == two.getItem() && ItemStack.areTagsEqual(one, two);
-    }
-
-    private void transfer(ItemStack source, ItemStack target) {
-        int i = Math.min(this.getMaxCountPerStack(), target.getMaxCount());
-        int j = Math.min(source.getCount(), i - target.getCount());
-        if (j > 0) {
-            target.increment(j);
-            source.decrement(j);
-            this.markDirty();
-        }
-
-    }
-    // NEEDED SO IT DOESNT AUTO PIKCUP INTO UPGRADE SLOTS
-
     public static int getSizeBackpack(ItemStack stack) {
         BackpackInfo info = BackpackContainer.getInfo(null, stack);
         return getSizeBackpack(info.extraRows);
     }
 
     public static int getSizeBackpack(int extraRows) {
-        return 27 + extraRows * 9;
+        return 18 + extraRows * 9;
     }
 
     public void setup() {

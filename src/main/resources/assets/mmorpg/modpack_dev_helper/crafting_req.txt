@@ -68,8 +68,10 @@ mmorpg:food/fish/purple/2
 mmorpg:food/jam/purple/3
 mmorpg:food/fish/purple/0
 mmorpg:food/jam/purple/0
+mmorpg:backpack/upgrade/gem3
 mmorpg:food/brew/green/4
 mmorpg:backpack/upgrade/gem1
+mmorpg:backpack/upgrade/gem2
 mmorpg:food/brew/green/1
 mmorpg:food/fish/red/1
 mmorpg:food/brew/green/0

@@ -1,8 +1,12 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
+import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
@@ -15,9 +19,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class BackpackUpgradeItem extends TieredItem implements IStationRecipe {
+public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, ICurrencyItemEffect {
 
     String id;
     String locname;
@@ -53,8 +58,50 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe {
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext flagIn) {
+
         tooltip.add(Words.BagUpgradeDesc.locName()
             .formatted(Formatting.BLUE));
 
+    }
+
+    @Override
+    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
+
+        BagUpgradesData data = BagUpgradesData.load(stack);
+
+        data.upgrade((BackpackUpgradeItem) currency.getItem());
+
+        data.saveToStack(stack);
+
+        return stack;
+    }
+
+    @Override
+    public boolean canItemBeModified(LocReqContext context) {
+
+        if (context.stack.getItem() instanceof BackpackItem == false) {
+            return false;
+        }
+        if (context.Currency.getItem() instanceof BackpackUpgradeItem == false) {
+            return false;
+        }
+
+        for (BaseLocRequirement req : requirements()) {
+            if (req.isNotAllowed(context)) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    @Override
+    public List<BaseLocRequirement> requirements() {
+        return Arrays.asList();
+    }
+
+    @Override
+    public StationType forStation() {
+        return StationType.MODIFY;
     }
 }

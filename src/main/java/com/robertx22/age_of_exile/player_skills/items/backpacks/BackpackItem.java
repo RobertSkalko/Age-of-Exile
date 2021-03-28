@@ -5,8 +5,12 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
+import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BagUpgradesData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -24,6 +28,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class BackpackItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
 
@@ -65,6 +71,19 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
         }
 
         return TypedActionResult.success(user.getStackInHand(hand));
+    }
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext flagIn) {
+
+        BagUpgradesData data = BagUpgradesData.load(stack);
+
+        data.getUpgrades()
+            .forEach(x -> {
+                tooltip.add(x.getName(stack));
+            });
+
     }
 
     @Override
