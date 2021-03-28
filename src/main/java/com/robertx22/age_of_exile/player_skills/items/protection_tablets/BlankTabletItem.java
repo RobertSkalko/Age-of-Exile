@@ -3,16 +3,16 @@ package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.IGatheringMat;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
+import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
-public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, IGatheringMat, IShapelessRecipe {
+public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, IGatheringMat, IStationRecipe {
     BlankTabletTier tier;
     SkillItemTier stier;
 
@@ -49,10 +49,9 @@ public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, I
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        return ShapelessRecipeJsonFactory.create(this)
+    public StationShapelessFactory getStationRecipe() {
+        return StationShapelessFactory.create(ModRegistry.RECIPE_SER.SMITHING, this, 1)
             .input(ModRegistry.TIERED.STONE_TIER_MAP.get(stier), 3)
             .criterion("player_level", trigger());
     }
-
 }

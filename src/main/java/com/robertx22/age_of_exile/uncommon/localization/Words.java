@@ -7,6 +7,7 @@ import java.util.Locale;
 
 public enum Words implements IAutoLocName {
     DidYouKnow("Did you know?"),
+    BlacksmithDesc("Blacksmithing turns stones and minerals into useful tools."),
     AlchemyDesc("Alchemy is about making potions in the alchemy station."),
     CookingDesc("Cooking is about creating foods that give helpful buffs to help you in your journey! Farming provides wheat, and Fishing provides fish."),
     InscribingDesc("Inscribing is about using words of wisdom to produce beneficial items. Paper is enchanted with ink to produce scrolls that buff you. Chalk is used to write on glyphs to create defensive glyphs. "),
@@ -21,7 +22,7 @@ public enum Words implements IAutoLocName {
     CorruptedExplanation2("Item won't provide any stats until purified."),
     Corrupted("Corrupted"),
     Exploration("Exploration"),
-    Tinkering("Tinkering"),
+    Blacksmithing("Blacksmithing"),
     Fishing("Fishing"),
     Inscribing("Inscribing"),
     Cooking("Cooking"),

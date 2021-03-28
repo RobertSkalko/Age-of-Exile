@@ -6,9 +6,11 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -50,12 +52,13 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.POISON_WEAPONS, 20 * 30D))
             .build();
 
-        SpellBuilder.of("thunder_dash", SpellConfiguration.Builder.instant(15, 20 * 30), "Thunder Dash",
+        SpellBuilder.of("thunder_dash", SpellConfiguration.Builder.nonInstant(15, 20 * 30, 5), "Thunder Dash",
             Arrays.asList(SkillGemTag.DAMAGE))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(AttackPlayStyle.MELEE)
             .onCast(PartBuilder.playSound(SOUNDS.DASH, 1D, 1D))
-            .onCast(PartBuilder.pushCaster(DashUtils.Way.FORWARDS, DashUtils.Strength.LARGE_DISTANCE))
+            .onTick(Spell.CASTER_NAME, PartBuilder.pushCaster(DashUtils.Way.FORWARDS, 0.5D)
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(1D)))
             .onCast(PartBuilder.damageInFront(ValueCalculationData.base(3), Elements.Thunder, 3D, 8D))
             .build();
 
@@ -87,6 +90,7 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("thirst_strike", SpellConfiguration.Builder.instant(5, 15)
+                .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
                 .setSwingArm(), "Thirsting Strike",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .attackStyle(AttackPlayStyle.MELEE)

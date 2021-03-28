@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingBlock
 import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.BlockGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.smithing.SmithingBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationBlock;
 import net.minecraft.block.AbstractBlock;
@@ -30,6 +31,7 @@ public class ModBlocks {
     public CookingBlock COOKING_STATION = of("cooking_station", new CookingBlock());
     public TabletStationBlock TABLET_STATION = of("tablet_station", new TabletStationBlock());
     public AlchemyBlock ALCHEMY_STATION = of("alchemy_station", new AlchemyBlock());
+    public SmithingBlock SMITHING_STATION = of("smithing_station", new SmithingBlock());
 
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 

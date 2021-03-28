@@ -26,6 +26,7 @@ public class ModContainers {
     public Identifier COOKING_STATION = id("cooking");
     public Identifier TABLET_STATION = id("tablet");
     public Identifier ALCHEMY_STATION = id("alchemy");
+    public Identifier SMITHING_STATION = id("smithing");
 
     Identifier id(String id) {
         return new Identifier(Ref.MODID, id);
@@ -41,6 +42,7 @@ public class ModContainers {
         register(COOKING_STATION);
         register(TABLET_STATION);
         register(ALCHEMY_STATION);
+        register(SMITHING_STATION);
     }
 
     @SuppressWarnings("deprecation")

@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BonusSkillExp extends Stat implements IGenerated<Stat> {
@@ -45,7 +44,7 @@ public class BonusSkillExp extends Stat implements IGenerated<Stat> {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Arrays.stream(PlayerSkillEnum.values())
+        PlayerSkillEnum.getAll()
             .forEach(x -> list.add(new BonusSkillExp(x)));
         return list;
     }

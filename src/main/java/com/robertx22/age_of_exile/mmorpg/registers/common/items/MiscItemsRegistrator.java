@@ -97,6 +97,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item COOKING_STATION = blockItem(ModRegistry.BLOCKS.COOKING_STATION);
     public Item TABLET_STATION = blockItem(ModRegistry.BLOCKS.TABLET_STATION);
     public Item ALCHEMY_STATION = blockItem(ModRegistry.BLOCKS.ALCHEMY_STATION);
+    public Item SMITHING_STATION = blockItem(ModRegistry.BLOCKS.SMITHING_STATION);
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
 

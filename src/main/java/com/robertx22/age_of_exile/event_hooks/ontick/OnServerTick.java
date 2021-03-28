@@ -3,6 +3,10 @@ package com.robertx22.age_of_exile.event_hooks.ontick;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -49,6 +53,17 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data == null) {
                     data = new PlayerTickData();
+                }
+
+                Spell spell = Load.spells(player)
+                    .getCastingData()
+                    .getSpellBeingCast();
+
+                if (spell != null) {
+                    SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+                    spell
+                        .getAttached()
+                        .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(ctx.skillGemData.lvl, player, spell, ctx.spellConfig)));
                 }
 
                 data.increment();

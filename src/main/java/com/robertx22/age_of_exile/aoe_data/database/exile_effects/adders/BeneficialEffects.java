@@ -24,7 +24,6 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
 
 import java.util.UUID;
 
@@ -102,14 +101,9 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(FROST_ARMOR, "Frost Armor", EffectType.BENEFICIAL)
-            .stat(10, new ElementalResist(Elements.Water), ModType.FLAT)
-            .stat(5, Armor.getInstance(), ModType.FLAT)
+            .stat(20, new ElementalResist(Elements.Water), ModType.FLAT)
+            .stat(20, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.FROSTBURN, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
-                    .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES))
-                    .addPerEntityHit(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 100D, 1D, 0.2D))
-                    .addPerEntityHit(PartBuilder.playSound(SoundEvents.BLOCK_SNOW_HIT, 1D, 1D))
-                    .onTick(100D))
                 .buildForEffect())
             .build();
 

@@ -43,7 +43,6 @@ thunder_resist
 spell_nature_dmg_leech_as_health
 dot_water_dmg_leech_as_mana
 health_on_attack_hit
-bonus_none_exp
 faster_projectiles
 piercing_projectiles
 spell_thunder_dmg_leech_as_blood
@@ -65,6 +64,7 @@ dot_nature_dmg_leech_as_mana
 bonus_swamp_biome_yield
 convert_thunder_to_phys
 all_nature_damage
+bonus_blacksmithing_exp
 blood
 attack_thunder_dmg_leech_as_blood
 bonus_cooking_yield
@@ -106,7 +106,6 @@ all_nature_dmg_leech_as_mana
 attack_elemental_dmg_leech_as_mana
 max_fire_resist
 other_fire_dmg_leech_as_mana
-bonus_all_exp
 basic_attack_elemental_dmg_leech_as_blood
 bonus_mountain_biome_yield
 ele_wand_damage
@@ -189,6 +188,7 @@ bonus_cooking_exp
 red_mana_reserved
 water_weapon_damage
 all_thunder_damage
+bonus_blacksmithing_yield
 dot_elemental_dmg_leech_as_mana
 bonus_mining_exp
 all_fire_dmg_leech_as_blood
@@ -298,7 +298,6 @@ ele_crossbow_damage
 bonus_mining_yield
 all_physical_dmg_leech_as_blood
 all_thunder_dmg_leech_as_health
-bonus_all_yield
 chance_of_frostburn
 max_elemental_resist
 double_drop_chance

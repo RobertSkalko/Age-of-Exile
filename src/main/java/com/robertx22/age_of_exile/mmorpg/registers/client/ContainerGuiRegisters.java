@@ -15,6 +15,8 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.ContainerGear
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.GuiGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.GuiGearSalvage;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.smithing.SmithingContainer;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.smithing.SmithingScreen;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationGui;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationContainer;
@@ -37,6 +39,7 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<CookingContainer>registerFactory(ModRegistry.CONTAINERS.COOKING_STATION, x -> new CookingScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<TabletStationContainer>registerFactory(ModRegistry.CONTAINERS.TABLET_STATION, x -> new TabletStationScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<AlchemyContainer>registerFactory(ModRegistry.CONTAINERS.ALCHEMY_STATION, x -> new AlchemyScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<SmithingContainer>registerFactory(ModRegistry.CONTAINERS.SMITHING_STATION, x -> new SmithingScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
 
         ScreenRegistry.register(ModRegistry.CONTAINERS.BACKPACK_TYPE, BackpackScreen::new);
         ScreenRegistry.register(ModRegistry.CONTAINERS.SKILL_GEMS_TYPE, SkillGemsScreen::new);

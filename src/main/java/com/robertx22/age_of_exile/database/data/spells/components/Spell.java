@@ -53,6 +53,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public static Spell SERIALIZER = new Spell();
 
     public static String DEFAULT_EN_NAME = "default_entity_name";
+    public static String CASTER_NAME = "caster";
 
     public static Gson GSON = new Gson();
 
@@ -103,6 +104,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
+
+            if (timesToCast > 1) {
+                if (castEveryXTicks < 1) {
+                    castEveryXTicks = 1;
+                }
+            }
 
             if (ctx.isLastCastTick) {
                 this.cast(ctx);

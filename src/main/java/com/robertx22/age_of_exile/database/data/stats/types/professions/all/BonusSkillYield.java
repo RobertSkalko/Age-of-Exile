@@ -55,10 +55,9 @@ public class BonusSkillYield extends Stat implements IGenerated<Stat> {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        for (PlayerSkillEnum r : PlayerSkillEnum.values()) {
-            if (r != PlayerSkillEnum.NONE) {
-                list.add(new BonusSkillYield(r));
-            }
+        for (PlayerSkillEnum r : PlayerSkillEnum.getAll()) {
+            list.add(new BonusSkillYield(r));
+
         }
         return list;
     }

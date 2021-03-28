@@ -23,6 +23,11 @@ mmorpg:alchemy/potion/health/3
 mmorpg:food/brew/red/2
 mmorpg:food/brew/red/3
 mmorpg:food/brew/red/4
+mmorpg:key/4
+mmorpg:key/3
+mmorpg:key/2
+mmorpg:key/1
+mmorpg:key/0
 mmorpg:food/apple/red/4
 mmorpg:food/jam/yellow/1
 mmorpg:food/jam/yellow/2

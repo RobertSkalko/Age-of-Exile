@@ -111,6 +111,13 @@ public class PartBuilder {
         return c;
     }
 
+    public static ComponentPart pushCaster(DashUtils.Way way, Double str) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.PUSH.create(str, way));
+        c.targets.add(BaseTargetSelector.CASTER.create());
+        return c;
+    }
+
     public static ComponentPart pushCaster(DashUtils.Way way, DashUtils.Strength str) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PUSH.create((double) str.num, way));
