@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 
 public class ModRegistry {
 
+    public static BackpackUpgradesRegister BACKPACK_UPGRADES;
     public static ModRecipeTypes RECIPE_TYPES;
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
@@ -55,6 +56,7 @@ public class ModRegistry {
         ALCHEMY = new AlchemyItemRegister();
         SKILL_GEMS = new SkillGemItemRegister();
         TIERED = new TierItemsRegister();
+        BACKPACK_UPGRADES = new BackpackUpgradesRegister();
 
         AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }

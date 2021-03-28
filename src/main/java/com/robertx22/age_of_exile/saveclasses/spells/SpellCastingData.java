@@ -218,6 +218,12 @@ public class SpellCastingData {
     }
 
     public Spell getSpellBeingCast() {
+
+        if (!Database.Spells()
+            .isRegistered(spellBeingCast)) {
+            return null;
+        }
+
         return Database.Spells()
             .get(spellBeingCast);
     }

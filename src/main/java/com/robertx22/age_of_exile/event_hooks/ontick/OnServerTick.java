@@ -49,6 +49,14 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
             try {
 
+                /*
+                ItemStack stack = player.getMainHandStack();
+
+                System.out.print(stack.getTag()
+                    .toString());
+
+                 */
+
                 PlayerTickData data = PlayerTickDatas.get(player.getUuid());
 
                 if (data == null) {

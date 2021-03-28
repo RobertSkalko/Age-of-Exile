@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgradeItem;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -18,14 +18,19 @@ public class BackpackContainer extends BaseTileContainer {
     ItemStack stack;
     BackpackInventory backpackInv;
     PlayerEntity player;
-    SkillItemTier tier;
+    BackpackInfo info;
 
     public BackpackContainer(int syncid, PlayerInventory playerinv, PacketByteBuf buf) {
         this(playerinv.player.getMainHandStack(), syncid, playerinv);
     }
 
+    public static BackpackInfo getInfo(PlayerEntity player, ItemStack stack) {
+        return new BackpackInfo(player, stack);
+    }
+
     public BackpackContainer(ItemStack stack, int id, PlayerInventory invPlayer) {
         super(BackpackInventory.getSizeBackpack(stack), ModRegistry.CONTAINERS.BACKPACK_TYPE, id, invPlayer);
+
         try {
             this.player = invPlayer.player;
 
@@ -40,21 +45,25 @@ public class BackpackContainer extends BaseTileContainer {
             }
             this.stack = stack.copy(); // copy so i can later check if its same stack
 
-            BackpackItem backpack = (BackpackItem) stack.getItem();
+            this.info = getInfo(player, stack);
 
-            this.tier = backpack.tier;
+            this.backpackInv = new BackpackInventory(invPlayer.player, stack);
 
-            this.backpackInv = new BackpackInventory(stack);
-
-            int rows = 2 + backpack.tier.tier;
+            int rows = 3 + info.extraRows;
 
             int num = 0;
             for (int y = 0; y < rows; ++y) {
                 for (int x = 0; x < 9; ++x) {
 
                     int xpos = 8 + x * 18;
-                    int ypos = 11 + y * 18;
-                    this.addSlot(new BackpackSlot(backpack.type, backpackInv, num, xpos, ypos));
+                    if (num < 9) {
+                        int ypos = 11 + y * 18;
+
+                        this.addSlot(new UpgradeSlot(backpackInv, num, xpos, ypos));
+                    } else {
+                        int ypos = 37 + (y - 1) * 18;
+                        this.addSlot(new BackpackSlot(backpackInv, num, xpos, ypos));
+                    }
                     num++;
                 }
             }
@@ -62,6 +71,16 @@ public class BackpackContainer extends BaseTileContainer {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    protected int PLAYER_INVENTORY_YPOS() {
+        return 150;
+    }
+
+    @Override
+    protected int HOTBAR_YPOS() {
+        return 208;
     }
 
     @Override
@@ -91,35 +110,40 @@ public class BackpackContainer extends BaseTileContainer {
         return true;
     }
 
-    private class BackpackSlot extends Slot {
-        BackpackType type;
+    private class UpgradeSlot extends Slot {
 
-        public BackpackSlot(BackpackType type, Inventory inventory, int index, int x, int y) {
+        public UpgradeSlot(Inventory inventory, int index, int x, int y) {
             super(inventory, index, x, y);
-            this.type = type;
         }
 
         @Override
         public boolean canTakeItems(PlayerEntity player) {
+            return true;
+        }
 
+        @Override
+        public boolean canInsert(ItemStack stack) {
+            return stack.getItem() instanceof BackpackUpgradeItem;
+        }
+    }
+
+    private class BackpackSlot extends Slot {
+
+        public BackpackSlot(BackpackInventory inventory, int index, int x, int y) {
+            super(inventory, index, x, y);
+        }
+
+        @Override
+        public boolean canTakeItems(PlayerEntity player) {
             if (getStack().getItem() instanceof BackpackItem) {
                 return false;
             }
-
-            if (!type.canAcceptStack(getStack())) {
-                return false;
-            }
-
-            return !(getStack().getItem() instanceof BackpackItem) && type.canAcceptStack(getStack());
+            return true;
         }
 
         @Override
         public boolean canInsert(ItemStack stack) {
             if (stack.getItem() instanceof BackpackItem) {
-                return false;
-            }
-
-            if (!type.canAcceptStack(stack)) {
                 return false;
             }
 

@@ -5,8 +5,6 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
@@ -21,21 +19,18 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class BackpackItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
-    public BackpackType type;
-    public SkillItemTier tier;
 
-    public BackpackItem(BackpackType type, SkillItemTier tier) {
+    public BackpackItem() {
         super(new Settings().group(CreativeTabs.Professions)
             .fireproof()
             .maxCount(1));
-        this.type = type;
-        this.tier = tier;
     }
 
     @Override
@@ -74,7 +69,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
 
     @Override
     public Text getName(ItemStack stack) {
-        return new TranslatableText(this.getTranslationKey()).formatted(tier.format);
+        return new TranslatableText(this.getTranslationKey()).formatted(Formatting.YELLOW);
     }
 
     @Override
@@ -95,12 +90,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
 
     @Override
     public String locNameForLangFile() {
-
-        String name = type.getName();
-        if (!name.isEmpty()) {
-            name = " " + name;
-        }
-        return tier.word + name + " Bag";
+        return "Adventurer's Backpack";
     }
 
     @Override
@@ -111,9 +101,9 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
     @Override
     public ShapedRecipeJsonFactory getRecipe() {
         return shaped(this)
-            .input('o', ModRegistry.TIERED.LEATHER_TIER_MAP.get(tier))
+            .input('o', Items.LEATHER)
             .input('m', Items.CHEST)
-            .input('d', type.getCraftItem())
+            .input('d', Items.IRON_INGOT)
             .pattern("ooo")
             .pattern("omo")
             .pattern("odo")

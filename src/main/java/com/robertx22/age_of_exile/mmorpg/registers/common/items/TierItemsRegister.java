@@ -3,8 +3,6 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.SmeltedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedEssenceItem;
-import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
-import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackType;
 import com.robertx22.age_of_exile.player_skills.items.exploration.LockedChestItem;
 import com.robertx22.age_of_exile.player_skills.items.fishing.ScribeInkItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -33,9 +31,6 @@ public class TierItemsRegister extends BaseItemRegistrator {
     public HashMap<SkillItemTier, MysteriousLeatherItem> LEATHER_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, LockedChestItem> LOCKED_CHEST_TIER_MAP = new HashMap<>();
 
-    public HashMap<SkillItemTier, BackpackItem> VALUABLES_BACKPACKS_TIER_MAP = new HashMap<>();
-    public HashMap<SkillItemTier, BackpackItem> NORMAL_BACKPACKS_TIER_MAP = new HashMap<>();
-
     public HashMap<SkillItemTier, EssenceInkItem> ESSENCE_INK = new HashMap<>();
 
     public TierItemsRegister() {
@@ -56,9 +51,6 @@ public class TierItemsRegister extends BaseItemRegistrator {
             STONE_TIER_MAP.put(tier, item(new MiningStoneItem(tier)));
             LOCKED_CHEST_TIER_MAP.put(tier, item(new LockedChestItem(tier)));
             LEATHER_TIER_MAP.put(tier, item(new MysteriousLeatherItem(tier)));
-
-            VALUABLES_BACKPACKS_TIER_MAP.put(tier, item(new BackpackItem(BackpackType.VALUABLES, tier), "backpack/valuables/" + tier.tier));
-            NORMAL_BACKPACKS_TIER_MAP.put(tier, item(new BackpackItem(BackpackType.NORMAL, tier), "backpack/normal/" + tier.tier));
 
         }
 

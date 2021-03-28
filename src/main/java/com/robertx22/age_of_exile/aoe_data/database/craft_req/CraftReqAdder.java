@@ -32,9 +32,10 @@ public class CraftReqAdder implements ISlashRegistryInit {
                 CraftingReq.of(x, PlayerSkillEnum.BLACKSMITHING, (int) (x.tier.lvl_req * max));
             });
 
-        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> {
-            CraftingReq.of(x, PlayerSkillEnum.BLACKSMITHING, (int) (x.tier.lvl_req * max));
-        });
+        ModRegistry.BACKPACK_UPGRADES.ALL
+            .forEach(x -> {
+                CraftingReq.of(x, PlayerSkillEnum.BLACKSMITHING, (int) (x.tier.lvl_req * max));
+            });
 
     }
 }

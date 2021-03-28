@@ -22,27 +22,38 @@ public abstract class BaseTileContainer extends ScreenHandler {
         super(type, id);
         this.size = size;
 
+        addPlayerInventory(invPlayer);
+
+    }
+
+    protected int PLAYER_INVENTORY_YPOS() {
+        return 125;
+    }
+
+    protected int HOTBAR_YPOS() {
+        return 183;
+    }
+
+    public void addPlayerInventory(PlayerInventory invPlayer) {
+
         final int PLAYER_INVENTORY_XPOS = 8;
-        final int PLAYER_INVENTORY_YPOS = 125;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
-        final int HOTBAR_YPOS = 183;
         // Add the players hotbar to the gui - the [xpos, ypos] location of each item
         for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
             int slotNumber = x;
-            addSlot(new Slot(invPlayer, slotNumber, PLAYER_INVENTORY_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
+            addSlot(new Slot(invPlayer, slotNumber, PLAYER_INVENTORY_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS()));
         }
         // Add the rest of the players inventory to the gui
         for (int y = 0; y < PLAYER_INVENTORY_ROW_COUNT; y++) {
             for (int x = 0; x < PLAYER_INVENTORY_COLUMN_COUNT; x++) {
                 int slotNumber = HOTBAR_SLOT_COUNT + y * PLAYER_INVENTORY_COLUMN_COUNT + x;
                 int xpos = PLAYER_INVENTORY_XPOS + x * SLOT_X_SPACING;
-                int ypos = PLAYER_INVENTORY_YPOS + y * SLOT_Y_SPACING;
+                int ypos = PLAYER_INVENTORY_YPOS() + y * SLOT_Y_SPACING;
                 addSlot(new Slot(invPlayer, slotNumber, xpos, ypos));
             }
         }
-
     }
 
     public boolean isPlayerInventory(int index) {

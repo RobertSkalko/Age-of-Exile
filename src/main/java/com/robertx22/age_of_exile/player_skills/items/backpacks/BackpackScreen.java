@@ -17,9 +17,9 @@ public class BackpackScreen extends HandledScreen<BackpackContainer> {
         super(handler, inventory, new LiteralText(""));
 
         backgroundWidth = 176;
-        backgroundHeight = 207;
+        backgroundHeight = 233;
 
-        this.texture = new Identifier(Ref.MODID, "textures/gui/backpack/" + handler.tier.tier + ".png");
+        this.texture = new Identifier(Ref.MODID, "textures/gui/backpack/" + handler.info.tier + ".png");
     }
 
     @Override

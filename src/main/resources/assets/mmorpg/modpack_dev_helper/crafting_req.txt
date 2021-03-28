@@ -69,6 +69,7 @@ mmorpg:food/jam/purple/3
 mmorpg:food/fish/purple/0
 mmorpg:food/jam/purple/0
 mmorpg:food/brew/green/4
+mmorpg:backpack/upgrade/gem1
 mmorpg:food/brew/green/1
 mmorpg:food/fish/red/1
 mmorpg:food/brew/green/0
@@ -84,6 +85,7 @@ mmorpg:food/apple/blue/3
 mmorpg:food/apple/blue/4
 mmorpg:food/jam/blue/4
 mmorpg:food/jam/blue/3
+minecraft:air
 mmorpg:food/apple/purple/2
 mmorpg:food/apple/purple/1
 mmorpg:food/fish/red/4
@@ -93,6 +95,9 @@ mmorpg:food/jam/blue/2
 mmorpg:food/jam/blue/1
 mmorpg:food/apple/purple/0
 mmorpg:food/jam/blue/0
+mmorpg:backpack/upgrade/size2
+mmorpg:backpack/upgrade/size1
+mmorpg:backpack/upgrade/size0
 mmorpg:tablet/anti_poison
 mmorpg:tablet/anti_hunger
 mmorpg:food/fish/yellow/0
@@ -105,7 +110,9 @@ mmorpg:food/jam/red/4
 mmorpg:food/jam/red/2
 mmorpg:food/jam/red/3
 mmorpg:food/jam/red/0
+mmorpg:backpack/upgrade/size4
 mmorpg:food/jam/red/1
+mmorpg:backpack/upgrade/size3
 mmorpg:food/brew/yellow/4
 mmorpg:food/brew/yellow/3
 mmorpg:food/brew/yellow/2

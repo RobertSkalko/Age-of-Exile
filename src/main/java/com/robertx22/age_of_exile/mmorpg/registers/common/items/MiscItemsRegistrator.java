@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
@@ -88,6 +89,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public TalentResetPotion RESET_ALL_PERKS = item(new TalentResetPotion());
     public SingleTalentResetPotion ADD_RESET_PERK_POINTS = item(new SingleTalentResetPotion());
     public ResetStatsPotion RESET_STATS = item(new ResetStatsPotion());
+
+    public BackpackItem BACKPACK = item(new BackpackItem(), "backpack/normal");
 
     public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);
     public Item GEAR_REPAIR = blockItem(ModRegistry.BLOCKS.GEAR_REPAIR);

@@ -21,24 +21,23 @@ public class TryAutoInsert {
                     .equals(inv.player.getMainHandStack())) {
                     continue; // if holding, dont put
                 }
-                BackpackItem pack = (BackpackItem) backpack
-                    .getItem();
 
-                if (!pack.type.autoPicksUp()) {
+                BackpackInfo info = BackpackContainer.getInfo(inv.player, backpack);
+
+                if (info.autoPickups.stream()
+                    .noneMatch(x -> x.autoPicksUp(stack))) {
                     continue;
                 }
 
-                if (pack.type.canAcceptStack(stack)) {
-                    BackpackInventory binv = new BackpackInventory(backpack);
-                    if (binv.canInsert(stack)) {
-                        binv.addStack(stack);
-                        stack.setCount(0);
-                        binv.writeItemStack();
-                        SoundUtils.playSound(inv.player, SoundEvents.ENTITY_ITEM_PICKUP, 1, 1);
-                        return;
-                    }
-                }
+                BackpackInventory binv = new BackpackInventory(inv.player, backpack);
 
+                if (binv.addStack(stack)
+                    .isEmpty()) {
+                    stack.setCount(0);
+                    binv.writeItemStack();
+                    SoundUtils.playSound(inv.player, SoundEvents.ENTITY_ITEM_PICKUP, 1, 1);
+                    return;
+                }
             }
 
         }
