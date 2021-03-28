@@ -24,6 +24,7 @@ public class ModContainers {
     public Identifier GEAR_SOCKET = id("socket");
     public Identifier SCRIBE_BUFF = id("scribe_buff");
     public Identifier COOKING_STATION = id("cooking");
+    public Identifier TABLET_STATION = id("tablet");
 
     Identifier id(String id) {
         return new Identifier(Ref.MODID, id);
@@ -37,6 +38,7 @@ public class ModContainers {
         register(GEAR_SOCKET);
         register(SCRIBE_BUFF);
         register(COOKING_STATION);
+        register(TABLET_STATION);
     }
 
     @SuppressWarnings("deprecation")

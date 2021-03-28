@@ -11,12 +11,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class ReiShapeless implements DefaultCraftingDisplay {
+public class ReiShapelessDisplay implements DefaultCraftingDisplay {
     private StationShapeless display;
     private List<List<EntryStack>> input;
     private List<EntryStack> output;
 
-    public ReiShapeless(StationShapeless recipe) {
+    public ReiShapelessDisplay(StationShapeless recipe) {
         this.display = recipe;
         this.input = EntryStack.ofIngredients(recipe.getPreviewInputs());
         this.output = Collections.singletonList(EntryStack.create(recipe.getOutput()));

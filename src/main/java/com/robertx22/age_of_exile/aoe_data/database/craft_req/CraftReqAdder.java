@@ -11,10 +11,16 @@ public class CraftReqAdder implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        int max = GameBalanceConfig.get().MAX_LEVEL;
+
         ModRegistry.FOOD_ITEMS.MAP.values()
             .forEach(x -> {
-                CraftingReq.of(x, PlayerSkillEnum.COOKING, (int) (x.tier.lvl_req * GameBalanceConfig.get().MAX_LEVEL));
+                CraftingReq.of(x, PlayerSkillEnum.COOKING, (int) (x.tier.lvl_req * max));
             });
+
+        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> {
+            CraftingReq.of(x, PlayerSkillEnum.INSCRIBING, (int) (x.tier.lvl_req * max));
+        });
 
     }
 }

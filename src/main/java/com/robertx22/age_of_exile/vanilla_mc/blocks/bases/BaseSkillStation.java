@@ -71,6 +71,38 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
         return fuel > 0;
     }
 
+    public Recipe<Inventory> getRecipeBeingTried() {
+
+        Inventory inv = getCraftingInventory();
+
+        Recipe<Inventory> recipe = this.world.getRecipeManager()
+            .getFirstMatch(recipeType, inv, this.world)
+            .orElse(null);
+
+        return recipe;
+    }
+
+    public Inventory getCraftingInventory() {
+        ItemStack[] craftinv = new ItemStack[getInputSlots().size()];
+        int i = 0;
+        for (Integer INPUT_SLOT : getInputSlots()) {
+            craftinv[i] = itemStacks[INPUT_SLOT];
+            i++;
+        }
+        Inventory inv = new SimpleInventory(craftinv);
+
+        return inv;
+    }
+
+    public ItemStack getStackBeingCrafted() {
+        Recipe<Inventory> recipe = getRecipeBeingTried();
+        if (recipe != null) {
+            return recipe.getOutput();
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
     @Override
     public void onSmeltTick() {
 
@@ -80,19 +112,9 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
 
         if (player != null) {
 
-            ItemStack[] craftinv = new ItemStack[getInputSlots().size()];
+            Inventory inv = getCraftingInventory();
 
-            int i = 0;
-            for (Integer INPUT_SLOT : getInputSlots()) {
-                craftinv[i] = itemStacks[INPUT_SLOT];
-                i++;
-            }
-
-            Inventory inv = new SimpleInventory(craftinv);
-
-            Recipe<Inventory> recipe = this.world.getRecipeManager()
-                .getFirstMatch(recipeType, inv, this.world)
-                .orElse(null);
+            Recipe<Inventory> recipe = getRecipeBeingTried();
 
             if (recipe != null) {
 
@@ -112,6 +134,9 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                 if (req != null) {
                     if (!req.meets(player)) {
                         cook_ticks--;
+                        if (cook_ticks < 0) {
+                            cook_ticks = 0;
+                        }
                         return;
                     }
                 }
@@ -120,6 +145,9 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
 
                 if (!hasFuel()) {
                     cook_ticks--;
+                    if (cook_ticks < 0) {
+                        cook_ticks = 0;
+                    }
                     return;
                 }
 
@@ -155,6 +183,9 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                 }
             } else {
                 cook_ticks--;
+                if (cook_ticks < 0) {
+                    cook_ticks = 0;
+                }
             }
         }
 

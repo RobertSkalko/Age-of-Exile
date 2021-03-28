@@ -15,6 +15,8 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.ContainerGea
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.GuiGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationGui;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationContainer;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationScreen;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.MinecraftClient;
@@ -31,6 +33,7 @@ public class ContainerGuiRegisters {
         ScreenProviderRegistry.INSTANCE.<SocketStationContainer>registerFactory(ModRegistry.CONTAINERS.GEAR_SOCKET, x -> new SocketStationGui(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<ScribeBuffContainer>registerFactory(ModRegistry.CONTAINERS.SCRIBE_BUFF, x -> new ScribeBuffScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
         ScreenProviderRegistry.INSTANCE.<CookingContainer>registerFactory(ModRegistry.CONTAINERS.COOKING_STATION, x -> new CookingScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
+        ScreenProviderRegistry.INSTANCE.<TabletStationContainer>registerFactory(ModRegistry.CONTAINERS.TABLET_STATION, x -> new TabletStationScreen(x, MinecraftClient.getInstance().player.inventory, new LiteralText("")));
 
         ScreenRegistry.register(ModRegistry.CONTAINERS.BACKPACK_TYPE, BackpackScreen::new);
         ScreenRegistry.register(ModRegistry.CONTAINERS.SKILL_GEMS_TYPE, SkillGemsScreen::new);

@@ -9,20 +9,20 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 
-public class FoodShapeless extends StationShapeless {
+public class TabletShapeless extends StationShapeless {
 
-    public FoodShapeless(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input) {
+    public TabletShapeless(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input) {
         super(id, group, output, input);
     }
 
     @Override
     public RecipeType<?> getType() {
-        return ModRegistry.RECIPE_TYPES.FOOD_RECIPE;
+        return ModRegistry.RECIPE_TYPES.TABLET_RECIPE;
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModRegistry.RECIPE_SER.FOOD;
+        return ModRegistry.RECIPE_SER.TABLET;
     }
 
 }

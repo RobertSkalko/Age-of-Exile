@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.BlockGea
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.BlockGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationBlock;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BeetrootsBlock;
 import net.minecraft.block.Block;
@@ -26,6 +27,7 @@ public class ModBlocks {
     public BlockGearRepair GEAR_REPAIR = of("repair_station", new BlockGearRepair());
     public ScribeBuffBlock SCRIBE_BUFF = of("scribe_buff", new ScribeBuffBlock());
     public CookingBlock COOKING_STATION = of("cooking_station", new CookingBlock());
+    public TabletStationBlock TABLET_STATION = of("tablet_station", new TabletStationBlock());
 
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 

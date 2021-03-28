@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.TileGear
 import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.TileGearRepair;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.TileGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationBlockEntity;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -22,6 +23,7 @@ public class ModBlockEntities {
     public BlockEntityType<TileGearSalvage> GEAR_SALVAGE = of(ModRegistry.BLOCKS.GEAR_SALVAGE, TileGearSalvage::new);
     public BlockEntityType<ScribeBuffTile> SCRIBE_BUFF = of(ModRegistry.BLOCKS.SCRIBE_BUFF, ScribeBuffTile::new);
     public BlockEntityType<CookingTile> COOKING = of(ModRegistry.BLOCKS.COOKING_STATION, CookingTile::new);
+    public BlockEntityType<TabletStationTile> TABLET = of(ModRegistry.BLOCKS.TABLET_STATION, TabletStationTile::new);
 
     private <T extends BlockEntity> BlockEntityType<T> of(Block block, Supplier<T> en) {
         BlockEntityType<T> type = BlockEntityType.Builder.create(en, block)

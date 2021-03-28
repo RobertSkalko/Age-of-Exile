@@ -10,6 +10,7 @@ import net.minecraft.util.registry.Registry;
 public class ModRecipeTypes {
 
     public RecipeType<StationShapeless> FOOD_RECIPE = register("food_crafting");
+    public RecipeType<StationShapeless> TABLET_RECIPE = register("tablet_crafting");
 
     static <T extends Recipe<?>> RecipeType<T> register(final String string) {
         return Registry.register(Registry.RECIPE_TYPE, (Identifier) Ref.id(string), new RecipeType<T>() {
