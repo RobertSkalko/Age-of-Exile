@@ -25,12 +25,10 @@ health_leech
 crit_aura
 cast_speed
 hp_reg_aura
-imbue
 spear_of_judgement
 atk_speed
 tidal_strike
 more_radius
-multi_shot
 less_mana_cost
 recoil_shot
 thirst_strike
@@ -41,7 +39,6 @@ spell_crit_rate
 crit_dmg
 faster_proj
 nature_balm
-arrow_barrage
 fireball
 levitation
 explosive_arrow

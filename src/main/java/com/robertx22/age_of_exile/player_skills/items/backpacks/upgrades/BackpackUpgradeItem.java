@@ -15,6 +15,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
@@ -62,6 +64,8 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
         tooltip.add(Words.BagUpgradeDesc.locName()
             .formatted(Formatting.BLUE));
 
+        this.upgrade.addToTooltip(tooltip);
+
     }
 
     @Override
@@ -97,7 +101,23 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList();
+        return Arrays.asList(new BaseLocRequirement() {
+            @Override
+            public MutableText getText() {
+                return new LiteralText("No duplicate upgrades");
+            }
+
+            @Override
+            public boolean isAllowed(LocReqContext context) {
+                if (context.stack.getItem() instanceof BackpackItem) {
+                    if (context.Currency.getItem() instanceof BackpackUpgradeItem) {
+                        return BagUpgradesData.load(context.stack)
+                            .canUpgrade((BackpackUpgradeItem) context.Currency.getItem());
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @Override

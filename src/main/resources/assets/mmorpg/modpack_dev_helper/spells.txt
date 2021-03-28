@@ -14,7 +14,6 @@ gorgons_gaze
 nature_balm
 haste_aura
 arrow_storm
-arrow_barrage
 fireball
 levitation
 explosive_arrow
@@ -33,11 +32,9 @@ fire_bombs
 crit_aura
 awaken_mana
 hp_reg_aura
-imbue
 spear_of_judgement
 mana_reg_aura
 fire_nova
 tidal_strike
-multi_shot
 poisoned_weapons
 dodge_aura

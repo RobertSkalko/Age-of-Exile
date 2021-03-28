@@ -18,7 +18,35 @@ public class BagUpgradesData {
     @Store
     public List<String> upgrades = new ArrayList<>();
 
+    public boolean canUpgrade(BackpackUpgradeItem item) {
+
+        List<BackpackUpgradeItem> list = getUpgrades();
+
+        if (list.size() > 9) {
+            return false;
+        }
+
+        for (BackpackUpgradeItem x : list) {
+            if (!x.upgrade.canOverrideSelf()) {
+                if (x == item) {
+                    return false;
+                }
+            }
+        }
+        return true;
+
+    }
+
     public void upgrade(BackpackUpgradeItem item) {
+
+        this.getUpgrades()
+            .forEach(x -> {
+                if (x.upgrade == item.upgrade) {
+                    this.upgrades.remove(Registry.ITEM.getId(x)
+                        .toString());
+                }
+            });
+
         upgrades.add(Registry.ITEM.getId(item)
             .toString());
     }
