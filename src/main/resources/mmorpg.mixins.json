@@ -14,12 +14,14 @@
     "LivingEntityMixin",
     "LootTableMixin",
     "OnCraftMixin",
+    "PassiveEntityAccessor",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PlayerManagerMixin",
     "ServerResourceManagerMixin",
     "SpawnSettingsMixin",
-    "StatusEffectMixin"
+    "StatusEffectMixin",
+    "bow.ProjectileUtilMixin"
   ],
   "client": [
     "ClientRecipeBookMixin",
@@ -27,7 +29,8 @@
     "ItemGlintMixin",
     "ItemStackMixin",
     "MobNameTagMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "bow.HeldItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

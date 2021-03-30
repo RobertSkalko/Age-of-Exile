@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemAxe;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemSword;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemWand;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ModBowItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -44,7 +45,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     public HashMap<LevelRange, Item> AXES = of("weapon/axe/axe", () -> new ItemAxe("Axe"));
     public HashMap<LevelRange, Item> WANDS = of("weapon/wand/wand", () -> new ItemWand("Wand"));
     public HashMap<LevelRange, Item> SCEPTERS = of("weapon/wand/scepter", () -> new ItemWand("Scepter"));
-    public HashMap<LevelRange, Item> BOWS = vanilla(Items.BOW);
+    public HashMap<LevelRange, Item> BOWS = of("weapon/bow/bow", () -> new ModBowItem("Bow"));
     public HashMap<LevelRange, Item> PICKAXE = vanilla(Items.DIAMOND_PICKAXE);
     public HashMap<LevelRange, Item> FISHING_RODS = vanilla(Items.FISHING_ROD);
     public HashMap<LevelRange, Item> HOES = vanilla(Items.DIAMOND_HOE);

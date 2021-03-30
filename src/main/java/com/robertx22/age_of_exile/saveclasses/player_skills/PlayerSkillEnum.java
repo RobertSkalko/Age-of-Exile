@@ -13,12 +13,12 @@ public enum PlayerSkillEnum {
     MINING("mining", WikiType.MINING_BLOCK_EXP, Words.Mining, Words.MiningDesc, Formatting.GRAY),
     FARMING("farming", WikiType.FARMING_EXP, Words.Farming, Words.FarmingDesc, Formatting.YELLOW),
     SALVAGING("salvaging", null, Words.Salvaging, Words.SalvagingDesc, Formatting.LIGHT_PURPLE),
-    ALCHEMY("alchemy", null, Words.Alchemy, Words.AlchemyDesc, Formatting.LIGHT_PURPLE),
-    INSCRIBING("inscribing", null, Words.Inscribing, Words.InscribingDesc, Formatting.AQUA),
-    COOKING("cooking", null, Words.Cooking, Words.CookingDesc, Formatting.RED),
+    ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, Formatting.LIGHT_PURPLE),
+    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, Formatting.AQUA),
+    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, Formatting.RED),
     FISHING("fishing", null, Words.Fishing, Words.FishingDesc, Formatting.BLUE),
     EXPLORATION("exploration", null, Words.Exploration, Words.ExplorationDesc, Formatting.GOLD),
-    BLACKSMITHING("blacksmithing", null, Words.Blacksmithing, Words.BlacksmithDesc, Formatting.GREEN),
+    BLACKSMITHING("blacksmithing", WikiType.BLACKSMITH_EXP, Words.Blacksmithing, Words.BlacksmithDesc, Formatting.GREEN),
     ALL("all", null, Words.Skill, Words.Skill, Formatting.GREEN),
     NONE("none", null, Words.Skill, Words.Skill, Formatting.BLACK);
 

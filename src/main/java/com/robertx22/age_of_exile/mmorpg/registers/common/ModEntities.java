@@ -32,7 +32,6 @@ public class ModEntities {
     }
 
     static EntityDimensions mageDim = new EntityDimensions(0.5F, 2.2F, true);
-    static EntityDimensions chickenDim = new EntityDimensions(0.7F, 0.5F, true);
 
     public EntityType<SimpleProjectileEntity> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "spell_projectile");
     public EntityType<SimpleArrowEntity> SIMPLE_ARROW = projectile(SimpleArrowEntity::new, "spell_arrow");

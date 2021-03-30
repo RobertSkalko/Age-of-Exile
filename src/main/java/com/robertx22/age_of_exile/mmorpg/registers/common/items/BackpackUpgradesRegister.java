@@ -19,6 +19,8 @@ public class BackpackUpgradesRegister extends BaseItemRegistrator {
     BackpackUpgradeItem CURRENCY = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_CURRENCY_PICKUP, SkillItemTier.TIER3, "currency", "Auto Currency Pickup Upgrade"));
     BackpackUpgradeItem ESSENCE = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_ESSENCE_PICKUP, SkillItemTier.TIER0, "essence", "Auto Essence Pickup Upgrade"));
 
+    BackpackUpgradeItem SAVE_NAMED = upgrade(new BackpackUpgradeItem(BackpackUpgrade.SAVE_FROM_SALVAGE, SkillItemTier.TIER1, "save", "Save Important Items Upgrade"));
+
     BackpackUpgradeItem SAL_0 = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_SALVAGE_0, SkillItemTier.TIER0, "auto_sal", "Auto Salvage Commons Upgrade"));
     BackpackUpgradeItem SAL_1 = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_SALVAGE_1, SkillItemTier.TIER1, "auto_sal", "Auto Salvage Uncommons Upgrade"));
     BackpackUpgradeItem SAL_2 = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_SALVAGE_2, SkillItemTier.TIER2, "auto_sal", "Auto Salvage Rares Upgrade"));
@@ -29,9 +31,7 @@ public class BackpackUpgradesRegister extends BaseItemRegistrator {
     }
 
     public BackpackUpgradesRegister() {
-
         for (SkillItemTier tier : SkillItemTier.values()) {
-
             SIZE.put(tier, upgrade(new BackpackUpgradeItem(BackpackUpgrade.Size, tier, "size", tier.word + " Size Upgrade")));
         }
     }

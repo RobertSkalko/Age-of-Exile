@@ -96,7 +96,9 @@ mmorpg:weapon/axe/axe0
 mmorpg:uniques/weapon/inca_thunder
 mmorpg:weapon/axe/axe1
 mmorpg:jewelry/ring/fire_res_ring_low
+mmorpg:weapon/bow/bow1
 mmorpg:armor/plate/boots/plate_boots0
+mmorpg:weapon/bow/bow0
 mmorpg:weapon/axe/axe2
 mmorpg:weapon/axe/axe3
 mmorpg:weapon/axe/axe4
@@ -126,5 +128,8 @@ mmorpg:uniques/armor/kingmaker
 mmorpg:uniques/armor/frost_crown
 mmorpg:uniques/jewelry/bonechill_amulet
 mmorpg:uniques/armor/ms_armor_chest
+mmorpg:weapon/bow/bow3
+mmorpg:weapon/bow/bow2
 mmorpg:jewelry/ring/mana_reg_ring_low
+mmorpg:weapon/bow/bow4
 mmorpg:uniques/jewelry/lunar_ring

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.AutoPickupType;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackInfo;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
@@ -12,6 +13,22 @@ import java.util.List;
 
 public enum BackpackUpgrade {
 
+    SAVE_FROM_SALVAGE {
+        @Override
+        public void upgrade(BackpackUpgradeItem item, BackpackInfo info) {
+            info.dontSalvageEnchantedOrNamed = true;
+        }
+
+        @Override
+        public Item craftItem() {
+            return Items.NAME_TAG;
+        }
+
+        @Override
+        public void addToTooltip(List<Text> list) {
+            list.add(Words.SavesNamedOrEnchanted.locName());
+        }
+    },
     AUTO_SALVAGE_0 {
         @Override
         public void upgrade(BackpackUpgradeItem item, BackpackInfo info) {

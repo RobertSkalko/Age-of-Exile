@@ -7,13 +7,13 @@
   ],
   "key": {  
 	"C": {
-      "item": "minecraft:furnace"
+      "item": "minecraft:chest"
     }, 
 	"A": {
-      "item": "minecraft:gunpowder"
+      "item": "minecraft:grindstone"
     }, 
 	"B": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:redstone"
     }
   },
   "result": {

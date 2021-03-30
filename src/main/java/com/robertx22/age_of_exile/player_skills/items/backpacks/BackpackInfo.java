@@ -33,10 +33,16 @@ public class BackpackInfo {
     public int extraRows = 0;
 
     public List<AutoPickupType> autoPickups = new ArrayList<>();
-
+    public boolean dontSalvageEnchantedOrNamed = false;
     public List<Integer> tiersToAutoSalvage = new ArrayList<>();
 
     public boolean canSalvage(ItemStack stack) {
+
+        if (dontSalvageEnchantedOrNamed) {
+            if (stack.hasEnchantments() || stack.hasCustomName()) {
+                return false;
+            }
+        }
 
         GearItemData gear = Gear.Load(stack);
 

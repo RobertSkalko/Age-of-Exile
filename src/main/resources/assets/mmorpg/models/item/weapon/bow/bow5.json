@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "mmorpg:items/bow/1/bow_standby"
+        "layer0": "mmorpg:items/weapon/bow/5/bow_standby"
     },
     "display": {
         "thirdperson_righthand": {
@@ -30,21 +30,21 @@
             "predicate": {
                 "pulling": 1
             },
-            "model": "mmorpg:item/bow/1bow_pulling_0"
+            "model": "mmorpg:item/weapon/bow/5bow_pulling_0"
         },
         {
             "predicate": {
                 "pulling": 1,
                 "pull": 0.65
             },
-            "model": "mmorpg:item/bow/1bow_pulling_1"
+            "model": "mmorpg:item/weapon/bow/5bow_pulling_1"
         },
         {
             "predicate": {
                 "pulling": 1,
                 "pull": 0.9
             },
-            "model": "mmorpg:item/bow/1bow_pulling_2"
+            "model": "mmorpg:item/weapon/bow/5bow_pulling_2"
         }
     ]
 }

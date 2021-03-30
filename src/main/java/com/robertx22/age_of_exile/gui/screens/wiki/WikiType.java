@@ -25,6 +25,50 @@ public enum WikiType {
                 .collect(Collectors.toList());
         }
     },
+    COOKING_EXP("cooking") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return craftExp(PlayerSkillEnum.COOKING);
+        }
+
+        @Override
+        public boolean showsInWiki() {
+            return false; // only by linking from professions page
+        }
+    },
+    ALCHEMY_EXP("alchemy") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return craftExp(PlayerSkillEnum.ALCHEMY);
+        }
+
+        @Override
+        public boolean showsInWiki() {
+            return false; // only by linking from professions page
+        }
+    },
+    SCRIBE_EXP("scribe") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return craftExp(PlayerSkillEnum.INSCRIBING);
+        }
+
+        @Override
+        public boolean showsInWiki() {
+            return false; // only by linking from professions page
+        }
+    },
+    BLACKSMITH_EXP("smith") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return craftExp(PlayerSkillEnum.BLACKSMITHING);
+        }
+
+        @Override
+        public boolean showsInWiki() {
+            return false; // only by linking from professions page
+        }
+    },
     RUNEWORDS("runeword") {
         @Override
         public List<WikiEntry> getAllEntries() {
@@ -88,6 +132,15 @@ public enum WikiType {
                 .collect(Collectors.toList());
         }
     };
+
+    List<WikiEntry> craftExp(PlayerSkillEnum skill) {
+        List<WikiEntry> list = new ArrayList<>();
+        Database.PlayerSkills()
+            .get(skill.id).item_craft_exp.forEach(x -> {
+            list.add(new CraftingExpEntry(x.getItem(), x.exp));
+        });
+        return list;
+    }
 
     private String icon;
 

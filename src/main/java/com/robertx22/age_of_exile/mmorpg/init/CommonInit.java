@@ -17,9 +17,11 @@ import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeInfo;
@@ -84,6 +86,21 @@ public class CommonInit implements ModInitializer {
         DodgeRating.getInstance()
             .logUsableAmountTests();h
          */
+
+        ModRegistry.GEAR_ITEMS.BOWS.values()
+            .forEach(x -> {
+                FabricModelPredicateProviderRegistry.register(x, new Identifier("pulling"), (itemStack, clientWorld, livingEntity) -> {
+                    return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
+                });
+
+                FabricModelPredicateProviderRegistry.register(x, new Identifier("pull"), (itemStack, clientWorld, livingEntity) -> {
+                    if (livingEntity == null) {
+                        return 0.0F;
+                    } else {
+                        return livingEntity.getActiveItem() != itemStack ? 0.0F : (float) (itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / 20.0F;
+                    }
+                });
+            });
 
         watch.print("Age of Exile mod initialization ");
 

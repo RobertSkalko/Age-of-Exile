@@ -54,6 +54,7 @@ mmorpg:alchemy/potion/mana/4
 mmorpg:food/fish/blue/0
 mmorpg:food/fish/blue/3
 mmorpg:food/fish/blue/4
+mmorpg:backpack/upgrade/essence0
 mmorpg:food/fish/green/4
 mmorpg:food/fish/green/3
 mmorpg:food/fish/green/2
@@ -109,6 +110,7 @@ mmorpg:food/fish/yellow/2
 mmorpg:food/fish/yellow/1
 mmorpg:food/fish/yellow/4
 mmorpg:food/fish/yellow/3
+mmorpg:backpack/upgrade/save1
 mmorpg:food/jam/red/4
 mmorpg:food/jam/red/2
 mmorpg:food/jam/red/3
