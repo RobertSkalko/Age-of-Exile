@@ -3,8 +3,9 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
-import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.item.Item;
 import net.minecraft.text.LiteralText;
@@ -21,7 +22,7 @@ public abstract class BaseGemRuneItem extends Item {
 
     public int weight;
 
-    public abstract float getStatMultiForNonLvlScaledStat();
+    public abstract float getStatValueMulti();
 
     public abstract BaseRuneGem getBaseRuneGem();
 
@@ -31,26 +32,21 @@ public abstract class BaseGemRuneItem extends Item {
 
         List<StatModifier> list = new ArrayList<>();
 
-        float multi = getStatMultiForNonLvlScaledStat();
+        float multi = getStatValueMulti();
 
         this.getStatModsForSerialization(family)
             .forEach(x -> {
                 if (x.GetStat()
-                    .getScaling() == StatScaling.NORMAL) {
-                    list.add(x);
+                    .UsesSecondValue()) {
+                    list.add(new StatModifier(
+                        x.min1 * multi, x.max1 * multi, x.min2 * multi, x.max2 * multi,
+                        x.GetStat(), x.getModType()));
                 } else {
-                    if (x.GetStat()
-                        .UsesSecondValue()) {
-                        list.add(new StatModifier(
-                            x.min1 * multi, x.max1 * multi, x.min2 * multi, x.max2 * multi,
-                            x.GetStat(), x.getModType()));
-                    } else {
-                        list.add(new StatModifier(
-                            x.min1 * multi, x.max1 * multi,
-                            x.GetStat(), x.getModType()));
-                    }
-
+                    list.add(new StatModifier(
+                        x.min1 * multi, x.max1 * multi,
+                        x.GetStat(), x.getModType()));
                 }
+
             });
 
         return list;
@@ -68,7 +64,8 @@ public abstract class BaseGemRuneItem extends Item {
 
         BaseRuneGem gem = getBaseRuneGem();
 
-        int efflvl = gem.getEffectiveLevel();
+        int efflvl = Load.Unit(ClientOnly.getPlayer())
+            .getLevel();
 
         tooltip.add(new LiteralText(""));
         List<StatModifier> wep = gem.getFor(SlotFamily.Weapon);

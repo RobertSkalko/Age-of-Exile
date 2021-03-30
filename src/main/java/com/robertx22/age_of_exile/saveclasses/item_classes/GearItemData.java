@@ -455,9 +455,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Override
     public List<ItemStack> getSalvageResult(float salvageBonus) {
         if (this.can_sal) {
-
             SalvageOutput sal = RandomUtils.weightedRandom(Database.SalvageOutputs()
-                .getFiltered(x -> x.isForItem(this))
+                .getFiltered(x -> x.isForItem(this.lvl))
             );
 
             return sal.getResult(this);

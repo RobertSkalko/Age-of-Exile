@@ -26,10 +26,6 @@ public class BaseRuneGem implements IGUID, IWeighted {
 
     public float effective_level;
 
-    public int getEffectiveLevel() {
-        return (int) (MathHelper.clamp(GameBalanceConfig.get().MAX_LEVEL * effective_level, 1, GameBalanceConfig.get().MAX_LEVEL));
-    }
-
     public int getReqLevel() {
         return (int) (MathHelper.clamp(GameBalanceConfig.get().MAX_LEVEL * required_item_level, 1, GameBalanceConfig.get().MAX_LEVEL));
     }

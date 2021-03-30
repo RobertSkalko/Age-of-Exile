@@ -10,6 +10,8 @@ import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
@@ -811,10 +813,28 @@ public class EntityCap {
                     ));
 
                 // fully restore on lvlup
-                ;
 
                 this.setLevel(level + 1);
                 setExp(getRemainingExp());
+
+                Load.spells(player)
+                    .getSkillGemData().stacks.forEach(x -> {
+                    // lvl up spell gems, not support gems
+                    SkillGemData data = SkillGemData.fromStack(x);
+                    if (data != null) {
+                        if (data.getSkillGem().type == SkillGemType.SKILL_GEM) {
+
+                            SkillGemData test = SkillGemData.fromStack(x);
+                            test.lvl++;
+
+                            if (test.canPlayerUse(player)) {
+                                // only lvl gems if player can use them after they are lvled
+                                data.tryLevel();
+                                data.saveToStack(x);
+                            }
+                        }
+                    }
+                });
 
                 Optional<LevelRewardConfig> opt = ModConfig.get().LevelRewards.levelRewards.stream()
                     .filter(x -> x.for_level == this.level)

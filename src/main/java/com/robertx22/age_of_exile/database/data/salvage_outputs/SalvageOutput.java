@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.salvage_outputs;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -19,8 +20,17 @@ public class SalvageOutput implements ISerializedRegistryEntry<SalvageOutput>, I
     String id = "";
     int weight = 1000;
 
-    public boolean isForItem(GearItemData gear) {
-        return gear.lvl >= levelRange.getMinLevel();
+    public boolean isForItem(int lvl) {
+        return lvl >= levelRange.getMinLevel();
+    }
+
+    public List<ItemStack> getResult(SkillGemData gem) {
+        ItemStack stack = new ItemStack(RandomUtils.weightedRandom(outputs)
+            .getItem());
+        stack.setCount(Math.max(1, (int) 2));
+        List<ItemStack> list = new ArrayList<>();
+        list.add(stack);
+        return list;
     }
 
     public List<ItemStack> getResult(GearItemData gear) {

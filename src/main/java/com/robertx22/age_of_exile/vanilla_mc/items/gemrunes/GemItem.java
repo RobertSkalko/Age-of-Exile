@@ -116,7 +116,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
         SocketData socket = new SocketData();
         socket.gem = gem.identifier;
-        socket.lvl = gem.getEffectiveLevel();
+        socket.lvl = gear.lvl;
         socket.perc = RandomUtils.RandomRange(0, 100);
 
         gear.sockets.sockets.add(socket);
@@ -132,8 +132,8 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     @Override
-    public float getStatMultiForNonLvlScaledStat() {
-        return gemRank.valMultiIfNonLvlScaledStat;
+    public float getStatValueMulti() {
+        return gemRank.valmulti;
     }
 
     @Override
@@ -270,22 +270,22 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public enum GemRank {
-        CHIPPED("Chipped", 0, 0.2F, 1),
-        FLAWED("Flawed", 1, 0.4F, 1.2F),
-        REGULAR("Regular", 2, 0.6F, 1.4F),
-        FLAWLESS("Flawless", 3, 8F, 1.6F),
-        PERFECT("Perfect", 4, 1F, 1.8F);
+        CHIPPED("Chipped", 0, 0.0F, 1),
+        FLAWED("Flawed", 1, 0.2F, 1.2F),
+        REGULAR("Regular", 2, 0.4F, 1.4F),
+        FLAWLESS("Flawless", 3, 0.6F, 1.6F),
+        PERFECT("Perfect", 4, 0.8F, 1.8F);
 
         public String locName;
         public int num;
         public float lvlreq;
-        public float valMultiIfNonLvlScaledStat;
+        public float valmulti;
 
-        GemRank(String locName, int num, float lvlreq, float valMultiIfNonLvlScaledStat) {
+        GemRank(String locName, int num, float lvlreq, float valmulti) {
             this.locName = locName;
             this.num = num;
             this.lvlreq = lvlreq;
-            this.valMultiIfNonLvlScaledStat = valMultiIfNonLvlScaledStat;
+            this.valmulti = valmulti;
         }
 
         public GemRank lower() {

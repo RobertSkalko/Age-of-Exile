@@ -113,7 +113,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
         SocketData socket = new SocketData();
         socket.rune = rune.identifier;
-        socket.lvl = rune.getEffectiveLevel();
+        socket.lvl = gear.lvl;
         socket.perc = RandomUtils.RandomRange(0, 100);
 
         gear.sockets.sockets.add(socket);
@@ -386,7 +386,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
     }
 
     @Override
-    public float getStatMultiForNonLvlScaledStat() {
+    public float getStatValueMulti() {
         return 1;
     }
 

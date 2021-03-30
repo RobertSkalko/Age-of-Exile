@@ -3,14 +3,19 @@ package com.robertx22.age_of_exile.database.data.skill_gem;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
+import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import info.loenwind.autosave.annotations.Storable;
@@ -24,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class SkillGemData implements ITooltipList {
+public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarity> {
 
     @Store
     public String id = "";
@@ -34,39 +39,17 @@ public class SkillGemData implements ITooltipList {
     public int stat_perc = 100;
     @Store
     public int lvl = 1;
-    @Store
-    public int exp = 0;
 
     // only support gems should have random stats
     @Store
     public List<StatModifier> random_stats = new ArrayList<>();
 
-    public void addExpBySacrificing(SkillGemData sacrifice) {
-        float multi = (float) sacrifice.lvl / (float) lvl;
+    public void tryLevel() {
 
-        int exp = (int) (lvl * 50 * multi);
-
-        this.exp += exp;
-
-        while (tryLevel()) {
-
-        }
-    }
-
-    public int getExpNeededToLvlUp() {
-        return 100 * lvl;
-    }
-
-    public boolean tryLevel() {
-        if (lvl >= GameBalanceConfig.get().MAX_LEVEL) {
-            return false;
-        }
-        if (exp >= getExpNeededToLvlUp()) {
-            exp -= getExpNeededToLvlUp();
+        if (lvl < GameBalanceConfig.get().MAX_LEVEL) {
             lvl++;
-            return true;
         }
-        return false;
+
     }
 
     public boolean canPlayerUse(PlayerEntity player) {
@@ -90,6 +73,11 @@ public class SkillGemData implements ITooltipList {
     public SkillGem getSkillGem() {
         return Database.SkillGems()
             .get(id);
+    }
+
+    @Override
+    public String getRarityRank() {
+        return rar;
     }
 
     public SkillGemRarity getRarity() {
@@ -146,7 +134,6 @@ public class SkillGemData implements ITooltipList {
 
         }
 
-        list.add(new LiteralText("Exp: " + exp + "/" + getExpNeededToLvlUp()));
         list.add(new LiteralText(""));
         list.add(TooltipUtils.rarity(getRarity())
             .formatted(getRarity().textFormatting()));
@@ -155,5 +142,34 @@ public class SkillGemData implements ITooltipList {
 
         return list;
 
+    }
+
+    @Override
+    public List<ItemStack> getSalvageResult(float salvageBonus) {
+        SalvageOutput sal = RandomUtils.weightedRandom(Database.SalvageOutputs()
+            .getFiltered(x -> x.isForItem(this.lvl))
+        );
+        return sal.getResult(this);
+    }
+
+    @Override
+    public DataItemType getDataType() {
+        return DataItemType.SPELL;
+
+    }
+
+    @Override
+    public boolean isSalvagable(SalvageContext context) {
+        return true;
+    }
+
+    @Override
+    public void BuildTooltip(TooltipContext ctx) {
+
+    }
+
+    @Override
+    public int getTier() {
+        return 0;
     }
 }
