@@ -14,7 +14,6 @@ import java.util.Optional;
 public class MyCurioUtils {
 
     public static List<String> SLOTS = Arrays.asList("ring", "necklace");
-    public static List<String> SALVAGE = Arrays.asList(RefCurio.SALVAGE_BAG);
 
     public static List<ICurioStacksHandler> getHandlers(PlayerEntity player) {
         return getHandlers(SLOTS, player);
@@ -25,8 +24,8 @@ public class MyCurioUtils {
         List<ICurioStacksHandler> list = new ArrayList<>();
 
         ICuriosItemHandler handler = CuriosApi.getCuriosHelper()
-            .getCuriosHandler(player)
-            .get();
+                .getCuriosHandler(player)
+                .get();
 
         for (String slot : slots) {
 
@@ -45,10 +44,6 @@ public class MyCurioUtils {
 
     }
 
-    public static List<ItemStack> getSalvageStack(PlayerEntity player) {
-        return getAllSlots(SALVAGE, player);
-
-    }
 
     public static ItemStack get(String slot, PlayerEntity player, int num) {
 
@@ -67,11 +62,11 @@ public class MyCurioUtils {
 
         getHandlers(slots, player).forEach(x -> {
             for (int i = 0; i < x
-                .getSlots(); i++) {
+                    .getSlots(); i++) {
 
                 ItemStack stack = x
-                    .getStacks()
-                    .getStack(i);
+                        .getStacks()
+                        .getStack(i);
                 // if (!stack.isEmpty()) {
                 list.add(stack);
                 // }

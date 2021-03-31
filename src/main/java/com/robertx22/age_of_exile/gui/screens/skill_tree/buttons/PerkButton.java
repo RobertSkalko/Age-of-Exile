@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.capability.entity.EntityPerks;
+import com.robertx22.age_of_exile.capability.player.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
@@ -88,7 +88,7 @@ public class PerkButton extends TexturedButtonWidget {
             boolean bl = this.clicked(mouseX, mouseY);
             if (bl) {
                 this.playDownSound(MinecraftClient.getInstance()
-                    .getSoundManager());
+                        .getSoundManager());
 
                 if (button == 0) {
                     Packets.sendToServer(new PerkChangePacket(school, point, PerkChangePacket.ACTION.ALLOCATE));
@@ -111,42 +111,42 @@ public class PerkButton extends TexturedButtonWidget {
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 
         if (this.x < 0 || this.x > mc.getWindow()
-            .getScaledWidth()) {
+                .getScaledWidth()) {
             //return; // if outside of screen, don't waste time rendering it
         }
         if (this.y < 0 || this.y > mc.getWindow()
-            .getScaledHeight()) {
+                .getScaledHeight()) {
             //return; // if outside of screen, don't waste time rendering it
         }
 
         PerkStatus status = enperks.getStatus(MinecraftClient.getInstance().player, school, point);
 
         mc.getTextureManager()
-            .bindTexture(ID);
+                .bindTexture(ID);
 
         int offset = 4;
 
         // background
         RenderSystem.enableDepthTest();
         drawTexture(matrices, this.x, this.y, perk.getType()
-            .getXOffset(), status
-            .getYOffset(), this.width, this.height);
+                .getXOffset(), status
+                .getYOffset(), this.width, this.height);
 
         if (this.perk.getType() == Perk.PerkType.STAT) {
             // icon
             mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
+                    .bindTexture(this.perk.getIcon());
             drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
         } else if (this.perk.getType() == Perk.PerkType.MAJOR) {
             // icon
             mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
+                    .bindTexture(this.perk.getIcon());
             offset = 8;
             RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + offset, this.y + offset);
         } else if (this.perk.getType() == Perk.PerkType.SPELL_MOD) {
             // icon
             mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
+                    .bindTexture(this.perk.getIcon());
             offset = 5;
             drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
 
@@ -161,7 +161,7 @@ public class PerkButton extends TexturedButtonWidget {
             // icon
             offset = 6;
             mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
+                    .bindTexture(this.perk.getIcon());
             drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
         }
 
@@ -169,7 +169,7 @@ public class PerkButton extends TexturedButtonWidget {
 
             if (!this.isHovered()) {
                 mc.getTextureManager()
-                    .bindTexture(LOCKED_TEX);
+                        .bindTexture(LOCKED_TEX);
 
                 drawTexture(matrices, this.x + offset, this.y + offset + 10, 0, 0, 16, 16, 16, 16);
             }

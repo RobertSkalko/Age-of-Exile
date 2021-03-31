@@ -231,7 +231,7 @@ public class EntityCap {
             nbt.putString(RACE, race);
             nbt.putInt(SCROLL_BUFF_SEED, buffSeed);
             nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
-                .getAverageValue());
+                    .getAverageValue());
             nbt.putString(ENTITY_TYPE, this.type.toString());
 
             if (affixes != null) {
@@ -309,7 +309,9 @@ public class EntityCap {
             this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
-            this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
+            if (nbt.contains(NEWBIE_STATUS)) {
+                this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
+            }
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
 
@@ -452,29 +454,29 @@ public class EntityCap {
 
             if (entity instanceof PlayerEntity) {
                 return new LiteralText("")
-                    .append(entity.getDisplayName());
+                        .append(entity.getDisplayName());
 
             } else {
 
                 MobRarity rarity = Database.MobRarities()
-                    .get(getRarity());
+                        .get(getRarity());
 
                 Formatting rarformat = rarity.textFormatting();
 
                 MutableText name = new LiteralText("").append(entity.getDisplayName())
-                    .formatted(rarformat);
+                        .formatted(rarformat);
 
                 if (!rarity.name_add.isEmpty()) {
                     name = new LiteralText("[" + rarity.name_add + "] ").formatted(Formatting.YELLOW)
-                        .append(name);
+                            .append(name);
                 }
 
                 MutableText finalName =
-                    name;
+                        name;
 
                 MutableText part = new LiteralText("")
-                    .append(finalName)
-                    .formatted(rarformat);
+                        .append(finalName)
+                        .formatted(rarformat);
 
                 MutableText tx = (part);
 
@@ -550,7 +552,7 @@ public class EntityCap {
                     }
 
                     Load.favor(player)
-                        .setFavor(ModConfig.get().Favor.STARTING_FAVOR); // newbie starting favor
+                            .setFavor(ModConfig.get().Favor.STARTING_FAVOR); // newbie starting favor
 
                     Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
 
@@ -565,11 +567,11 @@ public class EntityCap {
         public boolean increaseRarity() {
 
             MobRarity rar = Database.MobRarities()
-                .get(rarity);
+                    .get(rarity);
 
             if (rar.hasHigherRarity()) {
                 rarity = rar.getHigherRarity()
-                    .GUID();
+                        .GUID();
                 this.equipsChanged = true;
                 this.shouldSync = true;
                 this.forceRecalculateStats();
@@ -597,7 +599,7 @@ public class EntityCap {
         @Override
         public Tier getMapTier() {
             return Database.Tiers()
-                .get(this.tier + "");
+                    .get(this.tier + "");
         }
 
         @Override
@@ -624,15 +626,15 @@ public class EntityCap {
         public void attackWithWeapon(AttackInformation data) {
 
             if (data.weaponData.GetBaseGearType()
-                .getWeaponMechanic() != null) {
+                    .getWeaponMechanic() != null) {
 
                 if (data.weapon != null) {
                     data.weapon.damage(1, new Random(), null);
                 }
 
                 data.weaponData.GetBaseGearType()
-                    .getWeaponMechanic()
-                    .attack(data);
+                        .getWeaponMechanic()
+                        .attack(data);
 
             }
         }
@@ -640,8 +642,8 @@ public class EntityCap {
         @Override
         public void mobBasicAttack(AttackInformation data) {
             MobRarity rar = Database.MobRarities()
-                .get(data.getAttackerEntityData()
-                    .getRarity());
+                    .get(data.getAttackerEntityData()
+                            .getRarity());
 
             float multi = (float) (ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG + (LevelUtils.getMaxLevelMultiplier(getLevel()) * (ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL - ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG)));
 
@@ -656,12 +658,12 @@ public class EntityCap {
             AttackPlayStyle style = AttackPlayStyle.MELEE;
 
             if (data.getSource() != null && data.getSource()
-                .isProjectile()) {
+                    .isProjectile()) {
                 style = AttackPlayStyle.RANGED;
             }
 
             DamageEffect dmg = new DamageEffect(
-                data, (int) num, AttackType.ATTACK, WeaponTypes.None, style
+                    data, (int) num, AttackType.ATTACK, WeaponTypes.None, style
             );
 
             dmg.Activate();
@@ -701,13 +703,13 @@ public class EntityCap {
         @Override
         public PlayerRace getRace() {
             return Database.Races()
-                .get(race);
+                    .get(race);
         }
 
         @Override
         public boolean hasRace() {
             return Database.Races()
-                .isRegistered(race);
+                    .isRegistered(race);
         }
 
         @Override
@@ -737,7 +739,7 @@ public class EntityCap {
             EntityConfig entityConfig = Database.getEntityConfig(entity, this);
 
             int lvl = LevelUtils.determineLevel(entity.world, entity.getBlockPos(),
-                nearestPlayer
+                    nearestPlayer
             );
 
             setLevel(MathHelper.clamp(lvl, entityConfig.min_lvl, entityConfig.max_lvl));
@@ -797,20 +799,20 @@ public class EntityCap {
 
                 // fully restore on lvlup
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.MANA,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
+                        .modify(new ResourcesData.Context(this, player, ResourceType.MANA,
+                                Integer.MAX_VALUE,
+                                ResourcesData.Use.RESTORE
+                        ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.HEALTH,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
+                        .modify(new ResourcesData.Context(this, player, ResourceType.HEALTH,
+                                Integer.MAX_VALUE,
+                                ResourcesData.Use.RESTORE
+                        ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.BLOOD,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
+                        .modify(new ResourcesData.Context(this, player, ResourceType.BLOOD,
+                                Integer.MAX_VALUE,
+                                ResourcesData.Use.RESTORE
+                        ));
 
                 // fully restore on lvlup
 
@@ -818,7 +820,7 @@ public class EntityCap {
                 setExp(getRemainingExp());
 
                 Load.spells(player)
-                    .getSkillGemData().stacks.forEach(x -> {
+                        .getSkillGemData().stacks.forEach(x -> {
                     // lvl up spell gems, not support gems
                     SkillGemData data = SkillGemData.fromStack(x);
                     if (data != null) {
@@ -837,8 +839,8 @@ public class EntityCap {
                 });
 
                 Optional<LevelRewardConfig> opt = ModConfig.get().LevelRewards.levelRewards.stream()
-                    .filter(x -> x.for_level == this.level)
-                    .findAny();
+                        .filter(x -> x.for_level == this.level)
+                        .findAny();
 
                 if (opt.isPresent()) {
                     PlayerUtils.giveItem(LootTableItem.of(new Identifier(opt.get().loot_table_id)), player);

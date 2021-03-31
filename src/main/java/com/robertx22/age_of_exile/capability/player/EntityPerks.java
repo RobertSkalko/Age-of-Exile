@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.capability.entity;
+package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -40,7 +40,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
 
     public void clearAllTalents() {
         this.data.getPerks(SpellSchool.SchoolType.TALENTS)
-            .clear();
+                .clear();
 
     }
 
@@ -48,15 +48,15 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         HashMap<PointData, Perk> perks = new HashMap<>();
         for (SpellSchool.SchoolType type : SpellSchool.SchoolType.values()) {
             for (Map.Entry<String, SchoolData> x : data.getPerks(type)
-                .entrySet()) {
+                    .entrySet()) {
                 if (Database.SpellSchools()
-                    .isRegistered(x.getKey())) {
+                        .isRegistered(x.getKey())) {
 
                     SpellSchool school = Database.SpellSchools()
-                        .get(x.getKey());
+                            .get(x.getKey());
                     if (school != null) {
                         for (PointData p : x.getValue()
-                            .getAllocatedPoints(school)) {
+                                .getAllocatedPoints(school)) {
                             perks.put(p, school.calcData.getPerk(p));
                         }
                     }
@@ -103,7 +103,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     public boolean isAllocated(SpellSchool school, PointData point) {
         if (entity instanceof PlayerEntity) {
             return data.getSchool(school)
-                .isAllocated(point);
+                    .isAllocated(point);
         } else {
             return true;
         }
@@ -140,7 +140,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         HashMap<PointData, Perk> map = getAllAllocatedPerks();
 
         int lvl = Load.Unit(en)
-            .getLevel();
+                .getLevel();
 
         map.forEach((key, value) -> {
             List<ExactStatData> stats = new ArrayList<>();

@@ -27,6 +27,7 @@ public class ModBlocks {
     public SocketStationBlock SOCKET_STATION = of("socket_station", new SocketStationBlock());
     public BlockGearSalvage GEAR_SALVAGE = of("salvage_station", new BlockGearSalvage());
     public BlockGearRepair GEAR_REPAIR = of("repair_station", new BlockGearRepair());
+
     public ScribeBuffBlock SCRIBE_BUFF = of("scribe_buff", new ScribeBuffBlock());
     public CookingBlock COOKING_STATION = of("cooking_station", new CookingBlock());
     public TabletStationBlock TABLET_STATION = of("tablet_station", new TabletStationBlock());
@@ -36,6 +37,7 @@ public class ModBlocks {
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 
     public ModBlocks() {
+
         for (SkillItemTier tier : SkillItemTier.values()) {
             FARMING_PLANTS.put(tier, plant("plant" + (tier.tier + 1)));
         }
@@ -43,10 +45,10 @@ public class ModBlocks {
 
     Block plant(String id) {
         return of(id, new BeetrootsBlock(AbstractBlock.Settings.of(Material.PLANT)
-            .noCollision()
-            .ticksRandomly()
-            .breakInstantly()
-            .sounds(BlockSoundGroup.CROP)));
+                .noCollision()
+                .ticksRandomly()
+                .breakInstantly()
+                .sounds(BlockSoundGroup.CROP)));
     }
 
     <T extends Block> T of(String id, T c) {

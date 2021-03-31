@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats;
 
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 
 public enum StatScaling {
 
@@ -8,6 +9,12 @@ public enum StatScaling {
         @Override
         public float scale(float val, int lvl) {
             return val;
+        }
+    },
+    DOUBLE_AT_MAX_LVL {
+        @Override
+        public float scale(float val, int lvl) {
+            return val + (val * LevelUtils.getMaxLevelMultiplier(lvl));
         }
     },
     NORMAL {

@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.loot.generators.stack_changers;
 
-import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.loot.LootUtils;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import net.minecraft.item.ItemStack;
 
 public class DamagedGear implements IStackAction {
@@ -16,14 +16,10 @@ public class DamagedGear implements IStackAction {
     @Override
     public void changeStack(ItemStack stack) {
 
-        ICommonDataItem data = ICommonDataItem.load(stack);
+        GearItemData data = Gear.Load(stack);
 
         if (data != null) {
-            if (data.getRarity() instanceof IGearRarity) {
-                LootUtils.RandomDamagedGear(stack, (IGearRarity) data.getRarity());
-            } else {
-                System.out.println("trying to damage gear that isn't gear rarity");
-            }
+            LootUtils.RandomDamagedGear(stack, data.getRarity());
         }
 
     }

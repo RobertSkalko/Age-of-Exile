@@ -277,6 +277,7 @@ public enum Words implements IAutoLocName {
     MustBeMap("Must be an Adventure Map"),
 
     MustBeGear("Must be a Gear Item"),
+    MustBeSpellGem("Must be a Spell Gem Item"),
 
     NotSpell("Not a Spell Item"),
 

@@ -91,7 +91,7 @@ public class ItemNewbieGearBag extends Item {
 
             gears.forEach(x -> {
                 BaseGearType gear = Database.GearTypes()
-                    .get(x);
+                        .get(x);
                 GearItemData data = getBlueprint(gear).createData();
                 data.lvl = 1;
                 data.can_sal = false;
@@ -105,7 +105,7 @@ public class ItemNewbieGearBag extends Item {
 
             skillgems.forEach(x -> {
                 SkillGem gem = Database.SkillGems()
-                    .get(x);
+                        .get(x);
                 SkillGemBlueprint blueprint = new SkillGemBlueprint(1);
                 blueprint.type.set(gem);
                 blueprint.level.set(1);
@@ -123,16 +123,15 @@ public class ItemNewbieGearBag extends Item {
             try {
 
                 List<Perk> starts = Load.perks(playerIn)
-                    .getAllAllocatedPerks()
-                    .values()
-                    .stream()
-                    .filter(x -> x.is_entry)
-                    .collect(Collectors.toList());
+                        .getAllAllocatedPerks()
+                        .values()
+                        .stream()
+                        .filter(x -> x.is_entry)
+                        .collect(Collectors.toList());
 
                 if (!starts.isEmpty()) {
 
                     ItemNewbieGearBag.giveNewbieItemsFor(playerIn, starts.get(0));
-
                     // guide book
                     ItemStack book = new ItemStack(Registry.ITEM.get(new Identifier("patchouli", "guide_book")));
                     CompoundTag tag = new CompoundTag();
@@ -141,7 +140,7 @@ public class ItemNewbieGearBag extends Item {
                     PlayerUtils.giveItem(book, playerIn);
 
                     playerIn.getStackInHand(handIn)
-                        .decrement(1);
+                            .decrement(1);
 
                 } else {
                     playerIn.sendMessage(new LiteralText("Choose your path to open this. (Press [H] and then open Talent Tree scren"), false);
@@ -160,7 +159,7 @@ public class ItemNewbieGearBag extends Item {
         GearBlueprint print = new GearBlueprint(1);
         print.gearItemSlot.set(type);
         print.rarity.set(Database.GearRarities()
-            .get(IRarity.COMMON_ID));
+                .get(IRarity.COMMON_ID));
         return print;
     }
 

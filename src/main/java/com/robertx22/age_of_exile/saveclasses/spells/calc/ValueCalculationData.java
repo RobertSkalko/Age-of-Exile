@@ -67,7 +67,9 @@ public class ValueCalculationData {
     public List<ScalingStatCalc> scaling_values = new ArrayList<>();
 
     @Store
-    public StatScaling base_scaling = StatScaling.NORMAL;
+    public StatScaling base_scaling_type = StatScaling.NORMAL;
+    @Store
+    public StatScaling atk_scaling_type = StatScaling.DOUBLE_AT_MAX_LVL;
 
     @Store
     public float attack_scaling = 0;
@@ -79,33 +81,33 @@ public class ValueCalculationData {
 
     public int getCalculatedBaseValue(int lvl) {
 
-        if (base_scaling == null) {
+        if (base_scaling_type == null) {
             MMORPG.logError("base scaling null");
             return 0;
         }
 
-        return (int) base_scaling.scale(base_val, lvl);
+        return (int) base_scaling_type.scale(base_val, lvl);
     }
 
-    private int getCalculatedScalingValue(EntityCap.UnitData data) {
+    private int getCalculatedScalingValue(EntityCap.UnitData data, int lvl) {
 
         float amount = 0;
         if (attack_scaling > 0) {
             for (Stat stat : new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()) {
                 amount += data.getUnit()
-                    .getCalculatedStat(stat.GUID())
-                    .getAverageValue() * attack_scaling;
+                        .getCalculatedStat(stat.GUID())
+                        .getAverageValue() * this.atk_scaling_type.scale(attack_scaling, lvl);
             }
         }
         amount += getAllScalingValues().stream()
-            .mapToInt(x -> x.getCalculatedValue(data))
-            .sum();
+                .mapToInt(x -> x.getCalculatedValue(data))
+                .sum();
 
         return (int) amount;
     }
 
     public int getCalculatedValue(LivingEntity caster, EntitySavedSpellData ctx) {
-        int val = getCalculatedScalingValue(Load.Unit(caster));
+        int val = getCalculatedScalingValue(Load.Unit(caster), ctx.lvl);
         val += getCalculatedBaseValue(ctx.lvl);
 
         return val;
@@ -119,7 +121,7 @@ public class ValueCalculationData {
         }
 
         if (attack_scaling > 0) {
-            text.append(" + " + (int) (attack_scaling * 100) + "% Weapon Attack");
+            text.append(" + " + (int) (this.atk_scaling_type.scale(attack_scaling, lvl) * 100) + "% Weapon Attack");
         }
 
         return text;
@@ -135,7 +137,7 @@ public class ValueCalculationData {
 
             if (base_val > 0) {
                 list.add(new LiteralText(
-                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(ctx.calcData.level)));
+                        Formatting.RED + "Base Value: " + getCalculatedBaseValue(ctx.calcData.level)));
             }
         }
 
@@ -151,7 +153,7 @@ public class ValueCalculationData {
 
             if (base_val > 0) {
                 list.add(new LiteralText(
-                    Formatting.RED + "Base Value: " + getCalculatedBaseValue(info.unitdata.getLevel())));
+                        Formatting.RED + "Base Value: " + getCalculatedBaseValue(info.unitdata.getLevel())));
             }
         }
 

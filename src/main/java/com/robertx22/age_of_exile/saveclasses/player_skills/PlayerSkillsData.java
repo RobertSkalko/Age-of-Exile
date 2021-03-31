@@ -27,7 +27,7 @@ public class PlayerSkillsData implements IApplyableStats {
         PlayerSkillEnum skill = PlayerSkillEnum.NONE;
 
         for (PlayerSkill x : Database.PlayerSkills()
-            .getList()) {
+                .getList()) {
             if (x.id.equals(id)) {
                 skill = x.type_enum;
             }
@@ -51,19 +51,21 @@ public class PlayerSkillsData implements IApplyableStats {
 
         try {
             map.entrySet()
-                .forEach(x -> {
-                    PlayerSkill skill = Database.PlayerSkills()
-                        .get(x.getKey());
+                    .forEach(x -> {
+                        if (Database.PlayerSkills().isRegistered(x.getKey())) {
+                            PlayerSkill skill = Database.PlayerSkills()
+                                    .get(x.getKey());
 
-                    if (skill != null) {
-                        skill.getClaimedStats(x.getValue()
-                            .getLvl())
-                            .forEach(s -> {
-                                s.stats.forEach(e -> stats.add(e.toExactStat(Load.Unit(en)
-                                    .getLevel())));
-                            });
-                    }
-                });
+                            if (skill != null) {
+                                skill.getClaimedStats(x.getValue()
+                                        .getLvl())
+                                        .forEach(s -> {
+                                            s.stats.forEach(e -> stats.add(e.toExactStat(Load.Unit(en)
+                                                    .getLevel())));
+                                        });
+                            }
+                        }
+                    });
         } catch (Exception e) {
             e.printStackTrace();
         }

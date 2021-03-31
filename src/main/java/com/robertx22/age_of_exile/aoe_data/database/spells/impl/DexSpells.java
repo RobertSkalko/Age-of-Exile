@@ -25,68 +25,68 @@ public class DexSpells implements ISlashRegistryInit {
     public void registerAll() {
 
         SpellBuilder.of("arrow_storm", SpellConfiguration.Builder.arrowSpell(20, 20 * 25), "Arrow Storm",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.RANGED)
+                Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+                .weaponReq(CastingWeapon.RANGED)
 
-            .attackStyle(AttackPlayStyle.RANGED)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D)))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Physical))
-            .onHit(PartBuilder.particleOnTick(3D, ParticleTypes.CLOUD, 3D, 0.1D))
-            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Elemental))
-            .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
-            .build();
+                .attackStyle(AttackPlayStyle.RANGED)
+                .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D)))
+                .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Physical))
+                .onHit(PartBuilder.particleOnTick(3D, ParticleTypes.CLOUD, 3D, 0.1D))
+                .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+                .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Elemental))
+                .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
+                .build();
 
         SpellBuilder.of("poison_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Poison Arrow",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.RANGED)
-            .attackStyle(AttackPlayStyle.RANGED)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.5F, 1), Elements.Nature))
+                Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+                .weaponReq(CastingWeapon.RANGED)
+                .attackStyle(AttackPlayStyle.RANGED)
+                .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
+                .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Nature))
 
-            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON, 2D, 20 * 8D))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
+                .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON, 2D, 20 * 8D))
+                .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
 
-            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Nature))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
-            .build();
+                .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+                .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
+                .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.2F, 1), Elements.Nature))
+                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
+                .build();
 
         SpellBuilder.of("explosive_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.RANGED)
-            .attackStyle(AttackPlayStyle.RANGED)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.5F, 2), Elements.Physical))
+                Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+                .weaponReq(CastingWeapon.RANGED)
+                .attackStyle(AttackPlayStyle.RANGED)
+                .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
+                .onHit(PartBuilder.damage(ValueCalculationData.scaleWithAttack(0.25F, 2), Elements.Physical))
 
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
+                .onHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
 
-            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(0.25F, 3), Elements.Physical, 2D))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
-            .build();
+                .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+                .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
+                .onHit(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(0.25F, 3), Elements.Physical, 2D))
+                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
+                .build();
 
         SpellBuilder.of("recoil_shot", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Recoil Shot",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
-            .weaponReq(CastingWeapon.RANGED)
+                Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+                .weaponReq(CastingWeapon.RANGED)
 
-            .attackStyle(AttackPlayStyle.RANGED)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(4), Elements.Physical))
-            .onCast(PartBuilder.pushCaster(DashUtils.Way.BACKWARDS, DashUtils.Strength.MEDIUM_DISTANCE))
-            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.WOUNDS, 1D, 20 * 20D))
-            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Elemental)
-            )
-            .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D)
-            )
-            .build();
+                .attackStyle(AttackPlayStyle.RANGED)
+                .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
+                .onHit(PartBuilder.damage(ValueCalculationData.base(4), Elements.Physical))
+                .onCast(PartBuilder.pushCaster(DashUtils.Way.BACKWARDS, DashUtils.Strength.MEDIUM_DISTANCE))
+                .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.WOUNDS, 1D, 20 * 20D))
+                .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+                .onHit(PartBuilder.damage(ValueCalculationData.base(3), Elements.Elemental)
+                )
+                .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D)
+                )
+                .build();
 
     }
 }
