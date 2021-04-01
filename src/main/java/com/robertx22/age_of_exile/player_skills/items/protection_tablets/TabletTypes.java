@@ -95,7 +95,7 @@ public enum TabletTypes {
 
             ItemStack stack = PlayerUtils.lowestDurabilityWornGear(en);
 
-            if (stack.isEmpty()) {
+            if (stack.isEmpty() || !stack.isDamageable()) {
                 return false;
             }
 
@@ -124,12 +124,12 @@ public enum TabletTypes {
 
             ItemStack stack = PlayerUtils.lowestDurabilityWornGear(en);
 
-            if (stack.isEmpty()) {
+            if (stack.isEmpty() || !stack.isDamageable()) {
                 return false;
             }
 
-            int left = stack.getMaxDamage() - stack.getDamage();
-            return left < 30;
+            float perc = (float) stack.getDamage() / (float) stack.getMaxDamage();
+            return perc > 0.7F;
         }
 
         @Override
@@ -150,7 +150,8 @@ public enum TabletTypes {
 
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
-            return healthIsBellowTresh(en) && !en.hasStatusEffect(StatusEffects.SATURATION);
+            return en.getHungerManager()
+                .getFoodLevel() < 10 && !en.hasStatusEffect(StatusEffects.SATURATION);
         }
 
         @Override

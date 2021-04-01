@@ -25,7 +25,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
             list.add(Words.SavesNamedOrEnchanted.locName());
         }
     },
@@ -41,7 +41,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
             addSalvage(list, 0);
         }
     },
@@ -57,7 +57,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
             addSalvage(list, 1);
         }
     },
@@ -73,7 +73,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
             addSalvage(list, 2);
         }
     },
@@ -125,7 +125,7 @@ public enum BackpackUpgrade {
         @Override
         public void upgrade(BackpackUpgradeItem item, BackpackInfo info) {
             info.tier = item.tier.tier;
-            info.extraRows = item.tier.tier;
+            info.extraRows = item.tier.tier + 1;
         }
 
         @Override
@@ -138,13 +138,17 @@ public enum BackpackUpgrade {
             return true;
         }
 
+        @Override
+        public void addToTooltip(BackpackUpgradeItem bag, List<Text> list) {
+            list.add(new LiteralText("Adds " + (bag.tier.tier + 1) * 9 + " Slots"));
+        }
     };
 
     public boolean canOverrideSelf() {
         return false;
     }
 
-    public void addToTooltip(List<Text> list) {
+    public void addToTooltip(BackpackUpgradeItem bag, List<Text> list) {
 
     }
 

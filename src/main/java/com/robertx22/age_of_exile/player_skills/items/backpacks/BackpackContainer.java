@@ -47,7 +47,7 @@ public class BackpackContainer extends BaseTileContainer {
 
             this.backpackInv = new BackpackInventory(invPlayer.player, stack);
 
-            int rows = 2 + info.extraRows;
+            int rows = 1 + info.extraRows;
 
             int num = 0;
             for (int y = 0; y < rows; ++y) {

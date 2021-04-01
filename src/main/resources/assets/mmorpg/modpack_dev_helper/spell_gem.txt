@@ -55,6 +55,7 @@ frost_nova
 bleed_chance
 fire_bombs
 spell_crit_dmg
+clayball
 awaken_mana
 mana_reg_aura
 fire_nova

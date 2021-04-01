@@ -33,7 +33,6 @@ public class PlayerGearButton extends TexturedButtonWidget {
         addItemButton(MyCurioUtils.get(RefCurio.NECKLACE, player, 0), 0, 4);
         addItemButton(MyCurioUtils.get(RefCurio.RING, player, 0), 0, 22);
         addItemButton(MyCurioUtils.get(RefCurio.RING, player, 1), 0, 40);
-        addItemButton(MyCurioUtils.get(RefCurio.SALVAGE_BAG, player, 0), 0, 58);
 
         addItemButton(player.getEquippedStack(EquipmentSlot.HEAD), 81, 4);
         addItemButton(player.getEquippedStack(EquipmentSlot.CHEST), 81, 22);

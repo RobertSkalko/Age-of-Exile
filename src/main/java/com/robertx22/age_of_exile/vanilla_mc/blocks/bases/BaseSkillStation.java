@@ -109,10 +109,17 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
         }
     }
 
+    public void reduceFuel() {
+        fuel--;
+        if (fuel < 0) {
+            fuel = 0;
+        }
+    }
+
     @Override
     public void onSmeltTick() {
 
-        fuel--;
+        reduceFuel();
 
         PlayerEntity player = getOwner();
 
@@ -162,7 +169,6 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
 
                         if (getCookProgress() < 1F) {
                             cook_ticks++;
-                            fuel--;
                             return;
                         } else {
                             cook_ticks = 0;

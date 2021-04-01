@@ -33,6 +33,7 @@ public class BackpackUpgradesRegister extends BaseItemRegistrator {
     public BackpackUpgradesRegister() {
         for (SkillItemTier tier : SkillItemTier.values()) {
             SIZE.put(tier, upgrade(new BackpackUpgradeItem(BackpackUpgrade.Size, tier, "size", tier.word + " Size Upgrade")));
+
         }
     }
 

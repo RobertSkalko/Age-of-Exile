@@ -65,8 +65,8 @@ public class AttachedSpell {
                     entry.tryActivate(ctx);
                 }
             } else {
-                System.out.println("Spell doesn't have data for spell entity called: " + entity_name + ". Spell id: " + ctx.calculatedSpellData.getSpell()
-                    .GUID());
+                //System.out.println("Spell doesn't have data for spell entity called: " + entity_name + ". Spell id: " + ctx.calculatedSpellData.getSpell()
+                //   .GUID());
             }
         } catch (Exception e) {
             e.printStackTrace();

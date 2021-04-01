@@ -26,10 +26,25 @@ public class BagUpgradesData {
             return false;
         }
 
+        if (item.upgrade.canOverrideSelf()) {
+            if (item.tier.lowerTier() != null) {
+                if (list.stream()
+                    .noneMatch(x -> x.tier == item.tier.lowerTier() && item.upgrade == x.upgrade)) {
+                    return false;
+                }
+            }
+        }
+
         for (BackpackUpgradeItem x : list) {
             if (!x.upgrade.canOverrideSelf()) {
                 if (x == item) {
                     return false;
+                }
+            } else {
+                if (x.upgrade == item.upgrade) {
+                    if (item.tier.tier < x.tier.tier) {
+                        return false;
+                    }
                 }
             }
         }

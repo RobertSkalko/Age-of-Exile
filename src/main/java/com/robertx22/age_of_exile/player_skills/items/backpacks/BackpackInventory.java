@@ -30,7 +30,7 @@ public class BackpackInventory extends SimpleInventory {
     }
 
     public static int getSizeBackpack(int extraRows) {
-        return 18 + extraRows * 9;
+        return 9 + extraRows * 9;
     }
 
     public void setup() {

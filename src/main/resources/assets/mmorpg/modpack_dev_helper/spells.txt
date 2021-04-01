@@ -30,6 +30,7 @@ meteor
 frost_nova
 fire_bombs
 crit_aura
+clayball
 awaken_mana
 hp_reg_aura
 spear_of_judgement

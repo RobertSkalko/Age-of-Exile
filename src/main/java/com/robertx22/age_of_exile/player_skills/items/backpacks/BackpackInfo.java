@@ -25,10 +25,9 @@ public class BackpackInfo {
         if (extraRows > 4) {
             extraRows = 4;
         }
-        tier = extraRows;
     }
 
-    public int tier = 0;
+    public int tier = -1;
 
     public int extraRows = 0;
 

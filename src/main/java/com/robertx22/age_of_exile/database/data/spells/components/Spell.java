@@ -127,13 +127,22 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public void cast(SpellCastContext ctx) {
         if (config.cast_type == SpellCastType.USE_ITEM) {
+
             int use = ctx.caster.getItemUseTime();
-            if (BowItem.getPullProgress(use) < 1F) { // TODO this is hardcoded but idk how else
-                return; // todo
-            } else {
-                ctx.caster.clearActiveItem();
+
+            if (ctx.caster.getMainHandStack()
+                .getItem() instanceof BowItem) {
+                if (BowItem.getPullProgress(use) < 1F) {
+                    return;
+                }
             }
+            if (ctx.caster.getActiveHand() != Hand.MAIN_HAND) {
+                return; // must charge main hand weapon and have full charge
+            }
+
+            ctx.caster.clearActiveItem();
         }
+
         LivingEntity caster = ctx.caster;
 
         EntitySavedSpellData data = EntitySavedSpellData.create(ctx.calcData.level, caster, this, ctx.spellConfig);

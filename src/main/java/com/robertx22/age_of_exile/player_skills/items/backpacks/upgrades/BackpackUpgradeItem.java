@@ -64,7 +64,7 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
         tooltip.add(Words.BagUpgradeDesc.locName()
             .formatted(Formatting.BLUE));
 
-        this.upgrade.addToTooltip(tooltip);
+        this.upgrade.addToTooltip(this, tooltip);
 
     }
 
@@ -104,7 +104,7 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
         return Arrays.asList(new BaseLocRequirement() {
             @Override
             public MutableText getText() {
-                return new LiteralText("No duplicate upgrades");
+                return new LiteralText("No duplicate upgrades, Must upgrade tier by tier.");
             }
 
             @Override

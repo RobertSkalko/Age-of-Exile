@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseSkillStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
@@ -44,12 +43,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
+public class TileGearSalvage extends BaseSkillStation {
 
     public static List<Integer> INPUT_SLOTS = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8);
     public static List<Integer> OUTPUT_SLOTS = Arrays.asList(9, 10, 11, 12, 13, 14, 15, 16, 17);
     public static List<Integer> FUEL_SLOTS = Arrays.asList(18);
-
 
     public static int TOTAL_SLOTS_COUNT = INPUT_SLOTS.size() + FUEL_SLOTS.size() + OUTPUT_SLOTS.size();
 
@@ -91,7 +89,6 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
 
     }
 
-
     public TileGearSalvage() {
         super(null, PlayerSkillEnum.SALVAGING, ModRegistry.BLOCK_ENTITIES.GEAR_SALVAGE, TOTAL_SLOTS_COUNT);
 
@@ -122,7 +119,7 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
                             outputed.add(i);
                         } else if (itemStacks[slot].isItemEqual(result)) {
                             if ((itemStacks[slot].getCount() + result.getCount()) < result.getItem()
-                                    .getMaxCount()) {
+                                .getMaxCount()) {
                                 itemStacks[slot].setCount(itemStacks[slot].getCount() + result.getCount());
                                 outputed.add(i);
                             }
@@ -140,12 +137,12 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
             Direction dir = block.get(NonFullBlock.direction);
 
             itempos = itempos.add(dir.getVector()
-                    .getX(), 0, dir.getVector()
-                    .getZ());
+                .getX(), 0, dir.getVector()
+                .getZ());
 
             for (ItemStack x : results) {
                 ItemEntity itemEntity = new ItemEntity(
-                        this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
+                    this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
                 itemEntity.setToDefaultPickupDelay();
                 this.world.spawnEntity(itemEntity);
             }
@@ -160,7 +157,7 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
         }
 
         FilterListWrap<SalvageRecipe> matching = Database.SalvageRecipes()
-                .getFilterWrapped(x -> x.matches(stacks));
+            .getFilterWrapped(x -> x.matches(stacks));
 
         if (matching.list.isEmpty()) {
             return noRecipeSalvage(true);
@@ -176,14 +173,14 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
         Identifier loottableId = new Identifier(recipe.loot_table_output);
 
         LootContext lootContext = new LootContext.Builder((ServerWorld) world)
-                .parameter(LootContextParameters.TOOL, ItemStack.EMPTY)
-                .parameter(LootContextParameters.ORIGIN, new Vec3d(pos.getX(), pos.getY(), pos.getZ()))
-                .parameter(LootContextParameters.BLOCK_STATE, Blocks.AIR.getDefaultState())
-                .build(LootContextTypes.BLOCK);
+            .parameter(LootContextParameters.TOOL, ItemStack.EMPTY)
+            .parameter(LootContextParameters.ORIGIN, new Vec3d(pos.getX(), pos.getY(), pos.getZ()))
+            .parameter(LootContextParameters.BLOCK_STATE, Blocks.AIR.getDefaultState())
+            .build(LootContextTypes.BLOCK);
         ServerWorld serverWorld = lootContext.getWorld();
         LootTable lootTable = serverWorld.getServer()
-                .getLootManager()
-                .getTable(loottableId);
+            .getLootManager()
+            .getTable(loottableId);
 
         List<ItemStack> drops = lootTable.generateLoot(lootContext);
 
@@ -228,8 +225,8 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
     @Override
     public boolean isValidInput(ItemStack stack) {
         return this.getSmeltingResultForItem(stack)
-                .stream()
-                .anyMatch(x -> !x.isEmpty());
+            .stream()
+            .anyMatch(x -> !x.isEmpty());
 
     }
 
@@ -252,12 +249,11 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
     @Override
     public void onSmeltTick() {
 
-        fuel--;
+        reduceFuel();
 
         PlayerEntity player = getOwner();
 
         if (player != null) {
-
 
             if (!hasFuel()) {
                 burnFuelIfNeeded();
@@ -265,21 +261,19 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
                 return;
             }
 
-
             if (getCookProgress() < 1) {
                 List<ItemStack> stacks = new ArrayList<>();
                 for (int inputSlot : INPUT_SLOTS) {
                     stacks.add(itemStacks[inputSlot]);
                 }
-                if (stacks.stream().anyMatch(x -> !x.isEmpty())) {
+                if (stacks.stream()
+                    .anyMatch(x -> !x.isEmpty())) {
                     cook_ticks++;
                 }
                 return;
             }
 
-
             boolean sal = false;
-
 
             if (this.salvage()) {
 
@@ -288,7 +282,7 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
                 sal = true;
 
                 PlayerSkill skill = Database.PlayerSkills()
-                        .get(PlayerSkillEnum.SALVAGING.id);
+                    .get(PlayerSkillEnum.SALVAGING.id);
 
                 PlayerSkills skills = Load.playerSkills(player);
 
@@ -305,26 +299,24 @@ public class TileGearSalvage extends BaseSkillStation implements IAutomatable {
 
             }
 
-
             if (sal) {
 
                 SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.3F, 1);
 
                 ParticleEnum.sendToClients(
-                        pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
-                                .type(ParticleTypes.DUST)
-                                .amount(15));
+                    pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                        .type(ParticleTypes.DUST)
+                        .amount(15));
 
                 ParticleEnum.sendToClients(
-                        pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
-                                .type(ParticleTypes.FLAME)
-                                .motion(new Vec3d(0, 0, 0))
-                                .amount(15));
+                    pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                        .type(ParticleTypes.FLAME)
+                        .motion(new Vec3d(0, 0, 0))
+                        .amount(15));
 
             }
 
         }
-
 
         if (cook_ticks < 0) {
             cook_ticks = 0;
