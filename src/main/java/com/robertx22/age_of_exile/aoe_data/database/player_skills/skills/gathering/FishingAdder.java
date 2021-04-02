@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBui
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
+import com.robertx22.age_of_exile.database.data.player_skills.SkillDropTable;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusRequirement;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
@@ -26,7 +27,7 @@ public class FishingAdder {
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FISHING);
         b.skill.exp_per_action = 50;
 
-        b.addTieredDrops(0.5F, x -> TIERED.INK_TIER_MAP.get(x));
+        b.addTieredDrops(0.5F, x -> TIERED.INK_TIER_MAP.get(x), SkillDropTable.INK_TAG);
 
         for (FoodExileEffect.EffectColor color : FoodExileEffect.EffectColor.values()) {
             for (SkillItemTier tier : SkillItemTier.values()) {
@@ -58,7 +59,10 @@ public class FishingAdder {
 
                     DropRewardsBuilder skillDrops = DropRewardsBuilder.of(chance, tier, req);
                     skillDrops.dropReward(new SkillDropReward(100, rawfish, new MinMax(1, 3)));
-                    b.skill.dropTables.add(skillDrops.build());
+
+                    SkillDropTable rewards = skillDrops.build();
+                    rewards.tag = SkillDropTable.FISH_TAG;
+                    b.skill.dropTables.add(rewards);
                 }
             }
         }

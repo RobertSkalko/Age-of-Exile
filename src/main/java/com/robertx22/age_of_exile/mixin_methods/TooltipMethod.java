@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
@@ -20,10 +21,13 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Comparator;
@@ -41,6 +45,22 @@ public class TooltipMethod {
         PlayerEntity player = MinecraftClient.getInstance().player;
 
         try {
+
+            if (stack.getItem() instanceof FishingRodItem) {
+                if (stack.hasTag()) {
+                    int lures = stack.getTag()
+                        .getInt("lure_uses");
+                    String id = stack.getTag()
+                        .getString("lure_id");
+
+                    if (lures > 0) {
+                        FishingLureItem lure = (FishingLureItem) Registry.ITEM.get(new Identifier(id));
+                        tooltip.add(new LiteralText("").append(lure.getName(stack))
+                            .append(": " + lures));
+                    }
+                }
+            }
+
             if (Screen.hasControlDown()) {
                 GearItemData gear = Gear.Load(stack);
                 if (gear != null) {

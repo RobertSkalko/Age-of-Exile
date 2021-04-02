@@ -2,9 +2,11 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gather
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
+import com.robertx22.age_of_exile.player_skills.items.fishing.LureType;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
@@ -35,21 +37,9 @@ public class MiningAdder {
 
         b.addTieredDrops(0.5F, x -> TIERED.STONE_TIER_MAP.get(x));
 
-        /*
-        DropRewardsBuilder rareDrops = DropRewardsBuilder.of(0.25F);
-        rareDrops.dropReward(new SkillDropReward(5, 10, Items.COAL, new MinMax(1, 3)));
-        rareDrops.dropReward(new SkillDropReward(10, 5, Items.IRON_INGOT, new MinMax(1, 1)));
-        rareDrops.dropReward(new SkillDropReward(15, 5, Items.GOLD_INGOT, new MinMax(1, 1)));
-        rareDrops.dropReward(new SkillDropReward(20, 5, Items.ENDER_PEARL, new MinMax(1, 2)));
-        rareDrops.dropReward(new SkillDropReward(25, 2, Items.DIAMOND, new MinMax(1, 1)));
-        rareDrops.dropReward(new SkillDropReward(30, 2, Items.IRON_INGOT, new MinMax(1, 3)));
-        rareDrops.dropReward(new SkillDropReward(35, 1, Items.DIAMOND, new MinMax(1, 1)));
-        rareDrops.dropReward(new SkillDropReward(40, 1, Items.GOLD_INGOT, new MinMax(1, 3)));
-        rareDrops.dropReward(new SkillDropReward(45, 1, Items.NETHERITE_INGOT, new MinMax(1, 1)));
-        rareDrops.dropReward(new SkillDropReward(50, 1, Items.DIAMOND, new MinMax(1, 3)));
-        b.skill.dropTables.add(rareDrops.build());
-
-         */
+        b.addTieredDrops(0.1F, tier -> {
+            return TIERED.LURES.get(ImmutablePair.of(LureType.INK, tier));
+        });
 
         return b.build();
     }

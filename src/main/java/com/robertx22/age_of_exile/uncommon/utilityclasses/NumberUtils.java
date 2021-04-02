@@ -5,6 +5,14 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import java.text.DecimalFormat;
 
 public class NumberUtils {
+    public static int multiToPercent(float multi) {
+
+        multi = 1F - multi;
+
+        return (int) (multi * 100F);
+
+    }
+
     private static String format(int number, int divided, String letter) {
         int amount = number / divided;
         int remaining = (number - (amount * divided));

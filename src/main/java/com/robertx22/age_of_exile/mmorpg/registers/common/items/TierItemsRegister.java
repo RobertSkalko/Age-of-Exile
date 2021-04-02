@@ -4,6 +4,8 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.SmeltedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.exploration.LockedChestItem;
+import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
+import com.robertx22.age_of_exile.player_skills.items.fishing.LureType;
 import com.robertx22.age_of_exile.player_skills.items.fishing.ScribeInkItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssenceInkItem;
@@ -14,6 +16,7 @@ import com.robertx22.age_of_exile.player_skills.items.tinkering.MysteriousLeathe
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantProduceItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.SalvagedDustItem;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.HashMap;
 
@@ -33,9 +36,15 @@ public class TierItemsRegister extends BaseItemRegistrator {
 
     public HashMap<SkillItemTier, EssenceInkItem> ESSENCE_INK = new HashMap<>();
 
+    public HashMap<ImmutablePair<LureType, SkillItemTier>, FishingLureItem> LURES = new HashMap<>();
+
     public TierItemsRegister() {
 
         for (SkillItemTier tier : SkillItemTier.values()) {
+
+            for (LureType lure : LureType.values()) {
+                LURES.put(ImmutablePair.of(lure, tier), item(new FishingLureItem(tier, lure)));
+            }
 
             INK_TIER_MAP.put(tier, item(new ScribeInkItem(tier)));
 

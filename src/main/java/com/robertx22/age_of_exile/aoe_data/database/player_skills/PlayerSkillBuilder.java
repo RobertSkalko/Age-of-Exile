@@ -79,10 +79,16 @@ public class PlayerSkillBuilder {
     }
 
     public PlayerSkillBuilder addTieredDrops(float chance, Function<SkillItemTier, Item> fun) {
+        return addTieredDrops(chance, fun, "");
+    }
+
+    public PlayerSkillBuilder addTieredDrops(float chance, Function<SkillItemTier, Item> fun, String tag) {
         for (SkillItemTier tier : SkillItemTier.values()) {
             DropRewardsBuilder skillDrops = DropRewardsBuilder.of(chance, tier);
             skillDrops.dropReward(new SkillDropReward(100, fun.apply(tier), new MinMax(1, 3)));
-            skill.dropTables.add(skillDrops.build());
+            SkillDropTable rew = skillDrops.build();
+            rew.tag = tag;
+            skill.dropTables.add(rew);
         }
         return this;
     }

@@ -8,7 +8,12 @@ import java.util.List;
 
 public class SkillDropTable {
 
+    public static String FISH_TAG = "fish";
+    public static String INK_TAG = "ink";
+
     public float loot_chance_per_action_exp = 0.5F;
+
+    public String tag = "";
 
     public BonusRequirement req = BonusRequirement.NONE;
 

@@ -3,7 +3,11 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gather
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.fishing.LureType;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
 public class FarmingAdder {
 
@@ -33,6 +37,10 @@ public class FarmingAdder {
             .forEach(x -> {
                 b.blockExp(x.getValue(), (int) (x.getKey().statMulti * 10));
             });
+
+        b.addTieredDrops(0.1F, tier -> {
+            return TIERED.LURES.get(ImmutablePair.of(LureType.FISH, tier));
+        });
 
         b.regens(10, 2);
         b.regens(20, 4);

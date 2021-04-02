@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -119,10 +120,14 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
                 if (dropTable.req.isAllowed(player.world, player.getBlockPos())) {
                     float chance = dropTable.loot_chance_per_action_exp * expForAction;
 
+                    if (type_enum == PlayerSkillEnum.FISHING) {
+                        FishingLureItem lure = FishingLureItem.getCurrentLure(player);
+                        if (lure != null) {
+                            chance *= lure.getChanceMulti();
+                        }
+                    }
                     if (RandomUtils.roll(chance)) {
-                        List<SkillDropReward> possible = dropTable.drop_rewards
-                            .stream()
-                            .collect(Collectors.toList());
+                        List<SkillDropReward> possible = dropTable.drop_rewards;
 
                         if (!possible.isEmpty()) {
                             list.add(RandomUtils.weightedRandom(possible)
