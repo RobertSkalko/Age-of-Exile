@@ -145,6 +145,9 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
                 list.add(new LiteralText("Game changer talent.").formatted(Formatting.RED));
             }
 
+            list.add(Words.PressAltForStatInfo.locName()
+                .formatted(Formatting.BLUE));
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -32,6 +32,7 @@ fire_bombs
 crit_aura
 clayball
 awaken_mana
+gong_strike
 hp_reg_aura
 spear_of_judgement
 mana_reg_aura

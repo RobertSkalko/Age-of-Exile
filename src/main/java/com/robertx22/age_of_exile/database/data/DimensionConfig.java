@@ -45,8 +45,8 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
     public static DimensionConfig End() {
         DimensionConfig d = new DimensionConfig(10, "minecraft:the_end").setMobTier(3);
-        d.min_lvl = 40;
-        d.max_lvl = 50;
+        d.min_lvl = 20;
+        d.max_lvl = 30;
         return d;
     }
 

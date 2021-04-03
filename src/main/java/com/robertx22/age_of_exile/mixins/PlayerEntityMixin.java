@@ -18,7 +18,7 @@ public class PlayerEntityMixin {
             PlayerEntity player = (PlayerEntity) (Object) this;
             Load.spells(player)
                 .getCastingData()
-                .onAction(PlayerAction.MELEE_ATTACK);
+                .onAction(player, PlayerAction.MELEE_ATTACK);
         } catch (Exception e) {
             e.printStackTrace();
         }

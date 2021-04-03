@@ -416,7 +416,7 @@ public enum Words implements IAutoLocName {
     BaseValue("Base Value"),
 
     Works_when_equipped("Works when equipped"),
-
+    Block("Block"),
     Blocks("Blocks"),
 
     Loot("Loot"), Exp("Exp"),

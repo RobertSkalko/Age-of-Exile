@@ -41,11 +41,31 @@ public class SpellCastingData {
     @Store
     public List<PlayerAction> last_actions = new ArrayList<>();
 
-    public void onAction(PlayerAction action) {
-        last_actions.add(action);
-        if (last_actions.size() > 10) {
-            last_actions.remove(0);
+    @Store
+    public int ageSinceLastAction = -1;
+
+    public void onAction(PlayerEntity player, PlayerAction action) {
+
+        boolean on_cooldown = false;
+        if (action == PlayerAction.BLOCK) {
+            if (ageSinceLastAction > 0) {
+                int ticksSinceLast = player.age - ageSinceLastAction;
+                if (ticksSinceLast < 20 * 3) {
+                    on_cooldown = true;
+                } else {
+                    ageSinceLastAction = player.age;
+                }
+            } else {
+                ageSinceLastAction = player.age;
+            }
         }
+        if (!on_cooldown) {
+            last_actions.add(action);
+            if (last_actions.size() > 10) {
+                last_actions.remove(0);
+            }
+        }
+
     }
 
     public boolean meetActionRequirements(Spell spell) {
@@ -274,10 +294,11 @@ public class SpellCastingData {
             }
         }
 
-        ctx.spellsCap
-            .getCastingData()
-            .onAction(PlayerAction.NOPE);
-
+        if (ctx.caster instanceof PlayerEntity) {
+            ctx.spellsCap
+                .getCastingData()
+                .onAction((PlayerEntity) ctx.caster, PlayerAction.NOPE);
+        }
         spellDatas.put(ctx.spell.GUID(), data);
         this.casting = false;
     }

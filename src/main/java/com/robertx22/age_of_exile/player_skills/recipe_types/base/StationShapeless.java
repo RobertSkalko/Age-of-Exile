@@ -77,9 +77,9 @@ public abstract class StationShapeless implements Recipe<Inventory> {
             String string = JsonHelper.getString(jsonObject, "group", "");
             DefaultedList<Ingredient> defaultedList = getIngredients(JsonHelper.getArray(jsonObject, "ingredients"));
             if (defaultedList.isEmpty()) {
-                throw new JsonParseException("No ingredients for shapeless recipe");
-            } else if (defaultedList.size() > 9) {
-                throw new JsonParseException("Too many ingredients for shapeless recipe");
+                throw new JsonParseException("No ingredients for station shapeless recipe");
+            } else if (defaultedList.size() > 3) {
+                throw new JsonParseException("Too many ingredients for station shapeless recipe");
             } else {
                 ItemStack itemStack = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
                 return createNew(identifier, string, itemStack, defaultedList);

@@ -215,7 +215,7 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
     // vanilla doesnt call it by itself
     @Override
     public void onOpen(PlayerEntity player) {
-        if (ownerID.equals(EMPTY_ID) == false) {
+        if (ownerID.equals(player.getUuid()) == false) {
             ownerID = player.getUuid();
         } else {
             if (expEarned > 0) {

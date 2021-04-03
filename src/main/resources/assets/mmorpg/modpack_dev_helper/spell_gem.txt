@@ -23,6 +23,7 @@ frost_armor
 crit_rate
 health_leech
 crit_aura
+gong_strike
 cast_speed
 hp_reg_aura
 spear_of_judgement

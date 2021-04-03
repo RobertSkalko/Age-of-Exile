@@ -28,6 +28,7 @@
     "InGameHudMixin",
     "ItemGlintMixin",
     "ItemStackMixin",
+    "MinecraftClientMixin",
     "MobNameTagMixin",
     "WorldRendererMixin",
     "bow.HeldItemRendererMixin"

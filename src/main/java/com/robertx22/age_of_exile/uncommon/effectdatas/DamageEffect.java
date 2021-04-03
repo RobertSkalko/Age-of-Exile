@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
+import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
@@ -271,7 +272,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (target.getHealth() <= 0F || !target.isAlive()) {
             return;
         }
+
         if (isBlocked) {
+            if (target instanceof PlayerEntity) {
+                Load.spells(target)
+                    .getCastingData()
+                    .onAction((PlayerEntity) target, PlayerAction.BLOCK);
+            }
             return;
         }
         if (ifPlayersShouldNotDamageEachOther()) {
