@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.smithing;
 
+import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.CraftRequirementButton;
@@ -33,6 +34,7 @@ public class SmithingScreen extends ModificationGui<SmithingContainer, SmithingT
         this.addButton(new HelpButton(list, this.x + 5, this.y + 5));
 
         addButton(new CraftRequirementButton(tile, client.player, this.x + 116, this.y + 68));
+        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.y + 100));
 
     }
 

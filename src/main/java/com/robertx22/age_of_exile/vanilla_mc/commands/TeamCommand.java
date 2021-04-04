@@ -85,7 +85,7 @@ public class TeamCommand {
                                 }
 
                                 player.sendMessage(new LiteralText("").append(player.getDisplayName())
-                                    .append(" is now a team leader.."), false);
+                                    .append(" is now a team leader."), false);
 
                                 player.sendMessage(new LiteralText("You have been made a team leader."), false);
 

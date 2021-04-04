@@ -35,6 +35,15 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
                 }
             }
         }
+
+    }
+
+    public int putInTheMiddleX(int buttnowidth) {
+
+        int middle = this.x + (this.backgroundWidth / 2);
+
+        return middle - (buttnowidth / 2);
+
     }
 
     static Identifier COOK_ARROW = Ref.id("textures/gui/cook_arrow.png");

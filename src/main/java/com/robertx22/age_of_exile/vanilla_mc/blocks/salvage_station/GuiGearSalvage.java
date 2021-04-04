@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 
+import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.library_of_exile.gui.HelpButton;
@@ -40,10 +41,11 @@ public class GuiGearSalvage extends ModificationGui<ContainerGearSalvage, TileGe
 
         list.add(new LiteralText("There are some secret recipes."));
 
-        this.addButton(new HelpButton(list, this.x + this.backgroundWidth, this.y));
+        this.addButton(new HelpButton(list, this.x + this.backgroundWidth - 25, this.y + 5));
+
+        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.y + 10));
 
     }
-
 
     @Override
     public void renderOther(MatrixStack matrix, int mouseX, int mouseY) {

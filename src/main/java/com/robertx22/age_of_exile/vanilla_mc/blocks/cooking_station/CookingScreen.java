@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station;
 
+import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.CraftRequirementButton;
@@ -35,6 +36,7 @@ public class CookingScreen extends ModificationGui<CookingContainer, CookingTile
 
         addButton(new CraftRequirementButton(tile, client.player, this.x + 116, this.y + 68));
 
+        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.y + 100));
     }
 
     @Override

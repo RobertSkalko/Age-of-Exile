@@ -5,22 +5,18 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
-import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -117,46 +113,11 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
             .get(getRarityRank());
     }
 
-    public static class MobStatData implements IApplyableStats {
-
-        public StatModifier mod;
-
-        public boolean scaleToLevel = true;
-
-        public MobStatData() {
-
-        }
-
-        public MobStatData(StatModifier mod, boolean scaleToLevel) {
-            this.mod = mod;
-            this.scaleToLevel = scaleToLevel;
-        }
-
-        public MobStatData(StatModifier mod) {
-            this.mod = mod;
-        }
-
-        @Override
-        public List<StatContext> getStatAndContext(LivingEntity en) {
-            List<ExactStatData> stats = new ArrayList<>();
-
-            if (scaleToLevel) {
-                stats.add(mod.ToExactStat(100, Load.Unit(en)
-                    .getLevel()));
-            } else {
-                stats.add(mod.ToExactStat(100, 1));
-            }
-
-            return Arrays.asList(new MiscStatCtx(stats));
-        }
-
-    }
-
     public static class SpecialMobStats {
 
-        public List<MobStatData> stats = new ArrayList<>();
+        public List<OptScaleExactStat> stats = new ArrayList<>();
 
-        public SpecialMobStats(MobStatData... stats) {
+        public SpecialMobStats(OptScaleExactStat... stats) {
             this.stats.addAll(Arrays.asList(stats));
         }
 
@@ -171,39 +132,41 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
         }
     }
 
-    public static SpecialMobStats FIRE = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Fire)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats WATER = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Water)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats NATURE = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Nature)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats THUNDER = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new PhysConvertToEle(Elements.Thunder)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance())));
+    public static SpecialMobStats FIRE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats WATER = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats NATURE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats THUNDER = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Thunder)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
-    public static SpecialMobStats FIRE_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Fire)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats WATER_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Water)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats NATURE_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Nature)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats THUNDER_RES = new SpecialMobStats(new MobStatData(new StatModifier(50, 50, new ElementalResist(Elements.Thunder)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
+    public static SpecialMobStats FIRE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats WATER_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats NATURE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats THUNDER_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Thunder)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
-    public static SpecialMobStats LESS_FIRE_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Fire)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats LESS_WATER_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Water)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Nature)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
-    public static SpecialMobStats LESS_THUNDER_RES = new SpecialMobStats(new MobStatData(new StatModifier(-25, -25, new ElementalResist(Elements.Thunder)), false), new MobStatData(new StatModifier(10, 10, ExtraMobDropsStat.getInstance()), false));
+    public static SpecialMobStats LESS_FIRE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats LESS_WATER_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats LESS_THUNDER_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Thunder)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
-    public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new MobStatData(new StatModifier(-15, -15, ExtraMobDropsStat.getInstance()), false));
+    public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new OptScaleExactStat(-15, ExtraMobDropsStat.getInstance()));
 
-    public static SpecialMobStats MANA_BURN = new SpecialMobStats(new MobStatData(new StatModifier(1, 1, ManaBurn.getInstance())), new MobStatData(new StatModifier(15, 15, ExtraMobDropsStat.getInstance()), false));
+    public static SpecialMobStats MANA_BURN = new SpecialMobStats(new OptScaleExactStat(1, ManaBurn.getInstance()), new OptScaleExactStat(15, ExtraMobDropsStat.getInstance()));
+
+    public static SpecialMobStats SLOWER_PROJ = new SpecialMobStats(new OptScaleExactStat(-30, ProjectileSpeed.getInstance()));
 
     public static SpecialMobStats fire() {
-        return new SpecialMobStats(FIRE, FIRE_RES, LESS_WATER_RES);
+        return new SpecialMobStats(FIRE, FIRE_RES, LESS_WATER_RES, SLOWER_PROJ);
     }
 
     public static SpecialMobStats water() {
-        return new SpecialMobStats(WATER, WATER_RES, LESS_FIRE_RES);
+        return new SpecialMobStats(WATER, WATER_RES, LESS_FIRE_RES, SLOWER_PROJ);
     }
 
     public static SpecialMobStats nature() {
-        return new SpecialMobStats(NATURE, NATURE_RES, LESS_THUNDER_RES);
+        return new SpecialMobStats(NATURE, NATURE_RES, LESS_THUNDER_RES, SLOWER_PROJ);
     }
 
     public static SpecialMobStats thunder() {
-        return new SpecialMobStats(THUNDER, THUNDER_RES, LESS_NATURE_RES);
+        return new SpecialMobStats(THUNDER, THUNDER_RES, LESS_NATURE_RES, SLOWER_PROJ);
     }
 
 }

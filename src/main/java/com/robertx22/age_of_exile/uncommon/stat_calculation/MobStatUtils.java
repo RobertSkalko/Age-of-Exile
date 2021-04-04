@@ -80,7 +80,8 @@ public class MobStatUtils {
         List<ExactStatData> stats = new ArrayList<>();
 
         EntityConfig config = Database.getEntityConfig(entity, unitdata);
-        config.stats.stats.forEach(x -> list.addAll(x.getStatAndContext(entity)));
+
+        config.stats.stats.forEach(x -> stats.add(x.toExactStat(unitdata.getLevel())));
 
         float hp = (float) ((1F - config.hp_multi) * 100F);
         float dmg = (float) ((1F - config.dmg_multi) * 100F);

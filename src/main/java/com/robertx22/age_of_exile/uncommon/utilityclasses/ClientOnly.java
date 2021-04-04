@@ -26,6 +26,16 @@ public class ClientOnly {
 
     }
 
+    public static PlayerEntity getPlayerById(UUID id) {
+
+        try {
+            return MinecraftClient.getInstance().world.getPlayerByUuid(id);
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+
     public static PlayerEntity getPlayer() {
         return MinecraftClient.getInstance().player;
     }

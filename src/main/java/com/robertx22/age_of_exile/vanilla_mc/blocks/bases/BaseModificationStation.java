@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -46,6 +47,11 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
     public UUID ownerID = EMPTY_ID;
 
     public PlayerEntity getOwner() {
+
+        if (world.isClient) {
+            return ClientOnly.getPlayerById(ownerID);
+        }
+
         PlayerEntity en = null;
         try {
             en = world.getServer()

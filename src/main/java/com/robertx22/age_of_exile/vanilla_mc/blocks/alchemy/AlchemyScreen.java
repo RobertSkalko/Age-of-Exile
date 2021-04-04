@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy;
 
+import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.CraftRequirementButton;
@@ -34,6 +35,7 @@ public class AlchemyScreen extends ModificationGui<AlchemyContainer, AlchemyTile
         this.addButton(new HelpButton(list, this.x + 5, this.y + 5));
 
         addButton(new CraftRequirementButton(tile, client.player, this.x + 81, this.y + 92));
+        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.y + 100));
 
     }
 

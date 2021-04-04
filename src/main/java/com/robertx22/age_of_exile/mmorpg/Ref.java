@@ -8,6 +8,10 @@ public class Ref {
         return new Identifier(MODID, id);
     }
 
+    public static Identifier guiId(String id) {
+        return new Identifier(Ref.MODID, "textures/gui/" + id + ".png");
+    }
+
     public static final String MODID = "mmorpg";
     public static final String MOD_NAME = "Age of Exile";
 

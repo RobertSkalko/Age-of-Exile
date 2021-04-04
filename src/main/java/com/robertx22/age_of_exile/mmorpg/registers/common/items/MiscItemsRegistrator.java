@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.RaceResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SingleTalentResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.TalentResetPotion;
@@ -86,6 +87,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public TalentResetPotion RESET_ALL_PERKS = item(new TalentResetPotion());
     public SingleTalentResetPotion ADD_RESET_PERK_POINTS = item(new SingleTalentResetPotion());
     public ResetStatsPotion RESET_STATS = item(new ResetStatsPotion());
+    public RaceResetPotion RESET_RACE = item(new RaceResetPotion());
 
     public BackpackItem BACKPACK = item(new BackpackItem(), "backpack/normal");
 
