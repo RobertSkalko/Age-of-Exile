@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import info.loenwind.autosave.annotations.Storable;
@@ -168,7 +169,9 @@ public class SpellCastingData {
 
                 if (player.world.isClient) {
                     if (spell.config.cast_type == SpellCastType.USE_ITEM) {
-                        ClientOnly.pressUseKey();
+                        if (Gear.has(player.getMainHandStack())) {
+                            ClientOnly.pressUseKey();
+                        }
                     }
                 }
 

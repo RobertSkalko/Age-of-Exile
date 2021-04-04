@@ -15,14 +15,14 @@ public class HoeRodAffixes implements ISlashRegistryInit {
     public void registerAll() {
 
         new GenericAffixBuilder<BonusRequirement>().guid(x -> x.id + "_yield")
-            .add(BonusRequirement.COLD_BIOME, "Cold Biome")
-            .add(BonusRequirement.HOT_BIOME, "Hot Biome")
-            .add(BonusRequirement.RAINING, "Rainy")
-            .add(BonusRequirement.DAY, "Daylight")
-            .add(BonusRequirement.NIGHT, "Night")
-            .tier(1, x -> Arrays.asList(new StatModifier(9, 12, new BonusYield(x))))
-            .tier(2, x -> Arrays.asList(new StatModifier(7, 9, new BonusYield(x))))
-            .tier(3, x -> Arrays.asList(new StatModifier(4, 7, new BonusYield(x))))
+            .add(BonusRequirement.COLD_BIOME, "Cold Harvest")
+            .add(BonusRequirement.HOT_BIOME, "Hot Harvest")
+            .add(BonusRequirement.RAINING, "Rainy Harvest")
+            .add(BonusRequirement.DAY, "Daily Harvest")
+            .add(BonusRequirement.NIGHT, "Nightly Harvest")
+            .tier(1, x -> Arrays.asList(new StatModifier(30, 30, new BonusYield(x))))
+            .tier(2, x -> Arrays.asList(new StatModifier(20, 20, new BonusYield(x))))
+            .tier(3, x -> Arrays.asList(new StatModifier(10, 10, new BonusYield(x))))
             .includesTags(SlotTag.hoe, SlotTag.fishing_rod)
             .Prefix()
             .Build();

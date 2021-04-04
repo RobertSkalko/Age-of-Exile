@@ -41,6 +41,10 @@ public class Load {
         return ModRegistry.COMPONENTS.PLAYER_FAVOR.get(provider);
     }
 
+    public static TeamCap team(PlayerEntity provider) {
+        return ModRegistry.COMPONENTS.TEAM.get(provider);
+    }
+
     public static PlayerStatPointsCap statPoints(PlayerEntity provider) {
         return ModRegistry.COMPONENTS.STAT_POINTS.get(provider);
     }

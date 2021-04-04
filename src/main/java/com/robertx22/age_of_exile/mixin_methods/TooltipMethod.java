@@ -14,10 +14,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.age_of_exile.uncommon.wrappers.SText;
-import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,9 +27,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TooltipMethod {
     public static void getTooltip(ItemStack stack, PlayerEntity entity, TooltipContext tooltipContext, CallbackInfoReturnable<List<Text>> list) {
@@ -120,35 +115,6 @@ public class TooltipMethod {
                     tooltip.add(broken);
                 }
 
-                if (data instanceof GearItemData) {
-                    if (false) { // tooltip centering
-                        List<String> strings = tooltip
-                            .stream()
-                            .map(x -> CLOC.translate(x))
-                            .collect(Collectors.toList());
-
-                        TextRenderer font = MinecraftClient.getInstance().textRenderer;
-
-                        int max = font.getWidth(strings.stream()
-                            .max(Comparator.comparingInt(x -> font.getWidth(x)))
-                            .get());
-
-                        tooltip.clear();
-
-                        strings.forEach(x -> {
-
-                            String str = x;
-
-                            while (font.getWidth(str) <= max) {
-                                str = " " + str + " ";
-                            }
-
-                            tooltip
-                                .add(new SText(str));
-
-                        });
-                    }
-                }
             }
 
             if (addCurrencyTooltip) {
@@ -156,17 +122,6 @@ public class TooltipMethod {
                     .getItem();
                 currency.addToTooltip(tooltip);
             }
-
-            /*
-            if (stack.getItem() instanceof IReqSkillLevel) {
-                IReqSkillLevel req = (IReqSkillLevel) stack.getItem();
-                tooltip.add(Words.RequiresLevel.locName()
-                    .append(": " + req.getSkillLevelRequired() + " ")
-                    .append(req.getItemSkillType().word.locName())
-                    .formatted(Formatting.RED));
-            }
-
-             */
 
         } catch (Exception e) {
             e.printStackTrace();

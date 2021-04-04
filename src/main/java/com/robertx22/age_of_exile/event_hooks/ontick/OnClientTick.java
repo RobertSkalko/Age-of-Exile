@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCancelSpellCast;
@@ -58,8 +59,10 @@ public class OnClientTick implements ClientTickEvents.EndTick {
                     Spell spell = spells.getCastingData()
                         .getSpellBeingCast();
                     if (spell.config.cast_type == SpellCastType.USE_ITEM) {
-                        ClientOnly.stopUseKey();
-                        Packets.sendToServer(new TellServerToCancelSpellCast());
+                        if (Gear.has(player.getMainHandStack())) {
+                            ClientOnly.stopUseKey();
+                            Packets.sendToServer(new TellServerToCancelSpellCast());
+                        }
                     }
                 }
             }

@@ -3,29 +3,40 @@ package com.robertx22.age_of_exile.player_skills.items.inscribing;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.ids.GearSlotIds;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
+import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.AffixData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe, ICurrencyItemEffect {
+public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, IStationRecipe, ICurrencyItemEffect {
 
-    SkillItemTier tier;
+    public SkillItemTier tier;
 
     public StatInfusionItem(SkillItemTier tier) {
         super(new Settings().group(CreativeTabs.Professions));
@@ -54,8 +65,23 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
     }
 
     @Override
+    public float getBreakChance() {
+        return 10;
+    }
+
+    @Override
     public String locNameForLangFile() {
-        return tier.word + " Stat Infusion";
+        return tier.word + " Tool Upgrade";
+    }
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+
+        tooltip.add(Words.ChanceToUpgrade.locName()
+            .append(": " + upgradeChance() + "%")
+            .formatted(Formatting.LIGHT_PURPLE));
+
     }
 
     @Override
@@ -63,21 +89,18 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
         return "stat_infusion/" + tier.tier;
     }
 
-    @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
-        fac.input(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier), 1);
-        fac.input(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier), 4);
-        return fac.criterion("player_level", trigger());
+    int upgradeChance() {
+        return this.tier.getDisplayTierNumber() * 10;
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
 
         try {
+
             StatInfusionItem inf = (StatInfusionItem) currency.getItem();
 
-            int lvl = inf.tier.levelRange.randomFromRange();
+            int lvl = 1;
 
             GearBlueprint b = new GearBlueprint(lvl);
             b.level.set(lvl);
@@ -98,7 +121,30 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
                     .getFilterWrapped(x -> x.gear_slot.equals(slotid))
                     .random());
 
-                GearItemData gear = b.createData();
+                GearItemData gear = null;
+
+                if (Gear.has(stack)) {
+                    gear = Gear.Load(stack);
+
+                    if (RandomUtils.roll(upgradeChance())) {
+
+                        List<Affix.Type> types = Arrays.asList(Affix.Type.prefix, Affix.Type.suffix);
+                        Affix.Type type = RandomUtils.randomFromList(types);
+
+                        if (gear.affixes.pre.size() > gear.affixes.suf.size()) {
+                            type = Affix.Type.suffix;
+                        } else if (gear.affixes.suf.size() > gear.affixes.pre.size()) {
+                            type = Affix.Type.prefix;
+                        }
+
+                        AffixData affix = new AffixData(type);
+                        affix.RerollFully(gear);
+                        gear.affixes.add(affix);
+
+                    }
+                } else {
+                    gear = b.createData();
+                }
 
                 gear.saveToStack(stack);
             }
@@ -111,7 +157,11 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList();
+        return Arrays.asList(
+            new SimpleGearLocReq(x -> x.GetBaseGearType()
+                .isTool(), Words.IsAtool.locName()).setTrueIfNotGear(),
+            new SimpleGearLocReq(x -> x.affixes.getNumberOfAffixes() < 3, Words.LessThan3Upgrade.locName()).setTrueIfNotGear()
+        );
     }
 
     @Override
@@ -122,10 +172,6 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
     @Override
     public boolean canItemBeModified(LocReqContext context) {
 
-        if (context.isGear()) {
-            return false; // only allow empty items to be upgraded
-        }
-
         for (BaseLocRequirement req : requirements()) {
             if (req.isNotAllowed(context)) {
                 return false;
@@ -135,5 +181,13 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
         return true;
     }
 
+    @Override
+    public StationShapelessFactory getStationRecipe() {
+        StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.SMITHING, this, 1);
+        fac.input(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(this.tier), 1);
+        fac.input(ModRegistry.TIERED.STONE_TIER_MAP.get(this.tier), 1);
+        fac.input(Items.DIAMOND, 1);
+        return fac.criterion("player_level", trigger());
+    }
 }
 

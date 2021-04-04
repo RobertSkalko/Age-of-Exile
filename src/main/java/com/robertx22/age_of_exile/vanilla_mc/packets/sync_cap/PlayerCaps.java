@@ -62,6 +62,17 @@ public enum PlayerCaps {
             return true;
         }
     },
+    TEAM {
+        @Override
+        public ICommonPlayerCap getCap(PlayerEntity player) {
+            return Load.team(player);
+        }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return false;
+        }
+    },
     CHARACTERS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {

@@ -20,6 +20,7 @@ import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -40,186 +41,231 @@ public class GearTooltipUtils {
         TooltipInfo info = new TooltipInfo(data, gear.getRarity()
             .StatPercents());
 
-        tip.clear();
+        if (!gear.GetBaseGearType()
+            .isTool()) {
 
-        tip.addAll(gear.GetDisplayName(stack));
+            tip.clear();
 
-        if (!gear.isIdentified()) {
+            tip.addAll(gear.GetDisplayName(stack));
 
-            tip.add(new SText(""));
+            if (!gear.isIdentified()) {
 
-            tip.add(
-                Words.ItemIsUnidentified.locName()
-                    .formatted(Formatting.GRAY));
-            tip.add(
-                Words.UseAnIdentifyScroll.locName()
-                    .formatted(Formatting.GRAY));
+                tip.add(new SText(""));
 
-            tip.add(new SText(""));
+                tip.add(
+                    Words.ItemIsUnidentified.locName()
+                        .formatted(Formatting.GRAY));
+                tip.add(
+                    Words.UseAnIdentifyScroll.locName()
+                        .formatted(Formatting.GRAY));
 
-            return;
-        }
+                tip.add(new SText(""));
 
-        if (gear.isCorrupted()) {
-
-            tip.add(new SText(""));
-
-            tip.add(new LiteralText(Formatting.RED + "").append(
-                Words.Corrupted.locName())
-                .formatted(Formatting.RED));
-
-            tip.add(new SText(""));
-
-            tip.add(
-                Words.CorruptedExplanation1.locName()
-                    .formatted(Formatting.GRAY));
-            tip.add(
-                Words.CorruptedExplanation2.locName()
-                    .formatted(Formatting.GRAY));
-
-            tip.add(new SText(""));
-
-            return;
-
-        }
-
-        if (gear.baseStats != null) {
-            tip.addAll(gear.baseStats.GetTooltipString(info, gear));
-        }
-
-        tip.add(new SText(""));
-
-        PlayerSkillEnum skill = gear.getSkillNeeded();
-
-        if (skill != null) {
-            int skillvll = Load.playerSkills(info.player)
-                .getLevel(skill);
-            if (skillvll >= gear.lvl) {
-                tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
-                    .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " "));
-
-            } else {
-                tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
-                    .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " ")
-                );
+                return;
             }
-        }
 
-        TooltipUtils.addRequirements(tip, gear.lvl, gear.getRequirement(), data);
-        tip.add(new SText(""));
+            if (gear.isCorrupted()) {
 
-        if (gear.implicit != null) {
-            tip.addAll(gear.implicit.GetTooltipString(info, gear));
-        }
+                tip.add(new SText(""));
 
-        // tip.add(new LiteralText(""));
+                tip.add(new LiteralText(Formatting.RED + "").append(
+                    Words.Corrupted.locName())
+                    .formatted(Formatting.RED));
 
-        List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
+                tip.add(new SText(""));
 
-        if (gear.uniqueStats != null) {
-            tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
-        }
+                tip.add(
+                    Words.CorruptedExplanation1.locName()
+                        .formatted(Formatting.GRAY));
+                tip.add(
+                    Words.CorruptedExplanation2.locName()
+                        .formatted(Formatting.GRAY));
 
-        //tip.add(new LiteralText(""));
+                tip.add(new SText(""));
 
-        if (info.useInDepthStats()) {
-            tip.addAll(gear.affixes.GetTooltipString(info, gear));
-            tip.addAll(gear.sockets.GetTooltipString(info, gear));
-        } else {
-            List<ExactStatData> stats = new ArrayList<>();
-            gear.affixes.getAllAffixesAndSockets()
-                .forEach(x -> stats.addAll(x.GetAllStats(gear)));
-            stats.addAll(gear.sockets.GetAllStats(gear));
+                return;
 
-            MergedStats merged = new MergedStats(stats, info);
-            list.add(merged);
-        }
+            }
 
-        int n = 0;
-        for (IGearPartTooltip part : list) {
-            if (part != null) {
-                tip.addAll(part.GetTooltipString(info, gear));
+            if (gear.baseStats != null) {
+                tip.addAll(gear.baseStats.GetTooltipString(info, gear));
+            }
 
-                if (n == list.size() - 1) {
-                    for (int i = 0; i < gear.sockets.getEmptySockets(); i++) {
-                        tip.add(new SText(Formatting.YELLOW + "[Socket]"));
+            tip.add(new SText(""));
+
+            PlayerSkillEnum skill = gear.getSkillNeeded();
+
+            if (skill != null) {
+                int skillvll = Load.playerSkills(info.player)
+                    .getLevel(skill);
+                if (skillvll >= gear.lvl) {
+                    tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                        .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " "));
+
+                } else {
+                    tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                        .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " ")
+                    );
+                }
+            }
+
+            TooltipUtils.addRequirements(tip, gear.lvl, gear.getRequirement(), data);
+            tip.add(new SText(""));
+
+            if (gear.implicit != null) {
+                tip.addAll(gear.implicit.GetTooltipString(info, gear));
+            }
+
+            // tip.add(new LiteralText(""));
+
+            List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
+
+            if (gear.uniqueStats != null) {
+                tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
+            }
+
+            //tip.add(new LiteralText(""));
+
+            if (info.useInDepthStats()) {
+                tip.addAll(gear.affixes.GetTooltipString(info, gear));
+                tip.addAll(gear.sockets.GetTooltipString(info, gear));
+            } else {
+                List<ExactStatData> stats = new ArrayList<>();
+                gear.affixes.getAllAffixesAndSockets()
+                    .forEach(x -> stats.addAll(x.GetAllStats(gear)));
+                stats.addAll(gear.sockets.GetAllStats(gear));
+
+                MergedStats merged = new MergedStats(stats, info);
+                list.add(merged);
+            }
+
+            int n = 0;
+            for (IGearPartTooltip part : list) {
+                if (part != null) {
+                    tip.addAll(part.GetTooltipString(info, gear));
+
+                    if (n == list.size() - 1) {
+                        for (int i = 0; i < gear.sockets.getEmptySockets(); i++) {
+                            tip.add(new SText(Formatting.YELLOW + "[Socket]"));
+                        }
                     }
+
+                    tip.add(new LiteralText(""));
+                }
+                n++;
+            }
+
+            if (Screen.hasShiftDown()) {
+                if (!gear.can_sal) {
+                    tip.add(
+                        Words.Unsalvagable.locName()
+                            .formatted(Formatting.RED));
+                }
+            }
+
+            if (gear.getRarity()
+                .GUID()
+                .equals(IRarity.UNIQUE_ID)) {
+                if (false && !info.shouldShowDescriptions()) {
+                    UniqueGear unique = gear.uniqueStats.getUnique(gear);
+                    TooltipUtils.addUniqueDesc(tip, unique, gear);
+                }
+            }
+
+            tip.add(new SText(""));
+
+            RuneWord word = gear.sockets.getRuneWord();
+
+            if (word != null) {
+
+                tip.add(new LiteralText(Formatting.GOLD + "'Runeword: ").append(word.locName())
+                    .append("'")
+                    .formatted(Formatting.GOLD));
+            }
+            tip.add(new LiteralText(""));
+
+            IGearRarity rarity = gear.getRarity();
+
+            int socketed = gear.sockets.sockets.size();
+
+            if (socketed > 0) {
+                TooltipUtils.addSocketNamesLine(tip, gear);
+            }
+
+            tip.add(new LiteralText(""));
+
+            tip.add(TooltipUtils.rarity(rarity));
+
+            if (ModConfig.get().client.SHOW_DURABILITY)
+                if (stack.isDamageable()) {
+                    tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+                } else {
+                    tip.add(new SText(Formatting.GRAY + "Unbreakable"));
                 }
 
-                tip.add(new LiteralText(""));
+            if (gear.sealed) {
+                tip.add(Words.Sealed.locName()
+                    .formatted(Formatting.RED));
             }
-            n++;
-        }
 
-        if (Screen.hasShiftDown()) {
-            if (!gear.can_sal) {
-                tip.add(
-                    Words.Unsalvagable.locName()
-                        .formatted(Formatting.RED));
-            }
-        }
-
-        if (gear.getRarity()
-            .GUID()
-            .equals(IRarity.UNIQUE_ID)) {
-            if (false && !info.shouldShowDescriptions()) {
-                UniqueGear unique = gear.uniqueStats.getUnique(gear);
-                TooltipUtils.addUniqueDesc(tip, unique, gear);
-            }
-        }
-
-        tip.add(new SText(""));
-
-        RuneWord word = gear.sockets.getRuneWord();
-
-        if (word != null) {
-
-            tip.add(new LiteralText(Formatting.GOLD + "'Runeword: ").append(word.locName())
-                .append("'")
-                .formatted(Formatting.GOLD));
-        }
-        tip.add(new LiteralText(""));
-
-        IGearRarity rarity = gear.getRarity();
-
-        int socketed = gear.sockets.sockets.size();
-
-        if (socketed > 0) {
-            TooltipUtils.addSocketNamesLine(tip, gear);
-        }
-
-        tip.add(new LiteralText(""));
-
-        tip.add(TooltipUtils.rarity(rarity));
-
-        if (ModConfig.get().client.SHOW_DURABILITY)
-            if (stack.isDamageable()) {
-                tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+            if (Screen.hasShiftDown() == false) {
+                tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
+                )
+                    .formatted(Formatting.BLUE));
             } else {
-                tip.add(new SText(Formatting.GRAY + "Unbreakable"));
+                tip.add(Words.Instability.locName()
+                    .formatted(Formatting.RED)
+                    .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.MAX_INSTABILITY)
+                );
             }
 
-        if (gear.sealed) {
-            tip.add(Words.Sealed.locName()
-                .formatted(Formatting.RED));
-        }
+            List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
+                ModConfig.get().client.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
 
-        if (Screen.hasShiftDown() == false) {
-            tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
-            )
-                .formatted(Formatting.BLUE));
+            tip.clear();
+            tip.addAll(tool);
         } else {
-            tip.add(Words.Instability.locName()
-                .formatted(Formatting.RED)
-                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.MAX_INSTABILITY)
-            );
+            // if tool
+
+            tooltip.add(new LiteralText(""));
+            tooltip.add(new LiteralText("Upgrades:").formatted(Formatting.RED)
+                .formatted(Formatting.BOLD));
+
+            gear.affixes.getAllAffixesAndSockets()
+                .forEach(x -> {
+
+                    int tiers = x.getAffix().tier_map.size();
+                    int tier = x.tier;
+
+                    int stars = 1 + tiers - tier;
+
+                    Formatting format = Formatting.GREEN;
+
+                    if (stars == 2) {
+                        format = Formatting.BLUE;
+                    }
+                    if (stars == 3) {
+                        format = Formatting.LIGHT_PURPLE;
+                    }
+
+                    MutableText txt = new LiteralText("").append(x.getAffix()
+                        .locName())
+                        .formatted(Formatting.GOLD);
+
+                    //  txt.append(" ");
+
+                    for (int i = 0; i < stars; i++) {
+                        txt.append(new LiteralText(" " + "\u2605").formatted(format));
+                    }
+
+                    tooltip.add(txt);
+
+                    if (Screen.hasShiftDown()) {
+                        tooltip.addAll(x.GetTooltipString(info, gear));
+                    }
+
+                });
         }
-
-        List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
-            ModConfig.get().client.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
-
-        tip.clear();
-        tip.addAll(tool);
 
     }
 

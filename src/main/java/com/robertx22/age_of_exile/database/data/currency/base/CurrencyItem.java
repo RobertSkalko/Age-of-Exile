@@ -62,9 +62,15 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
         if (context.isGear()) {
 
+            GearItemData gear = (GearItemData) context.data;
+
+            if (gear.GetBaseGearType()
+                .isTool()) {
+                return false;
+            }
+
             if (this.getInstability() > 0) {
 
-                GearItemData gear = (GearItemData) context.data;
                 if (gear.getInstability() >= ModConfig.get().ItemSealing.MAX_INSTABILITY) {
                     return false;
                 }

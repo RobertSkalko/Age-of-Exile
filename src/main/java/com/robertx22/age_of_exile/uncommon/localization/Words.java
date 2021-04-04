@@ -379,6 +379,8 @@ public enum Words implements IAutoLocName {
 
     Armor("Armor"),
 
+    ChanceToUpgrade("Chance to Upgrade"),
+
     Weapon("Weapon"),
 
     WeaponOffhand("Weapon/Offhand"),
@@ -391,6 +393,8 @@ public enum Words implements IAutoLocName {
 
     RunesNeeded("Runes needed"),
 
+    IsAtool("Is a Tool"),
+    LessThan3Upgrade("Has less than 3 upgrades"),
     Item_modifiable_in_station("Can be used inside Modify Station"),
 
     Press_Shift_For_Setup_Info("Press Shift For Setup Info"),

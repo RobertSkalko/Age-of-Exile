@@ -33,6 +33,11 @@ public class ItemGlintMixin {
 
                     GearItemData gear = Gear.Load(stack);
 
+                    if (gear.GetBaseGearType()
+                        .isTool()) {
+                        return;
+                    }
+
                     RenderSystem.enableBlend();
                     RenderSystem.color4f(1.0F, 1.0F, 1.0F, ModConfig.get().client.ITEM_RARITY_OPACITY); // transparency
 

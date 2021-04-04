@@ -216,3 +216,4 @@ Now it's possible! (and probably a bit buggy!)
 1.8.1
 
 - base gear datapacks can and must now specify rarity groups
+- added team commands back

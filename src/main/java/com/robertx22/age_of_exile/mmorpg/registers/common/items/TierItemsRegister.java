@@ -25,7 +25,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
     public HashMap<SkillItemTier, CondensedEssenceItem> CONDENSED_ESSENCE_MAP = new HashMap<>();
     public HashMap<SkillItemTier, SmeltedEssenceItem> SMELTED_ESSENCE = new HashMap<>();
     public HashMap<SkillItemTier, ScribeInkItem> INK_TIER_MAP = new HashMap<>();
-    public HashMap<SkillItemTier, StatInfusionItem> STAT_INFUSION_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, StatInfusionItem> TOOL_UPGRADE = new HashMap<>();
     public HashMap<SkillItemTier, SalvagedDustItem> SALVAGED_ESSENCE_MAP = new HashMap<>();
     public HashMap<SkillItemTier, PlantSeedItem> FARMING_SEEDS = new HashMap<>();
     public HashMap<SkillItemTier, PlantProduceItem> FARMING_PRODUCE = new HashMap<>();
@@ -50,7 +50,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
 
             SMELTED_ESSENCE.put(tier, item(new SmeltedEssenceItem(tier)));
             ESSENCE_INK.put(tier, item(new EssenceInkItem(tier)));
-            STAT_INFUSION_MAP.put(tier, item(new StatInfusionItem(tier)));
+            TOOL_UPGRADE.put(tier, item(new StatInfusionItem(tier)));
             CONDENSED_ESSENCE_MAP.put(tier, item(new CondensedEssenceItem(tier)));
             SALVAGED_ESSENCE_MAP.put(tier, item(new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
             FARMING_SEEDS.put(tier, item(new PlantSeedItem(tier, ModRegistry.BLOCKS.FARMING_PLANTS.get(tier)), "seed/plant" + (tier.tier + 1)));

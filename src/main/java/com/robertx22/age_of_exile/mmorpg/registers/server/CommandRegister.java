@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.server;
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.age_of_exile.vanilla_mc.commands.RunTestCommand;
 import com.robertx22.age_of_exile.vanilla_mc.commands.SyncDatapacks;
+import com.robertx22.age_of_exile.vanilla_mc.commands.TeamCommand;
 import com.robertx22.age_of_exile.vanilla_mc.commands.entity.GiveExp;
 import com.robertx22.age_of_exile.vanilla_mc.commands.entity.SetEntityRarity;
 import com.robertx22.age_of_exile.vanilla_mc.commands.entity.SetLevel;
@@ -47,6 +48,8 @@ public class CommandRegister {
         RemoveStat.register(dispatcher);
         ClearStats.register(dispatcher);
         ListStats.register(dispatcher);
+
+        TeamCommand.register(dispatcher);
 
         RunTestCommand.register(dispatcher);
 

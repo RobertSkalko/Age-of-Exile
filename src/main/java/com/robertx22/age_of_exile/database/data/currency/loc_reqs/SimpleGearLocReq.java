@@ -48,7 +48,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final BaseLocRequirement HAS_UNIQUE_STATS = new SimpleGearLocReq(
         x -> x.uniqueStats != null, Words.hasUniqueStats.locName());
 
-    private SimpleGearLocReq(Predicate<GearItemData> pred, MutableText text) {
+    public SimpleGearLocReq(Predicate<GearItemData> pred, MutableText text) {
         this.text = text;
         this.gearsThatCanDoThis = pred;
     }
@@ -62,6 +62,13 @@ public class SimpleGearLocReq extends BaseLocRequirement {
         return text;
     }
 
+    boolean returnIfIsntGear = false; // for tools
+
+    public SimpleGearLocReq setTrueIfNotGear() {
+        this.returnIfIsntGear = true;
+        return this;
+    }
+
     @Override
     public boolean isAllowed(LocReqContext context) {
 
@@ -70,7 +77,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
             return gearsThatCanDoThis.test(gear);
         }
 
-        return false;
+        return returnIfIsntGear;
     }
 
 }
