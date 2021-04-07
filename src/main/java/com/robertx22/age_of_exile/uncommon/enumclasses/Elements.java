@@ -1,28 +1,28 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
-import com.robertx22.age_of_exile.uncommon.interfaces.IColor;
-import com.robertx22.library_of_exile.utils.RGB;
 import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.List;
 
-public enum Elements implements IColor {
+public enum Elements {
 
-    Physical(0, new RGB(240, 157, 55), false, "Physical", Formatting.GOLD, "physical", "\u2726"),
-    Fire(1, new RGB(255, 0, 0), true, "Fire", Formatting.RED, "fire", "\u2600"),
-    Water(2, new RGB(0, 128, 255), true, "Cold", Formatting.AQUA, "water", "\u2749"),
-    Thunder(3, new RGB(204, 0, 255), true, "Thunder", Formatting.YELLOW, "thunder", "\u272A"),
-    Nature(4, new RGB(0, 204, 0), true, "Poison", Formatting.DARK_GREEN, "nature", "\u273F"),
-    Elemental(5, new RGB(0, 0, 0), false, "Elemental", Formatting.LIGHT_PURPLE, "elemental", "\u269C"),
-    All(6, new RGB(0, 204, 0), false, "All", Formatting.LIGHT_PURPLE, "all", "\u273F");
+    Physical(false, "Physical", Formatting.GOLD, "physical", "\u2726"),
+    Fire(true, "Fire", Formatting.RED, "fire", "\u2600"),
+    Water(true, "Cold", Formatting.AQUA, "water", "\u2749"),
+    Nature(true, "Poison", Formatting.DARK_GREEN, "nature", "\u273F"),
+    //Thunder(true, "Thunder", Formatting.YELLOW, "thunder", "\u272A"),
+
+    Light(true, "Light", Formatting.WHITE, "light", "\u2600"),
+    Dark(true, "Dark", Formatting.DARK_PURPLE, "dark", "\u273F"),
+
+    Elemental(false, "Elemental", Formatting.LIGHT_PURPLE, "elemental", "\u269C"),
+    All(false, "All", Formatting.LIGHT_PURPLE, "all", "\u273F");
 
     public boolean isSingleElement = true;
-    private RGB color;
 
-    Elements(int i, RGB color, boolean isSingleElement, String dmgname, Formatting format, String guidname, String icon) {
-        this.i = i;
-        this.color = color;
+    Elements(boolean isSingleElement, String dmgname, Formatting format, String guidname, String icon) {
+
         this.isSingleElement = isSingleElement;
         this.dmgName = dmgname;
         this.format = format;
@@ -32,7 +32,6 @@ public enum Elements implements IColor {
 
     public String dmgName;
     public String guidName;
-    public int i = 0;
     public String icon;
 
     public Formatting format;
@@ -41,9 +40,29 @@ public enum Elements implements IColor {
         return this == Physical;
     }
 
-    private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Nature, Thunder);
-    private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Nature, Thunder, Elemental);
-    private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Nature, Thunder);
+    public boolean isFire() {
+        return this == Fire;
+    }
+
+    public boolean isWater() {
+        return this == Water;
+    }
+
+    public boolean isNature() {
+        return this == Nature;
+    }
+
+    public boolean isLight() {
+        return this == Light;
+    }
+
+    public boolean isDark() {
+        return this == Dark;
+    }
+
+    private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Nature, Light, Dark);
+    private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Nature, Light, Dark, Elemental);
+    private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Nature, Light, Dark);
 
     public static List<Elements> getAllSingleElementals() {
         return allSingleElementals;
@@ -55,11 +74,6 @@ public enum Elements implements IColor {
 
     public static List<Elements> getEverythingBesidesPhysical() {
         return allExcludingPhys;
-    }
-
-    @Override
-    public RGB getRGBColor() {
-        return color;
     }
 
     public boolean elementsMatch(Elements other) {

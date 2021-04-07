@@ -8,7 +8,6 @@ teleport
 thorn_armor
 whirlwind
 armor_aura
-thunder_dash
 ele_res_aura
 gorgons_gaze
 nature_balm
@@ -17,7 +16,6 @@ arrow_storm
 fireball
 levitation
 explosive_arrow
-thunder_spear
 charge
 heart_of_ice
 poison_arrow
@@ -30,11 +28,9 @@ meteor
 frost_nova
 fire_bombs
 crit_aura
-clayball
 awaken_mana
 gong_strike
 hp_reg_aura
-spear_of_judgement
 mana_reg_aura
 fire_nova
 tidal_strike

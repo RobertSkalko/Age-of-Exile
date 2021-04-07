@@ -59,7 +59,6 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
 
     public HashMap<LevelRange, Item> FIRE_RES_RINGS = jewelry("jewelry/ring/fire_res_ring", () -> new ItemRing("Ring"));
     public HashMap<LevelRange, Item> COLD_RES_RINGS = jewelry("jewelry/ring/cold_res_ring", () -> new ItemRing("Ring"));
-    public HashMap<LevelRange, Item> THUNDER_RES_RINGS = jewelry("jewelry/ring/thunder_res_ring", () -> new ItemRing("Ring"));
     public HashMap<LevelRange, Item> POISON_RES_RINGS = jewelry("jewelry/ring/poison_res_ring", () -> new ItemRing("Ring"));
 
     public HashMap<LevelRange, Item> ALL_RES_NECKLACES = jewelry("jewelry/necklace/all_res_necklace", () -> new ItemNecklace("Necklace"));

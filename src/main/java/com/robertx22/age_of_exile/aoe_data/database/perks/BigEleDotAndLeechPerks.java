@@ -17,16 +17,23 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        PerkBuilder.bigStat("big_breath_of_thunder", "Breath of Thunder",
+            new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Light), ModType.FLAT),
+            new OptScaleExactStat(15, new DamageOverTime(Elements.Light), ModType.FLAT)
+        );
+        PerkBuilder.bigStat("big_heart_of_thunder", "Heart of Thunder",
+            new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Light), ModType.FLAT),
+            new OptScaleExactStat(2, new ElementalPenetration(Elements.Light), ModType.FLAT),
+            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Light, ResourceType.HEALTH, AttackType.SPELL)), ModType.FLAT)
+        );
+        // TODO REMOVE THESE
+
         PerkBuilder.bigStat("big_heart_of_ice", "Heart of Ice",
             new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
             new OptScaleExactStat(2, new ElementalPenetration(Elements.Water), ModType.FLAT),
             new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Water, ResourceType.HEALTH, AttackType.SPELL)), ModType.FLAT)
         );
-        PerkBuilder.bigStat("big_heart_of_thunder", "Heart of Thunder",
-            new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Thunder), ModType.FLAT),
-            new OptScaleExactStat(2, new ElementalPenetration(Elements.Thunder), ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(Elements.Thunder, ResourceType.HEALTH, AttackType.SPELL)), ModType.FLAT)
-        );
+
         PerkBuilder.bigStat("big_heart_of_fire", "Heart of Fire",
             new OptScaleExactStat(10, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(2, new ElementalPenetration(Elements.Fire), ModType.FLAT),
@@ -50,11 +57,7 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
             new OptScaleExactStat(3, ChanceToApplyEffect.BURN, ModType.FLAT),
             new OptScaleExactStat(15, new DamageOverTime(Elements.Fire), ModType.FLAT)
         );
-        PerkBuilder.bigStat("big_breath_of_thunder", "Breath of Thunder",
-            new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Thunder), ModType.FLAT),
-            new OptScaleExactStat(3, ChanceToApplyEffect.SHOCK, ModType.FLAT),
-            new OptScaleExactStat(15, new DamageOverTime(Elements.Thunder), ModType.FLAT)
-        );
+
         PerkBuilder.bigStat("big_breath_of_nature", "Breath of Poison",
             new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
             new OptScaleExactStat(3, ChanceToApplyEffect.POISON, ModType.FLAT),

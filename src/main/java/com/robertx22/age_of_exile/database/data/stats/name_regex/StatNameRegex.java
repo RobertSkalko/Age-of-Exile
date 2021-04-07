@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.name_regex;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
@@ -43,6 +44,15 @@ public abstract class StatNameRegex {
         String v1s = NumberUtils.formatForTooltip(v1);
         String v2s = NumberUtils.formatForTooltip(v2);
 
+        if (stat.isLongStat) {
+            String txt = CLOC.translate(stat.locName());
+
+            txt = txt.replace(SpecialStats.VAL1, v1s);
+            txt = txt.replace(SpecialStats.VAL2, v2s);
+
+            return txt;
+        }
+
         String percent = "";
 
         String plusminus = v1 > 0 && addPlus ? "+" : "";
@@ -52,10 +62,6 @@ public abstract class StatNameRegex {
             // delete the minuses
             v1s = v1s.replace("-", "");
             v2s = v2s.replace("-", "");
-        }
-
-        if (stat.UsesSecondValue()) {
-            //plusminus = "";
         }
 
         if (type == ModType.LOCAL_INCREASE || type == ModType.GLOBAL_INCREASE || stat.IsPercent()) {

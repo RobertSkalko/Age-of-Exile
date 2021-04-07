@@ -25,6 +25,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -43,11 +44,14 @@ public class Stats implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SpecialStats.init();
+
         List<Stat> All = new ArrayList<>();
 
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+                    add(SpecialStats.CRIT_BURN);
 
                     add(EffectImmunity.POISON);
                     add(EffectImmunity.HUNGER);
@@ -63,12 +67,10 @@ public class Stats implements ISlashRegistryInit {
                     add(BonusDmgToStatusAffected.FROST);
                     add(BonusDmgToStatusAffected.BURN);
                     add(BonusDmgToStatusAffected.POISON);
-                    add(BonusDmgToStatusAffected.STATIC);
 
                     add(ChanceToApplyEffect.FROSTBURN);
                     add(ChanceToApplyEffect.BURN);
                     add(ChanceToApplyEffect.POISON);
-                    add(ChanceToApplyEffect.SHOCK);
                     add(ChanceToApplyEffect.BLEED);
 
                     add(AttackSpeed.getInstance());

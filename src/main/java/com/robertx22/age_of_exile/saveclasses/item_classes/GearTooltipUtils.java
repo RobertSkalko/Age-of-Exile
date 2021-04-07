@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStat;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -148,8 +149,18 @@ public class GearTooltipUtils {
 
             List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
 
+            List<ExactStatData> specialStats = new ArrayList<>();
+
             if (gear.uniqueStats != null) {
                 tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
+
+                gear.uniqueStats.GetAllStats(gear)
+                    .forEach(x -> {
+                        if (x.getStat() instanceof SpecialStat) {
+                            specialStats.add(x);
+                        }
+                    });
+
             }
 
             //tip.add(new LiteralText(""));
@@ -164,6 +175,13 @@ public class GearTooltipUtils {
                 stats.addAll(gear.sockets.GetAllStats(gear));
 
                 MergedStats merged = new MergedStats(stats, info);
+
+                stats.forEach(x -> {
+                    if (x.getStat() instanceof SpecialStat) {
+                        specialStats.add(x);
+                    }
+                });
+
                 list.add(merged);
             }
 
@@ -182,6 +200,18 @@ public class GearTooltipUtils {
                 }
                 n++;
             }
+
+            specialStats.forEach(x -> {
+                x.GetTooltipString(info)
+                    .forEach(e -> {
+
+                        TooltipUtils.cutIfTooLong((MutableText) e, Formatting.GRAY)
+                            .forEach(t -> {
+                                tip.add(t);
+                            });
+
+                    });
+            });
 
             if (Screen.hasShiftDown()) {
                 if (!gear.can_sal) {

@@ -21,6 +21,7 @@ frigid_staff
 lunar_ring
 eye_of_zegrath
 water_ele_sword
+bone_chest
 crystal_wand
 obsi_might
 greed_persist

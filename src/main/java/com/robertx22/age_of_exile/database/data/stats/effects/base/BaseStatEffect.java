@@ -42,11 +42,11 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
                 if (theclass.isAssignableFrom(effect.getClass())) {
                     if (canActivate((T) effect, data, stat)) {
 
-                        EffectData result = activate((T) effect, data, stat);
+                        activate((T) effect, data, stat);
 
                         effect.logAfterEffect(this);
 
-                        return result;
+                        return effect;
                     }
                 }
             }

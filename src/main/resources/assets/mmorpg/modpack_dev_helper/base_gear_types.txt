@@ -83,7 +83,6 @@ wand0
 wand1
 wand4
 mana_reg_ring_end
-thunder_res_ring_end
 spirit_shield4
 all_res_necklace_end
 spirit_shield3
@@ -123,7 +122,6 @@ cloth_chest3
 cloth_chest2
 cloth_chest1
 cloth_chest0
-thunder_res_ring_low
 plate_pants1
 plate_pants2
 plate_pants0

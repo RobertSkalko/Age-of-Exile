@@ -23,7 +23,6 @@ public class RenderRegister {
         INSTANCE.register(ENTITIES.FIRE_MAGE, (d, ctx) -> new MageMobRenderer(d, "fire_mage.png"));
         INSTANCE.register(ENTITIES.WATER_MAGE, (d, ctx) -> new MageMobRenderer(d, "water_mage.png"));
         INSTANCE.register(ENTITIES.NATURE_MAGE, (d, ctx) -> new MageMobRenderer(d, "nature_mage.png"));
-        INSTANCE.register(ENTITIES.THUNDER_MAGE, (d, ctx) -> new MageMobRenderer(d, "thunder_mage.png"));
         INSTANCE.register(ENTITIES.HEALER_MAGE, (d, ctx) -> new MageMobRenderer(d, "healer_mage.png"));
 
         INSTANCE.register(ENTITIES.SIMPLE_ARROW, (d, ctx) -> new RangerArrowRenderer<>(d));

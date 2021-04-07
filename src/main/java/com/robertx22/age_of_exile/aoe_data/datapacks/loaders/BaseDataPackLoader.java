@@ -44,6 +44,13 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
     protected Map<Identifier, JsonElement> prepare(ResourceManager resourceManager, Profiler profiler) {
 
         if (MMORPG.RUN_DEV_TOOLS) {
+
+            /* // use this to test if shit breaks
+            if (registryType == SlashRegistryType.UNIQUE_GEAR) {
+                return super.prepare(resourceManager, profiler);
+            }
+             */
+
             this.getDataPackGenerator()
                 .run(); // first generate, then load. so no errors in dev enviroment
         }
@@ -56,35 +63,39 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
     @Override
     protected void apply(Map<Identifier, JsonElement> mapToLoad, ResourceManager manager, Profiler profilerIn) {
 
-        SlashRegistryContainer reg = Database.getRegistry(registryType);
+        try {
+            SlashRegistryContainer reg = Database.getRegistry(registryType);
 
-        Watch normal = new Watch();
-        normal.min = 50000;
-        reg.unregisterAllEntriesFromDatapacks();
+            Watch normal = new Watch();
+            normal.min = 50000;
+            reg.unregisterAllEntriesFromDatapacks();
 
-        mapToLoad.forEach((key, value) -> {
-            try {
-                JsonObject json = value
-                    .getAsJsonObject();
+            mapToLoad.forEach((key, value) -> {
+                try {
+                    JsonObject json = value
+                        .getAsJsonObject();
 
-                if (!json.has(ENABLED) || json.get(ENABLED)
-                    .getAsBoolean()) {
-                    T object = serializer.apply(json);
-                    object.registerToSlashRegistry();
+                    if (!json.has(ENABLED) || json.get(ENABLED)
+                        .getAsBoolean()) {
+                        T object = serializer.apply(json);
+                        object.registerToSlashRegistry();
+                    }
+                } catch (Exception exception) {
+                    LOGGER.error("Couldn't parse " + id + " {}", key
+                        .toString(), exception);
                 }
-            } catch (Exception exception) {
-                LOGGER.error("Couldn't parse " + id + " {}", key
-                    .toString(), exception);
+            });
+
+            normal.print("Loading " + registryType.name() + " jsons ");
+
+            if (reg
+                .isEmpty()) {
+                throw new RuntimeException("Mine and Slash Registry of type " + registryType.id + " is EMPTY after datapack loading!");
+            } else {
+                // System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
             }
-        });
-
-        normal.print("Loading " + registryType.name() + " jsons ");
-
-        if (reg
-            .isEmpty()) {
-            throw new RuntimeException("Mine and Slash Registry of type " + registryType.id + " is EMPTY after datapack loading!");
-        } else {
-            // System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         }
 
     }

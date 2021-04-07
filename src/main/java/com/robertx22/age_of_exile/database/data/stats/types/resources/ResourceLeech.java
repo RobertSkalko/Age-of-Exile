@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
@@ -28,8 +29,10 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
         List<Stat> list = new ArrayList<>();
         for (Elements ele : Elements.values()) {
             for (ResourceType res : ResourceType.values()) {
-                for (AttackType atk : AttackType.values()) {
-                    list.add(new ResourceLeech(new Info(ele, res, atk)));
+                if (res != ResourceType.BLOOD) {
+                    for (AttackType atk : AttackType.values()) {
+                        list.add(new ResourceLeech(new Info(ele, res, atk)));
+                    }
                 }
             }
         }
@@ -58,6 +61,11 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
     @Override
     public String locDescForLangFile() {
         return "Leeches resource based on % of damage dealt.";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat.resource_leech";
     }
 
     @Override

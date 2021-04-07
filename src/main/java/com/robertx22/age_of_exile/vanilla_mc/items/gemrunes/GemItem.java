@@ -22,7 +22,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -203,22 +202,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(1, 3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK))));
             }
         }),
-        AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new GemStatPerTypes() {
-            @Override
-            public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(1, 2, Health.getInstance()), new StatModifier(1, 2, Mana.getInstance()));
-            }
 
-            @Override
-            public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(0.5F, 1.5F, HealthRegen.getInstance()), new StatModifier(0.5F, 1.5F, ManaRegen.getInstance()));
-            }
-
-            @Override
-            public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 4, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.MANA, AttackType.ATTACK))));
-            }
-        }),
         GARNET("garnet", "Garnet", Formatting.GREEN, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
@@ -251,7 +235,8 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(3, 10, CriticalDamage.getInstance()));
             }
         }),
-        TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Thunder)),
+        TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Light)),
+        AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new EleGem(Elements.Dark)),
         RUBY("ruby", "Ruby", Formatting.RED, new EleGem(Elements.Fire)),
         EMERALD("emerald", "Emerald", Formatting.GREEN, new EleGem(Elements.Nature)),
         SAPPHIRE("sapphire", "Sapphire", Formatting.BLUE, new EleGem(Elements.Water));

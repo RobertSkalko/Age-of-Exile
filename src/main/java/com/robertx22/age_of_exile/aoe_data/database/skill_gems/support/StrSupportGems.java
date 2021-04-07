@@ -58,11 +58,7 @@ public class StrSupportGems implements ISlashRegistryInit {
             Arrays.asList(SkillGemTag.DAMAGE),
             new StatModifier(5, 30, new ElementalDamageBonus(Elements.Fire))
         );
-        SkillGemBuilder.of("thunder_dmg", "Lightning Damage Support", new StatRequirement().setBaseStr(20)
-                .setStr(0.2F), StatAttribute.STR, 1.2F,
-            Arrays.asList(SkillGemTag.DAMAGE),
-            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Thunder))
-        );
+
         SkillGemBuilder.of("nature_dmg", "Poison Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.DAMAGE),

@@ -213,17 +213,33 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         CEN(1000, "cen", "Cen", 0.2F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(1, 4, new MaxElementalResist(Elements.Thunder)));
+                return Arrays.asList(new StatModifier(1, 4, new MaxElementalResist(Elements.Light)));
             }
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Thunder)));
+                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Light)));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(dmg(Elements.Thunder));
+                return Arrays.asList(dmg(Elements.Light));
+            }
+        }),
+        FEY(1000, "fey", "Fey", 0.2F, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 4, new MaxElementalResist(Elements.Dark)));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Dark)));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(dmg(Elements.Dark));
             }
         }),
 

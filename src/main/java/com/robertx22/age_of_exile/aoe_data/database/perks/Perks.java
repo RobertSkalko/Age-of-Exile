@@ -62,7 +62,6 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.BURN, ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.FROSTBURN, ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.SHOCK, ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, ChanceToApplyEffect.POISON, ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));

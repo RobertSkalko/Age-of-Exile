@@ -27,10 +27,9 @@ public class WeaponRunewords implements ISlashRegistryInit {
             Arrays.asList(
                 new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Nature), ModType.FLAT)
             ),
-            Arrays.asList(CEN, DOS, ANO, TOQ))
+            Arrays.asList(DOS, ANO, TOQ))
             .addToSerializables();
 
         // ele wep variations
@@ -61,8 +60,7 @@ public class WeaponRunewords implements ISlashRegistryInit {
             "Dawn Light",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(1, 2, 2, 3, new AttackDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(4, 15, ChanceToApplyEffect.SHOCK, ModType.FLAT)
+                new StatModifier(1, 2, 2, 5, new AttackDamage(Elements.Light), ModType.FLAT)
             ),
             Arrays.asList(CEN, ITA, NOS))
             .addToSerializables();

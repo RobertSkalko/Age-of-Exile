@@ -5,7 +5,6 @@ thorn_armor
 fire_chance
 whirlwind
 armor_aura
-thunder_dash
 ele_res_aura
 poison_chance
 gorgons_gaze
@@ -15,7 +14,6 @@ haste_aura
 water_dmg
 arrow_storm
 cooldown
-thunder_dmg
 fire_dmg
 less_radius
 fire_breath
@@ -26,7 +24,6 @@ crit_aura
 gong_strike
 cast_speed
 hp_reg_aura
-spear_of_judgement
 atk_speed
 tidal_strike
 more_radius
@@ -43,7 +40,6 @@ nature_balm
 fireball
 levitation
 explosive_arrow
-thunder_spear
 charge
 heart_of_ice
 nature_dmg
@@ -56,7 +52,6 @@ frost_nova
 bleed_chance
 fire_bombs
 spell_crit_dmg
-clayball
 awaken_mana
 mana_reg_aura
 fire_nova

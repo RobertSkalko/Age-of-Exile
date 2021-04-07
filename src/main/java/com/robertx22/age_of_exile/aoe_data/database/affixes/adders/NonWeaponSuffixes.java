@@ -18,8 +18,10 @@ public class NonWeaponSuffixes implements ISlashRegistryInit {
             .guid(x -> x.guidName + "_res")
             .add(Elements.Fire, "Of the Drake")
             .add(Elements.Water, "Of the Yeti")
-            .add(Elements.Thunder, "Of the Valkyrie")
             .add(Elements.Nature, "Of the Snake")
+            .add(Elements.Light, "Of the Gryphon")
+            .add(Elements.Dark, "Of the Leech")
+
             .tier(1, x -> Arrays.asList(new StatModifier(35, 40, new ElementalResist(x), ModType.FLAT)))
             .tier(2, x -> Arrays.asList(new StatModifier(30, 35, new ElementalResist(x), ModType.FLAT)))
             .tier(3, x -> Arrays.asList(new StatModifier(25, 30, new ElementalResist(x), ModType.FLAT)))

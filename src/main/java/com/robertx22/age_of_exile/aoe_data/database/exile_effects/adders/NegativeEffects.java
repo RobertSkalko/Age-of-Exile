@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -30,24 +29,11 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static String WOUNDS = "negative/" + 4;
     public static String BURN = "negative/" + 5;
     public static String JUDGEMENT = "negative/" + 6;
-    public static String SHOCK = "negative/" + 7;
+    //public static String SHOCK = "negative/" + 7;
     public static String BLEED = "negative/" + 8;
 
     @Override
     public void registerAll() {
-
-        ExileEffectBuilder.of(SHOCK, "Shock", EffectType.HARMFUL)
-            .maxStacks(5)
-            .stat(-1, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .spell(SpellBuilder.forEffect()
-
-                .onTick(PartBuilder.dotDamageOnTick(SHOCK, ValueCalculationData.base(2), Elements.Thunder)
-                    .onTick(20D))
-
-                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.THUNDER, 20D, 1D)
-                    .onTick(10D))
-                .buildForEffect())
-            .build();
 
         ExileEffectBuilder.of(FROSTBURN, "Frostburn", EffectType.HARMFUL)
             .maxStacks(5)
@@ -118,7 +104,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(10), Elements.Thunder))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(10), Elements.Light))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.justAction(SpellAction.SUMMON_LIGHTNING_STRIKE.create())
                     .setTarget(TargetSelector.TARGET.create()))

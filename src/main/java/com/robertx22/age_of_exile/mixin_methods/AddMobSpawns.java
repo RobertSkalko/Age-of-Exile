@@ -20,7 +20,6 @@ public class AddMobSpawns {
 
         public SpawnEntry FIRE_MAGE = of(ENTITIES.FIRE_MAGE, 10, 1, 1);
         public SpawnEntry WATER_MAGE = of(ENTITIES.WATER_MAGE, 10, 1, 1);
-        public SpawnEntry THUNDER_MAGE = of(ENTITIES.THUNDER_MAGE, 10, 1, 1);
         public SpawnEntry NATURE_MAGE = of(ENTITIES.NATURE_MAGE, 10, 1, 1);
         public SpawnEntry HEALER_MAGE = of(ENTITIES.HEALER_MAGE, 5, 1, 1);
 

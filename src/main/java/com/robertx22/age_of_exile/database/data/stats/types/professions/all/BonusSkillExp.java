@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.types.professions.all;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
@@ -24,6 +25,11 @@ public class BonusSkillExp extends Stat implements IGenerated<Stat> {
     @Override
     public Elements getElement() {
         return null;
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat.skill_xp";
     }
 
     @Override

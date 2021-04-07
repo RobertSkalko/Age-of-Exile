@@ -17,6 +17,5 @@ minecraft:wolf
 lycanite_mobs
 minecraft:wither
 mmorpg:nature_mage
-mmorpg:thunder_mage
 minecraft:bee
 player

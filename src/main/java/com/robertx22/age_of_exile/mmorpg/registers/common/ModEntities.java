@@ -5,7 +5,10 @@ import com.robertx22.age_of_exile.database.data.spells.entities.SimpleProjectile
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleTridentEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mobs.mages.*;
+import com.robertx22.age_of_exile.mobs.mages.FireMage;
+import com.robertx22.age_of_exile.mobs.mages.HealerMage;
+import com.robertx22.age_of_exile.mobs.mages.NatureMage;
+import com.robertx22.age_of_exile.mobs.mages.WaterMage;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
@@ -41,7 +44,6 @@ public class ModEntities {
 
     public EntityType<FireMage> FIRE_MAGE = mob(FireMage::new, "fire_mage", mageDim);
     public EntityType<WaterMage> WATER_MAGE = mob(WaterMage::new, "water_mage", mageDim);
-    public EntityType<ThunderMage> THUNDER_MAGE = mob(ThunderMage::new, "thunder_mage", mageDim);
     public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", mageDim);
     public EntityType<HealerMage> HEALER_MAGE = mob(HealerMage::new, "healer_mage", mageDim);
 

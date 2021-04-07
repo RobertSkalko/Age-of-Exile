@@ -73,7 +73,7 @@ public class PlateUniques implements ISlashRegistryInit {
                 new StatModifier(15, 30, Armor.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(15, 25, new SpecificWeaponDamage(WeaponTypes.Sword), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalPenetration(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 25, new ElementalPenetration(Elements.Thunder), ModType.FLAT)
+                new StatModifier(10, 25, new ElementalPenetration(Elements.Light), ModType.FLAT)
             ))
             .req(new StatRequirement().setStr(0.5F)
                 .setVit(0.75F))
@@ -119,7 +119,7 @@ public class PlateUniques implements ISlashRegistryInit {
                     new StatModifier(10, 10, Health.getInstance(), ModType.FLAT),
                     new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT),
                     new StatModifier(15, 25, new ElementalResist(Elements.Nature)),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Thunder))
+                    new StatModifier(15, 25, new ElementalResist(Elements.Light))
                 )
             )
             .stats(

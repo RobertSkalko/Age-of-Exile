@@ -25,7 +25,6 @@ public class BaseGearJewelry implements ISlashRegistryInit {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> POISON_RES_RING;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> COLD_RES_RING;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> THUNDER_RES_RING;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> FIRE_RES_RING;
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> ALL_RES_NECKLACE;
@@ -59,14 +58,6 @@ public class BaseGearJewelry implements ISlashRegistryInit {
             .baseStat(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Water), ModType.FLAT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Aquamarine")
             .addLvlRange(LevelRanges.MID_TO_END, "Sapphire")
-            .build();
-
-        THUNDER_RES_RING = BaseGearBuilder.of(GearSlots.RING, "thunder_res_ring", "Ring", ModRegistry.GEAR_ITEMS.THUNDER_RES_RINGS)
-            .essenceItem(ModRegistry.GEAR_MATERIALS.THUNDER)
-            .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
-            .baseStat(new StatModifier(minResist, maxResist, new ElementalResist(Elements.Thunder), ModType.FLAT))
-            .addLvlRange(LevelRanges.START_TO_LOW, "Agate")
-            .addLvlRange(LevelRanges.MID_TO_END, "Topaz")
             .build();
 
         FIRE_RES_RING = BaseGearBuilder.of(GearSlots.RING, "fire_res_ring", "Ring", ModRegistry.GEAR_ITEMS.FIRE_RES_RINGS)

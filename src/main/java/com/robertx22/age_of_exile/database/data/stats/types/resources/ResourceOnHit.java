@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
@@ -55,6 +56,11 @@ public class ResourceOnHit extends Stat implements IGenerated<Stat> {
     @Override
     public String locDescForLangFile() {
         return "Restores resource on every hit of the correct type.";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat.res_on_hit";
     }
 
     @Override

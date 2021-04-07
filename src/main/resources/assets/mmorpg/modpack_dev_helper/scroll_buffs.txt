@@ -4,9 +4,10 @@ mage
 cold_dmg
 crit
 warrior
-thunder_dmg
+light_dmg
 costly_spell_dmg
 paladin
 hunter
 poison_dmg
 fire_dmg
+dark_dmg

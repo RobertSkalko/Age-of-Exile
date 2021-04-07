@@ -22,9 +22,10 @@ public class WeaponPrefixes implements ISlashRegistryInit {
             .guid(x -> x.guidName + "_wep_dmg")
             .add(Elements.Fire, "Scorched")
             .add(Elements.Water, "Chilled")
-            .add(Elements.Thunder, "Sparkling")
             .add(Elements.Nature, "Poisoned")
             .add(Elements.Physical, "Tyrannical")
+            .add(Elements.Light, "Holy")
+            .add(Elements.Dark, "Cursed")
             .tier(1, x -> Arrays.asList(new StatModifier(1.5F, 2, 2.5F, 2, new AttackDamage(x), ModType.FLAT)))
             .tier(2, x -> Arrays.asList(new StatModifier(1, 1.25F, 1.25F, 1.5F, new AttackDamage(x), ModType.FLAT)))
             .tier(3, x -> Arrays.asList(new StatModifier(0.25F, 0.5F, 0.5F, 1F, new AttackDamage(x), ModType.FLAT)))
@@ -74,15 +75,6 @@ public class WeaponPrefixes implements ISlashRegistryInit {
             .Prefix()
             .Build();
 
-        AffixBuilder.Normal("valkyrie")
-            .Named("Valkyrie's")
-            .tier(1, new StatModifier(10, 15, ChanceToApplyEffect.SHOCK, ModType.FLAT))
-            .tier(2, new StatModifier(8, 10, ChanceToApplyEffect.SHOCK, ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, ChanceToApplyEffect.SHOCK, ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Weight(50)
-            .Prefix()
-            .Build();
         ///// chance of effect
 
         AffixBuilder.Normal("true_hit")

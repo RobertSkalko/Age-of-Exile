@@ -83,7 +83,6 @@ public class ClothUniques implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalSpellDamage(Elements.Thunder), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Nature), ModType.FLAT)
             ))
             .req(new StatRequirement().setInt(0.5F)

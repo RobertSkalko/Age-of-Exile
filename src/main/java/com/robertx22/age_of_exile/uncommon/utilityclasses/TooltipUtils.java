@@ -144,7 +144,7 @@ public class TooltipUtils {
                 }
 
                 list.add(cut);
-            } else if (i - start > 20 && c == ' ') {
+            } else if (i - start > 25 && c == ' ') {
                 String cut = str.substring(start, i);
                 if (start > 0) {
                     cut = cut.substring(1);

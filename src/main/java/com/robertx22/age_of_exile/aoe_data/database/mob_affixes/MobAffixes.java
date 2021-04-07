@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsSt
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.util.Formatting;
 
@@ -16,21 +17,24 @@ import static com.robertx22.age_of_exile.uncommon.enumclasses.Elements.*;
 
 public class MobAffixes implements ISlashRegistryInit {
 
+    static void eleAffix(String name, Elements element) {
+        new MobAffix(element.guidName + "_mob_affix", name, element.format)
+            .setMods(
+                new StatModifier(75, 75, new PhysConvertToEle(element)),
+                new StatModifier(1, 1, 1, 1, new AttackDamage(element), ModType.FLAT),
+                new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
+            .setWeight(2000)
+            .addToSerializables();
+    }
+
     @Override
     public void registerAll() {
 
-        new MobAffix("cold", "Cold", Water.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Water)), new StatModifier(1, 1, 1, 1, new AttackDamage(Water), ModType.FLAT), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
-            .setWeight(2000)
-            .addToSerializables();
-        new MobAffix("flaming", "Flaming", Fire.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Fire)), new StatModifier(1, 1, 1, 1, new AttackDamage(Fire), ModType.FLAT), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
-            .setWeight(2000)
-            .addToSerializables();
-        new MobAffix("lightning", "Thunder", Thunder.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Thunder)), new StatModifier(1, 1, 1, 1, new AttackDamage(Thunder), ModType.FLAT), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
-            .setWeight(2000)
-            .addToSerializables();
-        new MobAffix("venom", "Poison", Nature.format).setMods(new StatModifier(75, 75, new PhysConvertToEle(Nature)), new StatModifier(1, 1, 1, 1, new AttackDamage(Nature), ModType.FLAT), new StatModifier(10, 10, ExtraMobDropsStat.getInstance()))
-            .setWeight(2000)
-            .addToSerializables();
+        eleAffix("Freezing", Water);
+        eleAffix("Flaming", Fire);
+        eleAffix("Poisoned", Nature);
+        eleAffix("Holy", Light);
+        eleAffix("Cursed", Dark);
 
         new MobAffix("winter", "Lord of Winter", Water.format)
             .setMods(
@@ -51,17 +55,6 @@ public class MobAffixes implements ISlashRegistryInit {
                 new StatModifier(1, 1, 1, 1, new AttackDamage(Fire), ModType.FLAT),
                 new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))
             .icon(Fire.format + Fire.icon)
-            .setWeight(250)
-            .addToSerializables();
-
-        new MobAffix("thunder_lord", "Lord of Thunder", Thunder.format)
-            .setMods(
-                new StatModifier(15, 15, Health.getInstance()),
-                new StatModifier(5, 5, ChanceToApplyEffect.SHOCK),
-                new StatModifier(75, 75, new PhysConvertToEle(Thunder)),
-                new StatModifier(1, 1, 1, 1, new AttackDamage(Thunder), ModType.FLAT),
-                new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))
-            .icon(Thunder.format + Thunder.icon)
             .setWeight(250)
             .addToSerializables();
 

@@ -18,6 +18,8 @@ public class LeatherUniques implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        new BoneArmor().registerAll();
+
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.EXEC_PRIDE,
             "exec_pride",

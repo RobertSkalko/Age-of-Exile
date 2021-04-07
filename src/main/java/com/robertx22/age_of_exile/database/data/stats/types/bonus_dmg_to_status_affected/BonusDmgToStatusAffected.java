@@ -15,7 +15,6 @@ public class BonusDmgToStatusAffected extends Stat {
     public static BonusDmgToStatusAffected FROST = new BonusDmgToStatusAffected(NegativeEffects.FROSTBURN, "Chilled", "chill");
     public static BonusDmgToStatusAffected BURN = new BonusDmgToStatusAffected(NegativeEffects.BURN, "Burning", "burn");
     public static BonusDmgToStatusAffected POISON = new BonusDmgToStatusAffected(NegativeEffects.POISON, "Poisoned", "poison");
-    public static BonusDmgToStatusAffected STATIC = new BonusDmgToStatusAffected(NegativeEffects.SHOCK, "Charged", "static");
 
     String affectedName;
     String id;

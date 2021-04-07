@@ -28,19 +28,23 @@ public class DataLoading {
             @Override
             protected void apply(Map<Identifier, JsonElement> loader, ResourceManager manager, Profiler profiler) {
 
-                Cached.reset();
+                try {
+                    Cached.reset();
 
-                Database.backup();
+                    Database.backup();
 
-                Database.checkGuidValidity();
+                    Database.checkGuidValidity();
 
-                ErrorChecks.getAll()
-                    .forEach(x -> x.check());
+                    ErrorChecks.getAll()
+                        .forEach(x -> x.check());
 
-                Database.unregisterInvalidEntries();
+                    Database.unregisterInvalidEntries();
 
-                Database.getAllRegistries()
-                    .forEach(x -> x.onAllDatapacksLoaded());
+                    Database.getAllRegistries()
+                        .forEach(x -> x.onAllDatapacksLoaded());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         });

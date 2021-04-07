@@ -45,7 +45,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "Are you worthy, mortal?",
             BaseGearWeapons.AXE.get(LevelRanges.HIGH))
             .baseStats(Arrays.asList(
-                DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.HALF, Elements.Thunder),
+                DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.HALF, Elements.Light),
                 DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.HALF, Elements.Fire)
             ))
             .stats(Arrays.asList(
@@ -81,9 +81,9 @@ public class UniqueWeapons implements ISlashRegistryInit {
             "The ability to wield thunder is said to come once in a millennium.",
             BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
             .baseStats(Arrays.asList(
-                DataHelper.getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.FULL, Elements.Thunder)))
+                DataHelper.getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.FULL, Elements.Light)))
             .stats(Arrays.asList(
-                new StatModifier(5, 15, ChanceToApplyEffect.SHOCK, ModType.FLAT),
+                new StatModifier(5, 15, ChanceToApplyEffect.BURN, ModType.FLAT),
                 new StatModifier(-20, 20, CriticalDamage.getInstance(), ModType.FLAT)
             ))
             .req(new StatRequirement().setStr(0.5F)
@@ -131,7 +131,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             BaseGearWeapons.SCEPTER.get(LevelRanges.ENDGAME))
 
             .baseStats(Arrays.asList(
-                DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Thunder)))
+                DataHelper.getAttackDamageStat(WeaponTypes.Wand, DataHelper.Number.FULL, Elements.Light)))
             .stats(Arrays.asList(
                 new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
                 new StatModifier(-100, -100, CriticalHit.getInstance(), ModType.FLAT),

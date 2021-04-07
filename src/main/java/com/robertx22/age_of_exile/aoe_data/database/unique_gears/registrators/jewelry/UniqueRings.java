@@ -31,7 +31,7 @@ public class UniqueRings implements ISlashRegistryInit {
             "greed_persist",
             "Greed's Persistence",
             "When desire for perfection overtakes your sanity, you too will be blessed.",
-            BaseGearJewelry.THUNDER_RES_RING.get(LevelRanges.MID_TO_END))
+            BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(-30, 25, TreasureQuantity.getInstance(), ModType.FLAT),
                 new StatModifier(-30, 25, TreasureQuality.getInstance(), ModType.FLAT),

@@ -135,17 +135,14 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     public static SpecialMobStats FIRE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats WATER = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats NATURE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats THUNDER = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Thunder)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats FIRE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats WATER_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats NATURE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats THUNDER_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Thunder)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats LESS_FIRE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats LESS_WATER_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats LESS_THUNDER_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Thunder)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new OptScaleExactStat(-15, ExtraMobDropsStat.getInstance()));
 
@@ -162,11 +159,7 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     }
 
     public static SpecialMobStats nature() {
-        return new SpecialMobStats(NATURE, NATURE_RES, LESS_THUNDER_RES, SLOWER_PROJ);
-    }
-
-    public static SpecialMobStats thunder() {
-        return new SpecialMobStats(THUNDER, THUNDER_RES, LESS_NATURE_RES, SLOWER_PROJ);
+        return new SpecialMobStats(NATURE, NATURE_RES, SLOWER_PROJ);
     }
 
 }

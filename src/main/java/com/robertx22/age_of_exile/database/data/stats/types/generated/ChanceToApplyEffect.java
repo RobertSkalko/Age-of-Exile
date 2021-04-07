@@ -20,7 +20,6 @@ public class ChanceToApplyEffect extends Stat {
     public static ChanceToApplyEffect BURN = new ChanceToApplyEffect(Elements.Fire, NegativeEffects.BURN, "Burn", "burn");
     public static ChanceToApplyEffect FROSTBURN = new ChanceToApplyEffect(Elements.Water, NegativeEffects.FROSTBURN, "Frostburn", "frostburn");
     public static ChanceToApplyEffect POISON = new ChanceToApplyEffect(Elements.Nature, NegativeEffects.POISON, "Poison", "poison");
-    public static ChanceToApplyEffect SHOCK = new ChanceToApplyEffect(Elements.Thunder, NegativeEffects.SHOCK, "Shock", "shock");
     public static ChanceToApplyEffect BLEED = new ChanceToApplyEffect(Elements.Physical, NegativeEffects.BLEED, "Bleed", "bleed");
 
     String effect;

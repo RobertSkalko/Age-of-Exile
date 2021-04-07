@@ -1,12 +1,12 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-lightning
-thunder_lord
-flaming
+light_mob_affix
 fire_lord
-venom
 phys_lord
+fire_mob_affix
 vampire
+water_mob_affix
 winter
-cold
 nature_lord
+nature_mob_affix
+dark_mob_affix
