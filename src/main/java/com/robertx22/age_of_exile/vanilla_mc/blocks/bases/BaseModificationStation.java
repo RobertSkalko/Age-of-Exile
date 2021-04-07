@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
+import com.robertx22.library_of_exile.tile_bases.NonFullBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -80,8 +81,9 @@ public abstract class BaseModificationStation extends BlockEntity implements Sid
             if (this instanceof ISmeltingStation) {
                 ISmeltingStation smelt = (ISmeltingStation) this;
                 smelt.onSmeltTick();
+                world.setBlockState(this.pos, this.world.getBlockState(this.pos)
+                    .with(NonFullBlock.light, this.cook_ticks > 0), 3);
             }
-
             if (ticks % 2000 == 0) {
                 updateOwnerData();
             }

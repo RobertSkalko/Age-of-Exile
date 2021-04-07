@@ -1,9 +1,11 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
+import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -27,6 +29,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
     public List<StatModifier> stats = new ArrayList<>();
     public List<String> runes_needed = new ArrayList<>();
     public BaseGearType.SlotFamily family = BaseGearType.SlotFamily.NONE;
+    public List<String> gear_slots = new ArrayList<>();
 
     public transient String loc_name = "";
 
@@ -44,6 +47,10 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         for (int i = 0; i < count; i++) {
             word.runes_needed.add(buf.readString(10));
         }
+        int c = buf.readInt();
+        for (int i = 0; i < c; i++) {
+            word.gear_slots.add(buf.readString(100));
+        }
         word.family = BaseGearType.SlotFamily.valueOf(buf.readString(500));
 
         return word;
@@ -57,6 +64,8 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         stats.forEach(x -> x.toBuf(buf));
         buf.writeInt(runes_needed.size());
         runes_needed.forEach(x -> buf.writeString(x, 10));
+        buf.writeInt(gear_slots.size());
+        gear_slots.forEach(x -> buf.writeString(x, 100));
 
         buf.writeString(family.name(), 500);
     }
@@ -129,9 +138,15 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
                 return false;
             }
 
-            return gear.GetBaseGearType()
-                .family()
-                .equals(this.family);
+            if (this.family != BaseGearType.SlotFamily.NONE) {
+                return gear.GetBaseGearType()
+                    .family() == family;
+            } else {
+                return gear_slots.stream()
+                    .anyMatch(x -> {
+                        return gear.GetBaseGearType().gear_slot.equals(x);
+                    });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -147,6 +162,18 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         word.runes_needed = runes_needed.stream()
             .map(x -> x.id)
             .collect(Collectors.toList());
+        return word;
+    }
+
+    public static RuneWord create(String id, String locname, DataGenKey<GearSlot> slot, List<StatModifier> stats, List<RuneItem.RuneType> runes_needed) {
+        RuneWord word = create(id, locname, BaseGearType.SlotFamily.NONE, stats, runes_needed);
+        word.gear_slots.add(slot.GUID());
+        return word;
+    }
+
+    public static RuneWord create(String id, String locname, List<DataGenKey<GearSlot>> slots, List<StatModifier> stats, List<RuneItem.RuneType> runes_needed) {
+        RuneWord word = create(id, locname, BaseGearType.SlotFamily.NONE, stats, runes_needed);
+        slots.forEach(x -> word.gear_slots.add(x.GUID()));
         return word;
     }
 

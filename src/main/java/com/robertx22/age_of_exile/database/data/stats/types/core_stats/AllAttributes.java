@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
 public class AllAttributes extends Stat implements ITransferToOtherStats {
 
     private AllAttributes() {
-        this.scaling = StatScaling.LINEAR;
+        this.scaling = StatScaling.CORE_STAT;
+        this.textFormat = Formatting.LIGHT_PURPLE;
     }
 
     public static AllAttributes getInstance() {

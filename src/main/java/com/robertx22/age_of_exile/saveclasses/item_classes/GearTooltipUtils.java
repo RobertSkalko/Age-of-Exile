@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
@@ -46,7 +47,33 @@ public class GearTooltipUtils {
 
             tip.clear();
 
-            tip.addAll(gear.GetDisplayName(stack));
+            gear.GetDisplayName(stack)
+                .forEach(x -> {
+                    tip.add(x);
+                });
+
+            if (gear.GetBaseGearType()
+                .family() == BaseGearType.SlotFamily.Weapon) {
+
+                String speed = "Normal";
+
+                float atks = gear.GetBaseGearType().attacksPerSecond;
+
+                if (atks < 1) {
+                    speed = "Slow";
+                }
+                if (atks > 1) {
+                    speed = "Fast";
+                }
+                String txt = speed + " Attack Speed";
+
+                if (Screen.hasShiftDown()) {
+                    txt += " (" + atks + "/s)";
+                }
+
+                tip.add(new LiteralText(txt).formatted(Formatting.GRAY));
+
+            }
 
             if (!gear.isIdentified()) {
 
@@ -65,25 +92,26 @@ public class GearTooltipUtils {
             }
 
             if (gear.isCorrupted()) {
+                if (!Screen.hasShiftDown()) {
+                    tip.add(new SText(""));
 
-                tip.add(new SText(""));
+                    tip.add(new LiteralText(Formatting.RED + "").append(
+                        Words.Corrupted.locName())
+                        .formatted(Formatting.RED));
 
-                tip.add(new LiteralText(Formatting.RED + "").append(
-                    Words.Corrupted.locName())
-                    .formatted(Formatting.RED));
+                    tip.add(new SText(""));
 
-                tip.add(new SText(""));
+                    tip.add(
+                        Words.CorruptedExplanation1.locName()
+                            .formatted(Formatting.GRAY));
+                    tip.add(
+                        Words.CorruptedExplanation2.locName()
+                            .formatted(Formatting.GRAY));
 
-                tip.add(
-                    Words.CorruptedExplanation1.locName()
-                        .formatted(Formatting.GRAY));
-                tip.add(
-                    Words.CorruptedExplanation2.locName()
-                        .formatted(Formatting.GRAY));
+                    tip.add(new SText(""));
 
-                tip.add(new SText(""));
-
-                return;
+                    return;
+                }
 
             }
 
@@ -99,11 +127,11 @@ public class GearTooltipUtils {
                 int skillvll = Load.playerSkills(info.player)
                     .getLevel(skill);
                 if (skillvll >= gear.lvl) {
-                    tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                    tip.add(new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + StatRequirement.CHECK_YES_ICON + Formatting.GRAY)
                         .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " "));
 
                 } else {
-                    tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+                    tip.add(new LiteralText(Formatting.RED + "" + Formatting.BOLD + StatRequirement.NO_ICON + Formatting.GRAY)
                         .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " ")
                     );
                 }

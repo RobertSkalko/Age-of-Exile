@@ -22,6 +22,7 @@ public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceCo
     public LevelScalingConfig NORMAL_STAT_SCALING = new LevelScalingConfig(1, 0.5F);
     public LevelScalingConfig SLOW_STAT_SCALING = new LevelScalingConfig(1, 0.002F);
     public LevelScalingConfig MANA_COST_SCALING = new LevelScalingConfig(1, 0.1F);
+    public LevelScalingConfig CORE_STAT_SCALING = new LevelScalingConfig(1, 0.05F);
     public LevelScalingConfig STAT_REQ_SCALING = new LevelScalingConfig(2, 2);
 
     public double TALENT_POINTS_AT_MAX_LEVEL = 125;

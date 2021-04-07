@@ -42,7 +42,7 @@ public class HealPower extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Heal Power";
+        return "Healing Strength";
     }
 
     private static class Effect extends BaseHealEffect {

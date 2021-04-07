@@ -269,6 +269,8 @@ public class TileGearSalvage extends BaseSkillStation {
                 if (stacks.stream()
                     .anyMatch(x -> !x.isEmpty())) {
                     cook_ticks++;
+                } else {
+                    cook_ticks--;
                 }
                 return;
             }
@@ -316,6 +318,8 @@ public class TileGearSalvage extends BaseSkillStation {
 
             }
 
+        } else {
+            cook_ticks--;
         }
 
         if (cook_ticks < 0) {

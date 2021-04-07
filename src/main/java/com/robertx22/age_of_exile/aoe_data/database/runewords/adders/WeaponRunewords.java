@@ -25,10 +25,10 @@ public class WeaponRunewords implements ISlashRegistryInit {
             "Elemental Fury",
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
-                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Thunder), ModType.FLAT),
-                new StatModifier(0.1F, 0.4F, 0.4F, 1, new AttackDamage(Elements.Nature), ModType.FLAT)
+                new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Fire), ModType.FLAT),
+                new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Water), ModType.FLAT),
+                new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Thunder), ModType.FLAT),
+                new StatModifier(0.1F, 0.1F, 0.4F, 1, new AttackDamage(Elements.Nature), ModType.FLAT)
             ),
             Arrays.asList(CEN, DOS, ANO, TOQ))
             .addToSerializables();

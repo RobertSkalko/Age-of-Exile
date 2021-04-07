@@ -60,6 +60,7 @@ mmorpg:armor/leather/boots/leather_boots4
 mmorpg:armor/leather/chest/leather_chest0
 mmorpg:uniques/jewelry/angel_prot_necklace
 mmorpg:armor/leather/boots/leather_boots1
+mmorpg:uniques/armor/oak
 mmorpg:armor/leather/boots/leather_boots2
 mmorpg:armor/leather/chest/leather_chest3
 mmorpg:armor/cloth/boots/cloth_boots0

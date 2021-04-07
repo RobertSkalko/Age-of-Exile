@@ -43,11 +43,6 @@ public class NoManaPacket extends MyPacket<NoManaPacket> {
         return new NoManaPacket();
     }
 
-    public enum MessageTypes {
-        NoEnergy,
-        NoMana
-    }
-
     public NoManaPacket() {
     }
 

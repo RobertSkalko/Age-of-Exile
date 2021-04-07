@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.runewords.adders;
 
+import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
@@ -31,7 +32,7 @@ public class JewelryRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "infinity",
             "Infinity",
-            BaseGearType.SlotFamily.Jewelry,
+            GearSlots.NECKLACE,
             Arrays.asList(
                 new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT),
                 new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)

@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
@@ -15,7 +16,7 @@ public class Intelligence extends BaseCoreStat {
             new OptScaleExactStat(0.2F, 0.2F, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(0.25F, 0.25F, SpellCriticalHit.getInstance(), ModType.FLAT)
         ));
-        this.statGroup = StatGroup.CORE;
+        this.textFormat = Formatting.BLUE;
     }
 
     public static final Intelligence INSTANCE = new Intelligence();

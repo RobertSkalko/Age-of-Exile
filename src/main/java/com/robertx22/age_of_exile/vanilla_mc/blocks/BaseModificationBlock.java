@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks;
 
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.library_of_exile.tile_bases.NonFullBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,10 +26,10 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseModificationBlock extends NonFullBlock implements BlockEntityProvider {
+public abstract class BaseModificationBlock extends OpaqueBlock implements BlockEntityProvider {
 
     protected BaseModificationBlock(AbstractBlock.Settings prop) {
-        super(prop);
+        super(prop.luminance(x -> x.get(NonFullBlock.light) ? 10 : 0));
 
     }
 

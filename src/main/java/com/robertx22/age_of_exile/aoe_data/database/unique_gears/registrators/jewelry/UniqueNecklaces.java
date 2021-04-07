@@ -24,6 +24,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import java.util.Arrays;
 
 public class UniqueNecklaces implements ISlashRegistryInit {
+
     @Override
     public void registerAll() {
         UniqueGearBuilder.of(

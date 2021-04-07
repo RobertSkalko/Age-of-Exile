@@ -69,6 +69,22 @@ public class OwnerButton extends TexturedButtonWidget {
             txt = "No owner";
         }
 
+        int width = mc.textRenderer.getWidth(txt);
+
+        boolean cut = false;
+
+        while (width > (SIZE_X - 10)) {
+            cut = true;
+
+            txt = txt.substring(0, txt.length() - 2);
+
+            width = mc.textRenderer.getWidth(txt);
+
+        }
+        if (cut) {
+            txt += "...";
+        }
+
         mc.textRenderer.drawWithShadow(matrix, txt, this.x + (SIZE_X / 2F - (mc.textRenderer.getWidth(txt) / 2F)), this.y + 3, Formatting.WHITE.getColorValue());
     }
 

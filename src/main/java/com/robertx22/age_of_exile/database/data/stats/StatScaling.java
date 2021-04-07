@@ -29,6 +29,12 @@ public enum StatScaling {
             return val * GameBalanceConfig.get().STAT_REQ_SCALING.getMultiFor(lvl);
         }
     },
+    CORE_STAT {
+        @Override
+        public float scale(float val, int lvl) {
+            return val * GameBalanceConfig.get().CORE_STAT_SCALING.getMultiFor(lvl);
+        }
+    },
     LINEAR {
         @Override
         public float scale(float val, int lvl) {

@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -238,14 +239,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                 .textFormatting();
 
             if (!isIdentified()) {
-                MutableText text = new SText(format + "")
+                MutableText text = new SText("")
                     .append(Words.Unidentified.locName())
                     .append(" ")
                     .append(getRarity().locName())
                     .append(" ")
                     .append(GetBaseGearType().locName());
 
-                return Arrays.asList(text);
+                return Arrays.asList(text.formatted(format));
             }
 
             if (useFullAffixedName()) {
@@ -274,7 +275,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         Formatting format = this.getRarity()
             .textFormatting();
 
-        MutableText text = new LiteralText(format + "");
+        MutableText text = new LiteralText("");
 
         if (affixes.hasPrefix()) {
 
@@ -301,7 +302,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         }
 
         text.formatted(format);
-        list.add(text);
+
+        list.addAll(TooltipUtils.cutIfTooLong(text, format));
 
         return list;
 
@@ -314,13 +316,13 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         UniqueGear uniq = this.uniqueStats.getUnique(this);
 
-        MutableText txt = new LiteralText(format + "").append(uniq.locName()
+        MutableText txt = new LiteralText("").append(uniq.locName()
             .formatted(format));
 
         txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
             .formatted(format)));
 
-        list.add(txt);
+        list.addAll(TooltipUtils.cutIfTooLong(txt, format));
 
         return list;
     }
@@ -330,13 +332,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         Formatting format = this.getRarity()
             .textFormatting();
 
-        MutableText txt = new LiteralText(format + "").append(this.sockets.getRuneWord()
+        MutableText txt = new LiteralText("").append(this.sockets.getRuneWord()
             .locName())
             .formatted(format);
         txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
             .formatted(format)));
 
-        list.add(txt);
+        list.addAll(TooltipUtils.cutIfTooLong(txt, format));
+
         return list;
     }
 
@@ -350,19 +353,19 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         if (prefix != null && suffix != null) {
 
-            MutableText txt = new LiteralText(format + "");
+            MutableText txt = new LiteralText("");
 
-            txt.append(new LiteralText(format + "").append(prefix.locName())
+            txt.append(new LiteralText("").append(prefix.locName())
                 .append(" "));
 
-            txt.append(new LiteralText(format + "").append(suffix.locName())
+            txt.append(new LiteralText("").append(suffix.locName())
                 .formatted(format));
 
             txt.append(new LiteralText(" ").append(GetBaseGearType().locName()));
 
             txt.formatted(format);
 
-            list.add(txt);
+            list.addAll(TooltipUtils.cutIfTooLong(txt, format));
 
             return list;
         }

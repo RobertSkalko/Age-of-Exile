@@ -27,7 +27,7 @@ public class FishingAdder {
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FISHING);
         b.skill.exp_per_action = 50;
 
-        b.addTieredDrops(0.5F, x -> TIERED.INK_TIER_MAP.get(x), SkillDropTable.INK_TAG);
+        b.addTieredDrops(0.4F, x -> TIERED.INK_TIER_MAP.get(x), SkillDropTable.INK_TAG);
 
         for (FoodExileEffect.EffectColor color : FoodExileEffect.EffectColor.values()) {
             for (SkillItemTier tier : SkillItemTier.values()) {

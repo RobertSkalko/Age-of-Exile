@@ -33,11 +33,11 @@ public class TooltipUtils {
     public static void addRequirements(List<Text> tip, int lvl, StatRequirement req, EntityCap.UnitData data) {
 
         if (data.getLevel() >= lvl) {
-            tip.add(new LiteralText(Formatting.GREEN + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+            tip.add(new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + StatRequirement.CHECK_YES_ICON + Formatting.GRAY)
                 .append(Formatting.GRAY + " Level Min: " + lvl + " "));
 
         } else {
-            tip.add(new LiteralText(Formatting.RED + "" + StatRequirement.PLUS_ICON + Formatting.GRAY)
+            tip.add(new LiteralText(Formatting.RED + "" + Formatting.BOLD + StatRequirement.NO_ICON + Formatting.GRAY)
                 .append(Formatting.GRAY + " Level Min: " + lvl + " ")
             );
         }
@@ -121,6 +121,14 @@ public class TooltipUtils {
 
     }
 
+    public static List<MutableText> cutIfTooLong(MutableText comp, Formatting format) {
+        List<String> stringList = cutIfTooLong(CLOC.translate(comp));
+        return stringList.stream()
+            .map(x -> new SText(x).formatted(format))
+            .collect(Collectors.toList());
+
+    }
+
     public static List<String> cutIfTooLong(String str) {
 
         List<String> list = new ArrayList<>();
@@ -130,8 +138,13 @@ public class TooltipUtils {
         for (Character c : str.toCharArray()) {
 
             if (i == str.length() - 1) {
-                list.add(str.substring(start));
-            } else if (i - start > 23 && c == ' ') {
+                String cut = str.substring(start);
+                if (cut.startsWith(" ")) {
+                    cut = cut.substring(1);
+                }
+
+                list.add(cut);
+            } else if (i - start > 20 && c == ' ') {
                 String cut = str.substring(start, i);
                 if (start > 0) {
                     cut = cut.substring(1);

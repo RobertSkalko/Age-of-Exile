@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "mmorpg:blocks/recall/top",
-    "front": "mmorpg:blocks/recall/side",
-    "side": "mmorpg:blocks/recall/side"
-  }
-}

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.runewords.adders;
 
+import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
@@ -26,7 +27,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "sentinel",
             "Sentinel",
-            BaseGearType.SlotFamily.Armor,
+            GearSlots.CHEST,
             Arrays.asList(
                 new StatModifier(-5, -5, new MaxElementalResist(Elements.Elemental), ModType.FLAT),
                 new StatModifier(5, 15, new ElementalResist(Elements.Elemental), ModType.FLAT)
@@ -37,7 +38,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "all_knowing",
             "All Knowing",
-            BaseGearType.SlotFamily.Armor,
+            GearSlots.HELMET,
             Arrays.asList(new StatModifier(0.05F, 0.1F, AllAttributes.getInstance())),
             Arrays.asList(ENO, HAR, XER))
             .addToSerializables();

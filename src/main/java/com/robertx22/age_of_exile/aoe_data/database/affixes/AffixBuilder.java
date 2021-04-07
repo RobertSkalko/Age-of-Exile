@@ -67,9 +67,9 @@ public class AffixBuilder {
 
     public AffixBuilder coreStat(BaseCoreStat stat) {
         return
-            this.tier(1, new StatModifier(0.2F, 0.3F, stat, ModType.FLAT))
-                .tier(2, new StatModifier(0.15F, 0.2F, stat, ModType.FLAT))
-                .tier(3, new StatModifier(0.1F, 0.15F, stat, ModType.FLAT));
+            this.tier(1, new StatModifier(4, 6, stat, ModType.FLAT))
+                .tier(2, new StatModifier(2, 4, stat, ModType.FLAT))
+                .tier(3, new StatModifier(1, 2, stat, ModType.FLAT));
 
     }
 

@@ -46,6 +46,8 @@ public class MergedStats implements IGearPartTooltip {
 
         List<Text> tooltip = new ArrayList<>();
 
+        // info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS; // todo test
+
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;
     }

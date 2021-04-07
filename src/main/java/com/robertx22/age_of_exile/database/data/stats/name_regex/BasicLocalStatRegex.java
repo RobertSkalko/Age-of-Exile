@@ -20,9 +20,9 @@ public class BasicLocalStatRegex extends StatNameRegex {
     public String getStatNameRegex(ModType type, Stat stat, float v1, float v2) {
 
         if (stat.UsesSecondValue()) {
-            return NAME + ": " + MIN_VALUE + "-" + MAX_VALUE;
+            return NAME + ": " + numberColor(stat) + MIN_VALUE + numberColor(stat) + "-" + MAX_VALUE;
         } else {
-            return NAME + ": " + VALUE;
+            return NAME + ": " + numberColor(stat) + VALUE;
         }
 
     }

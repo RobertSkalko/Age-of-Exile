@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -135,7 +136,15 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
 
             tooltip.add(new LiteralText(""));
 
-            tooltip.add(new LiteralText(Formatting.GREEN + "Can be used on: " + word.family.name()));
+            if (word.family != BaseGearType.SlotFamily.NONE) {
+                tooltip.add(new LiteralText(Formatting.GREEN + "Can be used on: " + word.family.name()));
+            } else {
+                String usedOn = "";
+                for (String x : word.gear_slots) {
+                    usedOn += x;
+                }
+                tooltip.add(new LiteralText(Formatting.GREEN + "Can be used on: " + usedOn));
+            }
 
             tooltip.add(new LiteralText(""));
 

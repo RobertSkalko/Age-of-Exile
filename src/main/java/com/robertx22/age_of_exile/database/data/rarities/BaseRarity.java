@@ -114,7 +114,7 @@ public abstract class BaseRarity implements Rarity {
     public void setMythicFields() {
         this.guid = IRarity.MYTHIC_ID;
         this.loc_name = "Mythic";
-        this.text_format = Formatting.LIGHT_PURPLE.name();
+        this.text_format = Formatting.DARK_PURPLE.name();
 
         onSetFields();
     }

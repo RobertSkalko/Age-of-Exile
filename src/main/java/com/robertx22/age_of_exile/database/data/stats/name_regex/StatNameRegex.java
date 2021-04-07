@@ -12,6 +12,7 @@ public abstract class StatNameRegex {
     public static StatNameRegex BASIC_LOCAL = new BasicLocalStatRegex().setAddPlus(false);
     public static StatNameRegex VALUE_PLUS_NAME = new ValuePlusName();
     public static StatNameRegex JUST_NAME = new JustNameRegex();
+    public static StatNameRegex STATS_WITH_ICON = new AffixStatsWithIcon();
 
     public static String VALUE = "VALUE";
 

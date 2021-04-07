@@ -17,22 +17,6 @@ public class FarmingAdder {
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FARMING);
         b.addDefaultBonusExpRewards();
 
-
-        /*
-        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(2);
-
-        DropRewardsBuilder rareDrops = DropRewardsBuilder.of(0.25F);
-        rareDrops.dropReward(new SkillDropReward(10, 10, Items.BONE_MEAL, new MinMax(1, 2)));
-        rareDrops.dropReward(new SkillDropReward(20, 2, Items.GOLDEN_APPLE, new MinMax(1, 1)));
-        rareDrops.dropReward(new SkillDropReward(30, 1, Items.EMERALD, new MinMax(1, 3)));
-        rareDrops.dropReward(new SkillDropReward(40, 2, Items.EMERALD, new MinMax(2, 5)));
-        rareDrops.dropReward(new SkillDropReward(50, 1, Items.ENCHANTED_GOLDEN_APPLE, new MinMax(1, 1)));
-
-        b.skill.dropTables.add(skillDrops.build());
-        b.skill.dropTables.add(rareDrops.build());
-
-         */
-
         ModRegistry.BLOCKS.FARMING_PLANTS.entrySet()
             .forEach(x -> {
                 b.blockExp(x.getValue(), (int) (x.getKey().statMulti * 10));

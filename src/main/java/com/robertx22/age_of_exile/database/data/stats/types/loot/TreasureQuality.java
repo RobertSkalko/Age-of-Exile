@@ -2,10 +2,13 @@ package com.robertx22.age_of_exile.database.data.stats.types.loot;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.util.Formatting;
 
 public class TreasureQuality extends Stat {
 
     private TreasureQuality() {
+        this.textIcon = "\u2663";
+        this.textFormat = Formatting.AQUA;
     }
 
     public static TreasureQuality getInstance() {
@@ -34,7 +37,7 @@ public class TreasureQuality extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Treasure Quality";
+        return "Magic Find";
     }
 
     private static class SingletonHolder {

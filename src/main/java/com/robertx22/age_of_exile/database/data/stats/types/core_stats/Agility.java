@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
@@ -19,6 +20,7 @@ public class Agility extends BaseCoreStat {
             new OptScaleExactStat(20, 20, Accuracy.getInstance(), ModType.FLAT),
             new OptScaleExactStat(0.5F, 0.5F, CriticalHit.getInstance(), ModType.FLAT)
         ));
+        this.textFormat = Formatting.WHITE;
     }
 
     @Override

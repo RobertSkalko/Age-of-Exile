@@ -20,10 +20,12 @@ import java.util.List;
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     public BaseCoreStat(List<OptScaleExactStat> stats) {
-        this.scaling = StatScaling.LINEAR;
+        this.scaling = StatScaling.CORE_STAT;
         this.min_val = 0;
         this.stats = stats;
         this.statGroup = StatGroup.CORE;
+
+        this.textIcon = "\u06DE";
     }
 
     List<OptScaleExactStat> stats;

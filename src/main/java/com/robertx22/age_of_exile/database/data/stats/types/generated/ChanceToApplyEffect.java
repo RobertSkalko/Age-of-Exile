@@ -57,7 +57,7 @@ public class ChanceToApplyEffect extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Chance to Apply " + locname;
+        return "To Apply " + locname;
     }
 
     @Override

@@ -157,7 +157,7 @@ public class BaseGearBuilder {
         lvls.forEach(x -> {
             Preconditions.checkArgument(itemMap.containsKey(x));
 
-            String name = namePrefixes.get(x) + " " + locnamesuffix;
+            String name = /*namePrefixes.get(x) + " " + */locnamesuffix;
             String id = idprefix + x.id_suffix;
             BaseGearType type = new BaseGearType(slot, id, x, name);
             type.stat_reqs = req;

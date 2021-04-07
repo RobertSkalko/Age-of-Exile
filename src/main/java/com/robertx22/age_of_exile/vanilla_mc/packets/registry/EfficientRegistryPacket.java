@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryContainer;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.network.PacketByteBuf;
@@ -59,18 +58,11 @@ public class EfficientRegistryPacket<T extends IByteBuf & ISerializedRegistryEnt
 
     @Override
     public void saveToData(PacketByteBuf buf) {
-        Watch watch = null;
-        if (MMORPG.RUN_DEV_TOOLS) {
-            watch = new Watch();
-        }
 
         buf.writeString(type.name(), 30);
         buf.writeVarInt(this.items.size());
         items.forEach(x -> x.toBuf(buf));
 
-        if (MMORPG.RUN_DEV_TOOLS) {
-            //watch.print("Writing efficient direct bytebuf packet for " + this.type.name() + " ");
-        }
     }
 
     @Override

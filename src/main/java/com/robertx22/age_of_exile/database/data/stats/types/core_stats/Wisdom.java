@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
@@ -18,6 +19,7 @@ public class Wisdom extends BaseCoreStat {
             new OptScaleExactStat(10, 10, Mana.getInstance(), ModType.FLAT),
             new OptScaleExactStat(0.5F, 0.5F, ManaRegen.getInstance(), ModType.FLAT)
         ));
+        this.textFormat = Formatting.LIGHT_PURPLE;
     }
 
     @Override

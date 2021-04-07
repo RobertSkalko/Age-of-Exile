@@ -13,7 +13,6 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Pair;
 
 import java.util.ArrayList;
@@ -46,9 +45,6 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     public void RerollNumbers(GearItemData gear) {
         RerollFully(gear);
     }
-
-    static Formatting NUMBER_COLOR = Formatting.BLUE;
-    static Formatting TEXT_COLOR = Formatting.GRAY;
 
     @Override
     public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {

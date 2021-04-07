@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
@@ -19,6 +20,7 @@ public class Dexterity extends BaseCoreStat {
             new OptScaleExactStat(0.25F, 0.25F, AttackStyleDamage.RANGED, ModType.FLAT),
             new OptScaleExactStat(2, 2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         ));
+        this.textFormat = Formatting.GREEN;
     }
 
     @Override

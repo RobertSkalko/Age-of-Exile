@@ -27,7 +27,7 @@ public class BasicStatRegex extends StatNameRegex {
             }
         }
         if (type == ModType.LOCAL_INCREASE) {
-            String s = v1 > 0 ? " Extra " : " ";
+            String s = v1 > 0 && stat.IsPercent() ? " Extra " : " ";
             return VALUE + s + NAME;
         }
         if (type == ModType.GLOBAL_INCREASE) {
