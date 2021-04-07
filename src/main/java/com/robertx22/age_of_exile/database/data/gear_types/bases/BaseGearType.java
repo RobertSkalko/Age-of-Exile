@@ -196,6 +196,18 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         return family() == SlotFamily.Tool;
     }
 
+    public final boolean isArmor() {
+        return family() == SlotFamily.Armor;
+    }
+
+    public final boolean isJewelry() {
+        return family() == SlotFamily.Jewelry;
+    }
+
+    public final boolean isWeapon() {
+        return family() == SlotFamily.Weapon;
+    }
+
     public final boolean isMeleeWeapon() {
         return this.getTags()
             .contains(SlotTag.melee_weapon);

@@ -17,9 +17,9 @@ public class MergedStats implements IGearPartTooltip {
 
     public List<TooltipStatInfo> list;
 
-    public MergedStats(List<ExactStatData> list, TooltipInfo info) {
+    public MergedStats(List<ExactStatData> list, TooltipInfo info, GearItemData gear) {
 
-        list.removeIf(x -> x.getStat() instanceof MoreSocketsStat || x.getStat() instanceof SpecialStat);
+        list.removeIf(x -> x.getStat() instanceof MoreSocketsStat || x.getStat() instanceof SpecialStat || x.getStat().isLocalTo.apply(gear.GetBaseGearType()));
 
         List<TooltipStatInfo> infolist = new ArrayList<>();
 

@@ -31,6 +31,7 @@ public class ElementalResist extends ElementalStat implements IExtraStatEffect {
 
         this.textFormat = element.format;
         this.textIcon = element.icon;
+        this.isLocalTo = x -> x.isArmor() || x.isJewelry() || x.isShield();
 
     }
 

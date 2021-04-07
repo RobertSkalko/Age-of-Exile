@@ -33,7 +33,7 @@ public class DodgeRating extends Stat implements IUsableStat, ILocalStat {
 
         this.statEffect = new Effect();
 
-        this.textIcon = "\u56DE";
+        this.textIcon = "\u2748";
         this.textFormat = Formatting.DARK_GREEN;
     }
 

@@ -415,18 +415,23 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public List<ExactStatData> GetAllStats() {
+        return GetAllStats(true);
+    }
+
+    public List<ExactStatData> GetAllStats(boolean includebase) {
 
         List<ExactStatData> list = new ArrayList<>();
-        GetAllStatContainers().stream()
-            .forEach(x -> {
+        for (IStatsContainer x : GetAllStatContainers()) {
+            if (includebase == false && x instanceof BaseStatsData) {
+                continue;
+            }
+            List<ExactStatData> stats = x.GetAllStats(this);
 
-                List<ExactStatData> stats = x.GetAllStats(this);
-
-                stats.forEach(s -> {
-                    list.add(s);
-                });
-
+            stats.forEach(s -> {
+                list.add(s);
             });
+
+        }
         return list;
     }
 

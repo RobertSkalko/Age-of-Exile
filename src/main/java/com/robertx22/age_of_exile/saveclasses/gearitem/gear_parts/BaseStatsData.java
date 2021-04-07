@@ -60,31 +60,33 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
         List<StatModifier> stats = gear.GetBaseGearType().base_stats;
 
+        if (gear.uniqueBaseStatsReplaceBaseStats()) {
+            stats = gear.uniqueStats.getUnique(gear)
+                .base_stats;
+        }
+
+        if (!info.useInDepthStats()) {
+            gear.GetAllStats(false)
+                .forEach(x -> {
+                    if (x.getStat().isLocalTo.apply(gear.GetBaseGearType())) {
+                        all.add(x);
+                    }
+                });
+        }
+        ExactStatData.combine(all);
+
         for (int i = 0; i < this.perc.size(); i++) {
-
             if (all.size() > i) {
-
                 int perc = this.perc.get(i);
+                if (all.size() > i) {
 
-                if (gear.uniqueBaseStatsReplaceBaseStats()) {
+                    TooltipStatInfo ctx = new TooltipStatInfo(all.get(i), perc, info);
 
-                    List<StatModifier> uniq = gear.uniqueStats.getUnique(gear)
-                        .base_stats;
-
-                    if (uniq.size() > i) {
-                        pairs.add(new Pair(uniq.get(i)
-                            .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), uniq.get(i), gear.lvl))));
-                    }
-                } else {
-                    if (stats.size() > i) {
-
-                        pairs.add(new Pair(stats.get(i)
-                            .GetStat(), info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(new TooltipStatInfo(all.get(i), perc, info), stats.get(i), gear.lvl))));
-
-                    }
+                    pairs.add(new Pair(all.get(i)
+                        .getStat()
+                        , info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(ctx, stats.size() > i ? stats.get(i) : null, gear.lvl))));
                 }
             }
-
         }
 
         pairs.sort(Comparator.comparingInt(x -> x.getLeft().baseStatTooltipOrder));

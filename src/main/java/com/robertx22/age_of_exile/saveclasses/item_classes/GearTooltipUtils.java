@@ -174,7 +174,7 @@ public class GearTooltipUtils {
                     .forEach(x -> stats.addAll(x.GetAllStats(gear)));
                 stats.addAll(gear.sockets.GetAllStats(gear));
 
-                MergedStats merged = new MergedStats(stats, info);
+                MergedStats merged = new MergedStats(stats, info, gear);
 
                 stats.forEach(x -> {
                     if (x.getStat() instanceof SpecialStat) {

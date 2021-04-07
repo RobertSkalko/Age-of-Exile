@@ -34,6 +34,7 @@ public class AttackDamage extends ElementalStat implements ILocalStat {
 
         this.textFormat = element.format;
         this.textIcon = element.icon;
+        this.isLocalTo = x -> x.isWeapon();
     }
 
     @Override

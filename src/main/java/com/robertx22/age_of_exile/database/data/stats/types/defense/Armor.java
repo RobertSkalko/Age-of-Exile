@@ -29,7 +29,7 @@ public class Armor extends Stat implements IExtraStatEffect, IUsableStat, ILocal
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
 
-        this.textIcon = "\u56DE";
+        this.textIcon = "\u2748";
         this.textFormat = Formatting.BLUE;
 
     }

@@ -215,4 +215,49 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
         data.scaled = true;
         return data;
     }
+
+    public static void combine(List<ExactStatData> list) {
+
+        List<ExactStatData> combined = new ArrayList<>();
+
+        ExactStatData current = null;
+
+        int i = 0;
+
+        while (!list.isEmpty()) {
+
+            List<ExactStatData> toRemove = new ArrayList<>();
+
+            for (ExactStatData stat : list) {
+
+                if (i == 0) {
+                    toRemove.add(stat);
+                    current = ExactStatData.of(stat.v1, stat.v2, stat.getStat(), stat.getType(), 1);
+                    i++;
+                    continue;
+                }
+
+                if (current.stat.equals(stat.stat)) {
+                    if (current.type.equals(stat.type)) {
+                        if (current.scaled == stat.scaled) {
+                            current.v1 += stat.v1;
+                            current.v2 += stat.v2;
+                            toRemove.add(stat);
+                        }
+                    }
+                }
+
+                i++;
+
+            }
+
+            i = 0;
+            combined.add(current);
+            toRemove.forEach(n -> list.removeAll(toRemove));
+
+        }
+
+        list.addAll(combined);
+
+    }
 }
