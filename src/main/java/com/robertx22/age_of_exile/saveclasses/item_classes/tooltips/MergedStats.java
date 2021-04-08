@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.item_classes.tooltips;
 
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.MoreSocketsStat;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStat;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -19,7 +18,7 @@ public class MergedStats implements IGearPartTooltip {
 
     public MergedStats(List<ExactStatData> list, TooltipInfo info, GearItemData gear) {
 
-        list.removeIf(x -> x.getStat() instanceof MoreSocketsStat || x.getStat() instanceof SpecialStat || x.getStat().isLocalTo.apply(gear.GetBaseGearType()));
+        list.removeIf(x -> x.getStat() instanceof MoreSocketsStat || x.getStat().isLongStat || x.getStat().isLocalTo.apply(gear.GetBaseGearType()));
 
         List<TooltipStatInfo> infolist = new ArrayList<>();
 

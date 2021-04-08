@@ -47,9 +47,9 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public StatScaling scaling = StatScaling.SLOW;
 
     public boolean isLongStat = false;
-    public String textIcon = "";
+    public String textIcon = "\u2741";
     public int baseStatTooltipOrder = 100;
-    public Formatting textFormat = Formatting.GRAY;
+    public Formatting textFormat = Formatting.AQUA;
 
     public StatGroup statGroup = StatGroup.Misc;
 

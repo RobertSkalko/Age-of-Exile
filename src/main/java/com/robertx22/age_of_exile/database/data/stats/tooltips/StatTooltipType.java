@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.stats.tooltips;
 public enum StatTooltipType {
 
     NORMAL(new NormalStatTooltip()),
-    WITH_ICON(new StatsWithIconTooltip()),
     BASE_LOCAL_STATS(new BaseLocalStatTooltip());
 
     StatTooltipType(IStatTooltipType impl) {

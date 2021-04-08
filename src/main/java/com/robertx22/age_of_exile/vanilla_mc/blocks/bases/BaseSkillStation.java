@@ -172,7 +172,6 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                             return;
                         } else {
                             cook_ticks = 0;
-
                         }
 
                         this.expEarned += 1; // todo

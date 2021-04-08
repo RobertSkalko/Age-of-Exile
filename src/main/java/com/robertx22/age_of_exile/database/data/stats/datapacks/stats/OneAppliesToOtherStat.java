@@ -1,11 +1,14 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
+import net.minecraft.util.Formatting;
 
 public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats {
 
@@ -15,19 +18,23 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
     public String stat_to_add_to;
 
     transient String locname;
-    transient String desc;
 
-    public OneAppliesToOtherStat(String id, String adder_stat, String stat_to_add_to, String locname, String desc) {
+    public OneAppliesToOtherStat(String id, Stat adder_stat, Stat stat_to_add_to) {
         super(SER_ID);
         this.id = id;
-        this.adder_stat = adder_stat;
-        this.stat_to_add_to = stat_to_add_to;
-        this.locname = locname;
-        this.desc = desc;
+        this.adder_stat = adder_stat.GUID();
+        this.stat_to_add_to = stat_to_add_to.GUID();
 
         this.is_percent = true;
         this.min_val = 0;
         this.scaling = StatScaling.NONE;
+        this.isLongStat = true;
+
+        this.locname = Formatting.GRAY + "Gain " + Formatting.GREEN +
+            SpecialStats.VAL1 + "%" + Formatting.GRAY + " of your "
+            + adder_stat.textFormat + adder_stat.textIcon + " " + adder_stat.locNameForLangFile()
+            + Formatting.GRAY + " as extra "
+            + stat_to_add_to.textFormat + stat_to_add_to.textIcon + " " + stat_to_add_to.locNameForLangFile();
     }
 
     public OneAppliesToOtherStat(String adder_stat, String stat_to_add_to) {
@@ -35,6 +42,7 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
         this.stat_to_add_to = stat_to_add_to;
         this.adder_stat = adder_stat;
 
+        this.isLongStat = true;
         this.is_percent = true;
         this.min_val = 0;
         this.scaling = StatScaling.NONE;
@@ -67,7 +75,7 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
 
     @Override
     public String locDescForLangFile() {
-        return desc;
+        return "";
     }
 
     @Override

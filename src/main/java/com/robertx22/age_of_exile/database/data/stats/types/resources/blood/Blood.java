@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.blood;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.util.Formatting;
 
 public class Blood extends Stat {
     public static String GUID = "blood";
@@ -11,6 +12,9 @@ public class Blood extends Stat {
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
+
+        this.textIcon = "\u2764";
+        this.textFormat = Formatting.DARK_RED;
     }
 
     public static Blood getInstance() {

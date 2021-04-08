@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStat;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -55,7 +54,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         List<Text> list = new ArrayList<Text>();
 
         getAllStatsWithCtx(gear, info).forEach(x -> {
-            if (x.mod.GetStat() instanceof SpecialStat == false) {
+            if (!x.mod.GetStat().isLongStat) {
                 list.addAll(x.GetTooltipString(info));
             }
         });

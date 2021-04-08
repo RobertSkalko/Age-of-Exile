@@ -22,6 +22,10 @@ public class NormalStatTooltip implements IStatTooltipType {
         MutableText txt = new LiteralText(Formatting.BLUE + info.stat.getStatNameRegex()
             .translate(info.type, info.firstValue, info.secondValue, info.stat));
 
+        if (ctx.statinfo.stat.isLongStat) {
+            return longStat(ctx, txt);
+        }
+
         if (ctx.showStatRanges()) {
             txt.append(" ")
                 .append(getPercentageView(ctx.statinfo.percent));

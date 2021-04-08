@@ -258,6 +258,9 @@ public class TileGearSalvage extends BaseSkillStation {
             if (!hasFuel()) {
                 burnFuelIfNeeded();
                 cook_ticks--;
+                if (cook_ticks < 0) {
+                    cook_ticks = 0;
+                }
                 return;
             }
 
@@ -271,6 +274,9 @@ public class TileGearSalvage extends BaseSkillStation {
                     cook_ticks++;
                 } else {
                     cook_ticks--;
+                    if (cook_ticks < 0) {
+                        cook_ticks = 0;
+                    }
                 }
                 return;
             }
@@ -320,6 +326,9 @@ public class TileGearSalvage extends BaseSkillStation {
 
         } else {
             cook_ticks--;
+            if (cook_ticks < 0) {
+                cook_ticks = 0;
+            }
         }
 
         if (cook_ticks < 0) {

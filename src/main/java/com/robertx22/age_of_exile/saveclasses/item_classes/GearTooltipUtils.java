@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStat;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -156,7 +155,7 @@ public class GearTooltipUtils {
 
                 gear.uniqueStats.GetAllStats(gear)
                     .forEach(x -> {
-                        if (x.getStat() instanceof SpecialStat) {
+                        if (x.getStat().isLongStat) {
                             specialStats.add(x);
                         }
                     });
@@ -177,7 +176,7 @@ public class GearTooltipUtils {
                 MergedStats merged = new MergedStats(stats, info, gear);
 
                 stats.forEach(x -> {
-                    if (x.getStat() instanceof SpecialStat) {
+                    if (x.getStat().isLongStat) {
                         specialStats.add(x);
                     }
                 });

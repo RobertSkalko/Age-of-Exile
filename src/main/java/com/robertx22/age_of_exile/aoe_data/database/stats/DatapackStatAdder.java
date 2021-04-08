@@ -14,21 +14,14 @@ public class DatapackStatAdder implements ISlashRegistryInit {
 
     public static OneAppliesToOtherStat HEAL_TO_SPELL_DMG = new OneAppliesToOtherStat(
         "heal_to_dmg",
-        HealPower.getInstance()
-            .GUID(),
-        SpellDamage.getInstance()
-            .GUID(),
-        "of Heal Power to Spell Damage",
-        "Adds % of your increased healing to your total spell damage.");
+        HealPower.getInstance(),
+        SpellDamage.getInstance());
 
     public static OneAppliesToOtherStat HEALTH_TO_BLOOD = new OneAppliesToOtherStat(
         "hp_to_blood",
-        Health.getInstance()
-            .GUID(),
+        Health.getInstance(),
         Blood.getInstance()
-            .GUID(),
-        "of Health to Blood",
-        "Adds % of health to total blood pool.");
+    );
 
     public static ConvertFromOneToOtherStat CONVERT_HEALTH_TO_PHYS_DMG = new ConvertFromOneToOtherStat(
         "convert_hp_to_phys_dmg",

@@ -21,6 +21,10 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
         MutableText txt = new LiteralText(info.stat.textFormat + info.stat.textIcon + " " + StatNameRegex.BASIC_LOCAL
             .translate(info.type, info.firstValue, info.secondValue, info.stat));
 
+        if (ctx.statinfo.stat.isLongStat) {
+            return longStat(ctx, txt);
+        }
+
         if (ctx.showStatRanges()) {
             txt.append(" ")
                 .append(NormalStatTooltip.getPercentageView(ctx.statinfo.percent));

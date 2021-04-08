@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffec
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.util.Formatting;
 
 public class HealPower extends Stat {
     public static String GUID = "increase_healing";
@@ -14,6 +15,8 @@ public class HealPower extends Stat {
         this.statGroup = StatGroup.RESTORATION;
         this.scaling = StatScaling.SLOW;
         this.statEffect = new Effect();
+
+        this.textFormat = Formatting.YELLOW;
     }
 
     public static HealPower getInstance() {
