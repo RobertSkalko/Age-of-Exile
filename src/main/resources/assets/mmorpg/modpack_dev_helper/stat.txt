@@ -266,6 +266,7 @@ basic_attack_water_dmg_leech_as_mana
 chill_bonus_dmg
 inc_leech
 bonus_cold_biome_yield
+blood_per_10vit
 other_nature_dmg_leech_as_health
 attack_all_dmg_leech_as_health
 spell_dodge
@@ -293,6 +294,7 @@ dmg_under_wither
 heal_effect_on_self
 other_all_dmg_leech_as_mana
 hunger_immunity
+hp_per_10int
 dot_nature_dmg_leech_as_health
 dmg_taken_to_mana
 basic_attack_fire_dmg_leech_as_mana

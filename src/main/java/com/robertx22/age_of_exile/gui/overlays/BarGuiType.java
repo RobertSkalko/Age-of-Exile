@@ -45,16 +45,15 @@ public enum BarGuiType {
             return "Level " + data.getLevel() + " " + (int) (getMulti(data, en) * 100) + "%";
         }
     },
+
     MANA {
         @Override
         public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
             if (data.getUnit()
-                .getCalculatedStat(BloodUser.getInstance())
-                .getAverageValue() > 0) {
+                .isBloodMage()) {
                 return data.getResources()
                     .getBlood();
             }
-
             return data.getResources()
                 .getMana();
         }
@@ -62,8 +61,7 @@ public enum BarGuiType {
         @Override
         public float getMax(EntityCap.UnitData data, PlayerEntity en) {
             if (data.getUnit()
-                .getCalculatedStat(BloodUser.getInstance())
-                .getAverageValue() > 0) {
+                .isBloodMage()) {
                 return data.getUnit()
                     .bloodData()
                     .getAverageValue();
@@ -75,9 +73,14 @@ public enum BarGuiType {
 
         @Override
         public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/mana.png");
+            if (data.getUnit()
+                .getCalculatedStat(BloodUser.getInstance())
+                .getAverageValue() > 0) {
+                return Ref.id("textures/gui/overlay/blood.png");
+            } else {
+                return Ref.id("textures/gui/overlay/mana.png");
+            }
         }
-
     },
     HEALTH {
         @Override

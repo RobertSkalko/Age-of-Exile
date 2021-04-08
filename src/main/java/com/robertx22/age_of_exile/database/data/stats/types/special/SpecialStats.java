@@ -17,14 +17,14 @@ public class SpecialStats {
 
     }
 
-    public static String VAL1 = "[VAL1]";
+    public static String VAL1 = "[VAL1]" + Formatting.GRAY;
     public static String VAL2 = "[VAL2]";
 
     static Formatting FORMAT = Formatting.GRAY;
     static Formatting NUMBER = Formatting.GREEN;
 
     public static SpecialStat CRIT_BURN = new SpecialStat("crit_burn",
-        FORMAT + "Your " + Elements.Fire.format + Elements.Fire.icon + " Fire" + FORMAT + " Spell Critical Hits have " + NUMBER + VAL1 + "% " + FORMAT + "chance to cause enemies to burn.",
+        FORMAT + "Your " + Elements.Fire.getIconNameFormat() + FORMAT + " Spell Critical Hits have " + NUMBER + VAL1 + "% " + FORMAT + "chance to cause enemies to burn.",
 
         new BaseSpecialStatDamageEffect() {
             @Override

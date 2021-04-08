@@ -7,13 +7,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.Map;
@@ -70,8 +68,6 @@ public class TestBuild {
             player.equipStack(entry.getKey(), blueprint.createStack());
 
         }
-
-        player.giveItemStack(new ItemStack(ModRegistry.INSCRIBING.RANDOM_TELEPORT, 4));
 
         return 0;
     }

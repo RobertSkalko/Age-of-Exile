@@ -3,9 +3,11 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.blood;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.game_changers.HealthRestorationToBloodEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import net.minecraft.util.Formatting;
 
 public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
     public static String GUID = "hp_resto_to_blood";
@@ -14,6 +16,8 @@ public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.Misc;
+
+        this.isLongStat = true;
     }
 
     public static HealthRestorationToBlood getInstance() {
@@ -22,7 +26,7 @@ public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
 
     @Override
     public String locDescForLangFile() {
-        return "Refills your blood by a % of your non spell related health restoration effects. ";
+        return "";
     }
 
     @Override
@@ -42,7 +46,8 @@ public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
 
     @Override
     public String locNameForLangFile() {
-        return "Blood Transfusion";
+        return Formatting.GRAY + "You refill your " + Blood.getInstance()
+            .getIconNameFormat() + " by " + Formatting.GREEN + SpecialStats.VAL1 + "% of your non-spell health restoration effects.";
     }
 
     @Override

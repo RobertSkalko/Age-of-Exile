@@ -129,25 +129,46 @@ public class TooltipUtils {
 
     }
 
+    // private static final Pattern PATTERN = Pattern.compile("(?)§[0-9A-FK-OR]");
+
     public static List<String> cutIfTooLong(String str) {
 
         List<String> list = new ArrayList<>();
 
+        Formatting format = null;
+
+        char[] array = str.toCharArray();
+
         int start = 0;
         int i = 0;
-        for (Character c : str.toCharArray()) {
+
+        Formatting formattouse = null;
+
+        for (Character c : array) {
+
+            if (c.equals('§')) {
+                format = Formatting.byCode(array[i + 1]);
+            }
 
             if (i == str.length() - 1) {
                 String cut = str.substring(start);
                 if (cut.startsWith(" ")) {
                     cut = cut.substring(1);
                 }
-
+                if (formattouse != null) {
+                    cut = formattouse + cut;
+                    format = null;
+                    formattouse = null;
+                }
                 list.add(cut);
             } else if (i - start > 32 && c == ' ') {
                 String cut = str.substring(start, i);
                 if (start > 0) {
                     cut = cut.substring(1);
+                }
+
+                if (format != null) {
+                    formattouse = format;
                 }
 
                 list.add(cut);

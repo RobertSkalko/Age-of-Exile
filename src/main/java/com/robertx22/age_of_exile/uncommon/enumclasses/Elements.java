@@ -36,6 +36,10 @@ public enum Elements {
 
     public Formatting format;
 
+    public String getIconNameFormat() {
+        return this.format + this.icon + " " + dmgName + Formatting.GRAY;
+    }
+
     public boolean isPhysical() {
         return this == Physical;
     }

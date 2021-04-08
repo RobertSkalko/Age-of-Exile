@@ -18,7 +18,13 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
 
         List<Text> list = new ArrayList<Text>();
 
-        MutableText txt = new LiteralText(info.stat.textFormat + info.stat.textIcon + " " + StatNameRegex.BASIC_LOCAL
+        String icon = info.stat.textFormat + info.stat.textIcon + " ";
+
+        if (ctx.statinfo.stat.isLongStat) {
+            icon = "";
+        }
+
+        MutableText txt = new LiteralText(icon + StatNameRegex.BASIC_LOCAL
             .translate(info.type, info.firstValue, info.secondValue, info.stat));
 
         if (ctx.statinfo.stat.isLongStat) {

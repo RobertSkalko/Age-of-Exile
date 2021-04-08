@@ -29,7 +29,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         PerkBuilder.gameChanger("blood_mage", "Blood Mage",
             new OptScaleExactStat(1, BloodUser.getInstance(), ModType.FLAT),
             new OptScaleExactStat(50, HealthRestorationToBlood.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(50, DatapackStatAdder.HEALTH_TO_BLOOD, ModType.FLAT),
+            new OptScaleExactStat(50, DatapackStatAdder.BLOOD_PER_10VIT, ModType.FLAT),
             new OptScaleExactStat(-100, Mana.getInstance(), ModType.GLOBAL_INCREASE)
         );
 

@@ -170,7 +170,11 @@ public class InCalcStatData {
     }
 
     public float getFlatAverage() {
-        return (Flat + Flat2) / 2;
+        if (GetStat().UsesSecondValue()) {
+
+            return (Flat + Flat2) / 2;
+        }
+        return Flat;
     }
 
     public StatData getCalculated() {

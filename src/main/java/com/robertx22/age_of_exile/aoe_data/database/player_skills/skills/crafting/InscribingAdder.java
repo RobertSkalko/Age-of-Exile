@@ -18,7 +18,6 @@ public class InscribingAdder {
 
         b.itemCraftExp(ModRegistry.INSCRIBING.SPAWN_TELEPORT, 25);
         b.itemCraftExp(ModRegistry.INSCRIBING.DEATH_TELEPORT, 25);
-        b.itemCraftExp(ModRegistry.INSCRIBING.RANDOM_TELEPORT, 25);
 
         return b.build();
     }

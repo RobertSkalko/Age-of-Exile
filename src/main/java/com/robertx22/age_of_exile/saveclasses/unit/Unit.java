@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -79,6 +80,11 @@ public class Unit {
         }
 
         public int place;
+    }
+
+    public boolean isBloodMage() {
+        return getCalculatedStat(BloodUser.getInstance())
+            .getAverageValue() > 0;
     }
 
     public StatContainer getStats() {

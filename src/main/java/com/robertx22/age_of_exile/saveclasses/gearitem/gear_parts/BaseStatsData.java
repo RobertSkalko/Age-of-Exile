@@ -68,7 +68,8 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         if (!info.useInDepthStats()) {
             gear.GetAllStats(false)
                 .forEach(x -> {
-                    if (x.getStat().isLocalTo.apply(gear.GetBaseGearType())) {
+                    if (x.getType()
+                        .isFlat() && x.getStat().isLocalTo.apply(gear.GetBaseGearType())) {
                         all.add(x);
                     }
                 });

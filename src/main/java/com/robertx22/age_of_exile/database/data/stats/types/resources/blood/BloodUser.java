@@ -4,9 +4,11 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.game_changers.BloodUserEffect;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import net.minecraft.util.Formatting;
 
 public class BloodUser extends Stat implements IExtraStatEffect {
     public static String GUID = "blood_user";
@@ -15,6 +17,7 @@ public class BloodUser extends Stat implements IExtraStatEffect {
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.Misc;
+        this.isLongStat = true;
 
     }
 
@@ -29,7 +32,7 @@ public class BloodUser extends Stat implements IExtraStatEffect {
 
     @Override
     public String locDescForLangFile() {
-        return "You use blood instead of mana";
+        return "";
     }
 
     @Override
@@ -49,7 +52,9 @@ public class BloodUser extends Stat implements IExtraStatEffect {
 
     @Override
     public String locNameForLangFile() {
-        return "Blood User";
+        return Formatting.GRAY + "You now use " + Blood.getInstance()
+            .getIconNameFormat() + " instead of " + Mana.getInstance()
+            .getIconNameFormat();
     }
 
     @Override

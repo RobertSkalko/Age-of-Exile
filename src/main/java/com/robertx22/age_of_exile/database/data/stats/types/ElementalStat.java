@@ -18,6 +18,11 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
         this.element = element;
 
         this.isShown = element != Elements.Elemental;
+
+        if (getElement() != null) {
+            this.textFormat = getElement().format;
+            this.textIcon = getElement().icon;
+        }
     }
 
     @Override

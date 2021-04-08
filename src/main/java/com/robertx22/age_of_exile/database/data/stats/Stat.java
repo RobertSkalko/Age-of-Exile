@@ -57,6 +57,10 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public boolean add$plusminus$toTooltip = true;
 
+    public String getIconNameFormat() {
+        return this.textFormat + this.textIcon + " " + locNameForLangFile() + Formatting.GRAY;
+    }
+
     @Override
     public boolean isFromDatapack() {
         return false;

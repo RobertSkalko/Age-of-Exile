@@ -15,6 +15,7 @@ public class DamageOverTime extends ElementalStat {
         this.scaling = StatScaling.NONE;
         this.statGroup = StatGroup.Misc;
         this.statEffect = new Effect();
+
     }
 
     @Override

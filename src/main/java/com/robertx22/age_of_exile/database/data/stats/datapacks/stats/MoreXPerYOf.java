@@ -10,16 +10,17 @@ import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import net.minecraft.util.Formatting;
 
-public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats {
+public class MoreXPerYOf extends DatapackStat implements IAffectsStats {
 
-    public static String SER_ID = "one_to_other";
+    public static String SER_ID = "more_x_per_y";
 
     public String adder_stat;
     public String stat_to_add_to;
+    public int perEach = 10;
 
     transient String locname;
 
-    public OneAppliesToOtherStat(String id, Stat adder_stat, Stat stat_to_add_to) {
+    public MoreXPerYOf(String id, Stat adder_stat, Stat stat_to_add_to) {
         super(SER_ID);
         this.id = id;
         this.adder_stat = adder_stat.GUID();
@@ -31,13 +32,11 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
         this.isLongStat = true;
 
         this.locname = Formatting.GRAY + "Gain " + Formatting.GREEN +
-            SpecialStats.VAL1 + "%" + Formatting.GRAY + " of your "
-            + adder_stat.getIconNameFormat()
-            + Formatting.GRAY + " as extra "
-            + stat_to_add_to.getIconNameFormat();
+            SpecialStats.VAL1 + " " + stat_to_add_to.getIconNameFormat() + " for each " + perEach + " "
+            + adder_stat.getIconNameFormat();
     }
 
-    public OneAppliesToOtherStat(String adder_stat, String stat_to_add_to) {
+    public MoreXPerYOf(String adder_stat, String stat_to_add_to) {
         super(SER_ID);
         this.stat_to_add_to = stat_to_add_to;
         this.adder_stat = adder_stat;
@@ -54,11 +53,8 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
             .getStatInCalculation(stat_to_add_to);
         InCalcStatData adder = data.getUnit()
             .getStatInCalculation(adder_stat);
-        InCalcStatData thisstat = data.getUnit()
-            .getStatInCalculation(this.GUID());
 
-        float multi = thisstat.getFlatAverage() / 100F;
-        float val = adder.getFlatAverage() * multi;
+        float val = (int) (adder.getFlatAverage() / perEach) * statData.getFlatAverage();
 
         add_to.addAlreadyScaledFlat(val);
     }
@@ -70,7 +66,7 @@ public class OneAppliesToOtherStat extends DatapackStat implements IAffectsStats
 
     @Override
     public boolean IsPercent() {
-        return true;
+        return false;
     }
 
     @Override

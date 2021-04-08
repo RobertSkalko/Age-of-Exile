@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.DeathTeleportItem;
-import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.RandomPlayerLevelTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.teleports.SpawnTeleportItem;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTabletItem;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.BlankTabletTier;
@@ -29,7 +28,6 @@ public class InscribingItemRegister extends BaseItemRegistrator {
 
     public DeathTeleportItem DEATH_TELEPORT = item(new DeathTeleportItem(), "scroll/death_teleport");
     public SpawnTeleportItem SPAWN_TELEPORT = item(new SpawnTeleportItem(), "scroll/spawn_teleport");
-    public RandomPlayerLevelTeleportItem RANDOM_TELEPORT = item(new RandomPlayerLevelTeleportItem(), "scroll/random_teleport");
 
     public InscribingItemRegister() {
 

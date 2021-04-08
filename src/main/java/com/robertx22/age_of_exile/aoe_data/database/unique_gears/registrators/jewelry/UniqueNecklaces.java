@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
@@ -35,6 +36,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(3, 8, ChanceToApplyEffect.POISON, ModType.FLAT),
+                new StatModifier(5, 10, DatapackStatAdder.HEALTH_PER_10_INT, ModType.FLAT),
                 new StatModifier(4, 6, Lifesteal.getInstance(), ModType.FLAT)
             ))
             .req(new StatRequirement().setDex(0.5F)

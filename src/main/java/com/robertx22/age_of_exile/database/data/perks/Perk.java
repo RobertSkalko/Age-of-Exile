@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -119,6 +120,8 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
                 .isEmpty()) {
                 list.addAll(new SpellCastContext(info.player, 0, getSpell()).calcData.GetTooltipString(info));
             }
+
+            info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS;
 
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
 

@@ -1,7 +1,11 @@
 package com.robertx22.age_of_exile.aoe_data.database.stats;
 
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.ConvertFromOneToOtherStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MoreXPerYOf;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.OneAppliesToOtherStat;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
@@ -17,11 +21,13 @@ public class DatapackStatAdder implements ISlashRegistryInit {
         HealPower.getInstance(),
         SpellDamage.getInstance());
 
-    public static OneAppliesToOtherStat HEALTH_TO_BLOOD = new OneAppliesToOtherStat(
-        "hp_to_blood",
-        Health.getInstance(),
+    public static MoreXPerYOf BLOOD_PER_10VIT = new MoreXPerYOf(
+        "blood_per_10vit",
+        Vitality.INSTANCE,
         Blood.getInstance()
     );
+
+    public static Stat HEALTH_PER_10_INT = new MoreXPerYOf("hp_per_10int", Intelligence.INSTANCE, Health.getInstance());
 
     public static ConvertFromOneToOtherStat CONVERT_HEALTH_TO_PHYS_DMG = new ConvertFromOneToOtherStat(
         "convert_hp_to_phys_dmg",
@@ -36,7 +42,9 @@ public class DatapackStatAdder implements ISlashRegistryInit {
     public void registerAll() {
 
         HEAL_TO_SPELL_DMG.addToSerializables();
-        HEALTH_TO_BLOOD.addToSerializables();
+        BLOOD_PER_10VIT.addToSerializables();
         CONVERT_HEALTH_TO_PHYS_DMG.addToSerializables();
+        HEALTH_PER_10_INT.addToSerializables();
+
     }
 }

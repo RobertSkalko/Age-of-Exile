@@ -203,11 +203,7 @@ public class GearTooltipUtils {
             specialStats.forEach(x -> {
                 x.GetTooltipString(info)
                     .forEach(e -> {
-
-                        TooltipUtils.cutIfTooLong((MutableText) e, Formatting.GRAY)
-                            .forEach(t -> {
-                                tip.add(t);
-                            });
+                        tip.add(e);
 
                     });
             });
