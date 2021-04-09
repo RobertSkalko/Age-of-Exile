@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.Criti
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import net.minecraft.util.Formatting;
 
 public class CriticalHit extends Stat implements IExtraStatEffect {
 
@@ -29,6 +30,9 @@ public class CriticalHit extends Stat implements IExtraStatEffect {
         this.max_val = 100;
         this.min_val = 0;
         this.statGroup = StatGroup.MAIN;
+
+        this.textIcon = "\u2694";
+        this.textFormat = Formatting.YELLOW;
     }
 
     @Override

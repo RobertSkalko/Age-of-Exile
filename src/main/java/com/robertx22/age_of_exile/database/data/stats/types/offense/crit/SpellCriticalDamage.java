@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.Spell
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import net.minecraft.util.Formatting;
 
 public class SpellCriticalDamage extends Stat implements IExtraStatEffect {
 
@@ -29,6 +30,9 @@ public class SpellCriticalDamage extends Stat implements IExtraStatEffect {
         this.min_val = 0;
         this.max_val = 500;
         this.statGroup = StatGroup.MAIN;
+
+        this.textIcon = "\u2739";
+        this.textFormat = Formatting.DARK_PURPLE;
     }
 
     @Override

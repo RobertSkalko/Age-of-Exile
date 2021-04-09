@@ -71,6 +71,11 @@ public class UniqueGearBuilder {
         return this;
     }
 
+    public UniqueGearBuilder gearSet(String set) {
+        this.uniq.set = set;
+        return this;
+    }
+
     public UniqueGearBuilder req(StatRequirement req) {
         if (!uniq.stat_req.base_req.isEmpty() || !uniq.stat_req.scaling_req.isEmpty()) {
             throw new RuntimeException("Overrided unique stat requirements");

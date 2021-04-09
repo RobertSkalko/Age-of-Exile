@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
@@ -15,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Bloo
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -223,6 +225,30 @@ public class Unit {
         return check;
     }
 
+    @Store
+    public HashMap<String, Integer> sets = new HashMap<>();
+
+    private void calcSets(List<GearData> gears) {
+        sets.clear();
+
+        // todo possibly cache it?
+        gears.forEach(x -> {
+            if (x.gear != null) {
+                UniqueGear uniq = x.gear.uniqueStats.getUnique(x.gear);
+                if (uniq != null) {
+                    if (uniq.hasSet()) {
+                        GearSet set = uniq.getSet();
+                        String key = set
+                            .GUID();
+                        int current = sets.getOrDefault(key, 0);
+                        sets.put(key, current + 1);
+
+                    }
+                }
+            }
+        });
+    }
+
     public void recalculateStats(LivingEntity entity, UnitData data, AttackInformation dmgData) {
 
         try {
@@ -238,6 +264,8 @@ public class Unit {
 
             List<GearData> gears = new ArrayList<>();
             new CollectGearEvent.CollectedGearStacks(entity, gears, dmgData);
+
+            calcSets(gears);
 
             stats.values()
                 .forEach(x -> x.stats.clear());

@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+blood_per_10_vitality
 mana_on_spell_hit
 basic_attack_physical_dmg_leech_as_health
 bonus_exp_for_t4_mob
@@ -165,6 +166,7 @@ ele_bow_damage
 spell_physical_dmg_leech_as_health
 heal_to_dmg
 spell_physical_dmg_leech_as_mana
+health_per_10_intelligence
 global_critical_damage
 blood_on_other_hit
 bonus_exp_for_t2_mob
@@ -185,8 +187,10 @@ dot_light_dmg_leech_as_health
 blood_on_attack_hit
 burn_bonus_dmg
 night_dmg
+ranged_crit_dmg_to_undead
 water_penetration
 bonus_inscribing_yield
+spell_damage_per_perc_of_increase_healing
 bonus_alchemy_exp
 slow_immunity
 all_light_dmg_leech_as_mana
@@ -208,6 +212,7 @@ triple_drop_chance
 basic_attack_dark_dmg_leech_as_health
 health
 attack_physical_dmg_leech_as_health
+transfer_health_to_physical_weapon_damage
 spell_elemental_dmg_leech_as_mana
 inc_aura_effect
 hp_to_blood

@@ -25,6 +25,7 @@ import com.robertx22.age_of_exile.aoe_data.database.runewords.Runewords;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_outputs.SalvageOutputsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_recipes.SalvageRecipes;
 import com.robertx22.age_of_exile.aoe_data.database.scroll_buffs.ScrollBuffsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gem_rarity.SkillGemRarityAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
@@ -92,6 +93,7 @@ public class GeneratedData {
             new GameBalanceConfig().addToSerializables();
             new ScrollBuffsAdder().registerAll();
             new CraftReqAdder().registerAll();
+            new GearSetsAdder().registerAll();
 
         }
     }

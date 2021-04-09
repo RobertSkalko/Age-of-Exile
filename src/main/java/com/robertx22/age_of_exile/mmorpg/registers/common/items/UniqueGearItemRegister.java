@@ -17,7 +17,11 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item MS_REG_ARMOR_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.MIDDLE), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/ms_armor_chest");
     public Item KINGMAKER_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/kingmaker");
     public Item OAK_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/oak");
-    public Item BONE_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather chest", EquipmentSlot.CHEST, true), "uniques/armor/bone_chest");
+
+    public Item BONE_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/bone_chest");
+    public Item BONE_PANTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Pants", EquipmentSlot.LEGS, true), "uniques/armor/bone_pants");
+    public Item BONE_BOOTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Boots", EquipmentSlot.FEET, true), "uniques/armor/bone_boots");
+    public Item BONE_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Helmet", EquipmentSlot.HEAD, true), "uniques/armor/bone_helmet");
 
     public Item FIFTH_RIDER_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, true), "uniques/armor/fifth_rider");
     public Item GLUTTONY_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.LOW), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, true), "uniques/armor/gluttony_helmet");

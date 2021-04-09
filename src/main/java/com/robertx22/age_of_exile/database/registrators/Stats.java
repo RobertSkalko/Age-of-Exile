@@ -51,7 +51,6 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
-                    add(SpecialStats.CRIT_BURN);
 
                     add(EffectImmunity.POISON);
                     add(EffectImmunity.HUNGER);

@@ -30,6 +30,7 @@ import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
+import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -87,6 +88,7 @@ public enum SlashRegistryType {
     RACES("races", 28, PlayerRace.SERIALIZER, SyncTime.ON_LOGIN),
     CRAFTING_REQ("crafting_req", 30, CraftingReq.SERIALIZER, SyncTime.ON_LOGIN),
     SCROLL_BUFFS("scroll_buffs", 29, ScrollBuff.SERIALIZER, SyncTime.ON_LOGIN),
+    GEAR_SET("set", 31, GearSet.SERIALIZER, SyncTime.ON_LOGIN),
     GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;

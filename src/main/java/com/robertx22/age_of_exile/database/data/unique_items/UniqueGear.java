@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFiltersGroupData;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -39,6 +40,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     public String gearType;
     public Identifier itemID;
     public String uniqueRarity = IRarity.UNIQUE_ID;
+    public String set = "";
 
     public List<String> gear_types = new ArrayList<>();
 
@@ -47,6 +49,16 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     public transient String langName;
     public transient String langDesc;
     public transient BaseGearType serBaseGearType;
+
+    public boolean hasSet() {
+        return Database.Sets()
+            .isRegistered(set);
+    }
+
+    public GearSet getSet() {
+        return Database.Sets()
+            .get(set);
+    }
 
     @Override
     public String datapackFolder() {
@@ -68,6 +80,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
             .toString());
 
         json.addProperty("rarity", this.uniqueRarity);
+        json.addProperty("set", this.set);
 
         json.add("gear_types", JsonUtils.stringListToJsonArray(gear_types));
 
@@ -98,7 +111,10 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
             .getAsString();
         uniq.uniqueRarity = json.get("rarity")
             .getAsString();
-
+        if (json.has("set")) {
+            uniq.set = json.get("set")
+                .getAsString();
+        }
         uniq.filters = DropFiltersGroupData.fromJson(json.get("filters"));
 
         try {

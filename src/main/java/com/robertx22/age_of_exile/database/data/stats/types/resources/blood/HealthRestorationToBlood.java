@@ -47,7 +47,7 @@ public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
     @Override
     public String locNameForLangFile() {
         return Formatting.GRAY + "You refill your " + Blood.getInstance()
-            .getIconNameFormat() + " by " + Formatting.GREEN + SpecialStats.VAL1 + "% of your non-spell health restoration effects.";
+            .getIconNameFormat() + " by " + Formatting.GREEN + SpecialStats.VAL1 + Formatting.GRAY + "% of your non-spell health restoration effects.";
     }
 
     @Override

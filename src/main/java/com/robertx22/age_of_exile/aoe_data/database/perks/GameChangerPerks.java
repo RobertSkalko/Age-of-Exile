@@ -61,9 +61,9 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("harmony", "Harmony",
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-5, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(20, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(20, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-10, TotalDamage.getInstance(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("mana_battery", "Mana Battery",

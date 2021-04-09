@@ -16,6 +16,7 @@ public class SpecialStat extends Stat {
         this.effect = effect;
         this.isLongStat = true;
 
+        this.is_percent = true;
         this.registerToSlashRegistry();
     }
 

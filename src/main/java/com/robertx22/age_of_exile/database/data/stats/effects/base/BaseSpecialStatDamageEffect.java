@@ -4,6 +4,6 @@ public abstract class BaseSpecialStatDamageEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
-        return 10;
+        return Priority.Last.priority;
     }
 }

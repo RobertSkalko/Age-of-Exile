@@ -20,9 +20,12 @@ public class MoreXPerYOf extends DatapackStat implements IAffectsStats {
 
     transient String locname;
 
-    public MoreXPerYOf(String id, Stat adder_stat, Stat stat_to_add_to) {
+    public MoreXPerYOf(Stat adder_stat, Stat stat_to_add_to, int per) {
         super(SER_ID);
-        this.id = id;
+        this.perEach = per;
+
+        this.id = stat_to_add_to.GUID() + "_per_" + perEach + "_" + adder_stat.GUID();
+
         this.adder_stat = adder_stat.GUID();
         this.stat_to_add_to = stat_to_add_to.GUID();
 

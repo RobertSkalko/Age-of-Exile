@@ -161,7 +161,7 @@ public class TooltipUtils {
                     formattouse = null;
                 }
                 list.add(cut);
-            } else if (i - start > 32 && c == ' ') {
+            } else if (i - start > 28 && c == ' ') {
                 String cut = str.substring(start, i);
                 if (start > 0) {
                     cut = cut.substring(1);
