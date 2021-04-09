@@ -69,7 +69,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.weaponType.isProjectile && effect.target.isUndead();
+                return effect.weaponType.isProjectile && effect.target.isUndead() && effect.isCriticalHit();
             }
 
             @Override

@@ -6,10 +6,13 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
+import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -53,6 +56,12 @@ public class UniqueGearBuilder {
 
     public UniqueGearBuilder dropFilter(DropFilterData filter) {
         this.uniq.filters.list.add(filter);
+        return this;
+    }
+
+    public UniqueGearBuilder mobTagFilter(Tag.Identified<EntityType<?>> tag) {
+        this.uniq.filters.list.add(DropFilterData.of(new MobTagFilter(), tag.getId()
+            .toString()));
         return this;
     }
 

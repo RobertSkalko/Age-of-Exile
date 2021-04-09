@@ -14,6 +14,7 @@ mmorpg:weapon/wand/scepter3
 mmorpg:weapon/wand/scepter2
 mmorpg:jewelry/ring/poison_res_ring_low
 mmorpg:weapon/wand/scepter4
+mmorpg:uniques/armor/bone_boots
 mmorpg:jewelry/ring/cold_res_ring_end
 mmorpg:weapon/wand/scepter1
 mmorpg:weapon/wand/scepter0
@@ -33,12 +34,14 @@ mmorpg:uniques/weapon/frigid_staff
 mmorpg:uniques/armor/beast_blood
 mmorpg:uniques/jewelry/greed_persist
 mmorpg:jewelry/ring/mana_reg_ring_end
+mmorpg:uniques/armor/bone_helmet
 mmorpg:armor/leather/helmet/leather_helmet4
 mmorpg:armor/leather/helmet/leather_helmet3
 mmorpg:armor/leather/helmet/leather_helmet0
 mmorpg:uniques/armor/fifth_rider
 mmorpg:armor/leather/helmet/leather_helmet2
 mmorpg:armor/leather/helmet/leather_helmet1
+mmorpg:uniques/armor/bone_pants
 mmorpg:uniques/armor/inner_conflux
 mmorpg:uniques/jewelry/skull_of_spirits
 mmorpg:armor/cloth/boots/cloth_boots1

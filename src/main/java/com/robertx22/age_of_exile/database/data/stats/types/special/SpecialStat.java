@@ -8,12 +8,11 @@ public class SpecialStat extends Stat {
 
     String id;
     String longName;
-    IStatEffect effect;
 
     public SpecialStat(String id, String longName, IStatEffect effect) {
         this.id = id;
         this.longName = longName;
-        this.effect = effect;
+        this.statEffect = effect;
         this.isLongStat = true;
 
         this.is_percent = true;

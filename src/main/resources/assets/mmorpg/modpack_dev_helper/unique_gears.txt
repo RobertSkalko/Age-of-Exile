@@ -3,12 +3,14 @@ This registry is modify-able through datapacks.
 judgement
 rot_phys
 frost_crown
+bone_helmet
 divine_might
 inner_conflux
 jester_hat
 bonechill_amulet
 loop_of_infinity
 exec_pride
+bone_boots
 fifth_rider
 will_of_flora
 birth_miracle
@@ -29,6 +31,7 @@ hunger_neck
 gluttony_helmet
 angel_prot_necklace
 solar_ring
+bone_pants
 worldbearer
 ms_armor_chest
 skull_of_spirits

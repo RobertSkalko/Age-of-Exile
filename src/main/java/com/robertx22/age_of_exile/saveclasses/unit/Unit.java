@@ -234,15 +234,17 @@ public class Unit {
         // todo possibly cache it?
         gears.forEach(x -> {
             if (x.gear != null) {
-                UniqueGear uniq = x.gear.uniqueStats.getUnique(x.gear);
-                if (uniq != null) {
-                    if (uniq.hasSet()) {
-                        GearSet set = uniq.getSet();
-                        String key = set
-                            .GUID();
-                        int current = sets.getOrDefault(key, 0);
-                        sets.put(key, current + 1);
+                if (x.gear.uniqueStats != null) {
+                    UniqueGear uniq = x.gear.uniqueStats.getUnique(x.gear);
+                    if (uniq != null) {
+                        if (uniq.hasSet()) {
+                            GearSet set = uniq.getSet();
+                            String key = set
+                                .GUID();
+                            int current = sets.getOrDefault(key, 0);
+                            sets.put(key, current + 1);
 
+                        }
                     }
                 }
             }
@@ -284,6 +286,13 @@ public class Unit {
                     data.getRace()
                         .addStats((PlayerEntity) entity);
                 }
+
+                sets.entrySet()
+                    .forEach(x -> {
+                        GearSet set = Database.Sets()
+                            .get(x.getKey());
+                        statContexts.add(set.getStats(data));
+                    });
 
                 Load.statPoints((PlayerEntity) entity).data.addStats(data);
                 statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));

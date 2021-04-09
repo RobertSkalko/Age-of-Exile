@@ -8,14 +8,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
-import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -41,13 +41,13 @@ public class BoneArmor implements ISlashRegistryInit {
             CHEST_ID,
             "Bone",
             "",
-            BaseLeatherArmors.CHESTS.get(LevelRanges.MIDDLE))
+            BaseLeatherArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
                     new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Water)),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Dark))
+                    new StatModifier(10, 20, DodgeRating.getInstance(), ModType.FLAT),
+                    new StatModifier(-10, -10, new ElementalResist(Elements.Fire)),
+                    new StatModifier(20, 30, new ElementalResist(Elements.Dark))
                 )
             )
             .stats(
@@ -60,9 +60,7 @@ public class BoneArmor implements ISlashRegistryInit {
 
                 )
             )
-            .dropFilter(DropFilterData.of(new MobTagFilter(), EntityTypeTags.SKELETONS.getId()
-                .toString()))
-
+            .mobTagFilter(EntityTypeTags.SKELETONS)
             .req(new StatRequirement()
                 .setDex(0.25F)
                 .setAgi(0.8F))
@@ -74,12 +72,13 @@ public class BoneArmor implements ISlashRegistryInit {
             HELMET_ID,
             "Bone",
             "",
-            BaseLeatherArmors.HELMETS.get(LevelRanges.MIDDLE))
+            BaseLeatherArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
                     new StatModifier(3, 3, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 10, Armor.getInstance(), ModType.FLAT),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Dark))
+                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT),
+                    new StatModifier(-10, -10, new ElementalResist(Elements.Light)),
+                    new StatModifier(20, 30, new ElementalResist(Elements.Dark))
                 )
             )
             .stats(
@@ -89,10 +88,71 @@ public class BoneArmor implements ISlashRegistryInit {
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
                 )
             )
-            .dropFilter(DropFilterData.of(new MobTagFilter(), EntityTypeTags.SKELETONS.getId()
-                .toString()))
+            .mobTagFilter(EntityTypeTags.SKELETONS)
 
             .req(new StatRequirement()
+                .setInt(0.2F)
+                .setDex(0.25F)
+                .setAgi(0.6F))
+            .gearSet(GearSetsAdder.BONE_SET)
+            .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.BONE_PANTS,
+            PANTS_ID,
+            "Bone",
+            "",
+            BaseLeatherArmors.PANTS.values())
+            .baseStats(
+                Arrays.asList(
+                    new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT),
+                    new StatModifier(-10, -10, new ElementalResist(Elements.Light)),
+                    new StatModifier(20, 30, new ElementalResist(Elements.Water))
+                )
+            )
+            .stats(
+                Arrays.asList(
+                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Dark)),
+                    new StatModifier(10, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
+                    new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
+                )
+            )
+            .mobTagFilter(EntityTypeTags.SKELETONS)
+
+            .req(new StatRequirement()
+                .setDex(0.25F)
+                .setAgi(0.8F))
+            .gearSet(GearSetsAdder.BONE_SET)
+            .build();
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.BONE_BOOTS,
+            BOOTS_ID,
+            "Bone",
+            "",
+            BaseLeatherArmors.BOOTS.values())
+            .baseStats(
+                Arrays.asList(
+                    new StatModifier(4, 4, Health.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 10, Armor.getInstance(), ModType.FLAT),
+                    new StatModifier(-10, -10, new ElementalResist(Elements.Fire)),
+                    new StatModifier(20, 30, new ElementalResist(Elements.Dark))
+                )
+            )
+            .stats(
+                Arrays.asList(
+                    new StatModifier(15, 25, CriticalDamage.getInstance()),
+                    new StatModifier(15, 25, SpellCriticalDamage.getInstance()),
+                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
+                    new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
+                )
+            )
+            .mobTagFilter(EntityTypeTags.SKELETONS)
+
+            .req(new StatRequirement()
+                .setInt(0.3F)
                 .setDex(0.25F)
                 .setAgi(0.8F))
             .gearSet(GearSetsAdder.BONE_SET)

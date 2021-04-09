@@ -208,11 +208,13 @@ public class GearTooltipUtils {
                     });
             });
 
-            UniqueGear uniq = gear.uniqueStats.getUnique(gear);
+            if (gear.uniqueStats != null) {
+                UniqueGear uniq = gear.uniqueStats.getUnique(gear);
 
-            if (uniq != null && uniq.hasSet()) {
-                tooltip.addAll(uniq.getSet()
-                    .GetTooltipString(info));
+                if (uniq != null && uniq.hasSet()) {
+                    tooltip.addAll(uniq.getSet()
+                        .GetTooltipString(info));
+                }
             }
 
             if (Screen.hasShiftDown()) {
