@@ -137,8 +137,11 @@ public class GearTooltipUtils {
                 }
             }
 
-            TooltipUtils.addRequirements(tip, gear.lvl, gear.getRequirement(), data);
-            tip.add(new SText(""));
+            if (!info.shouldShowDescriptions()) {
+                // save some space when the big stat descriptions show
+                TooltipUtils.addRequirements(tip, gear.lvl, gear.getRequirement(), data);
+                tip.add(new SText(""));
+            }
 
             if (gear.implicit != null) {
                 tip.addAll(gear.implicit.GetTooltipString(info, gear));

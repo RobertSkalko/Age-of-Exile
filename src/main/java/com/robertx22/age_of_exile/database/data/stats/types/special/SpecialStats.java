@@ -35,7 +35,7 @@ public class SpecialStats {
     }
 
     public static SpecialStat CRIT_BURN = new SpecialStat("crit_burn",
-        format("Your " + Elements.Fire.getIconNameFormat() + " Spell Critical Hits have " + VAL1 + "% " + "chance to cause enemies to burn."),
+        format("Your " + Elements.Fire.getIconNameFormat() + " Critical Hits have " + VAL1 + "% " + "chance to cause enemies to burn."),
 
         new BaseSpecialStatDamageEffect() {
             @Override
@@ -47,7 +47,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.attackType.isSpell() && effect.element.isFire() && RandomUtils.roll(data.getAverageValue());
+                return effect.element.isFire() && effect.isCriticalHit() && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override

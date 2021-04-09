@@ -27,6 +27,8 @@ public class ClothUniques implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        new BlazeArmor().registerAll();
+
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.INNFER_CONFLUX_ROBE,
             "inner_conflux",

@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry can't be modified or added to.
 mmorpg:uniques/weapon/eye_of_zegrath
 mmorpg:uniques/jewelry/birth_miracle
+mmorpg:uniques/armor/blaze_pants
 mmorpg:uniques/armor/gluttony_helmet
 mmorpg:armor/plate/pants/plate_pants0
 mmorpg:uniques/jewelry/touch_of_eternity
@@ -37,6 +38,7 @@ mmorpg:jewelry/ring/mana_reg_ring_end
 mmorpg:uniques/armor/bone_helmet
 mmorpg:armor/leather/helmet/leather_helmet4
 mmorpg:armor/leather/helmet/leather_helmet3
+mmorpg:uniques/armor/blaze_chest
 mmorpg:armor/leather/helmet/leather_helmet0
 mmorpg:uniques/armor/fifth_rider
 mmorpg:armor/leather/helmet/leather_helmet2
@@ -74,11 +76,13 @@ mmorpg:uniques/jewelry/hunger_neck
 mmorpg:armor/cloth/chest/cloth_chest3
 mmorpg:uniques/weapon/judgement
 mmorpg:armor/cloth/chest/cloth_chest4
+mmorpg:uniques/armor/blaze_helmet
 mmorpg:armor/cloth/chest/cloth_chest1
 mmorpg:armor/cloth/chest/cloth_chest2
 mmorpg:jewelry/ring/cold_res_ring_low
 mmorpg:uniques/armor/jester_hat
 mmorpg:jewelry/ring/poison_res_ring_end
+mmorpg:uniques/armor/blaze_boots
 mmorpg:weapon/wand/wand4
 mmorpg:uniques/armor/crown_of_elements
 mmorpg:uniques/weapon/divine_might

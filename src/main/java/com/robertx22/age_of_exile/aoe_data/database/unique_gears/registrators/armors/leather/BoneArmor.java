@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -136,7 +135,7 @@ public class BoneArmor implements ISlashRegistryInit {
             .baseStats(
                 Arrays.asList(
                     new StatModifier(4, 4, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 10, Armor.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -10, new ElementalResist(Elements.Fire)),
                     new StatModifier(20, 30, new ElementalResist(Elements.Dark))
                 )

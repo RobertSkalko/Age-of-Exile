@@ -9,8 +9,10 @@ inner_conflux
 jester_hat
 bonechill_amulet
 loop_of_infinity
+blaze_pants
 exec_pride
 bone_boots
+blaze_boots
 fifth_rider
 will_of_flora
 birth_miracle
@@ -19,8 +21,10 @@ kingmaker
 harbinger
 bonechill_ring
 inca_thunder
+blaze_chest
 frigid_staff
 lunar_ring
+blaze_helmet
 eye_of_zegrath
 water_ele_sword
 bone_chest
