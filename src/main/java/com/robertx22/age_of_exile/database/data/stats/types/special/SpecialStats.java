@@ -92,6 +92,33 @@ public class SpecialStats {
         }
     );
 
+    public static SpecialStat DAY_NIGHT_DMG = new SpecialStat("day_night_dmg",
+        format("You deal " + VAL1 + "% increased  " + Elements.Light.getIconNameFormat() + " or "
+            + Elements.Dark.getIconNameFormat() + " Damage depending on time of day"),
+        new BaseSpecialStatDamageEffect() {
+            @Override
+            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+                effect.increaseByPercent(data.getAverageValue());
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+                if (effect.element.isDark()) {
+                    return effect.source.world.isNight();
+                } else if (effect.element.isLight()) {
+                    return effect.source.world.isDay();
+                }
+                return false;
+            }
+
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Source;
+            }
+        }
+    );
+
     public static SpecialStat HEAL_CLEANSE = new SpecialStat("heal_cleanse",
         format("Your " + HealPower.getInstance().textFormat + HealPower.getInstance().textIcon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse you of a negative effect."),
 

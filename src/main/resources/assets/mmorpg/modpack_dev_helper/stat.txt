@@ -185,6 +185,7 @@ bonus_mining_exp
 attack_dark_dmg_leech_as_health
 intelligence
 basic_attack_all_dmg_leech_as_mana
+day_night_dmg
 spell_damage
 dot_light_dmg_leech_as_health
 blood_on_attack_hit

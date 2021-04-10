@@ -14,6 +14,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public ArmorSet BONE_SET = new ArmorSet("bone", LevelRanges.HIGH, ArmorType.LEATHER);
     public ArmorSet BLAZE_SET = new ArmorSet("blaze", LevelRanges.HIGH, ArmorType.CLOTH);
     public ArmorSet SLIME_SET = new ArmorSet("slime", LevelRanges.HIGH, ArmorType.CLOTH);
+    public ArmorSet DARK_CRYSTAL_SET = new ArmorSet("dark_crystal", LevelRanges.HIGH, ArmorType.PLATE);
 
     public Item BEAST_BLOOD = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.PLATE, "Plate Chest", EquipmentSlot.CHEST, true), "uniques/armor/beast_blood");
     public Item EXEC_PRIDE = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/exec_pride");

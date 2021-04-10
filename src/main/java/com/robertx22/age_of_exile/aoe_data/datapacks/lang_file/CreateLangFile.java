@@ -117,6 +117,8 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(Database.Races()
             .getSerializable());
+        list.addAll(Database.Sets()
+            .getSerializable());
         list.addAll(Database.SkillGemRarities()
             .getSerializable());
         list.addAll(Database.SkillGems()

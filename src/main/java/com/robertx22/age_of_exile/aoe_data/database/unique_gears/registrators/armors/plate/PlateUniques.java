@@ -30,6 +30,7 @@ public class PlateUniques implements ISlashRegistryInit {
     public void registerAll() {
 
         new OakArmor().registerAll();
+        new DarkCrystalArmor().registerAll();
 
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.MS_REG_ARMOR_CHEST,

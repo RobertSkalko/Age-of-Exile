@@ -11,24 +11,29 @@ public class GearSetsAdder implements ISlashRegistryInit {
     public static String BLAZE_SET = "blaze_set";
     public static String OAK_SET = "oak_set";
     public static String SLIME_SET = "slime_set";
+    public static String DARK_CRYSTAL_SET = "dark_crystal_set";
 
     @Override
     public void registerAll() {
 
-        GearSet.Builder.of(BONE_SET)
+        GearSet.Builder.of(BONE_SET, "Bone Spike")
             .stat(4, new OptScaleExactStat(25, SpecialStats.RANGED_CRIT_DMG_AGAINST_LIVING))
             .build();
 
-        GearSet.Builder.of(BLAZE_SET)
+        GearSet.Builder.of(BLAZE_SET, "The Blaze")
             .stat(4, new OptScaleExactStat(25, SpecialStats.CRIT_BURN))
             .build();
 
-        GearSet.Builder.of(OAK_SET)
+        GearSet.Builder.of(OAK_SET, "The Great Tree")
             .stat(4, new OptScaleExactStat(25, SpecialStats.HEAL_CLEANSE))
             .build();
 
-        GearSet.Builder.of(SLIME_SET)
+        GearSet.Builder.of(SLIME_SET, "Sticky Slime")
             .stat(4, new OptScaleExactStat(5, SpecialStats.ABSORB_ELE_DMG_INTO_HP))
+            .build();
+
+        GearSet.Builder.of(DARK_CRYSTAL_SET, "Dark Crystal")
+            .stat(4, new OptScaleExactStat(20, SpecialStats.DAY_NIGHT_DMG))
             .build();
 
     }

@@ -6,11 +6,13 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -20,13 +22,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<GearSet>, ITooltipList {
+public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<GearSet>, ITooltipList, IAutoLocName {
 
     public static GearSet SERIALIZER = new GearSet();
 
     public String id = "";
 
     public HashMap<Integer, List<OptScaleExactStat>> stats = new HashMap<>();
+
+    transient String locname = "";
 
     public boolean hasSetBonus(Integer num, EntityCap.UnitData data) {
         return data.getUnit().sets.getOrDefault(id, 0) >= num;
@@ -59,6 +63,9 @@ public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<Gea
 
         int lvl = info.unitdata.getLevel();
 
+        list.add(locName().append(" Set")
+            .formatted(Formatting.GREEN));
+
         stats.entrySet()
             .forEach(x -> {
                 Formatting format = Formatting.GRAY;
@@ -81,13 +88,29 @@ public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<Gea
         return list;
     }
 
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Item_Sets;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + ".sets." + id;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return locname;
+    }
+
     public static class Builder {
 
         GearSet set = new GearSet();
 
-        public static Builder of(String id) {
+        public static Builder of(String id, String name) {
             Builder b = new Builder();
             b.set.id = id;
+            b.set.locname = name;
             return b;
 
         }

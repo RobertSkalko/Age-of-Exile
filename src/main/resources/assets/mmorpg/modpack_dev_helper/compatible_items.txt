@@ -21,12 +21,14 @@ mmorpg:jewelry/ring/cold_res_ring_end
 mmorpg:weapon/wand/scepter1
 mmorpg:weapon/wand/scepter0
 mmorpg:uniques/armor/harbinger
+mmorpg:uniques/armor/dark_crystal_chest
 mmorpg:jewelry/necklace/life_necklace_low
 mmorpg:jewelry/necklace/all_res_necklace_low
 mmorpg:uniques/armor/slime_boots
 mmorpg:jewelry/ring/fire_res_ring_end
 mmorpg:armor/leather/pants/leather_pants0
 mmorpg:uniques/weapon/worldbearer
+mmorpg:uniques/armor/dark_crystal_pants
 mmorpg:uniques/armor/exec_pride
 mmorpg:armor/leather/pants/leather_pants3
 mmorpg:armor/leather/pants/leather_pants4
@@ -34,6 +36,7 @@ mmorpg:uniques/weapon/will_of_flora
 mmorpg:armor/leather/pants/leather_pants1
 mmorpg:armor/leather/pants/leather_pants2
 mmorpg:uniques/weapon/frigid_staff
+mmorpg:uniques/armor/dark_crystal_boots
 mmorpg:uniques/armor/slime_pants
 mmorpg:uniques/armor/beast_blood
 mmorpg:uniques/jewelry/greed_persist
@@ -41,6 +44,7 @@ mmorpg:jewelry/ring/mana_reg_ring_end
 mmorpg:uniques/armor/bone_helmet
 mmorpg:armor/leather/helmet/leather_helmet4
 mmorpg:armor/leather/helmet/leather_helmet3
+mmorpg:uniques/armor/dark_crystal_helmet
 mmorpg:uniques/armor/blaze_chest
 mmorpg:armor/leather/helmet/leather_helmet0
 mmorpg:uniques/armor/fifth_rider

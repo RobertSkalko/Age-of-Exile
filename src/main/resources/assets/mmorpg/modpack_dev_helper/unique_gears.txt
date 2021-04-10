@@ -5,6 +5,7 @@ bone_helmet
 divine_might
 inner_conflux
 blaze_pants
+dark_crystal_pants
 bone_boots
 bonechill_ring
 inca_thunder
@@ -17,6 +18,7 @@ hunger_neck
 gluttony_helmet
 solar_ring
 oak_boots
+dark_crystal_boots
 beast_blood
 skull_of_spirits
 crown_of_elements
@@ -28,6 +30,7 @@ judgement
 frost_crown
 slime_helmet
 jester_hat
+dark_crystal_chest
 bonechill_amulet
 loop_of_infinity
 exec_pride
@@ -49,6 +52,7 @@ bone_chest
 crystal_wand
 greed_persist
 angel_prot_necklace
+dark_crystal_helmet
 bone_pants
 worldbearer
 slime_chest
