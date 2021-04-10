@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "mmorpg:block/smithing_station" },
+        "facing=south": { "model": "mmorpg:block/smithing_station", "y": 180 },
+        "facing=west":  { "model": "mmorpg:block/smithing_station", "y": 270 },
+        "facing=east":  { "model": "mmorpg:block/smithing_station", "y": 90 }
+    }
+}

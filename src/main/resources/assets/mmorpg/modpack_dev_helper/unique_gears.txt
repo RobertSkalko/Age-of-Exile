@@ -21,6 +21,7 @@ beast_blood
 skull_of_spirits
 crown_of_elements
 snake_eye
+slime_boots
 touch_of_eternity
 ghast_necklace
 judgement
@@ -33,6 +34,7 @@ exec_pride
 blaze_boots
 fifth_rider
 will_of_flora
+slime_pants
 birth_miracle
 oak
 kingmaker
@@ -49,4 +51,5 @@ greed_persist
 angel_prot_necklace
 bone_pants
 worldbearer
+slime_chest
 ms_armor_chest

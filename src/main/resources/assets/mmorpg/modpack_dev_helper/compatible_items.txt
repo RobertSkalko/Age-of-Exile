@@ -23,6 +23,7 @@ mmorpg:weapon/wand/scepter0
 mmorpg:uniques/armor/harbinger
 mmorpg:jewelry/necklace/life_necklace_low
 mmorpg:jewelry/necklace/all_res_necklace_low
+mmorpg:uniques/armor/slime_boots
 mmorpg:jewelry/ring/fire_res_ring_end
 mmorpg:armor/leather/pants/leather_pants0
 mmorpg:uniques/weapon/worldbearer
@@ -33,6 +34,7 @@ mmorpg:uniques/weapon/will_of_flora
 mmorpg:armor/leather/pants/leather_pants1
 mmorpg:armor/leather/pants/leather_pants2
 mmorpg:uniques/weapon/frigid_staff
+mmorpg:uniques/armor/slime_pants
 mmorpg:uniques/armor/beast_blood
 mmorpg:uniques/jewelry/greed_persist
 mmorpg:jewelry/ring/mana_reg_ring_end
@@ -59,6 +61,7 @@ mmorpg:jewelry/necklace/all_res_necklace_end
 mmorpg:uniques/jewelry/bonechill_ring
 mmorpg:armor/cloth/helmet/cloth_helmet4
 mmorpg:armor/cloth/helmet/cloth_helmet3
+mmorpg:uniques/jewelry/witch_brew
 mmorpg:armor/leather/chest/leather_chest1
 mmorpg:armor/leather/chest/leather_chest2
 mmorpg:armor/leather/boots/leather_boots3
@@ -74,6 +77,7 @@ mmorpg:armor/leather/chest/leather_chest4
 mmorpg:armor/leather/boots/leather_boots0
 mmorpg:uniques/weapon/rot_phys
 mmorpg:armor/cloth/chest/cloth_chest0
+mmorpg:uniques/armor/slime_chest
 mmorpg:uniques/jewelry/hunger_neck
 mmorpg:armor/cloth/chest/cloth_chest3
 mmorpg:uniques/weapon/judgement
