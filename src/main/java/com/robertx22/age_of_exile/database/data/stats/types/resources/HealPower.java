@@ -25,7 +25,7 @@ public class HealPower extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases all types of healing recieved like health regen, lifesteal, life on hit, spell heals etc";
+        return "Increases spell related heals.";
     }
 
     @Override
@@ -68,7 +68,7 @@ public class HealPower extends Stat {
 
         @Override
         public boolean canActivate(HealEffect effect, StatData data, Stat stat) {
-            return true;
+            return effect.attackType.isSpell();
         }
 
     }

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.stats.types.defense;
 
-import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
@@ -10,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import net.minecraft.util.Formatting;
 
-public class Armor extends Stat implements IExtraStatEffect, IUsableStat, ILocalStat {
+public class Armor extends Stat implements IExtraStatEffect, IUsableStat {
 
     public static Armor getInstance() {
         return SingletonHolder.INSTANCE;
@@ -31,6 +30,8 @@ public class Armor extends Stat implements IExtraStatEffect, IUsableStat, ILocal
 
         this.textIcon = "\u2748";
         this.textFormat = Formatting.BLUE;
+
+        this.isLocalTo = x -> x.isArmor();
 
     }
 

@@ -8,11 +8,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalS
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DayDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -23,8 +25,30 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import java.util.Arrays;
 
 public class UniqueRings implements ISlashRegistryInit {
+
     @Override
     public void registerAll() {
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.WITCH_BREW_RING,
+            "witch_brew",
+            "Witch's Brew",
+            "",
+            BaseGearJewelry.RING_MANA_REG.values())
+            .baseStats(
+                new StatModifier(15, 25, new ElementalResist(Elements.Nature), ModType.FLAT),
+                new StatModifier(15, 25, new ElementalResist(Elements.Dark), ModType.FLAT)
+            )
+            .stats(Arrays.asList(
+                new StatModifier(25, 50, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
+                new StatModifier(10, 15, SpellDamage.getInstance(), ModType.FLAT),
+                new StatModifier(5, 10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+
+            ))
+            .req(new StatRequirement()
+                .setInt(0.5F)
+                .setWis(0.5F))
+            .build();
 
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.GREED_PERSIST_RING,

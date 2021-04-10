@@ -32,7 +32,7 @@ public class MergedStats implements IGearPartTooltip {
         // local stats first, then others, and lastly ele resists
         this.list.sort(Comparator.comparing(x -> {
 
-            if (x.stat.isLocal()) {
+            if (x.stat.isLocalTo.apply(gear.GetBaseGearType())) {
                 return 0;
             }
             if (x.stat instanceof ElementalResist) {

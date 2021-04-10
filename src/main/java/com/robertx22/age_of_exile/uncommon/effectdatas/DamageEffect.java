@@ -76,9 +76,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
 
-    public List<ConditionalRestoreResource> toRestore = new ArrayList<>();
+    public List<RestoreResource> toRestore = new ArrayList<>();
 
-    public void addToRestore(ConditionalRestoreResource data) {
+    public void addToRestore(RestoreResource data) {
         this.toRestore.add(data);
     }
 
@@ -470,11 +470,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     ResourcesData.Use.RESTORE
                 ));
         }
-    }
-
-    public DamageEffect setMultiplier(float multi) {
-        this.damageMultiplier = multi;
-        return this;
     }
 
     public static class DmgByElement {

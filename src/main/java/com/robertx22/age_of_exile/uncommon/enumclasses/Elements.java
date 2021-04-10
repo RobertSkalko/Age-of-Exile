@@ -48,6 +48,10 @@ public enum Elements {
         return this == Fire;
     }
 
+    public boolean isElemental() {
+        return this != Physical;
+    }
+
     public boolean isWater() {
         return this == Water;
     }

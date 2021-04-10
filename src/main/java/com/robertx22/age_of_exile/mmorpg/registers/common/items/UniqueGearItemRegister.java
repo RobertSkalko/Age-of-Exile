@@ -13,6 +13,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public ArmorSet OAK_SET = new ArmorSet("oak", LevelRanges.HIGH, ArmorType.PLATE);
     public ArmorSet BONE_SET = new ArmorSet("bone", LevelRanges.HIGH, ArmorType.LEATHER);
     public ArmorSet BLAZE_SET = new ArmorSet("blaze", LevelRanges.HIGH, ArmorType.CLOTH);
+    public ArmorSet SLIME_SET = new ArmorSet("slime", LevelRanges.HIGH, ArmorType.CLOTH);
 
     public Item BEAST_BLOOD = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.PLATE, "Plate Chest", EquipmentSlot.CHEST, true), "uniques/armor/beast_blood");
     public Item EXEC_PRIDE = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/exec_pride");
@@ -35,6 +36,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item HUNGER_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/hunger_neck");
 
     public Item GREED_PERSIST_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/greed_persist");
+    public Item WITCH_BREW_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/witch_brew");
     public Item LOOP_OF_INFINITY_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/loop_of_infinity");
     public Item LUNAR_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/lunar_ring");
     public Item SOLAR_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/solar_ring");

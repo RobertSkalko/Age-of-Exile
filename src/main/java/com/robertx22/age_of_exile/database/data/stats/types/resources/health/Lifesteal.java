@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ConditionalRestoreResource;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResource;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class Lifesteal extends Stat {
@@ -61,7 +61,7 @@ public class Lifesteal extends Stat {
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
             float healed = ((float) data.getAverageValue() * effect.number / 100);
-            effect.addToRestore(new ConditionalRestoreResource(ConditionalRestoreResource.RestoreType.LEECH, ResourceType.HEALTH, healed));
+            effect.addToRestore(new RestoreResource(RestoreResource.RestoreType.LEECH, ResourceType.HEALTH, healed));
             return effect;
 
         }

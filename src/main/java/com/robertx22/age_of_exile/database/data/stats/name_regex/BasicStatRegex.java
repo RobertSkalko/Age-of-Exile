@@ -18,12 +18,6 @@ public class BasicStatRegex extends StatNameRegex {
 
             String to = " ";
 
-            if (stat.UsesSecondValue() || stat.isLocal()) {
-                if (v1 > 0 && v2 > 0) {
-                    //  adds = "Adds ";
-                }
-            }
-
             if (stat.UsesSecondValue()) {
                 return adds + MIN_VALUE + "-" + MAX_VALUE + " " + NAME;
             } else {

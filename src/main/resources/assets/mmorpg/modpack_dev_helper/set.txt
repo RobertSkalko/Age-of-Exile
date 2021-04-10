@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 oak_set
+slime_set
 blaze_set
 bone_set

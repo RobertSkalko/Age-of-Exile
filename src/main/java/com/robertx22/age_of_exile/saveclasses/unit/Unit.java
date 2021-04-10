@@ -22,7 +22,6 @@ import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
-import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -329,10 +328,9 @@ public class Unit {
             map.forEach((key, value) -> value
                 .forEach(v -> {
                     v.stats.forEach(s -> {
-                        if (s.getStat() instanceof IStatCtxModifier) {
-                            IStatCtxModifier mod = (IStatCtxModifier) s.getStat();
-                            map.get(mod.getCtxTypeNeeded())
-                                .forEach(c -> mod.modify(s, c));
+                        if (s.getStat().statContextModifier != null) {
+                            map.get(s.getStat().statContextModifier.getCtxTypeNeeded())
+                                .forEach(c -> s.getStat().statContextModifier.modify(s, c));
                         }
                     });
                 }));

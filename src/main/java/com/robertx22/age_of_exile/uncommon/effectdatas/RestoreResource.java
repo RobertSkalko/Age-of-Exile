@@ -5,20 +5,20 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 
 import java.util.function.Predicate;
 
-public class ConditionalRestoreResource {
+public class RestoreResource {
 
     public enum RestoreType {
-        LEECH, REGENERATION;
+        LEECH, REGENERATION, HEAL;
     }
 
-    public ConditionalRestoreResource(RestoreType restoreType, ResourceType resource, float amount, Predicate<DamageEffect> predicate) {
+    public RestoreResource(RestoreType restoreType, ResourceType resource, float amount, Predicate<DamageEffect> predicate) {
         this.resource = resource;
         this.amount = amount;
         this.predicate = predicate;
         this.restoreType = restoreType;
     }
 
-    public ConditionalRestoreResource(RestoreType restoreType, ResourceType resource, float amount) {
+    public RestoreResource(RestoreType restoreType, ResourceType resource, float amount) {
         this.resource = resource;
         this.amount = amount;
         this.restoreType = restoreType;

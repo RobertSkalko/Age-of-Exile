@@ -9,9 +9,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResource;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -115,6 +120,49 @@ public class SpecialStats {
             @Override
             public int GetPriority() {
                 return 0;
+            }
+        }
+    );
+
+    public static SpecialStat ABSORB_ELE_DMG_INTO_HP = new SpecialStat("absorb_ele_dmg_to_hp",
+        format("You have " + VAL1 + "% chance to absorb " + Elements.Elemental
+            .getIconNameFormat() + " damage and heal you instead."),
+        new BaseSpecialStatDamageEffect() {
+            @Override
+            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+                effect.addToRestore(
+                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.HEALTH, effect.originalNumber)
+                );
+                effect.cancelDamage();
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+                return effect.element.isElemental() && RandomUtils.roll(data.getAverageValue());
+            }
+
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Target;
+            }
+        }
+    );
+
+    public static SpecialStat BETTER_FOOD_BUFFS = new SpecialStat("more_food_stats",
+        format("You gain " + VAL1 + "% more stats through Food buffs."),
+        new IStatCtxModifier() {
+            @Override
+            public void modify(ExactStatData thisStat, StatContext target) {
+                float multi = 1F + thisStat.getAverageValue() / 100F;
+                target.stats.forEach(x -> {
+                    x.multiplyBy(multi);
+                });
+            }
+
+            @Override
+            public StatContext.StatCtxType getCtxTypeNeeded() {
+                return StatContext.StatCtxType.FOOD_BUFF;
             }
         }
     );

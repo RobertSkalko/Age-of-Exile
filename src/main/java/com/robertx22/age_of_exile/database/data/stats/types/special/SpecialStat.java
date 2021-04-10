@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.database.data.stats.types.special;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.StatScaling;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
@@ -15,8 +17,15 @@ public class SpecialStat extends Stat {
         this.statEffect = effect;
         this.isLongStat = true;
 
+        this.scaling = StatScaling.NONE;
+
         this.is_percent = true;
         this.registerToSlashRegistry();
+    }
+
+    public SpecialStat(String id, String longName, IStatCtxModifier ctxmod) {
+        this(id, longName, (IStatEffect) null);
+        this.statContextModifier = ctxmod;
     }
 
     @Override

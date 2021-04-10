@@ -28,6 +28,7 @@ public class ClothUniques implements ISlashRegistryInit {
     public void registerAll() {
 
         new BlazeArmor().registerAll();
+        new SlimeArmor().registerAll();
 
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.INNFER_CONFLUX_ROBE,

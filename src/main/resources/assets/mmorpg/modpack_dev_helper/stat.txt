@@ -104,6 +104,7 @@ magic_find
 all_nature_dmg_leech_as_mana
 attack_elemental_dmg_leech_as_mana
 max_fire_resist
+more_food_stats
 other_fire_dmg_leech_as_mana
 spell_light_dmg_leech_as_health
 dark_resist
@@ -134,6 +135,7 @@ wisdom
 dot_dark_dmg_leech_as_mana
 basic_attack_physical_dmg_leech_as_mana
 bonus_farming_exp
+absorb_ele_dmg_to_hp
 fire_weapon_damage
 other_water_dmg_leech_as_mana
 dot_dmg

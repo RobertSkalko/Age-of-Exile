@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.stats.types.defense;
 
-import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
@@ -13,7 +12,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 
-public class DodgeRating extends Stat implements IUsableStat, ILocalStat {
+public class DodgeRating extends Stat implements IUsableStat {
 
     public static String GUID = "dodge";
 
@@ -35,6 +34,8 @@ public class DodgeRating extends Stat implements IUsableStat, ILocalStat {
 
         this.textIcon = "\u2748";
         this.textFormat = Formatting.DARK_GREEN;
+
+        this.isLocalTo = x -> x.isArmor();
     }
 
     @Override

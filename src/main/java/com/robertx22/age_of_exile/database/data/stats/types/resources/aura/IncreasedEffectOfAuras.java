@@ -52,7 +52,6 @@ public class IncreasedEffectOfAuras extends Stat implements IStatCtxModifier {
     @Override
     public void modify(ExactStatData thisStat, StatContext target) {
         float multi = 1F + thisStat.getAverageValue() / 100F;
-
         target.stats.forEach(x -> {
             x.multiplyBy(multi);
         });

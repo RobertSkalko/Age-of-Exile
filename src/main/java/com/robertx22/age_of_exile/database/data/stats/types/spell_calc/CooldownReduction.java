@@ -6,13 +6,13 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
-public class ReducedCooldownStat extends Stat implements IExtraStatEffect {
+public class CooldownReduction extends Stat implements IExtraStatEffect {
 
-    private ReducedCooldownStat() {
+    private CooldownReduction() {
         this.max_val = 75;
     }
 
-    public static ReducedCooldownStat getInstance() {
+    public static CooldownReduction getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -47,6 +47,6 @@ public class ReducedCooldownStat extends Stat implements IExtraStatEffect {
     }
 
     private static class SingletonHolder {
-        private static final ReducedCooldownStat INSTANCE = new ReducedCooldownStat();
+        private static final CooldownReduction INSTANCE = new CooldownReduction();
     }
 }

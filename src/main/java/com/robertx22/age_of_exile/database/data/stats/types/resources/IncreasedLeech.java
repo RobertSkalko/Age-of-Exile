@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ConditionalRestoreResource;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResource;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class IncreasedLeech extends Stat {
@@ -62,7 +62,7 @@ public class IncreasedLeech extends Stat {
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
             float multi = data.getMultiplier();
             effect.toRestore.forEach(x -> {
-                if (x.restoreType == ConditionalRestoreResource.RestoreType.LEECH) {
+                if (x.restoreType == RestoreResource.RestoreType.LEECH) {
                     x.amount *= multi;
                 }
             });

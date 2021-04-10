@@ -10,6 +10,7 @@ public class GearSetsAdder implements ISlashRegistryInit {
     public static String BONE_SET = "bone_set";
     public static String BLAZE_SET = "blaze_set";
     public static String OAK_SET = "oak_set";
+    public static String SLIME_SET = "slime_set";
 
     @Override
     public void registerAll() {
@@ -24,6 +25,10 @@ public class GearSetsAdder implements ISlashRegistryInit {
 
         GearSet.Builder.of(OAK_SET)
             .stat(4, new OptScaleExactStat(25, SpecialStats.HEAL_CLEANSE))
+            .build();
+
+        GearSet.Builder.of(SLIME_SET)
+            .stat(4, new OptScaleExactStat(5, SpecialStats.ABSORB_ELE_DMG_INTO_HP))
             .build();
 
     }

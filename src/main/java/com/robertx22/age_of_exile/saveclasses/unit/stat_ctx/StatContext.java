@@ -16,6 +16,6 @@ public abstract class StatContext {
     }
 
     public enum StatCtxType {
-        GEAR, BASE_STAT, TALENT, POTION_EFFECT, AURA, MISC, MOB_AFFIX
+        GEAR, BASE_STAT, TALENT, POTION_EFFECT, AURA, MISC, MOB_AFFIX, FOOD_BUFF
     }
 }

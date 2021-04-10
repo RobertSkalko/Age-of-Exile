@@ -18,9 +18,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -180,7 +180,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(20, 45, SpellDamage.getInstance(), ModType.FLAT),
                 new StatModifier(20, 40, ManaCost.getInstance(), ModType.FLAT),
-                new StatModifier(10, 30, ReducedCooldownStat.getInstance(), ModType.FLAT)
+                new StatModifier(10, 30, CooldownReduction.getInstance(), ModType.FLAT)
             ))
             .req(new StatRequirement().setWis(0.5F)
                 .setInt(0.75F))

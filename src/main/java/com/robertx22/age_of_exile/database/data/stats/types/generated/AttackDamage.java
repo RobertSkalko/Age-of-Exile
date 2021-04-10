@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.database.data.stats.types.generated;
 
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.stats.ILocalStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
@@ -14,7 +12,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttackDamage extends ElementalStat implements ILocalStat {
+public class AttackDamage extends ElementalStat {
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
@@ -35,11 +33,6 @@ public class AttackDamage extends ElementalStat implements ILocalStat {
         this.textFormat = element.format;
         this.textIcon = element.icon;
         this.isLocalTo = x -> x.isWeapon();
-    }
-
-    @Override
-    public boolean IsNativeToGearType(BaseGearType slot) {
-        return slot.isWeaponOrTool();
     }
 
     @Override

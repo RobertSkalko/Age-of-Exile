@@ -4,6 +4,7 @@ mmorpg:uniques/weapon/eye_of_zegrath
 mmorpg:uniques/jewelry/birth_miracle
 mmorpg:uniques/armor/blaze_pants
 mmorpg:uniques/armor/gluttony_helmet
+mmorpg:uniques/armor/oak_boots
 mmorpg:armor/plate/pants/plate_pants0
 mmorpg:uniques/jewelry/touch_of_eternity
 mmorpg:armor/plate/pants/plate_pants2
@@ -44,6 +45,7 @@ mmorpg:uniques/armor/fifth_rider
 mmorpg:armor/leather/helmet/leather_helmet2
 mmorpg:armor/leather/helmet/leather_helmet1
 mmorpg:uniques/armor/bone_pants
+mmorpg:uniques/armor/slime_helmet
 mmorpg:uniques/armor/inner_conflux
 mmorpg:uniques/jewelry/skull_of_spirits
 mmorpg:armor/cloth/boots/cloth_boots1
@@ -85,6 +87,7 @@ mmorpg:jewelry/ring/poison_res_ring_end
 mmorpg:uniques/armor/blaze_boots
 mmorpg:uniques/armor/oak_helmet
 mmorpg:weapon/wand/wand4
+mmorpg:uniques/armor/oak_pants
 mmorpg:uniques/armor/crown_of_elements
 mmorpg:uniques/weapon/divine_might
 mmorpg:armor/plate/helmet/plate_helmet3
@@ -102,6 +105,7 @@ mmorpg:jewelry/necklace/life_necklace_end
 mmorpg:weapon/axe/axe0
 mmorpg:uniques/weapon/inca_thunder
 mmorpg:weapon/axe/axe1
+mmorpg:uniques/armor/oak_chest
 mmorpg:jewelry/ring/fire_res_ring_low
 mmorpg:weapon/bow/bow1
 mmorpg:armor/plate/boots/plate_boots0

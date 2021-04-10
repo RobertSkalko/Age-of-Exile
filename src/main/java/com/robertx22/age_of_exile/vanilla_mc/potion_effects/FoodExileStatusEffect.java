@@ -115,7 +115,7 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyableSta
         StatusEffectInstance instance = en.getStatusEffect(this);
 
         return Arrays.asList(new SimpleStatCtx(
-            StatContext.StatCtxType.POTION_EFFECT,
+            StatContext.StatCtxType.FOOD_BUFF,
             getStats(instance.getAmplifier()).stream()
                 .map(x -> x.toExactStat(Load.Unit(en)
                     .getLevel()))

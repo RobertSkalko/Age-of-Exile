@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -106,9 +106,9 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_less_cd")
             .Named("Of Repetition")
-            .tier(1, new StatModifier(12, 15, ReducedCooldownStat.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(10, 12, ReducedCooldownStat.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(6, 10, ReducedCooldownStat.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(12, 15, CooldownReduction.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 12, CooldownReduction.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(6, 10, CooldownReduction.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.wand, SlotTag.jewelry_family)
             .Suffix()
             .Build();

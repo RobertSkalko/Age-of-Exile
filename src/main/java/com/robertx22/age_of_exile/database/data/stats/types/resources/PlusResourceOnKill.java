@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ConditionalRestoreResource;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResource;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -71,7 +71,7 @@ public class PlusResourceOnKill extends Stat {
 
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            effect.addToRestore(new ConditionalRestoreResource(ConditionalRestoreResource.RestoreType.LEECH, resource, data.getAverageValue(), x -> x.target.isDead()));
+            effect.addToRestore(new RestoreResource(RestoreResource.RestoreType.LEECH, resource, data.getAverageValue(), x -> x.target.isDead()));
             return effect;
         }
 

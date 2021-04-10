@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCr
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ReducedCooldownStat;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 
@@ -53,7 +53,7 @@ public class IntSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("cooldown", "Less Cooldown Support", new StatRequirement().setBaseInt(25)
                 .setInt(0.4F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.values()),
-            new StatModifier(10, 30, ReducedCooldownStat.getInstance())
+            new StatModifier(10, 30, CooldownReduction.getInstance())
         );
 
         SkillGemBuilder.of("less_radius", "Concentrated Impact Support", new StatRequirement().setBaseInt(25)
