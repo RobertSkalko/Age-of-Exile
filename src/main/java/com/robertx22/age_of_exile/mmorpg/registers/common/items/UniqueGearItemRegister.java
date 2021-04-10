@@ -10,23 +10,16 @@ import net.minecraft.item.Item;
 
 public class UniqueGearItemRegister extends BaseItemRegistrator {
 
+    public ArmorSet OAK_SET = new ArmorSet("oak", LevelRanges.HIGH, ArmorType.PLATE);
+    public ArmorSet BONE_SET = new ArmorSet("bone", LevelRanges.HIGH, ArmorType.LEATHER);
+    public ArmorSet BLAZE_SET = new ArmorSet("blaze", LevelRanges.HIGH, ArmorType.CLOTH);
+
     public Item BEAST_BLOOD = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.PLATE, "Plate Chest", EquipmentSlot.CHEST, true), "uniques/armor/beast_blood");
     public Item EXEC_PRIDE = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/exec_pride");
     public Item HARBINGER_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.MIDDLE), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/harbinger");
     public Item INNFER_CONFLUX_ROBE = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.CLOTH, "Cloth Chest", EquipmentSlot.CHEST, true), "uniques/armor/inner_conflux");
     public Item MS_REG_ARMOR_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.MIDDLE), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/ms_armor_chest");
     public Item KINGMAKER_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/kingmaker");
-    public Item OAK_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/oak");
-
-    public Item BONE_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/bone_chest");
-    public Item BONE_PANTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Pants", EquipmentSlot.LEGS, true), "uniques/armor/bone_pants");
-    public Item BONE_BOOTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Boots", EquipmentSlot.FEET, true), "uniques/armor/bone_boots");
-    public Item BONE_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.LEATHER, "Leather Helmet", EquipmentSlot.HEAD, true), "uniques/armor/bone_helmet");
-
-    public Item BLAZE_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.CLOTH, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/blaze_chest");
-    public Item BLAZE_PANTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.CLOTH, "Leather Pants", EquipmentSlot.LEGS, true), "uniques/armor/blaze_pants");
-    public Item BLAZE_BOOTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.CLOTH, "Leather Boots", EquipmentSlot.FEET, true), "uniques/armor/blaze_boots");
-    public Item BLAZE_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.CLOTH, "Leather Helmet", EquipmentSlot.HEAD, true), "uniques/armor/blaze_helmet");
 
     public Item FIFTH_RIDER_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, true), "uniques/armor/fifth_rider");
     public Item GLUTTONY_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.LOW), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, true), "uniques/armor/gluttony_helmet");
@@ -35,6 +28,7 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item CROWN_OF_ELEMENTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.CLOTH, "Cloth Hat", EquipmentSlot.HEAD, true), "uniques/armor/crown_of_elements");
 
     public Item ANGEL_PROT_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/angel_prot_necklace");
+    public Item GHAST_TEAR_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/ghast_necklace");
     public Item BIRTH_MIRACLE_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/birth_miracle");
     public Item SKULL_OF_SPIRITS_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/skull_of_spirits");
     public Item SNAKE_EYE_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/snake_eye");

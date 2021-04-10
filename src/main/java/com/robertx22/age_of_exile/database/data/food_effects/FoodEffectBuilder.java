@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.food_effects;
 
 import com.mojang.datafixers.util.Pair;
-import com.robertx22.age_of_exile.mixin_ducks.StatusEffectAccesor;
+import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.AlchemyPotionItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.FarmingFoodItem;
@@ -54,11 +54,11 @@ public class FoodEffectBuilder {
         for (Pair<StatusEffectInstance, Float> x : foodcomponent.getStatusEffects()) {
             StatusEffect efg = x.getFirst()
                 .getEffectType();
-            StatusEffectAccesor acc = (StatusEffectAccesor) efg;
+            StatusEffectAccessor acc = (StatusEffectAccessor) efg;
 
-            if (acc.my$getstatusEffectType() == StatusEffectType.BENEFICIAL) {
+            if (acc.getType() == StatusEffectType.BENEFICIAL) {
                 effectMod += 0.15F;
-            } else if (acc.my$getstatusEffectType() == StatusEffectType.HARMFUL) {
+            } else if (acc.getType() == StatusEffectType.HARMFUL) {
                 effectMod -= 0.75F;
             }
         }

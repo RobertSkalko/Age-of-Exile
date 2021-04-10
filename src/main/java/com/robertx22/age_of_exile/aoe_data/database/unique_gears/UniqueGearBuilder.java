@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFi
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.SpecificMobFilter;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.entity.EntityType;
@@ -24,6 +25,26 @@ import java.util.List;
 public class UniqueGearBuilder {
 
     UniqueGear uniq = new UniqueGear();
+
+    public static UniqueGearBuilder ofSet(ArmorSet set, ArmorSet.SlotEnum slot, String locname, Collection<DataGenKey<BaseGearType>> gearType) {
+
+        UniqueGearBuilder b = new UniqueGearBuilder();
+        b.uniq.langName = locname;
+        b.uniq.langDesc = "";
+        b.uniq.guid = set.IDS.get(slot.slot);
+
+        for (DataGenKey<BaseGearType> type : gearType) {
+            b.uniq.serBaseGearType = Database.GearTypes()
+                .getFromSerializables(type);
+            b.uniq.gearType = type.GUID();
+            b.uniq.gear_types.add(type.GUID());
+        }
+
+        b.uniq.itemID = Registry.ITEM.getId(set.ITEMS.get(slot.slot));
+
+        return b;
+
+    }
 
     public static UniqueGearBuilder of(Item item, String id, String locname, String desc, List<DataGenKey<BaseGearType>> gearType) {
 

@@ -4,11 +4,14 @@ import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseG
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageUnderPotion;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -21,6 +24,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.entity.EntityType;
 
 import java.util.Arrays;
 
@@ -28,6 +32,32 @@ public class UniqueNecklaces implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.GHAST_TEAR_NECKLACE,
+            "ghast_necklace",
+            "Ghast Tear",
+            "",
+            BaseGearJewelry.HP_NECKLACE.values())
+            .baseStats(
+                Arrays.asList(
+                    new StatModifier(15, 25, new ElementalResist(Elements.Water)),
+                    new StatModifier(15, 25, new ElementalResist(Elements.Fire)))
+            )
+            .stats(Arrays.asList(
+                new StatModifier(25, 25, DatapackStatAdder.MANA_PER_10_INT, ModType.FLAT),
+                new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(3, 5, SpellDamage.getInstance(), ModType.FLAT),
+                new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT),
+                new StatModifier(2, 6, Agility.INSTANCE, ModType.FLAT)
+
+            ))
+            .mobFilter(EntityType.GHAST)
+            .req(new StatRequirement()
+                .setVit(0.5F)
+                .setWis(0.75F))
+            .build();
+
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.SNAKE_EYE_NECKLACE,
             "snake_eye",

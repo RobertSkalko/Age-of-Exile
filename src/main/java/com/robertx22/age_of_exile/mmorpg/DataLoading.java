@@ -13,8 +13,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class DataLoading {
+
+    public static final ExecutorService ASYNC_EXECUTOR_LOADER = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, "Age-Of-Exile-Thread"));
 
     public static void registerLoaders(ReloadableResourceManager manager) {
         SlashRegistryType.getAllInRegisterOrder()
@@ -40,8 +45,12 @@ public class DataLoading {
 
                     Database.unregisterInvalidEntries();
 
-                    Database.getAllRegistries()
-                        .forEach(x -> x.onAllDatapacksLoaded());
+                    // todo does this help at all?
+                    CompletableFuture.runAsync(() -> Database.getAllRegistries()
+                        .forEach(x -> x.onAllDatapacksLoaded()), ASYNC_EXECUTOR_LOADER);
+
+                    //Database.getAllRegistries()
+                    //  .forEach(x -> x.onAllDatapacksLoaded());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

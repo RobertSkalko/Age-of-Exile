@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
@@ -20,6 +21,7 @@ public class DatapackStatAdder implements ISlashRegistryInit {
 
     public static Stat BLOOD_PER_10VIT = new MoreXPerYOf(Vitality.INSTANCE, Blood.getInstance(), 10);
     public static Stat HEALTH_PER_10_INT = new MoreXPerYOf(Intelligence.INSTANCE, Health.getInstance(), 10);
+    public static Stat MANA_PER_10_INT = new MoreXPerYOf(Intelligence.INSTANCE, Mana.getInstance(), 10);
 
     public static Stat CONVERT_HEALTH_TO_PHYS_DMG = new ConvertFromOneToOtherStat(Health.getInstance(), new AttackDamage(Elements.Physical));
 
@@ -30,6 +32,7 @@ public class DatapackStatAdder implements ISlashRegistryInit {
         BLOOD_PER_10VIT.addToSerializables();
         CONVERT_HEALTH_TO_PHYS_DMG.addToSerializables();
         HEALTH_PER_10_INT.addToSerializables();
+        MANA_PER_10_INT.addToSerializables();
 
     }
 }

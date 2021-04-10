@@ -49,6 +49,7 @@ water_dot_damage
 all_light_damage
 attack_fire_dmg_leech_as_health
 other_fire_dmg_leech_as_health
+mana_per_10_intelligence
 poison_bonus_dmg
 spell_elemental_damage
 basic_attack_all_dmg_leech_as_health
@@ -265,6 +266,7 @@ renamed_or_deleted_stat
 bonus_hot_biome_yield
 elemental_resist
 basic_attack_fire_dmg_leech_as_health
+heal_cleanse
 dark_focus
 dot_dark_dmg_leech_as_health
 basic_attack_water_dmg_leech_as_mana

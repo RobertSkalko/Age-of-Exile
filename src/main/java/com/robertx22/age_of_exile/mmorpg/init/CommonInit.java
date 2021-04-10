@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
@@ -45,9 +46,12 @@ public class CommonInit implements ModInitializer {
         MobAttributes.register();
 
         Database.initRegistries();
-        Database.registerAllItems(); // after config registerAll
-        GeneratedData.addAllObjectsToGenerate();
 
+        Database.registerAllItems(); // after config registerAll
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            GeneratedData.addAllObjectsToGenerate();
+        }
         CommonEvents.register();
 
         C2SPacketRegister.register();

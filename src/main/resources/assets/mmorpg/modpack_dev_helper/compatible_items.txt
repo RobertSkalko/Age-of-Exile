@@ -83,6 +83,7 @@ mmorpg:jewelry/ring/cold_res_ring_low
 mmorpg:uniques/armor/jester_hat
 mmorpg:jewelry/ring/poison_res_ring_end
 mmorpg:uniques/armor/blaze_boots
+mmorpg:uniques/armor/oak_helmet
 mmorpg:weapon/wand/wand4
 mmorpg:uniques/armor/crown_of_elements
 mmorpg:uniques/weapon/divine_might
@@ -118,6 +119,7 @@ mmorpg:armor/plate/boots/plate_boots3
 mmorpg:uniques/weapon/crystal_wand
 mmorpg:armor/cloth/pants/cloth_pants2
 mmorpg:armor/plate/boots/plate_boots4
+mmorpg:uniques/jewelry/ghast_necklace
 mmorpg:uniques/weapon/water_ele_sword
 mmorpg:weapon/sword/sword4
 mmorpg:weapon/sword/sword3

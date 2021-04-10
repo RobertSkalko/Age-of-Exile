@@ -3,16 +3,12 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.a
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BasePlateArmors;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.EffectImmunity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -32,6 +28,8 @@ public class PlateUniques implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        new OakArmor().registerAll();
 
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.MS_REG_ARMOR_CHEST,
@@ -108,31 +106,5 @@ public class PlateUniques implements ISlashRegistryInit {
                 .setVit(0.75F))
             .build();
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.OAK_CHEST,
-            "oak",
-            "Great Oak",
-            "",
-            BasePlateArmors.CHESTS.get(LevelRanges.HIGH))
-            .baseStats(
-                Arrays.asList(
-                    new StatModifier(10, 10, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Nature)),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Light))
-                )
-            )
-            .stats(
-                Arrays.asList(
-                    new StatModifier(5, 10, HealthRegen.getInstance(), ModType.FLAT),
-                    new StatModifier(1, 3, DamageTakenToMana.getInstance(), ModType.FLAT),
-                    new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
-                )
-            )
-            .req(new StatRequirement().setStr(0.5F)
-                .setWis(0.25F)
-                .setVit(0.8F))
-            .build();
     }
 }

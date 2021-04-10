@@ -20,7 +20,7 @@
     "PlayerManagerMixin",
     "ServerResourceManagerMixin",
     "SpawnSettingsMixin",
-    "StatusEffectMixin",
+    "StatusEffectAccessor",
     "bow.ProjectileUtilMixin"
   ],
   "client": [

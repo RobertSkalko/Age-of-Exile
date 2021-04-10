@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCr
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -27,19 +28,13 @@ import java.util.Arrays;
 
 public class BoneArmor implements ISlashRegistryInit {
 
-    public static String CHEST_ID = "bone_chest";
-    public static String PANTS_ID = "bone_pants";
-    public static String HELMET_ID = "bone_helmet";
-    public static String BOOTS_ID = "bone_boots";
-
     @Override
     public void registerAll() {
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BONE_CHEST,
-            CHEST_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BONE_SET,
+            ArmorSet.SlotEnum.CHEST,
             "Bone",
-            "",
             BaseLeatherArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
@@ -66,11 +61,10 @@ public class BoneArmor implements ISlashRegistryInit {
             .gearSet(GearSetsAdder.BONE_SET)
             .build();
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BONE_HELMET,
-            HELMET_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BONE_SET,
+            ArmorSet.SlotEnum.HELMET,
             "Bone",
-            "",
             BaseLeatherArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
@@ -96,11 +90,10 @@ public class BoneArmor implements ISlashRegistryInit {
             .gearSet(GearSetsAdder.BONE_SET)
             .build();
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BONE_PANTS,
-            PANTS_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BONE_SET,
+            ArmorSet.SlotEnum.PANTS,
             "Bone",
-            "",
             BaseLeatherArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
@@ -126,11 +119,10 @@ public class BoneArmor implements ISlashRegistryInit {
             .gearSet(GearSetsAdder.BONE_SET)
             .build();
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BONE_BOOTS,
-            BOOTS_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BONE_SET,
+            ArmorSet.SlotEnum.BOOTS,
             "Bone",
-            "",
             BaseLeatherArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(

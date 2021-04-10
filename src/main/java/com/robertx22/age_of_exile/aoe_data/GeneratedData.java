@@ -35,7 +35,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.SpellDependentDatapack
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registrators.Tiers;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 
 public class GeneratedData {
 
@@ -43,58 +42,56 @@ public class GeneratedData {
     // They shouldn't be needed at all to play the game.
     // If it errors without them, then that means i hardcoded something i shouldn't have
     public static void addAllObjectsToGenerate() {
-        if (MMORPG.RUN_DEV_TOOLS) {
 
-            new DatapackStatAdder().registerAll();
+        new DatapackStatAdder().registerAll();
 
-            new SkillGemRarityAdder().registerAll();
-            new GearRaritiesAdder().registerAll();
-            new GearRarityGroupAdder().registerAll(); // after gear rarities
-            new MobRaritiesAdder().registerAll();
+        new SkillGemRarityAdder().registerAll();
+        new GearRaritiesAdder().registerAll();
+        new GearRarityGroupAdder().registerAll(); // after gear rarities
+        new MobRaritiesAdder().registerAll();
 
-            new GearSlots().registerAll();
-            new BaseGearsRegister().registerAll();
-            new UniqueGearReg().registerAll();
+        new GearSlots().registerAll();
+        new BaseGearsRegister().registerAll();
+        new UniqueGearReg().registerAll();
 
-            new ExileEffects().registerAll();
+        new ExileEffects().registerAll();
 
-            new Tiers().registerAll();
+        new Tiers().registerAll();
 
-            new Spells().registerAll();
+        new Spells().registerAll();
 
-            new SpellDependentDatapackStatAdder().registerAll();
+        new SpellDependentDatapackStatAdder().registerAll();
 
-            new Prefixes().registerAll();
-            new Suffixes().registerAll();
-            new ToolAffixes().registerAll();
+        new Prefixes().registerAll();
+        new Suffixes().registerAll();
+        new ToolAffixes().registerAll();
 
-            new MobAffixes().registerAll();
-            new DimConfigs().registerAll();
-            new EntityConfigs().registerAll();
+        new MobAffixes().registerAll();
+        new DimConfigs().registerAll();
+        new EntityConfigs().registerAll();
 
-            new Gems().registerAll();
-            new Runes().registerAll();
-            new Runewords().registerAll();
+        new Gems().registerAll();
+        new Runes().registerAll();
+        new Runewords().registerAll();
 
-            new AllPerks().registerAll();
+        new AllPerks().registerAll();
 
-            new AutoDatapackStats().registerAll();
+        new AutoDatapackStats().registerAll();
 
-            new FavorAdder().registerAll();
-            new SalvageOutputsAdder().registerAll();
-            new PlayerSkillsAdder().registerAll();
-            new BaseStatsAdder().registerAll();
-            new SalvageRecipes().registerAll();
+        new FavorAdder().registerAll();
+        new SalvageOutputsAdder().registerAll();
+        new PlayerSkillsAdder().registerAll();
+        new BaseStatsAdder().registerAll();
+        new SalvageRecipes().registerAll();
 
-            new SkillGemsAdder().registerAll();
-            new RandomSkillGemStatsAdder().registerAll();
-            new Races().registerAll();
+        new SkillGemsAdder().registerAll();
+        new RandomSkillGemStatsAdder().registerAll();
+        new Races().registerAll();
 
-            new GameBalanceConfig().addToSerializables();
-            new ScrollBuffsAdder().registerAll();
-            new CraftReqAdder().registerAll();
-            new GearSetsAdder().registerAll();
+        new GameBalanceConfig().addToSerializables();
+        new ScrollBuffsAdder().registerAll();
+        new CraftReqAdder().registerAll();
+        new GearSetsAdder().registerAll();
 
-        }
     }
 }

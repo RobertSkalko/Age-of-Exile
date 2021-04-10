@@ -21,9 +21,11 @@ kingmaker
 harbinger
 bonechill_ring
 inca_thunder
+oak_helmet
 blaze_chest
 frigid_staff
 lunar_ring
+oak_chest
 blaze_helmet
 eye_of_zegrath
 water_ele_sword
@@ -43,3 +45,4 @@ beast_blood
 crown_of_elements
 snake_eye
 touch_of_eternity
+ghast_necklace

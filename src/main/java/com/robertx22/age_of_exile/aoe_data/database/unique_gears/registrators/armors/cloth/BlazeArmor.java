@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -26,19 +27,13 @@ import java.util.Arrays;
 
 public class BlazeArmor implements ISlashRegistryInit {
 
-    public static String CHEST_ID = "blaze_chest";
-    public static String PANTS_ID = "blaze_pants";
-    public static String HELMET_ID = "blaze_helmet";
-    public static String BOOTS_ID = "blaze_boots";
-
     @Override
     public void registerAll() {
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BLAZE_HELMET,
-            HELMET_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+            ArmorSet.SlotEnum.HELMET,
             "Blaze",
-            "",
             BaseClothArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
@@ -65,11 +60,10 @@ public class BlazeArmor implements ISlashRegistryInit {
             .gearSet(GearSetsAdder.BLAZE_SET)
             .build();
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BLAZE_CHEST,
-            CHEST_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+            ArmorSet.SlotEnum.CHEST,
             "Blaze",
-            "",
             BaseClothArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
@@ -96,11 +90,10 @@ public class BlazeArmor implements ISlashRegistryInit {
             .gearSet(GearSetsAdder.BLAZE_SET)
             .build();
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BLAZE_PANTS,
-            PANTS_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+            ArmorSet.SlotEnum.PANTS,
             "Blaze",
-            "",
             BaseClothArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
@@ -128,11 +121,10 @@ public class BlazeArmor implements ISlashRegistryInit {
             .gearSet(GearSetsAdder.BLAZE_SET)
             .build();
 
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BLAZE_BOOTS,
-            BOOTS_ID,
+        UniqueGearBuilder.ofSet(
+            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+            ArmorSet.SlotEnum.BOOTS,
             "Blaze",
-            "",
             BaseClothArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(
