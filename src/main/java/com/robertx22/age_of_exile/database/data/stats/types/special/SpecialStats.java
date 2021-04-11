@@ -3,8 +3,10 @@ package com.robertx22.age_of_exile.database.data.stats.types.special;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpecialStatDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -88,6 +90,31 @@ public class SpecialStats {
             @Override
             public EffectSides Side() {
                 return EffectSides.Source;
+            }
+        }
+    );
+    public static SpecialStat DARK_DMG_IGNORE_RES = new SpecialStat("dark_dmg_ignore_res",
+        format("Your " + Elements.Dark.getIconNameFormat() + " Damage has " + VAL1 + "% chance to ignore all resistances."),
+        new BaseDamageEffect() {
+            @Override
+            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+                effect.ignoresResists = true;
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+                return effect.element.isDark() && RandomUtils.roll(data.getAverageValue());
+            }
+
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Source;
+            }
+
+            @Override
+            public int GetPriority() {
+                return Priority.beforeThis(new ElementalResist(Elements.Nature).statEffect.GetPriority());
             }
         }
     );
@@ -190,6 +217,29 @@ public class SpecialStats {
             @Override
             public StatContext.StatCtxType getCtxTypeNeeded() {
                 return StatContext.StatCtxType.FOOD_BUFF;
+            }
+        }
+    );
+
+    public static SpecialStat CRIT_WATER_DMG_MANA = new SpecialStat("crit_water_dmg_mana",
+        format("Your critical " + Elements.Water.getIconNameFormat() + " Damage restores " + VAL1 + " mana to you."),
+        new BaseSpecialStatDamageEffect() {
+            @Override
+            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+                effect.addToRestore(
+                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.MANA, data.getAverageValue())
+                );
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+                return effect.element.isWater() && effect.isCriticalHit();
+            }
+
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Source;
             }
         }
     );

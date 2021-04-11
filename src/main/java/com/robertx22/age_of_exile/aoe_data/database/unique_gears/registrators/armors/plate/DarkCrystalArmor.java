@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
@@ -13,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -37,8 +35,8 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             BasePlateArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 15, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.HELMET),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.HELMET),
                     new StatModifier(15, 25, new ElementalResist(Elements.Dark))
                 )
             )
@@ -65,8 +63,8 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             BasePlateArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(15, 20, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 25, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.CHEST),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.CHEST),
                     new StatModifier(15, 25, new ElementalResist(Elements.Light)),
                     new StatModifier(15, 25, new ElementalResist(Elements.Dark))
                 )
@@ -95,15 +93,15 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             BasePlateArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 12, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.PANTS),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.PANTS),
                     new StatModifier(15, 25, new ElementalResist(Elements.Light)),
                     new StatModifier(15, 25, new ElementalResist(Elements.Dark))
                 )
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Light)),
+                    new StatModifier(10, 20, new ElementalSpellDamage(Elements.Light)),
                     new StatModifier(10, 20, Mana.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
@@ -124,8 +122,8 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             BasePlateArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(4, 4, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(3, 8, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.BOOTS),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.BOOTS),
                     new StatModifier(15, 25, new ElementalResist(Elements.Light))
                 )
             )

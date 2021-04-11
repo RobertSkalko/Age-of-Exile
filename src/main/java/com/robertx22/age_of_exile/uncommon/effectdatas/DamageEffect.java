@@ -121,6 +121,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public boolean accuracyCritRollFailed = false;
     public float damageMultiplier = 1;
     public float attackerAccuracy = 0;
+    public boolean ignoresResists = false;
 
     public float manaBurn = 0;
 

@@ -3,7 +3,9 @@ This registry is modify-able through datapacks.
 rot_phys
 bone_helmet
 divine_might
+void_chest
 inner_conflux
+void_helmet
 blaze_pants
 dark_crystal_pants
 bone_boots
@@ -17,6 +19,7 @@ obsi_might
 hunger_neck
 gluttony_helmet
 solar_ring
+void_pants
 oak_boots
 dark_crystal_boots
 beast_blood
@@ -33,6 +36,7 @@ jester_hat
 dark_crystal_chest
 bonechill_amulet
 loop_of_infinity
+void_boots
 exec_pride
 blaze_boots
 fifth_rider

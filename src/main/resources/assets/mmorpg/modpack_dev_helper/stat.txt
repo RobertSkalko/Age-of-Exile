@@ -52,6 +52,7 @@ other_fire_dmg_leech_as_health
 mana_per_10_intelligence
 poison_bonus_dmg
 spell_elemental_damage
+dark_dmg_ignore_res
 basic_attack_all_dmg_leech_as_health
 dot_fire_dmg_leech_as_mana
 dodge
@@ -289,6 +290,7 @@ attack_water_dmg_leech_as_mana
 inc_aoe
 ele_crossbow_damage
 bonus_mining_yield
+crit_water_dmg_mana
 chance_of_frostburn
 max_elemental_resist
 double_drop_chance

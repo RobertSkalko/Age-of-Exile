@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
@@ -60,7 +61,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             ModRegistry.UNIQUE_GEARS.OBSI_MIGHT_AXE,
             "obsi_might",
             "Obsidian's Might",
-            "This thirst for blood only seems lower than it's desire to taste burning flesh.",
+            "",
             BaseGearWeapons.AXE.get(LevelRanges.ENDGAME))
             .baseStats(Arrays.asList(
                 DataHelper.getAttackDamageStat(WeaponTypes.Axe, DataHelper.Number.FULL, Elements.Fire))
@@ -78,7 +79,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
             ModRegistry.UNIQUE_GEARS.INCA_THUNDER_SWORD,
             "inca_thunder",
             "Incarnation of Thunder",
-            "The ability to wield thunder is said to come once in a millennium.",
+            "",
             BaseGearWeapons.SWORD.get(LevelRanges.ENDGAME))
             .baseStats(Arrays.asList(
                 DataHelper.getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.FULL, Elements.Light)))
@@ -94,12 +95,13 @@ public class UniqueWeapons implements ISlashRegistryInit {
             ModRegistry.UNIQUE_GEARS.WATER_ELE_SWORD,
             "water_ele_sword",
             "Water Elemental",
-            "Essence lies in water.",
+            "",
             BaseGearWeapons.SWORD.get(LevelRanges.HIGH))
             .baseStats(Arrays.asList(
                 DataHelper.getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.FULL, Elements.Water)))
             .stats(Arrays.asList(
                 new StatModifier(15, 30, new AttackDamage(Elements.Water), ModType.LOCAL_INCREASE),
+                new StatModifier(5, 10, SpecialStats.CRIT_WATER_DMG_MANA, ModType.FLAT),
                 new StatModifier(15, 30, BonusDmgToStatusAffected.FROST, ModType.FLAT)
             ))
             .req(new StatRequirement().setInt(0.5F)

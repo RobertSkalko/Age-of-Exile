@@ -27,6 +27,7 @@ public class ClothUniques implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        new VoidArmor().registerAll();
         new BlazeArmor().registerAll();
         new SlimeArmor().registerAll();
 

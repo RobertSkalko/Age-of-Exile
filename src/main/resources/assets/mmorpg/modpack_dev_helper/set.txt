@@ -4,4 +4,5 @@ oak_set
 slime_set
 blaze_set
 dark_crystal_set
+void_set
 bone_set

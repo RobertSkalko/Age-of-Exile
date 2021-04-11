@@ -20,7 +20,7 @@ public class NormalStatTooltip implements IStatTooltipType {
         List<Text> list = new ArrayList<>();
 
         MutableText txt = new LiteralText(Formatting.BLUE + info.stat.getStatNameRegex()
-            .translate(info.type, info.firstValue, info.secondValue, info.stat));
+            .translate(ctx, info.type, info.firstValue, info.secondValue, info.stat));
 
         if (ctx.statinfo.stat.isLongStat) {
             return longStat(ctx, txt);

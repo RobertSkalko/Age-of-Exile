@@ -7,13 +7,11 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -38,8 +36,8 @@ public class OakArmor implements ISlashRegistryInit {
             BasePlateArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 15, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.HELMET),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.HELMET),
                     new StatModifier(20, 40, new ElementalResist(Elements.Nature)),
                     new StatModifier(-20, -20, new ElementalResist(Elements.Fire))
                 )
@@ -66,8 +64,8 @@ public class OakArmor implements ISlashRegistryInit {
             BasePlateArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(10, 10, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.CHEST),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.CHEST),
                     new StatModifier(15, 25, new ElementalResist(Elements.Nature)),
                     new StatModifier(15, 25, new ElementalResist(Elements.Light))
                 )
@@ -94,8 +92,8 @@ public class OakArmor implements ISlashRegistryInit {
             BasePlateArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(10, 10, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 20, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.PANTS),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.PANTS),
                     new StatModifier(10, 20, new ElementalResist(Elements.Light)),
                     new StatModifier(10, 20, new ElementalResist(Elements.Nature))
                 )
@@ -123,8 +121,8 @@ public class OakArmor implements ISlashRegistryInit {
             BasePlateArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 15, Armor.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.BOOTS),
+                    getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.BOOTS),
                     new StatModifier(20, 40, new ElementalResist(Elements.Light)),
                     new StatModifier(-20, -20, new ElementalResist(Elements.Dark))
                 )

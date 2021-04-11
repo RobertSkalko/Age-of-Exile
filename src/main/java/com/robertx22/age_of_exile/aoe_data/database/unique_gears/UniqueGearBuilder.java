@@ -103,6 +103,11 @@ public class UniqueGearBuilder {
         return this;
     }
 
+    public UniqueGearBuilder setReplacesName() {
+        this.uniq.replaces_name = true;
+        return this;
+    }
+
     public UniqueGearBuilder baseStats(List<StatModifier> stat) {
         this.uniq.base_stats.addAll(stat);
         return this;

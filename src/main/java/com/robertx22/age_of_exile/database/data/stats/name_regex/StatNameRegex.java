@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.name_regex;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
+import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
@@ -39,7 +40,7 @@ public abstract class StatNameRegex {
 
     public abstract String getStatNameRegex(ModType type, Stat stat, float v1, float v2);
 
-    public String translate(ModType type, float v1, float v2, Stat stat) {
+    public String translate(TooltipStatWithContext ctx, ModType type, float v1, float v2, Stat stat) {
 
         String v1s = NumberUtils.formatForTooltip(v1);
         String v2s = NumberUtils.formatForTooltip(v2);

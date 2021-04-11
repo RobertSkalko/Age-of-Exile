@@ -41,6 +41,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     public Identifier itemID;
     public String uniqueRarity = IRarity.UNIQUE_ID;
     public String set = "";
+    public boolean replaces_name = false;
 
     public List<String> gear_types = new ArrayList<>();
 
@@ -81,6 +82,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
 
         json.addProperty("rarity", this.uniqueRarity);
         json.addProperty("set", this.set);
+        json.addProperty("replaces_name", this.replaces_name);
 
         json.add("gear_types", JsonUtils.stringListToJsonArray(gear_types));
 
@@ -114,6 +116,10 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
         if (json.has("set")) {
             uniq.set = json.get("set")
                 .getAsString();
+        }
+        if (json.has("replaces_name")) {
+            uniq.replaces_name = json.get("replaces_name")
+                .getAsBoolean();
         }
         uniq.filters = DropFiltersGroupData.fromJson(json.get("filters"));
 

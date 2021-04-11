@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -136,8 +137,8 @@ public class BaseGearBuilder {
         return this;
     }
 
-    public BaseGearBuilder baseStat(StatModifier mod) {
-        this.basestats.add(mod);
+    public BaseGearBuilder baseStat(StatModifier... mod) {
+        this.basestats.addAll(Arrays.asList(mod));
         return this;
     }
 

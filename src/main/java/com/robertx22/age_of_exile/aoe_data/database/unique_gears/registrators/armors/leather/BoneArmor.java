@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWe
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
@@ -38,8 +37,8 @@ public class BoneArmor implements ISlashRegistryInit {
             BaseLeatherArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 20, DodgeRating.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.MEDIUM, ArmorSlot.CHEST),
+                    getStat(ArmorStat.DODGE, ArmorType.MEDIUM, ArmorSlot.CHEST),
                     new StatModifier(-10, -10, new ElementalResist(Elements.Fire)),
                     new StatModifier(20, 30, new ElementalResist(Elements.Dark))
                 )
@@ -68,8 +67,8 @@ public class BoneArmor implements ISlashRegistryInit {
             BaseLeatherArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(3, 3, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.MEDIUM, ArmorSlot.HELMET),
+                    getStat(ArmorStat.DODGE, ArmorType.MEDIUM, ArmorSlot.HELMET),
                     new StatModifier(-10, -10, new ElementalResist(Elements.Light)),
                     new StatModifier(20, 30, new ElementalResist(Elements.Dark))
                 )
@@ -97,8 +96,8 @@ public class BoneArmor implements ISlashRegistryInit {
             BaseLeatherArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(5, 5, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.MEDIUM, ArmorSlot.PANTS),
+                    getStat(ArmorStat.DODGE, ArmorType.MEDIUM, ArmorSlot.PANTS),
                     new StatModifier(-10, -10, new ElementalResist(Elements.Light)),
                     new StatModifier(20, 30, new ElementalResist(Elements.Water))
                 )
@@ -126,8 +125,8 @@ public class BoneArmor implements ISlashRegistryInit {
             BaseLeatherArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(
-                    new StatModifier(4, 4, Health.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT),
+                    getStat(ArmorStat.HEALTH, ArmorType.MEDIUM, ArmorSlot.BOOTS),
+                    getStat(ArmorStat.DODGE, ArmorType.MEDIUM, ArmorSlot.BOOTS),
                     new StatModifier(-10, -10, new ElementalResist(Elements.Fire)),
                     new StatModifier(20, 30, new ElementalResist(Elements.Dark))
                 )

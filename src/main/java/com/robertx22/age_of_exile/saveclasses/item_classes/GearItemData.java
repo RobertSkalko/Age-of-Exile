@@ -319,8 +319,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         MutableText txt = new LiteralText("").append(uniq.locName()
             .formatted(format));
 
-        txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
-            .formatted(format)));
+        if (!uniq.replaces_name) {
+            txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
+                .formatted(format)));
+        }
 
         list.addAll(TooltipUtils.cutIfTooLong(txt, format));
 

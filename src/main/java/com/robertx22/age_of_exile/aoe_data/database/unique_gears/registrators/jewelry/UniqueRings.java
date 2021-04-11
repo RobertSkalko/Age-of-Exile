@@ -21,6 +21,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import net.minecraft.entity.EntityType;
 
 import java.util.Arrays;
 
@@ -45,6 +46,7 @@ public class UniqueRings implements ISlashRegistryInit {
                 new StatModifier(5, 10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
 
             ))
+            .mobFilter(EntityType.WITCH)
             .req(new StatRequirement()
                 .setInt(0.5F)
                 .setWis(0.5F))

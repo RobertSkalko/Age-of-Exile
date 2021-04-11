@@ -27,6 +27,10 @@ public class ElementalResistEffect extends BaseDamageEffect {
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
 
+        if (effect.ignoresResists) {
+            return effect;
+        }
+
         int pene = 0;
 
         if (effect instanceof IElementalPenetrable) {
