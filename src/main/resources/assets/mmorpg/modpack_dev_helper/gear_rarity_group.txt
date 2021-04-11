@@ -1,3 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 non_unique
+up_to_magical
+up_to_epic
+up_to_rare

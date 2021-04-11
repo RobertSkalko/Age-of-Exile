@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectUtils;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.util.Formatting;
 
 public class ProjectileDamage extends Stat {
 
@@ -15,6 +16,9 @@ public class ProjectileDamage extends Stat {
     private ProjectileDamage() {
         this.scaling = StatScaling.NONE;
         this.statEffect = new Effect();
+
+        this.textIcon = "\u27B9";
+        this.textFormat = Formatting.RED;
     }
 
     public static ProjectileDamage getInstance() {

@@ -177,7 +177,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
 
     @Override
     public String getFileName() {
-        return new Identifier(item_id).getPath();
+        return guid;
     }
 
     @Override

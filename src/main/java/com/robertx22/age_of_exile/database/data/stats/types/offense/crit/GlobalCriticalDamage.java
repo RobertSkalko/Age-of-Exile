@@ -43,7 +43,7 @@ public class GlobalCriticalDamage extends Stat implements ITransferToOtherStats 
 
     @Override
     public String locNameForLangFile() {
-        return "All Critical Damage";
+        return "All Crit Damage";
     }
 
     @Override

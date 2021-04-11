@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalc
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.util.Formatting;
 
 public class ProjectileSpeed extends Stat {
 
@@ -14,6 +15,9 @@ public class ProjectileSpeed extends Stat {
         this.max_val = 200;
 
         this.statEffect = new Effect();
+
+        this.textIcon = "\u27B9";
+        this.textFormat = Formatting.GREEN;
     }
 
     public static ProjectileSpeed getInstance() {

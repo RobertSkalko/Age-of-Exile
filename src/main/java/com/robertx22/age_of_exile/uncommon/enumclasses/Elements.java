@@ -14,7 +14,7 @@ public enum Elements {
     //Thunder(true, "Thunder", Formatting.YELLOW, "thunder", "\u272A"),
 
     Light(true, "Light", Formatting.WHITE, "light", "\u2600"),
-    Dark(true, "Dark", Formatting.DARK_PURPLE, "dark", "\u273F"),
+    Dark(true, "Dark", Formatting.DARK_PURPLE, "dark", "\u2743"),
 
     Elemental(false, "Elemental", Formatting.LIGHT_PURPLE, "elemental", "\u269C"),
     All(false, "All", Formatting.LIGHT_PURPLE, "all", "\u273F");

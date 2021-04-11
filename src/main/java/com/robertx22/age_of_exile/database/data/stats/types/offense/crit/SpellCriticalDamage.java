@@ -52,7 +52,7 @@ public class SpellCriticalDamage extends Stat implements IExtraStatEffect {
 
     @Override
     public String locNameForLangFile() {
-        return "Spell Critical Damage";
+        return "Spell Crit Damage";
     }
 
     private static class SingletonHolder {

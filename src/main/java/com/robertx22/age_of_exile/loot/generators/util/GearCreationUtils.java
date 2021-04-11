@@ -40,8 +40,8 @@ public class GearCreationUtils {
                 UniqueGear unique = blueprint.uniquePart.get();
 
                 Preconditions.checkNotNull(unique);
-                Preconditions.checkArgument(data.gear_type.equals(unique.getBaseGearType()
-                    .GUID()));
+                Preconditions.checkArgument(unique.getPossibleGearTypes()
+                    .contains(data.GetBaseGearType()));
 
                 data.rarity = Database.GearRarities()
                     .get(unique.uniqueRarity)

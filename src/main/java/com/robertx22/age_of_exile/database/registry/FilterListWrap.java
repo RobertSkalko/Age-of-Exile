@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequested
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
@@ -75,21 +74,6 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
         this.list = list.stream()
             .filter(x -> ((ITiered) x).getTier() == tier)
             .collect(Collectors.toList());
-
-        return this;
-    }
-
-    public FilterListWrap<C> ofSpecificGearType(String type) {
-
-        if (type.isEmpty() || type.equals("random")) {
-            // keep everything the same
-        } else {
-            this.list = list.stream()
-                .filter(x -> ((IBaseGearType) x).getBaseGearType()
-                    .GUID()
-                    .equals(type))
-                .collect(Collectors.toList());
-        }
 
         return this;
     }

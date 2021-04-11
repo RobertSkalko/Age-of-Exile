@@ -13,14 +13,17 @@ public interface IRarity<R extends Rarity> {
             .equals(UNIQUE_ID);
     }
 
-    String UNIQUE_ID = "unique";
     String COMMON_ID = "common";
     String MAGICAL_ID = "magical";
-    String MONSTER_UNIQUE_ID = "monster_unique";
     String RARE_ID = "rare";
     String EPIC_ID = "epic";
     String LEGENDARY_ID = "legendary";
     String MYTHIC_ID = "mythic";
+
     String BOSS_ID = "boss";
+
+    String UNIQUE_ID = "unique";
+
+    String MONSTER_UNIQUE_ID = "monster_unique";
 
 }

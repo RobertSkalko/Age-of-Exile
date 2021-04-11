@@ -8,6 +8,7 @@ import net.minecraft.data.DataProvider;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends BaseDatapackGenerator<T> {
@@ -39,6 +40,9 @@ public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends 
             }
 
             Path target = movePath(resolve(path, entry));
+
+            target = Paths.get(target.toString()
+                .replace("\\.\\", "\\"));
 
             try {
                 DataProvider.writeToPath(GSON, cache, entry.toJson(), target);

@@ -25,6 +25,17 @@ public enum WikiType {
                 .collect(Collectors.toList());
         }
     },
+    SETS("set") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return Database.Sets()
+                .getList()
+                .stream()
+                .map(x -> new SetEntry(x))
+                .collect(Collectors.toList());
+        }
+    },
+
     COOKING_EXP("cooking") {
         @Override
         public List<WikiEntry> getAllEntries() {

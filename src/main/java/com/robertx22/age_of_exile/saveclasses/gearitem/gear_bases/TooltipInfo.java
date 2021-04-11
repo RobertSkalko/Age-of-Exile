@@ -36,6 +36,7 @@ public class TooltipInfo implements Cloneable {
         this.hasShiftDown = Screen.hasShiftDown();
 
         this.player = ClientOnly.getPlayer();
+        this.unitdata = Load.Unit(player);
     }
 
     public TooltipInfo(PlayerEntity player) {

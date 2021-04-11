@@ -110,7 +110,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
             BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
-                new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT),
+                new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)

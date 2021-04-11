@@ -52,7 +52,7 @@ public class SpellCriticalHit extends Stat implements IExtraStatEffect {
 
     @Override
     public String locNameForLangFile() {
-        return "Spell Critical Chance";
+        return "Spell Crit Chance";
     }
 
     private static class SingletonHolder {

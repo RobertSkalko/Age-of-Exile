@@ -9,11 +9,13 @@ public class CountUniqueGearTypes {
 
         System.out.println("[UNIQUES PER SLOT");
 
-        for (BaseGearType slot : Database.GearTypes().getList()) {
+        for (BaseGearType slot : Database.GearTypes()
+            .getList()) {
 
             int amount = Database.UniqueGears()
-                    .getWrapped()
-                    .ofSpecificGearType(slot.GUID()).list.size();
+                .getFilterWrapped(x -> x.getPossibleGearTypes()
+                    .contains(slot))
+                .list.size();
 
             System.out.println(slot.GUID() + " has " + amount + " uniques");
 

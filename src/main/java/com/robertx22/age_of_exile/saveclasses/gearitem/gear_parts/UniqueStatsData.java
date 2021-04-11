@@ -92,12 +92,16 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
         List<ExactStatData> list = new ArrayList<>();
 
-        int i = 0;
-        for (StatModifier mod : Database.UniqueGears()
-            .get(gear.uniq_id)
-            .uniqueStats()) {
-            list.add(mod.ToExactStat(perc.get(i), gear.lvl));
-            i++;
+        try {
+            int i = 0;
+            for (StatModifier mod : Database.UniqueGears()
+                .get(gear.uniq_id)
+                .uniqueStats()) {
+                list.add(mod.ToExactStat(perc.get(i), gear.lvl));
+                i++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return list;
 

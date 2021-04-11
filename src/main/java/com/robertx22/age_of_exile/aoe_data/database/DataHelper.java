@@ -62,7 +62,7 @@ public interface DataHelper {
     public enum ArmorStat {
         ARMOR(10, 25, Armor.getInstance()),
         DODGE(10, 25, DodgeRating.getInstance()),
-        HEALTH(20, 50, Health.getInstance());
+        HEALTH(20, 40, Health.getInstance());
 
         public float min;
         public float max;

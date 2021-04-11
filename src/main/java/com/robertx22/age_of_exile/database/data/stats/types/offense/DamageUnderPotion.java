@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -24,6 +25,8 @@ public class DamageUnderPotion extends Stat {
         this.statEffect = new Effect(status);
         this.is_percent = true;
 
+        this.isLongStat = true;
+
     }
 
     @Override
@@ -38,7 +41,7 @@ public class DamageUnderPotion extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Damage under " + CLOC.translate(status.getName());
+        return "You deal " + SpecialStats.VAL1 + "% increased " + "Damage while under the effects of " + CLOC.translate(status.getName());
     }
 
     @Override
