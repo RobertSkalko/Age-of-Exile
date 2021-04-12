@@ -28,6 +28,8 @@ public class BlazeArmor implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        // DARK/FIRE cloth set
+
         UniqueGearBuilder.ofSet(
             ModRegistry.UNIQUE_GEARS.BLAZE_SET,
             ArmorSet.SlotEnum.HELMET,

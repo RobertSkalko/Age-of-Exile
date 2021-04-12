@@ -32,7 +32,7 @@ public class LootTableGenerator {
 
         try {
             cache = new DataCache(FabricLoader.getInstance()
-                    .getGameDir(), "datagencache");
+                .getGameDir(), "datagencache");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,7 +40,7 @@ public class LootTableGenerator {
 
     protected Path getBasePath() {
         return FabricLoader.getInstance()
-                .getGameDir();
+            .getGameDir();
     }
 
     protected Path movePath(Path target) {
@@ -53,8 +53,8 @@ public class LootTableGenerator {
     private Path resolve(Path path, String id) {
 
         return path.resolve(
-                "data/" + Ref.MODID + "/loot_tables/" + id
-                        + ".json");
+            "data/" + Ref.MODID + "/loot_tables/" + id
+                + ".json");
     }
 
     public void run() {
@@ -62,24 +62,24 @@ public class LootTableGenerator {
     }
 
     static Gson GSON = LootGsons.getTableGsonBuilder()
-            .setPrettyPrinting()
-            .create();
+        .setPrettyPrinting()
+        .create();
 
     protected void generateAll(DataCache cache) {
 
         Path path = getBasePath();
 
         getLootTables().entrySet()
-                .forEach(x -> {
-                    Path target = movePath(resolve(path, x.getKey()
-                            .getPath()));
+            .forEach(x -> {
+                Path target = movePath(resolve(path, x.getKey()
+                    .getPath()));
 
-                    try {
-                        DataProvider.writeToPath(GSON, cache, GSON.toJsonTree(x.getValue()), target);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+                try {
+                    DataProvider.writeToPath(GSON, cache, GSON.toJsonTree(x.getValue()), target);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
     }
 
@@ -95,7 +95,7 @@ public class LootTableGenerator {
         gemloot.rolls(UniformLootTableRange.between(1, 3));
         ModRegistry.GEMS.ALL.forEach(x -> {
             gemloot.with(ItemEntry.builder(x)
-                    .weight(x.weight));
+                .weight(x.weight));
         });
         gems.pool(gemloot);
 
@@ -104,7 +104,7 @@ public class LootTableGenerator {
         runeloot.rolls(UniformLootTableRange.between(1, 3));
         ModRegistry.RUNES.ALL.forEach(x -> {
             runeloot.with(ItemEntry.builder(x)
-                    .weight(x.weight));
+                .weight(x.weight));
         });
         runes.pool(runeloot);
 
@@ -113,7 +113,7 @@ public class LootTableGenerator {
         curLoot.rolls(UniformLootTableRange.between(1, 3));
         ModRegistry.CURRENCIES.currencies.forEach(x -> {
             curLoot.with(ItemEntry.builder(x)
-                    .weight(x.Weight()));
+                .weight(x.Weight()));
         });
         currencies.pool(curLoot);
 
@@ -122,9 +122,12 @@ public class LootTableGenerator {
         map.put(CURRENCIES_SALVAGE_RECIPE, currencies.build());
 
         ModRegistry.TIERED.FARMING_PRODUCE.values()
-                .forEach(x -> {
-                    addFarming(ModRegistry.BLOCKS.FARMING_PLANTS.get(x.tier), x, 3, map);
-                });
+            .forEach(x -> {
+                addFarming(ModRegistry.BLOCKS.FARMING_PLANTS.get(x.tier), x, 3, map);
+            });
+
+        addFarming(ModRegistry.BLOCKS.LIFE_PLANT, ModRegistry.MISC_ITEMS.LIFE_PLANT, 3, map);
+        addFarming(ModRegistry.BLOCKS.MANA_PLANT, ModRegistry.MISC_ITEMS.MANA_PLANT, 3, map);
 
         return map;
 
@@ -133,8 +136,8 @@ public class LootTableGenerator {
     private void addFarming(Block block, Item item, int age, HashMap<Identifier, LootTable> map) {
 
         LootCondition.Builder condition = BlockStatePropertyLootCondition.builder(block)
-                .properties(StatePredicate.Builder.create()
-                        .exactMatch(CropBlock.AGE, age));
+            .properties(StatePredicate.Builder.create()
+                .exactMatch(CropBlock.AGE, age));
 
         LootTable.Builder b = LootTable.builder();
         LootPool.Builder loot = LootPool.builder();

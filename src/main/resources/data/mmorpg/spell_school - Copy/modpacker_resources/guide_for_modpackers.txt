@@ -1,0 +1,30 @@
+If you want to edit the skill trees or create new ones, you will need a .csv editor to open the .ods files!
+
+They are custom formatted to allow you to easily create the trees.
+
+I suggest trio office. It's a free program. 
+
+When you edit it. Click save. Then click save as and then save as .csv file. 
+
+(YES DO BOTH. you want to keep your .ODS file updated OR ELSE YOU WILL WASTE TIME!)
+
+Open that .csv with notepad++, copy the whole thing and paste it to the appropriate skill tree .json in the "perks" field.
+
+
+Also: these skill trees use datapacks called perks. I already create a bunch for the mod but you can create more or edit them too!
+
+I also added optional locking of perks under vanilla advancements/achievements. That might be helpful with modpacks.
+
+You could have a powerful class gated behind some advancements, or gate just parts of skill trees. Possibilities!
+
+Also, there are multiple types of perks: SPELL, STAT, START and SPECIAL.
+
+spell, stat are self explanatory
+
+Start is for the starting point of the skill tree.
+
+Special is a way of differentiating good perks, it uses a prettier icon.
+
+There'a also a required field, [CENTER]. This tells the game where to center the gui to.
+
+Always a good idea to start by copying an existing skill tree and modifying it.

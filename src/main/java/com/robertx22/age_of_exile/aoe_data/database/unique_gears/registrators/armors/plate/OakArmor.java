@@ -29,6 +29,8 @@ public class OakArmor implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        // nature/light heavy armor, focuses on healing
+
         UniqueGearBuilder.ofSet(
             ModRegistry.UNIQUE_GEARS.OAK_SET,
             ArmorSet.SlotEnum.HELMET,

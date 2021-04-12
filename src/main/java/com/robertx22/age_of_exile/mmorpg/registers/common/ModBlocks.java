@@ -36,8 +36,10 @@ public class ModBlocks {
 
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 
-    public ModBlocks() {
+    public Block MANA_PLANT = plant("mana");
+    public Block LIFE_PLANT = plant("life");
 
+    public ModBlocks() {
         for (SkillItemTier tier : SkillItemTier.values()) {
             FARMING_PLANTS.put(tier, plant("plant" + (tier.tier + 1)));
         }
@@ -45,10 +47,10 @@ public class ModBlocks {
 
     Block plant(String id) {
         return of(id, new BeetrootsBlock(AbstractBlock.Settings.of(Material.PLANT)
-                .noCollision()
-                .ticksRandomly()
-                .breakInstantly()
-                .sounds(BlockSoundGroup.CROP)));
+            .noCollision()
+            .ticksRandomly()
+            .breakInstantly()
+            .sounds(BlockSoundGroup.CROP)));
     }
 
     <T extends Block> T of(String id, T c) {

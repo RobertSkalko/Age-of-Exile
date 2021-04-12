@@ -20,15 +20,16 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class CraftEssenceItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
 
     String id;
 
-    Item craftItem;
+    Supplier<Item> craftItem;
     String locname;
 
-    public CraftEssenceItem(String id, Item craftItem, String locname) {
+    public CraftEssenceItem(String id, Supplier<Item> craftItem, String locname) {
         super(new Settings().group(CreativeTabs.MyModTab));
         this.id = id;
         this.craftItem = craftItem;
@@ -75,7 +76,7 @@ public class CraftEssenceItem extends Item implements IAutoLocName, IAutoModel, 
         ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(resultItem, 16);
 
         return fac.input('e', Items.COAL)
-            .input('s', craftItem)
+            .input('s', craftItem.get())
             .pattern("ses")
             .criterion("player_level", trigger());
 

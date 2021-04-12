@@ -29,6 +29,8 @@ public class VoidArmor implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        // cloth mage focused dark armor, but also for assasins
+
         UniqueGearBuilder.ofSet(
             ModRegistry.UNIQUE_GEARS.VOID_SET,
             ArmorSet.SlotEnum.HELMET,

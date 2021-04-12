@@ -50,6 +50,7 @@ public class UniqueRings implements ISlashRegistryInit {
             .req(new StatRequirement()
                 .setInt(0.5F)
                 .setWis(0.5F))
+            .devComment("Food buff mage ring")
             .build();
 
         UniqueGearBuilder.of(

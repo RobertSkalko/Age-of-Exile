@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
+import com.robertx22.age_of_exile.player_skills.items.farming.ProduceItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
@@ -100,6 +101,9 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item TABLET_STATION = blockItem(ModRegistry.BLOCKS.TABLET_STATION);
     public Item ALCHEMY_STATION = blockItem(ModRegistry.BLOCKS.ALCHEMY_STATION);
     public Item SMITHING_STATION = blockItem(ModRegistry.BLOCKS.SMITHING_STATION);
+
+    public Item MANA_PLANT = item(new ProduceItem("Mana Fruit"), "plant/mana");
+    public Item LIFE_PLANT = item(new ProduceItem("Life Fruit"), "plant/life");
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
 

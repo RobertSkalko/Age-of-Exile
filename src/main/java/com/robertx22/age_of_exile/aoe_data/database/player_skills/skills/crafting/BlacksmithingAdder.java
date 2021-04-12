@@ -14,7 +14,7 @@ public class BlacksmithingAdder {
         b.addDefaultHpMsMana();
 
         ModRegistry.TIERED.KEY_TIER_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 50 + x.tier.tier * 25));
+            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 20));
 
         ModRegistry.TIERED.TOOL_UPGRADE.values()
             .forEach(x -> b.itemCraftExp(x, 20 + x.tier.tier * 10));
@@ -22,8 +22,8 @@ public class BlacksmithingAdder {
         ModRegistry.BACKPACK_UPGRADES.ALL
             .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 100));
 
-        b.itemCraftExp(ModRegistry.INSCRIBING.BLANK_TABLET, 10);
-        b.itemCraftExp(ModRegistry.INSCRIBING.RARE_BLANK_TABLET, 30);
+        b.itemCraftExp(ModRegistry.INSCRIBING.BLANK_TABLET, 20);
+        b.itemCraftExp(ModRegistry.INSCRIBING.RARE_BLANK_TABLET, 40);
 
         return b.build();
     }

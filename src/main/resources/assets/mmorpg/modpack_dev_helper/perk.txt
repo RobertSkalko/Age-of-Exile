@@ -17,6 +17,7 @@ big_int
 all_water_damage
 ele_axe_damage
 red_mana_reserved
+big_heart_of_dark
 water_weapon_damage
 big_mana_steal
 hp_res
@@ -83,6 +84,7 @@ mana
 big_bravery
 spell_critical_hit
 big_blood_thirst
+big_heart_of_light
 flat_mana_reg_melee_dmg
 big_warrior_heart
 mana_and_health
@@ -108,6 +110,7 @@ flat_health_mana
 magic_dmg
 wand_damage
 overflowing_vitality
+big_breath_of_dark
 big_gambler
 true_hit
 water_resist
@@ -129,6 +132,7 @@ spell_fire_damage
 fire_water_spell_dmg
 dodge_and_ms
 big_spell_crit
+big_breath_of_light
 big_self_reflection
 templar
 dark_resist
@@ -165,6 +169,7 @@ elemental_penetration
 crossbow_damage
 nature_penetration
 big_arena
+big_heart_of_water
 phys_acc
 flat_health_phys_dmg
 ele_crossbow_damage

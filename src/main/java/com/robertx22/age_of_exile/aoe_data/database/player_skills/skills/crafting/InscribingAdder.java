@@ -14,7 +14,7 @@ public class InscribingAdder {
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
 
-        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, (int) (x.tier.lvl_req * 20)));
+        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20 + (x.tier.tier * 20)));
 
         b.itemCraftExp(ModRegistry.INSCRIBING.SPAWN_TELEPORT, 25);
         b.itemCraftExp(ModRegistry.INSCRIBING.DEATH_TELEPORT, 25);

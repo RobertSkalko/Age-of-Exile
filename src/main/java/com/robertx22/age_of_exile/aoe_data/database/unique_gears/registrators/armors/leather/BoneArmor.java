@@ -30,6 +30,8 @@ public class BoneArmor implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        // dark/water medium armor, mostly for archers but mages can use some parts
+
         UniqueGearBuilder.ofSet(
             ModRegistry.UNIQUE_GEARS.BONE_SET,
             ArmorSet.SlotEnum.CHEST,

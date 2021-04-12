@@ -206,7 +206,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public C get(String guid) {
 
         if (map.isEmpty() && !serializables.isEmpty()) {
-            System.out.print("Accessed slash registry earlier than datapacks are loaded, returning empty: " + guid);
+            System.out.print("\n Accessed slash registry earlier than datapacks are loaded, returning empty: " + guid);
             return this.emptyDefault;
 
         }

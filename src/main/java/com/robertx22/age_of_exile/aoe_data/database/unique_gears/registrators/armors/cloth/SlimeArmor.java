@@ -28,6 +28,8 @@ public class SlimeArmor implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        // newbie ele res armor that any class can build
+
         UniqueGearBuilder.ofSet(
             ModRegistry.UNIQUE_GEARS.SLIME_SET,
             ArmorSet.SlotEnum.HELMET,

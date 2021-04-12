@@ -28,6 +28,8 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        // dark/light heal heavy armor night/day effect
+
         UniqueGearBuilder.ofSet(
             ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
             ArmorSet.SlotEnum.HELMET,

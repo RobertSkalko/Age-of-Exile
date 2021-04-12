@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class GridPoint {
 
-    static int MAX_DISTANCE = 8;
+    static int MAX_DISTANCE = 10;
 
     public final int x;
     public final int y;
