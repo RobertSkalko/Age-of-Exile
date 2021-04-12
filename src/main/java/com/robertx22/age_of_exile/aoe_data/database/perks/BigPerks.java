@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
@@ -382,6 +383,30 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Accuracy.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(100, DodgeRating.getInstance(), ModType.FLAT),
             new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("big_heal_int", "Deceiver",
+            new OptScaleExactStat(5, HealPower.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(3, Intelligence.INSTANCE, ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_heal_wis", "Learner",
+            new OptScaleExactStat(5, HealPower.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, Intelligence.INSTANCE, ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_steal_str", "Ravager",
+            new OptScaleExactStat(3, Lifesteal.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, Strength.INSTANCE, ModType.FLAT)
+        );
+
+        PerkBuilder.bigStat("big_steal_vit", "Destroyer",
+            new OptScaleExactStat(5, Lifesteal.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, Wisdom.INSTANCE, ModType.FLAT)
         );
     }
 }

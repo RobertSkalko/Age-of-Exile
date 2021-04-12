@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -22,6 +23,8 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
         this.info = info;
         this.statEffect = new Effect(info);
         this.is_percent = true;
+
+        this.isLongStat = true;
     }
 
     @Override
@@ -70,10 +73,12 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
 
     @Override
     public String locNameForLangFile() {
-        String ele = this.getElement() == Elements.All ? "" : " " + getElement().dmgName;
-        String type = info.attackType == AttackType.ALL ? "" : " " + info.attackType.locname;
+        String ele = this.getElement() == Elements.All ? "" : getElement().getIconNameFormat() + " ";
+        String type = info.attackType == AttackType.ALL ? "" : " " + info.attackType.locname + " ";
 
-        return "Of" + type + ele + " Damage Leeched as " + info.resource.locname;
+        return SpecialStats.format(
+            "Leech " + SpecialStats.VAL1 + "% of your " + ele + type + "Damage as " + info.resource.locname
+        );
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOn
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
@@ -49,6 +50,8 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(1, CriticalHit.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(4, ReducedManaReserved.getInstance(), ModType.FLAT));
+
+        PerkBuilder.stat(new OptScaleExactStat(2, Lifesteal.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, SpellCriticalDamage.getInstance(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, SpellCriticalHit.getInstance(), ModType.FLAT));
@@ -84,7 +87,6 @@ public class Perks implements ISlashRegistryInit {
         new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
-
             });
 
         new SpecificElementalWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()

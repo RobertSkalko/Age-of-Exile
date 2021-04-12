@@ -205,10 +205,9 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public C get(String guid) {
 
-        if (map.isEmpty() && !serializables.isEmpty()) {
+        if (map.isEmpty() && serializables.isEmpty()) {
             System.out.print("\n Accessed slash registry earlier than datapacks are loaded, returning empty: " + guid);
             return this.emptyDefault;
-
         }
 
         tryLogEmptyRegistry();
@@ -218,6 +217,8 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         }
         if (map.containsKey(guid)) {
             return map.get(guid);
+        } else if (serializables.containsKey(guid)) {
+            return serializables.get(guid);
         } else {
             if (logMissingEntryOnAccess) {
                 if (accessorErrosAletedFor.contains(guid) == false) {

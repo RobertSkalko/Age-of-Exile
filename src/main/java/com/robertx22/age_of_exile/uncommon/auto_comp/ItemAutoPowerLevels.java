@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
@@ -40,10 +41,19 @@ public class ItemAutoPowerLevels {
             int MAX_SINGLE_STAT_VALUE = ModConfig.get().autoCompatibleItems.MAX_SINGLE_STAT_VALUE;
             int MAX_TOTAL_STATS = ModConfig.get().autoCompatibleItems.MAX_TOTAL_STATS;
 
-            this.totalStatNumbers = stats.values()
-                .stream()
-                .mapToInt(x -> (int) MathHelper.clamp(x.getValue(), -MAX_SINGLE_STAT_VALUE, MAX_SINGLE_STAT_VALUE))
-                .sum();
+            int sum = 0;
+            for (EntityAttributeModifier x : stats.values()) {
+                int clamp = (int) MathHelper.clamp(x.getValue(), -MAX_SINGLE_STAT_VALUE, MAX_SINGLE_STAT_VALUE);
+                if (x.getName()
+                    .equals(Registry.ATTRIBUTE.getId(EntityAttributes.GENERIC_ATTACK_DAMAGE)
+                        .toString())) {
+                    clamp *= 2; // make dmg be more important than other stats
+                }
+                sum += clamp;
+            }
+            this.totalStatNumbers = sum;
+
+            totalStatNumbers += item.getMaxDamage() / 250F; // some items only differ by durability, so make the more durable ones have higher value
 
             totalStatNumbers = MathHelper.clamp(totalStatNumbers, -MAX_TOTAL_STATS, MAX_TOTAL_STATS);
         } catch (Exception e) {

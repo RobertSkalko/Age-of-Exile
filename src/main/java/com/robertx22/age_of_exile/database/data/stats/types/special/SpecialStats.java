@@ -39,7 +39,7 @@ public class SpecialStats {
     static Formatting FORMAT = Formatting.GRAY;
     static Formatting NUMBER = Formatting.GREEN;
 
-    static String format(String str) {
+    public static String format(String str) {
 
         str = FORMAT + str;
 
