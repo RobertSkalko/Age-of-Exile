@@ -1,0 +1,36 @@
+{
+  "surface_builder": "minecraft:nope",
+  "depth": 0.1,
+  "scale": 0.2,
+  "temperature": 0.5,
+  "downfall": 0.5,
+  "precipitation": "none",
+  "category": "none",
+  "player_spawn_friendly": false,
+  "effects": {   
+  },
+  "starts": [],
+  "spawners": {
+    "monster": [],
+    "creature": [],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [     
+    ]
+  ]
+}

@@ -15,6 +15,9 @@
   "icon": "assets/mmorpg/icon.png",
   "environment": "*",
   "entrypoints": {
+	"preLaunch": [
+	 "com.robertx22.age_of_exile.mmorpg.init.PreInit"
+	],
     "main": [
       "com.robertx22.age_of_exile.mmorpg.init.CommonInit"
     ],

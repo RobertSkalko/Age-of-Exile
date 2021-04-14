@@ -27,7 +27,7 @@ public class JewelryMIs implements ISlashRegistryInit {
             "bonechill_ring",
             "Bonechill Ring",
             "",
-            BaseGearJewelry.COLD_RES_RING.values())
+            BaseGearJewelry.MANA_RING.values())
             .stats(Arrays.asList(
                 new StatModifier(5, 10, Health.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 10, Mana.getInstance(), ModType.LOCAL_INCREASE),

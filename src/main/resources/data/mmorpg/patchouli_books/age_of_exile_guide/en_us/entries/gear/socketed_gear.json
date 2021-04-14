@@ -1,17 +1,17 @@
 {
   "name": "Gear with Sockets",
   "category": "gear",
-  "icon": "mmorpg:jewelry/ring/cold_res_ring_low",
+  "icon": "minecraft:gold_ingot",
   "sortnum": 1,
   "pages": [
 	{  
 	    "type": "spotlight",
-		"item": "mmorpg:jewelry/ring/cold_res_ring_low",		
-		"text": "Some gears have sockets. These are empty spots that can be filled with gems or runes! There is also a Relic item rarity, which is a rare drop and can contain more sockets!"
+		"item": "minecraft:gold_ingot",		
+		"text": "Some gears have sockets. These are empty spots that can be filled with gems or runes!"
 	},
 	{  
 		"type": "text",   
-		"text": "There are some limitations with socketing. The gem/rune can't be higher level than the gear it's being inserted. You also can't have duplicate gems or runes in an item."
+		"text": "There are some limitations with socketing. The gem/rune can't be higher level than the gear it's being inserted."
 	}
   ]
 }

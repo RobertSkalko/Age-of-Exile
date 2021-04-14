@@ -12,6 +12,7 @@ cloth_pants0
 cloth_pants1
 plate_boots4
 cloth_pants2
+hp_ring_end
 mana_reg_ring_low
 tower_shield2
 tower_shield1
@@ -19,7 +20,6 @@ leather_boots3
 tower_shield0
 leather_boots4
 cloth_boots4
-fire_res_ring_end
 tower_shield4
 tower_shield3
 cloth_boots2
@@ -38,13 +38,11 @@ leather_boots0
 cloth_helmet3
 cloth_helmet2
 cloth_helmet4
-cold_res_ring_end
 fishing_rod2
 fishing_rod3
 fishing_rod4
 scepter0
 scepter1
-cold_res_ring_low
 scepter4
 scepter2
 buckler_shield1
@@ -55,7 +53,6 @@ buckler_shield2
 buckler_shield4
 cloth_helmet1
 cloth_helmet0
-poison_res_ring_low
 leather_helmet2
 leather_helmet1
 leather_helmet0
@@ -87,6 +84,7 @@ spirit_shield4
 all_res_necklace_end
 spirit_shield3
 spirit_shield0
+hp_ring_low
 spirit_shield2
 spirit_shield1
 leather_chest2
@@ -104,7 +102,6 @@ crossbow3
 crossbow4
 leather_chest4
 leather_chest3
-fire_res_ring_low
 leather_pants0
 leather_pants1
 leather_pants2
@@ -125,7 +122,6 @@ cloth_chest0
 plate_pants1
 plate_pants2
 plate_pants0
-poison_res_ring_end
 life_necklace_low
 plate_helmet1
 plate_helmet0

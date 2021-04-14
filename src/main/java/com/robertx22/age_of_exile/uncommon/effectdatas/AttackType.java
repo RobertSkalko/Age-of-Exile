@@ -17,6 +17,9 @@ public enum AttackType {
     BASIC_ATTACK("basic_attack", "Basic Attack") {
 
     },
+    BASIC_ELE_ATK_DMG("basic_ele_dmg", "Basic Attack Elemental Damage") {
+
+    },
     ALL("all", "All") {
 
     };
@@ -29,7 +32,7 @@ public enum AttackType {
     }
 
     public boolean isAttack() {
-        return this == ATTACK || this == BASIC_ATTACK;
+        return this == ATTACK || this == BASIC_ATTACK || this == BASIC_ELE_ATK_DMG;
     }
 
     public boolean isSpell() {

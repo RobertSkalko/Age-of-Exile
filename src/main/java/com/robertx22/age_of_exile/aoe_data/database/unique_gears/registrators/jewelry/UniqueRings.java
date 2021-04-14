@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.j
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
@@ -31,11 +33,36 @@ public class UniqueRings implements ISlashRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
+            ModRegistry.UNIQUE_GEARS.GOLD_RING,
+            "gold_ring",
+            "Gold Ring",
+            "",
+            BaseGearJewelry.MANA_RING.values())
+            .setReplacesName()
+            .baseStats(
+                new StatModifier(-20, -20, Health.getInstance(), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalResist(Elements.Fire), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalResist(Elements.Light), ModType.FLAT)
+            )
+            .stats(Arrays.asList(
+                new StatModifier(1, 25, TreasureQuantity.getInstance(), ModType.FLAT),
+                new StatModifier(1, 25, TreasureQuality.getInstance(), ModType.FLAT),
+                new StatModifier(1, 5, Intelligence.INSTANCE, ModType.FLAT),
+                new StatModifier(1, 5, Agility.INSTANCE, ModType.FLAT)
+
+            ))
+            .req(new StatRequirement()
+                .setVit(0.5F)
+                .setWis(0.5F))
+            .devComment("item find ring")
+            .build();
+
+        UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.WITCH_BREW_RING,
             "witch_brew",
             "Witch's Brew",
             "",
-            BaseGearJewelry.RING_MANA_REG.values())
+            BaseGearJewelry.MANA_RING.values())
             .baseStats(
                 new StatModifier(15, 25, new ElementalResist(Elements.Nature), ModType.FLAT),
                 new StatModifier(15, 25, new ElementalResist(Elements.Dark), ModType.FLAT)
@@ -75,7 +102,7 @@ public class UniqueRings implements ISlashRegistryInit {
             "loop_of_infinity",
             "Loop of Infinity",
             "Is it truly an end if everything just starts all over again? Maybe it really is just a loop.",
-            BaseGearJewelry.RING_MANA_REG.get(LevelRanges.MID_TO_END))
+            BaseGearJewelry.MANA_RING.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(5, 10, Mana.getInstance(), ModType.FLAT),
                 new StatModifier(1, 4, RegeneratePercentStat.MANA, ModType.FLAT)
@@ -89,7 +116,7 @@ public class UniqueRings implements ISlashRegistryInit {
             "solar_ring",
             "Solaris",
             "Mirror, mirror on the wall, who is the brightest of them all?",
-            BaseGearJewelry.FIRE_RES_RING.get(LevelRanges.START_TO_LOW))
+            BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT)
@@ -103,7 +130,7 @@ public class UniqueRings implements ISlashRegistryInit {
             "lunar_ring",
             "Lunaris",
             "There is no moonless night.",
-            BaseGearJewelry.COLD_RES_RING.get(LevelRanges.START_TO_LOW))
+            BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT)
@@ -117,7 +144,7 @@ public class UniqueRings implements ISlashRegistryInit {
             "touch_of_eternity",
             "Touch of Eternity",
             "Worn by Kings, Beggars, Barbarians, Queens, Prophets and now ... you.",
-            BaseGearJewelry.RING_MANA_REG.get(LevelRanges.START_TO_LOW))
+            BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_LOW))
             .stats(Arrays.asList(
                 new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT),
                 new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT)

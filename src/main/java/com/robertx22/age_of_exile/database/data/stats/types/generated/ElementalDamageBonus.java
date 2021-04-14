@@ -55,8 +55,7 @@ public class ElementalDamageBonus extends ElementalStat {
 
     @Override
     public String locNameForLangFile() {
-        return "All " + getElement()
-            .dmgName + " Damage";
+        return getElement().dmgName + " Damage";
     }
 
     private static class Effect extends BaseDamageIncreaseEffect {

@@ -28,6 +28,7 @@ judgement
 slime_helmet
 dark_crystal_chest
 bonechill_amulet
+gold_ring
 loop_of_infinity
 void_boots
 blaze_boots
@@ -43,6 +44,7 @@ eye_of_zegrath
 water_ele_sword
 bone_chest
 crystal_wand
+void_sword
 greed_persist
 angel_prot_necklace
 dark_crystal_helmet

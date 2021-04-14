@@ -1,12 +1,12 @@
 {
   "name": "Unique Gear",
   "category": "gear",
-  "icon": "mmorpg:uniques/weapon/obsi_might",
+  "icon": "minecraft:gold_ingot",
   "sortnum": 2,
   "pages": [
 	{  
 	    "type": "spotlight",
-		"item": "mmorpg:uniques/weapon/obsi_might",		
+		"item": "minecraft:gold_ingot",		
 		"text": "This is a special type of item that has no affixes, but has unique stats instead. They can not be crafted normally, but crafting normal gears has a chance to create a unique. They can also be found as mob loot."
 	},
 	{  

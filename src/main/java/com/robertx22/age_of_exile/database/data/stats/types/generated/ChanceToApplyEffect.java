@@ -4,16 +4,12 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class ChanceToApplyEffect extends Stat {
 
@@ -21,6 +17,7 @@ public class ChanceToApplyEffect extends Stat {
     public static ChanceToApplyEffect FROSTBURN = new ChanceToApplyEffect(Elements.Water, NegativeEffects.FROSTBURN, "Frostburn", "frostburn");
     public static ChanceToApplyEffect POISON = new ChanceToApplyEffect(Elements.Nature, NegativeEffects.POISON, "Poison", "poison");
     public static ChanceToApplyEffect BLEED = new ChanceToApplyEffect(Elements.Physical, NegativeEffects.BLEED, "Bleed", "bleed");
+    public static ChanceToApplyEffect TORMENT = new ChanceToApplyEffect(Elements.Dark, NegativeEffects.TORMENT, "Torment", "torment");
 
     String effect;
     String locname;
@@ -36,7 +33,9 @@ public class ChanceToApplyEffect extends Stat {
         this.add$plusminus$toTooltip = false;
         this.min_val = 0;
 
-        this.statEffect = new Effect(effect, ele, AttackType.SPELL, AttackType.ATTACK);
+        this.isLongStat = true;
+
+        this.statEffect = new Effect(effect, ele);
     }
 
     @Override
@@ -56,7 +55,9 @@ public class ChanceToApplyEffect extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "To Apply " + locname;
+        return SpecialStats.format(
+            "Your " + this.ele.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of applying " + locname
+        );
     }
 
     @Override
@@ -67,13 +68,11 @@ public class ChanceToApplyEffect extends Stat {
     static class Effect extends BaseStatEffect<DamageEffect> {
 
         String statusEffect;
-        Set<AttackType> onEffectType;
         Elements ele;
 
-        public Effect(String effect, Elements ele, AttackType... onEffectType) {
+        public Effect(String effect, Elements ele) {
             super(DamageEffect.class);
             this.statusEffect = effect;
-            this.onEffectType = new HashSet<>(Arrays.asList(onEffectType));
             this.ele = ele;
         }
 
@@ -90,15 +89,19 @@ public class ChanceToApplyEffect extends Stat {
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
             ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                .get(this.statusEffect), effect.source, effect.target, 20 * 10);
+                .get(this.statusEffect), effect.source, effect.target, 20 * 6);
 
             return effect;
         }
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            if (RandomUtils.roll(data.getAverageValue())) {
-                return onEffectType.contains(effect.getAttackType()) && effect.element == ele;
+            if (effect.element.elementsMatch(ele)) {
+                if (RandomUtils.roll(data.getAverageValue())) {
+                    return effect.getAttackType()
+                        .isAttack() || effect.getAttackType()
+                        .isSpell();
+                }
             }
             return false;
         }

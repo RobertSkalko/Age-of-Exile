@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.DimensionInit;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -77,6 +78,8 @@ public class CommonInit implements ModInitializer {
                 // }
             }
         });
+
+        DimensionInit.init();
 
 
         /*

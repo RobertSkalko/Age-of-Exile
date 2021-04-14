@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.weapons.UniqueSwords;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
@@ -38,6 +39,8 @@ public class UniqueWeapons implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        new UniqueSwords().registerAll();
 
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.JUDGEMENT_AXE,

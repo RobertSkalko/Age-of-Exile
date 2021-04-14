@@ -71,6 +71,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ChanceToApplyEffect.BURN);
                     add(ChanceToApplyEffect.POISON);
                     add(ChanceToApplyEffect.BLEED);
+                    add(ChanceToApplyEffect.TORMENT);
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());

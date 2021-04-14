@@ -29,11 +29,23 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static String WOUNDS = "negative/" + 4;
     public static String BURN = "negative/" + 5;
     public static String JUDGEMENT = "negative/" + 6;
-    //public static String SHOCK = "negative/" + 7;
+    public static String TORMENT = "negative/" + 7;
     public static String BLEED = "negative/" + 8;
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(TORMENT, "Torment", EffectType.HARMFUL)
+            .maxStacks(1)
+            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
+            .stat(-10, new ElementalResist(Elements.Dark), ModType.FLAT)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.dotDamageOnTick(TORMENT, ValueCalculationData.base(2F), Elements.Dark)
+                    .onTick(20D))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
+                    .onTick(10D))
+                .buildForEffect())
+            .build();
 
         ExileEffectBuilder.of(FROSTBURN, "Frostburn", EffectType.HARMFUL)
             .maxStacks(5)

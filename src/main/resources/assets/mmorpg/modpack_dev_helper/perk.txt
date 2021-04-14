@@ -3,7 +3,6 @@ This registry is modify-able through datapacks.
 big_flow_of_mana
 dodge_and_hp
 big_wand
-big_heart_of_ice
 big_eagle
 trident_damage
 big_hp_res
@@ -24,6 +23,7 @@ big_mana_and_health
 cast_speed
 tormentor
 all_elemental_damage
+big_steal_vit
 flat_ms_mana_regen
 spell_light_damage_and_dot
 big_flame_of_life
@@ -34,6 +34,7 @@ big_lacerator
 warrior
 critical_hit
 big_mages_path
+big_steal_str
 spell_nature_damage_and_dot
 big_frog
 big_breath_of_fire
@@ -54,7 +55,6 @@ mana_and_health
 big_lord_of_arcane
 harmony
 hp_mana_cost
-big_breath_of_thunder
 spell_light_damage
 big_area_dmg_mana
 big_iron_skin
@@ -105,6 +105,7 @@ sword_damage
 big_fighter
 chance_of_burn
 all_dark_damage
+lifesteal
 ele_bow_damage
 blood_mage
 big_int
@@ -125,7 +126,6 @@ big_rat
 mage
 spell_dark_damage_and_dot
 big_wisdom_of_the_elders
-big_heart_of_thunder
 big_breath_of_nature
 big_eviscerator
 spell_critical_damage
@@ -180,6 +180,7 @@ elemental_resist
 big_primal
 big_fury_bolt
 big_divine_light
+big_heal_int
 big_overflow_mana
 duelist
 battle_mage
@@ -189,6 +190,7 @@ fire_dom
 flat_health_phys_dmg
 ele_crossbow_damage
 big_faith_armor
+big_heal_wis
 big_sadist
 chance_of_frostburn
 big_will_of_mana
