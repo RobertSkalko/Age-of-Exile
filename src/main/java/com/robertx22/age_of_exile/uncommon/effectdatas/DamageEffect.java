@@ -158,7 +158,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private float modifyByAttackSpeedIfMelee(float dmg) {
 
-        if (this.weaponType.isMelee) {
+        if (this.weaponType.isMelee()) {
             float cool = 1;
             if (this.source instanceof PlayerEntity) {
 

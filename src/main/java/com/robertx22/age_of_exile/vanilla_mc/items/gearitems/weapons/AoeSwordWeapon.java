@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons;
 
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
@@ -11,13 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.registry.Registry;
 
-public class ItemSword extends SwordItem implements IAutoLocName {
+public class AoeSwordWeapon extends SwordItem implements IAutoLocName {
 
-    public ItemSword(String locname) {
+    public AoeSwordWeapon(WeaponTypes type) {
         super(
-            new RarityItemTier(), 6, -2.4F, (ItemUtils.getDefaultGearProperties()
+            new RarityItemTier(), 6, type.getVanillaItemAttackSpeedModifier(), (ItemUtils.getDefaultGearProperties()
                 .maxDamageIfAbsent(500)));
-        this.locname = locname;
+        this.locname = type.locName();
 
     }
 

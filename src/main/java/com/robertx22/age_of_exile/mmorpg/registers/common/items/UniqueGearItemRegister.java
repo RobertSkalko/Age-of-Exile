@@ -53,13 +53,13 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item FRIGID_STAFF = item(new BaseUniqueWand("Wand"), "uniques/weapon/frigid_staff");
     public Item WORLDBEARER_STAFF = item(new BaseUniqueWand("Wand"), "uniques/weapon/worldbearer");
 
-    public Item INCA_THUNDER_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/inca_thunder");
-    public Item WATER_ELE_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/water_ele_sword");
+    public Item INCA_THUNDER_SWORD = item(new BaseUniqueSword(), "uniques/weapon/inca_thunder");
+    public Item WATER_ELE_SWORD = item(new BaseUniqueSword(), "uniques/weapon/water_ele_sword");
 
     public Item OBSI_MIGHT_AXE = item(new BaseUniqueAxe("Axe"), "uniques/weapon/obsi_might");
     public Item JUDGEMENT_AXE = item(new BaseUniqueAxe("Axe"), "uniques/weapon/judgement");
 
-    public Item VOID_SWORD = item(new BaseUniqueSword("Sword"), "uniques/weapon/void_sword");
+    public Item VOID_SWORD = item(new BaseUniqueSword(), "uniques/weapon/void_sword");
 
     public Item BONECHILL_RING_MI = item(new BaseUniqueRing("Ring"), "uniques/jewelry/bonechill_ring");
     public Item BONECHILL_AMULET_MI = item(new BaseUniqueRing("Amulet"), "uniques/jewelry/bonechill_amulet");

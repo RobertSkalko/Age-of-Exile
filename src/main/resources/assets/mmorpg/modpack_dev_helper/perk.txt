@@ -11,6 +11,7 @@ big_tenacious_combatant
 spell_dark_damage
 dex
 all_water_damage
+hammer_damage
 big_heart_of_dark
 big_mana_steal
 nature_weapon_damage
@@ -41,6 +42,7 @@ big_breath_of_fire
 big_gladiator
 big_vampire
 all_light_damage
+ele_mace_damage
 spell_elemental_damage
 big_aspect_of_thunder
 dodge
@@ -63,6 +65,7 @@ big_breath_of_dark
 true_hit
 water_resist
 bow_damage
+ele_scythe_damage
 big_endurance
 axe_damage
 big_inner_sense
@@ -95,6 +98,7 @@ elemental_penetration
 big_arena
 big_heart_of_water
 phys_acc
+scythe_damage
 fire_weapon_damage
 spell_water_damage_and_dot
 big_poison_alchemy
@@ -114,6 +118,7 @@ red_mana_reserved
 water_weapon_damage
 hp_res
 big_force_of_will
+spear_damage
 big_breath_of_water
 dark_dom
 spell_damage
@@ -140,6 +145,7 @@ mana_and_regen
 fire_resist
 refined_taste
 health
+ele_spear_damage
 big_bravery
 spell_critical_hit
 big_heart_of_light
@@ -170,6 +176,7 @@ physical_weapon_damage
 health_regen
 spell_fire_damage
 dodge_and_ms
+ele_hammer_damage
 big_self_reflection
 templar
 big_health_mana_cost
@@ -198,4 +205,5 @@ int
 big_balistic
 fire_penetration
 big_heart_of_nature
+mace_damage
 big_fire_water_spell_crit_dmg

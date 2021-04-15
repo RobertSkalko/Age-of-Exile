@@ -19,6 +19,8 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegister;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -148,12 +150,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         return this.essenceItem;
     }
 
-    public static class Constants {
-        public static float SWORD_ATK_SPEED = 0.75F;
-        public static float WAND_ATK_SPEED = 1;
-        public static float AXE_ATK_SPEED = 1.25F;
-    }
-
     public final float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
         return getAttacksPerSecondCalculated(data.getUnit()
             .getCalculatedStat(AttackSpeed.getInstance()));
@@ -223,7 +219,11 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         hoe(SlotFamily.Tool),
 
         sword(SlotFamily.Weapon),
+        hammer(SlotFamily.Weapon),
+        mace(SlotFamily.Weapon),
+        spear(SlotFamily.Weapon),
         axe(SlotFamily.Weapon),
+        scythe(SlotFamily.Weapon),
         bow(SlotFamily.Weapon),
         wand(SlotFamily.Weapon),
         crossbow(SlotFamily.Weapon),
@@ -394,58 +394,19 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public Item getMaterial() {
 
         TagList tags = getTags();
-        float max = getLevelRange().getEndPercent();
 
-        if (max >= 1F) {
-            if (tags.contains(SlotTag.cloth)) {
-                return ModRegistry.GEAR_MATERIALS.CLOTH_4;
-            }
-            if (tags.contains(SlotTag.leather)) {
-                return ModRegistry.GEAR_MATERIALS.LEATHER_4;
-            } else {
-                return ModRegistry.GEAR_MATERIALS.ORE_4;
-            }
-        }
-        if (max >= 0.8F) {
-            if (tags.contains(SlotTag.cloth)) {
-                return ModRegistry.GEAR_MATERIALS.CLOTH_3;
-            }
-            if (tags.contains(SlotTag.leather)) {
-                return ModRegistry.GEAR_MATERIALS.LEATHER_3;
-            } else {
-                return ModRegistry.GEAR_MATERIALS.ORE_3;
-            }
-        }
-
-        if (max >= 0.6F) {
-            if (tags.contains(SlotTag.cloth)) {
-                return ModRegistry.GEAR_MATERIALS.CLOTH_2;
-            }
-            if (tags.contains(SlotTag.leather)) {
-                return ModRegistry.GEAR_MATERIALS.LEATHER_2;
-            } else {
-                return ModRegistry.GEAR_MATERIALS.ORE_2;
-            }
-        }
-        if (max >= 0.4F) {
-            if (tags.contains(SlotTag.cloth)) {
-                return ModRegistry.GEAR_MATERIALS.CLOTH_1;
-            }
-            if (tags.contains(SlotTag.leather)) {
-                return ModRegistry.GEAR_MATERIALS.LEATHER_1;
-            } else {
-                return ModRegistry.GEAR_MATERIALS.ORE_1;
-            }
-        }
+        GearMaterialRegister.TYPE type = GearMaterialRegister.TYPE.ORE;
 
         if (tags.contains(SlotTag.cloth)) {
-            return ModRegistry.GEAR_MATERIALS.CLOTH_0;
+            type = GearMaterialRegister.TYPE.CLOTH;
+
         }
         if (tags.contains(SlotTag.leather)) {
-            return ModRegistry.GEAR_MATERIALS.LEATHER_0;
-        } else {
-            return ModRegistry.GEAR_MATERIALS.ORE_0;
+            type = GearMaterialRegister.TYPE.LEATHER;
         }
+
+        return ModRegistry.GEAR_MATERIALS.MAP.get(type)
+            .get(SkillItemTier.of(getLevelRange()).tier);
 
     }
 
@@ -460,6 +421,28 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
                 " S "
             };
         }
+
+        if (tags.contains(SlotTag.hammer)) {
+            return new String[]{
+                "MMM",
+                " S ",
+                " S "
+            };
+        }
+        if (tags.contains(SlotTag.mace)) {
+            return new String[]{
+                " M ",
+                "MSM",
+                " S "
+            };
+        }
+        if (tags.contains(SlotTag.spear)) {
+            return new String[]{
+                "  M",
+                " M ",
+                "S  "
+            };
+        }
         if (tags.contains(SlotTag.axe)) {
             return new String[]{
                 "MM ",
@@ -472,6 +455,13 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
                 "  M",
                 " M ",
                 "S  "
+            };
+        }
+        if (tags.contains(SlotTag.scythe)) {
+            return new String[]{
+                "  M",
+                " SM",
+                "S M"
             };
         }
         if (tags.contains(SlotTag.bow)) {

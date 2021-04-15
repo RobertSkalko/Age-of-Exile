@@ -78,7 +78,12 @@ mmorpg:weapon/wand/wand0
 mmorpg:weapon/wand/wand1
 mmorpg:weapon/axe/axe0
 mmorpg:weapon/axe/axe1
+mmorpg:weapon/scythe/scythe1
 minecraft:netherite_boots.plate_boots2
+mmorpg:weapon/scythe/scythe0
+mmorpg:weapon/scythe/scythe3
+mmorpg:weapon/scythe/scythe2
+mmorpg:weapon/scythe/scythe4
 mmorpg:uniques/armor/oak_chest
 mmorpg:weapon/bow/bow1
 mmorpg:uniques/armor/void_boots

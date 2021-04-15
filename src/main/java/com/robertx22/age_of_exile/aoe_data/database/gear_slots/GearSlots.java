@@ -12,6 +12,10 @@ public class GearSlots implements ISlashRegistryInit {
     public static DataGenKey<GearSlot> WAND = new DataGenKey<GearSlot>("wand");
     public static DataGenKey<GearSlot> BOW = new DataGenKey<GearSlot>("bow");
     public static DataGenKey<GearSlot> CROSBOW = new DataGenKey<GearSlot>("crossbow");
+    public static DataGenKey<GearSlot> SCYTHE = new DataGenKey<GearSlot>("scythe");
+    public static DataGenKey<GearSlot> SPEAR = new DataGenKey<GearSlot>("spear");
+    public static DataGenKey<GearSlot> MACE = new DataGenKey<GearSlot>("mace");
+    public static DataGenKey<GearSlot> HAMMER = new DataGenKey<GearSlot>("hammer");
 
     public static DataGenKey<GearSlot> BOOTS = new DataGenKey<GearSlot>("boots");
     public static DataGenKey<GearSlot> PANTS = new DataGenKey<GearSlot>("pants");
@@ -31,6 +35,10 @@ public class GearSlots implements ISlashRegistryInit {
     public void registerAll() {
 
         new GearSlot(SWORD, 1000).addToSerializables();
+        new GearSlot(MACE, 1000).addToSerializables();
+        new GearSlot(HAMMER, 1000).addToSerializables();
+        new GearSlot(SCYTHE, 1000).addToSerializables();
+        new GearSlot(SPEAR, 1000).addToSerializables();
         new GearSlot(AXE, 1000).addToSerializables();
         new GearSlot(WAND, 1250).addToSerializables();
         new GearSlot(BOW, 750).addToSerializables();

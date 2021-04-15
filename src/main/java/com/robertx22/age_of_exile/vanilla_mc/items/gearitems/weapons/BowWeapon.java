@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.item.BowItem;
 import net.minecraft.util.registry.Registry;
 
-public class ModBowItem extends BowItem implements IAutoLocName {
+public class BowWeapon extends BowItem implements IAutoLocName {
 
-    public ModBowItem(String locname) {
+    public BowWeapon(String locname) {
         super(ItemUtils.getDefaultGearProperties()
             .maxCount(1)
             .maxDamageIfAbsent(500));

@@ -17,6 +17,7 @@ spell_dark_damage
 bonus_exp
 bonus_favor
 all_water_damage
+hammer_damage
 spell_fire_dmg_leech_as_health
 other_light_dmg_leech_as_mana
 basic_attack_elemental_dmg_leech_as_health
@@ -54,6 +55,7 @@ all_light_damage
 basic_ele_dmg_water_dmg_leech_as_mana
 attack_fire_dmg_leech_as_health
 other_fire_dmg_leech_as_health
+ele_mace_damage
 mana_per_10_intelligence
 poison_bonus_dmg
 blood_on_basic_ele_dmg_hit
@@ -109,6 +111,7 @@ vitality
 bonus_exp_for_t3_mob
 armor_penetration
 bow_damage
+ele_scythe_damage
 basic_attack_elemental_dmg_leech_as_mana
 all_all_dmg_leech_as_health
 axe_damage
@@ -151,6 +154,7 @@ dot_dark_dmg_leech_as_mana
 basic_attack_physical_dmg_leech_as_mana
 bonus_farming_exp
 absorb_ele_dmg_to_hp
+scythe_damage
 fire_weapon_damage
 other_water_dmg_leech_as_mana
 dot_dmg
@@ -199,6 +203,7 @@ dot_elemental_dmg_leech_as_mana
 bonus_mining_exp
 attack_dark_dmg_leech_as_health
 intelligence
+spear_damage
 basic_attack_all_dmg_leech_as_mana
 day_night_dmg
 spell_damage
@@ -236,6 +241,7 @@ attack_physical_dmg_leech_as_health
 transfer_health_to_physical_weapon_damage
 spell_elemental_dmg_leech_as_mana
 inc_aura_effect
+ele_spear_damage
 bonus_day_yield
 spell_critical_hit
 blood_user
@@ -275,6 +281,7 @@ health_regen
 spell_fire_damage
 all_fire_dmg_leech_as_health
 bonus_exp_for_t1_mob
+ele_hammer_damage
 all_nature_dmg_leech_as_health
 all_physical_dmg_leech_as_health
 socket_slots
@@ -319,6 +326,7 @@ all_fire_dmg_leech_as_mana
 bonus_rain_yield
 dmg_under_wither
 heal_effect_on_self
+mace_damage
 basic_ele_dmg_water_dmg_leech_as_health
 other_all_dmg_leech_as_mana
 hunger_immunity

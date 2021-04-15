@@ -1,11 +1,12 @@
 package com.robertx22.age_of_exile.database.data.unique_items.bases;
 
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ItemSword;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.AoeSwordWeapon;
 
-public final class BaseUniqueSword extends ItemSword {
+public final class BaseUniqueSword extends AoeSwordWeapon {
 
-    public BaseUniqueSword(String locname) {
-        super(locname);
+    public BaseUniqueSword() {
+        super(WeaponTypes.Sword);
     }
 
     @Override

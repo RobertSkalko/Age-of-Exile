@@ -14,9 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
 import net.minecraft.util.registry.Registry;
 
-public abstract class BaseWeaponItem extends ToolItem implements IAutoLocName {
+public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocName {
 
-    public BaseWeaponItem(String locname) {
+    public SingleTargetWeapon(String locname) {
 
         super(
             new RarityItemTier(), ItemUtils.getDefaultGearProperties()

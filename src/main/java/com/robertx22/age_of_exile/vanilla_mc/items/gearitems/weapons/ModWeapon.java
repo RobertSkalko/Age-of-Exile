@@ -1,26 +1,27 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons;
 
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.BaseWeaponItem;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.SingleTargetWeapon;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.item.ItemStack;
 
-public class ItemAxe extends BaseWeaponItem {
+public abstract class ModWeapon extends SingleTargetWeapon {
 
-    public ItemAxe(String locname) {
-        super(locname);
-        this.attackSpeed = -3F;
+    public ModWeapon(WeaponTypes type) {
+        super(type.id);
+
+        this.attackSpeed = type.getVanillaItemAttackSpeedModifier();
     }
 
-    /**
-     * Check whether this Item can harvest the given Block
-     */
+    @Override
     public boolean isEffectiveOn(BlockState blockIn) {
         return blockIn.getBlock() == Blocks.COBWEB;
     }
 
+    @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
         Block block = state.getBlock();
 

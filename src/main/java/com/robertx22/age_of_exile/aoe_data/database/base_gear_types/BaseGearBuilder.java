@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
+import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -11,6 +12,7 @@ import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -20,7 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class BaseGearBuilder {
+public class BaseGearBuilder implements DataHelper {
 
     private AttackPlayStyle style = AttackPlayStyle.MELEE;
     private String locnamesuffix;
@@ -44,6 +46,20 @@ public class BaseGearBuilder {
         b.idprefix = idprefix;
         b.slot = slot;
         b.itemMap = itemMap;
+        return b;
+    }
+
+    public static BaseGearBuilder weapon(DataGenKey<GearSlot> slot, WeaponTypes type, HashMap<LevelRange, Item> itemMap) {
+        BaseGearBuilder b = new BaseGearBuilder();
+        b.locnamesuffix = type.locName();
+        b.idprefix = type.id;
+        b.slot = slot;
+        b.itemMap = itemMap;
+        b.atkspeed = type.atkPerSec;
+        b.weaponType(type);
+        b.attackStyle(type.style);
+        b.baseStat(b.getAttackDamageStat(type, DataHelper.Number.FULL, Elements.Physical));
+
         return b;
     }
 
