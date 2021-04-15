@@ -27,7 +27,7 @@ public class ItemModelManager {
                     if (x.getBaseGearType()
                         .family()
                         .equals(BaseGearType.SlotFamily.Weapon)) {
-                        handheld(x.getUniqueItem());
+                        //handheld(x.getUniqueItem());
                     } else {
                         generated(x.getUniqueItem());
                     }
@@ -42,7 +42,7 @@ public class ItemModelManager {
                     .contains(BaseGearType.SlotTag.crossbow) && !x.isShield()) {
                     if (x.family()
                         .equals(BaseGearType.SlotFamily.Weapon)) {
-                        handheld(x.getItem());
+                        //   handheld(x.getItem());
                     } else {
                         generated(x.getItem());
                     }

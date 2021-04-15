@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders;
 
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
-import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -14,9 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.HashMap;
@@ -33,26 +30,24 @@ public class BaseGearWeapons implements ISlashRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> MACE;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HAMMER;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> SPEAR;
+    public static HashMap<LevelRange, DataGenKey<BaseGearType>> GLOVE;
+    public static HashMap<LevelRange, DataGenKey<BaseGearType>> DAGGER;
+    public static HashMap<LevelRange, DataGenKey<BaseGearType>> STAFF;
 
     @Override
     public void registerAll() {
 
-        BOW = BaseGearBuilder.of(GearSlots.BOW, "bow", "Bow", ModRegistry.GEAR_ITEMS.BOWS)
-            .weaponType(WeaponTypes.Bow)
+        BOW = BaseGearBuilder.weapon(GearSlots.BOW, WeaponTypes.Bow, ModRegistry.GEAR_ITEMS.BOWS)
             .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
-            .baseStat(getAttackDamageStat(WeaponTypes.Bow, DataHelper.Number.FULL, Elements.Physical))
-            .attackStyle(AttackPlayStyle.RANGED)
-            .addHunterLevelRanges()
+            .addWarriorLevelRanges()
             .build();
 
-        CROSSBOW = BaseGearBuilder.of(GearSlots.CROSBOW, "crossbow", "Crossbow", ModRegistry.GEAR_ITEMS.CROSSBOWS)
-            .weaponType(WeaponTypes.CrossBow)
-            .req(new StatRequirement().setDex(0.5f))
+        CROSSBOW = BaseGearBuilder.weapon(GearSlots.CROSBOW, WeaponTypes.CrossBow, ModRegistry.GEAR_ITEMS.CROSSBOWS)
+            .req(new StatRequirement().setDex(0.4f)
+                .setStr(0.2F))
             .tags(new TagList(SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
-            .baseStat(getAttackDamageStat(WeaponTypes.CrossBow, DataHelper.Number.FULL, Elements.Physical))
-            .attackStyle(AttackPlayStyle.RANGED)
-            .addHunterLevelRanges()
+            .addWarriorLevelRanges()
             .build();
 
         SCYTHE = BaseGearBuilder.weapon(GearSlots.SCYTHE, WeaponTypes.Scythe, ModRegistry.GEAR_ITEMS.SCYTHES)
@@ -82,11 +77,13 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .addWarriorLevelRanges()
             .build();
 
-        SCEPTER = BaseGearBuilder.weapon(GearSlots.WAND, WeaponTypes.Wand, ModRegistry.GEAR_ITEMS.SCEPTERS)
-            .req(new StatRequirement().setInt(0.5F))
+        SCEPTER = BaseGearBuilder.weapon(GearSlots.SCEPTER, WeaponTypes.Scepter, ModRegistry.GEAR_ITEMS.SCEPTERS)
+            .req(new StatRequirement().setInt(0.2F)
+                .setWis(0.5F)
+                .setStr(0.1F))
             .essenceItem(ModRegistry.GEAR_MATERIALS.LIFE)
-            .tags(new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
-            .implicitStat(new StatModifier(3, 10, SpellDamage.getInstance(), ModType.FLAT))
+            .tags(new TagList(SlotTag.mage_weapon, SlotTag.scepter, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
+            .implicitStat(new StatModifier(3, 10, HealPower.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 
@@ -109,6 +106,28 @@ public class BaseGearWeapons implements ISlashRegistryInit {
         SPEAR = BaseGearBuilder.weapon(GearSlots.SPEAR, WeaponTypes.Spear, ModRegistry.GEAR_ITEMS.SPEARS)
             .req(new StatRequirement().setStr(0.75F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.spear, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
+            .addWarriorLevelRanges()
+            .build();
+
+        GLOVE = BaseGearBuilder.weapon(GearSlots.GLOVE, WeaponTypes.Glove, ModRegistry.GEAR_ITEMS.GLOVES)
+            .req(new StatRequirement().setDex(0.6F)
+                .setAgi(0.3F)
+                .setStr(0.2F))
+            .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.glove, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.dexterity, SlotTag.strength))
+            .addWarriorLevelRanges()
+            .build();
+
+        DAGGER = BaseGearBuilder.weapon(GearSlots.DAGGER, WeaponTypes.Dagger, ModRegistry.GEAR_ITEMS.DAGGERS)
+            .req(new StatRequirement().setDex(0.2F)
+                .setAgi(0.5F))
+            .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.dagger, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.dexterity))
+            .addWarriorLevelRanges()
+            .build();
+
+        STAFF = BaseGearBuilder.weapon(GearSlots.STAFF, WeaponTypes.Staff, ModRegistry.GEAR_ITEMS.STAFFS)
+            .req(new StatRequirement().setInt(0.5F)
+                .setStr(0.2F))
+            .tags(new TagList(SlotTag.mage_weapon, SlotTag.staff, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
             .addWarriorLevelRanges()
             .build();
 

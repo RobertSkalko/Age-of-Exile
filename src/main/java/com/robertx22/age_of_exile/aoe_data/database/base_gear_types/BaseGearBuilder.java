@@ -34,6 +34,7 @@ public class BaseGearBuilder implements DataHelper {
     private List<StatModifier> implicitstats = new ArrayList<>();
     private StatRequirement req = new StatRequirement();
     private WeaponTypes wep = WeaponTypes.None;
+    private int weapon_offhand_stat_util = 0;
     private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;
     private int weight = 1000;
@@ -58,6 +59,7 @@ public class BaseGearBuilder implements DataHelper {
         b.atkspeed = type.atkPerSec;
         b.weaponType(type);
         b.attackStyle(type.style);
+        b.weapon_offhand_stat_util = type.weapon_offhand_stat_util;
         b.baseStat(b.getAttackDamageStat(type, DataHelper.Number.FULL, Elements.Physical));
 
         return b;
@@ -185,6 +187,7 @@ public class BaseGearBuilder implements DataHelper {
             type.attacksPerSecond = atkspeed;
             type.weight = weight;
             type.style = style;
+            type.weapon_offhand_stat_util = weapon_offhand_stat_util;
             type.essenceItem = essenceItem;
             type.item_id = Registry.ITEM.getId(itemMap.get(x))
                 .toString();

@@ -9,9 +9,11 @@ big_hp_res
 increase_healing
 big_tenacious_combatant
 spell_dark_damage
+scepter_damage
 dex
 all_water_damage
 hammer_damage
+ele_glove_damage
 big_heart_of_dark
 big_mana_steal
 nature_weapon_damage
@@ -22,6 +24,7 @@ str
 projectile_damage
 big_mana_and_health
 cast_speed
+dagger_damage
 tormentor
 all_elemental_damage
 big_steal_vit
@@ -57,6 +60,7 @@ mana_and_health
 big_lord_of_arcane
 harmony
 hp_mana_cost
+ele_scepter_damage
 spell_light_damage
 big_area_dmg_mana
 big_iron_skin
@@ -82,9 +86,11 @@ huge_dex
 armor
 ele_wand_damage
 atk_cast_speed
+ele_staff_damage
 spell_nature_damage
 big_agility
 big_precision
+ele_dagger_damage
 spell_dmg_atk_speed
 spell_water_damage
 divinity
@@ -145,6 +151,7 @@ mana_and_regen
 fire_resist
 refined_taste
 health
+staff_damage
 ele_spear_damage
 big_bravery
 spell_critical_hit
@@ -196,6 +203,7 @@ nature_penetration
 fire_dom
 flat_health_phys_dmg
 ele_crossbow_damage
+glove_damage
 big_faith_armor
 big_heal_wis
 big_sadist

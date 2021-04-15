@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.HammerWeapo
 
 public final class BaseUniqueHammer extends HammerWeapon {
 
-    public BaseUniqueHammer(String locname) {
-        super(locname);
+    public BaseUniqueHammer() {
+        super();
     }
 
     @Override

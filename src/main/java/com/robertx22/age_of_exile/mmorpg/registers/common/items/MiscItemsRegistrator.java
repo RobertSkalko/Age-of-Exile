@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.player_skills.items.farming.ProduceItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.MiscSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
@@ -21,6 +22,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer1;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
 public class MiscItemsRegistrator extends BaseItemRegistrator {
@@ -28,6 +30,9 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public MiscItemsRegistrator() {
 
     }
+
+    public MiscSeedItem MANA_FLOWER_SEED = item(new MiscSeedItem("Mana Flower Seed", Items.LAPIS_LAZULI, ModRegistry.BLOCKS.MANA_PLANT), "seed/mana");
+    public MiscSeedItem HP_FLOWER_SEED = item(new MiscSeedItem("Life Flower Seed", Items.APPLE, ModRegistry.BLOCKS.LIFE_PLANT), "seed/life");
 
     public ProjectileItem FIREBALL = item(new ProjectileItem("fireball"));
     public ProjectileItem SNOWBALL = item(new ProjectileItem("snowball"));

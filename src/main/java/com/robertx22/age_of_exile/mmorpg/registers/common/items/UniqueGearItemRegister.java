@@ -2,10 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.data.unique_items.bases.*;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.BaseArmorItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 
 public class UniqueGearItemRegister extends BaseItemRegistrator {
@@ -16,19 +13,6 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public ArmorSet SLIME_SET = new ArmorSet("slime", LevelRanges.HIGH, ArmorType.CLOTH);
     public ArmorSet DARK_CRYSTAL_SET = new ArmorSet("dark_crystal", LevelRanges.HIGH, ArmorType.PLATE);
     public ArmorSet VOID_SET = new ArmorSet("void", LevelRanges.HIGH, ArmorType.CLOTH);
-
-    public Item BEAST_BLOOD = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.PLATE, "Plate Chest", EquipmentSlot.CHEST, true), "uniques/armor/beast_blood");
-    public Item EXEC_PRIDE = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/exec_pride");
-    public Item HARBINGER_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.MIDDLE), ArmorType.LEATHER, "Leather Chest", EquipmentSlot.CHEST, true), "uniques/armor/harbinger");
-    public Item INNFER_CONFLUX_ROBE = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.CLOTH, "Cloth Chest", EquipmentSlot.CHEST, true), "uniques/armor/inner_conflux");
-    public Item MS_REG_ARMOR_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.MIDDLE), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/ms_armor_chest");
-    public Item KINGMAKER_CHEST = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate chest", EquipmentSlot.CHEST, true), "uniques/armor/kingmaker");
-
-    public Item FIFTH_RIDER_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, true), "uniques/armor/fifth_rider");
-    public Item GLUTTONY_HELMET = item(new BaseArmorItem(ArmorTier.from(LevelRanges.LOW), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, true), "uniques/armor/gluttony_helmet");
-    public Item JESTER_HAT = item(new BaseArmorItem(ArmorTier.from(LevelRanges.HIGH), ArmorType.CLOTH, "Cloth Hat", EquipmentSlot.HEAD, true), "uniques/armor/jester_hat");
-    public Item FROST_CROWN = item(new BaseArmorItem(ArmorTier.from(LevelRanges.MIDDLE), ArmorType.CLOTH, "Cloth Hat", EquipmentSlot.HEAD, true), "uniques/armor/frost_crown");
-    public Item CROWN_OF_ELEMENTS = item(new BaseArmorItem(ArmorTier.from(LevelRanges.ENDGAME), ArmorType.CLOTH, "Cloth Hat", EquipmentSlot.HEAD, true), "uniques/armor/crown_of_elements");
 
     public Item ANGEL_PROT_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/angel_prot_necklace");
     public Item GHAST_TEAR_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/ghast_necklace");

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropBlock;
@@ -123,29 +124,38 @@ public class LootTableGenerator {
 
         ModRegistry.TIERED.FARMING_PRODUCE.values()
             .forEach(x -> {
-                addFarming(ModRegistry.BLOCKS.FARMING_PLANTS.get(x.tier), x, 3, map);
+                addFarming(ModRegistry.BLOCKS.FARMING_PLANTS.get(x.tier), x, null, 3, map);
             });
 
-        addFarming(ModRegistry.BLOCKS.LIFE_PLANT, ModRegistry.MISC_ITEMS.LIFE_PLANT, 3, map);
-        addFarming(ModRegistry.BLOCKS.MANA_PLANT, ModRegistry.MISC_ITEMS.MANA_PLANT, 3, map);
+        addFarming(ModRegistry.BLOCKS.LIFE_PLANT, ModRegistry.MISC_ITEMS.HP_FLOWER_SEED, ModRegistry.MISC_ITEMS.LIFE_PLANT, 3, map);
+        addFarming(ModRegistry.BLOCKS.MANA_PLANT, ModRegistry.MISC_ITEMS.MANA_FLOWER_SEED, ModRegistry.MISC_ITEMS.MANA_PLANT, 3, map);
 
         return map;
 
     }
 
-    private void addFarming(Block block, Item item, int age, HashMap<Identifier, LootTable> map) {
+    private void addFarming(Block block, Item item, @Nullable Item seed, int age, HashMap<Identifier, LootTable> map) {
 
         LootCondition.Builder condition = BlockStatePropertyLootCondition.builder(block)
             .properties(StatePredicate.Builder.create()
                 .exactMatch(CropBlock.AGE, age));
 
         LootTable.Builder b = LootTable.builder();
+
         LootPool.Builder loot = LootPool.builder();
         loot.conditionally(condition);
         loot.rolls(UniformLootTableRange.between(1, 3));
-
         loot.with(ItemEntry.builder(item));
         b.pool(loot);
+
+        if (seed != null) {
+            LootPool.Builder seedpool = LootPool.builder();
+            seedpool.conditionally(condition);
+            seedpool.rolls(UniformLootTableRange.between(1, 2));
+            seedpool.with(ItemEntry.builder(seed));
+            b.pool(seedpool);
+        }
+
         map.put(block.getLootTableId(), b.build());
     }
 

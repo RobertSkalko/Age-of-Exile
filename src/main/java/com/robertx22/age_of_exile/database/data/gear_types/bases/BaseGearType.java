@@ -50,6 +50,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public String gear_slot = "";
     public String rar_group = GearRarityGroups.NON_UNIQUE_ID;
     public int weight = 1000;
+    public int weapon_offhand_stat_util = 0;
     public AttackPlayStyle style = AttackPlayStyle.MELEE;
 
     public List<StatModifier> implicit_stats = new ArrayList<>();
@@ -219,6 +220,10 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         hoe(SlotFamily.Tool),
 
         sword(SlotFamily.Weapon),
+        scepter(SlotFamily.Weapon),
+        dagger(SlotFamily.Weapon),
+        staff(SlotFamily.Weapon),
+        glove(SlotFamily.Weapon),
         hammer(SlotFamily.Weapon),
         mace(SlotFamily.Weapon),
         spear(SlotFamily.Weapon),
@@ -410,120 +415,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     }
 
-    public String[] getRecipePattern() {
-
-        TagList tags = getTags();
-
-        if (tags.contains(SlotTag.sword)) {
-            return new String[]{
-                " M ",
-                " M ",
-                " S "
-            };
-        }
-
-        if (tags.contains(SlotTag.hammer)) {
-            return new String[]{
-                "MMM",
-                " S ",
-                " S "
-            };
-        }
-        if (tags.contains(SlotTag.mace)) {
-            return new String[]{
-                " M ",
-                "MSM",
-                " S "
-            };
-        }
-        if (tags.contains(SlotTag.spear)) {
-            return new String[]{
-                "  M",
-                " M ",
-                "S  "
-            };
-        }
-        if (tags.contains(SlotTag.axe)) {
-            return new String[]{
-                "MM ",
-                " S ",
-                " S "
-            };
-        }
-        if (tags.contains(SlotTag.wand)) {
-            return new String[]{
-                "  M",
-                " M ",
-                "S  "
-            };
-        }
-        if (tags.contains(SlotTag.scythe)) {
-            return new String[]{
-                "  M",
-                " SM",
-                "S M"
-            };
-        }
-        if (tags.contains(SlotTag.bow)) {
-            return new String[]{
-                " MB",
-                "M B",
-                " MB"
-            };
-        }
-        if (tags.contains(SlotTag.crossbow)) {
-            return new String[]{
-                "MSM",
-                "S S",
-                " S "
-            };
-        }
-
-        if (tags.contains(SlotTag.chest)) {
-            return new String[]{
-                "M M",
-                "MMM",
-                "MMM"
-            };
-        }
-        if (tags.contains(SlotTag.boots)) {
-            return new String[]{
-                "M M",
-                "M M"
-            };
-        }
-        if (tags.contains(SlotTag.pants)) {
-            return new String[]{
-                "MMM",
-                "M M",
-                "M M"
-            };
-        }
-        if (tags.contains(SlotTag.helmet)) {
-            return new String[]{
-                "MMM",
-                "M M"
-            };
-        }
-
-        if (tags.contains(SlotTag.necklace)) {
-            return new String[]{
-                "MMM",
-                "M M",
-                " M "
-            };
-        }
-        if (tags.contains(SlotTag.ring)) {
-            return new String[]{
-                " M ",
-                "M M",
-                " M "
-            };
-        }
-
-        return null;
-    }
-
     @Override
     public String getRarityRank() {
         return IRarity.COMMON_ID;
@@ -572,6 +463,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         json.addProperty("item_id", Registry.ITEM.getId(getItem())
             .toString());
         json.addProperty("gear_slot", this.gear_slot);
+        json.addProperty("weapon_offhand_stat_util", this.weapon_offhand_stat_util);
         json.addProperty("rar_group", this.rar_group);
         json.addProperty("weapon_type", weaponType().toString());
         json.addProperty("attack_style", style.name());
@@ -600,6 +492,10 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         if (json.has("rar_group")) {
             o.rar_group = json.get("rar_group")
                 .getAsString();
+        }
+        if (json.has("weapon_offhand_stat_util")) {
+            o.weapon_offhand_stat_util = json.get("weapon_offhand_stat_util")
+                .getAsInt();
         }
 
         try {

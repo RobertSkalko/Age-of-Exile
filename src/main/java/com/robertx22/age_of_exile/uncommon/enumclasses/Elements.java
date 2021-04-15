@@ -10,7 +10,7 @@ public enum Elements {
     Physical(false, "Physical", Formatting.GOLD, "physical", "\u2726"),
     Fire(true, "Fire", Formatting.RED, "fire", "\u2600"),
     Water(true, "Water", Formatting.AQUA, "water", "\u2749"),
-    Nature(true, "Earth", Formatting.DARK_GREEN, "nature", "\u273F"),
+    Nature(true, "Nature", Formatting.DARK_GREEN, "nature", "\u273F"),
     //Thunder(true, "Thunder", Formatting.YELLOW, "thunder", "\u272A"),
 
     Light(true, "Light", Formatting.WHITE, "light", "\u2600"),

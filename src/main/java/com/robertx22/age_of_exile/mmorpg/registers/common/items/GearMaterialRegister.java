@@ -16,23 +16,23 @@ public class GearMaterialRegister extends BaseItemRegistrator {
 
     public HashMap<TYPE, HashMap<Integer, GearMaterialItem>> MAP = new HashMap<>();
 
-    public GearMaterialItem LEATHER_0 = of(TYPE.LEATHER, 0, LevelRanges.STARTER);
-    public GearMaterialItem LEATHER_1 = of(TYPE.LEATHER, 1, LevelRanges.LOW);
-    public GearMaterialItem LEATHER_2 = of(TYPE.LEATHER, 2, LevelRanges.MIDDLE);
-    public GearMaterialItem LEATHER_3 = of(TYPE.LEATHER, 3, LevelRanges.HIGH);
-    public GearMaterialItem LEATHER_4 = of(TYPE.LEATHER, 4, LevelRanges.ENDGAME);
+    GearMaterialItem LEATHER_0 = of(TYPE.LEATHER, 0, LevelRanges.STARTER);
+    GearMaterialItem LEATHER_1 = of(TYPE.LEATHER, 1, LevelRanges.LOW);
+    GearMaterialItem LEATHER_2 = of(TYPE.LEATHER, 2, LevelRanges.MIDDLE);
+    GearMaterialItem LEATHER_3 = of(TYPE.LEATHER, 3, LevelRanges.HIGH);
+    GearMaterialItem LEATHER_4 = of(TYPE.LEATHER, 4, LevelRanges.ENDGAME);
 
-    public GearMaterialItem CLOTH_0 = of(TYPE.CLOTH, 0, LevelRanges.STARTER);
-    public GearMaterialItem CLOTH_1 = of(TYPE.CLOTH, 1, LevelRanges.LOW);
-    public GearMaterialItem CLOTH_2 = of(TYPE.CLOTH, 2, LevelRanges.MIDDLE);
-    public GearMaterialItem CLOTH_3 = of(TYPE.CLOTH, 3, LevelRanges.HIGH);
-    public GearMaterialItem CLOTH_4 = of(TYPE.CLOTH, 4, LevelRanges.ENDGAME);
+    GearMaterialItem CLOTH_0 = of(TYPE.CLOTH, 0, LevelRanges.STARTER);
+    GearMaterialItem CLOTH_1 = of(TYPE.CLOTH, 1, LevelRanges.LOW);
+    GearMaterialItem CLOTH_2 = of(TYPE.CLOTH, 2, LevelRanges.MIDDLE);
+    GearMaterialItem CLOTH_3 = of(TYPE.CLOTH, 3, LevelRanges.HIGH);
+    GearMaterialItem CLOTH_4 = of(TYPE.CLOTH, 4, LevelRanges.ENDGAME);
 
-    public GearMaterialItem ORE_0 = of(TYPE.ORE, 0, LevelRanges.STARTER);
-    public GearMaterialItem ORE_1 = of(TYPE.ORE, 1, LevelRanges.LOW);
-    public GearMaterialItem ORE_2 = of(TYPE.ORE, 2, LevelRanges.MIDDLE);
-    public GearMaterialItem ORE_3 = of(TYPE.ORE, 3, LevelRanges.HIGH);
-    public GearMaterialItem ORE_4 = of(TYPE.ORE, 4, LevelRanges.ENDGAME);
+    GearMaterialItem ORE_0 = of(TYPE.ORE, 0, LevelRanges.STARTER);
+    GearMaterialItem ORE_1 = of(TYPE.ORE, 1, LevelRanges.LOW);
+    GearMaterialItem ORE_2 = of(TYPE.ORE, 2, LevelRanges.MIDDLE);
+    GearMaterialItem ORE_3 = of(TYPE.ORE, 3, LevelRanges.HIGH);
+    GearMaterialItem ORE_4 = of(TYPE.ORE, 4, LevelRanges.ENDGAME);
 
     public CraftEssenceItem ARCANA = item(new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
     public CraftEssenceItem MANA = item(new CraftEssenceItem("mana", () -> ModRegistry.MISC_ITEMS.MANA_PLANT, "Essence of Mana"));

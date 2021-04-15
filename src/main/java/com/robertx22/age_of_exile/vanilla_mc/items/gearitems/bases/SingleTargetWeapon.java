@@ -53,6 +53,7 @@ public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocNam
         stack.damage(1, attacker, (entity) -> {
             entity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
         });
+
         return true;
     }
 
