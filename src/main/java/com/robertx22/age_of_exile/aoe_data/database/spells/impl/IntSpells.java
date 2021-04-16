@@ -210,5 +210,12 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 5D, 0.5D))
             .build();
 
+        SpellBuilder.of("shield_test", SpellConfiguration.Builder.instant(15, 20 * 5), "Shield Test",
+            Arrays.asList(SkillGemTag.SHIELDING))
+            .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.GIVE_DAMAGE_ABSORB.create(ValueCalculationData.base(15), 10D))
+                .addTarget(TargetSelector.CASTER.create()))
+            .build();
+
     }
 }

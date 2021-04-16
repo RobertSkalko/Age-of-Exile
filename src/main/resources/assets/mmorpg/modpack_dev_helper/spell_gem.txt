@@ -14,6 +14,7 @@ haste_aura
 water_dmg
 arrow_storm
 cooldown
+shield_test
 fire_dmg
 less_radius
 fire_breath

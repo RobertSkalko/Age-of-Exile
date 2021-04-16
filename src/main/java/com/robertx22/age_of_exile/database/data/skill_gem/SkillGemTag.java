@@ -5,6 +5,7 @@ public enum SkillGemTag {
     PROJECTILE,
     DAMAGE,
     HEALING,
+    SHIELDING,
     AREA,
     AURA,
     TOTEM,

@@ -151,13 +151,10 @@ mmorpg:armor/plate/pants/plate_pants4
 mmorpg:armor/plate/pants/plate_pants3
 mmorpg:uniques/weapon/obsi_might
 mmorpg:weapon/mace/mace3
-mmorpg:weapon/wand/scepter3
 mmorpg:weapon/mace/mace2
-mmorpg:weapon/wand/scepter2
 minecraft:iron_helmet.leather_helmet1
 mmorpg:weapon/mace/mace1
 mmorpg:weapon/spear/spear4
-mmorpg:weapon/wand/scepter4
 mmorpg:weapon/mace/mace0
 mmorpg:uniques/armor/bone_boots
 mmorpg:weapon/spear/spear2
@@ -165,9 +162,7 @@ mmorpg:weapon/spear/spear3
 mmorpg:weapon/spear/spear0
 mmorpg:weapon/spear/spear1
 minecraft:shield.tower_shield0
-mmorpg:weapon/wand/scepter1
 mmorpg:weapon/mace/mace4
-mmorpg:weapon/wand/scepter0
 minecraft:netherite_boots.cloth_boots2
 mmorpg:jewelry/necklace/all_res_necklace_low
 minecraft:diamond_chestplate.cloth_chest2

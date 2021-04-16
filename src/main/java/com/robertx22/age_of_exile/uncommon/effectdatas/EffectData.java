@@ -102,15 +102,6 @@ public abstract class EffectData {
 
     public WeaponTypes weaponType = WeaponTypes.None;
 
-    public Unit GetSource() {
-
-        return sourceUnit;
-    }
-
-    public Unit GetTarget() {
-        return targetUnit;
-    }
-
     public void Activate() {
 
         calculateEffects();

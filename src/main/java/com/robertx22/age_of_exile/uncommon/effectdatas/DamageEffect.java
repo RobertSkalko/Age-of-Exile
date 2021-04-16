@@ -151,6 +151,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (!isDodged && target instanceof PlayerEntity) { // todo this code sucks
             // a getter should not modify anything
             dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
+
+            if (dmg > 0) {
+
+                int reduced = targetData.getResources().shields.spendShieldsToReduceDamage(dmg);
+                dmg -= reduced;
+            }
+
         }
 
         return dmg;
@@ -301,6 +308,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         float dmg = info.totalDmg;
+
+        if (dmg < 1) {
+            cancelDamage();
+            return;
+        }
+
         float vanillaDamage = HealthUtils.realToVanilla(target, dmg);
 
         if (this.canceled) {

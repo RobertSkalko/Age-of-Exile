@@ -36,6 +36,7 @@ public class MapField<T> implements IGUID {
 
     public static MapField<Double> VOLUME = make("volume");
     public static MapField<Double> PITCH = make("pitch");
+    public static MapField<Double> SECONDS = make("seconds");
     public static MapField<Double> MOTION_MULTI = make("motion_multiplier");
 
     // string
@@ -43,6 +44,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> ITEM = make("item");
     public static MapField<String> ELEMENT = make(new MapField<String>("element"));
     public static MapField<String> SELECTION_TYPE = make("selection_type");
+    public static MapField<String> RESOURCE_TYPE = make("resource_type");
     public static MapField<String> ENTITY_PREDICATE = make("en_predicate");
     public static MapField<String> PARTICLE_TYPE = make("particle_type");
     public static MapField<String> SOUND = make("sound");

@@ -49,14 +49,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
             try {
 
-                /*
-                ItemStack stack = player.getMainHandStack();
-
-                System.out.print(stack.getTag()
-                    .toString());
-
-                 */
-
                 PlayerTickData data = PlayerTickDatas.get(player.getUuid());
 
                 if (data == null) {
@@ -81,6 +73,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     if (player.isAlive()) {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
+
+                        unitdata.getResources()
+                            .shields.onTicksPassed(TicksToRegen);
 
                         unitdata.tryRecalculateStats();
 

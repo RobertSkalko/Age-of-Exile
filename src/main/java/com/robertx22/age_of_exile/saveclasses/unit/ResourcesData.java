@@ -106,12 +106,19 @@ public class ResourcesData {
     @Store
     private float blood = 0;
 
+    @Store
+    public AllShieldsData shields = new AllShieldsData();
+
     public float getMana() {
         return mana;
     }
 
     public float getBlood() {
         return blood;
+    }
+
+    public float getShield() {
+        return shields.getTotalShields();
     }
 
     public float getModifiedValue(Context ctx) {
@@ -126,6 +133,9 @@ public class ResourcesData {
     public float get(LivingEntity en, ResourceType type) {
         if (type == ResourceType.MANA) {
             return mana;
+        }
+        if (type == ResourceType.SHIELD) {
+            return getShield();
         } else if (type == ResourceType.BLOOD) {
             return blood;
         } else if (type == ResourceType.HEALTH) {
@@ -137,6 +147,12 @@ public class ResourcesData {
 
     public float getMax(LivingEntity en, ResourceType type) {
         UnitData data = Load.Unit(en);
+
+        if (type == ResourceType.SHIELD) {
+            return data.getUnit()
+                .healthData()
+                .getAverageValue();
+        }
         if (type == ResourceType.MANA) {
             return data.getUnit()
                 .manaData()
@@ -184,7 +200,6 @@ public class ResourcesData {
                 ctx.target.setHealth(getModifiedValue(ctx));
             }
         }
-
     }
 
     private void sync(Context ctx) {
