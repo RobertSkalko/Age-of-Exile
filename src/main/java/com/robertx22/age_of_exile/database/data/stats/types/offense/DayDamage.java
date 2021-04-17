@@ -42,7 +42,7 @@ public class DayDamage extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Damage at Night";
+        return "Damage at Day";
     }
 
     private static class Effect extends BaseDamageIncreaseEffect {

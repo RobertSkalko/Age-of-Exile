@@ -25,6 +25,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldDuration;
+import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldStrength;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -72,6 +74,9 @@ public class Stats implements ISlashRegistryInit {
                     add(ChanceToApplyEffect.POISON);
                     add(ChanceToApplyEffect.BLEED);
                     add(ChanceToApplyEffect.TORMENT);
+
+                    add(ShieldDuration.getInstance());
+                    add(ShieldStrength.getInstance());
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
@@ -126,6 +131,10 @@ public class Stats implements ISlashRegistryInit {
                     add(Wisdom.INSTANCE);
                     add(Vitality.INSTANCE);
                     add(Agility.INSTANCE);
+
+                    add(StyleDamageReceived.MELEE);
+                    add(StyleDamageReceived.MAGIC);
+                    add(StyleDamageReceived.RANGED);
 
                     add(MoreSocketsStat.getInstance());
                     add(ExtraMobDropsStat.getInstance());

@@ -10,6 +10,7 @@ public class ClothUniques implements ISlashRegistryInit {
         new VoidArmor().registerAll();
         new BlazeArmor().registerAll();
         new SlimeArmor().registerAll();
+        new PharaohArmor().registerAll();
 
     }
 }

@@ -88,7 +88,8 @@ public class DexSpells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of(MAKE_ARROWS, SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Produce Arrows",
+        SpellBuilder.of(MAKE_ARROWS, SpellConfiguration.Builder.arrowSpell(10, 20 * 60 * 5)
+                .setScaleManaToPlayer(), "Produce Arrows",
             Arrays.asList())
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(AttackPlayStyle.RANGED)

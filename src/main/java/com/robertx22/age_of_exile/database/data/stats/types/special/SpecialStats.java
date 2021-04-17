@@ -1,12 +1,15 @@
 package com.robertx22.age_of_exile.database.data.stats.types.special;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BasePotionEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpecialStatDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -17,6 +20,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResource;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -48,6 +52,35 @@ public class SpecialStats {
 
         return str;
     }
+
+    public static SpecialStat MUMMY_CURSE = new SpecialStat("mummy_curse",
+        format("Your immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy, increasing "
+            + StyleDamageReceived.MAGIC.getIconNameFormat()),
+
+        new BasePotionEffect() {
+            @Override
+            public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
+                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
+                    .get(NegativeEffects.MUMMY_CURSE), effect.source, effect.target, 20 * 10);
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
+                return effect.effect.tags.contains(ExileEffect.EffectTags.IMMOBILIZE.name()) && RandomUtils.roll(data.getAverageValue());
+            }
+
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Source;
+            }
+
+            @Override
+            public int GetPriority() {
+                return 0;
+            }
+        }
+    );
 
     public static SpecialStat CRIT_BURN = new SpecialStat("crit_burn",
         format("Your " + Elements.Fire.getIconNameFormat() + " Critical Hits have " + VAL1 + "% " + "chance to cause enemies to burn."),

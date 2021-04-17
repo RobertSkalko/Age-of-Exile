@@ -16,6 +16,7 @@ public class DamageAbsorbEffect extends EffectData {
     public DamageAbsorbEffect(float amount, int seconds, LivingEntity caster, LivingEntity target) {
         super(caster, target, Load.Unit(caster), Load.Unit(target));
         this.number = amount;
+        this.originalNumber = number;
         this.seconds = seconds;
     }
 

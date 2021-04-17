@@ -12,7 +12,7 @@ public class BasicLocalStatRegex extends StatNameRegex {
     }
 
     @Override
-    public Formatting numberColor(Stat stat) {
+    public Formatting numberColor(Stat stat, float val) {
         return stat.textFormat;
     }
 
@@ -20,9 +20,9 @@ public class BasicLocalStatRegex extends StatNameRegex {
     public String getStatNameRegex(ModType type, Stat stat, float v1, float v2) {
 
         if (type.isFlat() && stat.UsesSecondValue()) {
-            return NAME + ": " + numberColor(stat) + MIN_VALUE + numberColor(stat) + "-" + MAX_VALUE;
+            return NAME + ": " + numberColor(stat, v1) + MIN_VALUE + numberColor(stat, v2) + "-" + MAX_VALUE;
         } else {
-            return NAME + ": " + numberColor(stat) + VALUE;
+            return NAME + ": " + numberColor(stat, v1) + VALUE;
         }
 
     }

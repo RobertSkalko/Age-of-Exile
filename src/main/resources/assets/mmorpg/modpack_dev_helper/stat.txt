@@ -35,6 +35,7 @@ other_water_dmg_leech_as_shield
 piercing_projectiles
 basic_ele_dmg_physical_dmg_leech_as_shield
 basic_ele_dmg_fire_dmg_leech_as_mana
+ranged_dmg_received
 basic_ele_dmg_water_dmg_leech_as_mana
 shield_on_spell_hit
 other_fire_dmg_leech_as_health
@@ -52,6 +53,7 @@ spell_nature_dmg_leech_as_shield
 bonus_inscribing_exp
 basic_ele_dmg_light_dmg_leech_as_health
 ele_scepter_damage
+mummy_curse
 spell_light_damage
 non_crit_damage
 health_per_sec
@@ -136,6 +138,7 @@ mana_burn_resist
 increased_quantity
 spell_critical_damage
 nature_resist
+magic_dmg_received
 mana_on_basic_ele_dmg_hit
 spell_fire_dmg_leech_as_mana
 spell_water_dmg_leech_as_health
@@ -150,6 +153,7 @@ all_dark_dmg_leech_as_shield
 poison_immunity
 all_dark_dmg_leech_as_health
 other_dark_dmg_leech_as_shield
+shield_strength
 all_fire_dmg_leech_as_shield
 attack_speed
 attack_dark_dmg_leech_as_mana
@@ -187,6 +191,7 @@ bonus_exp_for_t5_mob
 bonus_rain_yield
 dmg_under_wither
 heal_effect_on_self
+shield_duration
 dmg_taken_to_mana
 basic_attack_fire_dmg_leech_as_mana
 mana_on_spell_hit
@@ -209,6 +214,7 @@ basic_attack_physical_dmg_leech_as_shield
 projectile_damage
 max_dark_resist
 cast_speed
+melee_dmg_received
 mana_on_attack_hit
 all_physical_damage
 spell_light_dmg_leech_as_shield

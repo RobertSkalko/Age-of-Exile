@@ -8,15 +8,18 @@ void_helmet
 blaze_pants
 dark_crystal_pants
 bone_boots
+pharaoh_boots
 bonechill_ring
 inca_thunder
 oak_helmet
 frigid_staff
 blaze_chest
+pharaoh_pants
 obsi_might
 hunger_neck
 solar_ring
 void_pants
+pharaoh_helmet
 oak_boots
 dark_crystal_boots
 skull_of_spirits
@@ -24,6 +27,7 @@ snake_eye
 slime_boots
 touch_of_eternity
 ghast_necklace
+pharaoh_chest
 judgement
 slime_helmet
 dark_crystal_chest

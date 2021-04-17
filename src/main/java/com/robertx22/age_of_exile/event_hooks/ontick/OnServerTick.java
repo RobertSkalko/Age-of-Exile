@@ -74,6 +74,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
 
+                        unitdata.getCooldowns()
+                            .onTicksPass(TicksToRegen);
+
                         unitdata.getResources()
                             .shields.onTicksPassed(TicksToRegen);
 

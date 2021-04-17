@@ -86,10 +86,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return this.element != null && this.element != Elements.Physical;
     }
 
-    public void increaseByPercent(float perc) {
-        this.number += this.originalNumber * perc / 100F;
-    }
-
     public void addBonusEleDmg(Elements element, float dmg) {
         bonusElementDamageMap.put(element, (int) (bonusElementDamageMap.getOrDefault(element, 0) + dmg));
     }
@@ -110,8 +106,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             }
         }
     }
-
-    public float originalNumber;
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
     public Elements element = Elements.Physical;

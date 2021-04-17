@@ -4,10 +4,12 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBui
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -31,9 +33,21 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static String JUDGEMENT = "negative/" + 6;
     public static String TORMENT = "negative/" + 7;
     public static String BLEED = "negative/" + 8;
+    public static String MUMMY_CURSE = "negative/" + 9;
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(MUMMY_CURSE, "Mummy Curse", EffectType.HARMFUL)
+            .maxStacks(1)
+            .stat(20, StyleDamageReceived.MAGIC, ModType.FLAT)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 3D, 1D)
+                    .onTick(10D))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.WHITE_ASH, 10D, 1D)
+                    .onTick(10D))
+                .buildForEffect())
+            .build();
 
         ExileEffectBuilder.of(TORMENT, "Torment", EffectType.HARMFUL)
             .maxStacks(1)
@@ -124,6 +138,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(PETRIFY, "Petrify", EffectType.HARMFUL)
+            .addTags(ExileEffect.EffectTags.IMMOBILIZE)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)

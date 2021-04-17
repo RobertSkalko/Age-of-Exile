@@ -5,6 +5,7 @@ minecraft:shield.spirit_shield0
 mmorpg:uniques/armor/oak_boots
 minecraft:leather_chestplate.leather_chest0
 minecraft:leather_chestplate.cloth_chest0
+mmorpg:uniques/armor/pharaoh_chest
 mmorpg:uniques/jewelry/touch_of_eternity
 minecraft:iron_helmet.plate_helmet1
 minecraft:iron_leggings.plate_pants1
@@ -13,6 +14,7 @@ mmorpg:uniques/armor/dark_crystal_chest
 mmorpg:jewelry/necklace/life_necklace_low
 minecraft:diamond_helmet.leather_helmet2
 mmorpg:uniques/armor/slime_boots
+mmorpg:uniques/armor/pharaoh_pants
 mmorpg:uniques/armor/dark_crystal_pants
 mmorpg:uniques/weapon/will_of_flora
 minecraft:iron_boots.cloth_boots1
@@ -162,9 +164,11 @@ mmorpg:weapon/spear/spear3
 mmorpg:weapon/spear/spear0
 mmorpg:weapon/spear/spear1
 minecraft:shield.tower_shield0
+mmorpg:uniques/armor/pharaoh_boots
 mmorpg:weapon/mace/mace4
 minecraft:netherite_boots.cloth_boots2
 mmorpg:jewelry/necklace/all_res_necklace_low
+mmorpg:uniques/armor/pharaoh_helmet
 minecraft:diamond_chestplate.cloth_chest2
 minecraft:netherite_leggings.plate_pants2
 mmorpg:armor/leather/pants/leather_pants0
