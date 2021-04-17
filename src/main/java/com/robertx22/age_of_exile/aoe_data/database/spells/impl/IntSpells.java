@@ -13,8 +13,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
@@ -34,11 +34,6 @@ public class IntSpells implements ISlashRegistryInit {
     public static String HEALING_AURA_ID = "healing_aura";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
 
-    public static SpellConfiguration SINGLE_TARGET_PROJ_CONFIG() {
-        return SpellConfiguration.Builder.instant(7, 15)
-            .setSwingArm();
-    }
-
     @Override
     public void registerAll() {
 
@@ -50,7 +45,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SNOWBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 2D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Water))
+            .onHit(PartBuilder.damage(ValueCalculation.base("iceball", 8), Elements.Water))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D))
             .build();
 
@@ -62,7 +57,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.FIREBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, PARTICLES.FLAME, 1D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Fire))
+            .onHit(PartBuilder.damage(ValueCalculation.base("fireball", 8), Elements.Fire))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.LAVA, 5D, 1D))
             .build();
 
@@ -74,7 +69,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SLIMEBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SLIME, 2D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculationData.base(8), Elements.Nature))
+            .onHit(PartBuilder.damage(ValueCalculation.base("poisonball", 8), Elements.Nature))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
             .build();
@@ -86,7 +81,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 400D, 3.5D, 0.5D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 250D, 3.5D, 0.5D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Water, 3.5D)
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("frost_nova", 5), Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
             .build();
 
@@ -97,7 +92,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.TP_CASTER_IN_DIRECTION.create(12D)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
 
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(8), Elements.Elemental, 2D)
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("teleport", 8), Elements.Elemental, 2D)
                 .addPerEntityHit(PartBuilder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D))
             )
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST, 20 * 10D)
@@ -111,7 +106,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SOUNDS.FREEZE, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.healCaster(ValueCalculationData.base(15)))
+            .onCast(PartBuilder.healCaster(ValueCalculation.base("heart_of_ice", 15)))
             .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN, 5D, 20D * 10D))
             .build();
 
@@ -121,7 +116,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
-            .onCast(PartBuilder.healInAoe(ValueCalculationData.base(4), 2D))
+            .onCast(PartBuilder.healInAoe(ValueCalculation.base("healing_aura", 4), 2D))
             .build();
 
         SpellBuilder.breath("fire_breath", "Fire Breath", Elements.Fire, PARTICLES.FLAME)
@@ -142,7 +137,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.nova(ParticleTypes.SMOKE, 200D, 1D, 0.05D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 0D, 0.2D))
 
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.base(5), Elements.Fire, 3D))
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("frost_breath", 5), Elements.Fire, 3D))
             .build();
 
         SpellBuilder.of("awaken_mana", SpellConfiguration.Builder.instant(0, 300 * 20), "Awaken Mana",
@@ -152,7 +147,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.restoreManaToCaster(ValueCalculationData.base(30)))
+            .onCast(PartBuilder.restoreManaToCaster(ValueCalculation.base("awaken_mana", 30)))
 
             .build();
 
@@ -168,7 +163,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, true)))
             .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.LAVA, 2D, 0.5D))
-            .onExpire("block", PartBuilder.damageInAoe(ValueCalculationData.base(10), Elements.Fire, 3D))
+            .onExpire("block", PartBuilder.damageInAoe(ValueCalculation.base("meteor", 10), Elements.Fire, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 150D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
@@ -194,7 +189,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COAL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 45D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculationData.base(9), Elements.Fire, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.base("fire_bombs", 9), Elements.Fire, 2D))
             .build();
 
         SpellBuilder.of("levitation", SpellConfiguration.Builder.instant(1, 1)
@@ -213,7 +208,7 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.of("shield_test", SpellConfiguration.Builder.instant(15, 20 * 5), "Shield Test",
             Arrays.asList(SkillGemTag.SHIELDING))
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.GIVE_DAMAGE_ABSORB.create(ValueCalculationData.base(15), 10D))
+            .onCast(PartBuilder.justAction(SpellAction.GIVE_DAMAGE_ABSORB.create(ValueCalculation.base("shield_test", 15), 10D))
                 .addTarget(TargetSelector.CASTER.create()))
             .build();
 

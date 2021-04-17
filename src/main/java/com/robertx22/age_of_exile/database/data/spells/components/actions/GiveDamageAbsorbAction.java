@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageAbsorbEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
@@ -27,7 +27,7 @@ public class GiveDamageAbsorbAction extends SpellAction implements ICTextTooltip
     public MutableText getText(TooltipInfo info, MapHolder data, CalculatedSpellData spelldata) {
         MutableText text = new LiteralText("");
 
-        ValueCalculationData calc = data.get(VALUE_CALCULATION);
+        ValueCalculation calc = data.get(VALUE_CALCULATION);
 
         int seconds = data.get(SECONDS)
             .intValue();
@@ -44,7 +44,7 @@ public class GiveDamageAbsorbAction extends SpellAction implements ICTextTooltip
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         if (!ctx.world.isClient) {
-            ValueCalculationData calc = data.get(VALUE_CALCULATION);
+            ValueCalculation calc = data.get(VALUE_CALCULATION);
 
             int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
 
@@ -60,7 +60,7 @@ public class GiveDamageAbsorbAction extends SpellAction implements ICTextTooltip
 
     }
 
-    public MapHolder create(ValueCalculationData calc, Double seconds) {
+    public MapHolder create(ValueCalculation calc, Double seconds) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(SECONDS, seconds);

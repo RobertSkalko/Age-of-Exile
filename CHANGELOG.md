@@ -220,3 +220,4 @@ Now it's possible! (and probably a bit buggy!)
 - changed core stat scaling to it's own thing, makes it slow. (I thought it'd be best if the stats that scale should always be thought of as lvl 1 when working in datapacks, and currently core stats didn't adhere to that) - ignore if you're a player
 - runewords can now specify gear_slots, if family is set to .NONE the slots are used instead. Allows more fine control
 - vanilla gear is now supported out the box with stats.
+- value calculations (damage and heal scaling), is now a separate datapack

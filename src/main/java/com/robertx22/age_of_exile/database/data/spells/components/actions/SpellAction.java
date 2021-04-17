@@ -39,7 +39,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static CancelCastAction CANCEL_CAST = of(new CancelCastAction());
     public static SpellMotionAction SET_ADD_MOTION = of(new SpellMotionAction());
     public static GiveDamageAbsorbAction GIVE_DAMAGE_ABSORB = of(new GiveDamageAbsorbAction());
-
+    public static CasterCommandAction CASTER_USE_COMMAND = of(new CasterCommandAction());
     public static ExileEffectAction EXILE_EFFECT = of(new ExileEffectAction());
 
     private static <T extends SpellAction> T of(T s) {

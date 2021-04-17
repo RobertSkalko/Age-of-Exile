@@ -9,8 +9,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.particle.ParticleTypes;
@@ -40,7 +40,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
             .stat(-10, new ElementalResist(Elements.Dark), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT, ValueCalculationData.base(2F), Elements.Dark)
+                .onTick(PartBuilder.dotDamageOnTick(TORMENT, ValueCalculation.base("torment", 2F), Elements.Dark)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
                     .onTick(10D))
@@ -54,7 +54,7 @@ public class NegativeEffects implements ISlashRegistryInit {
 
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(FROSTBURN, ValueCalculationData.base(1.5F), Elements.Water)
+                .onTick(PartBuilder.dotDamageOnTick(FROSTBURN, ValueCalculation.base("frostburn", 1.5F), Elements.Water)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
@@ -66,7 +66,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(POISON, ValueCalculationData.base(2), Elements.Nature)
+                .onTick(PartBuilder.dotDamageOnTick(POISON, ValueCalculation.base("poison", 2), Elements.Nature)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 15D, 1D)
                     .onTick(20D))
@@ -79,7 +79,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BURN, ValueCalculationData.base(2), Elements.Fire)
+                .onTick(PartBuilder.dotDamageOnTick(BURN, ValueCalculation.base("burn", 2), Elements.Fire)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
@@ -93,7 +93,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BLEED, ValueCalculationData.base(2.25F), Elements.Physical)
+                .onTick(PartBuilder.dotDamageOnTick(BLEED, ValueCalculation.base("bleed", 2.25F), Elements.Physical)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 10D, 1D)
@@ -116,7 +116,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(10), Elements.Light))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("judgement", 10), Elements.Light))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.justAction(SpellAction.SUMMON_LIGHTNING_STRIKE.create())
                     .setTarget(TargetSelector.TARGET.create()))
@@ -128,7 +128,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculationData.base(5), Elements.Nature))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("petrify", 5), Elements.Nature))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
                 .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.ENTITY_SHEEP_SHEAR, 1D, 1D)))

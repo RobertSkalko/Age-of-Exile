@@ -1,38 +1,37 @@
-package com.robertx22.age_of_exile.saveclasses.spells.calc;
+package com.robertx22.age_of_exile.database.data.value_calc;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.BaseStatCalc;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
-import java.util.List;
-
 @Storable
-public class ScalingStatCalc extends BaseStatCalc {
+public class ScalingStatCalculation extends BaseStatCalc {
 
     @Store
-    public String statID;
+    public String stat;
 
     @Store
     public float multi;
 
     public Stat getStat() {
         return Database.Stats()
-            .get(statID);
+            .get(stat);
     }
 
     @Factory
-    public ScalingStatCalc() {
+    public ScalingStatCalculation() {
 
     }
 
-    public ScalingStatCalc(Stat stat, float multi) {
+    public ScalingStatCalculation(Stat stat, float multi) {
         super();
-        this.statID = stat.GUID();
+        this.stat = stat.GUID();
         this.multi = multi;
     }
 
@@ -48,12 +47,11 @@ public class ScalingStatCalc extends BaseStatCalc {
     @Override
     public int getCalculatedValue(EntityCap.UnitData data) {
         return (int) (data.getUnit()
-            .getCalculatedStat(statID)
+            .getCalculatedStat(stat)
             .getAverageValue() * multi);
     }
 
-    @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
-        return getTooltipFor(multi, getCalculatedValue(info.unitdata), getStat().locName(), getStat().getElement());
+    public Text GetTooltipString() {
+        return new LiteralText(getMultiAsPercent() + "% " + getStat().getIconNameFormat());
     }
 }

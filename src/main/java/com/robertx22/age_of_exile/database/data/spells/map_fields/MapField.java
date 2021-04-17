@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.map_fields;
 
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 
 import java.util.HashMap;
 
@@ -55,6 +55,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> BLOCK = make("block");
     public static MapField<String> ENTITY_NAME = make("entity_name");
     public static MapField<String> PUSH_WAY = make("push_way");
+    public static MapField<String> COMMAND = make("command");
     public static MapField<String> POS_SOURCE = make("pos_source");
     public static MapField<String> SHOOT_DIRECTION = make("shoot_way");
     public static MapField<String> SPELL_MODIFIER = make("spell_mod");
@@ -66,7 +67,7 @@ public class MapField<T> implements IGUID {
     public static MapField<Boolean> IS_BLOCK_FALLING = make("is_falling_block");
     public static MapField<Boolean> FIND_NEAREST_SURFACE = make("find_surface");
 
-    public static MapField<ValueCalculationData> VALUE_CALCULATION = make("value_calculation");
+    public static MapField<ValueCalculation> VALUE_CALCULATION = make("value_calculation");
 
     public MapField(String id) {
         this.id = id;

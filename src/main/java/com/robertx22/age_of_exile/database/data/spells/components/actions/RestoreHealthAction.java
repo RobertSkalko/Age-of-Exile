@@ -4,9 +4,9 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -30,7 +30,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
     public MutableText getText(TooltipInfo info, MapHolder data, CalculatedSpellData spelldata) {
         MutableText text = new LiteralText("");
 
-        ValueCalculationData calc = data.get(VALUE_CALCULATION);
+        ValueCalculation calc = data.get(VALUE_CALCULATION);
 
         text.append("Restore ")
             .append(calc.getShortTooltip(spelldata.level))
@@ -45,7 +45,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
 
         try {
             if (!ctx.world.isClient) {
-                ValueCalculationData calc = data.get(VALUE_CALCULATION);
+                ValueCalculation calc = data.get(VALUE_CALCULATION);
 
                 int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
 
@@ -67,7 +67,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
 
     }
 
-    public MapHolder create(ValueCalculationData calc) {
+    public MapHolder create(ValueCalculation calc) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(VALUE_CALCULATION, calc);

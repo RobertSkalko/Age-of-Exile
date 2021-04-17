@@ -11,9 +11,9 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.particle.ParticleTypes;
@@ -56,7 +56,7 @@ public class StrSpells implements ISlashRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Fire, 2D, 3D)
+            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("flame_strike", 0.5F, 1), Elements.Fire, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
             .build();
 
@@ -68,7 +68,7 @@ public class StrSpells implements ISlashRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Water, 2D, 3D)
+            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("tidal_strike", 0.5F, 1), Elements.Water, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.RAIN, 75D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SPLASH, 50D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(PARTICLES.BUBBLE, 100D, 1D, 0.1D))
@@ -85,7 +85,7 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 1D, 1D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
 
-            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.25F, 5), Elements.Physical, 2D, 3D))
+            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("gong_strike", 0.5F, 5), Elements.Physical, 2D, 3D))
 
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 300D, 2D, 0.1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 5D, 2D, 0.1D))
@@ -100,9 +100,9 @@ public class StrSpells implements ISlashRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculationData.scaleWithAttack(0.25F, 1), Elements.Physical, 1.25D, 1.25D)
+            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("thirst_strike", 0.25F, 1), Elements.Physical, 1.25D, 1.25D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 75D, 0.5D, 0.1D))
-                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(1)))
+                .addPerEntityHit(PartBuilder.healCaster(ValueCalculation.base("thirst_strike_heal", 1)))
             )
             .build();
 
@@ -114,9 +114,8 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1D, 1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(0.2F, 1), Elements.Physical, 1.5D)
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("whirlwind_dmg", 0.2F, 1), Elements.Physical, 1.5D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 50D, 0.5D, 0.1D))
-                .addPerEntityHit(PartBuilder.healCaster(ValueCalculationData.base(2)))
             )
             .build();
 
@@ -130,7 +129,7 @@ public class StrSpells implements ISlashRegistryInit {
                 .addTarget(TargetSelector.CASTER.create()))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 20D, 1D, 0.5D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 1D, 0.5D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculationData.scaleWithAttack(1F, 0), Elements.Physical, 1.75D)
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("charge", 1F, 0), Elements.Physical, 1.75D)
                 .addPerEntityHit(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_LAND, 1D, 1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 0.5D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 100D, 0.5D, 0.1D))

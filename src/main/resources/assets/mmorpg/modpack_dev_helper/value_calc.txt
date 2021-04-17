@@ -1,0 +1,35 @@
+These are all default registry entries of this type.
+This registry is modify-able through datapacks.
+judgement
+petrify
+torment
+thirst_strike
+healing_aura
+teleport
+whirlwind_dmg
+iceball
+explosive_arrow_eoe
+shield_test
+default_bolt_dmg
+breath_dmg
+fireball
+arrow_storm_sec
+burn
+charge
+heart_of_ice
+poison
+frost_breath
+direct_arrow_hit
+flame_strike
+meteor
+frost_nova
+bleed
+fire_bombs
+awaken_mana
+gong_strike
+poison_arrow_aoe
+tidal_strike
+poisonball
+regenerate_tick
+frostburn
+thirst_strike_heal

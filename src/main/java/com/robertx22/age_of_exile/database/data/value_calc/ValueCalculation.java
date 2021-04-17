@@ -1,13 +1,15 @@
-package com.robertx22.age_of_exile.saveclasses.spells.calc;
+package com.robertx22.age_of_exile.database.data.value_calc;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.spells.calc.BaseStatCalc;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Factory;
@@ -17,65 +19,59 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ValueCalculationData {
+public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculation>, IAutoGson<ValueCalculation> {
 
-    public static ValueCalculationData empty() {
-        ValueCalculationData d = new ValueCalculationData();
-        d.empty = true;
-        return d;
-    }
+    public static ValueCalculation SERIALIZER = new ValueCalculation();
 
-    public static ValueCalculationData base(float base) {
-        ValueCalculationData data = new ValueCalculationData();
-
+    public static ValueCalculation base(String id, float base) {
+        ValueCalculation data = new ValueCalculation();
+        data.id = id;
         data.base_val = base;
-
+        data.addToSerializables();
         return data;
     }
 
-    public static ValueCalculationData scaleWithAttack(float attack, float base) {
-        ValueCalculationData data = new ValueCalculationData();
+    public static ValueCalculation scaleWithAttack(String id, float attack, float base) {
+        ValueCalculation data = new ValueCalculation();
+        data.id = id;
         data.attack_scaling = attack;
         data.base_val = base;
-
+        data.addToSerializables();
         return data;
+    }
+
+    public ValueCalculation(String id, ScalingStatCalculation calc, int base) {
+        this.stat_scalings.add(calc);
+        this.base_val = base;
+        this.id = id;
+        this.addToSerializables();
     }
 
     @Factory
-    public ValueCalculationData() {
+    public ValueCalculation() {
 
-    }
-
-    public ValueCalculationData(ScalingStatCalc calc, int base) {
-        this.scaling_values.add(calc);
-        this.base_val = base;
     }
 
     public List<BaseStatCalc> getAllScalingValues() {
-        List<BaseStatCalc> list = new ArrayList<>();
-        list.addAll(scaling_values);
-        return list;
+        return new ArrayList<>(stat_scalings);
     }
 
     @Store
-    public List<ScalingStatCalc> scaling_values = new ArrayList<>();
+    public List<ScalingStatCalculation> stat_scalings = new ArrayList<>();
 
+    @Store
+    public String id = "";
     @Store
     public StatScaling base_scaling_type = StatScaling.NORMAL;
     @Store
     public StatScaling atk_scaling_type = StatScaling.DOUBLE_AT_MAX_LVL;
-
     @Store
     public float attack_scaling = 0;
-
-    private transient boolean empty = false;
-
     @Store
     public float base_val = 0;
 
@@ -95,13 +91,13 @@ public class ValueCalculationData {
         if (attack_scaling > 0) {
             for (Stat stat : new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()) {
                 amount += data.getUnit()
-                        .getCalculatedStat(stat.GUID())
-                        .getAverageValue() * this.atk_scaling_type.scale(attack_scaling, lvl);
+                    .getCalculatedStat(stat.GUID())
+                    .getAverageValue() * this.atk_scaling_type.scale(attack_scaling, lvl);
             }
         }
         amount += getAllScalingValues().stream()
-                .mapToInt(x -> x.getCalculatedValue(data))
-                .sum();
+            .mapToInt(x -> x.getCalculatedValue(data))
+            .sum();
 
         return (int) amount;
     }
@@ -124,40 +120,26 @@ public class ValueCalculationData {
             text.append(" + " + (int) (this.atk_scaling_type.scale(attack_scaling, lvl) * 100) + "% Weapon Attack");
         }
 
+        stat_scalings.forEach(x -> {
+            text.append(x.GetTooltipString()); // todo
+        });
+
         return text;
 
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
-
-        List<Text> list = new ArrayList<>();
-
-        if (!empty) {
-            getAllScalingValues().forEach(x -> list.addAll(x.GetTooltipString(info)));
-
-            if (base_val > 0) {
-                list.add(new LiteralText(
-                        Formatting.RED + "Base Value: " + getCalculatedBaseValue(ctx.calcData.level)));
-            }
-        }
-
-        return list;
+    @Override
+    public Class<ValueCalculation> getClassForSerialization() {
+        return ValueCalculation.class;
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info) {
-
-        List<Text> list = new ArrayList<>();
-
-        if (!empty) {
-            getAllScalingValues().forEach(x -> list.addAll(x.GetTooltipString(info)));
-
-            if (base_val > 0) {
-                list.add(new LiteralText(
-                        Formatting.RED + "Base Value: " + getCalculatedBaseValue(info.unitdata.getLevel())));
-            }
-        }
-
-        return list;
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.VALUE_CALC;
     }
 
+    @Override
+    public String GUID() {
+        return id;
+    }
 }
