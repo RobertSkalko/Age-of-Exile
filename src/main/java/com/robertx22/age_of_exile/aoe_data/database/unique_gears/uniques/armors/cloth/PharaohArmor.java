@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.armors.cloth;
+package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors.cloth;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;

@@ -140,6 +140,11 @@ public class UniqueGearBuilder {
         return this;
     }
 
+    public UniqueGearBuilder setFabled() {
+        this.uniq.uniqueRarity = IRarity.FABLED_ID;
+        return this;
+    }
+
     public UniqueGear build() {
         Assert.assrt(!uniq.uniqueStats.isEmpty());
         Assert.assrt(!uniq.stat_req.isEmpty());

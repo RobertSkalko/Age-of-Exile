@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.jewelry;
+package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;

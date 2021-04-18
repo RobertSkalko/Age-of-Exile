@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.armors.plate;
+package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors.plate;
 
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 

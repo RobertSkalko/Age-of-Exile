@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.unique_gears.registrators.weapons;
+package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.weapons;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;

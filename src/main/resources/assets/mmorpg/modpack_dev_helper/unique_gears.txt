@@ -40,6 +40,7 @@ will_of_flora
 slime_pants
 birth_miracle
 oak_pants
+azuna_ring
 witch_brew
 lunar_ring
 oak_chest

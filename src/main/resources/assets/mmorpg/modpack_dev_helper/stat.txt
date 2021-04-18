@@ -16,6 +16,7 @@ hammer_damage
 ele_glove_damage
 spell_fire_dmg_leech_as_health
 basic_attack_all_dmg_leech_as_shield
+heal_crit_dmg
 shield_on_all_hit
 nature_weapon_damage
 bonus_alchemy_yield
@@ -172,6 +173,7 @@ all_fire_dmg_leech_as_health
 ele_hammer_damage
 dot_physical_dmg_leech_as_shield
 light_focus
+global_critical_damage_per_25_increased_quantity
 heal_cleanse
 basic_attack_water_dmg_leech_as_mana
 chill_bonus_dmg
@@ -265,6 +267,7 @@ other_elemental_dmg_leech_as_health
 spell_all_dmg_leech_as_health
 spell_water_dmg_leech_as_shield
 spell_water_dmg_leech_as_mana
+global_critical_hit_per_25_magic_find
 water_resist
 vitality
 bonus_exp_for_t3_mob
@@ -300,6 +303,7 @@ mana_per_sec
 attack_physical_dmg_leech_as_mana
 light_resist
 all_fire_damage
+crit_heal_chance
 basic_ele_dmg_nature_dmg_leech_as_health
 health_on_basic_ele_dmg_hit
 dot_water_dmg_leech_as_shield

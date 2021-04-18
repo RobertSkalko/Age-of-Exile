@@ -22,13 +22,10 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item SNAKE_EYE_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/snake_eye");
     public Item HUNGER_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/hunger_neck");
 
-    public Item GREED_PERSIST_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/greed_persist");
     public Item WITCH_BREW_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/witch_brew");
     public Item GOLD_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/gold_ring");
+    public Item AZUNA_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/azuna_ring");
     public Item LOOP_OF_INFINITY_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/loop_of_infinity");
-    public Item LUNAR_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/lunar_ring");
-    public Item SOLAR_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/solar_ring");
-    public Item TOUCH_OF_ETERNITY_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/touch_of_eternity");
 
     public Item DIVINE_MIGHT_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/divine_might");
     public Item EZE_OF_ZEGRATH_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/eye_of_zegrath");

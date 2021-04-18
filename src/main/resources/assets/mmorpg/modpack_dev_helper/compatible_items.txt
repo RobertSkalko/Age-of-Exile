@@ -23,6 +23,7 @@ minecraft:diamond_leggings.cloth_pants2
 minecraft:netherite_leggings.cloth_pants2
 mmorpg:uniques/armor/slime_pants
 minecraft:diamond_chestplate.leather_chest2
+mmorpg:uniques/jewelry/azuna_ring
 mmorpg:uniques/jewelry/greed_persist
 mmorpg:armor/leather/helmet/leather_helmet4
 mmorpg:armor/leather/helmet/leather_helmet3

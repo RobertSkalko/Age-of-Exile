@@ -7,6 +7,8 @@ public class HealEffect extends EffectData {
 
     public ResourcesData.Context healData;
 
+    public boolean isCrit = false;
+
     public HealEffect(ResourcesData.Context data) {
         super(data.source, data.target, data.sourceData, data.targetData);
         this.number = data.amount;

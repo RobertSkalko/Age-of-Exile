@@ -3,11 +3,9 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense.crit;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.CriticalDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import net.minecraft.util.Formatting;
 
-public class CriticalDamage extends Stat implements IExtraStatEffect {
+public class CriticalDamage extends Stat {
 
     public static String GUID = "critical_damage";
 
@@ -20,11 +18,6 @@ public class CriticalDamage extends Stat implements IExtraStatEffect {
         return "If Critical, multiply by x";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return CriticalDamageEffect.getInstance();
-    }
-
     private CriticalDamage() {
         this.base_val = 50;
         this.min_val = 0;
@@ -33,6 +26,8 @@ public class CriticalDamage extends Stat implements IExtraStatEffect {
 
         this.textIcon = "\u2694";
         this.textFormat = Formatting.RED;
+
+        this.statEffect = CriticalDamageEffect.getInstance();
     }
 
     @Override

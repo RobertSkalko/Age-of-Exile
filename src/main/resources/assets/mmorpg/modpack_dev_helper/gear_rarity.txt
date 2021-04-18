@@ -5,6 +5,7 @@ common
 monster_unique
 mythic
 legendary
+fabled
 rare
 unique
 epic

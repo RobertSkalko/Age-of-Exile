@@ -7,7 +7,11 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MoreXPerYO
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -23,6 +27,9 @@ public class DatapackStatAdder implements ISlashRegistryInit {
     public static Stat HEALTH_PER_10_INT = new MoreXPerYOf(Intelligence.INSTANCE, Health.getInstance(), 10);
     public static Stat MANA_PER_10_INT = new MoreXPerYOf(Intelligence.INSTANCE, Mana.getInstance(), 10);
 
+    public static Stat GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25 = new MoreXPerYOf(TreasureQuality.getInstance(), GlobalCriticalHit.getInstance(), 25);
+    public static Stat GLOBAL_CRIT_DMG_PER_ITEM_FIND_25 = new MoreXPerYOf(TreasureQuantity.getInstance(), GlobalCriticalDamage.getInstance(), 25);
+
     public static Stat CONVERT_HEALTH_TO_PHYS_DMG = new ConvertFromOneToOtherStat(Health.getInstance(), new AttackDamage(Elements.Physical));
 
     @Override
@@ -33,6 +40,8 @@ public class DatapackStatAdder implements ISlashRegistryInit {
         CONVERT_HEALTH_TO_PHYS_DMG.addToSerializables();
         HEALTH_PER_10_INT.addToSerializables();
         MANA_PER_10_INT.addToSerializables();
+        GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25.addToSerializables();
+        GLOBAL_CRIT_DMG_PER_ITEM_FIND_25.addToSerializables();
 
     }
 }

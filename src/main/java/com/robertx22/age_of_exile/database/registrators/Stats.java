@@ -18,6 +18,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.Reduc
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritChance;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritStrength;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
@@ -167,6 +169,8 @@ public class Stats implements ISlashRegistryInit {
                     add(CriticalHit.getInstance());
                     add(SpellCriticalDamage.getInstance());
                     add(SpellCriticalHit.getInstance());
+                    add(HealCritChance.getInstance());
+                    add(HealCritStrength.getInstance());
                     add(GlobalCriticalDamage.getInstance());
                     add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());
