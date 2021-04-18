@@ -24,7 +24,7 @@ public class FabledJewelry implements ISlashRegistryInit {
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.AZUNA_RING,
             "azuna_ring",
-            "Ring of Azuna's Eternal Decree",
+            "Azuna's Eternal Decree",
             "",
             BaseGearJewelry.MANA_RING.values())
             .setFabled()

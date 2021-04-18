@@ -5,16 +5,19 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
+import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -78,17 +81,28 @@ public class UniqueRings implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.LOOP_OF_INFINITY_RING,
-            "loop_of_infinity",
-            "Loop of Infinity",
-            "Is it truly an end if everything just starts all over again? Maybe it really is just a loop.",
-            BaseGearJewelry.MANA_RING.get(LevelRanges.MID_TO_END))
+            ModRegistry.UNIQUE_GEARS.GHOSTLY_SHORES_RING,
+            "ghostly_shores",
+            "Ghostly Shores",
+            BaseGearJewelry.MANA_RING.values())
+            .setReplacesName()
+            .baseStats(
+                Arrays.asList(
+                    new StatModifier(10, 25, new ElementalResist(Elements.Water)),
+                    new StatModifier(15, 45, new ElementalResist(Elements.Dark))
+                )
+            )
             .stats(Arrays.asList(
-                new StatModifier(5, 10, Mana.getInstance(), ModType.FLAT),
-                new StatModifier(1, 4, RegeneratePercentStat.MANA, ModType.FLAT)
+                new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT),
+                new StatModifier(6, 10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(6, 15, PlusResourceOnKill.MANA, ModType.FLAT),
+                new StatModifier(10, 15, CriticalDamage.getInstance(), ModType.FLAT),
+                new StatModifier(5, 10, CooldownReduction.getInstance(), ModType.FLAT),
+                new StatModifier(-3, -6, Vitality.INSTANCE, ModType.FLAT),
+                new StatModifier(15, 25, SpecialStats.BONUS_REGEN_IN_WATER, ModType.FLAT)
             ))
             .req(new StatRequirement().setWis(0.5F)
-                .setInt(0.75F))
+                .setDex(0.4F))
             .build();
 
     }

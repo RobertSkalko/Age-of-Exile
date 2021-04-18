@@ -7,13 +7,9 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -82,20 +78,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         unitdata.tryRecalculateStats();
 
-                        Unit unit = unitdata.getUnit();
-
-                        float manarestored = unit.getCalculatedStat(ManaRegen.GUID)
-                            .getAverageValue();
-                        manarestored += unit.getCalculatedStat(RegeneratePercentStat.MANA)
-                            .getAverageValue() * unit.manaData()
-                            .getAverageValue() / 100F;
-
-                        ResourcesData.Context mana = new ResourcesData.Context(unitdata, player, ResourceType.MANA,
-                            manarestored,
-                            ResourcesData.Use.RESTORE
-                        );
-                        unitdata.getResources()
-                            .modify(mana);
+                        RegenEvent event = new RegenEvent(player, player, ResourceType.MANA);
+                        event.Activate();
 
                         boolean restored = false;
 
@@ -107,22 +91,13 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 restored = true;
                             }
 
-                            float healthrestored = unit.getCalculatedStat(HealthRegen.GUID)
-                                .getAverageValue();
-                            healthrestored += unit.getCalculatedStat(RegeneratePercentStat.HEALTH)
-                                .getAverageValue() * player.getMaxHealth() / 100F;
-                            ResourcesData.Context hp = new ResourcesData.Context(unitdata, player, ResourceType.HEALTH,
-                                healthrestored,
-                                ResourcesData.Use.RESTORE
-                            );
-
-                            unitdata.getResources()
-                                .modify(hp);
+                            RegenEvent hpevent = new RegenEvent(player, player, ResourceType.HEALTH);
+                            hpevent.Activate();
 
                             if (restored) {
                                 unitdata.syncToClient(player);
 
-                                float percentHealed = healthrestored / HealthUtils.getMaxHealth(player);
+                                float percentHealed = hpevent.number / HealthUtils.getMaxHealth(player);
 
                                 float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
 

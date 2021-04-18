@@ -3,6 +3,7 @@ This registry is modify-able through datapacks.
 blood_per_10_vitality
 basic_attack_physical_dmg_leech_as_health
 dot_elemental_dmg_leech_as_health
+bonus_regen_in_water
 accuracy
 all_water_dmg_leech_as_health
 trident_damage
@@ -357,6 +358,7 @@ basic_attack_water_dmg_leech_as_health
 basic_attack_water_dmg_leech_as_shield
 bonus_salvaging_yield
 attack_fire_dmg_leech_as_mana
+void_eye
 shield_on_dot_hit
 melee_dmg
 mana_regen

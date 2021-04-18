@@ -3,17 +3,17 @@ package com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 
 import java.util.HashMap;
-
-import static com.robertx22.age_of_exile.aoe_data.database.DataHelper.*;
 
 public class BaseClothArmors implements ISlashRegistryInit {
 
@@ -32,6 +32,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
                 getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.BOOTS),
                 getStat(ArmorStat.ARMOR, ArmorType.LIGHT, ArmorSlot.BOOTS)
             )
+            .implicitStat(new StatModifier(4, 8, SpellDamage.getInstance()))
             .addMageLevelRanges()
             .build();
 
@@ -42,6 +43,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
                 getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.PANTS),
                 getStat(ArmorStat.ARMOR, ArmorType.LIGHT, ArmorSlot.PANTS)
             )
+            .implicitStat(new StatModifier(4, 8, SpellDamage.getInstance()))
             .addMageLevelRanges()
             .build();
 
@@ -52,6 +54,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
                 getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.CHEST),
                 getStat(ArmorStat.ARMOR, ArmorType.LIGHT, ArmorSlot.CHEST)
             )
+            .implicitStat(new StatModifier(4, 8, SpellDamage.getInstance()))
             .addMageLevelRanges()
             .build();
 
@@ -62,6 +65,7 @@ public class BaseClothArmors implements ISlashRegistryInit {
                 getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.HELMET),
                 getStat(ArmorStat.ARMOR, ArmorType.LIGHT, ArmorSlot.HELMET)
             )
+            .implicitStat(new StatModifier(4, 8, SpellDamage.getInstance()))
             .addMageLevelRanges()
             .build();
     }

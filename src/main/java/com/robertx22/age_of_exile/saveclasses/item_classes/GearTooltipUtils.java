@@ -259,7 +259,10 @@ public class GearTooltipUtils {
 
             tip.add(new LiteralText(""));
 
-            tip.add(TooltipUtils.rarity(rarity));
+            tip.add(TooltipUtils.rarity(rarity)
+                .append(" ")
+                .append(gear.GetBaseGearType()
+                    .locName()));
 
             if (ModConfig.get().client.SHOW_DURABILITY)
                 if (stack.isDamageable()) {

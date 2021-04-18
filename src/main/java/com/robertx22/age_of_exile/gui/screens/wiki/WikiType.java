@@ -25,6 +25,16 @@ public enum WikiType {
                 .collect(Collectors.toList());
         }
     },
+    EFFECTS("effect") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return Database.ExileEffects()
+                .getList()
+                .stream()
+                .map(x -> new EffectEntry(x))
+                .collect(Collectors.toList());
+        }
+    },
     SETS("set") {
         @Override
         public List<WikiEntry> getAllEntries() {

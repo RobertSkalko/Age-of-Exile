@@ -1,8 +1,13 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.database.data.unique_items.bases.*;
+import com.robertx22.age_of_exile.database.data.unique_items.bases.BaseUniqueNecklace;
+import com.robertx22.age_of_exile.database.data.unique_items.bases.BaseUniqueRing;
+import com.robertx22.age_of_exile.database.data.unique_items.bases.BaseUniqueSword;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.BaseArmorItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 
 public class UniqueGearItemRegister extends BaseItemRegistrator {
@@ -25,21 +30,9 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item WITCH_BREW_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/witch_brew");
     public Item GOLD_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/gold_ring");
     public Item AZUNA_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/azuna_ring");
-    public Item LOOP_OF_INFINITY_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/loop_of_infinity");
+    public Item GHOSTLY_SHORES_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/ghostly_shores_ring");
 
-    public Item DIVINE_MIGHT_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/divine_might");
-    public Item EZE_OF_ZEGRATH_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/eye_of_zegrath");
-    public Item WILL_OF_FLORA_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/will_of_flora");
-    public Item ROT_PHYS = item(new BaseUniqueWand("Wand"), "uniques/weapon/rot_phys");
-    public Item CRYSTAL_WAND = item(new BaseUniqueWand("Wand"), "uniques/weapon/crystal_wand");
-    public Item FRIGID_STAFF = item(new BaseUniqueWand("Wand"), "uniques/weapon/frigid_staff");
-    public Item WORLDBEARER_STAFF = item(new BaseUniqueWand("Wand"), "uniques/weapon/worldbearer");
-
-    public Item INCA_THUNDER_SWORD = item(new BaseUniqueSword(), "uniques/weapon/inca_thunder");
-    public Item WATER_ELE_SWORD = item(new BaseUniqueSword(), "uniques/weapon/water_ele_sword");
-
-    public Item OBSI_MIGHT_AXE = item(new BaseUniqueAxe("Axe"), "uniques/weapon/obsi_might");
-    public Item JUDGEMENT_AXE = item(new BaseUniqueAxe("Axe"), "uniques/weapon/judgement");
+    public Item UNSEEING_EYE = item(new BaseArmorItem(ArmorTier.FOUR, ArmorType.LEATHER, "Helmet", EquipmentSlot.HEAD, true), "uniques/armor/unseeing_eye");
 
     public Item VOID_SWORD = item(new BaseUniqueSword(), "uniques/weapon/void_sword");
 

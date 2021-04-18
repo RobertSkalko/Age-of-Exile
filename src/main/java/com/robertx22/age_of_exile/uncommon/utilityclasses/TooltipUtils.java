@@ -237,9 +237,7 @@ public class TooltipUtils {
     public static MutableText rarity(Rarity rarity) {
 
         return new LiteralText(rarity.textFormatting() + "")
-            .append(rarity.locName()
-                .append(" ")
-                .append(Words.Item.locName()))
+            .append(rarity.locName())
             .formatted(rarity.textFormatting());
     }
 

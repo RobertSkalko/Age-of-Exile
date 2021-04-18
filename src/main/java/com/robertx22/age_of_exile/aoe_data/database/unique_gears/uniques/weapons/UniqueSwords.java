@@ -28,6 +28,7 @@ public class UniqueSwords implements ISlashRegistryInit {
             "void_sword",
             "Grasp of the Void",
             BaseGearWeapons.SWORD.values())
+            .setReplacesName()
             .baseStats(Arrays.asList(
                 getAttackDamageStat(WeaponTypes.Sword, Number.HALF, Elements.Physical),
                 getAttackDamageStat(WeaponTypes.Sword, Number.HALF, Elements.Dark)

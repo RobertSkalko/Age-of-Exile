@@ -7,5 +7,7 @@ public class FabledUniques implements ISlashRegistryInit {
     @Override
     public void registerAll() {
         new FabledJewelry().registerAll();
+        new FabledArmor().registerAll();
+
     }
 }

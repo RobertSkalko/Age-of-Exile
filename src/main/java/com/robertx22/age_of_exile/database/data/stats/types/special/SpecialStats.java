@@ -1,13 +1,11 @@
 package com.robertx22.age_of_exile.database.data.stats.types.special;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffect;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BasePotionEffect;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpecialStatDamageEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
@@ -19,10 +17,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResource;
+import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -53,6 +48,56 @@ public class SpecialStats {
         return str;
     }
 
+    static int VOID_EYE_COOLDOWN_MINUTES = 5;
+
+    public static SpecialStat VOID_EYE = new SpecialStat("void_eye",
+        format("Dealing " + Elements.Dark.getIconNameFormat() + " Damage inside darkness has " + VAL1 + "% chance to give you Eye of the Void buff. " + VOID_EYE_COOLDOWN_MINUTES + " min Cooldown"),
+        new BaseDamageEffect() {
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Source;
+            }
+
+            @Override
+            public int GetPriority() {
+                return 0;
+            }
+
+            @Override
+            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+
+                int duration = (int) (60 * 20 * 1);
+
+                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
+                    .get(BeneficialEffects.VOID_EYE), effect.source, effect.source, duration);
+
+                effect.sourceData.getCooldowns()
+                    .setOnCooldown("void_eye", VOID_EYE_COOLDOWN_MINUTES * 60 * 20);
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+
+                if (!effect.element.isDark()) {
+                    return false;
+                }
+                if (effect.source.world.getLightLevel(effect.source.getBlockPos()) > 7) {
+                    return false;
+                }
+                if (!RandomUtils.roll(data.getAverageValue())) {
+                    return false;
+                }
+                if (effect.sourceData.getCooldowns()
+                    .isOnCooldown("void_eye")) {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+    );
+
     public static SpecialStat MUMMY_CURSE = new SpecialStat("mummy_curse",
         format("Your immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy, increasing "
             + StyleDamageReceived.MAGIC.getIconNameFormat()),
@@ -78,6 +123,34 @@ public class SpecialStats {
             @Override
             public int GetPriority() {
                 return 0;
+            }
+        }
+    );
+
+    public static SpecialStat BONUS_REGEN_IN_WATER = new SpecialStat("bonus_regen_in_water",
+        format("Your Regeneration effects are " + VAL1 + "% stronger inside water."),
+
+        new BaseRegenEffect() {
+
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Source;
+            }
+
+            @Override
+            public int GetPriority() {
+                return 0;
+            }
+
+            @Override
+            public RegenEvent activate(RegenEvent effect, StatData data, Stat stat) {
+                effect.increaseByPercent(data.getAverageValue());
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(RegenEvent effect, StatData data, Stat stat) {
+                return effect.source.isTouchingWater();
             }
         }
     );

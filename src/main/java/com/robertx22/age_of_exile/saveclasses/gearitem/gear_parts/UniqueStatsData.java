@@ -33,13 +33,14 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         this.RerollNumbers(gear);
     }
 
+    public static int MAX_STATS = 12;
+
     @Override
     public void RerollNumbers(GearItemData gear) {
 
         perc.clear();
-
-        // wont ever have more than 10 unique stats.
-        for (int i = 0; i < 10; i++) {
+        // wont ever have more than 12 unique stats.
+        for (int i = 0; i < MAX_STATS; i++) {
             perc.add(getMinMax(gear)
                 .random());
         }

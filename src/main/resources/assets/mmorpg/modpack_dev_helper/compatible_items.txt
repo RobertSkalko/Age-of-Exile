@@ -6,7 +6,6 @@ mmorpg:uniques/armor/oak_boots
 minecraft:leather_chestplate.leather_chest0
 minecraft:leather_chestplate.cloth_chest0
 mmorpg:uniques/armor/pharaoh_chest
-mmorpg:uniques/jewelry/touch_of_eternity
 minecraft:iron_helmet.plate_helmet1
 minecraft:iron_leggings.plate_pants1
 minecraft:wooden_sword.sword0
@@ -16,7 +15,6 @@ minecraft:diamond_helmet.leather_helmet2
 mmorpg:uniques/armor/slime_boots
 mmorpg:uniques/armor/pharaoh_pants
 mmorpg:uniques/armor/dark_crystal_pants
-mmorpg:uniques/weapon/will_of_flora
 minecraft:iron_boots.cloth_boots1
 minecraft:diamond_chestplate.plate_chest2
 minecraft:diamond_leggings.cloth_pants2
@@ -24,7 +22,6 @@ minecraft:netherite_leggings.cloth_pants2
 mmorpg:uniques/armor/slime_pants
 minecraft:diamond_chestplate.leather_chest2
 mmorpg:uniques/jewelry/azuna_ring
-mmorpg:uniques/jewelry/greed_persist
 mmorpg:armor/leather/helmet/leather_helmet4
 mmorpg:armor/leather/helmet/leather_helmet3
 minecraft:netherite_chestplate.leather_chest2
@@ -62,7 +59,6 @@ mmorpg:armor/leather/chest/leather_chest3
 mmorpg:armor/leather/boots/leather_boots0
 mmorpg:armor/leather/chest/leather_chest4
 minecraft:leather_boots.plate_boots0
-mmorpg:uniques/weapon/rot_phys
 mmorpg:armor/cloth/chest/cloth_chest0
 mmorpg:uniques/armor/slime_chest
 minecraft:leather_boots.leather_boots0
@@ -84,7 +80,6 @@ mmorpg:weapon/wand/wand4
 mmorpg:uniques/armor/oak_pants
 mmorpg:weapon/scepter/scepter0
 mmorpg:weapon/scepter/scepter1
-mmorpg:uniques/weapon/divine_might
 mmorpg:weapon/scepter/scepter4
 mmorpg:weapon/scepter/scepter2
 minecraft:iron_boots.leather_boots1
@@ -97,6 +92,7 @@ mmorpg:weapon/wand/wand1
 mmorpg:weapon/axe/axe0
 mmorpg:weapon/axe/axe1
 mmorpg:weapon/scythe/scythe1
+mmorpg:uniques/jewelry/ghostly_shores_ring
 minecraft:netherite_boots.plate_boots2
 mmorpg:weapon/scythe/scythe0
 mmorpg:weapon/scythe/scythe3
@@ -116,7 +112,6 @@ minecraft:diamond_axe.axe2
 mmorpg:armor/plate/boots/plate_boots1
 mmorpg:armor/cloth/pants/cloth_pants0
 mmorpg:armor/plate/boots/plate_boots2
-mmorpg:uniques/weapon/crystal_wand
 mmorpg:armor/cloth/pants/cloth_pants1
 mmorpg:armor/plate/boots/plate_boots3
 mmorpg:armor/cloth/pants/cloth_pants2
@@ -141,8 +136,7 @@ mmorpg:weapon/bow/bow2
 mmorpg:weapon/bow/bow4
 mmorpg:weapon/dagger/dagger4
 minecraft:leather_boots.cloth_boots0
-mmorpg:uniques/jewelry/lunar_ring
-mmorpg:uniques/weapon/eye_of_zegrath
+mmorpg:uniques/armor/unseeing_eye
 mmorpg:uniques/jewelry/birth_miracle
 mmorpg:uniques/armor/blaze_pants
 minecraft:netherite_helmet.cloth_helmet2
@@ -152,7 +146,6 @@ mmorpg:armor/plate/pants/plate_pants2
 mmorpg:armor/plate/pants/plate_pants1
 mmorpg:armor/plate/pants/plate_pants4
 mmorpg:armor/plate/pants/plate_pants3
-mmorpg:uniques/weapon/obsi_might
 mmorpg:weapon/mace/mace3
 mmorpg:weapon/mace/mace2
 minecraft:iron_helmet.leather_helmet1
@@ -173,13 +166,11 @@ mmorpg:uniques/armor/pharaoh_helmet
 minecraft:diamond_chestplate.cloth_chest2
 minecraft:netherite_leggings.plate_pants2
 mmorpg:armor/leather/pants/leather_pants0
-mmorpg:uniques/weapon/worldbearer
 mmorpg:armor/leather/pants/leather_pants3
 mmorpg:armor/leather/pants/leather_pants4
 mmorpg:armor/leather/pants/leather_pants1
 mmorpg:armor/leather/pants/leather_pants2
 minecraft:netherite_chestplate.cloth_chest2
-mmorpg:uniques/weapon/frigid_staff
 minecraft:bow.bow0
 mmorpg:uniques/armor/dark_crystal_boots
 minecraft:diamond_helmet.cloth_helmet2
@@ -207,7 +198,6 @@ mmorpg:uniques/jewelry/witch_brew
 minecraft:iron_leggings.leather_pants1
 mmorpg:armor/cloth/boots/cloth_boots0
 mmorpg:uniques/jewelry/hunger_neck
-mmorpg:uniques/weapon/judgement
 minecraft:diamond_helmet.plate_helmet2
 minecraft:iron_chestplate.plate_chest1
 mmorpg:uniques/armor/void_chest
@@ -215,17 +205,14 @@ mmorpg:uniques/armor/void_helmet
 mmorpg:uniques/armor/void_pants
 mmorpg:armor/plate/helmet/plate_helmet3
 minecraft:leather_helmet.plate_helmet0
-mmorpg:uniques/jewelry/solar_ring
 mmorpg:armor/plate/helmet/plate_helmet4
 mmorpg:armor/plate/helmet/plate_helmet1
 mmorpg:armor/plate/helmet/plate_helmet2
 mmorpg:armor/plate/helmet/plate_helmet0
 mmorpg:armor/plate/chest/plate_chest0
 mmorpg:jewelry/necklace/life_necklace_end
-mmorpg:uniques/weapon/inca_thunder
 minecraft:leather_leggings.cloth_pants0
 minecraft:netherite_sword.sword2
-mmorpg:uniques/weapon/water_ele_sword
 mmorpg:weapon/sword/sword4
 mmorpg:armor/plate/chest/plate_chest3
 minecraft:iron_helmet.cloth_helmet1
@@ -237,7 +224,6 @@ mmorpg:weapon/sword/sword1
 mmorpg:armor/plate/chest/plate_chest2
 mmorpg:weapon/sword/sword0
 minecraft:iron_leggings.cloth_pants1
-mmorpg:uniques/jewelry/loop_of_infinity
 mmorpg:jewelry/ring/hp_rng_low
 minecraft:leather_leggings.plate_pants0
 minecraft:netherite_axe.axe2

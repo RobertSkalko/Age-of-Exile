@@ -49,7 +49,7 @@ public class ExileEffectsManager {
             return;
         }
 
-        ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.TAKE, caster, target);
+        ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.GIVE, caster, target);
         event.Activate();
 
         ExileStatusEffect effect = reg.getStatusEffect();
