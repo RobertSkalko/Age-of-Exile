@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
@@ -46,9 +47,15 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static String EAGLE_EYE = "beneficial/" + 12;
     public static String SAVAGE_HUNTER = "beneficial/" + 13;
     public static String FROST_ARMOR = "beneficial/" + 14;
+    public static String VOID_EYE = "beneficial/" + 15;
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(VOID_EYE, "Void Eye", EffectType.BENEFICIAL)
+            .stat(10, new ElementalPenetration(Elements.Elemental), ModType.FLAT)
+            .stat(25, GlobalCriticalHit.getInstance(), ModType.FLAT)
+            .build();
 
         ExileEffectBuilder.of(ELE_RESIST, "Ele Resist", EffectType.BENEFICIAL)
             .stat(10, new ElementalResist(Elements.Elemental), ModType.FLAT)

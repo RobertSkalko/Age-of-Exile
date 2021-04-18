@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.stats.types.spell_calc;
+package com.robertx22.age_of_exile.database.data.stats.types.speed;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;

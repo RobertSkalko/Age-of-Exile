@@ -30,6 +30,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldDuration;
 import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldStrength;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
+import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -87,6 +89,7 @@ public class Stats implements ISlashRegistryInit {
 
                     add(DayDamage.getInstance());
                     add(NightDamage.getInstance());
+                    add(DarknessDamage.getInstance());
 
                     add(SpellAccuracy.getInstance());
                     add(SpellDodge.getInstance());

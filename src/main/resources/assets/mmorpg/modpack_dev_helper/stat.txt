@@ -48,6 +48,7 @@ dot_nature_dmg_leech_as_mana
 other_elemental_dmg_leech_as_shield
 all_nature_damage
 blood
+move_speed
 bonus_cooking_yield
 dot_physical_dmg_leech_as_mana
 spell_nature_dmg_leech_as_shield
@@ -131,6 +132,7 @@ other_physical_dmg_leech_as_shield
 blood_on_attack_hit
 night_dmg
 ranged_crit_dmg_to_undead
+darkness_dmg
 spell_damage_per_perc_of_increase_healing
 bonus_alchemy_exp
 slow_immunity

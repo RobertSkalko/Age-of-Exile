@@ -11,7 +11,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CastSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;

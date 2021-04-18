@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Wea
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
