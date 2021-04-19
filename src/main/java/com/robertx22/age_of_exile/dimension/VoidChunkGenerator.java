@@ -5,6 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryLookupCodec;
 import net.minecraft.world.BlockView;
@@ -23,13 +24,19 @@ import net.minecraft.world.gen.chunk.StructuresConfig;
 import net.minecraft.world.gen.chunk.VerticalBlockSample;
 
 public class VoidChunkGenerator extends ChunkGenerator {
-    public static final Codec<VoidChunkGenerator> CODEC;
-    protected static final BlockState AIR;
-    protected static final BlockState BARRIER;
     private final Registry<Biome> biomeRegistry;
 
+    public static Codec<VoidChunkGenerator> VOID_CODED =
+        RegistryLookupCodec.of(Registry.BIOME_KEY)
+            .xmap(VoidChunkGenerator::new, VoidChunkGenerator::getBiomeRegistry)
+            .stable()
+            .codec();
+
     public VoidChunkGenerator(Registry<Biome> biomeRegistry) {
-        super(new FixedBiomeSource((Biome) biomeRegistry.getOrThrow(BiomeKeys.PLAINS)), new StructuresConfig(false));
+        super(new FixedBiomeSource((Biome) biomeRegistry.getOrThrow(BiomeKeys.THE_VOID)), new StructuresConfig(false));
+        this.getStructuresConfig()
+            .getStructures()
+            .clear();
         this.biomeRegistry = biomeRegistry;
     }
 
@@ -39,7 +46,7 @@ public class VoidChunkGenerator extends ChunkGenerator {
 
     @Override
     protected Codec<? extends ChunkGenerator> getCodec() {
-        return CODEC;
+        return VOID_CODED;
     }
 
     @Override
@@ -57,12 +64,20 @@ public class VoidChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public void generateFeatures(ChunkRegion region, StructureAccessor accessor) {
-
-    }
-
-    @Override
     public void populateNoise(WorldAccess world, StructureAccessor accessor, Chunk chunk) {
+
+        BlockState blockState = Blocks.OBSIDIAN.getDefaultState();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+
+        for (int i = 0; i < 150; ++i) {
+            if (blockState != null) {
+                for (int j = 0; j < 16; ++j) {
+                    for (int k = 0; k < 16; ++k) {
+                        chunk.setBlockState(mutable.set(j, i, k), blockState, false);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -75,12 +90,4 @@ public class VoidChunkGenerator extends ChunkGenerator {
         return new VerticalBlockSample(new BlockState[0]);
     }
 
-    static {
-        CODEC = RegistryLookupCodec.of(Registry.BIOME_KEY)
-            .xmap(VoidChunkGenerator::new, VoidChunkGenerator::getBiomeRegistry)
-            .stable()
-            .codec();
-        AIR = Blocks.AIR.getDefaultState();
-        BARRIER = Blocks.BARRIER.getDefaultState();
-    }
 }

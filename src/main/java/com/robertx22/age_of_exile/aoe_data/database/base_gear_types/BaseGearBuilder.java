@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
+import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -11,6 +12,7 @@ import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -20,7 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class BaseGearBuilder {
+public class BaseGearBuilder implements DataHelper {
 
     private AttackPlayStyle style = AttackPlayStyle.MELEE;
     private String locnamesuffix;
@@ -32,6 +34,7 @@ public class BaseGearBuilder {
     private List<StatModifier> implicitstats = new ArrayList<>();
     private StatRequirement req = new StatRequirement();
     private WeaponTypes wep = WeaponTypes.None;
+    private int weapon_offhand_stat_util = 0;
     private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;
     private int weight = 1000;
@@ -44,6 +47,21 @@ public class BaseGearBuilder {
         b.idprefix = idprefix;
         b.slot = slot;
         b.itemMap = itemMap;
+        return b;
+    }
+
+    public static BaseGearBuilder weapon(DataGenKey<GearSlot> slot, WeaponTypes type, HashMap<LevelRange, Item> itemMap) {
+        BaseGearBuilder b = new BaseGearBuilder();
+        b.locnamesuffix = type.locName();
+        b.idprefix = type.id;
+        b.slot = slot;
+        b.itemMap = itemMap;
+        b.atkspeed = type.atkPerSec;
+        b.weaponType(type);
+        b.attackStyle(type.style);
+        b.weapon_offhand_stat_util = type.weapon_offhand_stat_util;
+        b.baseStat(b.getAttackDamageStat(type, DataHelper.Number.FULL, Elements.Physical));
+
         return b;
     }
 
@@ -169,6 +187,7 @@ public class BaseGearBuilder {
             type.attacksPerSecond = atkspeed;
             type.weight = weight;
             type.style = style;
+            type.weapon_offhand_stat_util = weapon_offhand_stat_util;
             type.essenceItem = essenceItem;
             type.item_id = Registry.ITEM.getId(itemMap.get(x))
                 .toString();

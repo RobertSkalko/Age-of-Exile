@@ -35,6 +35,7 @@ public abstract class EffectData {
     public LivingEntity target;
 
     public float number = 0;
+    public float originalNumber;
 
     public EffectData(LivingEntity source, LivingEntity target) {
 
@@ -102,13 +103,8 @@ public abstract class EffectData {
 
     public WeaponTypes weaponType = WeaponTypes.None;
 
-    public Unit GetSource() {
-
-        return sourceUnit;
-    }
-
-    public Unit GetTarget() {
-        return targetUnit;
+    public void increaseByPercent(float perc) {
+        this.number += this.originalNumber * perc / 100F;
     }
 
     public void Activate() {

@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileE
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SummonProjectileAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
@@ -30,25 +30,23 @@ public class MapHolder {
 
     private HashMap<String, Object> map = new HashMap<>();
 
-    private ValueCalculationData calc = null;
-
     public boolean has(MapField f) {
         return map.containsKey(f.GUID());
     }
 
     public <T> MapHolder put(MapField<T> field, T t) {
         if (field == MapField.VALUE_CALCULATION) {
-            calc = (ValueCalculationData) t;
+            this.map.put(field.GUID(), ((ValueCalculation) t).GUID());
             return this;
         }
-
         this.map.put(field.GUID(), t);
         return this;
     }
 
     public <T> T get(MapField<T> field) {
         if (field == MapField.VALUE_CALCULATION) {
-            return (T) calc;
+            return (T) Database.ValueCalculations()
+                .get((String) map.get(field.GUID()));
         }
         return (T) map.get(field.GUID());
     }

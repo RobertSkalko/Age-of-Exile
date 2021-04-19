@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense.crit;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritStrength;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
@@ -52,6 +53,8 @@ public class GlobalCriticalDamage extends Stat implements ITransferToOtherStats 
             .getStatInCalculation(CriticalDamage.getInstance()));
         thisstat.addFullyTo(unit.getUnit()
             .getStatInCalculation(SpellCriticalDamage.getInstance()));
+        thisstat.addFullyTo(unit.getUnit()
+            .getStatInCalculation(HealCritStrength.getInstance()));
         thisstat.clear();
     }
 

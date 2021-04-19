@@ -39,7 +39,7 @@ public class GearData {
         if (slot == EquipmentSlot.OFFHAND) {
             if (gear != null && gear.GetBaseGearType()
                 .isWeaponOrTool()) {
-                percentStatUtilization = 15; // TODO
+                percentStatUtilization = gear.GetBaseGearType().weapon_offhand_stat_util;
             }
         }
     }
@@ -70,6 +70,13 @@ public class GearData {
         BaseGearType type = gear.GetBaseGearType();
 
         if (type.isWeaponOrTool()) {
+
+            if (type.isMeleeWeapon()) {
+                if (slot == EquipmentSlot.OFFHAND) {
+                    return true;
+                }
+            }
+
             return slot == EquipmentSlot.MAINHAND; // ranged weapon
         }
         if (type.tags.contains(BaseGearType.SlotTag.chest)) {

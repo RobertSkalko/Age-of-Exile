@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -152,7 +155,7 @@ public class RecipeGenerator {
 
                     ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(x.getItem(), 1);
 
-                    String[] pattern = x.getRecipePattern();
+                    String[] pattern = getRecipePattern(x);
 
                     if (x.getEssenceItem() != null) {
                         // if item is special and uses essence to craft
@@ -190,6 +193,146 @@ public class RecipeGenerator {
                 }
             });
 
+    }
+
+    public static String[] getRecipePattern(BaseGearType type) {
+
+        TagList tags = type.getTags();
+
+        if (tags.contains(SlotTag.sword)) {
+            return new String[]{
+                " M ",
+                " M ",
+                " S "
+            };
+        }
+        if (tags.contains(SlotTag.glove)) {
+            return new String[]{
+                "MSM"
+            };
+        }
+        if (tags.contains(SlotTag.hammer)) {
+            return new String[]{
+                "MMM",
+                " S ",
+                " S "
+            };
+        }
+        if (tags.contains(SlotTag.mace)) {
+            return new String[]{
+                " M ",
+                "MSM",
+                " S "
+            };
+        }
+        if (tags.contains(SlotTag.spear)) {
+            return new String[]{
+                "  M",
+                " M ",
+                "S  "
+            };
+        }
+        if (tags.contains(SlotTag.axe)) {
+            return new String[]{
+                "MM ",
+                " S ",
+                " S "
+            };
+        }
+
+        if (tags.contains(SlotTag.scepter)) {
+            return new String[]{
+                "M  ",
+                "MS ",
+                "SS "
+            };
+        }
+        if (tags.contains(SlotTag.dagger)) {
+            return new String[]{
+                "SMM"
+            };
+        }
+        if (tags.contains(SlotTag.staff)) {
+            return new String[]{
+                "  M",
+                "SM ",
+                "SS "
+            };
+        }
+        if (tags.contains(SlotTag.wand)) {
+            return new String[]{
+                "  M",
+                " M ",
+                "S  "
+            };
+        }
+        if (tags.contains(SlotTag.scythe)) {
+            return new String[]{
+                "  M",
+                " SM",
+                "S M"
+            };
+        }
+        if (tags.contains(SlotTag.bow)) {
+            return new String[]{
+                " MB",
+                "M B",
+                " MB"
+            };
+        }
+        if (tags.contains(SlotTag.crossbow)) {
+            return new String[]{
+                "MSM",
+                "S S",
+                " S "
+            };
+        }
+
+        if (tags.contains(SlotTag.chest)) {
+            return new String[]{
+                "M M",
+                "MMM",
+                "MMM"
+            };
+        }
+        if (tags.contains(SlotTag.boots)) {
+            return new String[]{
+                "M M",
+                "M M"
+            };
+        }
+        if (tags.contains(SlotTag.pants)) {
+            return new String[]{
+                "MMM",
+                "M M",
+                "M M"
+            };
+        }
+        if (tags.contains(SlotTag.helmet)) {
+            return new String[]{
+                "MMM",
+                "M M"
+            };
+        }
+
+        if (tags.contains(SlotTag.necklace)) {
+            return new String[]{
+                "MMM",
+                "M M",
+                " M "
+            };
+        }
+        if (tags.contains(SlotTag.ring)) {
+            return new String[]{
+                " M ",
+                "M M",
+                " M "
+            };
+        }
+
+        System.out.print("NO RECIPE FOR TAG ");
+
+        return null;
     }
 
     static InventoryChangedCriterion.Conditions conditionsFromItem(ItemConvertible itemConvertible) {

@@ -33,6 +33,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.SpellDependentDatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
+import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registrators.Tiers;
 
@@ -43,6 +44,7 @@ public class GeneratedData {
     // If it errors without them, then that means i hardcoded something i shouldn't have
     public static void addAllObjectsToGenerate() {
 
+        new ValueCalcAdder().registerAll();
         new DatapackStatAdder().registerAll();
 
         new SkillGemRarityAdder().registerAll();

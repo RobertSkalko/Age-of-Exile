@@ -6,10 +6,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTex
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -34,7 +34,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
     public MutableText getText(TooltipInfo info, MapHolder data, CalculatedSpellData spelldata) {
         MutableText text = new LiteralText("");
 
-        ValueCalculationData calc = data.get(VALUE_CALCULATION);
+        ValueCalculation calc = data.get(VALUE_CALCULATION);
         Elements ele = data.getElement();
 
         text.append("Deal ")
@@ -52,7 +52,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
 
         if (!ctx.world.isClient) {
             Elements ele = data.getElement();
-            ValueCalculationData calc = data.get(VALUE_CALCULATION);
+            ValueCalculation calc = data.get(VALUE_CALCULATION);
 
             int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
 
@@ -86,7 +86,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
 
     }
 
-    public MapHolder create(ValueCalculationData calc, Elements ele) {
+    public MapHolder create(ValueCalculation calc, Elements ele) {
         MapHolder dmg = new MapHolder();
         dmg.type = GUID();
         dmg.put(VALUE_CALCULATION, calc);

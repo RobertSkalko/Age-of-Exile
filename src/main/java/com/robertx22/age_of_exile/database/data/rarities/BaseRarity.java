@@ -135,6 +135,14 @@ public abstract class BaseRarity implements Rarity {
         onSetFields();
     }
 
+    public void setFabledFields() {
+        this.guid = IRarity.FABLED_ID;
+        this.loc_name = "Fabled";
+        this.text_format = Formatting.DARK_RED.name();
+
+        onSetFields();
+    }
+
     private void onSetFields() {
 
     }

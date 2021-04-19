@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.Specif
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -140,9 +141,15 @@ public class UniqueGearBuilder {
         return this;
     }
 
+    public UniqueGearBuilder setFabled() {
+        this.uniq.uniqueRarity = IRarity.FABLED_ID;
+        return this;
+    }
+
     public UniqueGear build() {
         Assert.assrt(!uniq.uniqueStats.isEmpty());
         Assert.assrt(!uniq.stat_req.isEmpty());
+        Assert.assrt((uniq.base_stats.size() + uniq.uniqueStats.size()) < UniqueStatsData.MAX_STATS);
 
         uniq.addToSerializables();
         return uniq;

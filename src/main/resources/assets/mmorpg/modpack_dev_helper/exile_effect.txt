@@ -5,6 +5,7 @@ negative/1
 negative/6
 negative/7
 negative/8
+negative/9
 negative/2
 negative/3
 negative/4
@@ -13,6 +14,7 @@ beneficial/13
 beneficial/12
 beneficial/11
 beneficial/10
+beneficial/15
 beneficial/14
 beneficial/6
 beneficial/5

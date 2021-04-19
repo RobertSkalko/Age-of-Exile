@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -23,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -40,6 +42,12 @@ public class TooltipMethod {
         PlayerEntity player = MinecraftClient.getInstance().player;
 
         try {
+
+            if (stack.getItem() instanceof TieredItem) {
+                TieredItem tier = (TieredItem) stack.getItem();
+
+                tooltip.add(new LiteralText("Tier " + tier.tier.getDisplayTierNumber()).formatted(Formatting.LIGHT_PURPLE));
+            }
 
             if (stack.getItem() instanceof FishingRodItem) {
                 if (stack.hasTag()) {

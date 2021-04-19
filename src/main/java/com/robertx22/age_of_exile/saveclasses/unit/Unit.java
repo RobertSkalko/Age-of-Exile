@@ -5,11 +5,11 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
@@ -19,7 +19,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -38,9 +38,6 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -344,17 +341,6 @@ public class Unit {
                     InCalcStatData statdata = x.getValue();
                     Stat stat = x.getValue()
                         .GetStat();
-                    if (stat instanceof ITransferToOtherStats) {
-                        ITransferToOtherStats add = (ITransferToOtherStats) stat;
-                        add.transferStats(data, statdata);
-                    }
-                });
-
-            new HashMap<>(getStats().statsInCalc).entrySet()
-                .forEach(x -> {
-                    InCalcStatData statdata = x.getValue();
-                    Stat stat = x.getValue()
-                        .GetStat();
                     if (stat instanceof ICoreStat) {
                         ICoreStat add = (ICoreStat) stat;
                         add.addToOtherStats(data, statdata);
@@ -369,6 +355,17 @@ public class Unit {
                     if (stat instanceof IAffectsStats) {
                         IAffectsStats add = (IAffectsStats) stat;
                         add.affectStats(data, statdata);
+                    }
+                });
+
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (stat instanceof ITransferToOtherStats) {
+                        ITransferToOtherStats add = (ITransferToOtherStats) stat;
+                        add.transferStats(data, statdata);
                     }
                 });
 
@@ -432,7 +429,13 @@ public class Unit {
 
             DirtyCheck aftercalc = getDirtyCheck();
 
-            addToVanillaHealth(entity);
+            this.getStats().stats.values()
+                .forEach(x -> {
+                    if (x.GetStat() instanceof AttributeStat) {
+                        AttributeStat stat = (AttributeStat) x.GetStat();
+                        stat.addToEntity(entity, x);
+                    }
+                });
 
             if (old.isDirty(aftercalc)) {
                 if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
@@ -465,100 +468,22 @@ public class Unit {
 
     private List<StatContext> addGearStats(List<GearData> gears, LivingEntity entity, UnitData data) {
 
-        /// can rework this now that i unequip gear
-        // TODO
-
         List<StatContext> ctxs = new ArrayList<>();
 
+        gears.forEach(x -> {
+            List<ExactStatData> stats = x.gear.GetAllStats();
 
-        /*
-        Add all gear stats that meet requirements
-        >
-        Remove the gears that added stats
-        >
-        Recalculate stats
-        >
-        Add all gear stats that meet requirements
-        ...
-        If recalculated already and leftover gear still doesn't meet requirements, stop and remove all.
-        */
-
-        boolean addedAny = true;
-
-        HashMap<GearRarity, Integer> rarityMap = new HashMap<>();
-
-        while (!gears.isEmpty()) {
-
-            List<GearItemData> toremove = new ArrayList<>();
-
-            for (int i = 0; i < gears.size(); i++) {
-
-                GearItemData gear = gears.get(i).gear;
-
-                boolean addstats = true;
-
-                if (entity instanceof PlayerEntity) {
-// TODO
-                    if (addstats) {
-                        GearRarity rar = gear.getRarity();
-                        if (rar.hasMaxWornRestriction()) {
-                            if (rarityMap.get(rar) >= rar.max_worn_at_once) {
-                                addstats = false;
-                                continue;
-                            } else {
-                                rarityMap.put(rar, rarityMap.getOrDefault(rar, 0) + 1);
-                            }
-                        }
-                    }
-                }
-
-                if (addstats) {
-
-                    ctxs.add(new GearStatCtx(gear, gear.GetAllStats()));
-
-                    toremove.add(gear);
-                    addedAny = true;
-                }
-
+            if (x.percentStatUtilization != 100) {
+                // multi stats like for offfhand weapons
+                float multi = x.percentStatUtilization / 100F;
+                stats.forEach(s -> s.multiplyBy(multi));
             }
+            ctxs.add(new GearStatCtx(x.gear, stats));
 
-            if (toremove.isEmpty()) {
-                if (!addedAny) {
-                    gears.clear();
-                    break;
-                } else {
-                    addedAny = false;
-                }
-            }
-
-            toremove.forEach(x -> gears.removeIf(g -> g.gear.equals(x)));
-            toremove.clear();
-        }
+        });
 
         return ctxs;
 
-    }
-
-    public static UUID hpID = UUID.fromString("e926df30-c376-11ea-87d0-0242ac130003");
-
-    private void addToVanillaHealth(LivingEntity en) {
-
-        float hp = getCalculatedStat(Health.getInstance()).getAverageValue();
-
-        EntityAttributeModifier mod = new EntityAttributeModifier(
-            hpID,
-            EntityAttributes.GENERIC_MAX_HEALTH.getTranslationKey(),
-            hp,
-            EntityAttributeModifier.Operation.ADDITION
-        );
-
-        EntityAttributeInstance atri = en.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
-
-        if (atri.hasModifier(mod)) {
-            atri.removeModifier(mod); // KEEP THIS OR UPDATE WONT MAKE HP CORRECT!!!
-        }
-
-        // DELETE AFTER A FEW UPDATES
     }
 
     private static HashMap<EntityType, Boolean> IGNORED_ENTITIES = null;

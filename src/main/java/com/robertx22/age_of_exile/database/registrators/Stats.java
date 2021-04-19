@@ -18,6 +18,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.Reduc
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritChance;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritStrength;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
@@ -25,7 +27,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldDuration;
+import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldStrength;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
+import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
+import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -73,6 +79,9 @@ public class Stats implements ISlashRegistryInit {
                     add(ChanceToApplyEffect.BLEED);
                     add(ChanceToApplyEffect.TORMENT);
 
+                    add(ShieldDuration.getInstance());
+                    add(ShieldStrength.getInstance());
+
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
                     add(ReducedManaReserved.getInstance());
@@ -80,6 +89,7 @@ public class Stats implements ISlashRegistryInit {
 
                     add(DayDamage.getInstance());
                     add(NightDamage.getInstance());
+                    add(DarknessDamage.getInstance());
 
                     add(SpellAccuracy.getInstance());
                     add(SpellDodge.getInstance());
@@ -127,6 +137,10 @@ public class Stats implements ISlashRegistryInit {
                     add(Vitality.INSTANCE);
                     add(Agility.INSTANCE);
 
+                    add(StyleDamageReceived.MELEE);
+                    add(StyleDamageReceived.MAGIC);
+                    add(StyleDamageReceived.RANGED);
+
                     add(MoreSocketsStat.getInstance());
                     add(ExtraMobDropsStat.getInstance());
                     add(BonusExp.getInstance());
@@ -158,6 +172,8 @@ public class Stats implements ISlashRegistryInit {
                     add(CriticalHit.getInstance());
                     add(SpellCriticalDamage.getInstance());
                     add(SpellCriticalHit.getInstance());
+                    add(HealCritChance.getInstance());
+                    add(HealCritStrength.getInstance());
                     add(GlobalCriticalDamage.getInstance());
                     add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());

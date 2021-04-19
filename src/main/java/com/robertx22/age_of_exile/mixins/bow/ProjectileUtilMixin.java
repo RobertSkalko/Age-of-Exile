@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mixins.bow;
 
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ModBowItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.BowWeapon;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
@@ -26,7 +26,7 @@ public abstract class ProjectileUtilMixin {
         for (Hand hand : HANDS) {
             if (item == Items.BOW) { // Make sure we only check for bows when searching for bows and allow for other items like crossbows in future
                 if (entity.getStackInHand(hand)
-                    .getItem() instanceof ModBowItem) {
+                    .getItem() instanceof BowWeapon) {
                     cir.setReturnValue(hand);
                     return;
                 }

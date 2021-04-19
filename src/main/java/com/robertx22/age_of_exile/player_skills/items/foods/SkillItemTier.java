@@ -36,6 +36,13 @@ public enum SkillItemTier {
             .orElse(SkillItemTier.TIER0);
     }
 
+    public static SkillItemTier of(LevelRange lvl) {
+        return Arrays.stream(SkillItemTier.values())
+            .filter(x -> x.levelRange == lvl)
+            .findAny()
+            .orElse(SkillItemTier.TIER0);
+    }
+
     public SkillItemTier lowerTier() {
 
         if (this == TIER0) {

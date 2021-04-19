@@ -13,7 +13,7 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
     public static int DISTANCE = 10;
 
     public DungeonDimensionJigsawFeature(Codec<StructurePoolFeatureConfig> codec) {
-        super(codec, 30, true, false);
+        super(codec, 80, true, false);
 
     }
 

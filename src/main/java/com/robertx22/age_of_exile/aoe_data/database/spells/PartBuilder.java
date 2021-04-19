@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
@@ -25,14 +25,14 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart damage(ValueCalculationData calc, Elements ele) {
+    public static ComponentPart damage(ValueCalculation calc, Elements ele) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
         c.targets.add(BaseTargetSelector.TARGET.create());
         return c;
     }
 
-    public static ComponentPart dotDamageOnTick(String effect, ValueCalculationData calc, Elements ele) {
+    public static ComponentPart dotDamageOnTick(String effect, ValueCalculation calc, Elements ele) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele)
             .put(MapField.EXILE_POTION_ID, effect)
@@ -49,41 +49,41 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart restoreManaInRadius(ValueCalculationData calc, Double radius) {
+    public static ComponentPart restoreManaInRadius(ValueCalculation calc, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.RESTORE_MANA.create(calc));
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
         return c;
     }
 
-    public static ComponentPart restoreManaToCaster(ValueCalculationData calc) {
+    public static ComponentPart restoreManaToCaster(ValueCalculation calc) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.RESTORE_MANA.create(calc));
         c.targets.add(BaseTargetSelector.CASTER.create());
         return c;
     }
 
-    public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculationData calc, Elements ele, Double radius) {
+    public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculation calc, Elements ele, Double radius) {
         ComponentPart c = damageInAoe(calc, ele, radius);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
     }
 
-    public static ComponentPart damageInAoe(ValueCalculationData calc, Elements ele, Double radius) {
+    public static ComponentPart damageInAoe(ValueCalculation calc, Elements ele, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
         return c;
     }
 
-    public static ComponentPart damageInFront(ValueCalculationData calc, Elements ele, Double distance, Double width) {
+    public static ComponentPart damageInFront(ValueCalculation calc, Elements ele, Double distance, Double width) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
         c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
         return c;
     }
 
-    public static ComponentPart onTickRaycast(Double ticks, ValueCalculationData calc, Elements ele, Double distance) {
+    public static ComponentPart onTickRaycast(Double ticks, ValueCalculation calc, Elements ele, Double distance) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
@@ -91,20 +91,20 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart onTickHealInAoe(Double ticks, ValueCalculationData calc, Double radius) {
+    public static ComponentPart onTickHealInAoe(Double ticks, ValueCalculation calc, Double radius) {
         ComponentPart c = healInAoe(calc, radius);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
     }
 
-    public static ComponentPart healInAoe(ValueCalculationData calc, Double radius) {
+    public static ComponentPart healInAoe(ValueCalculation calc, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
         return c;
     }
 
-    public static ComponentPart healCaster(ValueCalculationData calc) {
+    public static ComponentPart healCaster(ValueCalculation calc) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
         c.targets.add(BaseTargetSelector.CASTER.create());

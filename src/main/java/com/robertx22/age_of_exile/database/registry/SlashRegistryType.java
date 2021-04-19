@@ -37,6 +37,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import net.minecraft.util.Formatting;
 
@@ -88,6 +89,7 @@ public enum SlashRegistryType {
     RACES("races", 28, PlayerRace.SERIALIZER, SyncTime.ON_LOGIN),
     CRAFTING_REQ("crafting_req", 30, CraftingReq.SERIALIZER, SyncTime.ON_LOGIN),
     SCROLL_BUFFS("scroll_buffs", 29, ScrollBuff.SERIALIZER, SyncTime.ON_LOGIN),
+    VALUE_CALC("value_calc", 40, ValueCalculation.SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_SET("set", 31, GearSet.SERIALIZER, SyncTime.ON_LOGIN),
     GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 

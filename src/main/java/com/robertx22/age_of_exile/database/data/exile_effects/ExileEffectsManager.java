@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -17,6 +18,9 @@ public class ExileEffectsManager {
                 return;
             }
             ExileStatusEffect effect = reg.getStatusEffect();
+
+            ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.TAKE, target, target);
+            event.Activate();
 
             ExileEffectInstanceData extraData = Load.Unit(target)
                 .getStatusEffectsData()
@@ -44,6 +48,10 @@ public class ExileEffectsManager {
         if (caster.world.isClient) {
             return;
         }
+
+        ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.GIVE, caster, target);
+        event.Activate();
+
         ExileStatusEffect effect = reg.getStatusEffect();
 
         StatusEffectInstance instance = target.getStatusEffect(effect);

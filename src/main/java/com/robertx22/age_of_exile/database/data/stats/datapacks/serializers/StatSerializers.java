@@ -2,10 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.datapacks.serializers;
 
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.IStatSerializer;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AddPerPercentOfOther;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.ConvertFromOneToOtherStat;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MoreXPerYOf;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.*;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.spell_related.*;
 
 import java.util.HashMap;
@@ -21,6 +18,7 @@ public class StatSerializers {
         map.put(MoreXPerYOf.SER_ID, new MoreXPerYOfSer());
         map.put(ConvertFromOneToOtherStat.SER_ID, new TransferStatSer());
         map.put(MarkerStat.SER_ID, new MarkerSer());
+        map.put(AttributeStat.SER_ID, new AttributeStatSer());
 
         map.put(PerSpellExtraProjectilesStat.SER_ID, new SpellStatSer<>(x -> new PerSpellExtraProjectilesStat(x)));
         map.put(PerSpellCooldownStat.SER_ID, new SpellStatSer<>(x -> new PerSpellCooldownStat(x)));

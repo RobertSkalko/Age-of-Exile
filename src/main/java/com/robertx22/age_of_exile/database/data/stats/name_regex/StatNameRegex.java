@@ -14,7 +14,6 @@ public abstract class StatNameRegex {
     public static StatNameRegex BASIC_LOCAL = new BasicLocalStatRegex().setAddPlus(false);
     public static StatNameRegex VALUE_PLUS_NAME = new ValuePlusName();
     public static StatNameRegex JUST_NAME = new JustNameRegex();
-    public static StatNameRegex STATS_WITH_ICON = new AffixStatsWithIcon();
 
     public static String VALUE = "VALUE";
 
@@ -34,8 +33,12 @@ public abstract class StatNameRegex {
         return Formatting.GRAY;
     }
 
-    public Formatting numberColor(Stat stat) {
-        return Formatting.GREEN;
+    public Formatting numberColor(Stat stat, float val) {
+        if (val > 0) {
+            return Formatting.GREEN;
+        } else {
+            return Formatting.RED;
+        }
     }
 
     public abstract String getStatNameRegex(ModType type, Stat stat, float v1, float v2);
@@ -72,10 +75,10 @@ public abstract class StatNameRegex {
         String str = statColor(stat) + getStatNameRegex(type, stat, v1, v2);
 
         if (type == ModType.FLAT && stat.UsesSecondValue()) {
-            str = str.replace(MIN_VALUE, numberColor(stat) + plusminus + v1s + percent + statColor(stat));
-            str = str.replace(MAX_VALUE, numberColor(stat) + v2s + percent + statColor(stat));
+            str = str.replace(MIN_VALUE, numberColor(stat, v1) + plusminus + v1s + percent + statColor(stat));
+            str = str.replace(MAX_VALUE, numberColor(stat, v2) + v2s + percent + statColor(stat));
         } else {
-            str = str.replace(VALUE, numberColor(stat) + "" + plusminus + v1s + percent + Formatting.RESET + statColor(stat));
+            str = str.replace(VALUE, numberColor(stat, v1) + "" + plusminus + v1s + percent + Formatting.RESET + statColor(stat));
         }
 
         str = str.replace(NAME, CLOC.translate(stat.locName()));

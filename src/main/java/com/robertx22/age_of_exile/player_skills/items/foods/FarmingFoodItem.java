@@ -17,7 +17,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -84,7 +83,6 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         try {
-            tooltip.add(new LiteralText("Tier " + tier.tier + " Food Item."));
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -99,6 +99,29 @@ public enum BarGuiType {
         }
 
     },
+    SHIELD {
+        @Override
+        public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
+            return data.getResources()
+                .getShield();
+        }
+
+        @Override
+        public float getMax(EntityCap.UnitData data, PlayerEntity en) {
+            return HealthUtils.getMaxHealth(en);
+        }
+
+        @Override
+        public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
+            return Ref.id("textures/gui/overlay/shield.png");
+        }
+
+        @Override
+        public boolean shouldRender(EntityCap.UnitData data, PlayerEntity en) {
+            return getCurrent(data, en) > 0;
+        }
+
+    },
     HUNGER {
         @Override
         public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {

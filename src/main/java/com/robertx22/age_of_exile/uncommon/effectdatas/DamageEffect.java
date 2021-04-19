@@ -86,10 +86,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return this.element != null && this.element != Elements.Physical;
     }
 
-    public void increaseByPercent(float perc) {
-        this.number += this.originalNumber * perc / 100F;
-    }
-
     public void addBonusEleDmg(Elements element, float dmg) {
         bonusElementDamageMap.put(element, (int) (bonusElementDamageMap.getOrDefault(element, 0) + dmg));
     }
@@ -110,8 +106,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             }
         }
     }
-
-    public float originalNumber;
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
     public Elements element = Elements.Physical;
@@ -151,6 +145,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (!isDodged && target instanceof PlayerEntity) { // todo this code sucks
             // a getter should not modify anything
             dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
+
+            if (dmg > 0) {
+
+                int reduced = targetData.getResources().shields.spendShieldsToReduceDamage(dmg);
+                dmg -= reduced;
+            }
+
         }
 
         return dmg;
@@ -158,7 +159,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private float modifyByAttackSpeedIfMelee(float dmg) {
 
-        if (this.weaponType.isMelee) {
+        if (this.weaponType.isMelee()) {
             float cool = 1;
             if (this.source instanceof PlayerEntity) {
 
@@ -301,6 +302,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         float dmg = info.totalDmg;
+
+        if (dmg < 1) {
+            cancelDamage();
+            return;
+        }
+
         float vanillaDamage = HealthUtils.realToVanilla(target, dmg);
 
         if (this.canceled) {

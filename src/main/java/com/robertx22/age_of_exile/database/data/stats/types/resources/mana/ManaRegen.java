@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.mana;
 
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.BaseRegenClass;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 
 public class ManaRegen extends BaseRegenClass {
     public static String GUID = "mana_regen";
@@ -14,6 +15,11 @@ public class ManaRegen extends BaseRegenClass {
         this.min_val = 0;
         this.scaling = StatScaling.NORMAL;
         this.statGroup = StatGroup.MAIN;
+    }
+
+    @Override
+    public ResourceType getResourceType() {
+        return ResourceType.MANA;
     }
 
     @Override

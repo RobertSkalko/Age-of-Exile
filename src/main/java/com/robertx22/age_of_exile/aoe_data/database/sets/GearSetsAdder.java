@@ -13,6 +13,7 @@ public class GearSetsAdder implements ISlashRegistryInit {
     public static String SLIME_SET = "slime_set";
     public static String DARK_CRYSTAL_SET = "dark_crystal_set";
     public static String VOID_SET = "void_set";
+    public static String PHARAOH_SET = "pharaoh_set";
 
     @Override
     public void registerAll() {
@@ -39,6 +40,10 @@ public class GearSetsAdder implements ISlashRegistryInit {
 
         GearSet.Builder.of(VOID_SET, "Call of the Void")
             .stat(2, new OptScaleExactStat(10, SpecialStats.DARK_DMG_IGNORE_RES))
+            .build();
+
+        GearSet.Builder.of(PHARAOH_SET, "Curse of the Pharaoh")
+            .stat(2, new OptScaleExactStat(50, SpecialStats.MUMMY_CURSE))
             .build();
 
     }

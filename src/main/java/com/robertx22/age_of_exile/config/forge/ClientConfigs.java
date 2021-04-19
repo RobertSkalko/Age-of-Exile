@@ -48,6 +48,7 @@ public class ClientConfigs {
 
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.HEALTH, new PointData(-91, -39), IconRenderer.LEFT));
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.MANA, new PointData(-91, -49), IconRenderer.LEFT));
+            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.SHIELD, new PointData(-91, -59), IconRenderer.LEFT));
 
             OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.EXP,
                 new PointData(91 - GuiConstants.BAR_WIDTH, -39), IconRenderer.RIGHT));

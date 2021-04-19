@@ -1,16 +1,24 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 fishing_rod
+scythe
 shield
+dagger
 chest
 pants
+hammer
 crossbow
+mace
 ring
+scepter
 pickaxe
+glove
+staff
 necklace
 bow
 axe
 sword
+spear
 helmet
 wand
 boots

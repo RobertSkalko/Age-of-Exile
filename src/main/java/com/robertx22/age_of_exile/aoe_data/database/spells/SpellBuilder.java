@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.*;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.ValueCalculationData;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.particle.DefaultParticleType;
@@ -26,7 +26,7 @@ public class SpellBuilder {
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)
                 .build())
-            .onCast(PartBuilder.onTickRaycast(10D, ValueCalculationData.base(3), ele, 15D));
+            .onCast(PartBuilder.onTickRaycast(10D, ValueCalculation.base("breath_dmg", 3), ele, 15D));
 
     }
 

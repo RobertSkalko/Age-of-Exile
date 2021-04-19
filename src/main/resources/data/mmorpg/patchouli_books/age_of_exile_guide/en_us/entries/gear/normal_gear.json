@@ -6,7 +6,7 @@
   "pages": [
 	{  
 	    "type": "spotlight",
-		"item": "mmorpg:weapon/wand/scepter0",		
+		"item": "mmorpg:weapon/wand/wand0",		
 		"text": "Normal Gears consist of the base stat and affixes. Some have implicit stats and sockets. The higher the rarity, the more affixes an item can have. All gears have level requirements."
 	},
 	{  

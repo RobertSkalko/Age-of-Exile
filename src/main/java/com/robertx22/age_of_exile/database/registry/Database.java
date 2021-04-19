@@ -37,6 +37,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
 import com.robertx22.age_of_exile.database.registrators.Stats;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
@@ -233,6 +234,10 @@ public class Database {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
 
+    public static SlashRegistryContainer<ValueCalculation> ValueCalculations() {
+        return getRegistry(SlashRegistryType.VALUE_CALC);
+    }
+
     public static SlashRegistryContainer<EntityConfig> EntityConfigs() {
         return getRegistry(SlashRegistryType.ENTITY_CONFIGS);
     }
@@ -366,6 +371,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.RACES, new PlayerRace()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.CRAFTING_REQ, new CraftingReq()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SCROLL_BUFFS, new ScrollBuff()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.VALUE_CALC, new ValueCalculation()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SET, new GearSet()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()

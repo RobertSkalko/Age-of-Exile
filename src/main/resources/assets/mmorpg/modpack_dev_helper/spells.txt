@@ -13,6 +13,7 @@ gorgons_gaze
 nature_balm
 haste_aura
 arrow_storm
+shield_test
 fireball
 levitation
 explosive_arrow
@@ -26,6 +27,7 @@ frostball
 flame_strike
 meteor
 frost_nova
+make_arrows
 fire_bombs
 crit_aura
 awaken_mana

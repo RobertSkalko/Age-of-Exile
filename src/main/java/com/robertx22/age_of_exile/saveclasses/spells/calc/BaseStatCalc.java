@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.spells.calc;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Storable;
 import net.minecraft.text.LiteralText;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public abstract class BaseStatCalc implements ITooltipList {
+public abstract class BaseStatCalc {
 
     public List<Text> getTooltipFor(float multi, float value, MutableText statname, Elements el) {
         List<Text> list = new ArrayList<>();

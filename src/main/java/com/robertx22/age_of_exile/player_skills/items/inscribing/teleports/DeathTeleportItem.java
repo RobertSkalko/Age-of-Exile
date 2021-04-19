@@ -17,6 +17,7 @@ public class DeathTeleportItem extends BaseTpItem {
     public ItemStack onDoneUsing(ItemStack stack, World world, ServerPlayerEntity user) {
 
         try {
+
             PlayerDeathData data = ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(user);
 
             if (data.deathPos != null && data.deathDim != null && data.deathDim

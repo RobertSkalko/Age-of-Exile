@@ -142,5 +142,21 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
 
+        GearRarity fabled = new GearRarity();
+        fabled.unidentified_chance = 100;
+        fabled.stat_req_multi = 1;
+        fabled.spawn_durability_hit = new MinMax(20, 50);
+        fabled.affixes = new GearRarity.Part(0, 0, 0);
+        fabled.weight = 0;
+        fabled.item_tier_power = 2;
+        fabled.item_value_multi = 3;
+        fabled.item_tier = 6;
+        fabled.essence_per_sal = new MinMax(10, 15);
+        fabled.setFabledFields();
+        fabled.addToSerializables();
+        fabled.special_spawn_chance = 0.5F;
+        fabled.announce_in_chat = true;
+        fabled.is_unique_item = true;
+
     }
 }
