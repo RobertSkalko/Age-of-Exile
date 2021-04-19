@@ -2,6 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
+		"1": "block/nether_portal",
 		"5": "mmorpg:items/weapon/hammer/hammer0"
 	},
 	"elements": [
@@ -21,12 +22,12 @@
 			"from": [6, 12, 3.25],
 			"to": [11, 17, 12.25],
 			"faces": {
-				"north": {"uv": [0, 5, 2.5, 7.5], "texture": "#5"},
-				"east": {"uv": [0, 0, 4.5, 2.5], "texture": "#5"},
-				"south": {"uv": [7, 0, 9.5, 2.5], "texture": "#5"},
-				"west": {"uv": [0, 2.5, 4.5, 5], "texture": "#5"},
-				"up": {"uv": [7, 4.5, 4.5, 0], "texture": "#5"},
-				"down": {"uv": [7, 4.5, 4.5, 9], "texture": "#5"}
+				"north": {"uv": [0, 5, 2.5, 7.5], "texture": "#1"},
+				"east": {"uv": [0, 0, 4.5, 2.5], "texture": "#1"},
+				"south": {"uv": [7, 0, 9.5, 2.5], "texture": "#1"},
+				"west": {"uv": [0, 2.5, 4.5, 5], "texture": "#1"},
+				"up": {"uv": [7, 4.5, 4.5, 0], "texture": "#1"},
+				"down": {"uv": [7, 4.5, 4.5, 9], "texture": "#1"}
 			}
 		}
 	],

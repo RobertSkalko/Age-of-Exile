@@ -2,6 +2,10 @@
   "type": "mmorpg:dungeon",
   "generator": {
 	"type": "mmorpg:dungeon_flat"	
+	
+	 "settings": {
+          "disable_mob_generation": true    		
+	}
 }
 }
 

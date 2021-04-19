@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension;
 
+import com.ibm.icu.impl.Assert;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.biome.Biome;
@@ -12,6 +13,33 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 public class DungeonDimensionJigsawFeature extends JigsawFeature {
     public static int DISTANCE = 10;
 
+    public static ChunkPos getSpawnChunkOf(ChunkPos cp) {
+
+        int x = cp.x;
+        int z = cp.z;
+
+        int remx = x % DISTANCE;
+        int remz = z % DISTANCE;
+
+        if (remx >= 5) {
+            x += DISTANCE - remx;
+        } else {
+            x -= remx;
+        }
+        if (remz >= 5) {
+            z += DISTANCE - remz;
+        } else {
+            z -= remz;
+        }
+
+        ChunkPos spawn = new ChunkPos(x, z);
+
+        Assert.assrt(spawn.x % DISTANCE == 0 && spawn.z % DISTANCE == 0);
+
+        return spawn;
+
+    }
+
     public DungeonDimensionJigsawFeature(Codec<StructurePoolFeatureConfig> codec) {
         super(codec, 80, true, false);
 
@@ -19,7 +47,9 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
     @Override
     protected boolean shouldStartAt(ChunkGenerator chunkGen, BiomeSource biomeSource, long l, ChunkRandom chunkRandom, int i, int j, Biome biome, ChunkPos cpos, StructurePoolFeatureConfig structurePoolFeatureConfig) {
-        return cpos.x % DISTANCE == 0 && cpos.z % DISTANCE == 0;
+        ChunkPos spawn = getSpawnChunkOf(cpos);
+
+        return spawn.x == cpos.x && spawn.z == cpos.z;
     }
 }
 
