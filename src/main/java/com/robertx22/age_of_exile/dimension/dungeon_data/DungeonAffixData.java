@@ -24,7 +24,8 @@ public class DungeonAffixData {
     }
 
     public List<ExactStatData> getStats(int lvl) {
-        return getAffix().getTierStats(0)
+        return getAffix().getTierStats((Integer) getAffix().tier_map.keySet()
+            .toArray()[0])
             .stream()
             .map(x -> x.ToExactStat(perc, lvl))
             .collect(Collectors.toList());

@@ -33,6 +33,13 @@ public class DungeonSpawnChunkCap implements CopyableComponent<DungeonSpawnChunk
     public void readFromNbt(CompoundTag nbt) {
         this.data = LoadSave.Load(DungeonData.class, new DungeonData(), nbt, LOC);
         this.questProgression = LoadSave.Load(QuestProgression.class, new QuestProgression(), nbt, PRO);
+
+        if (questProgression == null) {
+            questProgression = new QuestProgression();
+        }
+        if (data == null) {
+            data = new DungeonData();
+        }
     }
 
     @Override

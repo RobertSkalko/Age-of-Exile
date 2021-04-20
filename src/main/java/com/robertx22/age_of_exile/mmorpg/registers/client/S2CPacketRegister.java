@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg.registers.client;
 
-import com.robertx22.age_of_exile.dimension.packets.SyncMaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.registry.RegistryPacket;
@@ -12,7 +11,6 @@ public class S2CPacketRegister {
 
     public static void register() {
 
-        Packets.registerServerToClient(new SyncMaps());
         Packets.registerServerToClient(new DmgNumPacket());
         Packets.registerServerToClient(new ForceChoosingRace());
         Packets.registerServerToClient(new EfficientMobUnitPacket());

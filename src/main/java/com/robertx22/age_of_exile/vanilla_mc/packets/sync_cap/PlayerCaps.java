@@ -65,7 +65,7 @@ public enum PlayerCaps {
     MAPS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.favor(player);
+            return Load.playerMaps(player);
         }
 
         @Override

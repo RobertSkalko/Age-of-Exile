@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.dimension;
 
 import com.ibm.icu.impl.Assert;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
@@ -12,6 +13,10 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class DungeonDimensionJigsawFeature extends JigsawFeature {
     public static int DISTANCE = 10;
+
+    public static ChunkPos getSpawnChunkOf(BlockPos p) {
+        return getSpawnChunkOf(new ChunkPos(p));
+    }
 
     public static ChunkPos getSpawnChunkOf(ChunkPos cp) {
 

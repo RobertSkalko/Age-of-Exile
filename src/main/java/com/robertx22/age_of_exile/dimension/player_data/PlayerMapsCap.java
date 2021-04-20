@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class PlayerMapsCap implements ICommonPlayerCap {
 
@@ -56,7 +57,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
         mapsData.isEmpty = false;
 
-        int floors = RandomUtils.RandomRange(3, 10);
+        int floors = RandomUtils.RandomRange(5, 5);
 
         for (int f = 0; f < floors; f++) {
 
@@ -76,6 +77,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 dun.mob_list = Database.DungeonMobLists()
                     .random()
                     .GUID();
+                dun.uuid = UUID.randomUUID()
+                    .toString();
                 dun.uniques.randomize(dungeonTier);
                 dun.affixes.randomize(dungeonTier);
 

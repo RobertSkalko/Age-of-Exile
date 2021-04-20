@@ -7,6 +7,9 @@ import info.loenwind.autosave.annotations.Store;
 public class QuestProgression {
 
     @Store
+    public String uuid = "";
+
+    @Store
     public int number = 0;
 
 }

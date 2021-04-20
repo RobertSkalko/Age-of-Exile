@@ -9,12 +9,21 @@ import info.loenwind.autosave.annotations.Store;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Storable
 public class PossibleUniques {
 
     @Store
     public List<String> uniques = new ArrayList<>();
+
+    public List<UniqueGear> getUniques() {
+        return uniques.stream()
+            .map(x -> Database.UniqueGears()
+                .get(x))
+            .collect(Collectors.toList());
+
+    }
 
     public void randomize(int tier) {
 
@@ -26,12 +35,17 @@ public class PossibleUniques {
         int amount = RandomUtils.RandomRange(3, 5);
 
         List<UniqueGear> gears = Database.UniqueGears()
-            .getFiltered(x -> list.contains(x.getRarity()));
+            .getFiltered(x -> {
+                GearRarity rar = Database.GearRarities()
+                    .get(x.uniqueRarity);
+                return list.contains(rar);
+            });
 
         if (!gears.isEmpty()) {
             for (int u = 0; u < amount; u++) {
-                uniques.add(RandomUtils.weightedRandom(gears)
-                    .GUID());
+                UniqueGear uniq = RandomUtils.weightedRandom(gears);
+                gears.remove(uniq); // no same twice
+                uniques.add(uniq.GUID());
             }
         }
 

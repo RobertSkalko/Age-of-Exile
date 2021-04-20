@@ -108,6 +108,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item TABLET_STATION = blockItem(ModRegistry.BLOCKS.TABLET_STATION);
     public Item ALCHEMY_STATION = blockItem(ModRegistry.BLOCKS.ALCHEMY_STATION);
     public Item SMITHING_STATION = blockItem(ModRegistry.BLOCKS.SMITHING_STATION);
+    public Item TELEPORTER_BLOCK = blockItem(ModRegistry.BLOCKS.TELEPORTER);
 
     public Item MANA_PLANT = item(new ProduceItem("Mana Fruit"), "plant/mana");
     public Item LIFE_PLANT = item(new ProduceItem("Life Fruit"), "plant/life");

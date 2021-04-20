@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -48,6 +49,7 @@ public class LootInfo {
     public FavorRank favorRank;
     public PlayerFavor favor;
     public BlockPos pos;
+    public DungeonData dungeon;
 
     public int getMinItems() {
         return minItems;
@@ -84,6 +86,11 @@ public class LootInfo {
                     info.extraFavorItems = info.favorRank.extra_items_per_boss;
                 }
             }
+
+            if (info.isMapWorld) {
+                info.dungeon = Load.dungeonData(mob.world, mob.getBlockPos()).data;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,7 +119,9 @@ public class LootInfo {
         if (info.favorRank != null) {
             info.extraFavorItems = info.favorRank.extra_items_per_chest;
         }
-
+        if (info.isMapWorld) {
+            info.dungeon = Load.dungeonData(info.world, pos).data;
+        }
         return info;
     }
 
@@ -199,7 +208,7 @@ public class LootInfo {
 
     private void setWorld() {
         if (world != null) {
-            this.isMapWorld = WorldUtils.isMapWorld(world);
+            this.isMapWorld = WorldUtils.isDungeonWorld(world);
         }
     }
 
@@ -244,8 +253,6 @@ public class LootInfo {
         chance = ExileEvents.SETUP_LOOT_CHANCE.callEvents(new ExileEvents.OnSetupLootChance(mobKilled, player, chance)).lootChance;
 
         amount = LootUtils.WhileRoll(chance);
-
-        //amount = MathHelper.clamp(amount, minItems, maxItems);
 
     }
 

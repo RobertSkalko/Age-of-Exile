@@ -3,9 +3,7 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
-import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
@@ -43,46 +41,34 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
 
         for (GearRarity rar : specialRarities) {
 
-            FilterListWrap<UniqueGear> gen = Database.UniqueGears()
-                .getWrapped()
-                .of(x -> !x.filters.cantDrop(blueprint.info))
-                .of((x -> x.getPossibleGearTypes()
-                    .stream()
-                    .anyMatch(e -> e.GUID()
-                        .equals(blueprint.gearItemSlot.get()
-                            .GUID()))));
+            float chance = rar.special_spawn_chance;
 
-            if (!gen.list.isEmpty()) {
-
-                float chance = rar.special_spawn_chance;
-
-                if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
-                    chance += rar.special_spawn_chest_bonus_chance;
-                }
-                if (info.world != null) {
-                    chance *= Database.getDimensionConfig(info.world).unique_gear_drop_multi;
-                }
-
-                if (info.playerData != null) {
-                    if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
-                        chance *= info.playerData.getUnit()
-                            .getCalculatedStat(TreasureQuality.getInstance())
-                            .getMultiplier();
-                    }
-                }
-
-                if (info.favorRank != null) {
-                    if (!info.favorRank.drop_unique_gears) {
-                        chance = 0;
-                    }
-                }
-
-                if (RandomUtils.roll(chance)) {
-                    this.specialRar = rar;
-                    return;
-                }
-
+            if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
+                chance += rar.special_spawn_chest_bonus_chance;
             }
+            if (info.world != null) {
+                chance *= Database.getDimensionConfig(info.world).unique_gear_drop_multi;
+            }
+
+            if (info.playerData != null) {
+                if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
+                    chance *= info.playerData.getUnit()
+                        .getCalculatedStat(TreasureQuality.getInstance())
+                        .getMultiplier();
+                }
+            }
+
+            if (info.favorRank != null) {
+                if (!info.favorRank.drop_unique_gears) {
+                    chance = 0;
+                }
+            }
+
+            if (RandomUtils.roll(chance)) {
+                this.specialRar = rar;
+                return;
+            }
+
         }
 
         this.chanceForHigherRarity = Database.Tiers()

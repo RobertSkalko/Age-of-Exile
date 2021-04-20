@@ -33,32 +33,29 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
     @Deprecated
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
                               Hand hand, BlockHitResult ray) {
-        if (world.isClient) {
-            ClientOnly.openMapsScreen();
-            return ActionResult.CONSUME;
-        } else {
 
-            BlockEntity tile = world.getBlockEntity(pos);
+        ItemStack stack = player.getStackInHand(hand);
 
-            if (tile instanceof TeleportedBlockEntity) {
-                // TeleportedBlockEntity en = (TeleportedBlockEntity) tile;
-                ItemStack stack = player.getStackInHand(hand);
+        BlockEntity tile = world.getBlockEntity(pos);
 
-                if (stack.getItem() instanceof DungeonKeyItem) {
-                    int tier = DungeonKeyItem.getTier(stack);
+        if (tile instanceof TeleportedBlockEntity) {
+            // TeleportedBlockEntity en = (TeleportedBlockEntity) tile;
 
-                    Load.playerMaps(player)
-                        .initRandomMap(tier);
-                    // activate map
+            if (stack.getItem() instanceof DungeonKeyItem) {
+                int tier = DungeonKeyItem.getTier(stack);
 
-                } else {
-                    Load.playerMaps(player)
-                        .syncToClient(player);
-                    ClientOnly.openMapsScreen();
-                }
+                Load.playerMaps(player)
+                    .initRandomMap(tier);
+                stack.decrement(1);
                 return ActionResult.SUCCESS;
-            }
+                // activate map
 
+            } else {
+                Load.playerMaps(player)
+                    .syncToClient(player);
+                ClientOnly.openMapsScreen();
+            }
+            return ActionResult.SUCCESS;
         }
 
         return ActionResult.CONSUME;

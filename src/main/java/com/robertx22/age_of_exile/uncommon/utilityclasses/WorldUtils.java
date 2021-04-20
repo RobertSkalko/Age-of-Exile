@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.DimensionIds;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
@@ -106,22 +107,19 @@ public class WorldUtils {
 
     }
 
-    public static boolean isMapWorld(WorldAccess world) {
+    public static boolean isDungeonWorld(WorldAccess world) {
 
         if (world == null) {
             return false;
         }
-        if (isMapWorldClass(world)) {
-            return true;
-        } else {
-            return Database.getDimensionConfig(world)
-                .isMapWorld();
-        }
+        return isMapWorldClass(world);
     }
 
     public static boolean isMapWorldClass(WorldAccess world) {
-
-        return Database.getDimensionConfig(world).mob_tier > 0;
+        return world.getRegistryManager()
+            .getDimensionTypes()
+            .getId(world.getDimension())
+            .equals(DimensionIds.DUNGEON_DIMENSION);
     }
 
     public static int getTier(World world, BlockPos pos) {
