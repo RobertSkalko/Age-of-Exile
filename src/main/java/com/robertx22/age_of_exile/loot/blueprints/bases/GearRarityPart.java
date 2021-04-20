@@ -39,36 +39,39 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
         List<GearRarity> specialRarities = Database.GearRarities()
             .getFiltered(x -> x.special_spawn_chance > 0);
 
-        for (GearRarity rar : specialRarities) {
+        if (info.isMapWorld) { // TODO
 
-            float chance = rar.special_spawn_chance;
+            for (GearRarity rar : specialRarities) {
 
-            if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
-                chance += rar.special_spawn_chest_bonus_chance;
-            }
-            if (info.world != null) {
-                chance *= Database.getDimensionConfig(info.world).unique_gear_drop_multi;
-            }
+                float chance = rar.special_spawn_chance;
 
-            if (info.playerData != null) {
                 if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
-                    chance *= info.playerData.getUnit()
-                        .getCalculatedStat(TreasureQuality.getInstance())
-                        .getMultiplier();
+                    chance += rar.special_spawn_chest_bonus_chance;
                 }
-            }
-
-            if (info.favorRank != null) {
-                if (!info.favorRank.drop_unique_gears) {
-                    chance = 0;
+                if (info.world != null) {
+                    chance *= Database.getDimensionConfig(info.world).unique_gear_drop_multi;
                 }
-            }
 
-            if (RandomUtils.roll(chance)) {
-                this.specialRar = rar;
-                return;
-            }
+                if (info.playerData != null) {
+                    if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
+                        chance *= info.playerData.getUnit()
+                            .getCalculatedStat(TreasureQuality.getInstance())
+                            .getMultiplier();
+                    }
+                }
 
+                if (info.favorRank != null) {
+                    if (!info.favorRank.drop_unique_gears) {
+                        chance = 0;
+                    }
+                }
+
+                if (RandomUtils.roll(chance)) {
+                    this.specialRar = rar;
+                    return;
+                }
+
+            }
         }
 
         this.chanceForHigherRarity = Database.Tiers()

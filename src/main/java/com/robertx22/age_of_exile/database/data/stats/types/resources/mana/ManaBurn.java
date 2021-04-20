@@ -66,7 +66,7 @@ public class ManaBurn extends Stat {
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
             return effect.getAttackType()
-                .equals(AttackType.BASIC_ATTACK);
+                .equals(AttackType.ATTACK);
         }
     }
 
