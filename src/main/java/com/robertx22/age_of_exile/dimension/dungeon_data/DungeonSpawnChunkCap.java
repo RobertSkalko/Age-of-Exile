@@ -11,10 +11,12 @@ public class DungeonSpawnChunkCap implements CopyableComponent<DungeonSpawnChunk
 
     public static final Identifier RESOURCE = new Identifier(Ref.MODID, "dungeon");
     private static final String LOC = "dungeon_data";
+    private static final String PRO = "prog";
 
     Chunk chunk;
 
     public DungeonData data = new DungeonData();
+    public QuestProgression questProgression = new QuestProgression();
 
     public DungeonSpawnChunkCap(Chunk chunk) {
         this.chunk = chunk;
@@ -30,10 +32,12 @@ public class DungeonSpawnChunkCap implements CopyableComponent<DungeonSpawnChunk
     @Override
     public void readFromNbt(CompoundTag nbt) {
         this.data = LoadSave.Load(DungeonData.class, new DungeonData(), nbt, LOC);
+        this.questProgression = LoadSave.Load(QuestProgression.class, new QuestProgression(), nbt, PRO);
     }
 
     @Override
     public void writeToNbt(CompoundTag nbt) {
         LoadSave.Save(data, nbt, LOC);
+        LoadSave.Save(questProgression, nbt, PRO);
     }
 }

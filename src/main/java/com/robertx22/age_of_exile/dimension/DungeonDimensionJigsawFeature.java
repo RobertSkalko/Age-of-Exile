@@ -21,12 +21,12 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
         int remx = x % DISTANCE;
         int remz = z % DISTANCE;
 
-        if (remx >= 5) {
+        if (remx >= DISTANCE / 2) {
             x += DISTANCE - remx;
         } else {
             x -= remx;
         }
-        if (remz >= 5) {
+        if (remz >= DISTANCE / 2) {
             z += DISTANCE - remz;
         } else {
             z -= remz;

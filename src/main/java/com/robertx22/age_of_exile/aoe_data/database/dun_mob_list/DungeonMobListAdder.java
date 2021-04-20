@@ -28,6 +28,7 @@ public class DungeonMobListAdder implements ISlashRegistryInit {
             .addMob(EntityType.SPIDER)
             .addMob(EntityType.CAVE_SPIDER, 200)
             .addMob(EntityType.WITCH, 200)
+
             .addBoss(EntityType.SPIDER)
             .build();
 

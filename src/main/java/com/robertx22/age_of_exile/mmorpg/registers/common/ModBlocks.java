@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.dimension.teleporter.TeleporterBlock;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyBlock;
@@ -33,6 +34,8 @@ public class ModBlocks {
     public TabletStationBlock TABLET_STATION = of("tablet_station", new TabletStationBlock());
     public AlchemyBlock ALCHEMY_STATION = of("alchemy_station", new AlchemyBlock());
     public SmithingBlock SMITHING_STATION = of("smithing_station", new SmithingBlock());
+
+    public TeleporterBlock TELEPORTER = of("teleporter", new TeleporterBlock());
 
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 

@@ -72,7 +72,7 @@ public class HealCritChance extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Crit Heal Damage";
+        return "Crit Heal Chance";
     }
 
     private static class SingletonHolder {

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.robertx22.age_of_exile.dimension.teleporter.MapsScreen;
 import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
@@ -42,6 +43,11 @@ public class ClientOnly {
 
     public static void pressUseKey() {
         MinecraftClient.getInstance().options.keyUse.setPressed(true);
+    }
+
+    public static void openMapsScreen() {
+        MinecraftClient.getInstance()
+            .openScreen(new MapsScreen());
     }
 
     public static void stopUseKey() {

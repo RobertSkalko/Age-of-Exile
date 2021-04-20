@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.player.*;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonSpawnChunkCap;
+import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -44,6 +45,10 @@ public class Load {
 
     public static PlayerFavor favor(PlayerEntity provider) {
         return ModRegistry.COMPONENTS.PLAYER_FAVOR.get(provider);
+    }
+
+    public static PlayerMapsCap playerMaps(PlayerEntity provider) {
+        return ModRegistry.COMPONENTS.PLAYER_MAPS.get(provider);
     }
 
     public static TeamCap team(PlayerEntity provider) {

@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.*;
 import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonSpawnChunkCap;
+import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
@@ -35,6 +36,12 @@ public class ComponentRegisters {
             PlayerFavor.RESOURCE,
             PlayerFavor.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerFavor(x));
+
+    public ComponentType<PlayerMapsCap> PLAYER_MAPS =
+        ComponentRegistry.INSTANCE.registerIfAbsent(
+            PlayerMapsCap.RESOURCE,
+            PlayerMapsCap.class)
+            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerMapsCap(x));
 
     public ComponentType<PlayerStatPointsCap> STAT_POINTS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
@@ -81,6 +88,7 @@ public class ComponentRegisters {
     public ComponentRegisters() {
 
         EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
+        EntityComponents.setRespawnCopyStrategy(PLAYER_MAPS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PERKS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_FAVOR, RespawnCopyStrategy.ALWAYS_COPY);

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.gui.screens.wiki;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -123,14 +122,7 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        mc.getTextureManager()
-            .bindTexture(BACKGROUND);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, mc.getWindow()
-                .getScaledWidth() / 2 - sizeX / 2,
-            mc.getWindow()
-                .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
-        );
+        renderBackground(matrix, BACKGROUND);
 
         super.render(matrix, x, y, ticks);
 

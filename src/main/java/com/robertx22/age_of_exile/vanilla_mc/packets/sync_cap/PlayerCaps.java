@@ -59,7 +59,18 @@ public enum PlayerCaps {
 
         @Override
         public boolean shouldSaveToPlayerCharacter() {
-            return true;
+            return false;
+        }
+    },
+    MAPS {
+        @Override
+        public ICommonPlayerCap getCap(PlayerEntity player) {
+            return Load.favor(player);
+        }
+
+        @Override
+        public boolean shouldSaveToPlayerCharacter() {
+            return false;
         }
     },
     TEAM {
