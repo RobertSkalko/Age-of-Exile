@@ -110,6 +110,7 @@ spell_light_dmg_leech_as_health
 all_light_dmg_leech_as_shield
 dark_resist
 bonus_mountain_biome_yield
+hp_regen_per_mana
 light_dot_damage
 ele_wand_damage
 armor
@@ -151,6 +152,7 @@ mana_on_all_hit
 attack_physical_dmg_leech_as_mana
 light_resist
 bonus_exploration_yield
+armor_to_water_damage
 all_fire_damage
 sword_damage
 crit_heal_chance
@@ -240,6 +242,7 @@ attack_speed
 ranged_dmg
 mana_on_kill
 attack_dark_dmg_leech_as_mana
+mana_to_physical_damage
 attack_water_dmg_leech_as_health
 magic_dmg
 day_dmg
@@ -252,6 +255,7 @@ critical_damage
 mana_burn
 mana_cost
 all_nature_dmg_leech_as_shield
+dodge_to_nature_damage
 max_light_resist
 ele_trident_damage
 all_elemental_dmg_leech_as_mana

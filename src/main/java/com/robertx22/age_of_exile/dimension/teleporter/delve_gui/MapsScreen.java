@@ -91,6 +91,15 @@ public class MapsScreen extends BaseScreen {
             x += ItemSlotButton.xSize + 1;
         }
 
+        x = guiLeft + START_X;
+        y = guiTop + LOOT_Y - 30;
+
+        for (int i = 0; i < selectedDungeon.quest_rewwards.stacks.size(); i++) {
+            ItemStack stack = selectedDungeon.quest_rewwards.stacks.get(i);
+            this.publicAddButton(new ItemSlotButton(stack, x, y));
+            x += ItemSlotButton.xSize + 1;
+        }
+
     }
 
     public List<AbstractButtonWidget> getButtons() {

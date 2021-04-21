@@ -1,0 +1,25 @@
+{
+  "type": "STAT",
+  "identifier": "flat_health_mana",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/main/health.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "health",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "mana",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

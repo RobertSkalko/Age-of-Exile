@@ -1,0 +1,25 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_heal_strength",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/core/.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "increase_healing",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "v2": 0.0,
+      "stat": "health",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "MAJOR",
+  "identifier": "mana_battery",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/mana_battery.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 50.0,
+      "v2": 0.0,
+      "stat": "mana_shield",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -20.0,
+      "v2": 0.0,
+      "stat": "health",
+      "type": "GLOBAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -15.0,
+      "v2": 0.0,
+      "stat": "dodge",
+      "type": "GLOBAL_INCREASE",
+      "scale_to_lvl": false
+    }
+  ]
+}

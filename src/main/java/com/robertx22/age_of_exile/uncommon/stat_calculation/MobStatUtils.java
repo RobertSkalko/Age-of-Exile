@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
@@ -32,16 +33,16 @@ public class MobStatUtils {
 
     public static void increaseMobStatsPerTier(LivingEntity en, UnitData mobdata, Unit unit) {
 
+        Tier tier = mobdata.getMapTier();
+
         for (InCalcStatData data : unit.getStats().statsInCalc
             .values()
             .stream()
-            .filter(x -> {
-                return x.GetStat()
-                    .IsPercent() == false;
-            })
+            .filter(x -> !x.GetStat()
+                .IsPercent())
             .collect(Collectors.toList())) {
 
-            data.multiplyFlat(mobdata.getMapTier().mob_stat_multi);
+            data.multiplyFlat(tier.stat_multi);
         }
 
     }

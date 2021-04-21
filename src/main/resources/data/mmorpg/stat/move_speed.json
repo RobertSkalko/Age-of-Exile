@@ -1,0 +1,15 @@
+{
+  "ser": "vanilla_attribute_stat_ser",
+  "data": {
+    "attribute_id": "minecraft:generic.movement_speed",
+    "uuid": "7e286d81-3fcf-471c-85b8-980072b30907",
+    "id": "move_speed",
+    "min": -1000.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "sec_val": false,
+    "ele": "Physical",
+    "scale": "SLOW"
+  }
+}

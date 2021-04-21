@@ -181,10 +181,10 @@ public class LootInfo {
 
     private LootInfo setTier() {
 
-        if (this.mobData != null) {
-            this.tier = mobData.getTier();
-        } else {
-            this.tier = 0;
+        if (world != null && pos != null) {
+            if (WorldUtils.isDungeonWorld(world)) {
+                this.tier = Load.dungeonData(world, pos).data.tier;
+            }
         }
         return this;
 

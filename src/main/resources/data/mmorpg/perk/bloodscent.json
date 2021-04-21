@@ -1,0 +1,39 @@
+{
+  "type": "SPECIAL",
+  "identifier": "bloodscent",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/main/.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 2.0,
+      "v2": 0.0,
+      "stat": "critical_hit",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 6.0,
+      "v2": 0.0,
+      "stat": "critical_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "heal_effect_on_self",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 1.0,
+      "v2": 0.0,
+      "stat": "health_on_basic_attack_hit",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_flame_of_life",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_flame_of_life.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "spell_fire_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 1.0,
+      "v2": 0.0,
+      "stat": "health_per_sec",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "cast_speed",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

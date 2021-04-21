@@ -1,0 +1,16 @@
+{
+  "ser": "more_x_per_y",
+  "data": {
+    "id": "hp_regen_per_mana",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "sec_val": false,
+    "ele": "Physical",
+    "scale": "NONE",
+    "adder_stat": "mana",
+    "add_to": "health_regen",
+    "per_amount": 100
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_warrior_path",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_warrior_path.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 100.0,
+      "v2": 0.0,
+      "stat": "armor",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "melee_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "strength",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

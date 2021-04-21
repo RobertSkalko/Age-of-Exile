@@ -1,0 +1,25 @@
+{
+  "type": "MAJOR",
+  "identifier": "elemental_purity",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/elemental_purity.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "all_elemental_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -50.0,
+      "v2": 0.0,
+      "stat": "all_physical_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

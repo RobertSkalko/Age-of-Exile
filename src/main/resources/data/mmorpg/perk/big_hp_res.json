@@ -1,0 +1,25 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_hp_res",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_hp_res.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 15.0,
+      "v2": 0.0,
+      "stat": "health",
+      "type": "LOCAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 1.0,
+      "v2": 0.0,
+      "stat": "max_elemental_resist",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

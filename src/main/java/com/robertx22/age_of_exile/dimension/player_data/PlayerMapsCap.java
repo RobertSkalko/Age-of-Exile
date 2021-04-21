@@ -65,6 +65,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             for (int d = 0; d < perFloor; d++) {
 
+                boolean isEndOfMap = f == 4;
+
                 List<DungeonData> list = mapsData.dungeonsByFloors.getOrDefault(f, new ArrayList<>());
 
                 DungeonData dun = new DungeonData();
@@ -81,6 +83,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     .toString();
                 dun.uniques.randomize(dungeonTier);
                 dun.affixes.randomize(dungeonTier);
+                dun.quest_rewwards.randomize(dungeonTier, isEndOfMap);
 
                 list.add(dun);
 

@@ -133,10 +133,6 @@ public class EntityCap {
 
         void onLogin(PlayerEntity player);
 
-        void setTier(int tier);
-
-        int getTier();
-
         int getSyncedMaxHealth();
 
         Tier getMapTier();
@@ -218,7 +214,6 @@ public class EntityCap {
         String uuid = "";
         boolean isNewbie = true;
         boolean equipsChanged = true;
-        int tier = 0;
         boolean shouldSync = false;
 
         ResourcesData resources = new ResourcesData();
@@ -287,7 +282,6 @@ public class EntityCap {
             addClientNBT(nbt);
 
             nbt.putInt(EXP, exp);
-            nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
@@ -321,7 +315,6 @@ public class EntityCap {
             loadFromClientNBT(nbt);
 
             this.exp = nbt.getInt(EXP);
-            this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             if (nbt.contains(NEWBIE_STATUS)) {
@@ -602,24 +595,21 @@ public class EntityCap {
         }
 
         @Override
-        public void setTier(int tier) {
-            this.tier = tier;
-        }
-
-        @Override
-        public int getTier() {
-            return tier;
-        }
-
-        @Override
         public int getSyncedMaxHealth() {
             return this.maxHealth;
         }
 
         @Override
         public Tier getMapTier() {
+
+            int tier = 0;
+
+            if (WorldUtils.isDungeonWorld(entity.world)) {
+                tier = Load.dungeonData(entity.world, entity.getBlockPos()).data.tier;
+            }
+
             return Database.Tiers()
-                .get(this.tier + "");
+                .get(tier + "");
         }
 
         @Override
@@ -669,7 +659,7 @@ public class EntityCap {
 
             float vanilla = data.getAmount() * multi;
 
-            float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
+            float num = vanilla * rar.DamageMultiplier() * getMapTier().dmg_multi;
 
             num *= Database.getEntityConfig(entity, this).dmg_multi;
 

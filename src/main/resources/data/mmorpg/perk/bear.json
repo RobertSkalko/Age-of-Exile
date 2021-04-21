@@ -1,0 +1,53 @@
+{
+  "type": "MAJOR",
+  "identifier": "bear",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 35.0,
+      "v2": 0.0,
+      "stat": "basic_ele_dmg_nature_dmg_leech_as_shield",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "health_regen",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 2.0,
+      "v2": 0.0,
+      "stat": "elemental_resist",
+      "type": "LOCAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -5.0,
+      "v2": 0.0,
+      "stat": "melee_dmg_received",
+      "type": "LOCAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -0.3,
+      "v2": 0.0,
+      "stat": "move_speed",
+      "type": "LOCAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -100.0,
+      "v2": 0.0,
+      "stat": "dodge",
+      "type": "LOCAL_INCREASE",
+      "scale_to_lvl": false
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_wisdom_of_the_elders",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_wisdom_of_the_elders.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "intelligence",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "v2": 0.0,
+      "stat": "health",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "v2": 0.0,
+      "stat": "mana",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}
