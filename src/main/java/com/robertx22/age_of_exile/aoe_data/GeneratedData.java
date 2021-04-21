@@ -2,11 +2,13 @@ package com.robertx22.age_of_exile.aoe_data;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.Prefixes;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.Suffixes;
+import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.dungeon.DungeonAffixAdder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.tools.ToolAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearsRegister;
 import com.robertx22.age_of_exile.aoe_data.database.base_stats.BaseStatsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.craft_req.CraftReqAdder;
 import com.robertx22.age_of_exile.aoe_data.database.dim_configs.DimConfigs;
+import com.robertx22.age_of_exile.aoe_data.database.dun_mob_list.DungeonMobListAdder;
 import com.robertx22.age_of_exile.aoe_data.database.entity_configs.EntityConfigs;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.ExileEffects;
 import com.robertx22.age_of_exile.aoe_data.database.favor.FavorAdder;
@@ -58,12 +60,15 @@ public class GeneratedData {
 
         new ExileEffects().registerAll();
 
+        new DungeonMobListAdder().registerAll();
+
         new Tiers().registerAll();
 
         new Spells().registerAll();
 
         new SpellDependentDatapackStatAdder().registerAll();
 
+        new DungeonAffixAdder().registerAll();
         new Prefixes().registerAll();
         new Suffixes().registerAll();
         new ToolAffixes().registerAll();

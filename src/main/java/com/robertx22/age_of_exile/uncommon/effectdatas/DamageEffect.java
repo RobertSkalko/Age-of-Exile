@@ -56,6 +56,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.number = dmg;
         this.style = style;
         this.originalNumber = number;
+        this.isBasicAttack = true;
+
         calcBlock();
     }
 
@@ -68,8 +70,15 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.number = dmg;
         this.style = style;
         this.originalNumber = number;
+
         calcBlock();
     }
+
+    public void setIsBasicAttack() {
+        this.isBasicAttack = true;
+    }
+
+    public boolean isBasicAttack = false;
 
     public AttackPlayStyle style;
     AttackInformation attackInfo;
@@ -517,7 +526,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(
                     attackInfo, source, target, entry.getValue(),
-                    AttackType.BASIC_ELE_ATK_DMG, this.weaponType, style);
+                    AttackType.ATTACK, this.weaponType, style);
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;
                 bonus.calculateEffects();

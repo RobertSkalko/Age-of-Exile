@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFiltersGroupData;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -159,6 +160,11 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
 
     public Item getUniqueItem() {
         return Registry.ITEM.get(itemID);
+    }
+
+    public GearRarity getUniqueRarity() {
+        return Database.GearRarities()
+            .get(uniqueRarity);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
 import com.robertx22.age_of_exile.player_skills.items.farming.ProduceItem;
@@ -41,6 +42,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
     public ScrollBuffItem SCROLL_BUFF = item(new ScrollBuffItem(), "scroll/buff");
     public EssencePaperItem ESSENCE_PAPER = item(new EssencePaperItem(), "scroll/paper");
+    public DungeonKeyItem DUNGEON_KEY = item(new DungeonKeyItem(), "dungeon_key");
 
     public SalvagedDustItem T0_DUST() {
         return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0);
@@ -106,6 +108,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item TABLET_STATION = blockItem(ModRegistry.BLOCKS.TABLET_STATION);
     public Item ALCHEMY_STATION = blockItem(ModRegistry.BLOCKS.ALCHEMY_STATION);
     public Item SMITHING_STATION = blockItem(ModRegistry.BLOCKS.SMITHING_STATION);
+    public Item TELEPORTER_BLOCK = blockItem(ModRegistry.BLOCKS.TELEPORTER);
 
     public Item MANA_PLANT = item(new ProduceItem("Mana Fruit"), "plant/mana");
     public Item LIFE_PLANT = item(new ProduceItem("Life Fruit"), "plant/life");

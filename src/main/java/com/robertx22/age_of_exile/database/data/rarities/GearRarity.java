@@ -35,9 +35,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
 
     public int max_worn_at_once = -1;
 
-    public boolean hasMaxWornRestriction() {
-        return max_worn_at_once > 0;
-    }
+    public int drops_after_tier = -1;
 
     public MinMax default_stat_percents = new MinMax(0, 100);
     public MinMax affix_stat_percents = new MinMax(0, 100);

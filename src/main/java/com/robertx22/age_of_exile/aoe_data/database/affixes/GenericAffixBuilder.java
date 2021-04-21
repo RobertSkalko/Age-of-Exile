@@ -82,6 +82,16 @@ public class GenericAffixBuilder<T> {
         return this;
     }
 
+    public GenericAffixBuilder<T> DungeonPrefix() {
+        type = Affix.Type.dungeon_prefix;
+        return this;
+    }
+
+    public GenericAffixBuilder<T> DungeonSuffix() {
+        type = Affix.Type.dungeon_suffix;
+        return this;
+    }
+
     public GenericAffixBuilder<T> Implicit() {
         type = Affix.Type.implicit;
         return this;

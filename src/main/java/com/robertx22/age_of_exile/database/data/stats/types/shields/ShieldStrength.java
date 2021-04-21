@@ -16,8 +16,8 @@ public class ShieldStrength extends Stat {
         this.scaling = StatScaling.NONE;
         this.statEffect = new Effect();
 
-        this.textIcon = "\u27B9";
-        this.textFormat = Formatting.GREEN;
+        this.textIcon = "\u2748";
+        this.textFormat = Formatting.RED;
     }
 
     public static ShieldStrength getInstance() {

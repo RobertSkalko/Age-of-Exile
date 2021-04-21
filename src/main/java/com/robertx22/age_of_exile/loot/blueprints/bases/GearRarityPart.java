@@ -3,9 +3,7 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
-import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
@@ -41,18 +39,9 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
         List<GearRarity> specialRarities = Database.GearRarities()
             .getFiltered(x -> x.special_spawn_chance > 0);
 
-        for (GearRarity rar : specialRarities) {
+        if (info.isMapWorld) { // TODO
 
-            FilterListWrap<UniqueGear> gen = Database.UniqueGears()
-                .getWrapped()
-                .of(x -> !x.filters.cantDrop(blueprint.info))
-                .of((x -> x.getPossibleGearTypes()
-                    .stream()
-                    .anyMatch(e -> e.GUID()
-                        .equals(blueprint.gearItemSlot.get()
-                            .GUID()))));
-
-            if (!gen.list.isEmpty()) {
+            for (GearRarity rar : specialRarities) {
 
                 float chance = rar.special_spawn_chance;
 

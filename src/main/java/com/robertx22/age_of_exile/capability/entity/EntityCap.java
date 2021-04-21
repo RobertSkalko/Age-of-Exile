@@ -685,6 +685,7 @@ public class EntityCap {
             DamageEffect dmg = new DamageEffect(
                 data, (int) num, AttackType.ATTACK, WeaponTypes.None, style
             );
+            dmg.setIsBasicAttack();
 
             dmg.Activate();
 

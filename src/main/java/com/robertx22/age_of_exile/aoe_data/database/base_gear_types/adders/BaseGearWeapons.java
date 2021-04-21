@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -99,7 +100,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setStr(0.5F)
                 .setVit(0.5F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.hammer, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
-            .implicitStat(new StatModifier(3, 8, HealPower.getInstance(), ModType.FLAT))
+            .implicitStat(new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 

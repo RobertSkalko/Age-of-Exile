@@ -7,6 +7,7 @@ jewel_accuracy_suffix
 fire_ele_dmg_jewelry
 nature_res
 double_drop_chance_pre
+light_wep_dmg_dun
 seraphim
 of_consumption
 light_ele_dmg_jewelry
@@ -17,6 +18,7 @@ light_res
 night_yield
 fire_wep_dmg
 of_spell_dmg
+nature_wep_dmg_dun
 fishing_exp
 dark_res
 azure
@@ -28,6 +30,8 @@ fawns
 light_wep_dmg_jewelry
 reinforced
 of_the_virile
+dark_wep_dmg_dun
+physical_wep_dmg_dun
 of_the_wise
 of_brutality
 of_affluence
@@ -44,9 +48,11 @@ glimmering
 jeweled
 nature_ele_dmg_jewelry
 yetis
+water_wep_dmg_dun
 snakes
 of_the_wind
 of_treasure
+life_on_hit_dun
 crit_prefix
 physical_wep_dmg
 water_wep_dmg_jewelry
@@ -55,6 +61,7 @@ of_the_troll
 scavanger
 of_the_sky
 dark_wep_dmg_jewelry
+fire_wep_dmg_dun
 of_the_agile
 of_speed
 of_vampirism

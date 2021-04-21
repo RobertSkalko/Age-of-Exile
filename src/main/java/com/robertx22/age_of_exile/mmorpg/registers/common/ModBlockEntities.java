@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffTile;
@@ -28,6 +29,7 @@ public class ModBlockEntities {
     public BlockEntityType<TabletStationTile> TABLET = of(ModRegistry.BLOCKS.TABLET_STATION, TabletStationTile::new);
     public BlockEntityType<AlchemyTile> ALCHEMY_STATION = of(ModRegistry.BLOCKS.ALCHEMY_STATION, AlchemyTile::new);
     public BlockEntityType<SmithingTile> SMITHING_STATION = of(ModRegistry.BLOCKS.SMITHING_STATION, SmithingTile::new);
+    public BlockEntityType<TeleportedBlockEntity> TELEPORTER = of(ModRegistry.BLOCKS.TELEPORTER, TeleportedBlockEntity::new);
 
     private <T extends BlockEntity> BlockEntityType<T> of(Block block, Supplier<T> en) {
         BlockEntityType<T> type = BlockEntityType.Builder.create(en, block)
