@@ -1,0 +1,147 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"7": "mmorpg:items/weapon/dagger/dagger1",
+		"particle": "dagger/blade"
+	},
+	"elements": [
+		{
+			"from": [-5, 4, 0],
+			"to": [0, 5, 2],
+			"faces": {
+				"north": {"uv": [8, 6, 13, 7], "texture": "#7"},
+				"east": {"uv": [13, 2, 15, 3], "texture": "#7"},
+				"south": {"uv": [8, 9, 13, 10], "texture": "#7"},
+				"west": {"uv": [13, 3, 15, 4], "texture": "#7"},
+				"up": {"uv": [11, 9, 6, 7], "texture": "#7"},
+				"down": {"uv": [13, 0, 8, 2], "texture": "#7"}
+			}
+		},
+		{
+			"from": [-4, 3.25, 0.25],
+			"to": [-1, 4, 1.75],
+			"faces": {
+				"north": {"uv": [13, 0, 16, 1], "texture": "#7"},
+				"east": {"uv": [13, 9, 15, 10], "texture": "#7"},
+				"south": {"uv": [13, 1, 16, 2], "texture": "#7"},
+				"west": {"uv": [10, 13, 12, 14], "texture": "#7"},
+				"up": {"uv": [11, 4, 8, 2], "texture": "#7"},
+				"down": {"uv": [11, 4, 8, 6], "texture": "#7"}
+			}
+		},
+		{
+			"from": [-3.25, -3.25, 0.25],
+			"to": [-1.75, 3.25, 1.75],
+			"faces": {
+				"north": {"uv": [6, 0, 8, 7], "texture": "#7"},
+				"east": {"uv": [0, 7, 2, 14], "texture": "#7"},
+				"south": {"uv": [2, 7, 4, 14], "texture": "#7"},
+				"west": {"uv": [4, 7, 6, 14], "texture": "#7"},
+				"up": {"uv": [10, 12, 8, 10], "texture": "#7"},
+				"down": {"uv": [12, 10, 10, 12], "texture": "#7"}
+			}
+		},
+		{
+			"from": [-3.5, -3.75, 0],
+			"to": [-1.5, -3.25, 2],
+			"faces": {
+				"north": {"uv": [12, 13, 14, 14], "texture": "#7"},
+				"east": {"uv": [0, 14, 2, 15], "texture": "#7"},
+				"south": {"uv": [2, 14, 4, 15], "texture": "#7"},
+				"west": {"uv": [4, 14, 6, 15], "texture": "#7"},
+				"up": {"uv": [13, 4, 11, 2], "texture": "#7"},
+				"down": {"uv": [13, 4, 11, 6], "texture": "#7"}
+			}
+		},
+		{
+			"from": [-4, 5, 0.75],
+			"to": [-1, 11.5, 1.25],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 7], "texture": "#7"},
+				"east": {"uv": [6, 9, 7, 16], "texture": "#7"},
+				"south": {"uv": [3, 0, 6, 7], "texture": "#7"},
+				"west": {"uv": [7, 9, 8, 16], "texture": "#7"},
+				"up": {"uv": [14, 8, 11, 7], "texture": "#7"},
+				"down": {"uv": [14, 8, 11, 9], "texture": "#7"}
+			}
+		},
+		{
+			"from": [-3.75, 11.5, 0.75],
+			"to": [-1.25, 12.5, 1.25],
+			"faces": {
+				"north": {"uv": [8, 12, 11, 13], "texture": "#7"},
+				"east": {"uv": [14, 7, 15, 8], "texture": "#7"},
+				"south": {"uv": [12, 10, 15, 11], "texture": "#7"},
+				"west": {"uv": [8, 14, 9, 15], "texture": "#7"},
+				"up": {"uv": [14, 13, 11, 12], "texture": "#7"},
+				"down": {"uv": [15, 11, 12, 12], "texture": "#7"}
+			}
+		},
+		{
+			"from": [-3.5, 12.5, 0.75],
+			"to": [-1.5, 13, 1.25],
+			"faces": {
+				"north": {"uv": [13, 4, 15, 5], "texture": "#7"},
+				"east": {"uv": [14, 8, 15, 9], "texture": "#7"},
+				"south": {"uv": [13, 5, 15, 6], "texture": "#7"},
+				"west": {"uv": [9, 14, 10, 15], "texture": "#7"},
+				"up": {"uv": [15, 7, 13, 6], "texture": "#7"},
+				"down": {"uv": [10, 13, 8, 14], "texture": "#7"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [177.5, 71.75, 6.5],
+			"translation": [8.25, -7.75, 7],
+			"scale": [0.71875, 0.71875, 0.91406]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [46.5, -75, 213.5],
+			"translation": [-3.75, -10, 8.5],
+			"scale": [0.7, 0.7, 0.9]
+		},
+		"firstperson_righthand": {
+			"rotation": [12, 106.25, -168.75],
+			"translation": [13, -18, 5.25],
+			"scale": [1.52148, 1.52148, 1.52148]
+		},
+		"firstperson_lefthand": {
+			"rotation": [7, -67, -180],
+			"translation": [7, -30, 13],
+			"scale": [2.37, 2.44, 2.44]
+		},
+		"ground": {
+			"rotation": [0, 0, -162.25],
+			"translation": [-1.25, 0, 4],
+			"scale": [0.53906, 0.53906, 0.53906]
+		},
+		"gui": {
+			"rotation": [0, 0, 140.5],
+			"translation": [-6.25, 2.75, 0],
+			"scale": [0.59961, 0.59961, 0.59961]
+		},
+		"fixed": {
+			"rotation": [0, 0, -132.5],
+			"translation": [-3.5, -8, 4.5],
+			"scale": [0.76953, 0.76953, 0.76953]
+		}
+	},
+	"groups": [
+		{
+			"name": "blade",
+			"origin": [8, 8, 8],
+			"children": [0, 1, 2, 3, 4, 5, 6]
+		},
+		{
+			"name": "cross",
+			"origin": [8, 8, 8],
+			"children": []
+		},
+		{
+			"name": "hilt",
+			"origin": [8, 8, 8],
+			"children": []
+		}
+	]
+}

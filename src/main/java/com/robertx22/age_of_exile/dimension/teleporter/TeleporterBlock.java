@@ -53,7 +53,7 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
             } else {
                 Load.playerMaps(player)
                     .syncToClient(player);
-                ClientOnly.openMapsScreen();
+                ClientOnly.openMapsScreen(pos);
             }
             return ActionResult.SUCCESS;
         }

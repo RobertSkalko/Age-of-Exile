@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
@@ -107,9 +108,17 @@ public class ItemNewbieGearBag extends Item {
                 SkillGem gem = Database.SkillGems()
                     .get(x);
                 SkillGemBlueprint blueprint = new SkillGemBlueprint(1);
+
                 blueprint.type.set(gem);
                 blueprint.level.set(1);
-                PlayerUtils.giveItem(blueprint.createStack(), player);
+
+                ItemStack stack = blueprint.createStack();
+
+                SkillGemData data = SkillGemData.fromStack(stack);
+                data.sal = false;
+                data.saveToStack(stack);
+
+                PlayerUtils.giveItem(stack, player);
             });
 
             stacks.forEach(x -> PlayerUtils.giveItem(x, player));

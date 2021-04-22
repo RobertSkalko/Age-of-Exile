@@ -12,6 +12,7 @@ import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
 
@@ -19,8 +20,12 @@ public class MapsScreen extends BaseScreen {
 
     private static final Identifier BACKGROUND = Ref.guiId("map");
 
-    public MapsScreen() {
+    public BlockPos teleporterPos = new BlockPos(0, 0, 0);
+
+    public MapsScreen(BlockPos pos) {
         super(245, 196);
+
+        this.teleporterPos = pos;
 
         Load.playerMaps(mc.player)
             .syncToClient(mc.player);
@@ -79,6 +84,8 @@ public class MapsScreen extends BaseScreen {
 
     public void addSelectedDungeonButtons() {
 
+        addButton(new StartDungeonButton(this, selectedDungeon, guiLeft + 150, guiTop + 150));
+
         int x = guiLeft + START_X;
         int y = guiTop + LOOT_Y;
 
@@ -94,8 +101,8 @@ public class MapsScreen extends BaseScreen {
         x = guiLeft + START_X;
         y = guiTop + LOOT_Y - 30;
 
-        for (int i = 0; i < selectedDungeon.quest_rewwards.stacks.size(); i++) {
-            ItemStack stack = selectedDungeon.quest_rewwards.stacks.get(i);
+        for (int i = 0; i < selectedDungeon.quest_rew.stacks.size(); i++) {
+            ItemStack stack = selectedDungeon.quest_rew.stacks.get(i);
             this.publicAddButton(new ItemSlotButton(stack, x, y));
             x += ItemSlotButton.xSize + 1;
         }

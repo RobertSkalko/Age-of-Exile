@@ -35,14 +35,14 @@ public class Tier implements ISerializedRegistryEntry<Tier>, IAutoGson<Tier> {
     }
 
     protected void setMobStrengthPerRank() {
+        this.hp_multi = 1F + 0.1F * id_rank;
         this.dmg_multi = 1F + 0.05F * id_rank;
-        this.hp_multi = 1F + 0.05F * id_rank;
-        this.stat_multi = 1F + 0.05F * id_rank;
+        this.stat_multi = 1F + 0.02F * id_rank;
     }
 
     protected void setLootPerRank() {
-        this.loot_multi = 1F + 0.05F * id_rank;
-        this.higher_rar_chance = id_rank * 2;
+        this.loot_multi = 1F + 0.02F * id_rank;
+        this.higher_rar_chance = id_rank * 1;
     }
 
     @Override

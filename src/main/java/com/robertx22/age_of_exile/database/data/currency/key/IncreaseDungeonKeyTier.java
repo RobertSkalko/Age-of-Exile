@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public abstract class IncreaseDungeonKeyTier extends CurrencyItem implements ICu
 
         tier += increaseTierBy();
 
-        DungeonKeyItem.setTier(stack, tier);
+        DungeonKeyItem.setTier(stack, MathHelper.clamp(tier, 1, ITiered.getMaxTier()));
 
         return stack;
     }

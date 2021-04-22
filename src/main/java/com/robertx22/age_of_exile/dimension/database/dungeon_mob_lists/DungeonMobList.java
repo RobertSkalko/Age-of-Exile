@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -24,6 +25,10 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
 
     public List<WeightedMobEntry> mobs = new ArrayList<>();
     public List<WeightedMobEntry> bosses = new ArrayList<>();
+
+    public Identifier getIconId() {
+        return Ref.guiId("dungeon/icons/" + id);
+    }
 
     @Override
     public Class<DungeonMobList> getClassForSerialization() {

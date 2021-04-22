@@ -6,16 +6,17 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.teleporter.MapsData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerMapsCap implements ICommonPlayerCap {
 
@@ -26,23 +27,87 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     public MapsData mapsData = new MapsData();
 
-    public int currentFloor = 0;
+    MapsPathingData data = new MapsPathingData();
 
     public PlayerMapsCap(PlayerEntity player) {
         this.player = player;
     }
 
+    public void onDungeonCompletedAdvanceProgress() {
+        data.floor++;
+    }
+
+    public void onEnterDungeon(BlockPos teleporterPos, String uuid) {
+
+        ImmutablePair<Integer, DungeonData> pair = getDungeonFromUUID(uuid);
+
+        this.data.entered.add(new PathData(pair.right.uuid, pair.left));
+
+        // todo find the teleporter block and spawn portals
+    }
+
+    public ImmutablePair<Integer, DungeonData> getDungeonFromUUID(String uuid) {
+
+        for (Map.Entry<Integer, List<DungeonData>> x : mapsData.dungeonsByFloors.entrySet()) {
+            Optional<DungeonData> opt = x.getValue()
+                .stream()
+                .filter(e -> e.uuid.equals(uuid))
+                .findAny();
+
+            if (opt.isPresent()) {
+                return ImmutablePair.of(x.getKey(), opt.get());
+            }
+        }
+        return null;
+    }
+
     @Override
     public CompoundTag toTag(CompoundTag nbt) {
-        nbt.putInt("floor", currentFloor);
         LoadSave.Save(mapsData, nbt, LOC);
+        LoadSave.Save(data, nbt, "path");
         return nbt;
     }
 
     @Override
     public void fromTag(CompoundTag nbt) {
         this.mapsData = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
-        this.currentFloor = nbt.getInt("floor");
+        this.data = LoadSave.Load(MapsPathingData.class, new MapsPathingData(), nbt, "path");
+
+        if (data == null) {
+            data = new MapsPathingData();
+        }
+        if (mapsData == null) {
+            mapsData = new MapsData();
+        }
+    }
+
+    public boolean isLockedToPlayer(DungeonData dungeon) {
+
+        Optional<Map.Entry<Integer, List<DungeonData>>> opt = this.mapsData.dungeonsByFloors.entrySet()
+            .stream()
+            .filter(x -> x.getValue()
+                .stream()
+                .anyMatch(e -> e.uuid.equals(dungeon.uuid)))
+            .findFirst();
+
+        if (opt.isPresent()) {
+
+            int floor = opt.get()
+                .getKey();
+
+            if (floor != this.data.floor) {
+                return true;
+            }
+
+            if (data.enteredAnotherDungeonOnSameFloor(dungeon, floor)) {
+                return true;
+            }
+
+            return false;
+
+        }
+        return true;
+
     }
 
     @Override
@@ -52,7 +117,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     public void initRandomMap(int tier) {
 
-        this.currentFloor = 0;
+        this.data.floor = 0;
         this.mapsData = new MapsData();
 
         mapsData.isEmpty = false;
@@ -73,6 +138,10 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
                 int dungeonTier = f + tier;
 
+                if (dungeonTier > ITiered.getMaxTier()) {
+                    dungeonTier = ITiered.getMaxTier();
+                }
+
                 dun.lvl = Load.Unit(player)
                     .getLevel();
                 dun.tier = dungeonTier;
@@ -83,7 +152,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     .toString();
                 dun.uniques.randomize(dungeonTier);
                 dun.affixes.randomize(dungeonTier);
-                dun.quest_rewwards.randomize(dungeonTier, isEndOfMap);
+                dun.quest_rew.randomize(dungeonTier, isEndOfMap);
 
                 list.add(dun);
 

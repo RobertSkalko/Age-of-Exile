@@ -1,9 +1,8 @@
 These are all default registry entries of this type.
 This registry can't be modified or added to.
-one_tier
 currency/clear_instability
+currency/fifty_tier
 currency/number_reroll
-ten_tier
 currency/reroll_affix_numbers
 currency/orb_of_transmutation
 currency/orb_of_infinity
@@ -13,8 +12,9 @@ currency/reroll_unique_numbers
 currency/crystal_of_purification
 currency/crystal_of_truth
 currency/clear_sockets
-fifty_tier
 currency/randomize_affixes
+currency/one_tier
+currency/ten_tier
 currency/clear_corruption
 currency/reroll_primary_stats_numbers
 currency/level_spell

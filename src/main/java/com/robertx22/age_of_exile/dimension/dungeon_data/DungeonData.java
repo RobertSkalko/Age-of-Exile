@@ -16,7 +16,7 @@ import java.util.List;
 public class DungeonData {
 
     @Store
-    public DungeonQuestRewards quest_rewwards = new DungeonQuestRewards();
+    public DungeonQuestRewards quest_rew = new DungeonQuestRewards();
     @Store
     public PossibleUniques uniques = new PossibleUniques();
     @Store

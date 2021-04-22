@@ -16,7 +16,8 @@ import java.util.List;
 public class DungeonKeyItem extends AutoItem {
 
     public DungeonKeyItem() {
-        super(new Settings().group(CreativeTabs.MyModTab));
+        super(new Settings().group(CreativeTabs.MyModTab)
+            .maxCount(1));
     }
 
     @Override

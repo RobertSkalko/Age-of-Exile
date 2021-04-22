@@ -46,7 +46,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     public HashMap<LevelRange, Item> MACES = of("weapon/mace/mace", () -> new MaceWeapon());
     public HashMap<LevelRange, Item> HAMMERS = of("weapon/hammer/hammer", () -> new HammerWeapon());
     public HashMap<LevelRange, Item> GLOVES = of("weapon/glove/glove", () -> new GloveWeapon());
-    public HashMap<LevelRange, Item> DAGGERS = of("weapon/dagger/dagger", () -> new GloveWeapon());
+    public HashMap<LevelRange, Item> DAGGERS = of("weapon/dagger/dagger", () -> new DaggerWeapon());
     public HashMap<LevelRange, Item> STAFFS = of("weapon/staff/staff", () -> new StaffWeapon());
     public HashMap<LevelRange, Item> WANDS = of("weapon/wand/wand", () -> new WandWeapon("Wand"));
     public HashMap<LevelRange, Item> SCEPTERS = of("weapon/scepter/scepter", () -> new ScepterWeapon());
