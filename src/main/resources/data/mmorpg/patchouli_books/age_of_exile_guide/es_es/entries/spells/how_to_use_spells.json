@@ -1,0 +1,13 @@
+{
+  "name": "Como usar Hechizos",
+  "category": "spells",
+  "icon": "minecraft:stick",
+  "sortnum": 2,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "¡Es muy sencillo!",
+		"text": "Mantén [R] para cambiar a la barra de acceso directo de hechizos y, a continuación, utiliza las teclas numéricas del teclado o del ratón para seleccionar el hechizo. El hechizo seleccionado se muestra en la barra verde a la derecha de tu barra de acceso directo. Para lanzarlo, simplemente usa el arma correcta y haz clic con el botón derecho. Las armas con acción de un uso, como los arcos, requiere que mantengas [SHIFT+R] en su lugar."
+	}
+  ]
+}
