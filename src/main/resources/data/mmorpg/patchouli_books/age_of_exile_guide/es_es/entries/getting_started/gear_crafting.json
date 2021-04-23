@@ -1,0 +1,34 @@
+{
+  "name": "Creando equipo",
+  "category": "getting_started",
+  "icon": "minecraft:leather_chestplate",
+  "sortnum": 2,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "Como fabricar tu primera pieza.",
+		"text": "Después de transmutar algunas piezas de equipo, deberás obtener algunos materiales como resultado. Fórjalos y utilizalos en piezas apropiadas para fabricar tu equipo. El cuero para armaduras de cuero y la tela para armaduras de tela."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:gear_mat/ore/ore0",
+		"text": "Los distintos minerales te permiten fabricar armas, joyas y armaduras de placas."
+    },
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:gear_mat/leather/leather0",
+		"recipe2": "mmorpg:gear_mat/cloth/cloth0", 
+		"text": "Tela y cuero para las armaduras correspondientes."		
+    },  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:weapon/wand/wand0",
+		"text": "Las varitas son necesarias para lanzar muchos de los hechizos, así que, probablemente te interese fabricarlas en primer lugar."		
+    },
+	{  
+		"type": "text",   
+		"title": "Nota",
+		"text": "Cada receta sigue su fórmula predecible. Los objetos con mayor nivel requieren materiales de mayor nivel. Los tipos especiales del mismo tipo de objeto requieren sus esencias correspondientes. Por ejemplo, un cetro de curación requiere esencia de vida. Rellena los espacios vacíos de la cuadrícula de crafteo de 3x3 con la esencia."
+	}
+  ]
+}

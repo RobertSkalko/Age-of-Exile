@@ -1,0 +1,18 @@
+{
+  "name": "Nivel de enemigos",
+  "category": "be_warned",
+  "icon": "minecraft:gold_block",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "Fundamentos",
+		"text": "En efecto, los enemigos también tienen niveles. Cuanto más lejos estén del punto de spawn, más altos serán sus niveles. Por tanto, ¡evita irte corriendo muy lejos del spawn si tienes un nivel demasiado bajo! Las piezas de equipamiento tienen requisitos de nivel, así que, aunque puedas derrotar a los mobs de nivel alto, no podrás utilizar los tesoros que suelten."
+	},  
+	{  
+		"type": "text",   
+		"title": "Más info",
+		"text": "Como muchas cosas son configurables, deberás comprobar primero tu Modpack. Generalmente, los modpacks harán que las diferentes dimensiones tengan diferentes rangos de nivel. Así que, tal vez el Nether tendrá mobs de nivel 20-30, el End mobs de nivel 30-40, y etc."
+	}
+  ]
+}

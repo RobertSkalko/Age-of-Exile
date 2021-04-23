@@ -1,0 +1,13 @@
+{
+  "name": "Como conseguir hechizos",
+  "category": "spells",
+  "icon": "minecraft:blaze_powder",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "El Árbol de habilidades",
+		"text": "Ve al menu principal [H] y abre el Árbol de habilidades. Elige entre varias escuelas de magia y desbloquea sus ventajas. ¡Algunos ventajas te otorgan hechizos! Puedes conseguir más puntos subiendo de nivel."
+	}
+  ]
+}

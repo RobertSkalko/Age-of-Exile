@@ -1,0 +1,17 @@
+{
+  "name": "Engarces",
+  "category": "getting_started",
+  "icon": "mmorpg:socket_station",
+  "sortnum": 4,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "Estación de engarces",
+		"text": "Cuando consigas algunas gemas, runas y objetos con engarces, puede que necesites crear esta estación. Aquí podrás añadir esas gemas y runas a los objetos con engarces e incluso combinar las runas para formar palabras rúnicas."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:socket_station"		
+    }
+  ]
+}
