@@ -12,6 +12,9 @@ import net.minecraft.world.gen.feature.JigsawFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class DungeonDimensionJigsawFeature extends JigsawFeature {
+
+    public static int HEIGHT = 80;
+
     public static int DISTANCE = 10;
 
     public static ChunkPos getSpawnChunkOf(BlockPos p) {

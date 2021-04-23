@@ -8,8 +8,10 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -34,6 +36,7 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static String TORMENT = "negative/" + 7;
     public static String BLEED = "negative/" + 8;
     public static String MUMMY_CURSE = "negative/" + 9;
+    public static String BLIND = "negative/" + 10;
 
     @Override
     public void registerAll() {
@@ -119,6 +122,16 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(ELE_WEAKNESS, "-Ele Resist", EffectType.HARMFUL)
             .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .build();
+
+        ExileEffectBuilder.of(BLIND, "Blind", EffectType.HARMFUL)
+            .stat(-10, new AttackDamage(Elements.Physical), ModType.FLAT)
+            .stat(-25, CriticalHit.getInstance(), ModType.FLAT)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 3D, 1D)
+                    .onTick(20D))
+                .buildForEffect()
+            )
             .build();
 
         ExileEffectBuilder.of(WOUNDS, "Wounds", EffectType.HARMFUL)

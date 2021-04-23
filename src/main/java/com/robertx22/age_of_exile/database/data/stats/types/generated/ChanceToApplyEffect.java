@@ -18,6 +18,7 @@ public class ChanceToApplyEffect extends Stat {
     public static ChanceToApplyEffect POISON = new ChanceToApplyEffect(Elements.Nature, NegativeEffects.POISON, "Poison", "poison");
     public static ChanceToApplyEffect BLEED = new ChanceToApplyEffect(Elements.Physical, NegativeEffects.BLEED, "Bleed", "bleed");
     public static ChanceToApplyEffect TORMENT = new ChanceToApplyEffect(Elements.Dark, NegativeEffects.TORMENT, "Torment", "torment");
+    public static ChanceToApplyEffect BLIND = new ChanceToApplyEffect(Elements.Light, NegativeEffects.BLIND, "Blind", "blind");
 
     String effect;
     String locname;

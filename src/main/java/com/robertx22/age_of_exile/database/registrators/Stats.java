@@ -78,6 +78,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ChanceToApplyEffect.POISON);
                     add(ChanceToApplyEffect.BLEED);
                     add(ChanceToApplyEffect.TORMENT);
+                    add(ChanceToApplyEffect.BLIND);
 
                     add(ShieldDuration.getInstance());
                     add(ShieldStrength.getInstance());

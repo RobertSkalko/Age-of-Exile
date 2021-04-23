@@ -717,6 +717,25 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+	"mmorpg.runeword.all_knowing": "All Knowing",
+	"mmorpg.runeword.blaze_fury": "Blaze Fury",
+	"mmorpg.runeword.dawn_light": "Dawn Light",
+	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
+	"mmorpg.runeword.ele_fury": "Elemental Fury",
+	"mmorpg.runeword.infinity": "Infinity",
+	"mmorpg.runeword.momentum": "Momentum",
+	"mmorpg.runeword.rock_golem": "Rock Golem",
+	"mmorpg.runeword.scholar": "Scholar",
+	"mmorpg.runeword.sentinel": "Sentinel",
+	"mmorpg.runeword.shadow": "Shadow",
+	"mmorpg.runeword.starlight": "Starlight",
+	"mmorpg.runeword.venom": "Venom",
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 	"mmorpg.one_of_a_kind.armor_aura_mod": "Armor Aura Modifier",
@@ -761,25 +780,6 @@
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-	"mmorpg.runeword.all_knowing": "All Knowing",
-	"mmorpg.runeword.blaze_fury": "Blaze Fury",
-	"mmorpg.runeword.dawn_light": "Dawn Light",
-	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
-	"mmorpg.runeword.ele_fury": "Elemental Fury",
-	"mmorpg.runeword.infinity": "Infinity",
-	"mmorpg.runeword.momentum": "Momentum",
-	"mmorpg.runeword.rock_golem": "Rock Golem",
-	"mmorpg.runeword.scholar": "Scholar",
-	"mmorpg.runeword.sentinel": "Sentinel",
-	"mmorpg.runeword.shadow": "Shadow",
-	"mmorpg.runeword.starlight": "Starlight",
-	"mmorpg.runeword.venom": "Venom",
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 	"mmorpg.mob_rarity.boss": "Boss",
@@ -805,40 +805,6 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
-"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-	"effect.mmorpg.beneficial.0": "Ele Resist",
-	"effect.mmorpg.beneficial.1": "Cleanse",
-	"effect.mmorpg.beneficial.10": "Imbue",
-	"effect.mmorpg.beneficial.11": "Arcane Hunter",
-	"effect.mmorpg.beneficial.12": "Eagle Eye",
-	"effect.mmorpg.beneficial.13": "Savage Hunter",
-	"effect.mmorpg.beneficial.14": "Frost Armor",
-	"effect.mmorpg.beneficial.15": "Void Eye",
-	"effect.mmorpg.beneficial.2": "Bravery",
-	"effect.mmorpg.beneficial.3": "Wizardy",
-	"effect.mmorpg.beneficial.4": "Trickery",
-	"effect.mmorpg.beneficial.5": "Regenerate",
-	"effect.mmorpg.beneficial.6": "Thorn Armor",
-	"effect.mmorpg.beneficial.7": "Anger",
-	"effect.mmorpg.beneficial.8": "Divine Shield",
-	"effect.mmorpg.beneficial.9": "Poison Attack",
-	"effect.mmorpg.negative.0": "-Ele Resist",
-	"effect.mmorpg.negative.1": "Petrify",
-	"effect.mmorpg.negative.2": "Frostburn",
-	"effect.mmorpg.negative.3": "Poison",
-	"effect.mmorpg.negative.4": "Wounds",
-	"effect.mmorpg.negative.5": "Burn",
-	"effect.mmorpg.negative.6": "Judgement",
-	"effect.mmorpg.negative.7": "Torment",
-	"effect.mmorpg.negative.8": "Bleed",
-	"effect.mmorpg.negative.9": "Mummy Curse",
-	"effect.mmorpg.neutral.0": "Boss Prepare",
-	"effect.mmorpg.neutral.1": "Boss Angry",
-
-"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
@@ -861,6 +827,41 @@
 	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+	"effect.mmorpg.beneficial.0": "Ele Resist",
+	"effect.mmorpg.beneficial.1": "Cleanse",
+	"effect.mmorpg.beneficial.10": "Imbue",
+	"effect.mmorpg.beneficial.11": "Arcane Hunter",
+	"effect.mmorpg.beneficial.12": "Eagle Eye",
+	"effect.mmorpg.beneficial.13": "Savage Hunter",
+	"effect.mmorpg.beneficial.14": "Frost Armor",
+	"effect.mmorpg.beneficial.15": "Void Eye",
+	"effect.mmorpg.beneficial.2": "Bravery",
+	"effect.mmorpg.beneficial.3": "Wizardy",
+	"effect.mmorpg.beneficial.4": "Trickery",
+	"effect.mmorpg.beneficial.5": "Regenerate",
+	"effect.mmorpg.beneficial.6": "Thorn Armor",
+	"effect.mmorpg.beneficial.7": "Anger",
+	"effect.mmorpg.beneficial.8": "Divine Shield",
+	"effect.mmorpg.beneficial.9": "Poison Attack",
+	"effect.mmorpg.negative.0": "-Ele Resist",
+	"effect.mmorpg.negative.1": "Petrify",
+	"effect.mmorpg.negative.10": "Blind",
+	"effect.mmorpg.negative.2": "Frostburn",
+	"effect.mmorpg.negative.3": "Poison",
+	"effect.mmorpg.negative.4": "Wounds",
+	"effect.mmorpg.negative.5": "Burn",
+	"effect.mmorpg.negative.6": "Judgement",
+	"effect.mmorpg.negative.7": "Torment",
+	"effect.mmorpg.negative.8": "Bleed",
+	"effect.mmorpg.negative.9": "Mummy Curse",
+	"effect.mmorpg.neutral.0": "Boss Prepare",
+	"effect.mmorpg.neutral.1": "Boss Angry",
+
+"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1427,6 +1428,7 @@
 	"mmorpg.stat.cast_speed": "Cast Speed",
 	"mmorpg.stat.cdr": "Cooldown Reduction",
 	"mmorpg.stat.chance_of_bleed": "§7Your §6✦ Physical§7 Attacks have §a[VAL1]§7% chance of applying Bleed",
+	"mmorpg.stat.chance_of_blind": "§7Your §f☀ Light§7 Attacks have §a[VAL1]§7% chance of applying Blind",
 	"mmorpg.stat.chance_of_burn": "§7Your §c☀ Fire§7 Attacks have §a[VAL1]§7% chance of applying Burn",
 	"mmorpg.stat.chance_of_frostburn": "§7Your §b❉ Water§7 Attacks have §a[VAL1]§7% chance of applying Frostburn",
 	"mmorpg.stat.chance_of_poison": "§7Your §2✿ Nature§7 Attacks have §a[VAL1]§7% chance of applying Poison",
@@ -2165,6 +2167,7 @@
 	"mmorpg.stat_desc.cast_speed": "Affects amount of time needed to cast spells. If the spell is instant, it reduces the cooldown",
 	"mmorpg.stat_desc.cdr": "Reduces spell cooldown.",
 	"mmorpg.stat_desc.chance_of_bleed": "Chance to apply effect on hit, only works on appropriate element. (Burn = Fire damage) ",
+	"mmorpg.stat_desc.chance_of_blind": "Chance to apply effect on hit, only works on appropriate element. (Burn = Fire damage) ",
 	"mmorpg.stat_desc.chance_of_burn": "Chance to apply effect on hit, only works on appropriate element. (Burn = Fire damage) ",
 	"mmorpg.stat_desc.chance_of_frostburn": "Chance to apply effect on hit, only works on appropriate element. (Burn = Fire damage) ",
 	"mmorpg.stat_desc.chance_of_poison": "Chance to apply effect on hit, only works on appropriate element. (Burn = Fire damage) ",

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusXpToMobsOfTier;
@@ -108,6 +109,8 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         float baseexp = exp;
 
         exp += (-1F + multi) * baseexp;
+
+        exp += (-1F + ModConfig.get().Server.EXP_GAIN_MULTI) * baseexp;
 
         exp += (-1F + Database.MobRarities()
             .get(mobData.getRarity())

@@ -2,8 +2,11 @@ package com.robertx22.age_of_exile.dimension.player_data;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.teleporter.MapsData;
+import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
@@ -14,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
@@ -39,11 +43,43 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     public void onEnterDungeon(BlockPos teleporterPos, String uuid) {
 
-        ImmutablePair<Integer, DungeonData> pair = getDungeonFromUUID(uuid);
+        try {
+            ImmutablePair<Integer, DungeonData> pair = getDungeonFromUUID(uuid);
 
-        this.data.entered.add(new PathData(pair.right.uuid, pair.left));
+            this.data.entered.add(new PathData(pair.right.uuid, pair.left));
 
-        // todo find the teleporter block and spawn portals
+            this.data.tel_pos = teleporterPos;
+
+            List<BlockPos> list = new ArrayList<>();
+            list.add(teleporterPos.south(2));
+            list.add(teleporterPos.north(2));
+            list.add(teleporterPos.east(2));
+            list.add(teleporterPos.west(2));
+
+            int border = (int) (player.world.getWorldBorder()
+                .getSize() / 2);
+
+            int X = RandomUtils.RandomRange(-border, border);
+            int Z = RandomUtils.RandomRange(-border, border);
+
+            ChunkPos cp = DungeonDimensionJigsawFeature.getSpawnChunkOf(new BlockPos(X, 0, Z));
+
+            BlockPos tpPos = cp.getStartPos()
+                .add(8, DungeonDimensionJigsawFeature.HEIGHT, 8); // todo, seems to not point to correct location?
+
+            list.forEach(x -> {
+                if (player.world.getBlockState(x)
+                    .isAir()) {
+                    player.world.setBlockState(x, ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                    PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
+                    be.dungeonPos = tpPos;
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public ImmutablePair<Integer, DungeonData> getDungeonFromUUID(String uuid) {

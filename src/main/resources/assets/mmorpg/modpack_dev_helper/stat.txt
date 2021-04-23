@@ -192,6 +192,7 @@ ranged_crit_dmg_to_undead
 darkness_dmg
 water_penetration
 bonus_inscribing_yield
+chance_of_blind
 spell_damage_per_perc_of_increase_healing
 bonus_alchemy_exp
 slow_immunity
