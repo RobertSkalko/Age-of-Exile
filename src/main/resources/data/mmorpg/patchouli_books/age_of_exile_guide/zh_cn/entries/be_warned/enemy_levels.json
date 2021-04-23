@@ -1,0 +1,18 @@
+{
+  "name": "怪物等级",
+  "category": "be_warned",
+  "icon": "minecraft:gold_block",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "基础知识",
+		"text": "你的敌人也有等级。离出生地越远，它们的等级就越高。所以当你的等级很低的时候不要跑得太远！装备有等级要求，所以即使你能杀死高等级的怪物，你仍然不能使用他们掉落的高等级装备。"
+	},  
+	{  
+		"type": "text",   
+		"title": "更多信息",
+		"text": "因为本MOD高度可配置，所以你可以先检查一下你的modpacks来查看怪物生成。"
+	}
+  ]
+}

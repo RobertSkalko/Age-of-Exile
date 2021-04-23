@@ -1,0 +1,33 @@
+{
+  "name": "装备强化台！！！",
+  "category": "getting_started",
+  "icon": "minecraft:zombie_head",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "multiblock",
+      "name": "Boss Summoning",
+      "multiblock": {
+        "pattern": [          
+			["G   G", "     ", "     ", "     ", "G   G"],
+			["C   C", "     ", "     ", "     ", "C   C"],
+			["C   C", "     ", "  R  ", "     ", "C   C"],
+			["PPPPP", "PPPPP", "PP0PP", "PPPPP", "PPPPP"]          
+        ],
+        "mapping": {
+          "G": "minecraft:gilded_blackstone",
+          "P": "minecraft:polished_blackstone_bricks",
+		  "C": "minecraft:chiseled_polished_blackstone",
+		  "R": "mmorpg:modify_station"		
+        }
+      },
+	 "text": "sdsd"	  
+    },
+	{
+		"type": "crafting",
+		"recipe": "mmorpg:modify_station",
+		"text": "With this station you can use currencies to modify gear. It's insanely useful for bettering your gear."
+  
+    }
+  ]
+}
