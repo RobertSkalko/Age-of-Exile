@@ -19,8 +19,11 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BeaconBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -124,9 +127,65 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             data.data.set(player, tpPos, single);
 
+            populateAround(dimWorld, cp, pair.right);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void populateAround(World world, ChunkPos cp, DungeonData data) {
+        List<ChunkPos> chunks = new ArrayList<>();
+        for (int x = -5; x < 5; x++) {
+            for (int z = -5; z < 5; z++) {
+                chunks.add(new ChunkPos(cp.x + x, cp.z + z));
+            }
+        }
+        chunks.forEach(x -> populate(world, world.getChunk(x.x, x.z), data));
+    }
+
+    public void populate(World world, Chunk chunk, DungeonData dungeon) {
+
+        Set<BlockPos> list = chunk.getBlockEntityPositions();
+
+        list.forEach(x -> {
+            BlockEntity be = world.getBlockEntity(x);
+            if (be instanceof BeaconBlockEntity) {
+                populate(world, x, dungeon);
+            }
+        });
+
+    }
+
+    void populate(World world, BlockPos pos, DungeonData data) {
+
+        List<BlockPos> list = new ArrayList<>();
+        for (int x = -5; x < 5; x++) {
+            for (int z = -5; z < 5; z++) {
+                list.add(pos.add(x, 0, z));
+            }
+        }
+        list.removeIf(x -> !world.isAir(x) && !world.getBlockState(x.down())
+            .isSolidBlock(world, x.down()));
+
+        int mobs = RandomUtils.RandomRange(2, 5);
+        int chests = RandomUtils.roll(10) ? 1 : 0;
+
+        for (int i = 0; i < mobs; i++) {
+            BlockPos p = RandomUtils.randomFromList(list);
+            data.getMobList()
+                .spawnRandomMob((ServerWorld) world, p, data.tier);
+            list.remove(p);
+        }
+
+        for (int i = 0; i < chests; i++) {
+            BlockPos p = RandomUtils.randomFromList(list);
+            world.setBlockState(p, Blocks.CHEST.getDefaultState()); // TODO ADD LOOT
+            list.remove(p);
+        }
+
+        world.setBlockState(pos, Blocks.AIR.getDefaultState());
 
     }
 

@@ -65,6 +65,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 data.increment();
 
                 if (data.regenTicks > TicksToRegen) {
+
                     data.regenTicks = 0;
                     if (player.isAlive()) {
 

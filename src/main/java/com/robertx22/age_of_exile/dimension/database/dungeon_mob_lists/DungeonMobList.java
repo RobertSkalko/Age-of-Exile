@@ -9,11 +9,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +44,7 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
         return id;
     }
 
-    public void spawnRandomMob(World world, BlockPos pos, int tier) {
+    public void spawnRandomMob(ServerWorld world, BlockPos pos, int tier) {
 
         WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
 
@@ -53,17 +52,22 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
 
         Entity en = type.create(world);
 
+        en.refreshPositionAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0);
+
         if (en instanceof MobEntity) {
             MobEntity mob = (MobEntity) en;
 
+            mob.setPersistent();
+
             mob.initialize(
-                (ServerWorldAccess) world,
+                world,
                 world.getLocalDifficulty(pos),
-                SpawnReason.STRUCTURE,
+                SpawnReason.MOB_SUMMONED,
                 null, null);
+
         }
 
-        world.spawnEntity(en);
+        world.spawnEntityAndPassengers(en);
 
     }
 }

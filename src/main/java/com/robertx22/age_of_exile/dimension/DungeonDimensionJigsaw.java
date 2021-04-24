@@ -3,11 +3,11 @@ package com.robertx22.age_of_exile.dimension;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.config_utils.BlackOrWhiteList;
 import com.robertx22.world_of_exile.config.FeatureConfig;
-import com.robertx22.world_of_exile.main.ModProcessorLists;
 import com.robertx22.world_of_exile.main.structures.base.StructureWrapper;
 import com.robertx22.world_of_exile.world_gen.AbstractPool;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.processor.StructureProcessorList;
+import net.minecraft.structure.processor.StructureProcessorLists;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
@@ -69,7 +69,7 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
         @Override
         public StructureProcessorList processorList() {
-            return ModProcessorLists.INSTANCE.DEFAULT_PROCESSORS;
+            return StructureProcessorLists.EMPTY;
         }
     }
 
