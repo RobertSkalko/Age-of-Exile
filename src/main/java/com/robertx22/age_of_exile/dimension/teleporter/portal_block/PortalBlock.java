@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.dimension.teleporter.portal_block;
 
 import com.robertx22.age_of_exile.dimension.DimensionIds;
+import com.robertx22.age_of_exile.mixin_ducks.PlayerTeleStateAccessor;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.minecraft.block.BlockEntityProvider;
@@ -8,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -63,19 +65,34 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         try {
-            if (entity instanceof ServerPlayerEntity) {
-                if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {
 
-                    PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
+            if (entity instanceof PlayerEntity) {
 
-                    if (be.dungeonPos == BlockPos.ORIGIN) {
-                        return;
-                    } else {
+                entity.teleporting = true;
 
-                        TeleportUtils.teleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
+                if (entity instanceof ServerPlayerEntity) {
+                    if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {
+
+                        PlayerTeleStateAccessor acc = (PlayerTeleStateAccessor) entity;
+                        acc.setIsInTeleportationState(true);
+
+                        PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
+
+                        if (be.dungeonPos == BlockPos.ORIGIN) {
+                            return;
+                        } else {
+
+                            TeleportUtils.teleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
+
+                        }
+
                     }
-
                 }
+
+// todo wait 20 seconds and set teleport state to false OTHERWISE IT WONT TELEPORT AND CAUSE WEIRD BUGS
+
+                //   acc.setIsInTeleportationState(false);
+
             }
         } catch (Exception e) {
             e.printStackTrace();

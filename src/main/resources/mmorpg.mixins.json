@@ -18,6 +18,7 @@
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PlayerManagerMixin",
+    "ServerPlayerEntityAccessor",
     "ServerResourceManagerMixin",
     "SpawnSettingsMixin",
     "StatusEffectAccessor",

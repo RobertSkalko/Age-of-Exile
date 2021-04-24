@@ -31,6 +31,11 @@ public class MapsScreen extends BaseScreen {
             .syncToClient(mc.player);
     }
 
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
+
     public MapsData getMapsData() {
         return Load.playerMaps(mc.player).mapsData;
     }

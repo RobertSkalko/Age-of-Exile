@@ -15,7 +15,7 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
     public static int HEIGHT = 80;
 
-    public static int DISTANCE = 10;
+    public static int DISTANCE = 20;
 
     public static ChunkPos getSpawnChunkOf(BlockPos p) {
         return getSpawnChunkOf(new ChunkPos(p));

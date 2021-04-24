@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -21,6 +22,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.SkullBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
@@ -54,62 +56,51 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         data.floor++;
     }
 
-    public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.END_PORTAL_FRAME;
+    public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.PLAYER_HEAD;
+
+    static int cachedBorder = 0;
+
+    static int getBorder(World world) {
+        if (cachedBorder == 0) {
+            cachedBorder = (int) (world.getWorldBorder()
+                .getSize() / 2);
+        }
+        return cachedBorder;
+    }
 
     public void onEnterDungeon(BlockPos teleporterPos, String uuid) {
 
         try {
+
+            Watch total = new Watch();
+
             ImmutablePair<Integer, DungeonData> pair = getDungeonFromUUID(uuid);
 
             this.data.entered.add(new PathData(pair.right.uuid, pair.left));
 
             this.data.tel_pos = teleporterPos;
 
-            List<BlockPos> list = new ArrayList<>();
-            list.add(teleporterPos.south(2));
-            list.add(teleporterPos.north(2));
-            list.add(teleporterPos.east(2));
-            list.add(teleporterPos.west(2));
+            // set the dungeon data for the chunk
+            World dimWorld = player.world.getServer()
+                .getWorld(RegistryKey.of(Registry.DIMENSION, DimensionIds.DUNGEON_DIMENSION));
 
-            int border = (int) (player.world.getWorldBorder()
-                .getSize() / 2);
+            int border = getBorder(dimWorld);
 
             int X = RandomUtils.RandomRange(-border, border);
             int Z = RandomUtils.RandomRange(-border, border);
 
             ChunkPos cp = DungeonDimensionJigsawFeature.getSpawnChunkOf(new BlockPos(X, 0, Z));
 
+            Chunk chunk = dimWorld.getChunk(cp.x, cp.z); // load it first
+
             BlockPos tpPos = cp.getStartPos()
                 .add(8, DungeonDimensionJigsawFeature.HEIGHT, 8); // todo, seems to not point to correct location?
 
-            // set the dungeon data for the chunk
-            World dimWorld = player.world.getServer()
-                .getWorld(RegistryKey.of(Registry.DIMENSION, DimensionIds.DUNGEON_DIMENSION));
-            Chunk chunk = dimWorld.getChunk(cp.x, cp.z); // load it first
-
-            if (true || !dimWorld.getBlockState(tpPos)
-                .isAir()) {
-
-                List<BlockPos> check = new ArrayList<>();
-                for (int x = -25; x < 25; x++) {
-                    for (int z = -25; z < 25; z++) {
-                        for (int y = -2; y < 2; y++) {
-                            check.add(tpPos.add(x, y, z));
-                        }
-                    }
-                }
-
-                Optional<BlockPos> opt = check.stream()
-                    .filter(x -> dimWorld.getBlockState(x)
-                        .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK)
-                    .findAny();
-
-                if (opt.isPresent()) {
-                    tpPos = opt.get();
-                    dimWorld.setBlockState(tpPos, Blocks.AIR.getDefaultState());
-                }
-
-            }
+            List<BlockPos> list = new ArrayList<>();
+            list.add(teleporterPos.south(2));
+            list.add(teleporterPos.north(2));
+            list.add(teleporterPos.east(2));
+            list.add(teleporterPos.west(2));
 
             for (BlockPos x : list) {
                 if (player.world.getBlockState(x)
@@ -120,14 +111,50 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 }
             }
 
+            if (true) {
+
+                Watch w = new Watch();
+
+                Set<ChunkPos> check = new HashSet<>();
+                check.add(cp);
+                for (int x = -2; x < 2; x++) {
+                    for (int z = -2; z < 2; z++) {
+                        check.add(new ChunkPos(cp.x, cp.z + z));
+                    }
+                }
+
+                for (ChunkPos x : check) {
+                    for (Map.Entry<BlockPos, BlockEntity> e : dimWorld.getChunk(x.x, x.z)
+                        .getBlockEntities()
+                        .entrySet()) {
+                        if (e.getValue() instanceof SkullBlockEntity && dimWorld.getBlockState(e.getKey())
+                            .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
+                            tpPos = e.getKey();
+                            break;
+                        }
+                    }
+                }
+
+                w.print("finding spawn");
+
+            }
+
             WorldDungeonCap data = Load.dungeonData(dimWorld);
 
-            SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, 50), player.getUuid()
+            DungeonPopulateData popData = new DungeonPopulateData();
+
+            Watch watch = new Watch();
+            populateAround(dimWorld, cp, pair.right, popData);
+            watch.print("init dungeon");
+
+            int kills = (int) (popData.mobs * 0.8F);
+
+            SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, kills), player.getUuid()
                 .toString());
 
             data.data.set(player, tpPos, single);
 
-            populateAround(dimWorld, cp, pair.right);
+            total.print("Total dungeon init");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,30 +162,36 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public void populateAround(World world, ChunkPos cp, DungeonData data) {
-        List<ChunkPos> chunks = new ArrayList<>();
+    static class DungeonPopulateData {
+
+        public int mobs = 0;
+        public int chests = 0;
+    }
+
+    public void populateAround(World world, ChunkPos cp, DungeonData dungeon, DungeonPopulateData data) {
+        Set<ChunkPos> chunks = new HashSet<>();
         for (int x = -5; x < 5; x++) {
             for (int z = -5; z < 5; z++) {
                 chunks.add(new ChunkPos(cp.x + x, cp.z + z));
             }
         }
-        chunks.forEach(x -> populate(world, world.getChunk(x.x, x.z), data));
+        chunks.forEach(x -> populate(world, world.getChunk(x.x, x.z), dungeon, data));
     }
 
-    public void populate(World world, Chunk chunk, DungeonData dungeon) {
+    public void populate(World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
 
         Set<BlockPos> list = chunk.getBlockEntityPositions();
 
         list.forEach(x -> {
             BlockEntity be = world.getBlockEntity(x);
             if (be instanceof BeaconBlockEntity) {
-                populate(world, x, dungeon);
+                populate(world, x, dungeon, data);
             }
         });
 
     }
 
-    void populate(World world, BlockPos pos, DungeonData data) {
+    void populate(World world, BlockPos pos, DungeonData dungeonData, DungeonPopulateData data) {
 
         List<BlockPos> list = new ArrayList<>();
         for (int x = -5; x < 5; x++) {
@@ -166,21 +199,46 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 list.add(pos.add(x, 0, z));
             }
         }
-        list.removeIf(x -> !world.isAir(x) && !world.getBlockState(x.down())
-            .isSolidBlock(world, x.down()));
+
+        //list.removeIf(x -> !world.isAir(x) && !world.getBlockState(x.down())
+        //  .isSolidBlock(world, x.down()));
 
         int mobs = RandomUtils.RandomRange(2, 5);
         int chests = RandomUtils.roll(10) ? 1 : 0;
 
+        int tries = 0;
         for (int i = 0; i < mobs; i++) {
             BlockPos p = RandomUtils.randomFromList(list);
-            data.getMobList()
-                .spawnRandomMob((ServerWorld) world, p, data.tier);
+
+            tries++;
+            if (tries > 50) {
+                break;
+            }
+            if (!world.isAir(p) && !world.getBlockState(p.down())
+                .isSolidBlock(world, p.down())) {
+                i--;
+                continue;
+            }
+            data.mobs++;
+            dungeonData.getMobList()
+                .spawnRandomMob((ServerWorld) world, p, dungeonData.tier);
             list.remove(p);
         }
 
+        tries = 0;
+
         for (int i = 0; i < chests; i++) {
             BlockPos p = RandomUtils.randomFromList(list);
+            tries++;
+            if (tries > 50) {
+                break;
+            }
+            if (!world.isAir(p) && !world.getBlockState(p.down())
+                .isSolidBlock(world, p.down())) {
+                i--;
+                continue;
+            }
+            data.chests++;
             world.setBlockState(p, Blocks.CHEST.getDefaultState()); // TODO ADD LOOT
             list.remove(p);
         }

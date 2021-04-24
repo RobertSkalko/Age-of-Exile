@@ -36,7 +36,9 @@ public class QuestProgression {
 
             number += num;
 
-            if (number >= num) {
+            player.sendMessage(new LiteralText("Dungeon Progress: " + number + "/" + target), false);
+
+            if (number >= target) {
                 finished = true;
 
                 player.sendMessage(

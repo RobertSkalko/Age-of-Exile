@@ -23,7 +23,6 @@ public class WorldDungeonsData {
     }
 
     public SingleDungeonData get(BlockPos pos) {
-
         return map.getOrDefault(keyOf(pos), SingleDungeonData.EMPTY);
     }
 
