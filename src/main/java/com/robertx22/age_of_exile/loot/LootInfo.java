@@ -88,7 +88,7 @@ public class LootInfo {
             }
 
             if (info.isMapWorld) {
-                info.dungeon = Load.dungeonData(mob.world, mob.getBlockPos()).data;
+                info.dungeon = Load.dungeonData(mob.world).data.get(info.pos).data;
             }
 
         } catch (Exception e) {
@@ -120,7 +120,7 @@ public class LootInfo {
             info.extraFavorItems = info.favorRank.extra_items_per_chest;
         }
         if (info.isMapWorld) {
-            info.dungeon = Load.dungeonData(info.world, pos).data;
+            info.dungeon = Load.dungeonData(info.world).data.get(info.pos).data;
         }
         return info;
     }
@@ -183,7 +183,7 @@ public class LootInfo {
 
         if (world != null && pos != null) {
             if (WorldUtils.isDungeonWorld(world)) {
-                this.tier = Load.dungeonData(world, pos).data.tier;
+                this.tier = Load.dungeonData(world).data.get(pos).data.tier;
             }
         }
         return this;

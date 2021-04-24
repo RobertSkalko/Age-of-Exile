@@ -22,6 +22,14 @@ public class QuestProgression {
     @Store
     public boolean finished = false;
 
+    public QuestProgression(String uuid, int target) {
+        this.uuid = uuid;
+        this.target = target;
+    }
+
+    public QuestProgression() {
+    }
+
     public void increaseProgressBy(PlayerEntity player, int num, DungeonData dungeon) {
 
         if (!finished) {

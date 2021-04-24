@@ -54,6 +54,7 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
         stone.add(Ref.id("stone/2"));
         stone.add(Ref.id("stone/3"));
         stone.add(Ref.id("stone/4"));
+        stone.add(Ref.id("stone/5"));
 
         stone.build();
 

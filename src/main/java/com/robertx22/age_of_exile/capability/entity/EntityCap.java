@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
@@ -605,7 +606,9 @@ public class EntityCap {
             int tier = 0;
 
             if (WorldUtils.isDungeonWorld(entity.world)) {
-                tier = Load.dungeonData(entity.world, entity.getBlockPos()).data.tier;
+                WorldDungeonCap data = Load.dungeonData(entity.world);
+
+                tier = data.data.get(entity.getBlockPos()).data.tier;
             }
 
             return Database.Tiers()

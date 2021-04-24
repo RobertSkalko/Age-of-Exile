@@ -2,8 +2,12 @@ package com.robertx22.age_of_exile.dimension.player_data;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
+import com.robertx22.age_of_exile.dimension.dungeon_data.QuestProgression;
+import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
+import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.dimension.teleporter.MapsData;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -13,11 +17,17 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
@@ -40,6 +50,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     public void onDungeonCompletedAdvanceProgress() {
         data.floor++;
     }
+
+    public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.END_PORTAL_FRAME;
 
     public void onEnterDungeon(BlockPos teleporterPos, String uuid) {
 
@@ -67,14 +79,50 @@ public class PlayerMapsCap implements ICommonPlayerCap {
             BlockPos tpPos = cp.getStartPos()
                 .add(8, DungeonDimensionJigsawFeature.HEIGHT, 8); // todo, seems to not point to correct location?
 
-            list.forEach(x -> {
+            // set the dungeon data for the chunk
+            World dimWorld = player.world.getServer()
+                .getWorld(RegistryKey.of(Registry.DIMENSION, DimensionIds.DUNGEON_DIMENSION));
+            Chunk chunk = dimWorld.getChunk(cp.x, cp.z); // load it first
+
+            if (true || !dimWorld.getBlockState(tpPos)
+                .isAir()) {
+
+                List<BlockPos> check = new ArrayList<>();
+                for (int x = -25; x < 25; x++) {
+                    for (int z = -25; z < 25; z++) {
+                        for (int y = -2; y < 2; y++) {
+                            check.add(tpPos.add(x, y, z));
+                        }
+                    }
+                }
+
+                Optional<BlockPos> opt = check.stream()
+                    .filter(x -> dimWorld.getBlockState(x)
+                        .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK)
+                    .findAny();
+
+                if (opt.isPresent()) {
+                    tpPos = opt.get();
+                    dimWorld.setBlockState(tpPos, Blocks.AIR.getDefaultState());
+                }
+
+            }
+
+            for (BlockPos x : list) {
                 if (player.world.getBlockState(x)
                     .isAir()) {
                     player.world.setBlockState(x, ModRegistry.BLOCKS.PORTAL.getDefaultState());
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.dungeonPos = tpPos;
                 }
-            });
+            }
+
+            WorldDungeonCap data = Load.dungeonData(dimWorld);
+
+            SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, 50), player.getUuid()
+                .toString());
+
+            data.data.set(player, tpPos, single);
 
         } catch (Exception e) {
             e.printStackTrace();

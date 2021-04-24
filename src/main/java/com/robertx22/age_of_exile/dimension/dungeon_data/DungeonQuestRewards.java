@@ -25,6 +25,7 @@ public class DungeonQuestRewards {
         }
 
         if (isEndOfMap) {
+            tiercalc += tier / 15;
             ItemStack key = new ItemStack(ModRegistry.MISC_ITEMS.DUNGEON_KEY);
             stacks.add(key);
         }

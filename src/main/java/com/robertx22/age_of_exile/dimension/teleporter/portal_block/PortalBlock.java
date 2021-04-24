@@ -71,6 +71,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                     if (be.dungeonPos == BlockPos.ORIGIN) {
                         return;
                     } else {
+
                         TeleportUtils.teleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
                     }
 

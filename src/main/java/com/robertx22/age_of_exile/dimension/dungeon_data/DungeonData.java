@@ -30,6 +30,10 @@ public class DungeonData {
     @Store
     public String uuid = "";
 
+    public boolean isEmpty() {
+        return uuid.isEmpty();
+    }
+
     public List<Text> getTooltip() {
 
         List<Text> list = new ArrayList<>();

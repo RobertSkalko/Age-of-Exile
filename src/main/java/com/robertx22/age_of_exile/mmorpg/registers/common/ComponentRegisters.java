@@ -3,13 +3,13 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.*;
 import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonSpawnChunkCap;
+import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
-import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
+import nerdhub.cardinal.components.api.event.WorldComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.minecraft.entity.LivingEntity;
@@ -79,11 +79,11 @@ public class ComponentRegisters {
             PlayerDeathData.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerDeathData());
 
-    public ComponentType<DungeonSpawnChunkCap> DUNGEON_DATA =
+    public ComponentType<WorldDungeonCap> DUNGEON_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
-            DungeonSpawnChunkCap.RESOURCE,
-            DungeonSpawnChunkCap.class)
-            .attach(ChunkComponentCallback.EVENT, x -> new DungeonSpawnChunkCap(x));
+            WorldDungeonCap.RESOURCE,
+            WorldDungeonCap.class)
+            .attach(WorldComponentCallback.EVENT, x -> new WorldDungeonCap(x));
 
     public ComponentRegisters() {
 
