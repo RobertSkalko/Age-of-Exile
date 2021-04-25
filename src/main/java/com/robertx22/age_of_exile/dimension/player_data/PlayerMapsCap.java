@@ -31,7 +31,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
@@ -92,7 +91,11 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             ChunkPos cp = DungeonDimensionJigsawFeature.getSpawnChunkOf(new BlockPos(X, 0, Z));
 
-            Chunk chunk = dimWorld.getChunk(cp.x, cp.z); // load it first
+            Watch ww = new Watch();
+
+            //Chunk chunk = dimWorld.getChunk(cp.x, cp.z); // load it first
+
+            ww.print("loading first chunk ");
 
             BlockPos tpPos = cp.getStartPos()
                 .add(8, DungeonDimensionJigsawFeature.HEIGHT, 8); // todo, seems to not point to correct location?
@@ -125,7 +128,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 }
 
                 if (!found) {
-                    player.sendMessage(new LiteralText("couldnt find spawn"), false);
+                    player.sendMessage(new LiteralText("Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
                 }
 
                 w.print("finding spawn");
@@ -237,9 +240,25 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         return PlayerCaps.MAPS;
     }
 
+    public boolean canStart(DungeonData data) {
+
+        if (isLockedToPlayer(data)) {
+            return false;
+        }
+
+        if (this.data.entered.stream()
+            .anyMatch(e -> e.uuid.equals(data.uuid))) {
+            return false;
+        }
+
+        return true;
+
+    }
+
     public void initRandomMap(int tier) {
 
-        this.data.floor = 0;
+        data = new MapsPathingData();
+
         this.mapsData = new MapsData();
 
         mapsData.isEmpty = false;
@@ -283,5 +302,6 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
         }
 
+        this.syncToClient(player);
     }
 }

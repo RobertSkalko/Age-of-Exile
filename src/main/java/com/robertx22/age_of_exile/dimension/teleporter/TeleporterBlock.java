@@ -4,6 +4,9 @@ import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
+import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -46,13 +49,13 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
 
                 Load.playerMaps(player)
                     .initRandomMap(tier);
+
                 stack.decrement(1);
                 return ActionResult.SUCCESS;
                 // activate map
 
             } else {
-                Load.playerMaps(player)
-                    .syncToClient(player);
+                Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.MAPS));
                 ClientOnly.openMapsScreen(pos);
             }
             return ActionResult.SUCCESS;

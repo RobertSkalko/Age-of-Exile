@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
@@ -155,6 +156,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
                     data.playerSyncTick = 0;
+
+                    OnTickSetGameMode.onTick(player);
 
                     /*
                     // Watch watch = new Watch();

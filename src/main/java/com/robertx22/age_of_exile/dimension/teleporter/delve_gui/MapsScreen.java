@@ -89,7 +89,10 @@ public class MapsScreen extends BaseScreen {
 
     public void addSelectedDungeonButtons() {
 
-        addButton(new StartDungeonButton(this, selectedDungeon, guiLeft + 150, guiTop + 150));
+        if (Load.playerMaps(mc.player)
+            .canStart(selectedDungeon)) {
+            addButton(new StartDungeonButton(this, selectedDungeon, guiLeft + 150, guiTop + 150));
+        }
 
         int x = guiLeft + START_X;
         int y = guiTop + LOOT_Y;

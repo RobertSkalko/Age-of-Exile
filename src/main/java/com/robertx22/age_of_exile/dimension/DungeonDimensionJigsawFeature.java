@@ -23,46 +23,8 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
     public static ChunkPos getSpawnChunkOf(ChunkPos cp) {
 
-        int x = cp.x;
-        int z = cp.z;
-
-        //  int remx = x % DISTANCE;
-        //    int remz = z % DISTANCE;
-
-        for (int i = 0; 1 < DISTANCE; i++) {
-            if ((cp.x + i) % DISTANCE == 0) {
-                x = cp.x + i;
-                break;
-            } else if ((cp.x - i) % DISTANCE == 0) {
-                x = cp.x - i;
-                break;
-            }
-        }
-        for (int i = 0; 1 < DISTANCE; i++) {
-            if ((cp.z + i) % DISTANCE == 0) {
-                z = cp.z + i;
-                break;
-            } else if ((cp.z - i) % DISTANCE == 0) {
-                z = cp.z - i;
-                break;
-            }
-        }
-
-
-
-/*
-        if (remx >= DISTANCE / 2) {
-            x += DISTANCE - remx;
-        } else {
-            x -= remx;
-        }
-        if (remz >= DISTANCE / 2) {
-            z += DISTANCE - remz;
-        } else {
-            z -= remz;
-        }
-
- */
+        int x = getNearest(cp.x);
+        int z = getNearest(cp.z);
 
         ChunkPos spawn = new ChunkPos(x, z);
 
@@ -70,6 +32,15 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
         return spawn;
 
+    }
+
+    static int getNearest(int num) {
+        int o = Math.round(num / DISTANCE);
+        if (o == 0) {
+            o++;
+        }
+        o *= DISTANCE;
+        return o;
     }
 
     public DungeonDimensionJigsawFeature(Codec<StructurePoolFeatureConfig> codec) {

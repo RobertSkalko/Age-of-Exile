@@ -36,7 +36,7 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
     public ConfiguredStructureFeature createConfiguredFeature() {
         return feature.configure(new StructurePoolFeatureConfig(() -> {
             return this.startPool;
-        }, 3));
+        }, 4));
     }
 
     @Override

@@ -5,9 +5,11 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonPopulateData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.world_of_exile.main.ModLoottables;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -141,7 +143,13 @@ public class PopulateDungeonChunks {
                 continue;
             }
             data.chests++;
+
             world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2); // TODO ADD LOOT
+
+            ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(p);
+
+            chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
+
             list.remove(p);
         }
 

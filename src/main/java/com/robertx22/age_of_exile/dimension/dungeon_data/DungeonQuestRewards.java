@@ -29,22 +29,25 @@ public class DungeonQuestRewards {
             ItemStack key = new ItemStack(ModRegistry.MISC_ITEMS.DUNGEON_KEY);
             stacks.add(key);
         }
+        if (tiercalc < 1) {
+            tiercalc = 1;
+        }
 
-        if (tiercalc > ModRegistry.CURRENCIES.BIG_TIER.increaseTierBy()) {
+        if (tiercalc >= ModRegistry.CURRENCIES.BIG_TIER.increaseTierBy()) {
             ItemStack stack = new ItemStack(ModRegistry.CURRENCIES.BIG_TIER);
             int amount = tier / ModRegistry.CURRENCIES.BIG_TIER.increaseTierBy();
             stack.setCount(amount);
             tiercalc -= amount * ModRegistry.CURRENCIES.BIG_TIER.increaseTierBy();
             stacks.add(stack);
         }
-        if (tiercalc > ModRegistry.CURRENCIES.MED_TIER.increaseTierBy()) {
+        if (tiercalc >= ModRegistry.CURRENCIES.MED_TIER.increaseTierBy()) {
             ItemStack stack = new ItemStack(ModRegistry.CURRENCIES.MED_TIER);
             int amount = tier / ModRegistry.CURRENCIES.MED_TIER.increaseTierBy();
             stack.setCount(amount);
             tiercalc -= amount * ModRegistry.CURRENCIES.MED_TIER.increaseTierBy();
             stacks.add(stack);
         }
-        if (tiercalc > ModRegistry.CURRENCIES.SMALL_TIER.increaseTierBy()) {
+        if (tiercalc >= ModRegistry.CURRENCIES.SMALL_TIER.increaseTierBy()) {
             ItemStack stack = new ItemStack(ModRegistry.CURRENCIES.SMALL_TIER);
             int amount = tier / ModRegistry.CURRENCIES.SMALL_TIER.increaseTierBy();
             stack.setCount(amount);
