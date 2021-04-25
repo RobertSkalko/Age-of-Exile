@@ -14,6 +14,9 @@ public class SingleDungeonData {
     @Store
     public String ownerUUID = "";
 
+    @Store
+    public DungeonPopulateData pop = new DungeonPopulateData();
+
     public SingleDungeonData(DungeonData data, QuestProgression quest, String ownerUUID) {
         this.data = data;
         this.quest = quest;

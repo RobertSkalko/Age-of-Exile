@@ -1,4 +1,4 @@
 {
   "replace": "false",
-  "values": ["mmorpg:uniques/jewelry/witch_brew","mmorpg:uniques/jewelry/gold_ring","mmorpg:uniques/jewelry/azuna_ring","mmorpg:uniques/jewelry/ghostly_shores_ring","mmorpg:uniques/jewelry/bonechill_ring","mmorpg:uniques/jewelry/bonechill_amulet","mmorpg:jewelry/ring/mana_reg_ring_low","mmorpg:jewelry/ring/mana_reg_ring_end","mmorpg:jewelry/ring/hp_rng_low","mmorpg:jewelry/ring/hp_rng_end"]
+  "values": ["mmorpg:uniques/jewelry/witch_brew","mmorpg:uniques/jewelry/azuna_ring","mmorpg:uniques/jewelry/ghostly_shores_ring","mmorpg:uniques/jewelry/bonechill_ring","mmorpg:uniques/jewelry/bonechill_amulet","mmorpg:jewelry/ring/mana_reg_ring_low","mmorpg:jewelry/ring/mana_reg_ring_end","mmorpg:jewelry/ring/hp_rng_low","mmorpg:jewelry/ring/hp_rng_end"]
 }

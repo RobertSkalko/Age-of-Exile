@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
+import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.QuestProgression;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
@@ -20,12 +21,10 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.SkullBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -74,6 +73,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             Watch total = new Watch();
 
+            Watch first = new Watch();
+
             ImmutablePair<Integer, DungeonData> pair = getDungeonFromUUID(uuid);
 
             this.data.entered.add(new PathData(pair.right.uuid, pair.left));
@@ -96,6 +97,41 @@ public class PlayerMapsCap implements ICommonPlayerCap {
             BlockPos tpPos = cp.getStartPos()
                 .add(8, DungeonDimensionJigsawFeature.HEIGHT, 8); // todo, seems to not point to correct location?
 
+            first.print("first part ");
+
+            if (true) {
+
+                Watch w = new Watch();
+
+                List<ChunkPos> check = PopulateDungeonChunks.getChunksAround(cp);
+
+                boolean found = false;
+
+                for (ChunkPos x : check) {
+                    for (Map.Entry<BlockPos, BlockEntity> e : dimWorld.getChunk(x.x, x.z)
+                        .getBlockEntities()
+                        .entrySet()) {
+                        if (dimWorld.getBlockState(e.getKey())
+                            .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
+                            tpPos = e.getKey();
+
+                            dimWorld.breakBlock(tpPos, false);
+
+                            found = true;
+
+                            break;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    player.sendMessage(new LiteralText("couldnt find spawn"), false);
+                }
+
+                w.print("finding spawn");
+
+            }
+
             List<BlockPos> list = new ArrayList<>();
             list.add(teleporterPos.south(2));
             list.add(teleporterPos.north(2));
@@ -111,46 +147,16 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 }
             }
 
-            if (true) {
-
-                Watch w = new Watch();
-
-                Set<ChunkPos> check = new HashSet<>();
-                check.add(cp);
-                for (int x = -2; x < 2; x++) {
-                    for (int z = -2; z < 2; z++) {
-                        check.add(new ChunkPos(cp.x, cp.z + z));
-                    }
-                }
-
-                for (ChunkPos x : check) {
-                    for (Map.Entry<BlockPos, BlockEntity> e : dimWorld.getChunk(x.x, x.z)
-                        .getBlockEntities()
-                        .entrySet()) {
-                        if (e.getValue() instanceof SkullBlockEntity && dimWorld.getBlockState(e.getKey())
-                            .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
-                            tpPos = e.getKey();
-                            break;
-                        }
-                    }
-                }
-
-                w.print("finding spawn");
-
-            }
-
             WorldDungeonCap data = Load.dungeonData(dimWorld);
 
-            DungeonPopulateData popData = new DungeonPopulateData();
-
-            Watch watch = new Watch();
-            populateAround(dimWorld, cp, pair.right, popData);
-            watch.print("init dungeon");
-
-            int kills = (int) (popData.mobs * 0.8F);
-
-            SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, kills), player.getUuid()
+            SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, 20), player.getUuid()
                 .toString());
+
+            PopulateDungeonChunks.populateAll(dimWorld, cp, single);
+
+            int kills = (int) (single.pop.mobs * 0.8F);
+
+            single.quest.target = kills;
 
             data.data.set(player, tpPos, single);
 
@@ -159,91 +165,6 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    static class DungeonPopulateData {
-
-        public int mobs = 0;
-        public int chests = 0;
-    }
-
-    public void populateAround(World world, ChunkPos cp, DungeonData dungeon, DungeonPopulateData data) {
-        Set<ChunkPos> chunks = new HashSet<>();
-        for (int x = -5; x < 5; x++) {
-            for (int z = -5; z < 5; z++) {
-                chunks.add(new ChunkPos(cp.x + x, cp.z + z));
-            }
-        }
-        chunks.forEach(x -> populate(world, world.getChunk(x.x, x.z), dungeon, data));
-    }
-
-    public void populate(World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
-
-        Set<BlockPos> list = chunk.getBlockEntityPositions();
-
-        list.forEach(x -> {
-            BlockEntity be = world.getBlockEntity(x);
-            if (be instanceof BeaconBlockEntity) {
-                populate(world, x, dungeon, data);
-            }
-        });
-
-    }
-
-    void populate(World world, BlockPos pos, DungeonData dungeonData, DungeonPopulateData data) {
-
-        List<BlockPos> list = new ArrayList<>();
-        for (int x = -5; x < 5; x++) {
-            for (int z = -5; z < 5; z++) {
-                list.add(pos.add(x, 0, z));
-            }
-        }
-
-        //list.removeIf(x -> !world.isAir(x) && !world.getBlockState(x.down())
-        //  .isSolidBlock(world, x.down()));
-
-        int mobs = RandomUtils.RandomRange(2, 5);
-        int chests = RandomUtils.roll(10) ? 1 : 0;
-
-        int tries = 0;
-        for (int i = 0; i < mobs; i++) {
-            BlockPos p = RandomUtils.randomFromList(list);
-
-            tries++;
-            if (tries > 50) {
-                break;
-            }
-            if (!world.isAir(p) && !world.getBlockState(p.down())
-                .isSolidBlock(world, p.down())) {
-                i--;
-                continue;
-            }
-            data.mobs++;
-            dungeonData.getMobList()
-                .spawnRandomMob((ServerWorld) world, p, dungeonData.tier);
-            list.remove(p);
-        }
-
-        tries = 0;
-
-        for (int i = 0; i < chests; i++) {
-            BlockPos p = RandomUtils.randomFromList(list);
-            tries++;
-            if (tries > 50) {
-                break;
-            }
-            if (!world.isAir(p) && !world.getBlockState(p.down())
-                .isSolidBlock(world, p.down())) {
-                i--;
-                continue;
-            }
-            data.chests++;
-            world.setBlockState(p, Blocks.CHEST.getDefaultState()); // TODO ADD LOOT
-            list.remove(p);
-        }
-
-        world.setBlockState(pos, Blocks.AIR.getDefaultState());
 
     }
 

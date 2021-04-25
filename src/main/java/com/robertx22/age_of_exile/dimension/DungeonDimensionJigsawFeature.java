@@ -15,7 +15,7 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
     public static int HEIGHT = 80;
 
-    public static int DISTANCE = 20;
+    public static int DISTANCE = 30;
 
     public static ChunkPos getSpawnChunkOf(BlockPos p) {
         return getSpawnChunkOf(new ChunkPos(p));
@@ -26,9 +26,31 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
         int x = cp.x;
         int z = cp.z;
 
-        int remx = x % DISTANCE;
-        int remz = z % DISTANCE;
+        //  int remx = x % DISTANCE;
+        //    int remz = z % DISTANCE;
 
+        for (int i = 0; 1 < DISTANCE; i++) {
+            if ((cp.x + i) % DISTANCE == 0) {
+                x = cp.x + i;
+                break;
+            } else if ((cp.x - i) % DISTANCE == 0) {
+                x = cp.x - i;
+                break;
+            }
+        }
+        for (int i = 0; 1 < DISTANCE; i++) {
+            if ((cp.z + i) % DISTANCE == 0) {
+                z = cp.z + i;
+                break;
+            } else if ((cp.z - i) % DISTANCE == 0) {
+                z = cp.z - i;
+                break;
+            }
+        }
+
+
+
+/*
         if (remx >= DISTANCE / 2) {
             x += DISTANCE - remx;
         } else {
@@ -39,6 +61,8 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
         } else {
             z -= remz;
         }
+
+ */
 
         ChunkPos spawn = new ChunkPos(x, z);
 

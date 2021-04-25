@@ -156,6 +156,17 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
                     data.playerSyncTick = 0;
 
+                    /*
+                    // Watch watch = new Watch();
+                    SingleDungeonData ddata = Load.dungeonData(player.world).data.get(player.getBlockPos());
+                    if (!ddata.data.isEmpty()) {
+                        Load.playerMaps(player)
+                            .populateAround(player.world, new ChunkPos(player.getBlockPos()), ddata.data, ddata.pop);
+                    }
+                    //watch.print("populating chunks on tick");
+
+                     */
+
                     if (!Load.Unit(player)
                         .hasRace()) {
                         Packets.sendToClient(player, new ForceChoosingRace());

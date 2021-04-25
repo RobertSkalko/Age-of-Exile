@@ -3,18 +3,13 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelr
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
@@ -31,31 +26,6 @@ public class UniqueRings implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-
-        UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.GOLD_RING,
-            "gold_ring",
-            "Gold Ring",
-            "",
-            BaseGearJewelry.MANA_RING.values())
-            .setReplacesName()
-            .baseStats(
-                new StatModifier(-20, -20, Health.getInstance(), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalResist(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalResist(Elements.Light), ModType.FLAT)
-            )
-            .stats(Arrays.asList(
-                new StatModifier(1, 25, TreasureQuantity.getInstance(), ModType.FLAT),
-                new StatModifier(1, 25, TreasureQuality.getInstance(), ModType.FLAT),
-                new StatModifier(1, 5, Intelligence.INSTANCE, ModType.FLAT),
-                new StatModifier(1, 5, Agility.INSTANCE, ModType.FLAT)
-
-            ))
-            .req(new StatRequirement()
-                .setVit(0.5F)
-                .setWis(0.5F))
-            .devComment("item find ring")
-            .build();
 
         UniqueGearBuilder.of(
             ModRegistry.UNIQUE_GEARS.WITCH_BREW_RING,
