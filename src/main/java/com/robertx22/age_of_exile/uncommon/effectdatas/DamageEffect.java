@@ -390,6 +390,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         }
 
+        if (this.target.isDead()) {
+            MobKillByDamageEvent event = new MobKillByDamageEvent(this);
+            event.Activate();
+        }
+
         this.toRestore.forEach(x -> x.tryRestore(this));
 
         doManaBurn();

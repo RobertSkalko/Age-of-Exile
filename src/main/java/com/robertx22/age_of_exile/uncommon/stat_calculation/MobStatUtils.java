@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -122,6 +123,9 @@ public class MobStatUtils {
         }
 
         stats.add(ExactStatData.scaleTo(hpToAdd, ModType.FLAT, Health.getInstance()
+            .GUID(), lvl));
+
+        stats.add(ExactStatData.scaleTo(0.5F, ModType.FLAT, HealthRegen.getInstance()
             .GUID(), lvl));
 
         stats.add(ExactStatData.scaleTo(20, ModType.FLAT, DodgeRating.getInstance()

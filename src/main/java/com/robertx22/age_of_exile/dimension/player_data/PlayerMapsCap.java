@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.QuestProgression;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.dimension.teleporter.MapsData;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -44,7 +45,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     public MapsData mapsData = new MapsData();
 
-    MapsPathingData data = new MapsPathingData();
+    public MapsPathingData data = new MapsPathingData();
 
     public PlayerMapsCap(PlayerEntity player) {
         this.player = player;
@@ -255,7 +256,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public void initRandomMap(int tier) {
+    public void initRandomMap(DungeonKeyItem key, int tier) {
 
         data = new MapsPathingData();
 
@@ -285,6 +286,10 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
                 dun.lvl = Load.Unit(player)
                     .getLevel();
+                if (dun.lvl > key.tier.levelRange.getMaxLevel()) {
+                    dun.lvl = key.tier.levelRange.getMaxLevel();
+                }
+
                 dun.tier = dungeonTier;
                 dun.mob_list = Database.DungeonMobLists()
                     .random()
@@ -293,7 +298,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     .toString();
                 dun.uniques.randomize(dungeonTier);
                 dun.affixes.randomize(dungeonTier);
-                dun.quest_rew.randomize(dungeonTier, isEndOfMap);
+                dun.quest_rew.randomize(key, dungeonTier, isEndOfMap);
 
                 list.add(dun);
 

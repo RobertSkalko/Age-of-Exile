@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -14,7 +15,7 @@ public class DungeonQuestRewards {
     @Store
     public List<ItemStack> stacks = new ArrayList<>();
 
-    public void randomize(int tier, boolean isEndOfMap) {
+    public void randomize(DungeonKeyItem dunkey, int tier, boolean isEndOfMap) {
 
         stacks.clear();
 
@@ -26,7 +27,7 @@ public class DungeonQuestRewards {
 
         if (isEndOfMap) {
             tiercalc += tier / 15;
-            ItemStack key = new ItemStack(ModRegistry.MISC_ITEMS.DUNGEON_KEY);
+            ItemStack key = new ItemStack(dunkey);
             stacks.add(key);
         }
         if (tiercalc < 1) {

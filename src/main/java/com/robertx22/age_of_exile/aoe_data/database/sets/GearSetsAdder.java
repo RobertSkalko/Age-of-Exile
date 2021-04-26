@@ -2,8 +2,11 @@ package com.robertx22.age_of_exile.aoe_data.database.sets;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 public class GearSetsAdder implements ISlashRegistryInit {
 
@@ -14,9 +17,16 @@ public class GearSetsAdder implements ISlashRegistryInit {
     public static String DARK_CRYSTAL_SET = "dark_crystal_set";
     public static String VOID_SET = "void_set";
     public static String PHARAOH_SET = "pharaoh_set";
+    public static String SEASONS_SET = "seasons_set";
 
     @Override
     public void registerAll() {
+
+        GearSet.Builder.of(SEASONS_SET, "Enduring The Seasons")
+            .stat(2,
+                new OptScaleExactStat(10, Vitality.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(10, Wisdom.INSTANCE, ModType.FLAT))
+            .build();
 
         GearSet.Builder.of(BONE_SET, "Bone Spike")
             .stat(2, new OptScaleExactStat(25, SpecialStats.RANGED_CRIT_DMG_AGAINST_LIVING))

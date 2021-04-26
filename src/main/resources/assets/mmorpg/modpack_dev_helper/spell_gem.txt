@@ -58,4 +58,5 @@ awaken_mana
 mana_reg_aura
 fire_nova
 poisoned_weapons
+taunt
 dodge_aura

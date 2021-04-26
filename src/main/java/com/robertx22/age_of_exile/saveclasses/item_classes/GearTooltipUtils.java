@@ -210,6 +210,7 @@ public class GearTooltipUtils {
 
                     });
             });
+            tip.add(new LiteralText(""));
 
             if (gear.uniqueStats != null) {
                 UniqueGear uniq = gear.uniqueStats.getUnique(gear);

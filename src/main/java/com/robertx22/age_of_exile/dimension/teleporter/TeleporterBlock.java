@@ -48,7 +48,7 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
                 int tier = DungeonKeyItem.getTier(stack);
 
                 Load.playerMaps(player)
-                    .initRandomMap(tier);
+                    .initRandomMap((DungeonKeyItem) stack.getItem(), tier);
 
                 stack.decrement(1);
                 return ActionResult.SUCCESS;

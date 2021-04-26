@@ -15,9 +15,11 @@ minecraft:diamond_helmet.leather_helmet2
 mmorpg:uniques/armor/slime_boots
 mmorpg:uniques/armor/pharaoh_pants
 mmorpg:uniques/armor/dark_crystal_pants
+mmorpg:uniques/jewelry/summer_heat
 minecraft:iron_boots.cloth_boots1
 minecraft:diamond_chestplate.plate_chest2
 minecraft:diamond_leggings.cloth_pants2
+mmorpg:uniques/jewelry/spring_blossoms
 minecraft:netherite_leggings.cloth_pants2
 mmorpg:uniques/armor/slime_pants
 minecraft:diamond_chestplate.leather_chest2
@@ -49,12 +51,10 @@ mmorpg:armor/leather/chest/leather_chest2
 mmorpg:weapon/hammer/hammer4
 mmorpg:armor/leather/boots/leather_boots3
 mmorpg:armor/leather/chest/leather_chest0
-mmorpg:uniques/jewelry/angel_prot_necklace
 mmorpg:armor/leather/boots/leather_boots4
 minecraft:iron_sword.sword1
 mmorpg:armor/leather/boots/leather_boots1
 mmorpg:armor/leather/boots/leather_boots2
-mmorpg:uniques/jewelry/gold_ring
 mmorpg:armor/leather/chest/leather_chest3
 mmorpg:armor/leather/boots/leather_boots0
 mmorpg:armor/leather/chest/leather_chest4
@@ -118,7 +118,6 @@ mmorpg:armor/cloth/pants/cloth_pants2
 mmorpg:armor/plate/boots/plate_boots4
 mmorpg:uniques/jewelry/ghast_necklace
 minecraft:netherite_helmet.plate_helmet2
-mmorpg:uniques/jewelry/snake_eye
 mmorpg:weapon/staff/staff1
 mmorpg:weapon/staff/staff0
 mmorpg:weapon/staff/staff3
@@ -134,10 +133,10 @@ mmorpg:weapon/dagger/dagger3
 mmorpg:weapon/bow/bow3
 mmorpg:weapon/bow/bow2
 mmorpg:weapon/bow/bow4
+mmorpg:uniques/jewelry/winter_chill
 mmorpg:weapon/dagger/dagger4
 minecraft:leather_boots.cloth_boots0
 mmorpg:uniques/armor/unseeing_eye
-mmorpg:uniques/jewelry/birth_miracle
 mmorpg:uniques/armor/blaze_pants
 minecraft:netherite_helmet.cloth_helmet2
 minecraft:shield.buckler_shield0
@@ -160,6 +159,7 @@ mmorpg:weapon/spear/spear1
 minecraft:shield.tower_shield0
 mmorpg:uniques/armor/pharaoh_boots
 mmorpg:weapon/mace/mace4
+mmorpg:uniques/jewelry/blood_stone
 minecraft:netherite_boots.cloth_boots2
 mmorpg:jewelry/necklace/all_res_necklace_low
 mmorpg:uniques/armor/pharaoh_helmet
@@ -197,7 +197,7 @@ mmorpg:uniques/jewelry/bonechill_ring
 mmorpg:uniques/jewelry/witch_brew
 minecraft:iron_leggings.leather_pants1
 mmorpg:armor/cloth/boots/cloth_boots0
-mmorpg:uniques/jewelry/hunger_neck
+mmorpg:uniques/jewelry/autumn_harvest
 minecraft:diamond_helmet.plate_helmet2
 minecraft:iron_chestplate.plate_chest1
 mmorpg:uniques/armor/void_chest

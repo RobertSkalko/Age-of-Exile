@@ -8,9 +8,11 @@ import com.robertx22.age_of_exile.gui.screens.ItemSlotButton;
 import com.robertx22.age_of_exile.gui.screens.wiki.entries.UniqueGearEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -117,6 +119,20 @@ public class MapsScreen extends BaseScreen {
 
     }
 
+    public void renderText(MatrixStack matrix) {
+
+        if (selectedDungeon != null) {
+            int X = 185;
+
+            GuiUtils.renderScaledText(matrix, guiLeft + X, guiTop + 35, 1D, "Dungeon Info", Formatting.RED);
+
+            if (!this.selectedDungeon.quest_rew.stacks.isEmpty()) {
+                GuiUtils.renderScaledText(matrix, guiLeft + X, guiTop + LOOT_Y - 35, 1D, "Quest Rewards:", Formatting.YELLOW);
+            }
+            GuiUtils.renderScaledText(matrix, guiLeft + X, guiTop + LOOT_Y - 5, 1D, "Possible Drops:", Formatting.GREEN);
+        }
+    }
+
     public List<AbstractButtonWidget> getButtons() {
         return this.buttons;
     }
@@ -129,6 +145,8 @@ public class MapsScreen extends BaseScreen {
         super.render(matrix, x, y, ticks);
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+
+        renderText(matrix);
 
     }
 }

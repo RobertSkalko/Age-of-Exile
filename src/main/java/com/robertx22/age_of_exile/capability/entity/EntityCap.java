@@ -481,7 +481,7 @@ public class EntityCap {
                     .formatted(rarformat);
 
                 if (!rarity.name_add.isEmpty()) {
-                    name = new LiteralText("[" + rarity.name_add + "] ").formatted(Formatting.YELLOW)
+                    name = new LiteralText("[Lv." + rarity.name_add + "] ").formatted(Formatting.YELLOW)
                         .append(name);
                 }
 

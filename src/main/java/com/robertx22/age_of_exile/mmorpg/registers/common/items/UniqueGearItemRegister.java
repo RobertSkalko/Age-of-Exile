@@ -22,6 +22,12 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
 
     public Item GHAST_TEAR_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/ghast_necklace");
     public Item SKULL_OF_SPIRITS_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/skull_of_spirits");
+    public Item BLOOD_STONE_NECKLACE = item(new BaseUniqueNecklace("Necklace"), "uniques/jewelry/blood_stone");
+
+    public Item AUTUMN = item(new BaseUniqueRing("Ring"), "uniques/jewelry/autumn_harvest");
+    public Item SPRING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/spring_blossoms");
+    public Item WINTER = item(new BaseUniqueRing("Ring"), "uniques/jewelry/winter_chill");
+    public Item SUMMER = item(new BaseUniqueRing("Ring"), "uniques/jewelry/summer_heat");
 
     public Item WITCH_BREW_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/witch_brew");
     public Item AZUNA_RING = item(new BaseUniqueRing("Ring"), "uniques/jewelry/azuna_ring");

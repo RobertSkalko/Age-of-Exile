@@ -289,6 +289,7 @@ attack_all_dmg_leech_as_health
 spell_dodge
 crossbow_damage
 nature_penetration
+chance_of_bloodlust
 fire_focus
 nature_focus
 attack_water_dmg_leech_as_mana

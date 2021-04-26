@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
@@ -16,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.Critica
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -48,9 +50,16 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static String SAVAGE_HUNTER = "beneficial/" + 13;
     public static String FROST_ARMOR = "beneficial/" + 14;
     public static String VOID_EYE = "beneficial/" + 15;
+    public static String BLOODLUST = "beneficial/" + 16;
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(BLOODLUST, "Bloodlust", EffectType.BENEFICIAL)
+            .stat(2, Lifesteal.getInstance(), ModType.FLAT)
+            .stat(2, DatapackStatAdder.MOVE_SPEED, ModType.FLAT)
+            .maxStacks(10)
+            .build();
 
         ExileEffectBuilder.of(VOID_EYE, "Void Eye", EffectType.BENEFICIAL)
             .stat(10, new ElementalPenetration(Elements.Elemental), ModType.FLAT)

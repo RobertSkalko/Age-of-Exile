@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -123,6 +124,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 }
                 if (data.ticksToLvlWarning > TicksToLevelWarning) {
 
+                    OnTickGiveTpBack.give(player);
+
                     boolean wasnt = false;
                     if (!data.isInHighLvlZone) {
                         wasnt = true;
@@ -158,17 +161,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data.playerSyncTick = 0;
 
                     OnTickSetGameMode.onTick(player);
-
-                    /*
-                    // Watch watch = new Watch();
-                    SingleDungeonData ddata = Load.dungeonData(player.world).data.get(player.getBlockPos());
-                    if (!ddata.data.isEmpty()) {
-                        Load.playerMaps(player)
-                            .populateAround(player.world, new ChunkPos(player.getBlockPos()), ddata.data, ddata.pop);
-                    }
-                    //watch.print("populating chunks on tick");
-
-                     */
 
                     if (!Load.Unit(player)
                         .hasRace()) {
