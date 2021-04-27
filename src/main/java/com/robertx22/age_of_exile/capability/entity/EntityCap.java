@@ -23,6 +23,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.*;
+import com.robertx22.age_of_exile.threat_aggro.ThreatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -77,6 +78,7 @@ public class EntityCap {
     private static final String STATUSES = "statuses";
     private static final String SCROLL_BUFF_SEED = "sb_seed";
     private static final String COOLDOWNS = "cds";
+    private static final String THREAT = "th";
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
@@ -89,6 +91,8 @@ public class EntityCap {
         void setType();
 
         EntityTypeUtils.EntityClassification getType();
+
+        ThreatData getThreat();
 
         void trySync();
 
@@ -207,6 +211,7 @@ public class EntityCap {
         public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
 
         CooldownsData cooldowns = new CooldownsData();
+        ThreatData threat = new ThreatData();
 
         EntityTypeUtils.EntityClassification type = EntityTypeUtils.EntityClassification.PLAYER;
         // sync these for mobs
@@ -275,6 +280,10 @@ public class EntityCap {
                 cooldowns = new CooldownsData();
             }
 
+            this.threat = LoadSave.Load(ThreatData.class, new ThreatData(), nbt, THREAT);
+            if (threat == null) {
+                threat = new ThreatData();
+            }
         }
 
         @Override
@@ -304,6 +313,9 @@ public class EntityCap {
 
             if (cooldowns != null) {
                 LoadSave.Save(cooldowns, nbt, COOLDOWNS);
+            }
+            if (threat != null) {
+                LoadSave.Save(threat, nbt, THREAT);
             }
 
             return nbt;
@@ -410,6 +422,11 @@ public class EntityCap {
         @Override
         public EntityTypeUtils.EntityClassification getType() {
             return this.type;
+        }
+
+        @Override
+        public ThreatData getThreat() {
+            return threat;
         }
 
         @Override

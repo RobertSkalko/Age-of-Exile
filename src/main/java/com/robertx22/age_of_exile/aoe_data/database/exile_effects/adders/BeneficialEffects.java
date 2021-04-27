@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
@@ -44,7 +43,6 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static String ANGER = "beneficial/" + 7;
     public static String DIVINE_SHIELD = "beneficial/" + 8;
     public static String POISON_WEAPONS = "beneficial/" + 9;
-    public static String IMBUE = "beneficial/" + 10;
     public static String ARCANE_HUNTER = "beneficial/" + 11;
     public static String EAGLE_EYE = "beneficial/" + 12;
     public static String SAVAGE_HUNTER = "beneficial/" + 13;
@@ -137,10 +135,6 @@ public class BeneficialEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(POISON_WEAPONS, "Poison Attack", EffectType.BENEFICIAL)
             .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
             .stat(20, ChanceToApplyEffect.POISON, ModType.FLAT)
-            .build();
-
-        ExileEffectBuilder.of(IMBUE, "Imbue", EffectType.BENEFICIAL)
-            .stat(15, AttackStyleDamage.RANGED, ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(SAVAGE_HUNTER, "Savage Hunter", EffectType.BENEFICIAL)

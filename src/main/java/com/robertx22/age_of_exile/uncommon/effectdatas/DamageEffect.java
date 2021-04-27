@@ -33,6 +33,7 @@ import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -400,7 +401,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         doManaBurn();
 
         if (dmg > 0) {
-
+            if (source instanceof PlayerEntity) {
+                if (target instanceof MobEntity) {
+                    targetData.getThreat()
+                        .addThreat((PlayerEntity) source, (MobEntity) target, (int) dmg);
+                }
+            }
             onEventPotions();
             sendDamageParticle(info);
 
