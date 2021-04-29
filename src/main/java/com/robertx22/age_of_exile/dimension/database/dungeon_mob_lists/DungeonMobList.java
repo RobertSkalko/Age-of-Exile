@@ -4,9 +4,11 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -44,13 +46,35 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
         return id;
     }
 
-    public void spawnRandomMob(ServerWorld world, BlockPos pos, int tier) {
+    public LivingEntity spawnBoss(ServerWorld world, BlockPos pos, int tier) {
+        WeightedMobEntry random = RandomUtils.weightedRandom(bosses);
+
+        EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+
+        LivingEntity en = (LivingEntity) type.create(world);
+
+        Load.Unit(en)
+            .setRarity(IRarity.BOSS_ID);
+
+        setup(en, pos, world);
+
+        return en;
+    }
+
+    public LivingEntity spawnRandomMob(ServerWorld world, BlockPos pos, int tier) {
 
         WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
 
         EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
 
-        Entity en = type.create(world);
+        LivingEntity en = (LivingEntity) type.create(world);
+
+        setup(en, pos, world);
+
+        return en;
+    }
+
+    private void setup(LivingEntity en, BlockPos pos, ServerWorld world) {
 
         en.refreshPositionAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0);
 

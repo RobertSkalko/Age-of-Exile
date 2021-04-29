@@ -58,17 +58,15 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
         if (maps.canStart(dungeon.right)) {
 
-            if (isTeam) { // TODO
+            if (isTeam) {
                 if (TeamUtils.getOnlineTeamMembersInRange(ctx.getPlayer())
                     .size() < 2) {
                     ctx.getPlayer()
                         .sendMessage(new LiteralText("You need at least 2 party members nearby to start a dungeon in Team mode."), false);
                     ctx.getPlayer()
                         .sendMessage(new LiteralText("Use /age_of_exile teams"), false);
+                    return;
 
-                    if (false) {
-                        return;
-                    }
                 }
             }
 

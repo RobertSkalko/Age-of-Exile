@@ -41,19 +41,21 @@ public class MobStatUtils {
         for (InCalcStatData data : unit.getStats().statsInCalc
             .values()
             .stream()
-            .filter(x -> !x.GetStat()
+            .filter(x -> x.GetStat() != Health.getInstance() && !x.GetStat()
                 .IsPercent())
             .collect(Collectors.toList())) {
 
             data.multiplyFlat(tier.stat_multi);
         }
 
+        unit.getStats()
+            .getStatInCalculation(Health.getInstance())
+            .multiplyFlat(tier.hp_multi);
+
         if (WorldUtils.isDungeonWorld(en.world)) {
             DungeonData data = Load.dungeonData(en.world).data.get(en.getBlockPos()).data;
             if (!data.isEmpty()) {
-                data.affixes.suffix.getStats(mobdata.getLevel())
-                    .forEach(x -> x.applyStats(mobdata));
-                data.affixes.prefix.getStats(mobdata.getLevel())
+                data.affixes.getStats(data.floor, mobdata.getLevel())
                     .forEach(x -> x.applyStats(mobdata));
 
                 if (data.is_team) {

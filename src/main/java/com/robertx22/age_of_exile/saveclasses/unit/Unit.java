@@ -341,17 +341,6 @@ public class Unit {
                     InCalcStatData statdata = x.getValue();
                     Stat stat = x.getValue()
                         .GetStat();
-                    if (stat instanceof ICoreStat) {
-                        ICoreStat add = (ICoreStat) stat;
-                        add.addToOtherStats(data, statdata);
-                    }
-                });
-
-            new HashMap<>(getStats().statsInCalc).entrySet()
-                .forEach(x -> {
-                    InCalcStatData statdata = x.getValue();
-                    Stat stat = x.getValue()
-                        .GetStat();
                     if (stat instanceof IAffectsStats) {
                         IAffectsStats add = (IAffectsStats) stat;
                         add.affectStats(data, statdata);
@@ -366,6 +355,17 @@ public class Unit {
                     if (stat instanceof ITransferToOtherStats) {
                         ITransferToOtherStats add = (ITransferToOtherStats) stat;
                         add.transferStats(data, statdata);
+                    }
+                });
+
+            new HashMap<>(getStats().statsInCalc).entrySet()
+                .forEach(x -> {
+                    InCalcStatData statdata = x.getValue();
+                    Stat stat = x.getValue()
+                        .GetStat();
+                    if (stat instanceof ICoreStat) {
+                        ICoreStat add = (ICoreStat) stat;
+                        add.addToOtherStats(data, statdata);
                     }
                 });
 

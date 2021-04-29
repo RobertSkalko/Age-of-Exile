@@ -269,19 +269,19 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
         int floors = RandomUtils.RandomRange(5, 5);
 
-        for (int f = 0; f < floors; f++) {
+        for (int floor = 0; floor < floors; floor++) {
 
             int perFloor = RandomUtils.RandomRange(1, 3);
 
             for (int d = 0; d < perFloor; d++) {
 
-                boolean isEndOfMap = f == 4;
+                boolean isEndOfMap = floor == 4;
 
-                List<DungeonData> list = mapsData.dungeonsByFloors.getOrDefault(f, new ArrayList<>());
+                List<DungeonData> list = mapsData.dungeonsByFloors.getOrDefault(floor, new ArrayList<>());
 
                 DungeonData dun = new DungeonData();
 
-                int dungeonTier = f + tier;
+                int dungeonTier = floor + tier;
 
                 if (dungeonTier > ITiered.getMaxTier()) {
                     dungeonTier = ITiered.getMaxTier();
@@ -293,6 +293,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     dun.lvl = key.tier.levelRange.getMaxLevel();
                 }
 
+                dun.floor = floor;
                 dun.tier = dungeonTier;
                 dun.mob_list = Database.DungeonMobLists()
                     .random()
@@ -305,7 +306,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
                 list.add(dun);
 
-                mapsData.dungeonsByFloors.put(f, list);
+                mapsData.dungeonsByFloors.put(floor, list);
             }
 
         }

@@ -97,6 +97,9 @@ public class MapsScreen extends BaseScreen {
             addButton(new StartDungeonButton(true, this, selectedDungeon, guiLeft + 132 + 5 + StartDungeonButton.SIZE_X, guiTop + 150));
         }
 
+        this.addButton(new DifficultyButton(Database.Tiers()
+            .get(selectedDungeon.tier + ""), guiLeft + 165, guiTop + 44));
+
         int x = guiLeft + START_X;
         int y = guiTop + LOOT_Y;
 

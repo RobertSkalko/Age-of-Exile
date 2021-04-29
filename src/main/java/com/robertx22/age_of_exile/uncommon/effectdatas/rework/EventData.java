@@ -11,8 +11,13 @@ public class EventData {
     private HashMap<String, WrappedFloat> floats = new HashMap<>();
     private HashMap<String, Boolean> bools = new HashMap<>();
 
+    // todo if this doesnt create new one, all getters just modify the empty, woops.
     public WrappedFloat getNumber(String id) {
-        return floats.getOrDefault(id, WrappedFloat.EMPTY);
+
+        if (!floats.containsKey(id)) {
+            floats.put(id, new WrappedFloat(0));
+        }
+        return floats.get(id);
     }
 
     public boolean getBoolean(String id) {
