@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEff
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Formatting;
@@ -90,7 +91,7 @@ public class DodgeRating extends Stat implements IUsableStat {
             float chance = dodge.getUsableValue((int) totalDodge, effect.sourceData.getLevel()) * 100;
 
             if (RandomUtils.roll(chance)) {
-                effect.number = 0;
+                effect.data.getNumber(EventData.NUMBER).number = 0;
                 effect.isDodged = true;
             } else {
                 if (RandomUtils.roll(chance)) {

@@ -29,6 +29,8 @@ public class DungeonData {
     public int tier = 1;
     @Store
     public String uuid = "";
+    @Store
+    public Boolean is_team = false;
 
     public boolean isEmpty() {
         return uuid.isEmpty();

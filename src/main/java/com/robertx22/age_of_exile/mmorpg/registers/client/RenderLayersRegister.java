@@ -11,6 +11,7 @@ public class RenderLayersRegister {
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_MODIFY, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_REPAIR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.SOCKET_STATION, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.SPAWNER, RenderLayer.getCutout());
 
         ModRegistry.BLOCKS.FARMING_PLANTS.values()
             .forEach(x -> {

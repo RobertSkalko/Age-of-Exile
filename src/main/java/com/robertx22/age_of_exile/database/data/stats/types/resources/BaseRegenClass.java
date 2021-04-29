@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseRegenEffe
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public abstract class BaseRegenClass extends Stat {
@@ -30,7 +31,7 @@ public abstract class BaseRegenClass extends Stat {
 
             @Override
             public RegenEvent activate(RegenEvent effect, StatData data, Stat stat) {
-                effect.number += data.getAverageValue();
+                effect.data.getNumber(EventData.NUMBER).number += data.getAverageValue();
                 return effect;
             }
 

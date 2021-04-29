@@ -100,7 +100,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                             if (restored) {
                                 unitdata.syncToClient(player);
 
-                                float percentHealed = hpevent.number / HealthUtils.getMaxHealth(player);
+                                float percentHealed = hpevent.data.getNumber() / HealthUtils.getMaxHealth(player);
 
                                 float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
 

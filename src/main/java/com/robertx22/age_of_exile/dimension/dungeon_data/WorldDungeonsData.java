@@ -23,7 +23,9 @@ public class WorldDungeonsData {
     }
 
     public SingleDungeonData get(BlockPos pos) {
-        return map.getOrDefault(keyOf(pos), SingleDungeonData.EMPTY);
+        String key = keyOf(pos);
+        SingleDungeonData data = map.getOrDefault(key, SingleDungeonData.EMPTY);
+        return data;
     }
 
     public void set(PlayerEntity player, BlockPos pos, SingleDungeonData data) {

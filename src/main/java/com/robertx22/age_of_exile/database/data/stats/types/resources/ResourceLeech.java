@@ -96,7 +96,7 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
 
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            float amount = data.getAverageValue() * effect.number / 100F;
+            float amount = data.getAverageValue() * effect.data.getNumber() / 100F;
             effect.addToRestore(new RestoreResource(RestoreResource.RestoreType.LEECH, info.resource, amount));
             return effect;
         }

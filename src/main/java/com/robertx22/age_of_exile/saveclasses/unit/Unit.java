@@ -306,7 +306,7 @@ public class Unit {
                 statContexts.addAll(MobStatUtils.getMobBaseStats(data, entity));
                 statContexts.addAll(MobStatUtils.getAffixStats(entity));
                 statContexts.addAll(MobStatUtils.getWorldMultiplierStats(entity));
-                MobStatUtils.increaseMobStatsPerTier(entity, data, this);
+                MobStatUtils.addMapStats(entity, data, this);
                 statContexts.addAll(MobStatUtils.getMobConfigStats(entity, data));
                 ExtraMobRarityAttributes.add(entity, data);
             }

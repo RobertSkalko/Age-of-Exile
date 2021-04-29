@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.TeleporterBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlock;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -38,6 +39,7 @@ public class ModBlocks {
 
     public TeleporterBlock TELEPORTER = of("teleporter", new TeleporterBlock());
     public PortalBlock PORTAL = of("portal", new PortalBlock());
+    public ModSpawnerBlock SPAWNER = of("spawner", new ModSpawnerBlock());
 
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 

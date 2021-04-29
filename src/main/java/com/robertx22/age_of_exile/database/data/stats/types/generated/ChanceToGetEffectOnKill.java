@@ -96,8 +96,8 @@ public class ChanceToGetEffectOnKill extends Stat {
         public boolean canActivate(MobKillByDamageEvent effect, StatData data, Stat stat) {
             if (effect.damageEvent.element.elementsMatch(ele)) {
                 if (RandomUtils.roll(data.getAverageValue())) {
-                    return effect.getAttackType()
-                        .isAttack() || effect.getAttackType()
+                    return effect.damageEvent.getAttackType()
+                        .isAttack() || effect.damageEvent.getAttackType()
                         .isSpell();
                 }
             }

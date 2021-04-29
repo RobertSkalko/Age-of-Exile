@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 minecraft:overworld
 world_of_exile:hell2
+mmorpg:dungeon
 world_of_exile:hell1
 minecraft:the_nether
 world_of_exile:hell3

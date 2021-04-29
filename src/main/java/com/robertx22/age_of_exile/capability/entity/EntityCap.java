@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
@@ -51,6 +52,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
@@ -761,6 +763,22 @@ public class EntityCap {
         @Override
         public void SetMobLevelAtSpawn(PlayerEntity nearestPlayer) {
             this.setMobStats = true;
+
+            if (WorldUtils.isDungeonWorld(entity.world)) {
+                try {
+                    BlockPos pos = entity.getBlockPos();
+                    DungeonData data = Load.dungeonData(entity.world).data.get(pos).data;
+                    if (!data.isEmpty()) {
+                        this.setLevel(data.lvl);
+                        return;
+                    } else {
+                        System.out.print("A mob spawned in a dungeon world without a dungeon data nearby!");
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
             setMobLvlNormally(entity, nearestPlayer);
 

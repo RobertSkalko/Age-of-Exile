@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class HealEffectivenessOnSelf extends Stat {
@@ -57,7 +58,7 @@ public class HealEffectivenessOnSelf extends Stat {
 
         @Override
         public HealEffect activate(HealEffect effect, StatData data, Stat stat) {
-            effect.number *= data.getMultiplier();
+            effect.data.getNumber(EventData.NUMBER).number *= data.getMultiplier();
             return effect;
         }
 

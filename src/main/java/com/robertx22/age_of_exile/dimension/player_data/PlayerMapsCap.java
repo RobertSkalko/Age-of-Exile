@@ -67,7 +67,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         return cachedBorder;
     }
 
-    public void onEnterDungeon(BlockPos teleporterPos, String uuid) {
+    public void onEnterDungeon(Boolean isteam, BlockPos teleporterPos, String uuid) {
 
         try {
 
@@ -151,18 +151,21 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 }
             }
 
+            // first set the data so the mob levels can be set on spawn
             WorldDungeonCap data = Load.dungeonData(dimWorld);
-
             SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, 20), player.getUuid()
                 .toString());
+            data.data.set(player, tpPos, single);
+
+            if (isteam) {
+                single.data.is_team = true;
+            }
 
             PopulateDungeonChunks.populateAll(dimWorld, cp, single);
 
             int kills = (int) (single.pop.mobs * 0.8F);
 
             single.quest.target = kills;
-
-            data.data.set(player, tpPos, single);
 
             total.print("Total dungeon init");
 

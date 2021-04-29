@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IElementalEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IElementalResistable;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MathUtils;
 import net.minecraft.util.math.MathHelper;
@@ -47,7 +48,7 @@ public class ElementalResistEffect extends BaseDamageEffect {
 
         float resistPercent = MathHelper.clamp(data.getAverageValue() - pene, stat.min_val, max);
 
-        effect.number = MathUtils.applyResistMultiplier(effect.number, resistPercent);
+        effect.data.getNumber(EventData.NUMBER).number = MathUtils.applyResistMultiplier(effect.data.getNumber(), resistPercent);
 
         return effect;
 

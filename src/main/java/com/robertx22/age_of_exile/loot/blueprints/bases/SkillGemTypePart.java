@@ -13,9 +13,11 @@ public class SkillGemTypePart extends BlueprintPart<SkillGem, SkillGemBlueprint>
     @Override
     protected SkillGem generateIfNull() {
 
-        if (blueprint.info.playerData == null || blueprint.info.level > 20) {
-            return Database.SkillGems()
-                .random();
+        if (blueprint.info != null) {
+            if (blueprint.info.playerData == null || blueprint.info.level > 20) {
+                return Database.SkillGems()
+                    .random();
+            }
         }
 
         try {

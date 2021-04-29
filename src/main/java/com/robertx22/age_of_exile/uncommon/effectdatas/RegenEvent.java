@@ -16,12 +16,12 @@ public class RegenEvent extends EffectData {
     @Override
     protected void activate() {
 
-        if (canceled) {
+        if (data.isCanceled()) {
             return;
         }
 
         ResourcesData.Context ctx = new ResourcesData.Context(targetData, target, type,
-            number,
+            data.getNumber(),
             ResourcesData.Use.RESTORE
         );
         targetData.getResources()

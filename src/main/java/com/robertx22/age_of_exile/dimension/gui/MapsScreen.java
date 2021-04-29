@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.dimension.teleporter.delve_gui;
+package com.robertx22.age_of_exile.dimension.gui;
 
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class MapsScreen extends BaseScreen {
 
-    private static final Identifier BACKGROUND = Ref.guiId("map");
+    private static final Identifier BACKGROUND = Ref.guiId("dungeon/map");
 
     public BlockPos teleporterPos = new BlockPos(0, 0, 0);
 
@@ -93,7 +93,8 @@ public class MapsScreen extends BaseScreen {
 
         if (Load.playerMaps(mc.player)
             .canStart(selectedDungeon)) {
-            addButton(new StartDungeonButton(this, selectedDungeon, guiLeft + 150, guiTop + 150));
+            addButton(new StartDungeonButton(false, this, selectedDungeon, guiLeft + 132, guiTop + 150));
+            addButton(new StartDungeonButton(true, this, selectedDungeon, guiLeft + 132 + 5 + StartDungeonButton.SIZE_X, guiTop + 150));
         }
 
         int x = guiLeft + START_X;

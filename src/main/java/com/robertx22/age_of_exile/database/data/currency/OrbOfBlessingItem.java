@@ -67,7 +67,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
 
     @Override
     public float getInstability() {
-        return 5;
+        return 50;
     }
 
     @Override

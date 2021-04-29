@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.dimension;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonPopulateData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
+import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlockEntity;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.world_of_exile.main.ModLoottables;
@@ -74,17 +76,14 @@ public class PopulateDungeonChunks {
 
     public static void populate(List<ChunkPos> toPopulate, List<ChunkPos> populated, World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
 
-        boolean has = false;
-
         Set<BlockPos> list = chunk.getBlockEntityPositions();
+
+        boolean has = !list.isEmpty();
 
         for (BlockPos blockPos : list) {
             BlockEntity be = world.getBlockEntity(blockPos);
             if (be instanceof BeaconBlockEntity) {
                 populate(world, blockPos, dungeon, data);
-
-                has = true;
-
             }
         }
 
@@ -108,7 +107,8 @@ public class PopulateDungeonChunks {
         }
 
         int mobs = RandomUtils.RandomRange(2, 5);
-        int chests = RandomUtils.roll(10) ? 1 : 0;
+        int chests = RandomUtils.roll(20) ? 1 : 0;
+        int spawners = RandomUtils.roll(20) ? 1 : 0;
 
         int tries = 0;
         for (int i = 0; i < mobs; i++) {
@@ -137,18 +137,39 @@ public class PopulateDungeonChunks {
             if (tries > 50) {
                 break;
             }
-            if (!world.isAir(p) && !world.getBlockState(p.down())
+            if (!world.isAir(p.up()) && !world.isAir(p) && world.getBlockState(p.down())
                 .isSolidBlock(world, p.down())) {
                 i--;
                 continue;
             }
             data.chests++;
 
-            world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2); // TODO ADD LOOT
+            world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2);
 
             ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(p);
 
             chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
+
+            list.remove(p);
+        }
+
+        tries = 0;
+
+        for (int i = 0; i < spawners; i++) {
+            BlockPos p = RandomUtils.randomFromList(list);
+            tries++;
+            if (tries > 50) {
+                break;
+            }
+            if (!world.isAir(p) && world.getBlockState(p.down())
+                .isSolidBlock(world, p.down())) {
+                i--;
+                continue;
+            }
+
+            data.mobs += ModSpawnerBlockEntity.DEFAULT_SPAWNS;
+
+            world.setBlockState(p, ModRegistry.BLOCKS.SPAWNER.getDefaultState(), 2);
 
             list.remove(p);
         }

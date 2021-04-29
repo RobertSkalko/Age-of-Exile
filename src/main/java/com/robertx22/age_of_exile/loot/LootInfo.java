@@ -114,6 +114,7 @@ public class LootInfo {
         info.pos = pos;
         info.level = LevelUtils.determineLevel(player.world, pos, player);
         info.multi = 1.5F;
+        info.maxItems = 7;
         info.setupAllFields();
 
         if (info.favorRank != null) {
@@ -246,6 +247,14 @@ public class LootInfo {
 
         if (world != null) {
             modifier += Database.getDimensionConfig(world).all_drop_multi - 1F;
+        }
+
+        if (isMapWorld) {
+            if (dungeon != null) {
+                if (dungeon.is_team) {
+                    modifier *= 3;
+                }
+            }
         }
 
         float chance = gen.baseDropChance() * modifier;

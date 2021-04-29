@@ -63,7 +63,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
                         ctx.calculatedSpellData.getSpell()
                     );
                     SpellHealEffect heal = new SpellHealEffect(hctx);
-                    total += heal.number;
+                    total += heal.data.getNumber();
                     heal.Activate();
                 }
 

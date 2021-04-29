@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.dimension.teleporter.delve_gui;
+package com.robertx22.age_of_exile.dimension.gui;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;

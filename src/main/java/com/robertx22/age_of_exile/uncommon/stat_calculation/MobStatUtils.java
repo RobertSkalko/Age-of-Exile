@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
@@ -23,6 +24,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 
@@ -32,7 +34,7 @@ import java.util.stream.Collectors;
 
 public class MobStatUtils {
 
-    public static void increaseMobStatsPerTier(LivingEntity en, UnitData mobdata, Unit unit) {
+    public static void addMapStats(LivingEntity en, UnitData mobdata, Unit unit) {
 
         Tier tier = mobdata.getMapTier();
 
@@ -44,6 +46,27 @@ public class MobStatUtils {
             .collect(Collectors.toList())) {
 
             data.multiplyFlat(tier.stat_multi);
+        }
+
+        if (WorldUtils.isDungeonWorld(en.world)) {
+            DungeonData data = Load.dungeonData(en.world).data.get(en.getBlockPos()).data;
+            if (!data.isEmpty()) {
+                data.affixes.suffix.getStats(mobdata.getLevel())
+                    .forEach(x -> x.applyStats(mobdata));
+                data.affixes.prefix.getStats(mobdata.getLevel())
+                    .forEach(x -> x.applyStats(mobdata));
+
+                if (data.is_team) {
+                    // todo
+                    ExactStatData.noScaling(500, 500, ModType.GLOBAL_INCREASE, Health.getInstance()
+                        .GUID())
+                        .applyStats(mobdata);
+                    ExactStatData.noScaling(300, 300, ModType.FLAT, TotalDamage.getInstance()
+                        .GUID())
+                        .applyStats(mobdata);
+                }
+            }
+
         }
 
     }

@@ -35,7 +35,8 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
     }
 
     static int getNearest(int num) {
-        int o = Math.round(num / DISTANCE);
+
+        int o = Math.round(num / (float) DISTANCE);
         if (o == 0) {
             o++;
         }
