@@ -5,19 +5,16 @@ import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect.EffectSides;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,145 +24,76 @@ public abstract class EffectData {
     public UnitData sourceData;
     public UnitData targetData;
 
-    public boolean canceled = false;
     public Unit sourceUnit;
     public Unit targetUnit;
 
     public LivingEntity source;
     public LivingEntity target;
 
-    public float number = 0;
-    public float originalNumber;
+    private boolean effectsCalculated = false;
+
+    public EventData data = new EventData();
+
+    public EffectData(float num, LivingEntity source, LivingEntity target) {
+        this(source, target);
+
+        this.data.getNumber(EventData.NUMBER).number = num;
+        this.data.getNumber(EventData.ORIGINAL_VALUE).number = num;
+
+    }
 
     public EffectData(LivingEntity source, LivingEntity target) {
 
         this.source = source;
         this.target = target;
 
-        if (target != null) {
+        if (target != null && source != null) {
             this.targetData = Load.Unit(target);
-        }
-        if (source != null) {
+            targetUnit = targetData.getUnit();
+
             this.sourceData = Load.Unit(source);
-        }
-
-        if (source != null) {
-
-            try {
-                if (source.world.isClient) {
-                    // throw new RuntimeException("Effect ran on client!!!"); spell stats is ran on client.. hmm
-                }
-            } catch (RuntimeException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                if (target != null) {
-                    targetUnit = targetData.getUnit();
-                }
-
-                sourceUnit = sourceData.getUnit();
-
-                if (sourceUnit == null) {
-                    this.canceled = true;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    public EffectData(LivingEntity source, LivingEntity target, UnitData sourceData, UnitData targetData) {
-
-        this.source = source;
-        this.target = target;
-
-        if (sourceData != null && targetData != null) {
-            this.sourceData = sourceData;
-            this.targetData = targetData;
-
-            this.sourceUnit = sourceData.getUnit();
-            this.targetUnit = targetData.getUnit();
-
+            sourceUnit = sourceData.getUnit();
         } else {
-            this.canceled = true;
+            this.data.setBoolean(EventData.CANCELED, true);
+        }
+
+        if (sourceUnit == null || targetUnit == null) {
+            this.data.setBoolean(EventData.CANCELED, true);
         }
 
     }
-
-    public AttackType attackType = AttackType.ATTACK;
-
-    public AttackType getAttackType() {
-        return attackType;
-    }
-
-    public WeaponTypes weaponType = WeaponTypes.None;
 
     public void increaseByPercent(float perc) {
-        this.number += this.originalNumber * perc / 100F;
+        data.getNumber(EventData.NUMBER).number += data.getNumber(EventData.ORIGINAL_VALUE).number * perc / 100F;
     }
 
     public void Activate() {
 
         calculateEffects();
 
-        if (this.canceled != true) {
+        if (!data.isCanceled()) {
             activate();
         }
 
     }
 
-    boolean effectsCalculated = false;
-
     public void calculateEffects() {
         if (!effectsCalculated) {
             effectsCalculated = true;
-            if (source == null || target == null || canceled == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null) {
+            if (source == null || target == null || data.getBoolean(EventData.CANCELED) == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null) {
                 return;
             }
-
-            logOnStartData();
-
             TryApplyEffects(source, sourceData, EffectSides.Source);
-
-            //  if (GetSource().GUID.equals(GetTarget().GUID) == false) { // todo unsure
-            // this makes stats not apply twice if  caster is both target and source.. hmm
             TryApplyEffects(target, targetData, EffectSides.Target);
-            // }
-            logOnEndData();
-
         }
 
-    }
-
-    public void logOnStartData() {
-        if (MMORPG.statEffectDebuggingEnabled()) {
-            System.out.println(
-                Formatting.DARK_PURPLE + "Starting to activate effects for: " + getClass().toString() + " " + "Starting Number: " + number);
-        }
-    }
-
-    public void logOnEndData() {
-        if (MMORPG.statEffectDebuggingEnabled()) {
-            System.out.println(
-                Formatting.DARK_PURPLE + "Effects for : " + getClass().toString() + " are finished.");
-        }
-    }
-
-    public void logAfterEffect(IStatEffect effect) {
-        if (MMORPG.statEffectDebuggingEnabled()) {
-            System.out.println(Formatting.GREEN + "After : " + Formatting.BLUE + effect.getClass()
-                .toString() + Formatting.WHITE + ": " + this.number);
-        }
     }
 
     protected abstract void activate();
 
     protected void TryApplyEffects(LivingEntity en, UnitData data, EffectSides side) {
 
-        if (this.canceled) {
+        if (this.data.getBoolean(EventData.CANCELED)) {
             return;
         }
 

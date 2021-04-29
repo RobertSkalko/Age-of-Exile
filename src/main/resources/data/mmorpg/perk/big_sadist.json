@@ -1,0 +1,32 @@
+{
+  "type": "MAJOR",
+  "identifier": "big_sadist",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_sadist.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "dmg_taken_to_mana",
+      "type": "GLOBAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 40.0,
+      "v2": 0.0,
+      "stat": "health",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 50.0,
+      "v2": 0.0,
+      "stat": "mana",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

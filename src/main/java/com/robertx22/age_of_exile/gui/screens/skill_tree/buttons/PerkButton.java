@@ -27,7 +27,7 @@ public class PerkButton extends TexturedButtonWidget {
     public static int BIGGEST = 33;
 
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
-    static Identifier LOCKED_TEX = new Identifier(Ref.MODID, "textures/gui/locked.png");
+    public static Identifier LOCKED_TEX = new Identifier(Ref.MODID, "textures/gui/locked.png");
 
     public Perk perk;
     public PointData point;

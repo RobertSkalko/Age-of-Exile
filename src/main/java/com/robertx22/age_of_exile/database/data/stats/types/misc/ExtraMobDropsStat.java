@@ -33,7 +33,7 @@ public class ExtraMobDropsStat extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Extra Mob Drops";
+        return "Extra Drops";
     }
 
     @Override

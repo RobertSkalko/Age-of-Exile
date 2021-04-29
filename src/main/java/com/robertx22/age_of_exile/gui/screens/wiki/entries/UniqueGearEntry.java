@@ -30,6 +30,7 @@ public class UniqueGearEntry extends WikiEntry {
         GearBlueprint blueprint = new GearBlueprint(RandomUtils.randomFromList(uniq.getPossibleGearTypes())
             .getLevelRange()
             .randomFromRange(), 0);
+        blueprint.actionsAfterGeneration.clear();
         blueprint.unidentifiedPart.set(false);
 
         blueprint.rarity.set(Database.GearRarities()

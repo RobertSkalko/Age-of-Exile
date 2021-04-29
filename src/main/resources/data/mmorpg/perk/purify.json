@@ -1,0 +1,25 @@
+{
+  "type": "SPECIAL",
+  "identifier": "purify",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/main/.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 25,
+      "v2": 0.0,
+      "stat": "heal_cleanse",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 2,
+      "v2": 0.0,
+      "stat": "health_regen",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

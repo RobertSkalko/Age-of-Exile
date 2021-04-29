@@ -23,7 +23,7 @@ import java.util.List;
 public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializable<MobAffix>, IAutoLocName, IApplyableStats {
 
     List<StatModifier> stats = new ArrayList<>();
-    String id;
+    String id = "";
     int weight = 1000;
     public String icon = "";
     public Formatting format;

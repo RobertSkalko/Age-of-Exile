@@ -55,6 +55,7 @@ public class MapField<T> implements IGUID {
     public static MapField<String> BLOCK = make("block");
     public static MapField<String> ENTITY_NAME = make("entity_name");
     public static MapField<String> PUSH_WAY = make("push_way");
+    public static MapField<String> AGGRO_TYPE = make("aggro");
     public static MapField<String> COMMAND = make("command");
     public static MapField<String> POS_SOURCE = make("pos_source");
     public static MapField<String> SHOOT_DIRECTION = make("shoot_way");

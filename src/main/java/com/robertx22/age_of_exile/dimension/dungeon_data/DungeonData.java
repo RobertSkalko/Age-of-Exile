@@ -16,6 +16,8 @@ import java.util.List;
 public class DungeonData {
 
     @Store
+    public DungeonQuestRewards quest_rew = new DungeonQuestRewards();
+    @Store
     public PossibleUniques uniques = new PossibleUniques();
     @Store
     public DungeonAffixes affixes = new DungeonAffixes();
@@ -26,7 +28,15 @@ public class DungeonData {
     @Store
     public int tier = 1;
     @Store
+    public int floor = 0;
+    @Store
     public String uuid = "";
+    @Store
+    public Boolean is_team = false;
+
+    public boolean isEmpty() {
+        return uuid.isEmpty();
+    }
 
     public List<Text> getTooltip() {
 
@@ -36,9 +46,7 @@ public class DungeonData {
 
         TooltipInfo info = new TooltipInfo();
 
-        affixes.prefix.getStats(lvl)
-            .forEach(x -> list.addAll(x.GetTooltipString(info)));
-        affixes.suffix.getStats(lvl)
+        affixes.getStats(floor, lvl)
             .forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         list.add(TooltipUtils.tier(tier));

@@ -1,0 +1,32 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_balistic",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_balistic.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "projectile_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "faster_projectiles",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 10.0,
+      "v2": 0.0,
+      "stat": "dexterity",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

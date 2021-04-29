@@ -12,7 +12,10 @@ import net.minecraft.world.gen.feature.JigsawFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class DungeonDimensionJigsawFeature extends JigsawFeature {
-    public static int DISTANCE = 10;
+
+    public static int HEIGHT = 80;
+
+    public static int DISTANCE = 30;
 
     public static ChunkPos getSpawnChunkOf(BlockPos p) {
         return getSpawnChunkOf(new ChunkPos(p));
@@ -20,22 +23,8 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
     public static ChunkPos getSpawnChunkOf(ChunkPos cp) {
 
-        int x = cp.x;
-        int z = cp.z;
-
-        int remx = x % DISTANCE;
-        int remz = z % DISTANCE;
-
-        if (remx >= DISTANCE / 2) {
-            x += DISTANCE - remx;
-        } else {
-            x -= remx;
-        }
-        if (remz >= DISTANCE / 2) {
-            z += DISTANCE - remz;
-        } else {
-            z -= remz;
-        }
+        int x = getNearest(cp.x);
+        int z = getNearest(cp.z);
 
         ChunkPos spawn = new ChunkPos(x, z);
 
@@ -43,6 +32,16 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
         return spawn;
 
+    }
+
+    static int getNearest(int num) {
+
+        int o = Math.round(num / (float) DISTANCE);
+        if (o == 0) {
+            o++;
+        }
+        o *= DISTANCE;
+        return o;
     }
 
     public DungeonDimensionJigsawFeature(Codec<StructurePoolFeatureConfig> codec) {

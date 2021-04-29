@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.player;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -13,7 +12,6 @@ import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ForceChoosingRace;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
 import com.robertx22.library_of_exile.main.Packets;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -57,17 +55,6 @@ public class OnLogin {
             } else {
                 player.sendMessage(
                     new LiteralText("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"), false);
-            }
-
-            if (FabricLoader.getInstance()
-                .isModLoaded("immersive_portals")) {
-                if (ModConfig.get().Server.ENABLE_MOD_COMPAT_WARNINGS) {
-                    player.sendMessage(
-                        new LiteralText("You are using Immersive Portals mod, " +
-                            "this mod tends to be incompatible with Age of Exile."), false);
-                    player.sendMessage(
-                        new LiteralText("Mod Compatibility warnings can be disabled under Age of Exile server settings."), false);
-                }
             }
 
         } catch (

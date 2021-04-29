@@ -16,4 +16,6 @@ public class MapsData {
     @Store
     public boolean isEmpty = true;
 
+    @Store
+    public String orig_gamemode = "";
 }

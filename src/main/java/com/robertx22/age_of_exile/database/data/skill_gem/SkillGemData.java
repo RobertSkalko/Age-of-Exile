@@ -39,6 +39,8 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
     public int stat_perc = 100;
     @Store
     public int lvl = 1;
+    @Store
+    public boolean sal = true;
 
     // only support gems should have random stats
     @Store
@@ -160,7 +162,7 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
 
     @Override
     public boolean isSalvagable(SalvageContext context) {
-        return true;
+        return sal;
     }
 
     @Override

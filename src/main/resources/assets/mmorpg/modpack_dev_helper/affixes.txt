@@ -30,6 +30,8 @@ fawns
 light_wep_dmg_jewelry
 reinforced
 of_the_virile
+dark_ele_mobs
+armored_mobs
 dark_wep_dmg_dun
 physical_wep_dmg_dun
 of_the_wise
@@ -50,6 +52,7 @@ nature_ele_dmg_jewelry
 yetis
 water_wep_dmg_dun
 snakes
+water_ele_mobs
 of_the_wind
 of_treasure
 life_on_hit_dun
@@ -62,8 +65,12 @@ scavanger
 of_the_sky
 dark_wep_dmg_jewelry
 fire_wep_dmg_dun
+nature_ele_mobs
 of_the_agile
+fire_ele_mobs
 of_speed
+light_ele_mobs
+accurate_mobs
 of_vampirism
 of_steadiness
 water_wep_dmg

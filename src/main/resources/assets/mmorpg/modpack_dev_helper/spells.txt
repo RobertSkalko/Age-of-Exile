@@ -37,4 +37,5 @@ mana_reg_aura
 fire_nova
 tidal_strike
 poisoned_weapons
+taunt
 dodge_aura

@@ -16,12 +16,15 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
+import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.*;
+import com.robertx22.age_of_exile.threat_aggro.ThreatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -49,6 +52,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
@@ -76,6 +80,7 @@ public class EntityCap {
     private static final String STATUSES = "statuses";
     private static final String SCROLL_BUFF_SEED = "sb_seed";
     private static final String COOLDOWNS = "cds";
+    private static final String THREAT = "th";
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
@@ -88,6 +93,8 @@ public class EntityCap {
         void setType();
 
         EntityTypeUtils.EntityClassification getType();
+
+        ThreatData getThreat();
 
         void trySync();
 
@@ -132,10 +139,6 @@ public class EntityCap {
         boolean canUseWeapon(GearItemData gear);
 
         void onLogin(PlayerEntity player);
-
-        void setTier(int tier);
-
-        int getTier();
 
         int getSyncedMaxHealth();
 
@@ -210,6 +213,7 @@ public class EntityCap {
         public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
 
         CooldownsData cooldowns = new CooldownsData();
+        ThreatData threat = new ThreatData();
 
         EntityTypeUtils.EntityClassification type = EntityTypeUtils.EntityClassification.PLAYER;
         // sync these for mobs
@@ -218,7 +222,6 @@ public class EntityCap {
         String uuid = "";
         boolean isNewbie = true;
         boolean equipsChanged = true;
-        int tier = 0;
         boolean shouldSync = false;
 
         ResourcesData resources = new ResourcesData();
@@ -279,6 +282,10 @@ public class EntityCap {
                 cooldowns = new CooldownsData();
             }
 
+            this.threat = LoadSave.Load(ThreatData.class, new ThreatData(), nbt, THREAT);
+            if (threat == null) {
+                threat = new ThreatData();
+            }
         }
 
         @Override
@@ -287,7 +294,6 @@ public class EntityCap {
             addClientNBT(nbt);
 
             nbt.putInt(EXP, exp);
-            nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
@@ -310,6 +316,9 @@ public class EntityCap {
             if (cooldowns != null) {
                 LoadSave.Save(cooldowns, nbt, COOLDOWNS);
             }
+            if (threat != null) {
+                LoadSave.Save(threat, nbt, THREAT);
+            }
 
             return nbt;
 
@@ -321,7 +330,6 @@ public class EntityCap {
             loadFromClientNBT(nbt);
 
             this.exp = nbt.getInt(EXP);
-            this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             if (nbt.contains(NEWBIE_STATUS)) {
@@ -419,6 +427,11 @@ public class EntityCap {
         }
 
         @Override
+        public ThreatData getThreat() {
+            return threat;
+        }
+
+        @Override
         public void trySync() {
             if (this.shouldSync) {
                 this.shouldSync = false;
@@ -487,7 +500,7 @@ public class EntityCap {
                     .formatted(rarformat);
 
                 if (!rarity.name_add.isEmpty()) {
-                    name = new LiteralText("[" + rarity.name_add + "] ").formatted(Formatting.YELLOW)
+                    name = new LiteralText("[Lv." + rarity.name_add + "] ").formatted(Formatting.YELLOW)
                         .append(name);
                 }
 
@@ -602,24 +615,23 @@ public class EntityCap {
         }
 
         @Override
-        public void setTier(int tier) {
-            this.tier = tier;
-        }
-
-        @Override
-        public int getTier() {
-            return tier;
-        }
-
-        @Override
         public int getSyncedMaxHealth() {
             return this.maxHealth;
         }
 
         @Override
         public Tier getMapTier() {
+
+            int tier = 0;
+
+            if (WorldUtils.isDungeonWorld(entity.world)) {
+                WorldDungeonCap data = Load.dungeonData(entity.world);
+
+                tier = data.data.get(entity.getBlockPos()).data.tier;
+            }
+
             return Database.Tiers()
-                .get(this.tier + "");
+                .get(tier + "");
         }
 
         @Override
@@ -669,7 +681,7 @@ public class EntityCap {
 
             float vanilla = data.getAmount() * multi;
 
-            float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
+            float num = vanilla * rar.DamageMultiplier() * getMapTier().dmg_multi;
 
             num *= Database.getEntityConfig(entity, this).dmg_multi;
 
@@ -751,6 +763,22 @@ public class EntityCap {
         @Override
         public void SetMobLevelAtSpawn(PlayerEntity nearestPlayer) {
             this.setMobStats = true;
+
+            if (WorldUtils.isDungeonWorld(entity.world)) {
+                try {
+                    BlockPos pos = entity.getBlockPos();
+                    DungeonData data = Load.dungeonData(entity.world).data.get(pos).data;
+                    if (!data.isEmpty()) {
+                        this.setLevel(data.lvl);
+                        return;
+                    } else {
+                        System.out.print("A mob spawned in a dungeon world without a dungeon data nearby!");
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
             setMobLvlNormally(entity, nearestPlayer);
 

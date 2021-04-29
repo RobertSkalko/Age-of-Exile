@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.effectdatas.*;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -269,7 +270,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(HealEffect effect, StatData data, Stat stat) {
-                return effect.attackType.isSpell() && RandomUtils.roll(data.getAverageValue());
+                return effect instanceof SpellHealEffect && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -291,7 +292,7 @@ public class SpecialStats {
             @Override
             public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
                 effect.addToRestore(
-                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.HEALTH, effect.originalNumber)
+                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.HEALTH, effect.data.getNumber(EventData.ORIGINAL_VALUE).number)
                 );
                 effect.cancelDamage();
                 return effect;

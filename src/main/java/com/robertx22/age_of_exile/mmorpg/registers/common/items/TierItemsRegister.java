@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.SmeltedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedEssenceItem;
@@ -33,6 +34,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
     public HashMap<SkillItemTier, MiningStoneItem> STONE_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, MysteriousLeatherItem> LEATHER_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, LockedChestItem> LOCKED_CHEST_TIER_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, DungeonKeyItem> DUNGEON_KEY_MAP = new HashMap<>();
 
     public HashMap<SkillItemTier, EssenceInkItem> ESSENCE_INK = new HashMap<>();
 
@@ -60,6 +62,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
             STONE_TIER_MAP.put(tier, item(new MiningStoneItem(tier)));
             LOCKED_CHEST_TIER_MAP.put(tier, item(new LockedChestItem(tier)));
             LEATHER_TIER_MAP.put(tier, item(new MysteriousLeatherItem(tier)));
+            DUNGEON_KEY_MAP.put(tier, item(new DungeonKeyItem(tier)));
 
         }
 

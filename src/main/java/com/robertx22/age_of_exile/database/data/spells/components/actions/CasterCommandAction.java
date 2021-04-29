@@ -19,6 +19,21 @@ public class CasterCommandAction extends SpellAction {
         super(Arrays.asList(COMMAND));
     }
 
+    public static ServerCommandSource getCommandSource(Entity entity) {
+        return new ServerCommandSource(
+            // this doesnt send messages to spam server
+            CommandOutput.DUMMY,
+            entity.getPos(),
+            entity.getRotationClient(),
+            entity.world instanceof ServerWorld ? (ServerWorld) entity.world : null,
+            4,
+            entity.getName()
+                .getString(),
+            entity.getDisplayName(),
+            entity.world.getServer(),
+            entity);
+    }
+
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
@@ -27,18 +42,7 @@ public class CasterCommandAction extends SpellAction {
 
             Entity entity = ctx.caster;
 
-            ServerCommandSource source = new ServerCommandSource(
-                // this doesnt send messages to spam server
-                CommandOutput.DUMMY,
-                entity.getPos(),
-                entity.getRotationClient(),
-                entity.world instanceof ServerWorld ? (ServerWorld) entity.world : null,
-                4,
-                entity.getName()
-                    .getString(),
-                entity.getDisplayName(),
-                entity.world.getServer(),
-                entity);
+            ServerCommandSource source = getCommandSource(entity);
 
             ctx.caster
                 .getServer()

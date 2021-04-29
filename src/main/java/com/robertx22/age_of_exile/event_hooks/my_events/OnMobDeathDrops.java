@@ -1,16 +1,19 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusXpToMobsOfTier;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.components.EntityInfoComponent;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
@@ -77,9 +80,15 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
                         if (loot_multi > 0) {
                             MasterLootGen.genAndDrop(mobKilled, player);
+
                         }
                         if (exp_multi > 0) {
                             GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
+                        }
+
+                        if (WorldUtils.isDungeonWorld(mobKilled.world)) {
+                            SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
+                            dungeon.quest.increaseProgressBy(player, 1, dungeon.data);
                         }
 
                     }
@@ -108,6 +117,8 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         float baseexp = exp;
 
         exp += (-1F + multi) * baseexp;
+
+        exp += (-1F + ModConfig.get().Server.EXP_GAIN_MULTI) * baseexp;
 
         exp += (-1F + Database.MobRarities()
             .get(mobData.getRarity())

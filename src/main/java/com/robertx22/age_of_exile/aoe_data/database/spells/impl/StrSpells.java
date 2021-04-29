@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
@@ -16,6 +17,7 @@ import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -135,6 +137,19 @@ public class StrSpells implements ISlashRegistryInit {
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 100D, 0.5D, 0.1D))
                 .addPerEntityHit(PartBuilder.cancelSpell())
             )
+            .build();
+
+        SpellBuilder.of("taunt", SpellConfiguration.Builder.instant(5, 15)
+                .setSwingArm(), "Taunt",
+            Arrays.asList(SkillGemTag.AREA))
+            .attackStyle(AttackPlayStyle.MELEE)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
+
+            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(AggroAction.Type.AGGRO))
+                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES)))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
+
             .build();
 
     }

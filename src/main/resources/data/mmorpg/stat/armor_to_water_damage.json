@@ -1,0 +1,16 @@
+{
+  "ser": "one_to_other",
+  "data": {
+    "id": "armor_to_water_damage",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "sec_val": false,
+    "ele": "Physical",
+    "scale": "NONE",
+    "adder_stat": "armor",
+    "add_to": "all_water_damage",
+    "per_amount": 30
+  }
+}

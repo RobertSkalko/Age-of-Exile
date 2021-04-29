@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IPenetrable;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.util.math.MathHelper;
 
@@ -41,7 +42,7 @@ public class ArmorEffect extends BaseStatEffect<DamageEffect> {
 
         EffectiveArmor = MathHelper.clamp(EffectiveArmor, 0, 1);
 
-        effect.number -= EffectiveArmor * effect.number;
+        effect.data.getNumber(EventData.NUMBER).number -= EffectiveArmor * effect.data.getNumber();
 
         return effect;
     }

@@ -1,0 +1,32 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_heal_int",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_heal_int.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "increase_healing",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "spell_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "intelligence",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

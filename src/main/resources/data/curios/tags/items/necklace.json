@@ -1,4 +1,4 @@
 {
   "replace": "false",
-  "values": ["mmorpg:uniques/jewelry/angel_prot_necklace","mmorpg:uniques/jewelry/ghast_necklace","mmorpg:uniques/jewelry/birth_miracle","mmorpg:uniques/jewelry/skull_of_spirits","mmorpg:uniques/jewelry/snake_eye","mmorpg:uniques/jewelry/hunger_neck","mmorpg:jewelry/necklace/all_res_necklace_low","mmorpg:jewelry/necklace/all_res_necklace_end","mmorpg:jewelry/necklace/life_necklace_low","mmorpg:jewelry/necklace/life_necklace_end"]
+  "values": ["mmorpg:uniques/jewelry/ghast_necklace","mmorpg:uniques/jewelry/skull_of_spirits","mmorpg:uniques/jewelry/blood_stone","mmorpg:jewelry/necklace/all_res_necklace_low","mmorpg:jewelry/necklace/all_res_necklace_end","mmorpg:jewelry/necklace/life_necklace_low","mmorpg:jewelry/necklace/life_necklace_end"]
 }

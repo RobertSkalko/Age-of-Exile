@@ -38,13 +38,11 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
     public final EffectData TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat) {
 
         try {
-            if (!effect.canceled) {
+            if (!effect.data.isCanceled()) {
                 if (theclass.isAssignableFrom(effect.getClass())) {
                     if (canActivate((T) effect, data, stat)) {
 
                         activate((T) effect, data, stat);
-
-                        effect.logAfterEffect(this);
 
                         return effect;
                     }

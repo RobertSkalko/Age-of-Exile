@@ -35,7 +35,6 @@ import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
-import com.robertx22.age_of_exile.database.data.tiers.impl.TierOne;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
@@ -354,7 +353,7 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_RARITY_GROUP, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_TYPE, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.EXILE_EFFECT, null).setIsDatapack());
-        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new TierOne()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.TIER, new Tier(0)).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.MOB_AFFIX, new MobAffix("empty", "empty", Formatting.AQUA)).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.UNIQUE_GEAR, null).setIsDatapack());

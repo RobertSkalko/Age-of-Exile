@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
@@ -11,11 +12,11 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -42,15 +43,21 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static String ANGER = "beneficial/" + 7;
     public static String DIVINE_SHIELD = "beneficial/" + 8;
     public static String POISON_WEAPONS = "beneficial/" + 9;
-    public static String IMBUE = "beneficial/" + 10;
     public static String ARCANE_HUNTER = "beneficial/" + 11;
     public static String EAGLE_EYE = "beneficial/" + 12;
     public static String SAVAGE_HUNTER = "beneficial/" + 13;
     public static String FROST_ARMOR = "beneficial/" + 14;
     public static String VOID_EYE = "beneficial/" + 15;
+    public static String BLOODLUST = "beneficial/" + 16;
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(BLOODLUST, "Bloodlust", EffectType.BENEFICIAL)
+            .stat(2, Lifesteal.getInstance(), ModType.FLAT)
+            .stat(2, DatapackStatAdder.MOVE_SPEED, ModType.FLAT)
+            .maxStacks(10)
+            .build();
 
         ExileEffectBuilder.of(VOID_EYE, "Void Eye", EffectType.BENEFICIAL)
             .stat(10, new ElementalPenetration(Elements.Elemental), ModType.FLAT)
@@ -128,10 +135,6 @@ public class BeneficialEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(POISON_WEAPONS, "Poison Attack", EffectType.BENEFICIAL)
             .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
             .stat(20, ChanceToApplyEffect.POISON, ModType.FLAT)
-            .build();
-
-        ExileEffectBuilder.of(IMBUE, "Imbue", EffectType.BENEFICIAL)
-            .stat(15, AttackStyleDamage.RANGED, ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(SAVAGE_HUNTER, "Savage Hunter", EffectType.BENEFICIAL)

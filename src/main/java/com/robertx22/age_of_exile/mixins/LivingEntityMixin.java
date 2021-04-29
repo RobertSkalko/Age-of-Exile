@@ -50,10 +50,8 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
     @ModifyVariable(method = "heal(F)V", at = @At(value = "HEAD"), argsOnly = true, ordinal = 0)
     public float reduceHealPerLevel(float amount, float arg) {
         LivingEntity en = (LivingEntity) (Object) this;
-        if (en instanceof PlayerEntity) {
-            return HealthUtils.realToVanilla(en, amount);
-        }
-        return amount;
+        return HealthUtils.realToVanilla(en, amount);
+
     }
 
     @Shadow

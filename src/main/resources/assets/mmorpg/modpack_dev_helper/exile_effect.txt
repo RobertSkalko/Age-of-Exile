@@ -14,6 +14,7 @@ beneficial/13
 beneficial/12
 beneficial/11
 beneficial/10
+beneficial/16
 beneficial/15
 beneficial/14
 beneficial/6
@@ -28,3 +29,4 @@ beneficial/9
 neutral/1
 neutral/0
 beneficial/0
+negative/10

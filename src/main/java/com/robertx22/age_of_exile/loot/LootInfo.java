@@ -88,7 +88,7 @@ public class LootInfo {
             }
 
             if (info.isMapWorld) {
-                info.dungeon = Load.dungeonData(mob.world, mob.getBlockPos()).data;
+                info.dungeon = Load.dungeonData(mob.world).data.get(info.pos).data;
             }
 
         } catch (Exception e) {
@@ -114,13 +114,14 @@ public class LootInfo {
         info.pos = pos;
         info.level = LevelUtils.determineLevel(player.world, pos, player);
         info.multi = 1.5F;
+        info.maxItems = 7;
         info.setupAllFields();
 
         if (info.favorRank != null) {
             info.extraFavorItems = info.favorRank.extra_items_per_chest;
         }
         if (info.isMapWorld) {
-            info.dungeon = Load.dungeonData(info.world, pos).data;
+            info.dungeon = Load.dungeonData(info.world).data.get(info.pos).data;
         }
         return info;
     }
@@ -181,10 +182,10 @@ public class LootInfo {
 
     private LootInfo setTier() {
 
-        if (this.mobData != null) {
-            this.tier = mobData.getTier();
-        } else {
-            this.tier = 0;
+        if (world != null && pos != null) {
+            if (WorldUtils.isDungeonWorld(world)) {
+                this.tier = Load.dungeonData(world).data.get(pos).data.tier;
+            }
         }
         return this;
 
@@ -246,6 +247,14 @@ public class LootInfo {
 
         if (world != null) {
             modifier += Database.getDimensionConfig(world).all_drop_multi - 1F;
+        }
+
+        if (isMapWorld) {
+            if (dungeon != null) {
+                if (dungeon.is_team) {
+                    modifier *= 3;
+                }
+            }
         }
 
         float chance = gen.baseDropChance() * modifier;

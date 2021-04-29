@@ -4,16 +4,11 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 
 public class HealthUtils {
 
     public static void heal(LivingEntity en, float heal) {
-        if (en instanceof PlayerEntity) {
-            en.heal(heal);
-        } else {
-            en.heal(heal);
-        }
+        en.heal(heal);
     }
 
     public static float vanillaToReal(LivingEntity en, float dmg) {

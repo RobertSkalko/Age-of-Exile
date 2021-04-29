@@ -18,6 +18,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 
@@ -71,7 +72,11 @@ public class ModEntities {
         if (sw.getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
-
+        if (!sw.toServerWorld()
+            .getGameRules()
+            .getBoolean(GameRules.DO_MOB_SPAWNING)) {
+            return false;
+        }
         return HostileEntity.canSpawnInDark((EntityType<? extends HostileEntity>) type, sw, spawnReason, pos, random);
     }
 

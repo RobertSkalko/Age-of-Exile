@@ -58,7 +58,7 @@ public class DamageTakenToMana extends Stat {
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
 
-            float restore = effect.number * data.getAverageValue() / 100F; // todo dmg number
+            float restore = effect.data.getNumber() * data.getAverageValue() / 100F; // todo dmg number
 
             if (restore > 0) {
                 ResourcesData.Context mana = new ResourcesData.Context(effect.targetData, effect.target,

@@ -1,11 +1,12 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.dimension.teleporter.delve_gui.MapsScreen;
+import com.robertx22.age_of_exile.dimension.gui.MapsScreen;
 import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
@@ -45,9 +46,9 @@ public class ClientOnly {
         MinecraftClient.getInstance().options.keyUse.setPressed(true);
     }
 
-    public static void openMapsScreen() {
+    public static void openMapsScreen(BlockPos pos) {
         MinecraftClient.getInstance()
-            .openScreen(new MapsScreen());
+            .openScreen(new MapsScreen(pos));
     }
 
     public static void stopUseKey() {

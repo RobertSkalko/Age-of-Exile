@@ -7,8 +7,7 @@ public class ModifyResourceEffect extends EffectData {
     public ResourcesData.Context ctx;
 
     public ModifyResourceEffect(ResourcesData.Context ctx) {
-        super(ctx.source, ctx.target, ctx.sourceData, ctx.targetData);
-        this.number = ctx.amount;
+        super(ctx.amount, ctx.source, ctx.target);
         this.ctx = ctx;
     }
 

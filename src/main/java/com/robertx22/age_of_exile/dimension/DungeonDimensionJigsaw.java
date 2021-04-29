@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.dimension;
 
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.config_utils.BlackOrWhiteList;
 import com.robertx22.world_of_exile.config.FeatureConfig;
-import com.robertx22.world_of_exile.main.ModProcessorLists;
-import com.robertx22.world_of_exile.main.WOE;
 import com.robertx22.world_of_exile.main.structures.base.StructureWrapper;
 import com.robertx22.world_of_exile.world_gen.AbstractPool;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.processor.StructureProcessorList;
+import net.minecraft.structure.processor.StructureProcessorLists;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
@@ -36,7 +36,7 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
     public ConfiguredStructureFeature createConfiguredFeature() {
         return feature.configure(new StructurePoolFeatureConfig(() -> {
             return this.startPool;
-        }, 5));
+        }, 4));
     }
 
     @Override
@@ -46,22 +46,17 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
     @Override
     public StructurePool createPoolAndInitPools() {
-        AbstractPool startBuilder = new Pool(WOE.id("dungeon/starts"));
-        startBuilder.add(WOE.id("dungeon/starts/start"));
+        AbstractPool startBuilder = new Pool(Ref.id("dungeon/starts"));
+        startBuilder.add(Ref.id("stone/start"));
 
-        AbstractPool roomBuilder = new Pool(WOE.id("dungeon/rooms"));
-        roomBuilder.add(WOE.id("dungeon/halls/hall"), 3);
-        roomBuilder.add(WOE.id("dungeon/near_start/triple_hall"));
-        roomBuilder.add(WOE.id("dungeon/rooms/room1"));
-        roomBuilder.add(WOE.id("dungeon/rooms/room2"));
-        roomBuilder.add(WOE.id("dungeon/rooms/room3"));
-        roomBuilder.add(WOE.id("dungeon/rooms/pool1"));
+        AbstractPool stone = new Pool(Ref.id("stone"));
+        stone.add(Ref.id("stone/1"));
+        stone.add(Ref.id("stone/2"));
+        stone.add(Ref.id("stone/3"));
+        stone.add(Ref.id("stone/4"));
+        stone.add(Ref.id("stone/5"));
 
-        roomBuilder.build();
-
-        AbstractPool stairsBuilder = new Pool(WOE.id("dungeon/stairs"));
-        stairsBuilder.add(WOE.id("dungeon/stairs/stairs"));
-        stairsBuilder.build();
+        stone.build();
 
         return startBuilder.build();
     }
@@ -74,7 +69,7 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
         @Override
         public StructureProcessorList processorList() {
-            return ModProcessorLists.INSTANCE.DEFAULT_PROCESSORS;
+            return StructureProcessorLists.EMPTY;
         }
     }
 

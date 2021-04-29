@@ -1,0 +1,15 @@
+{
+  "ser": "one_to_other",
+  "data": {
+    "id": "spell_damage_per_perc_of_increase_healing",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "sec_val": false,
+    "ele": "Physical",
+    "scale": "NONE",
+    "adder_stat": "increase_healing",
+    "add_to": "spell_damage"
+  }
+}

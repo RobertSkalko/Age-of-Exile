@@ -10,6 +10,7 @@ public enum ItemType {
 
     GEAR(ItemFilterGroup.ANY_GEAR, Words.Gears),
     SPELL_GEM(ItemFilterGroup.ANY_SPELL_GEM, Words.Gears),
+    DUNGEON_KEY(ItemFilterGroup.DUNGEON_KEY, Words.DungeonKey),
     NONE(null, Words.None);
 
     ItemType(ItemFilterGroup filter, Words word) {

@@ -48,15 +48,15 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
             int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
             value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.HEALING);
 
-            ResourcesData.Context hctx = new ResourcesData.Context(Load.Unit(ctx.caster), ctx.caster, ResourceType.MANA,
-                value, ResourcesData.Use.RESTORE,
-                ctx.calculatedSpellData.getSpell()
-            );
+            for (LivingEntity x : targets) {
+                ResourcesData.Context hctx = new ResourcesData.Context(ctx.caster, x, ResourceType.MANA,
+                    value, ResourcesData.Use.RESTORE,
+                    ctx.calculatedSpellData.getSpell()
+                );
 
-            targets.forEach(x -> {
                 Load.Unit(x)
                     .modifyResource(hctx);
-            });
+            }
 
         }
 

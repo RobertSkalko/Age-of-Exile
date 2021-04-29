@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,6 +44,10 @@ public class GenChestLootMethod {
             }
 
             LootInfo info = LootInfo.ofChestLoot(player, pos);
+
+            if (WorldUtils.isDungeonWorld(player.world)) {
+                info.multi += 10;
+            }
 
             if (inventory instanceof ChestBlockEntity) {
                 Load.favor(player)

@@ -19,17 +19,9 @@ public class DungeonMobListAdder implements ISlashRegistryInit {
         DungeonMobListBuilder.of("nether")
             .addMob(EntityType.WITHER_SKELETON)
             .addMob(EntityType.BLAZE, 200)
-            .addMob(EntityType.MAGMA_CUBE, 200)
+            .addMob(EntityType.MAGMA_CUBE, 50)
 
             .addBoss(EntityType.WITHER_SKELETON)
-            .build();
-
-        DungeonMobListBuilder.of("spiders")
-            .addMob(EntityType.SPIDER)
-            .addMob(EntityType.CAVE_SPIDER, 200)
-            .addMob(EntityType.WITCH, 200)
-
-            .addBoss(EntityType.SPIDER)
             .build();
 
     }

@@ -42,7 +42,7 @@ public class GearMaterialRegister extends BaseItemRegistrator {
     public CraftEssenceItem NATURE = item(new CraftEssenceItem("nature", () -> Items.GREEN_DYE, "Essence of Nature"));
     public CraftEssenceItem FIRE = item(new CraftEssenceItem("fire", () -> Items.ORANGE_DYE, "Essence of Fire"));
     public CraftEssenceItem THUNDER = item(new CraftEssenceItem("thunder", () -> Items.YELLOW_DYE, "Essence of Thunder"));
-    public CraftEssenceItem PHYSICAL = item(new CraftEssenceItem("physical", () -> Items.BLACK_DYE, "Essence of Thunder"));
+    public CraftEssenceItem PHYSICAL = item(new CraftEssenceItem("physical", () -> Items.BLACK_DYE, "Essence of Physique"));
 
     public GearMaterialItem of(TYPE type, int tier, LevelRange range) {
 

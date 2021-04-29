@@ -7,6 +7,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
+import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
@@ -65,6 +67,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 data.increment();
 
                 if (data.regenTicks > TicksToRegen) {
+
                     data.regenTicks = 0;
                     if (player.isAlive()) {
 
@@ -97,7 +100,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                             if (restored) {
                                 unitdata.syncToClient(player);
 
-                                float percentHealed = hpevent.number / HealthUtils.getMaxHealth(player);
+                                float percentHealed = hpevent.data.getNumber() / HealthUtils.getMaxHealth(player);
 
                                 float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
 
@@ -120,6 +123,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 }
                 if (data.ticksToLvlWarning > TicksToLevelWarning) {
+
+                    OnTickGiveTpBack.give(player);
 
                     boolean wasnt = false;
                     if (!data.isInHighLvlZone) {
@@ -154,6 +159,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
                     data.playerSyncTick = 0;
+
+                    OnTickSetGameMode.onTick(player);
 
                     if (!Load.Unit(player)
                         .hasRace()) {

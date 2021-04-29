@@ -1,0 +1,39 @@
+{
+  "type": "MAJOR",
+  "identifier": "celestial_vaults",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/restoration/increase_healing.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 15.0,
+      "v2": 0.0,
+      "stat": "light_resist",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 50.0,
+      "v2": 0.0,
+      "stat": "all_light_damage",
+      "type": "GLOBAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 15.0,
+      "v2": 0.0,
+      "stat": "dark_resist",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -100.0,
+      "v2": 0.0,
+      "stat": "all_dark_damage",
+      "type": "GLOBAL_INCREASE",
+      "scale_to_lvl": false
+    }
+  ]
+}

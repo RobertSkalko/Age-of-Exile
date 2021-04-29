@@ -1,59 +1,32 @@
 package com.robertx22.age_of_exile.database.data.tiers.base;
 
-import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.database.data.IAutoGson;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
-public class Tier implements ISerializedRegistryEntry<Tier>, ISerializable<Tier> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Tier implements ISerializedRegistryEntry<Tier>, IAutoGson<Tier> {
 
     public static ISerializable<Tier> SERIALIZER = new Tier(1);
 
-    public float mob_health_multi = 1;
-    public float mob_damage_multi = 1;
-    public float mob_stat_multi = 1;
+    public float hp_multi = 1;
+    public float dmg_multi = 1;
+    public float stat_multi = 1;
 
     public float loot_multi = 1;
-    public float chance_for_higher_drop_rarity = 0;
+    public float higher_rar_chance = 0;
 
-    public int id_rank;
-
-    @Override
-    public JsonObject toJson() {
-        JsonObject json = new JsonObject();
-
-        json.addProperty("id_rank", id_rank);
-
-        json.addProperty("mob_health_multi", mob_health_multi);
-        json.addProperty("mob_damage_multi", mob_damage_multi);
-        json.addProperty("mob_stat_multi", mob_stat_multi);
-
-        json.addProperty("loot_multi", loot_multi);
-        json.addProperty("chance_for_higher_drop_rarity", chance_for_higher_drop_rarity);
-
-        return json;
-    }
+    public int id_rank = 0;
 
     @Override
-    public Tier fromJson(JsonObject json) {
-        Tier tier = new Tier();
-
-        tier.id_rank = json.get("id_rank")
-            .getAsInt();
-
-        tier.mob_damage_multi = json.get("mob_damage_multi")
-            .getAsFloat();
-        tier.mob_health_multi = json.get("mob_health_multi")
-            .getAsFloat();
-        tier.mob_stat_multi = json.get("mob_stat_multi")
-            .getAsFloat();
-
-        tier.loot_multi = json.get("loot_multi")
-            .getAsFloat();
-        tier.chance_for_higher_drop_rarity = json.get("chance_for_higher_drop_rarity")
-            .getAsFloat();
-
-        return tier;
+    public Class<Tier> getClassForSerialization() {
+        return Tier.class;
     }
 
     public Tier(int id_rank) {
@@ -63,19 +36,38 @@ public class Tier implements ISerializedRegistryEntry<Tier>, ISerializable<Tier>
         this.setMobStrengthPerRank();
     }
 
+    public List<Text> getTooltip() {
+
+        List<Text> list = new ArrayList<>();
+
+        list.add(new LiteralText("Difficulty: Tier " + id_rank).formatted(Formatting.DARK_RED));
+
+        list.add(new LiteralText(""));
+
+        list.add(new LiteralText("Mob Health: " + (int) (hp_multi * 100) + "%").formatted(Formatting.RED));
+        list.add(new LiteralText("Mob Damage: " + (int) (dmg_multi * 100) + "%").formatted(Formatting.RED));
+        list.add(new LiteralText("Mob Stats: " + (int) (stat_multi * 100) + "%").formatted(Formatting.RED));
+
+        list.add(new LiteralText(""));
+
+        list.add(new LiteralText("Loot: " + (int) (loot_multi * 100) + "%").formatted(Formatting.GOLD));
+
+        return list;
+    }
+
     private Tier() {
 
     }
 
     protected void setMobStrengthPerRank() {
-        this.mob_damage_multi = 1F + 0.4F * id_rank;
-        this.mob_health_multi = 1F + 0.5F * id_rank;
-        this.mob_stat_multi = 1F + 0.3F * id_rank;
+        this.hp_multi = 1F + 0.1F * id_rank;
+        this.dmg_multi = 1F + 0.025F * id_rank;
+        this.stat_multi = 1F + 0.02F * id_rank;
     }
 
     protected void setLootPerRank() {
-        this.loot_multi = 1F + 0.05F * id_rank;
-        this.chance_for_higher_drop_rarity = id_rank * 5;
+        this.loot_multi = 1F + 0.01F * id_rank;
+        this.higher_rar_chance = id_rank * 1;
     }
 
     @Override

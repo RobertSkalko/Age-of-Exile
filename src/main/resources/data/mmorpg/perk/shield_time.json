@@ -1,0 +1,18 @@
+{
+  "type": "STAT",
+  "identifier": "shield_time",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/core/.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "shield_duration",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

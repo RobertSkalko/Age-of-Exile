@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
@@ -71,9 +72,9 @@ public class PhysConvertToEle extends ElementalStat {
 
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            float dmg = effect.number * data.getAverageValue() / 100F;
+            float dmg = effect.data.getNumber() * data.getAverageValue() / 100F;
             effect.addBonusEleDmg(stat.getElement(), dmg);
-            effect.number -= dmg;
+            effect.data.getNumber(EventData.NUMBER).number -= dmg;
 
             return effect;
         }

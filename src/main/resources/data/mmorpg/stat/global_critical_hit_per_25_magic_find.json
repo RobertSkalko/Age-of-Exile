@@ -1,0 +1,16 @@
+{
+  "ser": "more_x_per_y",
+  "data": {
+    "id": "global_critical_hit_per_25_magic_find",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "sec_val": false,
+    "ele": "Physical",
+    "scale": "NONE",
+    "adder_stat": "magic_find",
+    "add_to": "global_critical_hit",
+    "per_amount": 25
+  }
+}

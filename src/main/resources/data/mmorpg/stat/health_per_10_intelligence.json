@@ -1,0 +1,16 @@
+{
+  "ser": "more_x_per_y",
+  "data": {
+    "id": "health_per_10_intelligence",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "sec_val": false,
+    "ele": "Physical",
+    "scale": "NONE",
+    "adder_stat": "intelligence",
+    "add_to": "health",
+    "per_amount": 10
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "STAT",
+  "identifier": "chance_of_burn",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/chance_of_burn.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "chance_of_burn",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

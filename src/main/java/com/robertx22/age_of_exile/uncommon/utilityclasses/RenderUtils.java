@@ -19,10 +19,12 @@ public class RenderUtils {
     public static void renderStack(ItemStack stack, int x, int y) {
         MinecraftClient mc = MinecraftClient.getInstance();
         RenderSystem.enableDepthTest();
+        //  mc.getItemRenderer()
+        //     .renderInGuiWithOverrides(mc.player, stack, x, y);
+        //mc.getItemRenderer()
+        //    .renderGuiItemOverlay(mc.textRenderer, stack, x, y, "");
         mc.getItemRenderer()
-            .renderInGuiWithOverrides(mc.player, stack, x, y);
-        mc.getItemRenderer()
-            .renderGuiItemOverlay(mc.textRenderer, stack, x, y, "");
+            .renderInGui(stack, x, y);
         RenderSystem.disableDepthTest();
     }
 }

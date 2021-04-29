@@ -1,0 +1,32 @@
+{
+  "type": "SPECIAL",
+  "identifier": "spore_aura",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/stat_icons/main/.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "nature_weapon_damage",
+      "type": "LOCAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "spell_nature_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "chance_of_poison",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

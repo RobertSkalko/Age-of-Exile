@@ -1,0 +1,32 @@
+{
+  "type": "SPECIAL",
+  "identifier": "big_mana_steal",
+  "spell": "",
+  "lock_under_adv": "",
+  "icon": "mmorpg:textures/gui/talent_icons/big_mana_steal.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "v2": 0.0,
+      "stat": "attack_all_dmg_leech_as_mana",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "v2": 0.0,
+      "stat": "mana_on_attack_hit",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "v2": 0.0,
+      "stat": "mana",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

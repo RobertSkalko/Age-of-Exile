@@ -12,11 +12,11 @@ public class NormalShield extends ShieldItem implements IAutoLocName {
 
     public Identifier resource = new Identifier("");
 
-    public NormalShield(BaseGearType slot) {
+    public NormalShield() {
 
         super(properties());
 
-        resource = getResource(slot);
+        //   resource = getResource(slot);
 
     }
 

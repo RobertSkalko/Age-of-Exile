@@ -20,7 +20,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import net.minecraft.entity.EntityType;
 
 import java.util.Arrays;
 
@@ -52,7 +51,6 @@ public class OakArmor implements ISlashRegistryInit {
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
-            .mobFilter(EntityType.SPIDER)
             .req(new StatRequirement()
                 .setStr(0.2F)
                 .setWis(0.5F)
@@ -80,7 +78,6 @@ public class OakArmor implements ISlashRegistryInit {
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
-            .mobFilter(EntityType.SPIDER)
             .req(new StatRequirement()
                 .setStr(0.5F)
                 .setWis(0.25F)
@@ -109,7 +106,6 @@ public class OakArmor implements ISlashRegistryInit {
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
-            .mobFilter(EntityType.SPIDER)
             .req(new StatRequirement()
                 .setStr(0.2F)
                 .setWis(0.5F)
@@ -138,7 +134,6 @@ public class OakArmor implements ISlashRegistryInit {
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
-            .mobFilter(EntityType.SPIDER)
             .req(new StatRequirement()
                 .setStr(0.5F)
                 .setVit(0.3F))

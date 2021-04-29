@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.item_filters.bases;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.uncommon.item_filters.*;
 import net.minecraft.item.ItemStack;
 
@@ -16,6 +17,13 @@ public class ItemFilterGroup {
     public static final ItemFilterGroup ANY_CURRENCY_EFFECT = new ItemFilterGroup(new CurrencyItemEffectFilter());
     public static final ItemFilterGroup ANY_UNIQUE = new ItemFilterGroup(new UniqueItemFilter());
     public static final ItemFilterGroup ANY_GEAR = new ItemFilterGroup(new GearItemFilter());
+    public static final ItemFilterGroup DUNGEON_KEY = new ItemFilterGroup(new ItemFilter() {
+        @Override
+        public boolean IsValidItem(ItemStack stack) {
+            return stack.getItem() instanceof DungeonKeyItem;
+        }
+    });
+
     public static final ItemFilterGroup ANY_SPELL_GEM = new ItemFilterGroup(new ItemFilter() {
         @Override
         public boolean IsValidItem(ItemStack stack) {

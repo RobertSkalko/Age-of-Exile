@@ -19,7 +19,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import net.minecraft.entity.EntityType;
 
 import java.util.Arrays;
 
@@ -51,7 +50,6 @@ public class BlazeArmor implements ISlashRegistryInit {
                     new StatModifier(2, 2, Agility.INSTANCE, ModType.FLAT)
                 )
             )
-            .mobFilter(EntityType.BLAZE)
 
             .req(new StatRequirement()
                 .setInt(0.2F)
@@ -79,11 +77,8 @@ public class BlazeArmor implements ISlashRegistryInit {
                     new StatModifier(2, 5, SpellCriticalHit.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT)
-
                 )
             )
-            .mobFilter(EntityType.BLAZE)
-
             .req(new StatRequirement()
                 .setInt(0.25F)
                 .setWis(0.8F))
@@ -111,8 +106,6 @@ public class BlazeArmor implements ISlashRegistryInit {
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
                 )
             )
-            .mobFilter(EntityType.BLAZE)
-
             .req(new StatRequirement()
                 .setWis(0.25F)
                 .setVit(0.25F)
@@ -142,8 +135,6 @@ public class BlazeArmor implements ISlashRegistryInit {
                     new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)
                 )
             )
-            .mobFilter(EntityType.BLAZE)
-
             .req(new StatRequirement()
                 .setVit(0.3F)
                 .setDex(0.25F)
