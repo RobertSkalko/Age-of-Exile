@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -123,7 +123,7 @@ public abstract class EffectData {
 
                     Spell spell = has.getSpell();
 
-                    PlayerSpellCap.ISpellsCap spells = Load.spells((PlayerEntity) en);
+                    EntitySpellCap.ISpellsCap spells = Load.spells((PlayerEntity) en);
 
                     int place = -1;
 

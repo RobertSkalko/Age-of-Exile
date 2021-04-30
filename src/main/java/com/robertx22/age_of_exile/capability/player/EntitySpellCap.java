@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class PlayerSpellCap {
+public class EntitySpellCap {
 
     private static final String PLAYER_SPELL_DATA = "player_spells_data";
     private static final String GEMS = "gems";

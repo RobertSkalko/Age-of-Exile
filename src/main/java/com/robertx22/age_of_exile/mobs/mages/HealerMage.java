@@ -1,8 +1,6 @@
 package com.robertx22.age_of_exile.mobs.mages;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.IntSpells;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mobs.ai.SpellAttackGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -18,14 +16,13 @@ public class HealerMage extends BaseMage {
     }
 
     @Override
-    public Spell getSpell() {
-        return Database.Spells()
-            .get(IntSpells.HEALING_AURA_ID);
+    public String getSpell() {
+        return IntSpells.HEALING_AURA_ID;
     }
 
     @Override
     public void initMyMobGoals() {
-        goalSelector.add(2, new SpellAttackGoal(getSpell(), this, 1, 175, 3));
+        goalSelector.add(2, new SpellAttackGoal(getSpell(), this, 3));
     }
 
     @Override

@@ -3,14 +3,14 @@ package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import net.minecraft.util.Formatting;
 
-public class MoreXPerYOf extends DatapackStat implements IAffectsStats {
+public class MoreXPerYOf extends BaseDatapackStat implements IAffectsStats {
 
     public static String SER_ID = "more_x_per_y";
 

@@ -53,7 +53,9 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     public FoodEffect getFoodEffect() {
         FoodEffect eff = new FoodEffect();
         try {
-            eff.effects_given.add(new StatusEffectData(Registry.STATUS_EFFECT.getId(type.effect), tier.durationSeconds, 1));
+            if (type.effect != null) {
+                eff.effects_given.add(new StatusEffectData(Registry.STATUS_EFFECT.getId(type.effect), tier.durationSeconds, 1));
+            }
             eff.effects_given.add(new StatusEffectData(Registry.STATUS_EFFECT.getId(ModRegistry.POTIONS.FOOD_EFFECT_MAP.get(exileEffect)), tier.durationSeconds, tier.tier + 1));
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,11 +94,14 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
 
     @Override
     public StationShapelessFactory getStationRecipe() {
-        StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.FOOD, this);
-        fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
-        fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
-        fac.input(type.getCraftItem(tier, exileEffect.color));
-        return fac.criterion("player_level", trigger());
+        if (type.getCraftItem(tier, exileEffect.color) != null) {
+            StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.FOOD, this);
+            fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
+            fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
+            fac.input(type.getCraftItem(tier, exileEffect.color));
+            return fac.criterion("player_level", trigger());
+        }
+        return null;
     }
 
 }

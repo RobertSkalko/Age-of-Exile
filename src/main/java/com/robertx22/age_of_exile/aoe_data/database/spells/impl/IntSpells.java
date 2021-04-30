@@ -33,6 +33,7 @@ public class IntSpells implements ISlashRegistryInit {
     public static String THUNDERSPEAR_ID = "thunder_spear";
     public static String HEALING_AURA_ID = "healing_aura";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
+    public static String FIRE_NOVA_ID = "fire_nova";
 
     @Override
     public void registerAll() {
@@ -127,7 +128,7 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)
             .build();
 
-        SpellBuilder.of("fire_nova", SpellConfiguration.Builder.instant(20, 20 * 25), "Fire Nova",
+        SpellBuilder.of(FIRE_NOVA_ID, SpellConfiguration.Builder.instant(20, 20 * 25), "Fire Nova",
             Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
 

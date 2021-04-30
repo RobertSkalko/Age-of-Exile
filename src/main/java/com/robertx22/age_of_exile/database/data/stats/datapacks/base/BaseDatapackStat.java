@@ -8,9 +8,9 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.serializers.StatSerializers;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public abstract class DatapackStat extends Stat implements ISerializable<DatapackStat> {
+public abstract class BaseDatapackStat extends Stat implements ISerializable<BaseDatapackStat> {
 
-    public static DatapackStat MAIN_SERIALIZER = new DatapackStat("") {
+    public static BaseDatapackStat MAIN_SERIALIZER = new BaseDatapackStat("") {
         @Override
         public String locDescForLangFile() {
             return "";
@@ -26,7 +26,7 @@ public abstract class DatapackStat extends Stat implements ISerializable<Datapac
     public Elements element = null;
     public String id = "";
 
-    public DatapackStat(String serializer) {
+    public BaseDatapackStat(String serializer) {
         this.serializer = serializer;
     }
 
@@ -68,12 +68,12 @@ public abstract class DatapackStat extends Stat implements ISerializable<Datapac
     }
 
     @Override
-    public DatapackStat fromJson(JsonObject json) {
+    public BaseDatapackStat fromJson(JsonObject json) {
         this.serializer = json.get("ser")
             .getAsString();
         Preconditions.checkArgument(StatSerializers.INSTANCE.map.containsKey(serializer));
 
-        DatapackStat stat = StatSerializers.INSTANCE.map.get(serializer)
+        BaseDatapackStat stat = StatSerializers.INSTANCE.map.get(serializer)
             .getStatFromJson(json.get("data")
                 .getAsJsonObject());
 

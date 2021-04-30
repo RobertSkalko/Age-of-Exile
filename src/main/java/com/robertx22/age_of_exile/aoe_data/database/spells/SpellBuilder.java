@@ -79,6 +79,11 @@ public class SpellBuilder {
         return this;
     }
 
+    public SpellBuilder weight(int w) {
+        this.spell.weight = w;
+        return this;
+    }
+
     public SpellBuilder onCast(ComponentPart comp) {
         this.spell.attached.on_cast.add(comp);
         comp.addActivationRequirement(EntityActivation.ON_CAST);

@@ -66,6 +66,9 @@ public class MobStatUtils {
                     ExactStatData.noScaling(300, 300, ModType.FLAT, TotalDamage.getInstance()
                         .GUID())
                         .applyStats(mobdata);
+                    ExactStatData.noScaling(100, 100, ModType.LOCAL_INCREASE, HealthRegen.getInstance()
+                        .GUID())
+                        .applyStats(mobdata);
                 }
             }
 

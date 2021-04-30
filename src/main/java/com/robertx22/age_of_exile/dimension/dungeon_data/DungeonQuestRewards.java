@@ -2,9 +2,13 @@ package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodType;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,5 +60,11 @@ public class DungeonQuestRewards {
             stacks.add(stack);
         }
 
+        if (RandomUtils.roll(20)) {
+            ItemStack exp = new ItemStack(ModRegistry.FOOD_ITEMS.MAP.get(ImmutableTriple.of(FoodType.DRINK, FoodExileEffect.EffectColor.YELLOW, dunkey.tier)));
+            stacks.add(exp);
+        }
+
+        stacks.removeIf(x -> x.isEmpty());
     }
 }

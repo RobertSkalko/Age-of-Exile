@@ -57,6 +57,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public static Gson GSON = new Gson();
 
+    public int weight = 1000;
     public String identifier = "";
     public AttachedSpell attached = new AttachedSpell();
     public SpellConfiguration config = new SpellConfiguration();
@@ -368,6 +369,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Spells;
+    }
+
+    @Override
+    public int Weight() {
+        return weight;
     }
 
     @Override

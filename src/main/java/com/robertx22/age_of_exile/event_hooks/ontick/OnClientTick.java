@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
@@ -45,10 +45,14 @@ public class OnClientTick implements ClientTickEvents.EndTick {
 
             NO_MANA_SOUND_COOLDOWN--;
 
-            PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+            EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
             List<String> onCooldown = spells.getCastingData()
-                .getSpellsOnCooldown();
+                .getSpellsOnCooldown(player);
+
+            Load.Unit(player)
+                .getCooldowns()
+                .onTicksPass(1);
 
             spells.getCastingData()
                 .onTimePass(player, spells, 1); // ticks spells on client
@@ -68,7 +72,7 @@ public class OnClientTick implements ClientTickEvents.EndTick {
             }
 
             List<String> onCooldownAfter = spells.getCastingData()
-                .getSpellsOnCooldown();
+                .getSpellsOnCooldown(player);
 
             onCooldown.removeAll(onCooldownAfter);
 

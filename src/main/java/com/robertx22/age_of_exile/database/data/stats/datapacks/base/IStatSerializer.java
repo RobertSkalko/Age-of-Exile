@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public interface IStatSerializer<T extends DatapackStat> {
+public interface IStatSerializer<T extends BaseDatapackStat> {
 
     JsonObject statToJson(T obj);
 

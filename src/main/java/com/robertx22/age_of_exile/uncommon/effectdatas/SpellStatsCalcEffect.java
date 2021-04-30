@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -16,7 +16,7 @@ public class SpellStatsCalcEffect extends EffectData implements IHasSpellEffect 
 
     public String spell_id;
 
-    public PlayerSpellCap.ISpellsCap spells;
+    public EntitySpellCap.ISpellsCap spells;
 
     public SpellStatsCalcEffect(LivingEntity caster, String spell) {
         super(caster, caster);

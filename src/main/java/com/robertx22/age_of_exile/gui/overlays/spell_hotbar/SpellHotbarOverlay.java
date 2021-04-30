@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.gui.overlays.spell_hotbar;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.entity.CooldownsData;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
-import com.robertx22.age_of_exile.saveclasses.spells.SpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -55,7 +55,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
-    PlayerSpellCap.ISpellsCap data;
+    EntitySpellCap.ISpellsCap data;
 
     @Override
     public void onHudRender(MatrixStack matrix, float v) {
@@ -133,9 +133,9 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         if (data.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) {
             mc.getTextureManager()
                 .bindTexture(AURA_ACTIVATED);
-        } else if (!this.data.getCastingData()
-            .getDataBySpell(spell)
-            .cooldownIsReady()) {
+        } else if (Load.Unit(mc.player)
+            .getCooldowns()
+            .isOnCooldown(spell.GUID())) {
             mc.getTextureManager()
                 .bindTexture(SPELL_ON_COOLDOWN);
         } else if (!Load.Unit(this.mc.player)
@@ -165,24 +165,27 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 .bindTexture(spell.getIconLoc());
             this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
 
-            SpellData spelldata = Load.spells(mc.player)
-                .getCastingData()
-                .getDataBySpell(spell);
+            CooldownsData cds = Load.Unit(mc.player)
+                .getCooldowns();
 
-            if (spelldata != null) {
-                float percent = (float) spelldata.getRemainingCooldown() / (float) spelldata.getTotalCooldown();
-                percent = MathHelper.clamp(percent, 0, 1F);
-                mc.getTextureManager()
-                    .bindTexture(COOLDOWN_TEX);
-                this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+            float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) spell.config.cooldown_ticks;
+            percent = MathHelper.clamp(percent, 0, 1F);
+            mc.getTextureManager()
+                .bindTexture(COOLDOWN_TEX);
+            this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
 
-                String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
-                    .getBoundKeyLocalizedText())
-                    .toUpperCase(Locale.ROOT);
-
-                GuiUtils.renderScaledText(matrix,
-                    xs + 23, ys + 23, 1.4F, txt, Formatting.GREEN);
+            int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
+            if (cdsec > 1) {
+                String stext = cdsec + "s";
+                MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 35, ys + 15, Formatting.YELLOW.getColorValue());
             }
+
+            String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
+                .getBoundKeyLocalizedText())
+                .toUpperCase(Locale.ROOT);
+
+            GuiUtils.renderScaledText(matrix,
+                xs + 23, ys + 23, 1.4F, txt, Formatting.GREEN);
 
         }
 

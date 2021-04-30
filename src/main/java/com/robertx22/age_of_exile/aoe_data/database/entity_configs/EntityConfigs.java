@@ -64,6 +64,7 @@ public class EntityConfigs implements ISlashRegistryInit {
         mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire()));
         mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water()));
         mob(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature()));
+        mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire()));
 
         mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new OptScaleExactStat(-100, HealEffectivenessOnSelf.getInstance())));
 

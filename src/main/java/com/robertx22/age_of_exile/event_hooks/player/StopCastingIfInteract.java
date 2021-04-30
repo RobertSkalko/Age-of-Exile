@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.player;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.Entity;
@@ -16,7 +16,7 @@ public class StopCastingIfInteract implements AttackEntityCallback {
         if (player.world.isClient) {
             return;
         }
-        PlayerSpellCap.ISpellsCap data = Load.spells(player);
+        EntitySpellCap.ISpellsCap data = Load.spells(player);
 
         if (data.getCastingData()
             .isCasting()) {

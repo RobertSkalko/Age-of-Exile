@@ -36,6 +36,9 @@ public class OnLogin {
             Load.perks(player)
                 .syncToClient(player);
 
+            Load.playerMaps(player)
+                .syncToClient(player);
+
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);
             }

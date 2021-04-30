@@ -38,7 +38,7 @@ public class ClientConfigs {
 
     public float ITEM_RARITY_OPACITY = 0.75F;
 
-    public int REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES = 32;
+    public int REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES = 35;
 
     public PlayerGUIs PLAYER_GUI_TYPE = PlayerGUIs.RPG;
 

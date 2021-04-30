@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.SimpleProjectile
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleTridentEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mobs.bosses.FireMageBoss;
 import com.robertx22.age_of_exile.mobs.mages.FireMage;
 import com.robertx22.age_of_exile.mobs.mages.HealerMage;
 import com.robertx22.age_of_exile.mobs.mages.NatureMage;
@@ -47,6 +48,7 @@ public class ModEntities {
     public EntityType<WaterMage> WATER_MAGE = mob(WaterMage::new, "water_mage", mageDim);
     public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", mageDim);
     public EntityType<HealerMage> HEALER_MAGE = mob(HealerMage::new, "healer_mage", mageDim);
+    public EntityType<FireMageBoss> FIRE_MAGE_BOSS = mob(FireMageBoss::new, "fire_mage_boss", mageDim);
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id) {

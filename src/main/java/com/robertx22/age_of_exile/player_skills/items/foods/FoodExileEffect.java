@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
+import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
@@ -40,6 +41,7 @@ public enum FoodExileEffect {
     DEF_GRAY("Physical Defense", "def_gray", EffectColor.RED, new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
 
     ELEMENTAL_RESISTANCE("Elementum", "elemental_resist", EffectColor.PURPLE, new OptScaleExactStat(10, new ElementalResist(Elements.Elemental))),
+    EXPERIENCE("Experience", "exp", EffectColor.YELLOW, new OptScaleExactStat(10, BonusExp.getInstance())),
 
     MAGIC_SHIELD_REGEN("Magicka", "magic_shield_regen", EffectColor.PURPLE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
     MANA_REGEN("Arcana", "mana_regen", EffectColor.BLUE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),

@@ -30,6 +30,8 @@ public class FoodItemRegister extends BaseItemRegistrator {
         reg(FoodType.BREW, Arrays.asList(CRITICAL, HEALING, PHYSICAL_DAMAGE, ELEMENTAL_RESISTANCE));
         reg(FoodType.JAM, Arrays.asList(DEF_PURPLE, DEF_BLUE, DEF_YELLOW, DEF_GREEN, DEF_GRAY));
 
+        reg(FoodType.DRINK, Arrays.asList(EXPERIENCE));
+
         regFish(FoodType.FISH, Arrays.asList(DARK_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, LIGHT_DAMAGE));
 
     }

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
@@ -19,7 +19,7 @@ public class SpellCastContext {
 
     public final LivingEntity caster;
     public final EntityCap.UnitData data;
-    public final PlayerSpellCap.ISpellsCap spellsCap;
+    public final EntitySpellCap.ISpellsCap spellsCap;
     public final int ticksInUse;
     public final Spell spell;
     public boolean isLastCastTick;
@@ -99,7 +99,7 @@ public class SpellCastContext {
             }
 
         } else {
-            this.spellsCap = new PlayerSpellCap.DefaultImpl(caster);
+            this.spellsCap = new EntitySpellCap.DefaultImpl(caster);
             this.skillGemData = new SkillGemData();
             skillGemData.lvl = data.getLevel();
         }

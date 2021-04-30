@@ -1,8 +1,6 @@
 package com.robertx22.age_of_exile.mobs.mages;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.IntSpells;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.world.World;
@@ -14,8 +12,7 @@ public class FireMage extends BaseMage {
     }
 
     @Override
-    public Spell getSpell() {
-        return Database.Spells()
-            .get(IntSpells.FIREBALL_ID);
+    public String getSpell() {
+        return IntSpells.FIREBALL_ID;
     }
 }

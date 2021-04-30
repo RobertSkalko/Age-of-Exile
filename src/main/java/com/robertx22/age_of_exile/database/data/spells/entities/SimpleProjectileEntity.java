@@ -53,12 +53,12 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     protected boolean inGround;
 
     private int ticksInGround = 0;
-    private int deathTime = 80;
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<Boolean> EXPIRE_ON_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> PIERCE = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> DEATH_TIME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public Entity ignoreEntity;
 
@@ -98,11 +98,11 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     public int getDeathTime() {
-        return this.deathTime;
+        return dataTracker.get(DEATH_TIME);
     }
 
     public void setDeathTime(int newVal) {
-        this.deathTime = newVal;
+        this.dataTracker.set(DEATH_TIME, newVal);
     }
 
     public SimpleProjectileEntity(EntityType<? extends Entity> type, World worldIn) {
@@ -393,6 +393,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.dataTracker.startTracking(ENTITY_NAME, "");
         this.dataTracker.startTracking(EXPIRE_ON_HIT, true);
         this.dataTracker.startTracking(PIERCE, false);
+        this.dataTracker.startTracking(DEATH_TIME, 100);
         super.initDataTracker();
     }
 
@@ -452,8 +453,8 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.pickupType = PickupPermission.DISALLOWED;
 
         this.setNoGravity(!holder.getOrDefault(MapField.GRAVITY, true));
-        this.deathTime = holder.get(MapField.LIFESPAN_TICKS)
-            .intValue();
+        this.setDeathTime(holder.get(MapField.LIFESPAN_TICKS)
+            .intValue());
 
         this.dataTracker.set(EXPIRE_ON_HIT, holder.getOrDefault(MapField.EXPIRE_ON_HIT, true));
 

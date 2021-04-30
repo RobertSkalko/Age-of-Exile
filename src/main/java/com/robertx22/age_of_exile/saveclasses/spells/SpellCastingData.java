@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -11,12 +11,12 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Storable
 public class SpellCastingData {
@@ -113,20 +113,18 @@ public class SpellCastingData {
         }
     }
 
-    @Store
-    private HashMap<String, SpellData> spellDatas = new HashMap<>();
-
-    public void cancelCast(PlayerEntity player) {
+    public void cancelCast(LivingEntity entity) {
         try {
             if (isCasting()) {
-                SpellCastContext ctx = new SpellCastContext(player, 0, getSpellBeingCast());
+                SpellCastContext ctx = new SpellCastContext(entity, 0, getSpellBeingCast());
 
                 Spell spell = getSpellBeingCast();
                 if (spell != null) {
-                    SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
-
                     int cd = ctx.spell.getCooldownTicks(ctx);
-                    data.setCooldown(cd);
+                    Load.Unit(entity)
+                        .getCooldowns()
+                        .setOnCooldown(spell.GUID(), cd);
+
                 }
 
                 spellBeingCast = "";
@@ -148,7 +146,7 @@ public class SpellCastingData {
 
     transient static Spell lastSpell = null;
 
-    public void onTimePass(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int ticks) {
+    public void onTimePass(LivingEntity entity, EntitySpellCap.ISpellsCap spells, int ticks) {
 
         try {
 
@@ -156,7 +154,7 @@ public class SpellCastingData {
                 Spell spell = Database.Spells()
                     .get(spellBeingCast);
 
-                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
+                SpellCastContext ctx = new SpellCastContext(entity, castingTicksDone, spell);
 
                 if (spell != null && spells != null && Database.Spells()
                     .isRegistered(spell)) {
@@ -164,12 +162,12 @@ public class SpellCastingData {
                 }
 
                 if (ctx.spell.config.cast_type != SpellCastType.USE_ITEM) {
-                    tryCast(player, spells, ctx);
+                    tryCast(ctx);
                 }
 
-                if (player.world.isClient) {
+                if (entity.world.isClient) {
                     if (spell.config.cast_type == SpellCastType.USE_ITEM) {
-                        if (Gear.has(player.getMainHandStack())) {
+                        if (Gear.has(entity.getMainHandStack())) {
                             ClientOnly.pressUseKey();
                         }
                     }
@@ -190,28 +188,21 @@ public class SpellCastingData {
                 lastSpell = null;
             }
 
-            spellDatas.values()
-                .forEach(x -> x.tickCooldown(ticks));
-
         } catch (Exception e) {
             e.printStackTrace();
-            this.cancelCast(player);
+            this.cancelCast(entity);
             // cancel when error, cus this is called on tick, so it doesn't crash servers when 1 spell fails
         }
     }
 
-    public List<String> getSpellsOnCooldown() {
-        return spellDatas.entrySet()
-            .stream()
-            .filter(x -> !x.getValue()
-                .cooldownIsReady())
-            .map(x -> x.getKey())
-            .collect(Collectors.toList());
-
+    public List<String> getSpellsOnCooldown(LivingEntity en) {
+        return Load.Unit(en)
+            .getCooldowns()
+            .getAllSpellsOnCooldown();
     }
 
-    public void setToCast(Spell spell, PlayerEntity player) {
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+    public void setToCast(Spell spell, LivingEntity entity) {
+        SpellCastContext ctx = new SpellCastContext(entity, 0, spell);
 
         this.spellBeingCast = spell.GUID();
         this.castingTicksLeft = ctx.spell.getCastTimeTicks(ctx);
@@ -220,7 +211,7 @@ public class SpellCastingData {
         this.casting = true;
     }
 
-    public void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, SpellCastContext ctx) {
+    public void tryCast(SpellCastContext ctx) {
 
         if (getSpellBeingCast() != null) {
             if (castingTicksLeft <= 0) {
@@ -269,9 +260,9 @@ public class SpellCastingData {
             }
         }
 
-        SpellData data = getDataBySpell(spell);
-
-        if (data.cooldownIsReady() == false) {
+        if (Load.Unit(player)
+            .getCooldowns()
+            .isOnCooldown(spell.GUID())) {
             return false;
         }
 
@@ -282,17 +273,19 @@ public class SpellCastingData {
     }
 
     public void onSpellCast(SpellCastContext ctx) {
-        SpellData data = spellDatas.getOrDefault(ctx.spell.GUID(), new SpellData());
 
         int cd = ctx.spell.getCooldownTicks(ctx);
 
-        data.setCooldown(cd);
+        ctx.data.getCooldowns()
+            .setOnCooldown(ctx.spell.GUID(), cd);
 
         if (ctx.caster instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) ctx.caster;
             if (p.isCreative()) {
                 if (cd > 20) {
-                    data.setCooldown(20);
+                    ctx.data.getCooldowns()
+                        .setOnCooldown(ctx.spell.GUID(), 20);
+
                 }
             }
         }
@@ -302,20 +295,7 @@ public class SpellCastingData {
                 .getCastingData()
                 .onAction((PlayerEntity) ctx.caster, PlayerAction.NOPE);
         }
-        spellDatas.put(ctx.spell.GUID(), data);
         this.casting = false;
-    }
-
-    public SpellData getDataBySpell(Spell spell) {
-
-        String id = spell.GUID();
-
-        if (spellDatas.containsKey(id) == false) {
-            spellDatas.put(id, new SpellData());
-        }
-
-        return spellDatas.get(id);
-
     }
 
 }

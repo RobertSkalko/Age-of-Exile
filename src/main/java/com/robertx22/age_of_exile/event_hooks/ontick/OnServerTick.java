@@ -53,6 +53,10 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data = new PlayerTickData();
                 }
 
+                Load.Unit(player)
+                    .getCooldowns()
+                    .onTicksPass(1);
+
                 Spell spell = Load.spells(player)
                     .getCastingData()
                     .getSpellBeingCast();
@@ -72,9 +76,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     if (player.isAlive()) {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
-
-                        unitdata.getCooldowns()
-                            .onTicksPass(TicksToRegen);
 
                         unitdata.getResources()
                             .shields.onTicksPassed(TicksToRegen);

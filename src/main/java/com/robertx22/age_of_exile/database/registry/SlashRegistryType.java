@@ -34,7 +34,7 @@ import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
@@ -51,7 +51,7 @@ public enum SlashRegistryType {
 
     GEAR_RARITY("gear_rarity", 0, GearRarity.SERIALIZER, SyncTime.ON_LOGIN),
     MOB_RARITY("mob_rarity", 0, MobRarity.SERIALIZER, SyncTime.ON_LOGIN),
-    STAT("stat", 1, DatapackStat.MAIN_SERIALIZER, SyncTime.ON_LOGIN),
+    STAT("stat", 1, BaseDatapackStat.MAIN_SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_SLOT("gear_slot", 3, GearSlot.SERIALIZER, SyncTime.ON_LOGIN),
     EXILE_EFFECT("exile_effect", 3, ExileEffect.SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_TYPE("base_gear_types", 4, BaseGearType.SERIALIZER, SyncTime.ON_LOGIN),

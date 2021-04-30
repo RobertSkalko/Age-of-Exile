@@ -33,6 +33,9 @@ mmorpg:key/3
 mmorpg:key/2
 mmorpg:key/1
 mmorpg:key/0
+mmorpg:food/drink/yellow/1
+mmorpg:food/drink/yellow/2
+mmorpg:food/drink/yellow/0
 mmorpg:food/apple/red/4
 mmorpg:food/jam/yellow/1
 mmorpg:food/jam/yellow/2
@@ -114,7 +117,9 @@ mmorpg:food/jam/yellow/0
 mmorpg:food/fish/yellow/2
 mmorpg:food/fish/yellow/1
 mmorpg:food/fish/yellow/4
+mmorpg:food/drink/yellow/3
 mmorpg:food/fish/yellow/3
+mmorpg:food/drink/yellow/4
 mmorpg:backpack/upgrade/save1
 mmorpg:food/jam/red/4
 mmorpg:food/jam/red/2

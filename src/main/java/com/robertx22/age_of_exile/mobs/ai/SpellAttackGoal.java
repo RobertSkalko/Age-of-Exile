@@ -1,55 +1,44 @@
 package com.robertx22.age_of_exile.mobs.ai;
 
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
-import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.util.math.Vec3d;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 
 public class SpellAttackGoal<T extends HostileEntity> extends Goal {
     private final T actor;
-    private final double speed;
-    private int attackInterval;
+    private double speed = 1;
     private final float squaredRange;
-    private int cooldown = -1;
     private int targetSeeingTicker;
     private boolean movingToLeft;
     private boolean backward;
     private int combatTicks = -1;
 
-    int castingTicks = 0;
+    List<CalculatedSpellData> spells = new ArrayList<>();
 
-    int castTicksNeeded;
-    CalculatedSpellData data;
+    public SpellAttackGoal addOtherSpell(String spell) {
 
-    public SpellAttackGoal(Spell spell, T actor, double speed, int attackInterval, float range) {
-        this.actor = actor;
-        this.speed = speed;
-        this.attackInterval = attackInterval;
-        this.squaredRange = range * range;
-        this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
-
-        data = new CalculatedSpellData();
+        CalculatedSpellData data = new CalculatedSpellData();
         data.level = Load.Unit(actor)
             .getLevel();
-        data.spell_id = spell
-            .GUID();
+        data.spell_id = spell;
 
-        this.castTicksNeeded = (int) data.getSpell()
-            .config.getCastTimeTicks();
+        spells.add(data);
+
+        return this;
 
     }
 
-    public void setAttackInterval(int attackInterval) {
-        this.attackInterval = attackInterval;
+    public SpellAttackGoal(String spell, T actor, float range) {
+        this.actor = actor;
+        this.squaredRange = range * range;
+        this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
+        addOtherSpell(spell);
     }
 
     @Override
@@ -71,7 +60,6 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
         super.stop();
         this.actor.setAttacking(false);
         this.targetSeeingTicker = 0;
-        this.cooldown = -1;
         this.actor.clearActiveItem();
     }
 
@@ -131,51 +119,34 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
                     .lookAt(livingEntity, 30.0F, 30.0F);
             }
 
-            if (castTicksNeeded == 0) {
-                castInstantSpell();
-            } else {
-                castNonInstantSpell();
-            }
+            Load.Unit(actor)
+                .getCooldowns()
+                .onTicksPass(1);
+
+            spells.forEach(x -> tryCast(x));
 
         }
     }
 
-    private void castInstantSpell() {
-        if (cooldown < 1) {
-            this.data.getSpell()
-                .cast(new SpellCastContext(actor, 0, data.getSpell()));
-            this.cooldown = this.attackInterval;
-        } else {
-            cooldown--;
+    public void tryCast(CalculatedSpellData data) {
 
-            if (cooldown % 5 == 0) {
-                if (!this.actor.world.isClient) {
-                    ParticleEnum.sendToClients(
-                        actor.getBlockPos(), actor.world, new ParticlePacketData(actor.getPos(), ParticleEnum.AOE).radius(1)
-                            .motion(new Vec3d(0, 0, 0))
-                            .type(ParticleTypes.WITCH)
-                            .amount(8));
-                }
-            }
-
-        }
-    }
-
-    private void castNonInstantSpell() {
-
-        if (cooldown > 0) {
-            cooldown--;
+        if (Load.Unit(actor)
+            .getCooldowns()
+            .isOnCooldown(data.spell_id)) {
             return;
         }
 
-        this.data.getSpell()
-            .onCastingTick(new SpellCastContext(actor, castingTicks++, data.getSpell()));
-
-        if (castingTicks > castTicksNeeded) {
-            castingTicks = 0;
-
-            cooldown = attackInterval;
+        if (!Load.spells(actor)
+            .getCastingData()
+            .isCasting()) {
+            Load.spells(actor)
+                .getCastingData()
+                .setToCast(data.getSpell(), actor);
         }
+
+        Load.spells(actor)
+            .getCastingData()
+            .onTimePass(actor, Load.spells(actor), 1);
 
     }
 

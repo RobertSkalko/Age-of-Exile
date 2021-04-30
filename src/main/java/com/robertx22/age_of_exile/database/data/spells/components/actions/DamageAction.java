@@ -60,6 +60,10 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
 
             for (LivingEntity t : targets) {
 
+                if (t == null) {
+                    continue;
+                }
+
                 int stacks = 1;
                 try {
                     if (data.has(MapField.EXILE_POTION_ID)) {
