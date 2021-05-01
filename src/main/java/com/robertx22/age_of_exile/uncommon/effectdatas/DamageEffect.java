@@ -44,7 +44,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
-    IElementalResistable, IElementalPenetrable, ICrittable {
+    IElementalResistable, IElementalPenetrable {
 
     public static String ID = "on_damage";
 
@@ -88,7 +88,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public float damageMultiplier = 1;
     public float attackerAccuracy = 0;
     public boolean ignoresResists = false;
-    public boolean crit = false;
 
     public AttackType attackType = AttackType.ATTACK;
     public WeaponTypes weaponType = WeaponTypes.None;
@@ -534,16 +533,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     @Override
     public int GetArmorPenetration() {
         return this.armorPene;
-    }
-
-    @Override
-    public void setCrit(boolean bool) {
-        crit = bool;
-    }
-
-    @Override
-    public boolean isCriticalHit() {
-        return crit;
     }
 
     @Override

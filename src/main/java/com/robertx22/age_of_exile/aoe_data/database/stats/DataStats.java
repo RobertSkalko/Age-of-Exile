@@ -3,13 +3,16 @@ package com.robertx22.age_of_exile.aoe_data.database.stats;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
@@ -40,6 +43,25 @@ public class DataStats implements ISlashRegistryInit {
             x.scaling = StatScaling.NONE;
         })
 
+        .build();
+
+    public DataPackStatAccessor<EmptyAccessor> CRIT_CHANCE = DatapackStatBuilder
+        .<EmptyAccessor>ofSingle("critical_hit", Elements.Physical)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addEffect(StatEffects.SET_IS_CRIT)
+        .setLocName(x -> "Crit Chance")
+        .setLocDesc(x -> "Chance to multiply attack damage by critical damage")
+        .modifyAfterDone(x -> {
+            x.base = 1;
+            x.max = 100;
+            x.min = 0;
+            x.group = Stat.StatGroup.MAIN;
+            x.icon = "\u2694";
+            x.format = Formatting.YELLOW;
+        })
         .build();
 
     @Override

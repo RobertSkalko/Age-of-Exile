@@ -44,6 +44,15 @@ public class DatapackStatBuilder<T> {
 
     private List<String> events = new ArrayList<>();
 
+    public static DatapackStatBuilder<EmptyAccessor> ofSingle(String id, Elements ele) {
+        DatapackStatBuilder<EmptyAccessor> b = new DatapackStatBuilder<EmptyAccessor>();
+        b.accessor = new DataPackStatAccessor<EmptyAccessor>();
+        b.idMaker = x -> id;
+        b.elementMaker = x -> ele;
+        b.addSpecificType(EmptyAccessor.INSTANCE);
+        return b;
+    }
+
     public static <T> DatapackStatBuilder<T> of(Function<T, String> id, Function<T, Elements> ele) {
         DatapackStatBuilder<T> b = new DatapackStatBuilder<T>();
         b.accessor = new DataPackStatAccessor<T>();
