@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
 import java.util.HashMap;
 
@@ -15,8 +16,10 @@ public abstract class StatEffect<T> implements ISerializedRegistryEntry<StatEffe
     public static HashMap<String, StatEffect> SERIALIZERS = new HashMap<>();
 
     static {
+        addSer(new SetDataNumberAction());
         addSer(new SetBooleanEffect());
         addSer(new IncreaseNumberEffect());
+        addSer(new RestoreResourceAction());
         addSer(new GiveExileStatusEffect());
     }
 
@@ -32,7 +35,7 @@ public abstract class StatEffect<T> implements ISerializedRegistryEntry<StatEffe
         this.ser = ser;
     }
 
-    public abstract void activate(T event, StatData data, Stat stat);
+    public abstract void activate(T event, IStatEffect.EffectSides statSource, StatData data, Stat stat);
 
     @Override
     public SlashRegistryType getSlashRegistryType() {

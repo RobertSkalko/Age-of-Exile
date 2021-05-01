@@ -21,7 +21,7 @@ public class SpellBuilder {
     public static SpellBuilder breath(String id, String name, Elements ele, DefaultParticleType particle) {
 
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            Arrays.asList(SkillGemTag.area, SkillGemTag.damage))
             .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)
@@ -54,7 +54,7 @@ public class SpellBuilder {
         builder.spell.config.style = style;
         builder.spell.aura_data = aura;
 
-        builder.spell.config.tags.add(SkillGemTag.AURA);
+        builder.spell.config.tags.add(SkillGemTag.aura);
 
         return builder;
     }

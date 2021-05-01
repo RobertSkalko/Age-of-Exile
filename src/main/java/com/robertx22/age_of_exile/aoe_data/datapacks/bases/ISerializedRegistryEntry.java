@@ -10,11 +10,6 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T> {
             .addSerializable(this);
     }
 
-    default Object addToSerReturn() {
-        addToSerializables();
-        return this;
-    }
-
     @Override
     default boolean isFromDatapack() {
         return true;

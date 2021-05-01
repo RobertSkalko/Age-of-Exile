@@ -77,9 +77,9 @@ public class SpellUtils {
     public static void heal(Spell spell, LivingEntity en, float amount) {
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(Load.Unit(en), en, ResourceType.HEALTH,
-                amount, ResourcesData.Use.RESTORE,
-                spell
-            ));
+                amount, ResourcesData.Use.RESTORE));
+        heal.spell = spell;
+
         heal.Activate();
     }
 

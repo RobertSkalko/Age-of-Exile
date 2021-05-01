@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
@@ -9,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -75,7 +75,7 @@ public class SlimeArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 25, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 10, CriticalDamage.getInstance(), ModType.FLAT),
+                    new StatModifier(1, 10, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
                 )
             )
@@ -130,7 +130,7 @@ public class SlimeArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 25, CriticalDamage.getInstance(), ModType.FLAT),
+                    new StatModifier(10, 25, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
                     new StatModifier(1, 10, SpellDamage.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
                 )

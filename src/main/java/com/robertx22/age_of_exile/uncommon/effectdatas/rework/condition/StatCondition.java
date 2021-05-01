@@ -15,6 +15,8 @@ public abstract class StatCondition<T> implements ISerializedRegistryEntry<StatC
     public static HashMap<String, StatCondition> SERIALIZERS = new HashMap<>();
 
     static {
+        addSer(new IsSpellCondition());
+        addSer(new SpellHasTagCondition());
         addSer(new IsBooleanTrueCondition());
         addSer(new RandomRollCondition());
         addSer(new ElementMatchesStat());
@@ -27,10 +29,21 @@ public abstract class StatCondition<T> implements ISerializedRegistryEntry<StatC
 
     public String id = "";
     public String ser = "";
+    public Boolean is = null;
+
+    public boolean getConditionBoolean() {
+        return is == null ? true : is;
+    }
 
     public StatCondition(String id, String ser) {
         this.ser = ser;
         this.id = id;
+    }
+
+    public StatCondition flipCondition() {
+        this.is = false;
+        this.id += "_is_false";
+        return this;
     }
 
     public abstract boolean can(T event, StatData data, Stat stat);

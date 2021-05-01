@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.offense.crit;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
@@ -50,7 +51,7 @@ public class GlobalCriticalDamage extends Stat implements ITransferToOtherStats 
     @Override
     public void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat) {
         thisstat.addFullyTo(unit.getUnit()
-            .getStatInCalculation(CriticalDamage.getInstance()));
+            .getStatInCalculation(DataStats.CRIT_DAMAGE.get()));
         thisstat.addFullyTo(unit.getUnit()
             .getStatInCalculation(SpellCriticalDamage.getInstance()));
         thisstat.addFullyTo(unit.getUnit()

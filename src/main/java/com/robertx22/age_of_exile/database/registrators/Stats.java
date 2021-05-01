@@ -10,7 +10,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
@@ -171,8 +174,6 @@ public class Stats implements ISlashRegistryInit {
                     // Resources
 
                     add(Armor.getInstance());
-                    add(CriticalDamage.getInstance());
-                    add(CriticalHit.getInstance());
                     add(SpellCriticalDamage.getInstance());
                     add(SpellCriticalHit.getInstance());
                     add(HealCritChance.getInstance());
@@ -189,8 +190,8 @@ public class Stats implements ISlashRegistryInit {
                     add(ManaBurn.getInstance());
                     add(ManaBurnResistance.getInstance());
 
-                    add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.HEALTH, AttackType.ATTACK)));
-                    add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.ATTACK)));
+                    add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.HEALTH, AttackType.attack)));
+                    add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.attack)));
 
                     add(new BonusSkillExp(PlayerSkillEnum.MINING));
 

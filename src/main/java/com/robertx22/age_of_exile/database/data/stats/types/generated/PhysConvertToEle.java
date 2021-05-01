@@ -82,7 +82,7 @@ public class PhysConvertToEle extends ElementalStat {
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
             return effect.getAttackType()
-                .equals(AttackType.ATTACK);
+                .equals(AttackType.attack);
         }
 
     }

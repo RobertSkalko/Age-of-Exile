@@ -86,7 +86,7 @@ public class DodgeRating extends Stat implements IUsableStat {
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
             DodgeRating dodge = (DodgeRating) stat;
 
-            float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.attackerAccuracy, 0, Integer.MAX_VALUE);
+            float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.data.getNumber(EventData.ACCURACY).number, 0, Integer.MAX_VALUE);
 
             float chance = dodge.getUsableValue((int) totalDodge, effect.sourceData.getLevel()) * 100;
 
@@ -95,7 +95,7 @@ public class DodgeRating extends Stat implements IUsableStat {
                 effect.isDodged = true;
             } else {
                 if (RandomUtils.roll(chance)) {
-                    effect.accuracyCritRollFailed = true;
+                    effect.data.setBoolean(EventData.ACCURACY_CRIT_FAILED, true);
                 }
             }
 
@@ -104,7 +104,8 @@ public class DodgeRating extends Stat implements IUsableStat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isAttack();
+            return effect.getAttackType()
+                .isAttack();
         }
     }
 

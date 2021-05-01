@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
@@ -11,8 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleD
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageOverTime;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
@@ -50,8 +49,8 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(2, ProjectileDamage.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(1, CriticalHit.getInstance(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(2, DataStats.CRIT_DAMAGE.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(1, DataStats.CRIT_CHANCE.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(4, ReducedManaReserved.getInstance(), ModType.FLAT));
 
@@ -80,7 +79,7 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(1, AttackStyleDamage.MELEE, ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, AttackStyleDamage.RANGED, ModType.FLAT));
 
-        PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK)), ModType.FLAT));
+        PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.attack)), ModType.FLAT));
 
         new ElementalSpellDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {

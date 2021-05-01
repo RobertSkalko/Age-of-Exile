@@ -56,7 +56,7 @@ public class IncreasedAreaOfEffect extends Stat {
         @Override
         public boolean canActivate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
             return effect.getSpell()
-                .is(SkillGemTag.AREA);
+                .is(SkillGemTag.area);
         }
 
     }

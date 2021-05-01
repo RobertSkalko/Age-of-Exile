@@ -3,8 +3,9 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.ExileEffectContext;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.ExileEffectContext;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
@@ -13,8 +14,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
@@ -90,7 +89,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(TRICKERY, "Trickery", EffectType.BENEFICIAL)
             .stat(5, DodgeRating.getInstance(), ModType.FLAT)
-            .stat(10, CriticalHit.getInstance(), ModType.FLAT)
+            .stat(10, DataStats.CRIT_CHANCE.get(), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(REGENERATE, "Regenerate", EffectType.BENEFICIAL)
@@ -126,8 +125,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(ANGER, "Anger", EffectType.BENEFICIAL)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.15F, ModType.GLOBAL_INCREASE, UUID.fromString("7107DE5E-5CE8-4030-940E-514C1F160890")))
-            .stat(15, CriticalHit.getInstance(), ModType.FLAT)
-            .stat(20, CriticalDamage.getInstance(), ModType.FLAT)
+            .stat(15, DataStats.CRIT_CHANCE.get(), ModType.FLAT)
+            .stat(20, DataStats.CRIT_DAMAGE.get(), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(DIVINE_SHIELD, "Divine Shield", EffectType.BENEFICIAL)
@@ -154,8 +153,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(EAGLE_EYE, "Eagle Eye", EffectType.BENEFICIAL)
             .stat(5, new SpecificWeaponDamage(WeaponTypes.Bow), ModType.FLAT)
             .stat(5, new SpecificWeaponDamage(WeaponTypes.CrossBow), ModType.FLAT)
-            .stat(10, CriticalHit.getInstance(), ModType.LOCAL_INCREASE)
-            .stat(20, CriticalDamage.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(10, DataStats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE)
+            .stat(20, DataStats.CRIT_DAMAGE.get(), ModType.LOCAL_INCREASE)
             .build();
 
     }

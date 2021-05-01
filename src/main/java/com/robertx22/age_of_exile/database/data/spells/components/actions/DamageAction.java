@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -54,7 +55,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
             Elements ele = data.getElement();
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
+            int value = calc.getCalculatedValue(ctx.caster);
 
             value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.DAMAGE);
 
@@ -81,7 +82,8 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
 
                 SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value * stacks, ctx.calculatedSpellData.getSpell());
                 if (data.has(MapField.DMG_EFFECT_TYPE)) {
-                    dmg.attackType = data.getDmgEffectType();
+                    dmg.data.setString(EventData.ATTACK_TYPE, data.getDmgEffectType()
+                        .name());
                 }
                 dmg.element = ele;
                 dmg.Activate();

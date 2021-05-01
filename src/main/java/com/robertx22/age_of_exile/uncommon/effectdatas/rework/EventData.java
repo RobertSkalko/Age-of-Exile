@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework;
 
+import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 import java.util.HashMap;
@@ -12,6 +14,9 @@ public class EventData {
     public static String CRIT = "crit";
     public static String ELEMENT = "element";
     public static String ATTACK_TYPE = "attack_type";
+    public static String ACCURACY = "accuracy";
+    public static String ACCURACY_CRIT_FAILED = "accu_crit_roll_fail";
+    public static String SPELL = "spell";
 
     private HashMap<String, WrappedFloat> floats = new HashMap<>();
     private HashMap<String, Boolean> bools = new HashMap<>();
@@ -52,6 +57,15 @@ public class EventData {
 
     public String getString(String id) {
         return strings.getOrDefault(id, "");
+    }
+
+    public AttackType getAttackType() {
+        return AttackType.valueOf(strings.getOrDefault(ATTACK_TYPE, AttackType.attack.name()));
+    }
+
+    public boolean isSpellEffect() {
+        return Database.Spells()
+            .isRegistered(getString(SPELL));
     }
 
     public void setString(String id, String str) {

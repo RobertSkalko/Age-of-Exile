@@ -4,19 +4,21 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
-public class CriticalDamageEffect extends BaseDamageEffect {
+public class CriticalHitEffect extends BaseDamageEffect {
 
-    private CriticalDamageEffect() {
+    private CriticalHitEffect() {
     }
 
-    public static CriticalDamageEffect getInstance() {
+    public static CriticalHitEffect getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public int GetPriority() {
-        return Priority.AlmostLast.priority;
+        return Priority.First.priority;
     }
 
     @Override
@@ -26,19 +28,17 @@ public class CriticalDamageEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.increaseByPercent(data.getAverageValue());
+        effect.data.setBoolean(EventData.CRIT, true);
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return
-            effect.attackType.isAttack()
-                && effect.isCriticalHit()
-                && !effect.accuracyCritRollFailed;
+        return effect.getAttackType()
+            .isAttack() && RandomUtils.roll(data.getAverageValue());
     }
 
     private static class SingletonHolder {
-        private static final CriticalDamageEffect INSTANCE = new CriticalDamageEffect();
+        private static final CriticalHitEffect INSTANCE = new CriticalHitEffect();
     }
 }

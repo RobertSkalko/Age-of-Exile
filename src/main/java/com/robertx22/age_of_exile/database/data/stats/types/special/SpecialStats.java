@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.database.data.stats.types.special;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
@@ -169,7 +169,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.element.isFire() && effect.isCriticalHit() && RandomUtils.roll(data.getAverageValue());
+                return effect.element.isFire() && effect.data.getBoolean(EventData.CRIT) && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -180,7 +180,7 @@ public class SpecialStats {
     );
 
     public static SpecialStat RANGED_CRIT_DMG_AGAINST_LIVING = new SpecialStat("ranged_crit_dmg_to_undead",
-        format("You have " + VAL1 + "% increased ranged " + CriticalDamage.getInstance()
+        format("You have " + VAL1 + "% increased ranged " + DataStats.CRIT_DAMAGE.get()
             .getIconNameFormat() + " against Undead enemies."),
         new BaseSpecialStatDamageEffect() {
             @Override
@@ -191,7 +191,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.weaponType.isProjectile && effect.target.isUndead() && effect.isCriticalHit();
+                return effect.weaponType.isProjectile && effect.target.isUndead() && effect.data.getBoolean(EventData.CRIT);
             }
 
             @Override
@@ -341,7 +341,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.element.isWater() && effect.isCriticalHit();
+                return effect.element.isWater() && effect.data.getBoolean(EventData.CRIT);
             }
 
             @Override

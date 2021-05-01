@@ -2,12 +2,11 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -79,18 +78,18 @@ public class WeaponPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("true_hit")
             .Named("True Hit")
-            .tier(1, new StatModifier(5, 10, CriticalHit.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(3, 5, CriticalHit.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(2, 3, CriticalHit.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(5, 10, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(3, 5, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(2, 3, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Prefix()
             .Build();
 
         AffixBuilder.Normal("crit_prefix")
             .Named("Critical")
-            .tier(1, new StatModifier(9, 12, CriticalDamage.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(6, 9, CriticalDamage.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(4, 6, CriticalDamage.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(9, 12, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(6, 9, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(4, 6, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Prefix()
             .Build();

@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.aoe_data.database.stats;
+package com.robertx22.age_of_exile.aoe_data.database.stats.base;
 
 // add to serializables and create accesor maps
 
@@ -14,10 +14,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCond
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -117,6 +114,8 @@ public class DatapackStatBuilder<T> {
         return this;
     }
 
+    public static Set<DatapackStat> STATS_TO_ADD_TO_SERIALIZATION = new HashSet<>();
+
     public DataPackStatAccessor<T> build() {
 
         Objects.requireNonNull(idMaker);
@@ -152,10 +151,9 @@ public class DatapackStatBuilder<T> {
                     stat.effect.effects.add(c.GUID());
                 });
 
-                accessor.add(x.getKey(), stat.id);
+                accessor.add(x.getKey(), stat);
 
-                stat.addToSerializables();
-
+                STATS_TO_ADD_TO_SERIALIZATION.add(stat);
             });
 
         return this.accessor;

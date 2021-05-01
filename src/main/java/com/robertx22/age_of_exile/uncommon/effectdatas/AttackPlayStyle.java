@@ -7,17 +7,17 @@ public enum AttackPlayStyle {
     MELEE(StatAttribute.STR) {
         @Override
         public AttackType getAttackType() {
-            return AttackType.ATTACK;
+            return AttackType.attack;
         }
     }, RANGED(StatAttribute.DEX) {
         @Override
         public AttackType getAttackType() {
-            return AttackType.ATTACK;
+            return AttackType.attack;
         }
     }, MAGIC(StatAttribute.INT) {
         @Override
         public AttackType getAttackType() {
-            return AttackType.SPELL;
+            return AttackType.spell;
         }
     };
 

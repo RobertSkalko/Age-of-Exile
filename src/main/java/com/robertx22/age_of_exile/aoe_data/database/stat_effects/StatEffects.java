@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.GiveExileStatusEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.IncreaseNumberEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.SetBooleanEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
@@ -28,10 +29,19 @@ public class StatEffects implements ISlashRegistryInit {
         )
         , x -> new GiveExileStatusEffect(x, IStatEffect.EffectSides.Target, 5));
 
-    public static StatEffect SET_IS_CRIT = (StatEffect) new SetBooleanEffect(EventData.CRIT).addToSerReturn();
+    public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
+    public static StatEffect INCREASE_VALUE = new IncreaseNumberEffect();
+
+    public static void loadClass() {
+    }
 
     @Override
     public void registerAll() {
+
+        GIVE_SELF_EFFECT.addToSerializables();
+        GIVE_EFFECT_TO_TARGET.addToSerializables();
+        SET_IS_CRIT.addToSerializables();
+        INCREASE_VALUE.addToSerializables();
 
     }
 }

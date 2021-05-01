@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -16,8 +17,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantit
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -114,7 +113,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), Mana.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), ManaRegen.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Armor.getInstance(), DodgeRating.getInstance()));
-        addTo(StatType.MAIN, Arrays.asList(CriticalHit.getInstance(), CriticalDamage.getInstance(), SpellCriticalHit.getInstance(), SpellCriticalDamage.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(DataStats.CRIT_CHANCE.get(), DataStats.CRIT_DAMAGE.get(), SpellCriticalHit.getInstance(), SpellCriticalDamage.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Accuracy.getInstance(), SpellDamage.getInstance()));
 
         addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());

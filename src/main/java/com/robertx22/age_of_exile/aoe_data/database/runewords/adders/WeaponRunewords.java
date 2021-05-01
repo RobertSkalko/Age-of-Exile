@@ -1,13 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.runewords.adders;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -83,8 +82,8 @@ public class WeaponRunewords implements ISlashRegistryInit {
             Arrays.asList(
                 new StatModifier(1, 1.5F, 1.5F, 2.5F, new AttackDamage(Elements.Physical), ModType.FLAT),
                 new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
-                new StatModifier(2, 13, CriticalHit.getInstance(), ModType.FLAT),
-                new StatModifier(5, 25, CriticalDamage.getInstance(), ModType.FLAT)
+                new StatModifier(2, 13, DataStats.CRIT_CHANCE.get(), ModType.FLAT),
+                new StatModifier(5, 25, DataStats.CRIT_DAMAGE.get(), ModType.FLAT)
             ),
             Arrays.asList(YUN, MOS, NOS, XER))
             .addToSerializables();

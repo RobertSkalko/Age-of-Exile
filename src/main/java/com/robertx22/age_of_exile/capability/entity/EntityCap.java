@@ -43,7 +43,6 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToCl
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -134,7 +133,7 @@ public class EntityCap {
 
         void forceSetUnit(Unit unit);
 
-        Entity getEntity();
+        LivingEntity getEntity();
 
         boolean canUseWeapon(GearItemData gear);
 
@@ -695,7 +694,7 @@ public class EntityCap {
             }
 
             DamageEffect dmg = new DamageEffect(
-                data, (int) num, AttackType.ATTACK, WeaponTypes.None, style
+                data, (int) num, AttackType.attack, WeaponTypes.None, style
             );
             dmg.setIsBasicAttack();
 
@@ -930,7 +929,7 @@ public class EntityCap {
         }
 
         @Override
-        public Entity getEntity() {
+        public LivingEntity getEntity() {
             return entity;
         }
 

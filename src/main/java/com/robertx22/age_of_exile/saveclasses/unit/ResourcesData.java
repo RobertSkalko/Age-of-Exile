@@ -25,7 +25,7 @@ public class ResourcesData {
 
     public static class Context {
 
-        public Spell spell;
+        public String spell = null;
 
         public UnitData sourceData;
         public LivingEntity source;
@@ -39,16 +39,9 @@ public class ResourcesData {
 
         public boolean statsCalculated = false;
 
-        public Context(UnitData data, LivingEntity entity, ResourceType type, float amount, Use use, Spell spell) {
-            this.targetData = data;
-            this.target = entity;
-            this.sourceData = data;
-            this.source = entity;
-            this.type = type;
-            this.amount = amount;
-            this.use = use;
+        public Context setSpell(String id) {
             this.spell = spell;
-            calculateStats();
+            return this;
         }
 
         public Context(UnitData data, LivingEntity entity, ResourceType type, float amount, Use use) {
@@ -62,7 +55,7 @@ public class ResourcesData {
             calculateStats();
         }
 
-        public Context(LivingEntity caster, LivingEntity target, ResourceType type, float amount, Use use, Spell spell) {
+        public Context(LivingEntity caster, LivingEntity target, ResourceType type, float amount, Use use) {
             this.targetData = Load.Unit(target);
             this.target = target;
             this.sourceData = Load.Unit(caster);
@@ -70,7 +63,6 @@ public class ResourcesData {
             this.type = type;
             this.amount = amount;
             this.use = use;
-            this.spell = spell;
 
             calculateStats();
         }
@@ -84,7 +76,6 @@ public class ResourcesData {
             this.type = type;
             this.amount = amount;
             this.use = use;
-            this.spell = spell;
             calculateStats();
         }
 

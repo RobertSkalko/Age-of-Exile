@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -65,6 +66,15 @@ public abstract class EffectData implements IGUID {
 
     }
 
+    public boolean isSpell() {
+        return data.isSpellEffect();
+    }
+
+    public Spell getSpell() {
+        return Database.Spells()
+            .get(data.getString(EventData.SPELL));
+    }
+
     public void increaseByPercent(float perc) {
         data.getNumber(EventData.NUMBER).number += data.getNumber(EventData.ORIGINAL_VALUE).number * perc / 100F;
     }
@@ -101,7 +111,7 @@ public abstract class EffectData implements IGUID {
 
         List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
 
-        Effects = AddEffects(Effects, data, en);
+        Effects = AddEffects(Effects, data, en, side);
 
         Effects.sort(EffectUnitStat.COMPARATOR);
 
@@ -109,7 +119,7 @@ public abstract class EffectData implements IGUID {
             if (item.stat.isNotZero()) {
                 if (item.effect.Side()
                     .equals(side)) {
-                    item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
+                    item.effect.TryModifyEffect(this, item.statSource, item.stat, item.stat.GetStat());
                 }
             }
         }
@@ -178,7 +188,7 @@ public abstract class EffectData implements IGUID {
 
     }
 
-    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, UnitData unit, LivingEntity en) {
+    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, UnitData unit, LivingEntity en, EffectSides side) {
 
         Unit.StatContainerType type = getStatType(en, unit);
 
@@ -191,20 +201,20 @@ public abstract class EffectData implements IGUID {
                         Stat stat = data.GetStat();
 
                         if (stat.statEffect != null) {
-                            effects.add(new EffectUnitStat(stat.statEffect, unit.getUnit(), data));
+                            effects.add(new EffectUnitStat(stat.statEffect, side, data));
                         }
 
                         if (stat instanceof DatapackStat) {
                             DatapackStat d = (DatapackStat) stat;
                             if (d.effect != null) {
-                                effects.add(new EffectUnitStat(d.effect, unit.getUnit(), data));
+                                effects.add(new EffectUnitStat(d.effect, side, data));
                             }
                         }
 
                         if (stat instanceof IExtraStatEffect) {
                             ((IExtraStatEffect) stat).getEffects()
                                 .forEach(effect -> {
-                                    effects.add(new EffectUnitStat(effect, unit.getUnit(), data));
+                                    effects.add(new EffectUnitStat(effect, side, data));
                                 });
                         }
                     }

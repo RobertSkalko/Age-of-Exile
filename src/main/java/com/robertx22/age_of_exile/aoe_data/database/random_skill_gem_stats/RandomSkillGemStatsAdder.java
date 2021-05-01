@@ -15,10 +15,10 @@ public class RandomSkillGemStatsAdder implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        of("fast_proj", Arrays.asList(SkillGemTag.PROJECTILE),
+        of("fast_proj", Arrays.asList(SkillGemTag.projectile),
             new StatModifier(2, 10, ProjectileSpeed.getInstance())
         );
-        of("proj_dmg", Arrays.asList(SkillGemTag.PROJECTILE),
+        of("proj_dmg", Arrays.asList(SkillGemTag.projectile),
             new StatModifier(2, 5, ProjectileDamage.getInstance())
         );
 

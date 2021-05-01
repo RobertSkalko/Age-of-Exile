@@ -42,7 +42,7 @@ public class SpellConfiguration {
     }
 
     public boolean isProjectile() {
-        return tags.contains(SkillGemTag.PROJECTILE);
+        return tags.contains(SkillGemTag.projectile);
     }
 
     public SpellConfiguration setSwingArm() {

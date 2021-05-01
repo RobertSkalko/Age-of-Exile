@@ -68,7 +68,8 @@ public class Lifesteal extends Stat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isAttack();
+            return effect.getAttackType()
+                .isAttack();
         }
 
     }

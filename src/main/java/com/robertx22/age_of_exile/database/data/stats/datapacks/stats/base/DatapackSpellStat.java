@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats.base;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.registry.Database;

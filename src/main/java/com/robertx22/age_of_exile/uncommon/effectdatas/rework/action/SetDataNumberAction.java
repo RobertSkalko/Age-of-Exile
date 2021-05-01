@@ -5,19 +5,26 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
-public class IncreaseNumberEffect extends StatEffect<EffectData> {
+public class SetDataNumberAction extends StatEffect<EffectData> {
 
-    public IncreaseNumberEffect() {
-        super("increase_number", "increase_number");
+    public String num_id = "";
+
+    public SetDataNumberAction(String num_id) {
+        super("set_data_num_" + num_id, "set_data_number");
+        this.num_id = num_id;
+    }
+
+    public SetDataNumberAction() {
+        super("", "set_data_number");
     }
 
     @Override
     public void activate(EffectData event, IStatEffect.EffectSides statSource, StatData data, Stat stat) {
-        event.increaseByPercent(data.getAverageValue());
+        event.data.getNumber(num_id).number = data.getAverageValue();
     }
 
     @Override
     public Class<? extends StatEffect> getSerClass() {
-        return IncreaseNumberEffect.class;
+        return SetDataNumberAction.class;
     }
 }

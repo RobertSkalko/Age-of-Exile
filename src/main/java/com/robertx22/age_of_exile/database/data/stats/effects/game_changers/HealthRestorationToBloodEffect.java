@@ -45,16 +45,15 @@ public class HealthRestorationToBloodEffect extends BaseStatEffect<ModifyResourc
     @Override
     public boolean canActivate(ModifyResourceEffect effect, StatData data, Stat stat) {
 
-        if (effect.ctx.spell != null) {
+        if (effect.data.isSpellEffect()) {
             return false;
         }
 
         if (effect.ctx.use == ResourcesData.Use.RESTORE) {
             if (effect.ctx.amount > 0) {
                 if (effect.ctx.type == ResourceType.HEALTH) {
-                    if (effect.ctx.spell == null) {
-                        return true;
-                    }
+                    return true;
+
                 }
             }
         }

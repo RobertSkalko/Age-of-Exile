@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DotDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.NonCritDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.IncreasedLeech;
@@ -50,13 +50,13 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("steady_hand", "Steady Hand",
-            new OptScaleExactStat(-100, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-100, DataStats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-100, SpellCriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(20, TotalDamage.getInstance(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("true_hit", "True Hit",
-            new OptScaleExactStat(25, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(25, DataStats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-25, NonCritDamage.getInstance(), ModType.FLAT)
         );
 
@@ -74,7 +74,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
 
         PerkBuilder.gameChanger("divinity", "Divinity",
             new OptScaleExactStat(25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
-            new OptScaleExactStat(-50, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-50, DataStats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-50, SpellCriticalDamage.getInstance(), ModType.GLOBAL_INCREASE)
         );
 

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageInc
 import com.robertx22.age_of_exile.database.data.stats.effects.offense.crit.CriticalHitEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class NonCritDamage extends Stat {
@@ -58,7 +59,7 @@ public class NonCritDamage extends Stat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.isCriticalHit();
+            return !effect.data.getBoolean(EventData.CRIT);
         }
 
     }

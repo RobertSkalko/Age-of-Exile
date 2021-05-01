@@ -53,8 +53,9 @@ public class AreaDamage extends Stat {
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
             if (effect instanceof SpellDamageEffect) {
                 SpellDamageEffect sd = (SpellDamageEffect) effect;
-                return effect.attackType.isSpell() && sd.getSpell()
-                    .is(SkillGemTag.AREA);
+                return effect.getAttackType()
+                    .isSpell() && sd.getSpell()
+                    .is(SkillGemTag.area);
             }
             return false;
 

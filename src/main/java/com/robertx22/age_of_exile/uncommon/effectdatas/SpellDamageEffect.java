@@ -20,7 +20,7 @@ public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
     private static WeaponTypes weapon(LivingEntity en, Spell spell) {
 
         try {
-            if (spell.getConfig().style.getAttackType() != AttackType.SPELL) {
+            if (spell.getConfig().style.getAttackType() != AttackType.spell) {
 
                 ItemStack stack = en.getMainHandStack();
 

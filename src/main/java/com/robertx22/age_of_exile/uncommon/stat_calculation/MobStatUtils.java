@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
@@ -11,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
@@ -165,7 +165,7 @@ public class MobStatUtils {
         stats.add(ExactStatData.scaleTo(10 * rar.StatMultiplier(), ModType.FLAT, Armor.getInstance()
             .GUID(), lvl));
 
-        stats.add(ExactStatData.scaleTo(5 * rar.DamageMultiplier(), ModType.FLAT, CriticalHit.getInstance()
+        stats.add(ExactStatData.scaleTo(5 * rar.DamageMultiplier(), ModType.FLAT, DataStats.CRIT_CHANCE.get()
             .GUID(), lvl));
 
         stats.add(ExactStatData.scaleTo(-25, ModType.FLAT, SpellDamage.getInstance()

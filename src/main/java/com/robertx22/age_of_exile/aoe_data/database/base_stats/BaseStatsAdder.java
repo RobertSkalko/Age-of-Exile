@@ -1,10 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_stats;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellAccuracy;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -27,8 +26,8 @@ public class BaseStatsAdder implements ISlashRegistryInit {
         //c.nonScaled(Health.getInstance(), 10);
         //c.nonScaled(Mana.getInstance(), 10);
 
-        c.nonScaled(CriticalHit.getInstance(), 1);
-        c.nonScaled(CriticalDamage.getInstance(), 0);
+        c.nonScaled(DataStats.CRIT_CHANCE.get(), 1);
+        c.nonScaled(DataStats.CRIT_DAMAGE.get(), 0);
         c.nonScaled(SpellCriticalHit.getInstance(), 1);
         c.nonScaled(SpellCriticalDamage.getInstance(), 0);
 

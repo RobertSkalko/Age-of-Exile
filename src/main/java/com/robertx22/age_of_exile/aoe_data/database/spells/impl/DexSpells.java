@@ -27,7 +27,7 @@ public class DexSpells implements ISlashRegistryInit {
     public void registerAll() {
 
         SpellBuilder.of("arrow_storm", SpellConfiguration.Builder.arrowSpell(20, 20 * 25), "Arrow Storm",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
             .weaponReq(CastingWeapon.RANGED)
 
             .attackStyle(AttackPlayStyle.RANGED)
@@ -41,7 +41,7 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("poison_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Poison Arrow",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
@@ -58,7 +58,7 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("explosive_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(AttackPlayStyle.RANGED)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
@@ -74,7 +74,7 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("recoil_shot", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Recoil Shot",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
             .weaponReq(CastingWeapon.RANGED)
 
             .attackStyle(AttackPlayStyle.RANGED)

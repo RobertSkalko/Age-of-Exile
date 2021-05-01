@@ -58,7 +58,7 @@ public class AttackSpeed extends Stat {
         @Override
         public boolean canActivate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
             Spell spell = effect.getSpell();
-            return spell.config.style.getAttackType() == AttackType.ATTACK;
+            return spell.config.style.getAttackType() == AttackType.attack;
         }
 
     }

@@ -73,7 +73,8 @@ public class SpellDamage extends Stat {
 
         @Override
         public boolean canActivate(SpellDamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isSpell();
+            return effect.getAttackType()
+                .isSpell();
         }
     }
 

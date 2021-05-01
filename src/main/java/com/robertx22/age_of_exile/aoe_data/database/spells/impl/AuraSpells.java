@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.AuraSpellData;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
@@ -64,7 +64,7 @@ public class AuraSpells implements ISlashRegistryInit {
         SpellBuilder.aura(AttackPlayStyle.RANGED, "crit_aura", "True Hit Aura", new AuraSpellData(0.25F,
             Arrays.asList(
                 new StatModifier(15, 25, Accuracy.getInstance()),
-                new StatModifier(5, 10, CriticalHit.getInstance())
+                new StatModifier(5, 10, DataStats.CRIT_CHANCE.get())
             )))
             .build();
 

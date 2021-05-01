@@ -36,7 +36,7 @@ public class PartBuilder {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele)
             .put(MapField.EXILE_POTION_ID, effect)
-            .put(MapField.DMG_EFFECT_TYPE, AttackType.DOT.name()));
+            .put(MapField.DMG_EFFECT_TYPE, AttackType.dot.name()));
 
         c.targets.add(BaseTargetSelector.TARGET.create());
         return c;

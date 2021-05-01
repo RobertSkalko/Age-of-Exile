@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -7,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -100,7 +100,7 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("crit_proj_dmg",
-            new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(2, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(1, ProjectileDamage.getInstance(), ModType.FLAT)
         );
 

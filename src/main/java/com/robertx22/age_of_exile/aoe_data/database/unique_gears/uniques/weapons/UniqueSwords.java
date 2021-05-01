@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.weapons;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.NightDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -34,7 +34,7 @@ public class UniqueSwords implements ISlashRegistryInit {
                 getAttackDamageStat(WeaponTypes.Sword, Number.HALF, Elements.Dark)
             ))
             .stats(Arrays.asList(
-                new StatModifier(10, 20, CriticalDamage.getInstance(), ModType.FLAT),
+                new StatModifier(10, 20, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Dark), ModType.FLAT),
                 new StatModifier(10, 10, CooldownReduction.getInstance(), ModType.FLAT),
                 new StatModifier(2, 4, Lifesteal.getInstance(), ModType.FLAT),

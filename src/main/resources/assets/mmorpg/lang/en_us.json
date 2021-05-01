@@ -582,51 +582,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"mmorpg.spell.armor_aura": "Armor Aura",
-	"mmorpg.spell.arrow_storm": "Arrow Storm",
-	"mmorpg.spell.awaken_mana": "Awaken Mana",
-	"mmorpg.spell.charge": "Charge",
-	"mmorpg.spell.crit_aura": "True Hit Aura",
-	"mmorpg.spell.dodge_aura": "Dodge Aura",
-	"mmorpg.spell.ele_res_aura": "Elemental Resistance Aura",
-	"mmorpg.spell.explosive_arrow": "Explosive Arrow",
-	"mmorpg.spell.fire_bombs": "Fire Bombs",
-	"mmorpg.spell.fire_breath": "Fire Breath",
-	"mmorpg.spell.fire_nova": "Fire Nova",
-	"mmorpg.spell.fireball": "Fire Ball",
-	"mmorpg.spell.flame_strike": "Flame Strike",
-	"mmorpg.spell.frost_armor": "Frost Armor",
-	"mmorpg.spell.frost_breath": "Frost Breath",
-	"mmorpg.spell.frost_nova": "Frost Nova",
-	"mmorpg.spell.frostball": "Ice Ball",
-	"mmorpg.spell.gong_strike": "Gong Strike",
-	"mmorpg.spell.gorgons_gaze": "Gorgon's Gaze",
-	"mmorpg.spell.haste_aura": "Haste Aura",
-	"mmorpg.spell.healing_aura": "Healing Atmosphere",
-	"mmorpg.spell.heart_of_ice": "Heart of Ice",
-	"mmorpg.spell.hp_reg_aura": "Health Regeneration Aura",
-	"mmorpg.spell.levitation": "Levitation",
-	"mmorpg.spell.make_arrows": "Produce Arrows",
-	"mmorpg.spell.mana_reg_aura": "Mana Regeneration Aura",
-	"mmorpg.spell.meteor": "Meteor",
-	"mmorpg.spell.nature_balm": "Nature's Balm",
-	"mmorpg.spell.poison_arrow": "Poison Arrow",
-	"mmorpg.spell.poison_ball": "Poison Ball",
-	"mmorpg.spell.poisoned_weapons": "Poison Weapons",
-	"mmorpg.spell.recoil_shot": "Recoil Shot",
-	"mmorpg.spell.shield_test": "Shield Test",
-	"mmorpg.spell.taunt": "Taunt",
-	"mmorpg.spell.teleport": "Teleport",
-	"mmorpg.spell.thirst_strike": "Thirsting Strike",
-	"mmorpg.spell.thorn_armor": "Thorn Armor",
-	"mmorpg.spell.tidal_strike": "Tidal Strike",
-	"mmorpg.spell.whirlwind": "Whirlwind",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.accurate_mobs": "Accurate",
@@ -723,6 +678,51 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"mmorpg.spell.armor_aura": "Armor Aura",
+	"mmorpg.spell.arrow_storm": "Arrow Storm",
+	"mmorpg.spell.awaken_mana": "Awaken Mana",
+	"mmorpg.spell.charge": "Charge",
+	"mmorpg.spell.crit_aura": "True Hit Aura",
+	"mmorpg.spell.dodge_aura": "Dodge Aura",
+	"mmorpg.spell.ele_res_aura": "Elemental Resistance Aura",
+	"mmorpg.spell.explosive_arrow": "Explosive Arrow",
+	"mmorpg.spell.fire_bombs": "Fire Bombs",
+	"mmorpg.spell.fire_breath": "Fire Breath",
+	"mmorpg.spell.fire_nova": "Fire Nova",
+	"mmorpg.spell.fireball": "Fire Ball",
+	"mmorpg.spell.flame_strike": "Flame Strike",
+	"mmorpg.spell.frost_armor": "Frost Armor",
+	"mmorpg.spell.frost_breath": "Frost Breath",
+	"mmorpg.spell.frost_nova": "Frost Nova",
+	"mmorpg.spell.frostball": "Ice Ball",
+	"mmorpg.spell.gong_strike": "Gong Strike",
+	"mmorpg.spell.gorgons_gaze": "Gorgon's Gaze",
+	"mmorpg.spell.haste_aura": "Haste Aura",
+	"mmorpg.spell.healing_aura": "Healing Atmosphere",
+	"mmorpg.spell.heart_of_ice": "Heart of Ice",
+	"mmorpg.spell.hp_reg_aura": "Health Regeneration Aura",
+	"mmorpg.spell.levitation": "Levitation",
+	"mmorpg.spell.make_arrows": "Produce Arrows",
+	"mmorpg.spell.mana_reg_aura": "Mana Regeneration Aura",
+	"mmorpg.spell.meteor": "Meteor",
+	"mmorpg.spell.nature_balm": "Nature's Balm",
+	"mmorpg.spell.poison_arrow": "Poison Arrow",
+	"mmorpg.spell.poison_ball": "Poison Ball",
+	"mmorpg.spell.poisoned_weapons": "Poison Weapons",
+	"mmorpg.spell.recoil_shot": "Recoil Shot",
+	"mmorpg.spell.shield_test": "Shield Test",
+	"mmorpg.spell.taunt": "Taunt",
+	"mmorpg.spell.teleport": "Teleport",
+	"mmorpg.spell.thirst_strike": "Thirsting Strike",
+	"mmorpg.spell.thorn_armor": "Thorn Armor",
+	"mmorpg.spell.tidal_strike": "Tidal Strike",
+	"mmorpg.spell.whirlwind": "Whirlwind",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.sets.blaze_set": "The Blaze",
@@ -735,25 +735,6 @@
 	"mmorpg.sets.void_set": "Call of the Void",
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
-
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-	"mmorpg.runeword.all_knowing": "All Knowing",
-	"mmorpg.runeword.blaze_fury": "Blaze Fury",
-	"mmorpg.runeword.dawn_light": "Dawn Light",
-	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
-	"mmorpg.runeword.ele_fury": "Elemental Fury",
-	"mmorpg.runeword.infinity": "Infinity",
-	"mmorpg.runeword.momentum": "Momentum",
-	"mmorpg.runeword.rock_golem": "Rock Golem",
-	"mmorpg.runeword.scholar": "Scholar",
-	"mmorpg.runeword.sentinel": "Sentinel",
-	"mmorpg.runeword.shadow": "Shadow",
-	"mmorpg.runeword.starlight": "Starlight",
-	"mmorpg.runeword.venom": "Venom",
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
 
 
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
@@ -799,6 +780,25 @@
 	"mmorpg.one_of_a_kind.whirlwind_mod": "Whirlwind Modifier",
 
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
+
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+	"mmorpg.runeword.all_knowing": "All Knowing",
+	"mmorpg.runeword.blaze_fury": "Blaze Fury",
+	"mmorpg.runeword.dawn_light": "Dawn Light",
+	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
+	"mmorpg.runeword.ele_fury": "Elemental Fury",
+	"mmorpg.runeword.infinity": "Infinity",
+	"mmorpg.runeword.momentum": "Momentum",
+	"mmorpg.runeword.rock_golem": "Rock Golem",
+	"mmorpg.runeword.scholar": "Scholar",
+	"mmorpg.runeword.sentinel": "Sentinel",
+	"mmorpg.runeword.shadow": "Shadow",
+	"mmorpg.runeword.starlight": "Starlight",
+	"mmorpg.runeword.venom": "Venom",
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
 
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
@@ -1463,7 +1463,7 @@
 	"mmorpg.stat.convert_nature_to_phys": "Physical to Nature Damage",
 	"mmorpg.stat.convert_water_to_phys": "Physical to Water Damage",
 	"mmorpg.stat.crit_burn": "§7Your §c☀ Fire§7 Critical Hits have §a[VAL1]§7% chance to cause enemies to burn.",
-	"mmorpg.stat.crit_heal_chance": "Crit Heal Chance",
+	"mmorpg.stat.crit_heal_chance": "Spell Crit Chance",
 	"mmorpg.stat.crit_water_dmg_mana": "§7Your critical §b❉ Water§7 Damage restores §a[VAL1]§7 mana to you.",
 	"mmorpg.stat.critical_damage": "Crit Damage",
 	"mmorpg.stat.critical_hit": "Crit Chance",
@@ -1916,32 +1916,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.foods.critical": "Critical",
-	"effect.mmorpg.foods.dark": "Night",
-	"effect.mmorpg.foods.def_blue": "Arcana Defense",
-	"effect.mmorpg.foods.def_gray": "Physical Defense",
-	"effect.mmorpg.foods.def_green": "Terra Defense",
-	"effect.mmorpg.foods.def_purple": "Magicka Defense",
-	"effect.mmorpg.foods.def_yellow": "Sky Defense",
-	"effect.mmorpg.foods.elemental_resist": "Elementum",
-	"effect.mmorpg.foods.exp": "Experience",
-	"effect.mmorpg.foods.fire": "Ignis",
-	"effect.mmorpg.foods.healing": "Sancti",
-	"effect.mmorpg.foods.health_regen": "Vitala",
-	"effect.mmorpg.foods.light": "Sky",
-	"effect.mmorpg.foods.magic_shield_regen": "Magicka",
-	"effect.mmorpg.foods.mana_regen": "Arcana",
-	"effect.mmorpg.foods.nature": "Terra",
-	"effect.mmorpg.foods.physical": "Physical",
-	"effect.mmorpg.foods.spell_damage": "Enigma",
-	"effect.mmorpg.foods.treasure": "Treasure",
-	"effect.mmorpg.foods.water": "Aqua",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.all_res_necklace_end": "Necklace",
@@ -2076,6 +2050,32 @@
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.foods.critical": "Critical",
+	"effect.mmorpg.foods.dark": "Night",
+	"effect.mmorpg.foods.def_blue": "Arcana Defense",
+	"effect.mmorpg.foods.def_gray": "Physical Defense",
+	"effect.mmorpg.foods.def_green": "Terra Defense",
+	"effect.mmorpg.foods.def_purple": "Magicka Defense",
+	"effect.mmorpg.foods.def_yellow": "Sky Defense",
+	"effect.mmorpg.foods.elemental_resist": "Elementum",
+	"effect.mmorpg.foods.exp": "Experience",
+	"effect.mmorpg.foods.fire": "Ignis",
+	"effect.mmorpg.foods.healing": "Sancti",
+	"effect.mmorpg.foods.health_regen": "Vitala",
+	"effect.mmorpg.foods.light": "Sky",
+	"effect.mmorpg.foods.magic_shield_regen": "Magicka",
+	"effect.mmorpg.foods.mana_regen": "Arcana",
+	"effect.mmorpg.foods.nature": "Terra",
+	"effect.mmorpg.foods.physical": "Physical",
+	"effect.mmorpg.foods.spell_damage": "Enigma",
+	"effect.mmorpg.foods.treasure": "Treasure",
+	"effect.mmorpg.foods.water": "Aqua",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: RACES - NAMES",
 
 	"races.dwarf": "Dwarf",
@@ -2195,7 +2195,7 @@
 	"mmorpg.stat_desc.chance_of_torment": "Chance to apply effect on hit, only works on appropriate element. (Burn = Fire damage) ",
 	"mmorpg.stat_desc.chance_to_give_bloodlust_to_self": "Chance to give effect",
 	"mmorpg.stat_desc.chill_bonus_dmg": "Increases dmg if enemy is affected by: Chilled",
-	"mmorpg.stat_desc.crit_heal_chance": "Chance of critical",
+	"mmorpg.stat_desc.crit_heal_chance": "Chance to multiply attack damage by critical damage",
 	"mmorpg.stat_desc.critical_damage": "If Critical, multiply by x",
 	"mmorpg.stat_desc.critical_hit": "Chance to multiply attack damage by critical damage",
 	"mmorpg.stat_desc.damage_shield": "Decreases that amount of damage from every attack.",
@@ -2267,7 +2267,7 @@
 	"mmorpg.stat_desc.socket_slots": "Adds socket slots to item.",
 	"mmorpg.stat_desc.spell_accuracy": "Affects chance to hit with magic spells.",
 	"mmorpg.stat_desc.spell_critical_damage": "Affects spell damage if it's a critical.",
-	"mmorpg.stat_desc.spell_critical_hit": "Chance to multiply spell damage by critical damage",
+	"mmorpg.stat_desc.spell_critical_hit": "Chance to multiply attack damage by critical damage",
 	"mmorpg.stat_desc.spell_damage": "Increases DMG of all spells no matter the element",
 	"mmorpg.stat_desc.spell_dodge": "Chance to ignore magic spell damage. Melee and ranged type spells don't count.",
 	"mmorpg.stat_desc.strength": "Determines your total: Melee Damage, Armor",

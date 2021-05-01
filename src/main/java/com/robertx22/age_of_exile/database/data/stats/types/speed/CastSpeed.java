@@ -56,7 +56,7 @@ public class CastSpeed extends Stat {
         @Override
         public boolean canActivate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
             Spell spell = effect.getSpell();
-            return spell.config.style.getAttackType() == AttackType.SPELL;
+            return spell.config.style.getAttackType() == AttackType.spell;
         }
 
     }

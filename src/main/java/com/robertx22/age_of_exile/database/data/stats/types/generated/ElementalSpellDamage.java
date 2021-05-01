@@ -65,7 +65,8 @@ public class ElementalSpellDamage extends ElementalStat {
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
 
-            return effect.attackType.isSpell() && effect.GetElement() != null && effect.GetElement()
+            return effect.getAttackType()
+                .isSpell() && effect.GetElement() != null && effect.GetElement()
                 .equals(stat.getElement());
 
         }

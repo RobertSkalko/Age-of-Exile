@@ -51,7 +51,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
             if (!ctx.world.isClient) {
                 ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-                int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
+                int value = calc.getCalculatedValue(ctx.caster);
 
                 int total = 0;
 
@@ -59,9 +59,11 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
 
                 for (LivingEntity t : targets) {
                     ResourcesData.Context hctx = new ResourcesData.Context(ctx.caster, t, ResourceType.HEALTH,
-                        value, ResourcesData.Use.RESTORE,
-                        ctx.calculatedSpellData.getSpell()
+                        value, ResourcesData.Use.RESTORE
                     );
+                    hctx.setSpell(ctx.calculatedSpellData.getSpell()
+                        .GUID());
+
                     SpellHealEffect heal = new SpellHealEffect(hctx);
                     total += heal.data.getNumber();
                     heal.Activate();

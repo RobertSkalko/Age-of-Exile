@@ -74,7 +74,7 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
     @Override
     public String locNameForLangFile() {
         String ele = this.getElement() == Elements.All ? "" : getElement().getIconNameFormat() + " ";
-        String type = info.attackType == AttackType.ALL ? "" : " " + info.attackType.locname + " ";
+        String type = info.attackType == AttackType.all ? "" : " " + info.attackType.locname + " ";
 
         return SpecialStats.format(
             "Leech " + SpecialStats.VAL1 + "% of your " + ele + type + "Damage as " + info.resource.locname
@@ -103,7 +103,7 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.matches(effect.attackType) && info.element.elementsMatch(effect.GetElement());
+            return info.attackType.matches(effect.getAttackType()) && info.element.elementsMatch(effect.GetElement());
         }
 
         @Override

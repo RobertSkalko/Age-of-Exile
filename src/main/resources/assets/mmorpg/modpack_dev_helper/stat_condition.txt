@@ -1,8 +1,10 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 is_bool_true
+is_accu_crit_roll_fail_true_is_false
 random_roll
 is_crit_true
 attack_type_is_all
 attack_type_is_spell
 attack_type_is_attack
+attack_type_is_dot

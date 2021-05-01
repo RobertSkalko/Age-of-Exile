@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
 public class SetBooleanEffect extends StatEffect<EffectData> {
 
@@ -10,7 +11,7 @@ public class SetBooleanEffect extends StatEffect<EffectData> {
     Boolean bool = true;
 
     public SetBooleanEffect(String boolId) {
-        super("set_bool", "set_bool");
+        super("set_bool_" + boolId, "set_bool");
         this.bool_id = boolId;
     }
 
@@ -19,7 +20,7 @@ public class SetBooleanEffect extends StatEffect<EffectData> {
     }
 
     @Override
-    public void activate(EffectData event, StatData data, Stat stat) {
+    public void activate(EffectData event, IStatEffect.EffectSides statSource, StatData data, Stat stat) {
         event.data.setBoolean(bool_id, bool);
     }
 

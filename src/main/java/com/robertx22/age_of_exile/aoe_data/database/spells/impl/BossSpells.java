@@ -28,7 +28,7 @@ public class BossSpells implements ISlashRegistryInit {
 
         SpellBuilder.of(FIRE_BOMBS, SpellConfiguration.Builder.instant(15, 400)
                 .setSwingArm(), "Fire Bombs",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
             .weight(0)
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)

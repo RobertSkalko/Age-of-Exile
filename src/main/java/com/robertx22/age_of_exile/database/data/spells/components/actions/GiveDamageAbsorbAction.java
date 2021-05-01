@@ -46,7 +46,7 @@ public class GiveDamageAbsorbAction extends SpellAction implements ICTextTooltip
         if (!ctx.world.isClient) {
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
+            int value = calc.getCalculatedValue(ctx.caster);
 
             int seconds = data.get(SECONDS)
                 .intValue();

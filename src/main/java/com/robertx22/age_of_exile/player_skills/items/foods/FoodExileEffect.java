@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.foods;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -8,8 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -49,7 +48,7 @@ public enum FoodExileEffect {
 
     HEALING("Sancti", "healing", EffectColor.YELLOW, new OptScaleExactStat(20, HealPower.getInstance())),
     SPELL_DAMAGE("Enigma", "spell_damage", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance())),
-    CRITICAL("Critical", "critical", EffectColor.GREEN, new OptScaleExactStat(5, CriticalHit.getInstance()), new OptScaleExactStat(10, CriticalDamage.getInstance())),
+    CRITICAL("Critical", "critical", EffectColor.GREEN, new OptScaleExactStat(5, DataStats.CRIT_CHANCE.get()), new OptScaleExactStat(10, DataStats.CRIT_DAMAGE.get())),
     TREASURE_QUALITY("Treasure", "treasure", EffectColor.YELLOW, new OptScaleExactStat(10, TreasureQuality.getInstance()));
 
     public String word;

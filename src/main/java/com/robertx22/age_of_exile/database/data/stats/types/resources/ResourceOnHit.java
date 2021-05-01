@@ -90,7 +90,8 @@ public class ResourceOnHit extends Stat implements IGenerated<Stat> {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.matches(info.attackType);
+            return effect.getAttackType()
+                .matches(info.attackType);
         }
 
         @Override

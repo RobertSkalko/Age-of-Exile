@@ -48,7 +48,8 @@ public class DotDamage extends Stat {
     private static class Effect extends BaseDamageIncreaseEffect {
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isDot();
+            return effect.getAttackType()
+                .isDot();
         }
     }
 

@@ -34,7 +34,7 @@ public class SpellDodgeEffect extends BaseDamageEffect {
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         SpellDodge dodge = (SpellDodge) stat;
 
-        float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.attackerAccuracy, 0, Integer.MAX_VALUE);
+        float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.data.getNumber(EventData.ACCURACY).number, 0, Integer.MAX_VALUE);
 
         float chance = dodge.getUsableValue((int) totalDodge, effect.sourceData.getLevel()) * 100;
 
@@ -43,7 +43,7 @@ public class SpellDodgeEffect extends BaseDamageEffect {
             effect.isDodged = true;
         } else {
             if (RandomUtils.roll(chance)) {
-                effect.accuracyCritRollFailed = true;
+                effect.data.setBoolean(EventData.ACCURACY_CRIT_FAILED, true);
             }
         }
 
@@ -52,7 +52,8 @@ public class SpellDodgeEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        if (effect.attackType.isSpell()) {
+        if (effect.getAttackType()
+            .isSpell()) {
             return true;
         }
         return false;
