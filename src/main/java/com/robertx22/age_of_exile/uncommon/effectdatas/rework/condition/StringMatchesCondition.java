@@ -21,7 +21,6 @@ public class StringMatchesCondition extends StatCondition<EffectData> {
 
     @Override
     public boolean can(EffectData event, StatData data, Stat stat) {
-
         return event.data.getString(string_key)
             .equals(string_id);
     }

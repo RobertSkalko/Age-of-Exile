@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class SpearWeapon extends AoeSwordWeapon {
 
     public SpearWeapon() {
-        super(WeaponTypes.Spear);
+        super(WeaponTypes.spear);
     }
 
     @Override

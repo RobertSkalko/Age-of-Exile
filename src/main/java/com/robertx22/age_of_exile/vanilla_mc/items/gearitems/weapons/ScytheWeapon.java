@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class ScytheWeapon extends AoeSwordWeapon {
 
     public ScytheWeapon() {
-        super(WeaponTypes.Scythe);
+        super(WeaponTypes.scythe);
     }
 
     @Override

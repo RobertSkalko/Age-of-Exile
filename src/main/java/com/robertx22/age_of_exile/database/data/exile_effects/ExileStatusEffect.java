@@ -29,13 +29,13 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
     }
 
     public static String getIdPath(EffectType type, int num) {
-        if (type == EffectType.BENEFICIAL) {
+        if (type == EffectType.beneficial) {
             return "beneficial/" + num;
         }
-        if (type == EffectType.HARMFUL) {
+        if (type == EffectType.negative) {
             return "negative/" + num;
         }
-        if (type == EffectType.BUFF) {
+        if (type == EffectType.buff) {
             return "buff/" + num;
         }
 

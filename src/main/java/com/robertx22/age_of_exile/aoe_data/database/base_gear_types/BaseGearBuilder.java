@@ -33,7 +33,7 @@ public class BaseGearBuilder implements DataHelper {
     private List<StatModifier> basestats = new ArrayList<>();
     private List<StatModifier> implicitstats = new ArrayList<>();
     private StatRequirement req = new StatRequirement();
-    private WeaponTypes wep = WeaponTypes.None;
+    private WeaponTypes wep = WeaponTypes.none;
     private int weapon_offhand_stat_util = 0;
     private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;

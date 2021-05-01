@@ -30,7 +30,7 @@ public class DatapackStatBuilder<T> {
     private Function<T, String> locNameMaker;
     private Function<T, String> locDescMaker;
     private Function<T, Elements> elementMaker;
-
+    private Function<T, StatEffect> effectMaker;
     private Consumer<DatapackStat> modifyAfterDone;
 
     private List<StatCondition> conditions = new ArrayList<>();
@@ -86,6 +86,12 @@ public class DatapackStatBuilder<T> {
     public DatapackStatBuilder<T> addEffect(StatEffect effect) {
         Objects.requireNonNull(effect);
         this.effects.add(effect);
+        return this;
+    }
+
+    public DatapackStatBuilder<T> addEffect(Function<T, StatEffect> effect) {
+        Objects.requireNonNull(effect);
+        this.effectMaker = effect;
         return this;
     }
 
@@ -150,6 +156,11 @@ public class DatapackStatBuilder<T> {
                 this.effects.forEach(c -> {
                     stat.effect.effects.add(c.GUID());
                 });
+                if (this.effectMaker != null) {
+                    stat.effect.effects.add(this.effectMaker.apply(x.getKey())
+                        .GUID());
+
+                }
 
                 accessor.add(x.getKey(), stat);
 

@@ -694,7 +694,7 @@ public class EntityCap {
             }
 
             DamageEffect dmg = new DamageEffect(
-                data, (int) num, AttackType.attack, WeaponTypes.None, style
+                data, (int) num, AttackType.attack, WeaponTypes.none, style
             );
             dmg.setIsBasicAttack();
 

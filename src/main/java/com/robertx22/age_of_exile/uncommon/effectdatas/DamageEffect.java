@@ -86,10 +86,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public int armorPene;
     public int elementalPene;
     public boolean isBlocked = false;
-    public float damageMultiplier = 1;
     public boolean ignoresResists = false;
 
-    public WeaponTypes weaponType = WeaponTypes.None;
+    public WeaponTypes weaponType = WeaponTypes.none;
     public boolean isBasicAttack = false;
     public AttackPlayStyle style;
     AttackInformation attackInfo;
@@ -137,7 +136,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public float getActualDamage() {
-        float dmg = this.data.getNumber() * damageMultiplier;
+        float dmg = this.data.getNumber();
 
         if (dmg <= 0) {
             return 0;
@@ -206,7 +205,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (attackInfo != null && attackInfo.getSource() != null) {
             if (attackInfo.getSource()
                 .getSource() instanceof ProjectileEntityDuck) {
-                if (weaponType == WeaponTypes.Bow) {
+                if (weaponType == WeaponTypes.bow) {
                     // don't use this for crossbows, only bows need to be charged fully
 
                     ProjectileEntityDuck duck = (ProjectileEntityDuck) attackInfo.getSource()
@@ -495,7 +494,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     attackInfo, source, target, entry.getValue(),
                     AttackType.attack, this.weaponType, style);
                 bonus.element = entry.getKey();
-                bonus.damageMultiplier = this.damageMultiplier;
                 bonus.calculateEffects();
                 float dmg = bonus.getActualDamage();
 

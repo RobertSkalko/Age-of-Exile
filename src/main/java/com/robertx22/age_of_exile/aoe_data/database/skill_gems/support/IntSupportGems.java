@@ -1,13 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.skill_gems.support;
 
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AreaDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
@@ -24,13 +23,13 @@ public class IntSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("spell_crit_rate", "Spell Critical Chance Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(5, 25, SpellCriticalHit.getInstance())
+            new StatModifier(5, 25, DataStats.SPELL_CRIT_CHANCE.get())
         );
 
         SkillGemBuilder.of("spell_crit_dmg", "Spell Critical Damage Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 40, SpellCriticalDamage.getInstance())
+            new StatModifier(10, 40, DataStats.SPELL_CRIT_DAMAGE.get())
         );
 
         SkillGemBuilder.of("fire_chance", "Chance to Burn Support", new StatRequirement().setBaseInt(20)

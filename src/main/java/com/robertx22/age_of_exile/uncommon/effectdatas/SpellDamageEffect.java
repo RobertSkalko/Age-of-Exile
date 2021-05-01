@@ -35,7 +35,7 @@ public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
             e.printStackTrace();
         }
 
-        return WeaponTypes.None;
+        return WeaponTypes.none;
 
     }
 

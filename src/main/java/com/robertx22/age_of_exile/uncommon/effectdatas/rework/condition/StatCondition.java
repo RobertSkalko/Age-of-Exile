@@ -15,12 +15,15 @@ public abstract class StatCondition<T> implements ISerializedRegistryEntry<StatC
     public static HashMap<String, StatCondition> SERIALIZERS = new HashMap<>();
 
     static {
+        addSer(new IsDayCondition());
         addSer(new IsSpellCondition());
         addSer(new SpellHasTagCondition());
         addSer(new IsBooleanTrueCondition());
         addSer(new RandomRollCondition());
         addSer(new ElementMatchesStat());
         addSer(new StringMatchesCondition());
+        addSer(new WeaponTypeMatches());
+        addSer(new LightLevelCondition());
     }
 
     static void addSer(StatCondition eff) {

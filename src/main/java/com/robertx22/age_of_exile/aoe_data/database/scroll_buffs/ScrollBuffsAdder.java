@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
@@ -39,7 +38,7 @@ public class ScrollBuffsAdder implements ISlashRegistryInit {
 
         ScrollBuff.of("crit", "Of Criticals", "Verum",
             new StatModifier(10, 30, DataStats.CRIT_DAMAGE.get()),
-            new StatModifier(10, 30, SpellCriticalDamage.getInstance())
+            new StatModifier(10, 30, DataStats.SPELL_CRIT_DAMAGE.get())
         );
 
         ScrollBuff.of("costly_spell_dmg", "Of Sacrificial Magic", "Feodo",

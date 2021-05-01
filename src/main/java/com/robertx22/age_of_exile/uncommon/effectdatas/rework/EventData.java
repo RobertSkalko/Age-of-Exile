@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework;
 
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class EventData {
     public static String ACCURACY = "accuracy";
     public static String ACCURACY_CRIT_FAILED = "accu_crit_roll_fail";
     public static String SPELL = "spell";
+    public static String WEAPON_TYPE = "weapon_type";
 
     private HashMap<String, WrappedFloat> floats = new HashMap<>();
     private HashMap<String, Boolean> bools = new HashMap<>();
@@ -49,6 +51,10 @@ public class EventData {
 
     public Elements getElement() {
         return Elements.valueOf(strings.getOrDefault(ELEMENT, Elements.Physical.name()));
+    }
+
+    public WeaponTypes getWeaponType() {
+        return WeaponTypes.valueOf(strings.getOrDefault(WEAPON_TYPE, WeaponTypes.none.name()));
     }
 
     public void setElement(Elements ele) {

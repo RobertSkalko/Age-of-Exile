@@ -5,6 +5,6 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 public class StaffWeapon extends ModWeapon {
 
     public StaffWeapon() {
-        super(WeaponTypes.Staff);
+        super(WeaponTypes.staff);
     }
 }

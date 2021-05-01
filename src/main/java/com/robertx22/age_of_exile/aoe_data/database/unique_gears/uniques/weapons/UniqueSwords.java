@@ -30,8 +30,8 @@ public class UniqueSwords implements ISlashRegistryInit {
             BaseGearWeapons.SWORD.values())
             .setReplacesName()
             .baseStats(Arrays.asList(
-                getAttackDamageStat(WeaponTypes.Sword, Number.HALF, Elements.Physical),
-                getAttackDamageStat(WeaponTypes.Sword, Number.HALF, Elements.Dark)
+                getAttackDamageStat(WeaponTypes.sword, Number.HALF, Elements.Physical),
+                getAttackDamageStat(WeaponTypes.sword, Number.HALF, Elements.Dark)
             ))
             .stats(Arrays.asList(
                 new StatModifier(10, 20, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),

@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
@@ -48,7 +47,7 @@ public class BoneArmor implements ISlashRegistryInit {
                 Arrays.asList(
                     new StatModifier(5, 10, ArmorPenetration.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, DataStats.CRIT_CHANCE.get(), ModType.FLAT),
-                    new StatModifier(5, 8, new SpecificWeaponDamage(WeaponTypes.Bow), ModType.FLAT),
+                    new StatModifier(5, 8, new SpecificWeaponDamage(WeaponTypes.bow), ModType.FLAT),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
 
@@ -135,7 +134,7 @@ public class BoneArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(15, 25, DataStats.CRIT_DAMAGE.get()),
-                    new StatModifier(15, 25, SpellCriticalDamage.getInstance()),
+                    new StatModifier(15, 25, DataStats.SPELL_CRIT_DAMAGE.get()),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
                 )

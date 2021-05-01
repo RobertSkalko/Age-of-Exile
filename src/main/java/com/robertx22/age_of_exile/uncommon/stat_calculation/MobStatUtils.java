@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.SpellDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -160,7 +159,7 @@ public class MobStatUtils {
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(9, ModType.FLAT, SpellDodge.getInstance()
             .GUID(), lvl));
-        stats.add(ExactStatData.scaleTo(2, ModType.FLAT, Accuracy.getInstance()
+        stats.add(ExactStatData.scaleTo(2, ModType.FLAT, DataStats.ACCURACY.get()
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(10 * rar.StatMultiplier(), ModType.FLAT, Armor.getInstance()
             .GUID(), lvl));

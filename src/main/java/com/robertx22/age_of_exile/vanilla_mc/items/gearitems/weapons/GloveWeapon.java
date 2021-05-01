@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class GloveWeapon extends ModWeapon {
 
     public GloveWeapon() {
-        super(WeaponTypes.Glove);
+        super(WeaponTypes.glove);
     }
 
     @Override

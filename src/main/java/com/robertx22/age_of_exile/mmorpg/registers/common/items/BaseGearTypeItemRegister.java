@@ -39,7 +39,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     public HashMap<LevelRange, Item> PLATE_PANTS = of("armor/plate/pants/plate_pants", (lvl) -> new BaseArmorItem(ArmorTier.from(lvl), ArmorType.PLATE, "Plate Pants", EquipmentSlot.LEGS, false));
     public HashMap<LevelRange, Item> PLATE_HELMETS = of("armor/plate/helmet/plate_helmet", (lvl) -> new BaseArmorItem(ArmorTier.from(lvl), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, false));
 
-    public HashMap<LevelRange, Item> SWORDS = of("weapon/sword/sword", () -> new AoeSwordWeapon(WeaponTypes.Sword));
+    public HashMap<LevelRange, Item> SWORDS = of("weapon/sword/sword", () -> new AoeSwordWeapon(WeaponTypes.sword));
     public HashMap<LevelRange, Item> AXES = of("weapon/axe/axe", () -> new AxeWeapon("Axe"));
     public HashMap<LevelRange, Item> SCYTHES = of("weapon/scythe/scythe", () -> new ScytheWeapon());
     public HashMap<LevelRange, Item> SPEARS = of("weapon/spear/spear", () -> new SpearWeapon());

@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
@@ -21,9 +20,9 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_steadiness")
             .Named("Of Steadiness")
-            .tier(1, new StatModifier(10, 20, Accuracy.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(7, 10, Accuracy.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 7, Accuracy.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(10, 20, DataStats.ACCURACY.get(), ModType.FLAT))
+            .tier(2, new StatModifier(7, 10, DataStats.ACCURACY.get(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 7, DataStats.ACCURACY.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();

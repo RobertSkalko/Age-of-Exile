@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelr
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
@@ -10,8 +11,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -96,7 +95,7 @@ public class SeasonRings implements ISlashRegistryInit {
                 new StatModifier(10, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT),
                 new StatModifier(10, 20, new ElementalDamageBonus(Elements.Water), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(5, 15, SpellCriticalHit.getInstance(), ModType.FLAT)
+                new StatModifier(5, 15, DataStats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
             ))
             .req(new StatRequirement()
                 .setInt(0.6F)
@@ -119,7 +118,7 @@ public class SeasonRings implements ISlashRegistryInit {
                 new StatModifier(10, 10, ChanceToApplyEffect.BURN, ModType.FLAT),
                 new StatModifier(10, 20, new ElementalDamageBonus(Elements.Fire), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(5, 15, SpellCriticalDamage.getInstance(), ModType.FLAT)
+                new StatModifier(5, 15, DataStats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
             ))
             .req(new StatRequirement()
                 .setInt(0.6F)

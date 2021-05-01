@@ -12,8 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
@@ -21,8 +19,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.Reduc
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritChance;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritStrength;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
@@ -97,9 +93,7 @@ public class Stats implements ISlashRegistryInit {
                     add(NightDamage.getInstance());
                     add(DarknessDamage.getInstance());
 
-                    add(SpellAccuracy.getInstance());
                     add(SpellDodge.getInstance());
-                    add(Accuracy.getInstance());
 
                     add(ProjectileDamage.getInstance());
                     add(DotDamage.getInstance());
@@ -112,7 +106,7 @@ public class Stats implements ISlashRegistryInit {
                     add(TreasureQuality.getInstance());
                     add(TreasureQuantity.getInstance());
 
-                    add(new SpecificWeaponDamage(WeaponTypes.None));
+                    add(new SpecificWeaponDamage(WeaponTypes.none));
                     add(new AttackDamage(Elements.Physical));
                     add(new ElementalDamageBonus(Elements.Physical));
                     add(new ElementalSpellDamage(Elements.Physical));
@@ -121,7 +115,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new ElementalFocus(Elements.Physical));
                     add(new PhysConvertToEle(Elements.Physical));
                     add(new MaxElementalResist(Elements.Nature));
-                    add(new SpecificElementalWeaponDamage(WeaponTypes.Axe));
+                    add(new SpecificElementalWeaponDamage(WeaponTypes.axe));
 
                     // generated
 
@@ -157,7 +151,6 @@ public class Stats implements ISlashRegistryInit {
                     add(new UnknownStat());
 
                     add(TotalDamage.getInstance());
-                    add(NonCritDamage.getInstance());
 
                     // Resources
                     add(IncreasedLeech.getInstance());
@@ -174,10 +167,6 @@ public class Stats implements ISlashRegistryInit {
                     // Resources
 
                     add(Armor.getInstance());
-                    add(SpellCriticalDamage.getInstance());
-                    add(SpellCriticalHit.getInstance());
-                    add(HealCritChance.getInstance());
-                    add(HealCritStrength.getInstance());
                     add(GlobalCriticalDamage.getInstance());
                     add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());

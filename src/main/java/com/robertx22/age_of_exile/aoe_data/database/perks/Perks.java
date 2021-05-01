@@ -12,8 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleD
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageOverTime;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
@@ -56,8 +54,8 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(2, Lifesteal.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(2, SpellCriticalDamage.getInstance(), ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(1, SpellCriticalHit.getInstance(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(2, DataStats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(1, DataStats.SPELL_CRIT_CHANCE.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
 
@@ -87,12 +85,12 @@ public class Perks implements ISlashRegistryInit {
                 PerkBuilder.stat(x.GUID() + "_and_dot", new OptScaleExactStat(1, x, ModType.FLAT), new OptScaleExactStat(3, new DamageOverTime(x.getElement()), ModType.FLAT));
             });
 
-        new SpecificWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()
+        new SpecificWeaponDamage(WeaponTypes.sword).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
             });
 
-        new SpecificElementalWeaponDamage(WeaponTypes.Sword).generateAllPossibleStatVariations()
+        new SpecificElementalWeaponDamage(WeaponTypes.sword).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
 

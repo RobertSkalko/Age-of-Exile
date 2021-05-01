@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 public class MaceWeapon extends ModWeapon {
 
     public MaceWeapon() {
-        super(WeaponTypes.Mace);
+        super(WeaponTypes.mace);
     }
 
 }

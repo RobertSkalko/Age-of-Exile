@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class DaggerWeapon extends ModWeapon {
     public DaggerWeapon() {
-        super(WeaponTypes.Dagger);
+        super(WeaponTypes.dagger);
     }
 
     @Override

@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.AoeSwordWea
 public final class BaseUniqueSword extends AoeSwordWeapon {
 
     public BaseUniqueSword() {
-        super(WeaponTypes.Sword);
+        super(WeaponTypes.sword);
     }
 
     @Override

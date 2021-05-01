@@ -38,47 +38,47 @@ public class BaseGearWeapons implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        BOW = BaseGearBuilder.weapon(GearSlots.BOW, WeaponTypes.Bow, ModRegistry.GEAR_ITEMS.BOWS)
+        BOW = BaseGearBuilder.weapon(GearSlots.BOW, WeaponTypes.bow, ModRegistry.GEAR_ITEMS.BOWS)
             .req(new StatRequirement().setDex(0.5f))
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .addWarriorLevelRanges()
             .build();
 
-        CROSSBOW = BaseGearBuilder.weapon(GearSlots.CROSBOW, WeaponTypes.CrossBow, ModRegistry.GEAR_ITEMS.CROSSBOWS)
+        CROSSBOW = BaseGearBuilder.weapon(GearSlots.CROSBOW, WeaponTypes.crossbow, ModRegistry.GEAR_ITEMS.CROSSBOWS)
             .req(new StatRequirement().setDex(0.4f)
                 .setStr(0.2F))
             .tags(new TagList(SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .addWarriorLevelRanges()
             .build();
 
-        SCYTHE = BaseGearBuilder.weapon(GearSlots.SCYTHE, WeaponTypes.Scythe, ModRegistry.GEAR_ITEMS.SCYTHES)
+        SCYTHE = BaseGearBuilder.weapon(GearSlots.SCYTHE, WeaponTypes.scythe, ModRegistry.GEAR_ITEMS.SCYTHES)
             .req(new StatRequirement().setInt(0.5f)
                 .setDex(0.2F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.scythe, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence, SlotTag.dexterity))
             .addWarriorLevelRanges()
             .build();
 
-        AXE = BaseGearBuilder.weapon(GearSlots.AXE, WeaponTypes.Axe, ModRegistry.GEAR_ITEMS.AXES)
+        AXE = BaseGearBuilder.weapon(GearSlots.AXE, WeaponTypes.axe, ModRegistry.GEAR_ITEMS.AXES)
             .req(new StatRequirement().setStr(0.5f))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.axe, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
             .addWarriorLevelRanges()
             .build();
 
-        SWORD = BaseGearBuilder.weapon(GearSlots.SWORD, WeaponTypes.Sword, ModRegistry.GEAR_ITEMS.SWORDS)
+        SWORD = BaseGearBuilder.weapon(GearSlots.SWORD, WeaponTypes.sword, ModRegistry.GEAR_ITEMS.SWORDS)
             .req(new StatRequirement().setStr(0.3F)
                 .setDex(0.1F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.sword, SlotTag.melee_weapon, SlotTag.weapon_family, SlotTag.strength, SlotTag.dexterity))
             .addWarriorLevelRanges()
             .build();
 
-        WAND = BaseGearBuilder.weapon(GearSlots.WAND, WeaponTypes.Wand, ModRegistry.GEAR_ITEMS.WANDS)
+        WAND = BaseGearBuilder.weapon(GearSlots.WAND, WeaponTypes.wand, ModRegistry.GEAR_ITEMS.WANDS)
             .req(new StatRequirement().setInt(0.5F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
             .implicitStat(new StatModifier(3, 10, SpellDamage.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 
-        SCEPTER = BaseGearBuilder.weapon(GearSlots.SCEPTER, WeaponTypes.Scepter, ModRegistry.GEAR_ITEMS.SCEPTERS)
+        SCEPTER = BaseGearBuilder.weapon(GearSlots.SCEPTER, WeaponTypes.scepter, ModRegistry.GEAR_ITEMS.SCEPTERS)
             .req(new StatRequirement().setInt(0.2F)
                 .setWis(0.5F)
                 .setStr(0.1F))
@@ -88,7 +88,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .addWarriorLevelRanges()
             .build();
 
-        MACE = BaseGearBuilder.weapon(GearSlots.MACE, WeaponTypes.Mace, ModRegistry.GEAR_ITEMS.MACES)
+        MACE = BaseGearBuilder.weapon(GearSlots.MACE, WeaponTypes.mace, ModRegistry.GEAR_ITEMS.MACES)
             .req(new StatRequirement().setInt(0.25F)
                 .setVit(0.5F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.mace, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength, SlotTag.intelligence))
@@ -96,7 +96,7 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .addWarriorLevelRanges()
             .build();
 
-        HAMMER = BaseGearBuilder.weapon(GearSlots.HAMMER, WeaponTypes.Hammer, ModRegistry.GEAR_ITEMS.HAMMERS)
+        HAMMER = BaseGearBuilder.weapon(GearSlots.HAMMER, WeaponTypes.hammer, ModRegistry.GEAR_ITEMS.HAMMERS)
             .req(new StatRequirement().setStr(0.5F)
                 .setVit(0.5F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.hammer, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
@@ -104,13 +104,13 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .addWarriorLevelRanges()
             .build();
 
-        SPEAR = BaseGearBuilder.weapon(GearSlots.SPEAR, WeaponTypes.Spear, ModRegistry.GEAR_ITEMS.SPEARS)
+        SPEAR = BaseGearBuilder.weapon(GearSlots.SPEAR, WeaponTypes.spear, ModRegistry.GEAR_ITEMS.SPEARS)
             .req(new StatRequirement().setStr(0.75F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.spear, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
             .addWarriorLevelRanges()
             .build();
 
-        GLOVE = BaseGearBuilder.weapon(GearSlots.GLOVE, WeaponTypes.Glove, ModRegistry.GEAR_ITEMS.GLOVES)
+        GLOVE = BaseGearBuilder.weapon(GearSlots.GLOVE, WeaponTypes.glove, ModRegistry.GEAR_ITEMS.GLOVES)
             .req(new StatRequirement().setDex(0.6F)
                 .setAgi(0.3F)
                 .setStr(0.2F))
@@ -118,14 +118,14 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .addWarriorLevelRanges()
             .build();
 
-        DAGGER = BaseGearBuilder.weapon(GearSlots.DAGGER, WeaponTypes.Dagger, ModRegistry.GEAR_ITEMS.DAGGERS)
+        DAGGER = BaseGearBuilder.weapon(GearSlots.DAGGER, WeaponTypes.dagger, ModRegistry.GEAR_ITEMS.DAGGERS)
             .req(new StatRequirement().setDex(0.2F)
                 .setAgi(0.5F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.dagger, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.dexterity))
             .addWarriorLevelRanges()
             .build();
 
-        STAFF = BaseGearBuilder.weapon(GearSlots.STAFF, WeaponTypes.Staff, ModRegistry.GEAR_ITEMS.STAFFS)
+        STAFF = BaseGearBuilder.weapon(GearSlots.STAFF, WeaponTypes.staff, ModRegistry.GEAR_ITEMS.STAFFS)
             .req(new StatRequirement().setInt(0.5F)
                 .setStr(0.2F))
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.staff, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))

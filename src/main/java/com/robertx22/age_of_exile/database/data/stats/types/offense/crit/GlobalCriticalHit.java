@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritChance;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
@@ -55,10 +54,10 @@ public class GlobalCriticalHit extends Stat implements ITransferToOtherStats {
             .getStatInCalculation(DataStats.CRIT_CHANCE.get()));
         thisstat.addFullyTo(unit.getUnit()
             .getStats()
-            .getStatInCalculation(SpellCriticalHit.getInstance()));
+            .getStatInCalculation(DataStats.SPELL_CRIT_CHANCE.get()));
         thisstat.addFullyTo(unit.getUnit()
             .getStats()
-            .getStatInCalculation(HealCritChance.getInstance()));
+            .getStatInCalculation(DataStats.HEAL_CRIT_CHANCE.get()));
         thisstat.clear();
     }
 

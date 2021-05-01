@@ -26,28 +26,28 @@ public class BaseToolsAdder implements ISlashRegistryInit {
     public void registerAll() {
 
         PICKAXE = BaseGearBuilder.of(GearSlots.PICKAXE, "pickaxe", "Pickaxe", ModRegistry.GEAR_ITEMS.PICKAXE)
-            .weaponType(WeaponTypes.Sword)
+            .weaponType(WeaponTypes.sword)
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.pickaxe, BaseGearType.SlotTag.tool_family))
-            .baseStat(getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.HALF, Elements.Physical))
+            .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
             .attackStyle(AttackPlayStyle.MELEE)
             .addToolLevelRanges()
             .build();
 
         FISHING_ROD = BaseGearBuilder.of(GearSlots.FISHING_ROD, "fishing_rod", "Fishing Rod", ModRegistry.GEAR_ITEMS.FISHING_RODS)
-            .weaponType(WeaponTypes.Sword)
+            .weaponType(WeaponTypes.sword)
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.fishing_rod, BaseGearType.SlotTag.tool_family))
-            .baseStat(getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.HALF, Elements.Physical))
+            .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
             .attackStyle(AttackPlayStyle.MELEE)
             .addToolLevelRanges()
             .build();
 
         HOE = BaseGearBuilder.of(GearSlots.HOE, "hoe", "Hoe", ModRegistry.GEAR_ITEMS.HOES)
-            .weaponType(WeaponTypes.Sword)
+            .weaponType(WeaponTypes.sword)
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.hoe, BaseGearType.SlotTag.tool_family))
-            .baseStat(getAttackDamageStat(WeaponTypes.Sword, DataHelper.Number.HALF, Elements.Physical))
+            .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
             .attackStyle(AttackPlayStyle.MELEE)
             .addToolLevelRanges()
             .build();

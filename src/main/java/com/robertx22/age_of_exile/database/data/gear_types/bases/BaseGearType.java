@@ -56,7 +56,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public List<StatModifier> implicit_stats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();
 
-    public WeaponTypes weapon_type = WeaponTypes.None;
+    public WeaponTypes weapon_type = WeaponTypes.none;
     public StatRequirement stat_reqs = new StatRequirement();
     public TagList tags = new TagList();
 
@@ -512,7 +512,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
             o.weapon_type = WeaponTypes.valueOf(json.get("weapon_type")
                 .getAsString());
         } catch (Exception e) {
-            o.weapon_type = WeaponTypes.None;
+            o.weapon_type = WeaponTypes.none;
         }
 
         o.tags = new TagList().fromJson(json.getAsJsonObject("tag_list"));

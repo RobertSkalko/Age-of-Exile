@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.stats.effects.defense;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.SpellDodge;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
@@ -21,8 +20,7 @@ public class SpellDodgeEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
-        return Priority.afterThis(Accuracy.getInstance().statEffect
-            .GetPriority());
+        return 100;
     }
 
     @Override
