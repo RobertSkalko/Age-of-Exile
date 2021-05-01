@@ -35,7 +35,7 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
     }
 
     @Override
-    public final EffectData TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat) {
+    public final void TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat) {
 
         try {
             if (!effect.data.isCanceled()) {
@@ -44,7 +44,6 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
 
                         activate((T) effect, data, stat);
 
-                        return effect;
                     }
                 }
             }
@@ -52,6 +51,5 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
             e.printStackTrace();
         }
 
-        return effect;
     }
 }

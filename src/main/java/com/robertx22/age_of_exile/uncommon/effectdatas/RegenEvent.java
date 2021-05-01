@@ -6,6 +6,13 @@ import net.minecraft.entity.LivingEntity;
 
 public class RegenEvent extends EffectData {
 
+    public static String ID = "on_regen";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     public ResourceType type;
 
     public RegenEvent(LivingEntity source, LivingEntity target, ResourceType type) {

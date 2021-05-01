@@ -12,6 +12,13 @@ import net.minecraft.entity.LivingEntity;
 import java.util.HashMap;
 
 public class SpellStatsCalcEffect extends EffectData implements IHasSpellEffect {
+    public static String ID = "on_spell_stat_calc";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     public CalculatedSpellConfiguration data = new CalculatedSpellConfiguration();
 
     public String spell_id;

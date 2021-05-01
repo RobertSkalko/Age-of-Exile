@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 public class RandomRollCondition extends StatCondition<EffectData> {
 
     public RandomRollCondition() {
-        super("random_roll");
+        super("random_roll", "random_roll");
     }
 
     @Override

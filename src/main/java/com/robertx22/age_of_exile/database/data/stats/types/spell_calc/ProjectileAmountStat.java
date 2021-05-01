@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 public class ProjectileAmountStat extends Stat {
 
     private ProjectileAmountStat() {
-        this.max_val = 10;
+        this.max = 10;
         this.statEffect = new Effect();
         this.scaling = StatScaling.NONE;
     }

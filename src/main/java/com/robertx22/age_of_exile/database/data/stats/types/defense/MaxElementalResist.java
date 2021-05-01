@@ -11,7 +11,7 @@ public class MaxElementalResist extends ElementalStat {
     public MaxElementalResist(Elements element) {
         super(element);
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.group = StatGroup.ELEMENTAL;
     }
 
     @Override

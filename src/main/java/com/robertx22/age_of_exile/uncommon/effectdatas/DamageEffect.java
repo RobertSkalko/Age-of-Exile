@@ -46,6 +46,13 @@ import java.util.Map.Entry;
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable, ICrittable {
 
+    public static String ID = "on_damage";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     public DamageEffect(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(dmg, data.getAttackerEntity(), data.getTargetEntity());
         this.attackInfo = data;

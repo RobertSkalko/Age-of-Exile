@@ -13,10 +13,10 @@ public class DarknessDamage extends Stat {
     public static String GUID = "darkness_dmg";
 
     private DarknessDamage() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NONE;
         this.statEffect = new DarknessDamage.Effect();
-        this.isLongStat = true;
+        this.is_long = true;
     }
 
     public static DarknessDamage getInstance() {

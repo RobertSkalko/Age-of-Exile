@@ -17,8 +17,8 @@ public class ProjectileDamage extends Stat {
         this.scaling = StatScaling.NONE;
         this.statEffect = new Effect();
 
-        this.textIcon = "\u27B9";
-        this.textFormat = Formatting.RED;
+        this.icon = "\u27B9";
+        this.format = Formatting.RED;
     }
 
     public static ProjectileDamage getInstance() {

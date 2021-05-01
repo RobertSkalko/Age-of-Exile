@@ -34,7 +34,7 @@ public class RegeneratePercentStat extends Stat {
         this.type = rtype;
         this.maxGetter = getmax;
 
-        this.statGroup = StatGroup.RESTORATION;
+        this.group = StatGroup.RESTORATION;
 
         this.statEffect = new BaseRegenEffect() {
 

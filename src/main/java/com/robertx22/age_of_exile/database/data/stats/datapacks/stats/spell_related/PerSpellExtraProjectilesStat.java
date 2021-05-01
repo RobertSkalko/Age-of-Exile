@@ -22,14 +22,14 @@ public class PerSpellExtraProjectilesStat extends DatapackSpellStat implements I
         this.spellname = spell.locNameForLangFile();
 
         this.id = "extra_" + spell.GUID() + "_projectiles";
-        this.is_percent = false;
+        this.is_perc = false;
     }
 
     public PerSpellExtraProjectilesStat(String spell) {
         super(SER_ID);
         this.spell = spell;
 
-        this.is_percent = false;
+        this.is_perc = false;
     }
 
     String spellname;

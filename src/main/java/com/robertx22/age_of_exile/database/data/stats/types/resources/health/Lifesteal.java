@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 public class Lifesteal extends Stat {
 
     private Lifesteal() {
-        this.statGroup = StatGroup.RESTORATION;
+        this.group = StatGroup.RESTORATION;
         this.statEffect = new Effect();
     }
 

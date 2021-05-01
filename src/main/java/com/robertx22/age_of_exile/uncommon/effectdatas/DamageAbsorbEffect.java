@@ -32,4 +32,11 @@ public class DamageAbsorbEffect extends EffectData {
 
         }
     }
+
+    public static String ID = "on_absorb_damage";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
 }

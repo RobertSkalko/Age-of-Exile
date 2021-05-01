@@ -25,13 +25,13 @@ public class AttackDamage extends ElementalStat {
 
     public AttackDamage(Elements element) {
         super(element);
-        this.uses_second_val = true;
+        this.use_sec_val = true;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.group = StatGroup.ELEMENTAL;
         this.statEffect = new Effect();
 
-        this.textFormat = element.format;
-        this.textIcon = element.icon;
+        this.format = element.format;
+        this.icon = element.icon;
         this.isLocalTo = x -> x.isWeapon();
     }
 

@@ -13,11 +13,11 @@ public interface IStatSerializer<T extends BaseDatapackStat> {
     default void saveBaseStatValues(T obj, JsonObject json) {
 
         json.addProperty("id", obj.id);
-        json.addProperty("min", obj.min_val);
-        json.addProperty("max", obj.max_val);
-        json.addProperty("base", obj.base_val);
-        json.addProperty("perc", obj.is_percent);
-        json.addProperty("sec_val", obj.uses_second_val);
+        json.addProperty("min", obj.min);
+        json.addProperty("max", obj.max);
+        json.addProperty("base", obj.base);
+        json.addProperty("perc", obj.is_perc);
+        json.addProperty("sec_val", obj.use_sec_val);
         json.addProperty("ele", obj.element != null ? obj.element.name() : Elements.Physical.name());
         json.addProperty("scale", obj.scaling.name());
     }
@@ -26,15 +26,15 @@ public interface IStatSerializer<T extends BaseDatapackStat> {
 
         obj.id = json.get("id")
             .getAsString();
-        obj.min_val = json.get("min")
+        obj.min = json.get("min")
             .getAsFloat();
-        obj.max_val = json.get("max")
+        obj.max = json.get("max")
             .getAsFloat();
-        obj.base_val = json.get("base")
+        obj.base = json.get("base")
             .getAsFloat();
-        obj.is_percent = json.get("perc")
+        obj.is_perc = json.get("perc")
             .getAsBoolean();
-        obj.uses_second_val = json.get("sec_val")
+        obj.use_sec_val = json.get("sec_val")
             .getAsBoolean();
         obj.element = Elements.valueOf(json.get("ele")
             .getAsString());

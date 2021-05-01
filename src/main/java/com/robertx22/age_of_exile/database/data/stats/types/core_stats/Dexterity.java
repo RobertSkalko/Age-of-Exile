@@ -20,7 +20,7 @@ public class Dexterity extends BaseCoreStat {
             new OptScaleExactStat(0.25F, 0.25F, AttackStyleDamage.RANGED, ModType.FLAT),
             new OptScaleExactStat(2, 2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         ));
-        this.textFormat = Formatting.GREEN;
+        this.format = Formatting.GREEN;
     }
 
     @Override

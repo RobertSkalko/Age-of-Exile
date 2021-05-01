@@ -19,10 +19,10 @@ public class BonusSkillYield extends Stat implements IGenerated<Stat> {
 
     public BonusSkillYield(PlayerSkillEnum skill) {
         this.skill = skill;
-        this.base_val = 0;
-        this.min_val = 0;
+        this.base = 0;
+        this.min = 0;
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
 
         this.statEffect = new Effect();
     }

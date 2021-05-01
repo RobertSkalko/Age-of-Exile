@@ -20,7 +20,7 @@ public class ResourceOnHit extends Stat implements IGenerated<Stat> {
 
     public ResourceOnHit(Info info) {
         this.info = info;
-        this.is_percent = false;
+        this.is_perc = false;
 
         this.statEffect = new Effect(info);
     }

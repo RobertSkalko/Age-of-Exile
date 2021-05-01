@@ -16,7 +16,7 @@ public class AllAttributes extends Stat implements ITransferToOtherStats {
 
     private AllAttributes() {
         this.scaling = StatScaling.CORE_STAT;
-        this.textFormat = Formatting.LIGHT_PURPLE;
+        this.format = Formatting.LIGHT_PURPLE;
     }
 
     public static AllAttributes getInstance() {

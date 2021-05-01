@@ -21,11 +21,11 @@ public class ReducedManaReserved extends Stat {
     }
 
     private ReducedManaReserved() {
-        this.base_val = 0;
-        this.min_val = 0;
-        this.max_val = 75;
+        this.base = 0;
+        this.min = 0;
+        this.max = 75;
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
         this.statEffect = new Effect();
     }
 

@@ -13,7 +13,7 @@ public class DamageOverTime extends ElementalStat {
     public DamageOverTime(Elements ele) {
         super(ele);
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
         this.statEffect = new Effect();
 
     }

@@ -19,7 +19,7 @@ public class Wisdom extends BaseCoreStat {
             new OptScaleExactStat(10, 10, Mana.getInstance(), ModType.FLAT),
             new OptScaleExactStat(0.5F, 0.5F, ManaRegen.getInstance(), ModType.FLAT)
         ));
-        this.textFormat = Formatting.LIGHT_PURPLE;
+        this.format = Formatting.LIGHT_PURPLE;
     }
 
     @Override

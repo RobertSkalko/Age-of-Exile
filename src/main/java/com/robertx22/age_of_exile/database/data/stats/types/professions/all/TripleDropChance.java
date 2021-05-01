@@ -22,10 +22,10 @@ public class TripleDropChance extends Stat {
     }
 
     private TripleDropChance() {
-        this.base_val = 0;
-        this.min_val = 0;
+        this.base = 0;
+        this.min = 0;
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
 
         this.statEffect = new Effect();
     }

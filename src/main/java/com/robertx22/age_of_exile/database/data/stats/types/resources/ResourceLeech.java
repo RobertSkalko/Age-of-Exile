@@ -22,9 +22,9 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
     public ResourceLeech(Info info) {
         this.info = info;
         this.statEffect = new Effect(info);
-        this.is_percent = true;
+        this.is_perc = true;
 
-        this.isLongStat = true;
+        this.is_long = true;
     }
 
     @Override

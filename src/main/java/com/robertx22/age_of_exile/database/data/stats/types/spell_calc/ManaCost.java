@@ -11,8 +11,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 public class ManaCost extends Stat {
 
     private ManaCost() {
-        this.min_val = 25;
-        this.max_val = 10000;
+        this.min = 25;
+        this.max = 10000;
 
         this.scaling = StatScaling.NONE;
 

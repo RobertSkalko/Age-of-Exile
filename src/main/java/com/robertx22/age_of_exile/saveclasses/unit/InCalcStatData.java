@@ -51,49 +51,31 @@ public class InCalcStatData {
     private float calcFirstValue() {
         Stat stat = this.GetStat();
 
-        if (stat.isTrait()) {
-            if (Flat > 0) {
-                return 1F;
+        float finalValue = stat.base;
 
-            } else {
-                return 0F;
-            }
+        finalValue += Flat;
 
-        } else {
-            float finalValue = stat.base_val;
+        finalValue *= 1 + Percent / 100;
 
-            finalValue += Flat;
+        finalValue *= 1 + Multi / 100;
 
-            finalValue *= 1 + Percent / 100;
+        return MathHelper.clamp(finalValue, stat.min, stat.max);
 
-            finalValue *= 1 + Multi / 100;
-
-            return MathHelper.clamp(finalValue, stat.min_val, stat.max_val);
-
-        }
     }
 
     private float calcSecondValue() {
         Stat stat = this.GetStat();
 
-        if (stat.isTrait()) {
-            if (Flat2 > 0) {
-                return 1F;
+        float finalValue = stat.base;
 
-            } else {
-                return 0F;
-            }
-        } else {
-            float finalValue = stat.base_val;
+        finalValue += Flat2;
 
-            finalValue += Flat2;
+        finalValue *= 1 + Percent / 100;
 
-            finalValue *= 1 + Percent / 100;
+        finalValue *= 1 + Multi / 100;
 
-            finalValue *= 1 + Multi / 100;
+        return MathHelper.clamp(finalValue, stat.min, stat.max);
 
-            return MathHelper.clamp(finalValue, stat.min_val, stat.max_val);
-        }
     }
 
     public Stat GetStat() {

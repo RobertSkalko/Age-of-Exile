@@ -23,9 +23,9 @@ public class DamageUnderPotion extends Stat {
         this.status = status;
         this.id = id;
         this.statEffect = new Effect(status);
-        this.is_percent = true;
+        this.is_perc = true;
 
-        this.isLongStat = true;
+        this.is_long = true;
 
     }
 

@@ -12,12 +12,12 @@ import net.minecraft.util.Formatting;
 public class ProjectileSpeed extends Stat {
 
     private ProjectileSpeed() {
-        this.max_val = 200;
+        this.max = 200;
 
         this.statEffect = new Effect();
 
-        this.textIcon = "\u27B9";
-        this.textFormat = Formatting.GREEN;
+        this.icon = "\u27B9";
+        this.format = Formatting.GREEN;
     }
 
     public static ProjectileSpeed getInstance() {

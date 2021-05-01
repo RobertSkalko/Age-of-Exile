@@ -12,9 +12,9 @@ public class ManaRegen extends BaseRegenClass {
     }
 
     private ManaRegen() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
     }
 
     @Override

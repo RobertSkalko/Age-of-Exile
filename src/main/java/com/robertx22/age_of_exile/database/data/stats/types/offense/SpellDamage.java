@@ -12,10 +12,10 @@ public class SpellDamage extends Stat {
 
     private SpellDamage() {
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
         this.statEffect = new Effect();
-        this.textFormat = Formatting.LIGHT_PURPLE;
+        this.format = Formatting.LIGHT_PURPLE;
     }
 
     public static String GUID = "spell_damage";

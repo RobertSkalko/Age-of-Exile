@@ -21,11 +21,11 @@ public class IncreasedEffectOfAuras extends Stat implements IStatCtxModifier {
     }
 
     private IncreasedEffectOfAuras() {
-        this.base_val = 0;
-        this.min_val = -500;
-        this.max_val = 500;
+        this.base = 0;
+        this.min = -500;
+        this.max = 500;
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
 
     }
 

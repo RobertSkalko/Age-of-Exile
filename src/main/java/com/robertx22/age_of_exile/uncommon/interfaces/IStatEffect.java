@@ -34,14 +34,20 @@ public interface IStatEffect {
     }
 
     public enum EffectSides {
-        Source,
-        Target
+        Source("source"),
+        Target("target");
+
+        public String id;
+
+        EffectSides(String id) {
+            this.id = id;
+        }
     }
 
     public abstract EffectSides Side();
 
     public abstract int GetPriority();
 
-    public abstract EffectData TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat);
+    public abstract void TryModifyEffect(EffectData effect, Unit source, StatData data, Stat stat);
 
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class EventComponents {
 
+    // todo spell id and element can just be in data
+
     public static String SPELL_ID = "spell";
     public static String ELEMENT_ID = "element";
 
@@ -18,7 +20,6 @@ public class EventComponents {
     }
 
     public SpellEventComponent getSpellComponent() {
-
         return (SpellEventComponent) map.get(SPELL_ID);
     }
 

@@ -29,10 +29,9 @@ public class ChanceToGetEffectOnKill extends Stat {
 
         this.scaling = StatScaling.NONE;
 
-        this.add$plusminus$toTooltip = false;
-        this.min_val = 0;
+        this.min = 0;
 
-        this.isLongStat = true;
+        this.is_long = true;
 
         this.statEffect = new Effect(effect, ele);
     }

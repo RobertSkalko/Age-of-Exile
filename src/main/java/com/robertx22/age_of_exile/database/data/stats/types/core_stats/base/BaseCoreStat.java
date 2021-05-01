@@ -21,11 +21,11 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     public BaseCoreStat(List<OptScaleExactStat> stats) {
         this.scaling = StatScaling.CORE_STAT;
-        this.min_val = 0;
+        this.min = 0;
         this.stats = stats;
-        this.statGroup = StatGroup.CORE;
+        this.group = StatGroup.CORE;
 
-        this.textIcon = "\u06DE";
+        this.icon = "\u06DE";
     }
 
     List<OptScaleExactStat> stats;

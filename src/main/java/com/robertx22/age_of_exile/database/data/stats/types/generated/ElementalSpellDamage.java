@@ -24,7 +24,7 @@ public class ElementalSpellDamage extends ElementalStat {
 
     public ElementalSpellDamage(Elements element) {
         super(element);
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.group = StatGroup.ELEMENTAL;
         this.statEffect = new Effect();
     }
 

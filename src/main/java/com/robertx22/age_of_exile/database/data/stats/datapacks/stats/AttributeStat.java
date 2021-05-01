@@ -28,7 +28,7 @@ public class AttributeStat extends BaseDatapackStat {
         this.attributeId = Registry.ATTRIBUTE.getId(attribute)
             .toString();
         this.attribute = attribute;
-        this.is_percent = perc;
+        this.is_perc = perc;
     }
 
     @Override

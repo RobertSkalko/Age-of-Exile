@@ -22,13 +22,13 @@ public class HealCritStrength extends Stat {
     }
 
     private HealCritStrength() {
-        this.base_val = 50;
-        this.min_val = 0;
-        this.max_val = 500;
-        this.statGroup = StatGroup.MAIN;
+        this.base = 50;
+        this.min = 0;
+        this.max = 500;
+        this.group = StatGroup.MAIN;
 
-        this.textIcon = "\u2694";
-        this.textFormat = Formatting.GOLD;
+        this.icon = "\u2694";
+        this.format = Formatting.GOLD;
 
         this.statEffect = new BaseHealEffect() {
             @Override

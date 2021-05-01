@@ -14,7 +14,7 @@ public class AttackSpeed extends Stat {
     public static String GUID = "attack_speed";
 
     private AttackSpeed() {
-        this.base_val = 100;
+        this.base = 100;
         this.statEffect = new Effect();
     }
 
@@ -51,7 +51,7 @@ public class AttackSpeed extends Stat {
 
         @Override
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.add(SpellModEnum.CAST_SPEED, -(data.getAverageValue() - stat.base_val));
+            effect.data.add(SpellModEnum.CAST_SPEED, -(data.getAverageValue() - stat.base));
             return effect;
         }
 

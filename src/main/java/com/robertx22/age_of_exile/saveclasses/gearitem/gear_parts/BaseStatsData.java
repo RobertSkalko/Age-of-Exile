@@ -90,7 +90,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
             }
         }
 
-        pairs.sort(Comparator.comparingInt(x -> x.getLeft().baseStatTooltipOrder));
+        pairs.sort(Comparator.comparingInt(x -> x.getLeft().order));
 
         pairs.forEach(x -> {
             list.addAll(x.getRight());

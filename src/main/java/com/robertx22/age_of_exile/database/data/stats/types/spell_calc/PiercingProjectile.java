@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 public class PiercingProjectile extends Stat {
 
     private PiercingProjectile() {
-        this.max_val = 1;
+        this.max = 1;
         this.statEffect = new Effect();
     }
 

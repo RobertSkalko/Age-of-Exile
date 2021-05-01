@@ -24,7 +24,7 @@ public class ElementalDamageBonus extends ElementalStat {
     public ElementalDamageBonus(Elements element) {
         super(element);
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.group = StatGroup.ELEMENTAL;
         this.statEffect = new Effect();
     }
 

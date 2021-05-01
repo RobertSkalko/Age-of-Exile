@@ -22,14 +22,14 @@ public class PerSpellDamageStat extends DatapackSpellStat implements IExtraStatE
         this.spellname = spell.locNameForLangFile();
 
         this.id = "extra_" + spell.GUID() + "_dmg";
-        this.is_percent = true;
+        this.is_perc = true;
     }
 
     public PerSpellDamageStat(String spell) {
         super(SER_ID);
         this.spell = spell;
 
-        this.is_percent = true;
+        this.is_perc = true;
     }
 
     @Override

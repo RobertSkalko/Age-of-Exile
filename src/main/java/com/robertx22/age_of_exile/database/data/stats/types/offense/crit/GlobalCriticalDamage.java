@@ -21,10 +21,10 @@ public class GlobalCriticalDamage extends Stat implements ITransferToOtherStats 
     }
 
     private GlobalCriticalDamage() {
-        this.base_val = 1;
-        this.max_val = 500;
-        this.min_val = 0;
-        this.statGroup = StatGroup.MAIN;
+        this.base = 1;
+        this.max = 500;
+        this.min = 0;
+        this.group = StatGroup.MAIN;
     }
 
     @Override

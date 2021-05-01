@@ -26,13 +26,13 @@ public class CriticalHit extends Stat implements IExtraStatEffect {
     }
 
     private CriticalHit() {
-        this.base_val = 1;
-        this.max_val = 100;
-        this.min_val = 0;
-        this.statGroup = StatGroup.MAIN;
+        this.base = 1;
+        this.max = 100;
+        this.min = 0;
+        this.group = StatGroup.MAIN;
 
-        this.textIcon = "\u2694";
-        this.textFormat = Formatting.YELLOW;
+        this.icon = "\u2694";
+        this.format = Formatting.YELLOW;
     }
 
     @Override

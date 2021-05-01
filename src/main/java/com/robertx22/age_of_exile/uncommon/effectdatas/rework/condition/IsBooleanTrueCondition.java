@@ -9,16 +9,17 @@ public class IsBooleanTrueCondition extends StatCondition<EffectData> {
     String booleanId = "";
 
     public IsBooleanTrueCondition(String booleanId) {
-        super("is_bool_true");
+        super("is_" + booleanId + "_true", "is_bool_true");
         this.booleanId = booleanId;
     }
 
-    private IsBooleanTrueCondition() {
-        super("is_bool_true");
+    IsBooleanTrueCondition() {
+        super("", "is_bool_true");
     }
 
     @Override
     public boolean can(EffectData event, StatData data, Stat stat) {
+
         return event.data.getBoolean(booleanId);
     }
 

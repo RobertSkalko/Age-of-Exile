@@ -12,7 +12,7 @@ public class ExtraMobDropsStat extends Stat {
     }
 
     private ExtraMobDropsStat() {
-        this.min_val = -100;
+        this.min = -100;
         this.scaling = StatScaling.NONE;
     }
 

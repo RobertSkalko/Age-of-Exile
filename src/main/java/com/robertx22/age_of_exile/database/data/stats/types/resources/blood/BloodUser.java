@@ -14,10 +14,10 @@ public class BloodUser extends Stat implements IExtraStatEffect {
     public static String GUID = "blood_user";
 
     private BloodUser() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.Misc;
-        this.isLongStat = true;
+        this.group = StatGroup.Misc;
+        this.is_long = true;
 
     }
 

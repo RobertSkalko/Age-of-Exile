@@ -22,7 +22,7 @@ public class PlusResourceOnKill extends Stat {
     private PlusResourceOnKill(Stat statRestored, Effect effect) {
         this.statRestored = statRestored;
         this.statEffect = effect;
-        this.statGroup = StatGroup.RESTORATION;
+        this.group = StatGroup.RESTORATION;
         this.scaling = statRestored.scaling;
     }
 

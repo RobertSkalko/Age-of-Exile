@@ -31,7 +31,10 @@ import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gem_rarity.SkillGemRarityAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
+import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
+import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.SpellDependentDatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
@@ -45,6 +48,10 @@ public class GeneratedData {
     // They shouldn't be needed at all to play the game.
     // If it errors without them, then that means i hardcoded something i shouldn't have
     public static void addAllObjectsToGenerate() {
+
+        new StatEffects().registerAll();
+        new StatConditions().registerAll();
+        new DataStats().registerAll();
 
         new ValueCalcAdder().registerAll();
         new DatapackStatAdder().registerAll();

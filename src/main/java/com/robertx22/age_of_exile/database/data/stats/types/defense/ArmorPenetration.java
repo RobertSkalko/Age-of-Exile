@@ -20,7 +20,7 @@ public class ArmorPenetration extends Stat {
     public static String GUID = "armor_penetration";
 
     private ArmorPenetration() {
-        this.min_val = 0;
+        this.min = 0;
         this.statEffect = new Effect();
     }
 

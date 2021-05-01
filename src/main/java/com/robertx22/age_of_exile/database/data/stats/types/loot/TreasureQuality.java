@@ -7,8 +7,8 @@ import net.minecraft.util.Formatting;
 public class TreasureQuality extends Stat {
 
     private TreasureQuality() {
-        this.textIcon = "\u2663";
-        this.textFormat = Formatting.AQUA;
+        this.icon = "\u2663";
+        this.format = Formatting.AQUA;
     }
 
     public static TreasureQuality getInstance() {

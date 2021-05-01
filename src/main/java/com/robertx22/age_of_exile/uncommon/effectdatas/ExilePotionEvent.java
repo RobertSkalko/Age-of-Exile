@@ -5,6 +5,13 @@ import net.minecraft.entity.LivingEntity;
 
 public class ExilePotionEvent extends EffectData {
 
+    public static String ID = "on_exile_effect";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     public ExileEffect effect;
     public Action action;
 

@@ -11,7 +11,7 @@ public class TotalDamage extends Stat {
 
     private TotalDamage() {
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
         this.statEffect = new Effect();
     }
 

@@ -24,8 +24,8 @@ public class ElementalPenetration extends ElementalStat {
 
     public ElementalPenetration(Elements element) {
         super(element);
-        this.min_val = 0;
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.min = 0;
+        this.group = StatGroup.ELEMENTAL;
 
         this.statEffect = new Effect();
     }

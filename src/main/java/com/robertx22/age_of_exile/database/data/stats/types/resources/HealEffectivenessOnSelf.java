@@ -11,7 +11,7 @@ public class HealEffectivenessOnSelf extends Stat {
     public static String GUID = "heal_effect_on_self";
 
     private HealEffectivenessOnSelf() {
-        this.statGroup = StatGroup.RESTORATION;
+        this.group = StatGroup.RESTORATION;
         this.statEffect = new Effect();
     }
 

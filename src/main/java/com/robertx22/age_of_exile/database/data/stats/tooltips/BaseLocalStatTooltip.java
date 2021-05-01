@@ -18,16 +18,16 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
 
         List<Text> list = new ArrayList<Text>();
 
-        String icon = info.stat.textFormat + info.stat.textIcon + " ";
+        String icon = info.stat.format + info.stat.icon + " ";
 
-        if (ctx.statinfo.stat.isLongStat) {
+        if (ctx.statinfo.stat.is_long) {
             icon = "";
         }
 
         MutableText txt = new LiteralText(icon + StatNameRegex.BASIC_LOCAL
             .translate(ctx, info.type, info.firstValue, info.secondValue, info.stat));
 
-        if (ctx.statinfo.stat.isLongStat) {
+        if (ctx.statinfo.stat.is_long) {
             return longStat(ctx, txt);
         }
 

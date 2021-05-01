@@ -24,7 +24,7 @@ public class AttackStyleDamage extends Stat {
         this.style = style;
 
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
 
         this.statEffect = new Effect(style);
     }

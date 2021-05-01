@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 public class IncreaseNumberEffect extends StatEffect<EffectData> {
 
     public IncreaseNumberEffect() {
-        super("increase_number");
+        super("increase_number", "increase_number");
     }
 
     @Override

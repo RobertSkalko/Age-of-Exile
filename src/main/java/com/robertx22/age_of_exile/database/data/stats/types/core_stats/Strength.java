@@ -19,7 +19,7 @@ public class Strength extends BaseCoreStat {
             new OptScaleExactStat(0.25F, 0.25F, AttackStyleDamage.MELEE, ModType.FLAT),
             new OptScaleExactStat(2, 2, Armor.getInstance(), ModType.LOCAL_INCREASE)
         ));
-        this.textFormat = Formatting.YELLOW;
+        this.format = Formatting.YELLOW;
     }
 
     @Override

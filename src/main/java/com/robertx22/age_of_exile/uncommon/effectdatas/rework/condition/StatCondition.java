@@ -1,20 +1,36 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 
 import java.util.HashMap;
 
-public abstract class StatCondition<T> implements IAutoGson<StatCondition<T>> {
+public abstract class StatCondition<T> implements ISerializedRegistryEntry<StatCondition>, IAutoGson<StatCondition<T>> {
 
-    public String ser = "";
-
+    public static StatCondition SERIALIZER = new RandomRollCondition();
     public static HashMap<String, StatCondition> SERIALIZERS = new HashMap<>();
 
-    public StatCondition(String ser) {
+    static {
+        addSer(new IsBooleanTrueCondition());
+        addSer(new RandomRollCondition());
+        addSer(new ElementMatchesStat());
+        addSer(new StringMatchesCondition());
+    }
+
+    static void addSer(StatCondition eff) {
+        SERIALIZERS.put(eff.ser, eff);
+    }
+
+    public String id = "";
+    public String ser = "";
+
+    public StatCondition(String id, String ser) {
         this.ser = ser;
+        this.id = id;
     }
 
     public abstract boolean can(T event, StatData data, Stat stat);
@@ -28,6 +44,16 @@ public abstract class StatCondition<T> implements IAutoGson<StatCondition<T>> {
             .getSerClass());
         t.onLoadedFromJson();
         return t;
+    }
+
+    @Override
+    public SlashRegistryType getSlashRegistryType() {
+        return SlashRegistryType.STAT_CONDITION;
+    }
+
+    @Override
+    public String GUID() {
+        return id;
     }
 
     @Override

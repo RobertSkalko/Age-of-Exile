@@ -2,9 +2,11 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
+import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -19,7 +21,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EffectData {
+public abstract class EffectData implements IGUID {
 
     public UnitData sourceData;
     public UnitData targetData;
@@ -114,6 +116,14 @@ public abstract class EffectData {
 
     }
 
+    public LivingEntity getSide(EffectSides side) {
+        if (side == EffectSides.Source) {
+            return source;
+        } else {
+            return target;
+        }
+    }
+
     private Unit.StatContainerType getStatType(LivingEntity en, UnitData data) {
 
         if (en instanceof PlayerEntity) {
@@ -184,6 +194,13 @@ public abstract class EffectData {
                             effects.add(new EffectUnitStat(stat.statEffect, unit.getUnit(), data));
                         }
 
+                        if (stat instanceof DatapackStat) {
+                            DatapackStat d = (DatapackStat) stat;
+                            if (d.effect != null) {
+                                effects.add(new EffectUnitStat(d.effect, unit.getUnit(), data));
+                            }
+                        }
+
                         if (stat instanceof IExtraStatEffect) {
                             ((IExtraStatEffect) stat).getEffects()
                                 .forEach(effect -> {
@@ -195,6 +212,11 @@ public abstract class EffectData {
         }
 
         return effects;
+    }
+
+    @Override
+    public String formattedGUID() {
+        return GUID();
     }
 
 }

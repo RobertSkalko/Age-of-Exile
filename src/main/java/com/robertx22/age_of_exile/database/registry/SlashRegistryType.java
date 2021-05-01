@@ -40,6 +40,8 @@ import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCondition;
 import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
@@ -93,6 +95,8 @@ public enum SlashRegistryType {
     VALUE_CALC("value_calc", 40, ValueCalculation.SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_SET("set", 31, GearSet.SERIALIZER, SyncTime.ON_LOGIN),
     DUNGEON_MOB_LIST("dungeon_mob_list", 32, DungeonMobList.SERIALIZER, SyncTime.ON_LOGIN),
+    STAT_EFFECT("stat_effect", 32, StatEffect.SERIALIZER, SyncTime.ON_LOGIN),
+    STAT_CONDITION("stat_condition", 32, StatCondition.SERIALIZER, SyncTime.ON_LOGIN),
     GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;

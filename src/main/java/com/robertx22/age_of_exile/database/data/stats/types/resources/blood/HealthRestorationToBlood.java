@@ -13,11 +13,11 @@ public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
     public static String GUID = "hp_resto_to_blood";
 
     private HealthRestorationToBlood() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
 
-        this.isLongStat = true;
+        this.is_long = true;
     }
 
     public static HealthRestorationToBlood getInstance() {

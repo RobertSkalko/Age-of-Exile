@@ -26,13 +26,13 @@ public class SpellCriticalHit extends Stat implements IExtraStatEffect {
     }
 
     private SpellCriticalHit() {
-        this.base_val = 1;
-        this.max_val = 100;
-        this.min_val = 0;
-        this.statGroup = StatGroup.MAIN;
+        this.base = 1;
+        this.max = 100;
+        this.min = 0;
+        this.group = StatGroup.MAIN;
 
-        this.textIcon = "\u2739";
-        this.textFormat = Formatting.LIGHT_PURPLE;
+        this.icon = "\u2739";
+        this.format = Formatting.LIGHT_PURPLE;
     }
 
     @Override

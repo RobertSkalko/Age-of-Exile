@@ -14,11 +14,11 @@ public class HealPower extends Stat {
     public static String GUID = "increase_healing";
 
     private HealPower() {
-        this.statGroup = StatGroup.RESTORATION;
+        this.group = StatGroup.RESTORATION;
         this.scaling = StatScaling.SLOW;
         this.statEffect = new Effect();
 
-        this.textFormat = Formatting.YELLOW;
+        this.format = Formatting.YELLOW;
     }
 
     public static HealPower getInstance() {

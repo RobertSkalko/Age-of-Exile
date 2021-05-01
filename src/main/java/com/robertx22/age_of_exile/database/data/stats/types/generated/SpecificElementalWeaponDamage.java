@@ -27,7 +27,7 @@ public class SpecificElementalWeaponDamage extends Stat implements IGenerated<Sp
 
     public SpecificElementalWeaponDamage(WeaponTypes type) {
         this.weaponType = type;
-        this.statGroup = StatGroup.WEAPON;
+        this.group = StatGroup.WEAPON;
         this.statEffect = new Effect();
     }
 

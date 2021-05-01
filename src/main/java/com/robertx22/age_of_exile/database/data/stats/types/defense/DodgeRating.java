@@ -27,14 +27,14 @@ public class DodgeRating extends Stat implements IUsableStat {
     }
 
     private DodgeRating() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
         this.statEffect = new Effect();
 
-        this.textIcon = "\u2748";
-        this.textFormat = Formatting.DARK_GREEN;
+        this.icon = "\u2748";
+        this.format = Formatting.DARK_GREEN;
 
         this.isLocalTo = x -> x.isArmor();
     }

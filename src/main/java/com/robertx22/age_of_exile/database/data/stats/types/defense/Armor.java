@@ -24,12 +24,12 @@ public class Armor extends Stat implements IExtraStatEffect, IUsableStat {
 
     private Armor() {
 
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
-        this.textIcon = "\u2748";
-        this.textFormat = Formatting.BLUE;
+        this.icon = "\u2748";
+        this.format = Formatting.BLUE;
 
         this.isLocalTo = x -> x.isArmor();
 

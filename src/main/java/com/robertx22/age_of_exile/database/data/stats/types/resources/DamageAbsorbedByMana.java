@@ -15,9 +15,9 @@ public class DamageAbsorbedByMana extends Stat {
     public static String GUID = "mana_shield";
 
     private DamageAbsorbedByMana() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
     }
 

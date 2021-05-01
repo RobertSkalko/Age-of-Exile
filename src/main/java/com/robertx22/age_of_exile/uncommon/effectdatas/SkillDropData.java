@@ -9,6 +9,13 @@ import java.util.List;
 
 public class SkillDropData extends EffectData {
 
+    public static String ID = "on_skill_item_drop";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     public PlayerSkillEnum skill;
     public List<ItemStack> originalDrops;
     public List<ItemStack> extraDrops = new ArrayList<>();

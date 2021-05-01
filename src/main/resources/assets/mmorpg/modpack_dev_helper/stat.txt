@@ -64,6 +64,7 @@ dodge
 health_on_dot_hit
 attack_nature_dmg_leech_as_health
 bonus_swamp_biome_yield
+chance_to_give_bloodlust_to_self
 all_nature_damage
 bonus_blacksmithing_exp
 blood

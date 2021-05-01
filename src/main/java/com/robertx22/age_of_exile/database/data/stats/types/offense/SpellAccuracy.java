@@ -26,10 +26,10 @@ public class SpellAccuracy extends Stat implements IExtraStatEffect {
     }
 
     private SpellAccuracy() {
-        this.base_val = 0;
-        this.min_val = 0;
+        this.base = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
     }
 
     @Override

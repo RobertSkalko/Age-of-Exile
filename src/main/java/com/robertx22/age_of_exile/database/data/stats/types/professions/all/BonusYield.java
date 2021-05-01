@@ -19,10 +19,10 @@ public class BonusYield extends Stat implements IGenerated<Stat> {
     public BonusYield(BonusRequirement req) {
         this.req = req;
 
-        this.base_val = 0;
-        this.min_val = 0;
+        this.base = 0;
+        this.min = 0;
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
 
         this.statEffect = new Effect();
     }

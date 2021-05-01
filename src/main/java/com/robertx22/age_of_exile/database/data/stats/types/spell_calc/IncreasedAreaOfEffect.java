@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 public class IncreasedAreaOfEffect extends Stat {
 
     private IncreasedAreaOfEffect() {
-        this.max_val = 500;
+        this.max = 500;
 
         this.statEffect = new Effect();
     }

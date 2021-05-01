@@ -25,8 +25,8 @@ public class BonusXpToMobsOfTier extends Stat implements IGenerated<Stat> {
 
     public BonusXpToMobsOfTier(SkillItemTier type) {
         this.tier = type;
-        this.statGroup = StatGroup.Misc;
-        this.max_val = 100;
+        this.group = StatGroup.Misc;
+        this.max = 100;
     }
 
     @Override

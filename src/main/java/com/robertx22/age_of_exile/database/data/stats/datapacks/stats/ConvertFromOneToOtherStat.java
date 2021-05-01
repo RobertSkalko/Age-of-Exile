@@ -25,11 +25,11 @@ public class ConvertFromOneToOtherStat extends BaseDatapackStat implements IAffe
         this.adder_stat = adder_stat.GUID();
         this.stat_to_add_to = stat_to_add_to.GUID();
 
-        this.is_percent = true;
-        this.min_val = 0;
+        this.is_perc = true;
+        this.min = 0;
         this.scaling = StatScaling.NONE;
 
-        this.isLongStat = true;
+        this.is_long = true;
 
         this.locname = Formatting.GRAY + "Transfer " + Formatting.GREEN +
             SpecialStats.VAL1 + "%" + Formatting.GRAY + " of your "
@@ -43,10 +43,10 @@ public class ConvertFromOneToOtherStat extends BaseDatapackStat implements IAffe
         this.stat_to_add_to = stat_to_add_to;
         this.adder_stat = adder_stat;
 
-        this.isLongStat = true;
+        this.is_long = true;
 
-        this.is_percent = true;
-        this.min_val = 0;
+        this.is_perc = true;
+        this.min = 0;
         this.scaling = StatScaling.NONE;
     }
 

@@ -12,7 +12,7 @@ public class IncreasedLeech extends Stat {
     public static String GUID = "inc_leech";
 
     private IncreasedLeech() {
-        this.statGroup = StatGroup.RESTORATION;
+        this.group = StatGroup.RESTORATION;
         this.scaling = StatScaling.SLOW;
         this.statEffect = new Effect();
     }

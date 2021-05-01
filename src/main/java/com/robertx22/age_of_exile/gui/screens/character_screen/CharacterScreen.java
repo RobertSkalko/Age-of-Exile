@@ -216,7 +216,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             int ynum = 0;
             for (List<Stat> list : STAT_MAP.get(statToShow)) {
                 for (Stat stat : list) {
-                    if (stat.isShown) {
+                    if (stat.show) {
                         addButton(new StatButton(stat, xpos, ypos + (YSPACING * ynum)));
 
                         ynum++;

@@ -21,14 +21,14 @@ public class PerSpellCooldownStat extends DatapackSpellStat implements IExtraSta
         this.spellname = spell.locNameForLangFile();
 
         this.id = spell.GUID() + "_cooldown";
-        this.is_percent = true;
+        this.is_perc = true;
     }
 
     public PerSpellCooldownStat(String spell) {
         super(SER_ID);
         this.spell = spell;
 
-        this.is_percent = true;
+        this.is_perc = true;
     }
 
     @Override

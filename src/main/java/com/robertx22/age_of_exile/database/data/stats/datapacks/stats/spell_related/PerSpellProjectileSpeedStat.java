@@ -22,14 +22,14 @@ public class PerSpellProjectileSpeedStat extends DatapackSpellStat implements IE
         this.spellname = spell.locNameForLangFile();
 
         this.id = spell.GUID() + "_proj_speed";
-        this.is_percent = true;
+        this.is_perc = true;
     }
 
     public PerSpellProjectileSpeedStat(String spell) {
         super(SER_ID);
         this.spell = spell;
 
-        this.is_percent = true;
+        this.is_perc = true;
     }
 
     @Override

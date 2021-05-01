@@ -158,7 +158,7 @@ public class GearTooltipUtils {
 
                 gear.uniqueStats.GetAllStats(gear)
                     .forEach(x -> {
-                        if (x.getStat().isLongStat) {
+                        if (x.getStat().is_long) {
                             specialStats.add(x);
                         }
                     });
@@ -179,7 +179,7 @@ public class GearTooltipUtils {
                 MergedStats merged = new MergedStats(stats, info, gear);
 
                 stats.forEach(x -> {
-                    if (x.getStat().isLongStat) {
+                    if (x.getStat().is_long) {
                         specialStats.add(x);
                     }
                 });

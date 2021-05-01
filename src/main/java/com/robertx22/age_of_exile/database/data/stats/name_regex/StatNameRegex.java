@@ -48,7 +48,7 @@ public abstract class StatNameRegex {
         String v1s = NumberUtils.formatForTooltip(v1);
         String v2s = NumberUtils.formatForTooltip(v2);
 
-        if (stat.isLongStat) {
+        if (stat.is_long) {
             String txt = CLOC.translate(stat.locName());
 
             txt = txt.replace(SpecialStats.VAL1, v1s);
@@ -60,13 +60,6 @@ public abstract class StatNameRegex {
         String percent = "";
 
         String plusminus = v1 > 0 && addPlus ? "+" : "";
-
-        if (!stat.add$plusminus$toTooltip) {
-            plusminus = "";
-            // delete the minuses
-            v1s = v1s.replace("-", "");
-            v2s = v2s.replace("-", "");
-        }
 
         if (type == ModType.LOCAL_INCREASE || type == ModType.GLOBAL_INCREASE || stat.IsPercent()) {
             percent = "%";

@@ -36,35 +36,31 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public Stat() {
     }
 
-    public boolean isShown = true;
+    public boolean show = true;
 
-    public IStatEffect statEffect = null;
+    // can't serialize
+    public transient IStatEffect statEffect = null;
+    public transient IStatCtxModifier statContextModifier;
+    public transient Function<BaseGearType, Boolean> isLocalTo = x -> false;
 
-    public float min_val = -1000;
-    public float max_val = Integer.MAX_VALUE;
-    public float base_val = 0;
-    public boolean is_percent;
-    public boolean uses_second_val = false;
+    public float min = -1000;
+    public float max = Integer.MAX_VALUE;
+    public float base = 0;
+    public boolean is_perc = false;
+    public boolean use_sec_val = false;
     public StatScaling scaling = StatScaling.SLOW;
-
-    public boolean isLongStat = false;
-    public String textIcon = "\u2741";
-    public int baseStatTooltipOrder = 100;
-    public Formatting textFormat = Formatting.AQUA;
-
-    public StatGroup statGroup = StatGroup.Misc;
-    public IStatCtxModifier statContextModifier;
-
-    public Function<BaseGearType, Boolean> isLocalTo = x -> false;
-
-    public boolean add$plusminus$toTooltip = true;
+    public boolean is_long = false;
+    public String icon = "\u2741";
+    public int order = 100;
+    public Formatting format = Formatting.AQUA;
+    public StatGroup group = StatGroup.Misc;
 
     public String getIconNameFormat() {
         return getIconNameFormat(locNameForLangFile());
     }
 
     public String getIconNameFormat(String str) {
-        return this.textFormat + this.textIcon + " " + str + Formatting.GRAY;
+        return this.format + this.icon + " " + str + Formatting.GRAY;
     }
 
     @Override
@@ -82,7 +78,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     }
 
     public final boolean UsesSecondValue() {
-        return uses_second_val;
+        return use_sec_val;
     }
 
     public final StatScaling getScaling() {
@@ -118,18 +114,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         return list;
     }
 
-    public enum StatClassType {
-        NORMAL, CORE, TRAIT
-    }
-
-    public StatClassType getStatType() {
-        return StatClassType.NORMAL;
-    }
-
-    public boolean isTrait() {
-        return getStatType().equals(StatClassType.TRAIT);
-    }
-
     @Override
     public String getRarityRank() {
         return IRarity.MAGICAL_ID;
@@ -156,7 +140,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public static Identifier DEFAULT_ICON = new Identifier(Ref.MODID, "textures/gui/stat_icons/default.png");
 
     public Identifier getIconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/stat_icons/" + statGroup.id + "/" + GUID() + ".png");
+        return new Identifier(Ref.MODID, "textures/gui/stat_icons/" + group.id + "/" + GUID() + ".png");
     }
 
     transient Identifier cachedIcon = null;
@@ -194,7 +178,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     }
 
     public boolean IsPercent() {
-        return is_percent;
+        return is_perc;
     }
 
     public abstract Elements getElement();
@@ -202,10 +186,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     @Environment(EnvType.CLIENT)
     public List<Text> getTooltipList(TooltipStatWithContext info) {
         return info.statinfo.tooltipInfo.statTooltipType.impl.getTooltipList(info);
-    }
-
-    public final StatGroup statGroup() {
-        return statGroup;
     }
 
     public enum StatGroup {

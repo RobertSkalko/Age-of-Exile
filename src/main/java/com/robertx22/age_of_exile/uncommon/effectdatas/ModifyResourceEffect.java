@@ -4,6 +4,13 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 
 public class ModifyResourceEffect extends EffectData {
 
+    public static String ID = "on_modify_resource";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     public ResourcesData.Context ctx;
 
     public ModifyResourceEffect(ResourcesData.Context ctx) {

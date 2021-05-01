@@ -9,12 +9,12 @@ public class Blood extends Stat {
     public static String GUID = "blood";
 
     private Blood() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
-        this.textIcon = "\u2764";
-        this.textFormat = Formatting.DARK_RED;
+        this.icon = "\u2764";
+        this.format = Formatting.DARK_RED;
     }
 
     public static Blood getInstance() {

@@ -7,9 +7,9 @@ import net.minecraft.util.Formatting;
 public class TreasureQuantity extends Stat {
 
     private TreasureQuantity() {
-        this.statGroup = StatGroup.Misc;
-        this.textIcon = "\u2663";
-        this.textFormat = Formatting.YELLOW;
+        this.group = StatGroup.Misc;
+        this.icon = "\u2663";
+        this.format = Formatting.YELLOW;
     }
 
     public static TreasureQuantity getInstance() {

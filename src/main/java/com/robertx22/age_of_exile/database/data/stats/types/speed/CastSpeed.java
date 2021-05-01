@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 public class CastSpeed extends Stat {
 
     private CastSpeed() {
-        this.max_val = 75;
+        this.max = 75;
         this.statEffect = new Effect();
     }
 

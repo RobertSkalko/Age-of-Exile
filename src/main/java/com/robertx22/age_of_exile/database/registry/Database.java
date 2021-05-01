@@ -42,6 +42,8 @@ import com.robertx22.age_of_exile.database.registrators.Stats;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCondition;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -148,6 +150,14 @@ public class Database {
 
     public static SlashRegistryContainer<SalvageOutput> SalvageOutputs() {
         return getRegistry(SlashRegistryType.SALVAGE_OUTPUT);
+    }
+
+    public static SlashRegistryContainer<StatCondition> StatConditions() {
+        return getRegistry(SlashRegistryType.STAT_CONDITION);
+    }
+
+    public static SlashRegistryContainer<StatEffect> StatEffects() {
+        return getRegistry(SlashRegistryType.STAT_EFFECT);
     }
 
     public static SlashRegistryContainer<Gem> Gems() {
@@ -377,6 +387,8 @@ public class Database {
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.SCROLL_BUFFS, new ScrollBuff()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.VALUE_CALC, new ValueCalculation()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.DUNGEON_MOB_LIST, new DungeonMobList()).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.STAT_EFFECT, null).setIsDatapack());
+        addRegistry(new SlashRegistryContainer<>(SlashRegistryType.STAT_CONDITION, null).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.GEAR_SET, new GearSet()).setIsDatapack());
         addRegistry(new SlashRegistryContainer<>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()

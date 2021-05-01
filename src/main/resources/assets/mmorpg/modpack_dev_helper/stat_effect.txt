@@ -1,0 +1,11 @@
+These are all default registry entries of this type.
+This registry is modify-able through datapacks.
+give_negative/8_to_target
+give_beneficial/7
+set_bool
+give_negative/3_to_target
+give_beneficial/16_to_source
+give_negative/2_to_target
+give_negative/5_to_target
+give_beneficial/16
+give_negative/7_to_target

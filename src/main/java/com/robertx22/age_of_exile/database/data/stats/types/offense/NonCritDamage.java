@@ -12,7 +12,7 @@ public class NonCritDamage extends Stat {
 
     private NonCritDamage() {
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
         this.statEffect = new Effect();
     }

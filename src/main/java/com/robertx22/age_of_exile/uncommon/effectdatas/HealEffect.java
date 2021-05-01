@@ -5,6 +5,13 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 
 public class HealEffect extends EffectData {
 
+    public static String ID = "on_heal";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     public ResourcesData.Context healData;
 
     public boolean isCrit = false;

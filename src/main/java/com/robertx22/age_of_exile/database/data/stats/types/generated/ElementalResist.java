@@ -24,13 +24,13 @@ public class ElementalResist extends ElementalStat implements IExtraStatEffect {
 
     public ElementalResist(Elements element) {
         super(element);
-        this.min_val = -300;
+        this.min = -300;
 
-        this.max_val = 80;
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.max = 80;
+        this.group = StatGroup.ELEMENTAL;
 
-        this.textFormat = element.format;
-        this.textIcon = element.icon;
+        this.format = element.format;
+        this.icon = element.icon;
         this.isLocalTo = x -> x.isArmor() || x.isJewelry() || x.isShield();
 
     }

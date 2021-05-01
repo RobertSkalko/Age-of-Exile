@@ -23,13 +23,13 @@ public class HealCritChance extends Stat {
     }
 
     private HealCritChance() {
-        this.base_val = 0;
-        this.min_val = 0;
-        this.max_val = 100;
-        this.statGroup = StatGroup.MAIN;
+        this.base = 0;
+        this.min = 0;
+        this.max = 100;
+        this.group = StatGroup.MAIN;
 
-        this.textIcon = "\u2694";
-        this.textFormat = Formatting.YELLOW;
+        this.icon = "\u2694";
+        this.format = Formatting.YELLOW;
 
         this.statEffect = new BaseHealEffect() {
             @Override

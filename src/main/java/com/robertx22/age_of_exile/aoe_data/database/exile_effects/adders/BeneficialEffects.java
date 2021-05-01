@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBui
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.ExileEffectContext;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
@@ -49,6 +50,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static String FROST_ARMOR = "beneficial/" + 14;
     public static String VOID_EYE = "beneficial/" + 15;
     public static String BLOODLUST = "beneficial/" + 16;
+
+    public static ExileEffectContext BLOODLUST_CTX = new ExileEffectContext("bloodlust", BLOODLUST, Elements.Physical, "Bloodlust");
 
     @Override
     public void registerAll() {

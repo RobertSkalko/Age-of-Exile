@@ -5,6 +5,13 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffec
 import net.minecraft.entity.LivingEntity;
 
 public class ReserveManaEffect extends EffectData implements IHasSpellEffect {
+    public static String ID = "on_reserve_mana";
+
+    @Override
+    public String GUID() {
+        return ID;
+    }
+
     Spell spell;
 
     public float manaReserved = 0;

@@ -16,8 +16,8 @@ public class ShieldDuration extends Stat {
         this.scaling = StatScaling.NONE;
         this.statEffect = new ShieldDuration.Effect();
 
-        this.textIcon = "\u2748";
-        this.textFormat = Formatting.GREEN;
+        this.icon = "\u2748";
+        this.format = Formatting.GREEN;
     }
 
     public static ShieldDuration getInstance() {
