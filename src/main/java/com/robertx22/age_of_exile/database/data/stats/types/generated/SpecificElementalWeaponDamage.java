@@ -75,7 +75,7 @@ public class SpecificElementalWeaponDamage extends Stat implements IGenerated<Sp
                 SpecificElementalWeaponDamage wepStat = (SpecificElementalWeaponDamage) stat;
 
                 if (wepStat.weaponType()
-                    .equals(effect.weaponType)) {
+                    .equals(effect.data.getWeaponType())) {
                     if (effect.getElement()
                         .isElemental()) {
                         return true;

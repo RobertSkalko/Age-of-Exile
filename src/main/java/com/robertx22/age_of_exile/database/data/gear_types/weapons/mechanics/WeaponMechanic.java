@@ -35,7 +35,7 @@ public abstract class WeaponMechanic implements IGUID {
             .getRandomRangeValue();
         DamageEffect dmg = new DamageEffect(
             data, data.getAttackerEntity(), data.getTargetEntity(), num, AttackType.attack, weptype, data.weaponData.GetBaseGearType().style);
-        dmg.setIsBasicAttack();
+        dmg.data.setIsBasicAttack();
 
         dmg.Activate();
 

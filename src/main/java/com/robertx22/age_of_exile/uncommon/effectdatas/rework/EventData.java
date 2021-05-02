@@ -19,6 +19,7 @@ public class EventData {
     public static String ACCURACY_CRIT_FAILED = "accu_crit_roll_fail";
     public static String SPELL = "spell";
     public static String WEAPON_TYPE = "weapon_type";
+    public static String IS_BASIC_ATTACK = "is_basic_atk";
 
     private HashMap<String, WrappedFloat> floats = new HashMap<>();
     private HashMap<String, Boolean> bools = new HashMap<>();
@@ -72,6 +73,14 @@ public class EventData {
     public boolean isSpellEffect() {
         return Database.Spells()
             .isRegistered(getString(SPELL));
+    }
+
+    public void setIsBasicAttack() {
+        setBoolean(IS_BASIC_ATTACK, true);
+    }
+
+    public boolean isBasicAttack() {
+        return getBoolean(IS_BASIC_ATTACK);
     }
 
     public void setString(String id, String str) {

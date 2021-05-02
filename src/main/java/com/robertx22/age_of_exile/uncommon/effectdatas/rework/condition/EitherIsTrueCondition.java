@@ -12,7 +12,7 @@ public class EitherIsTrueCondition extends StatCondition {
 
     List<String> ifs = new ArrayList<>();
 
-    public EitherIsTrueCondition(List<String> conditions, String id) {
+    public EitherIsTrueCondition(String id, List<String> conditions) {
         super(id, "either_is_true");
         this.ifs = conditions;
 

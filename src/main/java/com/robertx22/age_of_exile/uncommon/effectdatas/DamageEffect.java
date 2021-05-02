@@ -56,10 +56,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public DamageEffect(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(dmg, data.getAttackerEntity(), data.getTargetEntity());
         this.attackInfo = data;
-        this.weaponType = weptype;
         this.style = style;
-        this.isBasicAttack = true;
 
+        this.data.setString(EventData.WEAPON_TYPE, weptype.name());
         this.data.setString(EventData.ATTACK_TYPE, effectType.name());
 
         calcBlock();
@@ -69,16 +68,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                         AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(dmg, source, target);
         this.attackInfo = attackInfo;
-        this.weaponType = weptype;
         this.style = style;
 
+        this.data.setString(EventData.WEAPON_TYPE, weptype.name());
         this.data.setString(EventData.ATTACK_TYPE, effectType.name());
 
         calcBlock();
-    }
-
-    public void setIsBasicAttack() {
-        this.isBasicAttack = true;
     }
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
@@ -87,8 +82,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public boolean isBlocked = false;
     public boolean ignoresResists = false;
 
-    public WeaponTypes weaponType = WeaponTypes.none;
-    public boolean isBasicAttack = false;
     public AttackPlayStyle style;
     AttackInformation attackInfo;
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
@@ -168,7 +161,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private float modifyByAttackSpeedIfMelee(float dmg) {
 
-        if (this.weaponType.isMelee()) {
+        if (this.data.getWeaponType()
+            .isMelee()) {
             float cool = 1;
             if (this.source instanceof PlayerEntity) {
 
@@ -204,7 +198,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (attackInfo != null && attackInfo.getSource() != null) {
             if (attackInfo.getSource()
                 .getSource() instanceof ProjectileEntityDuck) {
-                if (weaponType == WeaponTypes.bow) {
+                if (data.getWeaponType() == WeaponTypes.bow) {
                     // don't use this for crossbows, only bows need to be charged fully
 
                     ProjectileEntityDuck duck = (ProjectileEntityDuck) attackInfo.getSource()
@@ -491,7 +485,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(
                     attackInfo, source, target, entry.getValue(),
-                    AttackType.attack, this.weaponType, style);
+                    AttackType.attack, data.getWeaponType(), style);
                 bonus.setElement(entry.getKey());
                 bonus.calculateEffects();
                 float dmg = bonus.getActualDamage();

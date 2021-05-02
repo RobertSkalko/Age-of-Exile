@@ -1,13 +1,16 @@
 package com.robertx22.age_of_exile.aoe_data.database.stat_conditions;
 
 import com.robertx22.age_of_exile.aoe_data.DataHolder;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.*;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class StatConditions implements ISlashRegistryInit {
 
@@ -18,7 +21,33 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition ELEMENT_MATCH_STAT = new ElementMatchesStat();
     public static StatCondition IS_DAY = new IsDayCondition();
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
-    public static StatCondition CRIT_ROLL_DIDNT_FAIL = new IsBooleanTrueCondition(EventData.ACCURACY_CRIT_FAILED).flipCondition();
+    public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
+    public static StatCondition IS_PROJECTILE_SPELL = new SpellHasTagCondition(SkillGemTag.projectile);
+
+    public static StatCondition IS_MELEE_WEAPON = new EitherIsTrueCondition("is_melee_weapon",
+        Arrays.stream(WeaponTypes.values())
+            .filter(x -> x.isMelee())
+            .map(x -> new WeaponTypeMatches(x).GUID())
+            .collect(Collectors.toList())
+    );
+
+    public static StatCondition IS_MAGIC_WEAPON = new EitherIsTrueCondition("is_magic_weapon",
+        Arrays.stream(WeaponTypes.values())
+            .filter(x -> x.style == AttackPlayStyle.MAGIC)
+            .map(x -> new WeaponTypeMatches(x).GUID())
+            .collect(Collectors.toList())
+    );
+    public static StatCondition IS_RANGED_WEAPON = new EitherIsTrueCondition("is_ranged_weapon",
+        Arrays.asList(
+            new WeaponTypeMatches(WeaponTypes.crossbow).GUID(),
+            new WeaponTypeMatches(WeaponTypes.bow).GUID()
+        ));
+
+    public static StatCondition IS_ANY_PROJECTILE = new EitherIsTrueCondition("is_projectile",
+        Arrays.asList(
+            IS_PROJECTILE_SPELL.GUID(),
+            IS_RANGED_WEAPON.GUID()
+        ));
 
     public static DataHolder<AttackType, StatCondition> ATTACK_TYPE_MATCHES = new DataHolder<AttackType, StatCondition>(
         AttackType.values()
@@ -29,11 +58,13 @@ public class StatConditions implements ISlashRegistryInit {
         , x -> new WeaponTypeMatches(x));
 
     public static StatCondition IS_ATTACK_OR_SPELL_ATTACK = new EitherIsTrueCondition(
+        "is_attack_or_spell_attack",
         Arrays.asList(ATTACK_TYPE_MATCHES.get(AttackType.attack)
             .GUID(), ATTACK_TYPE_MATCHES.get(AttackType.spell)
             .GUID())
-        , "is_attack_or_spell_attack"
     );
+
+    public static StatCondition CRIT_ROLL_DIDNT_FAIL = new IsBooleanTrueCondition(EventData.ACCURACY_CRIT_FAILED).flipCondition();
 
     public static void loadClass() {
     }
@@ -52,6 +83,12 @@ public class StatConditions implements ISlashRegistryInit {
         IS_ATTACK_OR_SPELL_ATTACK.addToSerializables();
         IS_DAY.addToSerializables();
         IS_NIGHT.addToSerializables();
+        IS_BASIC_ATTACK.addToSerializables();
+        IS_RANGED_WEAPON.addToSerializables();
+        IS_PROJECTILE_SPELL.addToSerializables();
+        IS_ANY_PROJECTILE.addToSerializables();
+        IS_MAGIC_WEAPON.addToSerializables();
+        IS_MELEE_WEAPON.addToSerializables();
 
     }
 }

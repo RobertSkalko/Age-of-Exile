@@ -4,7 +4,7 @@ public class EffectUtils {
 
     public static boolean isProjectileAttack(DamageEffect effect) {
 
-        if (effect.weaponType.isProjectile) {
+        if (effect.data.getWeaponType().isProjectile) {
             return true;
         }
 

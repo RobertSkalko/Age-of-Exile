@@ -73,7 +73,7 @@ public class SpecificWeaponDamage extends Stat implements IGenerated<SpecificWea
             if (stat instanceof SpecificWeaponDamage) {
                 SpecificWeaponDamage weapon = (SpecificWeaponDamage) stat;
                 return weapon.weaponType()
-                    .equals(effect.weaponType);
+                    .equals(effect.data.getWeaponType());
             }
             return false;
         }

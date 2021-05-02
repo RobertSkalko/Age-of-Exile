@@ -89,7 +89,7 @@ public class AttackDamage extends ElementalStat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return stat.getElement() != Elements.Physical && effect.isBasicAttack;
+            return stat.getElement() != Elements.Physical && effect.data.isBasicAttack();
         }
 
     }
