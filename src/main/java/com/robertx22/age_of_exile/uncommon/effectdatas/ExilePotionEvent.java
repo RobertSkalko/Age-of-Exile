@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import net.minecraft.entity.LivingEntity;
 
-public class ExilePotionEvent extends EffectData {
+public class ExilePotionEvent extends EffectEvent {
 
     public static String ID = "on_exile_effect";
 

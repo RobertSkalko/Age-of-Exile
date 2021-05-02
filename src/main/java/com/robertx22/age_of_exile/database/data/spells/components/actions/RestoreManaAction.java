@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
@@ -46,10 +45,9 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
             int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
-            value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.HEALING);
 
             for (LivingEntity x : targets) {
-                ResourcesData.Context hctx = new ResourcesData.Context(ctx.caster, x, ResourceType.MANA,
+                ResourcesData.Context hctx = new ResourcesData.Context(ctx.caster, x, ResourceType.mana,
                     value, ResourcesData.Use.RESTORE
                 );
 

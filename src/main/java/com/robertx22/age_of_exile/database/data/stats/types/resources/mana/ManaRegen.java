@@ -19,7 +19,7 @@ public class ManaRegen extends BaseRegenClass {
 
     @Override
     public ResourceType getResourceType() {
-        return ResourceType.MANA;
+        return ResourceType.mana;
     }
 
     @Override

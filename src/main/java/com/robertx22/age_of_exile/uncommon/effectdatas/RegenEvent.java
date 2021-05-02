@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import net.minecraft.entity.LivingEntity;
 
-public class RegenEvent extends EffectData {
+public class RegenEvent extends EffectEvent {
 
     public static String ID = "on_regen";
 

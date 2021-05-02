@@ -48,8 +48,8 @@ public class DatapackStatBuilder<T> {
         b.accessor = new DataPackStatAccessor<EmptyAccessor>();
         b.idMaker = x -> id;
         b.elementMaker = x -> ele;
-        b.addSpecificType(EmptyAccessor.INSTANCE);
         b.isSingle = true;
+        b.addSpecificType(EmptyAccessor.INSTANCE);
         return b;
     }
 

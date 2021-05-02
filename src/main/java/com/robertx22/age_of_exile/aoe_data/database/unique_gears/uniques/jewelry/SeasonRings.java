@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -44,7 +43,7 @@ public class SeasonRings implements ISlashRegistryInit {
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
                 new StatModifier(5, 10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(10, 15, HealPower.getInstance(), ModType.FLAT)
+                new StatModifier(10, 15, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
             ))
             .req(new StatRequirement()
                 .setWis(0.7F)

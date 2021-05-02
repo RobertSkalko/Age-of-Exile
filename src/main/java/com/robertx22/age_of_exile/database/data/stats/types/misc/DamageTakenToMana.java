@@ -63,7 +63,7 @@ public class DamageTakenToMana extends Stat {
 
             if (restore > 0) {
                 ResourcesData.Context mana = new ResourcesData.Context(effect.targetData, effect.target,
-                    ResourceType.MANA,
+                    ResourceType.mana,
                     restore,
                     ResourcesData.Use.RESTORE
                 );

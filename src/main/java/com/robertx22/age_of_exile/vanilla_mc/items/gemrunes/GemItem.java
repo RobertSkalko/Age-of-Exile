@@ -198,7 +198,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(1, 3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.attack))));
+                return Arrays.asList(new StatModifier(1, 3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.mana, AttackType.attack))));
             }
         }),
 

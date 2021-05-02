@@ -201,7 +201,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         cost += this.getCalculatedManaCost(ctx);
 
         return new ResourcesData.Context(
-            ctx.data, ctx.caster, ResourceType.MANA, cost, ResourcesData.Use.SPEND);
+            ctx.data, ctx.caster, ResourceType.mana, cost, ResourcesData.Use.SPEND);
     }
 
     public boolean canCast(SpellCastContext ctx) {

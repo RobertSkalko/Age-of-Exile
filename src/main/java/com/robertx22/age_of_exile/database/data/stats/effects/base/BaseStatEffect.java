@@ -4,12 +4,12 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import net.minecraft.util.Formatting;
 
-public abstract class BaseStatEffect<T extends EffectData> implements IStatEffect {
+public abstract class BaseStatEffect<T extends EffectEvent> implements IStatEffect {
 
     Class<T> theclass;
 
@@ -27,7 +27,7 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
         }
     }
 
-    public Unit getSource(EffectData effect) {
+    public Unit getSource(EffectEvent effect) {
         if (Side() == EffectSides.Target) {
             return effect.targetData.getUnit();
         } else {
@@ -36,7 +36,7 @@ public abstract class BaseStatEffect<T extends EffectData> implements IStatEffec
     }
 
     @Override
-    public final void TryModifyEffect(EffectData effect, EffectSides statSource, StatData data, Stat stat) {
+    public final void TryModifyEffect(EffectEvent effect, EffectSides statSource, StatData data, Stat stat) {
 
         try {
             if (!effect.data.isCanceled()) {

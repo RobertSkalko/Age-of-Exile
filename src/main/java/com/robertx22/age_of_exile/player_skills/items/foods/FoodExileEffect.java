@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -35,7 +34,7 @@ public enum FoodExileEffect {
 
     DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(5, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_BLUE("Arcana Defense", "def_blue", EffectColor.BLUE, new OptScaleExactStat(25, Mana.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
-    DEF_YELLOW("Sky Defense", "def_yellow", EffectColor.YELLOW, new OptScaleExactStat(10, HealPower.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
+    DEF_YELLOW("Sky Defense", "def_yellow", EffectColor.YELLOW, new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_GREEN("Terra Defense", "def_green", EffectColor.GREEN, new OptScaleExactStat(20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_GRAY("Physical Defense", "def_gray", EffectColor.RED, new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
 
@@ -46,7 +45,7 @@ public enum FoodExileEffect {
     MANA_REGEN("Arcana", "mana_regen", EffectColor.BLUE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
     HEALTH_REGEN("Vitala", "health_regen", EffectColor.RED, new OptScaleExactStat(1, RegeneratePercentStat.HEALTH), new OptScaleExactStat(15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)),
 
-    HEALING("Sancti", "healing", EffectColor.YELLOW, new OptScaleExactStat(20, HealPower.getInstance())),
+    HEALING("Sancti", "healing", EffectColor.YELLOW, new OptScaleExactStat(20, Stats.HEAL_STRENGTH.get())),
     SPELL_DAMAGE("Enigma", "spell_damage", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance())),
     CRITICAL("Critical", "critical", EffectColor.GREEN, new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()), new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get())),
     TREASURE_QUALITY("Treasure", "treasure", EffectColor.YELLOW, new OptScaleExactStat(10, TreasureQuality.getInstance()));

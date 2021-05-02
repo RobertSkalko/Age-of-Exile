@@ -5,8 +5,11 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.*;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.number_provider.NumberProvider;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.Arrays;
@@ -17,6 +20,14 @@ public class StatEffects implements ISlashRegistryInit {
         Arrays.asList(BeneficialEffects.BLOODLUST
         ),
         x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
+    );
+
+    public static DataHolder<ResourceType, StatEffect> LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA = new DataHolder<>(
+        Arrays.asList(
+            ResourceType.mana,
+            ResourceType.health
+        )
+        , x -> new RestoreResourceAction("restore_" + x.id + "_per_stat_data", NumberProvider.ofStatData(), x, RestoreType.leech)
     );
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_TARGET = new DataHolder<>(
@@ -45,6 +56,7 @@ public class StatEffects implements ISlashRegistryInit {
         SET_IS_CRIT.addToSerializables();
         INCREASE_VALUE.addToSerializables();
         SET_ACCURACY.addToSerializables();
+        LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.addToSerializables();
 
     }
 }

@@ -121,14 +121,14 @@ public class ResourcesData {
     }
 
     public float get(LivingEntity en, ResourceType type) {
-        if (type == ResourceType.MANA) {
+        if (type == ResourceType.mana) {
             return mana;
         }
-        if (type == ResourceType.SHIELD) {
+        if (type == ResourceType.shield) {
             return getShield();
-        } else if (type == ResourceType.BLOOD) {
+        } else if (type == ResourceType.blood) {
             return blood;
-        } else if (type == ResourceType.HEALTH) {
+        } else if (type == ResourceType.health) {
             return HealthUtils.getCurrentHealth(en);
         }
         return 0;
@@ -138,21 +138,21 @@ public class ResourcesData {
     public float getMax(LivingEntity en, ResourceType type) {
         UnitData data = Load.Unit(en);
 
-        if (type == ResourceType.SHIELD) {
+        if (type == ResourceType.shield) {
             return data.getUnit()
                 .healthData()
                 .getAverageValue();
         }
-        if (type == ResourceType.MANA) {
+        if (type == ResourceType.mana) {
             return data.getUnit()
                 .manaData()
                 .getAverageValue();
 
-        } else if (type == ResourceType.BLOOD) {
+        } else if (type == ResourceType.blood) {
             return data.getUnit()
                 .bloodData()
                 .getAverageValue();
-        } else if (type == ResourceType.HEALTH) {
+        } else if (type == ResourceType.health) {
             return HealthUtils.getMaxHealth(en);
         }
         return 0;
@@ -169,21 +169,21 @@ public class ResourcesData {
             return;
         }
 
-        if (ctx.type == ResourceType.MANA) {
+        if (ctx.type == ResourceType.mana) {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .manaData()
                 .getAverageValue() * Load.spells(ctx.source)
                 .getReservedManaMulti());
             sync(ctx);
 
-        } else if (ctx.type == ResourceType.BLOOD) {
+        } else if (ctx.type == ResourceType.blood) {
 
             blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .bloodData()
                 .getAverageValue() * Load.spells(ctx.source)
                 .getReservedManaMulti());
             sync(ctx);
-        } else if (ctx.type == ResourceType.HEALTH) {
+        } else if (ctx.type == ResourceType.health) {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {

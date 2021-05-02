@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public abstract class StatCondition implements ISerializedRegistryEntry<StatCond
         return this;
     }
 
-    public abstract boolean can(EffectData event, EffectSides statSource, StatData data, Stat stat);
+    public abstract boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat);
 
     @Override
     public final StatCondition fromJson(JsonObject json) {

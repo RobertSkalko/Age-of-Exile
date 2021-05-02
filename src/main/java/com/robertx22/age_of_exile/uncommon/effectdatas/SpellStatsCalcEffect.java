@@ -9,7 +9,7 @@ import net.minecraft.entity.LivingEntity;
 
 import java.util.HashMap;
 
-public class SpellStatsCalcEffect extends EffectData {
+public class SpellStatsCalcEffect extends EffectEvent {
     public static String ID = "on_spell_stat_calc";
 
     @Override

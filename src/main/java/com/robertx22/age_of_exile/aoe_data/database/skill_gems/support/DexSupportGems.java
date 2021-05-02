@@ -44,7 +44,7 @@ public class DexSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("mana_leech", "Mana Leech Support", new StatRequirement().setBaseDex(20)
                 .setDex(0.2F), StatAttribute.DEX, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(1, 2, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.MANA, AttackType.all)))
+            new StatModifier(1, 2, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.mana, AttackType.all)))
         );
 
         SkillGemBuilder.of("atk_speed", "Faster Attacks Support", new StatRequirement().setBaseDex(25)

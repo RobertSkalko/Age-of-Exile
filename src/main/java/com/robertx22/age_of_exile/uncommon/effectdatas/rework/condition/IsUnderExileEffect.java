@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class IsUnderExileEffect extends StatCondition {
@@ -22,7 +22,7 @@ public class IsUnderExileEffect extends StatCondition {
     }
 
     @Override
-    public boolean can(EffectData event, EffectSides statSource, StatData data, Stat stat) {
+    public boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
         return event.getSide(side)
             .hasStatusEffect(Database.ExileEffects()
                 .get(effect)

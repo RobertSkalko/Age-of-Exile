@@ -847,17 +847,17 @@ public class EntityCap {
 
                 // fully restore on lvlup
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.MANA,
+                    .modify(new ResourcesData.Context(this, player, ResourceType.mana,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.HEALTH,
+                    .modify(new ResourcesData.Context(this, player, ResourceType.health,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.BLOOD,
+                    .modify(new ResourcesData.Context(this, player, ResourceType.blood,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));

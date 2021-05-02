@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -58,7 +57,7 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(4, HealPower.getInstance(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(4, Stats.HEAL_STRENGTH.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));
@@ -76,7 +75,7 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(1, AttackStyleDamage.MELEE, ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, AttackStyleDamage.RANGED, ModType.FLAT));
 
-        PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.attack)), ModType.FLAT));
+        PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.mana, AttackType.attack)), ModType.FLAT));
 
         new ElementalSpellDamage(Elements.Nature).generateAllSingleVariations()
             .forEach(x -> {

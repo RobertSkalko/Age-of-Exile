@@ -31,7 +31,7 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("health_leech", "Health Leech Support", new StatRequirement().setBaseStr(25)
                 .setStr(0.4F), StatAttribute.STR, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(1, 2, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.HEALTH, AttackType.all)))
+            new StatModifier(1, 2, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.health, AttackType.all)))
         );
 
         SkillGemBuilder.of("crit_rate", "Critical Chance Support", new StatRequirement().setBaseStr(20)

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.AllShieldsData;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.LivingEntity;
 
-public class DamageAbsorbEffect extends EffectData {
+public class DamageAbsorbEffect extends EffectEvent {
 
     @Nullable
     public Spell spell;

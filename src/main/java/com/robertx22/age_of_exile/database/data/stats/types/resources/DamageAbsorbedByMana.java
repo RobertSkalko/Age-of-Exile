@@ -78,7 +78,7 @@ public class DamageAbsorbedByMana extends Stat {
                     PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.getElement(), dmgReduced);
                 }
                 ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-                    ResourceType.MANA, dmgReduced,
+                    ResourceType.mana, dmgReduced,
                     ResourcesData.Use.SPEND
                 );
 

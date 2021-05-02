@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.entity_configs;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig.*;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealEffectivenessOnSelf;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
@@ -66,7 +66,7 @@ public class EntityConfigs implements ISlashRegistryInit {
         mob(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature()));
         mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire()));
 
-        mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new OptScaleExactStat(-100, HealEffectivenessOnSelf.getInstance())));
+        mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new OptScaleExactStat(-100, Stats.HEALING_RECEIVED.get())));
 
     }
 

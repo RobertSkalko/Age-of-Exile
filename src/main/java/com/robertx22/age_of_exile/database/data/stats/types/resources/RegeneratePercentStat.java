@@ -17,10 +17,10 @@ import java.util.function.Function;
 
 public class RegeneratePercentStat extends Stat {
 
-    public static RegeneratePercentStat HEALTH = new RegeneratePercentStat(Health.getInstance(), ResourceType.HEALTH, x -> x.getUnit()
+    public static RegeneratePercentStat HEALTH = new RegeneratePercentStat(Health.getInstance(), ResourceType.health, x -> x.getUnit()
         .healthData()
         .getAverageValue());
-    public static RegeneratePercentStat MANA = new RegeneratePercentStat(Mana.getInstance(), ResourceType.MANA, x -> x.getUnit()
+    public static RegeneratePercentStat MANA = new RegeneratePercentStat(Mana.getInstance(), ResourceType.mana, x -> x.getUnit()
         .manaData()
         .getAverageValue());
 

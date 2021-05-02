@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
@@ -46,6 +47,25 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
 
+        })
+        .build();
+
+    public static DataPackStatAccessor<ResourceType> RESOURCE_ON_KILL = DatapackStatBuilder
+        .<ResourceType>of(x -> x.id + "_on_kill", x -> Elements.All)
+        .addAllOfType(Arrays.asList(
+            ResourceType.health,
+            ResourceType.mana
+        ))
+        .worksWithEvent(MobKillByDamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e))
+        .setLocName(x -> x.locname + " on Kill")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = false;
+            x.scaling = StatScaling.NORMAL;
         })
         .build();
 
@@ -153,6 +173,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
         .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
         .addEffect(StatEffects.SET_IS_CRIT)
         .setLocName(x -> "Spell Crit Chance")
         .setLocDesc(x -> "Chance to multiply attack damage by critical damage")
@@ -222,6 +243,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_CRIT)
         .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Crit Heal Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
@@ -301,7 +323,6 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.min = 0;
             x.icon = "\u27B9";
             x.format = Formatting.RED;
         })
@@ -319,7 +340,6 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.min = 0;
             x.format = Formatting.BLUE;
         })
         .build();
@@ -336,7 +356,6 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.min = 0;
             x.format = Formatting.DARK_PURPLE;
         })
         .build();
@@ -353,7 +372,6 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.min = 0;
             x.format = Formatting.YELLOW;
         })
         .build();
@@ -370,7 +388,6 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.min = 0;
             x.format = Formatting.RED;
         })
         .build();
@@ -386,7 +403,6 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.min = 0;
             x.format = Formatting.RED;
         })
         .build();
@@ -405,9 +421,45 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.min = 0;
             x.format = Formatting.RED;
             x.group = StatGroup.Misc;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> HEAL_STRENGTH = DatapackStatBuilder
+        .ofSingle("increase_healing", Elements.All)
+        .worksWithEvent(HealEffect.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Heal Strength")
+        .setLocDesc(x -> "Increases spell related heals.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.format = Formatting.YELLOW;
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> HEALING_RECEIVED = DatapackStatBuilder
+        .ofSingle("heal_effect_on_self", Elements.All)
+        .worksWithEvent(HealEffect.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Healing Received")
+        .setLocDesc(x -> "Increases spell related heals on you.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = -100;
+            x.format = Formatting.YELLOW;
+            x.group = StatGroup.RESTORATION;
         })
         .build();
 

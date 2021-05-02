@@ -34,7 +34,7 @@ public class HealthRestorationToBloodEffect extends BaseStatEffect<ModifyResourc
         float bloodrestored = effect.ctx.amount * data.getAverageValue() / 100F;
 
         ResourcesData.Context blood = new ResourcesData.Context(effect.ctx.targetData, effect.ctx.target,
-            ResourceType.BLOOD, bloodrestored,
+            ResourceType.blood, bloodrestored,
             ResourcesData.Use.RESTORE
         );
         effect.ctx.targetData.getResources()
@@ -52,7 +52,7 @@ public class HealthRestorationToBloodEffect extends BaseStatEffect<ModifyResourc
 
         if (effect.ctx.use == ResourcesData.Use.RESTORE) {
             if (effect.ctx.amount > 0) {
-                if (effect.ctx.type == ResourceType.HEALTH) {
+                if (effect.ctx.type == ResourceType.health) {
                     return true;
 
                 }

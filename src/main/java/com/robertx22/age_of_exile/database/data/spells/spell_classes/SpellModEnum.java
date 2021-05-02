@@ -8,7 +8,6 @@ public enum SpellModEnum {
     AREA(Words.Normal_Gear, "area", -10),
     COOLDOWN(Words.Cooldown, "cooldown", -10),
     DAMAGE(Words.Damage, "damage", 5),
-    HEALING(Words.Healing, "healing", 5),
     PROJECTILE_SPEED(Words.ProjectileSpeed, "projectile_speed", 15);
 
     public Words word;

@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalS
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -51,7 +50,7 @@ public class PharaohArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 20, new ElementalSpellDamage(Elements.Light)),
-                    new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(5, 15, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT),
@@ -80,7 +79,7 @@ public class PharaohArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(5, 15, TreasureQuality.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT)

@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -260,7 +259,7 @@ public class SpecialStats {
     );
 
     public static SpecialStat HEAL_CLEANSE = new SpecialStat("heal_cleanse",
-        format("Your " + HealPower.getInstance().format + HealPower.getInstance().icon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse you of a negative effect."),
+        format("Your " + Stats.HEAL_STRENGTH.get().format + Stats.HEAL_STRENGTH.get().icon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse you of a negative effect."),
 
         new BaseHealEffect() {
             @Override
@@ -298,7 +297,7 @@ public class SpecialStats {
             @Override
             public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
                 effect.addToRestore(
-                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.HEALTH, effect.data.getNumber(EventData.ORIGINAL_VALUE).number)
+                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.health, effect.data.getNumber(EventData.ORIGINAL_VALUE).number)
                 );
                 effect.cancelDamage();
                 return effect;
@@ -341,7 +340,7 @@ public class SpecialStats {
             @Override
             public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
                 effect.addToRestore(
-                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.MANA, data.getAverageValue())
+                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.mana, data.getAverageValue())
                 );
                 return effect;
             }

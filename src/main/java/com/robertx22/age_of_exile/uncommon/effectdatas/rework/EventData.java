@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework;
 
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -15,6 +16,8 @@ public class EventData {
     public static String CRIT = "crit";
     public static String ELEMENT = "element";
     public static String ATTACK_TYPE = "attack_type";
+    public static String RESOURCE_TYPE = "resource_type";
+    public static String RESTORE_TYPE = "restore_type";
     public static String ACCURACY = "accuracy";
     public static String ACCURACY_CRIT_FAILED = "accu_crit_roll_fail";
     public static String SPELL = "spell";
@@ -68,6 +71,10 @@ public class EventData {
 
     public AttackType getAttackType() {
         return AttackType.valueOf(strings.getOrDefault(ATTACK_TYPE, AttackType.attack.name()));
+    }
+
+    public ResourceType getResourceType() {
+        return ResourceType.valueOf(strings.getOrDefault(RESOURCE_TYPE, ResourceType.health.name()));
     }
 
     public boolean isSpellEffect() {

@@ -15,7 +15,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMa
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -164,7 +167,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_aspect_of_nature", "Aspect of Nature",
             new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
             new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, HealPower.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_flame_of_life", "Flame of Life",
@@ -181,7 +184,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_overflow_mana", "Overflowing Mana",
             new OptScaleExactStat(15, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.attack)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.mana, AttackType.attack)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_ele_protection", "Elemental Protection",
@@ -198,7 +201,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_blood_siphon", "Blood Stealing",
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.attack)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.health, AttackType.attack)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_precision", "Precision",
@@ -293,8 +296,8 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_mana_steal", "Mana Thief",
-            new OptScaleExactStat(5, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.MANA, AttackType.attack)), ModType.FLAT),
-            new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.attack)), ModType.FLAT),
+            new OptScaleExactStat(5, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.mana, AttackType.attack)), ModType.FLAT),
+            new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.mana, AttackType.attack)), ModType.FLAT),
             new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT)
         );
 
@@ -390,13 +393,13 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_heal_int", "Deceiver",
-            new OptScaleExactStat(5, HealPower.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
             new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(3, Intelligence.INSTANCE, ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_heal_wis", "Learner",
-            new OptScaleExactStat(5, HealPower.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
             new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(3, Intelligence.INSTANCE, ModType.FLAT)
         );

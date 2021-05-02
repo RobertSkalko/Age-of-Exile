@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.interfaces.IRenamed;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,18 +17,13 @@ import net.minecraft.item.Items;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IShapedRecipe {
+public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
     @Override
     public String GUID() {
         return "currency/reroll_unique_numbers";
     }
 
     private static final String name = Ref.MODID + ":currency/reroll_unique_numbers";
-
-    @Override
-    public List<String> oldNames() {
-        return Arrays.asList(Ref.MODID + ":reroll_unique_numbers");
-    }
 
     public OrbOfUniqueBlessingItem() {
 

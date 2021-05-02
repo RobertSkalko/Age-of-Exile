@@ -33,7 +33,7 @@ public class OnTickRegenerate {
 
         unitdata.tryRecalculateStats();
 
-        RegenEvent event = new RegenEvent(en, en, ResourceType.HEALTH);
+        RegenEvent event = new RegenEvent(en, en, ResourceType.health);
         event.Activate();
     }
 

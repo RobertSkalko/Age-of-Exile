@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -21,7 +20,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EffectData implements IGUID {
+public abstract class EffectEvent implements IGUID {
 
     public UnitData sourceData;
     public UnitData targetData;
@@ -33,7 +32,7 @@ public abstract class EffectData implements IGUID {
 
     public EventData data = new EventData();
 
-    public EffectData(float num, LivingEntity source, LivingEntity target) {
+    public EffectEvent(float num, LivingEntity source, LivingEntity target) {
         this(source, target);
 
         this.data.getNumber(EventData.NUMBER).number = num;
@@ -41,7 +40,7 @@ public abstract class EffectData implements IGUID {
 
     }
 
-    public EffectData(LivingEntity source, LivingEntity target) {
+    public EffectEvent(LivingEntity source, LivingEntity target) {
 
         this.source = source;
         this.target = target;
@@ -69,24 +68,30 @@ public abstract class EffectData implements IGUID {
 
     public void Activate() {
 
+        //Watch watch = new Watch();
+        //watch.min = 500;
+
         calculateEffects();
 
         if (!data.isCanceled()) {
             activate();
         }
 
+        // watch.print("stat events " + GUID() + " ");
+
     }
 
     public void calculateEffects() {
+        if (source.world.isClient) {
+            return; // todo is this fine? spell calc seems to be called on client every tick!
+        }
         if (!effectsCalculated) {
             effectsCalculated = true;
-            if (source == null || target == null || data.isCanceled() || sourceData == null || targetData == null) {
+            if (target == null || data.isCanceled() || sourceData == null || targetData == null) {
                 return;
             }
-            Watch watch = new Watch();
             TryApplyEffects(source, sourceData, EffectSides.Source);
             TryApplyEffects(target, targetData, EffectSides.Target);
-            watch.print("stat events ");
         }
 
     }
@@ -113,6 +118,8 @@ public abstract class EffectData implements IGUID {
                 } else {
                     System.out.print("ERORR Stat at wrong side should never be added in the first place! ");
                 }
+            } else {
+                System.out.print("ERORR cant be zero! ");
             }
         }
 

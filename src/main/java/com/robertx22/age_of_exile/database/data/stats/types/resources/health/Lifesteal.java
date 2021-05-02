@@ -62,7 +62,7 @@ public class Lifesteal extends Stat {
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
             float healed = ((float) data.getAverageValue() * effect.data.getNumber() / 100);
-            effect.addToRestore(new RestoreResource(RestoreResource.RestoreType.LEECH, ResourceType.HEALTH, healed));
+            effect.addToRestore(new RestoreResource(RestoreResource.RestoreType.LEECH, ResourceType.health, healed));
             return effect;
 
         }

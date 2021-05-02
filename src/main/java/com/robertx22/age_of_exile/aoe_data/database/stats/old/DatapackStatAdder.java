@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.stats.old;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AddPerPercentOfOther;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeStat;
@@ -13,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantit
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -25,7 +25,7 @@ import java.util.UUID;
 
 public class DatapackStatAdder implements ISlashRegistryInit {
 
-    public static Stat HEAL_TO_SPELL_DMG = new AddPerPercentOfOther(HealPower.getInstance(), SpellDamage.getInstance());
+    public static Stat HEAL_TO_SPELL_DMG = new AddPerPercentOfOther(Stats.HEAL_STRENGTH.get(), SpellDamage.getInstance());
 
     public static Stat BLOOD_PER_10VIT = new MoreXPerYOf(Vitality.INSTANCE, Blood.getInstance(), 10);
     public static Stat HEALTH_PER_10_INT = new MoreXPerYOf(Intelligence.INSTANCE, Health.getInstance(), 10);

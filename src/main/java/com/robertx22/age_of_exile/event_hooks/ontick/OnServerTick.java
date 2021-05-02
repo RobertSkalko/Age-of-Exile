@@ -82,7 +82,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         unitdata.tryRecalculateStats();
 
-                        RegenEvent event = new RegenEvent(player, player, ResourceType.MANA);
+                        RegenEvent event = new RegenEvent(player, player, ResourceType.mana);
                         event.Activate();
 
                         boolean restored = false;
@@ -95,7 +95,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 restored = true;
                             }
 
-                            RegenEvent hpevent = new RegenEvent(player, player, ResourceType.HEALTH);
+                            RegenEvent hpevent = new RegenEvent(player, player, ResourceType.health);
                             hpevent.Activate();
 
                             if (restored) {

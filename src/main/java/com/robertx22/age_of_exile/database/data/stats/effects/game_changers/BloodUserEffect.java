@@ -31,7 +31,7 @@ public class BloodUserEffect extends BaseStatEffect<ModifyResourceEffect> {
     @Override
     public ModifyResourceEffect activate(ModifyResourceEffect effect, StatData data, Stat stat) {
 
-        effect.ctx.type = ResourceType.BLOOD;
+        effect.ctx.type = ResourceType.blood;
 
         return effect;
     }
@@ -41,7 +41,7 @@ public class BloodUserEffect extends BaseStatEffect<ModifyResourceEffect> {
 
         if (effect.ctx.use == ResourcesData.Use.SPEND) {
             if (effect.ctx.amount > 0) {
-                if (effect.ctx.type == ResourceType.MANA) {
+                if (effect.ctx.type == ResourceType.mana) {
                     return true;
                 }
             }

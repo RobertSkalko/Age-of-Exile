@@ -36,7 +36,7 @@ public class HealthRegen extends BaseRegenClass {
 
     @Override
     public ResourceType getResourceType() {
-        return ResourceType.HEALTH;
+        return ResourceType.health;
     }
 
     @Override

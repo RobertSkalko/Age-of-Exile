@@ -25,7 +25,7 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_heart_of_" + ele.guidName, "Heart of " + name,
             new OptScaleExactStat(10, new ElementalSpellDamage(ele), ModType.FLAT),
             new OptScaleExactStat(2, new ElementalPenetration(ele), ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(ele, ResourceType.HEALTH, AttackType.spell)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(ele, ResourceType.health, AttackType.spell)), ModType.FLAT)
         );
     }
 
@@ -33,7 +33,7 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat(ele.guidName + "_dom", name + " Dominator",
             new OptScaleExactStat(5, new ElementalPenetration(ele), ModType.FLAT),
             new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(ele, ResourceType.HEALTH, AttackType.attack)), ModType.FLAT)
+            new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(ele, ResourceType.health, AttackType.attack)), ModType.FLAT)
         );
     }
 

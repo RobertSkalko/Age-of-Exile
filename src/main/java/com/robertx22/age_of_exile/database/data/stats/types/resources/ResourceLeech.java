@@ -33,7 +33,7 @@ public class ResourceLeech extends Stat implements IGenerated<Stat> {
         List<Stat> list = new ArrayList<>();
         for (Elements ele : Elements.values()) {
             for (ResourceType res : ResourceType.values()) {
-                if (res != ResourceType.BLOOD) {
+                if (res != ResourceType.blood) {
                     for (AttackType atk : AttackType.getAllUsed()) {
                         list.add(new ResourceLeech(new Info(ele, res, atk)));
                     }

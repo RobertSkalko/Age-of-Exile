@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 
-public class HealEffect extends EffectData {
+public class HealEffect extends EffectEvent {
 
     public static String ID = "on_heal";
 

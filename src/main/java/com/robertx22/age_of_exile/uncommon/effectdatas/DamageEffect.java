@@ -43,7 +43,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.*;
 import java.util.Map.Entry;
 
-public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
+public class DamageEffect extends EffectEvent implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable {
 
     public static String ID = "on_damage";
@@ -445,7 +445,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public void doManaBurn() {
         if (manaBurn > 0) {
             ResourcesData.Context ctx = new ResourcesData.Context(targetData, target,
-                ResourceType.MANA, manaBurn,
+                ResourceType.mana, manaBurn,
                 ResourcesData.Use.SPEND
             );
 

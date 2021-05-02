@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
@@ -45,7 +44,7 @@ public class OakArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 25, HealPower.getInstance(), ModType.FLAT),
+                    new StatModifier(10, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
                 )

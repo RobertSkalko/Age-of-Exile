@@ -149,14 +149,10 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(ManaBurn.getInstance());
                     add(ManaBurnResistance.getInstance());
 
-                    add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.HEALTH, AttackType.attack)));
-                    add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.attack)));
+                    add(new ResourceLeech(new ResourceLeech.Info(Elements.Elemental, ResourceType.health, AttackType.attack)));
+                    add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.health, AttackType.attack)));
 
                     add(new BonusSkillExp(PlayerSkillEnum.MINING));
-
-                    add(HealPower.getInstance());
-                    add(HealEffectivenessOnSelf.getInstance());
-                    // traits
 
                     add(new BonusYield(BonusRequirement.COLD_BIOME));
                     add(new BonusSkillYield(PlayerSkillEnum.FISHING));

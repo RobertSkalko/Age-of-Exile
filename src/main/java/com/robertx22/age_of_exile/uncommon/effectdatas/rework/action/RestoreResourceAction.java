@@ -1,25 +1,27 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.number_provider.NumberProvider;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class RestoreResourceAction extends StatEffect {
 
-    String val_calc = "";
-    ResourceType type = ResourceType.HEALTH;
+    NumberProvider num_provider = new NumberProvider();
+    ResourceType type = ResourceType.health;
     EffectSides side = EffectSides.Source;
+    RestoreType restore_type = RestoreType.heal; // TODO MAKE EVENTS USE THIS
 
-    public RestoreResourceAction(String val_calc, ResourceType type) {
-        super("restore_" + type.name() + "_" + val_calc, "restore_resource");
-        this.val_calc = val_calc;
+    public RestoreResourceAction(String id, NumberProvider num, ResourceType type, RestoreType restoreType) {
+        super(id, "restore_resource");
+        this.num_provider = num;
         this.type = type;
+        this.restore_type = restoreType;
     }
 
     RestoreResourceAction() {
@@ -27,12 +29,9 @@ public class RestoreResourceAction extends StatEffect {
     }
 
     @Override
-    public void activate(EffectData event, EffectSides statSource, StatData data, Stat stat) {
+    public void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
 
-        int val = Database.ValueCalculations()
-            .get(val_calc)
-            .getCalculatedValue(event.getSide(statSource), Load.Unit(event.getSide(statSource))
-                .getLevel());
+        float val = num_provider.getValue(event.getSide(statSource), data);
 
         ResourcesData.Context ctx = new ResourcesData.Context(
             event.source,
@@ -41,7 +40,6 @@ public class RestoreResourceAction extends StatEffect {
             val,
             ResourcesData.Use.RESTORE
         );
-
         if (event.data.isSpellEffect()) {
             ctx.setSpell(event.data.getString(EventData.SPELL));
         }

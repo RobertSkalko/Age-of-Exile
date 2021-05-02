@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -136,7 +135,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(WOUNDS)
-            .stat(-25, HealPower.getInstance(), ModType.FLAT)
+            .stat(-25, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(JUDGEMENT)

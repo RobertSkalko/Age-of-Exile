@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SkillDropData extends EffectData {
+public class SkillDropData extends EffectEvent {
 
     public static String ID = "on_skill_item_drop";
 

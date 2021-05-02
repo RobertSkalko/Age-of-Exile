@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.stat_conditions;
 import com.robertx22.age_of_exile.aoe_data.DataHolder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -24,6 +25,10 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_PROJECTILE_SPELL = new SpellHasTagCondition(SkillGemTag.projectile);
     public static StatCondition IS_AREA_SPELL = new SpellHasTagCondition(SkillGemTag.area);
+
+    public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
+        ResourceType.values()
+        , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
 
     public static StatCondition IS_MELEE_WEAPON = new EitherIsTrueCondition("is_melee_weapon",
         Arrays.stream(WeaponTypes.values())
@@ -50,11 +55,11 @@ public class StatConditions implements ISlashRegistryInit {
             IS_RANGED_WEAPON.GUID()
         ));
 
-    public static DataHolder<AttackType, StatCondition> ATTACK_TYPE_MATCHES = new DataHolder<AttackType, StatCondition>(
+    public static DataHolder<AttackType, StatCondition> ATTACK_TYPE_MATCHES = new DataHolder<>(
         AttackType.values()
         , x -> new StringMatchesCondition(EventData.ATTACK_TYPE, x.name()));
 
-    public static DataHolder<WeaponTypes, StatCondition> WEAPON_TYPE_MATCHES = new DataHolder<WeaponTypes, StatCondition>(
+    public static DataHolder<WeaponTypes, StatCondition> WEAPON_TYPE_MATCHES = new DataHolder<>(
         WeaponTypes.values()
         , x -> new WeaponTypeMatches(x));
 

@@ -19,7 +19,7 @@ public class HealthRegenFoodEffect extends FoodEffectPotion {
 
     @Override
     public ResourceType resourceType() {
-        return ResourceType.HEALTH;
+        return ResourceType.health;
     }
 
     @Override

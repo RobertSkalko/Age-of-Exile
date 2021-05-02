@@ -15,8 +15,8 @@ import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class PlusResourceOnKill extends Stat {
 
-    public static PlusResourceOnKill HEALTH = new PlusResourceOnKill(Health.getInstance(), new Effect(ResourceType.HEALTH));
-    public static PlusResourceOnKill MANA = new PlusResourceOnKill(Mana.getInstance(), new Effect(ResourceType.MANA));
+    public static PlusResourceOnKill HEALTH = new PlusResourceOnKill(Health.getInstance(), new Effect(ResourceType.health));
+    public static PlusResourceOnKill MANA = new PlusResourceOnKill(Mana.getInstance(), new Effect(ResourceType.mana));
 
     Stat statRestored;
 

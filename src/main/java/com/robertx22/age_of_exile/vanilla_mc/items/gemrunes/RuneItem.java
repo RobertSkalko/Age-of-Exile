@@ -205,7 +205,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.5F, 2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.attack))));
+                return Arrays.asList(new StatModifier(0.5F, 2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.health, AttackType.attack))));
             }
         }),
 
@@ -379,7 +379,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.3F, 1, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.attack))));
+                return Arrays.asList(new StatModifier(0.3F, 1, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.mana, AttackType.attack))));
 
             }
         });

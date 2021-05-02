@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.uncommon.interfaces;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 
 public interface IStatEffect {
 
@@ -35,6 +35,6 @@ public interface IStatEffect {
 
     public abstract int GetPriority();
 
-    public abstract void TryModifyEffect(EffectData effect, EffectSides statSource, StatData data, Stat stat);
+    public abstract void TryModifyEffect(EffectEvent effect, EffectSides statSource, StatData data, Stat stat);
 
 }
