@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.*;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ public class StatEffects implements ISlashRegistryInit {
     public static DataHolder<EffectCtx, StatEffect> GIVE_SELF_EFFECT = new DataHolder<>(
         Arrays.asList(BeneficialEffects.BLOODLUST
         ),
-        x -> new GiveExileStatusEffect(x.effectId, IStatEffect.EffectSides.Source, 10)
+        x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
     );
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_TARGET = new DataHolder<>(
@@ -28,7 +28,7 @@ public class StatEffects implements ISlashRegistryInit {
             NegativeEffects.BLIND,
             NegativeEffects.TORMENT
         )
-        , x -> new GiveExileStatusEffect(x.effectId, IStatEffect.EffectSides.Target, 5));
+        , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Target, 5));
 
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberEffect();

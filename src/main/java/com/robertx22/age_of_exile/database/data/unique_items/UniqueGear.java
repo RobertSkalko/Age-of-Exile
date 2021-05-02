@@ -23,6 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -132,6 +133,18 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
         }
 
         return uniq;
+    }
+
+    public BaseGearType getGearTypeForLevel(int lvl) {
+        BaseGearType type = getPossibleGearTypes()
+            .stream()
+            .filter(x -> x.getLevelRange()
+                .isLevelInRange(lvl))
+            .max(Comparator.comparingInt(x -> x.getLevelRange()
+                .getMaxLevel()))
+            .get();
+
+        return type;
     }
 
     @Override

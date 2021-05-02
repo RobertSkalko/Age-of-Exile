@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.effects.base;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public abstract class BaseSpellCalcEffect extends BaseStatEffect<SpellStatsCalcEffect> {
     public BaseSpellCalcEffect() {

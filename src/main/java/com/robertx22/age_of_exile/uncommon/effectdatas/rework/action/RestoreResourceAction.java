@@ -8,13 +8,13 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class RestoreResourceAction extends StatEffect<EffectData> {
+public class RestoreResourceAction extends StatEffect {
 
     String val_calc = "";
     ResourceType type = ResourceType.HEALTH;
-    IStatEffect.EffectSides side = IStatEffect.EffectSides.Source;
+    EffectSides side = EffectSides.Source;
 
     public RestoreResourceAction(String val_calc, ResourceType type) {
         super("restore_" + type.name() + "_" + val_calc, "restore_resource");
@@ -27,7 +27,7 @@ public class RestoreResourceAction extends StatEffect<EffectData> {
     }
 
     @Override
-    public void activate(EffectData event, IStatEffect.EffectSides statSource, StatData data, Stat stat) {
+    public void activate(EffectData event, EffectSides statSource, StatData data, Stat stat) {
 
         int val = Database.ValueCalculations()
             .get(val_calc)

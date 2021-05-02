@@ -6,11 +6,12 @@ import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.HashMap;
 
-public abstract class StatEffect<T> implements ISerializedRegistryEntry<StatEffect>, IAutoGson<StatEffect<T>> {
+public abstract class StatEffect implements ISerializedRegistryEntry<StatEffect>, IAutoGson<StatEffect> {
 
     public static StatEffect SERIALIZER = new SetBooleanEffect();
     public static HashMap<String, StatEffect> SERIALIZERS = new HashMap<>();
@@ -35,7 +36,7 @@ public abstract class StatEffect<T> implements ISerializedRegistryEntry<StatEffe
         this.ser = ser;
     }
 
-    public abstract void activate(T event, IStatEffect.EffectSides statSource, StatData data, Stat stat);
+    public abstract void activate(EffectData event, EffectSides statSource, StatData data, Stat stat);
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -52,14 +53,14 @@ public abstract class StatEffect<T> implements ISerializedRegistryEntry<StatEffe
         String ser = json.get("ser")
             .getAsString();
 
-        StatEffect<T> t = (StatEffect<T>) GSON.fromJson(json, SERIALIZERS.get(ser)
+        StatEffect t = GSON.fromJson(json, SERIALIZERS.get(ser)
             .getSerClass());
         t.onLoadedFromJson();
         return t;
     }
 
     @Override
-    public Class getClassForSerialization() {
+    public Class<StatEffect> getClassForSerialization() {
         return null;
     }
 

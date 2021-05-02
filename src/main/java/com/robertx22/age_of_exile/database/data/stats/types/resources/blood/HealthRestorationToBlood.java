@@ -5,11 +5,9 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.game_changers.HealthRestorationToBloodEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import net.minecraft.util.Formatting;
 
-public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
+public class HealthRestorationToBlood extends Stat {
     public static String GUID = "hp_resto_to_blood";
 
     private HealthRestorationToBlood() {
@@ -18,6 +16,7 @@ public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
         this.group = StatGroup.Misc;
 
         this.is_long = true;
+        this.statEffect = HealthRestorationToBloodEffect.getInstance();
     }
 
     public static HealthRestorationToBlood getInstance() {
@@ -48,11 +47,6 @@ public class HealthRestorationToBlood extends Stat implements IExtraStatEffect {
     public String locNameForLangFile() {
         return Formatting.GRAY + "You refill your " + Blood.getInstance()
             .getIconNameFormat() + " by " + Formatting.GREEN + SpecialStats.VAL1 + Formatting.GRAY + "% of your non-spell health restoration effects.";
-    }
-
-    @Override
-    public IStatEffect getEffect() {
-        return HealthRestorationToBloodEffect.getInstance();
     }
 
     private static class SingletonHolder {

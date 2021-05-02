@@ -5,11 +5,9 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.defense.ArmorEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import net.minecraft.util.Formatting;
 
-public class Armor extends Stat implements IExtraStatEffect, IUsableStat {
+public class Armor extends Stat implements IUsableStat {
 
     public static Armor getInstance() {
         return SingletonHolder.INSTANCE;
@@ -32,6 +30,8 @@ public class Armor extends Stat implements IExtraStatEffect, IUsableStat {
         this.format = Formatting.BLUE;
 
         this.isLocalTo = x -> x.isArmor();
+
+        this.statEffect = new ArmorEffect();
 
     }
 
@@ -58,11 +58,6 @@ public class Armor extends Stat implements IExtraStatEffect, IUsableStat {
     @Override
     public float valueNeededToReachMaximumPercentAtLevelOne() {
         return 20;
-    }
-
-    @Override
-    public IStatEffect getEffect() {
-        return new ArmorEffect();
     }
 
     @Override

@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackSta
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCondition;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -33,11 +33,13 @@ public class DatapackStatBuilder<T> {
     private Function<T, StatEffect> effectMaker;
     private Consumer<DatapackStat> modifyAfterDone;
 
+    private boolean isSingle = false;
+
     private List<StatCondition> conditions = new ArrayList<>();
     private List<StatEffect> effects = new ArrayList<>();
 
     private int priority = -1;
-    private IStatEffect.EffectSides side = IStatEffect.EffectSides.Source;
+    private EffectSides side = EffectSides.Source;
 
     private List<String> events = new ArrayList<>();
 
@@ -47,6 +49,7 @@ public class DatapackStatBuilder<T> {
         b.idMaker = x -> id;
         b.elementMaker = x -> ele;
         b.addSpecificType(EmptyAccessor.INSTANCE);
+        b.isSingle = true;
         return b;
     }
 
@@ -105,7 +108,7 @@ public class DatapackStatBuilder<T> {
         return this;
     }
 
-    public DatapackStatBuilder<T> setSide(IStatEffect.EffectSides side) {
+    public DatapackStatBuilder<T> setSide(EffectSides side) {
         this.side = side;
         return this;
     }
@@ -129,6 +132,7 @@ public class DatapackStatBuilder<T> {
         Objects.requireNonNull(locNameMaker);
         Objects.requireNonNull(locDescMaker);
 
+        Assert.assrt(!stats.isEmpty());
         Assert.assrt(priority > -1);
         Assert.assrt(!events.isEmpty());
 

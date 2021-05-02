@@ -26,6 +26,10 @@ public abstract class BlueprintPart<T, C extends ItemBlueprint> {
         }
     }
 
+    public void override(T t) {
+        part = t;
+    }
+
     public boolean isGenerated() {
         return part != null;
     }

@@ -1,13 +1,10 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
-
-import java.util.Comparator;
 
 public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
 
@@ -31,14 +28,7 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
             uniq = gen.random();
         }
         if (uniq != null) {
-            BaseGearType type = uniq.getPossibleGearTypes()
-                .stream()
-                .filter(x -> x.getLevelRange()
-                    .isLevelInRange(blueprint.info.level))
-                .max(Comparator.comparingInt(x -> x.getLevelRange()
-                    .getMaxLevel()))
-                .get();
-            blueprint.gearItemSlot.set(type);
+            blueprint.gearItemSlot.override(uniq.getGearTypeForLevel(blueprint.info.level));
         }
         return uniq;
     }

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffec
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
 
 public class SpellDamage extends Stat {

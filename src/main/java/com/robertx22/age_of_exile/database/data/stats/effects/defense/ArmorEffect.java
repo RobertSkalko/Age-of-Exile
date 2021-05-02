@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IArmorReducabl
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IPenetrable;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.math.MathHelper;
 
 public class ArmorEffect extends BaseStatEffect<DamageEffect> {

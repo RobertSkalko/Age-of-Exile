@@ -23,23 +23,11 @@ public interface IStatEffect {
 
         public static int afterThis(int other) {
             return other + 1;
-
         }
 
         public static int beforeThis(int other) {
             return other - 1;
 
-        }
-    }
-
-    public enum EffectSides {
-        Source("source"),
-        Target("target");
-
-        public String id;
-
-        EffectSides(String id) {
-            this.id = id;
         }
     }
 

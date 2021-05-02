@@ -122,6 +122,10 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 
         try {
+            if (entity.isDead()) {
+                return;
+            }
+
             ExileEffect exect = getExileEffect();
 
             if (exect.spell == null) {

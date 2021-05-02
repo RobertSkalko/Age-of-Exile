@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class WeaponTypeMatches extends StatCondition {
 
@@ -19,7 +20,7 @@ public class WeaponTypeMatches extends StatCondition {
     }
 
     @Override
-    public boolean can(EffectData event, StatData data, Stat stat) {
+    public boolean can(EffectData event, EffectSides statSource, StatData data, Stat stat) {
         return event.data.getWeaponType()
             .equals(type);
     }

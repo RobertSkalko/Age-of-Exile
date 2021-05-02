@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class DataPackStatAccessor<T> {
 
@@ -12,12 +13,19 @@ public class DataPackStatAccessor<T> {
     private HashMap<T, Stat> map2 = new HashMap<>();
 
     public Stat get(T key) {
+        Stat stat;
+
         if (!Database.Stats()
             .isRegistered(getId(key))) {
-            return map2.get(key);
+            stat = map2.get(key);
+            Objects.requireNonNull(stat, "Null for " + key.toString());
+            return stat;
         }
-        return Database.Stats()
+
+        stat = Database.Stats()
             .get(map.get(key));
+        Objects.requireNonNull(stat, "Null for " + key.toString());
+        return stat;
     }
 
     public String getId(T key) {

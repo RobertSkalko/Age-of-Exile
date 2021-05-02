@@ -12,8 +12,8 @@ import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect.EffectSides;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
+import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -25,9 +25,6 @@ public abstract class EffectData implements IGUID {
 
     public UnitData sourceData;
     public UnitData targetData;
-
-    public Unit sourceUnit;
-    public Unit targetUnit;
 
     public LivingEntity source;
     public LivingEntity target;
@@ -51,18 +48,10 @@ public abstract class EffectData implements IGUID {
 
         if (target != null && source != null) {
             this.targetData = Load.Unit(target);
-            targetUnit = targetData.getUnit();
-
             this.sourceData = Load.Unit(source);
-            sourceUnit = sourceData.getUnit();
         } else {
             this.data.setBoolean(EventData.CANCELED, true);
         }
-
-        if (sourceUnit == null || targetUnit == null) {
-            this.data.setBoolean(EventData.CANCELED, true);
-        }
-
     }
 
     public boolean isSpell() {
@@ -91,11 +80,13 @@ public abstract class EffectData implements IGUID {
     public void calculateEffects() {
         if (!effectsCalculated) {
             effectsCalculated = true;
-            if (source == null || target == null || data.getBoolean(EventData.CANCELED) == true || sourceUnit == null || targetUnit == null || sourceData == null || targetData == null) {
+            if (source == null || target == null || data.isCanceled() || sourceData == null || targetData == null) {
                 return;
             }
+            Watch watch = new Watch();
             TryApplyEffects(source, sourceData, EffectSides.Source);
             TryApplyEffects(target, targetData, EffectSides.Target);
+            watch.print("stat events ");
         }
 
     }
@@ -104,21 +95,23 @@ public abstract class EffectData implements IGUID {
 
     protected void TryApplyEffects(LivingEntity en, UnitData data, EffectSides side) {
 
-        if (this.data.getBoolean(EventData.CANCELED)) {
+        if (this.data.isCanceled()) {
             return;
         }
 
-        List<EffectUnitStat> Effects = new ArrayList<EffectUnitStat>();
+        List<EffectWithCtx> effectsWithCtx = new ArrayList<>();
 
-        Effects = AddEffects(Effects, data, en, side);
+        effectsWithCtx = AddEffects(effectsWithCtx, data, en, side);
 
-        Effects.sort(EffectUnitStat.COMPARATOR);
+        effectsWithCtx.sort(EffectWithCtx.COMPARATOR);
 
-        for (EffectUnitStat item : Effects) {
+        for (EffectWithCtx item : effectsWithCtx) {
             if (item.stat.isNotZero()) {
                 if (item.effect.Side()
                     .equals(side)) {
                     item.effect.TryModifyEffect(this, item.statSource, item.stat, item.stat.GetStat());
+                } else {
+                    System.out.print("ERORR Stat at wrong side should never be added in the first place! ");
                 }
             }
         }
@@ -141,7 +134,7 @@ public abstract class EffectData implements IGUID {
 
                     Spell spell = getSpell();
 
-                    EntitySpellCap.ISpellsCap spells = Load.spells((PlayerEntity) en);
+                    EntitySpellCap.ISpellsCap spells = Load.spells(en);
 
                     int place = -1;
 
@@ -186,7 +179,7 @@ public abstract class EffectData implements IGUID {
 
     }
 
-    private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, UnitData unit, LivingEntity en, EffectSides side) {
+    private List<EffectWithCtx> AddEffects(List<EffectWithCtx> effects, UnitData unit, LivingEntity en, EffectSides side) {
 
         Unit.StatContainerType type = getStatType(en, unit);
 
@@ -199,21 +192,20 @@ public abstract class EffectData implements IGUID {
                         Stat stat = data.GetStat();
 
                         if (stat.statEffect != null) {
-                            effects.add(new EffectUnitStat(stat.statEffect, side, data));
+                            if (stat.statEffect.Side()
+                                .equals(side)) {
+                                effects.add(new EffectWithCtx(stat.statEffect, side, data));
+                            }
                         }
 
                         if (stat instanceof DatapackStat) {
                             DatapackStat d = (DatapackStat) stat;
                             if (d.effect != null) {
-                                effects.add(new EffectUnitStat(d.effect, side, data));
+                                if (d.effect.Side()
+                                    .equals(side)) {
+                                    effects.add(new EffectWithCtx(d.effect, side, data));
+                                }
                             }
-                        }
-
-                        if (stat instanceof IExtraStatEffect) {
-                            ((IExtraStatEffect) stat).getEffects()
-                                .forEach(effect -> {
-                                    effects.add(new EffectUnitStat(effect, side, data));
-                                });
                         }
                     }
                 });

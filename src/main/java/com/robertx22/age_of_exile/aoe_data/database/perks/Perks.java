@@ -78,7 +78,7 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.attack)), ModType.FLAT));
 
-        new ElementalSpellDamage(Elements.Nature).generateAllPossibleStatVariations()
+        new ElementalSpellDamage(Elements.Nature).generateAllSingleVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
                 PerkBuilder.stat(x.GUID() + "_and_dot", new OptScaleExactStat(1, x, ModType.FLAT), new OptScaleExactStat(3, Stats.ELE_DOT_DAMAGE.get(x.getElement()), ModType.FLAT));

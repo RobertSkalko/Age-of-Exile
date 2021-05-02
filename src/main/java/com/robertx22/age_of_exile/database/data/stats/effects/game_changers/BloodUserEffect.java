@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class BloodUserEffect extends BaseStatEffect<ModifyResourceEffect> {
 

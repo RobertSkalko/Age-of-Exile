@@ -1,7 +1,10 @@
 package com.robertx22.age_of_exile.loot;
 
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.loot.generators.*;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -109,6 +112,15 @@ public class MasterLootGen {
     public static void genAndDrop(LivingEntity victim, PlayerEntity killer) {
         List<ItemStack> items = generateLoot(victim, killer);
         for (ItemStack stack : items) {
+
+            if (Gear.has(stack)) {
+                GearRarity rar = Gear.Load(stack)
+                    .getRarity();
+                if (rar.is_unique_item) {
+                    SoundUtils.ding(victim.world, victim.getBlockPos());
+                }
+            }
+
             victim.dropStack(stack, 1F);
         }
     }

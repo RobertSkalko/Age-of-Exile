@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +24,11 @@ public class EitherIsTrueCondition extends StatCondition {
     }
 
     @Override
-    public boolean can(EffectData event, StatData data, Stat stat) {
+    public boolean can(EffectData event, EffectSides statSource, StatData data, Stat stat) {
         return ifs.stream()
             .anyMatch(x -> Database.StatConditions()
                 .get(x)
-                .can(event, data, stat));
+                .can(event, statSource, data, stat));
     }
 
     @Override

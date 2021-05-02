@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
 
 public class GearCreationUtils {
@@ -33,27 +34,26 @@ public class GearCreationUtils {
         data.lvl = blueprint.level.get();
         data.rarity = rarity.GUID();
 
-        if (rarity.is_unique_item) {
-            if (blueprint.gearItemSlot.get()
-                .hasUniqueItemVersions()) {
+        if (rarity.is_unique_item && blueprint.uniquePart.get() != null) {
 
-                UniqueGear unique = blueprint.uniquePart.get();
+            UniqueGear unique = blueprint.uniquePart.get();
 
-                Preconditions.checkNotNull(unique);
-                Preconditions.checkArgument(unique.getPossibleGearTypes()
-                    .contains(data.GetBaseGearType()));
+            Preconditions.checkNotNull(unique);
 
-                data.rarity = Database.GearRarities()
-                    .get(unique.uniqueRarity)
-                    .GUID();
+            data.rarity = Database.GearRarities()
+                .get(unique.uniqueRarity)
+                .GUID();
 
-                data.is_uniq = true;
-                data.uniq_id = unique.GUID();
-                data.uniqueStats = new UniqueStatsData();
-                data.uniqueStats.RerollFully(data);
+            data.gear_type = unique.getGearTypeForLevel(data.lvl)
+                .GUID();
+            data.is_uniq = true;
+            data.uniq_id = unique.GUID();
+            data.uniqueStats = new UniqueStatsData();
+            data.uniqueStats.RerollFully(data);
 
-            } else {
-                // error bad
+        } else {
+            if (rarity.is_unique_item) {
+                data.rarity = IRarity.COMMON_ID;
             }
         }
 

@@ -66,7 +66,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
     public void saveToData(PacketByteBuf tag) {
 
         try {
-            Watch watch = new Watch().min(2000);
+            Watch watch = new Watch().min(8000);
             tag.writeString(type.name(), 30);
             CompoundTag nbt = new CompoundTag();
 

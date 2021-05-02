@@ -3,16 +3,16 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class IncreaseNumberEffect extends StatEffect<EffectData> {
+public class IncreaseNumberEffect extends StatEffect {
 
     public IncreaseNumberEffect() {
         super("increase_number", "increase_number");
     }
 
     @Override
-    public void activate(EffectData event, IStatEffect.EffectSides statSource, StatData data, Stat stat) {
+    public void activate(EffectData event, EffectSides statSource, StatData data, Stat stat) {
         event.increaseByPercent(data.getAverageValue());
     }
 

@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.registrators;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
@@ -63,10 +62,6 @@ public class StatsRegister implements ISlashRegistryInit {
 
                     add(PlusResourceOnKill.HEALTH);
                     add(PlusResourceOnKill.MANA);
-
-                    add(BonusDmgToStatusAffected.FROST);
-                    add(BonusDmgToStatusAffected.BURN);
-                    add(BonusDmgToStatusAffected.POISON);
 
                     add(ShieldDuration.getInstance());
                     add(ShieldStrength.getInstance());

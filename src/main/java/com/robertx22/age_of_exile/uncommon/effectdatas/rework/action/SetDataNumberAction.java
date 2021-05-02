@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class SetDataNumberAction extends StatEffect<EffectData> {
+public class SetDataNumberAction extends StatEffect {
 
     public String num_id = "";
 
@@ -19,7 +19,7 @@ public class SetDataNumberAction extends StatEffect<EffectData> {
     }
 
     @Override
-    public void activate(EffectData event, IStatEffect.EffectSides statSource, StatData data, Stat stat) {
+    public void activate(EffectData event, EffectSides statSource, StatData data, Stat stat) {
         event.data.getNumber(num_id).number = data.getAverageValue();
     }
 

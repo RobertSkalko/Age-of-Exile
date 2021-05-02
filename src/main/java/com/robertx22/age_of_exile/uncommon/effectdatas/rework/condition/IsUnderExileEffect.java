@@ -5,14 +5,14 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class IsUnderExileEffect extends StatCondition {
 
-    IStatEffect.EffectSides side;
+    EffectSides side;
     String effect;
 
-    public IsUnderExileEffect(EffectCtx ctx, IStatEffect.EffectSides side) {
+    public IsUnderExileEffect(EffectCtx ctx, EffectSides side) {
         super("is_" + side.id + "_under_" + ctx.id, "is_under_exile_effect");
         this.side = side;
     }
@@ -22,7 +22,7 @@ public class IsUnderExileEffect extends StatCondition {
     }
 
     @Override
-    public boolean can(EffectData event, StatData data, Stat stat) {
+    public boolean can(EffectData event, EffectSides statSource, StatData data, Stat stat) {
         return event.getSide(side)
             .hasStatusEffect(Database.ExileEffects()
                 .get(effect)

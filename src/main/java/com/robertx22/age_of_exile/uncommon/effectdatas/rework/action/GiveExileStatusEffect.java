@@ -5,15 +5,15 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class GiveExileStatusEffect extends StatEffect<EffectData> {
+public class GiveExileStatusEffect extends StatEffect {
 
-    public IStatEffect.EffectSides give_to;
+    public EffectSides give_to;
     public int seconds = 10;
     public String effect = "";
 
-    public GiveExileStatusEffect(String effect, IStatEffect.EffectSides give_to, int sec) {
+    public GiveExileStatusEffect(String effect, EffectSides give_to, int sec) {
         super("give_" + effect + "_to_" + give_to.id, "give_exile_effect");
         this.give_to = give_to;
         this.seconds = sec;
@@ -25,7 +25,7 @@ public class GiveExileStatusEffect extends StatEffect<EffectData> {
     }
 
     @Override
-    public void activate(EffectData event, IStatEffect.EffectSides statSource, StatData data, Stat stat) {
+    public void activate(EffectData event, EffectSides statSource, StatData data, Stat stat) {
         ExileEffectsManager.apply(event.sourceData.getLevel(), Database.ExileEffects()
             .get(effect), event.source, event.getSide(give_to), seconds * 20);
     }

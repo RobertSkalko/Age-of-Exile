@@ -135,8 +135,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         if (source instanceof PlayerEntity) {
-            dmg = modifyByAttackSpeedIfMelee(dmg);
-            dmg = modifyIfArrowDamage(dmg);
+            if (getAttackType().isAttack()) {
+                dmg = modifyByAttackSpeedIfMelee(dmg);
+                dmg = modifyIfArrowDamage(dmg);
+            }
         }
 
         if (areBothPlayers()) {
@@ -340,6 +342,9 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 }
             }
 
+            int time = target.hurtTime;
+            target.hurtTime = 0;
+
             if (this instanceof SpellDamageEffect) {
                 if (knockback && dmg <= 0 && !isDodged) {
                     // if magic shield absorbed the damage, still do knockback
@@ -376,6 +381,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             if (attri.hasModifier(NO_KNOCKBACK)) {
                 attri.removeModifier(NO_KNOCKBACK);
             }
+
+            target.hurtTime = time;
 
         }
 

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseShieldEff
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageAbsorbEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
 
 public class ShieldStrength extends Stat {
