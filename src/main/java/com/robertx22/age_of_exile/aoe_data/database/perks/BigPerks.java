@@ -12,9 +12,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AreaDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.*;
@@ -85,7 +83,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_balistic", "Ballistics Expert",
-            new OptScaleExactStat(5, ProjectileDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(10, ProjectileSpeed.getInstance(), ModType.FLAT),
             new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT)
         );
@@ -96,7 +94,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_fury_bolt", "Furious Bolts",
-            new OptScaleExactStat(5, ProjectileDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(5, ProjectileSpeed.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT)
         );
@@ -347,7 +345,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_area_dmg_mana", "Destruction Zone",
-            new OptScaleExactStat(10, AreaDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, Stats.AREA_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT)
         );
@@ -364,7 +362,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
         PerkBuilder.bigStat("big_hunters_path", "Hunters's Path",
             new OptScaleExactStat(100, Stats.ACCURACY.get(), ModType.FLAT),
-            new OptScaleExactStat(5, ProjectileDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT)
         );
         PerkBuilder.bigStat("big_mages_path", "Mage's Path",

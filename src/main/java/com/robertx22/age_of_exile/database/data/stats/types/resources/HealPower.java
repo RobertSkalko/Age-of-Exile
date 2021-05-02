@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.util.Formatting;
@@ -70,7 +69,7 @@ public class HealPower extends Stat {
 
         @Override
         public boolean canActivate(HealEffect effect, StatData data, Stat stat) {
-            return effect instanceof SpellHealEffect;
+            return effect.isSpell();
         }
 
     }

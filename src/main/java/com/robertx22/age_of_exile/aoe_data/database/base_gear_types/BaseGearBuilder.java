@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BaseGearBuilder implements DataHelper {
 
-    private AttackPlayStyle style = AttackPlayStyle.MELEE;
+    private AttackPlayStyle style = AttackPlayStyle.melee;
     private String locnamesuffix;
     private String idprefix;
     private DataGenKey<GearSlot> slot;

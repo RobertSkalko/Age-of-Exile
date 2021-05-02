@@ -49,7 +49,7 @@ public class IncreasedAreaOfEffect extends Stat {
 
         @Override
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.add(SpellModEnum.AREA, data.getAverageValue());
+            effect.spellConfig.add(SpellModEnum.AREA, data.getAverageValue());
             return effect;
         }
 

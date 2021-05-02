@@ -23,6 +23,7 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_PROJECTILE_SPELL = new SpellHasTagCondition(SkillGemTag.projectile);
+    public static StatCondition IS_AREA_SPELL = new SpellHasTagCondition(SkillGemTag.area);
 
     public static StatCondition IS_MELEE_WEAPON = new EitherIsTrueCondition("is_melee_weapon",
         Arrays.stream(WeaponTypes.values())
@@ -33,7 +34,7 @@ public class StatConditions implements ISlashRegistryInit {
 
     public static StatCondition IS_MAGIC_WEAPON = new EitherIsTrueCondition("is_magic_weapon",
         Arrays.stream(WeaponTypes.values())
-            .filter(x -> x.style == AttackPlayStyle.MAGIC)
+            .filter(x -> x.style == AttackPlayStyle.magic)
             .map(x -> new WeaponTypeMatches(x).GUID())
             .collect(Collectors.toList())
     );
@@ -89,6 +90,7 @@ public class StatConditions implements ISlashRegistryInit {
         IS_ANY_PROJECTILE.addToSerializables();
         IS_MAGIC_WEAPON.addToSerializables();
         IS_MELEE_WEAPON.addToSerializables();
+        IS_AREA_SPELL.addToSerializables();
 
     }
 }

@@ -5,8 +5,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DotDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.IncreasedLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
@@ -50,7 +48,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         PerkBuilder.gameChanger("steady_hand", "Steady Hand",
             new OptScaleExactStat(-100, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-100, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(20, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(20, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("true_hit", "True Hit",
@@ -61,7 +59,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         PerkBuilder.gameChanger("harmony", "Harmony",
             new OptScaleExactStat(20, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(20, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-10, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(-10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("mana_battery", "Mana Battery",
@@ -77,8 +75,8 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("tormentor", "Tormentor",
-            new OptScaleExactStat(35, DotDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(-10, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(35, Stats.DOT_DAMAGE.get(), ModType.FLAT),
+            new OptScaleExactStat(-10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 
     }

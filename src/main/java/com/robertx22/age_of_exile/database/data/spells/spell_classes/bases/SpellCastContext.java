@@ -52,7 +52,7 @@ public class SpellCastContext {
 
         SpellStatsCalcEffect effect = new SpellStatsCalcEffect(caster, spell.GUID());
         effect.Activate();
-        this.spellConfig = effect.data;
+        this.spellConfig = effect.spellConfig;
 
         if (caster instanceof PlayerEntity) {
 

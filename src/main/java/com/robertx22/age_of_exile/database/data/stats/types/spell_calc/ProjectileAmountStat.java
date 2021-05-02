@@ -49,7 +49,7 @@ public class ProjectileAmountStat extends Stat {
 
         @Override
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.extraProjectiles += data.getAverageValue();
+            effect.spellConfig.extraProjectiles += data.getAverageValue();
             return effect;
         }
 

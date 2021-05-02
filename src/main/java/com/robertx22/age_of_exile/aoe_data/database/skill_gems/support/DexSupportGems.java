@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.PiercingProjectile;
@@ -34,7 +33,7 @@ public class DexSupportGems implements ISlashRegistryInit {
                 .setDex(0.2F), StatAttribute.DEX, 1.2F,
             Arrays.asList(SkillGemTag.projectile),
             new StatModifier(10, 20, ProjectileSpeed.getInstance()),
-            new StatModifier(10, 20, ProjectileDamage.getInstance())
+            new StatModifier(10, 20, Stats.PROJECTILE_DAMAGE.get())
         );
 
         SkillGemBuilder.of("poison_chance", "Chance to Poison Support", new StatRequirement().setBaseDex(20)

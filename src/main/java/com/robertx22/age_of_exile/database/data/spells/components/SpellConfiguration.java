@@ -17,7 +17,7 @@ public class SpellConfiguration {
     public int times_to_cast = 1;
     private int cast_time_ticks = 0;
     public int cooldown_ticks = 20;
-    public AttackPlayStyle style = AttackPlayStyle.MAGIC;
+    public AttackPlayStyle style = AttackPlayStyle.magic;
     public List<SkillGemTag> tags = new ArrayList<>();
     public SpellCastType cast_type = SpellCastType.NORMAL;
     public List<PlayerAction> actions_needed = new ArrayList<>();

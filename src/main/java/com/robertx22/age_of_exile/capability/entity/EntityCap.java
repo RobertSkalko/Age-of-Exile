@@ -686,11 +686,11 @@ public class EntityCap {
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
-            AttackPlayStyle style = AttackPlayStyle.MELEE;
+            AttackPlayStyle style = AttackPlayStyle.melee;
 
             if (data.getSource() != null && data.getSource()
                 .isProjectile()) {
-                style = AttackPlayStyle.RANGED;
+                style = AttackPlayStyle.ranged;
             }
 
             DamageEffect dmg = new DamageEffect(

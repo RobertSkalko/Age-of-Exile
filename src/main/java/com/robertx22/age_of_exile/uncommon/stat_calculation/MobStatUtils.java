@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.SpellDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
@@ -62,7 +61,7 @@ public class MobStatUtils {
                     ExactStatData.noScaling(500, 500, ModType.GLOBAL_INCREASE, Health.getInstance()
                         .GUID())
                         .applyStats(mobdata);
-                    ExactStatData.noScaling(300, 300, ModType.FLAT, TotalDamage.getInstance()
+                    ExactStatData.noScaling(300, 300, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
                         .GUID())
                         .applyStats(mobdata);
                     ExactStatData.noScaling(100, 100, ModType.LOCAL_INCREASE, HealthRegen.getInstance()
@@ -95,7 +94,7 @@ public class MobStatUtils {
 
         stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
-        stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, TotalDamage.getInstance()
+        stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, Stats.TOTAL_DAMAGE.get()
             .GUID()));
 
         list.add(new MiscStatCtx(stats));
@@ -118,7 +117,7 @@ public class MobStatUtils {
 
         stats.add(ExactStatData.noScaling(hp, hp, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
-        stats.add(ExactStatData.noScaling(dmg, dmg, ModType.FLAT, TotalDamage.getInstance()
+        stats.add(ExactStatData.noScaling(dmg, dmg, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
             .GUID()));
 
         stats.add(ExactStatData.noScaling(stat, stat, ModType.GLOBAL_INCREASE, DodgeRating.getInstance()

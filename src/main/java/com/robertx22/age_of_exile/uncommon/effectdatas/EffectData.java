@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect.EffectSides;
@@ -138,10 +137,9 @@ public abstract class EffectData implements IGUID {
 
         if (en instanceof PlayerEntity) {
             try {
-                if (this instanceof IHasSpellEffect) {
-                    IHasSpellEffect has = (IHasSpellEffect) this;
+                if (this.data.isSpellEffect()) {
 
-                    Spell spell = has.getSpell();
+                    Spell spell = getSpell();
 
                     EntitySpellCap.ISpellsCap spells = Load.spells((PlayerEntity) en);
 

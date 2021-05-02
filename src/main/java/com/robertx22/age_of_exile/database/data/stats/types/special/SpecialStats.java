@@ -275,7 +275,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(HealEffect effect, StatData data, Stat stat) {
-                return effect instanceof SpellHealEffect && RandomUtils.roll(data.getAverageValue());
+                return effect.isSpell() && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override

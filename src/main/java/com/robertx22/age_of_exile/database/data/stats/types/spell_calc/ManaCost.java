@@ -52,7 +52,7 @@ public class ManaCost extends Stat {
 
         @Override
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.add(SpellModEnum.MANA_COST, data.getAverageValue());
+            effect.spellConfig.add(SpellModEnum.MANA_COST, data.getAverageValue());
             return effect;
         }
 

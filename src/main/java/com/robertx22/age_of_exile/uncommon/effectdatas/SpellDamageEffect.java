@@ -3,18 +3,17 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 
-public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
-
-    public Spell spell;
+public class SpellDamageEffect extends DamageEffect {
 
     public SpellDamageEffect(LivingEntity source, LivingEntity target, int dmg, Spell spell) {
         super(null, source, target, dmg, spell.getConfig().style.getAttackType(), weapon(source, spell), spell.getConfig().style);
-        this.spell = spell;
+
+        this.data.setString(EventData.SPELL, spell.GUID());
     }
 
     private static WeaponTypes weapon(LivingEntity en, Spell spell) {
@@ -37,11 +36,6 @@ public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
 
         return WeaponTypes.none;
 
-    }
-
-    @Override
-    public Spell getSpell() {
-        return spell;
     }
 
     @Override

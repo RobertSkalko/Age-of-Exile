@@ -30,7 +30,7 @@ public class BaseToolsAdder implements ISlashRegistryInit {
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.pickaxe, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
-            .attackStyle(AttackPlayStyle.MELEE)
+            .attackStyle(AttackPlayStyle.melee)
             .addToolLevelRanges()
             .build();
 
@@ -39,7 +39,7 @@ public class BaseToolsAdder implements ISlashRegistryInit {
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.fishing_rod, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
-            .attackStyle(AttackPlayStyle.MELEE)
+            .attackStyle(AttackPlayStyle.melee)
             .addToolLevelRanges()
             .build();
 
@@ -48,7 +48,7 @@ public class BaseToolsAdder implements ISlashRegistryInit {
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.hoe, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
-            .attackStyle(AttackPlayStyle.MELEE)
+            .attackStyle(AttackPlayStyle.melee)
             .addToolLevelRanges()
             .build();
 

@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalS
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DayDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -142,7 +141,7 @@ public class PharaohArmor implements ISlashRegistryInit {
                     new StatModifier(5, 10, BonusExp.getInstance()),
                     new StatModifier(5, 15, new ElementalDamageBonus(Elements.Fire)),
                     new StatModifier(5, 10, TreasureQuality.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT),
+                    new StatModifier(10, 20, Stats.DAY_DAMAGE.get(), ModType.FLAT),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT)
                 )
             )

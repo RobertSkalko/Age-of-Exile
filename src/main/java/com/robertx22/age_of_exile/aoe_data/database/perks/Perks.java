@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageOverTime;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
@@ -46,7 +44,7 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(3, AttackSpeed.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(2, ProjectileDamage.getInstance(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(2, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.CRIT_DAMAGE.get(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.CRIT_CHANCE.get(), ModType.FLAT));
@@ -83,7 +81,7 @@ public class Perks implements ISlashRegistryInit {
         new ElementalSpellDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
-                PerkBuilder.stat(x.GUID() + "_and_dot", new OptScaleExactStat(1, x, ModType.FLAT), new OptScaleExactStat(3, new DamageOverTime(x.getElement()), ModType.FLAT));
+                PerkBuilder.stat(x.GUID() + "_and_dot", new OptScaleExactStat(1, x, ModType.FLAT), new OptScaleExactStat(3, Stats.ELE_DOT_DAMAGE.get(x.getElement()), ModType.FLAT));
             });
 
         new SpecificWeaponDamage(WeaponTypes.sword).generateAllPossibleStatVariations()

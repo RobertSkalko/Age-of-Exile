@@ -9,7 +9,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
@@ -56,11 +58,6 @@ public class StatsRegister implements ISlashRegistryInit {
             {
                 {
 
-                    add(EffectImmunity.POISON);
-                    add(EffectImmunity.HUNGER);
-                    add(EffectImmunity.SLOW);
-                    add(EffectImmunity.WITHER);
-
                     add(RegeneratePercentStat.HEALTH);
                     add(RegeneratePercentStat.MANA);
 
@@ -79,19 +76,9 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(ReducedManaReserved.getInstance());
                     add(IncreasedEffectOfAuras.getInstance());
 
-                    add(DayDamage.getInstance());
-                    add(NightDamage.getInstance());
                     add(DarknessDamage.getInstance());
 
                     add(SpellDodge.getInstance());
-
-                    add(ProjectileDamage.getInstance());
-                    add(DotDamage.getInstance());
-                    add(AreaDamage.getInstance());
-
-                    add(DamageUnderPotion.HUNGER);
-                    add(DamageUnderPotion.POISON);
-                    add(DamageUnderPotion.WITHER);
 
                     add(TreasureQuality.getInstance());
                     add(TreasureQuantity.getInstance());
@@ -140,8 +127,6 @@ public class StatsRegister implements ISlashRegistryInit {
 
                     add(new UnknownStat());
 
-                    add(TotalDamage.getInstance());
-
                     // Resources
                     add(IncreasedLeech.getInstance());
                     add(DamageAbsorbedByMana.getInstance());
@@ -173,8 +158,6 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.attack)));
 
                     add(new BonusSkillExp(PlayerSkillEnum.MINING));
-
-                    add(new DamageOverTime(Elements.Elemental));
 
                     add(HealPower.getInstance());
                     add(HealEffectivenessOnSelf.getInstance());

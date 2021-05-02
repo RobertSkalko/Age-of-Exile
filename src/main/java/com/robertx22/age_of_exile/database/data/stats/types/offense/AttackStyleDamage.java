@@ -10,9 +10,9 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class AttackStyleDamage extends Stat {
 
-    public static AttackStyleDamage MELEE = new AttackStyleDamage("melee_dmg", "Melee Damage", AttackPlayStyle.MELEE);
-    public static AttackStyleDamage RANGED = new AttackStyleDamage("ranged_dmg", "Ranged Damage", AttackPlayStyle.RANGED);
-    public static AttackStyleDamage MAGIC = new AttackStyleDamage("magic_dmg", "Magic Damage", AttackPlayStyle.MAGIC);
+    public static AttackStyleDamage MELEE = new AttackStyleDamage("melee_dmg", "Melee Damage", AttackPlayStyle.melee);
+    public static AttackStyleDamage RANGED = new AttackStyleDamage("ranged_dmg", "Ranged Damage", AttackPlayStyle.ranged);
+    public static AttackStyleDamage MAGIC = new AttackStyleDamage("magic_dmg", "Magic Damage", AttackPlayStyle.magic);
 
     String id;
     transient String name;

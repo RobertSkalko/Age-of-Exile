@@ -34,6 +34,9 @@ public class DataPackStatAccessor<T> {
     }
 
     public Stat get() {
+        if (this.map.size() > 1) {
+            throw new RuntimeException("Using simple .get() for stat that isn't just a single stat!");
+        }
         return get((T) EmptyAccessor.INSTANCE);
     }
 }

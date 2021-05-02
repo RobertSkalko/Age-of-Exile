@@ -289,6 +289,127 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_DAMAGE = DatapackStatBuilder
+        .ofSingle("projectile_damage", Elements.Physical)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.IS_ANY_PROJECTILE)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Projectile Damage")
+        .setLocDesc(x -> "Affects projectile damage, includes projectile spells like fireballs, and ranged basic attacks.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.icon = "\u27B9";
+            x.format = Formatting.RED;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> AREA_DAMAGE = DatapackStatBuilder
+        .ofSingle("area_dmg", Elements.All)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.IS_AREA_SPELL)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Area Damage")
+        .setLocDesc(x -> "Affects dmg done by area of effect abilities. Think meteor or other large aoe spells")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.format = Formatting.BLUE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> NIGHT_DAMAGE = DatapackStatBuilder
+        .ofSingle("night_dmg", Elements.All)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.IS_NIGHT)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Night Damage")
+        .setLocDesc(x -> "Increases dmg at night.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.format = Formatting.DARK_PURPLE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAY_DAMAGE = DatapackStatBuilder
+        .ofSingle("day_dmg", Elements.All)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.IS_NIGHT)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Day Damage")
+        .setLocDesc(x -> "Increases dmg at daytime.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.format = Formatting.YELLOW;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DOT_DAMAGE = DatapackStatBuilder
+        .ofSingle("dot_dmg", Elements.All)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.dot))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage over Time")
+        .setLocDesc(x -> "Increases dmg of effects that do damage over time, like burn")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.format = Formatting.RED;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> TOTAL_DAMAGE = DatapackStatBuilder
+        .ofSingle("total_damage", Elements.All)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Total Damage")
+        .setLocDesc(x -> "Increases all your damage.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.format = Formatting.RED;
+        })
+        .build();
+
+    public static DataPackStatAccessor<Elements> ELE_DOT_DAMAGE = DatapackStatBuilder
+        .<Elements>of(x -> x.guidName + "_dot_damage", x -> x)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(0)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.dot))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.dmgName + " Damage Over Time")
+        .setLocDesc(x -> "Fire damage over time increases damage of burn, for example.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.format = Formatting.RED;
+            x.group = StatGroup.Misc;
+        })
+        .build();
+
     @Override
     public void registerAll() {
         DatapackStatBuilder.STATS_TO_ADD_TO_SERIALIZATION.forEach(x -> x.addToSerializables());

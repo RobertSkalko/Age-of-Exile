@@ -46,7 +46,7 @@ public class PiercingProjectile extends Stat {
     static class Effect extends BaseSpellCalcEffect {
         @Override
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.piercing = data.getAverageValue() > 0;
+            effect.spellConfig.piercing = data.getAverageValue() > 0;
             return effect;
         }
 

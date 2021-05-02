@@ -7,7 +7,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -101,12 +102,12 @@ public class ComboPerks implements ISlashRegistryInit {
 
         PerkBuilder.stat("crit_proj_dmg",
             new OptScaleExactStat(2, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
-            new OptScaleExactStat(1, ProjectileDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(1, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.stat("hp_dot_dmg",
             new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(3, DotDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.stat("fire_water_spell_dmg",
@@ -119,7 +120,7 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("area_dmg_mana",
-            new OptScaleExactStat(4, AreaDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(4, Stats.AREA_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
 

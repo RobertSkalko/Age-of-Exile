@@ -51,7 +51,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public String rar_group = GearRarityGroups.NON_UNIQUE_ID;
     public int weight = 1000;
     public int weapon_offhand_stat_util = 0;
-    public AttackPlayStyle style = AttackPlayStyle.MELEE;
+    public AttackPlayStyle style = AttackPlayStyle.melee;
 
     public List<StatModifier> implicit_stats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();

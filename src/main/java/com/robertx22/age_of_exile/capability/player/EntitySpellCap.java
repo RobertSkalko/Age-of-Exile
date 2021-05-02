@@ -177,7 +177,7 @@ public class EntitySpellCap {
             if (current.active) {
                 ReserveManaEffect effect = new ReserveManaEffect(spell, entity);
                 effect.Activate();
-                current.mana_reserved = effect.manaReserved;
+                current.mana_reserved = effect.data.getNumber();
             } else {
                 current.mana_reserved = 0;
             }

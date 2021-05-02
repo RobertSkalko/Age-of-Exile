@@ -29,6 +29,11 @@ public class ExileEffectBuilder {
         return this;
     }
 
+    public ExileEffectBuilder oneOfAKind(String kind) {
+        this.effect.one_of_a_kind_id = kind;
+        return this;
+    }
+
     public ExileEffectBuilder stat(OptScaleExactStat stat) {
         this.effect.stats.add(stat);
         return this;

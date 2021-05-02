@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AreaDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
@@ -59,7 +58,7 @@ public class IntSupportGems implements ISlashRegistryInit {
                 .setInt(0.5F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.damage, SkillGemTag.area),
             new StatModifier(-10, -20, IncreasedAreaOfEffect.getInstance()),
-            new StatModifier(15, 25, AreaDamage.getInstance())
+            new StatModifier(15, 25, Stats.AREA_DAMAGE.get())
         );
 
         SkillGemBuilder.of("more_radius", "Expanded Area Support", new StatRequirement().setBaseInt(25)

@@ -49,7 +49,7 @@ public class CastSpeed extends Stat {
 
         @Override
         public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.add(SpellModEnum.CAST_SPEED, -data.getAverageValue());
+            effect.spellConfig.add(SpellModEnum.CAST_SPEED, -data.getAverageValue());
             return effect;
         }
 

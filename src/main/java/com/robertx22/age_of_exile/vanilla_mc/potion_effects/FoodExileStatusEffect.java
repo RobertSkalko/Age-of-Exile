@@ -85,8 +85,8 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyableSta
     }
 
     @Override
-    public Type getOneOfATypeType() {
-        return Type.FOOD_BUFF;
+    public String getOneOfATypeType() {
+        return "food_buff";
     }
 
     @Override

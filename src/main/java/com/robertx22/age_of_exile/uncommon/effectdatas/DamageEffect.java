@@ -137,7 +137,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (source instanceof PlayerEntity) {
             dmg = modifyByAttackSpeedIfMelee(dmg);
             dmg = modifyIfArrowDamage(dmg);
-
         }
 
         if (areBothPlayers()) {
@@ -246,7 +245,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 return true;
             }
         } else {
-            if (this instanceof SpellDamageEffect) {
+            if (this.data.isSpellEffect()) {
                 if (target instanceof TameableEntity) {
                     if (source instanceof PlayerEntity) {
                         TameableEntity tame = (TameableEntity) target;

@@ -7,7 +7,8 @@ import com.robertx22.age_of_exile.database.data.spells.entities.IDatapackSpellEn
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -75,10 +76,11 @@ public class SpellUtils {
     }
 
     public static void heal(Spell spell, LivingEntity en, float amount) {
-        SpellHealEffect heal = new SpellHealEffect(
+        HealEffect heal = new HealEffect(
             new ResourcesData.Context(Load.Unit(en), en, ResourceType.HEALTH,
                 amount, ResourcesData.Use.RESTORE));
-        heal.spell = spell;
+
+        heal.data.setString(EventData.SPELL, spell.GUID());
 
         heal.Activate();
     }

@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -64,7 +64,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
                     hctx.setSpell(ctx.calculatedSpellData.getSpell()
                         .GUID());
 
-                    SpellHealEffect heal = new SpellHealEffect(hctx);
+                    HealEffect heal = new HealEffect(hctx);
                     total += heal.data.getNumber();
                     heal.Activate();
                 }

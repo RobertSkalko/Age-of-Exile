@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DamageOverTime;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -18,7 +17,7 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_breath_of_" + ele.guidName, "Breath of " + name,
             new OptScaleExactStat(5, new ElementalSpellDamage(ele), ModType.FLAT),
-            new OptScaleExactStat(15, new DamageOverTime(ele), ModType.FLAT)
+            new OptScaleExactStat(15, Stats.ELE_DOT_DAMAGE.get(ele), ModType.FLAT)
         );
     }
 
