@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
@@ -113,7 +112,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(POISON_WEAPONS)
             .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
-            .stat(20, ChanceToApplyEffect.POISON, ModType.FLAT)
+            .stat(20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
             .build();
 
     }

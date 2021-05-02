@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.aoe_data.database.skill_gems.support;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AreaDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
@@ -35,12 +35,12 @@ public class IntSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("fire_chance", "Chance to Burn Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 20, ChanceToApplyEffect.BURN)
+            new StatModifier(10, 20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN))
         );
         SkillGemBuilder.of("frostburn_chance", "Chance to Frostburn Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 20, ChanceToApplyEffect.FROSTBURN)
+            new StatModifier(10, 20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN))
         );
 
         SkillGemBuilder.of("cast_speed", "Faster Casting Support", new StatRequirement().setBaseInt(25)

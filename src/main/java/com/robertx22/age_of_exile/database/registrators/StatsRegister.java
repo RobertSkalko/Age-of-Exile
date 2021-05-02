@@ -44,7 +44,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Stats implements ISlashRegistryInit {
+public class StatsRegister implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
@@ -71,15 +71,6 @@ public class Stats implements ISlashRegistryInit {
                     add(BonusDmgToStatusAffected.FROST);
                     add(BonusDmgToStatusAffected.BURN);
                     add(BonusDmgToStatusAffected.POISON);
-
-                    add(ChanceToGetEffectOnKill.BLOODLUST);
-
-                    add(ChanceToApplyEffect.FROSTBURN);
-                    add(ChanceToApplyEffect.BURN);
-                    add(ChanceToApplyEffect.POISON);
-                    add(ChanceToApplyEffect.BLEED);
-                    add(ChanceToApplyEffect.TORMENT);
-                    add(ChanceToApplyEffect.BLIND);
 
                     add(ShieldDuration.getInstance());
                     add(ShieldStrength.getInstance());

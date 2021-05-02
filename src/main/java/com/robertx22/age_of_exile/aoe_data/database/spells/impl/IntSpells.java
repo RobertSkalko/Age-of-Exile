@@ -96,7 +96,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.damageInAoe(ValueCalculation.base("teleport", 8), Elements.Elemental, 2D)
                 .addPerEntityHit(PartBuilder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D))
             )
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST, 20 * 10D)
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST.effectId, 20 * 10D)
             )
 
             .build();
@@ -108,7 +108,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(PartBuilder.healCaster(ValueCalculation.base("heart_of_ice", 15)))
-            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN, 5D, 20D * 10D))
+            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN.effectId, 5D, 20D * 10D))
             .build();
 
         SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Atmosphere",
@@ -174,13 +174,13 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 60 * 20), "Nature's Balm",
             Arrays.asList(SkillGemTag.heal))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE, 20 * 15D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE.effectId, 20 * 15D))
             .build();
 
         SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 60 * 20), "Gorgon's Gaze",
             Arrays.asList(SkillGemTag.area))
             .onCast(PartBuilder.playSound(SOUNDS.STONE_CRACK, 1D, 1D))
-            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY, 15D, 3D, 20 * 5D))
+            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY.effectId, 15D, 3D, 20 * 5D))
             .build();
 
         SpellBuilder.of("fire_bombs", SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Fire Bombs",

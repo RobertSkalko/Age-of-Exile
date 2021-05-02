@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 
-public class StringMatchesCondition extends StatCondition<EffectData> {
+public class StringMatchesCondition extends StatCondition {
 
     public String string_id = "";
     public String string_key = "";

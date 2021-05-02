@@ -12,9 +12,9 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class BonusDmgToStatusAffected extends Stat {
 
-    public static BonusDmgToStatusAffected FROST = new BonusDmgToStatusAffected(NegativeEffects.FROSTBURN, "Chilled", "chill");
-    public static BonusDmgToStatusAffected BURN = new BonusDmgToStatusAffected(NegativeEffects.BURN, "Burning", "burn");
-    public static BonusDmgToStatusAffected POISON = new BonusDmgToStatusAffected(NegativeEffects.POISON, "Poisoned", "poison");
+    public static BonusDmgToStatusAffected FROST = new BonusDmgToStatusAffected(NegativeEffects.FROSTBURN.effectId, "Chilled", "chill");
+    public static BonusDmgToStatusAffected BURN = new BonusDmgToStatusAffected(NegativeEffects.BURN.effectId, "Burning", "burn");
+    public static BonusDmgToStatusAffected POISON = new BonusDmgToStatusAffected(NegativeEffects.POISON.effectId, "Poisoned", "poison");
 
     String affectedName;
     String id;

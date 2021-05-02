@@ -1,13 +1,14 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToGetEffectOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -39,7 +40,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                     new StatModifier(15, 35, new ElementalResist(Elements.Dark)))
             )
             .stats(Arrays.asList(
-                new StatModifier(25, 25, ChanceToGetEffectOnKill.BLOODLUST, ModType.FLAT),
+                new StatModifier(25, 25, DataStats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
                 new StatModifier(5, 15, AttackSpeed.getInstance(), ModType.FLAT),
                 new StatModifier(3, 5, Lifesteal.getInstance(), ModType.FLAT),
                 new StatModifier(5, 15, Health.getInstance(), ModType.LOCAL_INCREASE),

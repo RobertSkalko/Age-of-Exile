@@ -48,7 +48,7 @@ public class DexSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
             .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Nature))
 
-            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON, 2D, 20 * 8D))
+            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON.effectId, 2D, 20 * 8D))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
@@ -82,7 +82,7 @@ public class DexSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
             .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Physical))
             .onCast(PartBuilder.pushCaster(DashUtils.Way.BACKWARDS, DashUtils.Strength.MEDIUM_DISTANCE))
-            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.WOUNDS, 1D, 20 * 20D))
+            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.WOUNDS.effectId, 1D, 20 * 20D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D)
             )

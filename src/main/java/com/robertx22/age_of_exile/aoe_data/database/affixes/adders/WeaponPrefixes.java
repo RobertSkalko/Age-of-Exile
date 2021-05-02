@@ -2,11 +2,11 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -46,9 +46,9 @@ public class WeaponPrefixes implements ISlashRegistryInit {
         ///// chance of effect
         AffixBuilder.Normal("snakes")
             .Named("Snake's")
-            .tier(1, new StatModifier(10, 15, ChanceToApplyEffect.POISON, ModType.FLAT))
-            .tier(2, new StatModifier(8, 10, ChanceToApplyEffect.POISON, ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, ChanceToApplyEffect.POISON, ModType.FLAT))
+            .tier(1, new StatModifier(10, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
+            .tier(2, new StatModifier(8, 10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Weight(50)
             .Prefix()
@@ -56,9 +56,9 @@ public class WeaponPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("yetis")
             .Named("Yeti's")
-            .tier(1, new StatModifier(10, 15, ChanceToApplyEffect.FROSTBURN, ModType.FLAT))
-            .tier(2, new StatModifier(8, 10, ChanceToApplyEffect.FROSTBURN, ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, ChanceToApplyEffect.FROSTBURN, ModType.FLAT))
+            .tier(1, new StatModifier(10, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
+            .tier(2, new StatModifier(8, 10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Weight(50)
             .Prefix()
@@ -66,9 +66,9 @@ public class WeaponPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("drakes")
             .Named("Drakes's")
-            .tier(1, new StatModifier(10, 15, ChanceToApplyEffect.BURN, ModType.FLAT))
-            .tier(2, new StatModifier(8, 10, ChanceToApplyEffect.BURN, ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, ChanceToApplyEffect.BURN, ModType.FLAT))
+            .tier(1, new StatModifier(10, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
+            .tier(2, new StatModifier(8, 10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Weight(50)
             .Prefix()

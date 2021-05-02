@@ -25,6 +25,7 @@ public class StatEffects implements ISlashRegistryInit {
             NegativeEffects.FROSTBURN,
             NegativeEffects.BLEED,
             NegativeEffects.POISON,
+            NegativeEffects.BLIND,
             NegativeEffects.TORMENT
         )
         , x -> new GiveExileStatusEffect(x.effectId, IStatEffect.EffectSides.Target, 5));
@@ -32,7 +33,6 @@ public class StatEffects implements ISlashRegistryInit {
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberEffect();
     public static StatEffect SET_ACCURACY = new SetDataNumberAction(EventData.ACCURACY);
-    private String x;
 
     public static void loadClass() {
     }

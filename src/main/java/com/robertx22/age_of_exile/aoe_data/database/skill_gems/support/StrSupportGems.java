@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.aoe_data.database.skill_gems.support;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
@@ -25,7 +25,7 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("bleed_chance", "Chance to Bleed Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 20, ChanceToApplyEffect.BLEED)
+            new StatModifier(10, 20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
         );
 
         SkillGemBuilder.of("health_leech", "Health Leech Support", new StatRequirement().setBaseStr(25)

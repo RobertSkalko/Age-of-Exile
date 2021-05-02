@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.components.NumberComparison;
 
-public class LightLevelCondition extends StatCondition<EffectData> {
+public class LightLevelCondition extends StatCondition {
 
     NumberComparison comparison;
 

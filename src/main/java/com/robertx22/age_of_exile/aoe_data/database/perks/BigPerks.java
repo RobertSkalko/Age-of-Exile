@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
@@ -145,9 +146,9 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_effect_of_ele", "Elemental Destruction",
             new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Elemental), ModType.FLAT),
-            new OptScaleExactStat(10, ChanceToApplyEffect.POISON, ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, ChanceToApplyEffect.BURN, ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, ChanceToApplyEffect.FROSTBURN, ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("big_aspect_of_thunder", "Aspect of Thunder",

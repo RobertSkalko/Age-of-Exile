@@ -1,10 +1,11 @@
 package com.robertx22.age_of_exile.aoe_data.database.skill_gems.support;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ChanceToApplyEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.ProjectileDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
@@ -39,7 +40,7 @@ public class DexSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("poison_chance", "Chance to Poison Support", new StatRequirement().setBaseDex(20)
                 .setDex(0.2F), StatAttribute.DEX, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 20, ChanceToApplyEffect.POISON)
+            new StatModifier(10, 20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON))
         );
         SkillGemBuilder.of("mana_leech", "Mana Leech Support", new StatRequirement().setBaseDex(20)
                 .setDex(0.2F), StatAttribute.DEX, 1.25F,

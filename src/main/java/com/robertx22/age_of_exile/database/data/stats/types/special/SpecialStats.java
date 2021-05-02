@@ -70,7 +70,7 @@ public class SpecialStats {
                 int duration = (int) (60 * 20 * 1);
 
                 ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(BeneficialEffects.VOID_EYE), effect.source, effect.source, duration);
+                    .get(BeneficialEffects.VOID_EYE.effectId), effect.source, effect.source, duration);
 
                 effect.sourceData.getCooldowns()
                     .setOnCooldown("void_eye", VOID_EYE_COOLDOWN_MINUTES * 60 * 20);
@@ -107,7 +107,7 @@ public class SpecialStats {
             @Override
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
                 ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(NegativeEffects.MUMMY_CURSE), effect.source, effect.target, 20 * 10);
+                    .get(NegativeEffects.MUMMY_CURSE.effectId), effect.source, effect.target, 20 * 10);
                 return effect;
             }
 
@@ -163,7 +163,7 @@ public class SpecialStats {
             @Override
             public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
                 ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(NegativeEffects.BURN), effect.source, effect.target, 20 * 10);
+                    .get(NegativeEffects.BURN.effectId), effect.source, effect.target, 20 * 10);
                 return effect;
             }
 

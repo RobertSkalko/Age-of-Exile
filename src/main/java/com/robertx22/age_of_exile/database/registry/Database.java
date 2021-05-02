@@ -38,7 +38,7 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
-import com.robertx22.age_of_exile.database.registrators.Stats;
+import com.robertx22.age_of_exile.database.registrators.StatsRegister;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyStat;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
@@ -342,7 +342,7 @@ public class Database {
     }
 
     private static void registerAllNonDatapackEntries() {
-        new Stats().registerAll();// STATS MUST BE INIT FIRST
+        new StatsRegister().registerAll();// STATS MUST BE INIT FIRST
         // should be at least
         new CurrencyItems().registerAll();
     }

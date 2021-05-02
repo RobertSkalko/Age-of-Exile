@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.stats;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.DatapackStatBuilder;
@@ -23,8 +24,8 @@ import java.util.Arrays;
 
 public class DataStats implements ISlashRegistryInit {
 
-    public DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_on_kill", x -> x.element)
+    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
             BeneficialEffects.BLOODLUST
         ))
@@ -32,9 +33,33 @@ public class DataStats implements ISlashRegistryInit {
         .setPriority(0)
         .setSide(IStatEffect.EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
         .setLocName(x -> SpecialStats.format(
             "Your " + x.element.getIconNameFormat() + " Killing blows have " + SpecialStats.VAL1 + "% chance of giving you " + x.locname
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
+        .addAllOfType(Arrays.asList(BeneficialEffects.BLOODLUST))
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(100)
+        .setSide(IStatEffect.EffectSides.Source)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> SpecialStats.format(
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of giving " + x.locname
         ))
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
@@ -44,18 +69,26 @@ public class DataStats implements ISlashRegistryInit {
         })
         .build();
 
-    public DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
-        .addAllOfType(Arrays.asList(BeneficialEffects.BLOODLUST))
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
+        .addAllOfType(Arrays.asList(
+            NegativeEffects.BURN,
+            NegativeEffects.FROSTBURN,
+            NegativeEffects.BLEED,
+            NegativeEffects.TORMENT,
+            NegativeEffects.BLIND,
+            NegativeEffects.POISON
+            )
+        )
         .worksWithEvent(DamageEffect.ID)
         .setPriority(100)
         .setSide(IStatEffect.EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.IF_CRIT)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
-        .addEffect(StatEffects.GIVE_SELF_EFFECT.get(BeneficialEffects.BLOODLUST))
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
         .setLocName(x -> SpecialStats.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of giving " + x.locname
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of applying " + x.locname
         ))
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {

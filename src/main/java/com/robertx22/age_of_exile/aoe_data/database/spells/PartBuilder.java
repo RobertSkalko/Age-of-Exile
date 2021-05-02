@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
@@ -290,6 +291,13 @@ public class PartBuilder {
     public static ComponentPart giveSelfExileEffect(String effect, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
+        c.targets.add(BaseTargetSelector.CASTER.create());
+        return c;
+    }
+
+    public static ComponentPart giveSelfExileEffect(EffectCtx ctx, Double duration) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.EXILE_EFFECT.create(ctx.effectId, GiveOrTake.GIVE_STACKS, duration));
         c.targets.add(BaseTargetSelector.CASTER.create());
         return c;
     }
