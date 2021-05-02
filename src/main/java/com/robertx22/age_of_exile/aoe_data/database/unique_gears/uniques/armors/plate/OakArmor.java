@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BasePlateArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
@@ -101,7 +101,7 @@ public class OakArmor implements ISlashRegistryInit {
                 Arrays.asList(
                     new StatModifier(5, 15, new ElementalDamageBonus(Elements.Light), ModType.FLAT),
                     new StatModifier(5, 15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(5, 10, DataStats.CRIT_CHANCE.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
                 )
             )

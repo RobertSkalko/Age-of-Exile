@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
@@ -136,10 +136,10 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("jewel_accuracy_suffix")
             .Named("Of Accuracy")
-            .tier(1, new StatModifier(15, 20, DataStats.ACCURACY.get()))
-            .tier(2, new StatModifier(12, 15, DataStats.ACCURACY.get()))
-            .tier(3, new StatModifier(10, 12, DataStats.ACCURACY.get()))
-            .tier(4, new StatModifier(6, 10, DataStats.ACCURACY.get()))
+            .tier(1, new StatModifier(15, 20, Stats.ACCURACY.get()))
+            .tier(2, new StatModifier(12, 15, Stats.ACCURACY.get()))
+            .tier(3, new StatModifier(10, 12, Stats.ACCURACY.get()))
+            .tier(4, new StatModifier(6, 10, Stats.ACCURACY.get()))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();

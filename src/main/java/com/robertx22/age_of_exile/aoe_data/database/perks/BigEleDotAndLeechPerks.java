@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
@@ -33,7 +33,7 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
     static void dominator(String name, Elements ele) {
         PerkBuilder.bigStat(ele.guidName + "_dom", name + " Dominator",
             new OptScaleExactStat(5, new ElementalPenetration(ele), ModType.FLAT),
-            new OptScaleExactStat(10, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
+            new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(2, new ResourceLeech(new ResourceLeech.Info(ele, ResourceType.HEALTH, AttackType.attack)), ModType.FLAT)
         );
     }

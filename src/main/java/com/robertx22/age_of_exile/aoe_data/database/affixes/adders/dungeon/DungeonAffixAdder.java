@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.dungeon;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -53,7 +53,7 @@ public class DungeonAffixAdder implements ISlashRegistryInit {
 
         AffixBuilder.Normal("accurate_mobs")
             .Named("Accurate")
-            .tier(1, new StatModifier(20, 50, DataStats.ACCURACY.get(), ModType.LOCAL_INCREASE))
+            .tier(1, new StatModifier(20, 50, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE))
             .DungeonPrefix()
             .Build();
 

@@ -1,10 +1,31 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+is_sword_wep_type
+is_attack_or_spell_attack
+is_bow_wep_type
+is_scepter_wep_type
+attack_type_is_attack
+is_axe_wep_type
+attack_type_is_dot
+is_glove_wep_type
 is_bool_true
-is_accu_crit_roll_fail_true_is_false
-random_roll
+is_day_is_false
+is_wand_wep_type
 is_crit_true
 attack_type_is_all
+is_trident_wep_type
 attack_type_is_spell
-attack_type_is_attack
-attack_type_is_dot
+is_staff_wep_type
+is_accu_crit_roll_fail_true_is_false
+ele_match_stat
+is_mace_wep_type
+is_day
+is_dagger_wep_type
+is_spear_wep_type
+is_crossbow_wep_type
+is_none_wep_type
+random_roll
+is_scythe_wep_type
+is_crit_true_is_false
+is_spell
+is_hammer_wep_type

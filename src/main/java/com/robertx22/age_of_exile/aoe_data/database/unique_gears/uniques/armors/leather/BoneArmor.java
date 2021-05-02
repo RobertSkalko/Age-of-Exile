@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
@@ -46,7 +46,7 @@ public class BoneArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 10, ArmorPenetration.getInstance(), ModType.FLAT),
-                    new StatModifier(2, 5, DataStats.CRIT_CHANCE.get(), ModType.FLAT),
+                    new StatModifier(2, 5, Stats.CRIT_CHANCE.get(), ModType.FLAT),
                     new StatModifier(5, 8, new SpecificWeaponDamage(WeaponTypes.bow), ModType.FLAT),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
@@ -133,8 +133,8 @@ public class BoneArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, DataStats.CRIT_DAMAGE.get()),
-                    new StatModifier(15, 25, DataStats.SPELL_CRIT_DAMAGE.get()),
+                    new StatModifier(15, 25, Stats.CRIT_DAMAGE.get()),
+                    new StatModifier(15, 25, Stats.SPELL_CRIT_DAMAGE.get()),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
                 )

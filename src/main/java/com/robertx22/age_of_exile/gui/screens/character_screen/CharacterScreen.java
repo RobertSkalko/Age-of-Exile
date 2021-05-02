@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -110,8 +110,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), Mana.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), ManaRegen.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Armor.getInstance(), DodgeRating.getInstance()));
-        addTo(StatType.MAIN, Arrays.asList(DataStats.CRIT_CHANCE.get(), DataStats.CRIT_DAMAGE.get(), DataStats.SPELL_CRIT_CHANCE.get(), DataStats.SPELL_CRIT_DAMAGE.get()));
-        addTo(StatType.MAIN, Arrays.asList(DataStats.ACCURACY.get(), SpellDamage.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(Stats.CRIT_CHANCE.get(), Stats.CRIT_DAMAGE.get(), Stats.SPELL_CRIT_CHANCE.get(), Stats.SPELL_CRIT_DAMAGE.get()));
+        addTo(StatType.MAIN, Arrays.asList(Stats.ACCURACY.get(), SpellDamage.getInstance()));
 
         addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.ELEMENTAL, new ElementalSpellDamage(Elements.Elemental).generateAllPossibleStatVariations());

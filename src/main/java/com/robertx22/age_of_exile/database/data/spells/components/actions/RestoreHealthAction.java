@@ -51,7 +51,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
             if (!ctx.world.isClient) {
                 ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-                int value = calc.getCalculatedValue(ctx.caster);
+                int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
 
                 int total = 0;
 

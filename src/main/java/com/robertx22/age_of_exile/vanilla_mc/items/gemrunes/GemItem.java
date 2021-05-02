@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
@@ -210,12 +210,12 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 10, DataStats.CRIT_DAMAGE.get()));
+                return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 6, DataStats.CRIT_CHANCE.get()));
+                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
             }
         }),
         OPAL("opal", "Opal", Formatting.GOLD, new GemStatPerTypes() {
@@ -226,12 +226,12 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(2, 6, DataStats.CRIT_CHANCE.get()));
+                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(3, 10, DataStats.CRIT_DAMAGE.get()));
+                return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
             }
         }),
         TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Light)),

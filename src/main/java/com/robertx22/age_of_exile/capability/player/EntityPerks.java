@@ -40,7 +40,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
 
     public void clearAllTalents() {
         this.data.getPerks(SpellSchool.SchoolType.TALENTS)
-                .clear();
+            .clear();
 
     }
 
@@ -48,15 +48,15 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         HashMap<PointData, Perk> perks = new HashMap<>();
         for (SpellSchool.SchoolType type : SpellSchool.SchoolType.values()) {
             for (Map.Entry<String, SchoolData> x : data.getPerks(type)
-                    .entrySet()) {
+                .entrySet()) {
                 if (Database.SpellSchools()
-                        .isRegistered(x.getKey())) {
+                    .isRegistered(x.getKey())) {
 
                     SpellSchool school = Database.SpellSchools()
-                            .get(x.getKey());
+                        .get(x.getKey());
                     if (school != null) {
                         for (PointData p : x.getValue()
-                                .getAllocatedPoints(school)) {
+                            .getAllocatedPoints(school)) {
                             perks.put(p, school.calcData.getPerk(p));
                         }
                     }
@@ -86,14 +86,13 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
 
     public Perk.Connection getConnection(SpellSchool school, PointData one, PointData two) {
 
-        if (isAllocated(school, one) && isAllocated(school, two)) {
-            return Perk.Connection.LINKED;
-        }
-
         if (isAllocated(school, one)) {
+
+            if (isAllocated(school, two)) {
+                return Perk.Connection.LINKED;
+            }
             return Perk.Connection.POSSIBLE;
-        }
-        if (isAllocated(school, two)) {
+        } else if (isAllocated(school, two)) {
             return Perk.Connection.POSSIBLE;
         }
 
@@ -101,12 +100,8 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     }
 
     public boolean isAllocated(SpellSchool school, PointData point) {
-        if (entity instanceof PlayerEntity) {
-            return data.getSchool(school)
-                    .isAllocated(point);
-        } else {
-            return true;
-        }
+        return data.getSchool(school)
+            .isAllocated(point);
     }
 
     @Override
@@ -140,7 +135,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         HashMap<PointData, Perk> map = getAllAllocatedPerks();
 
         int lvl = Load.Unit(en)
-                .getLevel();
+            .getLevel();
 
         map.forEach((key, value) -> {
             List<ExactStatData> stats = new ArrayList<>();

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.weapon
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
@@ -34,12 +34,12 @@ public class UniqueSwords implements ISlashRegistryInit {
                 getAttackDamageStat(WeaponTypes.sword, Number.HALF, Elements.Dark)
             ))
             .stats(Arrays.asList(
-                new StatModifier(10, 20, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
+                new StatModifier(10, 20, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Dark), ModType.FLAT),
                 new StatModifier(10, 10, CooldownReduction.getInstance(), ModType.FLAT),
                 new StatModifier(2, 4, Lifesteal.getInstance(), ModType.FLAT),
                 new StatModifier(5, 15, NightDamage.getInstance(), ModType.FLAT),
-                new StatModifier(5, 10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.TORMENT), ModType.FLAT)
+                new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.TORMENT), ModType.FLAT)
             ))
             .req(new StatRequirement().setStr(0.4F)
                 .setAgi(0.6F))

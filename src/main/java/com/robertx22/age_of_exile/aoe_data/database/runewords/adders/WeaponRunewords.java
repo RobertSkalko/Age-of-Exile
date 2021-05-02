@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.runewords.adders;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
@@ -38,7 +38,7 @@ public class WeaponRunewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new AttackDamage(Elements.Nature), ModType.FLAT),
-                new StatModifier(4, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
+                new StatModifier(4, 15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
             ),
             Arrays.asList(DOS, ITA, NOS))
             .addToSerializables();
@@ -49,7 +49,7 @@ public class WeaponRunewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new AttackDamage(Elements.Water), ModType.FLAT),
-                new StatModifier(4, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT)
+                new StatModifier(4, 15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT)
             ),
             Arrays.asList(TOQ, ITA, NOS))
             .addToSerializables();
@@ -70,7 +70,7 @@ public class WeaponRunewords implements ISlashRegistryInit {
             BaseGearType.SlotFamily.Weapon,
             Arrays.asList(
                 new StatModifier(1, 2, 2, 3, new AttackDamage(Elements.Fire), ModType.FLAT),
-                new StatModifier(4, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT)
+                new StatModifier(4, 15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT)
             ),
             Arrays.asList(ANO, ITA, NOS))
             .addToSerializables();
@@ -82,8 +82,8 @@ public class WeaponRunewords implements ISlashRegistryInit {
             Arrays.asList(
                 new StatModifier(1, 1.5F, 1.5F, 2.5F, new AttackDamage(Elements.Physical), ModType.FLAT),
                 new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
-                new StatModifier(2, 13, DataStats.CRIT_CHANCE.get(), ModType.FLAT),
-                new StatModifier(5, 25, DataStats.CRIT_DAMAGE.get(), ModType.FLAT)
+                new StatModifier(2, 13, Stats.CRIT_CHANCE.get(), ModType.FLAT),
+                new StatModifier(5, 25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
             ),
             Arrays.asList(YUN, MOS, NOS, XER))
             .addToSerializables();

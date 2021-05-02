@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.skill_gems.support;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
@@ -23,24 +23,24 @@ public class IntSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("spell_crit_rate", "Spell Critical Chance Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(5, 25, DataStats.SPELL_CRIT_CHANCE.get())
+            new StatModifier(5, 25, Stats.SPELL_CRIT_CHANCE.get())
         );
 
         SkillGemBuilder.of("spell_crit_dmg", "Spell Critical Damage Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 40, DataStats.SPELL_CRIT_DAMAGE.get())
+            new StatModifier(10, 40, Stats.SPELL_CRIT_DAMAGE.get())
         );
 
         SkillGemBuilder.of("fire_chance", "Chance to Burn Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN))
+            new StatModifier(10, 20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN))
         );
         SkillGemBuilder.of("frostburn_chance", "Chance to Frostburn Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN))
+            new StatModifier(10, 20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN))
         );
 
         SkillGemBuilder.of("cast_speed", "Faster Casting Support", new StatRequirement().setBaseInt(25)

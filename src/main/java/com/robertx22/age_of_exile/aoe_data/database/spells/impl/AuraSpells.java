@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.AuraSpellData;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
@@ -62,8 +62,8 @@ public class AuraSpells implements ISlashRegistryInit {
 
         SpellBuilder.aura(AttackPlayStyle.RANGED, "crit_aura", "True Hit Aura", new AuraSpellData(0.25F,
             Arrays.asList(
-                new StatModifier(15, 25, DataStats.ACCURACY.get()),
-                new StatModifier(5, 10, DataStats.CRIT_CHANCE.get())
+                new StatModifier(15, 25, Stats.ACCURACY.get()),
+                new StatModifier(5, 10, Stats.CRIT_CHANCE.get())
             )))
             .build();
 

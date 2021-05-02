@@ -57,8 +57,8 @@ shield_on_attack_hit
 ele_mace_damage
 mana_per_10_intelligence
 poison_bonus_dmg
-chance_of_torment
 spell_elemental_damage
+chance_of_torment
 dark_dmg_ignore_res
 dodge
 health_on_dot_hit
@@ -72,8 +72,8 @@ move_speed
 convert_dark_to_phys
 bonus_cooking_yield
 all_water_dmg_leech_as_shield
-chance_of_poison
 mana
+chance_of_poison
 spell_nature_dmg_leech_as_shield
 bonus_fishing_yield
 health_on_all_hit
@@ -159,8 +159,8 @@ sword_damage
 crit_heal_chance
 blood_on_spell_hit
 all_attributes
-chance_of_burn
 area_dmg
+chance_of_burn
 spell_nature_dmg_leech_as_mana
 all_dark_damage
 blood_on_dot_hit
@@ -193,16 +193,16 @@ ranged_crit_dmg_to_undead
 darkness_dmg
 water_penetration
 bonus_inscribing_yield
-chance_of_blind
 spell_damage_per_perc_of_increase_healing
+chance_of_blind
 bonus_alchemy_exp
 slow_immunity
 all_light_dmg_leech_as_mana
 mana_burn_resist
 spell_dark_dmg_leech_as_health
 increased_quantity
-spell_critical_damage
 elemental_dot_damage
+spell_critical_damage
 light_weapon_damage
 max_water_resist
 attack_light_dmg_leech_as_health
@@ -235,6 +235,7 @@ all_dark_dmg_leech_as_health
 bonus_salvaging_yield
 attack_fire_dmg_leech_as_mana
 void_eye
+chance_to_get_bloodlust_on_kill
 shield_on_dot_hit
 shield_strength
 melee_dmg
@@ -290,7 +291,6 @@ attack_all_dmg_leech_as_health
 spell_dodge
 crossbow_damage
 nature_penetration
-chance_of_bloodlust
 fire_focus
 nature_focus
 attack_water_dmg_leech_as_mana

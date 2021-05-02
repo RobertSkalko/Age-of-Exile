@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
@@ -114,7 +114,7 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, ValueCalculation.base("bleed", 2.25F), Elements.Physical)
                     .onTick(20D))
 
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 10D, 1D)
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
                     .onTick(20D))
                 .onTick(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_HURT, 0.5D, 1D)
                     .onTick(20D))
@@ -127,7 +127,7 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(BLIND)
             .stat(-10, new AttackDamage(Elements.Physical), ModType.FLAT)
-            .stat(-25, DataStats.CRIT_CHANCE.get(), ModType.FLAT)
+            .stat(-25, Stats.CRIT_CHANCE.get(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 3D, 1D)
                     .onTick(20D))

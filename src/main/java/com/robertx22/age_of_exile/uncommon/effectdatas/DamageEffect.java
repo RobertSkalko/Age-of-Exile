@@ -82,7 +82,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
-    public Elements element = Elements.Physical;
     public int armorPene;
     public int elementalPene;
     public boolean isBlocked = false;
@@ -106,8 +105,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.toRestore.add(data);
     }
 
-    public boolean isElemental() {
-        return this.element != null && this.element != Elements.Physical;
+    public Elements getElement() {
+        return data.getElement();
     }
 
     public void addBonusEleDmg(Elements element, float dmg) {
@@ -336,7 +335,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             });
         }
 
-        MyDamageSource dmgsource = new MyDamageSource(ds, source, element, dmg);
+        MyDamageSource dmgsource = new MyDamageSource(ds, source, getElement(), dmg);
 
         if (attackInfo == null || !(attackInfo.getSource() instanceof MyDamageSource)) { // todo wtf
 
@@ -423,7 +422,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     text = "Resist";
                 }
 
-                DmgNumPacket packet = new DmgNumPacket(target, this.element, text, 0);
+                DmgNumPacket packet = new DmgNumPacket(target, this.getElement(), text, 0);
                 Packets.sendToClient(player, packet);
                 return;
             }
@@ -493,15 +492,15 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 DamageEffect bonus = new DamageEffect(
                     attackInfo, source, target, entry.getValue(),
                     AttackType.attack, this.weaponType, style);
-                bonus.element = entry.getKey();
+                bonus.setElement(entry.getKey());
                 bonus.calculateEffects();
                 float dmg = bonus.getActualDamage();
 
-                info.addDmg(dmg, bonus.element);
+                info.addDmg(dmg, bonus.getElement());
 
             }
         }
-        info.addDmg(this.getActualDamage(), this.element);
+        info.addDmg(this.getActualDamage(), this.getElement());
 
         return info;
 
@@ -509,12 +508,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     @Override
     public Elements GetElement() {
-        return element;
+        return getElement();
     }
 
     @Override
     public void setElement(Elements ele) {
-        this.element = ele;
+        this.data.setElement(ele);
     }
 
     @Override

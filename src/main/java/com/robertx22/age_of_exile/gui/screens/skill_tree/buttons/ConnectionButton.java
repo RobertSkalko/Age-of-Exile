@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
@@ -24,7 +23,6 @@ public class ConnectionButton extends TexturedButtonWidget {
 
     SkillTreeScreen screen;
     MinecraftClient mc = MinecraftClient.getInstance();
-    ;
 
     public ConnectionButton(SkillTreeScreen screen, SpellSchool school, PointData one, PointData two, int x, int y) {
         super(x, y, SIZE, SIZE, 0, 0, 0, ID, (action) -> {
@@ -46,19 +44,10 @@ public class ConnectionButton extends TexturedButtonWidget {
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 
-        if (this.x < 0 || this.x > mc.getWindow()
-            .getScaledWidth()) {
-            // return; // if outside of screen, don't waste time rendering it
-        }
-        if (this.y < 0 || this.y > mc.getWindow()
-            .getScaledHeight()) {
-            // return; // if outside of screen, don't waste time rendering it
-        }
-
         ticks++;
 
         if (screen.mouseRecentlyClickedTicks > 1) {
-            if (connection == null || ticks % 10 == 0) {
+            if (connection == null || ticks % 20 == 0) {
                 connection = Load.perks(mc.player)
                     .getConnection(school, one, two);
 
@@ -67,7 +56,7 @@ public class ConnectionButton extends TexturedButtonWidget {
 
         mc.getTextureManager()
             .bindTexture(ID);
-        RenderSystem.enableDepthTest();
+        //RenderSystem.enableDepthTest();
 
         if (connection == Perk.Connection.POSSIBLE) {
             drawTexture(matrices, this.x, this.y, 0, 0, 6, 6);

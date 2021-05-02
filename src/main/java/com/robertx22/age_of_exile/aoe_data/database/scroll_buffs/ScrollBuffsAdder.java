@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.scroll_buffs;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
@@ -25,7 +25,7 @@ public class ScrollBuffsAdder implements ISlashRegistryInit {
         );
         ScrollBuff.of("hunter", "Of the Hunter", "Venator",
             new StatModifier(10, 30, AttackStyleDamage.RANGED),
-            new StatModifier(10, 30, DataStats.CRIT_DAMAGE.get(), ModType.LOCAL_INCREASE)
+            new StatModifier(10, 30, Stats.CRIT_DAMAGE.get(), ModType.LOCAL_INCREASE)
         );
         ScrollBuff.of("warrior", "Of the Warrior", "Torpent",
             new StatModifier(10, 30, AttackStyleDamage.MELEE),
@@ -37,8 +37,8 @@ public class ScrollBuffsAdder implements ISlashRegistryInit {
         );
 
         ScrollBuff.of("crit", "Of Criticals", "Verum",
-            new StatModifier(10, 30, DataStats.CRIT_DAMAGE.get()),
-            new StatModifier(10, 30, DataStats.SPELL_CRIT_DAMAGE.get())
+            new StatModifier(10, 30, Stats.CRIT_DAMAGE.get()),
+            new StatModifier(10, 30, Stats.SPELL_CRIT_DAMAGE.get())
         );
 
         ScrollBuff.of("costly_spell_dmg", "Of Sacrificial Magic", "Feodo",

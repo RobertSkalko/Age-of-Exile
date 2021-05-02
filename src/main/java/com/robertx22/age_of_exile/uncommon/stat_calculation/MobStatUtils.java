@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
@@ -159,12 +159,12 @@ public class MobStatUtils {
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(9, ModType.FLAT, SpellDodge.getInstance()
             .GUID(), lvl));
-        stats.add(ExactStatData.scaleTo(2, ModType.FLAT, DataStats.ACCURACY.get()
+        stats.add(ExactStatData.scaleTo(2, ModType.FLAT, Stats.ACCURACY.get()
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(10 * rar.StatMultiplier(), ModType.FLAT, Armor.getInstance()
             .GUID(), lvl));
 
-        stats.add(ExactStatData.scaleTo(5 * rar.DamageMultiplier(), ModType.FLAT, DataStats.CRIT_CHANCE.get()
+        stats.add(ExactStatData.scaleTo(5 * rar.DamageMultiplier(), ModType.FLAT, Stats.CRIT_CHANCE.get()
             .GUID(), lvl));
 
         stats.add(ExactStatData.scaleTo(-25, ModType.FLAT, SpellDamage.getInstance()

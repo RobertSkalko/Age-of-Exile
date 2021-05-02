@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -48,14 +48,14 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("steady_hand", "Steady Hand",
-            new OptScaleExactStat(-100, DataStats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-100, DataStats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-100, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-100, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(20, TotalDamage.getInstance(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("true_hit", "True Hit",
-            new OptScaleExactStat(25, DataStats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-25, DataStats.NON_CRIT_DAMAGE.get(), ModType.FLAT)
+            new OptScaleExactStat(25, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-25, Stats.NON_CRIT_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("harmony", "Harmony",
@@ -72,8 +72,8 @@ public class GameChangerPerks implements ISlashRegistryInit {
 
         PerkBuilder.gameChanger("divinity", "Divinity",
             new OptScaleExactStat(25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
-            new OptScaleExactStat(-50, DataStats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-50, DataStats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE)
+            new OptScaleExactStat(-50, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-50, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("tormentor", "Tormentor",

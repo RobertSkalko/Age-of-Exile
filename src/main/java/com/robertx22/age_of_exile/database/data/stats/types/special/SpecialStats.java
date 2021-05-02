@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.special;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -80,7 +80,8 @@ public class SpecialStats {
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
 
-                if (!effect.element.isDark()) {
+                if (!effect.getElement()
+                    .isDark()) {
                     return false;
                 }
                 if (effect.source.world.getLightLevel(effect.source.getBlockPos()) > 7) {
@@ -169,7 +170,8 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.element.isFire() && effect.data.getBoolean(EventData.CRIT) && RandomUtils.roll(data.getAverageValue());
+                return effect.getElement()
+                    .isFire() && effect.data.getBoolean(EventData.CRIT) && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -180,7 +182,7 @@ public class SpecialStats {
     );
 
     public static SpecialStat RANGED_CRIT_DMG_AGAINST_LIVING = new SpecialStat("ranged_crit_dmg_to_undead",
-        format("You have " + VAL1 + "% increased ranged " + DataStats.CRIT_DAMAGE.get()
+        format("You have " + VAL1 + "% increased ranged " + Stats.CRIT_DAMAGE.get()
             .getIconNameFormat() + " against Undead enemies."),
         new BaseSpecialStatDamageEffect() {
             @Override
@@ -211,7 +213,8 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.element.isDark() && RandomUtils.roll(data.getAverageValue());
+                return effect.getElement()
+                    .isDark() && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -238,9 +241,11 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                if (effect.element.isDark()) {
+                if (effect.getElement()
+                    .isDark()) {
                     return effect.source.world.isNight();
-                } else if (effect.element.isLight()) {
+                } else if (effect.getElement()
+                    .isLight()) {
                     return effect.source.world.isDay();
                 }
                 return false;
@@ -300,7 +305,8 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.element.isElemental() && RandomUtils.roll(data.getAverageValue());
+                return effect.getElement()
+                    .isElemental() && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -341,7 +347,8 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-                return effect.element.isWater() && effect.data.getBoolean(EventData.CRIT);
+                return effect.getElement()
+                    .isWater() && effect.data.getBoolean(EventData.CRIT);
             }
 
             @Override

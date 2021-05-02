@@ -101,11 +101,9 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         return (int) amount;
     }
 
-    public int getCalculatedValue(LivingEntity caster) {
-        int val = getCalculatedScalingValue(Load.Unit(caster), Load.Unit(caster)
-            .getLevel());
-        val += getCalculatedBaseValue(Load.Unit(caster)
-            .getLevel());
+    public int getCalculatedValue(LivingEntity caster, int lvl) {
+        int val = getCalculatedScalingValue(Load.Unit(caster), lvl);
+        val += getCalculatedBaseValue(lvl);
 
         return val;
     }

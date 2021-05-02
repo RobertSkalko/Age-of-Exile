@@ -43,14 +43,14 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     public SchoolType schoolType;
 
     Identifier BACKGROUND_TEXTURE = new Identifier(
-            Ref.MODID, "textures/gui/skill_tree/water.png");
+        Ref.MODID, "textures/gui/skill_tree/water.png");
 
     public SkillTreeScreen(SchoolType type) {
         super(MinecraftClient.getInstance()
-                .getWindow()
-                .getScaledWidth(), MinecraftClient.getInstance()
-                .getWindow()
-                .getScaledHeight());
+            .getWindow()
+            .getScaledWidth(), MinecraftClient.getInstance()
+            .getWindow()
+            .getScaledHeight());
         this.schoolType = type;
 
     }
@@ -76,7 +76,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         boolean didClickInside = false;
         for (AbstractButtonWidget b : buttons) {
             if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getWidth()),
-                    new Point((int) x, (int) y)
+                new Point((int) x, (int) y)
             )) {
                 if (b instanceof IRemoveOnClickedOutside) {
                     didClickInside = true;
@@ -88,7 +88,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             removeRemovableButtons();
         }
 
-        mouseRecentlyClickedTicks = 100;
+        mouseRecentlyClickedTicks = 25;
 
         return super.mouseReleased(x, y, ticks);
 
@@ -144,9 +144,9 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
 
             schoolsInOrder = Database.SpellSchools()
-                    .getFiltered(x -> {
-                        return x.getSchool_type() == this.schoolType;
-                    });
+                .getFiltered(x -> {
+                    return x.getSchool_type() == this.schoolType;
+                });
             schoolsInOrder.sort(Comparator.comparingInt(x -> x.order));
 
             this.school = schoolsInOrder.get(0);
@@ -185,7 +185,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                 for (PointData p : connections) {
 
                     if (cons.stream()
-                            .anyMatch(x -> x.contains(p) && x.contains(pb.point))) {
+                        .anyMatch(x -> x.contains(p) && x.contains(pb.point))) {
                         continue;
                     }
 
@@ -200,7 +200,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                     int x2 = sb.x + sb.getWidth() / 2;
                     int y2 = sb.y + sb.getHeight() / 2;
 
-                    List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 360f, spacing, true);
+                    List<PointF> points = GuiUtils.generateCurve(new PointF(x1, y1), new PointF(x2, y2), 360f, spacing + 2, true);
 
                     for (PointF point : points) {
 
@@ -232,7 +232,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
         for (Map.Entry<PointData, String> e : school.calcData.perks.entrySet()) {
             Perk perk = Database.Perks()
-                    .get(e.getValue());
+                .get(e.getValue());
 
             if (perk == null) {
                 continue;
@@ -241,9 +241,9 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             try {
                 // centers them if they are smaller than the biggest one
                 int addx = (PerkButton.BIGGEST) / 2 - perk
-                        .getType().width / 2;
+                    .getType().width / 2;
                 int addy = (PerkButton.BIGGEST) / 2 - perk
-                        .getType().height / 2;
+                    .getType().height / 2;
 
                 int subx = PerkButton.BIGGEST / 2;
                 int suby = PerkButton.BIGGEST / 2;
@@ -258,7 +258,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
 
         int sx = mc.getWindow()
-                .getScaledWidth() / 2 - SpellSchoolButton.XSIZE / 2;
+            .getScaledWidth() / 2 - SpellSchoolButton.XSIZE / 2;
         int sy = 0;
 
         if (this.schoolsInOrder.size() > 1) {
@@ -295,10 +295,10 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     private Point getPosForPoint(PointData point) {
 
         float halfx = mc.getWindow()
-                .getScaledWidth() / 2F;
+            .getScaledWidth() / 2F;
 
         float halfy = mc.getWindow()
-                .getScaledHeight() / 2F;
+            .getScaledHeight() / 2F;
 
         float x = (point.x - school.calcData.center.x) * PerkButton.SPACING + 2;
         float y = (point.y - school.calcData.center.y) * PerkButton.SPACING + 2;
@@ -393,9 +393,9 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
                 if (originalButtonLocMap.containsKey(b)) {
                     b.x = (this.originalButtonLocMap.get(b).
-                            x);
+                        x);
                     b.y = (this.originalButtonLocMap.get(b)
-                            .y);
+                        .y);
 
                     float addx = (1F / zoom - 1) * this.width / 2F;
                     float addy = (1F / zoom - 1) * this.height / 2F;
@@ -449,13 +449,13 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         int BG_HEIGHT = 38;
         MinecraftClient mc = MinecraftClient.getInstance();
         mc.getTextureManager()
-                .bindTexture(BIG_PANEL);
+            .bindTexture(BIG_PANEL);
 
         RenderSystem.enableDepthTest();
 
         int BG_WIDTH = 237;
         int xp = mc.getWindow()
-                .getScaledWidth() / 2 - BG_WIDTH / 2;
+            .getScaledWidth() / 2 - BG_WIDTH / 2;
         int yp = 0;
 
         if (this.schoolsInOrder.size() > 1) {
@@ -463,7 +463,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
 
         mc.getTextureManager()
-                .bindTexture(SMALL_PANEL);
+            .bindTexture(SMALL_PANEL);
         RenderSystem.enableDepthTest();
 
         int savedx = xp;
@@ -494,27 +494,27 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         MinecraftClient.getInstance()
-                .getTextureManager()
-                .bindTexture(Screen.OPTIONS_BACKGROUND_TEXTURE);
+            .getTextureManager()
+            .bindTexture(Screen.OPTIONS_BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         float f = 32.0F;
         bufferBuilder.begin(7, VertexFormats.POSITION_TEXTURE_COLOR);
         bufferBuilder.vertex(0.0D, (double) screen.height, 0.0D)
-                .texture(0.0F, (float) screen.height / 32.0F + (float) vOffset)
-                .color(64, 64, 64, 255)
-                .next();
+            .texture(0.0F, (float) screen.height / 32.0F + (float) vOffset)
+            .color(64, 64, 64, 255)
+            .next();
         bufferBuilder.vertex((double) screen.width, (double) screen.height, 0.0D)
-                .texture((float) screen.width / 32.0F, (float) screen.height / 32.0F + (float) vOffset)
-                .color(64, 64, 64, 255)
-                .next();
+            .texture((float) screen.width / 32.0F, (float) screen.height / 32.0F + (float) vOffset)
+            .color(64, 64, 64, 255)
+            .next();
         bufferBuilder.vertex((double) screen.width, 0.0D, 0.0D)
-                .texture((float) screen.width / 32.0F, (float) vOffset)
-                .color(64, 64, 64, 255)
-                .next();
+            .texture((float) screen.width / 32.0F, (float) vOffset)
+            .color(64, 64, 64, 255)
+            .next();
         bufferBuilder.vertex(0.0D, 0.0D, 0.0D)
-                .texture(0.0F, (float) vOffset)
-                .color(64, 64, 64, 255)
-                .next();
+            .texture(0.0F, (float) vOffset)
+            .color(64, 64, 64, 255)
+            .next();
         tessellator.draw();
     }
 

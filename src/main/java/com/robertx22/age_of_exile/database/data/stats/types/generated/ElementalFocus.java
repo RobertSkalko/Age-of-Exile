@@ -74,7 +74,8 @@ public class ElementalFocus extends SingleElementalStat {
         @Override
         public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
 
-            if (effect.element.equals(stat.getElement())) {
+            if (effect.getElement()
+                .equals(stat.getElement())) {
                 effect.increaseByPercent(data.getAverageValue());
             } else {
                 effect.increaseByPercent(-data.getAverageValue());
@@ -85,7 +86,7 @@ public class ElementalFocus extends SingleElementalStat {
 
         @Override
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.element != null && effect.element != Elements.Physical;
+            return effect.getElement() != null && effect.getElement() != Elements.Physical;
         }
 
     }

@@ -45,7 +45,7 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
         if (!ctx.world.isClient) {
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster);
+            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
             value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.HEALING);
 
             for (LivingEntity x : targets) {

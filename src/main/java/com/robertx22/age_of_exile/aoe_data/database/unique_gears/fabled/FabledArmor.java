@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.fabled;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
@@ -41,7 +41,7 @@ public class FabledArmor implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(5, 10, new ElementalDamageBonus(Elements.Physical), ModType.FLAT),
                 new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
-                new StatModifier(10, 15, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
+                new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(3, 6, AttackStyleDamage.MELEE, ModType.FLAT),
                 new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                 new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT),

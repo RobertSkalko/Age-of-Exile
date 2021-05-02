@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -46,9 +46,9 @@ public class WeaponPrefixes implements ISlashRegistryInit {
         ///// chance of effect
         AffixBuilder.Normal("snakes")
             .Named("Snake's")
-            .tier(1, new StatModifier(10, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
-            .tier(2, new StatModifier(8, 10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
+            .tier(1, new StatModifier(10, 15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
+            .tier(2, new StatModifier(8, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Weight(50)
             .Prefix()
@@ -56,9 +56,9 @@ public class WeaponPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("yetis")
             .Named("Yeti's")
-            .tier(1, new StatModifier(10, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
-            .tier(2, new StatModifier(8, 10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
+            .tier(1, new StatModifier(10, 15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
+            .tier(2, new StatModifier(8, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Weight(50)
             .Prefix()
@@ -66,9 +66,9 @@ public class WeaponPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("drakes")
             .Named("Drakes's")
-            .tier(1, new StatModifier(10, 15, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
-            .tier(2, new StatModifier(8, 10, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
-            .tier(3, new StatModifier(5, 8, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
+            .tier(1, new StatModifier(10, 15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
+            .tier(2, new StatModifier(8, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
+            .tier(3, new StatModifier(5, 8, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Weight(50)
             .Prefix()
@@ -78,18 +78,18 @@ public class WeaponPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("true_hit")
             .Named("True Hit")
-            .tier(1, new StatModifier(5, 10, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
-            .tier(2, new StatModifier(3, 5, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
-            .tier(3, new StatModifier(2, 3, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(1, new StatModifier(5, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(3, 5, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(2, 3, Stats.CRIT_CHANCE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Prefix()
             .Build();
 
         AffixBuilder.Normal("crit_prefix")
             .Named("Critical")
-            .tier(1, new StatModifier(9, 12, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
-            .tier(2, new StatModifier(6, 9, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
-            .tier(3, new StatModifier(4, 6, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(1, new StatModifier(9, 12, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(6, 9, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(4, 6, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Prefix()
             .Build();

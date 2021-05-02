@@ -58,7 +58,7 @@ public class DamageOverTime extends ElementalStat {
         public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
             return effect.getAttackType()
                 .isDot() && stat.getElement()
-                .elementsMatch(effect.element);
+                .elementsMatch(effect.getElement());
         }
     }
 

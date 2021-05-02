@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
@@ -101,8 +101,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(ANGER)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.15F, ModType.GLOBAL_INCREASE, UUID.fromString("7107DE5E-5CE8-4030-940E-514C1F160890")))
-            .stat(15, DataStats.CRIT_CHANCE.get(), ModType.FLAT)
-            .stat(20, DataStats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(15, Stats.CRIT_CHANCE.get(), ModType.FLAT)
+            .stat(20, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(DIVINE_SHIELD)
@@ -112,7 +112,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(POISON_WEAPONS)
             .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
-            .stat(20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
+            .stat(20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
             .build();
 
     }

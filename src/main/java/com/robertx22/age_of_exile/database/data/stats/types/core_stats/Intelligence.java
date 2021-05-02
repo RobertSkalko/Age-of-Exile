@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -14,7 +14,7 @@ public class Intelligence extends BaseCoreStat {
     private Intelligence() {
         super(Arrays.asList(
             new OptScaleExactStat(0.2F, 0.2F, SpellDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(0.25F, 0.25F, DataStats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
+            new OptScaleExactStat(0.25F, 0.25F, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
         ));
         this.format = Formatting.BLUE;
     }

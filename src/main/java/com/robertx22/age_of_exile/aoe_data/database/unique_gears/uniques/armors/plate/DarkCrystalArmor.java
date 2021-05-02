@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BasePlateArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
@@ -73,7 +73,7 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 20, HealPower.getInstance(), ModType.FLAT),
-                    new StatModifier(2, 5, DataStats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
+                    new StatModifier(2, 5, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT)
 
@@ -130,7 +130,7 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, DataStats.SPELL_CRIT_DAMAGE.get()),
+                    new StatModifier(15, 25, Stats.SPELL_CRIT_DAMAGE.get()),
                     new StatModifier(5, 10, new ElementalDamageBonus(Elements.Dark)),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)

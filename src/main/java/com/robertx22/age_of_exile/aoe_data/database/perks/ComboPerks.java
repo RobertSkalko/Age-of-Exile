@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -68,7 +68,7 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(1, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("phys_acc",
-            new OptScaleExactStat(3, DataStats.ACCURACY.get(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("flat_mana_reg_melee_dmg",
@@ -100,7 +100,7 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("crit_proj_dmg",
-            new OptScaleExactStat(2, DataStats.CRIT_DAMAGE.get(), ModType.FLAT),
+            new OptScaleExactStat(2, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(1, ProjectileDamage.getInstance(), ModType.FLAT)
         );
 

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -20,27 +20,27 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_steadiness")
             .Named("Of Steadiness")
-            .tier(1, new StatModifier(10, 20, DataStats.ACCURACY.get(), ModType.FLAT))
-            .tier(2, new StatModifier(7, 10, DataStats.ACCURACY.get(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 7, DataStats.ACCURACY.get(), ModType.FLAT))
+            .tier(1, new StatModifier(10, 20, Stats.ACCURACY.get(), ModType.FLAT))
+            .tier(2, new StatModifier(7, 10, Stats.ACCURACY.get(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 7, Stats.ACCURACY.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_precision")
             .Named("Of Precision")
-            .tier(1, new StatModifier(25F, 50F, DataStats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE))
-            .tier(2, new StatModifier(20F, 25F, DataStats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE))
-            .tier(3, new StatModifier(10, 20F, DataStats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE))
+            .tier(1, new StatModifier(25F, 50F, Stats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE))
+            .tier(2, new StatModifier(20F, 25F, Stats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE))
+            .tier(3, new StatModifier(10, 20F, Stats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_good_aim")
             .Named("Of Good Aim")
-            .tier(1, new StatModifier(4, 8, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
-            .tier(2, new StatModifier(2, 4, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
-            .tier(3, new StatModifier(1, 2F, DataStats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(1, new StatModifier(4, 8, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 4, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2F, Stats.CRIT_CHANCE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
@@ -56,10 +56,10 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_brutality")
             .Named("Of Brutality")
-            .tier(1, new StatModifier(15, 20, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
-            .tier(2, new StatModifier(10, 15, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 10, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
-            .tier(4, new StatModifier(3, 5, DataStats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(1, new StatModifier(15, 20, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 10, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(4, new StatModifier(3, 5, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();

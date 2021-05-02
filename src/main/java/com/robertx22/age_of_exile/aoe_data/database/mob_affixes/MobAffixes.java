@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.mob_affixes;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -40,7 +40,7 @@ public class MobAffixes implements ISlashRegistryInit {
         new MobAffix("winter", "Lord of Winter", Water.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
-                new StatModifier(5, 5, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN)),
+                new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN)),
                 new StatModifier(75, 75, new PhysConvertToEle(Water)),
                 new StatModifier(1, 1, 1, 1, new AttackDamage(Water), ModType.FLAT),
                 new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))
@@ -51,7 +51,7 @@ public class MobAffixes implements ISlashRegistryInit {
         new MobAffix("fire_lord", "Lord of Fire", Fire.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
-                new StatModifier(5, 5, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
+                new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
                 new StatModifier(75, 75, new PhysConvertToEle(Fire)),
                 new StatModifier(1, 1, 1, 1, new AttackDamage(Fire), ModType.FLAT),
                 new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))
@@ -62,7 +62,7 @@ public class MobAffixes implements ISlashRegistryInit {
         new MobAffix("nature_lord", "Lord of Toxins", Nature.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
-                new StatModifier(5, 5, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
+                new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
                 new StatModifier(75, 75, new PhysConvertToEle(Nature)),
                 new StatModifier(1, 1, 1, 1, new AttackDamage(Nature), ModType.FLAT),
                 new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))

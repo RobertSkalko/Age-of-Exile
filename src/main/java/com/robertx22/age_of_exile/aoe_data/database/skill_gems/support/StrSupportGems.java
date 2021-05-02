@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.skill_gems.support;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
@@ -25,7 +25,7 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("bleed_chance", "Chance to Bleed Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 20, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
+            new StatModifier(10, 20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
         );
 
         SkillGemBuilder.of("health_leech", "Health Leech Support", new StatRequirement().setBaseStr(25)
@@ -37,13 +37,13 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("crit_rate", "Critical Chance Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(5, 25, DataStats.CRIT_CHANCE.get())
+            new StatModifier(5, 25, Stats.CRIT_CHANCE.get())
         );
 
         SkillGemBuilder.of("crit_dmg", "Critical Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(10, 40, DataStats.CRIT_DAMAGE.get())
+            new StatModifier(10, 40, Stats.CRIT_DAMAGE.get())
         );
 
         SkillGemBuilder.of("water_dmg", "Cold Damage Support", new StatRequirement().setBaseStr(20)

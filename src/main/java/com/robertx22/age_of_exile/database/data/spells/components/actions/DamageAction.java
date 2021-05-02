@@ -55,7 +55,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
             Elements ele = data.getElement();
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster);
+            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
 
             value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.DAMAGE);
 
@@ -85,7 +85,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
                     dmg.data.setString(EventData.ATTACK_TYPE, data.getDmgEffectType()
                         .name());
                 }
-                dmg.element = ele;
+                dmg.setElement(ele);
                 dmg.Activate();
             }
         }

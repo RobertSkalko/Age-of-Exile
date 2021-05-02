@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
@@ -74,7 +74,7 @@ public class VoidArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 15, AttackStyleDamage.MELEE, ModType.FLAT),
-                    new StatModifier(5, 10, DataStats.ACCURACY.get(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
                     new StatModifier(1, 10, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Strength.INSTANCE, ModType.FLAT)
 
@@ -132,7 +132,7 @@ public class VoidArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 10, DataStats.SPELL_CRIT_CHANCE.get()),
+                    new StatModifier(5, 10, Stats.SPELL_CRIT_CHANCE.get()),
                     new StatModifier(5, 15, new ElementalSpellDamage(Elements.Dark)),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)

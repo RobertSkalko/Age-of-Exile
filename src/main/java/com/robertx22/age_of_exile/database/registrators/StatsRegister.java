@@ -28,7 +28,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaB
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldDuration;
 import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldStrength;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
@@ -49,7 +48,7 @@ public class StatsRegister implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        SpecialStats.init();
+        // SpecialStats.init();
 
         List<Stat> All = new ArrayList<>();
 

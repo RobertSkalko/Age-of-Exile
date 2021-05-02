@@ -22,7 +22,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
-public class DataStats implements ISlashRegistryInit {
+public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
@@ -33,7 +33,6 @@ public class DataStats implements ISlashRegistryInit {
         .setPriority(0)
         .setSide(IStatEffect.EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
         .setLocName(x -> SpecialStats.format(
@@ -41,6 +40,8 @@ public class DataStats implements ISlashRegistryInit {
         ))
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
             x.is_long = true;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
@@ -63,6 +64,8 @@ public class DataStats implements ISlashRegistryInit {
         ))
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
             x.is_long = true;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
@@ -92,6 +95,8 @@ public class DataStats implements ISlashRegistryInit {
         ))
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
             x.is_long = true;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;

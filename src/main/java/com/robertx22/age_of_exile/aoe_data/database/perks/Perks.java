@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
@@ -48,15 +48,15 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(2, ProjectileDamage.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(2, DataStats.CRIT_DAMAGE.get(), ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(1, DataStats.CRIT_CHANCE.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(2, Stats.CRIT_DAMAGE.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(1, Stats.CRIT_CHANCE.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(4, ReducedManaReserved.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, Lifesteal.getInstance(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(2, DataStats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(1, DataStats.SPELL_CRIT_CHANCE.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(2, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(1, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
 
@@ -65,9 +65,9 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));
 
-        PerkBuilder.stat(new OptScaleExactStat(3, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(3, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT));
-        PerkBuilder.stat(new OptScaleExactStat(3, DataStats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, Armor.getInstance(), ModType.LOCAL_INCREASE));

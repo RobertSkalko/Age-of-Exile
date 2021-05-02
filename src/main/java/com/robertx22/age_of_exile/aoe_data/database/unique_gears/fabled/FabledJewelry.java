@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.fabled;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
-import com.robertx22.age_of_exile.aoe_data.database.stats.DataStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -36,7 +36,7 @@ public class FabledJewelry implements ISlashRegistryInit {
             )
             .stats(Arrays.asList(
                 new StatModifier(10, 25, TreasureQuality.getInstance(), ModType.FLAT),
-                new StatModifier(5, 15, DataStats.HEAL_CRIT_CHANCE.get(), ModType.FLAT),
+                new StatModifier(5, 15, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT),
                 new StatModifier(3, 6, Intelligence.INSTANCE, ModType.FLAT),
                 new StatModifier(3, 6, Agility.INSTANCE, ModType.FLAT),
                 new StatModifier(5, 5, DatapackStatAdder.GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25, ModType.FLAT),

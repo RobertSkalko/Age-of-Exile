@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
@@ -30,7 +31,8 @@ public class RestoreResourceAction extends StatEffect<EffectData> {
 
         int val = Database.ValueCalculations()
             .get(val_calc)
-            .getCalculatedValue(event.getSide(statSource));
+            .getCalculatedValue(event.getSide(statSource), Load.Unit(event.getSide(statSource))
+                .getLevel());
 
         ResourcesData.Context ctx = new ResourcesData.Context(
             event.source,
