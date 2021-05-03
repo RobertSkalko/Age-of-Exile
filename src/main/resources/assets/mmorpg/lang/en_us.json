@@ -737,6 +737,25 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+	"mmorpg.runeword.all_knowing": "All Knowing",
+	"mmorpg.runeword.blaze_fury": "Blaze Fury",
+	"mmorpg.runeword.dawn_light": "Dawn Light",
+	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
+	"mmorpg.runeword.ele_fury": "Elemental Fury",
+	"mmorpg.runeword.infinity": "Infinity",
+	"mmorpg.runeword.momentum": "Momentum",
+	"mmorpg.runeword.rock_golem": "Rock Golem",
+	"mmorpg.runeword.scholar": "Scholar",
+	"mmorpg.runeword.sentinel": "Sentinel",
+	"mmorpg.runeword.shadow": "Shadow",
+	"mmorpg.runeword.starlight": "Starlight",
+	"mmorpg.runeword.venom": "Venom",
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 	"mmorpg.one_of_a_kind.armor_aura_mod": "Armor Aura Modifier",
@@ -780,25 +799,6 @@
 	"mmorpg.one_of_a_kind.whirlwind_mod": "Whirlwind Modifier",
 
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
-
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-	"mmorpg.runeword.all_knowing": "All Knowing",
-	"mmorpg.runeword.blaze_fury": "Blaze Fury",
-	"mmorpg.runeword.dawn_light": "Dawn Light",
-	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
-	"mmorpg.runeword.ele_fury": "Elemental Fury",
-	"mmorpg.runeword.infinity": "Infinity",
-	"mmorpg.runeword.momentum": "Momentum",
-	"mmorpg.runeword.rock_golem": "Rock Golem",
-	"mmorpg.runeword.scholar": "Scholar",
-	"mmorpg.runeword.sentinel": "Sentinel",
-	"mmorpg.runeword.shadow": "Shadow",
-	"mmorpg.runeword.starlight": "Starlight",
-	"mmorpg.runeword.venom": "Venom",
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
 
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
@@ -1505,7 +1505,7 @@
 	"mmorpg.stat.hammer_damage": "hammer Damage",
 	"mmorpg.stat.heal_cleanse": "§7Your §e❁ Heal Spells §7have a §a[VAL1]§7% chance to cleanse you of a negative effect.",
 	"mmorpg.stat.heal_crit_dmg": "Crit Heal Damage",
-	"mmorpg.stat.heal_effect_on_self": "Heal Effectiveness",
+	"mmorpg.stat.heal_effect_on_self": "Healing Received",
 	"mmorpg.stat.health": "Health",
 	"mmorpg.stat.health_on_all_hit": "Health On All Hit",
 	"mmorpg.stat.health_on_attack_hit": "Health On Attack Hit",
@@ -2196,7 +2196,7 @@
 	"mmorpg.stat_desc.global_critical_damage": "Affects critical hit damage",
 	"mmorpg.stat_desc.global_critical_hit": "Chance to multiply attack damage by critical damage",
 	"mmorpg.stat_desc.heal_crit_dmg": "If Critical, multiply by x",
-	"mmorpg.stat_desc.heal_effect_on_self": "Affects all heal effects applied to you.",
+	"mmorpg.stat_desc.heal_effect_on_self": "Increases spell related heals on you.",
 	"mmorpg.stat_desc.health": "Increases your total hearts amount.",
 	"mmorpg.stat_desc.health_on_kill": "Restore Health Every time you kill a mob",
 	"mmorpg.stat_desc.health_per_sec": "Restore % of your total per regen tick.",

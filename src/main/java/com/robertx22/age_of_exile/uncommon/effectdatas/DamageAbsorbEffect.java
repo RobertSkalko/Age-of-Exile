@@ -25,7 +25,6 @@ public class DamageAbsorbEffect extends EffectEvent {
         }
 
         if (target.isAlive()) {
-            this.calculateEffects();
 
             this.targetData.getResources()
                 .shields.giveShield(new AllShieldsData.ShieldData(data.getNumber(), seconds * 20));

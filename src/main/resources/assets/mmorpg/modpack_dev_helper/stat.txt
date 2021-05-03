@@ -8,7 +8,6 @@ accuracy
 all_water_dmg_leech_as_health
 all_dark_dmg_leech_as_mana
 trident_damage
-increase_healing
 more_proj
 scepter_damage
 spell_dark_damage
@@ -302,7 +301,6 @@ bonus_exp_for_t5_mob
 convert_nature_to_phys
 all_fire_dmg_leech_as_mana
 bonus_rain_yield
-heal_effect_on_self
 mace_damage
 shield_duration
 dmg_taken_to_mana

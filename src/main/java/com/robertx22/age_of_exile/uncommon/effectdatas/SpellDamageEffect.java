@@ -38,8 +38,4 @@ public class SpellDamageEffect extends DamageEffect {
 
     }
 
-    @Override
-    protected void activate() {
-        super.activate();
-    }
 }

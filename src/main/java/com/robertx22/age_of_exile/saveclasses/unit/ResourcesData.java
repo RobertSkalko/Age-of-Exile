@@ -39,7 +39,7 @@ public class ResourcesData {
         public boolean statsCalculated = false;
 
         public Context setSpell(String id) {
-            this.spell = spell;
+            this.spell = id;
             return this;
         }
 

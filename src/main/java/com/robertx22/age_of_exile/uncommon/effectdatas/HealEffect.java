@@ -20,6 +20,7 @@ public class HealEffect extends EffectEvent {
         if (data.spell != null) {
             this.data.setString(EventData.SPELL, data.spell);
         }
+        this.data.setString(EventData.RESOURCE_TYPE, data.type.name());
         this.healData = data;
     }
 
@@ -31,8 +32,6 @@ public class HealEffect extends EffectEvent {
         }
 
         if (target.isAlive()) {
-            this.calculateEffects();
-
             HealthUtils.heal(target, data.getNumber());
         }
     }
