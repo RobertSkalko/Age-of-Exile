@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -55,7 +56,7 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
                 int total = 0;
 
                 for (LivingEntity t : targets) {
-                    ResourcesData.Context hctx = new ResourcesData.Context(ctx.caster, t, ResourceType.health,
+                    ModifyResourceContext hctx = new ModifyResourceContext(ctx.caster, t, ResourceType.health,
                         value, ResourcesData.Use.RESTORE
                     );
                     hctx.setSpell(ctx.calculatedSpellData.getSpell()

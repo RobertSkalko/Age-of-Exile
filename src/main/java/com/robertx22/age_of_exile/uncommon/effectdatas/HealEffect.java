@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 
@@ -13,9 +13,9 @@ public class HealEffect extends EffectEvent {
         return ID;
     }
 
-    public ResourcesData.Context healData;
+    public ModifyResourceContext healData;
 
-    public HealEffect(ResourcesData.Context data) {
+    public HealEffect(ModifyResourceContext data) {
         super(data.amount, data.source, data.target);
         if (data.spell != null) {
             this.data.setString(EventData.SPELL, data.spell);
@@ -26,11 +26,9 @@ public class HealEffect extends EffectEvent {
 
     @Override
     protected void activate() {
-
         if (this.data.isCanceled()) {
             return;
         }
-
         if (target.isAlive()) {
             HealthUtils.heal(target, data.getNumber());
         }

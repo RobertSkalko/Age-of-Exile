@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -33,7 +34,7 @@ public class RestoreResourceAction extends StatEffect {
 
         float val = num_provider.getValue(event.getSide(statSource), data);
 
-        ResourcesData.Context ctx = new ResourcesData.Context(
+        ModifyResourceContext ctx = new ModifyResourceContext(
             event.source,
             event.getSide(side),
             type,

@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.misc;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -62,7 +63,7 @@ public class DamageTakenToMana extends Stat {
             float restore = effect.data.getNumber() * data.getAverageValue() / 100F; // todo dmg number
 
             if (restore > 0) {
-                ResourcesData.Context mana = new ResourcesData.Context(effect.targetData, effect.target,
+                ModifyResourceContext mana = new ModifyResourceContext(effect.targetData, effect.target,
                     ResourceType.mana,
                     restore,
                     ResourcesData.Use.RESTORE

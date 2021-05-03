@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 
 public class ModifyResourceEffect extends EffectEvent {
 
@@ -11,9 +11,9 @@ public class ModifyResourceEffect extends EffectEvent {
         return ID;
     }
 
-    public ResourcesData.Context ctx;
+    public ModifyResourceContext ctx;
 
-    public ModifyResourceEffect(ResourcesData.Context ctx) {
+    public ModifyResourceEffect(ModifyResourceContext ctx) {
         super(ctx.amount, ctx.source, ctx.target);
         this.ctx = ctx;
     }

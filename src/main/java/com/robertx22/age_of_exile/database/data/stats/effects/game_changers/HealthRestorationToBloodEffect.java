@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.effects.game_changers;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -33,7 +34,7 @@ public class HealthRestorationToBloodEffect extends BaseStatEffect<ModifyResourc
 
         float bloodrestored = effect.ctx.amount * data.getAverageValue() / 100F;
 
-        ResourcesData.Context blood = new ResourcesData.Context(effect.ctx.targetData, effect.ctx.target,
+        ModifyResourceContext blood = new ModifyResourceContext(effect.ctx.targetData, effect.ctx.target,
             ResourceType.blood, bloodrestored,
             ResourcesData.Use.RESTORE
         );

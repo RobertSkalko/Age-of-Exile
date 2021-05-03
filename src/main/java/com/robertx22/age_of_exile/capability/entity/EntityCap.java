@@ -85,7 +85,9 @@ public class EntityCap {
 
         EntityStatusEffectsData getStatusEffectsData();
 
-        void modifyResource(ResourcesData.Context ctx);
+        float getMaximumResource(ResourceType type);
+
+        void modifyResource(ModifyResourceContext ctx);
 
         void onDeath();
 
@@ -374,7 +376,29 @@ public class EntityCap {
         }
 
         @Override
-        public void modifyResource(ResourcesData.Context ctx) {
+        public float getMaximumResource(ResourceType type) {
+
+            float multi = Load.spells(entity)
+                .getReservedManaMulti();
+
+            if (type == ResourceType.blood) {
+                return getUnit().bloodData()
+                    .getAverageValue() * multi;
+            }
+            if (type == ResourceType.mana) {
+                return getUnit().manaData()
+                    .getAverageValue() * multi;
+            }
+            if (type == ResourceType.health) {
+                return entity.getMaxHealth();
+            }
+
+            return 0;
+
+        }
+
+        @Override
+        public void modifyResource(ModifyResourceContext ctx) {
             this.resources.modify(ctx);
         }
 
@@ -847,17 +871,17 @@ public class EntityCap {
 
                 // fully restore on lvlup
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.mana,
+                    .modify(new ModifyResourceContext(this, player, ResourceType.mana,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.health,
+                    .modify(new ModifyResourceContext(this, player, ResourceType.health,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));
                 getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.blood,
+                    .modify(new ModifyResourceContext(this, player, ResourceType.blood,
                         Integer.MAX_VALUE,
                         ResourcesData.Use.RESTORE
                     ));

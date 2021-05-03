@@ -1,10 +1,9 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -19,70 +18,6 @@ import net.minecraft.util.math.MathHelper;
 public class ResourcesData {
 
     public ResourcesData() {
-
-    }
-
-    public static class Context {
-
-        public String spell = null;
-
-        public UnitData sourceData;
-        public LivingEntity source;
-
-        public UnitData targetData;
-        public LivingEntity target;
-
-        public ResourceType type;
-        public float amount;
-        public Use use;
-
-        public boolean statsCalculated = false;
-
-        public Context setSpell(String id) {
-            this.spell = id;
-            return this;
-        }
-
-        public Context(UnitData data, LivingEntity entity, ResourceType type, float amount, Use use) {
-            this.targetData = data;
-            this.target = entity;
-            this.sourceData = data;
-            this.source = entity;
-            this.type = type;
-            this.amount = amount;
-            this.use = use;
-            calculateStats();
-        }
-
-        public Context(LivingEntity caster, LivingEntity target, ResourceType type, float amount, Use use) {
-            this.targetData = Load.Unit(target);
-            this.target = target;
-            this.sourceData = Load.Unit(caster);
-            this.source = caster;
-            this.type = type;
-            this.amount = amount;
-            this.use = use;
-
-            calculateStats();
-        }
-
-        public Context(LivingEntity caster, LivingEntity target, UnitData casterData, UnitData targetData, ResourceType type,
-                       float amount, Use use, Spell spell) {
-            this.targetData = targetData;
-            this.target = target;
-            this.sourceData = casterData;
-            this.source = caster;
-            this.type = type;
-            this.amount = amount;
-            this.use = use;
-            calculateStats();
-        }
-
-        private void calculateStats() {
-            if (!statsCalculated) {
-                new ModifyResourceEffect(this).Activate();
-            }
-        }
 
     }
 
@@ -111,7 +46,7 @@ public class ResourcesData {
         return shields.getTotalShields();
     }
 
-    public float getModifiedValue(Context ctx) {
+    public float getModifiedValue(ModifyResourceContext ctx) {
         if (ctx.use == Use.RESTORE) {
             return get(ctx) + ctx.amount;
         } else {
@@ -159,30 +94,49 @@ public class ResourcesData {
 
     }
 
-    private float get(Context ctx) {
+    private float get(ModifyResourceContext ctx) {
         return get(ctx.target, ctx.type);
     }
 
-    private void modifyBy(Context ctx) {
+    public void spend(LivingEntity en, ResourceType type, float amount) {
+        if (amount == 0) {
+            return;
+        }
+
+        if (type == ResourceType.mana) {
+            mana = mana - amount;
+
+        } else if (type == ResourceType.blood) {
+            blood = blood - amount;
+        }
+
+        cap(en, type);
+        sync(en);
+    }
+
+    private void cap(LivingEntity en, ResourceType type) {
+
+        if (type == ResourceType.mana) {
+            mana = MathHelper.clamp(mana, 0, Load.Unit(en)
+                .getMaximumResource(type));
+        } else if (type == ResourceType.blood) {
+            blood = MathHelper.clamp(blood, 0, Load.Unit(en)
+                .getMaximumResource(type));
+        }
+    }
+
+    private void modifyBy(ModifyResourceContext ctx) {
 
         if (ctx.amount == 0) {
             return;
         }
 
         if (ctx.type == ResourceType.mana) {
-            mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .manaData()
-                .getAverageValue() * Load.spells(ctx.source)
-                .getReservedManaMulti());
-            sync(ctx);
+            mana = getModifiedValue(ctx);
 
         } else if (ctx.type == ResourceType.blood) {
 
-            blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .bloodData()
-                .getAverageValue() * Load.spells(ctx.source)
-                .getReservedManaMulti());
-            sync(ctx);
+            blood = getModifiedValue(ctx);
         } else if (ctx.type == ResourceType.health) {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
@@ -190,30 +144,31 @@ public class ResourcesData {
                 ctx.target.setHealth(getModifiedValue(ctx));
             }
         }
+        cap(ctx.target, ctx.type);
+        sync(ctx.target);
     }
 
-    private void sync(Context ctx) {
-        if (ctx.target instanceof ServerPlayerEntity) {
-            Packets.sendToClient((PlayerEntity) ctx.target, new EntityUnitPacket(ctx.target));
+    private void sync(LivingEntity en) {
+        if (en instanceof ServerPlayerEntity) {
+            Packets.sendToClient((PlayerEntity) en, new EntityUnitPacket(en));
         }
     }
 
-    private void heal(Context ctx) {
+    private void heal(ModifyResourceContext ctx) {
         if (ctx.target.isAlive()) {
             HealEffect effect = new HealEffect(ctx);
             effect.Activate();
         }
     }
 
-    public boolean hasEnough(Context ctx) {
-        if (ctx.amount <= 0) {
+    public boolean hasEnough(SpendResourceEvent ctx) {
+        if (ctx.data.getNumber() <= 0) {
             return true;
         }
-
-        return get(ctx) >= ctx.amount;
+        return get(ctx.target, ctx.data.getResourceType()) >= ctx.data.getNumber();
     }
 
-    public void modify(Context ctx) {
+    public void modify(ModifyResourceContext ctx) {
         modifyBy(ctx);
     }
 

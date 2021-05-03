@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -444,7 +445,7 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
 
     public void doManaBurn() {
         if (manaBurn > 0) {
-            ResourcesData.Context ctx = new ResourcesData.Context(targetData, target,
+            ModifyResourceContext ctx = new ModifyResourceContext(targetData, target,
                 ResourceType.mana, manaBurn,
                 ResourcesData.Use.SPEND
             );

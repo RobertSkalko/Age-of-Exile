@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 
@@ -34,7 +35,7 @@ public class RestoreResource {
         if (predicate.test(effect)) {
             if (amount > 0) {
                 effect.sourceData.getResources()
-                    .modify(new ResourcesData.Context(effect.sourceData, effect.source, this.resource, amount,
+                    .modify(new ModifyResourceContext(effect.sourceData, effect.source, this.resource, amount,
                         ResourcesData.Use.RESTORE
                     ));
             }

@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
+import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -57,7 +58,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
             int restore = (int) (tier.percent_healed / 100F * unitdata.getResources()
                 .getMax(player, this.type.resource));
 
-            ResourcesData.Context ctx = new ResourcesData.Context(unitdata, player, type.resource,
+            ModifyResourceContext ctx = new ModifyResourceContext(unitdata, player, type.resource,
                 restore,
                 ResourcesData.Use.RESTORE
             );

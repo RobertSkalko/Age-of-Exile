@@ -23,9 +23,9 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -190,18 +190,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public void spendResources(SpellCastContext ctx) {
-        ctx.data.getResources()
-            .modify(getManaCostCtx(ctx));
+        getManaCostCtx(ctx).Activate();
     }
 
-    public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
-
-        float cost = 0;
-
-        cost += this.getCalculatedManaCost(ctx);
-
-        return new ResourcesData.Context(
-            ctx.data, ctx.caster, ResourceType.mana, cost, ResourcesData.Use.SPEND);
+    public SpendResourceEvent getManaCostCtx(SpellCastContext ctx) {
+        float cost = this.getCalculatedManaCost(ctx);
+        SpendResourceEvent event = new SpendResourceEvent(ctx.caster, ResourceType.mana, cost);
+        event.calculateEffects();
+        return event;
     }
 
     public boolean canCast(SpellCastContext ctx) {
@@ -230,7 +226,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
             if (data != null) {
 
-                ResourcesData.Context rctx = getManaCostCtx(ctx);
+                SpendResourceEvent rctx = getManaCostCtx(ctx);
 
                 if (data.getResources()
                     .hasEnough(rctx)) {
