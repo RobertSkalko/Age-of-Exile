@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -80,7 +79,7 @@ public class MobAffixes implements ISlashRegistryInit {
 
         new MobAffix("vampire", "Vampire Lord", Formatting.RED)
             .setMods(new StatModifier(25, 25, Health.getInstance()),
-                new StatModifier(15, 15, Lifesteal.getInstance()),
+                new StatModifier(15, 15, Stats.LIFESTEAL.get()),
                 new StatModifier(15, 15, ExtraMobDropsStat.getInstance()))
             .setWeight(500)
             .addToSerializables();

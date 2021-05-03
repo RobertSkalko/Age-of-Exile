@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.IncreasedLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -35,7 +34,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("refined_taste", "Refined Taste",
-            new OptScaleExactStat(50, IncreasedLeech.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(50, Stats.INCREASED_LEECH.get(), ModType.FLAT),
             new OptScaleExactStat(-75, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(-75, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
         );

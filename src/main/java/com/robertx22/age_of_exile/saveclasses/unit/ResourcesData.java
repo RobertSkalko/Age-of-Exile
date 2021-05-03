@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
@@ -21,7 +20,7 @@ public class ResourcesData {
 
     }
 
-    public enum Use {
+    private enum Use {
         SPEND,
         RESTORE
     }
@@ -46,11 +45,11 @@ public class ResourcesData {
         return shields.getTotalShields();
     }
 
-    public float getModifiedValue(ModifyResourceContext ctx) {
-        if (ctx.use == Use.RESTORE) {
-            return get(ctx) + ctx.amount;
+    public float getModifiedValue(LivingEntity en, ResourceType type, Use use, float amount) {
+        if (use == Use.RESTORE) {
+            return get(en, type) + amount;
         } else {
-            return get(ctx) - ctx.amount;
+            return get(en, type) - amount;
         }
 
     }
@@ -94,28 +93,32 @@ public class ResourcesData {
 
     }
 
-    private float get(ModifyResourceContext ctx) {
-        return get(ctx.target, ctx.type);
+    public void spend(LivingEntity en, ResourceType type, float amount) {
+        modify(en, Use.SPEND, type, amount);
     }
 
-    public void spend(LivingEntity en, ResourceType type, float amount) {
+    public void restore(LivingEntity en, ResourceType type, float amount) {
+        modify(en, Use.RESTORE, type, amount);
+    }
+
+    public void modify(LivingEntity en, Use use, ResourceType type, float amount) {
         if (amount == 0) {
             return;
         }
-
         if (type == ResourceType.mana) {
-            mana = mana - amount;
-
+            mana = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.blood) {
-            blood = blood - amount;
+            blood = getModifiedValue(en, type, use, amount);
+        } else if (type == ResourceType.health) {
+            if (use == Use.RESTORE) {
+                HealthUtils.heal(en, amount);
+            }
         }
-
         cap(en, type);
         sync(en);
     }
 
     private void cap(LivingEntity en, ResourceType type) {
-
         if (type == ResourceType.mana) {
             mana = MathHelper.clamp(mana, 0, Load.Unit(en)
                 .getMaximumResource(type));
@@ -125,39 +128,9 @@ public class ResourcesData {
         }
     }
 
-    private void modifyBy(ModifyResourceContext ctx) {
-
-        if (ctx.amount == 0) {
-            return;
-        }
-
-        if (ctx.type == ResourceType.mana) {
-            mana = getModifiedValue(ctx);
-
-        } else if (ctx.type == ResourceType.blood) {
-
-            blood = getModifiedValue(ctx);
-        } else if (ctx.type == ResourceType.health) {
-            if (ctx.use == Use.RESTORE) {
-                heal(ctx);
-            } else {
-                ctx.target.setHealth(getModifiedValue(ctx));
-            }
-        }
-        cap(ctx.target, ctx.type);
-        sync(ctx.target);
-    }
-
     private void sync(LivingEntity en) {
         if (en instanceof ServerPlayerEntity) {
             Packets.sendToClient((PlayerEntity) en, new EntityUnitPacket(en));
-        }
-    }
-
-    private void heal(ModifyResourceContext ctx) {
-        if (ctx.target.isAlive()) {
-            HealEffect effect = new HealEffect(ctx);
-            effect.Activate();
         }
     }
 
@@ -166,10 +139,6 @@ public class ResourcesData {
             return true;
         }
         return get(ctx.target, ctx.data.getResourceType()) >= ctx.data.getNumber();
-    }
-
-    public void modify(ModifyResourceContext ctx) {
-        modifyBy(ctx);
     }
 
 }

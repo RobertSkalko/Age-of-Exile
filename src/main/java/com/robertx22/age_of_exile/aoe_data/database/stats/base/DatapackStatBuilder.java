@@ -33,8 +33,6 @@ public class DatapackStatBuilder<T> {
     private Function<T, StatEffect> effectMaker;
     private Consumer<DatapackStat> modifyAfterDone;
 
-    private boolean isSingle = false;
-
     private List<StatCondition> conditions = new ArrayList<>();
     private List<StatEffect> effects = new ArrayList<>();
 
@@ -48,7 +46,6 @@ public class DatapackStatBuilder<T> {
         b.accessor = new DataPackStatAccessor<EmptyAccessor>();
         b.idMaker = x -> id;
         b.elementMaker = x -> ele;
-        b.isSingle = true;
         b.addSpecificType(EmptyAccessor.INSTANCE);
         return b;
     }

@@ -16,7 +16,7 @@ public enum AttackType {
     dot("dot", "DOT") {
 
     },
-    all("all", "All") {
+    all("all", "Any") {
 
     };
 

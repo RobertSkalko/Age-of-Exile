@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
@@ -15,15 +16,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMa
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
@@ -104,7 +101,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_blood_thirst", "Blood thirst",
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(3, Lifesteal.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(3, Stats.LIFESTEAL.get(), ModType.FLAT),
             new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
 
@@ -155,7 +152,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_aspect_of_thunder", "Aspect of Thunder",
             new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Light), ModType.FLAT),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get(), ModType.FLAT),
-            new OptScaleExactStat(5, PlusResourceOnKill.MANA, ModType.FLAT)
+            new OptScaleExactStat(5, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_flow_of_mana", "Flow of Mana",
@@ -184,7 +181,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_overflow_mana", "Overflowing Mana",
             new OptScaleExactStat(15, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.mana, AttackType.attack)), ModType.FLAT)
+            new OptScaleExactStat(2, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_ele_protection", "Elemental Protection",
@@ -201,7 +198,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_blood_siphon", "Blood Stealing",
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.health, AttackType.attack)), ModType.FLAT)
+            new OptScaleExactStat(2, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_precision", "Precision",
@@ -218,7 +215,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_vampire", "Vampire",
             new OptScaleExactStat(8, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, Lifesteal.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(2, Stats.LIFESTEAL.get(), ModType.FLAT)
         );
         PerkBuilder.bigStat("big_warrior_heart", "Warrior's Heart",
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
@@ -296,8 +293,8 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_mana_steal", "Mana Thief",
-            new OptScaleExactStat(5, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.mana, AttackType.attack)), ModType.FLAT),
-            new OptScaleExactStat(3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.mana, AttackType.attack)), ModType.FLAT),
+            new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT),
+            new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT),
             new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT)
         );
 
@@ -405,13 +402,13 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_steal_str", "Ravager",
-            new OptScaleExactStat(3, Lifesteal.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(3, Stats.LIFESTEAL.get(), ModType.FLAT),
             new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(3, Strength.INSTANCE, ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_steal_vit", "Destroyer",
-            new OptScaleExactStat(5, Lifesteal.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.LIFESTEAL.get(), ModType.FLAT),
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(3, Wisdom.INSTANCE, ModType.FLAT)
         );

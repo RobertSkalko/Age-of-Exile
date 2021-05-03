@@ -2,17 +2,16 @@ package com.robertx22.age_of_exile.database.data.stats.effects.game_changers;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
-import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class HealthRestorationToBloodEffect extends BaseStatEffect<ModifyResourceEffect> {
+public class HealthRestorationToBloodEffect extends BaseStatEffect<RestoreResourceEvent> {
 
     private HealthRestorationToBloodEffect() {
-        super(ModifyResourceEffect.class);
+        super(RestoreResourceEvent.class);
     }
 
     public static HealthRestorationToBloodEffect getInstance() {
@@ -30,34 +29,24 @@ public class HealthRestorationToBloodEffect extends BaseStatEffect<ModifyResourc
     }
 
     @Override
-    public ModifyResourceEffect activate(ModifyResourceEffect effect, StatData data, Stat stat) {
+    public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
 
-        float bloodrestored = effect.ctx.amount * data.getAverageValue() / 100F;
+        float bloodrestored = effect.data.getNumber() * data.getAverageValue() / 100F;
 
-        ModifyResourceContext blood = new ModifyResourceContext(effect.ctx.targetData, effect.ctx.target,
-            ResourceType.blood, bloodrestored,
-            ResourcesData.Use.RESTORE
-        );
-        effect.ctx.targetData.getResources()
-            .modify(blood);
+        RestoreResourceEvent restore = new RestoreResourceEvent(effect.source, effect.target, ResourceType.blood, RestoreType.regen, bloodrestored);
 
+        restore.Activate();
         return effect;
     }
 
     @Override
-    public boolean canActivate(ModifyResourceEffect effect, StatData data, Stat stat) {
+    public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
 
         if (effect.data.isSpellEffect()) {
             return false;
         }
-
-        if (effect.ctx.use == ResourcesData.Use.RESTORE) {
-            if (effect.ctx.amount > 0) {
-                if (effect.ctx.type == ResourceType.health) {
-                    return true;
-
-                }
-            }
+        if (effect.data.getResourceType() == ResourceType.health) {
+            return true;
         }
         return false;
     }

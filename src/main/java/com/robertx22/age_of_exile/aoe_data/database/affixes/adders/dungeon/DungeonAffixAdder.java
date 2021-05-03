@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -59,7 +58,7 @@ public class DungeonAffixAdder implements ISlashRegistryInit {
 
         AffixBuilder.Normal("life_on_hit_dun")
             .Named("Of Vampires")
-            .tier(1, new StatModifier(3, 5, Lifesteal.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT))
             .DungeonSuffix()
             .Build();
 

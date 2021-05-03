@@ -1,15 +1,8 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.entities.IDatapackSpellEntity;
-import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -47,17 +40,6 @@ public class SpellUtils {
                 , new EntitySpawnS2CPacket(entityIn));
     }
 
-    /*
-        public static void shootProjectile(Vec3d pos, PersistentProjectileEntity projectile, LivingEntity caster, float speed) {
-
-            ((Entity) projectile).updatePosition(pos.x, pos.getY() + caster.getStandingEyeHeight() - 0.1F, pos.z);
-
-            projectile.setProperties(caster, caster.pitch, caster.yaw, 0.0F, speed, 1F);
-
-        }
-
-
-     */
     public static void shootProjectile(Vec3d pos, PersistentProjectileEntity projectile, LivingEntity caster, float speed,
                                        float pitch, float yaw) {
 
@@ -74,16 +56,6 @@ public class SpellUtils {
 
         IDatapackSpellEntity se = (IDatapackSpellEntity) spellEntity;
         se.init(caster, data, holder);
-    }
-
-    public static void heal(Spell spell, LivingEntity en, float amount) {
-        HealEffect heal = new HealEffect(
-            new ModifyResourceContext(Load.Unit(en), en, ResourceType.health,
-                amount, ResourcesData.Use.RESTORE));
-
-        heal.data.setString(EventData.SPELL, spell.GUID());
-
-        heal.Activate();
     }
 
 }

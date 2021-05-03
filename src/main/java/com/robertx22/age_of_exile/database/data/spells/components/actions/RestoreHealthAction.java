@@ -6,11 +6,10 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -56,15 +55,15 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
                 int total = 0;
 
                 for (LivingEntity t : targets) {
-                    ModifyResourceContext hctx = new ModifyResourceContext(ctx.caster, t, ResourceType.health,
-                        value, ResourcesData.Use.RESTORE
-                    );
-                    hctx.setSpell(ctx.calculatedSpellData.getSpell()
-                        .GUID());
 
-                    HealEffect heal = new HealEffect(hctx);
-                    total += heal.data.getNumber();
-                    heal.Activate();
+                    RestoreResourceEvent restore = new RestoreResourceEvent(
+                        ctx.caster, t, ResourceType.health, RestoreType.heal, value
+                    );
+                    restore.setSpell(ctx.calculatedSpellData.getSpell());
+                    restore.Activate();
+
+                    total += restore.data.getNumber();
+
                 }
 
                 if (ctx.caster instanceof PlayerEntity) {

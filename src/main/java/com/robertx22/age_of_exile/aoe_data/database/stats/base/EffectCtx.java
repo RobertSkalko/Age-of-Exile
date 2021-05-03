@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.stats.base;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
-public class EffectCtx {
+public class EffectCtx extends AutoHashClass {
 
     public EffectType type;
     public String effectId;

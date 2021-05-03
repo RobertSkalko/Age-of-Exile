@@ -2,11 +2,11 @@ package com.robertx22.age_of_exile.database.data.stats.types.misc;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
@@ -63,13 +63,12 @@ public class DamageTakenToMana extends Stat {
             float restore = effect.data.getNumber() * data.getAverageValue() / 100F; // todo dmg number
 
             if (restore > 0) {
-                ModifyResourceContext mana = new ModifyResourceContext(effect.targetData, effect.target,
-                    ResourceType.mana,
-                    restore,
-                    ResourcesData.Use.RESTORE
+                RestoreResourceEvent mana = new RestoreResourceEvent(effect.source, effect.target,
+                    ResourceType.mana, RestoreType.heal,
+                    restore
                 );
-                effect.targetData.getResources()
-                    .modify(mana);
+                mana.Activate();
+
             }
 
             return effect;

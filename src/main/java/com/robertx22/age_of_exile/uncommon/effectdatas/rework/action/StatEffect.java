@@ -17,9 +17,10 @@ public abstract class StatEffect implements ISerializedRegistryEntry<StatEffect>
     public static HashMap<String, StatEffect> SERIALIZERS = new HashMap<>();
 
     static {
+        addSer(new AddToNumberEffect());
         addSer(new SetDataNumberAction());
         addSer(new SetBooleanEffect());
-        addSer(new IncreaseNumberEffect());
+        addSer(new IncreaseNumberByPercentEffect());
         addSer(new RestoreResourceAction());
         addSer(new GiveExileStatusEffect());
     }

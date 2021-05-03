@@ -10,9 +10,6 @@ import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.*;
@@ -41,8 +38,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.UUID;
 
 public class DamageEffect extends EffectEvent implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable {
@@ -86,17 +85,11 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
     public AttackPlayStyle style;
     AttackInformation attackInfo;
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
-    public List<RestoreResource> toRestore = new ArrayList<>();
-    public float manaBurn = 0;
     public boolean isDodged = false;
     public boolean knockback = true;
 
     public AttackType getAttackType() {
         return data.getAttackType();
-    }
-
-    public void addToRestore(RestoreResource data) {
-        this.toRestore.add(data);
     }
 
     public Elements getElement() {
@@ -392,10 +385,6 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
             event.Activate();
         }
 
-        this.toRestore.forEach(x -> x.tryRestore(this));
-
-        doManaBurn();
-
         if (dmg > 0) {
             if (source instanceof PlayerEntity) {
                 if (target instanceof MobEntity) {
@@ -440,18 +429,6 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
                 }
             }
 
-        }
-    }
-
-    public void doManaBurn() {
-        if (manaBurn > 0) {
-            ModifyResourceContext ctx = new ModifyResourceContext(targetData, target,
-                ResourceType.mana, manaBurn,
-                ResourcesData.Use.SPEND
-            );
-
-            targetData.getResources()
-                .modify(ctx);
         }
     }
 

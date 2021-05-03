@@ -87,8 +87,6 @@ public class EntityCap {
 
         float getMaximumResource(ResourceType type);
 
-        void modifyResource(ModifyResourceContext ctx);
-
         void onDeath();
 
         void setType();
@@ -395,11 +393,6 @@ public class EntityCap {
 
             return 0;
 
-        }
-
-        @Override
-        public void modifyResource(ModifyResourceContext ctx) {
-            this.resources.modify(ctx);
         }
 
         @Override
@@ -870,21 +863,10 @@ public class EntityCap {
                 }
 
                 // fully restore on lvlup
-                getResources()
-                    .modify(new ModifyResourceContext(this, player, ResourceType.mana,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
-                getResources()
-                    .modify(new ModifyResourceContext(this, player, ResourceType.health,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
-                getResources()
-                    .modify(new ModifyResourceContext(this, player, ResourceType.blood,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
+
+                getResources().restore(player, ResourceType.mana, Integer.MAX_VALUE);
+                getResources().restore(player, ResourceType.health, Integer.MAX_VALUE);
+                getResources().restore(player, ResourceType.blood, Integer.MAX_VALUE);
 
                 // fully restore on lvlup
 

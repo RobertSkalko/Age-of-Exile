@@ -11,7 +11,8 @@ import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -82,7 +83,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         unitdata.tryRecalculateStats();
 
-                        RegenEvent event = new RegenEvent(player, player, ResourceType.mana);
+                        RestoreResourceEvent event = new RestoreResourceEvent(player, player, ResourceType.mana, RestoreType.regen, 0);
                         event.Activate();
 
                         boolean restored = false;
@@ -95,7 +96,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 restored = true;
                             }
 
-                            RegenEvent hpevent = new RegenEvent(player, player, ResourceType.health);
+                            RestoreResourceEvent hpevent = new RestoreResourceEvent(player, player, ResourceType.health, RestoreType.regen, 0);
                             hpevent.Activate();
 
                             if (restored) {

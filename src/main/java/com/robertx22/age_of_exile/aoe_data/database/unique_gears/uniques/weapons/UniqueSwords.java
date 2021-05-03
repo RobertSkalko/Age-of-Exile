@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -36,7 +35,7 @@ public class UniqueSwords implements ISlashRegistryInit {
                 new StatModifier(10, 20, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Dark), ModType.FLAT),
                 new StatModifier(10, 10, CooldownReduction.getInstance(), ModType.FLAT),
-                new StatModifier(2, 4, Lifesteal.getInstance(), ModType.FLAT),
+                new StatModifier(2, 4, Stats.LIFESTEAL.get(), ModType.FLAT),
                 new StatModifier(5, 15, Stats.NIGHT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.TORMENT), ModType.FLAT)
             ))

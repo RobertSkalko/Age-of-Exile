@@ -17,7 +17,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -47,7 +46,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         ExileEffectBuilder.of(BLOODLUST)
-            .stat(2, Lifesteal.getInstance(), ModType.FLAT)
+            .stat(2, Stats.LIFESTEAL.get(), ModType.FLAT)
             .stat(2, DatapackStatAdder.MOVE_SPEED, ModType.FLAT)
             .maxStacks(10)
             .build();

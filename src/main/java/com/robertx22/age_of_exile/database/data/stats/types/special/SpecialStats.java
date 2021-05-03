@@ -16,8 +16,11 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
-import com.robertx22.age_of_exile.uncommon.effectdatas.*;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -145,13 +148,13 @@ public class SpecialStats {
             }
 
             @Override
-            public RegenEvent activate(RegenEvent effect, StatData data, Stat stat) {
+            public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 effect.increaseByPercent(data.getAverageValue());
                 return effect;
             }
 
             @Override
-            public boolean canActivate(RegenEvent effect, StatData data, Stat stat) {
+            public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 return effect.source.isTouchingWater();
             }
         }
@@ -263,7 +266,7 @@ public class SpecialStats {
 
         new BaseHealEffect() {
             @Override
-            public HealEffect activate(HealEffect effect, StatData data, Stat stat) {
+            public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 for (StatusEffectInstance x : new ArrayList<>(effect.target.getStatusEffects())) {
                     StatusEffectAccessor acc = (StatusEffectAccessor) x.getEffectType();
                     if (acc.getType() == StatusEffectType.HARMFUL) {
@@ -274,7 +277,7 @@ public class SpecialStats {
             }
 
             @Override
-            public boolean canActivate(HealEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 return effect.isSpell() && RandomUtils.roll(data.getAverageValue());
             }
 
@@ -296,9 +299,12 @@ public class SpecialStats {
         new BaseSpecialStatDamageEffect() {
             @Override
             public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-                effect.addToRestore(
-                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.health, effect.data.getNumber(EventData.ORIGINAL_VALUE).number)
-                );
+
+                float val = effect.data.getNumber();
+
+                RestoreResourceEvent e = new RestoreResourceEvent(effect.source, effect.target, ResourceType.health, RestoreType.heal, val);
+                e.Activate();
+
                 effect.cancelDamage();
                 return effect;
             }
@@ -339,9 +345,12 @@ public class SpecialStats {
         new BaseSpecialStatDamageEffect() {
             @Override
             public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-                effect.addToRestore(
-                    new RestoreResource(RestoreResource.RestoreType.HEAL, ResourceType.mana, data.getAverageValue())
-                );
+
+                float val = data.getAverageValue();
+
+                RestoreResourceEvent e = new RestoreResourceEvent(effect.source, effect.target, ResourceType.mana, RestoreType.heal, val);
+                e.Activate();
+
                 return effect;
             }
 

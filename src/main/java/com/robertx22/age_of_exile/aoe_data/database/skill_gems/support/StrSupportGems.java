@@ -7,12 +7,9 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -31,7 +28,7 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("health_leech", "Health Leech Support", new StatRequirement().setBaseStr(25)
                 .setStr(0.4F), StatAttribute.STR, 1.25F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(1, 2, new ResourceLeech(new ResourceLeech.Info(Elements.All, ResourceType.health, AttackType.all)))
+            new StatModifier(2, 3, Stats.LIFESTEAL.get())
         );
 
         SkillGemBuilder.of("crit_rate", "Critical Chance Support", new StatRequirement().setBaseStr(20)

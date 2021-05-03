@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCondition;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
@@ -46,9 +47,16 @@ public class DataPackStatEffect implements IStatEffect {
                     return istrue;
                 })) {
 
-                effects.forEach(x -> Database.StatEffects()
-                    .get(x)
-                    .activate(effect, statSource, data, stat));
+                effects.forEach(x -> {
+                    StatEffect e = Database.StatEffects()
+                        .get(x);
+
+                    if (e == null) {
+                        System.out.print(x);
+                    } else {
+                        e.activate(effect, statSource, data, stat);
+                    }
+                });
 
             }
 

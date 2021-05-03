@@ -3,15 +3,15 @@ package com.robertx22.age_of_exile.database.data.stats.effects.game_changers;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ModifyResourceEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class BloodUserEffect extends BaseStatEffect<ModifyResourceEffect> {
+public class BloodUserEffect extends BaseStatEffect<SpendResourceEvent> {
 
     private BloodUserEffect() {
-        super(ModifyResourceEffect.class);
+        super(SpendResourceEvent.class);
     }
 
     public static BloodUserEffect getInstance() {
@@ -29,24 +29,16 @@ public class BloodUserEffect extends BaseStatEffect<ModifyResourceEffect> {
     }
 
     @Override
-    public ModifyResourceEffect activate(ModifyResourceEffect effect, StatData data, Stat stat) {
-
-        effect.ctx.type = ResourceType.blood;
-
+    public SpendResourceEvent activate(SpendResourceEvent effect, StatData data, Stat stat) {
+        effect.data.setString(EventData.RESOURCE_TYPE, ResourceType.blood.name());
         return effect;
     }
 
     @Override
-    public boolean canActivate(ModifyResourceEffect effect, StatData data, Stat stat) {
-
-        if (effect.ctx.use == ResourcesData.Use.SPEND) {
-            if (effect.ctx.amount > 0) {
-                if (effect.ctx.type == ResourceType.mana) {
-                    return true;
-                }
-            }
+    public boolean canActivate(SpendResourceEvent effect, StatData data, Stat stat) {
+        if (effect.data.getResourceType() == ResourceType.mana) {
+            return true;
         }
-
         return false;
     }
 

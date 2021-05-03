@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.AuraStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEvent;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
@@ -175,7 +175,7 @@ public class EntitySpellCap {
             }
 
             if (current.active) {
-                ReserveManaEffect effect = new ReserveManaEffect(spell, entity);
+                ReserveManaEvent effect = new ReserveManaEvent(spell, entity);
                 effect.Activate();
                 current.mana_reserved = effect.data.getNumber();
             } else {

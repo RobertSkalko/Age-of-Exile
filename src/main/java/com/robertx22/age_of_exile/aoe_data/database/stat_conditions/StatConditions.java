@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.*;
 
 import java.util.Arrays;
@@ -29,6 +30,10 @@ public class StatConditions implements ISlashRegistryInit {
     public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
         ResourceType.values()
         , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
+
+    public static DataHolder<RestoreType, StatCondition> IS_RESTORE_TYPE = new DataHolder<>(
+        RestoreType.values()
+        , x -> new StringMatchesCondition(EventData.RESTORE_TYPE, x.name()));
 
     public static StatCondition IS_MELEE_WEAPON = new EitherIsTrueCondition("is_melee_weapon",
         Arrays.stream(WeaponTypes.values())

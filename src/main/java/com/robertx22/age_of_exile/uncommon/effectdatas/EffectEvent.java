@@ -221,6 +221,10 @@ public abstract class EffectEvent implements IGUID {
         return effects;
     }
 
+    public void setSpell(Spell spell) {
+        this.data.setString(EventData.SPELL, spell.GUID());
+    }
+
     @Override
     public String formattedGUID() {
         return GUID();

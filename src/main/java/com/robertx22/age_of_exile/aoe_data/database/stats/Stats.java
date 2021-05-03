@@ -4,9 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.DatapackStatBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.EmptyAccessor;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.*;
 import com.robertx22.age_of_exile.database.data.stats.Stat.StatGroup;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
@@ -15,8 +13,9 @@ import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.HealEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.MobKillByDamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
@@ -50,6 +49,28 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<LeechInfo> ELEMENT_LEECH_RESOURCE = DatapackStatBuilder
+        .<LeechInfo>of(x -> x.element.guidName + "_" + x.resourceType.id + "_leech", x -> x.element)
+        .addAllOfType(LeechInfo.allCombos())
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resourceType))
+        .setLocName(x ->
+            SpecialStats.format(
+                "Leech " + SpecialStats.VAL1 + "% of your " + x.element.getIconNameFormat() + " Damage as " + x.resourceType.locname
+            )
+        )
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+            x.min = 0;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
     public static DataPackStatAccessor<ResourceType> RESOURCE_ON_KILL = DatapackStatBuilder
         .<ResourceType>of(x -> x.id + "_on_kill", x -> Elements.All)
         .addAllOfType(Arrays.asList(
@@ -61,6 +82,22 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e))
         .setLocName(x -> x.locname + " on Kill")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = false;
+            x.scaling = StatScaling.NORMAL;
+        })
+        .build();
+
+    public static DataPackStatAccessor<ResourceAndAttack> RESOURCE_ON_HIT = DatapackStatBuilder
+        .<ResourceAndAttack>of(x -> x.resource.id + "_on_" + x.attackType.id + "_hit", x -> Elements.All)
+        .addAllOfType(ResourceAndAttack.allCombos())
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resource))
+        .setLocName(x -> x.resource.locname + " on " + x.attackType.locname + " Hit")
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.min = 0;
@@ -168,7 +205,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> HEAL_CRIT_CHANCE = DatapackStatBuilder
         .<EmptyAccessor>ofSingle("crit_heal_chance", Elements.Physical)
-        .worksWithEvent(HealEffect.ID)
+        .worksWithEvent(RestoreResourceEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
@@ -238,7 +275,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> HEAL_CRIT_DAMAGE = DatapackStatBuilder
         .ofSingle("heal_crit_dmg", Elements.Physical)
-        .worksWithEvent(HealEffect.ID)
+        .worksWithEvent(RestoreResourceEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_CRIT)
@@ -428,7 +465,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> HEAL_STRENGTH = DatapackStatBuilder
         .ofSingle("increase_healing", Elements.All)
-        .worksWithEvent(HealEffect.ID)
+        .worksWithEvent(RestoreResourceEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_SPELL)
@@ -446,7 +483,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> HEALING_RECEIVED = DatapackStatBuilder
         .ofSingle("heal_effect_on_self", Elements.All)
-        .worksWithEvent(HealEffect.ID)
+        .worksWithEvent(RestoreResourceEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Target)
         .addCondition(StatConditions.IS_SPELL)
@@ -459,6 +496,44 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.min = -100;
             x.format = Formatting.YELLOW;
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> LIFESTEAL = DatapackStatBuilder
+        .ofSingle("lifesteal", Elements.All)
+        .worksWithEvent(DamageEffect.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
+        .addEffect(StatEffects.LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE.get(ResourceType.health))
+        .setLocName(x -> "Lifesteal")
+        .setLocDesc(x -> "Restore % of damage as health.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.scaling = StatScaling.NONE;
+            x.format = Formatting.RED;
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_LEECH = DatapackStatBuilder
+        .ofSingle("inc_leech", Elements.All)
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.leech))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Increased Leech Effects")
+        .setLocDesc(x -> "Affects all resource leech stats like: onhit, leech dmg, on kill restore etc")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.scaling = StatScaling.NONE;
+            x.format = Formatting.RED;
             x.group = StatGroup.RESTORATION;
         })
         .build();

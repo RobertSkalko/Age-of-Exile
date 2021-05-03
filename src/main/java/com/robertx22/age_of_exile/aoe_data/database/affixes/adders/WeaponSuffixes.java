@@ -5,12 +5,11 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 public class WeaponSuffixes implements ISlashRegistryInit {
@@ -47,9 +46,9 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_vampirism")
             .Named("Of Vampirism")
-            .tier(1, new StatModifier(3, 5, Lifesteal.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(2, 3, Lifesteal.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(1, 2, Lifesteal.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 3, Stats.LIFESTEAL.get(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2, Stats.LIFESTEAL.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
@@ -77,18 +76,18 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_gluttony")
             .Named("Of Gluttony")
-            .tier(1, new StatModifier(4, 6, PlusResourceOnKill.HEALTH, ModType.FLAT))
-            .tier(2, new StatModifier(3, 4, PlusResourceOnKill.HEALTH, ModType.FLAT))
-            .tier(3, new StatModifier(1, 3, PlusResourceOnKill.HEALTH, ModType.FLAT))
+            .tier(1, new StatModifier(4, 6, Stats.RESOURCE_ON_KILL.get(ResourceType.health), ModType.FLAT))
+            .tier(2, new StatModifier(3, 4, Stats.RESOURCE_ON_KILL.get(ResourceType.health), ModType.FLAT))
+            .tier(3, new StatModifier(1, 3, Stats.RESOURCE_ON_KILL.get(ResourceType.health), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_consumption")
             .Named("Of Consumption")
-            .tier(1, new StatModifier(4, 6, PlusResourceOnKill.MANA, ModType.FLAT))
-            .tier(2, new StatModifier(3, 4, PlusResourceOnKill.MANA, ModType.FLAT))
-            .tier(3, new StatModifier(1, 3, PlusResourceOnKill.MANA, ModType.FLAT))
+            .tier(1, new StatModifier(4, 6, Stats.RESOURCE_ON_KILL.get(ResourceType.mana), ModType.FLAT))
+            .tier(2, new StatModifier(3, 4, Stats.RESOURCE_ON_KILL.get(ResourceType.mana), ModType.FLAT))
+            .tier(3, new StatModifier(1, 3, Stats.RESOURCE_ON_KILL.get(ResourceType.mana), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();

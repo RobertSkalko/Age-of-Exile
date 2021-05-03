@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
@@ -42,7 +41,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(25, 25, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
                 new StatModifier(5, 15, AttackSpeed.getInstance(), ModType.FLAT),
-                new StatModifier(3, 5, Lifesteal.getInstance(), ModType.FLAT),
+                new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT),
                 new StatModifier(5, 15, Health.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(2, 6, Vitality.INSTANCE, ModType.FLAT)
             ))

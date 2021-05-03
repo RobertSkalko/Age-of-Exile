@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
@@ -50,14 +50,14 @@ public class RegeneratePercentStat extends Stat {
             }
 
             @Override
-            public RegenEvent activate(RegenEvent effect, StatData data, Stat stat) {
+            public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 effect.data.getNumber(EventData.NUMBER).number += maxGetter.apply(effect.targetData);
                 return effect;
             }
 
             @Override
-            public boolean canActivate(RegenEvent effect, StatData data, Stat stat) {
-                return effect.type == type;
+            public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
+                return effect.data.getResourceType() == type;
             }
         };
 

@@ -9,13 +9,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -63,7 +63,7 @@ public class UniqueRings implements ISlashRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT),
                 new StatModifier(6, 10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(6, 15, PlusResourceOnKill.MANA, ModType.FLAT),
+                new StatModifier(6, 15, Stats.RESOURCE_ON_KILL.get(ResourceType.mana), ModType.FLAT),
                 new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(5, 10, CooldownReduction.getInstance(), ModType.FLAT),
                 new StatModifier(-3, -6, Vitality.INSTANCE, ModType.FLAT),

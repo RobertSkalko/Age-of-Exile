@@ -3,7 +3,8 @@ package com.robertx22.age_of_exile.dimension.rules;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +34,7 @@ public class OnTickRegenerate {
 
         unitdata.tryRecalculateStats();
 
-        RegenEvent event = new RegenEvent(en, en, ResourceType.health);
+        RestoreResourceEvent event = new RestoreResourceEvent(en, en, ResourceType.health, RestoreType.regen, 0);
         event.Activate();
     }
 

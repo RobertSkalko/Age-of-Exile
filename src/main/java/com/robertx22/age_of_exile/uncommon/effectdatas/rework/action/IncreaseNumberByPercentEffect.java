@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class IncreaseNumberEffect extends StatEffect {
+public class IncreaseNumberByPercentEffect extends StatEffect {
 
-    public IncreaseNumberEffect() {
+    public IncreaseNumberByPercentEffect() {
         super("increase_number", "increase_number");
     }
 
@@ -18,6 +18,6 @@ public class IncreaseNumberEffect extends StatEffect {
 
     @Override
     public Class<? extends StatEffect> getSerClass() {
-        return IncreaseNumberEffect.class;
+        return IncreaseNumberByPercentEffect.class;
     }
 }

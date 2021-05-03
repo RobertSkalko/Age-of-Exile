@@ -6,10 +6,9 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.saveclasses.unit.ModifyResourceContext;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -48,15 +47,14 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
             int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
 
             for (LivingEntity x : targets) {
-                ModifyResourceContext hctx = new ModifyResourceContext(ctx.caster, x, ResourceType.mana,
-                    value, ResourcesData.Use.RESTORE
+
+                RestoreResourceEvent restore = new RestoreResourceEvent(
+                    ctx.caster, x, ResourceType.mana, RestoreType.heal, value
                 );
+                restore.setSpell(ctx.calculatedSpellData.getSpell());
 
-                hctx.setSpell(ctx.calculatedSpellData.getSpell()
-                    .GUID());
+                restore.Activate();
 
-                Load.Unit(x)
-                    .modifyResource(hctx);
             }
 
         }
