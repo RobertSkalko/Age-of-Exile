@@ -6,9 +6,9 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEff
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
@@ -72,7 +72,7 @@ public class PhysConvertToEle extends ElementalStat {
         }
 
         @Override
-        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
             float dmg = effect.data.getNumber() * data.getAverageValue() / 100F;
             effect.addBonusEleDmg(stat.getElement(), dmg);
             effect.data.getNumber(EventData.NUMBER).number -= dmg;
@@ -81,7 +81,7 @@ public class PhysConvertToEle extends ElementalStat {
         }
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
             return effect.getAttackType()
                 .equals(AttackType.attack);
         }

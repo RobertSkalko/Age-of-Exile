@@ -11,11 +11,11 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackSta
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.MobKillByDamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.OnMobKilledByDamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
@@ -29,7 +29,7 @@ public class Stats implements ISlashRegistryInit {
         .addAllOfType(Arrays.asList(
             BeneficialEffects.BLOODLUST
         ))
-        .worksWithEvent(MobKillByDamageEvent.ID)
+        .worksWithEvent(OnMobKilledByDamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
@@ -52,7 +52,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<LeechInfo> ELEMENT_LEECH_RESOURCE = DatapackStatBuilder
         .<LeechInfo>of(x -> x.element.guidName + "_" + x.resourceType.id + "_leech", x -> x.element)
         .addAllOfType(LeechInfo.allCombos())
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
@@ -77,7 +77,7 @@ public class Stats implements ISlashRegistryInit {
             ResourceType.health,
             ResourceType.mana
         ))
-        .worksWithEvent(MobKillByDamageEvent.ID)
+        .worksWithEvent(OnMobKilledByDamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e))
@@ -93,7 +93,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<ResourceAndAttack> RESOURCE_ON_HIT = DatapackStatBuilder
         .<ResourceAndAttack>of(x -> x.resource.id + "_on_" + x.attackType.id + "_hit", x -> Elements.All)
         .addAllOfType(ResourceAndAttack.allCombos())
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resource))
@@ -109,7 +109,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
         .addAllOfType(Arrays.asList(BeneficialEffects.BLOODLUST))
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
@@ -140,7 +140,7 @@ public class Stats implements ISlashRegistryInit {
             NegativeEffects.POISON
             )
         )
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
@@ -162,7 +162,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> CRIT_CHANCE = DatapackStatBuilder
         .<EmptyAccessor>ofSingle("critical_hit", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
@@ -183,7 +183,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> SPELL_CRIT_CHANCE = DatapackStatBuilder
         .<EmptyAccessor>ofSingle("spell_critical_hit", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
@@ -228,7 +228,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> CRIT_DAMAGE = DatapackStatBuilder
         .ofSingle("critical_damage", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_CRIT)
@@ -252,7 +252,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> SPELL_CRIT_DAMAGE = DatapackStatBuilder
         .ofSingle("spell_critical_damage", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_CRIT)
@@ -297,7 +297,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> NON_CRIT_DAMAGE = DatapackStatBuilder
         .ofSingle("non_crit_damage", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(99)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_NOT_CRIT)
@@ -316,7 +316,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> ACCURACY = DatapackStatBuilder
         .ofSingle("accuracy", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
@@ -333,7 +333,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> SPELL_ACCURACY = DatapackStatBuilder
         .ofSingle("spell_accuracy", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
@@ -350,7 +350,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_DAMAGE = DatapackStatBuilder
         .ofSingle("projectile_damage", Elements.Physical)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_ANY_PROJECTILE)
@@ -367,7 +367,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> AREA_DAMAGE = DatapackStatBuilder
         .ofSingle("area_dmg", Elements.All)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_AREA_SPELL)
@@ -383,7 +383,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> NIGHT_DAMAGE = DatapackStatBuilder
         .ofSingle("night_dmg", Elements.All)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_NIGHT)
@@ -399,7 +399,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> DAY_DAMAGE = DatapackStatBuilder
         .ofSingle("day_dmg", Elements.All)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_NIGHT)
@@ -415,7 +415,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> DOT_DAMAGE = DatapackStatBuilder
         .ofSingle("dot_dmg", Elements.All)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.dot))
@@ -431,7 +431,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> TOTAL_DAMAGE = DatapackStatBuilder
         .ofSingle("total_damage", Elements.All)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addEffect(StatEffects.INCREASE_VALUE)
@@ -447,7 +447,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<Elements> ELE_DOT_DAMAGE = DatapackStatBuilder
         .<Elements>of(x -> x.guidName + "_dot_damage", x -> x)
         .addAllOfType(Elements.getAllSingleElementals())
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
@@ -502,7 +502,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EmptyAccessor> LIFESTEAL = DatapackStatBuilder
         .ofSingle("lifesteal", Elements.All)
-        .worksWithEvent(DamageEffect.ID)
+        .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))

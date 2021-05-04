@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 
 import java.util.ArrayList;
 import java.util.List;

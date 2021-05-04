@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.gui.screen.Screen;
@@ -22,13 +22,13 @@ public class CalculatedSpellData {
 
     public int level = 1;
 
-    SpellStatsCalcEffect.CalculatedSpellConfiguration config;
+    SpellStatsCalculationEvent.CalculatedSpellConfiguration config;
 
     public CalculatedSpellData() {
 
     }
 
-    public static CalculatedSpellData create(SkillGemData gem, LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig) {
+    public static CalculatedSpellData create(SkillGemData gem, LivingEntity caster, Spell spell, SpellStatsCalculationEvent.CalculatedSpellConfiguration spellConfig) {
         CalculatedSpellData data = new CalculatedSpellData();
         data.spell_id = spell.GUID();
         data.config = spellConfig;

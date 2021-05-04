@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SkillDropData extends EffectEvent {
+public class SkillDropEvent extends EffectEvent {
 
     public static String ID = "on_skill_item_drop";
 
@@ -20,7 +20,7 @@ public class SkillDropData extends EffectEvent {
     public List<ItemStack> originalDrops;
     public List<ItemStack> extraDrops = new ArrayList<>();
 
-    public SkillDropData(LivingEntity source, PlayerSkillEnum skill, List<ItemStack> originalDrops) {
+    public SkillDropEvent(LivingEntity source, PlayerSkillEnum skill, List<ItemStack> originalDrops) {
         super(source, source);
         this.skill = skill;
         this.originalDrops = originalDrops;

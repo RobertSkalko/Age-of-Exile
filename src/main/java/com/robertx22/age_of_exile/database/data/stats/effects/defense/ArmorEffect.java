@@ -4,18 +4,16 @@ import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IArmorReducable;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.IPenetrable;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.math.MathHelper;
 
-public class ArmorEffect extends BaseStatEffect<DamageEffect> {
+public class ArmorEffect extends BaseStatEffect<DamageEvent> {
 
     public ArmorEffect() {
-        super(DamageEffect.class);
+        super(DamageEvent.class);
     }
 
     @Override
@@ -29,13 +27,8 @@ public class ArmorEffect extends BaseStatEffect<DamageEffect> {
     }
 
     @Override
-    public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        int pene = 0;
-
-        if (effect instanceof IPenetrable) {
-            IPenetrable ipen = (IPenetrable) effect;
-            pene = ipen.GetArmorPenetration();
-        }
+    public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
+        float pene = effect.getPenetration();
 
         IUsableStat armor = (IUsableStat) stat;
 
@@ -49,8 +42,8 @@ public class ArmorEffect extends BaseStatEffect<DamageEffect> {
     }
 
     @Override
-    public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect instanceof IArmorReducable && effect.GetElement() == Elements.Physical;
+    public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
+        return effect.GetElement() == Elements.Physical;
     }
 
 }

@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperIte
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
@@ -99,7 +99,7 @@ public class ScribeBuffTile extends BaseModificationStation {
                 Load.Unit(player)
                     .randomizeBuffSeed();
 
-                SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.INSCRIBING, Arrays.asList(stack));
+                SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.INSCRIBING, Arrays.asList(stack));
 
                 effect.extraDrops.forEach(x -> {
                     PlayerUtils.giveItem(x, player);

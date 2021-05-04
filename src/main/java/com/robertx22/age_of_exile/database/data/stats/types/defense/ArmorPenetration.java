@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.defense;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
@@ -58,13 +58,13 @@ public class ArmorPenetration extends Stat {
         }
 
         @Override
-        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-            effect.SetArmorPenetration(effect.GetArmorPenetration() + (int) data.getAverageValue());
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
+            effect.setPenetration(effect.getPenetration() + (int) data.getAverageValue());
             return effect;
         }
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
             return effect.GetElement() == Elements.Physical;
         }
 

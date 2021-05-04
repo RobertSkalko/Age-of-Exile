@@ -26,6 +26,8 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -35,6 +37,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
@@ -92,6 +95,26 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public static final Identifier getIconLoc(String id) {
         return new Identifier(Ref.MODID, "textures/gui/spells/icons/" + id + ".png");
+    }
+
+    public WeaponTypes getWeapon(LivingEntity en) {
+        try {
+            if (getConfig().style.getAttackType() != AttackType.spell) {
+
+                ItemStack stack = en.getMainHandStack();
+
+                GearItemData gear = Gear.Load(stack);
+
+                if (gear != null) {
+                    return gear.GetBaseGearType().weapon_type;
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return WeaponTypes.none;
     }
 
     public final void onCastingTick(SpellCastContext ctx) {

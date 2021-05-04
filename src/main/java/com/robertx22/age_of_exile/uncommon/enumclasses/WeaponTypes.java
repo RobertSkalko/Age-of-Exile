@@ -1,7 +1,6 @@
-package com.robertx22.age_of_exile.uncommon.effectdatas.interfaces;
+package com.robertx22.age_of_exile.uncommon.enumclasses;
 
 import com.ibm.icu.impl.Assert;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;

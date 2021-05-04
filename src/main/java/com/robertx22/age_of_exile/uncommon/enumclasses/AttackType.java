@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.uncommon.effectdatas;
+package com.robertx22.age_of_exile.uncommon.enumclasses;
 
 import com.ibm.icu.impl.Assert;
 

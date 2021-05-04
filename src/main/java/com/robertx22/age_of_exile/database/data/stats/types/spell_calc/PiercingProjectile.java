@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalcEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class PiercingProjectile extends Stat {
@@ -45,13 +45,13 @@ public class PiercingProjectile extends Stat {
 
     static class Effect extends BaseSpellCalcEffect {
         @Override
-        public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
+        public SpellStatsCalculationEvent activate(SpellStatsCalculationEvent effect, StatData data, Stat stat) {
             effect.spellConfig.piercing = data.getAverageValue() > 0;
             return effect;
         }
 
         @Override
-        public boolean canActivate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(SpellStatsCalculationEvent effect, StatData data, Stat stat) {
             return effect.getSpell()
                 .is(SkillGemTag.projectile);
         }

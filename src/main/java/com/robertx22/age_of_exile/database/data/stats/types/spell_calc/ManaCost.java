@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalcEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class ManaCost extends Stat {
@@ -51,7 +51,7 @@ public class ManaCost extends Stat {
     static class Effect extends BaseSpellCalcEffect {
 
         @Override
-        public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
+        public SpellStatsCalculationEvent activate(SpellStatsCalculationEvent effect, StatData data, Stat stat) {
             effect.spellConfig.add(SpellModEnum.MANA_COST, data.getAverageValue());
             return effect;
         }

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
@@ -49,7 +49,7 @@ public class DamageAbsorbedByMana extends Stat {
         return "Of Damage Absorbed By Mana";
     }
 
-    public static float modifyEntityDamage(DamageEffect effect, float dmg) {
+    public static float modifyEntityDamage(DamageEvent effect, float dmg) {
 
         StatData data = effect.targetData.getUnit()
             .getCalculatedStat(DamageAbsorbedByMana.getInstance());

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-public class MobKillByDamageEvent extends EffectEvent {
+public class OnMobKilledByDamageEvent extends EffectEvent {
 
     public static String ID = "on_mob_kill";
 
@@ -9,9 +9,9 @@ public class MobKillByDamageEvent extends EffectEvent {
         return ID;
     }
 
-    public DamageEffect damageEvent;
+    public DamageEvent damageEvent;
 
-    public MobKillByDamageEvent(DamageEffect damageEvent) {
+    public OnMobKilledByDamageEvent(DamageEvent damageEvent) {
         super(damageEvent.source, damageEvent.target);
         this.damageEvent = damageEvent;
     }

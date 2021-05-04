@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,7 +28,7 @@ public class SpellCastContext {
 
     public SkillGemData skillGemData;
 
-    public SpellStatsCalcEffect.CalculatedSpellConfiguration spellConfig;
+    public SpellStatsCalculationEvent.CalculatedSpellConfiguration spellConfig;
 
     private void calcSpellData() {
         this.calcData = CalculatedSpellData.create(skillGemData, caster, spell, spellConfig);
@@ -50,7 +50,7 @@ public class SpellCastContext {
 
         this.data = Load.Unit(caster);
 
-        SpellStatsCalcEffect effect = new SpellStatsCalcEffect(caster, spell.GUID());
+        SpellStatsCalculationEvent effect = new SpellStatsCalculationEvent(caster, spell.GUID());
         effect.Activate();
         this.spellConfig = effect.spellConfig;
 

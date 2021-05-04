@@ -9,7 +9,7 @@ import net.minecraft.entity.LivingEntity;
 
 import java.util.HashMap;
 
-public class SpellStatsCalcEffect extends EffectEvent {
+public class SpellStatsCalculationEvent extends EffectEvent {
     public static String ID = "on_spell_stat_calc";
 
     @Override
@@ -21,7 +21,7 @@ public class SpellStatsCalcEffect extends EffectEvent {
 
     public EntitySpellCap.ISpellsCap spells;
 
-    public SpellStatsCalcEffect(LivingEntity caster, String spell) {
+    public SpellStatsCalculationEvent(LivingEntity caster, String spell) {
         super(caster, caster);
         this.data.setString(EventData.SPELL, spell);
         this.spells = Load.spells(caster);

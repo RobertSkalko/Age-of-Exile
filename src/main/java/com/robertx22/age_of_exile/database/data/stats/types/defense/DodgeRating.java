@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
@@ -82,7 +82,7 @@ public class DodgeRating extends Stat implements IUsableStat {
         }
 
         @Override
-        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
             DodgeRating dodge = (DodgeRating) stat;
 
             float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.data.getNumber(EventData.ACCURACY).number, 0, Integer.MAX_VALUE);
@@ -102,7 +102,7 @@ public class DodgeRating extends Stat implements IUsableStat {
         }
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
             return effect.getAttackType()
                 .isAttack();
         }

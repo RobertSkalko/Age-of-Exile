@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseShieldEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageAbsorbEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.GiveShieldEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
@@ -52,13 +52,13 @@ public class ShieldStrength extends Stat {
 
     private static class Effect extends BaseShieldEffect {
         @Override
-        public DamageAbsorbEffect activate(DamageAbsorbEffect effect, StatData data, Stat stat) {
+        public GiveShieldEvent activate(GiveShieldEvent effect, StatData data, Stat stat) {
             effect.increaseByPercent(data.getAverageValue());
             return effect;
         }
 
         @Override
-        public boolean canActivate(DamageAbsorbEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(GiveShieldEvent effect, StatData data, Stat stat) {
             return true;
         }
 

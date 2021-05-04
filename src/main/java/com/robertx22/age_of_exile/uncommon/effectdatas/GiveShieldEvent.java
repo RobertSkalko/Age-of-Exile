@@ -5,14 +5,14 @@ import com.robertx22.age_of_exile.saveclasses.unit.AllShieldsData;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.LivingEntity;
 
-public class DamageAbsorbEffect extends EffectEvent {
+public class GiveShieldEvent extends EffectEvent {
 
     @Nullable
     public Spell spell;
 
     public int seconds = 0;
 
-    public DamageAbsorbEffect(float amount, int seconds, LivingEntity caster, LivingEntity target) {
+    public GiveShieldEvent(float amount, int seconds, LivingEntity caster, LivingEntity target) {
         super(amount, caster, target);
         this.seconds = seconds;
     }

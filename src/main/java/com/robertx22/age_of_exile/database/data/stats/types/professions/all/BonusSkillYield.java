@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.SkillEffect;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -65,7 +65,7 @@ public class BonusSkillYield extends Stat implements IGenerated<Stat> {
     private class Effect extends SkillEffect {
 
         @Override
-        public SkillDropData activate(SkillDropData effect, StatData data, Stat stat) {
+        public SkillDropEvent activate(SkillDropEvent effect, StatData data, Stat stat) {
 
             effect.originalDrops.forEach(x -> {
                 if (RandomUtils.roll(data.getAverageValue())) {
@@ -77,7 +77,7 @@ public class BonusSkillYield extends Stat implements IGenerated<Stat> {
         }
 
         @Override
-        public boolean canActivate(SkillDropData effect, StatData data, Stat stat) {
+        public boolean canActivate(SkillDropEvent effect, StatData data, Stat stat) {
             return effect.skill == skill;
         }
 

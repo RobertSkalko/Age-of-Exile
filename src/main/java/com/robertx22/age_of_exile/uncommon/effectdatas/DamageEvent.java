@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
@@ -12,9 +13,11 @@ import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
@@ -43,8 +46,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-public class DamageEffect extends EffectEvent implements IArmorReducable, IPenetrable, IDamageEffect,
-    IElementalResistable, IElementalPenetrable {
+public class DamageEvent extends EffectEvent {
 
     public static String ID = "on_damage";
 
@@ -53,7 +55,7 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
         return ID;
     }
 
-    public DamageEffect(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
+    public DamageEvent(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(dmg, data.getAttackerEntity(), data.getTargetEntity());
         this.attackInfo = data;
         this.style = style;
@@ -64,8 +66,8 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
         calcBlock();
     }
 
-    public DamageEffect(AttackInformation attackInfo, LivingEntity source, LivingEntity target, int dmg,
-                        AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
+    public DamageEvent(AttackInformation attackInfo, LivingEntity source, LivingEntity target, int dmg,
+                       AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
         super(dmg, source, target);
         this.attackInfo = attackInfo;
         this.style = style;
@@ -76,17 +78,21 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
         calcBlock();
     }
 
+    public static DamageEvent ofSpellDamage(LivingEntity source, LivingEntity target, int dmg, Spell spell) {
+        DamageEvent event = new DamageEvent(
+            null, source, target, dmg,
+            spell.getConfig().style.getAttackType(),
+            spell.getWeapon(source), spell.getConfig().style
+        );
+        return event;
+    }
+
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
-    public int armorPene;
-    public int elementalPene;
-    public boolean isBlocked = false;
-    public boolean ignoresResists = false;
 
     public AttackPlayStyle style;
     AttackInformation attackInfo;
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
     public boolean isDodged = false;
-    public boolean knockback = true;
 
     public AttackType getAttackType() {
         return data.getAttackType();
@@ -111,7 +117,7 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
                     .normalize();
                 vec3d3 = new Vec3d(vec3d3.x, 0.0D, vec3d3.z);
                 if (vec3d3.dotProduct(vec3d2) < 0.0D) {
-                    this.isBlocked = true;
+                    this.data.setBoolean(EventData.IS_BLOCKED, true);
                 }
             }
         }
@@ -271,7 +277,7 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
             return;
         }
 
-        if (isBlocked) {
+        if (data.getBoolean(EventData.IS_BLOCKED)) {
             if (target instanceof PlayerEntity) {
                 Load.spells(target)
                     .getCastingData()
@@ -330,7 +336,7 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
 
             EntityAttributeInstance attri = target.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
 
-            if (!knockback || this.getAttackType() == AttackType.dot) {
+            if (data.getBoolean(EventData.DISABLE_KNOCKBACK) || this.getAttackType() == AttackType.dot) {
                 if (!attri.hasModifier(NO_KNOCKBACK)) {
                     attri.addPersistentModifier(NO_KNOCKBACK);
                 }
@@ -339,8 +345,8 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
             int time = target.hurtTime;
             target.hurtTime = 0;
 
-            if (this instanceof SpellDamageEffect) {
-                if (knockback && dmg <= 0 && !isDodged) {
+            if (this.data.isSpellEffect()) {
+                if (!data.getBoolean(EventData.DISABLE_KNOCKBACK) && dmg > 0 && !isDodged) {
                     // if magic shield absorbed the damage, still do knockback
                     DashUtils.knockback(source, target);
                 }
@@ -381,7 +387,7 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
         }
 
         if (this.target.isDead()) {
-            MobKillByDamageEvent event = new MobKillByDamageEvent(this);
+            OnMobKilledByDamageEvent event = new OnMobKilledByDamageEvent(this);
             event.Activate();
         }
 
@@ -467,7 +473,7 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
 
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEffect bonus = new DamageEffect(
+                DamageEvent bonus = new DamageEvent(
                     attackInfo, source, target, entry.getValue(),
                     AttackType.attack, data.getWeaponType(), style);
                 bonus.setElement(entry.getKey());
@@ -484,34 +490,20 @@ public class DamageEffect extends EffectEvent implements IArmorReducable, IPenet
 
     }
 
-    @Override
     public Elements GetElement() {
         return getElement();
     }
 
-    @Override
     public void setElement(Elements ele) {
         this.data.setElement(ele);
     }
 
-    @Override
-    public void SetArmorPenetration(int val) {
-        this.armorPene = val;
+    public void setPenetration(float val) {
+        this.data.getNumber(EventData.PENETRATION).number = val;
     }
 
-    @Override
-    public void addElementalPenetration(int val) {
-        this.elementalPene += val;
-    }
-
-    @Override
-    public int GetArmorPenetration() {
-        return this.armorPene;
-    }
-
-    @Override
-    public int GetElementalPenetration() {
-        return this.elementalPene;
+    public float getPenetration() {
+        return this.data.getNumber(EventData.PENETRATION).number;
     }
 
 }

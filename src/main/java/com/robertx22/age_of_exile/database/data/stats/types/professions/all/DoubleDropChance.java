@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.SkillEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
@@ -57,7 +57,7 @@ public class DoubleDropChance extends Stat {
     private class Effect extends SkillEffect {
 
         @Override
-        public SkillDropData activate(SkillDropData effect, StatData data, Stat stat) {
+        public SkillDropEvent activate(SkillDropEvent effect, StatData data, Stat stat) {
 
             effect.originalDrops.forEach(x -> {
                 effect.extraDrops.add(x.copy());
@@ -66,7 +66,7 @@ public class DoubleDropChance extends Stat {
         }
 
         @Override
-        public boolean canActivate(SkillDropData effect, StatData data, Stat stat) {
+        public boolean canActivate(SkillDropEvent effect, StatData data, Stat stat) {
             return RandomUtils.roll(data.getAverageValue());
         }
 

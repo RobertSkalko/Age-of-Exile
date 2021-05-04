@@ -4,9 +4,9 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class SpecificElementalWeaponDamage extends Stat implements IGenerated<Sp
     private static class Effect extends BaseDamageIncreaseEffect {
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
             if (stat instanceof SpecificElementalWeaponDamage) {
 
                 SpecificElementalWeaponDamage wepStat = (SpecificElementalWeaponDamage) stat;

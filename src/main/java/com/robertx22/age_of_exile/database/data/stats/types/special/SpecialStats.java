@@ -16,7 +16,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
@@ -68,7 +68,7 @@ public class SpecialStats {
             }
 
             @Override
-            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
 
                 int duration = (int) (60 * 20 * 1);
 
@@ -81,7 +81,7 @@ public class SpecialStats {
             }
 
             @Override
-            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
 
                 if (!effect.getElement()
                     .isDark()) {
@@ -165,14 +165,14 @@ public class SpecialStats {
 
         new BaseSpecialStatDamageEffect() {
             @Override
-            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
                 ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
                     .get(NegativeEffects.BURN.effectId), effect.source, effect.target, 20 * 10);
                 return effect;
             }
 
             @Override
-            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 return effect.getElement()
                     .isFire() && effect.data.getBoolean(EventData.CRIT) && RandomUtils.roll(data.getAverageValue());
             }
@@ -189,13 +189,13 @@ public class SpecialStats {
             .getIconNameFormat() + " against Undead enemies."),
         new BaseSpecialStatDamageEffect() {
             @Override
-            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
                 effect.increaseByPercent(data.getAverageValue());
                 return effect;
             }
 
             @Override
-            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 return effect.data.getWeaponType().isProjectile && effect.target.isUndead() && effect.data.getBoolean(EventData.CRIT);
             }
 
@@ -209,13 +209,13 @@ public class SpecialStats {
         format("Your " + Elements.Dark.getIconNameFormat() + " Damage has " + VAL1 + "% chance to ignore all resistances."),
         new BaseDamageEffect() {
             @Override
-            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-                effect.ignoresResists = true;
+            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
+                effect.data.setBoolean(EventData.IGNORE_RESIST, true);
                 return effect;
             }
 
             @Override
-            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 return effect.getElement()
                     .isDark() && RandomUtils.roll(data.getAverageValue());
             }
@@ -237,13 +237,13 @@ public class SpecialStats {
             + Elements.Dark.getIconNameFormat() + " Damage depending on time of day"),
         new BaseSpecialStatDamageEffect() {
             @Override
-            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
                 effect.increaseByPercent(data.getAverageValue());
                 return effect;
             }
 
             @Override
-            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 if (effect.getElement()
                     .isDark()) {
                     return effect.source.world.isNight();
@@ -298,7 +298,7 @@ public class SpecialStats {
             .getIconNameFormat() + " damage and heal you instead."),
         new BaseSpecialStatDamageEffect() {
             @Override
-            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
 
                 float val = effect.data.getNumber();
 
@@ -310,7 +310,7 @@ public class SpecialStats {
             }
 
             @Override
-            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 return effect.getElement()
                     .isElemental() && RandomUtils.roll(data.getAverageValue());
             }
@@ -344,7 +344,7 @@ public class SpecialStats {
         format("Your critical " + Elements.Water.getIconNameFormat() + " Damage restores " + VAL1 + " mana to you."),
         new BaseSpecialStatDamageEffect() {
             @Override
-            public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
 
                 float val = data.getAverageValue();
 
@@ -355,7 +355,7 @@ public class SpecialStats {
             }
 
             @Override
-            public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 return effect.getElement()
                     .isWater() && effect.data.getBoolean(EventData.CRIT);
             }

@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.particle.DefaultParticleType;
 

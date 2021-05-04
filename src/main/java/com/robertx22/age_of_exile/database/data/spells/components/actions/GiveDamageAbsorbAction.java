@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageAbsorbEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.GiveShieldEvent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -52,7 +52,7 @@ public class GiveDamageAbsorbAction extends SpellAction implements ICTextTooltip
                 .intValue();
 
             targets.forEach(x -> {
-                DamageAbsorbEffect effect = new DamageAbsorbEffect(value, seconds, ctx.caster, x);
+                GiveShieldEvent effect = new GiveShieldEvent(value, seconds, ctx.caster, x);
                 effect.Activate();
             });
 
