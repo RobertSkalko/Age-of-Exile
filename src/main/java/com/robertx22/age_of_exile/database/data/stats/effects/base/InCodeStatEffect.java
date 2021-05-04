@@ -1,31 +1,23 @@
 package com.robertx22.age_of_exile.database.data.stats.effects.base;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
-import net.minecraft.util.Formatting;
 
-public abstract class BaseStatEffect<T extends EffectEvent> implements IStatEffect {
+public abstract class InCodeStatEffect<T extends EffectEvent> implements IStatEffect {
 
     Class<T> theclass;
 
-    public BaseStatEffect(Class<T> theclass) {
+    public InCodeStatEffect(Class<T> theclass) {
         this.theclass = theclass;
     }
 
     public abstract T activate(T effect, StatData data, Stat stat);
 
     public abstract boolean canActivate(T effect, StatData data, Stat stat);
-
-    public void log(String str) {
-        if (MMORPG.RUN_DEV_TOOLS && MMORPG.statEffectDebuggingEnabled()) {
-            System.out.println(Formatting.LIGHT_PURPLE + str);
-        }
-    }
 
     public Unit getSource(EffectEvent effect) {
         if (Side() == EffectSides.Target) {

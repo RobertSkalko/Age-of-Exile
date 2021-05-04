@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public abstract class BaseSpellCalcEffect extends BaseStatEffect<SpellStatsCalculationEvent> {
+public abstract class BaseSpellCalcEffect extends InCodeStatEffect<SpellStatsCalculationEvent> {
     public BaseSpellCalcEffect() {
         super(SpellStatsCalculationEvent.class);
     }

@@ -1,14 +1,14 @@
 package com.robertx22.age_of_exile.database.data.stats.effects.game_changers;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.InCodeStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class HealthRestorationToBloodEffect extends BaseStatEffect<RestoreResourceEvent> {
+public class HealthRestorationToBloodEffect extends InCodeStatEffect<RestoreResourceEvent> {
 
     private HealthRestorationToBloodEffect() {
         super(RestoreResourceEvent.class);

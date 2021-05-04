@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.effects.defense;
 
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.InCodeStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.math.MathHelper;
 
-public class ArmorEffect extends BaseStatEffect<DamageEvent> {
+public class ArmorEffect extends InCodeStatEffect<DamageEvent> {
 
     public ArmorEffect() {
         super(DamageEvent.class);

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.aura;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.InCodeStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
@@ -51,7 +51,7 @@ public class ReducedManaReserved extends Stat {
         return "Reduced Mana Reserved";
     }
 
-    public static class Effect extends BaseStatEffect<ReserveManaEvent> {
+    public static class Effect extends InCodeStatEffect<ReserveManaEvent> {
 
         private Effect() {
             super(ReserveManaEvent.class);
