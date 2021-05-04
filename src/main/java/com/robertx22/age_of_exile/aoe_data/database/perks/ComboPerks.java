@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -18,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 public class ComboPerks implements ISlashRegistryInit {
 
@@ -73,7 +73,7 @@ public class ComboPerks implements ISlashRegistryInit {
         );
         PerkBuilder.stat("flat_mana_reg_melee_dmg",
             new OptScaleExactStat(1, ManaRegen.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(2, AttackStyleDamage.MELEE, ModType.FLAT)
+            new OptScaleExactStat(2, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT)
         );
 
         PerkBuilder.stat("armor_and_ms",

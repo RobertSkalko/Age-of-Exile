@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManage
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -22,6 +21,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -105,7 +105,8 @@ public class SpecialStats {
 
     public static SpecialStat MUMMY_CURSE = new SpecialStat("mummy_curse",
         format("Your immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy, increasing "
-            + StyleDamageReceived.MAGIC.getIconNameFormat()),
+            + Stats.STYLE_DAMAGE.get(PlayStyle.magic)
+            .getIconNameFormat()),
 
         new BasePotionEffect() {
             @Override

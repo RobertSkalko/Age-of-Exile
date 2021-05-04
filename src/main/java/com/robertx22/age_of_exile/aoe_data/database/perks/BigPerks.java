@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElemental
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
@@ -31,10 +30,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.enumclasses.*;
 
 public class BigPerks implements ISlashRegistryInit {
 
@@ -55,7 +51,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_eviscerator", "Eviscerator",
-            new OptScaleExactStat(3, AttackStyleDamage.MELEE, ModType.FLAT),
+            new OptScaleExactStat(3, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
             new OptScaleExactStat(10, Stats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(5, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
         );
@@ -90,7 +86,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_hunter", "Soul of the Hunter",
-            new OptScaleExactStat(5, AttackStyleDamage.RANGED, ModType.FLAT),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT),
             new OptScaleExactStat(200, DodgeRating.getInstance(), ModType.FLAT)
         );
 
@@ -138,7 +134,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_eagle", "Aspect of the Eagle",
-            new OptScaleExactStat(5, AttackStyleDamage.RANGED, ModType.FLAT),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT),
             new OptScaleExactStat(10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(20, Health.getInstance(), ModType.FLAT)
         );
@@ -358,7 +354,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
         PerkBuilder.bigStat("big_warrior_path", "Warrior's Path",
             new OptScaleExactStat(100, Armor.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(5, AttackStyleDamage.MELEE, ModType.FLAT),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
             new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT)
         );
         PerkBuilder.bigStat("big_hunters_path", "Hunters's Path",

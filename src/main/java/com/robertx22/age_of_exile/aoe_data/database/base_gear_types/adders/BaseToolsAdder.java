@@ -10,8 +10,8 @@ import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class BaseToolsAdder implements ISlashRegistryInit {
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.pickaxe, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
-            .attackStyle(AttackPlayStyle.melee)
+            .attackStyle(PlayStyle.melee)
             .addToolLevelRanges()
             .build();
 
@@ -39,7 +39,7 @@ public class BaseToolsAdder implements ISlashRegistryInit {
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.fishing_rod, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
-            .attackStyle(AttackPlayStyle.melee)
+            .attackStyle(PlayStyle.melee)
             .addToolLevelRanges()
             .build();
 
@@ -48,7 +48,7 @@ public class BaseToolsAdder implements ISlashRegistryInit {
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.hoe, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
-            .attackStyle(AttackPlayStyle.melee)
+            .attackStyle(PlayStyle.melee)
             .addToolLevelRanges()
             .build();
 

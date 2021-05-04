@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
@@ -28,7 +28,7 @@ public class BossSpells implements ISlashRegistryInit {
 
         SpellBuilder.of(FIRE_BOMBS, SpellConfiguration.Builder.instant(15, 400)
                 .setSwingArm(), "Fire Bombs",
-            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weight(0)
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)

@@ -8,13 +8,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 import java.util.Arrays;
 
@@ -41,7 +41,7 @@ public class FabledArmor implements ISlashRegistryInit {
                 new StatModifier(5, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical), ModType.FLAT),
                 new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
                 new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
-                new StatModifier(3, 6, AttackStyleDamage.MELEE, ModType.FLAT),
+                new StatModifier(3, 6, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
                 new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                 new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT),
                 new StatModifier(10, 10, SpecialStats.VOID_EYE, ModType.FLAT)

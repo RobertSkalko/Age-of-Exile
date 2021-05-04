@@ -10,8 +10,8 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import net.minecraft.item.Item;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BaseGearBuilder implements DataHelper {
 
-    private AttackPlayStyle style = AttackPlayStyle.melee;
+    private PlayStyle style = PlayStyle.melee;
     private String locnamesuffix;
     private String idprefix;
     private DataGenKey<GearSlot> slot;
@@ -65,7 +65,7 @@ public class BaseGearBuilder implements DataHelper {
         return b;
     }
 
-    public BaseGearBuilder attackStyle(AttackPlayStyle style) {
+    public BaseGearBuilder attackStyle(PlayStyle style) {
         this.style = style;
         return this;
     }

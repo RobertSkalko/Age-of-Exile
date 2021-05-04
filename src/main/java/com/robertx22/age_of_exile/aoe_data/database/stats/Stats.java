@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.*;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.Stat.StatGroup;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
@@ -18,6 +19,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
@@ -87,6 +89,38 @@ public class Stats implements ISlashRegistryInit {
             x.min = 0;
             x.is_perc = true;
             x.group = StatGroup.ELEMENTAL;
+        })
+        .build();
+
+    public static DataPackStatAccessor<PlayStyle> STYLE_DAMAGE = DatapackStatBuilder
+        .<PlayStyle>of(x -> x.name() + "_dmg", x -> Elements.Physical)
+        .addAllOfType(PlayStyle.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.IS_STYLE.get(x))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.getLocName() + " Damage")
+        .setLocDesc(x -> "Magic damage are mage spells, like fireball.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.group = StatGroup.Misc;
+        })
+        .build();
+
+    public static DataPackStatAccessor<PlayStyle> STYLE_DAMAGE_RECEIVED = DatapackStatBuilder
+        .<PlayStyle>of(x -> x.name() + "_dmg_received\"", x -> Elements.Physical)
+        .addAllOfType(PlayStyle.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.IS_STYLE.get(x))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.getLocName() + " Damage Received")
+        .setLocDesc(x -> "Magic damage are mage spells, like fireball.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.group = StatGroup.Misc;
         })
         .build();
 
@@ -442,7 +476,7 @@ public class Stats implements ISlashRegistryInit {
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_AREA_SPELL)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.area))
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Area Damage")
         .setLocDesc(x -> "Affects dmg done by area of effect abilities. Think meteor or other large aoe spells")

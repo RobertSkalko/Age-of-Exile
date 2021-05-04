@@ -4,14 +4,14 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -27,10 +27,10 @@ public class DexSpells implements ISlashRegistryInit {
     public void registerAll() {
 
         SpellBuilder.of("arrow_storm", SpellConfiguration.Builder.arrowSpell(20, 20 * 25), "Arrow Storm",
-            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
 
-            .attackStyle(AttackPlayStyle.ranged)
+            .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D)))
             .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Physical))
@@ -41,9 +41,9 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("poison_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Poison Arrow",
-            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
-            .attackStyle(AttackPlayStyle.ranged)
+            .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
             .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Nature))
@@ -58,9 +58,9 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("explosive_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
-            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
-            .attackStyle(AttackPlayStyle.ranged)
+            .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
             .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Physical))
@@ -74,10 +74,10 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("recoil_shot", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Recoil Shot",
-            Arrays.asList(SkillGemTag.projectile, SkillGemTag.damage))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
 
-            .attackStyle(AttackPlayStyle.ranged)
+            .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
             .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Physical))
@@ -92,7 +92,7 @@ public class DexSpells implements ISlashRegistryInit {
                 .setScaleManaToPlayer(), "Produce Arrows",
             Arrays.asList())
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .attackStyle(AttackPlayStyle.ranged)
+            .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.CASTER_USE_COMMAND.create("/give @s minecraft:arrow 64")))
             .build();

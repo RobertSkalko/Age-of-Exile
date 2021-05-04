@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
@@ -92,10 +91,6 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(Vitality.INSTANCE);
                     add(Agility.INSTANCE);
 
-                    add(StyleDamageReceived.MELEE);
-                    add(StyleDamageReceived.MAGIC);
-                    add(StyleDamageReceived.RANGED);
-
                     add(MoreSocketsStat.getInstance());
                     add(ExtraMobDropsStat.getInstance());
                     add(BonusExp.getInstance());
@@ -122,10 +117,6 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
-
-                    add(AttackStyleDamage.MELEE);
-                    add(AttackStyleDamage.RANGED);
-                    add(AttackStyleDamage.MAGIC);
 
                     add(new BonusSkillExp(PlayerSkillEnum.MINING));
 

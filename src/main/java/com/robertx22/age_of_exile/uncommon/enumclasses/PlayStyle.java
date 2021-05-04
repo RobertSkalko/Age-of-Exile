@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
+import org.apache.commons.lang3.StringUtils;
 
-public enum AttackPlayStyle {
+public enum PlayStyle {
 
     melee(StatAttribute.STR) {
         @Override
@@ -25,7 +26,11 @@ public enum AttackPlayStyle {
 
     public StatAttribute attribute;
 
-    AttackPlayStyle(StatAttribute attribute) {
+    public String getLocName() {
+        return StringUtils.capitalize(name());
+    }
+
+    PlayStyle(StatAttribute attribute) {
         this.attribute = attribute;
     }
 

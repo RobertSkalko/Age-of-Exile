@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.aoe_data.database.stat_conditions;
 
 import com.robertx22.age_of_exile.aoe_data.DataHolder;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.*;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 import java.util.Arrays;
@@ -25,13 +25,19 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_DAY = new IsDayCondition();
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
-    public static StatCondition IS_PROJECTILE_SPELL = new SpellHasTagCondition(SkillGemTag.projectile);
-    public static StatCondition IS_AREA_SPELL = new SpellHasTagCondition(SkillGemTag.area);
     public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
 
     public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
         ResourceType.values()
         , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
+
+    public static DataHolder<SpellTag, StatCondition> SPELL_HAS_TAG = new DataHolder<>(
+        SpellTag.values()
+        , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
+
+    public static DataHolder<PlayStyle, StatCondition> IS_STYLE = new DataHolder<>(
+        PlayStyle.values()
+        , x -> new StringMatchesCondition(EventData.STYLE, x.name()));
 
     public static DataHolder<RestoreType, StatCondition> IS_RESTORE_TYPE = new DataHolder<>(
         RestoreType.values()
@@ -46,7 +52,7 @@ public class StatConditions implements ISlashRegistryInit {
 
     public static StatCondition IS_MAGIC_WEAPON = new EitherIsTrueCondition("is_magic_weapon",
         Arrays.stream(WeaponTypes.values())
-            .filter(x -> x.style == AttackPlayStyle.magic)
+            .filter(x -> x.style == PlayStyle.magic)
             .map(x -> new WeaponTypeMatches(x).GUID())
             .collect(Collectors.toList())
     );
@@ -58,7 +64,8 @@ public class StatConditions implements ISlashRegistryInit {
 
     public static StatCondition IS_ANY_PROJECTILE = new EitherIsTrueCondition("is_projectile",
         Arrays.asList(
-            IS_PROJECTILE_SPELL.GUID(),
+            SPELL_HAS_TAG.get(SpellTag.projectile)
+                .GUID(),
             IS_RANGED_WEAPON.GUID()
         ));
 
@@ -98,11 +105,11 @@ public class StatConditions implements ISlashRegistryInit {
         IS_NIGHT.addToSerializables();
         IS_BASIC_ATTACK.addToSerializables();
         IS_RANGED_WEAPON.addToSerializables();
-        IS_PROJECTILE_SPELL.addToSerializables();
         IS_ANY_PROJECTILE.addToSerializables();
         IS_MAGIC_WEAPON.addToSerializables();
         IS_MELEE_WEAPON.addToSerializables();
-        IS_AREA_SPELL.addToSerializables();
+        SPELL_HAS_TAG.addToSerializables();
+        IS_STYLE.addToSerializables();
 
     }
 }

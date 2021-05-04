@@ -31,9 +31,9 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
@@ -709,11 +709,11 @@ public class EntityCap {
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
-            AttackPlayStyle style = AttackPlayStyle.melee;
+            PlayStyle style = PlayStyle.melee;
 
             if (data.getSource() != null && data.getSource()
                 .isProjectile()) {
-                style = AttackPlayStyle.ranged;
+                style = PlayStyle.ranged;
             }
 
             DamageEvent dmg = new DamageEvent(

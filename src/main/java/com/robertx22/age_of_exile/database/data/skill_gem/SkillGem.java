@@ -32,7 +32,7 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
 
     public List<StatModifier> stats = new ArrayList<>();
 
-    public List<SkillGemTag> tags = new ArrayList<>();
+    public List<SpellTag> tags = new ArrayList<>();
 
     public transient String locname = "";
 

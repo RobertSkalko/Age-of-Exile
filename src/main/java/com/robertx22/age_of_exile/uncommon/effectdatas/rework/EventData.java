@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public class EventData {
     public static String SPELL = "spell";
     public static String WEAPON_TYPE = "weapon_type";
     public static String IS_BASIC_ATTACK = "is_basic_atk";
+    public static String STYLE = "style";
 
     public static String IS_DODGED = "is_dodged";
     public static String IS_BLOCKED = "is_blocked";
@@ -60,6 +62,10 @@ public class EventData {
         return getBoolean(CANCELED);
     }
 
+    public boolean isDodged() {
+        return getBoolean(IS_DODGED);
+    }
+
     public Elements getElement() {
         return Elements.valueOf(strings.getOrDefault(ELEMENT, Elements.Physical.name()));
     }
@@ -78,6 +84,10 @@ public class EventData {
 
     public AttackType getAttackType() {
         return AttackType.valueOf(strings.getOrDefault(ATTACK_TYPE, AttackType.attack.name()));
+    }
+
+    public PlayStyle getStyle() {
+        return PlayStyle.valueOf(strings.getOrDefault(STYLE, PlayStyle.melee.name()));
     }
 
     public ResourceType getResourceType() {

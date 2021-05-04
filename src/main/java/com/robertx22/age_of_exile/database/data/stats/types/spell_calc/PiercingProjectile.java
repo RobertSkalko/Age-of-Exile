@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.spell_calc;
 
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalcEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -53,7 +53,7 @@ public class PiercingProjectile extends Stat {
         @Override
         public boolean canActivate(SpellStatsCalculationEvent effect, StatData data, Stat stat) {
             return effect.getSpell()
-                .is(SkillGemTag.projectile);
+                .is(SpellTag.projectile);
         }
     }
 

@@ -14,9 +14,9 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
@@ -55,11 +55,11 @@ public class DamageEvent extends EffectEvent {
         return ID;
     }
 
-    public DamageEvent(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
+    public DamageEvent(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, PlayStyle style) {
         super(dmg, data.getAttackerEntity(), data.getTargetEntity());
         this.attackInfo = data;
-        this.style = style;
 
+        this.data.setString(EventData.STYLE, style.name());
         this.data.setString(EventData.WEAPON_TYPE, weptype.name());
         this.data.setString(EventData.ATTACK_TYPE, effectType.name());
 
@@ -67,11 +67,11 @@ public class DamageEvent extends EffectEvent {
     }
 
     public DamageEvent(AttackInformation attackInfo, LivingEntity source, LivingEntity target, int dmg,
-                       AttackType effectType, WeaponTypes weptype, AttackPlayStyle style) {
+                       AttackType effectType, WeaponTypes weptype, PlayStyle style) {
         super(dmg, source, target);
         this.attackInfo = attackInfo;
-        this.style = style;
 
+        this.data.setString(EventData.STYLE, style.name());
         this.data.setString(EventData.WEAPON_TYPE, weptype.name());
         this.data.setString(EventData.ATTACK_TYPE, effectType.name());
 
@@ -89,10 +89,8 @@ public class DamageEvent extends EffectEvent {
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
 
-    public AttackPlayStyle style;
     AttackInformation attackInfo;
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
-    public boolean isDodged = false;
 
     public AttackType getAttackType() {
         return data.getAttackType();
@@ -123,10 +121,6 @@ public class DamageEvent extends EffectEvent {
         }
     }
 
-    public boolean isDmgAllowed() {
-        return !isDodged;
-    }
-
     public float getActualDamage() {
         float dmg = this.data.getNumber();
 
@@ -145,7 +139,7 @@ public class DamageEvent extends EffectEvent {
             dmg *= ModConfig.get().Server.PVP_DMG_MULTI;
         }
 
-        if (!isDodged && target instanceof PlayerEntity) { // todo this code sucks
+        if (!data.isDodged() && target instanceof PlayerEntity) { // todo this code sucks
             // a getter should not modify anything
             dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
 
@@ -291,15 +285,10 @@ public class DamageEvent extends EffectEvent {
 
         DmgByElement info = getDmgByElement();
 
-        if (isDodged) {
+        if (data.isDodged()) {
             cancelDamage();
             sendDamageParticle(info);
             SoundUtils.playSound(target, SoundEvents.ITEM_SHIELD_BLOCK, 1, 1.5F);
-            return;
-        }
-
-        if (!this.isDmgAllowed()) {
-            cancelDamage();
             return;
         }
 
@@ -346,7 +335,7 @@ public class DamageEvent extends EffectEvent {
             target.hurtTime = 0;
 
             if (this.data.isSpellEffect()) {
-                if (!data.getBoolean(EventData.DISABLE_KNOCKBACK) && dmg > 0 && !isDodged) {
+                if (!data.getBoolean(EventData.DISABLE_KNOCKBACK) && dmg > 0 && !data.isDodged()) {
                     // if magic shield absorbed the damage, still do knockback
                     DashUtils.knockback(source, target);
                 }
@@ -411,7 +400,7 @@ public class DamageEvent extends EffectEvent {
         if (source instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) source;
 
-            if (this.isDodged) {
+            if (data.isDodged()) {
                 if (getAttackType().isAttack()) {
                     text = "Dodge";
                 } else {
@@ -475,7 +464,7 @@ public class DamageEvent extends EffectEvent {
             if (entry.getValue() > 0) {
                 DamageEvent bonus = new DamageEvent(
                     attackInfo, source, target, entry.getValue(),
-                    AttackType.attack, data.getWeaponType(), style);
+                    AttackType.attack, data.getWeaponType(), data.getStyle());
                 bonus.setElement(entry.getKey());
                 bonus.calculateEffects();
                 float dmg = bonus.getActualDamage();

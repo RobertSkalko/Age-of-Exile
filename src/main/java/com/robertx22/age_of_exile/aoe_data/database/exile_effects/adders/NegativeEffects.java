@@ -12,11 +12,11 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -43,7 +43,7 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(MUMMY_CURSE)
             .maxStacks(1)
-            .stat(20, StyleDamageReceived.MAGIC, ModType.FLAT)
+            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 3D, 1D)
                     .onTick(10D))

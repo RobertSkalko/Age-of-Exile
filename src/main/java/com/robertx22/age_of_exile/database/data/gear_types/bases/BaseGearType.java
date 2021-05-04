@@ -25,7 +25,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -51,7 +51,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public String rar_group = GearRarityGroups.NON_UNIQUE_ID;
     public int weight = 1000;
     public int weapon_offhand_stat_util = 0;
-    public AttackPlayStyle style = AttackPlayStyle.melee;
+    public PlayStyle style = PlayStyle.melee;
 
     public List<StatModifier> implicit_stats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();
@@ -499,7 +499,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         }
 
         try {
-            o.style = AttackPlayStyle.valueOf(json.get("attack_style")
+            o.style = PlayStyle.valueOf(json.get("attack_style")
                 .getAsString());
         } catch (Exception e) {
             e.printStackTrace();

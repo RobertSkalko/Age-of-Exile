@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.scroll_buffs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -12,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 public class ScrollBuffsAdder implements ISlashRegistryInit {
 
@@ -23,15 +23,15 @@ public class ScrollBuffsAdder implements ISlashRegistryInit {
             new StatModifier(10, 30, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
         ScrollBuff.of("hunter", "Of the Hunter", "Venator",
-            new StatModifier(10, 30, AttackStyleDamage.RANGED),
+            new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
             new StatModifier(10, 30, Stats.CRIT_DAMAGE.get(), ModType.LOCAL_INCREASE)
         );
         ScrollBuff.of("warrior", "Of the Warrior", "Torpent",
-            new StatModifier(10, 30, AttackStyleDamage.MELEE),
+            new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
             new StatModifier(8, 25, AttackSpeed.getInstance(), ModType.FLAT)
         );
         ScrollBuff.of("paladin", "Of the Paladin", "Fortissimus",
-            new StatModifier(10, 30, AttackStyleDamage.MELEE),
+            new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
             new StatModifier(10, 30, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
 

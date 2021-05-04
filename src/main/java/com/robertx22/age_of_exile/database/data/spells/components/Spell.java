@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
@@ -75,7 +75,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return aura_data != null;
     }
 
-    public boolean is(SkillGemTag tag) {
+    public boolean is(SpellTag tag) {
         return config.tags.contains(tag);
     }
 
