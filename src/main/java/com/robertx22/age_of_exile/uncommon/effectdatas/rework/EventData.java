@@ -29,6 +29,7 @@ public class EventData {
     public static String DISABLE_KNOCKBACK = "disable_knockback";
     public static String PENETRATION = "penetration";
     public static String IGNORE_RESIST = "ignore_resist";
+    public static String SECONDS = "seconds";
 
     private HashMap<String, WrappedFloat> floats = new HashMap<>();
     private HashMap<String, Boolean> bools = new HashMap<>();

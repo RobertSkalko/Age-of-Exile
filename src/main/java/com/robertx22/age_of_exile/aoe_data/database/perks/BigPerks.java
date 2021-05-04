@@ -11,7 +11,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -72,7 +73,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_wand", "Wand Master",
-            new OptScaleExactStat(10, new SpecificWeaponDamage(WeaponTypes.wand), ModType.FLAT),
+            new OptScaleExactStat(10, Stats.WEAPON_DAMAGE.get(WeaponTypes.wand), ModType.FLAT),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get(), ModType.FLAT)
         );
 
@@ -143,32 +144,32 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_effect_of_ele", "Elemental Destruction",
-            new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Elemental), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("big_aspect_of_thunder", "Aspect of Thunder",
-            new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Light), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light), ModType.FLAT),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get(), ModType.FLAT),
             new OptScaleExactStat(5, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_flow_of_mana", "Flow of Mana",
-            new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Water), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water), ModType.FLAT),
             new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(20, Health.getInstance(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_aspect_of_nature", "Aspect of Nature",
-            new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Nature), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature), ModType.FLAT),
             new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_flame_of_life", "Flame of Life",
-            new OptScaleExactStat(5, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(1, RegeneratePercentStat.HEALTH, ModType.FLAT),
             new OptScaleExactStat(3, CastSpeed.getInstance(), ModType.FLAT)
         );
@@ -283,7 +284,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_poe", "Principle of Essence",
             new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT),
             new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT)
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_lacerator", "Lacerator",
@@ -300,8 +301,8 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_fire_water_spell_crit_dmg", "Frostfire Essence",
             new OptScaleExactStat(10, Stats.SPELL_CRIT_CHANCE.get()),
-            new OptScaleExactStat(3, new ElementalSpellDamage(Elements.Fire), ModType.FLAT),
-            new OptScaleExactStat(3, new ElementalSpellDamage(Elements.Water), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire), ModType.FLAT),
+            new OptScaleExactStat(3, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_primal", "Nomadic Spirit",
@@ -331,7 +332,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_ele_unity", "Elemental Unity",
-            new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT),
+            new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental), ModType.FLAT),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get(), ModType.FLAT),
             new OptScaleExactStat(5, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
             new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT),

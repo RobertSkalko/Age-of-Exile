@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
@@ -39,7 +38,7 @@ public class FabledArmor implements ISlashRegistryInit {
                 new StatModifier(10, 25, new ElementalResist(Elements.Light), ModType.FLAT)
             )
             .stats(Arrays.asList(
-                new StatModifier(5, 10, new ElementalDamageBonus(Elements.Physical), ModType.FLAT),
+                new StatModifier(5, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical), ModType.FLAT),
                 new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
                 new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(3, 6, AttackStyleDamage.MELEE, ModType.FLAT),

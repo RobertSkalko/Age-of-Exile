@@ -7,8 +7,15 @@ import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class IncreaseNumberByPercentEffect extends StatEffect {
 
-    public IncreaseNumberByPercentEffect() {
-        super("increase_number", "increase_number");
+    String num_id = "";
+
+    public IncreaseNumberByPercentEffect(String num) {
+        super("increase_" + num + "_num", "increase_number");
+        this.num_id = num;
+    }
+
+    IncreaseNumberByPercentEffect() {
+        super("", "increase_number");
     }
 
     @Override

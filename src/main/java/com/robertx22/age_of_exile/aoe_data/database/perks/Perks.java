@@ -9,7 +9,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intellige
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
@@ -25,7 +27,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 public class Perks implements ISlashRegistryInit {
 
@@ -77,24 +78,24 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT))
         ;
 
-        new ElementalSpellDamage(Elements.Nature).generateAllSingleVariations()
+        Stats.ELEMENTAL_SPELL_DAMAGE.getAll()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
                 PerkBuilder.stat(x.GUID() + "_and_dot", new OptScaleExactStat(1, x, ModType.FLAT), new OptScaleExactStat(3, Stats.ELE_DOT_DAMAGE.get(x.getElement()), ModType.FLAT));
             });
 
-        new SpecificWeaponDamage(WeaponTypes.sword).generateAllPossibleStatVariations()
+        Stats.WEAPON_DAMAGE.getAll()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
             });
 
-        new SpecificElementalWeaponDamage(WeaponTypes.sword).generateAllPossibleStatVariations()
+        Stats.ELEMENTAL_WEAPON_DAMAGE.getAll()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(3, x, ModType.FLAT));
 
             });
 
-        new ElementalDamageBonus(Elements.Nature).generateAllPossibleStatVariations()
+        Stats.ELEMENTAL_DAMAGE.getAll()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
             });

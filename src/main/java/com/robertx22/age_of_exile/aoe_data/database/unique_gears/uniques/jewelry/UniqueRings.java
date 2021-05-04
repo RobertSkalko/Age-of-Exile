@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuild
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -61,7 +60,7 @@ public class UniqueRings implements ISlashRegistryInit {
                 )
             )
             .stats(Arrays.asList(
-                new StatModifier(5, 15, new ElementalDamageBonus(Elements.Water), ModType.FLAT),
+                new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
                 new StatModifier(6, 10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(6, 15, Stats.RESOURCE_ON_KILL.get(ResourceType.mana), ModType.FLAT),
                 new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),

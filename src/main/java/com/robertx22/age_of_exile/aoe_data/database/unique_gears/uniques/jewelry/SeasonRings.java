@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -92,7 +91,7 @@ public class SeasonRings implements ISlashRegistryInit {
             )
             .stats(Arrays.asList(
                 new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalDamageBonus(Elements.Water), ModType.FLAT),
+                new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 15, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
             ))
@@ -115,7 +114,7 @@ public class SeasonRings implements ISlashRegistryInit {
             )
             .stats(Arrays.asList(
                 new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalDamageBonus(Elements.Fire), ModType.FLAT),
+                new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(5, 15, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
             ))

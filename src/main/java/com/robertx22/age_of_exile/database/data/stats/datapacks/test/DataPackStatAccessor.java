@@ -4,8 +4,11 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.base.EmptyAccessor;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class DataPackStatAccessor<T> {
 
@@ -39,6 +42,24 @@ public class DataPackStatAccessor<T> {
     public void add(T key, DatapackStat stat) {
         map.put(key, stat.id);
         map2.put(key, stat);
+    }
+
+    public List<Stat> getAll() {
+
+        if (Database.Stats()
+            .isRegistered(map2.values()
+                .stream()
+                .findFirst()
+                .get())) {
+
+            return map.values()
+                .stream()
+                .map(x -> Database.Stats()
+                    .get(x))
+                .collect(Collectors.toList());
+        }
+        // if in dev environment, just use the data gen ones
+        return new ArrayList<>(map2.values());
     }
 
     public Stat get() {

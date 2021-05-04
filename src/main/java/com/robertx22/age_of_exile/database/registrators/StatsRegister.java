@@ -25,8 +25,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldDuration;
-import com.robertx22.age_of_exile.database.data.stats.types.shields.ShieldStrength;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
@@ -34,7 +32,6 @@ import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -56,9 +53,6 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(RegeneratePercentStat.HEALTH);
                     add(RegeneratePercentStat.MANA);
 
-                    add(ShieldDuration.getInstance());
-                    add(ShieldStrength.getInstance());
-
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
                     add(ReducedManaReserved.getInstance());
@@ -71,16 +65,12 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(TreasureQuality.getInstance());
                     add(TreasureQuantity.getInstance());
 
-                    add(new SpecificWeaponDamage(WeaponTypes.none));
                     add(new AttackDamage(Elements.Physical));
-                    add(new ElementalDamageBonus(Elements.Physical));
-                    add(new ElementalSpellDamage(Elements.Physical));
                     add(new ElementalResist(Elements.Physical));
                     add(new ElementalPenetration(Elements.Physical));
                     add(new ElementalFocus(Elements.Physical));
                     add(new PhysConvertToEle(Elements.Physical));
                     add(new MaxElementalResist(Elements.Nature));
-                    add(new SpecificElementalWeaponDamage(WeaponTypes.axe));
 
                     // generated
 

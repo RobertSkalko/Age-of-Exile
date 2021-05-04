@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.*;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 import java.util.Arrays;
@@ -26,6 +27,7 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_PROJECTILE_SPELL = new SpellHasTagCondition(SkillGemTag.projectile);
     public static StatCondition IS_AREA_SPELL = new SpellHasTagCondition(SkillGemTag.area);
+    public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
 
     public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
         ResourceType.values()

@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
@@ -25,12 +24,12 @@ import java.util.function.Supplier;
 
 public enum FoodExileEffect {
 
-    WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
-    FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
-    LIGHT_DAMAGE("Sky", "light", EffectColor.YELLOW, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Light)), new OptScaleExactStat(20, new ElementalResist(Elements.Light))),
-    DARK_DAMAGE("Night", "dark", EffectColor.PURPLE, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Dark)), new OptScaleExactStat(20, new ElementalResist(Elements.Dark))),
-    NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, new ElementalDamageBonus(Elements.Nature)), new OptScaleExactStat(20, new ElementalResist(Elements.Nature))),
-    PHYSICAL_DAMAGE("Physical", "physical", EffectColor.RED, new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Physical)), new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE)),
+    WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
+    FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
+    LIGHT_DAMAGE("Sky", "light", EffectColor.YELLOW, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)), new OptScaleExactStat(20, new ElementalResist(Elements.Light))),
+    DARK_DAMAGE("Night", "dark", EffectColor.PURPLE, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)), new OptScaleExactStat(20, new ElementalResist(Elements.Dark))),
+    NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature)), new OptScaleExactStat(20, new ElementalResist(Elements.Nature))),
+    PHYSICAL_DAMAGE("Physical", "physical", EffectColor.RED, new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)), new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE)),
 
     DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(5, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_BLUE("Arcana Defense", "def_blue", EffectColor.BLUE, new OptScaleExactStat(25, Mana.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),

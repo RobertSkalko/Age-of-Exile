@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -133,7 +132,7 @@ public class VoidArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 10, Stats.SPELL_CRIT_CHANCE.get()),
-                    new StatModifier(5, 15, new ElementalSpellDamage(Elements.Dark)),
+                    new StatModifier(5, 15, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)
                 )

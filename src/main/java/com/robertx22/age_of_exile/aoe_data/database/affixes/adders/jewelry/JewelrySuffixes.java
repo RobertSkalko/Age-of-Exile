@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -29,11 +28,11 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .add(Elements.Nature, "Of Venom")
             .add(Elements.Light, "Of Sun Rays")
             .add(Elements.Dark, "Of Shadows")
-            .tier(1, x -> Arrays.asList(new StatModifier(15, 20, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(2, x -> Arrays.asList(new StatModifier(11, 15, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(3, x -> Arrays.asList(new StatModifier(7, 11, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(4, x -> Arrays.asList(new StatModifier(5, 7, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(5, x -> Arrays.asList(new StatModifier(2, 5, new ElementalDamageBonus(x), ModType.FLAT)))
+            .tier(1, x -> Arrays.asList(new StatModifier(15, 20, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(2, x -> Arrays.asList(new StatModifier(11, 15, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(3, x -> Arrays.asList(new StatModifier(7, 11, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(4, x -> Arrays.asList(new StatModifier(5, 7, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(5, x -> Arrays.asList(new StatModifier(2, 5, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();

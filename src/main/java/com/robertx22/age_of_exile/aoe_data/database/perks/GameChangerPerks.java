@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
@@ -29,8 +28,8 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("elemental_purity", "Elemental Purity",
-            new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT),
-            new OptScaleExactStat(-50, new ElementalDamageBonus(Elements.Physical), ModType.FLAT)
+            new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental), ModType.FLAT),
+            new OptScaleExactStat(-50, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("refined_taste", "Refined Taste",

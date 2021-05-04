@@ -6,9 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -42,7 +40,7 @@ public class BlazeArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 20, new ElementalSpellDamage(Elements.Fire)),
+                    new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
                     new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 2, Agility.INSTANCE, ModType.FLAT)
@@ -98,7 +96,7 @@ public class BlazeArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Dark)),
+                    new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(10, 20, Mana.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
@@ -128,7 +126,7 @@ public class BlazeArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 20, Stats.ELE_DOT_DAMAGE.get(Elements.Fire)),
-                    new StatModifier(5, 10, new ElementalDamageBonus(Elements.Dark)),
+                    new StatModifier(5, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)
                 )

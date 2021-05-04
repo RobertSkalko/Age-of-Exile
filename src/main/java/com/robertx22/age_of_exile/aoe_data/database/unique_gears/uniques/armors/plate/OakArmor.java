@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
@@ -98,7 +97,7 @@ public class OakArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 15, new ElementalDamageBonus(Elements.Light), ModType.FLAT),
+                    new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Light), ModType.FLAT),
                     new StatModifier(5, 15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(5, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
@@ -126,7 +125,7 @@ public class OakArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 25, new ElementalDamageBonus(Elements.Nature), ModType.FLAT),
+                    new StatModifier(10, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature), ModType.FLAT),
                     new StatModifier(5, 15, AttackSpeed.getInstance(), ModType.FLAT),
                     new StatModifier(5, 10, CooldownReduction.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)

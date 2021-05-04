@@ -12,11 +12,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.GiveShieldEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.OnMobKilledByDamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
 
@@ -68,6 +70,76 @@ public class Stats implements ISlashRegistryInit {
             x.min = 0;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<Elements> ELEMENTAL_DAMAGE = DatapackStatBuilder
+        .<Elements>of(x -> "all_" + x.guidName + "_damage", x -> x)
+        .addAllOfType(Elements.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.dmgName + " Damage")
+        .setLocDesc(x -> "Increases All dmg of that element, both spells and attacks")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = true;
+            x.group = StatGroup.ELEMENTAL;
+        })
+        .build();
+
+    public static DataPackStatAccessor<Elements> ELEMENTAL_SPELL_DAMAGE = DatapackStatBuilder
+        .<Elements>of(x -> "spell_" + x.guidName + "_damage", x -> x)
+        .addAllOfType(Elements.getEverythingBesidesPhysical())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.dmgName + " Skill Damage")
+        .setLocDesc(x -> "Increases damage of spells of that element.")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = true;
+            x.group = StatGroup.ELEMENTAL;
+        })
+        .build();
+
+    public static DataPackStatAccessor<WeaponTypes> WEAPON_DAMAGE = DatapackStatBuilder
+        .<WeaponTypes>of(x -> x.id + "_damage", x -> Elements.Physical)
+        .addAllOfType(WeaponTypes.getAll())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.WEAPON_TYPE_MATCHES.get(x))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.locName() + " Damage")
+        .setLocDesc(x -> "Increases damage done if it was caused by that weapon")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = true;
+            x.group = StatGroup.WEAPON;
+        })
+        .build();
+
+    public static DataPackStatAccessor<WeaponTypes> ELEMENTAL_WEAPON_DAMAGE = DatapackStatBuilder
+        .<WeaponTypes>of(x -> "ele_" + x.id + "_damage", x -> Elements.Physical)
+        .addAllOfType(WeaponTypes.getAll())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.WEAPON_TYPE_MATCHES.get(x))
+        .addCondition(StatConditions.IS_ELEMENTAL)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Elemental " + x.locName() + " Damage")
+        .setLocDesc(x -> "Increases elemental damage done if it was caused by that weapon")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = true;
+            x.group = StatGroup.WEAPON;
         })
         .build();
 
@@ -161,7 +233,7 @@ public class Stats implements ISlashRegistryInit {
         .build();
 
     public static DataPackStatAccessor<EmptyAccessor> CRIT_CHANCE = DatapackStatBuilder
-        .<EmptyAccessor>ofSingle("critical_hit", Elements.Physical)
+        .ofSingle("critical_hit", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
@@ -182,7 +254,7 @@ public class Stats implements ISlashRegistryInit {
         .build();
 
     public static DataPackStatAccessor<EmptyAccessor> SPELL_CRIT_CHANCE = DatapackStatBuilder
-        .<EmptyAccessor>ofSingle("spell_critical_hit", Elements.Physical)
+        .ofSingle("spell_critical_hit", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
@@ -204,7 +276,7 @@ public class Stats implements ISlashRegistryInit {
         .build();
 
     public static DataPackStatAccessor<EmptyAccessor> HEAL_CRIT_CHANCE = DatapackStatBuilder
-        .<EmptyAccessor>ofSingle("crit_heal_chance", Elements.Physical)
+        .ofSingle("crit_heal_chance", Elements.Physical)
         .worksWithEvent(RestoreResourceEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
@@ -535,6 +607,38 @@ public class Stats implements ISlashRegistryInit {
             x.scaling = StatScaling.NONE;
             x.format = Formatting.RED;
             x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> SHIELD_STRENGTH = DatapackStatBuilder
+        .ofSingle("shield_strength", Elements.Physical)
+        .worksWithEvent(GiveShieldEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Shield Strength")
+        .setLocDesc(x -> "Boosts the shield amount you get from spells and other sources.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.icon = "\u2748";
+            x.format = Formatting.RED;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> SHIELD_DURATION = DatapackStatBuilder
+        .ofSingle("shield_duration", Elements.Physical)
+        .worksWithEvent(GiveShieldEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INCREASE_SECONDS)
+        .setLocName(x -> "Shield Strength")
+        .setLocDesc(x -> "Boosts the shield amount you get from spells and other sources.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.icon = "\u2748";
+            x.format = Formatting.GREEN;
         })
         .build();
 

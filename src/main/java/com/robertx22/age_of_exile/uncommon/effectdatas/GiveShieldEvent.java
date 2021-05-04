@@ -1,20 +1,14 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.unit.AllShieldsData;
-import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.minecraft.entity.LivingEntity;
 
 public class GiveShieldEvent extends EffectEvent {
 
-    @Nullable
-    public Spell spell;
-
-    public int seconds = 0;
-
     public GiveShieldEvent(float amount, int seconds, LivingEntity caster, LivingEntity target) {
         super(amount, caster, target);
-        this.seconds = seconds;
+        this.data.getNumber(EventData.SECONDS).number = seconds;
     }
 
     @Override
@@ -25,9 +19,9 @@ public class GiveShieldEvent extends EffectEvent {
         }
 
         if (target.isAlive()) {
-
+            int ticks = (int) (data.getNumber(EventData.SECONDS).number * 20);
             this.targetData.getResources()
-                .shields.giveShield(new AllShieldsData.ShieldData(data.getNumber(), seconds * 20));
+                .shields.giveShield(new AllShieldsData.ShieldData(data.getNumber(), ticks));
 
         }
     }

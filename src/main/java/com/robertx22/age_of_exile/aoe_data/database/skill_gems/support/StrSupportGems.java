@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -46,19 +45,19 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("water_dmg", "Cold Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Water))
+            new StatModifier(5, 30, Stats.ELEMENTAL_DAMAGE.get(Elements.Water))
         );
 
         SkillGemBuilder.of("fire_dmg", "Fire Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Fire))
+            new StatModifier(5, 30, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire))
         );
 
         SkillGemBuilder.of("nature_dmg", "Poison Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SkillGemTag.damage),
-            new StatModifier(5, 30, new ElementalDamageBonus(Elements.Nature))
+            new StatModifier(5, 30, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
         );
 
         SkillGemBuilder.of("less_mana_cost", "Mana Cost Reduction Support", new StatRequirement().setBaseStr(20)

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.scroll_buffs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -56,7 +55,7 @@ public class ScrollBuffsAdder implements ISlashRegistryInit {
 
     void eleDmg(String id, String name, String desc, Elements ele) {
         ScrollBuff.of(id, name, desc,
-            new StatModifier(10, 50, new ElementalDamageBonus(ele), ModType.FLAT)
+            new StatModifier(10, 50, Stats.ELEMENTAL_DAMAGE.get(ele), ModType.FLAT)
         );
     }
 }

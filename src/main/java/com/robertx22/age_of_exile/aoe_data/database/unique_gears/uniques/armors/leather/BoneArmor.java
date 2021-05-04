@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
@@ -47,7 +45,7 @@ public class BoneArmor implements ISlashRegistryInit {
                 Arrays.asList(
                     new StatModifier(5, 10, ArmorPenetration.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Stats.CRIT_CHANCE.get(), ModType.FLAT),
-                    new StatModifier(5, 8, new SpecificWeaponDamage(WeaponTypes.bow), ModType.FLAT),
+                    new StatModifier(5, 8, Stats.WEAPON_DAMAGE.get(WeaponTypes.bow), ModType.FLAT),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
 
@@ -75,7 +73,7 @@ public class BoneArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Water)),
+                    new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
                 )
@@ -104,7 +102,7 @@ public class BoneArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Dark)),
+                    new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(10, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)

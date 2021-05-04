@@ -6,9 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -42,7 +40,7 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 20, new ElementalSpellDamage(Elements.Dark)),
+                    new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(5, 15, TreasureQuality.getInstance(), ModType.FLAT),
                     new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT),
@@ -101,7 +99,7 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 20, new ElementalSpellDamage(Elements.Light)),
+                    new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
                     new StatModifier(10, 20, Mana.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
@@ -130,7 +128,7 @@ public class DarkCrystalArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.SPELL_CRIT_DAMAGE.get()),
-                    new StatModifier(5, 10, new ElementalDamageBonus(Elements.Dark)),
+                    new StatModifier(5, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)
                 )

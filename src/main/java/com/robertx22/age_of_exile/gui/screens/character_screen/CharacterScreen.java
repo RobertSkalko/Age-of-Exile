@@ -11,7 +11,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
@@ -114,8 +116,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.MAIN, Arrays.asList(Stats.ACCURACY.get(), SpellDamage.getInstance()));
 
         addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());
-        addTo(StatType.ELEMENTAL, new ElementalSpellDamage(Elements.Elemental).generateAllPossibleStatVariations());
-        addTo(StatType.ELEMENTAL, new ElementalDamageBonus(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.ELEMENTAL, Stats.ELEMENTAL_SPELL_DAMAGE.getAll());
+        addTo(StatType.ELEMENTAL, Stats.ELEMENTAL_DAMAGE.getAll());
 
         addTo(StatType.RESISTS, new ElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.RESISTS, new MaxElementalResist(Elements.Elemental).generateAllPossibleStatVariations());

@@ -52,7 +52,8 @@ public class StatEffects implements ISlashRegistryInit {
         , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Target, 5));
 
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
-    public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect();
+    public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect(EventData.NUMBER);
+    public static StatEffect INCREASE_SECONDS = new IncreaseNumberByPercentEffect(EventData.SECONDS);
     public static StatEffect SET_ACCURACY = new SetDataNumberAction(EventData.ACCURACY);
     public static StatEffect ADD_STAT_DATA_TO_NUMBER = new AddToNumberEffect("add_stat_data_to_num", EventData.NUMBER, NumberProvider.ofStatData());
 
@@ -79,6 +80,7 @@ public class StatEffects implements ISlashRegistryInit {
         LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.addToSerializables();
         ADD_PERC_OF_STAT_TO_NUMBER.addToSerializables();
         ADD_STAT_DATA_TO_NUMBER.addToSerializables();
+        INCREASE_SECONDS.addToSerializables();
 
     }
 }

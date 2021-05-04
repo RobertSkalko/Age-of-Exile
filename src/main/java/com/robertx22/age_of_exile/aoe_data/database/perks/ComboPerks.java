@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -111,8 +110,8 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("fire_water_spell_dmg",
-            new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Fire), ModType.FLAT),
-            new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
+            new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT)
         );
         PerkBuilder.stat("inc_area_spell_dmg",
             new OptScaleExactStat(4, IncreasedAreaOfEffect.getInstance(), ModType.FLAT),
