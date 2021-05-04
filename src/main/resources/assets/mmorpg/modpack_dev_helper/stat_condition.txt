@@ -10,7 +10,6 @@ is_axe_wep_type
 attack_type_is_dot
 is_glove_wep_type
 is_melee_weapon
-is_bool_true
 is_day_is_false
 is_wand_wep_type
 is_crit_true

@@ -18,7 +18,7 @@ import static com.robertx22.age_of_exile.uncommon.enumclasses.Elements.*;
 public class MobAffixes implements ISlashRegistryInit {
 
     static void eleAffix(String name, Elements element) {
-        new MobAffix(element.guidName + "_mob_affix", name, element.format)
+        new MobAffix(element.guidName + "_mob_affix", new AttackDamage(element).getFormatAndIcon(), element.format)
             .setMods(
                 new StatModifier(75, 75, new PhysConvertToEle(element)),
                 new StatModifier(1, 1, 1, 1, new AttackDamage(element), ModType.FLAT),
@@ -36,7 +36,7 @@ public class MobAffixes implements ISlashRegistryInit {
         eleAffix("Holy", Light);
         eleAffix("Cursed", Dark);
 
-        new MobAffix("winter", "Lord of Winter", Water.format)
+        new MobAffix("winter", new AttackDamage(Water).getFormatAndIcon(), Water.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
                 new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN)),
@@ -47,7 +47,7 @@ public class MobAffixes implements ISlashRegistryInit {
             .setWeight(250)
             .addToSerializables();
 
-        new MobAffix("fire_lord", "Lord of Fire", Fire.format)
+        new MobAffix("fire_lord", new AttackDamage(Fire).getFormatAndIcon(), Fire.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
                 new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
@@ -58,7 +58,7 @@ public class MobAffixes implements ISlashRegistryInit {
             .setWeight(250)
             .addToSerializables();
 
-        new MobAffix("nature_lord", "Lord of Toxins", Nature.format)
+        new MobAffix("nature_lord", new AttackDamage(Nature).getFormatAndIcon(), Nature.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
                 new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
@@ -69,7 +69,7 @@ public class MobAffixes implements ISlashRegistryInit {
             .setWeight(250)
             .addToSerializables();
 
-        new MobAffix("phys_lord", "Lord of Ruin", Formatting.GRAY)
+        new MobAffix("phys_lord", new AttackDamage(Physical).getFormatAndIcon(), Formatting.GRAY)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
                 new StatModifier(2, 2, new AttackDamage(Physical)),
@@ -77,7 +77,8 @@ public class MobAffixes implements ISlashRegistryInit {
             .setWeight(250)
             .addToSerializables();
 
-        new MobAffix("vampire", "Vampire Lord", Formatting.RED)
+        new MobAffix("vampire", Stats.LIFESTEAL.get()
+            .getFormatAndIcon(), Formatting.RED)
             .setMods(new StatModifier(25, 25, Health.getInstance()),
                 new StatModifier(15, 15, Stats.LIFESTEAL.get()),
                 new StatModifier(15, 15, ExtraMobDropsStat.getInstance()))

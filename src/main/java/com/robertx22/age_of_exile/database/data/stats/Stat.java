@@ -59,6 +59,10 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         return getIconNameFormat(locNameForLangFile());
     }
 
+    public String getFormatAndIcon() {
+        return format + icon;
+    }
+
     public String getIconNameFormat(String str) {
         return this.format + this.icon + " " + str + Formatting.GRAY;
     }

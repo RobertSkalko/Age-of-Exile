@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
@@ -42,6 +43,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -515,13 +517,17 @@ public class EntityCap {
                 MutableText name = new LiteralText("").append(entity.getDisplayName())
                     .formatted(rarformat);
 
-                if (!rarity.name_add.isEmpty()) {
-                    name = new LiteralText("[Lv." + rarity.name_add + "] ").formatted(Formatting.YELLOW)
-                        .append(name);
+                String icons = "";
+
+                for (MobAffix x : getAffixData().getAffixes()) {
+                    icons += CLOC.translate(x.locName());
+                }
+                if (!icons.isEmpty()) {
+                    icons += " ";
                 }
 
-                MutableText finalName =
-                    name;
+                MutableText finalName = new LiteralText(icons).append(
+                    name);
 
                 MutableText part = new LiteralText("")
                     .append(finalName)

@@ -2,7 +2,8 @@ package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
+import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
@@ -20,15 +21,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Matrix4f;
 
-import java.util.List;
-
 public class RenderMobInfo {
 
     static Entity lastLooked;
 
     public static void renderLivingEntityLabelIfPresent(TextRenderer textRenderer, EntityRenderDispatcher dispatcher, LivingEntity entity,
                                                         MatrixStack matrixStack,
-                                                        VertexConsumerProvider vertexConsumerProvider, int i) {
+                                                        VertexConsumerProvider vertex, int i) {
         try {
 
             if (!ModConfig.get().client.RENDER_MOB_HEALTH_GUI) {
@@ -69,9 +68,6 @@ public class RenderMobInfo {
 
                 Text text = data.getName()
                     .append(lvlcomp);
-
-                List<MobAffix> affixes = data.getAffixData()
-                    .getAffixes();
 
                 float percent = HealthUtils.getCurrentHealth(entity) / HealthUtils.getMaxHealth(entity) * 100F;
 
@@ -114,30 +110,25 @@ public class RenderMobInfo {
                 textRenderer.draw(text,
                     -textRenderer.getWidth(text) / 2.0f,
                     -12, -1, true, matrix4f,
-                    vertexConsumerProvider, false, bgColor, i);
+                    vertex, false, bgColor, i);
 
                 textRenderer.draw(hpText, -textRenderer.getWidth(hpText) / 2.0f,
                     0, -1, true, matrix4f,
-                    vertexConsumerProvider, false, bgColor, i);
+                    vertex, false, bgColor, i);
 
-                if (!affixes.isEmpty()) {
+                MobRarity rar = Database.MobRarities()
+                    .get(data.getRarity());
 
-                    MutableText affixText = new LiteralText("");
+                String icon = rar.name_add;
+                if (!icon.isEmpty()) {
+                    icon = rar.textFormatting() + icon;
 
-                    boolean addedaffix = false;
-
-                    for (MobAffix mobAffix : affixes) {
-                        if (addedaffix) {
-                            affixText.append(new LiteralText(", "));
-                        }
-                        affixText.append(mobAffix.locName()
-                            .formatted(mobAffix.format));
-                        addedaffix = true;
-                    }
-
-                    textRenderer.draw(affixText, -textRenderer.getWidth(affixText) / 2.0f,
-                        -24, -1, true, matrix4f,
-                        vertexConsumerProvider, false, bgColor, i);
+                    matrixStack.scale(2, 2, 2);
+                    textRenderer.draw(icon, -textRenderer.getWidth(icon) / 2.0f,
+                        -15, -1, true, matrix4f,
+                        vertex, false, Formatting.YELLOW
+                            .getColorIndex(), i);
+                    matrixStack.scale(0.5F, 0.5F, 0.5F);
                 }
 
                 matrixStack.pop();

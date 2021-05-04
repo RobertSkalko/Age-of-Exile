@@ -51,11 +51,8 @@ public class DataPackStatEffect implements IStatEffect {
                     StatEffect e = Database.StatEffects()
                         .get(x);
 
-                    if (e == null) {
-                        System.out.print(x);
-                    } else {
-                        e.activate(effect, statSource, data, stat);
-                    }
+                    e.activate(effect, statSource, data, stat);
+
                 });
 
             }

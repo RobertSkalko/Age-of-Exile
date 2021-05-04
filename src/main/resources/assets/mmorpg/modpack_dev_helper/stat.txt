@@ -1,6 +1,8 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 blood_per_10_vitality
+fire_mana_leech
+mana_on_spell_hit
 bonus_exp_for_t4_mob
 bonus_regen_in_water
 accuracy
@@ -23,11 +25,18 @@ projectile_damage
 max_dark_resist
 cast_speed
 melee_dmg_received
+mana_on_attack_hit
 dagger_damage
 all_elemental_damage
+physical_health_leech
+health_on_spell_hit
+all_health_leech
 all_physical_damage
 dark_penetration
+elemental_mana_leech
 critical_hit
+light_health_leech
+health_on_attack_hit
 faster_projectiles
 piercing_projectiles
 extra_mob_drops
@@ -51,12 +60,15 @@ bonus_cooking_yield
 mana
 chance_of_poison
 bonus_fishing_yield
+dark_health_leech
+health_on_all_hit
 bonus_inscribing_exp
 max_nature_resist
 ele_scepter_damage
 strength
 mummy_curse
 spell_light_damage
+light_mana_leech
 non_crit_damage
 health_per_sec
 convert_fire_to_phys
@@ -71,6 +83,7 @@ axe_damage
 magic_find
 max_fire_resist
 more_food_stats
+physical_mana_leech
 dark_resist
 bonus_mountain_biome_yield
 hp_regen_per_mana
@@ -82,6 +95,7 @@ spell_nature_damage
 dark_dot_damage
 ele_dagger_damage
 agility
+nature_health_leech
 spell_water_damage
 water_focus
 dark_weapon_damage
@@ -91,6 +105,7 @@ wisdom
 bonus_farming_exp
 absorb_ele_dmg_to_hp
 scythe_damage
+nature_mana_leech
 fire_weapon_damage
 dot_dmg
 nature_dot_damage
@@ -99,6 +114,7 @@ bonus_night_yield
 bonus_salvaging_exp
 spell_accuracy
 mana_per_sec
+mana_on_all_hit
 light_resist
 bonus_exploration_yield
 armor_to_water_damage
@@ -106,10 +122,12 @@ all_fire_damage
 sword_damage
 crit_heal_chance
 all_attributes
-area_dmg
 chance_of_burn
+area_dmg
 all_dark_damage
 hp_resto_to_blood
+fire_health_leech
+lifesteal
 ele_bow_damage
 health_per_10_intelligence
 global_critical_damage
@@ -120,6 +138,7 @@ red_mana_reserved
 water_weapon_damage
 bonus_blacksmithing_yield
 bonus_mining_exp
+water_mana_leech
 intelligence
 spear_damage
 day_night_dmg
@@ -129,8 +148,9 @@ ranged_crit_dmg_to_undead
 darkness_dmg
 water_penetration
 bonus_inscribing_yield
-spell_damage_per_perc_of_increase_healing
+dark_mana_leech
 chance_of_blind
+spell_damage_per_perc_of_increase_healing
 bonus_alchemy_exp
 increased_quantity
 spell_critical_damage
@@ -138,11 +158,13 @@ light_weapon_damage
 max_water_resist
 bonus_farming_yield
 nature_resist
+all_mana_leech
 magic_dmg_received
 bonus_exploration_exp
 fire_resist
 triple_drop_chance
 health
+elemental_health_leech
 transfer_health_to_physical_weapon_damage
 inc_aura_effect
 staff_damage
@@ -190,12 +212,14 @@ elemental_resist
 heal_cleanse
 dark_focus
 bonus_cold_biome_yield
+inc_leech
 spell_dodge
 crossbow_damage
 nature_penetration
 fire_focus
 nature_focus
 inc_aoe
+water_health_leech
 ele_crossbow_damage
 glove_damage
 bonus_mining_yield

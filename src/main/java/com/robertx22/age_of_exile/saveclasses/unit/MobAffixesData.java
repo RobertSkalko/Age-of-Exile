@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -36,7 +35,7 @@ public class MobAffixesData {
 
     public void randomizeAffixes(MobRarity rarity) {
 
-        int amount = RandomUtils.roll(rarity.oneAffixChance()) ? 1 : 0;
+        int amount = rarity.affixes;
 
         this.affixes.clear();
 
