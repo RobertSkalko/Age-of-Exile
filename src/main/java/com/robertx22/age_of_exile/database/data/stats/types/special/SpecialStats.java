@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
@@ -303,8 +304,9 @@ public class SpecialStats {
 
                 float val = effect.data.getNumber();
 
-                RestoreResourceEvent e = new RestoreResourceEvent(effect.source, effect.target, ResourceType.health, RestoreType.heal, val);
-                e.Activate();
+                RestoreResourceEvent restore = EventBuilder.ofRestore(effect.source, effect.target, ResourceType.health, RestoreType.heal, val)
+                    .build();
+                restore.Activate();
 
                 effect.cancelDamage();
                 return effect;
@@ -349,8 +351,9 @@ public class SpecialStats {
 
                 float val = data.getAverageValue();
 
-                RestoreResourceEvent e = new RestoreResourceEvent(effect.source, effect.target, ResourceType.mana, RestoreType.heal, val);
-                e.Activate();
+                RestoreResourceEvent restore = EventBuilder.ofRestore(effect.source, effect.target, ResourceType.mana, RestoreType.heal, val)
+                    .build();
+                restore.Activate();
 
                 return effect;
             }

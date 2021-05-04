@@ -33,11 +33,12 @@ public abstract class EffectEvent implements IGUID {
 
     public EventData data = new EventData();
 
+    private boolean activated = false;
+
     public EffectEvent(float num, LivingEntity source, LivingEntity target) {
         this(source, target);
 
-        this.data.getNumber(EventData.NUMBER).number = num;
-        this.data.getNumber(EventData.ORIGINAL_VALUE).number = num;
+        data.setupNumber(EventData.NUMBER, num);
 
     }
 
@@ -64,22 +65,23 @@ public abstract class EffectEvent implements IGUID {
     }
 
     public void increaseByPercent(float perc) {
-        data.getNumber(EventData.NUMBER).number += data.getNumber(EventData.ORIGINAL_VALUE).number * perc / 100F;
+        data.getNumber(EventData.NUMBER).number += data.getOriginalNumber(EventData.NUMBER).number * perc / 100F;
     }
 
     public void Activate() {
+        if (!activated) {
+            //Watch watch = new Watch();
+            //watch.min = 500;
 
-        //Watch watch = new Watch();
-        //watch.min = 500;
+            calculateEffects();
 
-        calculateEffects();
+            if (!data.isCanceled()) {
+                activate();
+                this.activated = true;
+            }
 
-        if (!data.isCanceled()) {
-            activate();
+            // watch.print("stat events " + GUID() + " ");
         }
-
-        // watch.print("stat events " + GUID() + " ");
-
     }
 
     public void calculateEffects() {
@@ -220,10 +222,6 @@ public abstract class EffectEvent implements IGUID {
         }
 
         return effects;
-    }
-
-    public void setSpell(Spell spell) {
-        this.data.setString(EventData.SPELL, spell.GUID());
     }
 
     @Override

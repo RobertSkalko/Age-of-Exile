@@ -31,6 +31,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -716,10 +717,10 @@ public class EntityCap {
                 style = PlayStyle.ranged;
             }
 
-            DamageEvent dmg = new DamageEvent(
-                data, (int) num, AttackType.attack, WeaponTypes.none, style
-            );
-            dmg.data.setIsBasicAttack();
+            DamageEvent dmg = EventBuilder.ofDamage(data, entity, data.getTargetEntity(), num)
+                .setupDamage(AttackType.attack, WeaponTypes.none, style)
+                .setIsBasicAttack()
+                .build();
 
             dmg.Activate();
 

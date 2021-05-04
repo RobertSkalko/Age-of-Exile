@@ -5,13 +5,13 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
@@ -57,8 +57,6 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
 
             int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
 
-            value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.DAMAGE);
-
             for (LivingEntity t : targets) {
 
                 if (t == null) {
@@ -80,7 +78,8 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
                     e.printStackTrace();
                 }
 
-                DamageEvent dmg = DamageEvent.ofSpellDamage(ctx.caster, t, value * stacks, ctx.calculatedSpellData.getSpell());
+                DamageEvent dmg = EventBuilder.ofSpellDamage(ctx.caster, t, value * stacks, ctx.calculatedSpellData.getSpell())
+                    .build();
                 if (data.has(MapField.DMG_EFFECT_TYPE)) {
                     dmg.data.setString(EventData.ATTACK_TYPE, data.getDmgEffectType()
                         .name());

@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEff
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -63,10 +64,8 @@ public class DamageTakenToMana extends Stat {
             float restore = effect.data.getNumber() * data.getAverageValue() / 100F; // todo dmg number
 
             if (restore > 0) {
-                RestoreResourceEvent mana = new RestoreResourceEvent(effect.source, effect.target,
-                    ResourceType.mana, RestoreType.heal,
-                    restore
-                );
+                RestoreResourceEvent mana = EventBuilder.ofRestore(effect.source, effect.target, ResourceType.mana, RestoreType.heal, restore)
+                    .build();
                 mana.Activate();
 
             }

@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import net.minecraft.entity.LivingEntity;
@@ -53,7 +54,8 @@ public abstract class FoodEffectPotion extends StatusEffect {
 
                 float heal = getValueRestoredPerRegen(data, amplifier, instance.getDuration());
 
-                RestoreResourceEvent restore = new RestoreResourceEvent(en, en, resourceType(), RestoreType.regen, heal);
+                RestoreResourceEvent restore = EventBuilder.ofRestore(en, en, resourceType(), RestoreType.regen, heal)
+                    .build();
 
                 restore.Activate();
 

@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -56,10 +57,10 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
 
                 for (LivingEntity t : targets) {
 
-                    RestoreResourceEvent restore = new RestoreResourceEvent(
-                        ctx.caster, t, ResourceType.health, RestoreType.heal, value
-                    );
-                    restore.setSpell(ctx.calculatedSpellData.getSpell());
+                    RestoreResourceEvent restore = EventBuilder.ofRestore(ctx.caster, t, ResourceType.health, RestoreType.heal, value)
+                        .setSpell(ctx.calculatedSpellData.getSpell())
+                        .build();
+
                     restore.Activate();
 
                     total += restore.data.getNumber();

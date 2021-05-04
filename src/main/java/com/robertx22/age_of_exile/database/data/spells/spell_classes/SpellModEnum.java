@@ -7,7 +7,6 @@ public enum SpellModEnum {
     MANA_COST(Words.ManaCost, "mana_cost", -10),
     AREA(Words.Normal_Gear, "area", -10),
     COOLDOWN(Words.Cooldown, "cooldown", -10),
-    DAMAGE(Words.Damage, "damage", 5),
     PROJECTILE_SPEED(Words.ProjectileSpeed, "projectile_speed", 15);
 
     public Words word;

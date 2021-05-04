@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import net.minecraft.entity.LivingEntity;
@@ -48,10 +49,11 @@ public class RestoreManaAction extends SpellAction implements ICTextTooltip {
 
             for (LivingEntity x : targets) {
 
-                RestoreResourceEvent restore = new RestoreResourceEvent(
+                RestoreResourceEvent restore = EventBuilder.ofRestore(
                     ctx.caster, x, ResourceType.mana, RestoreType.heal, value
-                );
-                restore.setSpell(ctx.calculatedSpellData.getSpell());
+                )
+                    .setSpell(ctx.calculatedSpellData.getSpell())
+                    .build();
 
                 restore.Activate();
 

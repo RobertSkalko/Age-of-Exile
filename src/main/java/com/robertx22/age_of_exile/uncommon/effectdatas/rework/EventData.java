@@ -12,7 +12,6 @@ import java.util.HashMap;
 public class EventData {
 
     public static String NUMBER = "number";
-    public static String ORIGINAL_VALUE = "original_value";
     public static String CANCELED = "canceled";
     public static String CRIT = "crit";
     public static String ELEMENT = "element";
@@ -37,13 +36,21 @@ public class EventData {
     private HashMap<String, Boolean> bools = new HashMap<>();
     private HashMap<String, String> strings = new HashMap<>();
 
+    public void setupNumber(String id, float num) {
+        this.getNumber(id).number = num;
+        this.getOriginalNumber(id).number = num;
+    }
+
     // todo if this doesnt create new one, all getters just modify the empty, woops.
     public WrappedFloat getNumber(String id) {
-
         if (!floats.containsKey(id)) {
             floats.put(id, new WrappedFloat(0));
         }
         return floats.get(id);
+    }
+
+    public WrappedFloat getOriginalNumber(String id) {
+        return getNumber("original_" + id);
     }
 
     public boolean getBoolean(String id) {
@@ -97,10 +104,6 @@ public class EventData {
     public boolean isSpellEffect() {
         return Database.Spells()
             .isRegistered(getString(SPELL));
-    }
-
-    public void setIsBasicAttack() {
-        setBoolean(IS_BASIC_ATTACK, true);
     }
 
     public boolean isBasicAttack() {

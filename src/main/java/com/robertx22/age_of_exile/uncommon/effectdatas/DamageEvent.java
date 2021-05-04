@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
@@ -16,7 +15,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
@@ -55,36 +53,10 @@ public class DamageEvent extends EffectEvent {
         return ID;
     }
 
-    public DamageEvent(AttackInformation data, int dmg, AttackType effectType, WeaponTypes weptype, PlayStyle style) {
-        super(dmg, data.getAttackerEntity(), data.getTargetEntity());
-        this.attackInfo = data;
-
-        this.data.setString(EventData.STYLE, style.name());
-        this.data.setString(EventData.WEAPON_TYPE, weptype.name());
-        this.data.setString(EventData.ATTACK_TYPE, effectType.name());
-
-        calcBlock();
-    }
-
-    public DamageEvent(AttackInformation attackInfo, LivingEntity source, LivingEntity target, int dmg,
-                       AttackType effectType, WeaponTypes weptype, PlayStyle style) {
+    protected DamageEvent(AttackInformation attackInfo, LivingEntity source, LivingEntity target, float dmg) {
         super(dmg, source, target);
         this.attackInfo = attackInfo;
-
-        this.data.setString(EventData.STYLE, style.name());
-        this.data.setString(EventData.WEAPON_TYPE, weptype.name());
-        this.data.setString(EventData.ATTACK_TYPE, effectType.name());
-
         calcBlock();
-    }
-
-    public static DamageEvent ofSpellDamage(LivingEntity source, LivingEntity target, int dmg, Spell spell) {
-        DamageEvent event = new DamageEvent(
-            null, source, target, dmg,
-            spell.getConfig().style.getAttackType(),
-            spell.getWeapon(source), spell.getConfig().style
-        );
-        return event;
     }
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
@@ -462,9 +434,14 @@ public class DamageEvent extends EffectEvent {
 
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
-                DamageEvent bonus = new DamageEvent(
-                    attackInfo, source, target, entry.getValue(),
-                    AttackType.attack, data.getWeaponType(), data.getStyle());
+
+                DamageEvent bonus = EventBuilder.ofDamage(attackInfo, source, target, entry.getValue())
+                    .setupDamage(AttackType.attack, data.getWeaponType(), data.getStyle())
+                    .set(x -> x.setElement(entry.getKey()))
+                    .build();
+
+                bonus.calculateEffects();
+
                 bonus.setElement(entry.getKey());
                 bonus.calculateEffects();
                 float dmg = bonus.getActualDamage();

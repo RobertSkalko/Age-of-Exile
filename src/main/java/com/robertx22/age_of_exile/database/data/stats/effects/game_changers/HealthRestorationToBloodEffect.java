@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.InCodeStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
@@ -33,7 +34,8 @@ public class HealthRestorationToBloodEffect extends InCodeStatEffect<RestoreReso
 
         float bloodrestored = effect.data.getNumber() * data.getAverageValue() / 100F;
 
-        RestoreResourceEvent restore = new RestoreResourceEvent(effect.source, effect.target, ResourceType.blood, RestoreType.regen, bloodrestored);
+        RestoreResourceEvent restore = EventBuilder.ofRestore(effect.source, effect.target, ResourceType.blood, RestoreType.regen, bloodrestored)
+            .build();
 
         restore.Activate();
         return effect;
