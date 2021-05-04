@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.*;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.particle.DefaultParticleType;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class SpellBuilder {
     public static SpellBuilder breath(String id, String name, Elements ele, DefaultParticleType particle) {
 
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            Arrays.asList(SpellTag.area, SpellTag.damage))
             .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)
@@ -30,7 +30,7 @@ public class SpellBuilder {
 
     }
 
-    public static SpellBuilder of(String id, SpellConfiguration config, String name, List<SkillGemTag> tags) {
+    public static SpellBuilder of(String id, SpellConfiguration config, String name, List<SpellTag> tags) {
         SpellBuilder builder = new SpellBuilder();
 
         builder.spell = new Spell();
@@ -43,7 +43,7 @@ public class SpellBuilder {
         return builder;
     }
 
-    public static SpellBuilder aura(AttackPlayStyle style, String id, String name, AuraSpellData aura) {
+    public static SpellBuilder aura(PlayStyle style, String id, String name, AuraSpellData aura) {
         SpellBuilder builder = new SpellBuilder();
 
         builder.spell = new Spell();
@@ -54,7 +54,7 @@ public class SpellBuilder {
         builder.spell.config.style = style;
         builder.spell.aura_data = aura;
 
-        builder.spell.config.tags.add(SkillGemTag.AURA);
+        builder.spell.config.tags.add(SpellTag.aura);
 
         return builder;
     }
@@ -69,13 +69,18 @@ public class SpellBuilder {
         return builder;
     }
 
-    public SpellBuilder attackStyle(AttackPlayStyle style) {
+    public SpellBuilder attackStyle(PlayStyle style) {
         this.spell.config.style = style;
         return this;
     }
 
     public SpellBuilder weaponReq(CastingWeapon wep) {
         this.spell.config.castingWeapon = wep;
+        return this;
+    }
+
+    public SpellBuilder weight(int w) {
+        this.spell.weight = w;
         return this;
     }
 

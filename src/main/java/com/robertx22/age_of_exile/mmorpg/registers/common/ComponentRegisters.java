@@ -25,11 +25,11 @@ public class ComponentRegisters {
             EntityCap.UnitData.class)
             .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityCap.DefaultImpl(x));
 
-    public ComponentType<PlayerSpellCap.ISpellsCap> PLAYER_SPELLS =
+    public ComponentType<EntitySpellCap.ISpellsCap> SPELLS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
             new Identifier(Ref.MODID, "spells"),
-            PlayerSpellCap.ISpellsCap.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerSpellCap.DefaultImpl(x));
+            EntitySpellCap.ISpellsCap.class)
+            .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntitySpellCap.DefaultImpl(x));
 
     public ComponentType<PlayerFavor> PLAYER_FAVOR =
         ComponentRegistry.INSTANCE.registerIfAbsent(
@@ -89,7 +89,7 @@ public class ComponentRegisters {
 
         EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_MAPS, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(PLAYER_SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
+        EntityComponents.setRespawnCopyStrategy(SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PERKS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_FAVOR, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_CHARACTERS, RespawnCopyStrategy.ALWAYS_COPY);

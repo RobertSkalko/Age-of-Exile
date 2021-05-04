@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.spawner;
 
+import com.robertx22.age_of_exile.dimension.SpawnUtil;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -83,9 +84,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
                                         BlockPos blockPos = RandomUtils.randomFromList(positions);
 
-                                        if (world.getBlockState(blockPos.down())
-                                            .isSolidBlock(world, blockPos.down()) && world.isAir(blockPos) && world.isAir(blockPos.up())) {
-
+                                        if (SpawnUtil.canPlaceMob(world, blockPos)) {
                                             list.spawnRandomMob((ServerWorld) world, blockPos, 0);
                                             spawns--;
                                         }

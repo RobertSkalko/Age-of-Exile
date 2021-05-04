@@ -51,18 +51,18 @@ public class PotionRegister {
         }
 
         for (int i = 0; i < 20; i++) {
-            String key = ExileStatusEffect.getIdPath(EffectType.NEUTRAL, i);
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.NEUTRAL, i));
+            String key = ExileStatusEffect.getIdPath(EffectType.neutral, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.neutral, i));
             exileEffectsMap.put(key, eff);
         }
         for (int i = 0; i < 20; i++) {
-            String key = ExileStatusEffect.getIdPath(EffectType.HARMFUL, i);
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.HARMFUL, i));
+            String key = ExileStatusEffect.getIdPath(EffectType.negative, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.negative, i));
             exileEffectsMap.put(key, eff);
         }
         for (int i = 0; i < 20; i++) {
-            String key = ExileStatusEffect.getIdPath(EffectType.BENEFICIAL, i);
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.BENEFICIAL, i));
+            String key = ExileStatusEffect.getIdPath(EffectType.beneficial, i);
+            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.beneficial, i));
             exileEffectsMap.put(key, eff);
         }
         /*

@@ -42,6 +42,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static CasterCommandAction CASTER_USE_COMMAND = of(new CasterCommandAction());
     public static ExileEffectAction EXILE_EFFECT = of(new ExileEffectAction());
     public static AggroAction AGGRO = of(new AggroAction());
+    public static SummonAtTargetFeet SUMMON_AT_FEET = of(new SummonAtTargetFeet());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);

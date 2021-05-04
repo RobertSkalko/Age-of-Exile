@@ -19,7 +19,7 @@ public class ManaRegenFoodEffect extends FoodEffectPotion {
 
     @Override
     public ResourceType resourceType() {
-        return ResourceType.MANA;
+        return ResourceType.mana;
     }
 
     @Override

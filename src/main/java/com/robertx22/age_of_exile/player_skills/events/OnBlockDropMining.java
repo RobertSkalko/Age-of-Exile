@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -70,7 +70,7 @@ public class OnBlockDropMining {
 
             List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
 
-            SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.MINING, list);
+            SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.MINING, list);
             effect.Activate();
 
             ci.getReturnValue()

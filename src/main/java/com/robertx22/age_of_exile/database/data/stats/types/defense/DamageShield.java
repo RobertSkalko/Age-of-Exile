@@ -4,9 +4,10 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class DamageShield extends Stat {
 
@@ -57,14 +58,14 @@ public class DamageShield extends Stat {
         }
 
         @Override
-        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
             effect.data.getNumber(EventData.NUMBER).number -= data.getAverageValue();
 
             return effect;
         }
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
             return true;
         }
 

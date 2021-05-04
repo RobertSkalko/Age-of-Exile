@@ -12,7 +12,7 @@ public class MoreSocketsStat extends Stat {
     }
 
     private MoreSocketsStat() {
-        this.min_val = -100;
+        this.min = -100;
         this.scaling = StatScaling.NONE;
     }
 

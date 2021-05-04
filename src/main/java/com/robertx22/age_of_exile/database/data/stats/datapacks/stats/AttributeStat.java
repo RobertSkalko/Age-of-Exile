@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 
-import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.UUID;
 
-public class AttributeStat extends DatapackStat {
+public class AttributeStat extends BaseDatapackStat {
 
     public static String SER_ID = "vanilla_attribute_stat_ser";
 
@@ -28,7 +28,7 @@ public class AttributeStat extends DatapackStat {
         this.attributeId = Registry.ATTRIBUTE.getId(attribute)
             .toString();
         this.attribute = attribute;
-        this.is_percent = perc;
+        this.is_perc = perc;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.BaseArmorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorType;
@@ -39,7 +39,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     public HashMap<LevelRange, Item> PLATE_PANTS = of("armor/plate/pants/plate_pants", (lvl) -> new BaseArmorItem(ArmorTier.from(lvl), ArmorType.PLATE, "Plate Pants", EquipmentSlot.LEGS, false));
     public HashMap<LevelRange, Item> PLATE_HELMETS = of("armor/plate/helmet/plate_helmet", (lvl) -> new BaseArmorItem(ArmorTier.from(lvl), ArmorType.PLATE, "Plate Helmet", EquipmentSlot.HEAD, false));
 
-    public HashMap<LevelRange, Item> SWORDS = of("weapon/sword/sword", () -> new AoeSwordWeapon(WeaponTypes.Sword));
+    public HashMap<LevelRange, Item> SWORDS = of("weapon/sword/sword", () -> new AoeSwordWeapon(WeaponTypes.sword));
     public HashMap<LevelRange, Item> AXES = of("weapon/axe/axe", () -> new AxeWeapon("Axe"));
     public HashMap<LevelRange, Item> SCYTHES = of("weapon/scythe/scythe", () -> new ScytheWeapon());
     public HashMap<LevelRange, Item> SPEARS = of("weapon/spear/spear", () -> new SpearWeapon());
@@ -51,7 +51,6 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     public HashMap<LevelRange, Item> WANDS = of("weapon/wand/wand", () -> new WandWeapon("Wand"));
     public HashMap<LevelRange, Item> SCEPTERS = of("weapon/scepter/scepter", () -> new ScepterWeapon());
     public HashMap<LevelRange, Item> BOWS = of("weapon/bow/bow", () -> new BowWeapon("Bow"));
-    // public HashMap<LevelRange, Item> SHIELDS = of("weapon/shield/shield", () -> new NormalShield());
 
     public HashMap<LevelRange, Item> PICKAXE = vanilla(Items.DIAMOND_PICKAXE);
     public HashMap<LevelRange, Item> FISHING_RODS = vanilla(Items.FISHING_ROD);

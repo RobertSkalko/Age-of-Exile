@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
@@ -29,11 +30,12 @@ import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
@@ -42,8 +44,8 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -86,7 +88,7 @@ public class EntityCap {
 
         EntityStatusEffectsData getStatusEffectsData();
 
-        void modifyResource(ResourcesData.Context ctx);
+        float getMaximumResource(ResourceType type);
 
         void onDeath();
 
@@ -134,7 +136,7 @@ public class EntityCap {
 
         void forceSetUnit(Unit unit);
 
-        Entity getEntity();
+        LivingEntity getEntity();
 
         boolean canUseWeapon(GearItemData gear);
 
@@ -375,8 +377,25 @@ public class EntityCap {
         }
 
         @Override
-        public void modifyResource(ResourcesData.Context ctx) {
-            this.resources.modify(ctx);
+        public float getMaximumResource(ResourceType type) {
+
+            float multi = Load.spells(entity)
+                .getReservedManaMulti();
+
+            if (type == ResourceType.blood) {
+                return getUnit().bloodData()
+                    .getAverageValue() * multi;
+            }
+            if (type == ResourceType.mana) {
+                return getUnit().manaData()
+                    .getAverageValue() * multi;
+            }
+            if (type == ResourceType.health) {
+                return entity.getMaxHealth();
+            }
+
+            return 0;
+
         }
 
         @Override
@@ -499,13 +518,17 @@ public class EntityCap {
                 MutableText name = new LiteralText("").append(entity.getDisplayName())
                     .formatted(rarformat);
 
-                if (!rarity.name_add.isEmpty()) {
-                    name = new LiteralText("[Lv." + rarity.name_add + "] ").formatted(Formatting.YELLOW)
-                        .append(name);
+                String icons = "";
+
+                for (MobAffix x : getAffixData().getAffixes()) {
+                    icons += CLOC.translate(x.locName());
+                }
+                if (!icons.isEmpty()) {
+                    icons += " ";
                 }
 
-                MutableText finalName =
-                    name;
+                MutableText finalName = new LiteralText(icons).append(
+                    name);
 
                 MutableText part = new LiteralText("")
                     .append(finalName)
@@ -687,17 +710,17 @@ public class EntityCap {
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
-            AttackPlayStyle style = AttackPlayStyle.MELEE;
+            PlayStyle style = PlayStyle.melee;
 
             if (data.getSource() != null && data.getSource()
                 .isProjectile()) {
-                style = AttackPlayStyle.RANGED;
+                style = PlayStyle.ranged;
             }
 
-            DamageEffect dmg = new DamageEffect(
-                data, (int) num, AttackType.ATTACK, WeaponTypes.None, style
-            );
-            dmg.setIsBasicAttack();
+            DamageEvent dmg = EventBuilder.ofDamage(data, entity, data.getTargetEntity(), num)
+                .setupDamage(AttackType.attack, WeaponTypes.none, style)
+                .setIsBasicAttack()
+                .build();
 
             dmg.Activate();
 
@@ -847,21 +870,10 @@ public class EntityCap {
                 }
 
                 // fully restore on lvlup
-                getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.MANA,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
-                getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.HEALTH,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
-                getResources()
-                    .modify(new ResourcesData.Context(this, player, ResourceType.BLOOD,
-                        Integer.MAX_VALUE,
-                        ResourcesData.Use.RESTORE
-                    ));
+
+                getResources().restore(player, ResourceType.mana, Integer.MAX_VALUE);
+                getResources().restore(player, ResourceType.health, Integer.MAX_VALUE);
+                getResources().restore(player, ResourceType.blood, Integer.MAX_VALUE);
 
                 // fully restore on lvlup
 
@@ -930,7 +942,7 @@ public class EntityCap {
         }
 
         @Override
-        public Entity getEntity() {
+        public LivingEntity getEntity() {
             return entity;
         }
 

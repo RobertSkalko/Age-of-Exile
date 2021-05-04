@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStat
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IOneOfATypePotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyableStats {
+public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyableStats, IOneOfATypePotion {
 
     String exileEffectId;
 
@@ -29,13 +30,13 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
     }
 
     public static String getIdPath(EffectType type, int num) {
-        if (type == EffectType.BENEFICIAL) {
+        if (type == EffectType.beneficial) {
             return "beneficial/" + num;
         }
-        if (type == EffectType.HARMFUL) {
+        if (type == EffectType.negative) {
             return "negative/" + num;
         }
-        if (type == EffectType.BUFF) {
+        if (type == EffectType.buff) {
             return "buff/" + num;
         }
 
@@ -121,6 +122,10 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 
         try {
+            if (entity.isDead()) {
+                return;
+            }
+
             ExileEffect exect = getExileEffect();
 
             if (exect.spell == null) {
@@ -169,5 +174,10 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
         }
 
         return Arrays.asList(new SimpleStatCtx(StatContext.StatCtxType.POTION_EFFECT, stats));
+    }
+
+    @Override
+    public String getOneOfATypeType() {
+        return getExileEffect().one_of_a_kind_id;
     }
 }

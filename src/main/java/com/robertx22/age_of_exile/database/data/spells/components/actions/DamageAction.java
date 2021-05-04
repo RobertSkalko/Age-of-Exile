@@ -5,13 +5,14 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -54,11 +55,13 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
             Elements ele = data.getElement();
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
-
-            value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.DAMAGE);
+            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
 
             for (LivingEntity t : targets) {
+
+                if (t == null) {
+                    continue;
+                }
 
                 int stacks = 1;
                 try {
@@ -75,11 +78,13 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
                     e.printStackTrace();
                 }
 
-                SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, t, value * stacks, ctx.calculatedSpellData.getSpell());
+                DamageEvent dmg = EventBuilder.ofSpellDamage(ctx.caster, t, value * stacks, ctx.calculatedSpellData.getSpell())
+                    .build();
                 if (data.has(MapField.DMG_EFFECT_TYPE)) {
-                    dmg.attackType = data.getDmgEffectType();
+                    dmg.data.setString(EventData.ATTACK_TYPE, data.getDmgEffectType()
+                        .name());
                 }
-                dmg.element = ele;
+                dmg.setElement(ele);
                 dmg.Activate();
             }
         }

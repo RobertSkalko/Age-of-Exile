@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.registry.FilterListWrap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -300,7 +300,7 @@ public class TileGearSalvage extends BaseSkillStation {
 
                 List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
 
-                SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.SALVAGING, list);
+                SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.SALVAGING, list);
                 effect.Activate();
 
                 effect.extraDrops.forEach(x -> PlayerUtils.giveItem(x, player));

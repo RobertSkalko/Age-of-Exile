@@ -5,14 +5,14 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnu
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpellCalcEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class CastSpeed extends Stat {
 
     private CastSpeed() {
-        this.max_val = 75;
+        this.max = 75;
         this.statEffect = new Effect();
     }
 
@@ -48,15 +48,15 @@ public class CastSpeed extends Stat {
     static class Effect extends BaseSpellCalcEffect {
 
         @Override
-        public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
-            effect.data.add(SpellModEnum.CAST_SPEED, -data.getAverageValue());
+        public SpellStatsCalculationEvent activate(SpellStatsCalculationEvent effect, StatData data, Stat stat) {
+            effect.spellConfig.add(SpellModEnum.CAST_SPEED, -data.getAverageValue());
             return effect;
         }
 
         @Override
-        public boolean canActivate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(SpellStatsCalculationEvent effect, StatData data, Stat stat) {
             Spell spell = effect.getSpell();
-            return spell.config.style.getAttackType() == AttackType.SPELL;
+            return spell.config.style.getAttackType() == AttackType.spell;
         }
 
     }

@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
@@ -10,13 +12,11 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.StyleDamageReceived;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -26,24 +26,24 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_S
 
 public class NegativeEffects implements ISlashRegistryInit {
 
-    public static String ELE_WEAKNESS = "negative/" + 0;
-    public static String PETRIFY = "negative/" + 1;
-    public static String FROSTBURN = "negative/" + 2;
-    public static String POISON = "negative/" + 3;
-    public static String WOUNDS = "negative/" + 4;
-    public static String BURN = "negative/" + 5;
-    public static String JUDGEMENT = "negative/" + 6;
-    public static String TORMENT = "negative/" + 7;
-    public static String BLEED = "negative/" + 8;
-    public static String MUMMY_CURSE = "negative/" + 9;
-    public static String BLIND = "negative/" + 10;
+    public static EffectCtx ELE_WEAKNESS = new EffectCtx("ele_weakness", "Ele Weakness", 0, Elements.Elemental, EffectType.negative);
+    public static EffectCtx PETRIFY = new EffectCtx("petrify", "Petrify", 1, Elements.Nature, EffectType.negative);
+    public static EffectCtx FROSTBURN = new EffectCtx("frostburn", "Frost Burn", 2, Elements.Water, EffectType.negative);
+    public static EffectCtx POISON = new EffectCtx("poison", "Poison", 3, Elements.Nature, EffectType.negative);
+    public static EffectCtx WOUNDS = new EffectCtx("wounds", "Wounds", 4, Elements.Physical, EffectType.negative);
+    public static EffectCtx BURN = new EffectCtx("burn", "Burn", 5, Elements.Fire, EffectType.negative);
+    public static EffectCtx JUDGEMENT = new EffectCtx("judgement", "Judgement", 6, Elements.Light, EffectType.negative);
+    public static EffectCtx TORMENT = new EffectCtx("torment", "Torment", 7, Elements.Dark, EffectType.negative);
+    public static EffectCtx BLEED = new EffectCtx("bleed", "Bleed", 8, Elements.Physical, EffectType.negative);
+    public static EffectCtx MUMMY_CURSE = new EffectCtx("mummy_curse", "Mummy Curse", 9, Elements.Light, EffectType.negative);
+    public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Light, EffectType.negative);
 
     @Override
     public void registerAll() {
 
-        ExileEffectBuilder.of(MUMMY_CURSE, "Mummy Curse", EffectType.HARMFUL)
+        ExileEffectBuilder.of(MUMMY_CURSE)
             .maxStacks(1)
-            .stat(20, StyleDamageReceived.MAGIC, ModType.FLAT)
+            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 3D, 1D)
                     .onTick(10D))
@@ -52,26 +52,26 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(TORMENT, "Torment", EffectType.HARMFUL)
+        ExileEffectBuilder.of(TORMENT)
             .maxStacks(1)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
             .stat(-10, new ElementalResist(Elements.Dark), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT, ValueCalculation.base("torment", 2F), Elements.Dark)
+                .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, ValueCalculation.base("torment", 2F), Elements.Dark)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(FROSTBURN, "Frostburn", EffectType.HARMFUL)
+        ExileEffectBuilder.of(FROSTBURN)
             .maxStacks(5)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.05F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
             .stat(-4, new ElementalResist(Elements.Water), ModType.FLAT)
 
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(FROSTBURN, ValueCalculation.base("frostburn", 1.5F), Elements.Water)
+                .onTick(PartBuilder.dotDamageOnTick(FROSTBURN.effectId, ValueCalculation.base("frostburn", 1.5F), Elements.Water)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
@@ -79,11 +79,11 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(POISON, "Poison", EffectType.HARMFUL)
+        ExileEffectBuilder.of(POISON)
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(POISON, ValueCalculation.base("poison", 2), Elements.Nature)
+                .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, ValueCalculation.base("poison", 2), Elements.Nature)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 15D, 1D)
                     .onTick(20D))
@@ -92,11 +92,11 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(BURN, "Burn", EffectType.HARMFUL)
+        ExileEffectBuilder.of(BURN)
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BURN, ValueCalculation.base("burn", 2), Elements.Fire)
+                .onTick(PartBuilder.dotDamageOnTick(BURN.effectId, ValueCalculation.base("burn", 2), Elements.Fire)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
@@ -106,27 +106,27 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(BLEED, "Bleed", EffectType.HARMFUL)
+        ExileEffectBuilder.of(BLEED)
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BLEED, ValueCalculation.base("bleed", 2.25F), Elements.Physical)
+                .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, ValueCalculation.base("bleed", 2.25F), Elements.Physical)
                     .onTick(20D))
 
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 10D, 1D)
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
                     .onTick(20D))
                 .onTick(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_HURT, 0.5D, 1D)
                     .onTick(20D))
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(ELE_WEAKNESS, "-Ele Resist", EffectType.HARMFUL)
+        ExileEffectBuilder.of(ELE_WEAKNESS)
             .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .build();
 
-        ExileEffectBuilder.of(BLIND, "Blind", EffectType.HARMFUL)
+        ExileEffectBuilder.of(BLIND)
             .stat(-10, new AttackDamage(Elements.Physical), ModType.FLAT)
-            .stat(-25, CriticalHit.getInstance(), ModType.FLAT)
+            .stat(-25, Stats.CRIT_CHANCE.get(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 3D, 1D)
                     .onTick(20D))
@@ -134,11 +134,11 @@ public class NegativeEffects implements ISlashRegistryInit {
             )
             .build();
 
-        ExileEffectBuilder.of(WOUNDS, "Wounds", EffectType.HARMFUL)
-            .stat(-25, HealPower.getInstance(), ModType.FLAT)
+        ExileEffectBuilder.of(WOUNDS)
+            .stat(-25, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
             .build();
 
-        ExileEffectBuilder.of(JUDGEMENT, "Judgement", EffectType.HARMFUL)
+        ExileEffectBuilder.of(JUDGEMENT)
             .stat(-10, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
@@ -150,7 +150,7 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(PETRIFY, "Petrify", EffectType.HARMFUL)
+        ExileEffectBuilder.of(PETRIFY)
             .addTags(ExileEffect.EffectTags.IMMOBILIZE)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
             .spell(SpellBuilder.forEffect()

@@ -5,10 +5,8 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.defense.SpellDodgeEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
-public class SpellDodge extends Stat implements IExtraStatEffect, IUsableStat {
+public class SpellDodge extends Stat implements IUsableStat {
 
     public static String GUID = "spell_dodge";
 
@@ -21,15 +19,12 @@ public class SpellDodge extends Stat implements IExtraStatEffect, IUsableStat {
         return "Chance to ignore magic spell damage. Melee and ranged type spells don't count.";
     }
 
-    @Override
-    public IStatEffect getEffect() {
-        return SpellDodgeEffect.getInstance();
-    }
-
-    protected SpellDodge() {
-        this.min_val = 0;
+    private SpellDodge() {
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
+
+        this.statEffect = SpellDodgeEffect.getInstance();
     }
 
     @Override

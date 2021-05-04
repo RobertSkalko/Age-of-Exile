@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats.base;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.AutoDatapackStats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.base.DatapackStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 
-public abstract class DatapackSpellStat extends DatapackStat {
+public abstract class DatapackSpellStat extends BaseDatapackStat {
 
     protected String spellname;
     public String spell = "";

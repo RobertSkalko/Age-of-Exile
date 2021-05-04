@@ -15,11 +15,11 @@ public class SpecialStat extends Stat {
         this.id = id;
         this.longName = longName;
         this.statEffect = effect;
-        this.isLongStat = true;
+        this.is_long = true;
 
         this.scaling = StatScaling.NONE;
 
-        this.is_percent = true;
+        this.is_perc = true;
         this.registerToSlashRegistry();
     }
 

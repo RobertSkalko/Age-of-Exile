@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.dun_mob_list;
 
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.EntityType;
 
 public class DungeonMobListAdder implements ISlashRegistryInit {
@@ -13,7 +14,7 @@ public class DungeonMobListAdder implements ISlashRegistryInit {
             .addMob(EntityType.ZOMBIE)
             .addMob(EntityType.STRAY, 200)
 
-            .addBoss(EntityType.WITHER_SKELETON)
+            .addBoss(ModRegistry.ENTITIES.FIRE_MAGE_BOSS)
             .build();
 
         DungeonMobListBuilder.of("nether")
@@ -21,7 +22,7 @@ public class DungeonMobListAdder implements ISlashRegistryInit {
             .addMob(EntityType.BLAZE, 200)
             .addMob(EntityType.MAGMA_CUBE, 50)
 
-            .addBoss(EntityType.WITHER_SKELETON)
+            .addBoss(ModRegistry.ENTITIES.FIRE_MAGE_BOSS)
             .build();
 
     }

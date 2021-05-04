@@ -5,13 +5,11 @@ import com.robertx22.age_of_exile.database.data.stats.effects.defense.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class ElementalResist extends ElementalStat implements IExtraStatEffect {
+public class ElementalResist extends ElementalStat {
 
     public static MapWrapper<Elements, ElementalResist> MAP = new MapWrapper();
 
@@ -24,14 +22,16 @@ public class ElementalResist extends ElementalStat implements IExtraStatEffect {
 
     public ElementalResist(Elements element) {
         super(element);
-        this.min_val = -300;
+        this.min = -300;
 
-        this.max_val = 80;
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.max = 80;
+        this.group = StatGroup.ELEMENTAL;
 
-        this.textFormat = element.format;
-        this.textIcon = element.icon;
+        this.format = element.format;
+        this.icon = element.icon;
         this.isLocalTo = x -> x.isArmor() || x.isJewelry() || x.isShield();
+
+        this.statEffect = new ElementalResistEffect();
 
     }
 
@@ -48,11 +48,6 @@ public class ElementalResist extends ElementalStat implements IExtraStatEffect {
     @Override
     public String locDescForLangFile() {
         return "Stops X percent damage of that element";
-    }
-
-    @Override
-    public IStatEffect getEffect() {
-        return new ElementalResistEffect();
     }
 
     @Override

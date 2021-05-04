@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
-import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
@@ -183,8 +182,6 @@ public class Unit {
         }
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
-
-        EntityConfig entityConfig = Database.getEntityConfig(entity, data);
 
         return finalRarity.GUID();
 

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.exile_effects;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
@@ -14,11 +14,11 @@ public class ExileEffectBuilder {
 
     private ExileEffect effect = new ExileEffect();
 
-    public static ExileEffectBuilder of(String id, String locname, EffectType type) {
+    public static ExileEffectBuilder of(EffectCtx ctx) {
         ExileEffectBuilder b = new ExileEffectBuilder();
-        b.effect.type = type;
-        b.effect.id = id;
-        b.effect.locName = locname;
+        b.effect.type = ctx.type;
+        b.effect.id = ctx.effectId;
+        b.effect.locName = ctx.locname;
         return b;
     }
 
@@ -26,6 +26,11 @@ public class ExileEffectBuilder {
         for (EffectTags tag : tags) {
             this.effect.tags.add(tag.name());
         }
+        return this;
+    }
+
+    public ExileEffectBuilder oneOfAKind(String kind) {
+        this.effect.one_of_a_kind_id = kind;
         return this;
     }
 

@@ -6,8 +6,9 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEff
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,13 @@ public class AttackDamage extends ElementalStat {
 
     public AttackDamage(Elements element) {
         super(element);
-        this.uses_second_val = true;
+        this.use_sec_val = true;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.ELEMENTAL;
+        this.group = StatGroup.ELEMENTAL;
         this.statEffect = new Effect();
 
-        this.textFormat = element.format;
-        this.textIcon = element.icon;
+        this.format = element.format;
+        this.icon = element.icon;
         this.isLocalTo = x -> x.isWeapon();
     }
 
@@ -82,14 +83,14 @@ public class AttackDamage extends ElementalStat {
         }
 
         @Override
-        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
             effect.addBonusEleDmg(stat.getElement(), data.getRandomRangeValue());
             return effect;
         }
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return stat.getElement() != Elements.Physical && effect.isBasicAttack;
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
+            return stat.getElement() != Elements.Physical && effect.data.isBasicAttack();
         }
 
     }

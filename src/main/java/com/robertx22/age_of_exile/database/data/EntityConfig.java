@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurn;
 import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
@@ -145,8 +144,6 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new OptScaleExactStat(-15, ExtraMobDropsStat.getInstance()));
-
-    public static SpecialMobStats MANA_BURN = new SpecialMobStats(new OptScaleExactStat(1, ManaBurn.getInstance()), new OptScaleExactStat(15, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats SLOWER_PROJ = new SpecialMobStats(new OptScaleExactStat(-30, ProjectileSpeed.getInstance()));
 

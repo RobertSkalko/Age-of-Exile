@@ -2,21 +2,17 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DayDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.HealPower;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -51,8 +47,8 @@ public class PharaohArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 20, new ElementalSpellDamage(Elements.Light)),
-                    new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
+                    new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
+                    new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(5, 15, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT),
@@ -81,7 +77,7 @@ public class PharaohArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 25, HealPower.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(5, 15, TreasureQuality.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT)
@@ -108,7 +104,7 @@ public class PharaohArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Fire)),
+                    new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
                     new StatModifier(20, 40, Mana.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(5, 10, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
@@ -138,11 +134,11 @@ public class PharaohArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 20, SpellCriticalDamage.getInstance()),
+                    new StatModifier(10, 20, Stats.SPELL_CRIT_DAMAGE.get()),
                     new StatModifier(5, 10, BonusExp.getInstance()),
-                    new StatModifier(5, 15, new ElementalDamageBonus(Elements.Fire)),
+                    new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
                     new StatModifier(5, 10, TreasureQuality.getInstance(), ModType.FLAT),
-                    new StatModifier(10, 20, DayDamage.getInstance(), ModType.FLAT),
+                    new StatModifier(10, 20, Stats.DAY_DAMAGE.get(), ModType.FLAT),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT)
                 )
             )
@@ -154,5 +150,6 @@ public class PharaohArmor implements ISlashRegistryInit {
             .build();
 
     }
+
 }
 

@@ -6,18 +6,18 @@ import com.robertx22.age_of_exile.database.data.stats.effects.game_changers.Bloo
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 import net.minecraft.util.Formatting;
 
-public class BloodUser extends Stat implements IExtraStatEffect {
+public class BloodUser extends Stat {
     public static String GUID = "blood_user";
 
     private BloodUser() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.Misc;
-        this.isLongStat = true;
+        this.group = StatGroup.Misc;
+        this.is_long = true;
+
+        this.statEffect = BloodUserEffect.getInstance();
 
     }
 
@@ -55,11 +55,6 @@ public class BloodUser extends Stat implements IExtraStatEffect {
         return Formatting.GRAY + "You now use " + Blood.getInstance()
             .getIconNameFormat() + " instead of " + Mana.getInstance()
             .getIconNameFormat();
-    }
-
-    @Override
-    public IStatEffect getEffect() {
-        return BloodUserEffect.getInstance();
     }
 
     private static class SingletonHolder {

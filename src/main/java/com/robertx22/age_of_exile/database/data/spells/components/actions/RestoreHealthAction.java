@@ -3,14 +3,14 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellHealEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -51,20 +51,20 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
             if (!ctx.world.isClient) {
                 ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-                int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData);
+                int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
 
                 int total = 0;
 
-                value *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.HEALING);
-
                 for (LivingEntity t : targets) {
-                    ResourcesData.Context hctx = new ResourcesData.Context(ctx.caster, t, ResourceType.HEALTH,
-                        value, ResourcesData.Use.RESTORE,
-                        ctx.calculatedSpellData.getSpell()
-                    );
-                    SpellHealEffect heal = new SpellHealEffect(hctx);
-                    total += heal.data.getNumber();
-                    heal.Activate();
+
+                    RestoreResourceEvent restore = EventBuilder.ofRestore(ctx.caster, t, ResourceType.health, RestoreType.heal, value)
+                        .setSpell(ctx.calculatedSpellData.getSpell())
+                        .build();
+
+                    restore.Activate();
+
+                    total += restore.data.getNumber();
+
                 }
 
                 if (ctx.caster instanceof PlayerEntity) {

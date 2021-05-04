@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.SkillEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
@@ -22,10 +22,10 @@ public class TripleDropChance extends Stat {
     }
 
     private TripleDropChance() {
-        this.base_val = 0;
-        this.min_val = 0;
+        this.base = 0;
+        this.min = 0;
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
 
         this.statEffect = new Effect();
     }
@@ -57,7 +57,7 @@ public class TripleDropChance extends Stat {
     private class Effect extends SkillEffect {
 
         @Override
-        public SkillDropData activate(SkillDropData effect, StatData data, Stat stat) {
+        public SkillDropEvent activate(SkillDropEvent effect, StatData data, Stat stat) {
 
             effect.originalDrops.forEach(x -> {
                 effect.extraDrops.add(x.copy());
@@ -67,7 +67,7 @@ public class TripleDropChance extends Stat {
         }
 
         @Override
-        public boolean canActivate(SkillDropData effect, StatData data, Stat stat) {
+        public boolean canActivate(SkillDropEvent effect, StatData data, Stat stat) {
             return RandomUtils.roll(data.getAverageValue());
         }
 

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -44,7 +44,7 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
     public void onReceived(PacketContext ctx) {
         PlayerEntity player = ctx.getPlayer();
 
-        PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+        EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
         SkillGemData data = spells.getSkillGemData()
             .getSkillGemOf(number);

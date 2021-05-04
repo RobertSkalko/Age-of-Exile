@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.data.stats.types.offense.crit;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.heals.HealCritChance;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
@@ -21,10 +21,10 @@ public class GlobalCriticalHit extends Stat implements ITransferToOtherStats {
     }
 
     private GlobalCriticalHit() {
-        this.base_val = 1;
-        this.max_val = 100;
-        this.min_val = 0;
-        this.statGroup = StatGroup.MAIN;
+        this.base = 1;
+        this.max = 100;
+        this.min = 0;
+        this.group = StatGroup.MAIN;
     }
 
     @Override
@@ -51,13 +51,13 @@ public class GlobalCriticalHit extends Stat implements ITransferToOtherStats {
     public void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat) {
         thisstat.addFullyTo(unit.getUnit()
             .getStats()
-            .getStatInCalculation(CriticalHit.getInstance()));
+            .getStatInCalculation(Stats.CRIT_CHANCE.get()));
         thisstat.addFullyTo(unit.getUnit()
             .getStats()
-            .getStatInCalculation(SpellCriticalHit.getInstance()));
+            .getStatInCalculation(Stats.SPELL_CRIT_CHANCE.get()));
         thisstat.addFullyTo(unit.getUnit()
             .getStats()
-            .getStatInCalculation(HealCritChance.getInstance()));
+            .getStatInCalculation(Stats.HEAL_CRIT_CHANCE.get()));
         thisstat.clear();
     }
 

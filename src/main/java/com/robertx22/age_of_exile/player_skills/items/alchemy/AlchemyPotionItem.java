@@ -10,8 +10,10 @@ import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
@@ -57,12 +59,9 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
             int restore = (int) (tier.percent_healed / 100F * unitdata.getResources()
                 .getMax(player, this.type.resource));
 
-            ResourcesData.Context ctx = new ResourcesData.Context(unitdata, player, type.resource,
-                restore,
-                ResourcesData.Use.RESTORE
-            );
-            unitdata.getResources()
-                .modify(ctx);
+            RestoreResourceEvent event = EventBuilder.ofRestore(player, player, type.resource, RestoreType.heal, restore)
+                .build();
+            event.Activate();
 
             getFoodEffect().apply(player); // because it's only applied when eating food normally
 

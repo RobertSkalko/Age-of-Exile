@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
@@ -19,13 +21,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Lifesteal;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -34,7 +31,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -159,7 +156,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
         @Override
         public List<StatModifier> onJewelry() {
-            return Arrays.asList(new StatModifier(MIN_ELE_DMG, MAX_ELE_DMG, new ElementalSpellDamage(ele)));
+            return Arrays.asList(new StatModifier(MIN_ELE_DMG, MAX_ELE_DMG, Stats.ELEMENTAL_SPELL_DAMAGE.get(ele)));
         }
 
         @Override
@@ -183,7 +180,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 5, Lifesteal.getInstance()));
+                return Arrays.asList(new StatModifier(2, 5, Stats.LIFESTEAL.get()));
             }
         }),
         AZURITE("azurite", "Azurite", Formatting.AQUA, new GemStatPerTypes() {
@@ -199,7 +196,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(1, 3, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK))));
+                return Arrays.asList(new StatModifier(1, 3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack))));
             }
         }),
 
@@ -211,12 +208,12 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 10, CriticalDamage.getInstance()));
+                return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
             }
         }),
         OPAL("opal", "Opal", Formatting.GOLD, new GemStatPerTypes() {
@@ -227,12 +224,12 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(3, 10, CriticalDamage.getInstance()));
+                return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
             }
         }),
         TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Light)),

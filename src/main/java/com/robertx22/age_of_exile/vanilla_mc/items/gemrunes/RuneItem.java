@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
@@ -23,23 +25,18 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.ResourceOnHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaBurnResistance;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -151,12 +148,12 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(2, 5, new ElementalSpellDamage(Elements.Elemental), ModType.FLAT));
+                return Arrays.asList(new StatModifier(2, 5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Elemental), ModType.FLAT));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(1, 20, CriticalDamage.getInstance(), ModType.FLAT));
+                return Arrays.asList(new StatModifier(1, 20, Stats.CRIT_DAMAGE.get(), ModType.FLAT));
             }
         }),
         NOS(1000, "nos", "Nos", 0.2F, new GemStatPerTypes() {
@@ -172,7 +169,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(5, 12, CriticalDamage.getInstance()));
+                return Arrays.asList(new StatModifier(5, 12, Stats.CRIT_DAMAGE.get()));
             }
         }),
 
@@ -189,7 +186,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
             }
         }),
 
@@ -206,7 +203,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.5F, 2, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.HEALTH, AttackType.ATTACK))));
+                return Arrays.asList(new StatModifier(0.5F, 2, Stats.LIFESTEAL.get()));
             }
         }),
 
@@ -218,7 +215,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Light)));
+                return Arrays.asList(new StatModifier(3, 8, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)));
             }
 
             @Override
@@ -234,7 +231,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Dark)));
+                return Arrays.asList(new StatModifier(3, 8, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)));
             }
 
             @Override
@@ -251,7 +248,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Nature)));
+                return Arrays.asList(new StatModifier(3, 8, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)));
             }
 
             @Override
@@ -268,7 +265,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Fire)));
+                return Arrays.asList(new StatModifier(3, 8, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)));
             }
 
             @Override
@@ -285,7 +282,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 8, new ElementalSpellDamage(Elements.Water)));
+                return Arrays.asList(new StatModifier(3, 8, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)));
             }
 
             @Override
@@ -302,12 +299,12 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(25, 50, ManaBurnResistance.getInstance()));
+                return Arrays.asList(new StatModifier(5, 10, Mana.getInstance()));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 6, CriticalHit.getInstance()));
+                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
             }
         }),
 
@@ -324,7 +321,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(4, 10, CriticalDamage.getInstance()));
+                return Arrays.asList(new StatModifier(4, 10, Stats.CRIT_DAMAGE.get()));
             }
         }),
 
@@ -344,7 +341,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(3, 5, CriticalHit.getInstance()));
+                return Arrays.asList(new StatModifier(3, 5, Stats.CRIT_CHANCE.get()));
             }
         }),
 
@@ -363,7 +360,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(5, 10, CriticalDamage.getInstance()));
+                return Arrays.asList(new StatModifier(5, 10, Stats.CRIT_DAMAGE.get()));
             }
         }),
 
@@ -380,7 +377,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(0.3F, 1, new ResourceOnHit(new ResourceOnHit.Info(ResourceType.MANA, AttackType.ATTACK))));
+                return Arrays.asList(new StatModifier(0.3F, 1, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack))));
 
             }
         });

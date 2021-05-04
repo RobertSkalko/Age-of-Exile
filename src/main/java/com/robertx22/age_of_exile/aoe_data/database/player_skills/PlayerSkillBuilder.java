@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.player_skills.*;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusXpToMobsOfTier;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillYield;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
@@ -43,7 +43,7 @@ public class PlayerSkillBuilder {
 
     public PlayerSkillBuilder totalDamage(int lvl, float num) {
         stat(new SkillStatReward(lvl,
-            new OptScaleExactStat(num, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(num, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         ));
         return this;
     }

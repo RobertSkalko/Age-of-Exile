@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.spell_classes.bases;
 
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
@@ -24,7 +24,7 @@ public class MyDamageSource extends EntityDamageSource {
 
     static String source(DamageSource s) {
         if (s == null) {
-            return DamageEffect.dmgSourceName;
+            return DamageEvent.dmgSourceName;
         }
         return s.name;
     }

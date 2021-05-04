@@ -16,7 +16,7 @@ public final class MobRarity extends BaseRarity implements Rarity, IAutoGson<Mob
     public float stat_multi;
     public float loot_multi;
     public float exp_multi;
-    public float affix_chance;
+    public int affixes = 0;
     public String name_add = "";
 
     public MobRarity() {
@@ -45,10 +45,6 @@ public final class MobRarity extends BaseRarity implements Rarity, IAutoGson<Mob
 
     public float expMulti() {
         return exp_multi;
-    }
-
-    public float oneAffixChance() {
-        return affix_chance;
     }
 
     public boolean hasHigherRarity() {

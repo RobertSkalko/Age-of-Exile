@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons;
 
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.SingleTargetWeapon;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

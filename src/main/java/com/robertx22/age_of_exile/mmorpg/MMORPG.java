@@ -19,10 +19,6 @@ public class MMORPG {
         }
     }
 
-    public static boolean statEffectDebuggingEnabled() {
-        return false && RUN_DEV_TOOLS;
-    }
-
     public static Logger LOGGER = Logger.getLogger(Ref.MOD_NAME);
 
     public static void devToolsLog(String string) {

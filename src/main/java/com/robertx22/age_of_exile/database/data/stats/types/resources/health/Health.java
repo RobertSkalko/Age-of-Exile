@@ -9,13 +9,13 @@ public class Health extends Stat {
     public static String GUID = "health";
 
     private Health() {
-        this.min_val = 1;
+        this.min = 1;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
-        this.baseStatTooltipOrder = 0;
-        this.textIcon = "\u2764";
-        this.textFormat = Formatting.RED;
+        this.order = 0;
+        this.icon = "\u2764";
+        this.format = Formatting.RED;
 
     }
 

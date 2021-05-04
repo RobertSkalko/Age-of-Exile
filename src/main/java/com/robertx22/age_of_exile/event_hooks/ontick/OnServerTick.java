@@ -11,7 +11,9 @@ import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -53,6 +55,10 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data = new PlayerTickData();
                 }
 
+                Load.Unit(player)
+                    .getCooldowns()
+                    .onTicksPass(1);
+
                 Spell spell = Load.spells(player)
                     .getCastingData()
                     .getSpellBeingCast();
@@ -73,16 +79,14 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
 
-                        unitdata.getCooldowns()
-                            .onTicksPass(TicksToRegen);
-
                         unitdata.getResources()
                             .shields.onTicksPassed(TicksToRegen);
 
                         unitdata.tryRecalculateStats();
 
-                        RegenEvent event = new RegenEvent(player, player, ResourceType.MANA);
-                        event.Activate();
+                        RestoreResourceEvent mana = EventBuilder.ofRestore(player, player, ResourceType.mana, RestoreType.regen, 0)
+                            .build();
+                        mana.Activate();
 
                         boolean restored = false;
 
@@ -94,7 +98,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                                 restored = true;
                             }
 
-                            RegenEvent hpevent = new RegenEvent(player, player, ResourceType.HEALTH);
+                            RestoreResourceEvent hpevent = EventBuilder.ofRestore(player, player, ResourceType.health, RestoreType.regen, 0)
+                                .build();
                             hpevent.Activate();
 
                             if (restored) {

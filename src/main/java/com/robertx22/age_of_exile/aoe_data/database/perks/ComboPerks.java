@@ -1,13 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -18,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 public class ComboPerks implements ISlashRegistryInit {
 
@@ -68,12 +68,12 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(1, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("phys_acc",
-            new OptScaleExactStat(3, Accuracy.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("flat_mana_reg_melee_dmg",
             new OptScaleExactStat(1, ManaRegen.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(2, AttackStyleDamage.MELEE, ModType.FLAT)
+            new OptScaleExactStat(2, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT)
         );
 
         PerkBuilder.stat("armor_and_ms",
@@ -100,18 +100,18 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("crit_proj_dmg",
-            new OptScaleExactStat(2, CriticalDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(1, ProjectileDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(2, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
+            new OptScaleExactStat(1, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.stat("hp_dot_dmg",
             new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(3, DotDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.stat("fire_water_spell_dmg",
-            new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Fire), ModType.FLAT),
-            new OptScaleExactStat(3, new ElementalDamageBonus(Elements.Water), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
+            new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT)
         );
         PerkBuilder.stat("inc_area_spell_dmg",
             new OptScaleExactStat(4, IncreasedAreaOfEffect.getInstance(), ModType.FLAT),
@@ -119,7 +119,7 @@ public class ComboPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.stat("area_dmg_mana",
-            new OptScaleExactStat(4, AreaDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(4, Stats.AREA_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
 

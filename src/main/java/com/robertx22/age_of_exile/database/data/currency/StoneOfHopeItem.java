@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.interfaces.IRenamed;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
@@ -19,18 +18,13 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IShapedRecipe {
+public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
     @Override
     public String GUID() {
         return "currency/stone_of_hope";
     }
 
     public static final String ID = Ref.MODID + ":currency/stone_of_hope";
-
-    @Override
-    public List<String> oldNames() {
-        return Arrays.asList(Ref.MODID + ":stone_of_hope");
-    }
 
     public StoneOfHopeItem() {
 

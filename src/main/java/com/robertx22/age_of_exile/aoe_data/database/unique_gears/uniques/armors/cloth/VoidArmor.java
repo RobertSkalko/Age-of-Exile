@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
@@ -9,10 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.AttackStyleDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -21,6 +18,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 import java.util.Arrays;
 
@@ -74,8 +72,8 @@ public class VoidArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 15, AttackStyleDamage.MELEE, ModType.FLAT),
-                    new StatModifier(5, 10, Accuracy.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 15, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
                     new StatModifier(1, 10, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Strength.INSTANCE, ModType.FLAT)
 
@@ -133,8 +131,8 @@ public class VoidArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 10, SpellCriticalHit.getInstance()),
-                    new StatModifier(5, 15, new ElementalSpellDamage(Elements.Dark)),
+                    new StatModifier(5, 10, Stats.SPELL_CRIT_CHANCE.get()),
+                    new StatModifier(5, 15, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
                     new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)
                 )

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.spells.entities;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -27,7 +27,7 @@ public class EntitySavedSpellData {
     @Store
     public int lvl = 1;
 
-    public SpellStatsCalcEffect.CalculatedSpellConfiguration config = new SpellStatsCalcEffect.CalculatedSpellConfiguration();
+    public SpellStatsCalculationEvent.CalculatedSpellConfiguration config = new SpellStatsCalculationEvent.CalculatedSpellConfiguration();
 
     // this is buggy in dev because the player's UUID changes (random name each time game is started)
     // so after restart of game, the caster is null
@@ -49,7 +49,7 @@ public class EntitySavedSpellData {
         return data;
     }
 
-    public static EntitySavedSpellData create(int lvl, LivingEntity caster, Spell spell, SpellStatsCalcEffect.CalculatedSpellConfiguration config) {
+    public static EntitySavedSpellData create(int lvl, LivingEntity caster, Spell spell, SpellStatsCalculationEvent.CalculatedSpellConfiguration config) {
         Objects.requireNonNull(caster);
 
         EntitySavedSpellData data = new EntitySavedSpellData();

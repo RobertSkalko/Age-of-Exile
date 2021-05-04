@@ -10,9 +10,9 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BaseGearBuilder implements DataHelper {
 
-    private AttackPlayStyle style = AttackPlayStyle.MELEE;
+    private PlayStyle style = PlayStyle.melee;
     private String locnamesuffix;
     private String idprefix;
     private DataGenKey<GearSlot> slot;
@@ -33,7 +33,7 @@ public class BaseGearBuilder implements DataHelper {
     private List<StatModifier> basestats = new ArrayList<>();
     private List<StatModifier> implicitstats = new ArrayList<>();
     private StatRequirement req = new StatRequirement();
-    private WeaponTypes wep = WeaponTypes.None;
+    private WeaponTypes wep = WeaponTypes.none;
     private int weapon_offhand_stat_util = 0;
     private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;
@@ -65,7 +65,7 @@ public class BaseGearBuilder implements DataHelper {
         return b;
     }
 
-    public BaseGearBuilder attackStyle(AttackPlayStyle style) {
+    public BaseGearBuilder attackStyle(PlayStyle style) {
         this.style = style;
         return this;
     }

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.random_skill_gem_stats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 
 import java.util.ArrayList;
@@ -17,13 +17,13 @@ public class RandomSkillGemStats implements ISerializedRegistryEntry<RandomSkill
     public int weight;
     public List<StatModifier> stats = new ArrayList<>();
 
-    public List<SkillGemTag> tags = new ArrayList<>();
+    public List<SpellTag> tags = new ArrayList<>();
 
     public RandomSkillGemStats() {
 
     }
 
-    public RandomSkillGemStats(String id, int weight, List<StatModifier> stats, List<SkillGemTag> tags) {
+    public RandomSkillGemStats(String id, int weight, List<StatModifier> stats, List<SpellTag> tags) {
         this.id = id;
         this.weight = weight;
         this.stats = stats;

@@ -4,11 +4,11 @@ import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
@@ -27,14 +27,14 @@ public class DodgeRating extends Stat implements IUsableStat {
     }
 
     private DodgeRating() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
         this.statEffect = new Effect();
 
-        this.textIcon = "\u2748";
-        this.textFormat = Formatting.DARK_GREEN;
+        this.icon = "\u2748";
+        this.format = Formatting.DARK_GREEN;
 
         this.isLocalTo = x -> x.isArmor();
     }
@@ -73,8 +73,7 @@ public class DodgeRating extends Stat implements IUsableStat {
 
         @Override
         public int GetPriority() {
-            return Priority.afterThis(Accuracy.getInstance().statEffect
-                .GetPriority());
+            return 100;
         }
 
         @Override
@@ -83,19 +82,19 @@ public class DodgeRating extends Stat implements IUsableStat {
         }
 
         @Override
-        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
             DodgeRating dodge = (DodgeRating) stat;
 
-            float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.attackerAccuracy, 0, Integer.MAX_VALUE);
+            float totalDodge = MathHelper.clamp(data.getAverageValue() - effect.data.getNumber(EventData.ACCURACY).number, 0, Integer.MAX_VALUE);
 
             float chance = dodge.getUsableValue((int) totalDodge, effect.sourceData.getLevel()) * 100;
 
             if (RandomUtils.roll(chance)) {
                 effect.data.getNumber(EventData.NUMBER).number = 0;
-                effect.isDodged = true;
+                effect.data.setBoolean(EventData.IS_DODGED, true);
             } else {
                 if (RandomUtils.roll(chance)) {
-                    effect.accuracyCritRollFailed = true;
+                    effect.data.setBoolean(EventData.ACCURACY_CRIT_FAILED, true);
                 }
             }
 
@@ -103,8 +102,9 @@ public class DodgeRating extends Stat implements IUsableStat {
         }
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isAttack();
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
+            return effect.getAttackType()
+                .isAttack();
         }
     }
 

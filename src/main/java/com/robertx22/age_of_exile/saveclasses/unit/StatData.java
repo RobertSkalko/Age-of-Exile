@@ -77,7 +77,7 @@ public class StatData {
         float val = (getFirstValue() + getSecondValue()) / 2F;
 
         Stat stat = GetStat();
-        return MathHelper.clamp(val, stat.min_val, stat.max_val);
+        return MathHelper.clamp(val, stat.min, stat.max);
     }
 
     public boolean isNotZero() {

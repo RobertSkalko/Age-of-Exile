@@ -14,9 +14,9 @@ public class HealthRegen extends BaseRegenClass {
     }
 
     private HealthRegen() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class HealthRegen extends BaseRegenClass {
 
     @Override
     public ResourceType getResourceType() {
-        return ResourceType.HEALTH;
+        return ResourceType.health;
     }
 
     @Override

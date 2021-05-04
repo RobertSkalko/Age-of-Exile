@@ -2,13 +2,12 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -29,11 +28,11 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .add(Elements.Nature, "Of Venom")
             .add(Elements.Light, "Of Sun Rays")
             .add(Elements.Dark, "Of Shadows")
-            .tier(1, x -> Arrays.asList(new StatModifier(15, 20, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(2, x -> Arrays.asList(new StatModifier(11, 15, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(3, x -> Arrays.asList(new StatModifier(7, 11, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(4, x -> Arrays.asList(new StatModifier(5, 7, new ElementalDamageBonus(x), ModType.FLAT)))
-            .tier(5, x -> Arrays.asList(new StatModifier(2, 5, new ElementalDamageBonus(x), ModType.FLAT)))
+            .tier(1, x -> Arrays.asList(new StatModifier(15, 20, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(2, x -> Arrays.asList(new StatModifier(11, 15, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(3, x -> Arrays.asList(new StatModifier(7, 11, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(4, x -> Arrays.asList(new StatModifier(5, 7, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .tier(5, x -> Arrays.asList(new StatModifier(2, 5, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();
@@ -136,10 +135,10 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("jewel_accuracy_suffix")
             .Named("Of Accuracy")
-            .tier(1, new StatModifier(15, 20, Accuracy.getInstance()))
-            .tier(2, new StatModifier(12, 15, Accuracy.getInstance()))
-            .tier(3, new StatModifier(10, 12, Accuracy.getInstance()))
-            .tier(4, new StatModifier(6, 10, Accuracy.getInstance()))
+            .tier(1, new StatModifier(15, 20, Stats.ACCURACY.get()))
+            .tier(2, new StatModifier(12, 15, Stats.ACCURACY.get()))
+            .tier(3, new StatModifier(10, 12, Stats.ACCURACY.get()))
+            .tier(4, new StatModifier(6, 10, Stats.ACCURACY.get()))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();

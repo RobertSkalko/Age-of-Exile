@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 
 import java.text.DecimalFormat;
 
@@ -60,10 +61,10 @@ public class NumberUtils {
 
     }
 
-    public static String formatDamageNumber(DamageEffect data, int val) {
+    public static String formatDamageNumber(DamageEvent data, int val) {
         String num = format(val);
 
-        if (data.crit) {
+        if (data.data.getBoolean(EventData.CRIT)) {
             num += "!";
         }
 

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.value_calc;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -102,9 +101,9 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         return (int) amount;
     }
 
-    public int getCalculatedValue(LivingEntity caster, EntitySavedSpellData ctx) {
-        int val = getCalculatedScalingValue(Load.Unit(caster), ctx.lvl);
-        val += getCalculatedBaseValue(ctx.lvl);
+    public int getCalculatedValue(LivingEntity caster, int lvl) {
+        int val = getCalculatedScalingValue(Load.Unit(caster), lvl);
+        val += getCalculatedBaseValue(lvl);
 
         return val;
     }

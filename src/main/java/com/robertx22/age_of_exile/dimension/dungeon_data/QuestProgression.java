@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
+import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -45,12 +46,20 @@ public class QuestProgression {
                     new LiteralText("Quest completed!, You can now progress to the next dungeon.")
                     , false);
 
+                float multi = LootUtils.getLevelDistancePunishmentMulti(dungeon.lvl, Load.Unit(player)
+                    .getLevel());
+
+                if (multi == 0 && Load.Unit(player)
+                    .getLevel() > dungeon.lvl) {
+                    player.sendMessage(new LiteralText("You can't receive quest rewards as you are too high level for this dungeon."), false);
+                } else {
+                    dungeon.quest_rew.stacks.forEach(x -> {
+                        PlayerUtils.giveItem(x, player);
+                    });
+                }
+
                 Load.playerMaps(player)
                     .onDungeonCompletedAdvanceProgress();
-
-                dungeon.quest_rew.stacks.forEach(x -> {
-                    PlayerUtils.giveItem(x, player);
-                });
 
             }
         }

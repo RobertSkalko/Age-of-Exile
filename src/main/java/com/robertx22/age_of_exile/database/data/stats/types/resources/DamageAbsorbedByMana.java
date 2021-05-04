@@ -4,9 +4,8 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
@@ -15,9 +14,9 @@ public class DamageAbsorbedByMana extends Stat {
     public static String GUID = "mana_shield";
 
     private DamageAbsorbedByMana() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
     }
 
@@ -50,7 +49,7 @@ public class DamageAbsorbedByMana extends Stat {
         return "Of Damage Absorbed By Mana";
     }
 
-    public static float modifyEntityDamage(DamageEffect effect, float dmg) {
+    public static float modifyEntityDamage(DamageEvent effect, float dmg) {
 
         StatData data = effect.targetData.getUnit()
             .getCalculatedStat(DamageAbsorbedByMana.getInstance());
@@ -75,15 +74,11 @@ public class DamageAbsorbedByMana extends Stat {
             if (dmgReduced > 0) {
 
                 if (effect.target instanceof PlayerEntity) {
-                    PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.element, dmgReduced);
+                    PlayerDeathStatistics.record((PlayerEntity) effect.target, effect.getElement(), dmgReduced);
                 }
-                ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-                    ResourceType.MANA, dmgReduced,
-                    ResourcesData.Use.SPEND
-                );
 
                 effect.targetData.getResources()
-                    .modify(ctx);
+                    .spend(effect.target, ResourceType.mana, dmgReduced);
 
                 return dmg - dmgReduced;
 

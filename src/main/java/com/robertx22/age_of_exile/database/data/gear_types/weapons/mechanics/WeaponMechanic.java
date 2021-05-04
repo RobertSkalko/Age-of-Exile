@@ -3,10 +3,11 @@ package com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 import java.util.HashMap;
 
@@ -33,9 +34,11 @@ public abstract class WeaponMechanic implements IGUID {
             .getUnit()
             .getCalculatedStat(new AttackDamage(Elements.Physical))
             .getRandomRangeValue();
-        DamageEffect dmg = new DamageEffect(
-            data, data.getAttackerEntity(), data.getTargetEntity(), num, AttackType.ATTACK, weptype, data.weaponData.GetBaseGearType().style);
-        dmg.setIsBasicAttack();
+
+        DamageEvent dmg = EventBuilder.ofDamage(data, data.getAttackerEntity(), data.getTargetEntity(), num)
+            .setupDamage(AttackType.attack, weptype, data.weaponData.GetBaseGearType().style)
+            .setIsBasicAttack()
+            .build();
 
         dmg.Activate();
 

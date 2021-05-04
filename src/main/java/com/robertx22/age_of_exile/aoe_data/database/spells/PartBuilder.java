@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
@@ -10,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -36,7 +37,7 @@ public class PartBuilder {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele)
             .put(MapField.EXILE_POTION_ID, effect)
-            .put(MapField.DMG_EFFECT_TYPE, AttackType.DOT.name()));
+            .put(MapField.DMG_EFFECT_TYPE, AttackType.dot.name()));
 
         c.targets.add(BaseTargetSelector.TARGET.create());
         return c;
@@ -290,6 +291,13 @@ public class PartBuilder {
     public static ComponentPart giveSelfExileEffect(String effect, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
+        c.targets.add(BaseTargetSelector.CASTER.create());
+        return c;
+    }
+
+    public static ComponentPart giveSelfExileEffect(EffectCtx ctx, Double duration) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.EXILE_EFFECT.create(ctx.effectId, GiveOrTake.GIVE_STACKS, duration));
         c.targets.add(BaseTargetSelector.CASTER.create());
         return c;
     }

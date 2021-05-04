@@ -2,10 +2,12 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.aura;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.InCodeStatEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 public class ReducedManaReserved extends Stat {
 
@@ -21,11 +23,11 @@ public class ReducedManaReserved extends Stat {
     }
 
     private ReducedManaReserved() {
-        this.base_val = 0;
-        this.min_val = 0;
-        this.max_val = 75;
+        this.base = 0;
+        this.min = 0;
+        this.max = 75;
         this.scaling = StatScaling.NONE;
-        this.statGroup = StatGroup.Misc;
+        this.group = StatGroup.Misc;
         this.statEffect = new Effect();
     }
 
@@ -49,10 +51,10 @@ public class ReducedManaReserved extends Stat {
         return "Reduced Mana Reserved";
     }
 
-    public static class Effect extends BaseStatEffect<ReserveManaEffect> {
+    public static class Effect extends InCodeStatEffect<ReserveManaEvent> {
 
         private Effect() {
-            super(ReserveManaEffect.class);
+            super(ReserveManaEvent.class);
         }
 
         @Override
@@ -66,13 +68,13 @@ public class ReducedManaReserved extends Stat {
         }
 
         @Override
-        public ReserveManaEffect activate(ReserveManaEffect effect, StatData data, Stat stat) {
-            effect.manaReserved *= data.getReverseMultiplier();
+        public ReserveManaEvent activate(ReserveManaEvent effect, StatData data, Stat stat) {
+            effect.data.getNumber(EventData.NUMBER).number *= data.getReverseMultiplier();
             return effect;
         }
 
         @Override
-        public boolean canActivate(ReserveManaEffect effect, StatData data, Stat stat) {
+        public boolean canActivate(ReserveManaEvent effect, StatData data, Stat stat) {
             return true;
         }
     }

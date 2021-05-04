@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
@@ -9,18 +10,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.SpecificWeaponDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import net.minecraft.tag.EntityTypeTags;
 
 import java.util.Arrays;
@@ -48,8 +44,8 @@ public class BoneArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 10, ArmorPenetration.getInstance(), ModType.FLAT),
-                    new StatModifier(2, 5, CriticalHit.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 8, new SpecificWeaponDamage(WeaponTypes.Bow), ModType.FLAT),
+                    new StatModifier(2, 5, Stats.CRIT_CHANCE.get(), ModType.FLAT),
+                    new StatModifier(5, 8, Stats.WEAPON_DAMAGE.get(WeaponTypes.bow), ModType.FLAT),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
 
@@ -77,7 +73,7 @@ public class BoneArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Water)),
+                    new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
                 )
@@ -106,7 +102,7 @@ public class BoneArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, new ElementalSpellDamage(Elements.Dark)),
+                    new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(10, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
@@ -135,8 +131,8 @@ public class BoneArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(15, 25, CriticalDamage.getInstance()),
-                    new StatModifier(15, 25, SpellCriticalDamage.getInstance()),
+                    new StatModifier(15, 25, Stats.CRIT_DAMAGE.get()),
+                    new StatModifier(15, 25, Stats.SPELL_CRIT_DAMAGE.get()),
                     new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
                 )

@@ -73,10 +73,8 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
         String rar = endata.getRarity();
 
-        if (rar.isEmpty()) {
-            rar = mob.randomRarity(entity, endata);
-            endata.setRarity(rar);
-        }
+        rar = mob.randomRarity(entity, endata);
+        endata.setRarity(rar);
 
         MobRarity rarity = Database.MobRarities()
             .get(rar);

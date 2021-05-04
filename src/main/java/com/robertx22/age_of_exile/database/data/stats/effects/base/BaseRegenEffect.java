@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.stats.effects.base;
 
-import com.robertx22.age_of_exile.uncommon.effectdatas.RegenEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 
-public abstract class BaseRegenEffect extends BaseStatEffect<RegenEvent> {
+public abstract class BaseRegenEffect extends InCodeStatEffect<RestoreResourceEvent> {
 
     public BaseRegenEffect() {
-        super(RegenEvent.class);
+        super(RestoreResourceEvent.class);
     }
 }

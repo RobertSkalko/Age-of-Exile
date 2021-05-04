@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -48,7 +48,7 @@ public class OnSmeltMining {
                         int exp = s.exp;
                         skills.addExp(mining.type_enum, exp);
 
-                        SkillDropData effect = new SkillDropData(player, PlayerSkillEnum.MINING, mining.getExtraDropsFor(player, exp, SkillItemTier.TIER0));
+                        SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.MINING, mining.getExtraDropsFor(player, exp, SkillItemTier.TIER0));
                         effect.Activate();
 
                         effect.extraDrops.forEach(x -> PlayerUtils.giveItem(x, player));

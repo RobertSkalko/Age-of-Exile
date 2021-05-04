@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -10,16 +11,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.Base
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.Accuracy;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalHit;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -114,12 +112,12 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), Mana.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), ManaRegen.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Armor.getInstance(), DodgeRating.getInstance()));
-        addTo(StatType.MAIN, Arrays.asList(CriticalHit.getInstance(), CriticalDamage.getInstance(), SpellCriticalHit.getInstance(), SpellCriticalDamage.getInstance()));
-        addTo(StatType.MAIN, Arrays.asList(Accuracy.getInstance(), SpellDamage.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(Stats.CRIT_CHANCE.get(), Stats.CRIT_DAMAGE.get(), Stats.SPELL_CRIT_CHANCE.get(), Stats.SPELL_CRIT_DAMAGE.get()));
+        addTo(StatType.MAIN, Arrays.asList(Stats.ACCURACY.get(), SpellDamage.getInstance()));
 
         addTo(StatType.ELEMENTAL, new AttackDamage(Elements.Elemental).generateAllPossibleStatVariations());
-        addTo(StatType.ELEMENTAL, new ElementalSpellDamage(Elements.Elemental).generateAllPossibleStatVariations());
-        addTo(StatType.ELEMENTAL, new ElementalDamageBonus(Elements.Elemental).generateAllPossibleStatVariations());
+        addTo(StatType.ELEMENTAL, Stats.ELEMENTAL_SPELL_DAMAGE.getAll());
+        addTo(StatType.ELEMENTAL, Stats.ELEMENTAL_DAMAGE.getAll());
 
         addTo(StatType.RESISTS, new ElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
         addTo(StatType.RESISTS, new MaxElementalResist(Elements.Elemental).generateAllPossibleStatVariations());
@@ -216,7 +214,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             int ynum = 0;
             for (List<Stat> list : STAT_MAP.get(statToShow)) {
                 for (Stat stat : list) {
-                    if (stat.isShown) {
+                    if (stat.show) {
                         addButton(new StatButton(stat, xpos, ypos + (YSPACING * ynum)));
 
                         ynum++;

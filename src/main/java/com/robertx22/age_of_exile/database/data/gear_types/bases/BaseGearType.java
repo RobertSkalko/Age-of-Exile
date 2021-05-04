@@ -25,8 +25,8 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
-import com.robertx22.age_of_exile.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
@@ -51,12 +51,12 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
     public String rar_group = GearRarityGroups.NON_UNIQUE_ID;
     public int weight = 1000;
     public int weapon_offhand_stat_util = 0;
-    public AttackPlayStyle style = AttackPlayStyle.MELEE;
+    public PlayStyle style = PlayStyle.melee;
 
     public List<StatModifier> implicit_stats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();
 
-    public WeaponTypes weapon_type = WeaponTypes.None;
+    public WeaponTypes weapon_type = WeaponTypes.none;
     public StatRequirement stat_reqs = new StatRequirement();
     public TagList tags = new TagList();
 
@@ -499,7 +499,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         }
 
         try {
-            o.style = AttackPlayStyle.valueOf(json.get("attack_style")
+            o.style = PlayStyle.valueOf(json.get("attack_style")
                 .getAsString());
         } catch (Exception e) {
             e.printStackTrace();
@@ -512,7 +512,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
             o.weapon_type = WeaponTypes.valueOf(json.get("weapon_type")
                 .getAsString());
         } catch (Exception e) {
-            o.weapon_type = WeaponTypes.None;
+            o.weapon_type = WeaponTypes.none;
         }
 
         o.tags = new TagList().fromJson(json.getAsJsonObject("tag_list"));

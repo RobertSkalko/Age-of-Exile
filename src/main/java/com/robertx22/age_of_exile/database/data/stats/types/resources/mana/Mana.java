@@ -18,12 +18,12 @@ public class Mana extends Stat {
     }
 
     private Mana() {
-        this.min_val = 0;
+        this.min = 0;
         this.scaling = StatScaling.NORMAL;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
-        this.textFormat = Formatting.BLUE;
-        this.textIcon = "\u262F";
+        this.format = Formatting.BLUE;
+        this.icon = "\u262F";
     }
 
     @Override

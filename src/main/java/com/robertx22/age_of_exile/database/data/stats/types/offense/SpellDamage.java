@@ -2,20 +2,21 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseStatEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.util.Formatting;
 
 public class SpellDamage extends Stat {
 
     private SpellDamage() {
         this.scaling = StatScaling.SLOW;
-        this.statGroup = StatGroup.MAIN;
+        this.group = StatGroup.MAIN;
 
         this.statEffect = new Effect();
-        this.textFormat = Formatting.LIGHT_PURPLE;
+        this.format = Formatting.LIGHT_PURPLE;
     }
 
     public static String GUID = "spell_damage";
@@ -49,10 +50,10 @@ public class SpellDamage extends Stat {
         return "Spell Damage";
     }
 
-    private static class Effect extends BaseStatEffect<SpellDamageEffect> {
+    private static class Effect extends BaseDamageEffect {
 
         private Effect() {
-            super(SpellDamageEffect.class);
+            super();
         }
 
         @Override
@@ -66,14 +67,15 @@ public class SpellDamage extends Stat {
         }
 
         @Override
-        public SpellDamageEffect activate(SpellDamageEffect effect, StatData data, Stat stat) {
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
             effect.increaseByPercent(data.getAverageValue());
             return effect;
         }
 
         @Override
-        public boolean canActivate(SpellDamageEffect effect, StatData data, Stat stat) {
-            return effect.attackType.isSpell();
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
+            return effect.getAttackType()
+                .isSpell() && effect.isSpell();
         }
     }
 

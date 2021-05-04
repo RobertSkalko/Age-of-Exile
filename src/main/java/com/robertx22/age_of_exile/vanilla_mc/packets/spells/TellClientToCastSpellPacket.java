@@ -6,16 +6,18 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
 public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellPacket> {
 
     public String spellid = "";
+    public int enid = 0;
 
-    public TellClientToCastSpellPacket(Spell spell) {
+    public TellClientToCastSpellPacket(LivingEntity en, Spell spell) {
         this.spellid = spell.GUID();
+        this.enid = en.getEntityId();
     }
 
     public TellClientToCastSpellPacket() {
@@ -29,20 +31,23 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
     @Override
     public void loadFromData(PacketByteBuf tag) {
         this.spellid = tag.readString(30);
+        this.enid = tag.readInt();
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
         tag.writeString(spellid);
+        tag.writeInt(enid);
     }
 
     @Override
     public void onReceived(PacketContext ctx) {
-        PlayerEntity player = ctx.getPlayer();
+
+        LivingEntity en = (LivingEntity) ctx.getPlayer().world.getEntityById(enid);
 
         Spell spell = Database.Spells()
             .get(spellid);
-        SpellCastContext c = new SpellCastContext(player, 0, spell);
+        SpellCastContext c = new SpellCastContext(en, 0, spell);
 
         spell.cast(c);
 

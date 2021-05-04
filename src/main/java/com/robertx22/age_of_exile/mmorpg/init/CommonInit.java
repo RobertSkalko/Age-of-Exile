@@ -1,9 +1,12 @@
 package com.robertx22.age_of_exile.mmorpg.init;
 
 import com.robertx22.age_of_exile.aoe_data.GeneratedData;
+import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
+import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
@@ -38,6 +41,12 @@ public class CommonInit implements ModInitializer {
 
         Watch watch = new Watch();
 
+        Database.initRegistries();
+        SpecialStats.init();
+
+        StatEffects.loadClass();
+        StatConditions.loadClass();
+
         MapField.init();
         EffectCondition.init();
 
@@ -45,8 +54,6 @@ public class CommonInit implements ModInitializer {
 
         ModItemTags.init();
         MobAttributes.register();
-
-        Database.initRegistries();
 
         Database.registerAllItems(); // after config registerAll
 

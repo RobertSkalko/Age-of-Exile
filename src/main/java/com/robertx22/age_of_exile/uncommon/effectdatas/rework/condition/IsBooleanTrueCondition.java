@@ -2,24 +2,26 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EffectData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
-public class IsBooleanTrueCondition extends StatCondition<EffectData> {
+public class IsBooleanTrueCondition extends StatCondition {
 
-    String booleanId = "";
+    String bool_id = "";
 
-    public IsBooleanTrueCondition(String booleanId) {
-        super("is_bool_true");
-        this.booleanId = booleanId;
+    public IsBooleanTrueCondition(String bool_id) {
+        super("is_" + bool_id + "_true", "is_bool_true");
+        this.bool_id = bool_id;
     }
 
-    private IsBooleanTrueCondition() {
-        super("is_bool_true");
+    IsBooleanTrueCondition() {
+        super("", "is_bool_true");
     }
 
     @Override
-    public boolean can(EffectData event, StatData data, Stat stat) {
-        return event.data.getBoolean(booleanId);
+    public boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
+
+        return event.data.getBoolean(bool_id);
     }
 
     @Override

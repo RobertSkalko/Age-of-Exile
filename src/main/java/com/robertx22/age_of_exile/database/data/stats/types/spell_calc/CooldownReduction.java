@@ -3,13 +3,12 @@ package com.robertx22.age_of_exile.database.data.stats.types.spell_calc;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.spell_calc.ReduceCooldownEffect;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.interfaces.IExtraStatEffect;
-import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
 
-public class CooldownReduction extends Stat implements IExtraStatEffect {
+public class CooldownReduction extends Stat {
 
     private CooldownReduction() {
-        this.max_val = 75;
+        this.max = 75;
+        this.statEffect = new ReduceCooldownEffect();
     }
 
     public static CooldownReduction getInstance() {
@@ -39,11 +38,6 @@ public class CooldownReduction extends Stat implements IExtraStatEffect {
     @Override
     public String GUID() {
         return "cdr";
-    }
-
-    @Override
-    public IStatEffect getEffect() {
-        return new ReduceCooldownEffect();
     }
 
     private static class SingletonHolder {

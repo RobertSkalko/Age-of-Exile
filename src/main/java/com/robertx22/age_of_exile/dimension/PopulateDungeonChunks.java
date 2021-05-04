@@ -111,7 +111,7 @@ public class PopulateDungeonChunks {
         int spawners = RandomUtils.roll(20) ? 1 : 0;
 
         boolean isboss = false;
-        if (RandomUtils.roll(100)) {
+        if (RandomUtils.roll(5)) {
             isboss = true;
             mobs = 1;
             spawners = 0;
@@ -125,8 +125,8 @@ public class PopulateDungeonChunks {
             if (tries > 50) {
                 break;
             }
-            if (!world.isAir(p) && !world.getBlockState(p.down())
-                .isSolidBlock(world, p.down())) {
+
+            if (!SpawnUtil.canPlaceMob(world, p)) {
                 i--;
                 continue;
             }
@@ -151,8 +151,8 @@ public class PopulateDungeonChunks {
             if (tries > 50) {
                 break;
             }
-            if (!world.isAir(p.up()) && !world.isAir(p) && world.getBlockState(p.down())
-                .isSolidBlock(world, p.down())) {
+
+            if (!SpawnUtil.canPlaceBlock(world, p)) {
                 i--;
                 continue;
             }
@@ -175,12 +175,10 @@ public class PopulateDungeonChunks {
             if (tries > 50) {
                 break;
             }
-            if (!world.isAir(p.up()) && !world.isAir(p) && world.getBlockState(p.down())
-                .isSolidBlock(world, p.down())) {
+            if (!SpawnUtil.canPlaceBlock(world, p)) {
                 i--;
                 continue;
             }
-
             data.mobs += ModSpawnerBlockEntity.DEFAULT_SPAWNS;
 
             world.setBlockState(p, ModRegistry.BLOCKS.SPAWNER.getDefaultState(), 2);

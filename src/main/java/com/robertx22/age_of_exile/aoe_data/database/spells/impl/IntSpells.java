@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -33,13 +33,14 @@ public class IntSpells implements ISlashRegistryInit {
     public static String THUNDERSPEAR_ID = "thunder_spear";
     public static String HEALING_AURA_ID = "healing_aura";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
+    public static String FIRE_NOVA_ID = "fire_nova";
 
     @Override
     public void registerAll() {
 
         SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 15)
                 .setSwingArm(), "Ice Ball",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
@@ -51,7 +52,7 @@ public class IntSpells implements ISlashRegistryInit {
 
         SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 20)
                 .setSwingArm(), "Fire Ball",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1D, 1D))
@@ -63,7 +64,7 @@ public class IntSpells implements ISlashRegistryInit {
 
         SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
                 .setSwingArm(), "Poison Ball",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
@@ -75,7 +76,7 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("frost_nova", SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            Arrays.asList(SpellTag.area, SpellTag.damage))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 400D, 3.5D, 0.5D))
@@ -86,7 +87,7 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",
-            Arrays.asList(SkillGemTag.DAMAGE)
+            Arrays.asList(SpellTag.damage)
         )
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.TP_CASTER_IN_DIRECTION.create(12D)))
@@ -95,23 +96,23 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.damageInAoe(ValueCalculation.base("teleport", 8), Elements.Elemental, 2D)
                 .addPerEntityHit(PartBuilder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D))
             )
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST, 20 * 10D)
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ELE_RESIST.effectId, 20 * 10D)
             )
 
             .build();
 
         SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 60 * 20), "Heart of Ice",
-            Arrays.asList(SkillGemTag.HEALING))
+            Arrays.asList(SpellTag.heal))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SOUNDS.FREEZE, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(PartBuilder.healCaster(ValueCalculation.base("heart_of_ice", 15)))
-            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN, 5D, 20D * 10D))
+            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN.effectId, 5D, 20D * 10D))
             .build();
 
         SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Atmosphere",
-            Arrays.asList(SkillGemTag.HEALING))
+            Arrays.asList(SpellTag.heal))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
@@ -127,8 +128,8 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)
             .build();
 
-        SpellBuilder.of("fire_nova", SpellConfiguration.Builder.instant(20, 20 * 25), "Fire Nova",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+        SpellBuilder.of(FIRE_NOVA_ID, SpellConfiguration.Builder.instant(20, 20 * 25), "Fire Nova",
+            Arrays.asList(SpellTag.area, SpellTag.damage))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
 
             .onCast(PartBuilder.nova(ParticleTypes.FLAME, 200D, 2.8D, 0.05D))
@@ -141,7 +142,7 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("awaken_mana", SpellConfiguration.Builder.instant(0, 300 * 20), "Awaken Mana",
-            Arrays.asList(SkillGemTag.HEALING)
+            Arrays.asList(SpellTag.heal)
         )
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
@@ -152,7 +153,7 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("meteor", SpellConfiguration.Builder.instant(18, 20 * 30), "Meteor",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE)
+            Arrays.asList(SpellTag.area, SpellTag.damage)
         )
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
@@ -171,19 +172,19 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 60 * 20), "Nature's Balm",
-            Arrays.asList(SkillGemTag.HEALING))
+            Arrays.asList(SpellTag.heal))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE, 20 * 15D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE.effectId, 20 * 15D))
             .build();
 
         SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 60 * 20), "Gorgon's Gaze",
-            Arrays.asList(SkillGemTag.AREA))
+            Arrays.asList(SpellTag.area))
             .onCast(PartBuilder.playSound(SOUNDS.STONE_CRACK, 1D, 1D))
-            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY, 15D, 3D, 20 * 5D))
+            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY.effectId, 15D, 3D, 20 * 5D))
             .build();
 
         SpellBuilder.of("fire_bombs", SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Fire Bombs",
-            Arrays.asList(SkillGemTag.AREA, SkillGemTag.DAMAGE))
+            Arrays.asList(SpellTag.area, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
@@ -194,7 +195,7 @@ public class IntSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("levitation", SpellConfiguration.Builder.instant(1, 1)
                 .setScaleManaToPlayer(), "Levitation",
-            Arrays.asList(SkillGemTag.PROJECTILE, SkillGemTag.DAMAGE))
+            Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_SMOKER_SMOKE, 1D, 1D))
 
@@ -206,7 +207,7 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("shield_test", SpellConfiguration.Builder.instant(15, 20 * 5), "Shield Test",
-            Arrays.asList(SkillGemTag.SHIELDING))
+            Arrays.asList(SpellTag.shield))
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.GIVE_DAMAGE_ABSORB.create(ValueCalculation.base("shield_test", 15), 10D))
                 .addTarget(TargetSelector.CASTER.create()))

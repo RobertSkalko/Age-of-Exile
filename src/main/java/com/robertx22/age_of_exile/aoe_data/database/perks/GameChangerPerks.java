@@ -1,16 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalDamageBonus;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DotDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.NonCritDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.TotalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.CriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.SpellCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.IncreasedLeech;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -34,12 +28,12 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("elemental_purity", "Elemental Purity",
-            new OptScaleExactStat(10, new ElementalDamageBonus(Elements.Elemental), ModType.FLAT),
-            new OptScaleExactStat(-50, new ElementalDamageBonus(Elements.Physical), ModType.FLAT)
+            new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental), ModType.FLAT),
+            new OptScaleExactStat(-50, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("refined_taste", "Refined Taste",
-            new OptScaleExactStat(50, IncreasedLeech.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(50, Stats.INCREASED_LEECH.get(), ModType.FLAT),
             new OptScaleExactStat(-75, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(-75, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
@@ -50,20 +44,20 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("steady_hand", "Steady Hand",
-            new OptScaleExactStat(-100, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-100, SpellCriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(20, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(-100, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-100, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(20, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("true_hit", "True Hit",
-            new OptScaleExactStat(25, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-25, NonCritDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(25, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-25, Stats.NON_CRIT_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("harmony", "Harmony",
             new OptScaleExactStat(20, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(20, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-10, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(-10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.gameChanger("mana_battery", "Mana Battery",
@@ -74,13 +68,13 @@ public class GameChangerPerks implements ISlashRegistryInit {
 
         PerkBuilder.gameChanger("divinity", "Divinity",
             new OptScaleExactStat(25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
-            new OptScaleExactStat(-50, CriticalDamage.getInstance(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-50, SpellCriticalDamage.getInstance(), ModType.GLOBAL_INCREASE)
+            new OptScaleExactStat(-50, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-50, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("tormentor", "Tormentor",
-            new OptScaleExactStat(35, DotDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(-10, TotalDamage.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(35, Stats.DOT_DAMAGE.get(), ModType.FLAT),
+            new OptScaleExactStat(-10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 
     }

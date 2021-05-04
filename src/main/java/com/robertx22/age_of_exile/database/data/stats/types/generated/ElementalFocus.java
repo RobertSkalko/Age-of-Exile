@@ -5,8 +5,9 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEff
 import com.robertx22.age_of_exile.database.data.stats.types.SingleElementalStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEffect;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.List;
 
@@ -72,9 +73,10 @@ public class ElementalFocus extends SingleElementalStat {
         }
 
         @Override
-        public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
+        public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
 
-            if (effect.element.equals(stat.getElement())) {
+            if (effect.getElement()
+                .equals(stat.getElement())) {
                 effect.increaseByPercent(data.getAverageValue());
             } else {
                 effect.increaseByPercent(-data.getAverageValue());
@@ -84,8 +86,8 @@ public class ElementalFocus extends SingleElementalStat {
         }
 
         @Override
-        public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-            return effect.element != null && effect.element != Elements.Physical;
+        public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
+            return effect.getElement() != null && effect.getElement() != Elements.Physical;
         }
 
     }

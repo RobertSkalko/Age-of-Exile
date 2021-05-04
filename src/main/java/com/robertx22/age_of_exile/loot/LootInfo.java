@@ -209,7 +209,7 @@ public class LootInfo {
 
     private void setWorld() {
         if (world != null) {
-            this.isMapWorld = WorldUtils.isDungeonWorld(world);
+            this.isMapWorld = WorldUtils.isDungeonWorld(world) && !Load.dungeonData(world).data.get(this.pos).data.isEmpty();
         }
     }
 

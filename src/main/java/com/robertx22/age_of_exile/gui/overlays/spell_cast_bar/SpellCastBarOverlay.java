@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.overlays.spell_cast_bar;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.capability.player.PlayerSpellCap;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
@@ -22,7 +22,7 @@ public class SpellCastBarOverlay extends DrawableHelper implements HudRenderCall
     @Override
     public void onHudRender(MatrixStack matrix, float v) {
 
-        PlayerSpellCap.ISpellsCap data = Load.spells(mc.player);
+        EntitySpellCap.ISpellsCap data = Load.spells(mc.player);
 
         if (data.getCastingData()
             .isCasting() && data.getCastingData().castingTicksLeft > 0) {

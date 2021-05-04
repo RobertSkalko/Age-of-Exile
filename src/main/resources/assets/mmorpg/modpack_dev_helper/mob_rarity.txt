@@ -3,6 +3,4 @@ This registry is modify-able through datapacks.
 magical
 boss
 common
-legendary
 rare
-epic

@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
@@ -23,9 +23,11 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -35,6 +37,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
@@ -57,6 +60,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public static Gson GSON = new Gson();
 
+    public int weight = 1000;
     public String identifier = "";
     public AttachedSpell attached = new AttachedSpell();
     public SpellConfiguration config = new SpellConfiguration();
@@ -71,7 +75,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return aura_data != null;
     }
 
-    public boolean is(SkillGemTag tag) {
+    public boolean is(SpellTag tag) {
         return config.tags.contains(tag);
     }
 
@@ -91,6 +95,26 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public static final Identifier getIconLoc(String id) {
         return new Identifier(Ref.MODID, "textures/gui/spells/icons/" + id + ".png");
+    }
+
+    public WeaponTypes getWeapon(LivingEntity en) {
+        try {
+            if (getConfig().style.getAttackType() != AttackType.spell) {
+
+                ItemStack stack = en.getMainHandStack();
+
+                GearItemData gear = Gear.Load(stack);
+
+                if (gear != null) {
+                    return gear.GetBaseGearType().weapon_type;
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return WeaponTypes.none;
     }
 
     public final void onCastingTick(SpellCastContext ctx) {
@@ -189,18 +213,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public void spendResources(SpellCastContext ctx) {
-        ctx.data.getResources()
-            .modify(getManaCostCtx(ctx));
+        getManaCostCtx(ctx).Activate();
     }
 
-    public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
-
-        float cost = 0;
-
-        cost += this.getCalculatedManaCost(ctx);
-
-        return new ResourcesData.Context(
-            ctx.data, ctx.caster, ResourceType.MANA, cost, ResourcesData.Use.SPEND);
+    public SpendResourceEvent getManaCostCtx(SpellCastContext ctx) {
+        float cost = this.getCalculatedManaCost(ctx);
+        SpendResourceEvent event = new SpendResourceEvent(ctx.caster, ResourceType.mana, cost);
+        event.calculateEffects();
+        return event;
     }
 
     public boolean canCast(SpellCastContext ctx) {
@@ -229,7 +249,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
             if (data != null) {
 
-                ResourcesData.Context rctx = getManaCostCtx(ctx);
+                SpendResourceEvent rctx = getManaCostCtx(ctx);
 
                 if (data.getResources()
                     .hasEnough(rctx)) {
@@ -368,6 +388,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Spells;
+    }
+
+    @Override
+    public int Weight() {
+        return weight;
     }
 
     @Override

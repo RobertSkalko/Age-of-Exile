@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemTag;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.uncommon.effectdatas.AttackPlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ public class SpellConfiguration {
     public int times_to_cast = 1;
     private int cast_time_ticks = 0;
     public int cooldown_ticks = 20;
-    public AttackPlayStyle style = AttackPlayStyle.MAGIC;
-    public List<SkillGemTag> tags = new ArrayList<>();
+    public PlayStyle style = PlayStyle.magic;
+    public List<SpellTag> tags = new ArrayList<>();
     public SpellCastType cast_type = SpellCastType.NORMAL;
     public List<PlayerAction> actions_needed = new ArrayList<>();
     public boolean scale_mana_cost_to_player_lvl = false;
@@ -42,7 +42,7 @@ public class SpellConfiguration {
     }
 
     public boolean isProjectile() {
-        return tags.contains(SkillGemTag.PROJECTILE);
+        return tags.contains(SpellTag.projectile);
     }
 
     public SpellConfiguration setSwingArm() {

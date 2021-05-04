@@ -4,8 +4,10 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -52,12 +54,10 @@ public abstract class FoodEffectPotion extends StatusEffect {
 
                 float heal = getValueRestoredPerRegen(data, amplifier, instance.getDuration());
 
-                ResourcesData.Context hp = new ResourcesData.Context(data, en, resourceType(),
-                    heal,
-                    ResourcesData.Use.RESTORE
-                );
-                data.getResources()
-                    .modify(hp);
+                RestoreResourceEvent restore = EventBuilder.ofRestore(en, en, resourceType(), RestoreType.regen, heal)
+                    .build();
+
+                restore.Activate();
 
             }
         } catch (Exception e) {
