@@ -109,7 +109,7 @@ public class Stats implements ISlashRegistryInit {
         .build();
 
     public static DataPackStatAccessor<PlayStyle> STYLE_DAMAGE_RECEIVED = DatapackStatBuilder
-        .<PlayStyle>of(x -> x.name() + "_dmg_received\"", x -> Elements.Physical)
+        .<PlayStyle>of(x -> x.name() + "_dmg_received", x -> Elements.Physical)
         .addAllOfType(PlayStyle.values())
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
@@ -316,6 +316,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
         .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
         .addEffect(StatEffects.SET_IS_CRIT)
         .setLocName(x -> "Spell Crit Chance")
@@ -386,6 +387,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_CRIT)
         .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Crit Heal Damage")
@@ -552,7 +554,7 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<Elements> ELE_DOT_DAMAGE = DatapackStatBuilder
         .<Elements>of(x -> x.guidName + "_dot_damage", x -> x)
-        .addAllOfType(Elements.getAllSingleElementals())
+        .addAllOfType(Elements.values())
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
@@ -576,6 +578,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_SPELL)
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Heal Strength")
         .setLocDesc(x -> "Increases spell related heals.")
@@ -594,6 +597,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Target)
         .addCondition(StatConditions.IS_SPELL)
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Healing Received")
         .setLocDesc(x -> "Increases spell related heals on you.")

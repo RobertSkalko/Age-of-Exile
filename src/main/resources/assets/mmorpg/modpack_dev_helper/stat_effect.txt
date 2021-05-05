@@ -7,10 +7,11 @@ restore_mana_per_stat_data
 give_negative/10_to_target
 give_beneficial/16_to_source
 give_negative/5_to_target
+increase_number_num
 add_perc_of_health_to_num
 restore_health_per_stat_data
+increase_seconds_num
 give_negative/3_to_target
-increase_number
 give_negative/2_to_target
 set_data_num_accuracy
 add_stat_data_to_num

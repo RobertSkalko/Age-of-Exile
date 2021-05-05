@@ -30,6 +30,7 @@ awaken_mana
 gong_strike
 poison_arrow_aoe
 tidal_strike
+totem_mana
 poisonball
 regenerate_tick
 frostburn

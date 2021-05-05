@@ -118,13 +118,15 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     public void remove() {
 
         try {
-            LivingEntity caster = getSpellData().getCaster(world);
+            if (getSpellData() != null) {
+                LivingEntity caster = getSpellData().getCaster(world);
 
-            if (caster != null) {
-                this.getSpellData()
-                    .getSpell()
-                    .getAttached()
-                    .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+                if (caster != null) {
+                    this.getSpellData()
+                        .getSpell()
+                        .getAttached()
+                        .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

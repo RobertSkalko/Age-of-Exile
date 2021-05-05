@@ -13,6 +13,7 @@ public class DamageBuilder extends EventBuilder<DamageEvent> {
     boolean isSetup = false;
 
     public DamageBuilder setupDamage(AttackType effectType, WeaponTypes weptype, PlayStyle style) {
+        this.isSetup = true;
         event.data.setString(EventData.STYLE, style.name());
         event.data.setString(EventData.WEAPON_TYPE, weptype.name());
         event.data.setString(EventData.ATTACK_TYPE, effectType.name());

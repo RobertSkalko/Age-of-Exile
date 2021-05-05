@@ -1,10 +1,15 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+resource_type_is_damage
 is_sword_wep_type
-spell_has_tag_area
 is_attack_or_spell_attack
+style_is_magic
 is_bow_wep_type
+resource_type_is_shield
+style_is_melee
 is_scepter_wep_type
+style_is_ranged
+resource_type_is_aura
 attack_type_is_attack
 is_axe_wep_type
 attack_type_is_dot
@@ -14,11 +19,14 @@ is_day_is_false
 is_wand_wep_type
 is_crit_true
 attack_type_is_all
+resource_type_is_projectile
 is_trident_wep_type
 is_magic_weapon
+resource_type_is_heal
 attack_type_is_spell
 is_projectile
 is_ranged_weapon
+resource_type_is_area
 is_staff_wep_type
 is_accu_crit_roll_fail_true_is_false
 ele_match_stat
@@ -28,10 +36,10 @@ is_is_basic_atk_true
 is_dagger_wep_type
 is_spear_wep_type
 is_crossbow_wep_type
+resource_type_is_totem
 is_none_wep_type
 random_roll
 is_scythe_wep_type
 is_crit_true_is_false
-spell_has_tag_projectile
 is_spell
 is_hammer_wep_type

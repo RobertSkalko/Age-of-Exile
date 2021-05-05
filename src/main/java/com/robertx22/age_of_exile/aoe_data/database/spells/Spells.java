@@ -13,5 +13,6 @@ public class Spells implements ISlashRegistryInit {
         new StrSpells().registerAll();
         new AuraSpells().registerAll();
         new BossSpells().registerAll();
+        new TotemSpells().registerAll();
     }
 }

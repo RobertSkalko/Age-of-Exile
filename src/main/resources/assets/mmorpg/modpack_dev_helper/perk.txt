@@ -55,10 +55,13 @@ big_vampire
 shield_time
 all_light_damage
 ele_mace_damage
+all_all_damage
+spell_elemental_damage
 big_aspect_of_thunder
 dodge
 big_thousand_fists
 big_agi
+spell_elemental_damage_and_dot
 wolf
 huge_int
 all_nature_damage

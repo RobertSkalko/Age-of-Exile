@@ -30,6 +30,7 @@ frost_nova
 make_arrows
 fire_bombs
 crit_aura
+astral_totem
 awaken_mana
 gong_strike
 hp_reg_aura

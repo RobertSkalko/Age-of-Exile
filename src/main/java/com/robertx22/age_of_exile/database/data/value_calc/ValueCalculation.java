@@ -31,6 +31,7 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         ValueCalculation data = new ValueCalculation();
         data.id = id;
         data.base_val = base;
+
         data.addToSerializables();
         return data;
     }

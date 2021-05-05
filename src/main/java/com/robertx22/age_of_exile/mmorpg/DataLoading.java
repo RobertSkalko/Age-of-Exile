@@ -13,7 +13,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
 
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -46,8 +45,8 @@ public class DataLoading {
                     Database.unregisterInvalidEntries();
 
                     // todo does this help at all?
-                    CompletableFuture.runAsync(() -> Database.getAllRegistries()
-                        .forEach(x -> x.onAllDatapacksLoaded()), ASYNC_EXECUTOR_LOADER);
+                    Database.getAllRegistries()
+                        .forEach(x -> x.onAllDatapacksLoaded());
 
                     //Database.getAllRegistries()
                     //  .forEach(x -> x.onAllDatapacksLoaded());
