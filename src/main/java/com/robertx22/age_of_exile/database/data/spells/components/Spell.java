@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
-import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
@@ -14,18 +13,17 @@ import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -119,8 +117,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public final void onCastingTick(SpellCastContext ctx) {
 
-        int timesToCast = (int) ctx.calcData.getSpell()
-            .getConfig().times_to_cast;
+        int timesToCast = (int) ctx.spell.getConfig().times_to_cast;
 
         if (timesToCast > 1) {
 
@@ -169,7 +166,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         LivingEntity caster = ctx.caster;
 
-        EntitySavedSpellData data = EntitySavedSpellData.create(ctx.calcData.level, caster, this, ctx.spellConfig);
+        EntitySavedSpellData data = EntitySavedSpellData.create(ctx.calcData.lvl, caster, this);
 
         ctx.castedThisTick = true;
 
@@ -185,26 +182,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public final int getCooldownTicks(SpellCastContext ctx) {
-
-        float multi = ctx.spellConfig.getMulti(SpellModEnum.COOLDOWN);
-
-        float ticks = config.cooldown_ticks * multi;
-
-        if (config.getCastTimeTicks() == 0) {
-            float castspeed = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
-            ticks *= castspeed;
-        }
-
-        if (ticks < 1) {
-            return 1; // cant go lower than 1 tick!!!
-        }
-
-        return (int) ticks;
+        return (int) ctx.event.data.getNumber(EventData.COOLDOWN_TICKS).number;
     }
 
     public final int getCastTimeTicks(SpellCastContext ctx) {
-        float multi = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
-        return (int) (config.getCastTimeTicks() * multi);
+        return (int) ctx.event.data.getNumber(EventData.CAST_TICKS).number;
     }
 
     @Override
@@ -284,22 +266,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
-
-        int lvl = ctx.calcData.level;
-
-        if (config.scale_mana_cost_to_player_lvl) {
-            lvl = ctx.data.getLevel();
-        }
-
-        float scaling = GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(lvl);
-
-        return (int) (getConfig().mana_cost * manaCostMulti * scaling);
+        return (int) ctx.event.data.getNumber(EventData.MANA_COST).number;
     }
 
-    public final List<Text> GetTooltipString(SkillGemData gem, TooltipInfo info, CalculatedSpellData data) {
+    public final List<Text> GetTooltipString(SkillGemData gem, Spell spell, TooltipInfo info) {
 
-        SpellCastContext ctx = new SpellCastContext(gem, info.player, 0, data);
+        SpellCastContext ctx = new SpellCastContext(gem, info.player, 0, spell);
 
         List<Text> list = new ArrayList<>();
 
@@ -307,7 +279,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (Screen.hasShiftDown()) {
             list.addAll(attached
-                .getTooltip(data));
+                .getTooltip(ctx.calcData));
         }
 
         TooltipUtils.addEmpty(list);
@@ -364,7 +336,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 e.printStackTrace();
             }
             try {
-                effect.forEach(x -> list.addAll(x.GetTooltipString(info, data)));
+                effect.forEach(x -> list.addAll(x.GetTooltipString(info, ctx.calcData)));
             } catch (Exception e) {
                 e.printStackTrace();
             }

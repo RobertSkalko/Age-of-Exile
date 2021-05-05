@@ -6,16 +6,13 @@ import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditio
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.*;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.Stat.StatGroup;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.GiveShieldEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.OnMobKilledByDamageEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -28,6 +25,10 @@ import java.util.Arrays;
 
 public class Stats implements ISlashRegistryInit {
 
+    public static void loadClass() {
+
+    }
+
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -39,8 +40,8 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IF_RANDOM_ROLL)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
-        .setLocName(x -> SpecialStats.format(
-            "Your " + x.element.getIconNameFormat() + " Killing blows have " + SpecialStats.VAL1 + "% chance of giving you " + x.locname
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Killing blows have " + Stat.VAL1 + "% chance of giving you " + x.locname
         ))
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
@@ -62,8 +63,8 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resourceType))
         .setLocName(x ->
-            SpecialStats.format(
-                "Leech " + SpecialStats.VAL1 + "% of your " + x.element.getIconNameFormat() + " Damage as " + x.resourceType.locname
+            Stat.format(
+                "Leech " + Stat.VAL1 + "% of your " + x.element.getIconNameFormat() + " Damage as " + x.resourceType.locname
             )
         )
         .setLocDesc(x -> "")
@@ -222,8 +223,8 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> SpecialStats.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of giving " + x.locname
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of giving " + x.locname
         ))
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
@@ -253,8 +254,8 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
-        .setLocName(x -> SpecialStats.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of applying " + x.locname
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of applying " + x.locname
         ))
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
@@ -677,6 +678,114 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.icon = "\u2748";
             x.format = Formatting.GREEN;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> MANA_COST = DatapackStatBuilder
+        .ofSingle("mana_cost", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INCREASE_MANA_COST)
+        .setLocName(x -> "Mana Cost")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> CAST_SPEED = DatapackStatBuilder
+        .ofSingle("cast_speed", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_STYLE.get(PlayStyle.magic))
+        .addEffect(StatEffects.DECREASE_CAST_TIME)
+        .setLocName(x -> "Cast Speed")
+        .setLocDesc(x -> "Affects amount of time needed to cast spells. If the spell is instant, it reduces the cooldown")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.max = 75;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> ATTACK_SPEED = DatapackStatBuilder
+        .ofSingle("attack_speed", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_NON_MAGIC_STYLE)
+        .addEffect(StatEffects.DECREASE_CAST_TIME)
+        .setLocName(x -> "Attack Speed")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.max = 75;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> COOLDOWN_REDUCTION = DatapackStatBuilder
+        .ofSingle("cdr", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.DECREASE_COOLDOWN)
+        .setLocName(x -> "Cooldown Reduction")
+        .setLocDesc(x -> "Reduces spell cooldown.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.max = 80;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_SPEED = DatapackStatBuilder
+        .ofSingle("faster_projectiles", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.projectile))
+        .addEffect(StatEffects.INCREASE_PROJ_SPEED)
+        .setLocName(x -> "Faster Projectiles")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.icon = "\u27B9";
+            x.format = Formatting.GREEN;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_AREA = DatapackStatBuilder
+        .ofSingle("inc_aoe", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.area))
+        .addEffect(StatEffects.INCREASE_AREA)
+        .setLocName(x -> "Area of Effect")
+        .setLocDesc(x -> "Spell aoe effects will be larger")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.icon = "\u27B9";
+            x.format = Formatting.GREEN;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> PIERCING_PROJECTILES = DatapackStatBuilder
+        .ofSingle("piercing_projectiles", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.projectile))
+        .addEffect(StatEffects.SET_PIERCE)
+        .setLocName(x -> "Piercing Projectiles")
+        .setLocDesc(x -> "Makes spell pierce enemies and keep on")
+        .modifyAfterDone(x -> {
+            x.is_perc = false;
+            x.is_long = true;
         })
         .build();
 

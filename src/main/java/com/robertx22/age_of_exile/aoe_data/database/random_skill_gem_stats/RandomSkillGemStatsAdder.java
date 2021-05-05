@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.random_skill_gem_stats.RandomSkillGemStats;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 
 import java.util.Arrays;
@@ -16,7 +15,7 @@ public class RandomSkillGemStatsAdder implements ISlashRegistryInit {
     public void registerAll() {
 
         of("fast_proj", Arrays.asList(SpellTag.projectile),
-            new StatModifier(2, 10, ProjectileSpeed.getInstance())
+            new StatModifier(2, 10, Stats.PROJECTILE_SPEED.get())
         );
         of("proj_dmg", Arrays.asList(SpellTag.projectile),
             new StatModifier(2, 5, Stats.PROJECTILE_DAMAGE.get())

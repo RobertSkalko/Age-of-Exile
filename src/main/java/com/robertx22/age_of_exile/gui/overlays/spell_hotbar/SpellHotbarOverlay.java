@@ -109,8 +109,13 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             spell = Load.spells(this.mc.player)
                 .getSpellByNumber(place);
 
+            if (spell == null) {
+                return;
+            }
             ctx = new SpellCastContext(mc.player, 0, spell);
+
         } catch (Exception e) {
+            e.printStackTrace();
             render = false;
         }
 

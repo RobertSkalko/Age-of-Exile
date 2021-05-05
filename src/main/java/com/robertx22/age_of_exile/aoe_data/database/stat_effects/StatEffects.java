@@ -52,10 +52,17 @@ public class StatEffects implements ISlashRegistryInit {
         , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Target, 5));
 
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
+    public static StatEffect SET_PIERCE = new SetBooleanEffect(EventData.PIERCE);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect(EventData.NUMBER);
     public static StatEffect INCREASE_SECONDS = new IncreaseNumberByPercentEffect(EventData.SECONDS);
     public static StatEffect SET_ACCURACY = new SetDataNumberAction(EventData.ACCURACY);
     public static StatEffect ADD_STAT_DATA_TO_NUMBER = new AddToNumberEffect("add_stat_data_to_num", EventData.NUMBER, NumberProvider.ofStatData());
+
+    public static StatEffect DECREASE_COOLDOWN = new DecreaseNumberByPercentEffect(EventData.COOLDOWN_TICKS);
+    public static StatEffect INCREASE_MANA_COST = new IncreaseNumberByPercentEffect(EventData.MANA_COST);
+    public static StatEffect INCREASE_PROJ_SPEED = new IncreaseNumberByPercentEffect(EventData.PROJECTILE_SPEED_MULTI);
+    public static StatEffect DECREASE_CAST_TIME = new IncreaseNumberByPercentEffect(EventData.CAST_TICKS);
+    public static StatEffect INCREASE_AREA = new IncreaseNumberByPercentEffect(EventData.AREA_MULTI);
 
     public static DataHolder<String, StatEffect> ADD_PERC_OF_STAT_TO_NUMBER = new DataHolder<>(
         Arrays.asList(
@@ -81,6 +88,14 @@ public class StatEffects implements ISlashRegistryInit {
         ADD_PERC_OF_STAT_TO_NUMBER.addToSerializables();
         ADD_STAT_DATA_TO_NUMBER.addToSerializables();
         INCREASE_SECONDS.addToSerializables();
+        DECREASE_COOLDOWN.addToSerializables();
+        INCREASE_MANA_COST.addToSerializables();
+        SET_PIERCE.addToSerializables();
+        INCREASE_AREA.addToSerializables();
+        SET_PIERCE.addToSerializables();
+        INCREASE_PROJ_SPEED.addToSerializables();
+        DECREASE_CAST_TIME.addToSerializables();
+        LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE.addToSerializables();
 
     }
 }

@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 resource_type_is_damage
+style_is_magic_is_false
 is_sword_wep_type
 is_attack_or_spell_attack
 style_is_magic

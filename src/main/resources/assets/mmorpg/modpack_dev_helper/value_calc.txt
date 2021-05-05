@@ -10,6 +10,7 @@ whirlwind_dmg
 iceball
 explosive_arrow_eoe
 shield_test
+totem_heal
 default_bolt_dmg
 breath_dmg
 fireball

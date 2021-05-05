@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.skill_gems;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class SkillGemBuilder {
         if (manaMulti > 1) {
             int mana = (int) ((manaMulti - 1F) * 100F);
             gem.stats = new ArrayList<>(gem.stats);
-            gem.stats.add(new StatModifier(mana, mana, ManaCost.getInstance()));
+            gem.stats.add(new StatModifier(mana, mana, Stats.MANA_COST.get()));
         }
 
         gem.addToSerializables();

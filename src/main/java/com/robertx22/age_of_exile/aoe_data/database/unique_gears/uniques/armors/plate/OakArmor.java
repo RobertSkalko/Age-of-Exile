@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
@@ -126,8 +124,8 @@ public class OakArmor implements ISlashRegistryInit {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature), ModType.FLAT),
-                    new StatModifier(5, 15, AttackSpeed.getInstance(), ModType.FLAT),
-                    new StatModifier(5, 10, CooldownReduction.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),
                     new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
                 )
             )

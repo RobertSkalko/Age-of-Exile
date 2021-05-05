@@ -10,10 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -25,12 +21,12 @@ public class ComboPerks implements ISlashRegistryInit {
     public void registerAll() {
 
         PerkBuilder.stat("hp_mana_cost",
-            new OptScaleExactStat(-2, ManaCost.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(-2, Stats.MANA_COST.get(), ModType.FLAT),
             new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("atk_cast_speed",
-            new OptScaleExactStat(2, AttackSpeed.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(2, CastSpeed.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT),
+            new OptScaleExactStat(2, Stats.CAST_SPEED.get(), ModType.FLAT)
         );
 
         PerkBuilder.stat("hp_res",
@@ -114,7 +110,7 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT)
         );
         PerkBuilder.stat("inc_area_spell_dmg",
-            new OptScaleExactStat(4, IncreasedAreaOfEffect.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(4, Stats.INCREASED_AREA.get(), ModType.FLAT),
             new OptScaleExactStat(2, SpellDamage.getInstance(), ModType.FLAT)
         );
 
@@ -125,7 +121,7 @@ public class ComboPerks implements ISlashRegistryInit {
 
         PerkBuilder.stat("spell_dmg_atk_speed",
             new OptScaleExactStat(2, SpellDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(2, AttackSpeed.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
         );
 
     }

@@ -33,6 +33,21 @@ import java.util.function.Function;
 
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDesc, ISerializedRegistryEntry<BaseDatapackStat> {
 
+    public static String VAL1 = "[VAL1]";
+    public static String VAL2 = "[VAL2]";
+    static Formatting FORMAT = Formatting.GRAY;
+    static Formatting NUMBER = Formatting.GREEN;
+
+    public static String format(String str) {
+
+        str = FORMAT + str;
+
+        str = str.replace(VAL1, NUMBER + VAL1 + FORMAT);
+        str = str.replace(VAL2, NUMBER + VAL2 + FORMAT);
+
+        return str;
+    }
+
     public Stat() {
     }
 

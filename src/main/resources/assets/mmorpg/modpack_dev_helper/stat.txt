@@ -8,7 +8,6 @@ bonus_regen_in_water
 accuracy
 trident_damage
 increase_healing
-more_proj
 spell_dark_damage
 scepter_damage
 bonus_exp

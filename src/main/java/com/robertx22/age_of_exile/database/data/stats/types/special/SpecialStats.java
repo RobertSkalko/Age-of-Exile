@@ -31,26 +31,13 @@ import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 
+import static com.robertx22.age_of_exile.database.data.stats.Stat.VAL1;
+import static com.robertx22.age_of_exile.database.data.stats.Stat.format;
+
 public class SpecialStats {
 
     public static void init() {
 
-    }
-
-    public static String VAL1 = "[VAL1]";
-    public static String VAL2 = "[VAL2]";
-
-    static Formatting FORMAT = Formatting.GRAY;
-    static Formatting NUMBER = Formatting.GREEN;
-
-    public static String format(String str) {
-
-        str = FORMAT + str;
-
-        str = str.replace(VAL1, NUMBER + VAL1 + FORMAT);
-        str = str.replace(VAL2, NUMBER + VAL2 + FORMAT);
-
-        return str;
     }
 
     static int VOID_EYE_COOLDOWN_MINUTES = 5;

@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.gear_types.bases;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
@@ -13,8 +14,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Wea
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -23,7 +22,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegi
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
@@ -153,7 +151,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     public final float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
         return getAttacksPerSecondCalculated(data.getUnit()
-            .getCalculatedStat(AttackSpeed.getInstance()));
+            .getCalculatedStat(Stats.ATTACK_SPEED.get()));
     }
 
     public final float getAttacksPerSecondCalculated(StatData stat) {
@@ -164,24 +162,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         float f = multi * attacksPerSecond;
 
         return f;
-    }
-
-    public final float getAttacksPerSecondForTooltip(GearItemData gear) {
-        return attacksPerSecond;
-    }
-
-    public final boolean hasUniqueItemVersions() {
-
-        List<UniqueGear> uniques = Database.UniqueGears()
-            .getFilterWrapped(x -> {
-                return x.getPossibleGearTypes()
-                    .stream()
-                    .anyMatch(e -> e.GUID()
-                        .equals(GUID()));
-            }).list;
-
-        return !uniques.isEmpty();
-
     }
 
     public final boolean isWeaponOrTool() {

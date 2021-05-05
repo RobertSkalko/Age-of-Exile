@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.text.LiteralText;
@@ -76,7 +76,7 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
         return this.locName;
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info, CalculatedSpellData spelldata) {
+    public List<Text> GetTooltipString(TooltipInfo info, EntitySavedSpellData data) {
         List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Status Effect: ").append(this.locName())
@@ -89,7 +89,7 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
         }
         if (spell != null) {
             // list.add(new LiteralText("Effect:"));
-            list.addAll(spell.getEffectTooltip(spelldata));
+            list.addAll(spell.getEffectTooltip(data));
         }
 
         return list;

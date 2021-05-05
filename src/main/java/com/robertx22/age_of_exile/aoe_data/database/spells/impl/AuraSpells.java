@@ -9,8 +9,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -25,8 +23,8 @@ public class AuraSpells implements ISlashRegistryInit {
 
         SpellBuilder.aura(PlayStyle.ranged, "haste_aura", "Haste Aura", new AuraSpellData(0.25F,
             Arrays.asList(
-                new StatModifier(5, 20, CastSpeed.getInstance()),
-                new StatModifier(4, 15, AttackSpeed.getInstance())
+                new StatModifier(5, 20, Stats.CAST_SPEED.get()),
+                new StatModifier(4, 15, Stats.ATTACK_SPEED.get())
             )))
             .build();
 

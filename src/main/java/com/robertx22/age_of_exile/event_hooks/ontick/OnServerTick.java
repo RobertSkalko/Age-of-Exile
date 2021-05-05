@@ -67,7 +67,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     SpellCastContext ctx = new SpellCastContext(player, 0, spell);
                     spell
                         .getAttached()
-                        .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(ctx.skillGemData.lvl, player, spell, ctx.spellConfig)));
+                        .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(ctx.skillGemData.lvl, player, spell)));
                 }
 
                 data.increment();

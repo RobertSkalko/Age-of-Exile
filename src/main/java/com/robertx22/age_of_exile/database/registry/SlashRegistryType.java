@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.aoe_data.database.compat_items.CompatibleItems
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
 import com.robertx22.age_of_exile.aoe_data.datapacks.loaders.BaseDataPackLoader;
+import com.robertx22.age_of_exile.database.Serializers;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
-import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
@@ -71,7 +71,7 @@ public enum SlashRegistryType {
         }
     },
     DIMENSION_CONFIGS("dimension_config", 13, DimensionConfig.EMPTY, SyncTime.ON_LOGIN),
-    ENTITY_CONFIGS("entity_config", 14, EntityConfig.EMPTY, SyncTime.NEVER),
+    ENTITY_CONFIGS("entity_config", 14, Serializers.ENTITY_CONFIG_SER, SyncTime.NEVER),
     COMPATIBLE_ITEM("compatible_items", 15, CompatibleItem.EMPTY, SyncTime.ON_LOGIN) {
         public List getAllForSerialization() {
             return CompatibleItems.getAllForSerialization();

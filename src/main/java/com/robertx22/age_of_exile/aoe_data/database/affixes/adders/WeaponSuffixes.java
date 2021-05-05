@@ -5,9 +5,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -65,11 +62,11 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_speed")
             .Named("Of Speed")
-            .tier(1, new StatModifier(20, 25, AttackSpeed.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(15, 20, AttackSpeed.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(10, 15, AttackSpeed.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(7, 10, AttackSpeed.getInstance(), ModType.FLAT))
-            .tier(5, new StatModifier(5, 7, AttackSpeed.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(20, 25, Stats.ATTACK_SPEED.get(), ModType.FLAT))
+            .tier(2, new StatModifier(15, 20, Stats.ATTACK_SPEED.get(), ModType.FLAT))
+            .tier(3, new StatModifier(10, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT))
+            .tier(4, new StatModifier(7, 10, Stats.ATTACK_SPEED.get(), ModType.FLAT))
+            .tier(5, new StatModifier(5, 7, Stats.ATTACK_SPEED.get(), ModType.FLAT))
             .includesTags(SlotTag.melee_weapon)
             .Suffix()
             .Build();
@@ -94,18 +91,18 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_fast_cast")
             .Named("Of Faster Casting")
-            .tier(1, new StatModifier(15, 20, CastSpeed.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(12, 15, CastSpeed.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(7, 12, CastSpeed.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(15, 20, Stats.CAST_SPEED.get(), ModType.FLAT))
+            .tier(2, new StatModifier(12, 15, Stats.CAST_SPEED.get(), ModType.FLAT))
+            .tier(3, new StatModifier(7, 12, Stats.CAST_SPEED.get(), ModType.FLAT))
             .includesTags(SlotTag.wand, SlotTag.jewelry_family)
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_less_cd")
             .Named("Of Repetition")
-            .tier(1, new StatModifier(12, 15, CooldownReduction.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(10, 12, CooldownReduction.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(6, 10, CooldownReduction.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(12, 15, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 12, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT))
+            .tier(3, new StatModifier(6, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT))
             .includesTags(SlotTag.wand, SlotTag.jewelry_family)
             .Suffix()
             .Build();

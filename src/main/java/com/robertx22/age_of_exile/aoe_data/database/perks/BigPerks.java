@@ -23,11 +23,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.*;
@@ -81,7 +76,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_balistic", "Ballistics Expert",
             new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT),
-            new OptScaleExactStat(10, ProjectileSpeed.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(10, Stats.PROJECTILE_SPEED.get(), ModType.FLAT),
             new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT)
         );
 
@@ -92,7 +87,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_fury_bolt", "Furious Bolts",
             new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT),
-            new OptScaleExactStat(5, ProjectileSpeed.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.PROJECTILE_SPEED.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT)
         );
 
@@ -116,7 +111,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_gladiator", "Master Gladiator",
             new OptScaleExactStat(10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, AttackSpeed.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT),
             new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT)
         );
 
@@ -167,7 +162,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_flame_of_life", "Flame of Life",
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(1, RegeneratePercentStat.HEALTH, ModType.FLAT),
-            new OptScaleExactStat(3, CastSpeed.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.CAST_SPEED.get(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_will_of_mana", "Will of Mana",
@@ -201,7 +196,7 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_precision", "Precision",
             new OptScaleExactStat(10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(3, AttackSpeed.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.ATTACK_SPEED.get(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_iron_skin", "Iron Skin",
@@ -222,7 +217,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_fighter", "Natural Fighter",
             new OptScaleExactStat(3, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(3, AttackSpeed.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(3, Stats.ATTACK_SPEED.get(), ModType.FLAT),
             new OptScaleExactStat(20, Stats.ACCURACY.get(), ModType.FLAT),
             new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT)
         );
@@ -257,13 +252,13 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_health_ms_mana_cost", "Righteous Indignation",
-            new OptScaleExactStat(-5, ManaCost.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(-5, Stats.MANA_COST.get(), ModType.FLAT),
             new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
             new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("big_health_mana_cost", "Righteous Indignation",
-            new OptScaleExactStat(-5, ManaCost.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(-5, Stats.MANA_COST.get(), ModType.FLAT),
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.bigStat("big_faith_armor", "Armor of Faith",
@@ -284,8 +279,8 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_lacerator", "Lacerator",
-            new OptScaleExactStat(5, AttackSpeed.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(5, CastSpeed.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.CAST_SPEED.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
 
@@ -336,7 +331,7 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_inc_area_spell_dmg", "Blast Radius",
-            new OptScaleExactStat(15, IncreasedAreaOfEffect.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(15, Stats.INCREASED_AREA.get(), ModType.FLAT),
             new OptScaleExactStat(5, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT)
         );

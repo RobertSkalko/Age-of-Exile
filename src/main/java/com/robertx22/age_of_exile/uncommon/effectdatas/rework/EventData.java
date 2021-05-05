@@ -32,6 +32,13 @@ public class EventData {
     public static String IGNORE_RESIST = "ignore_resist";
     public static String SECONDS = "seconds";
 
+    public static String CAST_TICKS = "cast_ticks";
+    public static String COOLDOWN_TICKS = "cd_ticks";
+    public static String MANA_COST = "mana_cost";
+    public static String AREA_MULTI = "area";
+    public static String PIERCE = "pierce";
+    public static String PROJECTILE_SPEED_MULTI = "proj_speed";
+
     private HashMap<String, WrappedFloat> floats = new HashMap<>();
     private HashMap<String, Boolean> bools = new HashMap<>();
     private HashMap<String, String> strings = new HashMap<>();

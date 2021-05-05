@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.spells.skill_gems;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EquipmentSlot;
@@ -13,6 +14,8 @@ import net.minecraft.util.collection.DefaultedList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Storable
 public class SkillGemsData implements Inventory {
@@ -137,6 +140,21 @@ public class SkillGemsData implements Inventory {
     @Override
     public void markDirty() {
 
+    }
+
+    public SkillGemData getSkillGemOfSpell(Spell spell) {
+        Objects.requireNonNull(spell);
+
+        Optional<SkillGemData> opt = stacks.stream()
+            .map(x -> {
+                return SkillGemData.fromStack(x);
+            })
+            .filter(x -> {
+                return x != null && x.getSkillGem() != null && x.getSkillGem().spell_id.equals(spell.GUID());
+            })
+            .findAny();
+
+        return opt.get();
     }
 
     @Override

@@ -6,9 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.CooldownReduction;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.IncreasedAreaOfEffect;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 
@@ -45,26 +42,26 @@ public class IntSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("cast_speed", "Faster Casting Support", new StatRequirement().setBaseInt(25)
                 .setInt(0.4F), StatAttribute.INT, 1.25F,
             Arrays.asList(SpellTag.damage),
-            new StatModifier(5, 25, CastSpeed.getInstance())
+            new StatModifier(5, 25, Stats.CAST_SPEED.get())
         );
 
         SkillGemBuilder.of("cooldown", "Less Cooldown Support", new StatRequirement().setBaseInt(25)
                 .setInt(0.4F), StatAttribute.INT, 1.25F,
             Arrays.asList(SpellTag.values()),
-            new StatModifier(10, 30, CooldownReduction.getInstance())
+            new StatModifier(10, 30, Stats.COOLDOWN_REDUCTION.get())
         );
 
         SkillGemBuilder.of("less_radius", "Concentrated Impact Support", new StatRequirement().setBaseInt(25)
                 .setInt(0.5F), StatAttribute.INT, 1.25F,
             Arrays.asList(SpellTag.damage, SpellTag.area),
-            new StatModifier(-10, -20, IncreasedAreaOfEffect.getInstance()),
+            new StatModifier(-10, -20, Stats.INCREASED_AREA.get()),
             new StatModifier(15, 25, Stats.AREA_DAMAGE.get())
         );
 
         SkillGemBuilder.of("more_radius", "Expanded Area Support", new StatRequirement().setBaseInt(25)
                 .setInt(0.5F), StatAttribute.INT, 1.25F,
             Arrays.asList(SpellTag.damage, SpellTag.area),
-            new StatModifier(10, 20, IncreasedAreaOfEffect.getInstance())
+            new StatModifier(10, 20, Stats.INCREASED_AREA.get())
         );
 
     }

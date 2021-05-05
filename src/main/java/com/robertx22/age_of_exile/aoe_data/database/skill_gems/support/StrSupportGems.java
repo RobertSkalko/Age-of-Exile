@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -63,7 +62,7 @@ public class StrSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("less_mana_cost", "Mana Cost Reduction Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.3F), StatAttribute.STR, 1,
             Arrays.asList(SpellTag.damage),
-            new StatModifier(-10, -20, ManaCost.getInstance())
+            new StatModifier(-10, -20, Stats.MANA_COST.get())
         );
     }
 }

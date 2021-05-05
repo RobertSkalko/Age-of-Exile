@@ -5,13 +5,11 @@ import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceC
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
@@ -105,42 +103,45 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
     public List<Text> GetTooltipString(TooltipInfo info) {
 
         List<Text> list = new ArrayList<>();
-        list.add(new LiteralText(""));
-
-        TooltipUtils.addRequirements(list, this.lvl, getSkillGem().req, info.unitdata);
-
-        List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
-
-        if (this.getSkillGem().type == SkillGemType.SKILL_GEM) {
-            Spell spell = Database.Spells()
-                .get(getSkillGem().spell_id);
-            SpellCastContext ctx = new SpellCastContext(info.player, 0, spell);
-
-            list.addAll(spell.GetTooltipString(this, info, CalculatedSpellData.create(this, info.player, spell, ctx.spellConfig)));
-        }
-
-        list.add(new LiteralText(""));
-
-        if (!cStats.isEmpty()) {
-            list.add(new LiteralText("Supported Skill Gains: "));
-
-            cStats
-                .forEach(x -> list.addAll(x.GetTooltipString(info)));
-        }
-        if (!random_stats.isEmpty()) {
+        try {
             list.add(new LiteralText(""));
-            list.add(new LiteralText("Random Stats: "));
-            this.getSkillGem()
-                .getRandomStats(this)
-                .forEach(x -> list.addAll(x.GetTooltipString(info)));
 
+            TooltipUtils.addRequirements(list, this.lvl, getSkillGem().req, info.unitdata);
+
+            List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
+
+            if (this.getSkillGem().type == SkillGemType.SKILL_GEM) {
+                Spell spell = Database.Spells()
+                    .get(getSkillGem().spell_id);
+                //SpellCastContext ctx = new SpellCastContext(info.player, 0, spell);
+                list.addAll(spell.GetTooltipString(this, spell, info));
+            }
+
+            list.add(new LiteralText(""));
+
+            if (!cStats.isEmpty()) {
+                list.add(new LiteralText("Supported Skill Gains: "));
+
+                cStats
+                    .forEach(x -> list.addAll(x.GetTooltipString(info)));
+            }
+            if (!random_stats.isEmpty()) {
+                list.add(new LiteralText(""));
+                list.add(new LiteralText("Random Stats: "));
+                this.getSkillGem()
+                    .getRandomStats(this)
+                    .forEach(x -> list.addAll(x.GetTooltipString(info)));
+
+            }
+
+            list.add(new LiteralText(""));
+            list.add(TooltipUtils.rarity(getRarity())
+                .formatted(getRarity().textFormatting()));
+
+            TooltipUtils.removeDoubleBlankLines(list);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        list.add(new LiteralText(""));
-        list.add(TooltipUtils.rarity(getRarity())
-            .formatted(getRarity().textFormatting()));
-
-        TooltipUtils.removeDoubleBlankLines(list);
 
         return list;
 

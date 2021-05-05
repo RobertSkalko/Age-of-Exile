@@ -26,6 +26,7 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
+    public static StatCondition IS_NON_MAGIC_STYLE = new StringMatchesCondition(EventData.STYLE, PlayStyle.magic.name()).flipCondition();
 
     public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
         ResourceType.values()
@@ -110,6 +111,7 @@ public class StatConditions implements ISlashRegistryInit {
         IS_MELEE_WEAPON.addToSerializables();
         SPELL_HAS_TAG.addToSerializables();
         IS_STYLE.addToSerializables();
+        IS_NON_MAGIC_STYLE.addToSerializables();
 
     }
 }

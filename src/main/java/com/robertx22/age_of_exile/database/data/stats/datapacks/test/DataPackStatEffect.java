@@ -43,6 +43,9 @@ public class DataPackStatEffect implements IStatEffect {
                 .allMatch(x -> {
                     StatCondition cond = Database.StatConditions()
                         .get(x);
+                    if (cond == null) {
+                        return false;
+                    }
                     Boolean istrue = cond.can(effect, statSource, data, stat) == cond.getConditionBoolean();
                     return istrue;
                 })) {
@@ -50,7 +53,9 @@ public class DataPackStatEffect implements IStatEffect {
                 effects.forEach(x -> {
                     StatEffect e = Database.StatEffects()
                         .get(x);
-
+                    if (e == null) {
+                        return;
+                    }
                     e.activate(effect, statSource, data, stat);
 
                 });

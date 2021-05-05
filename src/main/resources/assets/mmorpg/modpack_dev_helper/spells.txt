@@ -14,6 +14,7 @@ nature_balm
 haste_aura
 arrow_storm
 shield_test
+rejuv_totem
 fireball
 levitation
 explosive_arrow

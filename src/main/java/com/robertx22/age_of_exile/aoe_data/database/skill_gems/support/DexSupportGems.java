@@ -7,9 +7,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.base.LeechInfo;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.PiercingProjectile;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -25,13 +22,13 @@ public class DexSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("piercing_proj", "Piercing Projectiles Support", new StatRequirement().setBaseDex(20)
                 .setDex(0.2F), StatAttribute.DEX, 1.5F,
             Arrays.asList(SpellTag.projectile),
-            new StatModifier(1, 1, PiercingProjectile.getInstance())
+            new StatModifier(1, 1, Stats.PIERCING_PROJECTILES.get())
         );
 
         SkillGemBuilder.of("faster_proj", "Faster Projectiles Support", new StatRequirement().setBaseDex(20)
                 .setDex(0.2F), StatAttribute.DEX, 1.2F,
             Arrays.asList(SpellTag.projectile),
-            new StatModifier(10, 20, ProjectileSpeed.getInstance()),
+            new StatModifier(10, 20, Stats.PROJECTILE_SPEED.get()),
             new StatModifier(10, 20, Stats.PROJECTILE_DAMAGE.get())
         );
 
@@ -49,7 +46,7 @@ public class DexSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("atk_speed", "Faster Attacks Support", new StatRequirement().setBaseDex(25)
                 .setDex(0.3F), StatAttribute.DEX, 1.25F,
             Arrays.asList(SpellTag.damage),
-            new StatModifier(5, 25, AttackSpeed.getInstance())
+            new StatModifier(5, 25, Stats.ATTACK_SPEED.get())
         );
 
     }

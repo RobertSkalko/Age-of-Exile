@@ -4,14 +4,14 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
-import java.util.Optional;
+import java.util.Objects;
 
 ;
 
@@ -24,19 +24,9 @@ public class SpellCastContext {
     public final Spell spell;
     public boolean isLastCastTick;
     public boolean castedThisTick = false;
-    public CalculatedSpellData calcData;
-
+    public SpellStatsCalculationEvent event;
+    public EntitySavedSpellData calcData;
     public SkillGemData skillGemData;
-
-    public SpellStatsCalculationEvent.CalculatedSpellConfiguration spellConfig;
-
-    private void calcSpellData() {
-        this.calcData = CalculatedSpellData.create(skillGemData, caster, spell, spellConfig);
-    }
-
-    public SpellCastContext(SkillGemData gem, LivingEntity caster, int ticksInUse, CalculatedSpellData spell) {
-        this(gem, caster, ticksInUse, spell.getSpell());
-    }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, Spell spell) {
         this(null, caster, ticksInUse, spell);
@@ -45,47 +35,26 @@ public class SpellCastContext {
     public SpellCastContext(@Nullable SkillGemData gem, LivingEntity caster, int ticksInUse, Spell spell) {
         this.caster = caster;
         this.ticksInUse = ticksInUse;
-
         this.spell = spell;
-
         this.data = Load.Unit(caster);
 
-        SpellStatsCalculationEvent effect = new SpellStatsCalculationEvent(caster, spell.GUID());
-        effect.Activate();
-        this.spellConfig = effect.spellConfig;
+        Objects.requireNonNull(spell);
 
         if (caster instanceof PlayerEntity) {
 
-            this.spellsCap = Load.spells((PlayerEntity) caster);
+            this.spellsCap = Load.spells(caster);
 
             try {
 
-                Optional<SkillGemData> opt = spellsCap.getSkillGemData().stacks.stream()
-                    .map(x -> {
-                        return SkillGemData.fromStack(x);
-                    })
-                    .filter(x -> {
-                        return x != null && x.getSkillGem() != null && x.getSkillGem().spell_id.equals(spell.GUID());
-                    })
-                    .findAny();
+                if (gem == null) {
+                    skillGemData = this.spellsCap.getSkillGemData()
+                        .getSkillGemOfSpell(spell);
 
-                if (caster.world.isClient) {
-                    if (gem == null) {
-                        if (opt.isPresent()) {
-                            skillGemData = opt.get();
-                        } else {
-                            this.skillGemData = new SkillGemData();
-                        }
-                    } else {
-                        skillGemData = gem;
+                    if (skillGemData == null) {
+                        this.skillGemData = new SkillGemData();
                     }
-
                 } else {
-                    if (gem == null) {
-                        skillGemData = opt.get();
-                    } else {
-                        skillGemData = gem;
-                    }
+                    skillGemData = gem;
                 }
 
             } catch (Exception e) {
@@ -104,14 +73,17 @@ public class SpellCastContext {
             skillGemData.lvl = data.getLevel();
         }
 
-        calcSpellData();
-
         if (spell != null) {
-            int castTicks = (int) this.calcData.getSpell()
+            int castTicks = (int) spell
                 .getConfig()
                 .getCastTimeTicks();
             this.isLastCastTick = castTicks == ticksInUse;
         }
+
+        this.calcData = EntitySavedSpellData.create(skillGemData.lvl, caster, spell);
+
+        this.event = new SpellStatsCalculationEvent(this.calcData, skillGemData, caster, spell.GUID());
+        event.Activate();
 
     }
 }

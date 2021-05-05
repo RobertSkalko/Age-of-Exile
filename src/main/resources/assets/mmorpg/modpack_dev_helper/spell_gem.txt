@@ -39,6 +39,7 @@ spell_crit_rate
 crit_dmg
 faster_proj
 nature_balm
+rejuv_totem
 fireball
 levitation
 explosive_arrow

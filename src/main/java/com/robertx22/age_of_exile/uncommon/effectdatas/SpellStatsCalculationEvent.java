@@ -1,13 +1,12 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
-import com.robertx22.age_of_exile.saveclasses.unit.StatData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.minecraft.entity.LivingEntity;
-
-import java.util.HashMap;
 
 public class SpellStatsCalculationEvent extends EffectEvent {
     public static String ID = "on_spell_stat_calc";
@@ -17,45 +16,41 @@ public class SpellStatsCalculationEvent extends EffectEvent {
         return ID;
     }
 
-    public CalculatedSpellConfiguration spellConfig = new CalculatedSpellConfiguration();
+    int lvl;
 
-    public EntitySpellCap.ISpellsCap spells;
+    public EntitySavedSpellData savedData;
 
-    public SpellStatsCalculationEvent(LivingEntity caster, String spell) {
+    public SpellStatsCalculationEvent(EntitySavedSpellData savedData, SkillGemData gem, LivingEntity caster, String spell) {
         super(caster, caster);
+
+        this.savedData = savedData;
+        this.lvl = gem.lvl;
+
+        Spell s = Database.Spells()
+            .get(spell);
+        if (s.config.scale_mana_cost_to_player_lvl) {
+            lvl = this.sourceData.getLevel();
+        }
+
+        this.data.setString(EventData.STYLE, s.config.style.name());
+
         this.data.setString(EventData.SPELL, spell);
-        this.spells = Load.spells(caster);
+
+        this.data.setupNumber(EventData.MANA_COST, GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(lvl) * s.config.mana_cost);
+        this.data.setupNumber(EventData.COOLDOWN_TICKS, s.config.cooldown_ticks);
+        this.data.setupNumber(EventData.PROJECTILE_SPEED_MULTI, 1F);
+        this.data.setupNumber(EventData.MANA_COST, s.config.mana_cost);
+        this.data.setupNumber(EventData.AREA_MULTI, 1);
+
     }
 
     @Override
     protected void activate() {
 
-    }
-
-    public static class CalculatedSpellConfiguration {
-
-        public boolean piercing = false;
-        public int extraProjectiles = 0;
-
-        private HashMap<SpellModEnum, Float> map = new HashMap<>();
-
-        public CalculatedSpellConfiguration() {
-            for (SpellModEnum value : SpellModEnum.values()) {
-                map.put(value, 100F);
-            }
-        }
-
-        public void add(SpellModEnum en, StatData data) {
-            map.put(en, map.get(en) + data.getAverageValue());
-        }
-
-        public void add(SpellModEnum mod, float val) {
-            map.put(mod, map.get(mod) + val);
-        }
-
-        public float getMulti(SpellModEnum mod) {
-            return map.get(mod) / 100F;
-        }
+        savedData.proj_speed_multi = data.getNumber(EventData.PROJECTILE_SPEED_MULTI).number;
+        savedData.pierce = data.getBoolean(EventData.PIERCE);
+        savedData.area_multi = data.getNumber(EventData.AREA_MULTI).number;
+        savedData.lvl = lvl;
 
     }
 
