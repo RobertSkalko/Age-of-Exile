@@ -44,6 +44,11 @@ public class EventData {
     private HashMap<String, String> strings = new HashMap<>();
 
     public void setupNumber(String id, float num) {
+
+        if (floats.containsKey(id)) {
+            throw new RuntimeException("Number is already setup: " + id);
+        }
+
         this.getNumber(id).number = num;
         this.getOriginalNumber(id).number = num;
     }

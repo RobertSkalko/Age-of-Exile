@@ -36,6 +36,13 @@ public class MobAffixes implements ISlashRegistryInit {
         eleAffix("Holy", Light);
         eleAffix("Cursed", Dark);
 
+        new MobAffix("reflect", Stats.DAMAGE_REFLECTED.get()
+            .getFormatAndIcon(), Physical.format)
+            .setMods(
+                new StatModifier(15, 15, Stats.DAMAGE_REFLECTED.get()))
+            .setWeight(200)
+            .addToSerializables();
+
         new MobAffix("winter", new AttackDamage(Water).getFormatAndIcon(), Water.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),

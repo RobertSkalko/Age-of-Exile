@@ -16,6 +16,9 @@ public enum AttackType {
     dot("dot", "DOT") {
 
     },
+    reflect("reflect", "Reflect") {
+
+    },
     all("all", "Any") {
 
     };

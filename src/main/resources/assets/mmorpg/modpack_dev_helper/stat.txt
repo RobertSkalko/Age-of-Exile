@@ -10,6 +10,7 @@ trident_damage
 increase_healing
 spell_dark_damage
 scepter_damage
+give_regenerate_to_allies_in_aoe
 bonus_exp
 bonus_favor
 all_water_damage
@@ -169,6 +170,7 @@ triple_drop_chance
 health
 elemental_health_leech
 transfer_health_to_physical_weapon_damage
+damage_reflected
 inc_aura_effect
 staff_damage
 bonus_day_yield
@@ -204,6 +206,7 @@ health_regen
 spell_fire_damage
 bonus_exp_for_t1_mob
 ele_hammer_damage
+cd_ticks
 socket_slots
 chance_of_bleed
 light_focus

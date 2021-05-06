@@ -22,6 +22,7 @@ frost_armor
 crit_rate
 health_leech
 crit_aura
+overload
 astral_totem
 gong_strike
 cast_speed

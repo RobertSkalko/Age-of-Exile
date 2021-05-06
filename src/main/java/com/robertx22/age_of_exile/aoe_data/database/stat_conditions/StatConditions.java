@@ -24,6 +24,7 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition ELEMENT_MATCH_STAT = new ElementMatchesStat();
     public static StatCondition IS_DAY = new IsDayCondition();
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
+    public static StatCondition IS_IN_COMBAT = new IsInCombatCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
     public static StatCondition IS_NON_MAGIC_STYLE = new StringMatchesCondition(EventData.STYLE, PlayStyle.magic.name()).flipCondition();
@@ -34,7 +35,7 @@ public class StatConditions implements ISlashRegistryInit {
 
     public static DataHolder<SpellTag, StatCondition> SPELL_HAS_TAG = new DataHolder<>(
         SpellTag.values()
-        , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
+        , x -> new SpellHasTagCondition(x));
 
     public static DataHolder<PlayStyle, StatCondition> IS_STYLE = new DataHolder<>(
         PlayStyle.values()
@@ -112,6 +113,9 @@ public class StatConditions implements ISlashRegistryInit {
         SPELL_HAS_TAG.addToSerializables();
         IS_STYLE.addToSerializables();
         IS_NON_MAGIC_STYLE.addToSerializables();
+        IS_RESOURCE.addToSerializables();
+        IS_IN_COMBAT.addToSerializables();
+        IS_RESTORE_TYPE.addToSerializables();
 
     }
 }

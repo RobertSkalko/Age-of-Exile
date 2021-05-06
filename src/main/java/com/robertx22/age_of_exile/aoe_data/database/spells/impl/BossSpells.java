@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.sound.SoundEvents;
 
@@ -37,7 +38,7 @@ public class BossSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITCH_CELEBRATE, 1D, 1D))
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_FEET.create(MISC_ITEMS.FIREBALL, ENTITIES.SIMPLE_PROJECTILE, 20D * 6D))
-                .addTarget(TargetSelector.AOE.create(12D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES)))
+                .addTarget(TargetSelector.AOE.create(12D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ModRegistry.PARTICLES.FLAME, 200D, 2D))
 
             .onTick(PartBuilder.particleOnTick(1D, ModRegistry.PARTICLES.FLAME, 15D, 0.3D))

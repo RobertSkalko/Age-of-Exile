@@ -148,6 +148,7 @@
 	"mmorpg.mob_affix.nature_lord": "§2✿",
 	"mmorpg.mob_affix.nature_mob_affix": "§2✿",
 	"mmorpg.mob_affix.phys_lord": "§6✦",
+	"mmorpg.mob_affix.reflect": "§b❁",
 	"mmorpg.mob_affix.vampire": "§c❁",
 	"mmorpg.mob_affix.water_mob_affix": "§b❉",
 	"mmorpg.mob_affix.winter": "§b❉",
@@ -196,6 +197,7 @@
 	"mmorpg.skill_gem.more_radius": "Expanded Area Support",
 	"mmorpg.skill_gem.nature_balm": "Nature's Balm Gem",
 	"mmorpg.skill_gem.nature_dmg": "Poison Damage Support",
+	"mmorpg.skill_gem.overload": "Overload Gem",
 	"mmorpg.skill_gem.piercing_proj": "Piercing Projectiles Support",
 	"mmorpg.skill_gem.poison_arrow": "Poison Arrow Gem",
 	"mmorpg.skill_gem.poison_ball": "Poison Ball Gem",
@@ -615,6 +617,7 @@
 	"mmorpg.spell.mana_reg_aura": "Mana Regeneration Aura",
 	"mmorpg.spell.meteor": "Meteor",
 	"mmorpg.spell.nature_balm": "Nature's Balm",
+	"mmorpg.spell.overload": "Overload",
 	"mmorpg.spell.poison_arrow": "Poison Arrow",
 	"mmorpg.spell.poison_ball": "Poison Ball",
 	"mmorpg.spell.poisoned_weapons": "Poison Weapons",
@@ -791,6 +794,7 @@
 	"mmorpg.one_of_a_kind.mana_reg_aura_mod": "Mana Regeneration Aura Modifier",
 	"mmorpg.one_of_a_kind.meteor_mod": "Meteor Modifier",
 	"mmorpg.one_of_a_kind.nature_balm_mod": "Nature's Balm Modifier",
+	"mmorpg.one_of_a_kind.overload_mod": "Overload Modifier",
 	"mmorpg.one_of_a_kind.poison_arrow_mod": "Poison Arrow Modifier",
 	"mmorpg.one_of_a_kind.poison_ball_mod": "Poison Ball Modifier",
 	"mmorpg.one_of_a_kind.poisoned_weapons_mod": "Poison Weapons Modifier",
@@ -829,6 +833,34 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+	"effect.mmorpg.beneficial.0": "Ele Resist",
+	"effect.mmorpg.beneficial.1": "Cleanse",
+	"effect.mmorpg.beneficial.14": "Frost Armor",
+	"effect.mmorpg.beneficial.15": "Void Eye",
+	"effect.mmorpg.beneficial.16": "Bloodlust",
+	"effect.mmorpg.beneficial.17": "Overload",
+	"effect.mmorpg.beneficial.5": "Regenerate",
+	"effect.mmorpg.beneficial.6": "Thorn Armor",
+	"effect.mmorpg.beneficial.7": "Anger",
+	"effect.mmorpg.beneficial.8": "Divine Shield",
+	"effect.mmorpg.beneficial.9": "Poison Wep",
+	"effect.mmorpg.negative.0": "Ele Weakness",
+	"effect.mmorpg.negative.1": "Petrify",
+	"effect.mmorpg.negative.10": "Blind",
+	"effect.mmorpg.negative.2": "Frost Burn",
+	"effect.mmorpg.negative.3": "Poison",
+	"effect.mmorpg.negative.4": "Wounds",
+	"effect.mmorpg.negative.5": "Burn",
+	"effect.mmorpg.negative.6": "Judgement",
+	"effect.mmorpg.negative.7": "Torment",
+	"effect.mmorpg.negative.8": "Bleed",
+	"effect.mmorpg.negative.9": "Mummy Curse",
+
+"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
@@ -851,33 +883,6 @@
 	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-	"effect.mmorpg.beneficial.0": "Ele Resist",
-	"effect.mmorpg.beneficial.1": "Cleanse",
-	"effect.mmorpg.beneficial.14": "Frost Armor",
-	"effect.mmorpg.beneficial.15": "Void Eye",
-	"effect.mmorpg.beneficial.16": "Bloodlust",
-	"effect.mmorpg.beneficial.5": "Regenerate",
-	"effect.mmorpg.beneficial.6": "Thorn Armor",
-	"effect.mmorpg.beneficial.7": "Anger",
-	"effect.mmorpg.beneficial.8": "Divine Shield",
-	"effect.mmorpg.beneficial.9": "Poison Wep",
-	"effect.mmorpg.negative.0": "Ele Weakness",
-	"effect.mmorpg.negative.1": "Petrify",
-	"effect.mmorpg.negative.10": "Blind",
-	"effect.mmorpg.negative.2": "Frost Burn",
-	"effect.mmorpg.negative.3": "Poison",
-	"effect.mmorpg.negative.4": "Wounds",
-	"effect.mmorpg.negative.5": "Burn",
-	"effect.mmorpg.negative.6": "Judgement",
-	"effect.mmorpg.negative.7": "Torment",
-	"effect.mmorpg.negative.8": "Bleed",
-	"effect.mmorpg.negative.9": "Mummy Curse",
-
-"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1393,6 +1398,7 @@
 	"mmorpg.stat.bonus_swamp_biome_yield": "Swamp Biome Yield",
 	"mmorpg.stat.bow_damage": "Bow Damage",
 	"mmorpg.stat.cast_speed": "Cast Speed",
+	"mmorpg.stat.cd_ticks": "Cooldown Ticks",
 	"mmorpg.stat.cdr": "Cooldown Reduction",
 	"mmorpg.stat.chance_of_bleed": "§7Your §6✦ Physical§7 Attacks have §a[VAL1]§7% chance of applying Bleed",
 	"mmorpg.stat.chance_of_blind": "§7Your §f☀ Light§7 Attacks have §a[VAL1]§7% chance of applying Blind",
@@ -1414,6 +1420,7 @@
 	"mmorpg.stat.critical_hit": "Crit Chance",
 	"mmorpg.stat.crossbow_damage": "Crossbow Damage",
 	"mmorpg.stat.dagger_damage": "Dagger Damage",
+	"mmorpg.stat.damage_reflected": "Damage Reflected",
 	"mmorpg.stat.damage_shield": "Damage Shield",
 	"mmorpg.stat.dark_dmg_ignore_res": "§7Your §5❃ Dark§7 Damage has §a[VAL1]§7% chance to ignore all resistances.",
 	"mmorpg.stat.dark_dot_damage": "Dark Damage Over Time",
@@ -1459,6 +1466,7 @@
 	"mmorpg.stat.fire_penetration": "Fire Penetration",
 	"mmorpg.stat.fire_resist": "Fire Defense",
 	"mmorpg.stat.fire_weapon_damage": "Fire Damage",
+	"mmorpg.stat.give_regenerate_to_allies_in_aoe": "§7Give Regenerate to allies in Radius.",
 	"mmorpg.stat.global_critical_damage": "All Crit Damage",
 	"mmorpg.stat.global_critical_damage_per_25_increased_quantity": "§7Gain §a[VAL1] §b❁ All Crit Damage§7 for each 25 §e♣ Item Find§7",
 	"mmorpg.stat.global_critical_hit": "All Crit Chance",
@@ -1835,6 +1843,32 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.foods.critical": "Critical",
+	"effect.mmorpg.foods.dark": "Night",
+	"effect.mmorpg.foods.def_blue": "Arcana Defense",
+	"effect.mmorpg.foods.def_gray": "Physical Defense",
+	"effect.mmorpg.foods.def_green": "Terra Defense",
+	"effect.mmorpg.foods.def_purple": "Magicka Defense",
+	"effect.mmorpg.foods.def_yellow": "Sky Defense",
+	"effect.mmorpg.foods.elemental_resist": "Elementum",
+	"effect.mmorpg.foods.exp": "Experience",
+	"effect.mmorpg.foods.fire": "Ignis",
+	"effect.mmorpg.foods.healing": "Sancti",
+	"effect.mmorpg.foods.health_regen": "Vitala",
+	"effect.mmorpg.foods.light": "Sky",
+	"effect.mmorpg.foods.magic_shield_regen": "Magicka",
+	"effect.mmorpg.foods.mana_regen": "Arcana",
+	"effect.mmorpg.foods.nature": "Terra",
+	"effect.mmorpg.foods.physical": "Physical",
+	"effect.mmorpg.foods.spell_damage": "Enigma",
+	"effect.mmorpg.foods.treasure": "Treasure",
+	"effect.mmorpg.foods.water": "Aqua",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.all_res_necklace_end": "Necklace",
@@ -1969,32 +2003,6 @@
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.foods.critical": "Critical",
-	"effect.mmorpg.foods.dark": "Night",
-	"effect.mmorpg.foods.def_blue": "Arcana Defense",
-	"effect.mmorpg.foods.def_gray": "Physical Defense",
-	"effect.mmorpg.foods.def_green": "Terra Defense",
-	"effect.mmorpg.foods.def_purple": "Magicka Defense",
-	"effect.mmorpg.foods.def_yellow": "Sky Defense",
-	"effect.mmorpg.foods.elemental_resist": "Elementum",
-	"effect.mmorpg.foods.exp": "Experience",
-	"effect.mmorpg.foods.fire": "Ignis",
-	"effect.mmorpg.foods.healing": "Sancti",
-	"effect.mmorpg.foods.health_regen": "Vitala",
-	"effect.mmorpg.foods.light": "Sky",
-	"effect.mmorpg.foods.magic_shield_regen": "Magicka",
-	"effect.mmorpg.foods.mana_regen": "Arcana",
-	"effect.mmorpg.foods.nature": "Terra",
-	"effect.mmorpg.foods.physical": "Physical",
-	"effect.mmorpg.foods.spell_damage": "Enigma",
-	"effect.mmorpg.foods.treasure": "Treasure",
-	"effect.mmorpg.foods.water": "Aqua",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: RACES - NAMES",
 
 	"races.dwarf": "Dwarf",
@@ -2110,6 +2118,7 @@
 	"mmorpg.stat_desc.bonus_favor": "Increases favor gain",
 	"mmorpg.stat_desc.bow_damage": "Increases damage done if it was caused by that weapon",
 	"mmorpg.stat_desc.cast_speed": "Affects amount of time needed to cast spells. If the spell is instant, it reduces the cooldown",
+	"mmorpg.stat_desc.cd_ticks": "Reduces spell cooldown by x ticks",
 	"mmorpg.stat_desc.cdr": "Reduces spell cooldown.",
 	"mmorpg.stat_desc.chance_of_bleed": "Chance to give effect",
 	"mmorpg.stat_desc.chance_of_blind": "Chance to give effect",
@@ -2123,6 +2132,7 @@
 	"mmorpg.stat_desc.critical_hit": "Chance to multiply attack damage by critical damage",
 	"mmorpg.stat_desc.crossbow_damage": "Increases damage done if it was caused by that weapon",
 	"mmorpg.stat_desc.dagger_damage": "Increases damage done if it was caused by that weapon",
+	"mmorpg.stat_desc.damage_reflected": "Deals a % of damage you recieve to enemies that attack you.",
 	"mmorpg.stat_desc.damage_shield": "Decreases that amount of damage from every attack.",
 	"mmorpg.stat_desc.dark_dot_damage": "Fire damage over time increases damage of burn, for example.",
 	"mmorpg.stat_desc.darkness_dmg": "Damage increase starts at mob spawn light level: 7. Maximum damage at 0 light level.",

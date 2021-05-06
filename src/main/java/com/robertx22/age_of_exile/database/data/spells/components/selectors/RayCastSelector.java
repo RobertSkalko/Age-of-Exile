@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTex
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import net.minecraft.entity.LivingEntity;
@@ -27,15 +28,15 @@ public class RayCastSelector extends BaseTargetSelector implements ICTextTooltip
     public MutableText getText(TooltipInfo info, MapHolder data, EntitySavedSpellData savedData) {
         MutableText text = new LiteralText("");
 
-        EntityFinder.EntityPredicate en = data.getEntityPredicate();
+        AllyOrEnemy en = data.getEntityPredicate();
 
         MutableText who = null;
 
-        if (en == EntityFinder.EntityPredicate.ALL) {
+        if (en == AllyOrEnemy.all) {
             who = new LiteralText("everyone");
-        } else if (en == EntityFinder.EntityPredicate.ENEMIES) {
+        } else if (en == AllyOrEnemy.enemies) {
             who = new LiteralText("enemies");
-        } else if (en == EntityFinder.EntityPredicate.ALLIES) {
+        } else if (en == AllyOrEnemy.allies) {
             who = new LiteralText("allies");
         }
 
@@ -54,7 +55,7 @@ public class RayCastSelector extends BaseTargetSelector implements ICTextTooltip
 
     @Override
     public List<LivingEntity> get(SpellCtx ctx, LivingEntity caster, LivingEntity target, BlockPos pos, MapHolder data) {
-        EntityFinder.EntityPredicate predicate = data.getEntityPredicate();
+        AllyOrEnemy predicate = data.getEntityPredicate();
         float distance = data.get(DISTANCE)
             .floatValue();
 
@@ -64,7 +65,7 @@ public class RayCastSelector extends BaseTargetSelector implements ICTextTooltip
 
     }
 
-    public MapHolder create(Double distance, EntityFinder.EntityPredicate pred) {
+    public MapHolder create(Double distance, AllyOrEnemy pred) {
         MapHolder d = new MapHolder();
         d.type = GUID();
         d.put(DISTANCE, distance);

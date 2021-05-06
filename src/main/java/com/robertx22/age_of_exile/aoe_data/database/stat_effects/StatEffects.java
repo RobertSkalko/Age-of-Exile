@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.number_provider.NumberProvider;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 
 import java.util.Arrays;
 
@@ -22,6 +23,12 @@ public class StatEffects implements ISlashRegistryInit {
         Arrays.asList(BeneficialEffects.BLOODLUST
         ),
         x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
+    );
+
+    public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_IN_AOE = new DataHolder<>(
+        Arrays.asList(BeneficialEffects.REGENERATE
+        ),
+        x -> new GiveExileStatusInRadius("give_" + x.id + "_to_allies_in_radius", AllyOrEnemy.allies, 10, x.effectId)
     );
 
     public static DataHolder<ResourceType, StatEffect> LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA = new DataHolder<>(
@@ -59,10 +66,12 @@ public class StatEffects implements ISlashRegistryInit {
     public static StatEffect ADD_STAT_DATA_TO_NUMBER = new AddToNumberEffect("add_stat_data_to_num", EventData.NUMBER, NumberProvider.ofStatData());
 
     public static StatEffect DECREASE_COOLDOWN = new DecreaseNumberByPercentEffect(EventData.COOLDOWN_TICKS);
+    public static StatEffect DECREASE_COOLDOWN_BY_X_TICKS = new AddToNumberEffect("reduce_cd_by_ticks", EventData.COOLDOWN_TICKS, NumberProvider.ofStatData());
     public static StatEffect INCREASE_MANA_COST = new IncreaseNumberByPercentEffect(EventData.MANA_COST);
     public static StatEffect INCREASE_PROJ_SPEED = new IncreaseNumberByPercentEffect(EventData.PROJECTILE_SPEED_MULTI);
     public static StatEffect DECREASE_CAST_TIME = new IncreaseNumberByPercentEffect(EventData.CAST_TICKS);
     public static StatEffect INCREASE_AREA = new IncreaseNumberByPercentEffect(EventData.AREA_MULTI);
+    public static StatEffect REFLECT_PERCENT_DAMAGE = new ReflectDamageAction("reflect_perc_dmg", NumberProvider.ofPercentOfDataNumber(EventData.NUMBER));
 
     public static DataHolder<String, StatEffect> ADD_PERC_OF_STAT_TO_NUMBER = new DataHolder<>(
         Arrays.asList(
@@ -96,6 +105,9 @@ public class StatEffects implements ISlashRegistryInit {
         INCREASE_PROJ_SPEED.addToSerializables();
         DECREASE_CAST_TIME.addToSerializables();
         LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE.addToSerializables();
+        GIVE_EFFECT_IN_AOE.addToSerializables();
+        REFLECT_PERCENT_DAMAGE.addToSerializables();
+        DECREASE_COOLDOWN_BY_X_TICKS.addToSerializables();
 
     }
 }

@@ -36,10 +36,11 @@ public class SpellStatsCalculationEvent extends EffectEvent {
 
         this.data.setString(EventData.SPELL, spell);
 
-        this.data.setupNumber(EventData.MANA_COST, GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(lvl) * s.config.mana_cost);
+        float manamultilvl = GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(lvl);
+
+        this.data.setupNumber(EventData.MANA_COST, manamultilvl * s.config.mana_cost);
         this.data.setupNumber(EventData.COOLDOWN_TICKS, s.config.cooldown_ticks);
         this.data.setupNumber(EventData.PROJECTILE_SPEED_MULTI, 1F);
-        this.data.setupNumber(EventData.MANA_COST, s.config.mana_cost);
         this.data.setupNumber(EventData.AREA_MULTI, 1);
 
     }

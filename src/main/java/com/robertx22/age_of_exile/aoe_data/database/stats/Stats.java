@@ -29,6 +29,29 @@ public class Stats implements ISlashRegistryInit {
 
     }
 
+    public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_ALLIES_IN_RADIUS = DatapackStatBuilder
+        .<EffectCtx>of(x -> "give_" + x.id + "_to_allies_in_aoe", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.REGENERATE
+        ))
+        .worksWithEvent(RestoreResourceEvent.ID) // todo should be tick event, BUT LAG
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
+        .addCondition(StatConditions.IS_IN_COMBAT)
+        .addEffect(e -> StatEffects.GIVE_EFFECT_IN_AOE.get(e))
+        .setLocName(x -> Stat.format(
+            "Give " + x.locname + " to allies in Radius."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 1;
+            x.is_long = true;
+        })
+        .build();
+
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -742,6 +765,21 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EmptyAccessor> COOLDOWN_TICKS = DatapackStatBuilder
+        .ofSingle("cd_ticks", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.DECREASE_COOLDOWN_BY_X_TICKS)
+        .setLocName(x -> "Cooldown Ticks")
+        .setLocDesc(x -> "Reduces spell cooldown by x ticks")
+        .modifyAfterDone(x -> {
+            x.is_perc = false;
+            x.min = -15;
+            x.max = 10000;
+        })
+        .build();
+
     public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_SPEED = DatapackStatBuilder
         .ofSingle("faster_projectiles", Elements.Physical)
         .worksWithEvent(SpellStatsCalculationEvent.ID)
@@ -786,6 +824,21 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = false;
             x.is_long = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_REFLECTED = DatapackStatBuilder
+        .ofSingle("damage_reflected", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(200)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(StatEffects.REFLECT_PERCENT_DAMAGE)
+        .setLocName(x -> "Damage Reflected")
+        .setLocDesc(x -> "Deals a % of damage you recieve to enemies that attack you.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
         })
         .build();
 

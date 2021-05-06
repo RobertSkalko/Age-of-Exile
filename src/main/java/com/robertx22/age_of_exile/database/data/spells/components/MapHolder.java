@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.block.Block;
@@ -129,8 +130,8 @@ public class MapHolder {
         }
     }
 
-    public EntityFinder.EntityPredicate getEntityPredicate() {
-        return EntityFinder.EntityPredicate.valueOf(get(MapField.ENTITY_PREDICATE));
+    public AllyOrEnemy getEntityPredicate() {
+        return AllyOrEnemy.valueOf(get(MapField.ENTITY_PREDICATE));
     }
 
     public <T> T getOrDefault(MapField<T> field, T defa) {

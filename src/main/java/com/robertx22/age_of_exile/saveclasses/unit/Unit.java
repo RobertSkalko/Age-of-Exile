@@ -23,6 +23,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
@@ -37,6 +38,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -425,6 +427,13 @@ public class Unit {
             }
 
             DirtyCheck aftercalc = getDirtyCheck();
+
+            Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC.forEach(x -> {
+                EntityAttributeInstance in = entity.getAttributeInstance(x.left);
+                if (in.getModifier(x.right) != null) {
+                    in.removeModifier(x.right);
+                }
+            });
 
             this.getStats().stats.values()
                 .forEach(x -> {

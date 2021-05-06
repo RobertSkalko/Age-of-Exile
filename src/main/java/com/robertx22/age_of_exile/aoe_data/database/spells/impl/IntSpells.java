@@ -171,10 +171,17 @@ public class IntSpells implements ISlashRegistryInit {
             .onExpire("block", PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
             .build();
 
-        SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 60 * 20), "Nature's Balm",
+        SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 60 * 20)
+                .setScaleManaToPlayer(), "Nature's Balm",
             Arrays.asList(SpellTag.heal))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE.effectId, 20 * 15D))
+            .build();
+
+        SpellBuilder.of("overload", SpellConfiguration.Builder.instant(10, 60 * 20), "Overload",
+            Arrays.asList())
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.effectId, 20 * 15D))
             .build();
 
         SpellBuilder.of("gorgons_gaze", SpellConfiguration.Builder.instant(15, 60 * 20), "Gorgon's Gaze",

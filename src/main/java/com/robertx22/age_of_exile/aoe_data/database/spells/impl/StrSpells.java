@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -147,7 +148,7 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
 
             .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(AggroAction.Type.AGGRO))
-                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES)))
+                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
 
             .build();

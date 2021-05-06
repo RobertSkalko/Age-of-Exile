@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -21,6 +22,13 @@ public class AuraSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SpellBuilder.aura(PlayStyle.melee, "hp_reg_aura", "Health Regeneration Aura", new AuraSpellData(0.1F,
+            Arrays.asList(
+                new StatModifier(1, 4, HealthRegen.getInstance()),
+                new StatModifier(1, 1, Stats.GIVE_EFFECT_TO_ALLIES_IN_RADIUS.get(BeneficialEffects.REGENERATE))
+            )))
+            .build();
+
         SpellBuilder.aura(PlayStyle.ranged, "haste_aura", "Haste Aura", new AuraSpellData(0.25F,
             Arrays.asList(
                 new StatModifier(5, 20, Stats.CAST_SPEED.get()),
@@ -37,12 +45,6 @@ public class AuraSpells implements ISlashRegistryInit {
         SpellBuilder.aura(PlayStyle.ranged, "dodge_aura", "Dodge Aura", new AuraSpellData(0.2F,
             Arrays.asList(
                 new StatModifier(2, 4, DodgeRating.getInstance(), ModType.FLAT)
-            )))
-            .build();
-
-        SpellBuilder.aura(PlayStyle.melee, "hp_reg_aura", "Health Regeneration Aura", new AuraSpellData(0.1F,
-            Arrays.asList(
-                new StatModifier(1, 4, HealthRegen.getInstance())
             )))
             .build();
 

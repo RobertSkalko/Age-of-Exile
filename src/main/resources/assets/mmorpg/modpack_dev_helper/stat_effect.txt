@@ -1,23 +1,26 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-give_negative/8_to_target
-add_perc_of_mana_to_num
 set_bool_crit
 restore_mana_per_stat_data
+give_negative/5_to_target
+increase_proj_speed_num
+reduce_cd_by_ticks
+give_regenerate_to_allies_in_radius
+set_bool_pierce
+leech_mana
+give_negative/3_to_target
+leech_health
+decrease_cd_ticks_num
+add_perc_of_mana_to_num
+give_negative/8_to_target
 give_negative/10_to_target
 give_beneficial/16_to_source
 increase_mana_cost_num
-give_negative/5_to_target
 increase_number_num
 add_perc_of_health_to_num
 restore_health_per_stat_data
-increase_proj_speed_num
 increase_seconds_num
-set_bool_pierce
-leech_mana
-leech_health
-give_negative/3_to_target
-decrease_cd_ticks_num
+reflect_perc_dmg
 increase_area_num
 give_negative/2_to_target
 set_data_num_accuracy

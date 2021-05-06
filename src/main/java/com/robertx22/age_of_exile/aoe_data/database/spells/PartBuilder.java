@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.effect.StatusEffect;
@@ -53,7 +54,7 @@ public class PartBuilder {
     public static ComponentPart restoreManaInRadius(ValueCalculation calc, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.RESTORE_MANA.create(calc));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
         return c;
     }
 
@@ -73,14 +74,14 @@ public class PartBuilder {
     public static ComponentPart damageInAoe(ValueCalculation calc, Elements ele, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies));
         return c;
     }
 
     public static ComponentPart damageInFront(ValueCalculation calc, Elements ele, Double distance, Double width) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
-        c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
+        c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, AllyOrEnemy.enemies));
         return c;
     }
 
@@ -88,7 +89,7 @@ public class PartBuilder {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
-        c.targets.add(BaseTargetSelector.RAY_CAST.create(distance, EntityFinder.EntityPredicate.ENEMIES));
+        c.targets.add(BaseTargetSelector.RAY_CAST.create(distance, AllyOrEnemy.enemies));
         return c;
     }
 
@@ -101,7 +102,7 @@ public class PartBuilder {
     public static ComponentPart healInAoe(ValueCalculation calc, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
         return c;
     }
 
@@ -176,14 +177,14 @@ public class PartBuilder {
 
     public static ComponentPart removeNegativeEffectInRadius(Double radius) {
         ComponentPart c = new ComponentPart();
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
         c.acts.add(SpellAction.POTION.removeNegative(1D));
         return c;
     }
 
     public static ComponentPart cleanseInRadius(StatusEffect effect, Double radius) {
         ComponentPart c = new ComponentPart();
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
         c.acts.add(SpellAction.POTION.createRemove(effect));
         return c;
     }
@@ -327,28 +328,28 @@ public class PartBuilder {
     public static ComponentPart giveToAlliesInRadius(String effect, Double radius, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ALLIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
         return c;
     }
 
     public static ComponentPart addExileEffectToEnemiesInAoe(String effect, Double radius, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies));
         return c;
     }
 
     public static ComponentPart addEffectToEnemiesInAoe(StatusEffect effect, Double radius, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createGive(effect, duration));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, EntityFinder.EntityPredicate.ENEMIES));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies));
         return c;
     }
 
     public static ComponentPart addExileEffectToEnemiesInFront(String effect, Double distance, Double width, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, EntityFinder.EntityPredicate.ENEMIES));
+        c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, AllyOrEnemy.enemies));
         return c;
     }
 
