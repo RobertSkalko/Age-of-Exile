@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.itemtiers;
+package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials;
 
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
@@ -7,9 +7,9 @@ import net.minecraft.recipe.Ingredient;
 import static net.minecraft.item.ToolMaterials.DIAMOND;
 import static net.minecraft.item.ToolMaterials.IRON;
 
-public class RarityItemTier implements ToolMaterial {
+public class RarityToolMaterial implements ToolMaterial {
 
-    public RarityItemTier() {
+    public RarityToolMaterial() {
 
     }
 

@@ -14,6 +14,8 @@ restore_health_per_stat_data
 increase_proj_speed_num
 increase_seconds_num
 set_bool_pierce
+leech_mana
+leech_health
 give_negative/3_to_target
 decrease_cd_ticks_num
 increase_area_num

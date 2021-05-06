@@ -4,7 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.RarityToolMaterial;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -19,7 +19,7 @@ public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocNam
     public SingleTargetWeapon(String locname) {
 
         super(
-            new RarityItemTier(), ItemUtils.getDefaultGearProperties()
+            new RarityToolMaterial(), ItemUtils.getDefaultGearProperties()
                 .maxDamage(750));
         this.locname = locname;
     }

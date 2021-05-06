@@ -2,11 +2,10 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
 public class IsSkillItemUsableUtil {
 
-    public static boolean canUseItem(@Nullable PlayerEntity player, ItemStack stack, Boolean announce) {
+    public static boolean canUseItem(PlayerEntity player, ItemStack stack, Boolean announce) {
 
         return true;
 

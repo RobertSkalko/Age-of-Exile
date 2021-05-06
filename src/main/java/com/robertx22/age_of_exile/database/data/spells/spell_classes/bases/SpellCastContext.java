@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -73,17 +74,13 @@ public class SpellCastContext {
             skillGemData.lvl = data.getLevel();
         }
 
-        if (spell != null) {
-            int castTicks = (int) spell
-                .getConfig()
-                .getCastTimeTicks();
-            this.isLastCastTick = castTicks == ticksInUse;
-        }
-
         this.calcData = EntitySavedSpellData.create(skillGemData.lvl, caster, spell);
 
         this.event = new SpellStatsCalculationEvent(this.calcData, skillGemData, caster, spell.GUID());
         event.Activate();
+
+        int castTicks = (int) event.data.getNumber(EventData.CAST_TICKS).number;
+        this.isLastCastTick = castTicks == ticksInUse;
 
     }
 }

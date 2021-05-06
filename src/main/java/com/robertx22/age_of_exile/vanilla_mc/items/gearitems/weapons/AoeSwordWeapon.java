@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.itemtiers.RarityItemTier;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.RarityToolMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,7 +16,7 @@ public class AoeSwordWeapon extends SwordItem implements IAutoLocName {
 
     public AoeSwordWeapon(WeaponTypes type) {
         super(
-            new RarityItemTier(), 6, type.getVanillaItemAttackSpeedModifier(), (ItemUtils.getDefaultGearProperties()
+            new RarityToolMaterial(), 6, type.getVanillaItemAttackSpeedModifier(), (ItemUtils.getDefaultGearProperties()
                 .maxDamageIfAbsent(500)));
         this.locname = type.locName();
 
