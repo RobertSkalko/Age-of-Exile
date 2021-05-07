@@ -42,7 +42,7 @@ public class GiveExileStatusInRadius extends StatEffect {
             .radius(radius)
             .build()
             .forEach(x -> {
-                ExileEffectsManager.apply(Load.Unit(en)
+                ExileEffectsManager.apply(null, Load.Unit(en)
                     .getLevel(), Database.ExileEffects()
                     .get(effect), en, x, seconds * 20);
             });

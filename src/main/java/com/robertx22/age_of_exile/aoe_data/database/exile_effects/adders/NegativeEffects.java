@@ -158,7 +158,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(PETRIFY)
-            .addTags(EffectTags.immobilize)
+            .addTags(EffectTags.immobilizing)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)

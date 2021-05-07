@@ -344,15 +344,14 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
         .addEffect(StatEffects.SET_IS_CRIT)
-        .setLocName(x -> "Spell Crit Chance")
-        .setLocDesc(x -> "Chance to multiply attack damage by critical damage")
+        .setLocName(x -> "Heal Crit Chance")
+        .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
             x.min = 0;
             x.max = 100;
             x.group = StatGroup.MAIN;
-
             x.icon = "\u2694";
             x.format = Formatting.YELLOW;
         })
@@ -495,6 +494,21 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.icon = "\u27B9";
             x.format = Formatting.RED;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_DAMAGE_RECEIVED = DatapackStatBuilder
+        .ofSingle("proj_dmg_received", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.IS_ANY_PROJECTILE)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Projectile Damage Receieved")
+        .setLocDesc(x -> "Affects projectile damage, includes projectile spells like fireballs, and ranged basic attacks.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
         })
         .build();
 
@@ -902,18 +916,19 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_OFFENSIVE_BUFFS_GIVEN = DatapackStatBuilder
-        .ofSingle("inc_effect_of_offen_buff_given", Elements.Physical)
+    public static DataPackStatAccessor<EffectTags> INCREASED_EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> "inc_effect_of_" + x.name() + "_buff_given", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
         .worksWithEvent(ExilePotionEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
-        .addCondition(StatConditions.EFFECT_HAS_TAG.get(EffectTags.offensive))
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Offensive buffs you cast are " + Stat.VAL1 + "% more effective")
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.getLocName() + " buffs you cast are " + Stat.VAL1 + "% more effective")
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
-            x.is_perc = true;
             x.is_long = true;
+            x.is_perc = true;
             x.scaling = StatScaling.NONE;
         })
         .build();

@@ -73,6 +73,7 @@ bloodscent
 light_dom
 big_swishing_winds
 mana_and_health
+huge_wis
 violent_strike
 big_lord_of_arcane
 harmony
@@ -111,9 +112,11 @@ spell_nature_damage
 big_agility
 big_precision
 ele_dagger_damage
+huge_vit
 spell_dmg_atk_speed
 spell_water_damage
 divinity
+songbird
 big_ele_protection
 big_ele_unity
 big_hunter
@@ -134,6 +137,7 @@ light_resist
 all_fire_damage
 hp_dot_dmg
 sword_damage
+tale_of_war
 big_fighter
 chance_of_burn
 big_fury
@@ -150,6 +154,7 @@ big_fast_barbarian
 photosynthesis
 big_int
 ele_axe_damage
+gamechanger_songbird
 red_mana_reserved
 metamorphosis
 going_dark_side
@@ -182,6 +187,7 @@ light_weapon_damage
 nature_resist
 big_heart_of_fire
 water_dom
+huge_agi
 mana_and_regen
 fire_resist
 refined_taste

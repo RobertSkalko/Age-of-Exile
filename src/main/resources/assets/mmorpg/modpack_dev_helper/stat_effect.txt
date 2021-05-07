@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+decrease_number_num
 set_bool_crit
 restore_mana_per_stat_data
 give_negative/5_to_target

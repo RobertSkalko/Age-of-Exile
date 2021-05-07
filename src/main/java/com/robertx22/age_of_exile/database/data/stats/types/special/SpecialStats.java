@@ -60,7 +60,7 @@ public class SpecialStats {
 
                 int duration = (int) (60 * 20 * 1);
 
-                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
+                ExileEffectsManager.apply(null, effect.sourceData.getLevel(), Database.ExileEffects()
                     .get(BeneficialEffects.VOID_EYE.effectId), effect.source, effect.source, duration);
 
                 effect.sourceData.getCooldowns()
@@ -99,7 +99,7 @@ public class SpecialStats {
         new BasePotionEffect() {
             @Override
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
-                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
+                ExileEffectsManager.apply(null, effect.sourceData.getLevel(), Database.ExileEffects()
                     .get(NegativeEffects.MUMMY_CURSE.effectId), effect.source, effect.target, 20 * 10);
                 return effect;
             }
@@ -107,7 +107,7 @@ public class SpecialStats {
             @Override
             public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
                 return Database.ExileEffects()
-                    .get(effect.data.getString(EventData.EXILE_EFFECT)).tags.contains(EffectTags.immobilize.name()) && RandomUtils.roll(data.getAverageValue());
+                    .get(effect.data.getString(EventData.EXILE_EFFECT)).tags.contains(EffectTags.immobilizing.name()) && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -156,7 +156,7 @@ public class SpecialStats {
         new BaseSpecialStatDamageEffect() {
             @Override
             public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
+                ExileEffectsManager.apply(null, effect.sourceData.getLevel(), Database.ExileEffects()
                     .get(NegativeEffects.BURN.effectId), effect.source, effect.target, 20 * 10);
                 return effect;
             }

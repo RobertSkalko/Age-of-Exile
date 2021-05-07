@@ -71,7 +71,7 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
             targets.forEach(t -> {
                 if (action == GiveOrTake.GIVE_STACKS) {
                     for (int i = 0; i < count; i++) {
-                        ExileEffectsManager.apply(ctx.calculatedSpellData.lvl, potion, ctx.caster, t, duration);
+                        ExileEffectsManager.apply(ctx.calculatedSpellData.getSpell(), ctx.calculatedSpellData.lvl, potion, ctx.caster, t, duration);
                     }
                 } else {
                     ExileEffectsManager.reduceStacks(potion, ctx.target, count);

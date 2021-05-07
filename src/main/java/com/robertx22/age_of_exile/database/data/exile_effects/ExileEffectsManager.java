@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.exile_effects;
 
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
@@ -20,7 +21,7 @@ public class ExileEffectsManager {
             }
             ExileStatusEffect effect = reg.getStatusEffect();
 
-            ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.TAKE, target, target, 0);
+            ExilePotionEvent event = new ExilePotionEvent(reg, null, ExilePotionEvent.Action.TAKE, target, target, 0);
             event.Activate();
 
             ExileEffectInstanceData extraData = Load.Unit(target)
@@ -45,13 +46,13 @@ public class ExileEffectsManager {
         }
     }
 
-    public static void apply(int lvl, ExileEffect reg, LivingEntity caster, LivingEntity target, int duration) {
+    public static void apply(Spell spell, int lvl, ExileEffect reg, LivingEntity caster, LivingEntity target, int duration) {
 
         if (caster.world.isClient) {
             return;
         }
 
-        ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.GIVE, caster, target, duration);
+        ExilePotionEvent event = new ExilePotionEvent(reg, spell, ExilePotionEvent.Action.GIVE, caster, target, duration);
         event.Activate();
         duration = (int) event.data.getNumber(EventData.EFFECT_DURATION_TICKS).number;
 

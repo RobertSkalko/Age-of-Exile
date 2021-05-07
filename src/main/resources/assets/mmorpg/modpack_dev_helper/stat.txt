@@ -20,6 +20,7 @@ heal_crit_dmg
 convert_water_to_phys
 nature_weapon_damage
 bonus_alchemy_yield
+inc_effect_of_auras_given
 cdr
 projectile_damage
 max_dark_resist
@@ -40,6 +41,7 @@ health_on_attack_hit
 faster_projectiles
 piercing_projectiles
 extra_mob_drops
+inc_effect_of_immobilizing_buff_given
 water_dot_damage
 all_light_damage
 ranged_dmg_received
@@ -82,6 +84,7 @@ bonus_exp_for_t3_mob
 armor_penetration
 bow_damage
 ele_scythe_damage
+inc_effect_of_defensive_buff_given
 axe_damage
 magic_find
 all_dot_damage
@@ -159,6 +162,7 @@ bonus_alchemy_exp
 increased_quantity
 elemental_dot_damage
 spell_critical_damage
+inc_effect_of_auras
 light_weapon_damage
 max_water_resist
 bonus_farming_yield
@@ -172,7 +176,6 @@ health
 elemental_health_leech
 transfer_health_to_physical_weapon_damage
 damage_reflected
-inc_aura_effect
 staff_damage
 bonus_day_yield
 ele_spear_damage
@@ -222,6 +225,7 @@ bonus_cold_biome_yield
 inc_leech
 spell_dodge
 nature_penetration
+inc_effect_of_offensive_buff_given
 crossbow_damage
 fire_focus
 nature_focus

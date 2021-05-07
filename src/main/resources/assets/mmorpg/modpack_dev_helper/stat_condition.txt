@@ -5,12 +5,14 @@ style_is_magic_is_false
 spell_has_tag_area
 resource_type_is_shield
 style_is_melee
+effect_has_tag_defensive
 is_melee_weapon
 is_day_is_false
 is_crit_true
 attack_type_is_all
 is_magic_weapon
 attack_type_is_spell
+effect_has_tag_offensive
 is_in_combat
 resource_type_is_health
 ele_match_stat
@@ -41,6 +43,7 @@ attack_type_is_reflect
 spell_has_tag_totem
 is_projectile
 is_ranged_weapon
+effect_has_tag_immobilizing
 is_staff_wep_type
 is_accu_crit_roll_fail_true_is_false
 is_mace_wep_type

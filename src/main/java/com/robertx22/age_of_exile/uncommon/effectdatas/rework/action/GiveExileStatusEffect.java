@@ -26,7 +26,7 @@ public class GiveExileStatusEffect extends StatEffect {
 
     @Override
     public void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
-        ExileEffectsManager.apply(event.sourceData.getLevel(), Database.ExileEffects()
+        ExileEffectsManager.apply(null, event.sourceData.getLevel(), Database.ExileEffects()
             .get(effect), event.source, event.getSide(give_to), seconds * 20);
     }
 
