@@ -29,10 +29,6 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     public transient String locName = "";
 
-    public enum EffectTags {
-        IMMOBILIZE;
-    }
-
     public List<String> tags = new ArrayList<>();
 
     public List<VanillaStatData> mc_stats = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
@@ -89,6 +90,7 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
 
             .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("gong_strike", 0.5F, 5), Elements.Physical, 2D, 3D))
+            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.STUN.effectId, 2D, 2D, 20D * 3))
 
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 300D, 2D, 0.1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 5D, 2D, 0.1D))

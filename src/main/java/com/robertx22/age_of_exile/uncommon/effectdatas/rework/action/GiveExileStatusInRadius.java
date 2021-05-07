@@ -16,7 +16,7 @@ public class GiveExileStatusInRadius extends StatEffect {
     public AllyOrEnemy ally_or_enemy;
     public int seconds = 10;
     public String effect = "";
-    public float radius = 3;
+    public float radius = 4;
 
     public GiveExileStatusInRadius() {
         super("", "give_exile_effect_in_radius");

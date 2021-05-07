@@ -7,9 +7,10 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.GenerateThreatEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ThreatGenType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
@@ -68,14 +69,15 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
                 }
 
                 if (ctx.caster instanceof PlayerEntity) {
-                    int threat = (int) (total * 0.8F);
+                    float threat = (int) (total * 0.8F);
                     List<MobEntity> mobs = EntityFinder.start(ctx.caster, MobEntity.class, ctx.caster.getBlockPos())
                         .radius(16)
                         .build();
+
                     for (MobEntity x : mobs) {
-                        Load.Unit(x)
-                            .getThreat()
-                            .addThreat((PlayerEntity) ctx.caster, x, threat);
+                        GenerateThreatEvent threatEvent = new GenerateThreatEvent((PlayerEntity) ctx.caster, x, ThreatGenType.heal, threat);
+                        threatEvent.Activate();
+
                     }
                 }
             }

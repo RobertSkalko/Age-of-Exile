@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.special;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
@@ -106,7 +106,8 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
-                return effect.effect.tags.contains(ExileEffect.EffectTags.IMMOBILIZE.name()) && RandomUtils.roll(data.getAverageValue());
+                return Database.ExileEffects()
+                    .get(effect.data.getString(EventData.EXILE_EFFECT)).tags.contains(EffectTags.immobilize.name()) && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override

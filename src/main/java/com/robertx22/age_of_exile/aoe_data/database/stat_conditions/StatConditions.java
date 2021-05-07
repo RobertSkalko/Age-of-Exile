@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.stat_conditions;
 
 import com.robertx22.age_of_exile.aoe_data.DataHolder;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -28,6 +29,10 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
     public static StatCondition IS_NON_MAGIC_STYLE = new StringMatchesCondition(EventData.STYLE, PlayStyle.magic.name()).flipCondition();
+
+    public static DataHolder<EffectTags, StatCondition> EFFECT_HAS_TAG = new DataHolder<>(
+        EffectTags.values()
+        , x -> new EffectHasTagCondition(x));
 
     public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
         ResourceType.values()
@@ -116,6 +121,7 @@ public class StatConditions implements ISlashRegistryInit {
         IS_RESOURCE.addToSerializables();
         IS_IN_COMBAT.addToSerializables();
         IS_RESTORE_TYPE.addToSerializables();
+        EFFECT_HAS_TAG.addToSerializables();
 
     }
 }

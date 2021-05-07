@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.*;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.Stat.StatGroup;
@@ -838,6 +839,81 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "Deals a % of damage you recieve to enemies that attack you.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> THREAT_GENERATED = DatapackStatBuilder
+        .ofSingle("threat_generated", Elements.Physical)
+        .worksWithEvent(GenerateThreatEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Threat Generated")
+        .setLocDesc(x -> "Modifies amount of threat you generate. Mobs attack targets with highest threat.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_AURAS_GIVEN = DatapackStatBuilder
+        .ofSingle("inc_effect_of_auras_given", Elements.Physical)
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.aura))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Aura Strength")
+        .setLocDesc(x -> "Effect of auras you give.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_AURAS_RECEIVED = DatapackStatBuilder
+        .ofSingle("inc_effect_of_auras", Elements.Physical)
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.aura))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Aura Effect on You")
+        .setLocDesc(x -> "Effect of any aura on you, no matter who gave it.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> REDUCED_MANA_RESERVED = DatapackStatBuilder
+        .ofSingle("red_mana_reserved", Elements.Physical)
+        .worksWithEvent(ReserveManaEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.DECREASE_VALUE)
+        .setLocName(x -> "Reduced Mana Reserved")
+        .setLocDesc(x -> "Reduces the mana % auras reserve.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.max = 75;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_OFFENSIVE_BUFFS_GIVEN = DatapackStatBuilder
+        .ofSingle("inc_effect_of_offen_buff_given", Elements.Physical)
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.EFFECT_HAS_TAG.get(EffectTags.offensive))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Offensive buffs you cast are " + Stat.VAL1 + "% more effective")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
             x.scaling = StatScaling.NONE;
         })
         .build();

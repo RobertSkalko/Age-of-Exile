@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
@@ -62,10 +63,12 @@ public class BeneficialEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(VOID_EYE)
             .stat(10, new ElementalPenetration(Elements.Elemental), ModType.FLAT)
             .stat(25, GlobalCriticalHit.getInstance(), ModType.FLAT)
+            .addTags(EffectTags.offensive)
             .build();
 
         ExileEffectBuilder.of(ELE_RESIST)
             .stat(10, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .addTags(EffectTags.defensive)
             .build();
 
         ExileEffectBuilder.of(CLEANSE)
@@ -97,6 +100,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
                     .onTick(40D))
 
                 .buildForEffect())
+            .addTags(EffectTags.defensive)
+
             .build();
 
         ExileEffectBuilder.of(FROST_ARMOR)
@@ -104,22 +109,29 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(20, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .buildForEffect())
+
+            .addTags(EffectTags.defensive)
+
             .build();
 
         ExileEffectBuilder.of(ANGER)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.15F, ModType.GLOBAL_INCREASE, UUID.fromString("7107DE5E-5CE8-4030-940E-514C1F160890")))
             .stat(15, Stats.CRIT_CHANCE.get(), ModType.FLAT)
             .stat(20, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .addTags(EffectTags.offensive)
+
             .build();
 
         ExileEffectBuilder.of(DIVINE_SHIELD)
             .stat(25, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .stat(7, Armor.getInstance(), ModType.FLAT)
+            .addTags(EffectTags.defensive)
             .build();
 
         ExileEffectBuilder.of(POISON_WEAPONS)
             .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
             .stat(20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
+            .addTags(EffectTags.offensive)
             .build();
 
     }

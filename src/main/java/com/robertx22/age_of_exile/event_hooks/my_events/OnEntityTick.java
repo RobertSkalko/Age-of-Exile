@@ -22,6 +22,11 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
         if (entity.world.isClient) {
             return;
         }
+
+        if (entity instanceof MobEntity) {
+            OnTickCancelTargettingOtherMobs.cancelTarget((MobEntity) entity);
+        }
+
         OnTickRegenerate.regen(40, entity);
 
         if (entity instanceof PlayerEntity == false) {
@@ -30,9 +35,6 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
             }
         }
 
-        if (entity instanceof MobEntity) {
-            OnTickCancelTargettingOtherMobs.cancelTarget((MobEntity) entity);
-        }
         checkGearChanged(entity);
     }
 

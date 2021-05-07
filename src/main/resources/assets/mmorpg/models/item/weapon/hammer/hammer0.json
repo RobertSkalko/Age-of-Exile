@@ -2,69 +2,90 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "block/nether_portal",
-		"5": "mmorpg:items/weapon/hammer/hammer0"
+		"8": "mmorpg:items/weapon/hammer/hammer0",
+		"particle": "mmorpg/hammer0"
 	},
 	"elements": [
 		{
-			"from": [8, 0, 7.25],
-			"to": [9, 12, 8.25],
+			"from": [4.25, 12, -1],
+			"to": [11, 15.75, 3.25],
 			"faces": {
-				"north": {"uv": [2.5, 5, 3, 11], "texture": "#5"},
-				"east": {"uv": [3, 5, 3.5, 11], "texture": "#5"},
-				"south": {"uv": [3.5, 5, 4, 11], "texture": "#5"},
-				"west": {"uv": [4, 5, 4.5, 11], "texture": "#5"},
-				"up": {"uv": [7.5, 3, 7, 2.5], "texture": "#5"},
-				"down": {"uv": [7.5, 3, 7, 3.5], "texture": "#5"}
+				"north": {"uv": [4, 0, 7.5, 2], "texture": "#8"},
+				"east": {"uv": [0, 7.5, 2, 9.5], "texture": "#8"},
+				"south": {"uv": [4, 2, 7.5, 4], "texture": "#8"},
+				"west": {"uv": [7.5, 0, 9.5, 2], "texture": "#8"},
+				"up": {"uv": [7.5, 6, 4, 4], "texture": "#8"},
+				"down": {"uv": [7.5, 6, 4, 8], "texture": "#8"}
 			}
 		},
 		{
-			"from": [6, 12, 3.25],
-			"to": [11, 17, 12.25],
+			"from": [7, 1.5, 0.25],
+			"to": [8.5, 16.25, 1.75],
 			"faces": {
-				"north": {"uv": [0, 5, 2.5, 7.5], "texture": "#1"},
-				"east": {"uv": [0, 0, 4.5, 2.5], "texture": "#1"},
-				"south": {"uv": [7, 0, 9.5, 2.5], "texture": "#1"},
-				"west": {"uv": [0, 2.5, 4.5, 5], "texture": "#1"},
-				"up": {"uv": [7, 4.5, 4.5, 0], "texture": "#1"},
-				"down": {"uv": [7, 4.5, 4.5, 9], "texture": "#1"}
+				"north": {"uv": [0, 0, 1, 7.5], "texture": "#8"},
+				"east": {"uv": [1, 0, 2, 7.5], "texture": "#8"},
+				"south": {"uv": [2, 0, 3, 7.5], "texture": "#8"},
+				"west": {"uv": [3, 0, 4, 7.5], "texture": "#8"},
+				"up": {"uv": [3, 8.5, 2, 7.5], "texture": "#8"},
+				"down": {"uv": [8.5, 2, 7.5, 3], "texture": "#8"}
 			}
 		}
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [2.5, -0.25, 1],
-			"translation": [-0.25, 0, 2.5]
+			"rotation": [46, -91.25, 45.25],
+			"translation": [-6, -1, 2],
+			"scale": [0.87305, 0.87305, 0.87305]
 		},
 		"thirdperson_lefthand": {
-			"translation": [0.5, -1, 2.75]
+			"rotation": [141, -270.25, -139.25],
+			"translation": [5.44727, 0, 2.75],
+			"scale": [0.78008, 0.78008, 0.78008]
 		},
 		"firstperson_righthand": {
-			"rotation": [-9.25, 175.75, 7.5],
-			"translation": [2, 0, -2.75],
-			"scale": [0.89375, 0.89375, 0.89375]
+			"rotation": [-149.5, -103.25, -168.75],
+			"translation": [-8, -11.25, -8.75],
+			"scale": [1.95117, 1.95117, 1.95117]
 		},
 		"firstperson_lefthand": {
-			"rotation": [18.75, -1, 0],
-			"translation": [-0.75, 2.5, 0],
-			"scale": [0.62891, 0.62891, 0.62891]
+			"rotation": [173.25, 441.75, -163.5],
+			"translation": [7.75, -2.25, -2],
+			"scale": [1.1543, 1.1543, 1.1543]
 		},
 		"ground": {
-			"translation": [-0.75, 2.5, 0]
+			"rotation": [157.5, 0, -173.75],
+			"translation": [0.5, -0.75, -3.75],
+			"scale": [0.57617, 0.57617, 0.57617]
 		},
 		"gui": {
-			"rotation": [-64, 117.5, 60],
-			"translation": [-0.5, -1, 0],
-			"scale": [0.70508, 0.70508, 0.70508]
+			"rotation": [0, 177.75, 39.5],
+			"translation": [-0.75, -0.5, 0],
+			"scale": [0.63867, 0.63867, 0.63867]
+		},
+		"head": {
+			"rotation": [0, -94.25, 0],
+			"translation": [-18, 8.5, 5.5],
+			"scale": [2.35156, 2.35156, 2.35156]
 		},
 		"fixed": {
-			"rotation": [9.25, -85, 0],
-			"translation": [0, 0, -1]
+			"rotation": [0, 0, 42.75],
+			"translation": [1.75, -0.25, 5],
+			"scale": [0.92969, 0.92969, 0.92969]
 		}
 	},
-	"groups": [0, 1,
+	"groups": [
 		{
-			"name": "group",
+			"name": "blade",
+			"origin": [8, 8, 8],
+			"children": [0, 1]
+		},
+		{
+			"name": "cross",
+			"origin": [8, 8, 8],
+			"children": []
+		},
+		{
+			"name": "hilt",
 			"origin": [8, 8, 8],
 			"children": []
 		}

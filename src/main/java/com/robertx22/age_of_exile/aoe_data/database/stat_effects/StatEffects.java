@@ -61,6 +61,7 @@ public class StatEffects implements ISlashRegistryInit {
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
     public static StatEffect SET_PIERCE = new SetBooleanEffect(EventData.PIERCE);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect(EventData.NUMBER);
+    public static StatEffect DECREASE_VALUE = new DecreaseNumberByPercentEffect(EventData.NUMBER);
     public static StatEffect INCREASE_SECONDS = new IncreaseNumberByPercentEffect(EventData.SECONDS);
     public static StatEffect SET_ACCURACY = new SetDataNumberAction(EventData.ACCURACY);
     public static StatEffect ADD_STAT_DATA_TO_NUMBER = new AddToNumberEffect("add_stat_data_to_num", EventData.NUMBER, NumberProvider.ofStatData());
@@ -108,6 +109,7 @@ public class StatEffects implements ISlashRegistryInit {
         GIVE_EFFECT_IN_AOE.addToSerializables();
         REFLECT_PERCENT_DAMAGE.addToSerializables();
         DECREASE_COOLDOWN_BY_X_TICKS.addToSerializables();
+        DECREASE_VALUE.addToSerializables();
 
     }
 }

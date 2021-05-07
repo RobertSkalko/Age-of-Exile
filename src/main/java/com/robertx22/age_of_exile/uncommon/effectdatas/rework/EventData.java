@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
@@ -24,6 +25,8 @@ public class EventData {
     public static String WEAPON_TYPE = "weapon_type";
     public static String IS_BASIC_ATTACK = "is_basic_atk";
     public static String STYLE = "style";
+    public static String THREAT_GEN_TYPE = "threat_gen_type";
+    public static String EXILE_EFFECT = "exile_effect";
 
     public static String IS_DODGED = "is_dodged";
     public static String IS_BLOCKED = "is_blocked";
@@ -33,6 +36,7 @@ public class EventData {
     public static String SECONDS = "seconds";
 
     public static String CAST_TICKS = "cast_ticks";
+    public static String EFFECT_DURATION_TICKS = "effect_duration_ticks";
     public static String COOLDOWN_TICKS = "cd_ticks";
     public static String MANA_COST = "mana_cost";
     public static String AREA_MULTI = "area";
@@ -89,6 +93,10 @@ public class EventData {
         return Elements.valueOf(strings.getOrDefault(ELEMENT, Elements.Physical.name()));
     }
 
+    public Elements getThreatGenType() {
+        return Elements.valueOf(strings.getOrDefault(ELEMENT, Elements.Physical.name()));
+    }
+
     public WeaponTypes getWeaponType() {
         return WeaponTypes.valueOf(strings.getOrDefault(WEAPON_TYPE, WeaponTypes.none.name()));
     }
@@ -107,6 +115,16 @@ public class EventData {
 
     public PlayStyle getStyle() {
         return PlayStyle.valueOf(strings.getOrDefault(STYLE, PlayStyle.melee.name()));
+    }
+
+    public ExileEffect getExileEffect() {
+        return Database.ExileEffects()
+            .get(getString(EXILE_EFFECT));
+    }
+
+    public boolean hasExileEffect() {
+        return Database.ExileEffects()
+            .isRegistered(getString(EXILE_EFFECT));
     }
 
     public ResourceType getResourceType() {

@@ -586,54 +586,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"mmorpg.spell.armor_aura": "Armor Aura",
-	"mmorpg.spell.arrow_storm": "Arrow Storm",
-	"mmorpg.spell.astral_totem": "Astral Totem",
-	"mmorpg.spell.awaken_mana": "Awaken Mana",
-	"mmorpg.spell.charge": "Charge",
-	"mmorpg.spell.crit_aura": "True Hit Aura",
-	"mmorpg.spell.dodge_aura": "Dodge Aura",
-	"mmorpg.spell.ele_res_aura": "Elemental Resistance Aura",
-	"mmorpg.spell.explosive_arrow": "Explosive Arrow",
-	"mmorpg.spell.fire_bombs": "Fire Bombs",
-	"mmorpg.spell.fire_breath": "Fire Breath",
-	"mmorpg.spell.fire_nova": "Fire Nova",
-	"mmorpg.spell.fireball": "Fire Ball",
-	"mmorpg.spell.flame_strike": "Flame Strike",
-	"mmorpg.spell.frost_armor": "Frost Armor",
-	"mmorpg.spell.frost_breath": "Frost Breath",
-	"mmorpg.spell.frost_nova": "Frost Nova",
-	"mmorpg.spell.frostball": "Ice Ball",
-	"mmorpg.spell.gong_strike": "Gong Strike",
-	"mmorpg.spell.gorgons_gaze": "Gorgon's Gaze",
-	"mmorpg.spell.haste_aura": "Haste Aura",
-	"mmorpg.spell.healing_aura": "Healing Atmosphere",
-	"mmorpg.spell.heart_of_ice": "Heart of Ice",
-	"mmorpg.spell.hp_reg_aura": "Health Regeneration Aura",
-	"mmorpg.spell.levitation": "Levitation",
-	"mmorpg.spell.make_arrows": "Produce Arrows",
-	"mmorpg.spell.mana_reg_aura": "Mana Regeneration Aura",
-	"mmorpg.spell.meteor": "Meteor",
-	"mmorpg.spell.nature_balm": "Nature's Balm",
-	"mmorpg.spell.overload": "Overload",
-	"mmorpg.spell.poison_arrow": "Poison Arrow",
-	"mmorpg.spell.poison_ball": "Poison Ball",
-	"mmorpg.spell.poisoned_weapons": "Poison Weapons",
-	"mmorpg.spell.recoil_shot": "Recoil Shot",
-	"mmorpg.spell.rejuv_totem": "Rejuvenating Totem",
-	"mmorpg.spell.shield_test": "Shield Test",
-	"mmorpg.spell.taunt": "Taunt",
-	"mmorpg.spell.teleport": "Teleport",
-	"mmorpg.spell.thirst_strike": "Thirsting Strike",
-	"mmorpg.spell.thorn_armor": "Thorn Armor",
-	"mmorpg.spell.tidal_strike": "Tidal Strike",
-	"mmorpg.spell.whirlwind": "Whirlwind",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.accurate_mobs": "Accurate",
@@ -730,6 +682,54 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"mmorpg.spell.armor_aura": "Armor Aura",
+	"mmorpg.spell.arrow_storm": "Arrow Storm",
+	"mmorpg.spell.astral_totem": "Astral Totem",
+	"mmorpg.spell.awaken_mana": "Awaken Mana",
+	"mmorpg.spell.charge": "Charge",
+	"mmorpg.spell.crit_aura": "True Hit Aura",
+	"mmorpg.spell.dodge_aura": "Dodge Aura",
+	"mmorpg.spell.ele_res_aura": "Elemental Resistance Aura",
+	"mmorpg.spell.explosive_arrow": "Explosive Arrow",
+	"mmorpg.spell.fire_bombs": "Fire Bombs",
+	"mmorpg.spell.fire_breath": "Fire Breath",
+	"mmorpg.spell.fire_nova": "Fire Nova",
+	"mmorpg.spell.fireball": "Fire Ball",
+	"mmorpg.spell.flame_strike": "Flame Strike",
+	"mmorpg.spell.frost_armor": "Frost Armor",
+	"mmorpg.spell.frost_breath": "Frost Breath",
+	"mmorpg.spell.frost_nova": "Frost Nova",
+	"mmorpg.spell.frostball": "Ice Ball",
+	"mmorpg.spell.gong_strike": "Gong Strike",
+	"mmorpg.spell.gorgons_gaze": "Gorgon's Gaze",
+	"mmorpg.spell.haste_aura": "Haste Aura",
+	"mmorpg.spell.healing_aura": "Healing Atmosphere",
+	"mmorpg.spell.heart_of_ice": "Heart of Ice",
+	"mmorpg.spell.hp_reg_aura": "Health Regeneration Aura",
+	"mmorpg.spell.levitation": "Levitation",
+	"mmorpg.spell.make_arrows": "Produce Arrows",
+	"mmorpg.spell.mana_reg_aura": "Mana Regeneration Aura",
+	"mmorpg.spell.meteor": "Meteor",
+	"mmorpg.spell.nature_balm": "Nature's Balm",
+	"mmorpg.spell.overload": "Overload",
+	"mmorpg.spell.poison_arrow": "Poison Arrow",
+	"mmorpg.spell.poison_ball": "Poison Ball",
+	"mmorpg.spell.poisoned_weapons": "Poison Weapons",
+	"mmorpg.spell.recoil_shot": "Recoil Shot",
+	"mmorpg.spell.rejuv_totem": "Rejuvenating Totem",
+	"mmorpg.spell.shield_test": "Shield Test",
+	"mmorpg.spell.taunt": "Taunt",
+	"mmorpg.spell.teleport": "Teleport",
+	"mmorpg.spell.thirst_strike": "Thirsting Strike",
+	"mmorpg.spell.thorn_armor": "Thorn Armor",
+	"mmorpg.spell.tidal_strike": "Tidal Strike",
+	"mmorpg.spell.whirlwind": "Whirlwind",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.sets.blaze_set": "The Blaze",
@@ -742,25 +742,6 @@
 	"mmorpg.sets.void_set": "Call of the Void",
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
-
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-	"mmorpg.runeword.all_knowing": "All Knowing",
-	"mmorpg.runeword.blaze_fury": "Blaze Fury",
-	"mmorpg.runeword.dawn_light": "Dawn Light",
-	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
-	"mmorpg.runeword.ele_fury": "Elemental Fury",
-	"mmorpg.runeword.infinity": "Infinity",
-	"mmorpg.runeword.momentum": "Momentum",
-	"mmorpg.runeword.rock_golem": "Rock Golem",
-	"mmorpg.runeword.scholar": "Scholar",
-	"mmorpg.runeword.sentinel": "Sentinel",
-	"mmorpg.runeword.shadow": "Shadow",
-	"mmorpg.runeword.starlight": "Starlight",
-	"mmorpg.runeword.venom": "Venom",
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
 
 
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
@@ -811,6 +792,25 @@
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+	"mmorpg.runeword.all_knowing": "All Knowing",
+	"mmorpg.runeword.blaze_fury": "Blaze Fury",
+	"mmorpg.runeword.dawn_light": "Dawn Light",
+	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
+	"mmorpg.runeword.ele_fury": "Elemental Fury",
+	"mmorpg.runeword.infinity": "Infinity",
+	"mmorpg.runeword.momentum": "Momentum",
+	"mmorpg.runeword.rock_golem": "Rock Golem",
+	"mmorpg.runeword.scholar": "Scholar",
+	"mmorpg.runeword.sentinel": "Sentinel",
+	"mmorpg.runeword.shadow": "Shadow",
+	"mmorpg.runeword.starlight": "Starlight",
+	"mmorpg.runeword.venom": "Venom",
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 	"mmorpg.mob_rarity.boss": "Boss",
@@ -831,34 +831,6 @@
 	"mmorpg.skill_gem_rarity.rare": "Rare",
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
-
-
-"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-	"effect.mmorpg.beneficial.0": "Ele Resist",
-	"effect.mmorpg.beneficial.1": "Cleanse",
-	"effect.mmorpg.beneficial.14": "Frost Armor",
-	"effect.mmorpg.beneficial.15": "Void Eye",
-	"effect.mmorpg.beneficial.16": "Bloodlust",
-	"effect.mmorpg.beneficial.17": "Overload",
-	"effect.mmorpg.beneficial.5": "Regenerate",
-	"effect.mmorpg.beneficial.6": "Thorn Armor",
-	"effect.mmorpg.beneficial.7": "Anger",
-	"effect.mmorpg.beneficial.8": "Divine Shield",
-	"effect.mmorpg.beneficial.9": "Poison Wep",
-	"effect.mmorpg.negative.0": "Ele Weakness",
-	"effect.mmorpg.negative.1": "Petrify",
-	"effect.mmorpg.negative.10": "Blind",
-	"effect.mmorpg.negative.2": "Frost Burn",
-	"effect.mmorpg.negative.3": "Poison",
-	"effect.mmorpg.negative.4": "Wounds",
-	"effect.mmorpg.negative.5": "Burn",
-	"effect.mmorpg.negative.6": "Judgement",
-	"effect.mmorpg.negative.7": "Torment",
-	"effect.mmorpg.negative.8": "Bleed",
-	"effect.mmorpg.negative.9": "Mummy Curse",
-
-"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
@@ -883,6 +855,35 @@
 	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+	"effect.mmorpg.beneficial.0": "Ele Resist",
+	"effect.mmorpg.beneficial.1": "Cleanse",
+	"effect.mmorpg.beneficial.14": "Frost Armor",
+	"effect.mmorpg.beneficial.15": "Void Eye",
+	"effect.mmorpg.beneficial.16": "Bloodlust",
+	"effect.mmorpg.beneficial.17": "Overload",
+	"effect.mmorpg.beneficial.5": "Regenerate",
+	"effect.mmorpg.beneficial.6": "Thorn Armor",
+	"effect.mmorpg.beneficial.7": "Anger",
+	"effect.mmorpg.beneficial.8": "Divine Shield",
+	"effect.mmorpg.beneficial.9": "Poison Wep",
+	"effect.mmorpg.negative.0": "Ele Weakness",
+	"effect.mmorpg.negative.1": "Petrify",
+	"effect.mmorpg.negative.10": "Blind",
+	"effect.mmorpg.negative.11": "Stun",
+	"effect.mmorpg.negative.2": "Frost Burn",
+	"effect.mmorpg.negative.3": "Poison",
+	"effect.mmorpg.negative.4": "Wounds",
+	"effect.mmorpg.negative.5": "Burn",
+	"effect.mmorpg.negative.6": "Judgement",
+	"effect.mmorpg.negative.7": "Torment",
+	"effect.mmorpg.negative.8": "Bleed",
+	"effect.mmorpg.negative.9": "Mummy Curse",
+
+"_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1565,6 +1566,7 @@
 	"mmorpg.stat.staff_damage": "Staff Damage",
 	"mmorpg.stat.strength": "Strength",
 	"mmorpg.stat.sword_damage": "Sword Damage",
+	"mmorpg.stat.threat_generated": "Threat Generated",
 	"mmorpg.stat.total_damage": "Total Damage",
 	"mmorpg.stat.transfer_health_to_physical_weapon_damage": "§7Transfer §a[VAL1]%§7 of your §c❤ Health§7§7 towards your §6✦ Physical Damage§7",
 	"mmorpg.stat.trident_damage": "Trident Damage",
@@ -1843,32 +1845,6 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.foods.critical": "Critical",
-	"effect.mmorpg.foods.dark": "Night",
-	"effect.mmorpg.foods.def_blue": "Arcana Defense",
-	"effect.mmorpg.foods.def_gray": "Physical Defense",
-	"effect.mmorpg.foods.def_green": "Terra Defense",
-	"effect.mmorpg.foods.def_purple": "Magicka Defense",
-	"effect.mmorpg.foods.def_yellow": "Sky Defense",
-	"effect.mmorpg.foods.elemental_resist": "Elementum",
-	"effect.mmorpg.foods.exp": "Experience",
-	"effect.mmorpg.foods.fire": "Ignis",
-	"effect.mmorpg.foods.healing": "Sancti",
-	"effect.mmorpg.foods.health_regen": "Vitala",
-	"effect.mmorpg.foods.light": "Sky",
-	"effect.mmorpg.foods.magic_shield_regen": "Magicka",
-	"effect.mmorpg.foods.mana_regen": "Arcana",
-	"effect.mmorpg.foods.nature": "Terra",
-	"effect.mmorpg.foods.physical": "Physical",
-	"effect.mmorpg.foods.spell_damage": "Enigma",
-	"effect.mmorpg.foods.treasure": "Treasure",
-	"effect.mmorpg.foods.water": "Aqua",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.all_res_necklace_end": "Necklace",
@@ -2001,6 +1977,32 @@
 	"item.mmorpg.weapon.wand.wand4": "Wand",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.foods.critical": "Critical",
+	"effect.mmorpg.foods.dark": "Night",
+	"effect.mmorpg.foods.def_blue": "Arcana Defense",
+	"effect.mmorpg.foods.def_gray": "Physical Defense",
+	"effect.mmorpg.foods.def_green": "Terra Defense",
+	"effect.mmorpg.foods.def_purple": "Magicka Defense",
+	"effect.mmorpg.foods.def_yellow": "Sky Defense",
+	"effect.mmorpg.foods.elemental_resist": "Elementum",
+	"effect.mmorpg.foods.exp": "Experience",
+	"effect.mmorpg.foods.fire": "Ignis",
+	"effect.mmorpg.foods.healing": "Sancti",
+	"effect.mmorpg.foods.health_regen": "Vitala",
+	"effect.mmorpg.foods.light": "Sky",
+	"effect.mmorpg.foods.magic_shield_regen": "Magicka",
+	"effect.mmorpg.foods.mana_regen": "Arcana",
+	"effect.mmorpg.foods.nature": "Terra",
+	"effect.mmorpg.foods.physical": "Physical",
+	"effect.mmorpg.foods.spell_damage": "Enigma",
+	"effect.mmorpg.foods.treasure": "Treasure",
+	"effect.mmorpg.foods.water": "Aqua",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: RACES - NAMES",
@@ -2220,6 +2222,7 @@
 	"mmorpg.stat_desc.staff_damage": "Increases damage done if it was caused by that weapon",
 	"mmorpg.stat_desc.strength": "Determines your total: Melee Damage, Armor",
 	"mmorpg.stat_desc.sword_damage": "Increases damage done if it was caused by that weapon",
+	"mmorpg.stat_desc.threat_generated": "Modifies amount of threat you generate. Mobs attack targets with highest threat.",
 	"mmorpg.stat_desc.total_damage": "Increases all your damage.",
 	"mmorpg.stat_desc.trident_damage": "Increases damage done if it was caused by that weapon",
 	"mmorpg.stat_desc.turn_phys_to_ele": "Turns % of phys atk dmg into ele",

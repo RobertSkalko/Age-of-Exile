@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"7": "mmorpg:items/weapon/dagger/dagger1",
+		"7": "mmorpg:items/weapon/dagger/dagger0",
 		"particle": "dagger/blade"
 	},
 	"elements": [
@@ -102,18 +102,18 @@
 			"scale": [0.7, 0.7, 0.9]
 		},
 		"firstperson_righthand": {
-			"rotation": [12, 106.25, -168.75],
-			"translation": [13, -18, 5.25],
-			"scale": [1.52148, 1.52148, 1.52148]
+			"rotation": [133.25, 79, -149],
+			"translation": [6.5, -1.75, -14],
+			"scale": [1.07227, 1.07227, 1.07227]
 		},
 		"firstperson_lefthand": {
-			"rotation": [7, -67, -180],
-			"translation": [7, -30, 13],
-			"scale": [2.37, 2.44, 2.44]
+			"rotation": [172.75, -72, -180],
+			"translation": [4.75, -5.5, -36],
+			"scale": [1.90875, 1.90875, 1.90875]
 		},
 		"ground": {
 			"rotation": [0, 0, -162.25],
-			"translation": [-1.25, 0, 4],
+			"translation": [-6, -3, 3.75],
 			"scale": [0.53906, 0.53906, 0.53906]
 		},
 		"gui": {

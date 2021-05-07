@@ -4,10 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
@@ -17,8 +14,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMa
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -35,10 +30,16 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_int", "Wisdom", new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_dex", "Skill", new OptScaleExactStat(5, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_str", "Power", new OptScaleExactStat(5, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_wis", "Power", new OptScaleExactStat(5, Wisdom.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_agi", "Power", new OptScaleExactStat(5, Agility.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_vit", "Power", new OptScaleExactStat(5, Vitality.INSTANCE, ModType.FLAT));
 
         PerkBuilder.bigStat("huge_int", "Superior Wisdom", new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("huge_dex", "Superior Skill", new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("huge_str", "Superior Power", new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("huge_wis", "Superior Wisdom", new OptScaleExactStat(10, Wisdom.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("huge_agi", "Superior Agility", new OptScaleExactStat(10, Agility.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("huge_vit", "Superior Vitality", new OptScaleExactStat(10, Vitality.INSTANCE, ModType.FLAT));
 
         PerkBuilder.bigStat("big_hp_res", "Hard Life",
             new OptScaleExactStat(15, Health.getInstance(), ModType.LOCAL_INCREASE),
@@ -268,8 +269,8 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_aura_eff", "Determination",
-            new OptScaleExactStat(20, IncreasedEffectOfAuras.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(5, ReducedManaReserved.getInstance(), ModType.FLAT)
+            new OptScaleExactStat(20, Stats.INCREASED_EFFECT_OF_AURAS_RECEIVED.get(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.REDUCED_MANA_RESERVED.get(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_poe", "Principle of Essence",

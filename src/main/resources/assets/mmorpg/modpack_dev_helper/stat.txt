@@ -45,6 +45,7 @@ all_light_damage
 ranged_dmg_received
 physical_dot_damage
 ele_mace_damage
+threat_generated
 mana_per_10_intelligence
 all_all_damage
 chance_of_torment

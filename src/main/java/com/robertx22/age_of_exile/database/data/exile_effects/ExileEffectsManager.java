@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -19,7 +20,7 @@ public class ExileEffectsManager {
             }
             ExileStatusEffect effect = reg.getStatusEffect();
 
-            ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.TAKE, target, target);
+            ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.TAKE, target, target, 0);
             event.Activate();
 
             ExileEffectInstanceData extraData = Load.Unit(target)
@@ -28,6 +29,7 @@ public class ExileEffectsManager {
 
             extraData.stacks -= amount;
             extraData.stacks = MathHelper.clamp(extraData.stacks, 0, 1000);
+            extraData.str_multi = event.data.getNumber();
 
             if (extraData.stacks < 1) {
                 target.removeStatusEffect(effect);
@@ -49,8 +51,9 @@ public class ExileEffectsManager {
             return;
         }
 
-        ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.GIVE, caster, target);
+        ExilePotionEvent event = new ExilePotionEvent(reg, ExilePotionEvent.Action.GIVE, caster, target, duration);
         event.Activate();
+        duration = (int) event.data.getNumber(EventData.EFFECT_DURATION_TICKS).number;
 
         ExileStatusEffect effect = reg.getStatusEffect();
 
@@ -72,6 +75,8 @@ public class ExileEffectsManager {
         }
 
         extraData.spellData = EntitySavedSpellData.create(lvl, caster, reg);
+
+        extraData.str_multi = event.data.getNumber();
 
         StatusEffectInstance newInstance = new StatusEffectInstance(effect, duration, 1, false, false, true);
 

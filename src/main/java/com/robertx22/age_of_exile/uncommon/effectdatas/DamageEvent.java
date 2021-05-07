@@ -355,8 +355,8 @@ public class DamageEvent extends EffectEvent {
         if (dmg > 0) {
             if (source instanceof PlayerEntity) {
                 if (target instanceof MobEntity) {
-                    targetData.getThreat()
-                        .addThreat((PlayerEntity) source, (MobEntity) target, (int) dmg);
+                    GenerateThreatEvent threatEvent = new GenerateThreatEvent((PlayerEntity) source, (MobEntity) target, ThreatGenType.deal_dmg, dmg);
+                    threatEvent.Activate();
                 }
             }
             sendDamageParticle(info);

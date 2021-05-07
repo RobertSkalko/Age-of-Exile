@@ -17,6 +17,7 @@ public abstract class StatCondition implements ISerializedRegistryEntry<StatCond
     public static HashMap<String, StatCondition> SERIALIZERS = new HashMap<>();
 
     static {
+        addSer(new EffectHasTagCondition());
         addSer(new IsInCombatCondition());
         addSer(new IsNotOnCooldownCondition());
         addSer(new IsUnderExileEffect());

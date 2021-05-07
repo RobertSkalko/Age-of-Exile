@@ -15,8 +15,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalC
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
@@ -49,8 +47,6 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(RegeneratePercentStat.HEALTH);
                     add(RegeneratePercentStat.MANA);
                     add(ArmorPenetration.getInstance());
-                    add(ReducedManaReserved.getInstance());
-                    add(IncreasedEffectOfAuras.getInstance());
 
                     add(DarknessDamage.getInstance());
 

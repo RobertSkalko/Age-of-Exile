@@ -136,7 +136,7 @@ public abstract class EffectEvent implements IGUID {
         }
     }
 
-    private Unit.StatContainerType getStatType(LivingEntity en, UnitData data) {
+    private Unit.StatContainerType getStatType(LivingEntity en) {
 
         if (en instanceof PlayerEntity) {
             try {
@@ -191,7 +191,7 @@ public abstract class EffectEvent implements IGUID {
 
     private List<EffectWithCtx> AddEffects(List<EffectWithCtx> effects, UnitData unit, LivingEntity en, EffectSides side) {
 
-        Unit.StatContainerType type = getStatType(en, unit);
+        Unit.StatContainerType type = getStatType(en);
 
         if (unit != null) {
             unit.getUnit()

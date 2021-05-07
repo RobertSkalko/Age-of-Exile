@@ -42,29 +42,28 @@ public class SpellCastingData {
     @Store
     public List<PlayerAction> last_actions = new ArrayList<>();
 
-    @Store
-    public int ageSinceLastAction = -1;
+    static String BLOCK_ID = "block_action";
 
     public void onAction(PlayerEntity player, PlayerAction action) {
 
-        boolean on_cooldown = false;
         if (action == PlayerAction.BLOCK) {
-            if (ageSinceLastAction > 0) {
-                int ticksSinceLast = player.age - ageSinceLastAction;
-                if (ticksSinceLast < 20 * 3) {
-                    on_cooldown = true;
-                } else {
-                    ageSinceLastAction = player.age;
-                }
-            } else {
-                ageSinceLastAction = player.age;
+            if (Load.Unit(player)
+                .getCooldowns()
+                .isOnCooldown(BLOCK_ID)) {
+                return;
             }
         }
-        if (!on_cooldown) {
-            last_actions.add(action);
-            if (last_actions.size() > 10) {
-                last_actions.remove(0);
-            }
+
+        last_actions.add(action);
+        if (last_actions.size() > 10) {
+            last_actions.remove(0);
+        }
+
+        if (action == PlayerAction.BLOCK) {
+            Load.Unit(player)
+                .getCooldowns()
+                .setOnCooldown(BLOCK_ID, 20);
+
         }
 
     }
