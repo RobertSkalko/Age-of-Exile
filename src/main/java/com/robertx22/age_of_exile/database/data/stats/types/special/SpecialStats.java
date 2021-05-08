@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -15,10 +14,8 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -60,8 +57,11 @@ public class SpecialStats {
 
                 int duration = (int) (60 * 20 * 1);
 
-                ExileEffectsManager.apply(null, effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(BeneficialEffects.VOID_EYE.effectId), effect.source, effect.source, duration);
+                ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.source, Load.Unit(effect.source)
+                    .getLevel(), Database.ExileEffects()
+                    .get(BeneficialEffects.VOID_EYE.effectId), GiveOrTake.give, duration)
+                    .build();
+                potionEvent.Activate();
 
                 effect.sourceData.getCooldowns()
                     .setOnCooldown("void_eye", VOID_EYE_COOLDOWN_MINUTES * 60 * 20);
@@ -99,8 +99,13 @@ public class SpecialStats {
         new BasePotionEffect() {
             @Override
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
-                ExileEffectsManager.apply(null, effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(NegativeEffects.MUMMY_CURSE.effectId), effect.source, effect.target, 20 * 10);
+
+                ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.target, Load.Unit(effect.source)
+                    .getLevel(), Database.ExileEffects()
+                    .get(NegativeEffects.MUMMY_CURSE.effectId), GiveOrTake.give, 20 * 10 * 20)
+                    .build();
+                potionEvent.Activate();
+
                 return effect;
             }
 
@@ -146,30 +151,6 @@ public class SpecialStats {
             @Override
             public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 return effect.source.isTouchingWater();
-            }
-        }
-    );
-
-    public static SpecialStat CRIT_BURN = new SpecialStat("crit_burn",
-        format("Your " + Elements.Fire.getIconNameFormat() + " Critical Hits have " + VAL1 + "% " + "chance to cause enemies to burn."),
-
-        new BaseSpecialStatDamageEffect() {
-            @Override
-            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                ExileEffectsManager.apply(null, effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(NegativeEffects.BURN.effectId), effect.source, effect.target, 20 * 10);
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
-                return effect.getElement()
-                    .isFire() && effect.data.getBoolean(EventData.CRIT) && RandomUtils.roll(data.getAverageValue());
-            }
-
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
             }
         }
     );

@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.sets;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
@@ -33,7 +35,7 @@ public class GearSetsAdder implements ISlashRegistryInit {
             .build();
 
         GearSet.Builder.of(BLAZE_SET, "The Blaze")
-            .stat(2, new OptScaleExactStat(20, SpecialStats.CRIT_BURN))
+            .stat(2, new OptScaleExactStat(20, Stats.CHANCE_OF_APPLYING_EFFECT_ON_CRIT.get(NegativeEffects.BURN)))
             .build();
 
         GearSet.Builder.of(OAK_SET, "The Great Tree")

@@ -291,6 +291,33 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT_ON_CRIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_crit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            NegativeEffects.BURN
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IF_CRIT)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Criticals have " + Stat.VAL1 + "% chance of applying " + x.locname
+        ))
+        .setLocDesc(x -> "Chance to give effect")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
     public static DataPackStatAccessor<EmptyAccessor> CRIT_CHANCE = DatapackStatBuilder
         .ofSingle("critical_hit", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)

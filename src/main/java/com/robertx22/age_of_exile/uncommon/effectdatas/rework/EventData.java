@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -27,6 +28,8 @@ public class EventData {
     public static String STYLE = "style";
     public static String THREAT_GEN_TYPE = "threat_gen_type";
     public static String EXILE_EFFECT = "exile_effect";
+    public static String GIVE_OR_TAKE = "give_or_take";
+    public static String STACKS = "stacks";
 
     public static String IS_DODGED = "is_dodged";
     public static String IS_BLOCKED = "is_blocked";
@@ -125,6 +128,10 @@ public class EventData {
     public boolean hasExileEffect() {
         return Database.ExileEffects()
             .isRegistered(getString(EXILE_EFFECT));
+    }
+
+    public GiveOrTake getGiveOrTake() {
+        return GiveOrTake.valueOf(strings.getOrDefault(GIVE_OR_TAKE, GiveOrTake.give.name()));
     }
 
     public ResourceType getResourceType() {

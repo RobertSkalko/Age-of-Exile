@@ -1,11 +1,14 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -32,9 +35,10 @@ public class GiveExileStatusInRadius extends StatEffect {
     @Override
     public void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
 
-        System.out.print("giving");
-
         LivingEntity en = event.getSide(statSource);
+
+        ExileEffect eff = Database.ExileEffects()
+            .get(effect);
 
         EntityFinder.start(en, LivingEntity.class, en.getBlockPos())
             .finder(EntityFinder.SelectionType.RADIUS)
@@ -42,9 +46,12 @@ public class GiveExileStatusInRadius extends StatEffect {
             .radius(radius)
             .build()
             .forEach(x -> {
-                ExileEffectsManager.apply(null, Load.Unit(en)
-                    .getLevel(), Database.ExileEffects()
-                    .get(effect), en, x, seconds * 20);
+
+                ExilePotionEvent potionEvent = EventBuilder.ofEffect(en, x, Load.Unit(en)
+                    .getLevel(), eff, GiveOrTake.give, seconds * 20)
+                    .build();
+                potionEvent.Activate();
+
             });
 
     }
