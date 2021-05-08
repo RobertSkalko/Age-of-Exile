@@ -23,13 +23,15 @@ import net.minecraft.entity.attribute.EntityAttributes;
 
 import java.util.UUID;
 
-public class DatapackStatAdder implements ISlashRegistryInit {
+public class DatapackStats implements ISlashRegistryInit {
 
     public static Stat HEAL_TO_SPELL_DMG = new AddPerPercentOfOther(Stats.HEAL_STRENGTH.get(), SpellDamage.getInstance());
+    public static Stat PHYS_DMG_PER_MANA = new AddPerPercentOfOther(Mana.getInstance(), new AttackDamage(Elements.Physical));
 
     public static Stat BLOOD_PER_10VIT = new MoreXPerYOf(Vitality.INSTANCE, Blood.getInstance(), 10);
     public static Stat HEALTH_PER_10_INT = new MoreXPerYOf(Intelligence.INSTANCE, Health.getInstance(), 10);
     public static Stat MANA_PER_10_INT = new MoreXPerYOf(Intelligence.INSTANCE, Mana.getInstance(), 10);
+    public static Stat CRIT_DMG_PER_10_ATK_SPEED_REG = new MoreXPerYOf(Stats.ATTACK_SPEED.get(), Stats.CRIT_DAMAGE.get(), 10);
 
     public static Stat GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25 = new MoreXPerYOf(TreasureQuality.getInstance(), GlobalCriticalHit.getInstance(), 25);
     public static Stat GLOBAL_CRIT_DMG_PER_ITEM_FIND_25 = new MoreXPerYOf(TreasureQuantity.getInstance(), GlobalCriticalDamage.getInstance(), 25);

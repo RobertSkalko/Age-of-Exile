@@ -105,6 +105,7 @@ ele_dagger_damage
 nature_health_leech
 water_focus
 spell_water_damage
+proj_dmg_received
 dark_weapon_damage
 elemental_penetration
 ele_sword_damage
@@ -198,7 +199,6 @@ global_critical_hit
 damage_shield
 wand_damage
 day_dmg
-crit_burn
 convert_light_to_phys
 critical_damage
 mana_cost

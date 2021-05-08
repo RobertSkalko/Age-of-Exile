@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
@@ -18,6 +18,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -45,18 +47,31 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx BLOODLUST = new EffectCtx("bloodlust", "Bloodlust", 16, Elements.Physical, EffectType.beneficial);
     public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
 
+    public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
+
     @Override
     public void registerAll() {
 
+        ExileEffectBuilder.of(HP_REGEN)
+            .stat(20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            .maxStacks(1)
+            .build();
+
+        ExileEffectBuilder.of(MANA_REGEN)
+            .stat(20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            .maxStacks(1)
+            .build();
+
         ExileEffectBuilder.of(OVERLOAD)
             .stat(-10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
-            .stat(-25, DatapackStatAdder.MOVE_SPEED, ModType.FLAT)
+            .stat(-25, DatapackStats.MOVE_SPEED, ModType.FLAT)
             .maxStacks(10)
             .build();
 
         ExileEffectBuilder.of(BLOODLUST)
             .stat(2, Stats.LIFESTEAL.get(), ModType.FLAT)
-            .stat(2, DatapackStatAdder.MOVE_SPEED, ModType.FLAT)
+            .stat(2, DatapackStats.MOVE_SPEED, ModType.FLAT)
             .maxStacks(10)
             .build();
 

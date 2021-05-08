@@ -30,6 +30,23 @@ public class Stats implements ISlashRegistryInit {
 
     }
 
+    public static DataPackStatAccessor<EffectTags> EFFECT_DURATION_ON_YOU_PER_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> x.name() + "_eff_duration", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_EFFECT_DURATION)
+        .setLocName(x -> Stat.format(
+            Stat.VAL1 + "% to duration of " + x.getLocName() + " effects on you."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+        })
+        .build();
+
     public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_ALLIES_IN_RADIUS = DatapackStatBuilder
         .<EffectCtx>of(x -> "give_" + x.id + "_to_allies_in_aoe", x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -943,7 +960,7 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectTags> INCREASED_EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG = DatapackStatBuilder
+    public static DataPackStatAccessor<EffectTags> EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG = DatapackStatBuilder
         .<EffectTags>of(x -> "inc_effect_of_" + x.name() + "_buff_given", x -> Elements.Physical)
         .addAllOfType(EffectTags.values())
         .worksWithEvent(ExilePotionEvent.ID)
@@ -951,11 +968,89 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
         .addEffect(e -> StatEffects.INCREASE_VALUE)
-        .setLocName(x -> x.getLocName() + " buffs you cast are " + Stat.VAL1 + "% more effective")
+        .setLocName(x -> Stat.VAL1 + "% to effectiveness of " + x.getLocName() + " buffs you cast.")
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_long = true;
             x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectTags> EFFECT_OF_BUFFS_ON_YOU_PER_EFFECT_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> "inc_effect_of_" + x.name() + "_buff_on_you", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_VALUE)
+        .setLocName(x -> Stat.VAL1 + "% to effectiveness of " + x.getLocName() + " buffs on you")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> CHANCE_OF_HP_REGEN_ON_SPELL_CRIT = DatapackStatBuilder
+        .ofSingle("chance_of_hp_reg_on_spell_crit", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.IF_CRIT)
+        .addEffect(StatEffects.GIVE_SELF_EFFECT.get(BeneficialEffects.HP_REGEN))
+        .setLocName(x -> Stat.format(
+            "Your Spell Crits have " + Stat.VAL1 + "% chance to give you Health Regen buff."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.min = 0;
+            x.max = 100;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> CHANCE_OF_MANA_REGEN_ON_HEAL_CRIT = DatapackStatBuilder
+        .ofSingle("chance_of_mana_reg_on_heal_crit", Elements.Physical)
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.IF_CRIT)
+        .addEffect(StatEffects.GIVE_SELF_EFFECT.get(BeneficialEffects.MANA_REGEN))
+        .setLocName(x -> Stat.format(
+            "Your Heal Crits have " + Stat.VAL1 + "% chance to give you Mana Regen buff."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> MORE_THREAT_WHEN_TAKING_DAMAGE = DatapackStatBuilder
+        .ofSingle("more_threat_on_take_dmg", Elements.Physical)
+        .worksWithEvent(GenerateThreatEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_THREAT_GEN_TYPE.get(ThreatGenType.take_dmg))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> Stat.format("You generate " + Stat.VAL1 + "% more threat when taking damage."))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
             x.scaling = StatScaling.NONE;
         })
         .build();

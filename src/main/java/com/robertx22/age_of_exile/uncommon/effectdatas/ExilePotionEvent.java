@@ -38,6 +38,9 @@ public class ExilePotionEvent extends EffectEvent {
     @Override
     protected void activate() {
 
+        if (source.world.isClient) {
+            return;
+        }
         if (this.data.isCanceled()) {
             return;
         }

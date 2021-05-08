@@ -358,7 +358,13 @@ public class DamageEvent extends EffectEvent {
                     GenerateThreatEvent threatEvent = new GenerateThreatEvent((PlayerEntity) source, (MobEntity) target, ThreatGenType.deal_dmg, dmg);
                     threatEvent.Activate();
                 }
+            } else if (source instanceof MobEntity) {
+                if (target instanceof PlayerEntity) {
+                    GenerateThreatEvent threatEvent = new GenerateThreatEvent((PlayerEntity) target, (MobEntity) source, ThreatGenType.take_dmg, dmg);
+                    threatEvent.Activate();
+                }
             }
+
             sendDamageParticle(info);
 
         }

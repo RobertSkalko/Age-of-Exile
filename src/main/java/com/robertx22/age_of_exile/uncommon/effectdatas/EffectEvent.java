@@ -74,6 +74,7 @@ public abstract class EffectEvent implements IGUID {
             //watch.min = 500;
 
             calculateEffects();
+            data.freeze();
 
             if (!data.isCanceled()) {
                 activate();
@@ -82,6 +83,7 @@ public abstract class EffectEvent implements IGUID {
 
             // watch.print("stat events " + GUID() + " ");
         }
+
     }
 
     public void calculateEffects() {

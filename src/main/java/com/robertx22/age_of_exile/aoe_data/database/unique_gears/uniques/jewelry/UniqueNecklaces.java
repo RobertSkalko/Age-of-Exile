@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelr
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
@@ -62,7 +62,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                     new StatModifier(15, 25, new ElementalResist(Elements.Fire)))
             )
             .stats(Arrays.asList(
-                new StatModifier(25, 25, DatapackStatAdder.MANA_PER_10_INT, ModType.FLAT),
+                new StatModifier(25, 25, DatapackStats.MANA_PER_10_INT, ModType.FLAT),
                 new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(3, 5, SpellDamage.getInstance(), ModType.FLAT),
                 new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT),

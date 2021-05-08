@@ -46,12 +46,24 @@ public class EventData {
     public static String PIERCE = "pierce";
     public static String PROJECTILE_SPEED_MULTI = "proj_speed";
 
+    private boolean isFrozen = false;
+
     private HashMap<String, WrappedFloat> floats = new HashMap<>();
     private HashMap<String, Boolean> bools = new HashMap<>();
     private HashMap<String, String> strings = new HashMap<>();
 
-    public void setupNumber(String id, float num) {
+    private void tryFreezeErrorMessage() {
+        if (isFrozen) {
+            try {
+                throw new RuntimeException("Event data frozen but code tried to modify it.");
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    public void setupNumber(String id, float num) {
+        tryFreezeErrorMessage();
         if (floats.containsKey(id)) {
             throw new RuntimeException("Number is already setup: " + id);
         }
@@ -77,6 +89,8 @@ public class EventData {
     }
 
     public void setBoolean(String id, Boolean bool) {
+        tryFreezeErrorMessage();
+
         bools.put(id, bool);
     }
 
@@ -105,6 +119,7 @@ public class EventData {
     }
 
     public void setElement(Elements ele) {
+
         setString(ELEMENT, ele.name());
     }
 
@@ -148,9 +163,13 @@ public class EventData {
     }
 
     public void setString(String id, String str) {
+        tryFreezeErrorMessage();
         // careful about order here
         this.strings.put(id, str);
     }
 
+    public void freeze() {
+        this.isFrozen = true;
+    }
 }
 

@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ThreatGenType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.*;
@@ -37,6 +38,10 @@ public class StatConditions implements ISlashRegistryInit {
     public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
         ResourceType.values()
         , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
+
+    public static DataHolder<ThreatGenType, StatCondition> IS_THREAT_GEN_TYPE = new DataHolder<>(
+        ThreatGenType.values()
+        , x -> new StringMatchesCondition(EventData.THREAT_GEN_TYPE, x.name()));
 
     public static DataHolder<SpellTag, StatCondition> SPELL_HAS_TAG = new DataHolder<>(
         SpellTag.values()
@@ -122,6 +127,7 @@ public class StatConditions implements ISlashRegistryInit {
         IS_IN_COMBAT.addToSerializables();
         IS_RESTORE_TYPE.addToSerializables();
         EFFECT_HAS_TAG.addToSerializables();
+        IS_THREAT_GEN_TYPE.addToSerializables();
 
     }
 }

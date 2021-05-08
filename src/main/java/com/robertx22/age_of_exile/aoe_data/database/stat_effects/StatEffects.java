@@ -20,7 +20,10 @@ import java.util.Arrays;
 public class StatEffects implements ISlashRegistryInit {
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_SELF_EFFECT = new DataHolder<>(
-        Arrays.asList(BeneficialEffects.BLOODLUST
+        Arrays.asList(
+            BeneficialEffects.BLOODLUST,
+            BeneficialEffects.HP_REGEN,
+            BeneficialEffects.MANA_REGEN
         ),
         x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
     );
@@ -62,6 +65,7 @@ public class StatEffects implements ISlashRegistryInit {
     public static StatEffect SET_PIERCE = new SetBooleanEffect(EventData.PIERCE);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect(EventData.NUMBER);
     public static StatEffect DECREASE_VALUE = new DecreaseNumberByPercentEffect(EventData.NUMBER);
+    public static StatEffect INCREASE_EFFECT_DURATION = new IncreaseNumberByPercentEffect(EventData.EFFECT_DURATION_TICKS);
     public static StatEffect INCREASE_SECONDS = new IncreaseNumberByPercentEffect(EventData.SECONDS);
     public static StatEffect SET_ACCURACY = new SetDataNumberAction(EventData.ACCURACY);
     public static StatEffect ADD_STAT_DATA_TO_NUMBER = new AddToNumberEffect("add_stat_data_to_num", EventData.NUMBER, NumberProvider.ofStatData());
@@ -110,6 +114,7 @@ public class StatEffects implements ISlashRegistryInit {
         REFLECT_PERCENT_DAMAGE.addToSerializables();
         DECREASE_COOLDOWN_BY_X_TICKS.addToSerializables();
         DECREASE_VALUE.addToSerializables();
+        INCREASE_EFFECT_DURATION.addToSerializables();
 
     }
 }

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
@@ -23,7 +23,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         PerkBuilder.gameChanger("blood_mage", "Blood Mage",
             new OptScaleExactStat(1, BloodUser.getInstance(), ModType.FLAT),
             new OptScaleExactStat(50, HealthRestorationToBlood.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(50, DatapackStatAdder.BLOOD_PER_10VIT, ModType.FLAT),
+            new OptScaleExactStat(50, DatapackStats.BLOOD_PER_10VIT, ModType.FLAT),
             new OptScaleExactStat(-100, Mana.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
@@ -39,7 +39,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("overflowing_vitality", "Overflowing Vitality",
-            new OptScaleExactStat(0.5F, DatapackStatAdder.CONVERT_HEALTH_TO_PHYS_DMG, ModType.FLAT),
+            new OptScaleExactStat(0.5F, DatapackStats.CONVERT_HEALTH_TO_PHYS_DMG, ModType.FLAT),
             new OptScaleExactStat(-10, Health.getInstance(), ModType.GLOBAL_INCREASE)
         );
 
@@ -67,7 +67,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("divinity", "Divinity",
-            new OptScaleExactStat(25, DatapackStatAdder.HEAL_TO_SPELL_DMG, ModType.FLAT),
+            new OptScaleExactStat(25, DatapackStats.HEAL_TO_SPELL_DMG, ModType.FLAT),
             new OptScaleExactStat(-50, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(-50, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE)
         );
