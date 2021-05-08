@@ -51,5 +51,6 @@ public class DatapackStats implements ISlashRegistryInit {
         GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25.addToSerializables();
         GLOBAL_CRIT_DMG_PER_ITEM_FIND_25.addToSerializables();
         MOVE_SPEED.addToSerializables();
+        PHYS_DMG_PER_MANA.addToSerializables();
     }
 }

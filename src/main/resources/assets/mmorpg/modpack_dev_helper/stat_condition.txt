@@ -6,6 +6,8 @@ spell_has_tag_area
 resource_type_is_shield
 style_is_melee
 effect_has_tag_defensive
+is_source_low_hp
+effect_has_tag_positive
 is_melee_weapon
 is_day_is_false
 is_crit_true
@@ -19,11 +21,13 @@ ele_match_stat
 is_day
 is_spear_wep_type
 is_crossbow_wep_type
+is_target_low_hp
 spell_has_tag_damage
 random_roll
 is_crit_true_is_false
 spell_has_tag_projectile
 is_spell
+threat_gen_type_is_deal_dmg
 is_attack_or_spell_attack
 style_is_magic
 is_bow_wep_type
@@ -41,6 +45,7 @@ spell_has_tag_shield
 is_trident_wep_type
 attack_type_is_reflect
 spell_has_tag_totem
+threat_gen_type_is_take_dmg
 is_projectile
 is_ranged_weapon
 effect_has_tag_immobilizing
@@ -50,9 +55,11 @@ is_mace_wep_type
 spell_has_tag_aura
 is_is_basic_atk_true
 is_dagger_wep_type
+threat_gen_type_is_heal
 restore_type_is_regen
 is_none_wep_type
 is_scythe_wep_type
 spell_has_tag_heal
 resource_type_is_mana
+effect_has_tag_negative
 is_hammer_wep_type

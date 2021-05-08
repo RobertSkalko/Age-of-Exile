@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -28,6 +29,8 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
     public static StatCondition IS_IN_COMBAT = new IsInCombatCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
+    public static StatCondition IS_TARGET_LOW_HP = new IsHealthBellowPercentCondition("is_target_low_hp", 30, EffectSides.Target);
+    public static StatCondition IS_SOURCE_LOW_HP = new IsHealthBellowPercentCondition("is_source_low_hp", 30, EffectSides.Source);
     public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
     public static StatCondition IS_NON_MAGIC_STYLE = new StringMatchesCondition(EventData.STYLE, PlayStyle.magic.name()).flipCondition();
 
@@ -128,6 +131,8 @@ public class StatConditions implements ISlashRegistryInit {
         IS_RESTORE_TYPE.addToSerializables();
         EFFECT_HAS_TAG.addToSerializables();
         IS_THREAT_GEN_TYPE.addToSerializables();
+        IS_TARGET_LOW_HP.addToSerializables();
+        IS_SOURCE_LOW_HP.addToSerializables();
 
     }
 }

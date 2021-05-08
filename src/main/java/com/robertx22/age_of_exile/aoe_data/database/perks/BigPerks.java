@@ -60,8 +60,8 @@ public class BigPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("big_spell_crit", "Destruction",
-            new OptScaleExactStat(5, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
-            new OptScaleExactStat(15, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
+            new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
+            new OptScaleExactStat(10, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
         );
 
         PerkBuilder.bigStat("big_wand", "Wand Master",

@@ -117,6 +117,21 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<Elements> ALWAYS_CRIT_WHEN_HIT_BY_ELEMENT = DatapackStatBuilder
+        .<Elements>of(x -> x.guidName + "_vuln_crit", x -> x)
+        .addAllOfType(Elements.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addEffect(StatEffects.SET_IS_CRIT)
+        .setLocName(x -> Stat.format(x.dmgName + " Damage always crits you."))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
     public static DataPackStatAccessor<Elements> ELEMENTAL_DAMAGE = DatapackStatBuilder
         .<Elements>of(x -> "all_" + x.guidName + "_damage", x -> x)
         .addAllOfType(Elements.values())
@@ -1052,6 +1067,34 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.is_long = true;
             x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_WHEN_LOW_HP = DatapackStatBuilder
+        .ofSingle("dmg_when_low_hp", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SOURCE_LOW_HP)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage when on Low Health")
+        .setLocDesc(x -> "Low hp is 30% or less.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_WHEN_TARGET_IS_LOW_HP = DatapackStatBuilder
+        .ofSingle("dmg_when_target_is_low_hp", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_LOW_HP)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage to Low Health Targets")
+        .setLocDesc(x -> "Low hp is 30% or less.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
         })
         .build();
 
