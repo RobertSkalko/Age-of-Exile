@@ -47,6 +47,9 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(4, Stats.REDUCED_MANA_RESERVED.get(), ModType.FLAT));
 
+        PerkBuilder.stat(new OptScaleExactStat(5, Stats.SPELL_ACCURACY.get(), ModType.LOCAL_INCREASE));
+        PerkBuilder.stat(new OptScaleExactStat(5, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE));
+
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.LIFESTEAL.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT));
@@ -56,7 +59,13 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(4, Stats.HEAL_STRENGTH.get(), ModType.FLAT));
 
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT));
+
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
+
+        PerkBuilder.stat("cooldown_reduction", new OptScaleExactStat(3, Stats.COOLDOWN_REDUCTION.get()));
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.COOLDOWN_REDUCTION.get()));
+
         PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));
 
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT));

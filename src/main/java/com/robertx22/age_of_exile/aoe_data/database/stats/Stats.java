@@ -47,6 +47,23 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EffectTags> EFFECT_DURATION_YOU_CAST_PER_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> x.name() + "_eff_dur_u_cast", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_EFFECT_DURATION)
+        .setLocName(x -> Stat.format(
+            Stat.VAL1 + "% to duration of " + x.getLocName() + " effects you cast."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+        })
+        .build();
+
     public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_ALLIES_IN_RADIUS = DatapackStatBuilder
         .<EffectCtx>of(x -> "give_" + x.id + "_to_allies_in_aoe", x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -131,6 +148,7 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_perc = true;
+            x.is_long = true;
         })
         .build();
 
@@ -299,6 +317,7 @@ public class Stats implements ISlashRegistryInit {
         .addAllOfType(
             Arrays.asList(
                 BeneficialEffects.INFUSED_BLADE,
+                BeneficialEffects.BLADE_DANCE,
                 BeneficialEffects.GATHER_STORM
             )
         )
@@ -327,6 +346,7 @@ public class Stats implements ISlashRegistryInit {
         .addAllOfType(Arrays.asList(
             NegativeEffects.BURN,
             NegativeEffects.FROSTBURN,
+            NegativeEffects.JUDGEMENT,
             NegativeEffects.BLEED,
             NegativeEffects.TORMENT,
             NegativeEffects.BLIND,
@@ -912,8 +932,6 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "Spell aoe effects will be larger")
         .modifyAfterDone(x -> {
             x.is_perc = true;
-            x.icon = "\u27B9";
-            x.format = Formatting.GREEN;
         })
         .build();
 
@@ -1124,6 +1142,34 @@ public class Stats implements ISlashRegistryInit {
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Damage to Low Health Targets")
         .setLocDesc(x -> "Low hp is 30% or less.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_TO_LIVING = DatapackStatBuilder
+        .ofSingle("dmg_to_living", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_NOT_UNDEAD)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage To Living")
+        .setLocDesc(x -> "Living entities are not undead ones.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_TO_UNDEAD = DatapackStatBuilder
+        .ofSingle("dmg_to_undead", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_UNDEAD)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage To Undead")
+        .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_perc = true;
         })

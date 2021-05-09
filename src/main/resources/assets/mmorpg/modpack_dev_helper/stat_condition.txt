@@ -21,12 +21,14 @@ ele_match_stat
 is_day
 is_spear_wep_type
 is_crossbow_wep_type
+is_undead_is_false
 is_target_low_hp
 spell_has_tag_damage
 random_roll
 is_crit_true_is_false
 spell_has_tag_projectile
 is_spell
+is_undead
 threat_gen_type_is_deal_dmg
 is_attack_or_spell_attack
 style_is_magic

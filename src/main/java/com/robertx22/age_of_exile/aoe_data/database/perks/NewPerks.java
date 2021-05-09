@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.*;
@@ -27,13 +28,6 @@ public class NewPerks implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-
-        PerkBuilder.gameChanger("songbird", "Songbird",
-            new OptScaleExactStat(-50, Stats.TOTAL_DAMAGE.get(), ModType.FLAT),
-            new OptScaleExactStat(25, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get()),
-            new OptScaleExactStat(25, Stats.HEAL_CRIT_CHANCE.get()),
-            new OptScaleExactStat(20, Stats.COOLDOWN_REDUCTION.get())
-        );
 
         PerkBuilder.bigStat("tale_of_war", "Tale of War",
             new OptScaleExactStat(25, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.offensive))
@@ -128,11 +122,42 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, new ElementalPenetration(Elements.Elemental))
         );
 
+        PerkBuilder.bigStat("wand_mastery", "Wand Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.wand)),
+            new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(10, Wisdom.INSTANCE)
+        );
+        PerkBuilder.bigStat("staff_mastery", "Staff Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.staff)),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.magic)),
+            new OptScaleExactStat(10, Intelligence.INSTANCE)
+        );
+        PerkBuilder.bigStat("scythe_mastery", "Scythe Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.scythe)),
+            new OptScaleExactStat(10, Stats.SPELL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(10, Intelligence.INSTANCE)
+        );
+
         PerkBuilder.bigStat("scepter_mastery", "Scepter Mastery",
             new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.scepter)),
             new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get()),
             new OptScaleExactStat(10, Wisdom.INSTANCE),
             new OptScaleExactStat(5, Stats.CAST_SPEED.get())
+        );
+        PerkBuilder.bigStat("dagger_mastery", "Dagger Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.dagger)),
+            new OptScaleExactStat(5, Stats.ATTACK_SPEED.get()),
+            new OptScaleExactStat(3, Stats.CRIT_CHANCE.get())
+        );
+        PerkBuilder.bigStat("spear_mastery", "Spear Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.spear)),
+            new OptScaleExactStat(50, Stats.ACCURACY.get()),
+            new OptScaleExactStat(5, Dexterity.INSTANCE)
+        );
+        PerkBuilder.bigStat("glove_mastery", "Glove Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.glove)),
+            new OptScaleExactStat(10, Stats.ATTACK_SPEED.get()),
+            new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)))
         );
 
         PerkBuilder.bigStat("sword_mastery", "Sword Mastery",
@@ -145,6 +170,13 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.axe)),
             new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get()),
             new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("bow_mastery", "Bow Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.bow)),
+            new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get()),
+            new OptScaleExactStat(10, Dexterity.INSTANCE),
+            new OptScaleExactStat(5, Stats.CRIT_DAMAGE.get())
         );
 
         PerkBuilder.bigStat("open_seal", "Open Seal",
@@ -327,13 +359,16 @@ public class NewPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("infusion", "Infusion",
-            new OptScaleExactStat(5, new AttackDamage(Elements.All), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Fire), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Water), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Nature), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Light), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Dark), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, new ElementalPenetration(Elements.Elemental))
         );
 
         PerkBuilder.bigStat("light_shackles", "Shackles of Light",
-            new OptScaleExactStat(15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.STUN), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW))
         );
 
         PerkBuilder.bigStat("runed_geode", "Runed Geode",
@@ -585,8 +620,143 @@ public class NewPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("burning_heart", "Burning Heart",
-            new OptScaleExactStat(10, Stats.SHIELD_DURATION.get()),
-            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get())
+            new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()),
+            new OptScaleExactStat(50, Mana.getInstance()),
+            new OptScaleExactStat(10, Wisdom.INSTANCE)
+        );
+
+        PerkBuilder.bigStat("soft_breeze", "Soft Breeze",
+            new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get()),
+            new OptScaleExactStat(5, SpecialStats.HEAL_CLEANSE),
+            new OptScaleExactStat(3, Stats.HEAL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(5, Intelligence.INSTANCE)
+        );
+
+        PerkBuilder.bigStat("angelic_judgement", "Angelic Judgement",
+            new OptScaleExactStat(20, Stats.RESOURCE_ON_KILL.get(ResourceType.mana)),
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.JUDGEMENT))
+        );
+
+        PerkBuilder.bigStat("hell", "Hell",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water))
+        );
+
+        PerkBuilder.bigStat("purgatory", "Purgatory",
+            new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get()),
+            new OptScaleExactStat(10, Stats.DAMAGE_WHEN_LOW_HP.get()),
+            new OptScaleExactStat(50, Health.getInstance())
+        );
+
+        PerkBuilder.bigStat("blade_dance", "Blade Dance",
+            new OptScaleExactStat(10, Stats.CHANCE_ON_BASIC_ATK_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.BLADE_DANCE))
+        );
+
+        PerkBuilder.bigStat("precise_preperation", "Precise Preparation",
+            new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(10, Stats.REDUCED_MANA_RESERVED.get()),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical))
+        );
+
+        PerkBuilder.bigStat("pyromaniac", "Pyromaniac",
+            new OptScaleExactStat(5, Stats.INCREASED_AREA.get()),
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire))
+        );
+        PerkBuilder.bigStat("spot_weakness", "Spot Weakness",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(10, ArmorPenetration.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.CRIT_CHANCE.get())
+        );
+
+        PerkBuilder.bigStat("outlaw", "Outlaw",
+            new OptScaleExactStat(10, Stats.DAMAGE_TO_LIVING.get()),
+            new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
+            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-5, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("necronomicon", "Necronomicon",
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.health)),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.mana))
+        );
+        PerkBuilder.bigStat("call_of_the_other_ones", "Call of the Other Ones",
+            new OptScaleExactStat(20, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.negative))
+        );
+        PerkBuilder.bigStat("beyond_good_and_evil", "Beyond good and Evil",
+            new OptScaleExactStat(-20, Stats.EFFECT_DURATION_ON_YOU_PER_TAG.get(EffectTags.negative))
+        );
+        PerkBuilder.bigStat("step_tension", "Step Tension",
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
+            new OptScaleExactStat(5, DatapackStats.MOVE_SPEED)
+        );
+        PerkBuilder.bigStat("eternity", "Eternity",
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Wisdom.INSTANCE)
+        );
+        PerkBuilder.bigStat("sunshine", "Sunshine",
+            new OptScaleExactStat(10, Stats.EFFECT_DURATION_ON_YOU_PER_TAG.get(EffectTags.positive)),
+            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("moonshine", "Moonshine",
+            new OptScaleExactStat(10, Stats.EFFECT_DURATION_YOU_CAST_PER_TAG.get(EffectTags.negative)),
+            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("demonic_seduction", "Demonic Seduction",
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLIND)),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.health))
+        );
+
+        PerkBuilder.bigStat("burning_eyes", "Burning Eyes",
+            new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get()),
+            new OptScaleExactStat(10, Dexterity.INSTANCE),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("backlash", "Backlash",
+            new OptScaleExactStat(5, Stats.PROJECTILE_SPEED.get()),
+            new OptScaleExactStat(10, Stats.ATTACK_SPEED.get()),
+            new OptScaleExactStat(50, Stats.ACCURACY.get()),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("juggler", "Juggler",
+            new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get()),
+            new OptScaleExactStat(5, Intelligence.INSTANCE),
+            new OptScaleExactStat(5, Dexterity.INSTANCE)
+        );
+
+        PerkBuilder.bigStat("pathfinder", "Pathfinder",
+            new OptScaleExactStat(5, DatapackStats.MOVE_SPEED),
+            new OptScaleExactStat(5, Agility.INSTANCE),
+            new OptScaleExactStat(5, Dexterity.INSTANCE)
+        );
+
+        PerkBuilder.bigStat("survivalist", "Survivalist",
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("mendacity", "Mendacity",
+            new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("for_the_living", "For the Living",
+            new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(10, Stats.DAMAGE_TO_UNDEAD.get())
+        );
+
+        PerkBuilder.bigStat("runeleather", "Rune Leather",
+            new OptScaleExactStat(5, Stats.SHIELD_DURATION.get()),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
         );
 
     }

@@ -110,13 +110,6 @@ public class PopulateDungeonChunks {
         int chests = RandomUtils.roll(20) ? 1 : 0;
         int spawners = RandomUtils.roll(20) ? 1 : 0;
 
-        boolean isboss = false;
-        if (RandomUtils.roll(5)) {
-            isboss = true;
-            mobs = 1;
-            spawners = 0;
-        }
-
         int tries = 0;
         for (int i = 0; i < mobs; i++) {
             BlockPos p = RandomUtils.randomFromList(list);
@@ -132,13 +125,8 @@ public class PopulateDungeonChunks {
             }
             data.mobs++;
 
-            if (isboss) {
-                dungeonData.getMobList()
-                    .spawnBoss((ServerWorld) world, p, dungeonData.tier);
-            } else {
-                dungeonData.getMobList()
-                    .spawnRandomMob((ServerWorld) world, p, dungeonData.tier);
-            }
+            dungeonData.getMobList()
+                .spawnRandomMob((ServerWorld) world, p, dungeonData.tier);
 
             list.remove(p);
         }

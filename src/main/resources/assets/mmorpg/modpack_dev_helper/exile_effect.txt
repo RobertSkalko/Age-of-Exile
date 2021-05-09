@@ -10,6 +10,10 @@ negative/2
 negative/3
 negative/4
 negative/5
+beneficial/13
+beneficial/12
+beneficial/11
+beneficial/10
 beneficial/17
 beneficial/16
 beneficial/15
@@ -20,8 +24,10 @@ beneficial/8
 beneficial/7
 beneficial/2
 beneficial/1
+beneficial/4
 beneficial/3
 beneficial/9
 beneficial/0
 negative/11
+negative/12
 negative/10

@@ -49,6 +49,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx BLESSING = new EffectCtx("blessing", "Blessing", 10, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx GATHER_STORM = new EffectCtx("gather_storm", "Gather Storm", 11, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx MARK = new EffectCtx("mark", "Mark", 12, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx BLADE_DANCE = new EffectCtx("blade_dance", "Blade Dance", 13, Elements.Physical, EffectType.beneficial);
     public static EffectCtx FROST_ARMOR = new EffectCtx("frost_armor", "Frost Armor", 14, Elements.Water, EffectType.beneficial);
     public static EffectCtx VOID_EYE = new EffectCtx("void_eye", "Void Eye", 15, Elements.Dark, EffectType.beneficial);
     public static EffectCtx BLOODLUST = new EffectCtx("bloodlust", "Bloodlust", 16, Elements.Physical, EffectType.beneficial);
@@ -57,6 +58,10 @@ public class BeneficialEffects implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        ExileEffectBuilder.of(BLADE_DANCE)
+            .stat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .maxStacks(5)
+            .build();
         ExileEffectBuilder.of(GATHER_STORM)
             .stat(5, Stats.AREA_DAMAGE.get(), ModType.FLAT)
             .maxStacks(5)

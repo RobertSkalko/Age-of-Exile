@@ -15,6 +15,7 @@ scepter_damage
 give_regenerate_to_allies_in_aoe
 bonus_exp
 bonus_favor
+chance_to_get_blessing_on_kill
 all_water_damage
 hammer_damage
 ele_glove_damage
@@ -33,6 +34,7 @@ mana_on_attack_hit
 melee_dmg_received
 dagger_damage
 all_elemental_damage
+defensive_eff_dur_u_cast
 chance_of_hp_reg_on_spell_crit
 physical_health_leech
 nature_vuln_crit
@@ -40,6 +42,7 @@ health_on_spell_hit
 all_health_leech
 all_physical_damage
 dark_penetration
+chance_on_basic_atk_to_give_gather_storm_to_self
 elemental_mana_leech
 critical_hit
 light_health_leech
@@ -61,6 +64,7 @@ chance_of_torment
 spell_elemental_damage
 dark_dmg_ignore_res
 dodge
+chance_on_basic_atk_to_give_blade_dance_to_self
 bonus_swamp_biome_yield
 fire_vuln_crit
 chance_to_give_bloodlust_to_self
@@ -77,9 +81,11 @@ dark_health_leech
 health_on_all_hit
 bonus_inscribing_exp
 max_nature_resist
+chance_of_slow
 strength
 ele_scepter_damage
 inc_effect_of_offensive_buff_on_you
+physical_weapon_damage_per_perc_of_mana
 mummy_curse
 spell_light_damage
 light_mana_leech
@@ -93,6 +99,7 @@ bonus_exp_for_t3_mob
 armor_penetration
 bow_damage
 ele_scythe_damage
+dmg_to_living
 inc_effect_of_defensive_buff_given
 positive_eff_duration
 axe_damage
@@ -114,6 +121,7 @@ ele_wand_damage
 ele_staff_damage
 spell_nature_damage
 dark_dot_damage
+chance_on_basic_atk_to_give_infused_blade_to_self
 agility
 ele_dagger_damage
 nature_health_leech
@@ -124,6 +132,7 @@ dark_weapon_damage
 elemental_penetration
 ele_sword_damage
 wisdom
+dmg_to_undead
 bonus_farming_exp
 absorb_ele_dmg_to_hp
 nature_mana_leech
@@ -180,6 +189,7 @@ bonus_inscribing_yield
 dark_mana_leech
 chance_of_blind
 spell_damage_per_perc_of_increase_healing
+positive_eff_dur_u_cast
 bonus_alchemy_exp
 increased_quantity
 elemental_dot_damage
@@ -190,6 +200,7 @@ max_water_resist
 bonus_farming_yield
 nature_resist
 all_mana_leech
+offensive_eff_dur_u_cast
 magic_dmg_received
 bonus_exploration_exp
 fire_resist
@@ -238,6 +249,7 @@ socket_slots
 chance_of_bleed
 light_focus
 total_damage
+immobilizing_eff_dur_u_cast
 global_critical_damage_per_25_increased_quantity
 renamed_or_deleted_stat
 bonus_hot_biome_yield
@@ -261,6 +273,7 @@ glove_damage
 bonus_mining_yield
 crit_water_dmg_mana
 negative_eff_duration
+chance_to_get_mark_on_kill
 chance_of_frostburn
 max_elemental_resist
 double_drop_chance
@@ -274,4 +287,6 @@ bonus_rain_yield
 heal_effect_on_self
 mace_damage
 shield_duration
+negative_eff_dur_u_cast
 dmg_taken_to_mana
+chance_of_judgement

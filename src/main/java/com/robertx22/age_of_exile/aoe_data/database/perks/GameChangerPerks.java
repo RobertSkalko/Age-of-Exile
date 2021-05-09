@@ -20,6 +20,20 @@ public class GameChangerPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        PerkBuilder.gameChanger("spell_slinger", "Spellslinger",
+            new OptScaleExactStat(-50, Stats.TOTAL_DAMAGE.get()),
+            new OptScaleExactStat(-50, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(30, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(30, Stats.PROJECTILE_SPEED.get()),
+            new OptScaleExactStat(30, Stats.PROJECTILE_DAMAGE.get())
+        );
+        PerkBuilder.gameChanger("songbird", "Songbird",
+            new OptScaleExactStat(-50, Stats.TOTAL_DAMAGE.get(), ModType.FLAT),
+            new OptScaleExactStat(25, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get()),
+            new OptScaleExactStat(25, Stats.HEAL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(20, Stats.COOLDOWN_REDUCTION.get())
+        );
+
         PerkBuilder.gameChanger("blood_mage", "Blood Mage",
             new OptScaleExactStat(1, BloodUser.getInstance(), ModType.FLAT),
             new OptScaleExactStat(50, HealthRestorationToBlood.getInstance(), ModType.FLAT),

@@ -89,6 +89,20 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
+        PerkBuilder.stat("health_mana",
+            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.stat("health_dodge",
+            new OptScaleExactStat(4, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.stat("dodge_health",
+            new OptScaleExactStat(4, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
 
         PerkBuilder.stat("dodge_and_hp",
             new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
@@ -122,6 +136,44 @@ public class ComboPerks implements ISlashRegistryInit {
         PerkBuilder.stat("spell_dmg_atk_speed",
             new OptScaleExactStat(2, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+        );
+
+        PerkBuilder.stat("dark_light_spell_damage",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light))
+        );
+        PerkBuilder.stat("water_fire_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire))
+        );
+        PerkBuilder.stat("nature_dark_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark))
+        );
+
+        PerkBuilder.stat("water_light_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light))
+        );
+        PerkBuilder.stat("nature_light_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light))
+        );
+        PerkBuilder.stat("nature_fire_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire))
+        );
+        PerkBuilder.stat("light_fire_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire))
+        );
+        PerkBuilder.stat("fire_dark_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire))
+        );
+        PerkBuilder.stat("nature_water_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water))
         );
 
     }

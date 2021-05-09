@@ -22,6 +22,11 @@ public class StatEffects implements ISlashRegistryInit {
     public static DataHolder<EffectCtx, StatEffect> GIVE_SELF_EFFECT = new DataHolder<>(
         Arrays.asList(
             BeneficialEffects.BLOODLUST,
+            BeneficialEffects.GATHER_STORM,
+            BeneficialEffects.INFUSED_BLADE,
+            BeneficialEffects.BLADE_DANCE,
+            BeneficialEffects.MARK,
+            BeneficialEffects.BLESSING,
             BeneficialEffects.HP_REGEN,
             BeneficialEffects.MANA_REGEN
         ),
@@ -53,6 +58,9 @@ public class StatEffects implements ISlashRegistryInit {
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_TARGET = new DataHolder<>(
         Arrays.asList(
             NegativeEffects.BURN,
+            NegativeEffects.JUDGEMENT,
+            NegativeEffects.SLOW,
+            NegativeEffects.STUN,
             NegativeEffects.FROSTBURN,
             NegativeEffects.BLEED,
             NegativeEffects.POISON,

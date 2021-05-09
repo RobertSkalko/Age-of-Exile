@@ -32,6 +32,15 @@ public class DataHolder<Key, Item extends ISerializedRegistryEntry> {
     private HashMap<Key, Item> map = new HashMap<>();
 
     public Item get(Key key) {
+
+        if (!map.containsKey(key)) {
+            try {
+                throw new RuntimeException("Key missing: " + key.toString());
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+
         return map.get(key);
     }
 

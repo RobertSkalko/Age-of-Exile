@@ -27,6 +27,8 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition ELEMENT_MATCH_STAT = new ElementMatchesStat();
     public static StatCondition IS_DAY = new IsDayCondition();
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
+    public static StatCondition IS_TARGET_UNDEAD = new IsUndeadCondition();
+    public static StatCondition IS_TARGET_NOT_UNDEAD = new IsUndeadCondition().flipCondition();
     public static StatCondition IS_IN_COMBAT = new IsInCombatCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_TARGET_LOW_HP = new IsHealthBellowPercentCondition("is_target_low_hp", 30, EffectSides.Target);
@@ -133,6 +135,8 @@ public class StatConditions implements ISlashRegistryInit {
         IS_THREAT_GEN_TYPE.addToSerializables();
         IS_TARGET_LOW_HP.addToSerializables();
         IS_SOURCE_LOW_HP.addToSerializables();
+        IS_TARGET_UNDEAD.addToSerializables();
+        IS_TARGET_NOT_UNDEAD.addToSerializables();
 
     }
 }

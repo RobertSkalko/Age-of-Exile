@@ -21,7 +21,9 @@ public class DataPackStatAccessor<T> {
         if (!Database.Stats()
             .isRegistered(getId(key))) {
             stat = map2.get(key);
-            Objects.requireNonNull(stat, "Null for " + key.toString());
+            if (stat == null) {
+                throw new RuntimeException(key.toString() + " is null");
+            }
             return stat;
         }
 
