@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
@@ -36,22 +37,43 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_S
 public class BeneficialEffects implements ISlashRegistryInit {
 
     public static EffectCtx ELE_RESIST = new EffectCtx("ele_res", "Ele Resist", 0, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx REGENERATE = new EffectCtx("regenerate", "Regenerate", 5, Elements.Nature, EffectType.beneficial);
     public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 1, Elements.All, EffectType.beneficial);
+    public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx INFUSED_BLADE = new EffectCtx("infused_blade", "Infused Blade", 4, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx REGENERATE = new EffectCtx("regenerate", "Regenerate", 5, Elements.Nature, EffectType.beneficial);
     public static EffectCtx THORN_ARMOR = new EffectCtx("thorn_armor", "Thorn Armor", 6, Elements.Nature, EffectType.beneficial);
     public static EffectCtx ANGER = new EffectCtx("anger", "Anger", 7, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DIVINE_SHIELD = new EffectCtx("divine_shield", "Divine Shield", 8, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx POISON_WEAPONS = new EffectCtx("poison_weapons", "Poison Wep", 9, Elements.Nature, EffectType.beneficial);
+    public static EffectCtx BLESSING = new EffectCtx("blessing", "Blessing", 10, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx GATHER_STORM = new EffectCtx("gather_storm", "Gather Storm", 11, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx MARK = new EffectCtx("mark", "Mark", 12, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx FROST_ARMOR = new EffectCtx("frost_armor", "Frost Armor", 14, Elements.Water, EffectType.beneficial);
     public static EffectCtx VOID_EYE = new EffectCtx("void_eye", "Void Eye", 15, Elements.Dark, EffectType.beneficial);
     public static EffectCtx BLOODLUST = new EffectCtx("bloodlust", "Bloodlust", 16, Elements.Physical, EffectType.beneficial);
     public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
 
-    public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
-
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(GATHER_STORM)
+            .stat(5, Stats.AREA_DAMAGE.get(), ModType.FLAT)
+            .maxStacks(5)
+            .build();
+
+        ExileEffectBuilder.of(BLESSING) // TODO
+            .maxStacks(5)
+            .build();
+
+        ExileEffectBuilder.of(MARK)// TODO
+            .maxStacks(5)
+            .build();
+
+        ExileEffectBuilder.of(INFUSED_BLADE)
+            .stat(5, SpellDamage.getInstance(), ModType.FLAT)
+            .maxStacks(5)
+            .build();
 
         ExileEffectBuilder.of(HP_REGEN)
             .stat(20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)

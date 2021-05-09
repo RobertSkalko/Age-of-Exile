@@ -73,7 +73,9 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.BLOODLUST
+            BeneficialEffects.BLOODLUST,
+            BeneficialEffects.MARK,
+            BeneficialEffects.BLESSING
         ))
         .worksWithEvent(OnMobKilledByDamageEvent.ID)
         .setPriority(0)
@@ -292,6 +294,34 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EffectCtx> CHANCE_ON_BASIC_ATK_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_on_basic_atk_to_give_" + x.id + "_to_self", x -> x.element)
+        .addAllOfType(
+            Arrays.asList(
+                BeneficialEffects.INFUSED_BLADE,
+                BeneficialEffects.GATHER_STORM
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Basic Attacks have " + Stat.VAL1 + "% chance of giving " + x.locname
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -300,7 +330,8 @@ public class Stats implements ISlashRegistryInit {
             NegativeEffects.BLEED,
             NegativeEffects.TORMENT,
             NegativeEffects.BLIND,
-            NegativeEffects.POISON
+            NegativeEffects.POISON,
+            NegativeEffects.SLOW
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -909,7 +940,7 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(StatEffects.REFLECT_PERCENT_DAMAGE)
         .setLocName(x -> "Damage Reflected")
-        .setLocDesc(x -> "Deals a % of damage you recieve to enemies that attack you.")
+        .setLocDesc(x -> "Deals a % of damage you receive to enemies that attack you.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.scaling = StatScaling.NONE;

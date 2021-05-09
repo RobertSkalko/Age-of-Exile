@@ -7,14 +7,14 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalFocus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -133,6 +133,18 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get()),
             new OptScaleExactStat(10, Wisdom.INSTANCE),
             new OptScaleExactStat(5, Stats.CAST_SPEED.get())
+        );
+
+        PerkBuilder.bigStat("sword_mastery", "Sword Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.sword)),
+            new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("axe_mastery", "Axe Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.axe)),
+            new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get()),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("open_seal", "Open Seal",
@@ -280,6 +292,303 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
             new OptScaleExactStat(5, new ElementalResist(Elements.Fire))
         );
+
+        PerkBuilder.bigStat("brilliance", "Brilliance",
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
+            new OptScaleExactStat(5, new ElementalResist(Elements.Water))
+        );
+
+        PerkBuilder.bigStat("emptiness", "Emptiness",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(5, Stats.SPELL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(5, new ElementalPenetration(Elements.Elemental))
+        );
+        PerkBuilder.bigStat("frostburn", "Frostburn",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("broad_knowledge", "Broad Knowledge",
+            new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
+            new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
+            new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN)),
+            new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLIND)),
+            new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
+            new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.TORMENT))
+        );
+
+        PerkBuilder.bigStat("ancient_rune", "Ancient Rune",
+            new OptScaleExactStat(10, Stats.SPELL_ACCURACY.get(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.spear)),
+            new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get())
+        );
+
+        PerkBuilder.bigStat("infusion", "Infusion",
+            new OptScaleExactStat(5, new AttackDamage(Elements.All), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, new ElementalPenetration(Elements.Elemental))
+        );
+
+        PerkBuilder.bigStat("light_shackles", "Shackles of Light",
+            new OptScaleExactStat(15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.STUN), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("runed_geode", "Runed Geode",
+            new OptScaleExactStat(10, Stats.AREA_DAMAGE.get()),
+            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get())
+        );
+
+        PerkBuilder.bigStat("unforgiving_desert", "Unforgiving Desert",
+            new OptScaleExactStat(5, Vitality.INSTANCE),
+            new OptScaleExactStat(3, new ElementalResist(Elements.Fire)),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("spellblade", "Spellblade",
+            new OptScaleExactStat(25, Stats.CHANCE_ON_BASIC_ATK_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.INFUSED_BLADE)),
+            new OptScaleExactStat(10, SpellDodge.getInstance())
+        );
+
+        PerkBuilder.bigStat("conquerer", "Conqueror",
+            new OptScaleExactStat(10, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLESSING)),
+            new OptScaleExactStat(15, Stats.SHIELD_STRENGTH.get())
+        );
+
+        PerkBuilder.bigStat("fanaticism", "Fanaticism",
+            new OptScaleExactStat(5, Stats.SPELL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(15, Stats.SHIELD_STRENGTH.get())
+        );
+        PerkBuilder.bigStat("praise_zadall", "Praise Zadall",
+            new OptScaleExactStat(5, Intelligence.INSTANCE),
+            new OptScaleExactStat(5, Strength.INSTANCE),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(10, Stats.INCREASED_EFFECT_OF_AURAS_RECEIVED.get())
+        );
+
+        PerkBuilder.bigStat("stubborn", "Stubborn",
+            new OptScaleExactStat(2, RegeneratePercentStat.HEALTH),
+            new OptScaleExactStat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("rain_of_sorrow", "Rain of Sorrow",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.dagger)),
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.bow)),
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON))
+        );
+        PerkBuilder.bigStat("slaughter", "Slaughter",
+            new OptScaleExactStat(20, ArmorPenetration.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Strength.INSTANCE),
+            new OptScaleExactStat(-5, Stats.ATTACK_SPEED.get())
+        );
+
+        PerkBuilder.bigStat("slice_and_dice", "Slice and Dice",
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.ATTACK_SPEED.get())
+        );
+
+        PerkBuilder.bigStat("confrontation", "Confrontation",
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.DAY_DAMAGE.get()),
+            new OptScaleExactStat(10, Stats.ATTACK_SPEED.get())
+        );
+
+        PerkBuilder.bigStat("jagged_blades", "Jagged Blades",
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
+            new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get())
+        );
+
+        PerkBuilder.bigStat("anatomical_knowledge", "Anatomical Knowledge",
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("execute", "Executioner",
+            new OptScaleExactStat(10, Stats.DAMAGE_WHEN_TARGET_IS_LOW_HP.get())
+        );
+
+        PerkBuilder.bigStat("swiftness", "Swiftness",
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, SpellDodge.getInstance()),
+            new OptScaleExactStat(-2, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
+            new OptScaleExactStat(5, Agility.INSTANCE)
+        );
+
+        PerkBuilder.bigStat("good_posture", "Good Posture",
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.REDUCED_MANA_RESERVED.get())
+        );
+
+        PerkBuilder.bigStat("rusty_weapons", "Rusty Weapons",
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
+            new OptScaleExactStat(10, Stats.DOT_DAMAGE.get())
+        );
+
+        PerkBuilder.bigStat("drunken_boxing", "Drunken Boxing",
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(20, Stats.CRIT_DAMAGE.get()),
+            new OptScaleExactStat(-5, Wisdom.INSTANCE),
+            new OptScaleExactStat(-5, Intelligence.INSTANCE)
+        );
+        PerkBuilder.bigStat("mana_vortex", "Mana Vortex",
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.REDUCED_MANA_RESERVED.get())
+        );
+
+        PerkBuilder.bigStat("rune_circle", "Rune Circle",
+            new OptScaleExactStat(10, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get()),
+            new OptScaleExactStat(100, Stats.SPELL_ACCURACY.get())
+        );
+
+        PerkBuilder.bigStat("flexible_mind", "Flexible Mind",
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
+            new OptScaleExactStat(5, new ElementalResist(Elements.Water))
+        );
+
+        PerkBuilder.bigStat("atonement", "Atonement",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(2, new ElementalPenetration(Elements.Elemental)),
+            new OptScaleExactStat(5, Stats.DOT_DAMAGE.get())
+        );
+
+        PerkBuilder.bigStat("eclipse", "Eclipse",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(10, Stats.SPELL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(5, Stats.DOT_DAMAGE.get())
+        );
+
+        PerkBuilder.bigStat("ritual", "Ritual",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(10, Stats.SPELL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(5, ManaRegen.getInstance())
+        );
+
+        PerkBuilder.bigStat("ignition", "Ignition",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(5, Stats.DOT_DAMAGE.get())
+        );
+
+        PerkBuilder.bigStat("gravedigger", "Grave Digger",
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.health))
+        );
+        PerkBuilder.bigStat("gathering_storm", "Gathering Storm",
+            new OptScaleExactStat(25, Stats.CHANCE_ON_BASIC_ATK_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.GATHER_STORM)),
+            new OptScaleExactStat(10, Stats.INCREASED_AREA.get())
+        );
+
+        PerkBuilder.bigStat("sandstream", "Sandstream",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW))
+        );
+
+        PerkBuilder.bigStat("living_thunder", "Living Thunder",
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN)),
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
+            new OptScaleExactStat(4, DatapackStats.MOVE_SPEED)
+        );
+        PerkBuilder.bigStat("deceiver", "Deceiver",
+            new OptScaleExactStat(10, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.MARK)),
+            new OptScaleExactStat(5, Stats.SHIELD_DURATION.get())
+        );
+        PerkBuilder.bigStat("last_rite", "Last Rite",
+            new OptScaleExactStat(5, SpellDamage.getInstance()),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-2, Mana.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("sandtomb", "Sand Tomb",
+            new OptScaleExactStat(5, Vitality.INSTANCE),
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("drums", "Drums",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental))
+        );
+
+        PerkBuilder.bigStat("warmth", "Warmth",
+            new OptScaleExactStat(10, Stats.HEALING_RECEIVED.get()),
+            new OptScaleExactStat(5, Stats.REDUCED_MANA_RESERVED.get())
+        );
+
+        PerkBuilder.bigStat("deepfrost", "Deepfrost",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water))
+        );
+
+        PerkBuilder.bigStat("infernal_weapons", "Infernal Weapons",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire))
+        );
+
+        PerkBuilder.bigStat("cataclysm", "Cataclysm",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
+        );
+
+        PerkBuilder.bigStat("warpath", "Warpath",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.axe)),
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.spear)),
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace))
+        );
+
+        PerkBuilder.bigStat("lucidity", "Lucidity",
+            new OptScaleExactStat(50, Stats.SPELL_ACCURACY.get()),
+            new OptScaleExactStat(5, Wisdom.INSTANCE)
+        );
+        PerkBuilder.bigStat("stone_armor", "Stone Armor",
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("sun_essence", "Sun Essence",
+            new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("astralwalk", "Astral Walk",
+            new OptScaleExactStat(10, Wisdom.INSTANCE),
+            new OptScaleExactStat(3, DatapackStats.MOVE_SPEED)
+        );
+
+        PerkBuilder.bigStat("moon_essence", "Moon Essence",
+            new OptScaleExactStat(10, Stats.HEAL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("spiritbond", "Spirit Bond",
+            new OptScaleExactStat(10, Stats.SHIELD_DURATION.get()),
+            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get())
+        );
+
+        PerkBuilder.bigStat("angelic_judgement", "Angelic Judgement",
+            new OptScaleExactStat(20, Stats.RESOURCE_ON_KILL.get(ResourceType.mana)),
+            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.JUDGEMENT))
+        );
+
+        PerkBuilder.bigStat("burning_heart", "Burning Heart",
+            new OptScaleExactStat(10, Stats.SHIELD_DURATION.get()),
+            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get())
+        );
+
     }
 
 }
