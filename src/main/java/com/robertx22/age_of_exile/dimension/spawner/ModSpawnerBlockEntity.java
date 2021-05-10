@@ -58,6 +58,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
                                 if (spawns > spawnsLeft) {
                                     spawns = spawnsLeft;
                                 }
+                                this.spawnsLeft -= spawns;
 
                                 List<BlockPos> positions = new ArrayList<>();
                                 for (int x = -4; x < 4; x++) {

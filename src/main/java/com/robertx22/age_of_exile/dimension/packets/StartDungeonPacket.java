@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.packets;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -59,14 +60,16 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
         if (maps.canStart(dungeon.right)) {
 
             if (isTeam) {
-                if (TeamUtils.getOnlineTeamMembersInRange(ctx.getPlayer())
-                    .size() < 2) {
-                    ctx.getPlayer()
-                        .sendMessage(new LiteralText("You need at least 2 party members nearby to start a dungeon in Team mode."), false);
-                    ctx.getPlayer()
-                        .sendMessage(new LiteralText("Use /age_of_exile teams"), false);
-                    return;
+                if (ModConfig.get().Server.REQUIRE_TEAM_FOR_TEAM_DUNGEONS) {
+                    if (TeamUtils.getOnlineTeamMembersInRange(ctx.getPlayer())
+                        .size() < 2) {
+                        ctx.getPlayer()
+                            .sendMessage(new LiteralText("You need at least 2 party members nearby to start a dungeon in Team mode."), false);
+                        ctx.getPlayer()
+                            .sendMessage(new LiteralText("Use /age_of_exile teams"), false);
+                        return;
 
+                    }
                 }
             }
 

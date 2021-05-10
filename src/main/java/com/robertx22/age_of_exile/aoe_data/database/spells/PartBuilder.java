@@ -93,6 +93,14 @@ public class PartBuilder {
         return c;
     }
 
+    public static ComponentPart onTickRayHeal(Double ticks, ValueCalculation calc, Double distance) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
+        c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
+        c.targets.add(BaseTargetSelector.RAY_CAST.create(distance, AllyOrEnemy.allies));
+        return c;
+    }
+
     public static ComponentPart onTickHealInAoe(Double ticks, ValueCalculation calc, Double radius) {
         ComponentPart c = healInAoe(calc, radius);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
@@ -307,6 +315,13 @@ public class PartBuilder {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createGive(effect, dura));
         c.targets.add(BaseTargetSelector.CASTER.create());
+        return c;
+    }
+
+    public static ComponentPart giveExileEffectToAlliesInRadius(Double radius, String effect, Double dura) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, dura));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
         return c;
     }
 

@@ -17,6 +17,11 @@ public class StrSupportGems implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SkillGemBuilder.of("threat", "Threat Generation Support", new StatRequirement()
+                .setVit(0.25F), StatAttribute.STR, 1.1F,
+            Arrays.asList(SpellTag.damage),
+            new StatModifier(25, 50, Stats.THREAT_GENERATED.get())
+        );
         SkillGemBuilder.of("bleed_chance", "Chance to Bleed Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.25F,
             Arrays.asList(SpellTag.damage),

@@ -125,6 +125,18 @@ public class IntSpells implements ISlashRegistryInit {
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
             .build();
 
+        SpellBuilder.of("heal_ray", SpellConfiguration.Builder.instant(2, 1), "Healing Ray",
+            Arrays.asList(SpellTag.heal))
+            .onCast(PartBuilder.Particle.builder(ParticleTypes.NOTE, 50D, 0.3D)
+                .set(MapField.MOTION, ParticleMotion.CasterLook.name())
+                .set(MapField.HEIGHT, 1D)
+                .build())
+            .onCast(PartBuilder.onTickRayHeal(10D, ValueCalculation.base("breath_heal", 3), 15D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D)
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
+            .build();
+        ;
+
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)
             .build();
 
@@ -175,7 +187,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .setScaleManaToPlayer(), "Nature's Balm",
             Arrays.asList(SpellTag.heal))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.REGENERATE.effectId, 20 * 15D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.REGENERATE.effectId, 20 * 15D))
             .build();
 
         SpellBuilder.of("overload", SpellConfiguration.Builder.instant(10, 60 * 20), "Overload",

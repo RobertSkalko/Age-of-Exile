@@ -11,6 +11,7 @@ public class ServerContainer {
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
     public boolean SAVE_GEAR_TO_CHARACTERS = true;
+    public boolean REQUIRE_TEAM_FOR_TEAM_DUNGEONS = true;
 
     public double REGEN_HUNGER_COST = 10;
     public double EXP_LOSS_ON_DEATH = 0.1F;

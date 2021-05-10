@@ -24,6 +24,7 @@ poison_arrow
 frost_breath
 fire_breath
 frost_armor
+heal_ray
 frostball
 flame_strike
 meteor

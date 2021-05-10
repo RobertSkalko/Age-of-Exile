@@ -19,6 +19,7 @@ fire_dmg
 less_radius
 fire_breath
 frost_armor
+heal_ray
 crit_rate
 health_leech
 crit_aura
@@ -60,6 +61,7 @@ spell_crit_dmg
 awaken_mana
 mana_reg_aura
 fire_nova
+threat
 poisoned_weapons
 taunt
 dodge_aura

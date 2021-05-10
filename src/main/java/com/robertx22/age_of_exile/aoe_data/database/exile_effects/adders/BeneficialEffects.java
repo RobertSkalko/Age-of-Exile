@@ -121,8 +121,9 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(REGENERATE)
+            .maxStacks(3)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.RESTORE_HEALTH.create(ValueCalculation.base("regenerate_tick", 3)))
+                .onTick(PartBuilder.justAction(SpellAction.RESTORE_HEALTH.create(ValueCalculation.base("regenerate_tick", 1)))
                     .setTarget(TargetSelector.TARGET.create())
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.HEART, 5D, 1D)

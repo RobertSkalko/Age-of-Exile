@@ -2,12 +2,14 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 
 import java.util.Arrays;
 
@@ -107,16 +109,15 @@ public class WorldUtils {
 
     }
 
-    public static boolean isDungeonWorld(WorldAccess world) {
-
+    public static boolean isDungeonWorld(WorldView world) {
         if (world == null) {
             return false;
         }
         return isMapWorldClass(world);
     }
 
-    public static boolean isMapWorldClass(WorldAccess world) {
-        return world.getRegistryManager()
+    public static boolean isMapWorldClass(WorldView world) {
+        return MMORPG.server.getRegistryManager()
             .getDimensionTypes()
             .getId(world.getDimension())
             .equals(DimensionIds.DUNGEON_DIMENSION);
