@@ -8,7 +8,7 @@ public class TreasureQuality extends Stat {
 
     private TreasureQuality() {
         this.icon = "\u2663";
-        this.format = Formatting.AQUA;
+        this.format = Formatting.AQUA.getName();
     }
 
     public static TreasureQuality getInstance() {

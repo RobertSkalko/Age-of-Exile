@@ -16,7 +16,7 @@ public class SpellDamage extends Stat {
         this.group = StatGroup.MAIN;
 
         this.statEffect = new Effect();
-        this.format = Formatting.LIGHT_PURPLE;
+        this.format = Formatting.LIGHT_PURPLE.getName();
     }
 
     public static String GUID = "spell_damage";

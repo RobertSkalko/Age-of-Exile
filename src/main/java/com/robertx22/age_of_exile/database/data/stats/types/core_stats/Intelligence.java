@@ -16,7 +16,7 @@ public class Intelligence extends BaseCoreStat {
             new OptScaleExactStat(0.2F, 0.2F, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(0.25F, 0.25F, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
         ));
-        this.format = Formatting.BLUE;
+        this.format = Formatting.BLUE.getName();
     }
 
     public static final Intelligence INSTANCE = new Intelligence();

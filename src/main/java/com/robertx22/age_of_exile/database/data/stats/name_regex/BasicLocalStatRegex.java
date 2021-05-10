@@ -8,12 +8,12 @@ public class BasicLocalStatRegex extends StatNameRegex {
 
     @Override
     public Formatting statColor(Stat stat) {
-        return stat.format;
+        return stat.getFormat();
     }
 
     @Override
     public Formatting numberColor(Stat stat, float val) {
-        return stat.format;
+        return stat.getFormat();
     }
 
     @Override

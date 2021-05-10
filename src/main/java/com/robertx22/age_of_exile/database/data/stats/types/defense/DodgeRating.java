@@ -34,7 +34,7 @@ public class DodgeRating extends Stat implements IUsableStat {
         this.statEffect = new Effect();
 
         this.icon = "\u2748";
-        this.format = Formatting.DARK_GREEN;
+        this.format = Formatting.DARK_GREEN.getName();
 
         this.isLocalTo = x -> x.isArmor();
     }

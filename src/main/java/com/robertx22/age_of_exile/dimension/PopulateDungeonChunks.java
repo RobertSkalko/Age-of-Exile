@@ -83,7 +83,11 @@ public class PopulateDungeonChunks {
         for (BlockPos blockPos : list) {
             BlockEntity be = world.getBlockEntity(blockPos);
             if (be instanceof BeaconBlockEntity) {
-                populate(world, blockPos, dungeon, data);
+                try {
+                    populate(world, blockPos, dungeon, data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
 

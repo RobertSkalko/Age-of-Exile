@@ -3,6 +3,7 @@ This registry is modify-able through datapacks.
 runeleather
 dodge_and_hp
 idol
+accuracy
 warpath
 big_eagle
 trident_damage
@@ -23,6 +24,7 @@ glove_mastery
 nature_weapon_damage
 big_dark_and_light_res
 armor_and_dodge
+cdr
 big_mana_and_health
 good_posture
 wand_mastery
@@ -36,6 +38,7 @@ drums
 big_flame_of_life
 fundamentalism
 dark_penetration
+angelfeather
 big_lacerator
 big_mages_path
 spell_nature_damage_and_dot
@@ -214,6 +217,7 @@ manasensor
 runed_geode
 fortify
 big_fire_water_spell_crit_dmg
+ice_tip
 hammer_mastery
 big_self_heal
 big_flow_of_mana
@@ -273,9 +277,11 @@ violent_strike
 cristal_hands
 big_lord_of_arcane
 hp_mana_cost
+dodge_health
 nature_fire_spell_dmg
 big_area_dmg_mana
 big_iron_skin
+sniper
 water_resist
 bow_damage
 big_endurance
@@ -283,6 +289,7 @@ big_inner_sense
 big_all_light_damage
 big_spell_crit
 huge_dex
+fire_arrows
 ele_wand_damage
 atk_cast_speed
 spell_nature_damage
@@ -292,6 +299,7 @@ huge_vit
 frostburn
 robust_chainmail
 divinity
+crystal_arrows
 big_ele_protection
 big_ele_unity
 big_hunter
@@ -344,9 +352,11 @@ big_wisdom_of_the_elders
 big_breath_of_nature
 big_eviscerator
 ancient_rune
+hold_breath
 big_str
 crit_proj_dmg
 light_weapon_damage
+nightcrawler
 huge_agi
 holy_envoy
 tale_of_dreams

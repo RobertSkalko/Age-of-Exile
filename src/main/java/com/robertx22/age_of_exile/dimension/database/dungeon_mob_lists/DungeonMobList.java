@@ -63,15 +63,21 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
 
     public LivingEntity spawnRandomMob(ServerWorld world, BlockPos pos, int tier) {
 
-        WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
+        try {
+            WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
 
-        EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+            EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
 
-        LivingEntity en = (LivingEntity) type.create(world);
+            LivingEntity en = (LivingEntity) type.create(world);
 
-        setup(en, pos, world);
+            setup(en, pos, world);
 
-        return en;
+            return en;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private void setup(LivingEntity en, BlockPos pos, ServerWorld world) {

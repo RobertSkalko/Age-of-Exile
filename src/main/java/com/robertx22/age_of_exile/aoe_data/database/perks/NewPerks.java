@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -757,6 +758,32 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.SHIELD_DURATION.get()),
             new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("angelfeather", "Angel Feather",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Light))
+        );
+
+        PerkBuilder.bigStat("ice_tip", "Ice Tip",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water))
+        );
+        PerkBuilder.bigStat("fire_arrows", "Fire Arrows",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire))
+        );
+        PerkBuilder.bigStat("crystal_arrows", "Crystal Arrows",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark))
+        );
+
+        PerkBuilder.bigStat("hold_breath", "Hold Breath",
+            new OptScaleExactStat(15, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.arrow))
         );
 
     }

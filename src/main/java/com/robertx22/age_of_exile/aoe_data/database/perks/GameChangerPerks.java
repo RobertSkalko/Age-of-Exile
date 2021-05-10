@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
@@ -14,11 +15,23 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 public class GameChangerPerks implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        PerkBuilder.gameChanger("sniper", "Sniper",
+            new OptScaleExactStat(-50, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
+            new OptScaleExactStat(-25, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.arrow))
+        );
+
+        PerkBuilder.gameChanger("nightcrawler", "Night Crawler",
+            new OptScaleExactStat(-100, Stats.STYLE_DAMAGE.get(PlayStyle.magic)),
+            new OptScaleExactStat(50, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.movement))
+        );
 
         PerkBuilder.gameChanger("spell_slinger", "Spellslinger",
             new OptScaleExactStat(-50, Stats.TOTAL_DAMAGE.get()),

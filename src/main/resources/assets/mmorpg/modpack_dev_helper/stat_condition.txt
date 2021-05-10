@@ -12,6 +12,7 @@ is_melee_weapon
 is_day_is_false
 is_crit_true
 attack_type_is_all
+spell_has_tag_arrow
 is_magic_weapon
 attack_type_is_spell
 effect_has_tag_offensive
@@ -20,6 +21,7 @@ resource_type_is_health
 ele_match_stat
 is_day
 is_spear_wep_type
+spell_has_tag_movement
 is_crossbow_wep_type
 is_undead_is_false
 is_target_low_hp

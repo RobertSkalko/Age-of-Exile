@@ -418,7 +418,7 @@ public class Stats implements ISlashRegistryInit {
             x.min = 0;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
         })
         .build();
 
@@ -440,7 +440,7 @@ public class Stats implements ISlashRegistryInit {
             x.min = 0;
             x.group = StatGroup.MAIN;
             x.icon = "\u2739";
-            x.format = Formatting.LIGHT_PURPLE;
+            x.format = Formatting.LIGHT_PURPLE.getName();
         })
         .build();
 
@@ -463,7 +463,7 @@ public class Stats implements ISlashRegistryInit {
             x.max = 100;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
         })
         .build();
 
@@ -486,7 +486,7 @@ public class Stats implements ISlashRegistryInit {
             x.group = StatGroup.MAIN;
 
             x.icon = "\u2694";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
 
         })
         .build();
@@ -509,7 +509,7 @@ public class Stats implements ISlashRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2739";
-            x.format = Formatting.DARK_PURPLE;
+            x.format = Formatting.DARK_PURPLE.getName();
 
         })
         .build();
@@ -533,7 +533,7 @@ public class Stats implements ISlashRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.GOLD;
+            x.format = Formatting.GOLD.getName();
         })
         .build();
 
@@ -552,7 +552,7 @@ public class Stats implements ISlashRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -603,7 +603,7 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u27B9";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -634,7 +634,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.BLUE;
+            x.format = Formatting.BLUE.getName();
         })
         .build();
 
@@ -650,7 +650,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.DARK_PURPLE;
+            x.format = Formatting.DARK_PURPLE.getName();
         })
         .build();
 
@@ -666,7 +666,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
         })
         .build();
 
@@ -682,7 +682,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -697,7 +697,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -715,7 +715,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
             x.group = StatGroup.Misc;
         })
         .build();
@@ -734,7 +734,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -754,7 +754,7 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.min = -100;
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -773,7 +773,7 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.min = 0;
             x.scaling = StatScaling.NONE;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -792,7 +792,7 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.min = 0;
             x.scaling = StatScaling.NONE;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -809,7 +809,7 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u2748";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -825,7 +825,7 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u2748";
-            x.format = Formatting.GREEN;
+            x.format = Formatting.GREEN.getName();
         })
         .build();
 
@@ -874,6 +874,37 @@ public class Stats implements ISlashRegistryInit {
             x.max = 75;
         })
         .build();
+    public static DataPackStatAccessor<SpellTag> DAMAGE_PER_SPELL_TAG = DatapackStatBuilder
+        .<SpellTag>of(x -> x.name() + "_spell_dmg", x -> Elements.Physical)
+        .addAllOfType(SpellTag.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.SPELL_HAS_TAG.get(x))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.locname + " Spell Damage")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<SpellTag> COOLDOWN_REDUCTION_PER_SPELL_TAG = DatapackStatBuilder
+        .<SpellTag>of(x -> x.name() + "_cdr", x -> Elements.Physical)
+        .addAllOfType(SpellTag.values())
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.SPELL_HAS_TAG.get(x))
+        .addEffect(StatEffects.DECREASE_COOLDOWN)
+        .setLocName(x -> x.locname + " Cooldown Reduction")
+        .setLocDesc(x -> "Reduces spell cooldown of spells with the tag.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.max = 50;
+        })
+        .build();
 
     public static DataPackStatAccessor<EmptyAccessor> COOLDOWN_REDUCTION = DatapackStatBuilder
         .ofSingle("cdr", Elements.Physical)
@@ -917,7 +948,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.icon = "\u27B9";
-            x.format = Formatting.GREEN;
+            x.format = Formatting.GREEN.getName();
         })
         .build();
 

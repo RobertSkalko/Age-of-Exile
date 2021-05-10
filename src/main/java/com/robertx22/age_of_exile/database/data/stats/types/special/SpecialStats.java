@@ -233,7 +233,8 @@ public class SpecialStats {
     );
 
     public static SpecialStat HEAL_CLEANSE = new SpecialStat("heal_cleanse",
-        format("Your " + Stats.HEAL_STRENGTH.get().format + Stats.HEAL_STRENGTH.get().icon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse you of a negative effect."),
+        format("Your " + Stats.HEAL_STRENGTH.get()
+            .getFormat() + Stats.HEAL_STRENGTH.get().icon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse you of a negative effect."),
 
         new BaseHealEffect() {
             @Override

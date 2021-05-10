@@ -18,7 +18,7 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
 
         List<Text> list = new ArrayList<Text>();
 
-        String icon = info.stat.format + info.stat.icon + " ";
+        String icon = info.stat.getFormat() + info.stat.icon + " ";
 
         if (ctx.statinfo.stat.is_long) {
             icon = "";

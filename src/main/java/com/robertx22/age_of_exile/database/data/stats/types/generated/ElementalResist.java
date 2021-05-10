@@ -27,7 +27,7 @@ public class ElementalResist extends ElementalStat {
         this.max = 80;
         this.group = StatGroup.ELEMENTAL;
 
-        this.format = element.format;
+        this.format = element.format.getName();
         this.icon = element.icon;
         this.isLocalTo = x -> x.isArmor() || x.isJewelry() || x.isShield();
 

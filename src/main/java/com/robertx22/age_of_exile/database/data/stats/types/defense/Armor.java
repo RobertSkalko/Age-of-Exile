@@ -27,7 +27,7 @@ public class Armor extends Stat implements IUsableStat {
         this.group = StatGroup.MAIN;
 
         this.icon = "\u2748";
-        this.format = Formatting.BLUE;
+        this.format = Formatting.BLUE.getName();
 
         this.isLocalTo = x -> x.isArmor();
 

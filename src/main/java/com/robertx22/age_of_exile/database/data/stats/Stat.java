@@ -67,19 +67,23 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public boolean is_long = false;
     public String icon = "\u2741";
     public int order = 100;
-    public Formatting format = Formatting.AQUA;
+    public String format = Formatting.AQUA.getName();
     public StatGroup group = StatGroup.Misc;
+
+    public Formatting getFormat() {
+        return Formatting.byName(format);
+    }
 
     public String getIconNameFormat() {
         return getIconNameFormat(locNameForLangFile());
     }
 
     public String getFormatAndIcon() {
-        return format + icon;
+        return getFormat() + icon;
     }
 
     public String getIconNameFormat(String str) {
-        return this.format + this.icon + " " + str + Formatting.GRAY;
+        return this.getFormat() + this.icon + " " + str + Formatting.GRAY;
     }
 
     @Override
