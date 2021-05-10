@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -19,6 +21,16 @@ public class ComboPerks implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        PerkBuilder.stat("agi_dex",
+            new OptScaleExactStat(1, Agility.INSTANCE),
+            new OptScaleExactStat(1, Dexterity.INSTANCE)
+        );
+
+        PerkBuilder.stat("dodge_mana",
+            new OptScaleExactStat(2, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
 
         PerkBuilder.stat("hp_mana_cost",
             new OptScaleExactStat(-2, Stats.MANA_COST.get(), ModType.FLAT),

@@ -15,7 +15,7 @@ public class ConnectionButton extends TexturedButtonWidget {
 
     public static int SIZE = 6;
 
-    static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/lines.png");
+    public static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/lines.png");
 
     SpellSchool school;
     PointData one;
@@ -43,19 +43,24 @@ public class ConnectionButton extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        // do nothing. use the custom method
+    }
+
+    // render here so the bind texture is only called once
+    // because there are thousands of connector buttons
+    public void renderButtonForReal(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 
         ticks++;
 
         if (screen.mouseRecentlyClickedTicks > 1) {
-            if (connection == null || ticks % 20 == 0) {
-                connection = Load.perks(mc.player)
-                    .getConnection(school, one, two);
-
+            if (ticks % 10 == 0) {
+                if (screen.pointClicked.equals(this.one) || screen.pointClicked.equals(this.two)) {
+                    connection = Load.perks(mc.player)
+                        .getConnection(school, one, two);
+                }
             }
         }
 
-        mc.getTextureManager()
-            .bindTexture(ID);
         //RenderSystem.enableDepthTest();
 
         if (connection == Perk.Connection.POSSIBLE) {
@@ -67,5 +72,4 @@ public class ConnectionButton extends TexturedButtonWidget {
         }
 
     }
-
 }

@@ -73,6 +73,7 @@ shield_power
 true_hit
 fast_barbarian
 ele_scythe_damage
+big_armor
 purgatory
 axe_mastery
 fungus_cape
@@ -129,6 +130,7 @@ lifesteal
 purify
 last_rite
 slaughter
+dodge_mana
 big_int
 magic_bubble
 red_mana_reserved
@@ -170,6 +172,7 @@ big_dex
 anatomical_knowledge
 mantra
 big_effect_of_ele
+shield_strength
 big_health_ms_mana_cost
 backlash
 big_ele_damage
@@ -216,7 +219,9 @@ big_hammer_smash
 manasensor
 runed_geode
 fortify
+big_mana
 big_fire_water_spell_crit_dmg
+shield_duration
 ice_tip
 hammer_mastery
 big_self_heal
@@ -232,6 +237,7 @@ all_water_damage
 juggler
 big_heart_of_dark
 big_mana_steal
+agi_dex
 pyromaniac
 mana_on_hit
 brilliance

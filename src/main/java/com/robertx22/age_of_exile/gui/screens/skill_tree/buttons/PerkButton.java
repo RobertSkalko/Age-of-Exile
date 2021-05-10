@@ -80,6 +80,9 @@ public class PerkButton extends TexturedButtonWidget {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
 
+        screen.mouseRecentlyClickedTicks = 25;
+        screen.pointClicked = this.point;
+
         mouseX = 1F / screen.zoom * mouseX;
         mouseY = 1F / screen.zoom * mouseY;
 

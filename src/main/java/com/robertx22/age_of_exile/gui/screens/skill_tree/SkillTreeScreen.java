@@ -55,48 +55,15 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
-    public void removeRemovableButtons() {
-        boolean did = false;
-        if (this.buttons.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
-            did = true;
-        }
-        if (this.children.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
-            did = true;
-        }
-        if (did) {
-            this.refreshButtons();
-        }
-    }
-
+    public PointData pointClicked = new PointData(0, 0);
     public int mouseRecentlyClickedTicks = 0;
 
     @Override
     public boolean mouseReleased(double x, double y, int ticks) {
 
-        boolean didClickInside = false;
-        for (AbstractButtonWidget b : buttons) {
-            if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getWidth()),
-                new Point((int) x, (int) y)
-            )) {
-                if (b instanceof IRemoveOnClickedOutside) {
-                    didClickInside = true;
-                }
-            }
-        }
-
-        if (!didClickInside) {
-            removeRemovableButtons();
-        }
-
         mouseRecentlyClickedTicks = 25;
 
         return super.mouseReleased(x, y, ticks);
-
-    }
-
-    public void removePerkButtons() {
-        this.buttons.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
-        this.children.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
 
     }
 
@@ -379,6 +346,25 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 
+    private void renderButton(AbstractButtonWidget b) {
+        if (originalButtonLocMap.containsKey(b)) {
+            b.x = (this.originalButtonLocMap.get(b).
+                x);
+            b.y = (this.originalButtonLocMap.get(b)
+                .y);
+
+            float addx = (1F / zoom - 1) * this.width / 2F;
+            float addy = (1F / zoom - 1) * this.height / 2F;
+
+            b.x += addx;
+            b.y += addy;
+
+            b.x += scrollX;
+            b.y += scrollY;
+
+        }
+    }
+
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
@@ -410,6 +396,15 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             });
 
             renderBackgroundDirt(this, 0);
+
+            mc.getTextureManager()
+                .bindTexture(ConnectionButton.ID);
+            buttons.forEach(b -> {
+                if (b instanceof ConnectionButton) {
+                    ConnectionButton c = (ConnectionButton) b;
+                    ((ConnectionButton) b).renderButtonForReal(matrix, x, y, ticks);
+                }
+            });
 
             super.render(matrix, x, y, ticks);
 

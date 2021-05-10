@@ -55,6 +55,9 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT));
 
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.SHIELD_DURATION.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.SHIELD_STRENGTH.get(), ModType.FLAT));
+
         PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(4, Stats.HEAL_STRENGTH.get(), ModType.FLAT));
@@ -83,6 +86,11 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT))
         ;
+
+        Stats.ELEMENTAL_DAMAGE.getAll()
+            .forEach(x -> {
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
+            });
 
         Stats.ELEMENTAL_SPELL_DAMAGE.getAll()
             .forEach(x -> {

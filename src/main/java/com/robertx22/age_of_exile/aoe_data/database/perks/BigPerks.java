@@ -230,7 +230,12 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
-
+        PerkBuilder.bigStat("big_armor", "Armored",
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("big_mana", "Mana Pool",
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
+        );
         PerkBuilder.bigStat("big_lord_of_arcane", "Lord of Arcane",
             new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(5, SpellDamage.getInstance(), ModType.FLAT),
