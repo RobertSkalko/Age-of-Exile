@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,29 +9,15 @@ import java.util.stream.Collectors;
 public enum AllyOrEnemy {
     allies() {
         @Override
-        public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, EntityFinder.Setup setup) {
+        public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, LivingEntity caster) {
             return list.stream()
-                .filter(x -> {
-                    if (setup.isCasterPlayer()) {
-                        if (EntityFinder.isPlayer(x)) {
-                            if (x.world.isClient) {
-                                return true;
-                            } else {
-                                if (setup.caster.isPartOf(x)) {
-                                    return true;
-                                }
-
-                                return TeamUtils.areOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
-                            }
-                        } else {
-                            return EntityFinder.isTamed(x);
-                        }
-
-                    } else {
-                        return x instanceof PlayerEntity == false && !EntityFinder.isTamed(x);
-                    }
-                })
+                .filter(x -> !is(caster, x))
                 .collect(Collectors.toList());
+        }
+
+        @Override
+        public boolean is(LivingEntity caster, LivingEntity target) {
+            return !enemies.is(caster, target);
         }
 
         @Override
@@ -42,23 +27,30 @@ public enum AllyOrEnemy {
     },
     enemies {
         @Override
-        public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, EntityFinder.Setup setup) {
+        public boolean is(LivingEntity caster, LivingEntity target) {
+
+            if (caster instanceof PlayerEntity) {
+                if (EntityFinder.isTamed(target)) {
+                    return false;
+                }
+                if (target instanceof PlayerEntity) {
+                    return !TeamUtils.areOnSameTeam((PlayerEntity) caster, (PlayerEntity) target);
+                }
+            } else {
+                if (target instanceof PlayerEntity) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        @Override
+        public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, LivingEntity caster) {
             return list.stream()
-                .filter(x -> {
-                        if (setup.isCasterPlayer()) {
-                            if (EntityFinder.isPlayer(x)) {
-                                if (x.world.isClient) {
-                                    return false;
-                                } else {
-                                    return !TeamUtils.areOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
-                                }
-                            } else {
-                                return !EntityFinder.isTamed(x);
-                            }
-                        } else
-                            return EntityFinder.isPlayer(x);
-                    }
-                )
+                .filter(x -> !is(caster, x))
                 .collect(Collectors.toList());
         }
 
@@ -69,8 +61,13 @@ public enum AllyOrEnemy {
     },
     all {
         @Override
-        public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, EntityFinder.Setup setup) {
+        public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, LivingEntity caster) {
             return list;
+        }
+
+        @Override
+        public boolean is(LivingEntity caster, LivingEntity target) {
+            return true;
         }
 
         @Override
@@ -79,7 +76,9 @@ public enum AllyOrEnemy {
         }
     };
 
-    public abstract <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, EntityFinder.Setup setup);
+    public abstract <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, LivingEntity caster);
+
+    public abstract boolean is(LivingEntity caster, LivingEntity target);
 
     public abstract boolean includesCaster();
 }

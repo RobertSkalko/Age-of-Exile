@@ -7,6 +7,7 @@ public enum SpellTag {
     heal("Heal"),
     arrow("Arrow"),
     shield("Shield"),
+    song("Song"),
     area("Area"),
     aura("Aura"),
     totem("Totem");

@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.renders.IMyRende
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
@@ -228,13 +229,19 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     @Override
     protected EntityHitResult getEntityCollision(Vec3d pos, Vec3d posPlusMotion) {
 
-        return ProjectileUtil.getEntityCollision(
+        EntityHitResult res = ProjectileUtil.getEntityCollision(
             this.world, this, pos, posPlusMotion, this.getBoundingBox()
                 .stretch(this.getVelocity())
                 .expand(1D), (e) -> {
                 return !e.isSpectator() && e.collides() && e instanceof Entity && e != this.getCaster() && e != this.ignoreEntity;
             });
 
+        if (res != null && getCaster() != null && res.getEntity() instanceof LivingEntity) {
+            if (AllyOrEnemy.allies.is(getCaster(), (LivingEntity) res.getEntity())) {
+                return null; // don't hit allies with spells, let them pass
+            }
+        }
+        return res;
     }
 
     @Override

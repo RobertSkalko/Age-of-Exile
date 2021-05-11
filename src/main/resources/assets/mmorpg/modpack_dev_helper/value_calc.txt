@@ -28,6 +28,7 @@ frost_nova
 bleed
 fire_bombs
 breath_heal
+power_chord
 awaken_mana
 gong_strike
 poison_arrow_aoe

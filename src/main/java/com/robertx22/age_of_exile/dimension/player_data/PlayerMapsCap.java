@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.player_data;
 
+import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
@@ -18,11 +19,14 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.LiteralText;
@@ -71,6 +75,9 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
         try {
 
+            TeamUtils.getOnlineTeamMembersInRange(player)
+                .forEach(x -> PlayerDamageChart.clear(x));
+
             Watch total = new Watch();
 
             Watch first = new Watch();
@@ -103,6 +110,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             first.print("first part ");
 
+            String moblist = "";
+
             if (true) {
 
                 Watch w = new Watch();
@@ -115,6 +124,13 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     for (Map.Entry<BlockPos, BlockEntity> e : dimWorld.getChunk(x.x, x.z)
                         .getBlockEntities()
                         .entrySet()) {
+
+                        if (e.getValue() instanceof SignBlockEntity) {
+                            if (SignUtils.has("[moblist]", (SignBlockEntity) e.getValue())) {
+                                moblist = SignUtils.getText((SignBlockEntity) e.getValue())
+                                    .get(1);
+                            }
+                        }
                         if (dimWorld.getBlockState(e.getKey())
                             .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
                             tpPos = e.getKey();
@@ -155,6 +171,10 @@ public class PlayerMapsCap implements ICommonPlayerCap {
             WorldDungeonCap data = Load.dungeonData(dimWorld);
             SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, 20), player.getUuid()
                 .toString());
+            if (Database.DungeonMobLists()
+                .isRegistered(moblist)) {
+                single.data.mob_list = moblist;
+            }
             data.data.set(player, tpPos, single);
 
             if (isteam) {

@@ -165,7 +165,7 @@ public class EntityFinder {
                 list.removeIf(y -> !predicate.test(y));
             }
 
-            list = this.entityPredicate.getMatchingEntities(list, this);
+            list = this.entityPredicate.getMatchingEntities(list, this.caster);
 
             if (forceExcludeCaster || !entityPredicate.includesCaster()) {
                 list.removeIf(x -> x == caster);

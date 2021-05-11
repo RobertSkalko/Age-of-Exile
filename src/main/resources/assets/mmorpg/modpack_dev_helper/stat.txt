@@ -76,6 +76,7 @@ bonus_blacksmithing_exp
 all_nature_damage
 blood
 move_speed
+inc_effect_of_heal_over_time_buff_given
 convert_dark_to_phys
 bonus_cooking_yield
 mana
@@ -85,6 +86,7 @@ health_on_all_hit
 dark_health_leech
 bonus_inscribing_exp
 max_nature_resist
+inc_effect_of_heal_over_time_buff_on_you
 chance_of_slow
 strength
 ele_scepter_damage
@@ -128,6 +130,7 @@ ele_staff_damage
 spell_nature_damage
 dark_dot_damage
 chance_on_basic_atk_to_give_infused_blade_to_self
+heal_over_time_eff_dur_u_cast
 agility
 ele_dagger_damage
 movement_spell_dmg
@@ -189,6 +192,7 @@ bonus_blacksmithing_yield
 bonus_mining_exp
 water_mana_leech
 intelligence
+song_spell_dmg
 spear_damage
 day_night_dmg
 spell_damage
@@ -242,6 +246,7 @@ ranged_dmg
 mana_on_kill
 mana_to_physical_damage
 magic_dmg
+song_cdr
 global_critical_hit
 damage_shield
 inc_effect_of_positive_buff_given
@@ -266,6 +271,7 @@ light_focus
 total_damage
 immobilizing_eff_dur_u_cast
 global_critical_damage_per_25_increased_quantity
+heal_over_time_eff_duration
 renamed_or_deleted_stat
 bonus_hot_biome_yield
 elemental_resist

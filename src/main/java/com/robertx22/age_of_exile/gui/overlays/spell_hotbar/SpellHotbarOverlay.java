@@ -140,7 +140,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 .bindTexture(AURA_ACTIVATED);
         } else if (Load.Unit(mc.player)
             .getCooldowns()
-            .isOnCooldown(spell.GUID())) {
+            .getCooldownTicks(spell.GUID()) > 1) {
             mc.getTextureManager()
                 .bindTexture(SPELL_ON_COOLDOWN);
         } else if (!Load.Unit(this.mc.player)
@@ -174,10 +174,12 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 .getCooldowns();
 
             float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) spell.config.cooldown_ticks;
-            percent = MathHelper.clamp(percent, 0, 1F);
-            mc.getTextureManager()
-                .bindTexture(COOLDOWN_TEX);
-            this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+            if (cds.getCooldownTicks(spell.GUID()) > 1) {
+                percent = MathHelper.clamp(percent, 0, 1F);
+                mc.getTextureManager()
+                    .bindTexture(COOLDOWN_TEX);
+                this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+            }
 
             int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
             if (cdsec > 1) {

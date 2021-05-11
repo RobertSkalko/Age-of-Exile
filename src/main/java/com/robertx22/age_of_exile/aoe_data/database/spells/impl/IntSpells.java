@@ -30,7 +30,6 @@ public class IntSpells implements ISlashRegistryInit {
     public static String FROSTBALL_ID = "frostball";
     public static String FIREBALL_ID = "fireball";
     public static String POISONBALL_ID = "poison_ball";
-    public static String THUNDERSPEAR_ID = "thunder_spear";
     public static String HEALING_AURA_ID = "healing_aura";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
     public static String FIRE_NOVA_ID = "fire_nova";
@@ -127,7 +126,7 @@ public class IntSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("heal_ray", SpellConfiguration.Builder.instant(2, 1), "Healing Ray",
             Arrays.asList(SpellTag.heal))
-            .onCast(PartBuilder.Particle.builder(ParticleTypes.NOTE, 50D, 0.3D)
+            .onCast(PartBuilder.Particle.builder(ParticleTypes.EFFECT, 40D, 0.3D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)
                 .build())

@@ -3,6 +3,7 @@ This registry is modify-able through datapacks.
 recoil_shot
 thirst_strike
 healing_aura
+song_of_valor
 poison_ball
 teleport
 thorn_armor
@@ -34,6 +35,7 @@ fire_bombs
 crit_aura
 overload
 astral_totem
+power_chord
 awaken_mana
 gong_strike
 hp_reg_aura

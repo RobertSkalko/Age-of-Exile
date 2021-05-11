@@ -117,6 +117,7 @@ dot_dmg
 spell_water_damage_and_dot
 spot_weakness
 spell_accuracy
+frenzy
 sword_damage
 rusty_weapons
 chance_of_burn
@@ -132,6 +133,7 @@ last_rite
 slaughter
 dodge_mana
 big_int
+vessel
 magic_bubble
 red_mana_reserved
 infernal_weapons
@@ -205,6 +207,7 @@ big_overflow_mana
 holy_water
 beyond_good_and_evil
 nature_penetration
+devastation
 fire_dom
 dark_light_spell_damage
 big_faith_armor
@@ -230,6 +233,7 @@ call_of_the_other_ones
 big_wand
 chance_to_crit_heal
 stone_armor
+decay
 unleashed
 scepter_damage
 big_health
@@ -265,7 +269,9 @@ keeper_of_the_grove
 big_gladiator
 all_light_damage
 ele_mace_damage
+flesh_former
 living_thunder
+demonblood
 big_aspect_of_thunder
 dodge
 cooldown_reduction
@@ -286,6 +292,7 @@ hp_mana_cost
 dodge_health
 nature_fire_spell_dmg
 big_area_dmg_mana
+gamechanger_one_with_nature
 big_iron_skin
 sniper
 water_resist
@@ -293,6 +300,7 @@ bow_damage
 big_endurance
 big_inner_sense
 big_all_light_damage
+third_arm
 big_spell_crit
 huge_dex
 fire_arrows
@@ -323,6 +331,7 @@ precise_preperation
 light_resist
 all_fire_damage
 hp_dot_dmg
+soulsearch
 tale_of_war
 big_fighter
 open_seal
@@ -332,6 +341,7 @@ nocturnal
 deepfrost
 sunshine
 step_tension
+bone_platings
 ele_bow_damage
 hell
 blood_mage

@@ -88,6 +88,10 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
             list.addAll(spell.getEffectTooltip(data));
         }
 
+        if (max_stacks > 1) {
+            list.add(new LiteralText("Maximum Stacks: " + max_stacks));
+        }
+
         return list;
 
     }

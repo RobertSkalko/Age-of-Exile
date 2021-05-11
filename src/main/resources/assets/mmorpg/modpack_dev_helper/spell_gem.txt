@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 healing_aura
+song_of_valor
 thorn_armor
 fire_chance
 whirlwind
@@ -58,6 +59,7 @@ bleed_chance
 make_arrows
 fire_bombs
 spell_crit_dmg
+power_chord
 awaken_mana
 mana_reg_aura
 fire_nova

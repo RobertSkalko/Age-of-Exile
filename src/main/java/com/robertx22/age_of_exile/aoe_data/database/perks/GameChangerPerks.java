@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
@@ -21,6 +22,14 @@ public class GameChangerPerks implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        PerkBuilder.gameChanger("gamechanger_one_with_nature", "One With Nature",
+            new OptScaleExactStat(-25, Stats.TOTAL_DAMAGE.get()),
+            new OptScaleExactStat(-25, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(25, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.heal_over_time)),
+            new OptScaleExactStat(25, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(-25, Stats.MANA_COST.get())
+        );
 
         PerkBuilder.gameChanger("sniper", "Sniper",
             new OptScaleExactStat(-50, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),

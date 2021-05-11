@@ -54,9 +54,17 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx VOID_EYE = new EffectCtx("void_eye", "Void Eye", 15, Elements.Dark, EffectType.beneficial);
     public static EffectCtx BLOODLUST = new EffectCtx("bloodlust", "Bloodlust", 16, Elements.Physical, EffectType.beneficial);
     public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx VALOR = new EffectCtx("valor", "Valor", 18, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(VALOR)
+            .stat(10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
+            .stat(3, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .stat(3, Stats.CAST_SPEED.get(), ModType.FLAT)
+            .maxStacks(3)
+            .build();
 
         ExileEffectBuilder.of(BLADE_DANCE)
             .stat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
@@ -122,6 +130,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(REGENERATE)
             .maxStacks(3)
+            .addTags(EffectTags.heal_over_time)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.RESTORE_HEALTH.create(ValueCalculation.base("regenerate_tick", 1)))
                     .setTarget(TargetSelector.TARGET.create())

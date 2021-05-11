@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+spell_has_tag_song
 is_sword_wep_type
 style_is_magic_is_false
 spell_has_tag_area
@@ -25,6 +26,7 @@ spell_has_tag_movement
 is_crossbow_wep_type
 is_undead_is_false
 is_target_low_hp
+effect_has_tag_heal_over_time
 spell_has_tag_damage
 random_roll
 is_crit_true_is_false

@@ -633,11 +633,6 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Intelligence.INSTANCE)
         );
 
-        PerkBuilder.bigStat("angelic_judgement", "Angelic Judgement",
-            new OptScaleExactStat(20, Stats.RESOURCE_ON_KILL.get(ResourceType.mana)),
-            new OptScaleExactStat(2, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.JUDGEMENT))
-        );
-
         PerkBuilder.bigStat("hell", "Hell",
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)),
@@ -784,6 +779,53 @@ public class NewPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("hold_breath", "Hold Breath",
             new OptScaleExactStat(15, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.arrow))
+        );
+
+        PerkBuilder.bigStat("demonblood", "Demon Blood",
+            new OptScaleExactStat(5, Stats.INCREASED_LEECH.get())
+        );
+
+        PerkBuilder.bigStat("vessel", "Vessel",
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-2, Intelligence.INSTANCE),
+            new OptScaleExactStat(-2, Wisdom.INSTANCE)
+        );
+
+        PerkBuilder.bigStat("devastation", "Devastation",
+            new OptScaleExactStat(10, Stats.AREA_DAMAGE.get()),
+            new OptScaleExactStat(10, Stats.INCREASED_AREA.get()),
+            new OptScaleExactStat(-10, Stats.PROJECTILE_DAMAGE.get())
+        );
+        PerkBuilder.bigStat("decay", "Decay",
+            new OptScaleExactStat(10, SpecialStats.HEAL_CLEANSE),
+            new OptScaleExactStat(-10, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("frenzy", "Frenzy",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)),
+            new OptScaleExactStat(25, Health.getInstance())
+        );
+
+        PerkBuilder.bigStat("third_arm", "Third Arm",
+            new OptScaleExactStat(10, Stats.ATTACK_SPEED.get())
+        );
+
+        PerkBuilder.bigStat("flesh_former", "Flesh Former",
+            new OptScaleExactStat(5, Stats.SHIELD_DURATION.get()),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("bone_platings", "Bone Collector",
+            new OptScaleExactStat(20, Stats.RESOURCE_ON_KILL.get(ResourceType.health)),
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("soulsearch", "Soul Search",
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
+            new OptScaleExactStat(5, Wisdom.INSTANCE)
         );
 
     }

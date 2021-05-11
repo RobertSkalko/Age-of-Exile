@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.MathHelper;
 
 public class SpellStatsCalculationEvent extends EffectEvent {
     public static String ID = "on_spell_stat_calc";
@@ -38,6 +39,7 @@ public class SpellStatsCalculationEvent extends EffectEvent {
 
         float manamultilvl = GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(lvl);
 
+        this.data.setupNumber(EventData.CAST_TICKS, s.config.getCastTimeTicks());
         this.data.setupNumber(EventData.MANA_COST, manamultilvl * s.config.mana_cost);
         this.data.setupNumber(EventData.COOLDOWN_TICKS, s.config.cooldown_ticks);
         this.data.setupNumber(EventData.PROJECTILE_SPEED_MULTI, 1F);
@@ -47,6 +49,9 @@ public class SpellStatsCalculationEvent extends EffectEvent {
 
     @Override
     protected void activate() {
+
+        int cd = (int) MathHelper.clamp(data.getNumber(EventData.COOLDOWN_TICKS).number, getSpell().config.cooldown_ticks * 0.2D, 1000000);
+        this.data.getNumber(EventData.COOLDOWN_TICKS).number = cd; // cap it to 80% cooldown
 
         savedData.proj_speed_multi = data.getNumber(EventData.PROJECTILE_SPEED_MULTI).number;
         savedData.pierce = data.getBoolean(EventData.PIERCE);

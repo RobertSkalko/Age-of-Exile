@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.dimension.teleporter.TeleporterBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlock;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.TotemBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingBlock;
@@ -40,6 +41,9 @@ public class ModBlocks {
     public TeleporterBlock TELEPORTER = of("teleporter", new TeleporterBlock());
     public PortalBlock PORTAL = of("portal", new PortalBlock());
     public ModSpawnerBlock SPAWNER = of("spawner", new ModSpawnerBlock());
+
+    public TotemBlock BLUE_TOTEM = of("blue_totem", new TotemBlock());
+    public TotemBlock GREEN_TOTEM = of("green_totem", new TotemBlock());
 
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 

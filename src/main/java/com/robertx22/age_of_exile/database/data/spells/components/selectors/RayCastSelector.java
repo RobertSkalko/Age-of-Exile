@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
@@ -60,7 +59,7 @@ public class RayCastSelector extends BaseTargetSelector implements ICTextTooltip
             .floatValue();
 
         List<LivingEntity> list = LookUtils.getLivingEntityLookedAt(caster, distance, false);
-        list = predicate.getMatchingEntities(list, new EntityFinder.Setup(caster, LivingEntity.class, caster.getPos()));
+        list = predicate.getMatchingEntities(list, caster);
         return list;
 
     }
