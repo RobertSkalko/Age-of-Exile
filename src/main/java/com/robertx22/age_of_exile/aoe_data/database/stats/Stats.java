@@ -1164,6 +1164,20 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_WHEN_TARGET_IS_FULL_HP = DatapackStatBuilder
+        .ofSingle("dmg_when_target_near_full_hp", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_NEAR_FULL_HP)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage to near Full Health Targets")
+        .setLocDesc(x -> "70% health or above..")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
     public static DataPackStatAccessor<EmptyAccessor> DAMAGE_WHEN_TARGET_IS_LOW_HP = DatapackStatBuilder
         .ofSingle("dmg_when_target_is_low_hp", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)

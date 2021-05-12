@@ -51,6 +51,7 @@ elemental_mana_leech
 critical_hit
 light_health_leech
 health_on_attack_hit
+dmg_when_target_near_full_hp
 inc_effect_of_immobilizing_buff_on_you
 faster_projectiles
 piercing_projectiles
@@ -200,6 +201,7 @@ night_dmg
 ranged_crit_dmg_to_undead
 darkness_dmg
 water_penetration
+technique_cdr
 bonus_inscribing_yield
 dark_mana_leech
 projectile_spell_dmg
@@ -241,9 +243,11 @@ melee_dmg
 shield_strength
 mana_regen
 heal_spell_dmg
+shout_cdr
 attack_speed
 ranged_dmg
 mana_on_kill
+shout_spell_dmg
 mana_to_physical_damage
 magic_dmg
 song_cdr
@@ -285,6 +289,7 @@ physical_vuln_crit
 spell_dodge
 nature_penetration
 crossbow_damage
+technique_spell_dmg
 inc_effect_of_offensive_buff_given
 fire_focus
 nature_focus

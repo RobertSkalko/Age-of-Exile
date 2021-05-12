@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.capability.ChunkPopulatedCap;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.*;
 import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
@@ -8,6 +9,7 @@ import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
+import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
 import nerdhub.cardinal.components.api.event.EntityComponentCallback;
 import nerdhub.cardinal.components.api.event.WorldComponentCallback;
 import nerdhub.cardinal.components.api.util.EntityComponents;
@@ -36,6 +38,12 @@ public class ComponentRegisters {
             PlayerFavor.RESOURCE,
             PlayerFavor.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerFavor(x));
+
+    public ComponentType<ChunkPopulatedCap> CHUNK_POPULATED =
+        ComponentRegistry.INSTANCE.registerIfAbsent(
+            ChunkPopulatedCap.RESOURCE,
+            ChunkPopulatedCap.class)
+            .attach(ChunkComponentCallback.EVENT, x -> new ChunkPopulatedCap());
 
     public ComponentType<PlayerMapsCap> PLAYER_MAPS =
         ComponentRegistry.INSTANCE.registerIfAbsent(

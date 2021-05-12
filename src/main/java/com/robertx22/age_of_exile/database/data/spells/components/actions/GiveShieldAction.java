@@ -17,9 +17,9 @@ import java.util.Collection;
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.SECONDS;
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.VALUE_CALCULATION;
 
-public class GiveDamageAbsorbAction extends SpellAction implements ICTextTooltip {
+public class GiveShieldAction extends SpellAction implements ICTextTooltip {
 
-    public GiveDamageAbsorbAction() {
+    public GiveShieldAction() {
         super(Arrays.asList(VALUE_CALCULATION));
     }
 

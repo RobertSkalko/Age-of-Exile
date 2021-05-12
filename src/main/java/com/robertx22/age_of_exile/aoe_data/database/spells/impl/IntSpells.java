@@ -227,7 +227,7 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.of("shield_test", SpellConfiguration.Builder.instant(15, 20 * 5), "Shield Test",
             Arrays.asList(SpellTag.shield))
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.GIVE_DAMAGE_ABSORB.create(ValueCalculation.base("shield_test", 15), 10D))
+            .onCast(PartBuilder.justAction(SpellAction.GIVE_SHIELD.create(ValueCalculation.base("shield_test", 15), 10D))
                 .addTarget(TargetSelector.CASTER.create()))
             .build();
 

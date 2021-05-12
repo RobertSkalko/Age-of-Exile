@@ -121,9 +121,12 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 boolean found = false;
 
                 for (ChunkPos x : check) {
-                    for (Map.Entry<BlockPos, BlockEntity> e : dimWorld.getChunk(x.x, x.z)
+
+                    Set<Map.Entry<BlockPos, BlockEntity>> bes = dimWorld.getChunk(x.x, x.z)
                         .getBlockEntities()
-                        .entrySet()) {
+                        .entrySet();
+
+                    for (Map.Entry<BlockPos, BlockEntity> e : bes) {
 
                         if (e.getValue() instanceof SignBlockEntity) {
                             if (SignUtils.has("[moblist]", (SignBlockEntity) e.getValue())) {
@@ -183,7 +186,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             PopulateDungeonChunks.populateAll(dimWorld, cp, single);
 
-            int kills = (int) (single.pop.mobs * 0.8F);
+            int kills = (int) (single.pop.mobs * 0.95F);
 
             single.quest.target = kills;
 

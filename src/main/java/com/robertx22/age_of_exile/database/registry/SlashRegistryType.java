@@ -81,7 +81,7 @@ public enum SlashRegistryType {
     PERK("perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN),
     SPELL_SCHOOL("spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_RARITY_GROUP("gear_rarity_group", 20, GearRarityGroup.SERIALIZER, SyncTime.ON_LOGIN),
-    SALVAGE_OUTPUT("salvage_output", 22, SalvageOutput.SERIALIZER, SyncTime.ON_LOGIN),
+    SALVAGE_OUTPUT("salvage_output", 22, SalvageOutput.SERIALIZER, SyncTime.NEVER),
     PLAYER_SKILLS("player_skills", 23, PlayerSkill.SERIALIZER, SyncTime.ON_LOGIN),
     FAVOR_RANK("favor_rank", 21, FavorRank.SERIALIZER, SyncTime.ON_LOGIN),
     BASE_STATS("base_stats", 22, BaseStatsConfig.SERIALIZER, SyncTime.ON_LOGIN),
@@ -95,8 +95,8 @@ public enum SlashRegistryType {
     VALUE_CALC("value_calc", 40, ValueCalculation.SERIALIZER, SyncTime.ON_LOGIN),
     GEAR_SET("set", 31, GearSet.SERIALIZER, SyncTime.ON_LOGIN),
     DUNGEON_MOB_LIST("dungeon_mob_list", 32, DungeonMobList.SERIALIZER, SyncTime.ON_LOGIN),
-    STAT_EFFECT("stat_effect", 32, StatEffect.SERIALIZER, SyncTime.ON_LOGIN),
-    STAT_CONDITION("stat_condition", 32, StatCondition.SERIALIZER, SyncTime.ON_LOGIN),
+    STAT_EFFECT("stat_effect", 32, StatEffect.SERIALIZER, SyncTime.NEVER),
+    STAT_CONDITION("stat_condition", 32, StatCondition.SERIALIZER, SyncTime.NEVER),
     GAME_BALANCE("game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
 
     public String id;

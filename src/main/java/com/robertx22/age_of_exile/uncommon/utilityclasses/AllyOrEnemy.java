@@ -11,7 +11,7 @@ public enum AllyOrEnemy {
         @Override
         public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, LivingEntity caster) {
             return list.stream()
-                .filter(x -> !is(caster, x))
+                .filter(x -> is(caster, x))
                 .collect(Collectors.toList());
         }
 
@@ -34,6 +34,9 @@ public enum AllyOrEnemy {
                     return false;
                 }
                 if (target instanceof PlayerEntity) {
+                    if (target == caster) {
+                        return false;
+                    }
                     return !TeamUtils.areOnSameTeam((PlayerEntity) caster, (PlayerEntity) target);
                 }
             } else {
@@ -50,7 +53,7 @@ public enum AllyOrEnemy {
         @Override
         public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, LivingEntity caster) {
             return list.stream()
-                .filter(x -> !is(caster, x))
+                .filter(x -> is(caster, x))
                 .collect(Collectors.toList());
         }
 

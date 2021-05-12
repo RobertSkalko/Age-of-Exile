@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.mixin_ducks.SignDuck;
+import com.robertx22.world_of_exile.mixin_ducks.SignDuck;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.text.Text;
 

@@ -63,6 +63,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
             .stat(3, Stats.ATTACK_SPEED.get(), ModType.FLAT)
             .stat(3, Stats.CAST_SPEED.get(), ModType.FLAT)
+            .oneOfAKind("song")
             .maxStacks(3)
             .build();
 

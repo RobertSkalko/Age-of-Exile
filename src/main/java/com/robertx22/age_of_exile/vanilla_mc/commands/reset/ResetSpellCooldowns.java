@@ -24,9 +24,9 @@ public class ResetSpellCooldowns {
     private static int run(PlayerEntity en) {
 
         try {
-            Load.spells(en)
-                .getCastingData()
-                .onTimePass(en, Load.spells(en), 500000);
+            Load.Unit(en)
+                .getCooldowns()
+                .onTicksPass(555555);
 
         } catch (Exception e) {
             e.printStackTrace();

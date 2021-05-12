@@ -26,6 +26,7 @@ spell_has_tag_movement
 is_crossbow_wep_type
 is_undead_is_false
 is_target_low_hp
+spell_has_tag_technique
 effect_has_tag_heal_over_time
 spell_has_tag_damage
 random_roll
@@ -45,6 +46,7 @@ is_axe_wep_type
 restore_type_is_leech
 attack_type_is_dot
 is_glove_wep_type
+spell_has_tag_shout
 is_wand_wep_type
 restore_type_is_heal
 spell_has_tag_shield

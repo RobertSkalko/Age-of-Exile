@@ -42,8 +42,14 @@ public class Perks implements ISlashRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT));
 
+        PerkBuilder.stat("inc_aura_effect", new OptScaleExactStat(2, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get(), ModType.FLAT));
+
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.CRIT_DAMAGE.get(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.CRIT_CHANCE.get(), ModType.FLAT));
+        PerkBuilder.stat("crit_damage", new OptScaleExactStat(2, Stats.CRIT_DAMAGE.get(), ModType.FLAT));
+        PerkBuilder.stat("crit_chance", new OptScaleExactStat(1, Stats.CRIT_CHANCE.get(), ModType.FLAT));
+
+        PerkBuilder.stat("physical_damage", new OptScaleExactStat(2, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(4, Stats.REDUCED_MANA_RESERVED.get(), ModType.FLAT));
 

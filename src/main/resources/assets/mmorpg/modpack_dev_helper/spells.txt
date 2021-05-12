@@ -24,6 +24,7 @@ heart_of_ice
 poison_arrow
 frost_breath
 fire_breath
+shout_warn
 frost_armor
 heal_ray
 frostball

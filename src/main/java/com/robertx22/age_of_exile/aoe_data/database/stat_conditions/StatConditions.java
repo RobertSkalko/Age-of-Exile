@@ -33,6 +33,7 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_TARGET_LOW_HP = new IsHealthBellowPercentCondition("is_target_low_hp", 30, EffectSides.Target);
     public static StatCondition IS_SOURCE_LOW_HP = new IsHealthBellowPercentCondition("is_source_low_hp", 30, EffectSides.Source);
+    public static StatCondition IS_TARGET_NEAR_FULL_HP = new IsHealthAbovePercentCondition("is_target_near_full_hp", 70, EffectSides.Target);
     public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
     public static StatCondition IS_NON_MAGIC_STYLE = new StringMatchesCondition(EventData.STYLE, PlayStyle.magic.name()).flipCondition();
 

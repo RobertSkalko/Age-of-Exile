@@ -37,8 +37,7 @@ dependencies {
     optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cardinal_version}")
     optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}")
     optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-world:${cardinal_version}")
-    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${cardinal_version}")
-    // depend("me.shedaniel.cloth:cloth-config-fabric:${config_api_version}")
+    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${cardinal_version}")  
     optionally("me.sargunvohra.mcmods:autoconfig1u:${auto_config_version}")
     optionally("com.terraformersmc:modmenu:${mod_menu_version}")
     optionally("top.theillusivec4.curios:curios-fabric:${curios_version}")
@@ -46,11 +45,10 @@ dependencies {
     depend("de.siphalor:nbtcrafting-${nbtcrafting_version}")
     depend("net.kyrptonaught:customportalapi:${portal_api_version}")
     optionally("me.shedaniel:RoughlyEnoughItems:${rei_version}")
-    //modRuntime("me.shedaniel:RoughlyEnoughItems:${rei_version}")
-
+  
     // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
-    compile files("Library-Of-Exile-1.16.5-1.0.8-dev.jar")
-    compile files("World-Of-Exile-1.16.5-1.2.0-dev.jar")
+    compile files("Library-Of-Exile-1.16.5-1.0.9-dev.jar")
+    compile files("World-Of-Exile-1.16.5-1.2.1-dev.jar")
 }
 
 

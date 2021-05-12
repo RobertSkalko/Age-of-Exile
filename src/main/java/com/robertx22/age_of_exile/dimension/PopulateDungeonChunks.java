@@ -5,13 +5,17 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonPopulateData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_of_exile.main.ModLoottables;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -23,6 +27,39 @@ import java.util.List;
 import java.util.Set;
 
 public class PopulateDungeonChunks {
+
+    public static void tryPopulateChunksAroundPlayer(World world, PlayerEntity player) {
+
+        if (WorldUtils.isDungeonWorld(world)) {
+
+            // Watch watch = new Watch();
+
+            int populated = 0;
+            List<ChunkPos> list = getChunksAround(new ChunkPos(player.getBlockPos()));
+
+            for (ChunkPos cp : list) {
+                Chunk chunk = world.getChunk(cp.x, cp.z);
+
+                if (!Load.chunkPopulated(chunk).populated) {
+                    DungeonData data = Load.dungeonData(world).data.get(chunk.getPos()
+                        .getStartPos()).data;
+
+                    if (!data.isEmpty()) {
+                        PopulateDungeonChunks.populateChunk(world, chunk, data, new DungeonPopulateData());
+                        Load.chunkPopulated(chunk).populated = true;
+                        populated++;
+                        if (populated > 5) {
+                            //watch.print("Populating chunk around player ");
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+    }
 
     public static void populateAll(World world, ChunkPos cpos, SingleDungeonData data) {
 
@@ -37,6 +74,11 @@ public class PopulateDungeonChunks {
 
         while (!toPopulate.isEmpty()) {
 
+            if (populated.size() > 15) {
+                break; // dont populate more than 20, 20 is enough for the quest to figure out the kill number.
+                // populate the rest on demand
+            }
+
             tries++;
             if (tries > 100) {
                 break;
@@ -49,6 +91,8 @@ public class PopulateDungeonChunks {
                 toPopulate.removeIf(x -> x.equals(cp));
             }
         }
+
+        System.out.print(populated.size() + " chunks");
 
         watch.print("populating the whole dungeon ");
 
@@ -76,6 +120,18 @@ public class PopulateDungeonChunks {
 
     public static void populate(List<ChunkPos> toPopulate, List<ChunkPos> populated, World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
 
+        boolean has = populateChunk(world, chunk, dungeon, data);
+
+        if (has) {
+            populated.add(chunk.getPos());
+            toPopulate.addAll(getChunksAround(chunk.getPos()));
+        }
+
+        toPopulate.removeIf(x -> x.equals(chunk.getPos()));
+    }
+
+    public static boolean populateChunk(World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
+
         Set<BlockPos> list = chunk.getBlockEntityPositions();
 
         boolean has = !list.isEmpty();
@@ -91,12 +147,8 @@ public class PopulateDungeonChunks {
             }
         }
 
-        if (has) {
-            populated.add(chunk.getPos());
-            toPopulate.addAll(getChunksAround(chunk.getPos()));
-        }
+        return has;
 
-        toPopulate.removeIf(x -> x.equals(chunk.getPos()));
     }
 
     static void populate(World world, BlockPos pos, DungeonData dungeonData, DungeonPopulateData data) {
@@ -123,14 +175,17 @@ public class PopulateDungeonChunks {
                 break;
             }
 
-            if (!SpawnUtil.canPlaceMob(world, p)) {
+            EntityType type = dungeonData.getMobList()
+                .getRandomMob();
+
+            if (!SpawnUtil.canPlaceMob(world, type, p)) {
                 i--;
                 continue;
             }
             data.mobs++;
 
             dungeonData.getMobList()
-                .spawnRandomMob((ServerWorld) world, p, dungeonData.tier);
+                .spawMob((ServerWorld) world, type, p, dungeonData.tier);
 
             list.remove(p);
         }

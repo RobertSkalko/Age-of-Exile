@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -76,6 +77,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                     data.regenTicks = 0;
                     if (player.isAlive()) {
+
+                        PopulateDungeonChunks.tryPopulateChunksAroundPlayer(player.world, player);
 
                         EntityCap.UnitData unitdata = Load.Unit(player);
 

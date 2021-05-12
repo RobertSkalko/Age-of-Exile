@@ -10,6 +10,7 @@ import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleTypes;
@@ -39,6 +40,10 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
     @Override
     public void tick() {
+
+        if (spawnsLeft < 1) {
+            return;
+        }
 
         ticks++;
 
@@ -85,8 +90,10 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
                                         BlockPos blockPos = RandomUtils.randomFromList(positions);
 
-                                        if (SpawnUtil.canPlaceMob(world, blockPos)) {
-                                            list.spawnRandomMob((ServerWorld) world, blockPos, 0);
+                                        EntityType type = list.getRandomMob();
+
+                                        if (SpawnUtil.canPlaceMob(world, type, blockPos)) {
+                                            list.spawMob((ServerWorld) world, type, blockPos, 0);
                                             spawns--;
                                         }
 

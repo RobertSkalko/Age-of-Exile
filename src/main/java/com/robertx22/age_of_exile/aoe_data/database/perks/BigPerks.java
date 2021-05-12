@@ -45,6 +45,7 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(1, new MaxElementalResist(Elements.Elemental), ModType.FLAT)
         );
+
         PerkBuilder.bigStat("big_health", "Healthy",
             new OptScaleExactStat(15, Health.getInstance(), ModType.LOCAL_INCREASE)
         );

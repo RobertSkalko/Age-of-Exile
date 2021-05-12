@@ -21,6 +21,7 @@ fire_bomb
 heart_of_ice
 poison
 frost_breath
+shout_warn
 direct_arrow_hit
 flame_strike
 meteor

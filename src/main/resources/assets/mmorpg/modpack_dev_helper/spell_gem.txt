@@ -19,6 +19,7 @@ shield_test
 fire_dmg
 less_radius
 fire_breath
+shout_warn
 frost_armor
 heal_ray
 crit_rate

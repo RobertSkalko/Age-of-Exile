@@ -41,57 +41,55 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             }
 
             if (!(mobKilled instanceof PlayerEntity)) {
-                if (Load.hasUnit(mobKilled)) {
 
-                    UnitData mobKilledData = Load.Unit(mobKilled);
+                UnitData mobKilledData = Load.Unit(mobKilled);
 
-                    LivingEntity killerEntity = EntityInfoComponent.get(mobKilled)
+                LivingEntity killerEntity = EntityInfoComponent.get(mobKilled)
+                    .getDamageStats()
+                    .getHighestDamager((ServerWorld) mobKilled.world);
+
+                if (killerEntity == null) {
+                    try {
+                        if (mobKilled.getRecentDamageSource()
+                            .getAttacker() instanceof PlayerEntity) {
+                            killerEntity = (LivingEntity) mobKilled.getRecentDamageSource()
+                                .getAttacker();
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+
+                if (killerEntity == null) {
+                    if (EntityInfoComponent.get(mobKilled)
                         .getDamageStats()
-                        .getHighestDamager((ServerWorld) mobKilled.world);
-
-                    if (killerEntity == null) {
-                        try {
-                            if (mobKilled.getRecentDamageSource()
-                                .getAttacker() instanceof PlayerEntity) {
-                                killerEntity = (LivingEntity) mobKilled.getRecentDamageSource()
-                                    .getAttacker();
-                            }
-                        } catch (Exception e) {
-                        }
+                        .getEnviroOrMobDmg() < mobKilled.getMaxHealth() / 2F) {
+                        killerEntity = onMobDeath.killer;
                     }
+                }
 
-                    if (killerEntity == null) {
-                        if (EntityInfoComponent.get(mobKilled)
-                            .getDamageStats()
-                            .getEnviroOrMobDmg() < mobKilled.getMaxHealth() / 2F) {
-                            killerEntity = onMobDeath.killer;
-                        }
-                    }
+                if (killerEntity instanceof ServerPlayerEntity) {
 
-                    if (killerEntity instanceof ServerPlayerEntity) {
+                    ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
+                    UnitData playerData = Load.Unit(player);
 
-                        ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
-                        UnitData playerData = Load.Unit(player);
+                    EntityConfig config = Database.getEntityConfig(mobKilled, mobKilledData);
 
-                        EntityConfig config = Database.getEntityConfig(mobKilled, mobKilledData);
+                    float loot_multi = (float) config.loot_multi;
+                    float exp_multi = (float) config.exp_multi;
 
-                        float loot_multi = (float) config.loot_multi;
-                        float exp_multi = (float) config.exp_multi;
-
-                        if (loot_multi > 0) {
-                            MasterLootGen.genAndDrop(mobKilled, player);
-
-                        }
-                        if (exp_multi > 0) {
-                            GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
-                        }
-
-                        if (WorldUtils.isDungeonWorld(mobKilled.world)) {
-                            SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
-                            dungeon.quest.increaseProgressBy(player, 1, dungeon.data);
-                        }
+                    if (loot_multi > 0) {
+                        MasterLootGen.genAndDrop(mobKilled, player);
 
                     }
+                    if (exp_multi > 0) {
+                        GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
+                    }
+
+                    if (WorldUtils.isDungeonWorld(mobKilled.world)) {
+                        SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
+                        dungeon.quest.increaseProgressBy(player, 1, dungeon.data);
+                    }
+
                 }
 
             }

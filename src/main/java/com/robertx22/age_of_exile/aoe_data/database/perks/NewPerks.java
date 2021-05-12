@@ -827,7 +827,58 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
             new OptScaleExactStat(5, Wisdom.INSTANCE)
         );
+        PerkBuilder.bigStat("guarding_runes", "Guarding Runes",
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Stats.INCREASED_EFFECT_OF_AURAS_RECEIVED.get()),
+            new OptScaleExactStat(5, Vitality.INSTANCE)
+        );
 
+        PerkBuilder.bigStat("trinity", "Trinity",
+            new OptScaleExactStat(5, Stats.HEAL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()),
+            new OptScaleExactStat(5, Stats.HEALING_RECEIVED.get())
+        );
+        PerkBuilder.bigStat("seraphim", "Seraphim",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get())
+        );
+
+        PerkBuilder.bigStat("no_doubt", "No Doubt",
+            new OptScaleExactStat(10, Stats.TOTAL_DAMAGE.get()),
+            new OptScaleExactStat(5, new ElementalResist(Elements.Elemental)),
+            new OptScaleExactStat(-20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("transcendence", "Transcendence",
+            new OptScaleExactStat(10, ManaRegen.getInstance()),
+            new OptScaleExactStat(5, new ElementalResist(Elements.Elemental)),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("falling_dragon", "Falling Dragon",
+            new OptScaleExactStat(5, Stats.MANA_COST.get()),
+            new OptScaleExactStat(10, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique))
+        );
+        PerkBuilder.bigStat("second_heart", "Second Heart",
+            new OptScaleExactStat(5, Stats.ATTACK_SPEED.get()),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("big_game_hunter", "Game Hunter",
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
+            new OptScaleExactStat(2, Stats.CRIT_CHANCE.get()),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+
+        );
+        PerkBuilder.bigStat("firstblood", "First Blood",
+            new OptScaleExactStat(15, Stats.DAMAGE_WHEN_TARGET_IS_FULL_HP.get())
+        );
+
+        PerkBuilder.bigStat("twist_the_knife", "Twist the Knife",
+            new OptScaleExactStat(-5, Stats.ATTACK_SPEED.get()),
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
+        );
     }
 
 }

@@ -69,8 +69,8 @@ public class VoidChunkGenerator extends ChunkGenerator {
         BlockState blockState = Blocks.STONE.getDefaultState();
         BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-        for (int i = 0; i < 150; ++i) {
-            if (blockState != null) {
+        if (blockState != null) {
+            for (int i = 0; i < 200; ++i) {
                 for (int j = 0; j < 16; ++j) {
                     for (int k = 0; k < 16; ++k) {
                         chunk.setBlockState(mutable.set(j, i, k), blockState, false);
